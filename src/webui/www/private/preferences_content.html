@@ -817,6 +817,279 @@
     </fieldset>
 </div>
 
+<div id="AdvancedTab" class="PrefTab invisible">
+    <fieldset class="settings">
+        <legend>QBT_TR(qBittorrent Section)QBT_TR[CONTEXT=OptionsDialog]&nbsp;(<a href="https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced" target="_blank">QBT_TR(Open documentation)QBT_TR[CONTEXT=HttpServer]</a>)</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="networkInterface">QBT_TR(Network Interface (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="networkInterface" style="width: 15em;">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="optionalIPAddressToBind">QBT_TR(Optional IP Address to bind to (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="optionalIPAddressToBind" style="width: 15em;">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="listenOnIPv6Address">QBT_TR(Listen on IPv6 address (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="listenOnIPv6Address">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="saveResumeDataInterval">QBT_TR(Save resume data interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="saveResumeDataInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(min)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="recheckTorrentsOnCompletion">QBT_TR(Recheck torrents on completion:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="recheckTorrentsOnCompletion">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="resolvePeerCountries">QBT_TR(Resolve peer countries (GeoIP):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="resolvePeerCountries">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset class="settings">
+        <legend>QBT_TR(libtorrent Section)QBT_TR[CONTEXT=OptionsDialog]&nbsp;(<a href="https://www.libtorrent.org/reference.html" target="_blank">QBT_TR(Open documentation)QBT_TR[CONTEXT=HttpServer]</a>)</legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="asyncIOThreads">QBT_TR(Asynchronous I/O threads:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#aio_threads" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="asyncIOThreads" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="filePoolSize">QBT_TR(File pool size:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#file_pool_size" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="filePoolSize" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="outstandMemoryWhenCheckingTorrents">QBT_TR(Outstanding memory when checking torrents:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#checking_mem_usage" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="outstandMemoryWhenCheckingTorrents" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="diskCache">QBT_TR(Disk cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="diskCache" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="diskCacheExpiryInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(s)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="enableOSCache">QBT_TR(Enable OS cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="enableOSCache" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="guidedReadCache">QBT_TR(Guided read cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#guided_read_cache" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="guidedReadCache" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads & writes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="coalesceReadsAndWrites" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="sendUploadPieceSuggestions">QBT_TR(Send upload piece suggestions:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#suggest_mode" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="sendUploadPieceSuggestions" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="sendBufferWatermark">QBT_TR(Send buffer watermark:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="sendBufferWatermark" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="sendBufferLowWatermark">QBT_TR(Send buffer low watermark:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#send_buffer_low_watermark" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="sendBufferLowWatermark" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="sendBufferWatermarkFactor">QBT_TR(Send buffer watermark factor:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="sendBufferWatermarkFactor" style="width: 15em;" />&nbsp;&nbsp;%
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="socketBacklogSize">QBT_TR(Socket backlog size:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#listen_queue_size" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="socketBacklogSize" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="outgoingPortsMin">QBT_TR(Outgoing ports (Min) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="outgoingPortsMin" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="outgoingPortsMax">QBT_TR(Outgoing ports (Max) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="outgoingPortsMax" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="utpTCPMixedModeAlgorithm">QBT_TR(μTP-TCP mixed mode algorithm:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="utpTCPMixedModeAlgorithm" style="width: 15em;">
+                        <option value="0">QBT_TR(Prefer TCP)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Peer proportional (throttles TCP))QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="allowMultipleConnectionsFromTheSameIPAddress">QBT_TR(Allow multiple connections from the same IP address:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="allowMultipleConnectionsFromTheSameIPAddress" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="enableEmbeddedTracker">QBT_TR(Enable embedded tracker:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="enableEmbeddedTracker" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="embeddedTrackerPort">QBT_TR(Embedded tracker port:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="embeddedTrackerPort" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="uploadSlotsBehavior">QBT_TR(Upload slots behavior:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#choking_algorithm" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="uploadSlotsBehavior" style="width: 15em;">
+                        <option value="0">QBT_TR(Fixed slots)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Upload rate based)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="uploadChokingAlgorithm">QBT_TR(Upload choking algorithm:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="uploadChokingAlgorithm" style="width: 15em;">
+                        <option value="0">QBT_TR(Round-robin)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Fastest upload)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(Anti-leech)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="strictSuperSeeding">QBT_TR(Strict super seeding:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#strict_super_seeding" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="strictSuperSeeding" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="announceAllTrackers">QBT_TR(Always announce to all trackers in a tier:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="announceAllTrackers" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="announceAllTiers">QBT_TR(Always announce to all tiers:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="announceAllTiers" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="announceIP">QBT_TR(IP Address to report to trackers (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="announceIP" style="width: 15em;" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
 <div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();" /></div>
 
 <script>
@@ -1099,6 +1372,54 @@
         return ret;
     };
 
+    // Advanced Tab
+    var updateNetworkInterfaces = function(default_iface) {
+        const url = 'api/v2/app/networkInterfaceList';
+        $('networkInterface').empty();
+        new Request.JSON({
+            url: url,
+            method: 'get',
+            noCache: true,
+            onFailure: function() {
+                alert("Could not contact qBittorrent");
+            },
+            onSuccess: function(ifaces) {
+                if (!ifaces) return;
+
+                $('networkInterface').options.add(new Option('QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]', ''));
+                ifaces.forEach(function(item, index) {
+                    $('networkInterface').options.add(new Option(item.name, item.value));
+                });
+                $('networkInterface').setProperty('value', default_iface);
+            }
+        }).send();
+    };
+
+    var updateInterfaceAddresses = function(iface, default_addr) {
+        const url = 'api/v2/app/networkInterfaceAddressList';
+        $('optionalIPAddressToBind').empty();
+        new Request.JSON({
+            url: url,
+            method: 'get',
+            noCache: true,
+            data: {
+                'iface': iface
+            },
+            onFailure: function() {
+                alert("Could not contact qBittorrent");
+            },
+            onSuccess: function(addresses) {
+                if (!addresses) return;
+
+                $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]', ''));
+                addresses.forEach(function(item, index) {
+                    $('optionalIPAddressToBind').options.add(new Option(item, item));
+                });
+                $('optionalIPAddressToBind').setProperty('value', default_addr);
+            }
+        }).send();
+    }
+
     var loadPreferences = function() {
         var url = 'api/v2/app/preferences';
         new Request.JSON({
@@ -1366,6 +1687,41 @@
                     $('dyndns_username_text').setProperty('value', pref.dyndns_username);
                     $('dyndns_password_text').setProperty('value', pref.dyndns_password);
                     updateDynDnsSettings();
+
+                    // Advanced settings
+                    // qBittorrent section
+                    updateNetworkInterfaces(pref.current_network_interface);
+                    updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
+                    $('listenOnIPv6Address').setProperty('checked', pref.listen_on_ipv6_address);
+                    $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
+                    $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
+                    $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
+                    // libtorrent section
+                    $('asyncIOThreads').setProperty('value', pref.async_io_threads);
+                    $('filePoolSize').setProperty('value', pref.file_pool_size);
+                    $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
+                    $('diskCache').setProperty('value', pref.disk_cache);
+                    $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
+                    $('enableOSCache').setProperty('checked', pref.enable_os_cache);
+                    $('guidedReadCache').setProperty('checked', pref.enable_guided_read_cache);
+                    $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
+                    $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
+                    $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
+                    $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
+                    $('sendBufferWatermarkFactor').setProperty('value', pref.send_buffer_watermark_factor);
+                    $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
+                    $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
+                    $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
+                    $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
+                    $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
+                    $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
+                    $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
+                    $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
+                    $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
+                    $('strictSuperSeeding').setProperty('checked', pref.enable_super_seeding);
+                    $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
+                    $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
+                    $('announceIP').setProperty('value', pref.announce_ip);
                 }
             }
         }).send();
@@ -1697,6 +2053,42 @@
         settings.set('dyndns_username', $('dyndns_username_text').getProperty('value'));
         settings.set('dyndns_password', $('dyndns_password_text').getProperty('value'));
 
+        // Update advanced settings
+        // qBittorrent section
+        settings.set('current_network_interface', $('networkInterface').getProperty('value'));
+        settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
+        settings.set('listen_on_ipv6_address', $('listenOnIPv6Address').getProperty('checked'));
+        settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
+        settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
+        settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
+        
+        // libtorrent section
+        settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
+        settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
+        settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
+        settings.set('disk_cache', $('diskCache').getProperty('value'));
+        settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
+        settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
+        settings.set('enable_guided_read_cache', $('guidedReadCache').getProperty('checked'));
+        settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
+        settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
+        settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));
+        settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));
+        settings.set('send_buffer_watermark_factor', $('sendBufferWatermarkFactor').getProperty('value'));
+        settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
+        settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
+        settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
+        settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
+        settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
+        settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
+        settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
+        settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
+        settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));
+        settings.set('enable_super_seeding', $('strictSuperSeeding').getProperty('checked'));
+        settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
+        settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
+        settings.set('announce_ip', $('announceIP').getProperty('value'));
+
         // Send it to qBT
         var json_str = JSON.encode(settings);
 
@@ -1717,6 +2109,10 @@
             }
         }).send();
     };
+
+    $('networkInterface').addEvent('change', function() {
+        updateInterfaceAddresses($(this).getProperty('value'), '');
+    });
 
     loadPreferences();
 </script>
