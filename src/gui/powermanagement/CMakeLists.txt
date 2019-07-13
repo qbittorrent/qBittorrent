@@ -1,5 +1,8 @@
 add_library(qbt_powermanagement STATIC
+# headers
 powermanagement.h
+
+# sources
 powermanagement.cpp
 )
 

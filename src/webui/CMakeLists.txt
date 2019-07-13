@@ -3,9 +3,9 @@ add_library(qbt_webui STATIC
 api/apicontroller.h
 api/apierror.h
 api/appcontroller.h
-api/isessionmanager.h
 api/authcontroller.h
 api/freediskspacechecker.h
+api/isessionmanager.h
 api/logcontroller.h
 api/rsscontroller.h
 api/searchcontroller.h
