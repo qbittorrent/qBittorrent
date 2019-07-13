@@ -32,6 +32,7 @@
 
 #include <QHeaderView>
 #include <QHostAddress>
+#include <QLabel>
 #include <QNetworkInterface>
 
 #include "base/bittorrent/session.h"
@@ -313,15 +314,20 @@ void AdvancedSettings::loadAdvancedSettings()
     const BitTorrent::Session *const session = BitTorrent::Session::instance();
 
     // add section headers
-    labelQbtLink.setText(makeLink("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced"
-            , tr("Open documentation")));
-    labelQbtLink.setOpenExternalLinks(true);
-    addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), &labelQbtLink);
+    auto *labelQbtLink = new QLabel(
+        makeLink(QLatin1String("https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced")
+                 , tr("Open documentation"))
+        , this);
+    labelQbtLink->setOpenExternalLinks(true);
+    addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), labelQbtLink);
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
-    labelLibtorrentLink.setText(makeLink("https://www.libtorrent.org/reference.html", tr("Open documentation")));
-    labelLibtorrentLink.setOpenExternalLinks(true);
-    addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), &labelLibtorrentLink);
+    auto *labelLibtorrentLink = new QLabel(
+        makeLink(QLatin1String("https://www.libtorrent.org/reference.html")
+                 , tr("Open documentation"))
+        , this);
+    labelLibtorrentLink->setOpenExternalLinks(true);
+    addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     // Async IO threads
