@@ -1860,23 +1860,30 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     if (fromMagnetUri) {
         hash = magnetUri.hash();
 
-        if (m_loadedMetadata.contains(hash)) {
+        const auto it = m_loadedMetadata.constFind(hash);
+        if (it != m_loadedMetadata.constEnd()) {
             // Adding preloaded torrent...
-            m_addingTorrents.insert(hash, params);
+            const TorrentInfo metadata = it.value();
+            if (metadata.isValid()) {
+                // Metadata is received and torrent_handle is being deleted
+                // so we can't reuse it. Just add torrent using its metadata.
+                return addTorrent_impl(params
+                    , MagnetUri {}, metadata, fastresumeData);
+            }
 
+            // Reuse existing torrent_handle
             lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
             // We need to pause it first to create TorrentHandle within the same
             // underlying state as in other cases.
-            try {
 #if (LIBTORRENT_VERSION_NUM < 10200)
-                handle.auto_managed(false);
+            handle.auto_managed(false);
 #else
-                handle.unset_flags(lt::torrent_flags::auto_managed);
+            handle.unset_flags(lt::torrent_flags::auto_managed);
 #endif
-                handle.pause();
-            }
-            catch (const std::exception &) {}
+            handle.pause();
 
+            m_loadedMetadata.remove(hash);
+            m_addingTorrents.insert(hash, params);
             return true;
         }
 
@@ -4074,9 +4081,8 @@ void Session::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p
 {
     const InfoHash hash {p->handle.info_hash()};
 
-    if (m_loadedMetadata.contains(hash)) {
+    if (m_addingTorrents.contains(hash)) {
         // Adding preloaded torrent
-        m_loadedMetadata.remove(hash);
         lt::torrent_handle handle = p->handle;
         --m_extraLimit;
 
@@ -4084,10 +4090,8 @@ void Session::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p
         // otherwise the torrent never be downloaded (until application restart)
 #if (LIBTORRENT_VERSION_NUM < 10200)
         handle.set_upload_mode(false);
-        handle.auto_managed(true);
 #else
         handle.unset_flags(lt::torrent_flags::upload_mode);
-        handle.set_flags(lt::torrent_flags::auto_managed);
 #endif
 
         adjustLimits();
