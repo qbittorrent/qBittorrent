@@ -1350,6 +1350,12 @@ void TorrentHandle::toggleFirstLastPiecePriority()
 void TorrentHandle::pause()
 {
     if (m_startupState != Started) return;
+    if (m_pauseWhenReady) return;
+    if (isChecking()) {
+        m_pauseWhenReady = true;
+        return;
+    }
+
     if (isPaused()) return;
 
     m_nativeHandle.auto_managed(false);
@@ -1366,6 +1372,7 @@ void TorrentHandle::resume(bool forced)
 {
     if (m_startupState != Started) return;
 
+    m_pauseWhenReady = false;
     resume_impl(forced);
 }
 
