@@ -207,7 +207,7 @@ namespace
 //   - "progress": Torrent progress
 //   - "dlspeed": Torrent download speed
 //   - "upspeed": Torrent upload speed
-//   - "priority": Torrent priority (-1 if queuing is disabled)
+//   - "priority": Torrent queue position (-1 if queuing is disabled)
 //   - "num_seeds": Torrent seeds connected to
 //   - "num_complete": Torrent seeds in the swarm
 //   - "num_leechs": Torrent leechers connected to
@@ -864,7 +864,7 @@ void TorrentsController::increasePrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->increaseTorrentsPriority(hashes);
+    BitTorrent::Session::instance()->increaseTorrentsQueuePos(hashes);
 }
 
 void TorrentsController::decreasePrioAction()
@@ -875,7 +875,7 @@ void TorrentsController::decreasePrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->decreaseTorrentsPriority(hashes);
+    BitTorrent::Session::instance()->decreaseTorrentsQueuePos(hashes);
 }
 
 void TorrentsController::topPrioAction()
@@ -886,7 +886,7 @@ void TorrentsController::topPrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->topTorrentsPriority(hashes);
+    BitTorrent::Session::instance()->topTorrentsQueuePos(hashes);
 }
 
 void TorrentsController::bottomPrioAction()
@@ -897,7 +897,7 @@ void TorrentsController::bottomPrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->bottomTorrentsPriority(hashes);
+    BitTorrent::Session::instance()->bottomTorrentsQueuePos(hashes);
 }
 
 void TorrentsController::setLocationAction()

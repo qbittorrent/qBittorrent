@@ -94,7 +94,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
             switch (section) {
-            case TR_PRIORITY: return QChar('#');
+            case TR_QUEUE_POSITION: return QChar('#');
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Done", "% Done");
@@ -147,7 +147,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_DLLIMIT:
             case TR_RATIO_LIMIT:
             case TR_RATIO:
-            case TR_PRIORITY:
+            case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
@@ -178,7 +178,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
     switch (index.column()) {
     case TR_NAME:
         return torrent->name();
-    case TR_PRIORITY:
+    case TR_QUEUE_POSITION:
         return torrent->queuePosition();
     case TR_SIZE:
         return torrent->wantedSize();

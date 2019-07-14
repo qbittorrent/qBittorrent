@@ -509,18 +509,18 @@ window.addEvent('load', function() {
             torrentsTable.columns['priority'].force_hide = !queueing_enabled;
             torrentsTable.updateColumn('priority');
             if (queueing_enabled) {
-                $('topPrioItem').removeClass('invisible');
-                $('increasePrioItem').removeClass('invisible');
-                $('decreasePrioItem').removeClass('invisible');
-                $('bottomPrioItem').removeClass('invisible');
+                $('topQueuePosItem').removeClass('invisible');
+                $('increaseQueuePosItem').removeClass('invisible');
+                $('decreaseQueuePosItem').removeClass('invisible');
+                $('bottomQueuePosItem').removeClass('invisible');
                 $('queueingButtons').removeClass('invisible');
                 $('queueingMenuItems').removeClass('invisible');
             }
             else {
-                $('topPrioItem').addClass('invisible');
-                $('increasePrioItem').addClass('invisible');
-                $('decreasePrioItem').addClass('invisible');
-                $('bottomPrioItem').addClass('invisible');
+                $('topQueuePosItem').addClass('invisible');
+                $('increaseQueuePosItem').addClass('invisible');
+                $('decreaseQueuePosItem').addClass('invisible');
+                $('bottomQueuePosItem').addClass('invisible');
                 $('queueingButtons').addClass('invisible');
                 $('queueingMenuItems').addClass('invisible');
             }
@@ -854,11 +854,11 @@ function setupCopyEventHandler() {
     clipboardEvent = new ClipboardJS('.copyToClipboard', {
         text: function(trigger) {
             switch (trigger.id) {
-                case "CopyName":
+                case "copyName":
                     return copyNameFN();
-                case "CopyMagnetLink":
+                case "copyMagnetLink":
                     return copyMagnetLinkFN();
-                case "CopyHash":
+                case "copyHash":
                     return copyHashFN();
                 case "copyDescriptionPageUrl":
                     return copySearchTorrentUrl();

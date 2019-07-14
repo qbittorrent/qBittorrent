@@ -243,8 +243,8 @@ private:
     LineEdit *m_searchFilter;
     QAction *m_searchFilterAction;
     // Widgets
-    QAction *m_prioSeparator;
-    QAction *m_prioSeparatorMenu;
+    QAction *m_queueSeparator;
+    QAction *m_queueSeparatorMenu;
     QSplitter *m_splitter;
     QPointer<SearchWidget> m_searchWidget;
     QPointer<RSSWidget> m_rssWidget;

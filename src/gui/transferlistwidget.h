@@ -71,10 +71,10 @@ public slots:
     void permDeleteSelectedTorrents();
     void deleteSelectedTorrents(bool deleteLocalFiles);
     void deleteVisibleTorrents();
-    void increasePrioSelectedTorrents();
-    void decreasePrioSelectedTorrents();
-    void topPrioSelectedTorrents();
-    void bottomPrioSelectedTorrents();
+    void increaseQueuePosSelectedTorrents();
+    void decreaseQueuePosSelectedTorrents();
+    void topQueuePosSelectedTorrents();
+    void bottomQueuePosSelectedTorrents();
     void copySelectedMagnetURIs() const;
     void copySelectedNames() const;
     void copySelectedHashes() const;
@@ -85,7 +85,7 @@ public slots:
     void setUpLimitSelectedTorrents();
     void setMaxRatioSelectedTorrents();
     void previewSelectedTorrents();
-    void hidePriorityColumn(bool hide);
+    void hideQueuePosColumn(bool hide);
     void displayDLHoSMenu(const QPoint&);
     void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
