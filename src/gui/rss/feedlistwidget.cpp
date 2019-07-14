@@ -71,11 +71,6 @@ FeedListWidget::FeedListWidget(QWidget *parent)
 //    setCurrentItem(m_unreadStickyItem);
 }
 
-FeedListWidget::~FeedListWidget()
-{
-    delete m_unreadStickyItem;
-}
-
 void FeedListWidget::handleItemAdded(RSS::Item *rssItem)
 {
     auto parentItem = m_rssToTreeItemMapping.value(

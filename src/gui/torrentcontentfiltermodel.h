@@ -41,7 +41,6 @@ class TorrentContentFilterModel : public QSortFilterProxyModel
 
 public:
     TorrentContentFilterModel(QObject *parent = nullptr);
-    ~TorrentContentFilterModel() override;
 
     TorrentContentModel *model() const;
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
@@ -60,8 +59,9 @@ protected:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
 private:
-    TorrentContentModel *m_model;
     bool hasFiltered(const QModelIndex &folder) const;
+
+    TorrentContentModel *m_model;
 };
 
 #endif // TORRENTCONTENTFILTERMODEL_H

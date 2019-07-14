@@ -107,11 +107,6 @@ PropTabBar::PropTabBar(QWidget *parent)
         btn->setFocusPolicy(Qt::NoFocus);
 }
 
-PropTabBar::~PropTabBar()
-{
-    delete m_btnGroup;
-}
-
 int PropTabBar::currentIndex() const
 {
     return m_currentIndex;

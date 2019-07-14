@@ -47,7 +47,6 @@ class FeedListWidget : public QTreeWidget
 
 public:
     explicit FeedListWidget(QWidget *parent);
-    ~FeedListWidget();
 
     QTreeWidgetItem *stickyUnreadItem() const;
     QList<QTreeWidgetItem *> getAllOpenedFolders(QTreeWidgetItem *parent = nullptr) const;
