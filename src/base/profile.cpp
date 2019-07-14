@@ -112,3 +112,8 @@ QString Profile::fromPortablePath(const QString &portablePath) const
 {
     return m_pathConverterImpl->fromPortablePath(portablePath);
 }
+
+QString specialFolderLocation(const SpecialFolder folder)
+{
+    return Profile::instance().location(folder);
+}
