@@ -224,7 +224,7 @@ TorrentHandle::TorrentHandle(Session *session, const libtorrent::torrent_handle 
             // Resume torrent because it was added in "resumed" state
             // but it's actually paused during initialization.
             m_startupState = Starting;
-            resume(m_needsToStartForced);
+            resume_impl(m_needsToStartForced);
         }
         else {
             m_startupState = Started;
@@ -1231,6 +1231,8 @@ bool TorrentHandle::setCategory(const QString &category)
 
 void TorrentHandle::move(QString path)
 {
+    if (m_startupState != Started) return;
+
     m_useAutoTMM = false;
     m_session->handleTorrentSavingModeChanged(this);
 
@@ -1269,6 +1271,7 @@ void TorrentHandle::forceDHTAnnounce()
 
 void TorrentHandle::forceRecheck()
 {
+    if (m_startupState != Started) return;
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
@@ -1346,6 +1349,7 @@ void TorrentHandle::toggleFirstLastPiecePriority()
 
 void TorrentHandle::pause()
 {
+    if (m_startupState != Started) return;
     if (isPaused()) return;
 
     m_nativeHandle.auto_managed(false);
@@ -1360,6 +1364,8 @@ void TorrentHandle::pause()
 
 void TorrentHandle::resume(bool forced)
 {
+    if (m_startupState != Started) return;
+
     resume_impl(forced);
 }
 
@@ -1408,6 +1414,8 @@ void TorrentHandle::setTrackerLogin(const QString &username, const QString &pass
 
 void TorrentHandle::renameFile(int index, const QString &name)
 {
+    if (m_startupState != Started) return;
+
     m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     qDebug() << Q_FUNC_INFO << index << name;
@@ -1562,7 +1570,7 @@ void TorrentHandle::handleTorrentCheckedAlert(const libtorrent::torrent_checked_
                 // Resume torrent because it was added in "resumed" state
                 // but it's actually paused during initialization.
                 m_startupState = Starting;
-                resume(m_needsToStartForced);
+                resume_impl(m_needsToStartForced);
             }
             else {
                 // Torrent that has missing files is paused.
