@@ -155,6 +155,7 @@ private slots:
     void on_actionSpeedInTitleBar_triggered();
     void on_actionTopToolBar_triggered();
     void on_actionShowStatusbar_triggered();
+    void on_actionShowFiltersSidebar_triggered();
     void on_actionDonateMoney_triggered();
     void on_actionExecutionLogs_triggered(bool checked);
     void on_actionNormalMessages_triggered(bool checked);
@@ -215,6 +216,8 @@ private:
     void displaySearchTab(bool enable);
     void createTorrentTriggered(const QString &path = {});
     void showStatusBar(bool show);
+    bool isFiltersSidebarVisible() const;
+    void showFiltersSidebar(bool show);
 
     Ui::MainWindow *m_ui;
 

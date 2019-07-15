@@ -33,6 +33,7 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
+#include <QList>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProcess>
@@ -427,6 +428,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     m_propertiesWidget->readSettings();
+    m_ui->actionShowFiltersSidebar->setChecked(isFiltersSidebarVisible());
 
     // Start watching the executable for updates
     m_executableWatcher = new QFileSystemWatcher(this);
@@ -794,8 +796,7 @@ void MainWindow::readSettings()
         m_posInitialized = true;
     const QByteArray splitterState = pref->getMainVSplitterState();
     if (splitterState.isEmpty())
-        // Default sizes
-        m_splitter->setSizes({ 120, m_splitter->width() - 120 });
+        showFiltersSidebar(true);
     else
         m_splitter->restoreState(splitterState);
 }
@@ -1400,6 +1401,21 @@ void MainWindow::showStatusBar(bool show)
     }
 }
 
+bool MainWindow::isFiltersSidebarVisible() const
+{
+    const QList<int> sizes = m_splitter->sizes();
+    return sizes[0] != 0;
+}
+
+void MainWindow::showFiltersSidebar(const bool show)
+{
+    if (show)
+        // Default sizes
+        m_splitter->setSizes({ 120, m_splitter->width() - 120 });
+    else
+        m_splitter->setSizes({ 0, m_splitter->width() });
+}
+
 void MainWindow::loadPreferences(bool configureSession)
 {
     Logger::instance()->addMessage(tr("Options were saved successfully."));
@@ -1718,6 +1734,12 @@ void MainWindow::on_actionShowStatusbar_triggered()
     const bool isVisible = static_cast<QAction*>(sender())->isChecked();
     Preferences::instance()->setStatusbarDisplayed(isVisible);
     showStatusBar(isVisible);
+}
+
+void MainWindow::on_actionShowFiltersSidebar_triggered()
+{
+    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
+    showFiltersSidebar(isVisible);
 }
 
 void MainWindow::on_actionSpeedInTitleBar_triggered()
