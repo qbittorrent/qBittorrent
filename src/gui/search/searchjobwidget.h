@@ -38,13 +38,13 @@ class QHeaderView;
 class QModelIndex;
 class QStandardItemModel;
 
-template <typename T> class CachedSettingValue;
-
 class LineEdit;
 class SearchHandler;
 class SearchListDelegate;
 class SearchSortModel;
 struct SearchResult;
+
+template <typename T> class CachedSettingValue;
 
 namespace Ui
 {

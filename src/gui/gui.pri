@@ -1,6 +1,5 @@
 INCLUDEPATH += $$PWD
 
-include(lineedit/lineedit.pri)
 include(powermanagement/powermanagement.pri)
 include(properties/properties.pri)
 unix:!macx:dbus: include(qtnotify/qtnotify.pri)
@@ -24,6 +23,7 @@ HEADERS += \
     $$PWD/guiiconprovider.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
+    $$PWD/lineedit.h \
     $$PWD/loglistwidget.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
@@ -85,6 +85,7 @@ SOURCES += \
     $$PWD/fspathedit_p.cpp \
     $$PWD/guiiconprovider.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
+    $$PWD/lineedit.cpp \
     $$PWD/loglistwidget.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \

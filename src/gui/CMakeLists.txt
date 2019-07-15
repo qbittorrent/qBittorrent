@@ -4,7 +4,6 @@ set(CMAKE_AUTOUIC True)
 add_library(qbt_gui_headers INTERFACE)
 target_include_directories(qbt_gui_headers INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(lineedit)
 add_subdirectory(properties)
 add_subdirectory(powermanagement)
 add_subdirectory(rss)
@@ -30,6 +29,7 @@ fspathedit_p.h
 guiiconprovider.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
+lineedit.h
 loglistwidget.h
 mainwindow.h
 optionsdialog.h
@@ -80,6 +80,7 @@ fspathedit.cpp
 fspathedit_p.cpp
 guiiconprovider.cpp
 ipsubnetwhitelistoptionsdialog.cpp
+lineedit.cpp
 loglistwidget.cpp
 mainwindow.cpp
 optionsdialog.cpp
@@ -137,7 +138,7 @@ updownratiodialog.ui
 
 target_link_libraries(qbt_gui
     PRIVATE
-        qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
+        qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
         qbt_base
 )
 

@@ -186,16 +186,16 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     connect(header(), &QHeaderView::sectionResized, this, &TransferListWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TransferListWidget::saveSettings);
 
-    m_editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
-    m_deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
-    m_permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
-    m_doubleClickHotkey = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_doubleClickHotkey, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
-    m_recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(m_recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
+    const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
+    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
+    const auto *permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
+    const auto *doubleClickHotkey = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(doubleClickHotkey, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
+    const auto *recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
 
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777

@@ -39,6 +39,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/preferences.h"
 #include "propertieswidget.h"
+#include "speedplotview.h"
 
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)

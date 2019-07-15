@@ -39,7 +39,6 @@ namespace BitTorrent
 {
     enum class TorrentState;
 }
-// Defines for download list list columns
 
 class TransferListDelegate : public QItemDelegate
 {

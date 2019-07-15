@@ -32,10 +32,7 @@
 #include <QList>
 #include <QWidget>
 
-#include "base/bittorrent/torrenthandle.h"
-
 class QPushButton;
-class QShortcut;
 class QTreeView;
 
 class DownloadedPiecesBar;
@@ -46,6 +43,11 @@ class PropListDelegate;
 class PropTabBar;
 class TorrentContentFilterModel;
 class TrackerListWidget;
+
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
 
 namespace Ui
 {
@@ -121,10 +123,6 @@ private:
     PieceAvailabilityBar *m_piecesAvailability;
     PropTabBar *m_tabBar;
     LineEdit *m_contentFilterLine;
-    QShortcut *m_editHotkeyFile;
-    QShortcut *m_editHotkeyWeb;
-    QShortcut *m_deleteHotkeyWeb;
-    QShortcut *m_openHotkeyFile;
 };
 
 #endif // PROPERTIESWIDGET_H

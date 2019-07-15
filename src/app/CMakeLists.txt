@@ -1,10 +1,13 @@
 add_executable(qBittorrent
+# headers
 application.h
 applicationinstancemanager.h
 cmdoptions.h
 filelogger.h
 qtlocalpeer/qtlocalpeer.h
 upgrade.h
+
+# sources
 application.cpp
 applicationinstancemanager.cpp
 cmdoptions.cpp

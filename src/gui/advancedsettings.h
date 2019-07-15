@@ -31,7 +31,6 @@
 
 #include <QCheckBox>
 #include <QComboBox>
-#include <QLabel>
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QTableWidget>
@@ -58,7 +57,6 @@ private:
     void loadAdvancedSettings();
     template <typename T> void addRow(int row, const QString &text, T *widget);
 
-    QLabel labelQbtLink, labelLibtorrentLink;
     QSpinBox spinBoxAsyncIOThreads, spinBoxFilePoolSize, spinBoxCheckingMemUsage, spinBoxCache,
              spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh,
              spinBoxTrackerPort, spinBoxCacheTTL, spinBoxSendBufferWatermark, spinBoxSendBufferLowWatermark,

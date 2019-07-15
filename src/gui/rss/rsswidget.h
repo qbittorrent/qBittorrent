@@ -34,7 +34,6 @@
 #include <QWidget>
 
 class QListWidgetItem;
-class QShortcut;
 class QTreeWidgetItem;
 
 class ArticleListWidget;
@@ -86,8 +85,6 @@ private:
     Ui::RSSWidget *m_ui;
     ArticleListWidget *m_articleListWidget;
     FeedListWidget *m_feedListWidget;
-    QShortcut *m_editHotkey;
-    QShortcut *m_deleteHotkey;
 };
 
 #endif // RSSWIDGET_H

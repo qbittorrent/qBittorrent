@@ -41,6 +41,7 @@
 #endif
 
 #include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
