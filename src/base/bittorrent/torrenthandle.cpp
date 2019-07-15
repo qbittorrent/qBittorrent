@@ -223,7 +223,7 @@ TorrentHandle::TorrentHandle(Session *session, const lt::torrent_handle &nativeH
             // Resume torrent because it was added in "resumed" state
             // but it's actually paused during initialization.
             m_startupState = Starting;
-            resume(m_needsToStartForced);
+            resume_impl(m_needsToStartForced);
         }
         else {
             m_startupState = Started;
@@ -1298,6 +1298,8 @@ bool TorrentHandle::setCategory(const QString &category)
 
 void TorrentHandle::move(QString path)
 {
+    if (m_startupState != Started) return;
+
     m_useAutoTMM = false;
     m_session->handleTorrentSavingModeChanged(this);
 
@@ -1336,6 +1338,7 @@ void TorrentHandle::forceDHTAnnounce()
 
 void TorrentHandle::forceRecheck()
 {
+    if (m_startupState != Started) return;
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
@@ -1433,6 +1436,13 @@ void TorrentHandle::toggleFirstLastPiecePriority()
 
 void TorrentHandle::pause()
 {
+    if (m_startupState != Started) return;
+    if (m_pauseWhenReady) return;
+    if (isChecking()) {
+        m_pauseWhenReady = true;
+        return;
+    }
+
     if (isPaused()) return;
 
     setAutoManaged(false);
@@ -1447,6 +1457,9 @@ void TorrentHandle::pause()
 
 void TorrentHandle::resume(bool forced)
 {
+    if (m_startupState != Started) return;
+
+    m_pauseWhenReady = false;
     resume_impl(forced);
 }
 
@@ -1492,6 +1505,8 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
 
 void TorrentHandle::renameFile(const int index, const QString &name)
 {
+    if (m_startupState != Started) return;
+
     m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     m_nativeHandle.rename_file(index, Utils::Fs::toNativePath(name).toStdString());
@@ -1626,7 +1641,7 @@ void TorrentHandle::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p
                 // Resume torrent because it was added in "resumed" state
                 // but it's actually paused during initialization.
                 m_startupState = Starting;
-                resume(m_needsToStartForced);
+                resume_impl(m_needsToStartForced);
             }
             else {
                 // Torrent that has missing files is paused.
