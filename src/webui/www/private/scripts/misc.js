@@ -167,3 +167,37 @@ function toFixedPointString(number, digits) {
     const power = Math.pow(10, digits);
     return (Math.floor(power * number) / power).toFixed(digits);
 }
+
+/**
+ *
+ * @param {String} text the text to search
+ * @param {Array<String>} terms terms to search for within the text
+ * @returns {Boolean} true if all terms match the text, false otherwise
+ */
+function containsAllTerms(text, terms) {
+    const textToSearch = text.toLowerCase();
+    for (let i = 0; i < terms.length; ++i) {
+        const term = terms[i].trim().toLowerCase();
+        if ((term[0] === '-')) {
+            // ignore lonely -
+            if (term.length === 1)
+                continue;
+            // disallow any text after -
+            if (textToSearch.indexOf(term.substring(1)) !== -1)
+                return false;
+        }
+        else if ((term[0] === '+')) {
+            // ignore lonely +
+            if (term.length === 1)
+                continue;
+            // require any text after +
+            if (textToSearch.indexOf(term.substring(1)) === -1)
+                return false;
+        }
+        else if (textToSearch.indexOf(term) === -1){
+            return false;
+        }
+    }
+
+    return true;
+}
