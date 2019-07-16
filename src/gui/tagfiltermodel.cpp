@@ -34,7 +34,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
-#include "guiiconprovider.h"
+#include "uithememanager.h"
 
 namespace
 {
@@ -122,7 +122,7 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case Qt::DecorationRole:
-        return GuiIconProvider::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon("inode-directory");
     case Qt::DisplayRole:
         return QString(QLatin1String("%1 (%2)"))
                .arg(tagDisplayName(item.tag())).arg(item.torrentsCount());

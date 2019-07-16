@@ -43,10 +43,10 @@
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "pluginsourcedialog.h"
 #include "searchwidget.h"
 #include "ui_pluginselectdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 enum PluginColumns
@@ -79,7 +79,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);

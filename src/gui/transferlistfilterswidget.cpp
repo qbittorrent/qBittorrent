@@ -49,9 +49,9 @@
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "categoryfilterwidget.h"
-#include "guiiconprovider.h"
 #include "tagfilterwidget.h"
 #include "transferlistwidget.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 namespace
@@ -221,10 +221,10 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
-    allTrackers->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
+    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
     auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, QVariant(tr("Trackerless (0)")));
-    noTracker->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
+    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, QVariant(tr("Error (0)")));
     errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));
@@ -264,7 +264,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
     else {
         trackerItem = new QListWidgetItem();
-        trackerItem->setData(Qt::DecorationRole, GuiIconProvider::instance()->getIcon("network-server"));
+        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
 
         const QString scheme = getScheme(tracker);
         downloadFavicon(QString("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
@@ -470,13 +470,13 @@ void TrackerFiltersList::showMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *startAct = menu->addAction(GuiIconProvider::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
+    const QAction *startAct = menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
     connect(startAct, &QAction::triggered, transferList, &TransferListWidget::startVisibleTorrents);
 
-    const QAction *pauseAct = menu->addAction(GuiIconProvider::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
+    const QAction *pauseAct = menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, transferList, &TransferListWidget::pauseVisibleTorrents);
 
-    const QAction *deleteTorrentsAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-delete"), tr("Delete torrents"));
+    const QAction *deleteTorrentsAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents"));
     connect(deleteTorrentsAct, &QAction::triggered, transferList, &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());

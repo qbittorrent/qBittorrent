@@ -16,13 +16,13 @@
 #include <QStyle>
 #include <QToolButton>
 
-#include "guiiconprovider.h"
+#include "uithememanager.h"
 
 LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
     m_searchButton = new QToolButton(this);
-    m_searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
+    m_searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
     m_searchButton->setCursor(Qt::ArrowCursor);
     m_searchButton->setStyleSheet("QToolButton {border: none; padding: 2px;}");
 

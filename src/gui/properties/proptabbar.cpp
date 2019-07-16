@@ -34,7 +34,7 @@
 #include <QSpacerItem>
 
 #include "base/global.h"
-#include "guiiconprovider.h"
+#include "uithememanager.h"
 
 PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)
@@ -46,7 +46,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
 #ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("document-properties"),
+            UIThemeManager::instance()->getIcon("document-properties"),
 #endif
             tr("General"), parent);
     mainInfosButton->setShortcut(Qt::ALT + Qt::Key_G);
@@ -55,7 +55,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
 #ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("network-server"),
+            UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("Trackers"), parent);
     trackersButton->setShortcut(Qt::ALT + Qt::Key_C);
@@ -64,7 +64,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Peers tab
     QPushButton *peersButton = new QPushButton(
 #ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("edit-find-user"),
+            UIThemeManager::instance()->getIcon("edit-find-user"),
 #endif
             tr("Peers"), parent);
     peersButton->setShortcut(Qt::ALT + Qt::Key_R);
@@ -73,7 +73,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // URL seeds tab
     QPushButton *URLSeedsButton = new QPushButton(
 #ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("network-server"),
+            UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("HTTP Sources"), parent);
     URLSeedsButton->setShortcut(Qt::ALT + Qt::Key_B);
@@ -82,7 +82,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Files tab
     QPushButton *filesButton = new QPushButton(
 #ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("inode-directory"),
+            UIThemeManager::instance()->getIcon("inode-directory"),
 #endif
             tr("Content"), parent);
     filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
@@ -93,7 +93,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Speed tab
     QPushButton *speedButton = new QPushButton(
 #ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("office-chart-line"),
+            UIThemeManager::instance()->getIcon("office-chart-line"),
 #endif
             tr("Speed"), parent);
     speedButton->setShortcut(Qt::ALT + Qt::Key_D);

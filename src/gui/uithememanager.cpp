@@ -31,10 +31,13 @@
 
 #include <QApplication>
 #include <QFile>
+#include <QIcon>
 #include <QResource>
 
+#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/utils/fs.h"
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
 
@@ -58,6 +61,10 @@ UIThemeManager::UIThemeManager()
     if (pref->useCustomUITheme()
         && !QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
         LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    m_useSystemTheme = pref->useSystemIconTheme();
+#endif
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -81,4 +88,57 @@ void UIThemeManager::applyStyleSheet() const
     }
 
     qApp->setStyleSheet(qssFile.readAll());
+}
+
+QIcon UIThemeManager::getIcon(const QString &iconId) const
+{
+    return getIcon(iconId, iconId);
+}
+
+QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
+{
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    if (m_useSystemTheme) {
+        QIcon icon = QIcon::fromTheme(iconId);
+        if (icon.name() != iconId)
+            icon = QIcon::fromTheme(fallback, QIcon(IconProvider::instance()->getIconPath(iconId)));
+        return icon;
+    }
+#else
+    Q_UNUSED(fallback)
+#endif
+    // cache to avoid rescaling svg icons
+    static QHash<QString, QIcon> iconCache;
+    const auto iter = iconCache.find(iconId);
+    if (iter != iconCache.end())
+        return *iter;
+
+    const QIcon icon {IconProvider::instance()->getIconPath(iconId)};
+    iconCache[iconId] = icon;
+    return icon;
+}
+
+QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
+{
+    if (countryIsoCode.isEmpty()) return {};
+    return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
+}
+
+QString UIThemeManager::getIconPath(const QString &iconId) const
+{
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+    if (m_useSystemTheme) {
+        QString path = Utils::Fs::tempPath() + iconId + ".png";
+        if (!QFile::exists(path)) {
+            const QIcon icon = QIcon::fromTheme(iconId);
+            if (!icon.isNull())
+                icon.pixmap(32).save(path);
+            else
+                path = IconProvider::instance()->getIconPath(iconId);
+        }
+
+        return path;
+    }
+#endif
+    return IconProvider::instance()->getIconPath(iconId);
 }

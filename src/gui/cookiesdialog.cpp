@@ -34,8 +34,8 @@
 #include "base/net/downloadmanager.h"
 #include "base/settingsstorage.h"
 #include "cookiesmodel.h"
-#include "guiiconprovider.h"
 #include "ui_cookiesdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 #define SETTINGS_KEY(name) QStringLiteral("CookiesDialog/" name)
@@ -49,9 +49,9 @@ CookiesDialog::CookiesDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    setWindowIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
-    m_ui->buttonAdd->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
-    m_ui->buttonDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    setWindowIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
+    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon("list-add"));
+    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
     m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
     m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
 

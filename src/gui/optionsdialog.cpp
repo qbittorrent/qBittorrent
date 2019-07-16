@@ -61,11 +61,11 @@
 #include "advancedsettings.h"
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
-#include "guiiconprovider.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
 #include "ui_optionsdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 namespace
@@ -111,18 +111,18 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(GuiIconProvider::instance()->getIcon("preferences-desktop"));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(GuiIconProvider::instance()->getIcon("network-wired"));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(GuiIconProvider::instance()->getIcon("folder-download"));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(GuiIconProvider::instance()->getIcon("speedometer", "chronometer"));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(GuiIconProvider::instance()->getIcon("rss-config", "application-rss+xml"));
+    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon("preferences-desktop"));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon("network-wired"));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon("folder-download"));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon("speedometer", "chronometer"));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon("rss-config", "application-rss+xml"));
 #ifndef DISABLE_WEBUI
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(GuiIconProvider::instance()->getIcon("network-server"));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon("network-server"));
 #else
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(GuiIconProvider::instance()->getIcon("preferences-other"));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon("preferences-other"));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -133,7 +133,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         m_ui->tabSelection->item(i)->setSizeHint(size);
     }
 
-    m_ui->IpFilterRefreshBtn->setIcon(GuiIconProvider::instance()->getIcon("view-refresh"));
+    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
 
     m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.svg", this, 16));
     m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.svg", this, 16));

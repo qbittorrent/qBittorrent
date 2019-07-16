@@ -47,11 +47,11 @@
 #include "base/net/geoipmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/preferences.h"
-#include "guiiconprovider.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
 #include "peersadditiondialog.h"
 #include "propertieswidget.h"
+#include "uithememanager.h"
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
@@ -235,7 +235,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
     // Add Peer Action
     if (!torrent->isQueued() && !torrent->isChecking()) {
-        const QAction *addPeerAct = menu->addAction(GuiIconProvider::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
+        const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
         connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
         {
             const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
@@ -257,12 +257,12 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     }
 
     if (!selectionModel()->selectedRows().isEmpty()) {
-        const QAction *copyPeerAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
+        const QAction *copyPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
         connect(copyPeerAct, &QAction::triggered, this, &PeerListWidget::copySelectedPeers);
 
         menu->addSeparator();
 
-        const QAction *banAct = menu->addAction(GuiIconProvider::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
+        const QAction *banAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
         connect(banAct, &QAction::triggered, this, &PeerListWidget::banSelectedPeers);
     }
 
@@ -378,7 +378,7 @@ QStandardItem *PeerListWidget::addPeer(const QString &ip, BitTorrent::TorrentHan
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
     if (m_resolveCountries) {
-        const QIcon ico = GuiIconProvider::instance()->getFlagIcon(peer.country());
+        const QIcon ico = UIThemeManager::instance()->getFlagIcon(peer.country());
         if (!ico.isNull()) {
             m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
             const QString countryName = Net::GeoIPManager::CountryName(peer.country());
@@ -410,7 +410,7 @@ void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *co
     QStandardItem *item = m_peerItems.value(ip);
     int row = item->row();
     if (m_resolveCountries) {
-        const QIcon ico = GuiIconProvider::instance()->getFlagIcon(peer.country());
+        const QIcon ico = UIThemeManager::instance()->getFlagIcon(peer.country());
         if (!ico.isNull()) {
             m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
             const QString countryName = Net::GeoIPManager::CountryName(peer.country());

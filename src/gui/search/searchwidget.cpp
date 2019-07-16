@@ -43,14 +43,14 @@
 #include <QVector>
 
 #include "base/global.h"
-#include "base/search/searchpluginmanager.h"
 #include "base/search/searchhandler.h"
+#include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
-#include "guiiconprovider.h"
 #include "mainwindow.h"
 #include "pluginselectdialog.h"
 #include "searchjobwidget.h"
 #include "ui_searchwidget.h"
+#include "uithememanager.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 #define URL_COLUMN 5
@@ -104,8 +104,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
 #ifndef Q_OS_MAC
     // Icons
-    m_ui->searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
-    m_ui->pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
+    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
+    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -318,7 +318,7 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
 {
     const int tabIndex = m_ui->tabWidget->indexOf(tab);
     m_ui->tabWidget->setTabToolTip(tabIndex, tab->statusTip());
-    m_ui->tabWidget->setTabIcon(tabIndex, GuiIconProvider::instance()->getIcon(
+    m_ui->tabWidget->setTabIcon(tabIndex, UIThemeManager::instance()->getIcon(
                                  statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
 
     if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing)) {

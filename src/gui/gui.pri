@@ -20,7 +20,6 @@ HEADERS += \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
-    $$PWD/guiiconprovider.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/lineedit.h \
@@ -83,7 +82,6 @@ SOURCES += \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
-    $$PWD/guiiconprovider.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
     $$PWD/loglistwidget.cpp \

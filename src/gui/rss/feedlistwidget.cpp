@@ -38,7 +38,7 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
-#include "guiiconprovider.h"
+#include "uithememanager.h"
 
 FeedListWidget::FeedListWidget(QWidget *parent)
     : QTreeWidget(parent)
@@ -60,7 +60,7 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     m_unreadStickyItem = new QTreeWidgetItem(this);
     m_unreadStickyItem->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(RSS::Session::instance()->rootFolder()));
     m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_unreadStickyItem->setData(0, Qt::DecorationRole, GuiIconProvider::instance()->getIcon("mail-folder-inbox"));
+    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("mail-folder-inbox"));
 
     connect(RSS::Session::instance()->rootFolder(), &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 
@@ -92,11 +92,11 @@ void FeedListWidget::handleFeedStateChanged(RSS::Feed *feed)
     if (feed->isLoading())
         icon = QIcon(QStringLiteral(":/icons/loading.png"));
     else if (feed->hasError())
-        icon = GuiIconProvider::instance()->getIcon(QStringLiteral("unavailable"));
+        icon = UIThemeManager::instance()->getIcon(QStringLiteral("unavailable"));
     else if (!feed->iconPath().isEmpty())
         icon = QIcon(feed->iconPath());
     else
-        icon = GuiIconProvider::instance()->getIcon(QStringLiteral("application-rss+xml"));
+        icon = UIThemeManager::instance()->getIcon(QStringLiteral("application-rss+xml"));
     item->setData(0, Qt::DecorationRole, icon);
 }
 
@@ -242,14 +242,14 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
         if (feed->isLoading())
             icon = QIcon(QStringLiteral(":/icons/loading.png"));
         else if (feed->hasError())
-            icon = GuiIconProvider::instance()->getIcon(QStringLiteral("unavailable"));
+            icon = UIThemeManager::instance()->getIcon(QStringLiteral("unavailable"));
         else if (!feed->iconPath().isEmpty())
             icon = QIcon(feed->iconPath());
         else
-            icon = GuiIconProvider::instance()->getIcon(QStringLiteral("application-rss+xml"));
+            icon = UIThemeManager::instance()->getIcon(QStringLiteral("application-rss+xml"));
     }
     else {
-        icon = GuiIconProvider::instance()->getIcon("inode-directory");
+        icon = UIThemeManager::instance()->getIcon("inode-directory");
     }
     item->setData(0, Qt::DecorationRole, icon);
 

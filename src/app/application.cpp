@@ -55,7 +55,6 @@
 #include <QFileOpenEvent>
 #endif // Q_OS_MAC
 #include "addnewtorrentdialog.h"
-#include "gui/guiiconprovider.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "mainwindow.h"
@@ -499,11 +498,7 @@ int Application::exec(const QStringList &params)
 {
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
-#ifdef DISABLE_GUI
     IconProvider::initInstance();
-#else
-    GuiIconProvider::initInstance();
-#endif
 
     try {
         BitTorrent::Session::initInstance();
