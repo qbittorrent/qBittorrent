@@ -590,6 +590,10 @@ window.addEvent('load', function() {
         MochaUI.Desktop.setDesktopSize();
     });
 
+    $('registerMagnetHandlerLink').addEvent('click', function(e) {
+        registerMagnetHandler();
+    });
+
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
         speedInTitle = !speedInTitle;
         localStorage.setItem('speed_in_browser_title_bar', speedInTitle.toString());
@@ -801,13 +805,13 @@ window.addEvent('load', function() {
         addMainWindowTabsEventListener();
         addSearchPanel();
     }
-
-    registerMagnetHandler();
 });
 
 function registerMagnetHandler() {
-    if (typeof navigator.registerProtocolHandler !== 'function')
+    if (typeof navigator.registerProtocolHandler !== 'function') {
+        alert("Your browser does not support this feature");
         return;
+    }
 
     const hashParams = getHashParamsFromUrl();
     hashParams.download = '';
