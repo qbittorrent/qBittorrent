@@ -46,7 +46,8 @@ var ContextMenu = new Class({
         onShow: $empty,
         onHide: $empty,
         onClick: $empty,
-        fadeSpeed: 200
+        fadeSpeed: 200,
+        touchTimer: 600
     },
 
     //initialization
@@ -147,6 +148,21 @@ var ContextMenu = new Class({
         }.bind(this));
         elem.addEvent('click', function(e) {
             this.hide();
+        }.bind(this));
+
+        elem.addEvent('touchstart', function(e) {
+            e.preventDefault();
+            clearTimeout(this.touchstartTimer);
+            this.hide();
+
+            const touchstartEvent = e;
+            this.touchstartTimer = setTimeout(function() {
+                this.triggerMenu(touchstartEvent, elem);
+            }.bind(this), this.options.touchTimer);
+        }.bind(this));
+        elem.addEvent('touchend', function(e) {
+            e.preventDefault();
+            clearTimeout(this.touchstartTimer);
         }.bind(this));
     },
 
