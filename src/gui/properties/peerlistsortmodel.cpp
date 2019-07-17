@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015 The qBittorrent project
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,32 +24,30 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
  */
 
-#ifndef STACKTRACEDIALOG_H
-#define STACKTRACEDIALOG_H
+#include "peerlistsortmodel.h"
 
-#include <QDialog>
+#include "base/utils/string.h"
+#include "peerlistdelegate.h"
 
-namespace Ui
+PeerListSortModel::PeerListSortModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
 {
-    class StacktraceDialog;
 }
 
-class StacktraceDialog : public QDialog
+bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(StacktraceDialog)
-
-public:
-    explicit StacktraceDialog(QWidget *parent = nullptr);
-    ~StacktraceDialog() override;
-
-    void setStacktraceString(const QString &sigName, const QString &trace);
-
-private:
-    Ui::StacktraceDialog *m_ui;
-};
-
-#endif // STACKTRACEDIALOG_H
+    switch (sortColumn()) {
+    case PeerListDelegate::IP:
+    case PeerListDelegate::CLIENT: {
+            const QString strL = left.data().toString();
+            const QString strR = right.data().toString();
+            const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
+            return (result < 0);
+        }
+        break;
+    default:
+        return QSortFilterProxyModel::lessThan(left, right);
+    };
+}

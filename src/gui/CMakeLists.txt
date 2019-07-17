@@ -64,6 +64,7 @@ updownratiodialog.h
 utils.h
 
 # sources
+aboutdialog.cpp
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
@@ -77,11 +78,13 @@ downloadfromurldialog.cpp
 executionlogwidget.cpp
 fspathedit.cpp
 fspathedit_p.cpp
+hidabletabwidget.cpp
 ipsubnetwhitelistoptionsdialog.cpp
 lineedit.cpp
 loglistwidget.cpp
 mainwindow.cpp
 optionsdialog.cpp
+previewlistdelegate.cpp
 previewselectdialog.cpp
 private/tristatewidget.cpp
 raisedmessagebox.cpp
