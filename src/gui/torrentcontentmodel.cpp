@@ -52,10 +52,10 @@
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
-#include "guiiconprovider.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelitem.h"
+#include "uithememanager.h"
 
 #ifdef Q_OS_MAC
 #include "macutilities.h"
@@ -71,7 +71,7 @@ namespace
         QIcon icon(const QFileInfo &info) const override
         {
             Q_UNUSED(info);
-            static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
+            static QIcon cached = UIThemeManager::instance()->getIcon("text-plain");
             return cached;
         }
     };

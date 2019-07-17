@@ -48,11 +48,11 @@
 #include "base/settingvalue.h"
 #include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
-#include "guiiconprovider.h"
 #include "lineedit.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
@@ -390,29 +390,29 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     const QAction *downloadAction = menu->addAction(
-        GuiIconProvider::instance()->getIcon("download"), tr("Download"));
+        UIThemeManager::instance()->getIcon("download"), tr("Download"));
     connect(downloadAction, &QAction::triggered, this, &SearchJobWidget::downloadTorrents);
 
     menu->addSeparator();
 
     const QAction *openDescriptionAction = menu->addAction(
-        GuiIconProvider::instance()->getIcon("application-x-mswinurl"), tr("Open description page"));
+        UIThemeManager::instance()->getIcon("application-x-mswinurl"), tr("Open description page"));
     connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
 
     QMenu *copySubMenu = menu->addMenu(
-        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"));
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
 
     const QAction *copyNamesAction = copySubMenu->addAction(
-        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Name"));
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Name"));
     connect(copyNamesAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentNames);
 
     const QAction *copyDownloadLinkAction = copySubMenu->addAction(
-        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Download link"));
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Download link"));
     connect(copyDownloadLinkAction, &QAction::triggered
         , this, &SearchJobWidget::copyTorrentDownloadLinks);
 
     const QAction *copyDescriptionAction = copySubMenu->addAction(
-        GuiIconProvider::instance()->getIcon("edit-copy"), tr("Description page URL"));
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Description page URL"));
     connect(copyDescriptionAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());

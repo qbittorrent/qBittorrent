@@ -26,7 +26,6 @@ downloadfromurldialog.h
 executionlogwidget.h
 fspathedit.h
 fspathedit_p.h
-guiiconprovider.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
 lineedit.h
@@ -78,7 +77,6 @@ downloadfromurldialog.cpp
 executionlogwidget.cpp
 fspathedit.cpp
 fspathedit_p.cpp
-guiiconprovider.cpp
 ipsubnetwhitelistoptionsdialog.cpp
 lineedit.cpp
 loglistwidget.cpp

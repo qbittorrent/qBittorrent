@@ -49,12 +49,12 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "proplistdelegate.h"
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"
 #include "ui_addnewtorrentdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 namespace
@@ -472,7 +472,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     if (selectedRows.size() == 1) {
-        QAction *actRename = menu->addAction(GuiIconProvider::instance()->getIcon("edit-rename"), tr("Rename..."));
+        QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
         connect(actRename, &QAction::triggered, this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
 
         menu->addSeparator();

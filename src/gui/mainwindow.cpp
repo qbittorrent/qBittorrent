@@ -73,7 +73,6 @@
 #include "cookiesdialog.h"
 #include "downloadfromurldialog.h"
 #include "executionlogwidget.h"
-#include "guiiconprovider.h"
 #include "hidabletabwidget.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
@@ -86,11 +85,12 @@
 #include "statsdialog.h"
 #include "statusbar.h"
 #include "torrentcreatordialog.h"
-#include "transferlistmodel.h"
 #include "trackerlistwidget.h"
 #include "transferlistfilterswidget.h"
+#include "transferlistmodel.h"
 #include "transferlistwidget.h"
 #include "ui_mainwindow.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 #ifdef Q_OS_MAC
@@ -162,31 +162,31 @@ MainWindow::MainWindow(QWidget *parent)
 
     addToolbarContextMenu();
 
-    m_ui->actionOpen->setIcon(GuiIconProvider::instance()->getIcon("list-add"));
-    m_ui->actionDownloadFromURL->setIcon(GuiIconProvider::instance()->getIcon("insert-link"));
-    m_ui->actionSetUploadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"));
-    m_ui->actionSetDownloadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"));
-    m_ui->actionSetGlobalUploadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-upload-speed"));
-    m_ui->actionSetGlobalDownloadLimit->setIcon(GuiIconProvider::instance()->getIcon("kt-set-max-download-speed"));
-    m_ui->actionCreateTorrent->setIcon(GuiIconProvider::instance()->getIcon("document-edit"));
-    m_ui->actionAbout->setIcon(GuiIconProvider::instance()->getIcon("help-about"));
-    m_ui->actionStatistics->setIcon(GuiIconProvider::instance()->getIcon("view-statistics"));
-    m_ui->actionTopQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-top"));
-    m_ui->actionIncreaseQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-up"));
-    m_ui->actionDecreaseQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-down"));
-    m_ui->actionBottomQueuePos->setIcon(GuiIconProvider::instance()->getIcon("go-bottom"));
-    m_ui->actionDelete->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
-    m_ui->actionDocumentation->setIcon(GuiIconProvider::instance()->getIcon("help-contents"));
-    m_ui->actionDonateMoney->setIcon(GuiIconProvider::instance()->getIcon("wallet-open"));
-    m_ui->actionExit->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
-    m_ui->actionLock->setIcon(GuiIconProvider::instance()->getIcon("object-locked"));
-    m_ui->actionOptions->setIcon(GuiIconProvider::instance()->getIcon("configure", "preferences-system"));
-    m_ui->actionPause->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
-    m_ui->actionPauseAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-pause"));
-    m_ui->actionStart->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
-    m_ui->actionStartAll->setIcon(GuiIconProvider::instance()->getIcon("media-playback-start"));
-    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(GuiIconProvider::instance()->getIcon("application-exit"));
-    m_ui->actionManageCookies->setIcon(GuiIconProvider::instance()->getIcon("preferences-web-browser-cookies"));
+    m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon("list-add"));
+    m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon("insert-link"));
+    m_ui->actionSetUploadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"));
+    m_ui->actionSetDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"));
+    m_ui->actionSetGlobalUploadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"));
+    m_ui->actionSetGlobalDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"));
+    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon("document-edit"));
+    m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon("help-about"));
+    m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon("view-statistics"));
+    m_ui->actionTopQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-top"));
+    m_ui->actionIncreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-up"));
+    m_ui->actionDecreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-down"));
+    m_ui->actionBottomQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-bottom"));
+    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
+    m_ui->actionDocumentation->setIcon(UIThemeManager::instance()->getIcon("help-contents"));
+    m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon("wallet-open"));
+    m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon("application-exit"));
+    m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon("object-locked"));
+    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon("configure", "preferences-system"));
+    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon("media-playback-pause"));
+    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon("media-playback-pause"));
+    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
+    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
+    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon("application-exit"));
+    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
 
     auto *lockMenu = new QMenu(this);
     QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
@@ -241,7 +241,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_splitter->setCollapsible(1, false);
     m_tabs->addTab(m_splitter,
 #ifndef Q_OS_MAC
-        GuiIconProvider::instance()->getIcon("folder-remote"),
+        UIThemeManager::instance()->getIcon("folder-remote"),
 #endif
         tr("Transfers"));
 
@@ -672,7 +672,7 @@ void MainWindow::displayRSSTab(bool enable)
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #else
             const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-            m_tabs->setTabIcon(indexTab, GuiIconProvider::instance()->getIcon("application-rss+xml"));
+            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("application-rss+xml"));
 #endif
         }
     }
@@ -707,7 +707,7 @@ void MainWindow::displaySearchTab(bool enable)
             m_searchWidget = new SearchWidget(this);
             m_tabs->insertTab(1, m_searchWidget,
 #ifndef Q_OS_MAC
-                GuiIconProvider::instance()->getIcon("edit-find"),
+                UIThemeManager::instance()->getIcon("edit-find"),
 #endif
                 tr("Search"));
         }
@@ -1864,7 +1864,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else
         const int indexTab = m_tabs->addTab(m_executionLog, tr("Execution Log"));
-        m_tabs->setTabIcon(indexTab, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
+        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("view-calendar-journal"));
 #endif
     }
     else if (m_executionLog) {

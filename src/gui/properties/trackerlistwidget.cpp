@@ -50,9 +50,9 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "propertieswidget.h"
 #include "trackersadditiondialog.h"
+#include "uithememanager.h"
 
 #define NB_STICKY_ITEM 3
 
@@ -553,27 +553,27 @@ void TrackerListWidget::showTrackerListMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    const QAction *addAct = menu->addAction(GuiIconProvider::instance()->getIcon("list-add"), tr("Add a new tracker..."));
+    const QAction *addAct = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add a new tracker..."));
     connect(addAct, &QAction::triggered, this, &TrackerListWidget::askForTrackers);
 
     if (!getSelectedTrackerItems().isEmpty()) {
-        const QAction *editAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
+        const QAction *editAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
         connect(editAct, &QAction::triggered, this, &TrackerListWidget::editSelectedTracker);
 
-        const QAction *delAct = menu->addAction(GuiIconProvider::instance()->getIcon("list-remove"), tr("Remove tracker"));
+        const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tracker"));
         connect(delAct, &QAction::triggered, this, &TrackerListWidget::deleteSelectedTrackers);
 
-        const QAction *copyAct = menu->addAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
+        const QAction *copyAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
         connect(copyAct, &QAction::triggered, this, &TrackerListWidget::copyTrackerUrl);
     }
 
     if (!torrent->isPaused()) {
-        const QAction *reannounceSelAct = menu->addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
+        const QAction *reannounceSelAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
         connect(reannounceSelAct, &QAction::triggered, this, &TrackerListWidget::reannounceSelected);
 
         menu->addSeparator();
 
-        const QAction *reannounceAllAct = menu->addAction(GuiIconProvider::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
+        const QAction *reannounceAllAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
         connect(reannounceAllAct, &QAction::triggered, this, [this]()
         {
             BitTorrent::TorrentHandle *h = m_properties->getCurrentTorrent();

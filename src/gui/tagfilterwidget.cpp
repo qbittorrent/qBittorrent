@@ -35,9 +35,9 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "tagfiltermodel.h"
 #include "tagfilterproxymodel.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 namespace
@@ -108,39 +108,39 @@ void TagFilterWidget::showMenu(QPoint)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     const QAction *addAct = menu->addAction(
-        GuiIconProvider::instance()->getIcon("list-add")
+        UIThemeManager::instance()->getIcon("list-add")
         , tr("Add tag..."));
     connect(addAct, &QAction::triggered, this, &TagFilterWidget::addTag);
 
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
         const QAction *removeAct = menu->addAction(
-            GuiIconProvider::instance()->getIcon("list-remove")
+            UIThemeManager::instance()->getIcon("list-remove")
             , tr("Remove tag"));
         connect(removeAct, &QAction::triggered, this, &TagFilterWidget::removeTag);
     }
 
     const QAction *removeUnusedAct = menu->addAction(
-        GuiIconProvider::instance()->getIcon("list-remove")
+        UIThemeManager::instance()->getIcon("list-remove")
         , tr("Remove unused tags"));
     connect(removeUnusedAct, &QAction::triggered, this, &TagFilterWidget::removeUnusedTags);
 
     menu->addSeparator();
 
     const QAction *startAct = menu->addAction(
-        GuiIconProvider::instance()->getIcon("media-playback-start")
+        UIThemeManager::instance()->getIcon("media-playback-start")
         , tr("Resume torrents"));
     connect(startAct, &QAction::triggered
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
 
     const QAction *pauseAct = menu->addAction(
-        GuiIconProvider::instance()->getIcon("media-playback-pause")
+        UIThemeManager::instance()->getIcon("media-playback-pause")
         , tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, this
         , &TagFilterWidget::actionPauseTorrentsTriggered);
 
     const QAction *deleteTorrentsAct = menu->addAction(
-        GuiIconProvider::instance()->getIcon("edit-delete")
+        UIThemeManager::instance()->getIcon("edit-delete")
         , tr("Delete torrents"));
     connect(deleteTorrentsAct, &QAction::triggered, this
         , &TagFilterWidget::actionDeleteTorrentsTriggered);
