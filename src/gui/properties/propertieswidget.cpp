@@ -82,7 +82,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_state = VISIBLE;
 
     // Set Properties list model
-    m_propListModel = new TorrentContentFilterModel();
+    m_propListModel = new TorrentContentFilterModel(this);
     m_ui->filesList->setModel(m_propListModel);
     m_propListDelegate = new PropListDelegate(this);
     m_ui->filesList->setItemDelegate(m_propListDelegate);
@@ -142,7 +142,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_peerList = new PeerListWidget(this);
     m_ui->vBoxLayoutPeerPage->addWidget(m_peerList);
     // Tab bar
-    m_tabBar = new PropTabBar();
+    m_tabBar = new PropTabBar(nullptr);
     m_tabBar->setContentsMargins(0, 5, 0, 0);
     m_ui->verticalLayout->addLayout(m_tabBar);
     connect(m_tabBar, &PropTabBar::tabChanged, m_ui->stackedProperties, &QStackedWidget::setCurrentIndex);
@@ -168,17 +168,8 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
 PropertiesWidget::~PropertiesWidget()
 {
-    qDebug() << Q_FUNC_INFO << "ENTER";
-    delete m_trackerList;
-    delete m_peerList;
-    delete m_speedWidget;
-    delete m_downloadedPieces;
-    delete m_piecesAvailability;
-    delete m_propListModel;
-    delete m_propListDelegate;
     delete m_tabBar;
     delete m_ui;
-    qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 void PropertiesWidget::showPiecesAvailability(bool show)

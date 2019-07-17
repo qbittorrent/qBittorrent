@@ -114,7 +114,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     // Create transfer list model
     m_listModel = new TransferListModel(this);
 
-    m_sortFilterModel = new TransferListSortModel();
+    m_sortFilterModel = new TransferListSortModel(this);
     m_sortFilterModel->setDynamicSortFilter(true);
     m_sortFilterModel->setSourceModel(m_listModel);
     m_sortFilterModel->setFilterKeyColumn(TransferListModel::TR_NAME);
@@ -207,14 +207,8 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
 
 TransferListWidget::~TransferListWidget()
 {
-    qDebug() << Q_FUNC_INFO << "ENTER";
     // Save settings
     saveSettings();
-    // Clean up
-    delete m_sortFilterModel;
-    delete m_listModel;
-    delete m_listDelegate;
-    qDebug() << Q_FUNC_INFO << "EXIT";
 }
 
 TransferListModel *TransferListWidget::getSourceModel() const
@@ -227,7 +221,7 @@ void TransferListWidget::previewFile(const QString &filePath)
     Utils::Gui::openPath(filePath);
 }
 
-inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
+QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
     if (index.model() == m_sortFilterModel)
@@ -235,7 +229,7 @@ inline QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) con
     return index;
 }
 
-inline QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
+QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
     Q_ASSERT(index.model() == m_sortFilterModel);

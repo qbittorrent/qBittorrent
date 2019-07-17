@@ -129,266 +129,263 @@ QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
 
 QString GeoIPManager::CountryName(const QString &countryISOCode)
 {
-    static QHash<QString, QString> countries;
-    static bool initialized = false;
+    static const QHash<QString, QString> countries = {
+        // ISO 3166-1 alpha-2 codes
+        // http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements_txt-temp.htm
 
-    // ISO 3166-1 alpha-2 codes
-    // http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements_txt-temp.htm
-    if (!initialized) {
         // Officially assigned
-        countries["AD"] = tr("Andorra");
-        countries["AE"] = tr("United Arab Emirates");
-        countries["AF"] = tr("Afghanistan");
-        countries["AG"] = tr("Antigua and Barbuda");
-        countries["AI"] = tr("Anguilla");
-        countries["AL"] = tr("Albania");
-        countries["AM"] = tr("Armenia");
-        countries["AO"] = tr("Angola");
-        countries["AQ"] = tr("Antarctica");
-        countries["AR"] = tr("Argentina");
-        countries["AS"] = tr("American Samoa");
-        countries["AT"] = tr("Austria");
-        countries["AU"] = tr("Australia");
-        countries["AW"] = tr("Aruba");
-        countries["AX"] = tr("Aland Islands");
-        countries["AZ"] = tr("Azerbaijan");
-        countries["BA"] = tr("Bosnia and Herzegovina");
-        countries["BB"] = tr("Barbados");
-        countries["BD"] = tr("Bangladesh");
-        countries["BE"] = tr("Belgium");
-        countries["BF"] = tr("Burkina Faso");
-        countries["BG"] = tr("Bulgaria");
-        countries["BH"] = tr("Bahrain");
-        countries["BI"] = tr("Burundi");
-        countries["BJ"] = tr("Benin");
-        countries["BL"] = tr("Saint Barthelemy");
-        countries["BM"] = tr("Bermuda");
-        countries["BN"] = tr("Brunei Darussalam");
-        countries["BO"] = tr("Bolivia, Plurinational State of");
-        countries["BQ"] = tr("Bonaire, Sint Eustatius and Saba");
-        countries["BR"] = tr("Brazil");
-        countries["BS"] = tr("Bahamas");
-        countries["BT"] = tr("Bhutan");
-        countries["BV"] = tr("Bouvet Island");
-        countries["BW"] = tr("Botswana");
-        countries["BY"] = tr("Belarus");
-        countries["BZ"] = tr("Belize");
-        countries["CA"] = tr("Canada");
-        countries["CC"] = tr("Cocos (Keeling) Islands");
-        countries["CD"] = tr("Congo, The Democratic Republic of the");
-        countries["CF"] = tr("Central African Republic");
-        countries["CG"] = tr("Congo");
-        countries["CH"] = tr("Switzerland");
-        countries["CI"] = tr("Cote d'Ivoire");
-        countries["CK"] = tr("Cook Islands");
-        countries["CL"] = tr("Chile");
-        countries["CM"] = tr("Cameroon");
-        countries["CN"] = tr("China");
-        countries["CO"] = tr("Colombia");
-        countries["CR"] = tr("Costa Rica");
-        countries["CU"] = tr("Cuba");
-        countries["CV"] = tr("Cape Verde");
-        countries["CW"] = tr("Curacao");
-        countries["CX"] = tr("Christmas Island");
-        countries["CY"] = tr("Cyprus");
-        countries["CZ"] = tr("Czech Republic");
-        countries["DE"] = tr("Germany");
-        countries["DJ"] = tr("Djibouti");
-        countries["DK"] = tr("Denmark");
-        countries["DM"] = tr("Dominica");
-        countries["DO"] = tr("Dominican Republic");
-        countries["DZ"] = tr("Algeria");
-        countries["EC"] = tr("Ecuador");
-        countries["EE"] = tr("Estonia");
-        countries["EG"] = tr("Egypt");
-        countries["EH"] = tr("Western Sahara");
-        countries["ER"] = tr("Eritrea");
-        countries["ES"] = tr("Spain");
-        countries["ET"] = tr("Ethiopia");
-        countries["FI"] = tr("Finland");
-        countries["FJ"] = tr("Fiji");
-        countries["FK"] = tr("Falkland Islands (Malvinas)");
-        countries["FM"] = tr("Micronesia, Federated States of");
-        countries["FO"] = tr("Faroe Islands");
-        countries["FR"] = tr("France");
-        countries["GA"] = tr("Gabon");
-        countries["GB"] = tr("United Kingdom");
-        countries["GD"] = tr("Grenada");
-        countries["GE"] = tr("Georgia");
-        countries["GF"] = tr("French Guiana");
-        countries["GG"] = tr("Guernsey");
-        countries["GH"] = tr("Ghana");
-        countries["GI"] = tr("Gibraltar");
-        countries["GL"] = tr("Greenland");
-        countries["GM"] = tr("Gambia");
-        countries["GN"] = tr("Guinea");
-        countries["GP"] = tr("Guadeloupe");
-        countries["GQ"] = tr("Equatorial Guinea");
-        countries["GR"] = tr("Greece");
-        countries["GS"] = tr("South Georgia and the South Sandwich Islands");
-        countries["GT"] = tr("Guatemala");
-        countries["GU"] = tr("Guam");
-        countries["GW"] = tr("Guinea-Bissau");
-        countries["GY"] = tr("Guyana");
-        countries["HK"] = tr("Hong Kong");
-        countries["HM"] = tr("Heard Island and McDonald Islands");
-        countries["HN"] = tr("Honduras");
-        countries["HR"] = tr("Croatia");
-        countries["HT"] = tr("Haiti");
-        countries["HU"] = tr("Hungary");
-        countries["ID"] = tr("Indonesia");
-        countries["IE"] = tr("Ireland");
-        countries["IL"] = tr("Israel");
-        countries["IM"] = tr("Isle of Man");
-        countries["IN"] = tr("India");
-        countries["IO"] = tr("British Indian Ocean Territory");
-        countries["IQ"] = tr("Iraq");
-        countries["IR"] = tr("Iran, Islamic Republic of");
-        countries["IS"] = tr("Iceland");
-        countries["IT"] = tr("Italy");
-        countries["JE"] = tr("Jersey");
-        countries["JM"] = tr("Jamaica");
-        countries["JO"] = tr("Jordan");
-        countries["JP"] = tr("Japan");
-        countries["KE"] = tr("Kenya");
-        countries["KG"] = tr("Kyrgyzstan");
-        countries["KH"] = tr("Cambodia");
-        countries["KI"] = tr("Kiribati");
-        countries["KM"] = tr("Comoros");
-        countries["KN"] = tr("Saint Kitts and Nevis");
-        countries["KP"] = tr("Korea, Democratic People's Republic of");
-        countries["KR"] = tr("Korea, Republic of");
-        countries["KW"] = tr("Kuwait");
-        countries["KY"] = tr("Cayman Islands");
-        countries["KZ"] = tr("Kazakhstan");
-        countries["LA"] = tr("Lao People's Democratic Republic");
-        countries["LB"] = tr("Lebanon");
-        countries["LC"] = tr("Saint Lucia");
-        countries["LI"] = tr("Liechtenstein");
-        countries["LK"] = tr("Sri Lanka");
-        countries["LR"] = tr("Liberia");
-        countries["LS"] = tr("Lesotho");
-        countries["LT"] = tr("Lithuania");
-        countries["LU"] = tr("Luxembourg");
-        countries["LV"] = tr("Latvia");
-        countries["LY"] = tr("Libya");
-        countries["MA"] = tr("Morocco");
-        countries["MC"] = tr("Monaco");
-        countries["MD"] = tr("Moldova, Republic of");
-        countries["ME"] = tr("Montenegro");
-        countries["MF"] = tr("Saint Martin (French part)");
-        countries["MG"] = tr("Madagascar");
-        countries["MH"] = tr("Marshall Islands");
-        countries["MK"] = tr("Macedonia, The Former Yugoslav Republic of");
-        countries["ML"] = tr("Mali");
-        countries["MM"] = tr("Myanmar");
-        countries["MN"] = tr("Mongolia");
-        countries["MO"] = tr("Macao");
-        countries["MP"] = tr("Northern Mariana Islands");
-        countries["MQ"] = tr("Martinique");
-        countries["MR"] = tr("Mauritania");
-        countries["MS"] = tr("Montserrat");
-        countries["MT"] = tr("Malta");
-        countries["MU"] = tr("Mauritius");
-        countries["MV"] = tr("Maldives");
-        countries["MW"] = tr("Malawi");
-        countries["MX"] = tr("Mexico");
-        countries["MY"] = tr("Malaysia");
-        countries["MZ"] = tr("Mozambique");
-        countries["NA"] = tr("Namibia");
-        countries["NC"] = tr("New Caledonia");
-        countries["NE"] = tr("Niger");
-        countries["NF"] = tr("Norfolk Island");
-        countries["NG"] = tr("Nigeria");
-        countries["NI"] = tr("Nicaragua");
-        countries["NL"] = tr("Netherlands");
-        countries["NO"] = tr("Norway");
-        countries["NP"] = tr("Nepal");
-        countries["NR"] = tr("Nauru");
-        countries["NU"] = tr("Niue");
-        countries["NZ"] = tr("New Zealand");
-        countries["OM"] = tr("Oman");
-        countries["PA"] = tr("Panama");
-        countries["PE"] = tr("Peru");
-        countries["PF"] = tr("French Polynesia");
-        countries["PG"] = tr("Papua New Guinea");
-        countries["PH"] = tr("Philippines");
-        countries["PK"] = tr("Pakistan");
-        countries["PL"] = tr("Poland");
-        countries["PM"] = tr("Saint Pierre and Miquelon");
-        countries["PN"] = tr("Pitcairn");
-        countries["PR"] = tr("Puerto Rico");
-        countries["PS"] = tr("Palestine, State of");
-        countries["PT"] = tr("Portugal");
-        countries["PW"] = tr("Palau");
-        countries["PY"] = tr("Paraguay");
-        countries["QA"] = tr("Qatar");
-        countries["RE"] = tr("Reunion");
-        countries["RO"] = tr("Romania");
-        countries["RS"] = tr("Serbia");
-        countries["RU"] = tr("Russian Federation");
-        countries["RW"] = tr("Rwanda");
-        countries["SA"] = tr("Saudi Arabia");
-        countries["SB"] = tr("Solomon Islands");
-        countries["SC"] = tr("Seychelles");
-        countries["SD"] = tr("Sudan");
-        countries["SE"] = tr("Sweden");
-        countries["SG"] = tr("Singapore");
-        countries["SH"] = tr("Saint Helena, Ascension and Tristan da Cunha");
-        countries["SI"] = tr("Slovenia");
-        countries["SJ"] = tr("Svalbard and Jan Mayen");
-        countries["SK"] = tr("Slovakia");
-        countries["SL"] = tr("Sierra Leone");
-        countries["SM"] = tr("San Marino");
-        countries["SN"] = tr("Senegal");
-        countries["SO"] = tr("Somalia");
-        countries["SR"] = tr("Suriname");
-        countries["SS"] = tr("South Sudan");
-        countries["ST"] = tr("Sao Tome and Principe");
-        countries["SV"] = tr("El Salvador");
-        countries["SX"] = tr("Sint Maarten (Dutch part)");
-        countries["SY"] = tr("Syrian Arab Republic");
-        countries["SZ"] = tr("Swaziland");
-        countries["TC"] = tr("Turks and Caicos Islands");
-        countries["TD"] = tr("Chad");
-        countries["TF"] = tr("French Southern Territories");
-        countries["TG"] = tr("Togo");
-        countries["TH"] = tr("Thailand");
-        countries["TJ"] = tr("Tajikistan");
-        countries["TK"] = tr("Tokelau");
-        countries["TL"] = tr("Timor-Leste");
-        countries["TM"] = tr("Turkmenistan");
-        countries["TN"] = tr("Tunisia");
-        countries["TO"] = tr("Tonga");
-        countries["TR"] = tr("Turkey");
-        countries["TT"] = tr("Trinidad and Tobago");
-        countries["TV"] = tr("Tuvalu");
-        countries["TW"] = tr("Taiwan");
-        countries["TZ"] = tr("Tanzania, United Republic of");
-        countries["UA"] = tr("Ukraine");
-        countries["UG"] = tr("Uganda");
-        countries["UM"] = tr("United States Minor Outlying Islands");
-        countries["US"] = tr("United States");
-        countries["UY"] = tr("Uruguay");
-        countries["UZ"] = tr("Uzbekistan");
-        countries["VA"] = tr("Holy See (Vatican City State)");
-        countries["VC"] = tr("Saint Vincent and the Grenadines");
-        countries["VE"] = tr("Venezuela, Bolivarian Republic of");
-        countries["VG"] = tr("Virgin Islands, British");
-        countries["VI"] = tr("Virgin Islands, U.S.");
-        countries["VN"] = tr("Viet Nam");
-        countries["VU"] = tr("Vanuatu");
-        countries["WF"] = tr("Wallis and Futuna");
-        countries["WS"] = tr("Samoa");
-        countries["YE"] = tr("Yemen");
-        countries["YT"] = tr("Mayotte");
-        countries["ZA"] = tr("South Africa");
-        countries["ZM"] = tr("Zambia");
-        countries["ZW"] = tr("Zimbabwe");
+        {"AD", tr("Andorra")},
+        {"AE", tr("United Arab Emirates")},
+        {"AF", tr("Afghanistan")},
+        {"AG", tr("Antigua and Barbuda")},
+        {"AI", tr("Anguilla")},
+        {"AL", tr("Albania")},
+        {"AM", tr("Armenia")},
+        {"AO", tr("Angola")},
+        {"AQ", tr("Antarctica")},
+        {"AR", tr("Argentina")},
+        {"AS", tr("American Samoa")},
+        {"AT", tr("Austria")},
+        {"AU", tr("Australia")},
+        {"AW", tr("Aruba")},
+        {"AX", tr("Aland Islands")},
+        {"AZ", tr("Azerbaijan")},
+        {"BA", tr("Bosnia and Herzegovina")},
+        {"BB", tr("Barbados")},
+        {"BD", tr("Bangladesh")},
+        {"BE", tr("Belgium")},
+        {"BF", tr("Burkina Faso")},
+        {"BG", tr("Bulgaria")},
+        {"BH", tr("Bahrain")},
+        {"BI", tr("Burundi")},
+        {"BJ", tr("Benin")},
+        {"BL", tr("Saint Barthelemy")},
+        {"BM", tr("Bermuda")},
+        {"BN", tr("Brunei Darussalam")},
+        {"BO", tr("Bolivia, Plurinational State of")},
+        {"BQ", tr("Bonaire, Sint Eustatius and Saba")},
+        {"BR", tr("Brazil")},
+        {"BS", tr("Bahamas")},
+        {"BT", tr("Bhutan")},
+        {"BV", tr("Bouvet Island")},
+        {"BW", tr("Botswana")},
+        {"BY", tr("Belarus")},
+        {"BZ", tr("Belize")},
+        {"CA", tr("Canada")},
+        {"CC", tr("Cocos (Keeling) Islands")},
+        {"CD", tr("Congo, The Democratic Republic of the")},
+        {"CF", tr("Central African Republic")},
+        {"CG", tr("Congo")},
+        {"CH", tr("Switzerland")},
+        {"CI", tr("Cote d'Ivoire")},
+        {"CK", tr("Cook Islands")},
+        {"CL", tr("Chile")},
+        {"CM", tr("Cameroon")},
+        {"CN", tr("China")},
+        {"CO", tr("Colombia")},
+        {"CR", tr("Costa Rica")},
+        {"CU", tr("Cuba")},
+        {"CV", tr("Cape Verde")},
+        {"CW", tr("Curacao")},
+        {"CX", tr("Christmas Island")},
+        {"CY", tr("Cyprus")},
+        {"CZ", tr("Czech Republic")},
+        {"DE", tr("Germany")},
+        {"DJ", tr("Djibouti")},
+        {"DK", tr("Denmark")},
+        {"DM", tr("Dominica")},
+        {"DO", tr("Dominican Republic")},
+        {"DZ", tr("Algeria")},
+        {"EC", tr("Ecuador")},
+        {"EE", tr("Estonia")},
+        {"EG", tr("Egypt")},
+        {"EH", tr("Western Sahara")},
+        {"ER", tr("Eritrea")},
+        {"ES", tr("Spain")},
+        {"ET", tr("Ethiopia")},
+        {"FI", tr("Finland")},
+        {"FJ", tr("Fiji")},
+        {"FK", tr("Falkland Islands (Malvinas)")},
+        {"FM", tr("Micronesia, Federated States of")},
+        {"FO", tr("Faroe Islands")},
+        {"FR", tr("France")},
+        {"GA", tr("Gabon")},
+        {"GB", tr("United Kingdom")},
+        {"GD", tr("Grenada")},
+        {"GE", tr("Georgia")},
+        {"GF", tr("French Guiana")},
+        {"GG", tr("Guernsey")},
+        {"GH", tr("Ghana")},
+        {"GI", tr("Gibraltar")},
+        {"GL", tr("Greenland")},
+        {"GM", tr("Gambia")},
+        {"GN", tr("Guinea")},
+        {"GP", tr("Guadeloupe")},
+        {"GQ", tr("Equatorial Guinea")},
+        {"GR", tr("Greece")},
+        {"GS", tr("South Georgia and the South Sandwich Islands")},
+        {"GT", tr("Guatemala")},
+        {"GU", tr("Guam")},
+        {"GW", tr("Guinea-Bissau")},
+        {"GY", tr("Guyana")},
+        {"HK", tr("Hong Kong")},
+        {"HM", tr("Heard Island and McDonald Islands")},
+        {"HN", tr("Honduras")},
+        {"HR", tr("Croatia")},
+        {"HT", tr("Haiti")},
+        {"HU", tr("Hungary")},
+        {"ID", tr("Indonesia")},
+        {"IE", tr("Ireland")},
+        {"IL", tr("Israel")},
+        {"IM", tr("Isle of Man")},
+        {"IN", tr("India")},
+        {"IO", tr("British Indian Ocean Territory")},
+        {"IQ", tr("Iraq")},
+        {"IR", tr("Iran, Islamic Republic of")},
+        {"IS", tr("Iceland")},
+        {"IT", tr("Italy")},
+        {"JE", tr("Jersey")},
+        {"JM", tr("Jamaica")},
+        {"JO", tr("Jordan")},
+        {"JP", tr("Japan")},
+        {"KE", tr("Kenya")},
+        {"KG", tr("Kyrgyzstan")},
+        {"KH", tr("Cambodia")},
+        {"KI", tr("Kiribati")},
+        {"KM", tr("Comoros")},
+        {"KN", tr("Saint Kitts and Nevis")},
+        {"KP", tr("Korea, Democratic People's Republic of")},
+        {"KR", tr("Korea, Republic of")},
+        {"KW", tr("Kuwait")},
+        {"KY", tr("Cayman Islands")},
+        {"KZ", tr("Kazakhstan")},
+        {"LA", tr("Lao People's Democratic Republic")},
+        {"LB", tr("Lebanon")},
+        {"LC", tr("Saint Lucia")},
+        {"LI", tr("Liechtenstein")},
+        {"LK", tr("Sri Lanka")},
+        {"LR", tr("Liberia")},
+        {"LS", tr("Lesotho")},
+        {"LT", tr("Lithuania")},
+        {"LU", tr("Luxembourg")},
+        {"LV", tr("Latvia")},
+        {"LY", tr("Libya")},
+        {"MA", tr("Morocco")},
+        {"MC", tr("Monaco")},
+        {"MD", tr("Moldova, Republic of")},
+        {"ME", tr("Montenegro")},
+        {"MF", tr("Saint Martin (French part)")},
+        {"MG", tr("Madagascar")},
+        {"MH", tr("Marshall Islands")},
+        {"MK", tr("Macedonia, The Former Yugoslav Republic of")},
+        {"ML", tr("Mali")},
+        {"MM", tr("Myanmar")},
+        {"MN", tr("Mongolia")},
+        {"MO", tr("Macao")},
+        {"MP", tr("Northern Mariana Islands")},
+        {"MQ", tr("Martinique")},
+        {"MR", tr("Mauritania")},
+        {"MS", tr("Montserrat")},
+        {"MT", tr("Malta")},
+        {"MU", tr("Mauritius")},
+        {"MV", tr("Maldives")},
+        {"MW", tr("Malawi")},
+        {"MX", tr("Mexico")},
+        {"MY", tr("Malaysia")},
+        {"MZ", tr("Mozambique")},
+        {"NA", tr("Namibia")},
+        {"NC", tr("New Caledonia")},
+        {"NE", tr("Niger")},
+        {"NF", tr("Norfolk Island")},
+        {"NG", tr("Nigeria")},
+        {"NI", tr("Nicaragua")},
+        {"NL", tr("Netherlands")},
+        {"NO", tr("Norway")},
+        {"NP", tr("Nepal")},
+        {"NR", tr("Nauru")},
+        {"NU", tr("Niue")},
+        {"NZ", tr("New Zealand")},
+        {"OM", tr("Oman")},
+        {"PA", tr("Panama")},
+        {"PE", tr("Peru")},
+        {"PF", tr("French Polynesia")},
+        {"PG", tr("Papua New Guinea")},
+        {"PH", tr("Philippines")},
+        {"PK", tr("Pakistan")},
+        {"PL", tr("Poland")},
+        {"PM", tr("Saint Pierre and Miquelon")},
+        {"PN", tr("Pitcairn")},
+        {"PR", tr("Puerto Rico")},
+        {"PS", tr("Palestine, State of")},
+        {"PT", tr("Portugal")},
+        {"PW", tr("Palau")},
+        {"PY", tr("Paraguay")},
+        {"QA", tr("Qatar")},
+        {"RE", tr("Reunion")},
+        {"RO", tr("Romania")},
+        {"RS", tr("Serbia")},
+        {"RU", tr("Russian Federation")},
+        {"RW", tr("Rwanda")},
+        {"SA", tr("Saudi Arabia")},
+        {"SB", tr("Solomon Islands")},
+        {"SC", tr("Seychelles")},
+        {"SD", tr("Sudan")},
+        {"SE", tr("Sweden")},
+        {"SG", tr("Singapore")},
+        {"SH", tr("Saint Helena, Ascension and Tristan da Cunha")},
+        {"SI", tr("Slovenia")},
+        {"SJ", tr("Svalbard and Jan Mayen")},
+        {"SK", tr("Slovakia")},
+        {"SL", tr("Sierra Leone")},
+        {"SM", tr("San Marino")},
+        {"SN", tr("Senegal")},
+        {"SO", tr("Somalia")},
+        {"SR", tr("Suriname")},
+        {"SS", tr("South Sudan")},
+        {"ST", tr("Sao Tome and Principe")},
+        {"SV", tr("El Salvador")},
+        {"SX", tr("Sint Maarten (Dutch part)")},
+        {"SY", tr("Syrian Arab Republic")},
+        {"SZ", tr("Swaziland")},
+        {"TC", tr("Turks and Caicos Islands")},
+        {"TD", tr("Chad")},
+        {"TF", tr("French Southern Territories")},
+        {"TG", tr("Togo")},
+        {"TH", tr("Thailand")},
+        {"TJ", tr("Tajikistan")},
+        {"TK", tr("Tokelau")},
+        {"TL", tr("Timor-Leste")},
+        {"TM", tr("Turkmenistan")},
+        {"TN", tr("Tunisia")},
+        {"TO", tr("Tonga")},
+        {"TR", tr("Turkey")},
+        {"TT", tr("Trinidad and Tobago")},
+        {"TV", tr("Tuvalu")},
+        {"TW", tr("Taiwan")},
+        {"TZ", tr("Tanzania, United Republic of")},
+        {"UA", tr("Ukraine")},
+        {"UG", tr("Uganda")},
+        {"UM", tr("United States Minor Outlying Islands")},
+        {"US", tr("United States")},
+        {"UY", tr("Uruguay")},
+        {"UZ", tr("Uzbekistan")},
+        {"VA", tr("Holy See (Vatican City State)")},
+        {"VC", tr("Saint Vincent and the Grenadines")},
+        {"VE", tr("Venezuela, Bolivarian Republic of")},
+        {"VG", tr("Virgin Islands, British")},
+        {"VI", tr("Virgin Islands, U.S.")},
+        {"VN", tr("Viet Nam")},
+        {"VU", tr("Vanuatu")},
+        {"WF", tr("Wallis and Futuna")},
+        {"WS", tr("Samoa")},
+        {"YE", tr("Yemen")},
+        {"YT", tr("Mayotte")},
+        {"ZA", tr("South Africa")},
+        {"ZM", tr("Zambia")},
+        {"ZW", tr("Zimbabwe")},
 
-        countries[QString()] = tr("N/A");
-        initialized = true;
-    }
+        {{}, tr("N/A")}
+    };
 
     return countries.value(countryISOCode, tr("N/A"));
 }

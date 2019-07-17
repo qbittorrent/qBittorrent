@@ -61,7 +61,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
 
     Preferences *const pref = Preferences::instance();
     // Preview list
-    m_previewListModel = new QStandardItemModel(0, NB_COLUMNS);
+    m_previewListModel = new QStandardItemModel(0, NB_COLUMNS, this);
     m_previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
     m_previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
     m_previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
@@ -118,8 +118,6 @@ PreviewSelectDialog::~PreviewSelectDialog()
 {
     saveWindowState();
 
-    delete m_previewListModel;
-    delete m_listDelegate;
     delete m_ui;
 }
 

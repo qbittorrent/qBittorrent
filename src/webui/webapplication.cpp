@@ -88,7 +88,7 @@ namespace
         return ret;
     }
 
-    inline QUrl urlFromHostHeader(const QString &hostHeader)
+    QUrl urlFromHostHeader(const QString &hostHeader)
     {
         if (!hostHeader.contains(QLatin1String("://")))
             return {QLatin1String("http://") + hostHeader};

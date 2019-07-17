@@ -83,9 +83,6 @@ private:
     static Profile *m_instance;
 };
 
-inline QString specialFolderLocation(SpecialFolder folder)
-{
-    return Profile::instance().location(folder);
-}
+QString specialFolderLocation(SpecialFolder folder);
 
 #endif // QBT_PROFILE_H
