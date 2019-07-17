@@ -614,7 +614,8 @@ namespace BitTorrent
         void dispatchTorrentAlert(libtorrent::alert *a);
         void handleAddTorrentAlert(libtorrent::add_torrent_alert *p);
         void handleStateUpdateAlert(libtorrent::state_update_alert *p);
-        void handleMetadataReceivedAlert(libtorrent::metadata_received_alert *p);
+        void handleMetadataReceivedAlert(const libtorrent::metadata_received_alert *p);
+        void handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p);
         void handleFileErrorAlert(libtorrent::file_error_alert *p);
         void handleTorrentRemovedAlert(libtorrent::torrent_removed_alert *p);
         void handleTorrentDeletedAlert(libtorrent::torrent_deleted_alert *p);

@@ -2147,26 +2147,26 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     if (fromMagnetUri) {
         hash = magnetUri.hash();
 
-        if (m_loadedMetadata.contains(hash)) {
-            // Adding preloaded torrent
-            m_loadedMetadata.remove(hash);
-            libt::torrent_handle handle = m_nativeSession->find_torrent(hash);
-            --m_extraLimit;
-
-            try {
-                handle.auto_managed(false);
-                // Preloaded torrent is in "Upload mode" so we need to disable it
-                // otherwise the torrent never be downloaded (until application restart)
-                handle.set_upload_mode(false);
-                handle.pause();
+        const auto it = m_loadedMetadata.constFind(hash);
+        if (it != m_loadedMetadata.constEnd()) {
+            // Adding preloaded torrent...
+            const TorrentInfo metadata = it.value();
+            if (metadata.isValid()) {
+                // Metadata is received and torrent_handle is being deleted
+                // so we can't reuse it. Just add torrent using its metadata.
+                return addTorrent_impl(params
+                    , MagnetUri {}, metadata, fastresumeData);
             }
-            catch (std::exception &) {}
 
-            adjustLimits();
+            // Reuse existing torrent_handle
+            lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
+            // We need to pause it first to create TorrentHandle within the same
+            // underlying state as in other cases.
+            handle.auto_managed(false);
+            handle.pause();
 
-            // use common 2nd step of torrent addition
+            m_loadedMetadata.remove(hash);
             m_addingTorrents.insert(hash, params);
-            createTorrentHandle(handle);
             return true;
         }
 
@@ -2225,9 +2225,12 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     else
         p.storage_mode = libt::storage_mode_sparse;
 
-    p.flags |= libt::add_torrent_params::flag_paused; // Start in pause
-    p.flags &= ~libt::add_torrent_params::flag_auto_managed; // Because it is added in paused state
     p.flags &= ~libt::add_torrent_params::flag_duplicate_is_error; // Already checked
+    // Make sure the torrent will be initially checked and then paused
+    // to perform some service jobs on it. We will start it if needed.
+    p.flags |= lt::add_torrent_params::flag_paused;
+    p.flags |= lt::add_torrent_params::flag_auto_managed;
+    p.flags |= lt::add_torrent_params::flag_stop_when_ready;
 
     // Seeding mode
     // Skip checking and directly start seeding (new in libtorrent v0.15)
@@ -2239,18 +2242,20 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     if (!fromMagnetUri) {
         if (params.restored) {
             // Set torrent fast resume data
-            p.resume_data = {fastresumeData.constData(), fastresumeData.constData() + fastresumeData.size()};
+            // Make sure the torrent will be initially checked and then paused
+            // to perform some service jobs on it. We will start it if needed.
+            // (Workaround to easily support libtorrent-1.1)
+            QByteArray patchedFastresumeData = fastresumeData;
+            patchedFastresumeData.replace("6:pausedi0e", "6:pausedi1e");
+            patchedFastresumeData.replace("12:auto_managedi0e", "12:auto_managedi1e");
+
+            p.resume_data = std::vector<char> {patchedFastresumeData.constData()
+                , (patchedFastresumeData.constData() + patchedFastresumeData.size())};
             p.flags |= libt::add_torrent_params::flag_use_resume_save_path;
         }
         else {
             p.file_priorities = {params.filePriorities.begin(), params.filePriorities.end()};
         }
-    }
-
-    if (params.restored && !params.paused) {
-        // Make sure the torrent will restored in "paused" state
-        // Then we will start it if needed
-        p.flags |= libt::add_torrent_params::flag_stop_when_ready;
     }
 
     // Limits
@@ -4148,10 +4153,7 @@ void Session::handleAlert(libt::alert *a)
         case libt::tracker_warning_alert::alert_type:
         case libt::fastresume_rejected_alert::alert_type:
         case libt::torrent_checked_alert::alert_type:
-            dispatchTorrentAlert(a);
-            break;
         case libt::metadata_received_alert::alert_type:
-            handleMetadataReceivedAlert(static_cast<libt::metadata_received_alert*>(a));
             dispatchTorrentAlert(a);
             break;
         case libt::state_update_alert::alert_type:
@@ -4211,8 +4213,19 @@ void Session::handleAlert(libt::alert *a)
 void Session::dispatchTorrentAlert(libt::alert *a)
 {
     TorrentHandle *const torrent = m_torrents.value(static_cast<libt::torrent_alert*>(a)->handle.info_hash());
-    if (torrent)
+    if (torrent) {
         torrent->handleAlert(a);
+        return;
+    }
+
+    switch (a->type()) {
+    case libt::torrent_paused_alert::alert_type:
+        handleTorrentPausedAlert(static_cast<const libt::torrent_paused_alert*>(a));
+        break;
+    case libt::metadata_received_alert::alert_type:
+        handleMetadataReceivedAlert(static_cast<const libt::metadata_received_alert*>(a));
+        break;
+    }
 }
 
 void Session::createTorrentHandle(const libt::torrent_handle &nativeHandle)
@@ -4326,7 +4339,7 @@ void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *
     }
 }
 
-void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
+void Session::handleMetadataReceivedAlert(const libt::metadata_received_alert *p)
 {
     InfoHash hash = p->handle.info_hash();
 
@@ -4335,6 +4348,25 @@ void Session::handleMetadataReceivedAlert(libt::metadata_received_alert *p)
         adjustLimits();
         m_loadedMetadata[hash] = TorrentInfo(p->handle.torrent_file());
         m_nativeSession->remove_torrent(p->handle, libt::session::delete_files);
+    }
+}
+
+void Session::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p)
+{
+    const InfoHash hash {p->handle.info_hash()};
+
+    if (m_addingTorrents.contains(hash)) {
+        // Adding preloaded torrent
+        lt::torrent_handle handle = p->handle;
+        --m_extraLimit;
+
+        // Preloaded torrent is in "Upload mode" so we need to disable it
+        // otherwise the torrent never be downloaded (until application restart)
+        handle.set_upload_mode(false);
+
+        adjustLimits();
+        // use common 2nd step of torrent addition
+        createTorrentHandle(handle);
     }
 }
 
