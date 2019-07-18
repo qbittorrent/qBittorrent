@@ -335,7 +335,11 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
 
     ::LocalFree(args);
 #else
-    QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
+    // Cannot give users shell environment by default, as doing so could
+    // enable command injection via torrent name and other arguments
+    // (especially when some automated download mechanism has been setup).
+    // See: https://github.com/qbittorrent/qBittorrent/issues/10925
+    QProcess::startDetached(program);
 #endif
 }
 
