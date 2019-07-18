@@ -56,7 +56,7 @@ namespace Http
         void dropTimedOutConnection();
 
     private:
-        void incomingConnection(qintptr socketDescriptor);
+        void incomingConnection(qintptr socketDescriptor) override;
         void removeConnection(Connection *connection);
 
         IRequestHandler *m_requestHandler;

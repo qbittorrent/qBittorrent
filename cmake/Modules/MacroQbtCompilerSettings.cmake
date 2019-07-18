@@ -61,7 +61,7 @@ macro(qbt_set_compiler_options)
             endif (_STRICT_NULL_SENTINEL_IS_SUPPORTED)
 
             # Code should be improved to render this not needed
-            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wno-error=unused-function -Wno-error=inconsistent-missing-override")
+            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wno-error=unused-function")
         else ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
             # GCC supports it
             list(APPEND _GCC_COMMON_CXX_FLAGS "-Wstrict-null-sentinel")
