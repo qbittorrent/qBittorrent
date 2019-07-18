@@ -25,6 +25,7 @@ stacktrace {
         HEADERS += $$PWD/stacktrace_win.h
         !nogui {
             HEADERS += $$PWD/stacktracedialog.h
+            SOURCES += $$PWD/stacktracedialog.cpp
             FORMS += $$PWD/stacktracedialog.ui
         }
     }

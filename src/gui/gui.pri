@@ -69,6 +69,7 @@ HEADERS += \
     $$PWD/utils.h
 
 SOURCES += \
+    $$PWD/aboutdialog.cpp \
     $$PWD/addnewtorrentdialog.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/autoexpandabledialog.cpp \
@@ -82,11 +83,13 @@ SOURCES += \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
+    $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
     $$PWD/loglistwidget.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
+    $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/private/tristatewidget.cpp \
     $$PWD/raisedmessagebox.cpp \

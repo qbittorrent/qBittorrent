@@ -17,6 +17,8 @@ trackersadditiondialog.h
 
 # sources
 downloadedpiecesbar.cpp
+peerlistdelegate.cpp
+peerlistsortmodel.cpp
 peerlistwidget.cpp
 peersadditiondialog.cpp
 pieceavailabilitybar.cpp

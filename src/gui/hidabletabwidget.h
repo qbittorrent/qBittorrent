@@ -29,43 +29,24 @@
 #ifndef HIDABLETABWIDGET_H
 #define HIDABLETABWIDGET_H
 
-#include <QTabBar>
 #include <QTabWidget>
 
 #ifdef Q_OS_MAC
-#include <QStyle>
+class QPaintEvent;
 #endif
 
 class HidableTabWidget : public QTabWidget
 {
 public:
-    explicit HidableTabWidget(QWidget *parent = nullptr)
-        : QTabWidget(parent)
-    {
-    }
+    explicit HidableTabWidget(QWidget *parent = nullptr);
 
-protected:
+private:
+    void tabInserted(int index) override;
+    void tabRemoved(int index) override;
+
 #ifdef Q_OS_MAC
-    void paintEvent(QPaintEvent *event) override
-    {
-        // Hide the pane for macintosh style
-        if (!style()->inherits("QMacStyle"))
-            QTabWidget::paintEvent(event);
-    }
+    void paintEvent(QPaintEvent *event) override;
 #endif
-
-    void tabInserted(int index) override
-    {
-        QTabWidget::tabInserted(index);
-        tabBar()->setVisible(count() != 1);
-    }
-
-    void tabRemoved(int index) override
-    {
-        //QTabWidget::tabInserted(index);
-        QTabWidget::tabRemoved(index);
-        tabBar()->setVisible(count() != 1);
-    }
 };
 
 #endif // HIDABLETABWIDGET_H

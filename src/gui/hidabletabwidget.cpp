@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015 The qBittorrent project
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,32 +24,40 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
  */
 
-#ifndef STACKTRACEDIALOG_H
-#define STACKTRACEDIALOG_H
+#include "hidabletabwidget.h"
 
-#include <QDialog>
+#include <QTabBar>
 
-namespace Ui
+#ifdef Q_OS_MAC
+#include <QPaintEvent>
+#include <QStyle>
+#endif
+
+HidableTabWidget::HidableTabWidget(QWidget *parent)
+    : QTabWidget(parent)
 {
-    class StacktraceDialog;
 }
 
-class StacktraceDialog : public QDialog
+void HidableTabWidget::tabInserted(const int index)
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(StacktraceDialog)
+    QTabWidget::tabInserted(index);
+    tabBar()->setVisible(count() != 1);
+}
 
-public:
-    explicit StacktraceDialog(QWidget *parent = nullptr);
-    ~StacktraceDialog() override;
+void HidableTabWidget::tabRemoved(const int index)
+{
+    //QTabWidget::tabInserted(index);
+    QTabWidget::tabRemoved(index);
+    tabBar()->setVisible(count() != 1);
+}
 
-    void setStacktraceString(const QString &sigName, const QString &trace);
-
-private:
-    Ui::StacktraceDialog *m_ui;
-};
-
-#endif // STACKTRACEDIALOG_H
+#ifdef Q_OS_MAC
+void HidableTabWidget::paintEvent(QPaintEvent *event)
+{
+    // Hide the pane for macintosh style
+    if (!style()->inherits("QMacStyle"))
+        QTabWidget::paintEvent(event);
+}
+#endif
