@@ -49,7 +49,7 @@ addons:
       name: "qbittorrent/qBittorrent"
       description: "Build submitted via Travis CI"
     build_command_prepend: "./bootstrap.sh && ./configure $qmake_conf"
-    build_command: make
+    build_command: "make -j2"
     branch_pattern: $coverity_branch
     notification_email: sledgehammer999@qbittorrent.org
   apt:
