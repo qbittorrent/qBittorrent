@@ -298,8 +298,6 @@ namespace BitTorrent
         void setIPv6Enabled(bool enabled);
         int encryption() const;
         void setEncryption(int state);
-        bool isForceProxyEnabled() const;
-        void setForceProxyEnabled(bool enabled);
         bool isProxyPeerConnectionsEnabled() const;
         void setProxyPeerConnectionsEnabled(bool enabled);
         ChokingAlgorithm chokingAlgorithm() const;
@@ -330,8 +328,6 @@ namespace BitTorrent
         void setDiskCacheTTL(int ttl);
         bool useOSCache() const;
         void setUseOSCache(bool use);
-        bool isGuidedReadCacheEnabled() const;
-        void setGuidedReadCacheEnabled(bool enabled);
         bool isCoalesceReadWriteEnabled() const;
         void setCoalesceReadWriteEnabled(bool enabled);
         bool isSuggestModeEnabled() const;
@@ -595,7 +591,6 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
-        CachedSettingValue<bool> m_guidedReadCacheEnabled;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
         CachedSettingValue<bool> m_isSuggestMode;
         CachedSettingValue<int> m_sendBufferWatermark;
@@ -650,7 +645,6 @@ namespace BitTorrent
         CachedSettingValue<QString> m_networkInterfaceAddress;
         CachedSettingValue<bool> m_isIPv6Enabled;
         CachedSettingValue<int> m_encryption;
-        CachedSettingValue<bool> m_isForceProxyEnabled;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
         CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;

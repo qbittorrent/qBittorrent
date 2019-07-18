@@ -211,7 +211,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     void (QComboBox::*qComboBoxCurrentIndexChanged)(int) = &QComboBox::currentIndexChanged;
     void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
 
-    connect(m_ui->checkForceProxy, &QAbstractButton::toggled, this, &ThisType::enableForceProxy);
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableProxy);
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
@@ -353,7 +352,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinProxyPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyPeerConnecs, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkForceProxy, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->isProxyOnlyForTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -728,7 +726,6 @@ void OptionsDialog::saveOptions()
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnecs->isChecked());
-    session->setForceProxyEnabled(m_ui->checkForceProxy->isChecked());
     // End Connection preferences
 
     // Bittorrent preferences
@@ -1057,8 +1054,6 @@ void OptionsDialog::loadOptions()
     m_ui->textProxyPassword->setText(proxyConf.password);
 
     m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
-    m_ui->checkForceProxy->setChecked(session->isForceProxyEnabled());
-    enableForceProxy(session->isForceProxyEnabled());
     m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
     enableProxy(m_ui->comboProxyType->currentIndex());
 
@@ -1358,12 +1353,6 @@ void OptionsDialog::toggleComboRatioLimitAct()
     m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
-void OptionsDialog::enableForceProxy(bool enable)
-{
-    m_ui->checkUPnP->setEnabled(!enable);
-    m_ui->checkLSD->setEnabled(!enable);
-}
-
 void OptionsDialog::enableProxy(int index)
 {
     if (index) {
@@ -1373,7 +1362,6 @@ void OptionsDialog::enableProxy(int index)
         m_ui->lblProxyPort->setEnabled(true);
         m_ui->spinProxyPort->setEnabled(true);
         m_ui->checkProxyPeerConnecs->setEnabled(true);
-        m_ui->checkForceProxy->setEnabled(true);
         if (index > 1) {
             m_ui->checkProxyAuth->setEnabled(true);
             m_ui->isProxyOnlyForTorrents->setEnabled(true);
@@ -1384,7 +1372,6 @@ void OptionsDialog::enableProxy(int index)
             m_ui->isProxyOnlyForTorrents->setEnabled(false);
             m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
-        enableForceProxy(m_ui->checkForceProxy->isChecked());
     }
     else {
         //disable
@@ -1393,11 +1380,9 @@ void OptionsDialog::enableProxy(int index)
         m_ui->lblProxyPort->setEnabled(false);
         m_ui->spinProxyPort->setEnabled(false);
         m_ui->checkProxyPeerConnecs->setEnabled(false);
-        m_ui->checkForceProxy->setEnabled(false);
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
         m_ui->checkProxyAuth->setChecked(false);
-        enableForceProxy(false);
     }
 }
 

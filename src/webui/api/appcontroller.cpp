@@ -159,7 +159,6 @@ void AppController::preferencesAction()
     data["proxy_password"] = proxyConf.password;
 
     data["proxy_peer_connections"] = session->isProxyPeerConnectionsEnabled();
-    data["force_proxy"] = session->isForceProxyEnabled();
     data["proxy_torrents_only"] = proxyManager->isProxyOnlyForTorrents();
 
     // IP Filtering
@@ -281,8 +280,6 @@ void AppController::preferencesAction()
     data["disk_cache_ttl"] = session->diskCacheTTL();
     // Enable OS cache
     data["enable_os_cache"] = session->useOSCache();
-    // Guided read cache
-    data["enable_guided_read_cache"] = session->isGuidedReadCacheEnabled();
     // Coalesce reads & writes
     data["enable_coalesce_read_write"] = session->isCoalesceReadWriteEnabled();
     // Suggest mode
@@ -467,8 +464,6 @@ void AppController::setPreferencesAction()
 
     if (hasKey("proxy_peer_connections"))
         session->setProxyPeerConnectionsEnabled(it.value().toBool());
-    if (hasKey("force_proxy"))
-        session->setForceProxyEnabled(it.value().toBool());
     if (hasKey("proxy_torrents_only"))
         proxyManager->setProxyOnlyForTorrents(it.value().toBool());
 
@@ -693,9 +688,6 @@ void AppController::setPreferencesAction()
     // Enable OS cache
     if (hasKey("enable_os_cache"))
         session->setUseOSCache(it.value().toBool());
-    // Guided read cache
-    if (hasKey("enable_guided_read_cache"))
-        session->setGuidedReadCacheEnabled(it.value().toBool());
     // Coalesce reads & writes
     if (hasKey("enable_coalesce_read_write"))
         session->setCoalesceReadWriteEnabled(it.value().toBool());

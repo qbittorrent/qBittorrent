@@ -66,6 +66,7 @@
 #include "base/utils/string.h"
 #include "downloadpriority.h"
 #include "peerinfo.h"
+#include "private/ltunderlyingtype.h"
 #include "session.h"
 #include "trackerentry.h"
 
@@ -77,11 +78,13 @@ namespace
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
     using LTDownloadPriority = int;
-    using LTDownloadPriorityUnderlyingType = int;
+    using LTFileIndex = int;
+    using LTPieceIndex = int;
     using LTQueuePosition = int;
 #else
     using LTDownloadPriority = lt::download_priority_t;
-    using LTDownloadPriorityUnderlyingType = lt::download_priority_t::underlying_type;
+    using LTFileIndex = lt::file_index_t;
+    using LTPieceIndex = lt::piece_index_t;
     using LTQueuePosition = lt::queue_position_t;
 #endif
 
@@ -92,7 +95,7 @@ namespace
                        , std::back_inserter(out), [](BitTorrent::DownloadPriority priority)
         {
             return static_cast<LTDownloadPriority>(
-                        static_cast<LTDownloadPriorityUnderlyingType>(priority));
+                        static_cast<LTUnderlyingType<LTDownloadPriority>>(priority));
         });
         return out;
     }
@@ -377,7 +380,7 @@ bool TorrentHandle::isAutoManaged() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.auto_managed;
 #else
-    return (m_nativeStatus.flags & lt::torrent_flags::auto_managed);
+    return bool {m_nativeStatus.flags & lt::torrent_flags::auto_managed};
 #endif
 }
 
@@ -680,7 +683,7 @@ QStringList TorrentHandle::absoluteFilePathsUnwanted() const
 
     QStringList res;
     for (int i = 0; i < static_cast<int>(fp.size()); ++i) {
-        if (fp[i] == 0) {
+        if (fp[i] == LTDownloadPriority {0}) {
             const QString path = Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
             if (path.contains(".unwanted"))
                 res << path;
@@ -701,8 +704,7 @@ QVector<DownloadPriority> TorrentHandle::filePriorities() const
     QVector<DownloadPriority> ret;
     std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](LTDownloadPriority priority)
     {
-        return static_cast<DownloadPriority>(
-                    static_cast<std::underlying_type<DownloadPriority>::type>(priority));
+        return static_cast<DownloadPriority>(LTUnderlyingType<LTDownloadPriority> {priority});
     });
     return ret;
 }
@@ -825,7 +827,7 @@ bool TorrentHandle::isSequentialDownload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.sequential_download;
 #else
-    return (m_nativeStatus.flags & lt::torrent_flags::sequential_download);
+    return bool {m_nativeStatus.flags & lt::torrent_flags::sequential_download};
 #endif
 }
 
@@ -840,13 +842,13 @@ bool TorrentHandle::hasFirstLastPiecePriority() const
     const std::vector<LTDownloadPriority> filePriorities = nativeHandle().get_file_priorities();
 #endif
     for (int i = 0; i < static_cast<int>(filePriorities.size()); ++i) {
-        if (filePriorities[i] <= 0)
+        if (filePriorities[i] <= LTDownloadPriority {0})
             continue;
 
         const TorrentInfo::PieceRange extremities = info().filePieces(i);
-        const int firstPiecePrio = nativeHandle().piece_priority(extremities.first());
-        const int lastPiecePrio = nativeHandle().piece_priority(extremities.last());
-        return ((firstPiecePrio == 7) && (lastPiecePrio == 7));
+        const LTDownloadPriority firstPiecePrio = nativeHandle().piece_priority(LTPieceIndex {extremities.first()});
+        const LTDownloadPriority lastPiecePrio = nativeHandle().piece_priority(LTPieceIndex {extremities.last()});
+        return ((firstPiecePrio == LTDownloadPriority {7}) && (lastPiecePrio == LTDownloadPriority {7}));
     }
 
     return false;
@@ -1149,7 +1151,7 @@ bool TorrentHandle::superSeeding() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.super_seeding;
 #else
-    return (m_nativeStatus.flags & lt::torrent_flags::super_seeding);
+    return bool {m_nativeStatus.flags & lt::torrent_flags::super_seeding};
 #endif
 }
 
@@ -1171,7 +1173,7 @@ QBitArray TorrentHandle::pieces() const
     QBitArray result(m_nativeStatus.pieces.size());
 
     for (int i = 0; i < m_nativeStatus.pieces.size(); ++i)
-        result.setBit(i, m_nativeStatus.pieces.get_bit(i));
+        result.setBit(i, m_nativeStatus.pieces.get_bit(LTPieceIndex {i}));
 
     return result;
 }
@@ -1184,7 +1186,11 @@ QBitArray TorrentHandle::downloadingPieces() const
     m_nativeHandle.get_download_queue(queue);
 
     for (const lt::partial_piece_info &info : queue)
+#if (LIBTORRENT_VERSION_NUM < 10200)
         result.setBit(info.piece_index);
+#else
+        result.setBit(LTUnderlyingType<LTPieceIndex> {info.piece_index});
+#endif
 
     return result;
 }
@@ -1410,7 +1416,7 @@ void TorrentHandle::setFirstLastPiecePriorityImpl(const bool enabled, const QVec
             continue;
 
         // Determine the priority to set
-        const int newPrio = enabled ? LTDownloadPriority {7} : filePrio;
+        const LTDownloadPriority newPrio = enabled ? LTDownloadPriority {7} : filePrio;
         const TorrentInfo::PieceRange extremities = info().filePieces(index);
 
         // worst case: AVI index = 1% of total file size (at the end of the file)
@@ -1507,9 +1513,9 @@ void TorrentHandle::renameFile(const int index, const QString &name)
 {
     if (m_startupState != Started) return;
 
-    m_oldPath[LTFileIndex {index}].push_back(filePath(index));
+    m_oldPath[index].push_back(filePath(index));
     ++m_renameCount;
-    m_nativeHandle.rename_file(index, Utils::Fs::toNativePath(name).toStdString());
+    m_nativeHandle.rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(name).toStdString());
 }
 
 bool TorrentHandle::saveTorrentFile(const QString &path)
@@ -1807,11 +1813,11 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     // remove empty leftover folders
     // for example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
-    const QString oldFilePath = m_oldPath[LTFileIndex {p->index}].takeFirst();
+    const QString oldFilePath = m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].takeFirst();
     const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
 
-    if (m_oldPath[LTFileIndex {p->index}].isEmpty())
-        m_oldPath.remove(LTFileIndex {p->index});
+    if (m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].isEmpty())
+        m_oldPath.remove(LTUnderlyingType<LTFileIndex> {p->index});
 
     QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', QString::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
@@ -1847,12 +1853,12 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
 {
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
-        .arg(name(), filePath(p->index)
+        .arg(name(), filePath(LTUnderlyingType<LTFileIndex> {p->index})
              , QString::fromStdString(p->error.message())), Log::WARNING);
 
-    m_oldPath[LTFileIndex {p->index}].removeFirst();
-    if (m_oldPath[LTFileIndex {p->index}].isEmpty())
-        m_oldPath.remove(LTFileIndex {p->index});
+    m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].removeFirst();
+    if (m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].isEmpty())
+        m_oldPath.remove(LTUnderlyingType<LTFileIndex> {p->index});
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
@@ -1870,12 +1876,12 @@ void TorrentHandle::handleFileCompletedAlert(const lt::file_completed_alert *p)
 
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled()) {
-        QString name = filePath(p->index);
+        QString name = filePath(LTUnderlyingType<LTFileIndex> {p->index});
         if (name.endsWith(QB_EXT)) {
             const QString oldName = name;
             name.chop(QB_EXT.size());
             qDebug("Renaming %s to %s", qUtf8Printable(oldName), qUtf8Printable(name));
-            renameFile(p->index, name);
+            renameFile(LTUnderlyingType<LTFileIndex> {p->index}, name);
         }
     }
 }

@@ -322,10 +322,6 @@
             <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="force_proxy_checkbox" onclick="updateForceProxySettings();" />
-            <label for="force_proxy_checkbox">QBT_TR(Disable connections not supported by proxies)QBT_TR[CONTEXT=OptionsDialog] (<a target="_blank" href="https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies">QBT_TR(More information)QBT_TR[CONTEXT=HttpServer]</a>)</label>
-        </div>
-        <div class="formRow">
             <input type="checkbox" id="proxy_only_for_torrents_checkbox" />
             <label for="proxy_only_for_torrents_checkbox">QBT_TR(Use proxy only for torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -926,14 +922,6 @@
             </tr>
             <tr>
                 <td>
-                    <label for="guidedReadCache">QBT_TR(Guided read cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#guided_read_cache" target="_blank">(?)</a></label>
-                </td>
-                <td>
-                    <input type="checkbox" id="guidedReadCache" />
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads & writes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1237,7 +1225,6 @@
         $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
         $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
         $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-        $('force_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
         $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
 
         if (isPeerProxyTypeSelected) {
@@ -1254,14 +1241,6 @@
             $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSelected);
             updatePeerProxyAuthSettings();
         }
-
-        updateForceProxySettings();
-    };
-
-    var updateForceProxySettings = function() {
-        var isForceProxyEnabled = (!$('force_proxy_checkbox').getProperty('disabled')) && ($('force_proxy_checkbox').getProperty('checked'));
-        $('upnp_checkbox').setProperty('disabled', isForceProxyEnabled);
-        $('lsd_checkbox').setProperty('disabled', isForceProxyEnabled);
     };
 
     var updatePeerProxyAuthSettings = function() {
@@ -1568,8 +1547,6 @@
                     $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
                     $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
                     $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
-                    $('force_proxy_checkbox').setProperty('checked', pref.force_proxy);
-                    updateForceProxySettings();
                     $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_torrents_only);
                     $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
                     updatePeerProxyAuthSettings();
@@ -1703,7 +1680,6 @@
                     $('diskCache').setProperty('value', pref.disk_cache);
                     $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
                     $('enableOSCache').setProperty('checked', pref.enable_os_cache);
-                    $('guidedReadCache').setProperty('checked', pref.enable_guided_read_cache);
                     $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
                     $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
                     $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
@@ -1856,7 +1832,6 @@
         settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
         settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
         settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
-        settings.set('force_proxy', $('force_proxy_checkbox').getProperty('checked'));
         settings.set('proxy_torrents_only', $('proxy_only_for_torrents_checkbox').getProperty('checked'));
         settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
         settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
@@ -2069,7 +2044,6 @@
         settings.set('disk_cache', $('diskCache').getProperty('value'));
         settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
         settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
-        settings.set('enable_guided_read_cache', $('guidedReadCache').getProperty('checked'));
         settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
         settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
         settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));

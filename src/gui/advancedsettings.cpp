@@ -96,7 +96,6 @@ enum AdvSettingsRows
     DISK_CACHE,
     DISK_CACHE_TTL,
     OS_CACHE,
-    GUIDED_READ_CACHE,
     COALESCE_RW,
     SUGGEST_MODE,
     SEND_BUF_WATERMARK,
@@ -166,8 +165,6 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setDiskCacheTTL(spinBoxCacheTTL.value());
     // Enable OS cache
     session->setUseOSCache(checkBoxOsCache.isChecked());
-    // Guided read cache
-    session->setGuidedReadCacheEnabled(checkBoxGuidedReadCache.isChecked());
     // Coalesce reads & writes
     session->setCoalesceReadWriteEnabled(checkBoxCoalesceRW.isChecked());
     // Suggest mode
@@ -382,10 +379,6 @@ void AdvancedSettings::loadAdvancedSettings()
     checkBoxOsCache.setChecked(session->useOSCache());
     addRow(OS_CACHE, (tr("Enable OS cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", "(?)"))
             , &checkBoxOsCache);
-    // Guided read cache
-    checkBoxGuidedReadCache.setChecked(session->isGuidedReadCacheEnabled());
-    addRow(GUIDED_READ_CACHE, (tr("Guided read cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#guided_read_cache", "(?)"))
-            , &checkBoxGuidedReadCache);
     // Coalesce reads & writes
     checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
     addRow(COALESCE_RW, (tr("Coalesce reads & writes") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#coalesce_reads", "(?)"))

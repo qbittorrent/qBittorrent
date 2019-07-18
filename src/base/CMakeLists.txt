@@ -10,6 +10,7 @@ bittorrent/magneturi.h
 bittorrent/peerinfo.h
 bittorrent/private/bandwidthscheduler.h
 bittorrent/private/filterparserthread.h
+bittorrent/private/ltunderlyingtype.h
 bittorrent/private/portforwarderimpl.h
 bittorrent/private/resumedatasavingmanager.h
 bittorrent/private/speedmonitor.h
