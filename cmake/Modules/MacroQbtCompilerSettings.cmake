@@ -10,14 +10,14 @@ macro(qbt_set_compiler_options)
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         #-Wshadow -Wconversion ?
         set(_GCC_COMMON_C_AND_CXX_FLAGS "-Wall -Wextra"
-            "-Wfloat-equal -Wcast-qual -Wcast-align"
-            "-Wsign-conversion -Winvalid-pch -Wno-long-long"
+            "-Wcast-qual -Wcast-align"
+            "-Winvalid-pch -Wno-long-long"
             #"-fstack-protector-all"
             #"-Werror -Wno-error=deprecated-declarations"
         )
         set(_GCC_COMMON_CXX_FLAGS "-fexceptions -frtti"
             "-Woverloaded-virtual -Wold-style-cast"
-            "-Wnon-virtual-dtor -Wfloat-equal -Wcast-qual -Wcast-align"
+            "-Wnon-virtual-dtor"
             #"-Weffc++"
             #"-Werror -Wno-error=cpp"
             # we should modify code to make these ones obsolete
