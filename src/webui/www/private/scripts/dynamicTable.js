@@ -706,6 +706,13 @@ var DynamicTable = new Class({
                     }
                     return false;
                 });
+                tr.addEvent('touchstart', function(e) {
+                    if (!this._this.isRowSelected(this.rowId)) {
+                        this._this.deselectAll();
+                        this._this.selectRow(this.rowId);
+                    }
+                    return false;
+                });
 
                 this.setupTr(tr);
 

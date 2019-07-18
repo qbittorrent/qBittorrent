@@ -39,7 +39,6 @@ var ContextMenu = new Class({
         menu: 'menu_id',
         stopEvent: true,
         targets: 'body',
-        trigger: 'contextmenu',
         offsets: {
             x: 0,
             y: 0
@@ -47,7 +46,8 @@ var ContextMenu = new Class({
         onShow: $empty,
         onHide: $empty,
         onClick: $empty,
-        fadeSpeed: 200
+        fadeSpeed: 200,
+        touchTimer: 600
     },
 
     //initialization
@@ -142,50 +142,56 @@ var ContextMenu = new Class({
         }
     },
 
-    addTarget: function(t) {
-        this.targets[this.targets.length] = t;
-        t.addEvent(this.options.trigger, function(e) {
-            //enabled?
-            if (!this.options.disabled) {
-                //prevent default, if told to
-                if (this.options.stopEvent) {
-                    e.stop();
-                }
-                //record this as the trigger
-                this.options.element = $(t);
-                this.adjustMenuPosition(e);
-                //show the menu
-                this.show();
-            }
+    setupEventListeners: function(elem) {
+        elem.addEvent('contextmenu', function(e) {
+            this.triggerMenu(e, elem);
         }.bind(this));
-        t.addEvent('click', function(e) {
+        elem.addEvent('click', function(e) {
             this.hide();
         }.bind(this));
+
+        elem.addEvent('touchstart', function(e) {
+            e.preventDefault();
+            clearTimeout(this.touchstartTimer);
+            this.hide();
+
+            const touchstartEvent = e;
+            this.touchstartTimer = setTimeout(function() {
+                this.triggerMenu(touchstartEvent, elem);
+            }.bind(this), this.options.touchTimer);
+        }.bind(this));
+        elem.addEvent('touchend', function(e) {
+            e.preventDefault();
+            clearTimeout(this.touchstartTimer);
+        }.bind(this));
+    },
+
+    addTarget: function(t) {
+        this.targets[this.targets.length] = t;
+        this.setupEventListeners(t);
+    },
+
+    triggerMenu: function(e, el) {
+        if (this.options.disabled)
+            return;
+
+        //prevent default, if told to
+        if (this.options.stopEvent) {
+            e.stop();
+        }
+        //record this as the trigger
+        this.options.element = $(el);
+        this.adjustMenuPosition(e);
+        //show the menu
+        this.show();
     },
 
     //get things started
     startListener: function() {
         /* all elements */
         this.targets.each(function(el) {
-            /* show the menu */
-            el.addEvent(this.options.trigger, function(e) {
-                //enabled?
-                if (!this.options.disabled) {
-                    //prevent default, if told to
-                    if (this.options.stopEvent) {
-                        e.stop();
-                    }
-                    //record this as the trigger
-                    this.options.element = $(el);
-                    this.adjustMenuPosition(e);
-                    //show the menu
-                    this.show();
-                }
-            }.bind(this));
-            el.addEvent('click', function(e) {
-                this.hide();
-            }.bind(this));
-        }, this);
+            this.setupEventListeners(el);
+        }.bind(this), this);
 
         /* menu items */
         this.menu.getElements('a').each(function(item) {
