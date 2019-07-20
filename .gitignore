@@ -4,6 +4,7 @@ src/qbittorrent
 src/qbittorrent-nox
 src/release
 src/debug
+CMakeLists.txt.user*
 qbittorrent.pro.user*
 conf.pri
 Makefile*
