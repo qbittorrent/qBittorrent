@@ -142,9 +142,8 @@
 
         const encodedUrls = new URI().getData('urls');
         if (encodedUrls) {
-            const urls = [];
-            encodedUrls.split('|').each(function(url) {
-                urls.push(decodeURIComponent(url));
+            const urls = encodedUrls.split('|').map(function(url) {
+                return decodeURIComponent(url);
             });
 
             if (urls.length)
