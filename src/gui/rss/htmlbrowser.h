@@ -44,7 +44,7 @@ public:
     explicit HtmlBrowser(QWidget* parent = nullptr);
     ~HtmlBrowser();
 
-    virtual QVariant loadResource(int type, const QUrl &name);
+    virtual QVariant loadResource(int type, const QUrl &name) override;
 
 protected:
     QNetworkAccessManager *m_netManager;

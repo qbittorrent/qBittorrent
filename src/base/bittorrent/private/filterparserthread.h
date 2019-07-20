@@ -50,7 +50,7 @@ signals:
     void IPFilterError();
 
 protected:
-    void run();
+    void run() override;
 
 private:
     int findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse = false);

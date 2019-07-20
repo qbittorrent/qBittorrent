@@ -57,7 +57,7 @@ public:
     QtLockedFile(const QString &name);
     ~QtLockedFile();
 
-    bool open(OpenMode mode);
+    bool open(OpenMode mode) override;
 
     bool lock(LockMode mode, bool block = true);
     bool unlock();

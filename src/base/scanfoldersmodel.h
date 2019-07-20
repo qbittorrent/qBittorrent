@@ -71,11 +71,11 @@ public:
 
     static QString pathTypeDisplayName(PathType type);
 
-    int rowCount(const QModelIndex &parent = {}) const;
-    int columnCount(const QModelIndex &parent = {}) const;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    int rowCount(const QModelIndex &parent = {}) const override;
+    int columnCount(const QModelIndex &parent = {}) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     // TODO: removePaths(); singular version becomes private helper functions;
     // also: remove functions should take modelindexes
@@ -99,7 +99,7 @@ private:
     explicit ScanFoldersModel(QObject *parent = nullptr);
     ~ScanFoldersModel();
 
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
     bool downloadInWatchFolder(const QString &filePath) const;
     bool downloadInDefaultFolder(const QString &filePath) const;
     QString downloadPathTorrentFolder(const QString &filePath) const;

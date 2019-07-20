@@ -83,7 +83,7 @@ namespace BitTorrent
         ~Tracker();
 
         bool start();
-        Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+        Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
 
     private:
         void respondToAnnounceRequest();

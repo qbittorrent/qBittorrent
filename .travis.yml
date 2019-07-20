@@ -91,7 +91,7 @@ before_install:
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      CXXFLAGS="$CXXFLAGS -Wno-unused-local-typedefs -Wno-inconsistent-missing-override"
+      CXXFLAGS="$CXXFLAGS -Wno-unused-local-typedefs"
 
       openssl_root_path="/usr/local/opt/openssl"
       qmake_conf="$qmake_conf PKG_CONFIG_PATH=$openssl_root_path/lib/pkgconfig:$PKG_CONFIG_PATH"
