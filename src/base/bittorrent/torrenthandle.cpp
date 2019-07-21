@@ -74,16 +74,28 @@ const QString QB_EXT {QStringLiteral(".!qB")};
 
 using namespace BitTorrent;
 
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+namespace libtorrent
+{
+    namespace aux
+    {
+        template <typename T, typename Tag>
+        uint qHash(const strong_typedef<T, Tag> &key, const uint seed)
+        {
+            return static_cast<uint>((std::hash<strong_typedef<T, Tag>> {})(key) ^ seed);
+        }
+    }
+}
+#endif
+
 namespace
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
     using LTDownloadPriority = int;
-    using LTFileIndex = int;
     using LTPieceIndex = int;
     using LTQueuePosition = int;
 #else
     using LTDownloadPriority = lt::download_priority_t;
-    using LTFileIndex = lt::file_index_t;
     using LTPieceIndex = lt::piece_index_t;
     using LTQueuePosition = lt::queue_position_t;
 #endif
@@ -1513,7 +1525,7 @@ void TorrentHandle::renameFile(const int index, const QString &name)
 {
     if (m_startupState != Started) return;
 
-    m_oldPath[index].push_back(filePath(index));
+    m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     m_nativeHandle.rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(name).toStdString());
 }
@@ -1813,11 +1825,11 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     // remove empty leftover folders
     // for example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
-    const QString oldFilePath = m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].takeFirst();
+    const QString oldFilePath = m_oldPath[p->index].takeFirst();
     const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
 
-    if (m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].isEmpty())
-        m_oldPath.remove(LTUnderlyingType<LTFileIndex> {p->index});
+    if (m_oldPath[p->index].isEmpty())
+        m_oldPath.remove(p->index);
 
     QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', QString::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
@@ -1856,9 +1868,9 @@ void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_ale
         .arg(name(), filePath(LTUnderlyingType<LTFileIndex> {p->index})
              , QString::fromStdString(p->error.message())), Log::WARNING);
 
-    m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].removeFirst();
-    if (m_oldPath[LTUnderlyingType<LTFileIndex> {p->index}].isEmpty())
-        m_oldPath.remove(LTUnderlyingType<LTFileIndex> {p->index});
+    m_oldPath[p->index].removeFirst();
+    if (m_oldPath[p->index].isEmpty())
+        m_oldPath.remove(p->index);
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
