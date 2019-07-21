@@ -46,7 +46,7 @@ else()
     if(NOT LibtorrentRasterbar_USE_STATIC_LIBS)
         list(APPEND LibtorrentRasterbar_DEFINITIONS
             -DTORRENT_LINKING_SHARED
-            -DBOOST_SYSTEM_DYN_LINK -DBOOST_CHRONO_DYN_LINK)
+            -DBOOST_SYSTEM_DYN_LINK)
     endif()
 endif()
 
