@@ -124,8 +124,8 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Indicates the time when the torrent was last seen complete/whole");
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
-            default:
-                return {};
+            case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
+            default: return {};
             }
         }
         else if (role == Qt::TextAlignmentRole) {
@@ -149,6 +149,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_RATIO:
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
+            case TR_AVAILABILITY:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
@@ -239,6 +240,8 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         if (torrent->isPaused() || torrent->isChecking())
             return -1;
         return torrent->timeSinceActivity();
+    case TR_AVAILABILITY:
+        return torrent->distributedCopies();
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
     }

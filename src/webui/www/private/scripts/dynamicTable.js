@@ -828,12 +828,12 @@ const TorrentsTable = new Class({
         this.newColumn('max_ratio', '', 'QBT_TR(Ratio Limit)QBT_TR[CONTEXT=TransferListModel]', 100, false);
         this.newColumn('seen_complete', '', 'QBT_TR(Last Seen Complete)QBT_TR[CONTEXT=TransferListModel]', 100, false);
         this.newColumn('last_activity', '', 'QBT_TR(Last Activity)QBT_TR[CONTEXT=TransferListModel]', 100, false);
+        this.newColumn('availability', '', 'QBT_TR(Availability)QBT_TR[CONTEXT=TransferListModel]', 100, false);
 
         this.columns['state_icon'].onclick = '';
         this.columns['state_icon'].dataProperties[0] = 'state';
 
         this.columns['num_seeds'].dataProperties.push('num_complete');
-
         this.columns['num_leechs'].dataProperties.push('num_incomplete');
 
         this.initColumnsFunctions();
@@ -1180,6 +1180,13 @@ const TorrentsTable = new Class({
             const time = friendlyDuration(this.getRowValue(row));
             td.set('html', time);
             td.set('title', time);
+        };
+
+        // availability
+        this.columns['availability'].updateTd = function(td, row) {
+            const value = (Math.floor(1000 * this.getRowValue(row)) / 1000).toFixed(3);  // Don't round up
+            td.set('html', value);
+            td.set('title', value);
         };
     },
 

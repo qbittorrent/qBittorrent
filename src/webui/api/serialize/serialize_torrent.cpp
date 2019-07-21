@@ -125,6 +125,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     ret[KEY_TORRENT_LAST_SEEN_COMPLETE_TIME] = torrent.lastSeenComplete().toTime_t();
     ret[KEY_TORRENT_AUTO_TORRENT_MANAGEMENT] = torrent.isAutoTMMEnabled();
     ret[KEY_TORRENT_TIME_ACTIVE] = torrent.activeTime();
+    ret[KEY_TORRENT_AVAILABILITY] = torrent.distributedCopies();
 
     if (torrent.isPaused() || torrent.isChecking()) {
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
