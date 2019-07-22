@@ -467,6 +467,7 @@ namespace BitTorrent
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         bool m_tempPathDisabled;
+        bool m_fastresumeDataRejected;
         bool m_hasMissingFiles;
         bool m_hasRootFolder;
         bool m_needsToSetFirstLastPiecePriority;
