@@ -1796,7 +1796,7 @@ void Session::bottomTorrentsQueuePos(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::handleTorrentSaveResumeDataRequested(TorrentHandle *const torrent)
+void Session::handleTorrentSaveResumeDataRequested(const TorrentHandle *torrent)
 {
     qDebug("Saving resume data is requested for torrent '%s'...", qUtf8Printable(torrent->name()));
     ++m_numResumeData;

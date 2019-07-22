@@ -427,7 +427,7 @@ namespace BitTorrent
         void bottomTorrentsQueuePos(const QStringList &hashes);
 
         // TorrentHandle interface
-        void handleTorrentSaveResumeDataRequested(TorrentHandle *const torrent);
+        void handleTorrentSaveResumeDataRequested(const TorrentHandle *torrent);
         void handleTorrentShareLimitChanged(TorrentHandle *const torrent);
         void handleTorrentNameChanged(TorrentHandle *const torrent);
         void handleTorrentSavePathChanged(TorrentHandle *const torrent);
