@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,35 +26,33 @@
  * exception statement from your version.
  */
 
-#ifndef PEERADDITION_H
-#define PEERADDITION_H
+#include "peeraddress.h"
 
-#include <QDialog>
-#include <QList>
+#include <QString>
+#include <QStringList>
 
-#include "base/bittorrent/peerinfo.h"
-
-namespace Ui
+BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(QString peerAddressStr)
 {
-    class PeersAdditionDialog;
+    PeerAddress addr;
+    QStringList ipPort;
+
+    if ((peerAddressStr[0] == '[') && (peerAddressStr.indexOf("]:") != -1)) // IPv6
+        ipPort = peerAddressStr.remove(QChar('[')).split("]:");
+    else if (peerAddressStr.indexOf(':') != -1) // IPv4
+        ipPort = peerAddressStr.split(':');
+    else
+        return addr;
+
+    QHostAddress ip(ipPort[0]);
+    if (ip.isNull())
+        return addr;
+
+    bool ok;
+    int port = ipPort[1].toInt(&ok);
+    if (!ok || (port < 1) || (port > 65535))
+        return addr;
+
+    addr.ip = ip;
+    addr.port = port;
+    return addr;
 }
-
-class PeersAdditionDialog : public QDialog
-{
-    Q_OBJECT
-
-public:
-    PeersAdditionDialog(QWidget *parent);
-    ~PeersAdditionDialog();
-
-    static QList<BitTorrent::PeerAddress> askForPeers(QWidget *parent);
-
-protected slots:
-    void validateInput();
-
-private:
-    Ui::PeersAdditionDialog *m_ui;
-    QList<BitTorrent::PeerAddress> m_peersList;
-};
-
-#endif // PEERADDITION_H

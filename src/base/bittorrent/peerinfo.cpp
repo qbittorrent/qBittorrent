@@ -34,23 +34,9 @@
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
 #include "base/utils/string.h"
+#include "peeraddress.h"
 
 using namespace BitTorrent;
-
-// PeerAddress
-
-PeerAddress::PeerAddress()
-    : port(0)
-{
-}
-
-PeerAddress::PeerAddress(const QHostAddress &ip, ushort port)
-    : ip(ip)
-    , port(port)
-{
-}
-
-// PeerInfo
 
 PeerInfo::PeerInfo(const TorrentHandle *torrent, const lt::peer_info &nativeInfo)
     : m_nativeInfo(nativeInfo)
@@ -183,8 +169,8 @@ bool PeerInfo::isPlaintextEncrypted() const
 
 PeerAddress PeerInfo::address() const
 {
-    return PeerAddress(QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string())),
-                       m_nativeInfo.ip.port());
+    return {QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string()))
+                , m_nativeInfo.ip.port()};
 }
 
 QString PeerInfo::client() const

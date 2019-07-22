@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/magneturi.h \
+    $$PWD/bittorrent/peeraddress.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
@@ -80,6 +81,7 @@ SOURCES += \
     $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/magneturi.cpp \
+    $$PWD/bittorrent/peeraddress.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \

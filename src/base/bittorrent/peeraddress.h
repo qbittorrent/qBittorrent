@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,35 +26,19 @@
  * exception statement from your version.
  */
 
-#ifndef PEERADDITION_H
-#define PEERADDITION_H
+#pragma once
 
-#include <QDialog>
-#include <QList>
+#include <QHostAddress>
 
-#include "base/bittorrent/peerinfo.h"
+class QString;
 
-namespace Ui
+namespace BitTorrent
 {
-    class PeersAdditionDialog;
+    struct PeerAddress
+    {
+        QHostAddress ip;
+        ushort port = 0;
+
+        static PeerAddress parse(QString peerAddressStr);
+    };
 }
-
-class PeersAdditionDialog : public QDialog
-{
-    Q_OBJECT
-
-public:
-    PeersAdditionDialog(QWidget *parent);
-    ~PeersAdditionDialog();
-
-    static QList<BitTorrent::PeerAddress> askForPeers(QWidget *parent);
-
-protected slots:
-    void validateInput();
-
-private:
-    Ui::PeersAdditionDialog *m_ui;
-    QList<BitTorrent::PeerAddress> m_peersList;
-};
-
-#endif // PEERADDITION_H
