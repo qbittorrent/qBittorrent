@@ -530,6 +530,7 @@ bool TorrentHandle::needSaveResumeData() const
 void TorrentHandle::saveResumeData()
 {
     m_nativeHandle.save_resume_data();
+    m_session->handleTorrentSaveResumeDataRequested(this);
 }
 
 int TorrentHandle::filesCount() const
