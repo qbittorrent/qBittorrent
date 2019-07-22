@@ -1092,13 +1092,9 @@ const TorrentsTable = new Class({
         // ratio
         this.columns['ratio'].updateTd = function(td, row) {
             const ratio = this.getRowValue(row);
-            let html = null;
-            if (ratio == -1)
-                html = '∞';
-            else
-                html = (Math.floor(100 * ratio) / 100).toFixed(2); //Don't round up
-            td.set('html', html);
-            td.set('title', html);
+            const string = (ratio === -1) ? '∞' : toFixedPointString(ratio, 2);
+            td.set('html', string);
+            td.set('title', string);
         };
 
         // tags
@@ -1184,7 +1180,7 @@ const TorrentsTable = new Class({
 
         // availability
         this.columns['availability'].updateTd = function(td, row) {
-            const value = (Math.floor(1000 * this.getRowValue(row)) / 1000).toFixed(3);  // Don't round up
+            const value = toFixedPointString(this.getRowValue(row), 3);
             td.set('html', value);
             td.set('title', value);
         };

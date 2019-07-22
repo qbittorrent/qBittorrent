@@ -161,3 +161,9 @@ function safeTrim(value) {
         throw e;
     }
 }
+
+function toFixedPointString(number, digits) {
+    // Do not round up number
+    const power = Math.pow(10, digits);
+    return (Math.floor(power * number) / power).toFixed(digits);
+}
