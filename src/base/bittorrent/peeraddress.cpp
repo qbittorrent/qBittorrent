@@ -29,30 +29,29 @@
 #include "peeraddress.h"
 
 #include <QString>
-#include <QStringList>
 
-BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(QString peerAddressStr)
+BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(const QString &address)
 {
-    PeerAddress addr;
-    QStringList ipPort;
+    QVector<QStringRef> ipPort;
 
-    if ((peerAddressStr[0] == '[') && (peerAddressStr.indexOf("]:") != -1)) // IPv6
-        ipPort = peerAddressStr.remove(QChar('[')).split("]:");
-    else if (peerAddressStr.indexOf(':') != -1) // IPv4
-        ipPort = peerAddressStr.split(':');
-    else
-        return addr;
+    if (address.startsWith('[') && address.contains("]:")) {  // IPv6
+        ipPort = address.splitRef("]:");
+        ipPort[0] = ipPort[0].mid(1);  // chop '['
+    }
+    else if (address.contains(':')) {  // IPv4
+        ipPort = address.splitRef(':');
+    }
+    else {
+        return {};
+    }
 
-    QHostAddress ip(ipPort[0]);
+    const QHostAddress ip {ipPort[0].toString()};
     if (ip.isNull())
-        return addr;
+        return {};
 
-    bool ok;
-    int port = ipPort[1].toInt(&ok);
-    if (!ok || (port < 1) || (port > 65535))
-        return addr;
+    const ushort port {ipPort[1].toUShort()};
+    if (port == 0)
+        return {};
 
-    addr.ip = ip;
-    addr.port = port;
-    return addr;
+    return {ip, port};
 }
