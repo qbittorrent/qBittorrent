@@ -1798,6 +1798,12 @@ void Session::bottomTorrentsQueuePos(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
+void Session::handleTorrentSaveResumeDataRequested(const TorrentHandle *torrent)
+{
+    qDebug("Saving resume data is requested for torrent '%s'...", qUtf8Printable(torrent->name()));
+    ++m_numResumeData;
+}
+
 QHash<InfoHash, TorrentHandle *> Session::torrents() const
 {
     return m_torrents;
@@ -2168,7 +2174,7 @@ void Session::generateResumeData(const bool final)
             || torrent->hasMissingFiles())
             continue;
 
-        saveTorrentResumeData(torrent);
+        torrent->saveResumeData();
     }
 }
 
@@ -3334,55 +3340,48 @@ void Session::updateSeedingLimitTimer()
 
 void Session::handleTorrentShareLimitChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
-    updateSeedingLimitTimer();
-}
-
-void Session::saveTorrentResumeData(TorrentHandle *const torrent)
-{
-    qDebug("Saving fastresume data for %s", qUtf8Printable(torrent->name()));
     torrent->saveResumeData();
-    ++m_numResumeData;
+    updateSeedingLimitTimer();
 }
 
 void Session::handleTorrentNameChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
 }
 
 void Session::handleTorrentSavePathChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit torrentSavePathChanged(torrent);
 }
 
 void Session::handleTorrentCategoryChanged(TorrentHandle *const torrent, const QString &oldCategory)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
 void Session::handleTorrentTagAdded(TorrentHandle *const torrent, const QString &tag)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit torrentTagAdded(torrent, tag);
 }
 
 void Session::handleTorrentTagRemoved(TorrentHandle *const torrent, const QString &tag)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit torrentTagRemoved(torrent, tag);
 }
 
 void Session::handleTorrentSavingModeChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit torrentSavingModeChanged(torrent);
 }
 
 void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QVector<TrackerEntry> &newTrackers)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
 
     for (const TrackerEntry &newTracker : newTrackers)
         LogMsg(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url(), torrent->name()));
@@ -3394,7 +3393,7 @@ void Session::handleTorrentTrackersAdded(TorrentHandle *const torrent, const QVe
 
 void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QVector<TrackerEntry> &deletedTrackers)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
 
     for (const TrackerEntry &deletedTracker : deletedTrackers)
         LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
@@ -3406,27 +3405,27 @@ void Session::handleTorrentTrackersRemoved(TorrentHandle *const torrent, const Q
 
 void Session::handleTorrentTrackersChanged(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit trackersChanged(torrent);
 }
 
 void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     for (const QUrl &newUrlSeed : newUrlSeeds)
         LogMsg(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
 }
 
 void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     for (const QUrl &urlSeed : urlSeeds)
         LogMsg(tr("URL seed '%1' was removed from torrent '%2'").arg(urlSeed.toString(), torrent->name()));
 }
 
 void Session::handleTorrentMetadataReceived(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
 
     // Save metadata
     const QDir resumeDataDir(m_resumeFolderPath);
@@ -3443,13 +3442,13 @@ void Session::handleTorrentMetadataReceived(TorrentHandle *const torrent)
 void Session::handleTorrentPaused(TorrentHandle *const torrent)
 {
     if (!torrent->hasError() && !torrent->hasMissingFiles())
-        saveTorrentResumeData(torrent);
+        torrent->saveResumeData();
     emit torrentPaused(torrent);
 }
 
 void Session::handleTorrentResumed(TorrentHandle *const torrent)
 {
-    saveTorrentResumeData(torrent);
+    torrent->saveResumeData();
     emit torrentResumed(torrent);
 }
 
@@ -3461,7 +3460,7 @@ void Session::handleTorrentChecked(TorrentHandle *const torrent)
 void Session::handleTorrentFinished(TorrentHandle *const torrent)
 {
     if (!torrent->hasError() && !torrent->hasMissingFiles())
-        saveTorrentResumeData(torrent);
+        torrent->saveResumeData();
     emit torrentFinished(torrent);
 
     qDebug("Checking if the torrent contains torrent files to download");
@@ -3965,7 +3964,7 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
 
         // In case of crash before the scheduled generation
         // of the fastresumes.
-        saveTorrentResumeData(torrent);
+        torrent->saveResumeData();
     }
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))

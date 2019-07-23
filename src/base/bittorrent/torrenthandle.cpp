@@ -203,6 +203,7 @@ TorrentHandle::TorrentHandle(Session *session, const lt::torrent_handle &nativeH
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_tempPathDisabled(params.disableTempPath)
+    , m_fastresumeDataRejected(false)
     , m_hasMissingFiles(false)
     , m_hasRootFolder(params.hasRootFolder)
     , m_needsToSetFirstLastPiecePriority(false)
@@ -546,6 +547,7 @@ bool TorrentHandle::needSaveResumeData() const
 void TorrentHandle::saveResumeData()
 {
     m_nativeHandle.save_resume_data();
+    m_session->handleTorrentSaveResumeDataRequested(this);
 }
 
 int TorrentHandle::filesCount() const
@@ -1670,6 +1672,8 @@ void TorrentHandle::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p
         else {
             m_startupState = Started;
             m_pauseWhenReady = false;
+            if (m_fastresumeDataRejected && !m_hasMissingFiles)
+                saveResumeData();
         }
     }
 
@@ -1806,6 +1810,8 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const lt::save_resume_data_f
 
 void TorrentHandle::handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p)
 {
+    m_fastresumeDataRejected = true;
+
     if (p->error.value() == lt::errors::mismatching_file_size) {
         // Mismatching file size (files were probably moved)
         m_hasMissingFiles = true;
@@ -1813,7 +1819,7 @@ void TorrentHandle::handleFastResumeRejectedAlert(const lt::fastresume_rejected_
     }
     else {
         LogMsg(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
-            .arg(name(), QString::fromStdString(p->message())), Log::CRITICAL);
+            .arg(name(), QString::fromStdString(p->message())), Log::WARNING);
     }
 }
 
