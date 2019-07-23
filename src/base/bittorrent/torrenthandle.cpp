@@ -65,6 +65,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "downloadpriority.h"
+#include "peeraddress.h"
 #include "peerinfo.h"
 #include "session.h"
 #include "trackerentry.h"

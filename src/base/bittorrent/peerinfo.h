@@ -39,15 +39,7 @@ class QBitArray;
 namespace BitTorrent
 {
     class TorrentHandle;
-
-    struct PeerAddress
-    {
-        QHostAddress ip;
-        ushort port;
-
-        PeerAddress();
-        PeerAddress(const QHostAddress &ip, ushort port);
-    };
+    struct PeerAddress;
 
     class PeerInfo
     {

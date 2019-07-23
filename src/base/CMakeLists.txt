@@ -7,6 +7,7 @@ bittorrent/cachestatus.h
 bittorrent/downloadpriority.h
 bittorrent/infohash.h
 bittorrent/magneturi.h
+bittorrent/peeraddress.h
 bittorrent/peerinfo.h
 bittorrent/private/bandwidthscheduler.h
 bittorrent/private/filterparserthread.h
@@ -81,6 +82,7 @@ unicodestrings.h
 bittorrent/downloadpriority.cpp
 bittorrent/infohash.cpp
 bittorrent/magneturi.cpp
+bittorrent/peeraddress.cpp
 bittorrent/peerinfo.cpp
 bittorrent/private/bandwidthscheduler.cpp
 bittorrent/private/filterparserthread.cpp

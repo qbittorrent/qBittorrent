@@ -31,6 +31,7 @@
 #include <QHostAddress>
 #include <QMessageBox>
 
+#include "base/bittorrent/peeraddress.h"
 #include "base/global.h"
 #include "ui_peersadditiondialog.h"
 
@@ -63,7 +64,7 @@ void PeersAdditionDialog::validateInput()
         return;
     }
     for (const QString &peer : asConst(m_ui->textEditPeers->toPlainText().trimmed().split('\n'))) {
-        BitTorrent::PeerAddress addr = parsePeer(peer);
+        const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer);
         if (!addr.ip.isNull()) {
             m_peersList.append(addr);
         }
@@ -76,30 +77,4 @@ void PeersAdditionDialog::validateInput()
         }
     }
     accept();
-}
-
-BitTorrent::PeerAddress PeersAdditionDialog::parsePeer(QString peer)
-{
-    BitTorrent::PeerAddress addr;
-    QStringList ipPort;
-
-    if ((peer[0] == '[') && (peer.indexOf("]:") != -1)) // IPv6
-        ipPort = peer.remove(QChar('[')).split("]:");
-    else if (peer.indexOf(':') != -1) // IPv4
-        ipPort = peer.split(':');
-    else
-        return addr;
-
-    QHostAddress ip(ipPort[0]);
-    if (ip.isNull())
-        return addr;
-
-    bool ok;
-    int port = ipPort[1].toInt(&ok);
-    if (!ok || (port < 1) || (port > 65535))
-        return addr;
-
-    addr.ip = ip;
-    addr.port = port;
-    return addr;
 }

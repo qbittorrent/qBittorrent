@@ -34,6 +34,7 @@
 #include <QMetaObject>
 #include <QThread>
 
+#include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
