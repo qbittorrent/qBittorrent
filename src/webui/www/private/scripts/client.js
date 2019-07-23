@@ -44,6 +44,7 @@ let alternativeSpeedLimits = false;
 let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
+let searchTabInitialized = false;
 
 let clipboardEvent;
 
@@ -254,7 +255,7 @@ window.addEvent('load', function() {
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
     // After showing/hiding the toolbar + status bar
-    let showSearchEngine = localStorage.getItem('show_search_engine') === "true";
+    let showSearchEngine = localStorage.getItem('show_search_engine') !== "false";
     if (!showSearchEngine) {
         // uncheck menu option
         $('showSearchEngineLink').firstChild.style.opacity = '0';
@@ -788,6 +789,11 @@ window.addEvent('load', function() {
     };
 
     const showSearchTab = function() {
+        if (!searchTabInitialized) {
+            initSearchTab();
+            searchTabInitialized = true;
+        }
+
         $("searchTabColumn").removeClass("invisible");
         customSyncMainDataInterval = 30000;
         hideTransfersTab();
