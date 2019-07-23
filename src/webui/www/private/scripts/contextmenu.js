@@ -208,6 +208,9 @@ var ContextMenu = new Class({
         $(document.body).addEvent('click', function() {
             this.hide();
         }.bind(this));
+        $(document.body).addEvent('touchstart', function() {
+            this.hide();
+        }.bind(this));
     },
 
     updateMenuItems: function() {},
