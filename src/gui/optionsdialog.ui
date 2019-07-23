@@ -1634,43 +1634,6 @@
                 </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="forceProxyHorizontalLayout">
-                 <item>
-                  <widget class="QCheckBox" name="checkForceProxy">
-                   <property name="text">
-                    <string>Disable connections not supported by proxies</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="labelForceProxy">
-                   <property name="text">
-                    <string>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</string>
-                   </property>
-                   <property name="openExternalLinks">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_22">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="isProxyOnlyForTorrents">
                  <property name="toolTip">
                   <string>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</string>
@@ -3342,7 +3305,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
   <tabstop>checkProxyPeerConnecs</tabstop>
-  <tabstop>checkForceProxy</tabstop>
   <tabstop>isProxyOnlyForTorrents</tabstop>
   <tabstop>checkProxyAuth</tabstop>
   <tabstop>textProxyUsername</tabstop>

@@ -378,7 +378,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
 void TorrentInfo::renameFile(const int index, const QString &newPath)
 {
     if (!isValid()) return;
-    nativeInfo()->rename_file(index, Utils::Fs::toNativePath(newPath).toStdString());
+    nativeInfo()->rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(newPath).toStdString());
 }
 
 int BitTorrent::TorrentInfo::fileIndex(const QString &fileName) const
@@ -428,7 +428,7 @@ void TorrentInfo::stripRootFolder()
     if (files.name() != testName) {
         files.set_name(testName);
         for (int i = 0; i < files.num_files(); ++i)
-            files.rename_file(i, files.file_path(i));
+            files.rename_file(LTFileIndex {i}, files.file_path(LTFileIndex {i}));
     }
 
     files.set_name("");

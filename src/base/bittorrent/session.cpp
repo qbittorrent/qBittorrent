@@ -86,6 +86,7 @@
 #include "magneturi.h"
 #include "private/bandwidthscheduler.h"
 #include "private/filterparserthread.h"
+#include "private/ltunderlyingtype.h"
 #include "private/portforwarderimpl.h"
 #include "private/resumedatasavingmanager.h"
 #include "private/statistics.h"
@@ -106,10 +107,16 @@ using namespace BitTorrent;
 namespace
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
+    using LTAlertCategory = int;
+    using LTPeerClass = int;
+    using LTQueuePosition = int;
     using LTSessionFlags = int;
     using LTStatusFlags = int;
     using LTString = std::string;
 #else
+    using LTAlertCategory = lt::alert_category_t;
+    using LTPeerClass = lt::peer_class_t;
+    using LTQueuePosition = lt::queue_position_t;
     using LTSessionFlags = lt::session_flags_t;
     using LTStatusFlags = lt::status_flags_t;
     using LTString = lt::string_view;
@@ -277,7 +284,6 @@ Session::Session(QObject *parent)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
-    , m_guidedReadCacheEnabled(BITTORRENT_SESSION_KEY("GuidedReadCache"), true)
 #ifdef Q_OS_WIN
     , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY("CoalesceReadWrite"), true)
 #else
@@ -338,7 +344,6 @@ Session::Session(QObject *parent)
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
     , m_isIPv6Enabled(BITTORRENT_SESSION_KEY("IPv6Enabled"), false)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
-    , m_isForceProxyEnabled(BITTORRENT_SESSION_KEY("ForceProxy"), true)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
     , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::FixedSlots
         , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
@@ -381,7 +386,7 @@ Session::Session(QObject *parent)
     connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
 
     // Set severity level of libtorrent session
-    const int alertMask = lt::alert::error_notification
+    const LTAlertCategory alertMask = lt::alert::error_notification
                     | lt::alert::peer_notification
                     | lt::alert::port_mapping_notification
                     | lt::alert::storage_notification
@@ -1252,8 +1257,6 @@ void Session::configure(lt::settings_pack &settingsPack)
 
         settingsPack.set_bool(lt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
     }
-    settingsPack.set_bool(lt::settings_pack::force_proxy
-        , ((proxyConfig.type == Net::ProxyType::None) ? false : isForceProxyEnabled()));
 
     settingsPack.set_bool(lt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
@@ -1274,7 +1277,6 @@ void Session::configure(lt::settings_pack &settingsPack)
                                                               : lt::settings_pack::disable_os_cache;
     settingsPack.set_int(lt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(lt::settings_pack::disk_io_write_mode, mode);
-    settingsPack.set_bool(lt::settings_pack::guided_read_cache, isGuidedReadCacheEnabled());
 
     settingsPack.set_bool(lt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
     settingsPack.set_bool(lt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
@@ -1398,7 +1400,7 @@ void Session::configurePeerClasses()
     // Proactively do the same for 0.0.0.0 and address_v4::any()
     f.add_rule(lt::address_v4::any()
                , lt::address_v4::broadcast()
-               , 1 << lt::session::global_peer_class_id);
+               , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::global_peer_class_id));
 
 #if (LIBTORRENT_VERSION_NUM >= 10200) || TORRENT_USE_IPV6
     // IPv6 may not be available on OS and the parsing
@@ -1407,7 +1409,7 @@ void Session::configurePeerClasses()
     try {
         f.add_rule(lt::address_v6::any()
                    , lt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                   , 1 << lt::session::global_peer_class_id);
+                   , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::global_peer_class_id));
     }
     catch (const std::exception &) {}
 #endif
@@ -1416,21 +1418,21 @@ void Session::configurePeerClasses()
         // local networks
         f.add_rule(lt::address_v4::from_string("10.0.0.0")
                    , lt::address_v4::from_string("10.255.255.255")
-                   , 1 << lt::session::local_peer_class_id);
+                   , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
         f.add_rule(lt::address_v4::from_string("172.16.0.0")
                    , lt::address_v4::from_string("172.31.255.255")
-                   , 1 << lt::session::local_peer_class_id);
+                   , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
         f.add_rule(lt::address_v4::from_string("192.168.0.0")
                    , lt::address_v4::from_string("192.168.255.255")
-                   , 1 << lt::session::local_peer_class_id);
+                   , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
         // link local
         f.add_rule(lt::address_v4::from_string("169.254.0.0")
                    , lt::address_v4::from_string("169.254.255.255")
-                   , 1 << lt::session::local_peer_class_id);
+                   , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
         // loopback
         f.add_rule(lt::address_v4::from_string("127.0.0.0")
                    , lt::address_v4::from_string("127.255.255.255")
-                   , 1 << lt::session::local_peer_class_id);
+                   , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
 
 #if (LIBTORRENT_VERSION_NUM >= 10200) || TORRENT_USE_IPV6
         // IPv6 may not be available on OS and the parsing
@@ -1440,15 +1442,15 @@ void Session::configurePeerClasses()
             // link local
             f.add_rule(lt::address_v6::from_string("fe80::")
                        , lt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << lt::session::local_peer_class_id);
+                       , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
             // unique local addresses
             f.add_rule(lt::address_v6::from_string("fc00::")
                        , lt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << lt::session::local_peer_class_id);
+                       , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
             // loopback
             f.add_rule(lt::address_v6::loopback()
                        , lt::address_v6::loopback()
-                       , 1 << lt::session::local_peer_class_id);
+                       , 1 << static_cast<LTUnderlyingType<LTPeerClass>>(lt::session::local_peer_class_id));
         }
         catch (const std::exception &) {}
 #endif
@@ -2206,7 +2208,7 @@ void Session::saveTorrentsQueue()
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
     for (const TorrentHandle *torrent : asConst(torrents())) {
         // We require actual (non-cached) queue position here!
-        const int queuePos = torrent->nativeHandle().queue_position();
+        const int queuePos = LTUnderlyingType<LTQueuePosition> {torrent->nativeHandle().queue_position()};
         if (queuePos >= 0)
             queue[queuePos] = torrent->hash();
     }
@@ -2618,19 +2620,6 @@ void Session::setEncryption(const int state)
     }
 }
 
-bool Session::isForceProxyEnabled() const
-{
-    return m_isForceProxyEnabled;
-}
-
-void Session::setForceProxyEnabled(const bool enabled)
-{
-    if (enabled != isForceProxyEnabled()) {
-        m_isForceProxyEnabled = enabled;
-        configureDeferred();
-    }
-}
-
 bool Session::isProxyPeerConnectionsEnabled() const
 {
     return m_isProxyPeerConnectionsEnabled;
@@ -2923,19 +2912,6 @@ void Session::setUseOSCache(const bool use)
         m_useOSCache = use;
         configureDeferred();
     }
-}
-
-bool Session::isGuidedReadCacheEnabled() const
-{
-    return m_guidedReadCacheEnabled;
-}
-
-void Session::setGuidedReadCacheEnabled(const bool enabled)
-{
-    if (enabled == m_guidedReadCacheEnabled) return;
-
-    m_guidedReadCacheEnabled = enabled;
-    configureDeferred();
 }
 
 bool Session::isCoalesceReadWriteEnabled() const

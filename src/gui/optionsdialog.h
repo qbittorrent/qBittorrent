@@ -87,7 +87,6 @@ public slots:
     void showConnectionTab();
 
 private slots:
-    void enableForceProxy(bool enable);
     void enableProxy(int index);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e) override;
