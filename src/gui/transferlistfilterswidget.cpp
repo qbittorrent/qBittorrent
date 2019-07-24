@@ -652,12 +652,11 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(trackerLabel, &QCheckBox::toggled, m_trackerFilters, &TrackerFiltersList::toggleFilter);
     connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
 
-    using Func = void (TransferListFiltersWidget::*)(const QString&, const QString&);
-    connect(this, static_cast<Func>(&TransferListFiltersWidget::trackerSuccess)
+    connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerSuccess)
             , m_trackerFilters, &TrackerFiltersList::trackerSuccess);
-    connect(this, static_cast<Func>(&TransferListFiltersWidget::trackerError)
+    connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerError)
             , m_trackerFilters, &TrackerFiltersList::trackerError);
-    connect(this, static_cast<Func>(&TransferListFiltersWidget::trackerWarning)
+    connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerWarning)
             , m_trackerFilters, &TrackerFiltersList::trackerWarning);
 }
 

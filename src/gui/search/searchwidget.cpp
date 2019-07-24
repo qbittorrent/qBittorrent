@@ -132,9 +132,9 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
     connect(m_ui->lineEditSearchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
     connect(m_ui->lineEditSearchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
-    connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::selectMultipleBox);
-    connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::fillCatCombobox);
 
     const auto focusSearchHotkey = new QShortcut(QKeySequence::Find, this);

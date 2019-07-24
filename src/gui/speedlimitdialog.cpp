@@ -39,7 +39,7 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
 
     // Connect to slots
     connect(m_ui->bandwidthSlider, &QSlider::valueChanged, this, &SpeedLimitDialog::updateSpinValue);
-    connect(m_ui->spinBandwidth, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->spinBandwidth, qOverload<int>(&QSpinBox::valueChanged)
             , this, &SpeedLimitDialog::updateSliderValue);
 
     Utils::Gui::resize(this);

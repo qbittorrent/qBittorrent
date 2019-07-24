@@ -3570,7 +3570,7 @@ void Session::configureDeferred()
     if (!m_deferredConfigureScheduled) {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
         QMetaObject::invokeMethod(this
-            , static_cast<void (Session::*)()>(&Session::configure)
+            , qOverload<>(&Session::configure)
             , Qt::QueuedConnection);
 #else
         QMetaObject::invokeMethod(this, "configure", Qt::QueuedConnection);

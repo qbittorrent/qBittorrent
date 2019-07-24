@@ -137,11 +137,11 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
-    connect(&m_spinBoxCache, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
             , this, &AdvancedSettings::updateCacheSpinSuffix);
-    connect(&m_comboBoxInterface, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &AdvancedSettings::updateInterfaceAddressCombo);
-    connect(&m_spinBoxSaveResumeDataInterval, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
             , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     // Load settings
     loadAdvancedSettings();

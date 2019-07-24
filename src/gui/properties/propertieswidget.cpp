@@ -97,7 +97,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     // SIGNAL/SLOTS
     connect(m_ui->filesList, &QAbstractItemView::clicked
-            , m_ui->filesList, static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::edit));
+            , m_ui->filesList, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
     connect(m_ui->selectAllButton, &QPushButton::clicked, m_propListModel, &TorrentContentFilterModel::selectAll);
     connect(m_ui->selectNoneButton, &QPushButton::clicked, m_propListModel, &TorrentContentFilterModel::selectNone);
     connect(m_ui->filesList, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFilesListMenu);
