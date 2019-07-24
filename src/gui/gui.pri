@@ -19,7 +19,6 @@ HEADERS += \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
-    $$PWD/fspathedit_p.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/lineedit.h \
@@ -28,6 +27,7 @@ HEADERS += \
     $$PWD/optionsdialog.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/private/fspathedit_p.h \
     $$PWD/private/tristatewidget.h \
     $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
@@ -82,7 +82,6 @@ SOURCES += \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
-    $$PWD/fspathedit_p.cpp \
     $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
@@ -91,6 +90,7 @@ SOURCES += \
     $$PWD/optionsdialog.cpp \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/private/fspathedit_p.cpp \
     $$PWD/private/tristatewidget.cpp \
     $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \

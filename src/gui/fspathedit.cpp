@@ -39,7 +39,7 @@
 #include <QToolButton>
 
 #include "base/utils/fs.h"
-#include "fspathedit_p.h"
+#include "private/fspathedit_p.h"
 
 namespace
 {
