@@ -10,8 +10,8 @@
     <script>
         'use strict';
 
-        var hashes = new URI().getData('hashes').split('|');
         window.addEvent('domready', function() {
+            const hashes = new URI().getData('hashes').split('|');
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', function(e) {
                 new Event(e).stop();
@@ -20,8 +20,8 @@
             $('confirmBtn').addEvent('click', function(e) {
                 parent.torrentsTable.deselectAll();
                 new Event(e).stop();
-                var cmd = 'api/v2/torrents/delete';
-                var deleteFiles = $('deleteFromDiskCB').get('checked');
+                const cmd = 'api/v2/torrents/delete';
+                const deleteFiles = $('deleteFromDiskCB').get('checked');
                 new Request({
                     url: cmd,
                     method: 'post',

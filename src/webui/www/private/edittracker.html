@@ -29,17 +29,17 @@
                 }
             }).activate();
 
-            var currentUrl = new URI().getData('url');
+            const currentUrl = new URI().getData('url');
             if (!currentUrl)
                 return false;
 
-            var decodedUrl = decodeURIComponent(currentUrl);
+            const decodedUrl = decodeURIComponent(currentUrl);
             $('trackerUrl').value = decodedUrl;
             $('trackerUrl').focus();
 
             $('editTrackerButton').addEvent('click', function(e) {
                 new Event(e).stop();
-                var hash = new URI().getData('hash');
+                const hash = new URI().getData('hash');
                 new Request({
                     url: 'api/v2/torrents/editTracker',
                     method: 'post',

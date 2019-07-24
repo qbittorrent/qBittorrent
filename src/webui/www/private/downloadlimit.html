@@ -24,9 +24,9 @@
         <script>
             'use strict';
 
-            var hashes = new URI().getData('hashes').split('|');
-            var setDlLimit = function() {
-                var limit = $("dllimitUpdatevalue").value.toInt() * 1024;
+            const hashes = new URI().getData('hashes').split('|');
+            const setDlLimit = function() {
+                const limit = $("dllimitUpdatevalue").value.toInt() * 1024;
                 if (hashes[0] == "global") {
                     new Request({
                         url: 'api/v2/transfer/setDownloadLimit',

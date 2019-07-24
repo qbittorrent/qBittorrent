@@ -30,10 +30,10 @@
         }).activate();
 
         window.addEvent('domready', function() {
-            var uriAction = safeTrim(new URI().getData('action'));
-            var uriHashes = safeTrim(new URI().getData('hashes'));
-            var uriCategoryName = safeTrim(new URI().getData('categoryName'));
-            var uriSavePath = safeTrim(new URI().getData('savePath'));
+            const uriAction = safeTrim(new URI().getData('action'));
+            const uriHashes = safeTrim(new URI().getData('hashes'));
+            const uriCategoryName = safeTrim(new URI().getData('categoryName'));
+            const uriSavePath = safeTrim(new URI().getData('savePath'));
 
             if (uriAction === "edit") {
                 if (!uriCategoryName)
@@ -51,10 +51,10 @@
             $('categoryNameButton').addEvent('click', function(e) {
                 new Event(e).stop();
 
-                var savePath = $('savePath').value.trim();
-                var categoryName = $('categoryName').value.trim();
+                const savePath = $('savePath').value.trim();
+                const categoryName = $('categoryName').value.trim();
 
-                var verifyCategoryName = function(name) {
+                const verifyCategoryName = function(name) {
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {

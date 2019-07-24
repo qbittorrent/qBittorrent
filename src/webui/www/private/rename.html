@@ -30,7 +30,7 @@
         }).activate();
 
         window.addEvent('domready', function() {
-            var name = new URI().getData('name');
+            const name = new URI().getData('name');
             // set text field to current value
             if (name)
                 $('rename').value = decodeURIComponent(name);
@@ -39,11 +39,11 @@
             $('renameButton').addEvent('click', function(e) {
                 new Event(e).stop();
                 // check field
-                var name = $('rename').value.trim();
+                const name = $('rename').value.trim();
                 if (name === null || name === "")
                     return false;
 
-                var hash = new URI().getData('hash');
+                const hash = new URI().getData('hash');
                 if (hash) {
                     new Request({
                         url: 'api/v2/torrents/rename',

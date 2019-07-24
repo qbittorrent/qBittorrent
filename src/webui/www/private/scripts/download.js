@@ -23,10 +23,10 @@
 
 'use strict';
 
-var categories = {};
-var defaultSavePath = "";
+let categories = {};
+let defaultSavePath = "";
 
-var getCategories = function() {
+const getCategories = function() {
     new Request.JSON({
         url: 'api/v2/torrents/categories',
         noCache: true,
@@ -34,9 +34,9 @@ var getCategories = function() {
         onSuccess: function(data) {
             if (data) {
                 categories = data;
-                for (var i in data) {
-                    var category = data[i];
-                    var option = new Element("option");
+                for (const i in data) {
+                    const category = data[i];
+                    const option = new Element("option");
                     option.set('value', category.name);
                     option.set('html', category.name);
                     $('categorySelect').appendChild(option);
@@ -46,7 +46,7 @@ var getCategories = function() {
     }).send();
 };
 
-var getPreferences = function() {
+const getPreferences = function() {
     new Request.JSON({
         url: 'api/v2/app/preferences',
         method: 'get',
@@ -74,7 +74,7 @@ var getPreferences = function() {
     }).send();
 };
 
-var changeCategorySelect = function(item) {
+const changeCategorySelect = function(item) {
     if (item.value == "\\other") {
         item.nextElementSibling.hidden = false;
         item.nextElementSibling.value = "";
@@ -85,13 +85,13 @@ var changeCategorySelect = function(item) {
     }
     else {
         item.nextElementSibling.hidden = true;
-        var text = item.options[item.selectedIndex].innerHTML;
+        const text = item.options[item.selectedIndex].innerHTML;
         item.nextElementSibling.value = text;
 
         if ($('autoTMM').selectedIndex == 1) {
-            var categoryName = item.value;
-            var category = categories[categoryName];
-            var savePath = defaultSavePath;
+            const categoryName = item.value;
+            const category = categories[categoryName];
+            let savePath = defaultSavePath;
             if (category !== undefined)
                 savePath = (category['savePath'] !== "") ? category['savePath'] : (defaultSavePath + categoryName);
             $('savepath').value = savePath;
@@ -99,13 +99,13 @@ var changeCategorySelect = function(item) {
     }
 };
 
-var changeTMM = function(item) {
+const changeTMM = function(item) {
     if (item.selectedIndex == 1) {
         $('savepath').disabled = true;
 
-        var categorySelect = $('categorySelect');
-        var categoryName = categorySelect.options[categorySelect.selectedIndex].value;
-        var category = categories[categoryName];
+        const categorySelect = $('categorySelect');
+        const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
+        const category = categories[categoryName];
         $('savepath').value = (category === undefined) ? "" : category['savePath'];
     }
     else {

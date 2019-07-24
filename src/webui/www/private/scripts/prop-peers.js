@@ -28,17 +28,17 @@
 
 'use strict';
 
-var loadTorrentPeersTimer;
-var syncTorrentPeersLastResponseId = 0;
-var show_flags = true;
-var loadTorrentPeersData = function() {
+let loadTorrentPeersTimer;
+let syncTorrentPeersLastResponseId = 0;
+let show_flags = true;
+const loadTorrentPeersData = function() {
     if ($('prop_peers').hasClass('invisible')
         || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         syncTorrentPeersLastResponseId = 0;
         torrentPeersTable.clear();
         return;
     }
-    var current_hash = torrentsTable.getCurrentTorrentHash();
+    const current_hash = torrentsTable.getCurrentTorrentHash();
     if (current_hash === "") {
         syncTorrentPeersLastResponseId = 0;
         torrentPeersTable.clear();
@@ -46,7 +46,7 @@ var loadTorrentPeersData = function() {
         loadTorrentPeersTimer = loadTorrentPeersData.delay(getSyncMainDataInterval());
         return;
     }
-    var url = new URI('api/v2/sync/torrentPeers');
+    const url = new URI('api/v2/sync/torrentPeers');
     url.setData('rid', syncTorrentPeersLastResponseId);
     url.setData('hash', current_hash);
     new Request.JSON({
@@ -60,13 +60,13 @@ var loadTorrentPeersData = function() {
         onSuccess: function(response) {
             $('error_div').set('html', '');
             if (response) {
-                var full_update = (response['full_update'] === true);
+                const full_update = (response['full_update'] === true);
                 if (full_update)
                     torrentPeersTable.clear();
                 if (response['rid'])
                     syncTorrentPeersLastResponseId = response['rid'];
                 if (response['peers']) {
-                    for (var key in response['peers']) {
+                    for (const key in response['peers']) {
                         response['peers'][key]['rowId'] = key;
 
                         if (response['peers'][key]['client'])

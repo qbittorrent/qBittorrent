@@ -28,7 +28,7 @@
 
 'use strict';
 
-var clearData = function() {
+const clearData = function() {
     $('time_elapsed').set('html', '');
     $('eta').set('html', '');
     $('nb_connections').set('html', '');
@@ -55,14 +55,14 @@ var clearData = function() {
     $('comment').set('html', '');
 };
 
-var loadTorrentDataTimer;
-var loadTorrentData = function() {
+let loadTorrentDataTimer;
+const loadTorrentData = function() {
     if ($('prop_general').hasClass('invisible')
         || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
-    var current_hash = torrentsTable.getCurrentTorrentHash();
+    const current_hash = torrentsTable.getCurrentTorrentHash();
     if (current_hash === "") {
         clearData();
         clearTimeout(loadTorrentDataTimer);
@@ -71,7 +71,7 @@ var loadTorrentData = function() {
     }
     // Display hash
     $('torrent_hash').set('html', current_hash);
-    var url = new URI('api/v2/torrents/properties?hash=' + current_hash);
+    const url = new URI('api/v2/torrents/properties?hash=' + current_hash);
     new Request.JSON({
         url: url,
         noCache: true,
@@ -84,7 +84,7 @@ var loadTorrentData = function() {
         onSuccess: function(data) {
             $('error_div').set('html', '');
             if (data) {
-                var temp;
+                let temp;
                 // Update Torrent data
                 if (data.seeding_time > 0)
                     temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
@@ -193,7 +193,7 @@ var loadTorrentData = function() {
     }).send();
 };
 
-var updateTorrentData = function() {
+updateTorrentData = function() {
     clearTimeout(loadTorrentDataTimer);
     loadTorrentData();
 };

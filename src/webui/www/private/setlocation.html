@@ -30,7 +30,7 @@
         }).activate();
 
         window.addEvent('domready', function() {
-            var path = new URI().getData('path');
+            const path = new URI().getData('path');
             // set text field to current value
             if (path)
                 $('setLocation').value = escapeHtml(decodeURIComponent(path));
@@ -39,13 +39,13 @@
             $('setLocationButton').addEvent('click', function(e) {
                 new Event(e).stop();
                 // check field
-                var location = $('setLocation').value.trim();
+                const location = $('setLocation').value.trim();
                 if (location === null || location === "") {
                     $('error_div').set('text', 'QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]');
                     return false;
                 }
 
-                var hashesList = new URI().getData('hashes');
+                const hashesList = new URI().getData('hashes');
                 new Request({
                     url: 'api/v2/torrents/setLocation',
                     method: 'post',

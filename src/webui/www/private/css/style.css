@@ -258,6 +258,11 @@ a.propButton img {
     -ms-interpolation-mode: bicubic;
 }
 
+.contextMenu li input[type=checkbox] {
+    position: relative;
+    top: 3px;
+}
+
 /* Sliders */
 
 .slider {

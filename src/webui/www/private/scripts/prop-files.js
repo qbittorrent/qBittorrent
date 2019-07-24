@@ -28,10 +28,10 @@
 
 'use strict';
 
-var is_seed = true;
-var current_hash = "";
+let is_seed = true;
+this.current_hash = "";
 
-var FilePriority = {
+const FilePriority = {
     "Ignored": 0,
     "Normal": 1,
     "High": 6,
@@ -39,7 +39,7 @@ var FilePriority = {
     "Mixed": -1
 };
 
-var normalizePriority = function(priority) {
+const normalizePriority = function(priority) {
     switch (priority) {
         case FilePriority.Ignored:
         case FilePriority.Normal:
@@ -52,30 +52,30 @@ var normalizePriority = function(priority) {
     }
 };
 
-var fileCheckboxChanged = function(e) {
-    var checkbox = e.target;
-    var priority = checkbox.checked ? FilePriority.Normal : FilePriority.Ignored;
-    var id = checkbox.get('data-id');
+const fileCheckboxChanged = function(e) {
+    const checkbox = e.target;
+    const priority = checkbox.checked ? FilePriority.Normal : FilePriority.Ignored;
+    const id = checkbox.get('data-id');
 
     setFilePriority(id, priority);
     setGlobalCheckboxState();
     return true;
 };
 
-var fileComboboxChanged = function(e) {
-    var combobox = e.target;
-    var newPriority = combobox.value;
-    var id = combobox.get('data-id');
+const fileComboboxChanged = function(e) {
+    const combobox = e.target;
+    const newPriority = combobox.value;
+    const id = combobox.get('data-id');
 
     setFilePriority(id, newPriority);
 };
 
-var isDownloadCheckboxExists = function(id) {
+const isDownloadCheckboxExists = function(id) {
     return ($('cbPrio' + id) !== null);
 };
 
-var createDownloadCheckbox = function(id, download) {
-    var checkbox = new Element('input');
+const createDownloadCheckbox = function(id, download) {
+    const checkbox = new Element('input');
     checkbox.set('type', 'checkbox');
     if (download)
         checkbox.set('checked', 'checked');
@@ -86,17 +86,17 @@ var createDownloadCheckbox = function(id, download) {
     return checkbox;
 };
 
-var updateDownloadCheckbox = function(id, download) {
-    var checkbox = $('cbPrio' + id);
+const updateDownloadCheckbox = function(id, download) {
+    const checkbox = $('cbPrio' + id);
     checkbox.checked = download;
 };
 
-var isPriorityComboExists = function(id) {
+const isPriorityComboExists = function(id) {
     return ($('comboPrio' + id) !== null);
 };
 
-var createPriorityOptionElement = function(priority, selected, html) {
-    var elem = new Element('option');
+const createPriorityOptionElement = function(priority, selected, html) {
+    const elem = new Element('option');
     elem.set('value', priority.toString());
     elem.set('html', html);
     if (selected)
@@ -104,8 +104,8 @@ var createPriorityOptionElement = function(priority, selected, html) {
     return elem;
 };
 
-var createPriorityCombo = function(id, selectedPriority) {
-    var select = new Element('select');
+const createPriorityCombo = function(id, selectedPriority) {
+    const select = new Element('select');
     select.set('id', 'comboPrio' + id);
     select.set('data-id', id);
     select.set('disabled', is_seed);
@@ -120,8 +120,8 @@ var createPriorityCombo = function(id, selectedPriority) {
     return select;
 };
 
-var updatePriorityCombo = function(id, selectedPriority) {
-    var combobox = $('comboPrio' + id);
+const updatePriorityCombo = function(id, selectedPriority) {
+    const combobox = $('comboPrio' + id);
 
     if (parseInt(combobox.value) !== selectedPriority)
         selectComboboxPriority(combobox, selectedPriority);
@@ -130,10 +130,10 @@ var updatePriorityCombo = function(id, selectedPriority) {
         combobox.disabled = is_seed;
 };
 
-var selectComboboxPriority = function(combobox, priority) {
-    var options = combobox.options;
-    for (var i = 0; i < options.length; ++i) {
-        var option = options[i];
+const selectComboboxPriority = function(combobox, priority) {
+    const options = combobox.options;
+    for (let i = 0; i < options.length; ++i) {
+        const option = options[i];
         if (parseInt(option.value) === priority)
             option.setAttribute('selected', '');
         else
@@ -143,9 +143,9 @@ var selectComboboxPriority = function(combobox, priority) {
     combobox.value = priority;
 };
 
-var switchCheckboxState = function() {
-    var rows = [];
-    var priority = FilePriority.Ignored;
+const switchCheckboxState = function() {
+    const rows = [];
+    let priority = FilePriority.Ignored;
 
     if ($('tristate_cb').state === "checked") {
         setGlobalCheckboxUnchecked();
@@ -169,7 +169,7 @@ var switchCheckboxState = function() {
         setFilePriority(rows, priority);
 };
 
-var setGlobalCheckboxState = function() {
+const setGlobalCheckboxState = function() {
     if (isAllCheckboxesChecked())
         setGlobalCheckboxChecked();
     else if (isAllCheckboxesUnchecked())
@@ -178,44 +178,44 @@ var setGlobalCheckboxState = function() {
         setGlobalCheckboxPartial();
 };
 
-var setGlobalCheckboxChecked = function() {
+const setGlobalCheckboxChecked = function() {
     $('tristate_cb').state = "checked";
     $('tristate_cb').indeterminate = false;
     $('tristate_cb').checked = true;
 };
 
-var setGlobalCheckboxUnchecked = function() {
+const setGlobalCheckboxUnchecked = function() {
     $('tristate_cb').state = "unchecked";
     $('tristate_cb').indeterminate = false;
     $('tristate_cb').checked = false;
 };
 
-var setGlobalCheckboxPartial = function() {
+const setGlobalCheckboxPartial = function() {
     $('tristate_cb').state = "partial";
     $('tristate_cb').indeterminate = true;
 };
 
-var isAllCheckboxesChecked = function() {
-    var checkboxes = $$('input.DownloadedCB');
-    for (var i = 0; i < checkboxes.length; ++i) {
+const isAllCheckboxesChecked = function() {
+    const checkboxes = $$('input.DownloadedCB');
+    for (let i = 0; i < checkboxes.length; ++i) {
         if (!checkboxes[i].checked)
             return false;
     }
     return true;
 };
 
-var isAllCheckboxesUnchecked = function() {
-    var checkboxes = $$('input.DownloadedCB');
-    for (var i = 0; i < checkboxes.length; ++i) {
+const isAllCheckboxesUnchecked = function() {
+    const checkboxes = $$('input.DownloadedCB');
+    for (let i = 0; i < checkboxes.length; ++i) {
         if (checkboxes[i].checked)
             return false;
     }
     return true;
 };
 
-var setFilePriority = function(id, priority) {
+const setFilePriority = function(id, priority) {
     if (current_hash === "") return;
-    var ids = Array.isArray(id) ? id : [id];
+    const ids = Array.isArray(id) ? id : [id];
 
     clearTimeout(loadTorrentFilesDataTimer);
     new Request({
@@ -232,20 +232,20 @@ var setFilePriority = function(id, priority) {
     }).send();
 
     ids.forEach(function(_id) {
-        var combobox = $('comboPrio' + _id);
+        const combobox = $('comboPrio' + _id);
         if (combobox !== null)
             selectComboboxPriority(combobox, priority);
     });
 };
 
-var loadTorrentFilesDataTimer;
-var loadTorrentFilesData = function() {
+let loadTorrentFilesDataTimer;
+const loadTorrentFilesData = function() {
     if ($('prop_files').hasClass('invisible')
         || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
-    var new_hash = torrentsTable.getCurrentTorrentHash();
+    const new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash === "") {
         torrentFilesTable.clear();
         clearTimeout(loadTorrentFilesDataTimer);
@@ -256,7 +256,7 @@ var loadTorrentFilesData = function() {
         torrentFilesTable.clear();
         current_hash = new_hash;
     }
-    var url = new URI('api/v2/torrents/files?hash=' + current_hash);
+    const url = new URI('api/v2/torrents/files?hash=' + current_hash);
     new Request.JSON({
         url: url,
         noCache: true,
@@ -266,19 +266,19 @@ var loadTorrentFilesData = function() {
             loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
         },
         onSuccess: function(files) {
-            var selectedFiles = torrentFilesTable.selectedRowsIds();
+            const selectedFiles = torrentFilesTable.selectedRowsIds();
 
             if (!files) {
                 torrentFilesTable.clear();
                 return;
             }
 
-            var i = 0;
+            let i = 0;
             files.each(function(file) {
                 if (i === 0)
                     is_seed = file.is_seed;
 
-                var row = {
+                const row = {
                     rowId: i,
                     checked: (file.priority !== FilePriority.Ignored),
                     name: escapeHtml(file.name),
@@ -307,35 +307,35 @@ var loadTorrentFilesData = function() {
     }).send();
 };
 
-var updateTorrentFilesData = function() {
+updateTorrentFilesData = function() {
     clearTimeout(loadTorrentFilesDataTimer);
     loadTorrentFilesData();
 };
 
-var torrentFilesContextMenu = new ContextMenu({
+const torrentFilesContextMenu = new ContextMenu({
     targets: '#torrentFilesTableDiv tr',
     menu: 'torrentFilesMenu',
     actions: {
         FilePrioIgnore: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
+            const selectedRows = torrentFilesTable.selectedRowsIds();
             if (selectedRows.length === 0) return;
 
             setFilePriority(selectedRows, FilePriority.Ignored);
         },
         FilePrioNormal: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
+            const selectedRows = torrentFilesTable.selectedRowsIds();
             if (selectedRows.length === 0) return;
 
             setFilePriority(selectedRows, FilePriority.Normal);
         },
         FilePrioHigh: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
+            const selectedRows = torrentFilesTable.selectedRowsIds();
             if (selectedRows.length === 0) return;
 
             setFilePriority(selectedRows, FilePriority.High);
         },
         FilePrioMaximum: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
+            const selectedRows = torrentFilesTable.selectedRowsIds();
             if (selectedRows.length === 0) return;
 
             setFilePriority(selectedRows, FilePriority.Maximum);
@@ -346,8 +346,6 @@ var torrentFilesContextMenu = new ContextMenu({
         y: 2
     },
     onShow: function() {
-        var selectedRows = torrentFilesTable.selectedRowsIds();
-
         if (is_seed)
             this.hideItem('FilePrio');
         else
@@ -357,17 +355,17 @@ var torrentFilesContextMenu = new ContextMenu({
 
 torrentFilesTable.setup('torrentFilesTableDiv', 'torrentFilesTableFixedHeaderDiv', torrentFilesContextMenu);
 // inject checkbox into table header
-var tableHeaders = $$('#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th');
+const tableHeaders = $$('#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th');
 if (tableHeaders.length > 0) {
-    var checkbox = new Element('input');
+    const checkbox = new Element('input');
     checkbox.set('type', 'checkbox');
     checkbox.set('id', 'tristate_cb');
     checkbox.addEvent('click', switchCheckboxState);
 
-    var checkboxTH = tableHeaders[0];
+    const checkboxTH = tableHeaders[0];
     checkbox.injectInside(checkboxTH);
 }
 
 // default sort by name column
-if (torrentFilesTable.getSortedColunn() === null)
+if (torrentFilesTable.getSortedColumn() === null)
     torrentFilesTable.setSortedColumn('name');
