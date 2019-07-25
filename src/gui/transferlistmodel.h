@@ -77,6 +77,7 @@ public:
         TR_RATIO_LIMIT,
         TR_SEEN_COMPLETE_DATE,
         TR_LAST_ACTIVITY,
+        TR_AVAILABILITY,
 
         NB_COLUMNS
     };

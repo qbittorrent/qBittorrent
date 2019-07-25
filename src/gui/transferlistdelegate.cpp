@@ -192,6 +192,18 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
         }
         break;
+
+    case TransferListModel::TR_AVAILABILITY: {
+            const qreal availability = index.data().toReal();
+            if (hideValues && (availability <= 0))
+                break;
+
+            const QString availabilityStr = Utils::String::fromDouble(availability, 3);
+            opt.displayAlignment = (Qt::AlignRight | Qt::AlignVCenter);
+            QItemDelegate::drawDisplay(painter, opt, option.rect, availabilityStr);
+        }
+        break;
+
     default:
         QItemDelegate::paint(painter, option, index);
     }
