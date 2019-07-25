@@ -28,6 +28,11 @@
 
 #include "mainwindow.h"
 
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#include <versionhelpers.h>  // must follow after Windows.h
+#endif
+
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
@@ -40,7 +45,6 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
-#include <QSysInfo>
 #include <QtGlobal>
 #include <QTimer>
 
@@ -2003,7 +2007,7 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    const QString installerURL = ((QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+    const QString installerURL = (::IsWindowsVistaOrGreater()
                                   ? "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe"
                                   : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
     Net::DownloadManager::instance()->download(
@@ -2026,7 +2030,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA) {
+    if (::IsWindowsVistaOrGreater()) {
         QFile::rename(result.filePath, result.filePath + ".exe");
         installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
     }
@@ -2042,7 +2046,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
     // Delete temp file
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
+    if (::IsWindowsVistaOrGreater())
         Utils::Fs::forceRemove(result.filePath + ".exe");
     else
         Utils::Fs::forceRemove(result.filePath + ".msi");
