@@ -39,6 +39,6 @@ namespace BitTorrent
         QHostAddress ip;
         ushort port = 0;
 
-        static PeerAddress parse(QString peerAddressStr);
+        static PeerAddress parse(const QString &address);
     };
 }

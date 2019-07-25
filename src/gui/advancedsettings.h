@@ -57,24 +57,24 @@ private:
     void loadAdvancedSettings();
     template <typename T> void addRow(int row, const QString &text, T *widget);
 
-    QSpinBox spinBoxAsyncIOThreads, spinBoxFilePoolSize, spinBoxCheckingMemUsage, spinBoxCache,
-             spinBoxSaveResumeDataInterval, spinBoxOutgoingPortsMin, spinBoxOutgoingPortsMax, spinBoxListRefresh,
-             spinBoxTrackerPort, spinBoxCacheTTL, spinBoxSendBufferWatermark, spinBoxSendBufferLowWatermark,
-             spinBoxSendBufferWatermarkFactor, spinBoxSocketBacklogSize, spinBoxSavePathHistoryLength;
-    QCheckBox checkBoxOsCache, checkBoxRecheckCompleted, checkBoxResolveCountries, checkBoxResolveHosts, checkBoxSuperSeeding,
-              checkBoxProgramNotifications, checkBoxTorrentAddedNotifications, checkBoxTrackerFavicon, checkBoxTrackerStatus,
-              checkBoxConfirmTorrentRecheck, checkBoxConfirmRemoveAllTags, checkBoxListenIPv6, checkBoxAnnounceAllTrackers, checkBoxAnnounceAllTiers,
-              checkBoxMultiConnectionsPerIp, checkBoxSuggestMode, checkBoxCoalesceRW, checkBoxSpeedWidgetEnabled;
-    QComboBox comboBoxInterface, comboBoxInterfaceAddress, comboBoxUtpMixedMode, comboBoxChokingAlgorithm, comboBoxSeedChokingAlgorithm;
-    QLineEdit lineEditAnnounceIP;
+    QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage, m_spinBoxCache,
+             m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxListRefresh,
+             m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
+             m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxSavePathHistoryLength;
+    QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts, m_checkBoxSuperSeeding,
+              m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
+              m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxListenIPv6, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
+              m_checkBoxMultiConnectionsPerIp, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
+    QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
+    QLineEdit m_lineEditAnnounceIP;
 
     // OS dependent settings
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    QCheckBox checkBoxUpdateCheck;
+    QCheckBox m_checkBoxUpdateCheck;
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QCheckBox checkBoxUseIconTheme;
+    QCheckBox m_checkBoxUseIconTheme;
 #endif
 };
 
