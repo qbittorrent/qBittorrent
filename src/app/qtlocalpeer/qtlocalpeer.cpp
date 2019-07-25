@@ -1,4 +1,31 @@
-/****************************************************************************
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2019  Mike Tzou (Chocobo1)
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ *
+****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
@@ -36,28 +63,34 @@
 **
 ** $QT_END_LICENSE$
 **
-****************************************************************************/
-
+****************************************************************************
+*/
 
 #include "qtlocalpeer.h"
-#include <QCoreApplication>
-#include <QDataStream>
-#include <QTime>
 
-#if defined(Q_OS_WIN)
-#include <QLibrary>
-#include <qt_windows.h>
-typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
-static PProcessIdToSessionId pProcessIdToSessionId = 0;
-#endif
 #if defined(Q_OS_UNIX)
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
 #endif
 
-namespace QtLP_Private {
+#include <QCoreApplication>
+#include <QDataStream>
+#include <QDir>
+#include <QLocalServer>
+#include <QLocalSocket>
+
+#if defined(Q_OS_WIN)
+#include <QLibrary>
+
+typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
+static PProcessIdToSessionId pProcessIdToSessionId = 0;
+#endif
+
+namespace QtLP_Private
+{
 #include "qtlockedfile.cpp"
+
 #if defined(Q_OS_WIN)
 #include "qtlockedfile_win.cpp"
 #else
@@ -68,7 +101,8 @@ namespace QtLP_Private {
 const char* QtLocalPeer::ack = "ack";
 
 QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
-    : QObject(parent), id(appId)
+    : QObject(parent)
+    , id(appId)
 {
     QString prefix = id;
     if (id.isEmpty()) {
@@ -109,8 +143,6 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
     lockFile.open(QIODevice::ReadWrite);
 }
 
-
-
 bool QtLocalPeer::isClient()
 {
     if (lockFile.isLocked())
@@ -120,7 +152,7 @@ bool QtLocalPeer::isClient()
         return true;
 
     bool res = server->listen(socketName);
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(4,5,0))
+#if defined(Q_OS_UNIX)
     // ### Workaround
     if (!res && server->serverError() == QAbstractSocket::AddressInUseError) {
         QFile::remove(QDir::cleanPath(QDir::tempPath())+QLatin1Char('/')+socketName);
@@ -133,8 +165,7 @@ bool QtLocalPeer::isClient()
     return false;
 }
 
-
-bool QtLocalPeer::sendMessage(const QString &message, int timeout)
+bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
 {
     if (!isClient())
         return false;
@@ -170,6 +201,10 @@ bool QtLocalPeer::sendMessage(const QString &message, int timeout)
     return res;
 }
 
+QString QtLocalPeer::applicationId() const
+{
+    return id;
+}
 
 void QtLocalPeer::receiveConnection()
 {

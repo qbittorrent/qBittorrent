@@ -1,4 +1,31 @@
-/****************************************************************************
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2019  Mike Tzou (Chocobo1)
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ *
+****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
@@ -36,46 +63,54 @@
 **
 ** $QT_END_LICENSE$
 **
-****************************************************************************/
+****************************************************************************
+*/
 
 #ifndef QTLOCKEDFILE_H
 #define QTLOCKEDFILE_H
 
 #include <QFile>
+
 #ifdef Q_OS_WIN
 #include <QVector>
 #endif
 
-namespace QtLP_Private {
-
-class QtLockedFile : public QFile
+namespace QtLP_Private
 {
-public:
-    enum LockMode { NoLock = 0, ReadLock, WriteLock };
+    class QtLockedFile : public QFile
+    {
+    public:
+        enum LockMode
+        {
+            NoLock = 0,
+            ReadLock,
+            WriteLock
+        };
 
-    QtLockedFile();
-    QtLockedFile(const QString &name);
-    ~QtLockedFile();
+        QtLockedFile();
+        QtLockedFile(const QString &name);
+        ~QtLockedFile();
 
-    bool open(OpenMode mode) override;
+        bool open(OpenMode mode) override;
 
-    bool lock(LockMode mode, bool block = true);
-    bool unlock();
-    bool isLocked() const;
-    LockMode lockMode() const;
+        bool lock(LockMode mode, bool block = true);
+        bool unlock();
+        bool isLocked() const;
+        LockMode lockMode() const;
 
-private:
+    private:
 #ifdef Q_OS_WIN
-    Qt::HANDLE wmutex;
-    Qt::HANDLE rmutex;
-    QVector<Qt::HANDLE> rmutexes;
-    QString mutexname;
+        Qt::HANDLE getMutexHandle(int idx, bool doCreate);
+        bool waitMutex(Qt::HANDLE mutex, bool doBlock);
 
-    Qt::HANDLE getMutexHandle(int idx, bool doCreate);
-    bool waitMutex(Qt::HANDLE mutex, bool doBlock);
-
+        Qt::HANDLE wmutex;
+        Qt::HANDLE rmutex;
+        QVector<Qt::HANDLE> rmutexes;
+        QString mutexname;
 #endif
-    LockMode m_lock_mode;
-};
+
+        LockMode m_lock_mode;
+    };
 }
+
 #endif
