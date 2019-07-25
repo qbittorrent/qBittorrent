@@ -45,7 +45,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Title
     m_ui->labelName->setText(QString("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
 
-    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
+    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg("QBittorrent.Logo", this, 32));
 
     // About
     QString aboutText = QString(
@@ -65,7 +65,7 @@ AboutDialog::AboutDialog(QWidget *parent)
             , tr("Bug Tracker:"));
     m_ui->labelAbout->setText(aboutText);
 
-    m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
+    m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap("QBittorrent.Mascot", this));
 
     // Thanks
     QFile thanksfile(":/thanks.html");
