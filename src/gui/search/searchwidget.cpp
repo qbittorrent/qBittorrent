@@ -104,8 +104,8 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
 #ifndef Q_OS_MAC
     // Icons
-    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
-    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
+    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("Search.FindAction"));
+    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("Search.Plugins"));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();

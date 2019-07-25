@@ -49,9 +49,9 @@ CookiesDialog::CookiesDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    setWindowIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
-    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon("list-add"));
-    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
+    setWindowIcon(UIThemeManager::instance()->getIcon("CookiesDialog.WindowsIcon"));
+    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon("CookiesDialog.AddAction"));
+    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon("CookiesDialog.RemoveAction"));
     m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
     m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
 

@@ -66,8 +66,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 {
     m_ui->setupUi(this);
     // Icons
-    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
-    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon("list-add"));
+    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon("RSSRule.RemoveAction"));
+    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon("RSSRule.AddAction"));
 
     // Ui Settings
     m_ui->listRules->setSortingEnabled(true);
@@ -469,29 +469,29 @@ void AutomatedRssDownloader::displayRulesListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *addAct = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add new rule..."));
+    const QAction *addAct = menu->addAction(UIThemeManager::instance()->getIcon("RSSRule.AddAction"), tr("Add new rule..."));
     connect(addAct, &QAction::triggered, this, &AutomatedRssDownloader::on_addRuleBtn_clicked);
 
     const QList<QListWidgetItem *> selection = m_ui->listRules->selectedItems();
 
     if (!selection.isEmpty()) {
         if (selection.count() == 1) {
-            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete rule"));
+            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("RSSRule.RemoveAction"), tr("Delete rule"));
             connect(delAct, &QAction::triggered, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
 
             menu->addSeparator();
 
-            const QAction *renameAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename rule..."));
+            const QAction *renameAct = menu->addAction(UIThemeManager::instance()->getIcon("RSSRule.RenameAction"), tr("Rename rule..."));
             connect(renameAct, &QAction::triggered, this, &AutomatedRssDownloader::renameSelectedRule);
         }
         else {
-            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete selected rules"));
+            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("RSSRule.Selected.RemoveAction"), tr("Delete selected rules"));
             connect(delAct, &QAction::triggered, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
         }
 
         menu->addSeparator();
 
-        const QAction *clearAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes..."));
+        const QAction *clearAct = menu->addAction(UIThemeManager::instance()->getIcon("DownloadedEpisodes.RemoveAction"), tr("Clear downloaded episodes..."));
         connect(clearAct, &QAction::triggered, this, &AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList);
     }
 
@@ -611,7 +611,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(RSS::Feed *feed, const QStrin
         QFont f = treeFeedItem->font(0);
         f.setBold(true);
         treeFeedItem->setFont(0, f);
-        treeFeedItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("inode-directory"));
+        treeFeedItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSSFeedTree"));
         treeFeedItem->setData(0, Qt::UserRole, feed->url());
         m_ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
     }
@@ -693,7 +693,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     }
     else {
         m_ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon("task-attention").pixmap(16, 16));
+        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon("RSS.MustContain.ErrorAction").pixmap(16, 16));
         m_ui->labelMustStat->setToolTip(error);
     }
 }
@@ -731,7 +731,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     }
     else {
         m_ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon("task-attention").pixmap(16, 16));
+        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon("RSS.MustNotContain.ErrorAction").pixmap(16, 16));
         m_ui->labelMustNotStat->setToolTip(error);
     }
 }
@@ -747,7 +747,7 @@ void AutomatedRssDownloader::updateEpisodeFilterValidity()
     }
     else {
         m_ui->lineEFilter->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon("task-attention").pixmap(16, 16));
+        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon("RSS.EpisodeFilter.ErrorAction").pixmap(16, 16));
     }
 }
 

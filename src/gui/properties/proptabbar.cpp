@@ -46,7 +46,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
 #ifndef Q_OS_MAC
-            UIThemeManager::instance()->getIcon("document-properties"),
+            UIThemeManager::instance()->getIcon("TorrentInfo.GeneralTab"),
 #endif
             tr("General"), parent);
     mainInfosButton->setShortcut(Qt::ALT + Qt::Key_G);
@@ -55,7 +55,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
 #ifndef Q_OS_MAC
-            UIThemeManager::instance()->getIcon("network-server"),
+            UIThemeManager::instance()->getIcon("TorrentInfo.TrackersTab"),
 #endif
             tr("Trackers"), parent);
     trackersButton->setShortcut(Qt::ALT + Qt::Key_C);
@@ -64,7 +64,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Peers tab
     QPushButton *peersButton = new QPushButton(
 #ifndef Q_OS_MAC
-            UIThemeManager::instance()->getIcon("edit-find-user"),
+            UIThemeManager::instance()->getIcon("TorrentInfo.PeerListTab"),
 #endif
             tr("Peers"), parent);
     peersButton->setShortcut(Qt::ALT + Qt::Key_R);
@@ -73,7 +73,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // URL seeds tab
     QPushButton *URLSeedsButton = new QPushButton(
 #ifndef Q_OS_MAC
-            UIThemeManager::instance()->getIcon("network-server"),
+            UIThemeManager::instance()->getIcon("TorrentInfo.HttpSourcesTab"),
 #endif
             tr("HTTP Sources"), parent);
     URLSeedsButton->setShortcut(Qt::ALT + Qt::Key_B);
@@ -82,7 +82,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Files tab
     QPushButton *filesButton = new QPushButton(
 #ifndef Q_OS_MAC
-            UIThemeManager::instance()->getIcon("inode-directory"),
+            UIThemeManager::instance()->getIcon("TorrentInfo.TorrentContentTab"),
 #endif
             tr("Content"), parent);
     filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
@@ -93,7 +93,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Speed tab
     QPushButton *speedButton = new QPushButton(
 #ifndef Q_OS_MAC
-            UIThemeManager::instance()->getIcon("office-chart-line"),
+            UIThemeManager::instance()->getIcon("TorrentInfo.SpeedGraphTab"),
 #endif
             tr("Speed"), parent);
     speedButton->setShortcut(Qt::ALT + Qt::Key_D);

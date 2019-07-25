@@ -30,8 +30,8 @@
 #pragma once
 
 #include <QObject>
-
-class QString;
+#include <QString>
+#include <QJsonObject>
 
 class UIThemeManager : public QObject
 {
@@ -48,13 +48,15 @@ public:
     QIcon getIcon(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
+    QString getIconPath(const QString &iconId) const;
 
 private:
     UIThemeManager(); // singleton class
-    QString getIconPath(const QString &iconId) const;
 
     static UIThemeManager *m_instance;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool m_useSystemTheme;
 #endif
+    QString m_iconsDir;
+    QJsonObject m_iconMap;
 };

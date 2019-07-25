@@ -152,31 +152,31 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     // Add status filters
     auto *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the status filter")));
-    all->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterall.svg"));
+    all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.All"));
     auto *downloading = new QListWidgetItem(this);
     downloading->setData(Qt::DisplayRole, QVariant(tr("Downloading (0)")));
-    downloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/downloading.svg"));
+    downloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Downloading"));
     auto *seeding = new QListWidgetItem(this);
     seeding->setData(Qt::DisplayRole, QVariant(tr("Seeding (0)")));
-    seeding->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.svg"));
+    seeding->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Uploading"));
     auto *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, QVariant(tr("Completed (0)")));
-    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/completed.svg"));
+    completed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Completed"));
     auto *resumed = new QListWidgetItem(this);
     resumed->setData(Qt::DisplayRole, QVariant(tr("Resumed (0)")));
-    resumed->setData(Qt::DecorationRole, QIcon(":/icons/skin/resumed.svg"));
+    resumed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Resumed"));
     auto *paused = new QListWidgetItem(this);
     paused->setData(Qt::DisplayRole, QVariant(tr("Paused (0)")));
-    paused->setData(Qt::DecorationRole, QIcon(":/icons/skin/paused.svg"));
+    paused->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Paused"));
     auto *active = new QListWidgetItem(this);
     active->setData(Qt::DisplayRole, QVariant(tr("Active (0)")));
-    active->setData(Qt::DecorationRole, QIcon(":/icons/skin/filteractive.svg"));
+    active->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Active"));
     auto *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, QVariant(tr("Inactive (0)")));
-    inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.svg"));
+    inactive->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.InActive"));
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, QVariant(tr("Errored (0)")));
-    errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.svg"));
+    errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Error"));
 
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
@@ -221,10 +221,10 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
-    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("TransferFilter.AllTrackers"));
     auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, QVariant(tr("Trackerless (0)")));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("TransferFilter.WithoutTrackers"));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, QVariant(tr("Error (0)")));
     errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));
@@ -264,7 +264,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
     else {
         trackerItem = new QListWidgetItem();
-        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("TransferFilter.Tracker"));
 
         const QString scheme = getScheme(tracker);
         downloadFavicon(QString("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
@@ -470,13 +470,13 @@ void TrackerFiltersList::showMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *startAct = menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents"));
+    const QAction *startAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.ResumeAction"), tr("Resume torrents"));
     connect(startAct, &QAction::triggered, transferList, &TransferListWidget::startVisibleTorrents);
 
-    const QAction *pauseAct = menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents"));
+    const QAction *pauseAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.Pause.ction"), tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, transferList, &TransferListWidget::pauseVisibleTorrents);
 
-    const QAction *deleteTorrentsAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents"));
+    const QAction *deleteTorrentsAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.RemoveAction"), tr("Delete torrents"));
     connect(deleteTorrentsAct, &QAction::triggered, transferList, &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());

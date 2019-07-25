@@ -390,29 +390,29 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     const QAction *downloadAction = menu->addAction(
-        UIThemeManager::instance()->getIcon("download"), tr("Download"));
+        UIThemeManager::instance()->getIcon("Search.DownloadAction"), tr("Download"));
     connect(downloadAction, &QAction::triggered, this, &SearchJobWidget::downloadTorrents);
 
     menu->addSeparator();
 
     const QAction *openDescriptionAction = menu->addAction(
-        UIThemeManager::instance()->getIcon("application-x-mswinurl"), tr("Open description page"));
+        UIThemeManager::instance()->getIcon("Search.OpenDescriptionPage"), tr("Open description page"));
     connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
 
     QMenu *copySubMenu = menu->addMenu(
-        UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
+        UIThemeManager::instance()->getIcon("Search.CopyAction"), tr("Copy"));
 
     const QAction *copyNamesAction = copySubMenu->addAction(
-        UIThemeManager::instance()->getIcon("edit-copy"), tr("Name"));
+        UIThemeManager::instance()->getIcon("Search.Name.CopyAction"), tr("Name"));
     connect(copyNamesAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentNames);
 
     const QAction *copyDownloadLinkAction = copySubMenu->addAction(
-        UIThemeManager::instance()->getIcon("edit-copy"), tr("Download link"));
+        UIThemeManager::instance()->getIcon("Search.DownloadLink.CopyAction"), tr("Download link"));
     connect(copyDownloadLinkAction, &QAction::triggered
         , this, &SearchJobWidget::copyTorrentDownloadLinks);
 
     const QAction *copyDescriptionAction = copySubMenu->addAction(
-        UIThemeManager::instance()->getIcon("edit-copy"), tr("Description page URL"));
+        UIThemeManager::instance()->getIcon("Search.DescriptionPageURL.CopyAction"), tr("Description page URL"));
     connect(copyDescriptionAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());

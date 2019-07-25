@@ -22,7 +22,7 @@ LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
     m_searchButton = new QToolButton(this);
-    m_searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
+    m_searchButton->setIcon(UIThemeManager::instance()->getIcon("LineEdit.FindAction"));
     m_searchButton->setCursor(Qt::ArrowCursor);
     m_searchButton->setStyleSheet("QToolButton {border: none; padding: 2px;}");
 

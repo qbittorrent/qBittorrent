@@ -32,6 +32,8 @@
 #include <QApplication>
 #include <QFile>
 #include <QIcon>
+#include <QJsonDocument>
+#include <QJsonParseError>
 #include <QResource>
 
 #include "base/iconprovider.h"
@@ -58,13 +60,26 @@ void UIThemeManager::initInstance()
 UIThemeManager::UIThemeManager()
 {
     const Preferences *const pref = Preferences::instance();
-    if (pref->useCustomUITheme()
+    const bool useCustomUITheme = pref->useCustomUITheme();
+    if (useCustomUITheme
         && !QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
         LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     m_useSystemTheme = pref->useSystemIconTheme();
 #endif
+    m_iconsDir = useCustomUITheme ? ":uitheme/icons/" : ":icons/";
+
+    {
+        QFile iconJsonMap(m_iconsDir + "iconconfig.json");
+        if (!iconJsonMap.open(QIODevice::ReadOnly))
+            LogMsg(tr("Failed to open \"iconconfig.json\", error: %1").arg(iconJsonMap.errorString()), Log::WARNING);
+
+        QJsonParseError err;
+        m_iconMap = QJsonDocument::fromJson(iconJsonMap.readAll(), &err).object();
+        if (err.error != QJsonParseError::NoError)
+            LogMsg(tr("Error occurred while parsing \"%1\", error: %2").arg(iconJsonMap.fileName(), err.errorString()), Log::WARNING);
+    }
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -113,7 +128,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
     if (iter != iconCache.end())
         return *iter;
 
-    const QIcon icon {IconProvider::instance()->getIconPath(iconId)};
+    const QIcon icon {getIconPath(iconId)};
     iconCache[iconId] = icon;
     return icon;
 }
@@ -121,7 +136,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return {};
-    return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
+    return QIcon(m_iconsDir + "flags/" + countryIsoCode.toLower() + ".svg");
 }
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
@@ -140,5 +155,38 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
         return path;
     }
 #endif
-    return IconProvider::instance()->getIconPath(iconId);
+
+    QString iconPath = m_iconMap[iconId].toString();
+    QString iconIdPattern = iconId;
+    while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
+        const int sepIndex = iconIdPattern.indexOf('.');
+        iconIdPattern = "*" + (sepIndex == -1 ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
+        iconPath = m_iconMap[iconIdPattern].toString();
+        iconIdPattern.remove(0, 2);
+    }
+    if (!iconIdPattern.isEmpty())
+        m_iconMap[iconIdPattern] = iconPath;
+
+    if (iconPath.isEmpty())
+        LogMsg(tr("Can't resolve icon id - %1").arg(iconId), Log::WARNING);
+    iconPath = m_iconsDir + iconPath;
+
+    if (iconPath.lastIndexOf('.') > iconPath.lastIndexOf('/')) {
+        // resolved name already has an extension
+        if (QFile::exists(iconPath))
+            return iconPath;
+        LogMsg(tr("Icon Path \"%1\" doesn't exists").arg(iconPath), Log::WARNING);
+        return {};
+    }
+
+    QFile iconFile(iconPath + ".svg");
+    if (iconFile.exists())
+        return iconFile.fileName();
+
+    iconFile.setFileName(iconPath + ".png");
+    if (!iconFile.exists())
+        return iconFile.fileName();
+
+    LogMsg(tr(R"(Neither "%1.svg" nor "%1.png" exists)").arg(iconPath), Log::WARNING);
+    return {};
 }

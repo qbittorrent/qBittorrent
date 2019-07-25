@@ -39,6 +39,7 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
+#include "uithememanager.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
 static QColor getColorByState(BitTorrent::TorrentState state);
@@ -412,55 +413,55 @@ QColor getColorByState(BitTorrent::TorrentState state)
 
 QIcon getPausedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/paused.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Paused");
     return cached;
 }
 
 QIcon getQueuedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/queued.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Queued");
     return cached;
 }
 
 QIcon getDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/downloading.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Downloading");
     return cached;
 }
 
 QIcon getStalledDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledDL.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.StalledDownloading");
     return cached;
 }
 
 QIcon getUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/uploading.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Uploading");
     return cached;
 }
 
 QIcon getStalledUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledUP.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.StalledUploading");
     return cached;
 }
 
 QIcon getCompletedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/completed.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Checking");
     return cached;
 }
 
 QIcon getCheckingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/checking.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Checking");
     return cached;
 }
 
 QIcon getErrorIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/error.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon("Torrent.Error");
     return cached;
 }
 

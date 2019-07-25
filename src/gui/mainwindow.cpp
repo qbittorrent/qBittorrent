@@ -148,10 +148,10 @@ MainWindow::MainWindow(QWidget *parent)
 #ifndef Q_OS_MAC
 #ifdef Q_OS_UNIX
     const QIcon appLogo = Preferences::instance()->useSystemIconTheme()
-        ? QIcon::fromTheme("qbittorrent", QIcon(":/icons/skin/qbittorrent-tray.svg"))
-        : QIcon(":/icons/skin/qbittorrent-tray.svg");
+        ? QIcon::fromTheme("qbittorrent", UIThemeManager::instance()->getIcon("QBittorrent.Logo"))
+        : UIThemeManager::instance()->getIcon("QBittorrent.Logo");
 #else
-    const QIcon appLogo(":/icons/skin/qbittorrent-tray.svg");
+    const QIcon appLogo(UIThemeManager::instance()->getIcon("QBittorrent.Logo"));
 #endif // Q_OS_UNIX
     setWindowIcon(appLogo);
 #endif // Q_OS_MAC
@@ -162,31 +162,31 @@ MainWindow::MainWindow(QWidget *parent)
 
     addToolbarContextMenu();
 
-    m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon("list-add"));
-    m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon("insert-link"));
-    m_ui->actionSetUploadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"));
-    m_ui->actionSetDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"));
-    m_ui->actionSetGlobalUploadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"));
-    m_ui->actionSetGlobalDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"));
-    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon("document-edit"));
-    m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon("help-about"));
-    m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon("view-statistics"));
-    m_ui->actionTopQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-top"));
-    m_ui->actionIncreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-up"));
-    m_ui->actionDecreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-down"));
-    m_ui->actionBottomQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-bottom"));
-    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
-    m_ui->actionDocumentation->setIcon(UIThemeManager::instance()->getIcon("help-contents"));
-    m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon("wallet-open"));
-    m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon("application-exit"));
-    m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon("object-locked"));
-    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon("configure", "preferences-system"));
-    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon("media-playback-pause"));
-    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon("media-playback-pause"));
-    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
-    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
-    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon("application-exit"));
-    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
+    m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon("MainMenu.TorrentFile.OpenAction"));
+    m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon("MainMenu.TorrentURL.OpenAction"));
+    m_ui->actionSetUploadLimit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.GlobalUploadLimit"));
+    m_ui->actionSetDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.GlobalDownloadLimit"));
+    m_ui->actionSetGlobalUploadLimit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.UploadLimit"));
+    m_ui->actionSetGlobalDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.DownloadLimit"));
+    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Torrent.CreateAction"));
+    m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon("MainMenu.HelpAction"));
+    m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Statistics"));
+    m_ui->actionTopQueuePos->setIcon(UIThemeManager::instance()->getIcon("MainMenu.UpAction"));
+    m_ui->actionIncreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("MainMenu.DownAction"));
+    m_ui->actionDecreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Queue.DownAction"));
+    m_ui->actionBottomQueuePos->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Queue.BottomAction"));
+    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Torrent.RemoveAction"));
+    m_ui->actionDocumentation->setIcon(UIThemeManager::instance()->getIcon("MainMenu.HelpAction2"));
+    m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon("MainMenu.DonateAction"));
+    m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ExitAction"));
+    m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon("MainMenu.LockAction"));
+    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ConfigureAction", "preferences-system"));
+    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon("MainMenu.PauseAction"));
+    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon("MainMenu.PauseAllAction"));
+    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon("MainMenu.StartAction"));
+    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon("MainMenu.StartAllAction"));
+    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Shutdown.ExitAction"));
+    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ManageCookies"));
 
     auto *lockMenu = new QMenu(this);
     QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
@@ -241,7 +241,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_splitter->setCollapsible(1, false);
     m_tabs->addTab(m_splitter,
 #ifndef Q_OS_MAC
-        UIThemeManager::instance()->getIcon("folder-remote"),
+        UIThemeManager::instance()->getIcon("MainMenu.TransfersTab"),
 #endif
         tr("Transfers"));
 
@@ -672,7 +672,7 @@ void MainWindow::displayRSSTab(bool enable)
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #else
             const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("application-rss+xml"));
+            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("MainMenu.RSSTab"));
 #endif
         }
     }
@@ -707,7 +707,7 @@ void MainWindow::displaySearchTab(bool enable)
             m_searchWidget = new SearchWidget(this);
             m_tabs->insertTab(1, m_searchWidget,
 #ifndef Q_OS_MAC
-                UIThemeManager::instance()->getIcon("edit-find"),
+                UIThemeManager::instance()->getIcon("MainMenu.SearchTab"),
 #endif
                 tr("Search"));
         }
@@ -1526,13 +1526,14 @@ void MainWindow::updateGUI()
                 "qBittorrent"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;%1"
+                "<img src='%3' height='14'/>&nbsp;%1"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;%2"
+                "<img src='%4' height='14'/>&nbsp;%2"
                 "</div>"))
             .arg(tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
+                 , UIThemeManager::instance()->getIconPath("Tray.Download"), UIThemeManager::instance()->getIconPath("Tray.Seeding"));
 #else
         // OSes such as Windows do not support html here
         const QString html = QString("%1\n%2").arg(
@@ -1864,7 +1865,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else
         const int indexTab = m_tabs->addTab(m_executionLog, tr("Execution Log"));
-        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("view-calendar-journal"));
+        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("MainMenu.ExecutionLogTab"));
 #endif
     }
     else if (m_executionLog) {
@@ -1968,18 +1969,18 @@ QIcon MainWindow::getSystrayIcon() const
 #else
     switch (style) {
     case TrayIcon::NORMAL:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
+        return UIThemeManager::instance()->getIcon("Tray.Logo");
     case TrayIcon::MONO_DARK:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-dark.svg"));
+        return UIThemeManager::instance()->getIcon("Tray.DarkLogo");
     case TrayIcon::MONO_LIGHT:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-light.svg"));
+        return UIThemeManager::instance()->getIcon("Tray.LightLogo");
     default:
         break;
     }
 #endif
 
     // As a failsafe in case the enum is invalid
-    return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
+    return UIThemeManager::instance()->getIcon("Tray.Logo");
 }
 #endif // Q_OS_MAC
 

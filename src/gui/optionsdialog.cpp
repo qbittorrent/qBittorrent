@@ -111,18 +111,18 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon("preferences-desktop"));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon("network-wired"));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon("folder-download"));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon("speedometer", "chronometer"));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon("rss-config", "application-rss+xml"));
+    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.UITab"));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.BitTorrentTab"));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.ConnectionTab"));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.DownloadTab"));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.SpeedTab", "chronometer"));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.RSSTab", "application-rss+xml"));
 #ifndef DISABLE_WEBUI
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon("network-server"));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.WebUITab"));
 #else
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon("preferences-other"));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.AdvancedTab"));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -133,10 +133,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         m_ui->tabSelection->item(i)->setSizeHint(size);
     }
 
-    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
+    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("OptionsDialog.ConnectionTab.IPFilter.RefreshAction"));
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.svg", this, 16));
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.svg", this, 16));
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap("OptionsDialog.GlobalRate", this, 16));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap("OptionsDialog.AlternativeRate", this, 16));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -1596,7 +1596,7 @@ QString OptionsDialog::webUiPassword() const
 void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg("OptionsDialog.SSL.LowSecurity", this, 24));
 
     if (path.isEmpty())
         return;
@@ -1614,13 +1614,13 @@ void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError s
         return;
     }
 
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg("OptionsDialog.SSL.HighSecurity", this, 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg("OptionsDialog.SSL.LowSecurity", this, 24));
 
     if (path.isEmpty())
         return;
@@ -1638,7 +1638,7 @@ void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError sh
         return;
     }
 
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg("OptionsDialog.SSL.HighSecurity", this, 24));
 }
 
 void OptionsDialog::showConnectionTab()

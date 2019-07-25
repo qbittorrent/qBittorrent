@@ -131,9 +131,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     // Tracker list
     m_trackerList = new TrackerListWidget(this);
-    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon("go-up"));
+    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon("TrackerList.UpAction"));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
-    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon("go-down"));
+    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon("TrackerList.DownAction"));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
@@ -577,13 +577,13 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     if (selectedRows.size() == 1) {
         const QModelIndex index = selectedRows[0];
 
-        const QAction *actOpen = menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open"));
+        const QAction *actOpen = menu->addAction(UIThemeManager::instance()->getIcon("TorrentContent.OpenAction"), tr("Open"));
         connect(actOpen, &QAction::triggered, this, [this, index]() { openDoubleClickedFile(index); });
 
-        const QAction *actOpenContainingFolder = menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
+        const QAction *actOpenContainingFolder = menu->addAction(UIThemeManager::instance()->getIcon("TorrentContent.ContainingFolder.OpenAction"), tr("Open Containing Folder"));
         connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openFolder(index, true); });
 
-        const QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
+        const QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("TorrentContent.RenameAction"), tr("Rename..."));
         connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(m_torrent); });
 
         menu->addSeparator();
@@ -649,19 +649,19 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *actAdd = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New Web seed"));
+    const QAction *actAdd = menu->addAction(UIThemeManager::instance()->getIcon("WebSeed.AddAction"), tr("New Web seed"));
     connect(actAdd, &QAction::triggered, this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty()) {
-        const QAction *actDel = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove Web seed"));
+        const QAction *actDel = menu->addAction(UIThemeManager::instance()->getIcon("WebSeed.RemoveAction"), tr("Remove Web seed"));
         connect(actDel, &QAction::triggered, this, &PropertiesWidget::deleteSelectedUrlSeeds);
 
         menu->addSeparator();
 
-        const QAction *actCpy = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
+        const QAction *actCpy = menu->addAction(UIThemeManager::instance()->getIcon("WebSeedURL.CopyAction"), tr("Copy Web seed URL"));
         connect(actCpy, &QAction::triggered, this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
 
-        const QAction *actEdit = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
+        const QAction *actEdit = menu->addAction(UIThemeManager::instance()->getIcon("WebSeedURL.EditAction"), tr("Edit Web seed URL"));
         connect(actEdit, &QAction::triggered, this, &PropertiesWidget::editWebSeed);
     }
 

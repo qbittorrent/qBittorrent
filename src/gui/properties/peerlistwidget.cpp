@@ -236,7 +236,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
     // Add Peer Action
     if (!torrent->isQueued() && !torrent->isChecking()) {
-        const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
+        const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("PeerList.ContextMenu.AddAction"), tr("Add a new peer..."));
         connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
         {
             const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
@@ -258,12 +258,12 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     }
 
     if (!selectionModel()->selectedRows().isEmpty()) {
-        const QAction *copyPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
+        const QAction *copyPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("PeerList.ContextMenu.CopyAction"), tr("Copy IP:port"));
         connect(copyPeerAct, &QAction::triggered, this, &PeerListWidget::copySelectedPeers);
 
         menu->addSeparator();
 
-        const QAction *banAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
+        const QAction *banAct = menu->addAction(UIThemeManager::instance()->getIcon("PeerList.ContextMenu.BanAction"), tr("Ban peer permanently"));
         connect(banAct, &QAction::triggered, this, &PeerListWidget::banSelectedPeers);
     }
 
