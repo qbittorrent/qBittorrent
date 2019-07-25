@@ -80,12 +80,7 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 
-#if defined(Q_OS_WIN)
-#include <QLibrary>
-
-typedef BOOL(WINAPI*PProcessIdToSessionId)(DWORD,DWORD*);
-static PProcessIdToSessionId pProcessIdToSessionId = 0;
-#endif
+#include "base/utils/misc.h"
 
 namespace QtLP_Private
 {
@@ -121,17 +116,16 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
                  + QLatin1Char('-') + QString::number(idNum, 16);
 
 #if defined(Q_OS_WIN)
-    if (!pProcessIdToSessionId) {
-        QLibrary lib("kernel32");
-        pProcessIdToSessionId = (PProcessIdToSessionId)lib.resolve("ProcessIdToSessionId");
-    }
-    if (pProcessIdToSessionId) {
+    using PPROCESSIDTOSESSIONID = BOOL (WINAPI *)(DWORD, DWORD *);
+    const auto processIdToSessionId = Utils::Misc::loadWinAPI<PPROCESSIDTOSESSIONID>("kernel32.dll", "ProcessIdToSessionId");
+
+    if (processIdToSessionId) {
         DWORD sessionId = 0;
-        pProcessIdToSessionId(GetCurrentProcessId(), &sessionId);
-        socketName += QLatin1Char('-') + QString::number(sessionId, 16);
+        processIdToSessionId(GetCurrentProcessId(), &sessionId);
+        socketName += (QLatin1Char('-') + QString::number(sessionId, 16));
     }
 #else
-    socketName += QLatin1Char('-') + QString::number(::getuid(), 16);
+    socketName += (QLatin1Char('-') + QString::number(::getuid(), 16));
 #endif
 
     server = new QLocalServer(this);
