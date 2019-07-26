@@ -4330,7 +4330,7 @@ void Session::handleTorrentDeleteFailedAlert(libt::torrent_delete_failed_alert *
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
-                .arg(tmpRemovingTorrentData.name, QString::fromStdString(p->error.message()))
+                .arg(tmpRemovingTorrentData.name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
     else {

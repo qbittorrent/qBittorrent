@@ -1711,7 +1711,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const libtorrent::save_resum
     }
     else {
         LogMsg(tr("Save resume data failed. Torrent: \"%1\", error: \"%2\"")
-            .arg(name(), QString::fromStdString(p->error.message())), Log::CRITICAL);
+            .arg(name(), QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
         m_session->handleTorrentResumeDataFailed(this);
     }
 }
@@ -1781,7 +1781,7 @@ void TorrentHandle::handleFileRenameFailedAlert(const libtorrent::file_rename_fa
 {
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
         .arg(name(), filePath(p->index)
-             , QString::fromStdString(p->error.message())), Log::WARNING);
+             , QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
 
     m_oldPath[LTFileIndex {p->index}].removeFirst();
     if (m_oldPath[LTFileIndex {p->index}].isEmpty())
