@@ -887,6 +887,7 @@ window.addEvent('load', function() {
             $('PropGeneralLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_general').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -894,6 +895,7 @@ window.addEvent('load', function() {
             $('PropTrackersLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_trackers').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -901,6 +903,7 @@ window.addEvent('load', function() {
             $('PropPeersLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_peers').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -908,6 +911,7 @@ window.addEvent('load', function() {
             $('PropWebSeedsLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_webseeds').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -915,6 +919,7 @@ window.addEvent('load', function() {
             $('PropFilesLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_files').removeClass("invisible");
+                showFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -926,6 +931,14 @@ window.addEvent('load', function() {
         column: 'mainColumn',
         height: prop_h
     });
+
+    const showFilesFilter = function() {
+        $('torrentFilesFilterToolbar').removeClass("invisible");
+    };
+
+    const hideFilesFilter = function() {
+        $('torrentFilesFilterToolbar').addClass("invisible");
+    };
 
     let prevTorrentsFilterValue;
     let torrentsFilterInputTimer = null;

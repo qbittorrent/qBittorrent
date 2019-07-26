@@ -21,8 +21,10 @@
     <script src="scripts/lib/mocha-0.9.6-yc.js"></script>
     <script src="scripts/mocha-init.js?locale=${LANG}&v=${CACHEID}"></script>
     <script src="scripts/lib/clipboard-2.0.0.min.js"></script>
+    <script src="scripts/filesystem.js?v=${CACHEID}"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script src="scripts/progressbar.js?v=${CACHEID}"></script>
+    <script src="scripts/file-tree.js?v=${CACHEID}"></script>
     <script src="scripts/dynamicTable.js?locale=${LANG}&v=${CACHEID}"></script>
     <script src="scripts/client.js?locale=${LANG}&v=${CACHEID}"></script>
     <script src="scripts/contextmenu.js?locale=${LANG}&v=${CACHEID}"></script>
@@ -189,7 +191,7 @@
         <li><a href="#CopyTrackerUrl" id="CopyTrackerUrl"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]"/> QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
     </ul>
     <ul id="torrentFilesMenu" class="contextMenu">
-        <li class="separator">
+        <li>
             <a href="#FilePrio" class="arrow-right"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Priority)QBT_TR[CONTEXT=PropertiesWidget]</a>
             <ul>
                 <li><a href="#FilePrioIgnore"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]</a></li>
