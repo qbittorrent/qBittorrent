@@ -1010,8 +1010,6 @@ function setupCopyEventHandler() {
                     return copyMagnetLinkFN();
                 case "copyHash":
                     return copyHashFN();
-                case "copyDescriptionPageUrl":
-                    return copySearchTorrentUrl();
                 default:
                     return "";
             }
