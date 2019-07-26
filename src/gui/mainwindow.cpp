@@ -28,11 +28,6 @@
 
 #include "mainwindow.h"
 
-#if defined(Q_OS_WIN)
-#include <Windows.h>
-#include <versionhelpers.h>  // must follow after Windows.h
-#endif
-
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
@@ -2007,9 +2002,7 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    const QString installerURL = (::IsWindowsVistaOrGreater()
-                                  ? "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe"
-                                  : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
+    const QString installerURL = "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe";
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)
                 , this, &MainWindow::pythonDownloadFinished);
@@ -2030,14 +2023,8 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    if (::IsWindowsVistaOrGreater()) {
-        QFile::rename(result.filePath, result.filePath + ".exe");
-        installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
-    }
-    else {
-        QFile::rename(result.filePath, result.filePath + ".msi");
-        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(result.filePath) + ".msi\"");
-    }
+    QFile::rename(result.filePath, result.filePath + ".exe");
+    installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
 
     // Wait for setup to complete
     installer.waitForFinished(10 * 60 * 1000);
@@ -2045,11 +2032,10 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     qDebug("Installer stdout: %s", installer.readAllStandardOutput().data());
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
+
     // Delete temp file
-    if (::IsWindowsVistaOrGreater())
-        Utils::Fs::forceRemove(result.filePath + ".exe");
-    else
-        Utils::Fs::forceRemove(result.filePath + ".msi");
+    Utils::Fs::forceRemove(result.filePath + ".exe");
+
     // Reload search engine
     if (Utils::ForeignApps::pythonInfo().isSupportedVersion()) {
         m_ui->actionSearchWidget->setChecked(true);
