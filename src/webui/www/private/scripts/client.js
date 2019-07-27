@@ -967,18 +967,13 @@ function registerMagnetHandler() {
 
 function handleDownloadParam() {
     // Extract torrent URL from download param in WebUI URL hash
-    const hashParams = getHashParamsFromUrl();
-    const url = hashParams.download;
-    if (!url)
+    const downloadHash = "#download=";
+    if (location.hash.indexOf(downloadHash) !== 0)
         return;
 
-    // Remove the download param from WebUI URL hash
-    delete hashParams.download;
-    let newHash = Object.toQueryString(hashParams);
-    newHash = newHash ? ('#' + newHash) : '';
-    history.replaceState('', document.title,
-        (location.pathname + location.search + newHash));
-
+    const url = location.hash.substring(downloadHash.length);
+    // Remove the processed hash from the URL
+    history.replaceState('', document.title, (location.pathname + location.search));
     showDownloadPage([url]);
 }
 

@@ -135,8 +135,11 @@ const initializeWindows = function() {
     showDownloadPage = function(urls) {
         const id = 'downloadPage';
         let contentUrl = 'download.html';
-        if (urls && urls.length)
-            contentUrl += '?urls=' + urls.join("|");
+        if (urls && (urls.length > 0)) {
+            contentUrl += ('?urls=' + urls.map(function(url) {
+                return encodeURIComponent(url);
+            }).join("|"));
+        }
 
         new MochaUI.Window({
             id: id,
