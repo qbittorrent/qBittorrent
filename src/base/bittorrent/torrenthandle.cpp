@@ -1423,8 +1423,6 @@ void TorrentHandle::setTrackerLogin(const QString &username, const QString &pass
 
 void TorrentHandle::renameFile(int index, const QString &name)
 {
-    if (m_startupState != Started) return;
-
     m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     qDebug() << Q_FUNC_INFO << index << name;
