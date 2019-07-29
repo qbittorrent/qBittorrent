@@ -1526,8 +1526,6 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
 
 void TorrentHandle::renameFile(const int index, const QString &name)
 {
-    if (m_startupState != Started) return;
-
     m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     m_nativeHandle.rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(name).toStdString());
