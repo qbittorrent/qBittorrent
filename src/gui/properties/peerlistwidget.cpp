@@ -276,7 +276,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 void PeerListWidget::banSelectedPeers()
 {
     // Confirm first
-    int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to ban permanently the selected peers?"),
+    int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to permanently ban the selected peers?"),
                                     tr("&Yes"), tr("&No"),
                                     QString(), 0, 1);
     if (ret) return;
