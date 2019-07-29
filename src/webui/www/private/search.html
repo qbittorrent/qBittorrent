@@ -48,10 +48,6 @@
         width: 4em;
     }
 
-    #downloadSearchTorrent, #openSearchTorrentDescription, #copyDescriptionPageUrl {
-        line-height: 1.5em;
-    }
-
     #manageSearchPlugins {
         line-height: 1.5em;
         float: right;
@@ -143,12 +139,22 @@
     </div>
 
     <div style="height: 30px; padding-top: 10px;">
-        <button id="downloadSearchTorrent" onclick="downloadSearchTorrent()">QBT_TR(Download)QBT_TR[CONTEXT=SearchEngineWidget]</button>
-        <button id="openSearchTorrentDescription" onclick="openSearchTorrentDescription()">QBT_TR(Go to description page)QBT_TR[CONTEXT=SearchEngineWidget]</button>
-        <button class="copyToClipboard" id="copyDescriptionPageUrl">QBT_TR(Copy description page URL)QBT_TR[CONTEXT=SearchEngineWidget]</button>
         <button id="manageSearchPlugins" onclick="manageSearchPlugins()">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]</button>
     </div>
 </div>
+
+<ul id="searchResultsTableMenu" class="contextMenu">
+    <li><a href="#Download"><img src="images/qbt-theme/download.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li class="separator"><a href="#OpenDescriptionUrl"><img src="images/qbt-theme/application-x-mswinurl.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li>
+        <a href="#" class="arrow-right"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]</a>
+        <ul>
+            <li><a href="#" id="copySearchTorrentName" class="copySearchDataToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDownloadLink" class="copySearchDataToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDescriptionUrl" class="copySearchDataToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+        </ul>
+    </li>
+</ul>
 
 <script>
     'use strict';
@@ -181,8 +187,19 @@
     const initSearchTab = function() {
         // load "Search in" preference from local storage
         $('searchInTorrentName').set('value', (localStorage.getItem('search_in_filter') === "names") ? "names" : "everywhere");
-
-        searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', null);
+        const searchResultsTableContextMenu = new ContextMenu({
+            targets: '.searchTableRow',
+            menu: 'searchResultsTableMenu',
+            actions: {
+                Download: downloadSearchTorrent,
+                OpenDescriptionUrl: openSearchTorrentDescriptionUrl
+            },
+            offsets: {
+                x: -15,
+                y: -53
+            }
+        });
+        searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', searchResultsTableContextMenu);
         getPlugins();
 
         let searchInNameFilterTimer = null;
@@ -213,15 +230,6 @@
                     }
 
                     switch (elem.id) {
-                        case "downloadSearchTorrent":
-                            downloadSearchTorrent();
-                            break;
-                        case "openSearchTorrentDescription":
-                            openSearchTorrentDescription();
-                            break;
-                        case "copyDescriptionPageUrl":
-                            copySearchTorrentUrl();
-                            break;
                         case "manageSearchPlugins":
                             manageSearchPlugins();
                             break;
@@ -293,13 +301,29 @@
         }
     };
 
-    const openSearchTorrentDescription = function() {
+    const openSearchTorrentDescriptionUrl = function() {
         searchResultsTable.selectedRowsIds().each(function(rowId) {
             window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
         });
     };
 
-    const copySearchTorrentUrl = function() {
+    const copySearchTorrentName = function() {
+        const names = [];
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            names.push(searchResultsTable.rows.get(rowId).full_data.fileName);
+        });
+        return names.join("\n");
+    };
+
+    const copySearchTorrentDownloadLink = function() {
+        const urls = [];
+        searchResultsTable.selectedRowsIds().each(function(rowId) {
+            urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
+        });
+        return urls.join("\n");
+    };
+
+    const copySearchTorrentDescriptionUrl = function() {
         const urls = [];
         searchResultsTable.selectedRowsIds().each(function(rowId) {
             urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
@@ -476,9 +500,6 @@
                     $('categorySelect').setProperty('disabled', searchPluginsEmpty);
                     $('pluginsSelect').setProperty('disabled', searchPluginsEmpty);
                     $('startSearchButton').setProperty('disabled', searchPluginsEmpty);
-                    $('downloadSearchTorrent').setProperty('disabled', searchPluginsEmpty);
-                    $('openSearchTorrentDescription').setProperty('disabled', searchPluginsEmpty);
-                    $('copyDescriptionPageUrl').setProperty('disabled', searchPluginsEmpty);
 
                     if (typeof updateSearchPluginsTable === "function")
                         updateSearchPluginsTable();
@@ -640,5 +661,19 @@
         loadSearchResultsTimer = loadSearchResultsData.delay(500);
     };
 
-    initSearchTab();
+    new ClipboardJS('.copySearchDataToClipboard', {
+        text: function(trigger) {
+            switch (trigger.id) {
+                case "copySearchTorrentName":
+                    return copySearchTorrentName();
+                case "copySearchTorrentDownloadLink":
+                    return copySearchTorrentDownloadLink();
+                case "copySearchTorrentDescriptionUrl":
+                    return copySearchTorrentDescriptionUrl();
+                default:
+                    return "";
+            }
+        }
+    });
+
 </script>
