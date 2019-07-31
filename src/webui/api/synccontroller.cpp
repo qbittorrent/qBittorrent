@@ -503,26 +503,28 @@ void SyncController::torrentPeersAction()
     for (const BitTorrent::PeerInfo &pi : peersList) {
         if (pi.address().ip.isNull()) continue;
 
-        QVariantMap peer;
+        QVariantMap peer = {
+            {KEY_PEER_IP, pi.address().ip.toString()},
+            {KEY_PEER_PORT, pi.address().port},
+            {KEY_PEER_CLIENT, pi.client()},
+            {KEY_PEER_PROGRESS, pi.progress()},
+            {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
+            {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
+            {KEY_PEER_TOT_DOWN, pi.totalDownload()},
+            {KEY_PEER_TOT_UP, pi.totalUpload()},
+            {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
+            {KEY_PEER_FLAGS, pi.flags()},
+            {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
+            {KEY_PEER_RELEVANCE, pi.relevance()},
+            {KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n')}
+        };
+
 #ifndef DISABLE_COUNTRIES_RESOLUTION
         if (resolvePeerCountries) {
             peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
 #endif
-        peer[KEY_PEER_IP] = pi.address().ip.toString();
-        peer[KEY_PEER_PORT] = pi.address().port;
-        peer[KEY_PEER_CLIENT] = pi.client();
-        peer[KEY_PEER_PROGRESS] = pi.progress();
-        peer[KEY_PEER_DOWN_SPEED] = pi.payloadDownSpeed();
-        peer[KEY_PEER_UP_SPEED] = pi.payloadUpSpeed();
-        peer[KEY_PEER_TOT_DOWN] = pi.totalDownload();
-        peer[KEY_PEER_TOT_UP] = pi.totalUpload();
-        peer[KEY_PEER_CONNECTION_TYPE] = pi.connectionType();
-        peer[KEY_PEER_FLAGS] = pi.flags();
-        peer[KEY_PEER_FLAGS_DESCRIPTION] = pi.flagsDescription();
-        peer[KEY_PEER_RELEVANCE] = pi.relevance();
-        peer[KEY_PEER_FILES] = torrent->info().filesForPiece(pi.downloadingPieceIndex()).join(QLatin1String("\n"));
 
         peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
     }

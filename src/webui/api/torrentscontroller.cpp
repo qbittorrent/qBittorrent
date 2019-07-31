@@ -417,9 +417,9 @@ void TorrentsController::webseedsAction()
         throw APIError(APIErrorType::NotFound);
 
     for (const QUrl &webseed : asConst(torrent->urlSeeds())) {
-        QVariantMap webSeedDict;
-        webSeedDict[KEY_WEBSEED_URL] = webseed.toString();
-        webSeedList.append(webSeedDict);
+        webSeedList.append(QVariantMap {
+            {KEY_WEBSEED_URL, webseed.toString()}
+        });
     }
 
     setResult(QJsonArray::fromVariantList(webSeedList));
@@ -451,11 +451,12 @@ void TorrentsController::filesAction()
         const QVector<qreal> fileAvailability = torrent->availableFileFractions();
         const BitTorrent::TorrentInfo info = torrent->info();
         for (int i = 0; i < torrent->filesCount(); ++i) {
-            QVariantMap fileDict;
-            fileDict[KEY_FILE_PROGRESS] = fp[i];
-            fileDict[KEY_FILE_PRIORITY] = static_cast<int>(priorities[i]);
-            fileDict[KEY_FILE_SIZE] = torrent->fileSize(i);
-            fileDict[KEY_FILE_AVAILABILITY] = fileAvailability[i];
+            QVariantMap fileDict = {
+                {KEY_FILE_PROGRESS, fp[i]},
+                {KEY_FILE_PRIORITY, static_cast<int>(priorities[i])},
+                {KEY_FILE_SIZE, torrent->fileSize(i)},
+                {KEY_FILE_AVAILABILITY, fileAvailability[i]}
+            };
 
             QString fileName = torrent->filePath(i);
             if (fileName.endsWith(QB_EXT, Qt::CaseInsensitive))
