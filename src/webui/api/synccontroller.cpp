@@ -113,29 +113,31 @@ namespace
     QVariantMap getTranserInfo()
     {
         QVariantMap map;
-        const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
-        const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+        const auto *session = BitTorrent::Session::instance();
+
+        const BitTorrent::SessionStatus &sessionStatus = session->status();
+        const BitTorrent::CacheStatus &cacheStatus = session->cacheStatus();
         map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
         map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
         map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
         map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
-        map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
-        map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
+        map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
+        map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
 
-        quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
-        quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+        const quint64 atd = session->getAlltimeDL();
+        const quint64 atu = session->getAlltimeUL();
         map[KEY_TRANSFER_ALLTIME_DL] = atd;
         map[KEY_TRANSFER_ALLTIME_UL] = atu;
         map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
         map[KEY_TRANSFER_GLOBAL_RATIO] = ((atd > 0) && (atu > 0)) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
         map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
-        qreal readRatio = cacheStatus.readRatio;
+        const qreal readRatio = cacheStatus.readRatio;
         map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "0";
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
         // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-        const auto torrents = BitTorrent::Session::instance()->torrents();
+        const auto torrents = session->torrents();
         const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
         {
             return (acc + torrent->peersCount());
@@ -149,10 +151,10 @@ namespace
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
-        if (!BitTorrent::Session::instance()->isListening())
-            map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
-        else
-            map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
+        map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
+            ? (sessionStatus.hasIncomingConnections ? "connected" : "firewalled")
+            : "disconnected";
+
         return map;
     }
 
@@ -163,11 +165,10 @@ namespace
         // initialize output variable
         syncData.clear();
 
-        QVariantList removedItems;
         for (auto i = data.cbegin(); i != data.cend(); ++i) {
             const QString &key = i.key();
             const QVariant &value = i.value();
-            removedItems.clear();
+            QVariantList removedItems;
 
             switch (static_cast<QMetaType::Type>(value.type())) {
             case QMetaType::QVariantMap: {
@@ -315,7 +316,7 @@ namespace
             syncData[KEY_FULL_UPDATE] = true;
         }
 
-        lastResponseId = lastResponseId % 1000000 + 1;  // cycle between 1 and 1000000
+        lastResponseId = (lastResponseId % 1000000) + 1;  // cycle between 1 and 1000000
         lastData = data;
         lastData[KEY_RESPONSE_ID] = lastResponseId;
         syncData[KEY_RESPONSE_ID] = lastResponseId;
@@ -407,48 +408,57 @@ SyncController::~SyncController()
 //   - rid (int): last response id
 void SyncController::maindataAction()
 {
-    auto lastResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastResponse")).toMap();
-    auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastAcceptedResponse")).toMap();
+    const auto *session = BitTorrent::Session::instance();
 
     QVariantMap data;
+
+    QVariantMap lastResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastResponse")).toMap();
+    QVariantMap lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastAcceptedResponse")).toMap();
+
     QVariantHash torrents;
+    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents())) {
+        const BitTorrent::InfoHash torrentHash = torrent->hash();
 
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-
-    for (BitTorrent::TorrentHandle *const torrent : asConst(session->torrents())) {
         QVariantMap map = serialize(*torrent);
         map.remove(KEY_TORRENT_HASH);
 
         // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
         // So we don't need unnecessary updates of last activity time in response.
-        if (lastResponse.contains("torrents") && lastResponse["torrents"].toHash().contains(torrent->hash()) &&
-                lastResponse["torrents"].toHash()[torrent->hash()].toMap().contains(KEY_TORRENT_LAST_ACTIVITY_TIME)) {
-            uint lastValue = lastResponse["torrents"].toHash()[torrent->hash()].toMap()[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt();
-            if (qAbs(static_cast<int>(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
-                map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
+        const auto iterTorrents = lastResponse.find("torrents");
+        if (iterTorrents != lastResponse.end()) {
+            const QVariantHash lastResponseTorrents = iterTorrents->toHash();
+            const auto iterHash = lastResponseTorrents.find(torrentHash);
+
+            if (iterHash != lastResponseTorrents.end()) {
+                const QVariantMap torrentData = iterHash->toMap();
+                const auto iterLastActivity = torrentData.find(KEY_TORRENT_LAST_ACTIVITY_TIME);
+
+                if (iterLastActivity != torrentData.end()) {
+                    const int lastValue = iterLastActivity->toInt();
+                    if (qAbs(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toInt()) < 15)
+                        map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
+                }
+            }
         }
 
-        torrents[torrent->hash()] = map;
+        torrents[torrentHash] = map;
     }
-
     data["torrents"] = torrents;
 
     QVariantHash categories;
     const auto &categoriesList = session->categories();
     for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
-        const auto &key = it.key();
+        const QString &key = it.key();
         categories[key] = QVariantMap {
             {"name", key},
             {"savePath", it.value()}
         };
     }
-
     data["categories"] = categories;
 
     QVariantList tags;
     for (const QString &tag : asConst(session->tags()))
         tags << tag;
-
     data["tags"] = tags;
 
     QVariantMap serverState = getTranserInfo();
@@ -474,13 +484,14 @@ void SyncController::torrentPeersAction()
     auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastAcceptedResponse")).toMap();
 
     const QString hash {params()["hash"]};
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    const BitTorrent::TorrentHandle *torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
     QVariantMap data;
     QVariantHash peers;
     const QList<BitTorrent::PeerInfo> peersList = torrent->peers();
+
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
 #else
@@ -491,6 +502,7 @@ void SyncController::torrentPeersAction()
 
     for (const BitTorrent::PeerInfo &pi : peersList) {
         if (pi.address().ip.isNull()) continue;
+
         QVariantMap peer;
 #ifndef DISABLE_COUNTRIES_RESOLUTION
         if (resolvePeerCountries) {
@@ -514,7 +526,6 @@ void SyncController::torrentPeersAction()
 
         peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
     }
-
     data["peers"] = peers;
 
     const int acceptedResponseId {params()["rid"].toInt()};
