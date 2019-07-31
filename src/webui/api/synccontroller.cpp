@@ -47,64 +47,64 @@
 #include "isessionmanager.h"
 #include "serialize/serialize_torrent.h"
 
-// Sync main data keys
-const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
-const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
-const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
-
-// Sync torrent peers keys
-const char KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS[] = "show_flags";
-
-// Peer keys
-const char KEY_PEER_IP[] = "ip";
-const char KEY_PEER_PORT[] = "port";
-const char KEY_PEER_COUNTRY_CODE[] = "country_code";
-const char KEY_PEER_COUNTRY[] = "country";
-const char KEY_PEER_CLIENT[] = "client";
-const char KEY_PEER_PROGRESS[] = "progress";
-const char KEY_PEER_DOWN_SPEED[] = "dl_speed";
-const char KEY_PEER_UP_SPEED[] = "up_speed";
-const char KEY_PEER_TOT_DOWN[] = "downloaded";
-const char KEY_PEER_TOT_UP[] = "uploaded";
-const char KEY_PEER_CONNECTION_TYPE[] = "connection";
-const char KEY_PEER_FLAGS[] = "flags";
-const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
-const char KEY_PEER_RELEVANCE[] = "relevance";
-const char KEY_PEER_FILES[] = "files";
-
-// TransferInfo keys
-const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
-const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
-const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
-const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
-const char KEY_TRANSFER_UPDATA[] = "up_info_data";
-const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
-const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
-const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
-const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
-
-// Statistics keys
-const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
-const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
-const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
-const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
-const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
-const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
-const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
-const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
-const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
-const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
-const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
-const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
-
-const char KEY_FULL_UPDATE[] = "full_update";
-const char KEY_RESPONSE_ID[] = "rid";
-const char KEY_SUFFIX_REMOVED[] = "_removed";
-
-const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
-
 namespace
 {
+    const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
+
+    // Sync main data keys
+    const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
+    const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
+    const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
+
+    // Sync torrent peers keys
+    const char KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS[] = "show_flags";
+
+    // Peer keys
+    const char KEY_PEER_CLIENT[] = "client";
+    const char KEY_PEER_CONNECTION_TYPE[] = "connection";
+    const char KEY_PEER_COUNTRY[] = "country";
+    const char KEY_PEER_COUNTRY_CODE[] = "country_code";
+    const char KEY_PEER_DOWN_SPEED[] = "dl_speed";
+    const char KEY_PEER_FILES[] = "files";
+    const char KEY_PEER_FLAGS[] = "flags";
+    const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
+    const char KEY_PEER_IP[] = "ip";
+    const char KEY_PEER_PORT[] = "port";
+    const char KEY_PEER_PROGRESS[] = "progress";
+    const char KEY_PEER_RELEVANCE[] = "relevance";
+    const char KEY_PEER_TOT_DOWN[] = "downloaded";
+    const char KEY_PEER_TOT_UP[] = "uploaded";
+    const char KEY_PEER_UP_SPEED[] = "up_speed";
+
+    // TransferInfo keys
+    const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+    const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
+    const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
+    const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
+    const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
+    const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
+    const char KEY_TRANSFER_UPDATA[] = "up_info_data";
+    const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
+    const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
+
+    // Statistics keys
+    const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
+    const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
+    const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
+    const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
+    const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
+    const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
+    const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
+    const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
+    const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
+    const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
+    const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
+    const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
+
+    const char KEY_FULL_UPDATE[] = "full_update";
+    const char KEY_RESPONSE_ID[] = "rid";
+    const char KEY_SUFFIX_REMOVED[] = "_removed";
+
     void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData);
     void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems);
     void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
