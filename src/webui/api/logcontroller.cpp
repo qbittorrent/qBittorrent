@@ -79,7 +79,7 @@ void LogController::mainAction()
               || (msg.type == Log::CRITICAL && isCritical)))
             continue;
 
-        msgList.append(QVariantMap {
+        msgList.append(QVariantHash {
             {KEY_LOG_ID, msg.id},
             {KEY_LOG_TIMESTAMP, msg.timestamp},
             {KEY_LOG_MSG_TYPE, msg.type},
@@ -113,7 +113,7 @@ void LogController::peersAction()
     QVariantList peerList;
 
     for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId))) {
-        peerList.append(QVariantMap {
+        peerList.append(QVariantHash {
             {KEY_LOG_ID, peer.id},
             {KEY_LOG_TIMESTAMP, peer.timestamp},
             {KEY_LOG_PEER_IP, peer.ip},

@@ -161,7 +161,7 @@ namespace
         const QString privateMsg {QCoreApplication::translate("TrackerListWidget", "This torrent is private")};
         const bool isTorrentPrivate = torrent->isPrivate();
 
-        const QVariantMap dht {
+        const QVariantHash dht {
             {KEY_TRACKER_URL, "** [DHT] **"},
             {KEY_TRACKER_TIER, ""},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
@@ -172,7 +172,7 @@ namespace
             {KEY_TRACKER_LEECHES_COUNT, leechesDHT}
         };
 
-        const QVariantMap pex {
+        const QVariantHash pex {
             {KEY_TRACKER_URL, "** [PeX] **"},
             {KEY_TRACKER_TIER, ""},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
@@ -183,7 +183,7 @@ namespace
             {KEY_TRACKER_LEECHES_COUNT, leechesPeX}
         };
 
-        const QVariantMap lsd {
+        const QVariantHash lsd {
             {KEY_TRACKER_URL, "** [LSD] **"},
             {KEY_TRACKER_TIER, ""},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
@@ -309,7 +309,7 @@ void TorrentsController::propertiesAction()
     checkParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QVariantMap dataDict;
+    QVariantHash dataDict;
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
@@ -358,7 +358,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
     dataDict[KEY_PROP_COMMENT] = torrent->comment();
 
-    setResult(QJsonObject::fromVariantMap(dataDict));
+    setResult(QJsonObject::fromVariantHash(dataDict));
 }
 
 // Returns the trackers for a torrent in JSON format.
@@ -387,7 +387,7 @@ void TorrentsController::trackersAction()
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
 
-        trackerList << QVariantMap {
+        trackerList << QVariantHash {
             {KEY_TRACKER_URL, tracker.url()},
             {KEY_TRACKER_TIER, tracker.tier()},
             {KEY_TRACKER_STATUS, static_cast<int>(tracker.status())},
@@ -417,7 +417,7 @@ void TorrentsController::webseedsAction()
         throw APIError(APIErrorType::NotFound);
 
     for (const QUrl &webseed : asConst(torrent->urlSeeds())) {
-        webSeedList.append(QVariantMap {
+        webSeedList.append(QVariantHash {
             {KEY_WEBSEED_URL, webseed.toString()}
         });
     }
@@ -451,7 +451,7 @@ void TorrentsController::filesAction()
         const QVector<qreal> fileAvailability = torrent->availableFileFractions();
         const BitTorrent::TorrentInfo info = torrent->info();
         for (int i = 0; i < torrent->filesCount(); ++i) {
-            QVariantMap fileDict = {
+            QVariantHash fileDict = {
                 {KEY_FILE_PROGRESS, fp[i]},
                 {KEY_FILE_PRIORITY, static_cast<int>(priorities[i])},
                 {KEY_FILE_SIZE, torrent->fileSize(i)},
@@ -743,7 +743,7 @@ void TorrentsController::uploadLimitAction()
     checkParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    QVariantMap map;
+    QVariantHash map;
     for (const QString &hash : hashes) {
         int limit = -1;
         const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
@@ -752,7 +752,7 @@ void TorrentsController::uploadLimitAction()
         map[hash] = limit;
     }
 
-    setResult(QJsonObject::fromVariantMap(map));
+    setResult(QJsonObject::fromVariantHash(map));
 }
 
 void TorrentsController::downloadLimitAction()
@@ -760,7 +760,7 @@ void TorrentsController::downloadLimitAction()
     checkParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    QVariantMap map;
+    QVariantHash map;
     for (const QString &hash : hashes) {
         int limit = -1;
         const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
@@ -769,7 +769,7 @@ void TorrentsController::downloadLimitAction()
         map[hash] = limit;
     }
 
-    setResult(QJsonObject::fromVariantMap(map));
+    setResult(QJsonObject::fromVariantHash(map));
 }
 
 void TorrentsController::setUploadLimitAction()
