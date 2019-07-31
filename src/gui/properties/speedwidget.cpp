@@ -75,7 +75,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("12 Hours"));
     m_periodCombobox->addItem(tr("24 Hours"));
 
-    connect(m_periodCombobox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_periodCombobox, qOverload<int>(&QComboBox::currentIndexChanged)
         , this, &SpeedWidget::onPeriodChange);
 
     m_graphsMenu = new QMenu(this);

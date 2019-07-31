@@ -25,7 +25,6 @@ deletionconfirmationdialog.h
 downloadfromurldialog.h
 executionlogwidget.h
 fspathedit.h
-fspathedit_p.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
 lineedit.h
@@ -34,6 +33,7 @@ mainwindow.h
 optionsdialog.h
 previewlistdelegate.h
 previewselectdialog.h
+private/fspathedit_p.h
 private/tristatewidget.h
 raisedmessagebox.h
 scanfoldersdelegate.h
@@ -77,7 +77,6 @@ cookiesmodel.cpp
 downloadfromurldialog.cpp
 executionlogwidget.cpp
 fspathedit.cpp
-fspathedit_p.cpp
 hidabletabwidget.cpp
 ipsubnetwhitelistoptionsdialog.cpp
 lineedit.cpp
@@ -86,6 +85,7 @@ mainwindow.cpp
 optionsdialog.cpp
 previewlistdelegate.cpp
 previewselectdialog.cpp
+private/fspathedit_p.cpp
 private/tristatewidget.cpp
 raisedmessagebox.cpp
 scanfoldersdelegate.cpp

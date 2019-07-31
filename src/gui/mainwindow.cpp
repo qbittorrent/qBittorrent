@@ -40,7 +40,6 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
-#include <QSysInfo>
 #include <QtGlobal>
 #include <QTimer>
 
@@ -253,10 +252,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerlessStateChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::changeTrackerless);
 
-    using Func = void (TransferListFiltersWidget::*)(BitTorrent::TorrentHandle *const, const QString &);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerSuccess, m_transferListFiltersWidget, static_cast<Func>(&TransferListFiltersWidget::trackerSuccess));
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerError, m_transferListFiltersWidget, static_cast<Func>(&TransferListFiltersWidget::trackerError));
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerWarning, m_transferListFiltersWidget, static_cast<Func>(&TransferListFiltersWidget::trackerWarning));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerSuccess
+        , m_transferListFiltersWidget, qOverload<BitTorrent::TorrentHandle *const, const QString &>(&TransferListFiltersWidget::trackerSuccess));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerError
+        , m_transferListFiltersWidget, qOverload<BitTorrent::TorrentHandle *const, const QString &>(&TransferListFiltersWidget::trackerError));
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerWarning
+        , m_transferListFiltersWidget, qOverload<BitTorrent::TorrentHandle *const, const QString &>(&TransferListFiltersWidget::trackerWarning));
 
 #ifdef Q_OS_MAC
     // Increase top spacing to avoid tab overlapping
@@ -856,17 +857,15 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionCloseWindow->setVisible(false);
 #endif
 
-    QShortcut *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
+    const auto *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
-
-    using Func = void (MainWindow::*)();
-    QShortcut *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
-    connect(switchSearchShortcut, &QShortcut::activated, this, static_cast<Func>(&MainWindow::displaySearchTab));
-    QShortcut *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
-    connect(switchRSSShortcut, &QShortcut::activated, this, static_cast<Func>(&MainWindow::displayRSSTab));
-    QShortcut *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
+    const auto *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
+    connect(switchSearchShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displaySearchTab));
+    const auto *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
+    connect(switchRSSShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displayRSSTab));
+    const auto *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
     connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
-    QShortcut *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
+    const auto *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
     connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
@@ -2003,9 +2002,7 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    const QString installerURL = ((QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-                                  ? "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe"
-                                  : "https://www.python.org/ftp/python/3.4.4/python-3.4.4.msi");
+    const QString installerURL = "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe";
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)
                 , this, &MainWindow::pythonDownloadFinished);
@@ -2026,14 +2023,8 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA) {
-        QFile::rename(result.filePath, result.filePath + ".exe");
-        installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
-    }
-    else {
-        QFile::rename(result.filePath, result.filePath + ".msi");
-        installer.start(Utils::Misc::windowsSystemPath() + "\\msiexec.exe /passive /i \"" + Utils::Fs::toNativePath(result.filePath) + ".msi\"");
-    }
+    QFile::rename(result.filePath, result.filePath + ".exe");
+    installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
 
     // Wait for setup to complete
     installer.waitForFinished(10 * 60 * 1000);
@@ -2041,11 +2032,10 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     qDebug("Installer stdout: %s", installer.readAllStandardOutput().data());
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
+
     // Delete temp file
-    if (QSysInfo::windowsVersion() >= QSysInfo::WV_VISTA)
-        Utils::Fs::forceRemove(result.filePath + ".exe");
-    else
-        Utils::Fs::forceRemove(result.filePath + ".msi");
+    Utils::Fs::forceRemove(result.filePath + ".exe");
+
     // Reload search engine
     if (Utils::ForeignApps::pythonInfo().isSupportedVersion()) {
         m_ui->actionSearchWidget->setChecked(true);

@@ -84,11 +84,6 @@ QString Private::DefaultProfile::dataLocation() const
 
 QString Private::DefaultProfile::downloadLocation() const
 {
-#if defined(Q_OS_WIN)
-    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
-        return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
-            QCoreApplication::translate("fsutils", "Downloads"));
-#endif
     return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 }
 

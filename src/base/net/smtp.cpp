@@ -113,7 +113,7 @@ Smtp::Smtp(QObject *parent)
 
     connect(m_socket, &QIODevice::readyRead, this, &Smtp::readyRead);
     connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
-    connect(m_socket, static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error)
+    connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QAbstractSocket::error)
             , this, &Smtp::error);
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
