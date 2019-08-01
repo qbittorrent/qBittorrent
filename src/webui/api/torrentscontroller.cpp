@@ -346,8 +346,8 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
     dataDict[KEY_PROP_ADDITION_DATE] = static_cast<double>(torrent->addedTime().toSecsSinceEpoch());
     if (torrent->hasMetadata()) {
-        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? static_cast<int>(torrent->lastSeenComplete().toTime_t()) : -1;
-        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? static_cast<int>(torrent->completedTime().toTime_t()) : -1;
+        dataDict[KEY_PROP_LAST_SEEN] = torrent->lastSeenComplete().isValid() ? torrent->lastSeenComplete().toSecsSinceEpoch() : -1;
+        dataDict[KEY_PROP_COMPLETION_DATE] = torrent->completedTime().isValid() ? torrent->completedTime().toSecsSinceEpoch() : -1;
         dataDict[KEY_PROP_CREATION_DATE] = static_cast<double>(torrent->creationDate().toSecsSinceEpoch());
     }
     else {

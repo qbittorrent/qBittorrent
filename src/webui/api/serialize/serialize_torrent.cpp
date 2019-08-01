@@ -106,8 +106,8 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},
-        {KEY_TORRENT_ADDED_ON, torrent.addedTime().toTime_t()},
-        {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toTime_t()},
+        {KEY_TORRENT_ADDED_ON, torrent.addedTime().toSecsSinceEpoch()},
+        {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
         {KEY_TORRENT_DL_LIMIT, torrent.downloadLimit()},
         {KEY_TORRENT_UP_LIMIT, torrent.uploadLimit()},
@@ -121,7 +121,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_MAX_SEEDING_TIME, torrent.maxSeedingTime()},
         {KEY_TORRENT_RATIO_LIMIT, torrent.ratioLimit()},
         {KEY_TORRENT_SEEDING_TIME_LIMIT, torrent.seedingTimeLimit()},
-        {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, torrent.lastSeenComplete().toTime_t()},
+        {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, torrent.lastSeenComplete().toSecsSinceEpoch()},
         {KEY_TORRENT_AUTO_TORRENT_MANAGEMENT, torrent.isAutoTMMEnabled()},
         {KEY_TORRENT_TIME_ACTIVE, torrent.activeTime()},
         {KEY_TORRENT_AVAILABILITY, torrent.distributedCopies()},
@@ -138,7 +138,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     else {
         QDateTime dt = QDateTime::currentDateTime();
         dt = dt.addSecs(-torrent.timeSinceActivity());
-        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toTime_t();
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toSecsSinceEpoch();
     }
 
     return ret;
