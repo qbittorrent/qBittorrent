@@ -29,6 +29,7 @@
 #include "logcontroller.h"
 
 #include <QJsonArray>
+#include <QJsonObject>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -70,7 +71,7 @@ void LogController::mainAction()
         lastKnownId = -1;
 
     Logger *const logger = Logger::instance();
-    QVariantList msgList;
+    QJsonArray msgList;
 
     for (const Log::Msg &msg : asConst(logger->getMessages(lastKnownId))) {
         if (!((msg.type == Log::NORMAL && isNormal)
@@ -79,7 +80,7 @@ void LogController::mainAction()
               || (msg.type == Log::CRITICAL && isCritical)))
             continue;
 
-        msgList.append(QVariantHash {
+        msgList.append(QJsonObject {
             {KEY_LOG_ID, msg.id},
             {KEY_LOG_TIMESTAMP, msg.timestamp},
             {KEY_LOG_MSG_TYPE, msg.type},
@@ -87,7 +88,7 @@ void LogController::mainAction()
         });
     }
 
-    setResult(QJsonArray::fromVariantList(msgList));
+    setResult(msgList);
 }
 
 // Returns the peer log in JSON format.
@@ -110,10 +111,10 @@ void LogController::peersAction()
         lastKnownId = -1;
 
     Logger *const logger = Logger::instance();
-    QVariantList peerList;
+    QJsonArray peerList;
 
     for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId))) {
-        peerList.append(QVariantHash {
+        peerList.append(QJsonObject {
             {KEY_LOG_ID, peer.id},
             {KEY_LOG_TIMESTAMP, peer.timestamp},
             {KEY_LOG_PEER_IP, peer.ip},
@@ -122,5 +123,5 @@ void LogController::peersAction()
         });
     }
 
-    setResult(QJsonArray::fromVariantList(peerList));
+    setResult(peerList);
 }
