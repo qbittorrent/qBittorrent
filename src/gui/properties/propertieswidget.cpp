@@ -495,7 +495,7 @@ void PropertiesWidget::loadUrlSeeds()
 {
     m_ui->listWebSeeds->clear();
     qDebug("Loading URL seeds");
-    const QList<QUrl> hcSeeds = m_torrent->urlSeeds();
+    const QVector<QUrl> hcSeeds = m_torrent->urlSeeds();
     // Add url seeds
     for (const QUrl &hcSeed : hcSeeds) {
         qDebug("Loading URL seed: %s", qUtf8Printable(hcSeed.toString()));
@@ -715,7 +715,7 @@ void PropertiesWidget::askWebSeed()
         return;
     }
     if (m_torrent)
-        m_torrent->addUrlSeeds(QList<QUrl>() << urlSeed);
+        m_torrent->addUrlSeeds({urlSeed});
     // Refresh the seeds list
     loadUrlSeeds();
 }
@@ -725,7 +725,9 @@ void PropertiesWidget::deleteSelectedUrlSeeds()
     const QList<QListWidgetItem *> selectedItems = m_ui->listWebSeeds->selectedItems();
     if (selectedItems.isEmpty()) return;
 
-    QList<QUrl> urlSeeds;
+    QVector<QUrl> urlSeeds;
+    urlSeeds.reserve(selectedItems.size());
+
     for (const QListWidgetItem *item : selectedItems)
         urlSeeds << item->text();
 
@@ -766,8 +768,8 @@ void PropertiesWidget::editWebSeed()
         return;
     }
 
-    m_torrent->removeUrlSeeds(QList<QUrl>() << oldSeed);
-    m_torrent->addUrlSeeds(QList<QUrl>() << newSeed);
+    m_torrent->removeUrlSeeds({oldSeed});
+    m_torrent->addUrlSeeds({newSeed});
     loadUrlSeeds();
 }
 

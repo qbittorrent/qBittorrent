@@ -37,7 +37,6 @@
 #include <libtorrent/torrent_status.hpp>
 
 #include <QHash>
-#include <QList>
 #include <QObject>
 #include <QQueue>
 #include <QSet>
@@ -263,7 +262,7 @@ namespace BitTorrent
         int queuePosition() const;
         QVector<TrackerEntry> trackers() const;
         QHash<QString, TrackerInfo> trackerInfos() const;
-        QList<QUrl> urlSeeds() const;
+        QVector<QUrl> urlSeeds() const;
         QString error() const;
         qlonglong totalDownload() const;
         qlonglong totalUpload() const;
@@ -288,7 +287,7 @@ namespace BitTorrent
         int downloadLimit() const;
         int uploadLimit() const;
         bool superSeeding() const;
-        QList<PeerInfo> peers() const;
+        QVector<PeerInfo> peers() const;
         QBitArray pieces() const;
         QBitArray downloadingPieces() const;
         QVector<int> pieceAvailability() const;
@@ -326,8 +325,8 @@ namespace BitTorrent
         void flushCache();
         void addTrackers(const QVector<TrackerEntry> &trackers);
         void replaceTrackers(const QVector<TrackerEntry> &trackers);
-        void addUrlSeeds(const QList<QUrl> &urlSeeds);
-        void removeUrlSeeds(const QList<QUrl> &urlSeeds);
+        void addUrlSeeds(const QVector<QUrl> &urlSeeds);
+        void removeUrlSeeds(const QVector<QUrl> &urlSeeds);
         bool connectPeer(const PeerAddress &peerAddress);
 
         QString toMagnetUri() const;

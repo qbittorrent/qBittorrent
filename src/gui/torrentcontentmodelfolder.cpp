@@ -43,7 +43,7 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, Torren
         m_name.chop(4);
 }
 
-TorrentContentModelFolder::TorrentContentModelFolder(const QList<QVariant> &data)
+TorrentContentModelFolder::TorrentContentModelFolder(const QVector<QVariant> &data)
     : TorrentContentModelItem(nullptr)
 {
     Q_ASSERT(data.size() == NB_COL);
@@ -67,7 +67,7 @@ void TorrentContentModelFolder::deleteAllChildren()
     m_childItems.clear();
 }
 
-const QList<TorrentContentModelItem *> &TorrentContentModelFolder::children() const
+const QVector<TorrentContentModelItem *> &TorrentContentModelFolder::children() const
 {
     return m_childItems;
 }

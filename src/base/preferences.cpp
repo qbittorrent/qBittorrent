@@ -528,17 +528,21 @@ void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
     setValue("Preferences/WebUI/AuthSubnetWhitelistEnabled", enabled);
 }
 
-QList<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
+QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 {
-    QList<Utils::Net::Subnet> subnets;
-    for (const QString &rawSubnet : asConst(value("Preferences/WebUI/AuthSubnetWhitelist").toStringList())) {
+    const QStringList subnets = value("Preferences/WebUI/AuthSubnetWhitelist").toStringList();
+
+    QVector<Utils::Net::Subnet> ret;
+    ret.reserve(subnets.size());
+
+    for (const QString &rawSubnet : subnets) {
         bool ok = false;
         const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
         if (ok)
-            subnets.append(subnet);
+            ret.append(subnet);
     }
 
-    return subnets;
+    return ret;
 }
 
 void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)

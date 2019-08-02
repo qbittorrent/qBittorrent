@@ -127,13 +127,16 @@ void SearchHandler::processFinished(const int exitcode)
 void SearchHandler::readSearchOutput()
 {
     QByteArray output = m_searchProcess->readAllStandardOutput();
-    output.replace("\r", "");
+    output.replace('\r', "");
+
     QList<QByteArray> lines = output.split('\n');
     if (!m_searchResultLineTruncated.isEmpty())
         lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
-    QList<SearchResult> searchResultList;
+    QVector<SearchResult> searchResultList;
+    searchResultList.reserve(lines.size());
+
     for (const QByteArray &line : asConst(lines)) {
         SearchResult searchResult;
         if (parseSearchResult(QString::fromUtf8(line), searchResult))
@@ -141,7 +144,8 @@ void SearchHandler::readSearchOutput()
     }
 
     if (!searchResultList.isEmpty()) {
-        m_results.append(searchResultList);
+        for (const SearchResult &result : searchResultList)
+            m_results.append(result);
         emit newSearchResults(searchResultList);
     }
 }

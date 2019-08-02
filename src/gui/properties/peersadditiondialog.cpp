@@ -48,7 +48,7 @@ PeersAdditionDialog::~PeersAdditionDialog()
     delete m_ui;
 }
 
-QList<BitTorrent::PeerAddress> PeersAdditionDialog::askForPeers(QWidget *parent)
+QVector<BitTorrent::PeerAddress> PeersAdditionDialog::askForPeers(QWidget *parent)
 {
     PeersAdditionDialog dlg(parent);
     dlg.exec();
