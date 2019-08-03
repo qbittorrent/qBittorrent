@@ -30,6 +30,7 @@ add_definitions(-DUNICODE
     -D_CRT_SECURE_NO_DEPRECATE
     -D_SCL_SECURE_NO_DEPRECATE
     -DNOMINMAX
+    -DBOOST_ALL_NO_LIB
 )
 
 # Enable if libtorrent was built with this flag defined

@@ -73,29 +73,29 @@ macro(qbt_set_compiler_options)
         string(APPEND CMAKE_C_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING}")
         string(APPEND CMAKE_CXX_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING} ${_GCC_COMMON_CXX_FLAGS_STRING}")
 
-        set(QBT_ADDITONAL_FLAGS "${_GCC_COMMON_C_AND_CXX_FLAGS_STRING}" CACHE STRING
-            "Additional qBittorent compile flags" FORCE)
-        set(QBT_ADDITONAL_CXX_FLAGS "${_GCC_COMMON_CXX_FLAGS_STRING}" CACHE STRING
-            "Additional qBittorent C++ compile flags" FORCE)
-
         # check whether we can enable -Og optimization for debug build
         # also let's enable -march=native for debug builds
         check_cxx_compiler_flag(-Og _DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
 
         if (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            string(APPEND CMAKE_C_FLAGS_DEBUG " -Og -g3 -march=native -pipe" )
-            string(APPEND CMAKE_CXX_FLAGS_DEBUG " -Og -g3 -march=native -pipe" )
+            set(QBT_ADDITONAL_FLAGS "-Og -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent compile flags")
+            set(QBT_ADDITONAL_CXX_FLAGS "-Og -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent C++ compile flags")
         else(_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            string(APPEND CMAKE_C_FLAGS_DEBUG " -O0 -g3 -march=native -pipe" )
-            string(APPEND CMAKE_CXX_FLAGS_DEBUG " -O0 -g3 -march=native -pipe" )
+            set(QBT_ADDITONAL_FLAGS "-O0 -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent compile flags")
+            set(QBT_ADDITONAL_CXX_FLAGS "-O0 -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent C++ compile flags")
         endif (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
     endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
         set(QBT_ADDITONAL_FLAGS "-wd4290 -wd4275 -wd4251 /W4" CACHE STRING "Additional qBittorent compile flags")
-        string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITONAL_FLAGS}")
-        string(APPEND CMAKE_CXX_FLAGS " ${QBT_ADDITONAL_FLAGS}")
     endif ()
+
+    string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITONAL_FLAGS}")
+    string(APPEND CMAKE_CXX_FLAGS " ${QBT_ADDITONAL_FLAGS}")
 
 # endif (NOT QBT_ADDITONAL_FLAGS)
 endmacro(qbt_set_compiler_options)
