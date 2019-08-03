@@ -32,7 +32,6 @@
 #include <libtorrent/peer_info.hpp>
 
 #include <QCoreApplication>
-#include <QHostAddress>
 
 class QBitArray;
 
