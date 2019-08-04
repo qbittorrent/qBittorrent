@@ -128,7 +128,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
 void Tracker::respondToAnnounceRequest()
 {
-    const QMap<QString, QByteArray> &queryParams = m_request.query;
+    const QHash<QString, QByteArray> &queryParams = m_request.query;
     TrackerAnnounceRequest announceReq;
 
     // IP
