@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>【%G】標籤（以英語逗號分開）</translation>
+        <translation type="vanished">【%G】標籤（以英語逗號分開）</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1040,6 +1040,10 @@
     <message>
         <source>When adding a torrent</source>
         <translation>加入Torrent時</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

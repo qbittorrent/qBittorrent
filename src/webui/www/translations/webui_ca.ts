@@ -876,7 +876,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Etiquetes (separades per comes)</translation>
+        <translation type="vanished">%G: Etiquetes (separades per comes)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1041,6 +1041,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>When adding a torrent</source>
         <translation>En afegir un torrent</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

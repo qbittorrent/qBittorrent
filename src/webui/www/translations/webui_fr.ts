@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Tags (séparés par des virgules)</translation>
+        <translation type="vanished">%G: Tags (séparés par des virgules)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1040,6 +1040,10 @@
     <message>
         <source>When adding a torrent</source>
         <translation>A l'ajout d'un torrent</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

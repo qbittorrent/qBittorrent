@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>Konum ayarla</translation>
+        <translation>Yeri ayarla</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Etiketler (virgülle ayrıldı)</translation>
+        <translation type="vanished">%G: Etiketler (virgülle ayrıldı)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1040,6 +1040,10 @@
     <message>
         <source>When adding a torrent</source>
         <translation>Bir torrent eklerken</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1957,7 +1961,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>Konum ayarla</translation>
+        <translation>Yeri ayarla</translation>
     </message>
     <message>
         <source>Force reannounce</source>

@@ -876,7 +876,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: etiquetas (separadas por coma)</translation>
+        <translation type="vanished">%G: etiquetas (separadas por coma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1041,6 +1041,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>When adding a torrent</source>
         <translation>Cando engada un torrent</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

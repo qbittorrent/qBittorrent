@@ -117,15 +117,15 @@
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>A maximális kapcsolatok számának 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>Maximális kapcsolatok számának 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>A maximális kapcsolatok számának torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>Maximális kapcsolatok számának torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>A maximális feltöltési szálak korlátnak torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>Maximális feltöltési szálak korlátnak torrentenként 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -149,11 +149,11 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>A bejövő kapcsolatokhoz használt portnak 1024 és 65535 közé kell esnie.</translation>
+        <translation>Bejövő kapcsolatokhoz használt portnak 1024 és 65535 közé kell esnie.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>A Web UI-hoz használt portnak 1024 és 65535 közé kell esnie.</translation>
+        <translation>Web UI-hoz használt portnak 1024 és 65535 közé kell esnie.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -318,7 +318,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>A Torrent inaktivitás időzítőjének nagyobbnak kell lennie mint 0.</translation>
+        <translation>Torrent inaktivitás időzítőjének nagyobbnak kell lennie mint 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -541,7 +541,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Ezen követők automatikus hozzáadása az új letöltésekhez:</translation>
+        <translation>Ezen trackerek automatikus hozzáadása az új letöltésekhez:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -593,7 +593,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>Torrentek hozzáadása innen:</translation>
+        <translation>Torrentek automatikus hozzáadása innen:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -697,7 +697,7 @@
     </message>
     <message>
         <source>Disable connections not supported by proxies</source>
-        <translation>A proxik által nem támogatott kapcsolatok tiltása</translation>
+        <translation>Proxik által nem támogatott kapcsolatok tiltása</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -819,7 +819,7 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>A lassú torrentek figyelmen kívül hagyása a korlátoknál</translation>
+        <translation>Lassú torrentek figyelmen kívül hagyása a korlátoknál</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Címkék (vesszővel elválasztva)</translation>
+        <translation type="vanished">%G: Címkék (vesszővel elválasztva)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -931,11 +931,11 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation>Engedélyezze a kereszt webhely kérelem hamisítás védelmét</translation>
+        <translation>Engedélyezze a kereszt webhely kérelem hamisítás védelmét (CSRF)</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation>Ezután törölje a .torrent fájlokat</translation>
+        <translation>Utána törölje a .torrent fájlokat</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -963,7 +963,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Az alternatív webes felhasználói felületfájlok helye nem lehet üres.</translation>
+        <translation>Alternatív webes felhasználói felületfájlok helye nem lehet üres.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1015,7 +1015,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation>másodpercek</translation>
+        <translation>másodperc</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1041,6 +1041,10 @@
         <source>When adding a torrent</source>
         <translation>Torrent hozzáadásakor</translation>
     </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1054,7 +1058,7 @@
     </message>
     <message>
         <source>Flags</source>
-        <translation>Flags</translation>
+        <translation>Zászlók</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -1135,7 +1139,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>Ügyfelek</translation>
+        <translation>Peerek</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1183,7 +1187,7 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Ügyfelek:</translation>
+        <translation>Peerek:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -1215,7 +1219,7 @@
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Újra kapcsolódás:</translation>
+        <translation>Újrakapcsolódás:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -1231,11 +1235,11 @@
     </message>
     <message>
         <source>Created By:</source>
-        <translation>Létrehozva általa:</translation>
+        <translation>Létrehozta:</translation>
     </message>
     <message>
         <source>Added On:</source>
-        <translation>Hozáadva</translation>
+        <translation>Hozzáadva:</translation>
     </message>
     <message>
         <source>Completed On:</source>
@@ -1269,12 +1273,12 @@
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation>%1 (maximum %2)</translation>
+        <translation>%1 (%2 max)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation>%1 (összes %2)</translation>
+        <translation>%1 (%2 összesen)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
@@ -1356,11 +1360,11 @@
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation>Összesített feltöltés</translation>
+        <translation>Összesített feltöltés:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation>Teljes pufferméret:</translation>
+        <translation>Teljes buffer méret:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -1387,7 +1391,7 @@
     <name>StatusBar</name>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: %1 csomó</translation>
+        <translation>DHT: %1 csomópont</translation>
     </message>
 </context>
 <context>
@@ -1570,12 +1574,12 @@
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Letöltés limit</translation>
+        <translation>Letöltés korlát</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Feltöltés limit</translation>
+        <translation>Feltöltés korlát</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -1620,7 +1624,7 @@
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Arány Korlát</translation>
+        <translation>Arány korlát</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -1670,11 +1674,11 @@
     </message>
     <message>
         <source>Working</source>
-        <translation>Dolgozik</translation>
+        <translation>Kapcsolódva</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Tiltva</translation>
+        <translation>Kikapcsolva</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -1686,7 +1690,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation>Nem Alkalmazható</translation>
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -1725,7 +1729,7 @@
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Tracker hozzáadása</translation>
+        <translation>Tracker hozzáadása ablak</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
@@ -1879,7 +1883,7 @@
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Legalúlra mozgat</translation>
+        <translation>Legalulra mozgat</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -1899,7 +1903,7 @@
     </message>
     <message>
         <source>Automatic Torrent Management</source>
-        <translation>Alapértelmezett torrentkezelés</translation>
+        <translation>Automatikus torrentkezelés</translation>
     </message>
     <message>
         <source>Category</source>
@@ -1913,7 +1917,7 @@
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation>Visszaállítás</translation>
+        <translation>Reset</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1937,7 +1941,7 @@
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation>Letöltés sorrendben</translation>
+        <translation>Letöltés egymás utáni sorrendben</translation>
     </message>
     <message>
         <source>Force Recheck</source>
@@ -1984,7 +1988,7 @@
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation>Nincs megosztási korlát</translation>
+        <translation>Ne állítson be megosztási korlátot</translation>
     </message>
     <message>
         <source>Set share limit to</source>
@@ -2120,7 +2124,7 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>A mentési útvonal üres</translation>
+        <translation>Mentési útvonal üres</translation>
     </message>
 </context>
 <context>
@@ -2131,7 +2135,7 @@
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation>Plugin elérési útja:</translation>
+        <translation>Bővítmény elérési útja:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
@@ -2139,7 +2143,7 @@
     </message>
     <message>
         <source>Install plugin</source>
-        <translation>Plugin telepítés</translation>
+        <translation>Bővítmény telepítés</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2154,7 +2158,7 @@
     </message>
     <message>
         <source>All plugins</source>
-        <translation>Minden modul</translation>
+        <translation>Minden bővítmény</translation>
     </message>
     <message>
         <source>Size:</source>
@@ -2162,7 +2166,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation>Leállítás</translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2170,7 +2174,7 @@
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>Kereső modulok...</translation>
+        <translation>Kereső bővítmények</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -2190,7 +2194,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>Találatok</translation>
+        <translation>Találatok:</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2210,7 +2214,7 @@
     </message>
     <message>
         <source>out of</source>
-        <translation>kívül</translation>
+        <translation>/</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -2237,7 +2241,7 @@
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation>Telepített kereső modulok:</translation>
+        <translation>Telepített keresőbővítmények:</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -2253,7 +2257,7 @@
     </message>
     <message>
         <source>Search plugins</source>
-        <translation>Kereső modulok</translation>
+        <translation>Keresőbővítmények</translation>
     </message>
 </context>
 <context>

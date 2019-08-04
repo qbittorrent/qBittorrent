@@ -874,10 +874,6 @@
         <translation>%L: 카테고리</translation>
     </message>
     <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: 컨텐츠 경로 (복수 파일 토런트에 대해 루트 경로와 같은)</translation>
     </message>
@@ -1039,6 +1035,10 @@
     </message>
     <message>
         <source>When adding a torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
         <translation type="unfinished" />
     </message>
 </context>

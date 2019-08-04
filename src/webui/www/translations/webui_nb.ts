@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Rediger kategori...</translation>
     </message>
 </context>
 <context>
@@ -310,15 +310,15 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Rediger</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Ledig plass: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Timer for Torrentaktivitet må være større enn 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -326,11 +326,11 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Terskel for nedlastingsfrekvens må være større enn 0.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent er avsluttet</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Filtrer torrentliste...</translation>
     </message>
     <message>
         <source>Search</source>
@@ -874,10 +874,6 @@
         <translation>%L: Kategori</translation>
     </message>
     <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Innholdsmappe (samme som rotmappe for flerfilstorrenter)</translation>
     </message>
@@ -923,7 +919,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -935,7 +931,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Slett .torrentfiler etterpå</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -947,11 +943,11 @@
     </message>
     <message>
         <source>Change current password</source>
-        <translation type="unfinished" />
+        <translation>Endre gjeldende passord</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Automatisk</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -971,7 +967,7 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Bytt torrent til manuell modus</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
@@ -991,7 +987,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation type="unfinished" />
+        <translation>Flytt torrent</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1039,6 +1035,10 @@
     </message>
     <message>
         <source>When adding a torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1283,11 +1283,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Nedlastingsgrense:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Opplastingsgrense:</translation>
     </message>
 </context>
 <context>
@@ -1360,7 +1360,7 @@
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation type="unfinished" />
+        <translation>Total bufferstørrelse:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -1678,7 +1678,7 @@
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished" />
+        <translation>Ikke kontaktet ennå</translation>
     </message>
     <message>
         <source>#</source>
@@ -1686,7 +1686,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -1745,7 +1745,7 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>Pauset</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -1765,7 +1765,7 @@
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>I kø</translation>
     </message>
     <message>
         <source>Errored</source>
@@ -1777,11 +1777,11 @@
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>Laster ned metadata</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Kontrollerer</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -1793,7 +1793,7 @@
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>Laster ned</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -1945,11 +1945,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Ny kategori</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Plassering</translation>
     </message>
     <message>
         <source>New name</source>
@@ -1957,7 +1957,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Angi plassering</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2174,11 +2174,11 @@
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Alle kategorier</translation>
     </message>
     <message>
         <source>Search in:</source>
-        <translation type="unfinished" />
+        <translation>Søk i:</translation>
     </message>
     <message>
         <source>Copy description page URL</source>
@@ -2194,11 +2194,11 @@
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Last ned</translation>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>Filter</translation>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -2241,15 +2241,15 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Aktivert</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished" />
+        <translation>Advarsel: Sørg for å overholde ditt lands opphavsrettslovgivning når du laster ned torrenter fra noen av disse søkemotorene.</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>Se etter oppdateringer</translation>
     </message>
     <message>
         <source>Search plugins</source>
@@ -2291,7 +2291,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Aktivert</translation>
     </message>
     <message>
         <source>Version</source>

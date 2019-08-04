@@ -875,7 +875,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Taggar (separerade med kommatecken)</translation>
+        <translation type="vanished">%G: Taggar (separerade med kommatecken)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1040,6 +1040,10 @@
     <message>
         <source>When adding a torrent</source>
         <translation>När en torrent läggs till</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1336,7 +1340,7 @@
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation>Genomsnittlig tid i kö:</translation>
+        <translation>Genomsnittlig kötid:</translation>
     </message>
     <message>
         <source>Connected peers:</source>

@@ -874,10 +874,6 @@
         <translation>%L: Категория</translation>
     </message>
     <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Местоположение на съдържанието (същото като местоположението на основната директория за торент с множество файлове)</translation>
     </message>
@@ -1039,6 +1035,10 @@
     </message>
     <message>
         <source>When adding a torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
         <translation type="unfinished" />
     </message>
 </context>
