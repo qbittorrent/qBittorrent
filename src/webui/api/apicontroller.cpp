@@ -28,6 +28,8 @@
 
 #include "apicontroller.h"
 
+#include <algorithm>
+
 #include <QJsonDocument>
 #include <QMetaObject>
 
@@ -69,9 +71,13 @@ const DataMap &APIController::data() const
 
 void APIController::checkParams(const QSet<QString> &requiredParams) const
 {
-    const QSet<QString> params {this->params().keys().toSet()};
+    const bool hasAllRequiredParams = std::all_of(requiredParams.cbegin(), requiredParams.cend()
+        , [this](const QString &requiredParam)
+    {
+        return params().contains(requiredParam);
+    });
 
-    if (!params.contains(requiredParams))
+    if (!hasAllRequiredParams)
         throw APIError(APIErrorType::BadParams);
 }
 
