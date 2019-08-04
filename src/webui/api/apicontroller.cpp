@@ -45,8 +45,8 @@ QVariant APIController::run(const QString &action, const StringMap &params, cons
     m_params = params;
     m_data = data;
 
-    const QString methodName {action + QLatin1String("Action")};
-    if (!QMetaObject::invokeMethod(this, methodName.toLatin1().constData()))
+    const QByteArray methodName = action.toLatin1() + "Action";
+    if (!QMetaObject::invokeMethod(this, methodName.constData()))
         throw APIError(APIErrorType::NotFound);
 
     return m_result;
