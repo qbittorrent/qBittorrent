@@ -29,6 +29,7 @@
 #include "logcontroller.h"
 
 #include <QJsonArray>
+#include <QJsonObject>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -70,7 +71,7 @@ void LogController::mainAction()
         lastKnownId = -1;
 
     Logger *const logger = Logger::instance();
-    QVariantList msgList;
+    QJsonArray msgList;
 
     for (const Log::Msg &msg : asConst(logger->getMessages(lastKnownId))) {
         if (!((msg.type == Log::NORMAL && isNormal)
@@ -78,15 +79,16 @@ void LogController::mainAction()
               || (msg.type == Log::WARNING && isWarning)
               || (msg.type == Log::CRITICAL && isCritical)))
             continue;
-        QVariantMap map;
-        map[KEY_LOG_ID] = msg.id;
-        map[KEY_LOG_TIMESTAMP] = msg.timestamp;
-        map[KEY_LOG_MSG_TYPE] = msg.type;
-        map[KEY_LOG_MSG_MESSAGE] = msg.message;
-        msgList.append(map);
+
+        msgList.append(QJsonObject {
+            {KEY_LOG_ID, msg.id},
+            {KEY_LOG_TIMESTAMP, msg.timestamp},
+            {KEY_LOG_MSG_TYPE, msg.type},
+            {KEY_LOG_MSG_MESSAGE, msg.message}
+        });
     }
 
-    setResult(QJsonArray::fromVariantList(msgList));
+    setResult(msgList);
 }
 
 // Returns the peer log in JSON format.
@@ -109,17 +111,17 @@ void LogController::peersAction()
         lastKnownId = -1;
 
     Logger *const logger = Logger::instance();
-    QVariantList peerList;
+    QJsonArray peerList;
 
     for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId))) {
-        QVariantMap map;
-        map[KEY_LOG_ID] = peer.id;
-        map[KEY_LOG_TIMESTAMP] = peer.timestamp;
-        map[KEY_LOG_PEER_IP] = peer.ip;
-        map[KEY_LOG_PEER_BLOCKED] = peer.blocked;
-        map[KEY_LOG_PEER_REASON] = peer.reason;
-        peerList.append(map);
+        peerList.append(QJsonObject {
+            {KEY_LOG_ID, peer.id},
+            {KEY_LOG_TIMESTAMP, peer.timestamp},
+            {KEY_LOG_PEER_IP, peer.ip},
+            {KEY_LOG_PEER_BLOCKED, peer.blocked},
+            {KEY_LOG_PEER_REASON, peer.reason}
+        });
     }
 
-    setResult(QJsonArray::fromVariantList(peerList));
+    setResult(peerList);
 }
