@@ -83,4 +83,5 @@ private slots:
     void setForceStartAction();
     void toggleSequentialDownloadAction();
     void toggleFirstLastPiecePrioAction();
+    void renameFileAction();
 };
