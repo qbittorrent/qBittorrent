@@ -153,7 +153,7 @@ const initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 420),
+            height: loadWindowHeight(id, 600),
             onResize: function() {
                 saveWindowSize(id);
             }
@@ -179,7 +179,7 @@ const initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 700),
-            height: loadWindowHeight(id, 500),
+            height: loadWindowHeight(id, 600),
             onResize: function() {
                 saveWindowSize(id);
             }
@@ -200,7 +200,7 @@ const initializeWindows = function() {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 260),
+            height: loadWindowHeight(id, 460),
             onResize: function() {
                 saveWindowSize(id);
             }
@@ -928,7 +928,7 @@ const initializeWindows = function() {
             toolbarURL: 'aboutToolbar.html',
             padding: 10,
             width: loadWindowWidth(id, 550),
-            height: loadWindowHeight(id, 290),
+            height: loadWindowHeight(id, 360),
             onResize: function() {
                 saveWindowSize(id);
             }
