@@ -129,7 +129,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
     if (iter != iconCache.end())
         return *iter;
 
-    const QIcon icon {getIconPath(iconPath)};
+    const QIcon icon {iconPath};
     iconCache[iconPath] = icon;
     return icon;
 }
