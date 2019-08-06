@@ -278,14 +278,19 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
     return ret;
 }
 
-QList<QUrl> TorrentInfo::urlSeeds() const
+QVector<QUrl> TorrentInfo::urlSeeds() const
 {
     if (!isValid()) return {};
 
-    QList<QUrl> urlSeeds;
-    for (const lt::web_seed_entry &webSeed : m_nativeInfo->web_seeds())
+    const std::vector<lt::web_seed_entry> &nativeWebSeeds = m_nativeInfo->web_seeds();
+
+    QVector<QUrl> urlSeeds;
+    urlSeeds.reserve(nativeWebSeeds.size());
+
+    for (const lt::web_seed_entry &webSeed : nativeWebSeeds) {
         if (webSeed.type == lt::web_seed_entry::url_seed)
             urlSeeds.append(QUrl(webSeed.url.c_str()));
+    }
 
     return urlSeeds;
 }

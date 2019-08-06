@@ -64,7 +64,7 @@ namespace Utils
                     || (addr == QHostAddress(QLatin1String("::ffff:127.0.0.1")));
         }
 
-        bool isIPInRange(const QHostAddress &addr, const QList<Subnet> &subnets)
+        bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets)
         {
             QHostAddress protocolEquivalentAddress;
             bool addrConversionOk = false;

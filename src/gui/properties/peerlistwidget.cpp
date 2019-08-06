@@ -239,7 +239,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
         const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
         connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
         {
-            const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
+            const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
             int peerCount = 0;
             for (const BitTorrent::PeerAddress &addr : peersList) {
                 if (torrent->connectPeer(addr)) {
@@ -336,7 +336,7 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
 {
     if (!torrent) return;
 
-    const QList<BitTorrent::PeerInfo> peers = torrent->peers();
+    const QVector<BitTorrent::PeerInfo> peers = torrent->peers();
     QSet<QString> oldPeersSet = m_peerItems.keys().toSet();
 
     for (const BitTorrent::PeerInfo &peer : peers) {

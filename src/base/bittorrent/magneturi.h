@@ -31,7 +31,6 @@
 
 #include <libtorrent/add_torrent_params.hpp>
 
-#include <QList>
 #include <QString>
 #include <QVector>
 
@@ -51,7 +50,7 @@ namespace BitTorrent
         InfoHash hash() const;
         QString name() const;
         QVector<TrackerEntry> trackers() const;
-        QList<QUrl> urlSeeds() const;
+        QVector<QUrl> urlSeeds() const;
         QString url() const;
 
         lt::add_torrent_params addTorrentParams() const;
@@ -62,7 +61,7 @@ namespace BitTorrent
         InfoHash m_hash;
         QString m_name;
         QVector<TrackerEntry> m_trackers;
-        QList<QUrl> m_urlSeeds;
+        QVector<QUrl> m_urlSeeds;
         lt::add_torrent_params m_addTorrentParams;
     };
 }

@@ -57,7 +57,7 @@ public:
     explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
     ~PluginSelectDialog() override;
 
-    QList<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
+    QVector<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
     QTreeWidgetItem *findItemWithID(const QString &id);
 
 protected:

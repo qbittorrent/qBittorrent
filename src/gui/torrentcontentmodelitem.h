@@ -29,7 +29,7 @@
 #ifndef TORRENTCONTENTMODELITEM_H
 #define TORRENTCONTENTMODELITEM_H
 
-#include <QList>
+#include <QVector>
 
 #include "base/bittorrent/downloadpriority.h"
 
@@ -83,7 +83,7 @@ public:
 protected:
     TorrentContentModelFolder *m_parentItem;
     // Root item members
-    QList<QVariant> m_itemData;
+    QVector<QVariant> m_itemData;
     // Non-root item members
     QString m_name;
     qulonglong m_size;

@@ -145,7 +145,7 @@ private:
 
     bool m_isLocalAuthEnabled;
     bool m_isAuthSubnetWhitelistEnabled;
-    QList<Utils::Net::Subnet> m_authSubnetWhitelist;
+    QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout;
 
     // security related

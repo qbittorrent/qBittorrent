@@ -32,6 +32,7 @@
 #include <QHostAddress>
 #include <QList>
 #include <QPair>
+#include <QVector>
 
 class QSslCertificate;
 class QSslKey;
@@ -47,7 +48,7 @@ namespace Utils
         Subnet parseSubnet(const QString &subnetStr, bool *ok = nullptr);
         bool canParseSubnet(const QString &subnetStr);
         bool isLoopbackAddress(const QHostAddress &addr);
-        bool isIPInRange(const QHostAddress &addr, const QList<Subnet> &subnets);
+        bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets);
         QString subnetToString(const Subnet &subnet);
 
         const int MAX_SSL_FILE_SIZE = 1024 * 1024;

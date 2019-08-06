@@ -33,7 +33,6 @@
 #include <libtorrent/version.hpp>
 
 #include <QCoreApplication>
-#include <QList>
 #include <QVector>
 
 #include "base/indexrange.h"
@@ -89,7 +88,7 @@ namespace BitTorrent
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
         QVector<TrackerEntry> trackers() const;
-        QList<QUrl> urlSeeds() const;
+        QVector<QUrl> urlSeeds() const;
         QByteArray metadata() const;
         QStringList filesForPiece(int pieceIndex) const;
         QVector<int> fileIndicesForPiece(int pieceIndex) const;

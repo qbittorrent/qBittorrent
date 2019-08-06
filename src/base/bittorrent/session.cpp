@@ -3409,14 +3409,14 @@ void Session::handleTorrentTrackersChanged(TorrentHandle *const torrent)
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds)
+void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QVector<QUrl> &newUrlSeeds)
 {
     torrent->saveResumeData();
     for (const QUrl &newUrlSeed : newUrlSeeds)
         LogMsg(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
 }
 
-void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds)
+void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QVector<QUrl> &urlSeeds)
 {
     torrent->saveResumeData();
     for (const QUrl &urlSeed : urlSeeds)
