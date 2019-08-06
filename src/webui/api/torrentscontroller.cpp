@@ -461,7 +461,7 @@ void TorrentsController::filesAction()
             QString fileName = torrent->filePath(i);
             if (fileName.endsWith(QB_EXT, Qt::CaseInsensitive))
                 fileName.chop(QB_EXT.size());
-            fileDict[KEY_FILE_NAME] = Utils::Fs::toNativePath(fileName);
+            fileDict[KEY_FILE_NAME] = Utils::Fs::toUniformPath(fileName);
 
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(i);
             fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};

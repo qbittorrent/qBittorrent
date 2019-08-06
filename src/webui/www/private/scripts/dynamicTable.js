@@ -468,7 +468,7 @@ const DynamicTable = new Class({
         }
         else {
             // Toggle sort order
-            this.reverseSort = this.reverseSort == '0' ? '1' : '0';
+            this.reverseSort = this.reverseSort === '0' ? '1' : '0';
             this.setSortedColumnIcon(column, null, (this.reverseSort === '1'));
         }
         localStorage.setItem('sorted_column_' + this.dynamicTableDivId, column);
@@ -627,7 +627,7 @@ const DynamicTable = new Class({
         filteredRows.sort(function(row1, row2) {
             const column = this.columns[this.sortedColumn];
             const res = column.compareRows(row1, row2);
-            if (this.reverseSort == '0')
+            if (this.reverseSort === '0')
                 return res;
             else
                 return -res;
@@ -883,19 +883,20 @@ const TorrentsTable = new Class({
 
             const img_path = 'images/skin/' + state + '.svg';
 
-            if (td.getChildren('img').length) {
+            if (td.getChildren('img').length > 0) {
                 const img = td.getChildren('img')[0];
                 if (img.src.indexOf(img_path) < 0) {
                     img.set('src', img_path);
                     img.set('title', state);
                 }
             }
-            else
+            else {
                 td.adopt(new Element('img', {
                     'src': img_path,
                     'class': 'stateIcon',
                     'title': state
                 }));
+            }
         };
 
         // status
@@ -1008,7 +1009,7 @@ const TorrentsTable = new Class({
             if (progressFormated == 100.0 && progress != 1.0)
                 progressFormated = 99.9;
 
-            if (td.getChildren('div').length) {
+            if (td.getChildren('div').length > 0) {
                 const div = td.getChildren('div')[0];
                 if (td.resized) {
                     td.resized = false;
@@ -1314,7 +1315,7 @@ const TorrentsTable = new Class({
         filteredRows.sort(function(row1, row2) {
             const column = this.columns[this.sortedColumn];
             const res = column.compareRows(row1, row2);
-            if (this.reverseSort == '0')
+            if (this.reverseSort === '0')
                 return res;
             else
                 return -res;
@@ -1379,14 +1380,14 @@ const TorrentPeersTable = new Class({
             const country_code = this.getRowValue(row, 1);
 
             if (!country_code) {
-                if (td.getChildren('img').length)
+                if (td.getChildren('img').length > 0)
                     td.getChildren('img')[0].dispose();
                 return;
             }
 
             const img_path = 'images/flags/' + country_code + '.svg';
 
-            if (td.getChildren('img').length) {
+            if (td.getChildren('img').length > 0) {
                 const img = td.getChildren('img')[0];
                 img.set('src', img_path);
                 img.set('class', 'flags');
@@ -1566,12 +1567,12 @@ const SearchResultsTable = new Class({
         const seedsFilters = getSeedsFilters();
         const searchInTorrentName = $('searchInTorrentName').get('value') === "names";
 
-        if (searchInTorrentName || filterTerms.length || (searchSizeFilter.min > 0.00) || (searchSizeFilter.max > 0.00)) {
+        if (searchInTorrentName || (filterTerms.length > 0) || (searchSizeFilter.min > 0.00) || (searchSizeFilter.max > 0.00)) {
             for (let i = 0; i < rows.length; ++i) {
                 const row = rows[i];
 
                 if (searchInTorrentName && !containsAll(row.full_data.fileName, searchTerms)) continue;
-                if (filterTerms.length && !containsAll(row.full_data.fileName, filterTerms)) continue;
+                if ((filterTerms.length > 0) && !containsAll(row.full_data.fileName, filterTerms)) continue;
                 if ((sizeFilters.min > 0.00) && (row.full_data.fileSize < sizeFilters.min)) continue;
                 if ((sizeFilters.max > 0.00) && (row.full_data.fileSize > sizeFilters.max)) continue;
                 if ((seedsFilters.min > 0) && (row.full_data.nbSeeders < seedsFilters.min)) continue;
@@ -1587,7 +1588,7 @@ const SearchResultsTable = new Class({
         filteredRows.sort(function(row1, row2) {
             const column = this.columns[this.sortedColumn];
             const res = column.compareRows(row1, row2);
-            if (this.reverseSort == '0')
+            if (this.reverseSort === '0')
                 return res;
             else
                 return -res;
@@ -1663,6 +1664,65 @@ const TorrentTrackersTable = new Class({
 const TorrentFilesTable = new Class({
     Extends: DynamicTable,
 
+    filterTerms: [],
+    prevFilterTerms: [],
+    prevRowsString: null,
+    prevFilteredRows: [],
+    prevSortedColumn: null,
+    prevReverseSort: null,
+    fileTree: new FileTree(),
+
+    populateTable: function(root) {
+        this.fileTree.setRoot(root);
+        root.children.each(function(node) {
+            this._addNodeToTable(node, 0);
+        }.bind(this));
+    },
+
+    _addNodeToTable: function(node, depth) {
+        node.depth = depth;
+
+        if (node.isFolder) {
+            const data = {
+                rowId: node.rowId,
+                size: node.size,
+                checked: node.checked,
+                remaining: node.remaining,
+                progress: node.progress,
+                priority: normalizePriority(node.priority),
+                availability: node.availability,
+                fileId: -1,
+                name: node.name
+            };
+
+            node.data = data;
+            node.full_data = data;
+            this.updateRowData(data);
+        }
+        else {
+            node.data.rowId = node.rowId;
+            node.full_data = node.data;
+            this.updateRowData(node.data);
+        }
+
+        node.children.each(function(child) {
+            this._addNodeToTable(child, depth + 1);
+        }.bind(this));
+    },
+
+    getRoot: function() {
+        return this.fileTree.getRoot();
+    },
+
+    getNode: function(rowId) {
+        return this.fileTree.getNode(rowId);
+    },
+
+    getRow: function(node) {
+        const rowId = this.fileTree.getRowId(node);
+        return this.rows.get(rowId);
+    },
+
     initColumns: function() {
         this.newColumn('checked', '', '', 50, true);
         this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]', 300, true);
@@ -1676,6 +1736,7 @@ const TorrentFilesTable = new Class({
     },
 
     initColumnsFunctions: function() {
+        const that = this;
         const displaySize = function(td, row) {
             const size = friendlyUnit(this.getRowValue(row), false);
             td.set('html', size);
@@ -1685,6 +1746,60 @@ const TorrentFilesTable = new Class({
             const value = friendlyPercentage(this.getRowValue(row));
             td.set('html', value);
             td.set('title', value);
+        };
+
+        this.columns['name'].updateTd = function(td, row) {
+            const id = row.rowId;
+            const fileNameId = 'filesTablefileName' + id;
+            const node = that.getNode(id);
+
+            if (node.isFolder) {
+                const value = this.getRowValue(row);
+                const collapseIconId = 'filesTableCollapseIcon' + id;
+                const dirImgId = 'filesTableDirImg' + id;
+                if ($(dirImgId)) {
+                    // just update file name
+                    $(fileNameId).textContent = escapeHtml(value);
+                }
+                else {
+                    const collapseIcon = new Element('img', {
+                        src: 'images/qbt-theme/go-down.svg',
+                        styles: {
+                            'margin-left': (node.depth * 20)
+                        },
+                        class: "filesTableCollapseIcon",
+                        id: collapseIconId,
+                        "data-id": id,
+                        onclick: "collapseIconClicked(this)"
+                    });
+                    const span = new Element('span', {
+                        text: escapeHtml(value),
+                        id: fileNameId
+                    });
+                    const dirImg = new Element('img', {
+                        src: 'images/qbt-theme/inode-directory.svg',
+                        styles: {
+                            'width': 15,
+                            'padding-right': 5,
+                            'margin-bottom': -3
+                        },
+                        id: dirImgId
+                    });
+                    const html = collapseIcon.outerHTML + dirImg.outerHTML + span.outerHTML;
+                    td.set('html', html);
+                }
+            }
+            else {
+                const value = this.getRowValue(row);
+                const span = new Element('span', {
+                    text: escapeHtml(value),
+                    id: fileNameId,
+                    styles: {
+                        'margin-left': ((node.depth + 1) * 20)
+                    }
+                });
+                td.set('html', span.outerHTML);
+            }
         };
 
         this.columns['checked'].updateTd = function(td, row) {
@@ -1697,9 +1812,11 @@ const TorrentFilesTable = new Class({
             else {
                 const treeImg = new Element('img', {
                     src: 'images/L.gif',
-                    style: 'margin-bottom: -2px'
+                    styles: {
+                        'margin-bottom': -2
+                    }
                 });
-                td.adopt(treeImg, createDownloadCheckbox(row.rowId, value));
+                td.adopt(treeImg, createDownloadCheckbox(id, row.full_data.fileId, value));
             }
         };
 
@@ -1712,8 +1829,8 @@ const TorrentFilesTable = new Class({
             const progressBar = $('pbf_' + id);
             if (progressBar === null) {
                 td.adopt(new ProgressBar(value.toFloat(), {
-                    'id': 'pbf_' + id,
-                    'width': 80
+                    id: 'pbf_' + id,
+                    width: 80
                 }));
             }
             else {
@@ -1728,11 +1845,155 @@ const TorrentFilesTable = new Class({
             if (isPriorityComboExists(id))
                 updatePriorityCombo(id, value);
             else
-                td.adopt(createPriorityCombo(id, value));
+                td.adopt(createPriorityCombo(id, row.full_data.fileId, value));
         };
 
         this.columns['remaining'].updateTd = displaySize;
         this.columns['availability'].updateTd = displayPercentage;
+    },
+
+    altRow: function() {
+        let addClass = false;
+        const trs = this.tableBody.getElements('tr');
+        trs.each(function(tr) {
+            if (tr.hasClass("invisible"))
+                return;
+
+            if (addClass){
+                tr.addClass("alt");
+                tr.removeClass("nonAlt");
+            }
+            else {
+                tr.removeClass("alt");
+                tr.addClass("nonAlt");
+            }
+            addClass = !addClass;
+        }.bind(this));
+    },
+
+    _sortNodesByColumn: function(nodes, column) {
+        nodes.sort(function(row1, row2) {
+            // list folders before files when sorting by name
+            if (column.name === "name") {
+                const node1 = this.getNode(row1.data.rowId);
+                const node2 = this.getNode(row2.data.rowId);
+                if (node1.isFolder && !node2.isFolder)
+                    return -1;
+                if (node2.isFolder && !node1.isFolder)
+                    return 1;
+            }
+
+            const res = column.compareRows(row1, row2);
+            return (this.reverseSort === '0') ? res : -res;
+        }.bind(this));
+
+        nodes.each(function(node) {
+            if (node.children.length > 0)
+                this._sortNodesByColumn(node.children, column);
+        }.bind(this));
+    },
+
+    _filterNodes: function(node, filterTerms, filteredRows) {
+        if (node.isFolder) {
+            const childAdded = node.children.reduce(function (acc, child) {
+                // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
+                return (this._filterNodes(child, filterTerms, filteredRows) || acc);
+            }.bind(this), false);
+
+            if (childAdded) {
+                const row = this.getRow(node);
+                filteredRows.push(row);
+                return true;
+            }
+        }
+
+        const lowercaseName = node.name.toLowerCase();
+        const matchesFilter = filterTerms.every(function(term) {
+            return (lowercaseName.indexOf(term) !== -1);
+        });
+
+        if (matchesFilter) {
+            const row = this.getRow(node);
+            filteredRows.push(row);
+            return true;
+        }
+
+        return false;
+    },
+
+    setFilter: function(text) {
+        const filterTerms = text.trim().toLowerCase().split(' ');
+        if ((filterTerms.length === 1) && (filterTerms[0] === ''))
+            this.filterTerms = [];
+        else
+            this.filterTerms = filterTerms;
+    },
+
+    getFilteredAndSortedRows: function() {
+        if (this.getRoot() === null)
+            return [];
+
+        const generateRowsSignature = function(rows) {
+            const rowsData = rows.map(function(row) {
+                return row.full_data;
+            });
+            return JSON.stringify(rowsData);
+        };
+
+        const getFilteredRows = function() {
+            if (this.filterTerms.length === 0) {
+                const nodeArray = this.fileTree.toArray();
+                const filteredRows = nodeArray.map(function(node) {
+                    return this.getRow(node);
+                }.bind(this));
+                return filteredRows;
+            }
+
+            const filteredRows = [];
+            this.getRoot().children.each(function(child) {
+                this._filterNodes(child, this.filterTerms, filteredRows);
+            }.bind(this));
+            filteredRows.reverse();
+            return filteredRows;
+        }.bind(this);
+
+        const hasRowsChanged = function(rowsString, prevRowsStringString) {
+            const rowsChanged = (rowsString !== prevRowsStringString);
+            const isFilterTermsChanged = this.filterTerms.reduce(function(acc, term, index) {
+                return (acc || (term !== this.prevFilterTerms[index]));
+            }.bind(this), false);
+            const isFilterChanged = ((this.filterTerms.length !== this.prevFilterTerms.length)
+                || ((this.filterTerms.length > 0) && isFilterTermsChanged));
+            const isSortedColumnChanged = (this.prevSortedColumn !== this.sortedColumn);
+            const isReverseSortChanged = (this.prevReverseSort !== this.reverseSort);
+
+            return (rowsChanged || isFilterChanged || isSortedColumnChanged || isReverseSortChanged);
+        }.bind(this);
+
+        const rowsString = generateRowsSignature(this.rows);
+        if (!hasRowsChanged(rowsString, this.prevRowsString)) {
+            return this.prevFilteredRows;
+        }
+
+        // sort, then filter
+        const column = this.columns[this.sortedColumn];
+        this._sortNodesByColumn(this.getRoot().children, column);
+        const filteredRows = getFilteredRows();
+
+        this.prevFilterTerms = this.filterTerms;
+        this.prevRowsString = rowsString;
+        this.prevFilteredRows = filteredRows;
+        this.prevSortedColumn = this.sortedColumn;
+        this.prevReverseSort = this.reverseSort;
+        return filteredRows;
+    },
+
+    setIgnored: function(rowId, ignore) {
+        const row = this.rows.get(rowId);
+        if (ignore)
+            row.full_data.remaining = 0;
+        else
+            row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
     }
 });
 
