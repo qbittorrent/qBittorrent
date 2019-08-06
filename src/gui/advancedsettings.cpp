@@ -462,12 +462,6 @@ void AdvancedSettings::loadAdvancedSettings()
     bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
     for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces())) {
-        // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
-        // Tested in Qt 5.6.0. For more info see:
-        // https://github.com/qbittorrent/qBittorrent/issues/5131
-        // https://github.com/qbittorrent/qBittorrent/pull/5135
-        if (iface.addressEntries().isEmpty()) continue;
-
         m_comboBoxInterface.addItem(iface.humanReadableName(), iface.name());
         if (!currentInterface.isEmpty() && (iface.name() == currentInterface)) {
             m_comboBoxInterface.setCurrentIndex(i);
