@@ -987,13 +987,22 @@ const TorrentsTable = new Class({
             else return 0;
         };
 
-        // name, category
+        // name, category, tags
         this.columns['name'].updateTd = function(td, row) {
             const name = escapeHtml(this.getRowValue(row))
             td.set('html', name);
             td.set('title', name);
         };
         this.columns['category'].updateTd = this.columns['name'].updateTd;
+        this.columns['tags'].updateTd = this.columns['name'].updateTd;
+
+        this.columns['name'].compareRows = function(row1, row2) {
+            const row1Val = this.getRowValue(row1);
+            const row2Val = this.getRowValue(row2);
+            return row1Val.localeCompare(row2Val, undefined, {numeric: true, sensitivity: 'base'});
+        };
+        this.columns['category'].compareRows = this.columns['name'].compareRows;
+        this.columns['tags'].compareRows = this.columns['name'].compareRows;
 
         // size
         this.columns['size'].updateTd = function(td, row) {
@@ -1097,9 +1106,6 @@ const TorrentsTable = new Class({
             td.set('html', string);
             td.set('title', string);
         };
-
-        // tags
-        this.columns['tags'].updateTd = this.columns['name'].updateTd;
 
         // added on
         this.columns['added_on'].updateTd = function(td, row) {
