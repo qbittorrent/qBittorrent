@@ -1,6 +1,6 @@
 (function () {
     var modalTemplate =
-        '<div data-bind="tabs: [new ko.tab(\'Auto download\', \'rules-template\', rules), new ko.tab(\'Feeds\', \'feeds-template\', feeds)]"></div>\
+        '<div data-bind="tabs: [new ko.tab(\'Feeds\', \'manage-feeds-template\', feeds), new ko.tab(\'Auto download\', \'rules-template\', rules), new ko.tab(\'Browse Feeds\', \'feeds-template\', feeds)]"></div>\
  <script id="rules-template" type="text/html">\
    <select data-name="rules"></select>\
    <button data-name="addRule">Add</button>\
@@ -24,8 +24,18 @@
         <h2><!--ko text: name --><!--/ko--><a data-name="anySelected" data-bind="click: downloadSelected" style="float:right;"><img class="MyMenuIcon" alt="Add Torrent Link..." src="images/qbt-theme/insert-link.svg" width="32" height="32"></a></h2>\
         <ul data-name="torrents"><li><label data-bind="attr: { title: date.toLocaleString() }"><input data-name="selected"></input> <!--ko text: name --><!--/ko--> </label></li></ul>\
     </div>\
-</script>';
-    
+</script>\
+<script id="manage-feeds-template" type="text/html">\
+<span style="color: red;">Beta feature, please refresh UI after altering feed</span>\
+<h3>New feed</h3>\
+<label>Url</label><input data-name="url" />\
+<label>Path (optional)</label><input data-name="path" />\
+<button data-name="addNewFeed">Add</button>\
+<h3>Feeds</h3>\
+<ul data-name="feeds">\
+    <li><input data-name="newName"/> <button data-name="moveFeed">Rename</button> <button data-name="delete">Delete</button></li>\
+</ul>\
+</script>';    
     var button = new Element("a", { html: "<img class='mochaToolButton' title='RSS Rules' src='images/qbt-theme/rss-config.png' alt='RSS Rules' width='24' height='24'/>" });
     button.setAttribute("data-bind", "click: showRss");
     button.setAttribute("class", "divider");
@@ -77,15 +87,63 @@
 
     var FeedsModel = function() {
         this.feeds = ko.observable(feeds.map(f => new FeedDownloadsModel(f)));
+        this.url = ko.observable();
+        this.path = ko.observable();     
+
+        this.canAddNewFeed = ko.computed(() => this.url(), this);
     };
+
+    FeedsModel.prototype = {
+        addNewFeed: function () {
+            var feed = { url: this.url() };
+            if (this.path()) {
+                feed.path = this.path();
+            }
+
+            var url = new URI('api/v2/rss/addFeed');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: feed  
+            }).send();
+        }
+    }
 
     var FeedDownloadsModel = function(feed) {
         this.name = feed.name;
+        this.newName = ko.observable(feed.name);
+        this.canMoveFeed = ko.computed(() => this.name !== this.newName());
+
         this.torrents = feed.data.articles.map(a => new Torrent(a)).sort((a, b) => b.date - a.date);
         this.anySelected = ko.computed(() => this.torrents.find(t => t.selected()) != null);
     };
 
     FeedDownloadsModel.prototype = {
+        moveFeed: function() {
+            if(!confirm(`Are you sure that you want to rename '${this.name}' to '${this.newName()}'?`)) return;
+
+            var url = new URI('api/v2/rss/moveItem');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: { itemPath: this.name, destPath: this.newName() }
+            }).send();
+        },
+        delete: function() {
+            if (!confirm(`Really delete feed '${this.name}'?`)) return;
+
+            var url = new URI('api/v2/rss/removeItem');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: { path: this.name }
+            }).send();
+
+
+        },
         downloadSelected: function() {
             var urls = this.torrents.filter(t => t.selected()).map(t => encodeURIComponent(t.downloadLink));
             showDownloadPage(urls);
@@ -119,7 +177,7 @@
             }).send();
         },
         addRule: function () {
-            this.rules.push(new Rule("Untitled", { enabled: false, mustContain: "", mustNotContain: "", savePath: "", affectedFeeds: [] }));
+            this.rules.push(new Rule("Untitled", { enabled: false, mustContain: "", mustNotContain: "", savePath: "", ignoreDays: 0, affectedFeeds: [] }));
         },
         deleteSelectedRule: function () {
             var rule = this.selectedRule();
