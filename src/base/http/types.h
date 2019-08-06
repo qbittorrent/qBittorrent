@@ -98,8 +98,8 @@ namespace Http
         QString method;
         QString path;
         QStringMap headers;
-        QMap<QString, QByteArray> query;
-        QStringMap posts;
+        QHash<QString, QByteArray> query;
+        QHash<QString, QString> posts;
         QVector<UploadedFile> files;
     };
 

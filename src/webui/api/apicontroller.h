@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QMap>
+#include <QHash>
 #include <QObject>
 #include <QSet>
 #include <QVariant>
@@ -36,8 +36,9 @@
 class QString;
 
 struct ISessionManager;
-using StringMap = QMap<QString, QString>;
-using DataMap = QMap<QString, QByteArray>;
+
+using DataMap = QHash<QString, QByteArray>;
+using StringMap = QHash<QString, QString>;
 
 class APIController : public QObject
 {
