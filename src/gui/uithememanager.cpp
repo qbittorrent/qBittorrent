@@ -124,12 +124,13 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 #endif
     // cache to avoid rescaling svg icons
     static QHash<QString, QIcon> iconCache;
-    const auto iter = iconCache.find(iconId);
+    const QString iconPath = getIconPath(iconId);
+    const auto iter = iconCache.find(iconPath);
     if (iter != iconCache.end())
         return *iter;
 
-    const QIcon icon {getIconPath(iconId)};
-    iconCache[iconId] = icon;
+    const QIcon icon {getIconPath(iconPath)};
+    iconCache[iconPath] = icon;
     return icon;
 }
 
@@ -156,22 +157,25 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
     }
 #endif
 
-    QString iconPath = m_iconMap[iconId].toString();
+    const auto iter = m_iconMap.find(iconId);
+    QString iconPath = iter != m_iconMap.end() ? iter->toString() : QString{};
     QString iconIdPattern = iconId;
     while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
         const int sepIndex = iconIdPattern.indexOf('.');
         iconIdPattern = "*" + (sepIndex == -1 ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
-        iconPath = m_iconMap[iconIdPattern].toString();
+        const auto iter = m_iconMap.find(iconIdPattern);
+        if (iter != m_iconMap.end())
+            iconPath = iter->toString();
         iconIdPattern.remove(0, 2);
     }
-    if (!iconIdPattern.isEmpty())
-        m_iconMap[iconIdPattern] = iconPath;
 
-    if (iconPath.isEmpty())
+    if (iconPath.isEmpty()) {
         LogMsg(tr("Can't resolve icon id - %1").arg(iconId), Log::WARNING);
+        return {};
+    }
     iconPath = m_iconsDir + iconPath;
 
-    if (iconPath.lastIndexOf('.') > iconPath.lastIndexOf('/')) {
+    if (iconPath.lastIndexOf('.') != -1) {
         // resolved name already has an extension
         if (QFile::exists(iconPath))
             return iconPath;
