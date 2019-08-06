@@ -475,10 +475,12 @@ void TorrentHandle::replaceTrackers(const QVector<TrackerEntry> &trackers)
     }
 }
 
-QList<QUrl> TorrentHandle::urlSeeds() const
+QVector<QUrl> TorrentHandle::urlSeeds() const
 {
-    QList<QUrl> urlSeeds;
     const std::set<std::string> seeds = m_nativeHandle.url_seeds();
+
+    QVector<QUrl> urlSeeds;
+    urlSeeds.reserve(seeds.size());
 
     for (const std::string &urlSeed : seeds)
         urlSeeds.append(QUrl(urlSeed.c_str()));
@@ -486,9 +488,10 @@ QList<QUrl> TorrentHandle::urlSeeds() const
     return urlSeeds;
 }
 
-void TorrentHandle::addUrlSeeds(const QList<QUrl> &urlSeeds)
+void TorrentHandle::addUrlSeeds(const QVector<QUrl> &urlSeeds)
 {
-    QList<QUrl> addedUrlSeeds;
+    QVector<QUrl> addedUrlSeeds;
+    addedUrlSeeds.reserve(urlSeeds.size());
     for (const QUrl &urlSeed : urlSeeds) {
         if (addUrlSeed(urlSeed))
             addedUrlSeeds << urlSeed;
@@ -498,9 +501,10 @@ void TorrentHandle::addUrlSeeds(const QList<QUrl> &urlSeeds)
         m_session->handleTorrentUrlSeedsAdded(this, addedUrlSeeds);
 }
 
-void TorrentHandle::removeUrlSeeds(const QList<QUrl> &urlSeeds)
+void TorrentHandle::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 {
-    QList<QUrl> removedUrlSeeds;
+    QVector<QUrl> removedUrlSeeds;
+    removedUrlSeeds.reserve(urlSeeds.size());
     for (const QUrl &urlSeed : urlSeeds) {
         if (removeUrlSeed(urlSeed))
             removedUrlSeeds << urlSeed;
@@ -512,7 +516,7 @@ void TorrentHandle::removeUrlSeeds(const QList<QUrl> &urlSeeds)
 
 bool TorrentHandle::addUrlSeed(const QUrl &urlSeed)
 {
-    QList<QUrl> seeds = urlSeeds();
+    const QVector<QUrl> seeds = urlSeeds();
     if (seeds.contains(urlSeed)) return false;
 
     m_nativeHandle.add_url_seed(urlSeed.toString().toStdString());
@@ -521,7 +525,7 @@ bool TorrentHandle::addUrlSeed(const QUrl &urlSeed)
 
 bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
 {
-    QList<QUrl> seeds = urlSeeds();
+    const QVector<QUrl> seeds = urlSeeds();
     if (!seeds.contains(urlSeed)) return false;
 
     m_nativeHandle.remove_url_seed(urlSeed.toString().toStdString());
@@ -1170,16 +1174,15 @@ bool TorrentHandle::superSeeding() const
 #endif
 }
 
-QList<PeerInfo> TorrentHandle::peers() const
+QVector<PeerInfo> TorrentHandle::peers() const
 {
-    QList<PeerInfo> peers;
     std::vector<lt::peer_info> nativePeers;
-
     m_nativeHandle.get_peer_info(nativePeers);
 
+    QVector<PeerInfo> peers;
+    peers.reserve(nativePeers.size());
     for (const lt::peer_info &peer : nativePeers)
         peers << PeerInfo(this, peer);
-
     return peers;
 }
 
@@ -1526,8 +1529,6 @@ void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
 
 void TorrentHandle::renameFile(const int index, const QString &name)
 {
-    if (m_startupState != Started) return;
-
     m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     m_nativeHandle.rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(name).toStdString());
@@ -1803,7 +1804,7 @@ void TorrentHandle::handleSaveResumeDataFailedAlert(const lt::save_resume_data_f
     }
     else {
         LogMsg(tr("Save resume data failed. Torrent: \"%1\", error: \"%2\"")
-            .arg(name(), QString::fromStdString(p->error.message())), Log::CRITICAL);
+            .arg(name(), QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
         m_session->handleTorrentResumeDataFailed(this);
     }
 }
@@ -1873,7 +1874,7 @@ void TorrentHandle::handleFileRenameFailedAlert(const lt::file_rename_failed_ale
 {
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
         .arg(name(), filePath(LTUnderlyingType<LTFileIndex> {p->index})
-             , QString::fromStdString(p->error.message())), Log::WARNING);
+             , QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
 
     m_oldPath[p->index].removeFirst();
     if (m_oldPath[p->index].isEmpty())

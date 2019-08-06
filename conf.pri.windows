@@ -35,17 +35,11 @@ LIBS += zlib.lib
 #LIBS += libcrypto libssl
 #LIBS += libz
 
-DEFINES += NTDDI_VERSION=0x05010000
-DEFINES += _WIN32_WINNT=0x0501
-DEFINES += _WIN32_IE=0x0501
-
 # Disable to use Boost auto-linking
 DEFINES += BOOST_ALL_NO_LIB
 # Use one of the following options
 DEFINES += BOOST_SYSTEM_STATIC_LINK
 #DEFINES += BOOST_SYSTEM_DYN_LINK
-# Boost 1.60+ defaults to Vista+ support. The define below enables XP support again.
-DEFINES += BOOST_USE_WINAPI_VERSION=0x0501
 # Enable if encountered build error with boost version <= 1.59
 #DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 

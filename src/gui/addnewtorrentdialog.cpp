@@ -612,7 +612,7 @@ void AddNewTorrentDialog::setupTreeview()
         m_contentDelegate = new PropListDelegate(nullptr);
         m_ui->contentTreeView->setItemDelegate(m_contentDelegate);
         connect(m_ui->contentTreeView, &QAbstractItemView::clicked, m_ui->contentTreeView
-                , static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::edit));
+                , qOverload<const QModelIndex &>(&QAbstractItemView::edit));
         connect(m_ui->contentTreeView, &QWidget::customContextMenuRequested, this, &AddNewTorrentDialog::displayContentTreeMenu);
 
         // List files in torrent

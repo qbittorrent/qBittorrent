@@ -36,10 +36,10 @@
 
 #include <QFile>
 #include <QHash>
-#include <QList>
 #include <QNetworkConfigurationManager>
 #include <QPointer>
 #include <QSet>
+#include <QVector>
 
 #include "base/settingvalue.h"
 #include "base/types.h"
@@ -439,8 +439,8 @@ namespace BitTorrent
         void handleTorrentTrackersAdded(TorrentHandle *const torrent, const QVector<TrackerEntry> &newTrackers);
         void handleTorrentTrackersRemoved(TorrentHandle *const torrent, const QVector<TrackerEntry> &deletedTrackers);
         void handleTorrentTrackersChanged(TorrentHandle *const torrent);
-        void handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds);
-        void handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds);
+        void handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QVector<QUrl> &newUrlSeeds);
+        void handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QVector<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentHandle *const torrent, const lt::entry &data);
         void handleTorrentResumeDataFailed(TorrentHandle *const torrent);
         void handleTorrentTrackerReply(TorrentHandle *const torrent, const QString &trackerUrl);

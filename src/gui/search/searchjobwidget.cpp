@@ -135,23 +135,23 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
 
     connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
-    connect(m_ui->filterMode, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->filterMode, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->minSeeds, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->minSeeds, qOverload<int>(&QSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->maxSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->maxSeeds, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->maxSeeds, qOverload<int>(&QSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSize, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->minSize, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+    connect(m_ui->minSize, qOverload<double>(&QDoubleSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->maxSize, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->maxSize, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+    connect(m_ui->maxSize, qOverload<double>(&QDoubleSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
-    connect(m_ui->minSizeUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->minSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
-    connect(m_ui->maxSizeUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->maxSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
 
     connect(m_ui->resultsBrowser, &QAbstractItemView::doubleClicked, this, &SearchJobWidget::onItemDoubleClicked);
@@ -506,7 +506,7 @@ void SearchJobWidget::searchFailed()
     setStatus(Status::Error);
 }
 
-void SearchJobWidget::appendSearchResults(const QList<SearchResult> &results)
+void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
 {
     for (const SearchResult &result : results) {
         // Add item to search result list

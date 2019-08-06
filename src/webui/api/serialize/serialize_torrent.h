@@ -78,5 +78,6 @@ const char KEY_TORRENT_LAST_ACTIVITY_TIME[] = "last_activity";
 const char KEY_TORRENT_TOTAL_SIZE[] = "total_size";
 const char KEY_TORRENT_AUTO_TORRENT_MANAGEMENT[] = "auto_tmm";
 const char KEY_TORRENT_TIME_ACTIVE[] = "time_active";
+const char KEY_TORRENT_AVAILABILITY[] = "availability";
 
 QVariantMap serialize(const BitTorrent::TorrentHandle &torrent);

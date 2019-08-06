@@ -3409,14 +3409,14 @@ void Session::handleTorrentTrackersChanged(TorrentHandle *const torrent)
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QList<QUrl> &newUrlSeeds)
+void Session::handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QVector<QUrl> &newUrlSeeds)
 {
     torrent->saveResumeData();
     for (const QUrl &newUrlSeed : newUrlSeeds)
         LogMsg(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
 }
 
-void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QList<QUrl> &urlSeeds)
+void Session::handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QVector<QUrl> &urlSeeds)
 {
     torrent->saveResumeData();
     for (const QUrl &urlSeed : urlSeeds)
@@ -3570,7 +3570,7 @@ void Session::configureDeferred()
     if (!m_deferredConfigureScheduled) {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
         QMetaObject::invokeMethod(this
-            , static_cast<void (Session::*)()>(&Session::configure)
+            , qOverload<>(&Session::configure)
             , Qt::QueuedConnection);
 #else
         QMetaObject::invokeMethod(this, "configure", Qt::QueuedConnection);
@@ -4032,7 +4032,7 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
-                .arg(tmpRemovingTorrentData.name, QString::fromStdString(p->error.message()))
+                .arg(tmpRemovingTorrentData.name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
     else {

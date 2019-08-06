@@ -137,11 +137,11 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
-    connect(&m_spinBoxCache, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
             , this, &AdvancedSettings::updateCacheSpinSuffix);
-    connect(&m_comboBoxInterface, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &AdvancedSettings::updateInterfaceAddressCombo);
-    connect(&m_spinBoxSaveResumeDataInterval, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
             , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     // Load settings
     loadAdvancedSettings();
@@ -462,12 +462,6 @@ void AdvancedSettings::loadAdvancedSettings()
     bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
     for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces())) {
-        // This line fixes a Qt bug => https://bugreports.qt.io/browse/QTBUG-52633
-        // Tested in Qt 5.6.0. For more info see:
-        // https://github.com/qbittorrent/qBittorrent/issues/5131
-        // https://github.com/qbittorrent/qBittorrent/pull/5135
-        if (iface.addressEntries().isEmpty()) continue;
-
         m_comboBoxInterface.addItem(iface.humanReadableName(), iface.name());
         if (!currentInterface.isEmpty() && (iface.name() == currentInterface)) {
             m_comboBoxInterface.setCurrentIndex(i);

@@ -4,7 +4,7 @@ if (STACKTRACE)
         add_compile_options(-Oy-)
     endif (NOT "${WINXXBITS}" STREQUAL "Win64")
     add_compile_options(-Zi)
-    link_libraries(dbghelp.lib /DEBUG)
+    link_libraries(dbghelp -DEBUG)
 endif (STACKTRACE)
 
 include(MacroConfigureMSVCRuntime)

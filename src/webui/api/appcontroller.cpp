@@ -95,7 +95,7 @@ void AppController::preferencesAction()
 {
     const Preferences *const pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
-    QVariantMap data;
+    QJsonObject data;
 
     // Downloads
     // When adding a torrent
@@ -116,7 +116,7 @@ void AppController::preferencesAction()
     data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
     // Automatically add torrents from
     const QVariantHash dirs = pref->getScanDirs();
-    QVariantMap nativeDirs;
+    QJsonObject nativeDirs;
     for (auto i = dirs.cbegin(); i != dirs.cend(); ++i) {
         if (i.value().type() == QVariant::Int)
             nativeDirs.insert(Utils::Fs::toNativePath(i.key()), i.value().toInt());
@@ -248,7 +248,7 @@ void AppController::preferencesAction()
     data["dyndns_domain"] = pref->getDynDomainName();
 
     // RSS settings
-    data["rss_refresh_interval"] = RSS::Session::instance()->refreshInterval();
+    data["rss_refresh_interval"] = static_cast<double>(RSS::Session::instance()->refreshInterval());
     data["rss_max_articles_per_feed"] = RSS::Session::instance()->maxArticlesPerFeed();
     data["rss_processing_enabled"] = RSS::Session::instance()->isProcessingEnabled();
     data["rss_auto_downloading_enabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
@@ -262,7 +262,7 @@ void AppController::preferencesAction()
     // Listen on IPv6 address
     data["listen_on_ipv6_address"] = session->isIPv6Enabled();
     // Save resume data interval
-    data["save_resume_data_interval"] = session->saveResumeDataInterval();
+    data["save_resume_data_interval"] = static_cast<double>(session->saveResumeDataInterval());
     // Recheck completed torrents
     data["recheck_completed_torrents"] = pref->recheckTorrentsOnCompletion();
     // Resolve peer countries
@@ -311,7 +311,7 @@ void AppController::preferencesAction()
     data["announce_to_all_tiers"] = session->announceToAllTiers();
     data["announce_ip"] = session->announceIP();
 
-    setResult(QJsonObject::fromVariantMap(data));
+    setResult(data);
 }
 
 void AppController::setPreferencesAction()
@@ -320,9 +320,9 @@ void AppController::setPreferencesAction()
 
     Preferences *const pref = Preferences::instance();
     auto session = BitTorrent::Session::instance();
-    const QVariantMap m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toMap();
+    const QVariantHash m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toHash();
 
-    QVariantMap::ConstIterator it;
+    QVariantHash::ConstIterator it;
     const auto hasKey = [&it, &m](const char *key) -> bool
     {
         it = m.find(QLatin1String(key));
@@ -364,7 +364,7 @@ void AppController::setPreferencesAction()
         session->setFinishedTorrentExportDirectory(it.value().toString());
     // Automatically add torrents from
     if (hasKey("scan_dirs")) {
-        const QVariantMap nativeDirs = it.value().toMap();
+        const QVariantHash nativeDirs = it.value().toHash();
         QVariantHash oldScanDirs = pref->getScanDirs();
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();
@@ -648,7 +648,7 @@ void AppController::setPreferencesAction()
             return (!iface.addressEntries().isEmpty()) && (iface.name() == ifaceValue);
         });
         const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString {};
-	    
+
 	    session->setNetworkInterface(ifaceValue);
 	    session->setNetworkInterfaceName(ifaceName);
     }
@@ -669,7 +669,7 @@ void AppController::setPreferencesAction()
     // Resolve peer countries
     if (hasKey("resolve_peer_countries"))
         pref->resolvePeerCountries(it.value().toBool());
-    
+
     // libtorrent preferences
     // Async IO threads
     if (hasKey("async_io_threads"))
@@ -747,17 +747,17 @@ void AppController::defaultSavePathAction()
 
 void AppController::networkInterfaceListAction()
 {
-    QVariantList ifaceList;
+    QJsonArray ifaceList;
     for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces())) {
         if (!iface.addressEntries().isEmpty()) {
-            ifaceList.append(QVariantMap {
+            ifaceList.append(QJsonObject {
                 {"name", iface.humanReadableName()},
                 {"value", iface.name()}
             });
         }
     }
 
-    setResult(QJsonArray::fromVariantList(ifaceList));
+    setResult(ifaceList);
 }
 
 void AppController::networkInterfaceAddressListAction()
@@ -765,7 +765,7 @@ void AppController::networkInterfaceAddressListAction()
     checkParams({"iface"});
 
     const QString ifaceName = params().value("iface");
-    QVariantList addressList;
+    QJsonArray addressList;
 
     if (ifaceName.isEmpty()) {
         for (const QHostAddress &ip : asConst(QNetworkInterface::allAddresses()))
@@ -777,5 +777,5 @@ void AppController::networkInterfaceAddressListAction()
             addressList.append(entry.ip().toString());
     }
 
-    setResult(QJsonArray::fromVariantList(addressList));
+    setResult(addressList);
 }

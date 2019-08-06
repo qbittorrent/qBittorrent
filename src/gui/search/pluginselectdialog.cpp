@@ -238,9 +238,10 @@ void PluginSelectDialog::setRowColor(const int row, const QString &color)
     }
 }
 
-QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
+QVector<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
 {
-    QList<QTreeWidgetItem*> res;
+    QVector<QTreeWidgetItem*> res;
+    res.reserve(m_ui->pluginsTree->topLevelItemCount());
 
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(i);

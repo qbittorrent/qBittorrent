@@ -19,17 +19,19 @@ set(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES system)
 #set(Boost_USE_STATIC_LIBS True)
 #set(Boost_USE_STATIC_RUNTIME True)
 
-add_definitions(-DUNICODE
+add_definitions(
+    -DNTDDI_VERSION=0x06010000
+    -D_WIN32_WINNT=0x0601
+    -D_WIN32_IE=0x0601
+    -DUNICODE
     -D_UNICODE
     -DWIN32
     -D_WIN32
     -DWIN32_LEAN_AND_MEAN
-    -DNTDDI_VERSION=0x05010000
-    -D_WIN32_WINNT=0x0501
-    -D_WIN32_IE=0x0501
     -D_CRT_SECURE_NO_DEPRECATE
     -D_SCL_SECURE_NO_DEPRECATE
     -DNOMINMAX
+    -DBOOST_ALL_NO_LIB
 )
 
 # Enable if libtorrent was built with this flag defined

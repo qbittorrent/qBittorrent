@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,49 +26,36 @@
  * exception statement from your version.
  */
 
-#pragma once
+'use strict';
 
-#include <QHash>
-#include <QObject>
-#include <QSet>
-#include <QVariant>
+// This file is the JavaScript implementation of base/utils/fs.cpp
 
-class QString;
+const QB_EXT = '.!qB';
+const PathSeparator = '/';
 
-struct ISessionManager;
+/**
+ * Returns the file extension part of a file name.
+ */
+function fileExtension(filename) {
+    const name = filename.endsWith(QB_EXT)
+        ? filename.substring(0, filename.length - QB_EXT.length)
+        : filename;
+    const pointIndex = name.lastIndexOf('.');
+    if (pointIndex === -1)
+        return '';
+    return name.substring(pointIndex + 1);
+}
 
-using DataMap = QHash<QString, QByteArray>;
-using StringMap = QHash<QString, QString>;
+function fileName(filepath) {
+    const slashIndex = filepath.lastIndexOf(PathSeparator);
+    if (slashIndex === -1)
+        return filepath;
+    return filepath.substring(slashIndex + 1);
+}
 
-class APIController : public QObject
-{
-    Q_OBJECT
-    Q_DISABLE_COPY(APIController)
-
-#ifndef Q_MOC_RUN
-#define WEBAPI_PUBLIC
-#define WEBAPI_PRIVATE
-#endif
-
-public:
-    explicit APIController(ISessionManager *sessionManager, QObject *parent = nullptr);
-
-    QVariant run(const QString &action, const StringMap &params, const DataMap &data = {});
-
-    ISessionManager *sessionManager() const;
-
-protected:
-    const StringMap &params() const;
-    const DataMap &data() const;
-    void checkParams(const QSet<QString> &requiredParams) const;
-
-    void setResult(const QString &result);
-    void setResult(const QJsonArray &result);
-    void setResult(const QJsonObject &result);
-
-private:
-    ISessionManager *m_sessionManager;
-    StringMap m_params;
-    DataMap m_data;
-    QVariant m_result;
-};
+function folderName(filepath) {
+    const slashIndex = filepath.lastIndexOf(PathSeparator);
+    if (slashIndex === -1)
+        return filepath;
+    return filepath.substring(0, slashIndex);
+}

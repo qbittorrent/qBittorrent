@@ -239,7 +239,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
         const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("PeerList.ContextMenu.AddAction"), tr("Add a new peer..."));
         connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
         {
-            const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
+            const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
             int peerCount = 0;
             for (const BitTorrent::PeerAddress &addr : peersList) {
                 if (torrent->connectPeer(addr)) {
@@ -276,7 +276,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 void PeerListWidget::banSelectedPeers()
 {
     // Confirm first
-    int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to ban permanently the selected peers?"),
+    int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to permanently ban the selected peers?"),
                                     tr("&Yes"), tr("&No"),
                                     QString(), 0, 1);
     if (ret) return;
@@ -336,7 +336,7 @@ void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool fo
 {
     if (!torrent) return;
 
-    const QList<BitTorrent::PeerInfo> peers = torrent->peers();
+    const QVector<BitTorrent::PeerInfo> peers = torrent->peers();
     QSet<QString> oldPeersSet = m_peerItems.keys().toSet();
 
     for (const BitTorrent::PeerInfo &peer : peers) {

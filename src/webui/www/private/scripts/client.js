@@ -44,6 +44,7 @@ let alternativeSpeedLimits = false;
 let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
+let searchTabInitialized = false;
 
 let clipboardEvent;
 
@@ -254,7 +255,7 @@ window.addEvent('load', function() {
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
     // After showing/hiding the toolbar + status bar
-    let showSearchEngine = localStorage.getItem('show_search_engine') === "true";
+    let showSearchEngine = localStorage.getItem('show_search_engine') !== "false";
     if (!showSearchEngine) {
         // uncheck menu option
         $('showSearchEngineLink').firstChild.style.opacity = '0';
@@ -788,6 +789,11 @@ window.addEvent('load', function() {
     };
 
     const showSearchTab = function() {
+        if (!searchTabInitialized) {
+            initSearchTab();
+            searchTabInitialized = true;
+        }
+
         $("searchTabColumn").removeClass("invisible");
         customSyncMainDataInterval = 30000;
         hideTransfersTab();
@@ -887,6 +893,7 @@ window.addEvent('load', function() {
             $('PropGeneralLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_general').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -894,6 +901,7 @@ window.addEvent('load', function() {
             $('PropTrackersLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_trackers').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -901,6 +909,7 @@ window.addEvent('load', function() {
             $('PropPeersLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_peers').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -908,6 +917,7 @@ window.addEvent('load', function() {
             $('PropWebSeedsLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_webseeds').removeClass("invisible");
+                hideFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -915,6 +925,7 @@ window.addEvent('load', function() {
             $('PropFilesLink').addEvent('click', function(e) {
                 $$('.propertiesTabContent').addClass('invisible');
                 $('prop_files').removeClass("invisible");
+                showFilesFilter();
                 updatePropertiesPanel();
                 localStorage.setItem('selected_tab', this.id);
             });
@@ -926,6 +937,14 @@ window.addEvent('load', function() {
         column: 'mainColumn',
         height: prop_h
     });
+
+    const showFilesFilter = function() {
+        $('torrentFilesFilterToolbar').removeClass("invisible");
+    };
+
+    const hideFilesFilter = function() {
+        $('torrentFilesFilterToolbar').addClass("invisible");
+    };
 
     let prevTorrentsFilterValue;
     let torrentsFilterInputTimer = null;
@@ -967,18 +986,13 @@ function registerMagnetHandler() {
 
 function handleDownloadParam() {
     // Extract torrent URL from download param in WebUI URL hash
-    const hashParams = getHashParamsFromUrl();
-    const url = hashParams.download;
-    if (!url)
+    const downloadHash = "#download=";
+    if (location.hash.indexOf(downloadHash) !== 0)
         return;
 
-    // Remove the download param from WebUI URL hash
-    delete hashParams.download;
-    let newHash = Object.toQueryString(hashParams);
-    newHash = newHash ? ('#' + newHash) : '';
-    history.replaceState('', document.title,
-        (location.pathname + location.search + newHash));
-
+    const url = location.hash.substring(downloadHash.length);
+    // Remove the processed hash from the URL
+    history.replaceState('', document.title, (location.pathname + location.search));
     showDownloadPage([url]);
 }
 
@@ -1004,8 +1018,6 @@ function setupCopyEventHandler() {
                     return copyMagnetLinkFN();
                 case "copyHash":
                     return copyHashFN();
-                case "copyDescriptionPageUrl":
-                    return copySearchTorrentUrl();
                 default:
                     return "";
             }
