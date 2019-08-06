@@ -45,7 +45,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Title
     m_ui->labelName->setText(QString("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
 
-    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg("QBittorrent.Logo", this, 32));
+    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg("AboutDialog.Logo", this, 32));
 
     // About
     QString aboutText = QString(

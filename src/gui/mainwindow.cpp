@@ -147,10 +147,10 @@ MainWindow::MainWindow(QWidget *parent)
 #ifndef Q_OS_MAC
 #ifdef Q_OS_UNIX
     const QIcon appLogo = Preferences::instance()->useSystemIconTheme()
-        ? QIcon::fromTheme("qbittorrent", UIThemeManager::instance()->getIcon("QBittorrent.Logo"))
-        : UIThemeManager::instance()->getIcon("QBittorrent.Logo");
+        ? QIcon::fromTheme("qbittorrent", UIThemeManager::instance()->getIcon("MainWindow.Logo"))
+        : UIThemeManager::instance()->getIcon("MainWindow.Logo");
 #else
-    const QIcon appLogo(UIThemeManager::instance()->getIcon("QBittorrent.Logo"));
+    const QIcon appLogo(UIThemeManager::instance()->getIcon("MainWindow.Logo"));
 #endif // Q_OS_UNIX
     setWindowIcon(appLogo);
 #endif // Q_OS_MAC
@@ -175,7 +175,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionDecreaseQueuePos->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Queue.DownAction"));
     m_ui->actionBottomQueuePos->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Queue.BottomAction"));
     m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Torrent.RemoveAction"));
-    m_ui->actionDocumentation->setIcon(UIThemeManager::instance()->getIcon("MainMenu.HelpAction2"));
+    m_ui->actionDocumentation->setIcon(UIThemeManager::instance()->getIcon("MainMenu.Documentation.HelpAction"));
     m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon("MainMenu.DonateAction"));
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ExitAction"));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon("MainMenu.LockAction"));
