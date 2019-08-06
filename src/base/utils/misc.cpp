@@ -28,9 +28,6 @@
 
 #include "misc.h"
 
-#include <boost/version.hpp>
-#include <libtorrent/version.hpp>
-
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <Shlobj.h>
@@ -44,7 +41,10 @@
 #include <CoreServices/CoreServices.h>
 #endif
 
+#include <boost/version.hpp>
 #include <openssl/opensslv.h>
+#include <libtorrent/version.hpp>
+#include <zlib.h>
 
 #include <QCoreApplication>
 #include <QRegularExpression>
@@ -81,13 +81,13 @@ namespace
         if (sizeInBytes < 0) return false;
 
         int i = 0;
-        auto rawVal = static_cast<qreal>(sizeInBytes);
+        val = static_cast<qreal>(sizeInBytes);
 
-        while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
-            rawVal /= 1024.;
+        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
+            val /= 1024.;
             ++i;
         }
-        val = rawVal;
+
         unit = static_cast<Utils::Misc::SizeUnit>(i);
         return true;
     }
@@ -251,13 +251,20 @@ QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
            + unitString(unit, isSpeed);
 }
 
-int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
+int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
 {
     // friendlyUnit's number of digits after the decimal point
-    if (unit == SizeUnit::Byte) return 0;
-    if (unit <= SizeUnit::MebiByte) return 1;
-    if (unit == SizeUnit::GibiByte) return 2;
-    return 3;
+    switch (unit) {
+    case SizeUnit::Byte:
+        return 0;
+    case SizeUnit::KibiByte:
+    case SizeUnit::MebiByte:
+        return 1;
+    case SizeUnit::GibiByte:
+        return 2;
+    default:
+        return 3;
+    }
 }
 
 qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
@@ -316,11 +323,11 @@ bool Utils::Misc::isPreviewable(const QString &extension)
     return multimediaExtensions.contains(extension.toUpper());
 }
 
-// Take a number of seconds and return an user-friendly
-// time duration like "1d 2h 10m".
-QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
 {
-    if ((seconds < 0) || (seconds >= MAX_ETA))
+    if (seconds < 0)
+        return QString::fromUtf8(C_INFINITY);
+    if ((maxCap >= 0) && (seconds >= maxCap))
         return QString::fromUtf8(C_INFINITY);
 
     if (seconds == 0)
@@ -329,21 +336,25 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
     if (seconds < 60)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
 
-    qlonglong minutes = seconds / 60;
+    qlonglong minutes = (seconds / 60);
     if (minutes < 60)
         return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
 
-    qlonglong hours = minutes / 60;
-    minutes -= hours * 60;
-    if (hours < 24)
+    qlonglong hours = (minutes / 60);
+    if (hours < 24) {
+        minutes -= (hours * 60);
         return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
+    }
 
-    qlonglong days = hours / 24;
-    hours -= days * 24;
-    if (days < 100)
+    qlonglong days = (hours / 24);
+    if (days < 365) {
+        hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
+    }
 
-    return QString::fromUtf8(C_INFINITY);
+    qlonglong years = (days / 365);
+    days -= (years * 365);
+    return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2years 10days").arg(QString::number(years), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()
@@ -359,30 +370,6 @@ QString Utils::Misc::getUserIDString()
     uid = QString::number(getuid());
 #endif
     return uid;
-}
-
-QStringList Utils::Misc::toStringList(const QList<bool> &l)
-{
-    QStringList ret;
-    for (const bool b : l)
-        ret << (b ? "1" : "0");
-    return ret;
-}
-
-QList<int> Utils::Misc::intListfromStringList(const QStringList &l)
-{
-    QList<int> ret;
-    for (const QString &s : l)
-        ret << s.toInt();
-    return ret;
-}
-
-QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
-{
-    QList<bool> ret;
-    for (const QString &s : l)
-        ret << (s == "1");
-    return ret;
 }
 
 QString Utils::Misc::parseHtmlLinks(const QString &rawText)
@@ -479,6 +466,13 @@ QString Utils::Misc::opensslVersionString()
 {
     const QString version {OPENSSL_VERSION_TEXT};
     return version.split(' ', QString::SkipEmptyParts)[1];
+}
+
+QString Utils::Misc::zlibVersionString()
+{
+    // static initialization for usage in signal handler
+    static const QString version {ZLIB_VERSION};
+    return version;
 }
 
 #ifdef Q_OS_WIN

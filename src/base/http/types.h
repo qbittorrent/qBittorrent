@@ -97,9 +97,9 @@ namespace Http
         QString version;
         QString method;
         QString path;
-        QByteArray query;
         QStringMap headers;
-        QStringMap posts;
+        QHash<QString, QByteArray> query;
+        QHash<QString, QString> posts;
         QVector<UploadedFile> files;
     };
 

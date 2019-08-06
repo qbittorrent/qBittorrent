@@ -28,30 +28,16 @@
 
 #include "peerinfo.h"
 
+#include <QBitArray>
+
 #include "base/bittorrent/torrenthandle.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
-#include "base/utils/string.h"
+#include "peeraddress.h"
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
-// PeerAddress
-
-PeerAddress::PeerAddress()
-    : port(0)
-{
-}
-
-PeerAddress::PeerAddress(const QHostAddress &ip, ushort port)
-    : ip(ip)
-    , port(port)
-{
-}
-
-// PeerInfo
-
-PeerInfo::PeerInfo(const TorrentHandle *torrent, const libt::peer_info &nativeInfo)
+PeerInfo::PeerInfo(const TorrentHandle *torrent, const lt::peer_info &nativeInfo)
     : m_nativeInfo(nativeInfo)
 {
     calcRelevance(torrent);
@@ -60,17 +46,17 @@ PeerInfo::PeerInfo(const TorrentHandle *torrent, const libt::peer_info &nativeIn
 
 bool PeerInfo::fromDHT() const
 {
-    return static_cast<bool>(m_nativeInfo.source & libt::peer_info::dht);
+    return static_cast<bool>(m_nativeInfo.source & lt::peer_info::dht);
 }
 
 bool PeerInfo::fromPeX() const
 {
-    return static_cast<bool>(m_nativeInfo.source & libt::peer_info::pex);
+    return static_cast<bool>(m_nativeInfo.source & lt::peer_info::pex);
 }
 
 bool PeerInfo::fromLSD() const
 {
-    return static_cast<bool>(m_nativeInfo.source & libt::peer_info::lsd);
+    return static_cast<bool>(m_nativeInfo.source & lt::peer_info::lsd);
 }
 
 #ifndef DISABLE_COUNTRIES_RESOLUTION
@@ -82,108 +68,108 @@ QString PeerInfo::country() const
 
 bool PeerInfo::isInteresting() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::interesting);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::interesting);
 }
 
 bool PeerInfo::isChocked() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::choked);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::choked);
 }
 
 bool PeerInfo::isRemoteInterested() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::remote_interested);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::remote_interested);
 }
 
 bool PeerInfo::isRemoteChocked() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::remote_choked);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::remote_choked);
 }
 
 bool PeerInfo::isSupportsExtensions() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::supports_extensions);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::supports_extensions);
 }
 
 bool PeerInfo::isLocalConnection() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::local_connection);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::local_connection);
 }
 
 bool PeerInfo::isHandshake() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::handshake);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::handshake);
 }
 
 bool PeerInfo::isConnecting() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::connecting);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::connecting);
 }
 
 bool PeerInfo::isOnParole() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::on_parole);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::on_parole);
 }
 
 bool PeerInfo::isSeed() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::seed);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::seed);
 }
 
 bool PeerInfo::optimisticUnchoke() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::optimistic_unchoke);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::optimistic_unchoke);
 }
 
 bool PeerInfo::isSnubbed() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::snubbed);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::snubbed);
 }
 
 bool PeerInfo::isUploadOnly() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::upload_only);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::upload_only);
 }
 
 bool PeerInfo::isEndgameMode() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::endgame_mode);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::endgame_mode);
 }
 
 bool PeerInfo::isHolepunched() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::holepunched);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::holepunched);
 }
 
 bool PeerInfo::useI2PSocket() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::i2p_socket);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::i2p_socket);
 }
 
 bool PeerInfo::useUTPSocket() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::utp_socket);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::utp_socket);
 }
 
 bool PeerInfo::useSSLSocket() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::ssl_socket);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::ssl_socket);
 }
 
 bool PeerInfo::isRC4Encrypted() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::rc4_encrypted);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::rc4_encrypted);
 }
 
 bool PeerInfo::isPlaintextEncrypted() const
 {
-    return static_cast<bool>(m_nativeInfo.flags & libt::peer_info::plaintext_encrypted);
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::plaintext_encrypted);
 }
 
 PeerAddress PeerInfo::address() const
 {
-    return PeerAddress(QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string())),
-                       m_nativeInfo.ip.port());
+    return {QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string()))
+                , m_nativeInfo.ip.port()};
 }
 
 QString PeerInfo::client() const
@@ -229,13 +215,13 @@ QBitArray PeerInfo::pieces() const
 
 QString PeerInfo::connectionType() const
 {
-    if (m_nativeInfo.flags & libt::peer_info::utp_socket)
+    if (m_nativeInfo.flags & lt::peer_info::utp_socket)
         return QString::fromUtf8(C_UTP);
 
     QString connection;
     switch (m_nativeInfo.connection_type) {
-    case libt::peer_info::http_seed:
-    case libt::peer_info::web_seed:
+    case lt::peer_info::http_seed:
+    case lt::peer_info::web_seed:
         connection = "Web";
         break;
     default:
@@ -274,20 +260,18 @@ qreal PeerInfo::relevance() const
 
 void PeerInfo::determineFlags()
 {
-    QStringList flagsDescriptionList;
-
     if (isInteresting()) {
         // d = Your client wants to download, but peer doesn't want to send (interested and choked)
         if (isRemoteChocked()) {
             m_flags += "d ";
-            flagsDescriptionList += "d = "
-                    + tr("Interested(local) and Choked(peer)");
+            m_flagsDescription += ("d = "
+                + tr("Interested(local) and Choked(peer)") + '\n');
         }
         else {
             // D = Currently downloading (interested and not choked)
             m_flags += "D ";
-            flagsDescriptionList += "D = "
-                    + tr("interested(local) and unchoked(peer)");
+            m_flagsDescription += ("D = "
+                + tr("interested(local) and unchoked(peer)") + '\n');
         }
     }
 
@@ -295,95 +279,87 @@ void PeerInfo::determineFlags()
         // u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
         if (isChocked()) {
             m_flags += "u ";
-            flagsDescriptionList += "u = "
-                    + tr("interested(peer) and choked(local)");
+            m_flagsDescription += ("u = "
+                + tr("interested(peer) and choked(local)") + '\n');
         }
         else {
             // U = Currently uploading (interested and not choked)
             m_flags += "U ";
-            flagsDescriptionList += "U = "
-                    + tr("interested(peer) and unchoked(local)");
+            m_flagsDescription += ("U = "
+                + tr("interested(peer) and unchoked(local)") + '\n');
         }
     }
 
     // O = Optimistic unchoke
     if (optimisticUnchoke()) {
         m_flags += "O ";
-        flagsDescriptionList += "O = "
-                + tr("optimistic unchoke");
+        m_flagsDescription += ("O = " + tr("optimistic unchoke") + '\n');
     }
 
     // S = Peer is snubbed
     if (isSnubbed()) {
         m_flags += "S ";
-        flagsDescriptionList += "S = "
-                + tr("peer snubbed");
+        m_flagsDescription += ("S = " + tr("peer snubbed") + '\n');
     }
 
     // I = Peer is an incoming connection
     if (!isLocalConnection()) {
         m_flags += "I ";
-        flagsDescriptionList += "I = "
-                + tr("incoming connection");
+        m_flagsDescription += ("I = " + tr("incoming connection") + '\n');
     }
 
     // K = Peer is unchoking your client, but your client is not interested
     if (!isRemoteChocked() && !isInteresting()) {
         m_flags += "K ";
-        flagsDescriptionList += "K = "
-                + tr("not interested(local) and unchoked(peer)");
+        m_flagsDescription += ("K = "
+            + tr("not interested(local) and unchoked(peer)") + '\n');
     }
 
     // ? = Your client unchoked the peer but the peer is not interested
     if (!isChocked() && !isRemoteInterested()) {
         m_flags += "? ";
-        flagsDescriptionList += "? = "
-                + tr("not interested(peer) and unchoked(local)");
+        m_flagsDescription += ("? = "
+            + tr("not interested(peer) and unchoked(local)") + '\n');
     }
 
     // X = Peer was included in peerlists obtained through Peer Exchange (PEX)
     if (fromPeX()) {
         m_flags += "X ";
-        flagsDescriptionList += "X = "
-                + tr("peer from PEX");
+        m_flagsDescription += ("X = " + tr("peer from PEX") + '\n');
     }
 
     // H = Peer was obtained through DHT
     if (fromDHT()) {
         m_flags += "H ";
-        flagsDescriptionList += "H = "
-                + tr("peer from DHT");
+        m_flagsDescription += ("H = " + tr("peer from DHT") + '\n');
     }
 
     // E = Peer is using Protocol Encryption (all traffic)
     if (isRC4Encrypted()) {
         m_flags += "E ";
-        flagsDescriptionList += "E = "
-                + tr("encrypted traffic");
+        m_flagsDescription += ("E = " + tr("encrypted traffic")  + '\n');
     }
 
     // e = Peer is using Protocol Encryption (handshake)
     if (isPlaintextEncrypted()) {
         m_flags += "e ";
-        flagsDescriptionList += "e = "
-                + tr("encrypted handshake");
+        m_flagsDescription += ("e = " + tr("encrypted handshake") + '\n');
     }
 
     // P = Peer is using uTorrent uTP
     if (useUTPSocket()) {
         m_flags += "P ";
-        flagsDescriptionList += "P = "
-                + QString::fromUtf8(C_UTP);
+        m_flagsDescription += ("P = " + QString::fromUtf8(C_UTP) + '\n');
     }
 
     // L = Peer is local
     if (fromLSD()) {
-        m_flags += 'L';
-        flagsDescriptionList += "L = "
-                + tr("peer from LSD");
+        m_flags += "L ";
+        m_flagsDescription += ("L = " + tr("peer from LSD") + '\n');
     }
+
     m_flags = m_flags.trimmed();
-    m_flagsDescription = flagsDescriptionList.join('\n');
+    m_flagsDescription = m_flagsDescription.trimmed();
 }
 
 QString PeerInfo::flags() const

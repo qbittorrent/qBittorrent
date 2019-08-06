@@ -38,6 +38,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+#include "base/global.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/string.h"
 
@@ -182,14 +183,29 @@ bool RequestParser::parseRequestLine(const QString &line)
     m_request.method = match.captured(1);
 
     // Request Target
-    // URL components should be separated before percent-decoding
-    // [rfc3986] 2.4 When to Encode or Decode
     const QByteArray url {match.captured(2).toLatin1()};
     const int sepPos = url.indexOf('?');
-    const QByteArray pathComponent = ((sepPos == -1) ? url : Utils::ByteArray::midView(url, 0, sepPos));
+    const QByteArray pathComponent = ((sepPos == -1) ? url : midView(url, 0, sepPos));
+
     m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(pathComponent));
-    if (sepPos >= 0)
-        m_request.query = url.mid(sepPos + 1);
+
+    if (sepPos >= 0) {
+        const QByteArray query = midView(url, (sepPos + 1));
+
+        // [rfc3986] 2.4 When to Encode or Decode
+        // URL components should be separated before percent-decoding
+        for (const QByteArray &param : asConst(splitToViews(query, "&"))) {
+            const int eqCharPos = param.indexOf('=');
+            if (eqCharPos <= 0) continue;  // ignores params without name
+
+            const QByteArray nameComponent = midView(param, 0, eqCharPos);
+            const QByteArray valueComponent = midView(param, (eqCharPos + 1));
+            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent).replace('+', ' '));
+            const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent).replace('+', ' ');
+
+            m_request.query[paramName] = paramValue;
+        }
+    }
 
     // HTTP-version
     m_request.version = match.captured(3);
@@ -237,7 +253,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
         // split data by "dash-boundary"
         const QByteArray dashDelimiter = QByteArray("--") + delimiter + CRLF;
-        QList<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
+        QVector<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
         if (multipart.isEmpty()) {
             qWarning() << Q_FUNC_INFO << "multipart empty";
             return false;
@@ -259,7 +275,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
 bool RequestParser::parseFormData(const QByteArray &data)
 {
-    const QList<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
+    const QVector<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
 
     if (list.size() != 2) {
         qWarning() << Q_FUNC_INFO << "multipart/form-data format error";

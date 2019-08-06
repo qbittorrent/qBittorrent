@@ -28,8 +28,8 @@
 
 'use strict';
 
-var lastShownContexMenu = null;
-var ContextMenu = new Class({
+let lastShownContextMenu = null;
+const ContextMenu = new Class({
     //implements
     Implements: [Options, Events],
 
@@ -39,7 +39,6 @@ var ContextMenu = new Class({
         menu: 'menu_id',
         stopEvent: true,
         targets: 'body',
-        trigger: 'contextmenu',
         offsets: {
             x: 0,
             y: 0
@@ -47,7 +46,8 @@ var ContextMenu = new Class({
         onShow: $empty,
         onHide: $empty,
         onClick: $empty,
-        fadeSpeed: 200
+        fadeSpeed: 200,
+        touchTimer: 600
     },
 
     //initialization
@@ -87,7 +87,7 @@ var ContextMenu = new Class({
     adjustMenuPosition: function(e) {
         this.updateMenuItems();
 
-        var scrollableMenuMaxHeight = document.documentElement.clientHeight * 0.75;
+        const scrollableMenuMaxHeight = document.documentElement.clientHeight * 0.75;
 
         if (this.menu.hasClass('scrollableMenu'))
             this.menu.setStyle('max-height', scrollableMenuMaxHeight);
@@ -99,8 +99,8 @@ var ContextMenu = new Class({
         });
 
         // position the menu
-        var xPosMenu = e.page.x + this.options.offsets.x;
-        var yPosMenu = e.page.y + this.options.offsets.y;
+        let xPosMenu = e.page.x + this.options.offsets.x;
+        let yPosMenu = e.page.y + this.options.offsets.y;
         if (xPosMenu + this.menu.offsetWidth > document.documentElement.clientWidth)
             xPosMenu -= this.menu.offsetWidth;
         if (yPosMenu + this.menu.offsetHeight > document.documentElement.clientHeight)
@@ -117,16 +117,16 @@ var ContextMenu = new Class({
         });
 
         // position the sub-menu
-        var uls = this.menu.getElementsByTagName('ul');
-        for (var i = 0; i < uls.length; ++i) {
-            var ul = uls[i];
+        const uls = this.menu.getElementsByTagName('ul');
+        for (let i = 0; i < uls.length; ++i) {
+            const ul = uls[i];
             if (ul.hasClass('scrollableMenu'))
                 ul.setStyle('max-height', scrollableMenuMaxHeight);
-            var rectParent = ul.parentNode.getBoundingClientRect();
-            var xPosOrigin = rectParent.left;
-            var yPosOrigin = rectParent.bottom;
-            var xPos = xPosOrigin + rectParent.width - 1;
-            var yPos = yPosOrigin - rectParent.height - 1;
+            const rectParent = ul.parentNode.getBoundingClientRect();
+            const xPosOrigin = rectParent.left;
+            const yPosOrigin = rectParent.bottom;
+            let xPos = xPosOrigin + rectParent.width - 1;
+            let yPos = yPosOrigin - rectParent.height - 1;
             if (xPos + ul.offsetWidth > document.documentElement.clientWidth)
                 xPos -= (ul.offsetWidth + rectParent.width - 2);
             if (yPos + ul.offsetHeight > document.documentElement.clientHeight)
@@ -142,50 +142,56 @@ var ContextMenu = new Class({
         }
     },
 
-    addTarget: function(t) {
-        this.targets[this.targets.length] = t;
-        t.addEvent(this.options.trigger, function(e) {
-            //enabled?
-            if (!this.options.disabled) {
-                //prevent default, if told to
-                if (this.options.stopEvent) {
-                    e.stop();
-                }
-                //record this as the trigger
-                this.options.element = $(t);
-                this.adjustMenuPosition(e);
-                //show the menu
-                this.show();
-            }
+    setupEventListeners: function(elem) {
+        elem.addEvent('contextmenu', function(e) {
+            this.triggerMenu(e, elem);
         }.bind(this));
-        t.addEvent('click', function(e) {
+        elem.addEvent('click', function(e) {
             this.hide();
         }.bind(this));
+
+        elem.addEvent('touchstart', function(e) {
+            e.preventDefault();
+            clearTimeout(this.touchstartTimer);
+            this.hide();
+
+            const touchstartEvent = e;
+            this.touchstartTimer = setTimeout(function() {
+                this.triggerMenu(touchstartEvent, elem);
+            }.bind(this), this.options.touchTimer);
+        }.bind(this));
+        elem.addEvent('touchend', function(e) {
+            e.preventDefault();
+            clearTimeout(this.touchstartTimer);
+        }.bind(this));
+    },
+
+    addTarget: function(t) {
+        this.targets[this.targets.length] = t;
+        this.setupEventListeners(t);
+    },
+
+    triggerMenu: function(e, el) {
+        if (this.options.disabled)
+            return;
+
+        //prevent default, if told to
+        if (this.options.stopEvent) {
+            e.stop();
+        }
+        //record this as the trigger
+        this.options.element = $(el);
+        this.adjustMenuPosition(e);
+        //show the menu
+        this.show();
     },
 
     //get things started
     startListener: function() {
         /* all elements */
         this.targets.each(function(el) {
-            /* show the menu */
-            el.addEvent(this.options.trigger, function(e) {
-                //enabled?
-                if (!this.options.disabled) {
-                    //prevent default, if told to
-                    if (this.options.stopEvent) {
-                        e.stop();
-                    }
-                    //record this as the trigger
-                    this.options.element = $(el);
-                    this.adjustMenuPosition(e);
-                    //show the menu
-                    this.show();
-                }
-            }.bind(this));
-            el.addEvent('click', function(e) {
-                this.hide();
-            }.bind(this));
-        }, this);
+            this.setupEventListeners(el);
+        }.bind(this), this);
 
         /* menu items */
         this.menu.getElements('a').each(function(item) {
@@ -208,12 +214,12 @@ var ContextMenu = new Class({
 
     //show menu
     show: function(trigger) {
-        if (lastShownContexMenu && lastShownContexMenu != this)
-            lastShownContexMenu.hide();
+        if (lastShownContextMenu && lastShownContextMenu != this)
+            lastShownContextMenu.hide();
         this.fx.start(1);
         this.fireEvent('show');
         this.shown = true;
-        lastShownContexMenu = this;
+        lastShownContextMenu = this;
         return this;
     },
 
@@ -271,26 +277,27 @@ var ContextMenu = new Class({
     }
 });
 
-var TorrentsTableContextMenu = new Class({
+const TorrentsTableContextMenu = new Class({
     Extends: ContextMenu,
 
     updateMenuItems: function() {
-        var all_are_seq_dl = true;
-        var there_are_seq_dl = false;
-        var all_are_f_l_piece_prio = true;
-        var there_are_f_l_piece_prio = false;
-        var all_are_downloaded = true;
-        var all_are_paused = true;
-        var there_are_paused = false;
-        var all_are_force_start = true;
-        var there_are_force_start = false;
-        var all_are_super_seeding = true;
-        var all_are_auto_tmm = true;
-        var there_are_auto_tmm = false;
+        let all_are_seq_dl = true;
+        let there_are_seq_dl = false;
+        let all_are_f_l_piece_prio = true;
+        let there_are_f_l_piece_prio = false;
+        let all_are_downloaded = true;
+        let all_are_paused = true;
+        let there_are_paused = false;
+        let all_are_force_start = true;
+        let there_are_force_start = false;
+        let all_are_super_seeding = true;
+        let all_are_auto_tmm = true;
+        let there_are_auto_tmm = false;
+        const tagsSelectionState = Object.clone(tagList);
 
-        var h = torrentsTable.selectedRowsIds();
+        const h = torrentsTable.selectedRowsIds();
         h.each(function(item, index) {
-            var data = torrentsTable.rows.get(item).full_data;
+            const data = torrentsTable.rows.get(item).full_data;
 
             if (data['seq_dl'] !== true)
                 all_are_seq_dl = false;
@@ -321,72 +328,91 @@ var TorrentsTableContextMenu = new Class({
                 there_are_auto_tmm = true;
             else
                 all_are_auto_tmm = false;
+
+            const torrentTags = data['tags'].split(', ');
+            for (const key in tagsSelectionState) {
+                const tag = tagsSelectionState[key];
+                const tagExists = torrentTags.contains(tag.name);
+                if ((tag.checked !== undefined) && (tag.checked != tagExists))
+                    tag.indeterminate = true;
+                if (tag.checked === undefined)
+                    tag.checked = tagExists;
+                else
+                    tag.checked = tag.checked && tagExists;
+            }
         });
 
-        var show_seq_dl = true;
+        let show_seq_dl = true;
 
         if (!all_are_seq_dl && there_are_seq_dl)
             show_seq_dl = false;
 
-        var show_f_l_piece_prio = true;
+        let show_f_l_piece_prio = true;
 
         if (!all_are_f_l_piece_prio && there_are_f_l_piece_prio)
             show_f_l_piece_prio = false;
 
         if (all_are_downloaded) {
-            this.hideItem('DownloadLimit');
-            this.menu.getElement('a[href$=UploadLimit]').parentNode.addClass('separator');
-            this.hideItem('SequentialDownload');
-            this.hideItem('FirstLastPiecePrio');
-            this.showItem('SuperSeeding');
-            this.setItemChecked('SuperSeeding', all_are_super_seeding);
+            this.hideItem('downloadLimit');
+            this.menu.getElement('a[href$=uploadLimit]').parentNode.addClass('separator');
+            this.hideItem('sequentialDownload');
+            this.hideItem('firstLastPiecePrio');
+            this.showItem('superSeeding');
+            this.setItemChecked('superSeeding', all_are_super_seeding);
         }
         else {
             if (!show_seq_dl && show_f_l_piece_prio)
-                this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.addClass('separator');
+                this.menu.getElement('a[href$=firstLastPiecePrio]').parentNode.addClass('separator');
             else
-                this.menu.getElement('a[href$=FirstLastPiecePrio]').parentNode.removeClass('separator');
+                this.menu.getElement('a[href$=firstLastPiecePrio]').parentNode.removeClass('separator');
 
             if (show_seq_dl)
-                this.showItem('SequentialDownload');
+                this.showItem('sequentialDownload');
             else
-                this.hideItem('SequentialDownload');
+                this.hideItem('sequentialDownload');
 
             if (show_f_l_piece_prio)
-                this.showItem('FirstLastPiecePrio');
+                this.showItem('firstLastPiecePrio');
             else
-                this.hideItem('FirstLastPiecePrio');
+                this.hideItem('firstLastPiecePrio');
 
-            this.setItemChecked('SequentialDownload', all_are_seq_dl);
-            this.setItemChecked('FirstLastPiecePrio', all_are_f_l_piece_prio);
+            this.setItemChecked('sequentialDownload', all_are_seq_dl);
+            this.setItemChecked('firstLastPiecePrio', all_are_f_l_piece_prio);
 
-            this.showItem('DownloadLimit');
-            this.menu.getElement('a[href$=UploadLimit]').parentNode.removeClass('separator');
-            this.hideItem('SuperSeeding');
+            this.showItem('downloadLimit');
+            this.menu.getElement('a[href$=uploadLimit]').parentNode.removeClass('separator');
+            this.hideItem('superSeeding');
         }
 
-        this.showItem('Start');
-        this.showItem('Pause');
-        this.showItem('ForceStart');
+        this.showItem('start');
+        this.showItem('pause');
+        this.showItem('forceStart');
         if (all_are_paused)
-            this.hideItem('Pause');
+            this.hideItem('pause');
         else if (all_are_force_start)
-            this.hideItem('ForceStart');
+            this.hideItem('forceStart');
         else if (!there_are_paused && !there_are_force_start)
-            this.hideItem('Start');
+            this.hideItem('start');
 
         if (!all_are_auto_tmm && there_are_auto_tmm) {
-            this.hideItem('AutoTorrentManagement');
+            this.hideItem('autoTorrentManagement');
         }
         else {
-            this.showItem('AutoTorrentManagement');
-            this.setItemChecked('AutoTorrentManagement', all_are_auto_tmm);
+            this.showItem('autoTorrentManagement');
+            this.setItemChecked('autoTorrentManagement', all_are_auto_tmm);
         }
 
+        const contextTagList = $('contextTagList');
+        for (const tagHash in tagList) {
+            const checkbox = contextTagList.getElement('a[href=#Tag/' + tagHash + '] input[type=checkbox]');
+            const checkboxState = tagsSelectionState[tagHash];
+            checkbox.indeterminate = checkboxState.indeterminate;
+            checkbox.checked = checkboxState.checked;
+        }
     },
 
     updateCategoriesSubMenu: function(category_list) {
-        var categoryList = $('contextCategoryList');
+        const categoryList = $('contextCategoryList');
         categoryList.empty();
         categoryList.appendChild(new Element('li', {
             html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/qbt-theme/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
@@ -395,16 +421,16 @@ var TorrentsTableContextMenu = new Class({
             html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/qbt-theme/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
         }));
 
-        var sortedCategories = [];
+        const sortedCategories = [];
         Object.each(category_list, function(category) {
             sortedCategories.push(category.name);
         });
         sortedCategories.sort();
 
-        var first = true;
+        let first = true;
         Object.each(sortedCategories, function(categoryName) {
-            var categoryHash = genHash(categoryName);
-            var el = new Element('li', {
+            const categoryHash = genHash(categoryName);
+            const el = new Element('li', {
                 html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="images/qbt-theme/inode-directory.svg"/> ' + escapeHtml(categoryName) + '</a>'
             });
             if (first) {
@@ -413,31 +439,79 @@ var TorrentsTableContextMenu = new Class({
             }
             categoryList.appendChild(el);
         });
+    },
+
+    updateTagsSubMenu: function(tagList) {
+        const contextTagList = $('contextTagList');
+        while (contextTagList.firstChild !== null)
+            contextTagList.removeChild(contextTagList.firstChild);
+
+        contextTagList.appendChild(new Element('li', {
+            html: '<a href="javascript:torrentAddTagsFN();">'
+                + '<img src="images/qbt-theme/list-add.svg" alt="QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                + ' QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]'
+                + '</a>'
+        }));
+        contextTagList.appendChild(new Element('li', {
+            html: '<a href="javascript:torrentRemoveAllTagsFN();">'
+                + '<img src="images/qbt-theme/edit-clear.svg" alt="QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                + ' QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]'
+                + '</a>'
+        }));
+
+        const sortedTags = [];
+        for (const key in tagList)
+            sortedTags.push(tagList[key].name);
+        sortedTags.sort();
+
+        for (let i = 0; i < sortedTags.length; ++i) {
+            const tagName = sortedTags[i];
+            const tagHash = genHash(tagName);
+            const el = new Element('li', {
+                html: '<a href="#Tag/' + tagHash + '" onclick="event.preventDefault(); torrentSetTagsFN(\'' + tagHash + '\', !event.currentTarget.getElement(\'input[type=checkbox]\').checked);">'
+                    + '<input type="checkbox" onclick="this.checked = !this.checked;"> ' + escapeHtml(tagName)
+                    + '</a>'
+            });
+            if (i === 0)
+                el.addClass('separator');
+            contextTagList.appendChild(el);
+        }
     }
 });
 
-var CategoriesFilterContextMenu = new Class({
+const CategoriesFilterContextMenu = new Class({
     Extends: ContextMenu,
     updateMenuItems: function() {
-        var id = this.options.element.id;
+        const id = this.options.element.id;
         if ((id != CATEGORIES_ALL) && (id != CATEGORIES_UNCATEGORIZED)) {
-            this.showItem('EditCategory');
-            this.showItem('DeleteCategory');
+            this.showItem('editCategory');
+            this.showItem('deleteCategory');
         }
         else {
-            this.hideItem('EditCategory');
-            this.hideItem('DeleteCategory');
+            this.hideItem('editCategory');
+            this.hideItem('deleteCategory');
         }
     }
 });
 
-var SearchPluginsTableContextMenu = new Class({
+const TagsFilterContextMenu = new Class({
+    Extends: ContextMenu,
+    updateMenuItems: function() {
+        const id = this.options.element.id;
+        if ((id !== TAGS_ALL.toString()) && (id !== TAGS_UNTAGGED.toString()))
+            this.showItem('deleteTag');
+        else
+            this.hideItem('deleteTag');
+    }
+});
+
+const SearchPluginsTableContextMenu = new Class({
     Extends: ContextMenu,
 
     updateMenuItems: function() {
-        var enabledColumnIndex = function(text) {
-            var columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
-            for (var i = 0; i < columns.length; ++i)
+        const enabledColumnIndex = function(text) {
+            const columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
+            for (let i = 0; i < columns.length; ++i)
                 if (columns[i].get("html") === "Enabled")
                     return i;
         };

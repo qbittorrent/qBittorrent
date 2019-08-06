@@ -47,7 +47,6 @@ namespace
             || str.startsWith("https://", Qt::CaseInsensitive)
             || str.startsWith("ftp://", Qt::CaseInsensitive)
             || str.startsWith("magnet:", Qt::CaseInsensitive)
-            || str.startsWith("bc://bt/", Qt::CaseInsensitive)
             || ((str.size() == 40) && !str.contains(QRegularExpression("[^0-9A-Fa-f]")))
             || ((str.size() == 32) && !str.contains(QRegularExpression("[^2-7A-Za-z]"))));
     }

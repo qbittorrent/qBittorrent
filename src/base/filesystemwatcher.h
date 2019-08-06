@@ -32,8 +32,10 @@
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QHash>
-#include <QStringList>
 #include <QTimer>
+#include <QVector>
+
+class QStringList;
 
 /*
  * Subclassing QFileSystemWatcher in order to support Network File
@@ -65,7 +67,7 @@ private:
     QHash<QString, int> m_partialTorrents;
     QTimer m_partialTorrentTimer;
 
-    QList<QDir> m_watchedFolders;
+    QVector<QDir> m_watchedFolders;
     QTimer m_watchTimer;
 };
 

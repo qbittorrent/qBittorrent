@@ -37,7 +37,6 @@
 #endif
 
 #include <QString>
-#include <QStringList>
 
 enum class ShutdownDialogAction;
 
@@ -71,6 +70,7 @@ namespace Utils
         QString boostVersionString();
         QString libtorrentVersionString();
         QString opensslVersionString();
+        QString zlibVersionString();
 
         QString unitString(SizeUnit unit, bool isSpeed = false);
 
@@ -84,13 +84,8 @@ namespace Utils
 
         // Take a number of seconds and return a user-friendly
         // time duration like "1d 2h 10m".
-        QString userFriendlyDuration(qlonglong seconds);
+        QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1);
         QString getUserIDString();
-
-        // Convert functions
-        QStringList toStringList(const QList<bool> &l);
-        QList<int> intListfromStringList(const QStringList &l);
-        QList<bool> boolListfromStringList(const QStringList &l);
 
 #ifdef Q_OS_WIN
         QString windowsSystemPath();

@@ -29,12 +29,12 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include <QButtonGroup>
 #include <QDialog>
 
 class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
+
 class AdvancedSettings;
 
 // actions on double-click on torrents
@@ -87,7 +87,6 @@ public slots:
     void showConnectionTab();
 
 private slots:
-    void enableForceProxy(bool enable);
     void enableProxy(int index);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e) override;
@@ -117,6 +116,7 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
+    void initializeThemeCombo();
     static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
@@ -183,6 +183,7 @@ private:
     AdvancedSettings *m_advancedSettings;
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
+    QString m_uiThemeFilePath;
 };
 
 #endif // OPTIONSDIALOG_H

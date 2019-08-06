@@ -30,7 +30,8 @@
 #define BITTORRENT_TRACKERENTRY_H
 
 #include <libtorrent/announce_entry.hpp>
-#include <libtorrent/torrent_info.hpp>
+
+#include <QtGlobal>
 
 class QString;
 
@@ -47,8 +48,9 @@ namespace BitTorrent
             NotWorking = 4
         };
 
+        TrackerEntry() = default;
         TrackerEntry(const QString &url);
-        TrackerEntry(const libtorrent::announce_entry &nativeEntry);
+        TrackerEntry(const lt::announce_entry &nativeEntry);
         TrackerEntry(const TrackerEntry &other) = default;
         TrackerEntry &operator=(const TrackerEntry &other) = default;
 
@@ -63,13 +65,14 @@ namespace BitTorrent
         int numLeeches() const;
         int numDownloaded() const;
 
-        libtorrent::announce_entry nativeEntry() const;
+        const lt::announce_entry &nativeEntry() const;
 
     private:
-        libtorrent::announce_entry m_nativeEntry;
+        lt::announce_entry m_nativeEntry;
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
+    uint qHash(const TrackerEntry &key, uint seed);
 }
 
 #endif // BITTORRENT_TRACKERENTRY_H

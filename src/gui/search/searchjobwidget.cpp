@@ -48,11 +48,11 @@
 #include "base/settingvalue.h"
 #include "base/utils/misc.h"
 #include "addnewtorrentdialog.h"
-#include "guiiconprovider.h"
 #include "lineedit.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
@@ -135,23 +135,23 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     m_ui->horizontalLayout->insertWidget(0, m_lineEditSearchResultsFilter);
 
     connect(m_lineEditSearchResultsFilter, &LineEdit::textChanged, this, &SearchJobWidget::filterSearchResults);
-    connect(m_ui->filterMode, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->filterMode, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->minSeeds, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->minSeeds, qOverload<int>(&QSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->maxSeeds, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->maxSeeds, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged)
+    connect(m_ui->maxSeeds, qOverload<int>(&QSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->minSize, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->minSize, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+    connect(m_ui->minSize, qOverload<double>(&QDoubleSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
     connect(m_ui->maxSize, &QAbstractSpinBox::editingFinished, this, &SearchJobWidget::updateFilter);
-    connect(m_ui->maxSize, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged)
+    connect(m_ui->maxSize, qOverload<double>(&QDoubleSpinBox::valueChanged)
             , this, &SearchJobWidget::updateFilter);
-    connect(m_ui->minSizeUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->minSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
-    connect(m_ui->maxSizeUnit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_ui->maxSizeUnit, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchJobWidget::updateFilter);
 
     connect(m_ui->resultsBrowser, &QAbstractItemView::doubleClicked, this, &SearchJobWidget::onItemDoubleClicked);
@@ -217,7 +217,7 @@ void SearchJobWidget::downloadTorrents()
         downloadTorrent(rowIndex);
 }
 
-void SearchJobWidget::openTorrentPages()
+void SearchJobWidget::openTorrentPages() const
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
     for (const QModelIndex &rowIndex : rows) {
@@ -228,21 +228,35 @@ void SearchJobWidget::openTorrentPages()
     }
 }
 
-void SearchJobWidget::copyTorrentURLs()
+void SearchJobWidget::copyTorrentURLs() const
+{
+    copyField(SearchSortModel::DESC_LINK);
+}
+
+void SearchJobWidget::copyTorrentDownloadLinks() const
+{
+    copyField(SearchSortModel::DL_LINK);
+}
+
+void SearchJobWidget::copyTorrentNames() const
+{
+    copyField(SearchSortModel::NAME);
+}
+
+void SearchJobWidget::copyField(const int column) const
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
-    QStringList urls;
+    QStringList list;
+
     for (const QModelIndex &rowIndex : rows) {
-        const QString descrLink = m_proxyModel->data(
-                    m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
-        if (!descrLink.isEmpty())
-            urls << descrLink;
+        const QString field = m_proxyModel->data(
+            m_proxyModel->index(rowIndex.row(), column)).toString();
+        if (!field.isEmpty())
+            list << field;
     }
 
-    if (!urls.empty()) {
-        QClipboard *clipboard = QApplication::clipboard();
-        clipboard->setText(urls.join('\n'));
-    }
+    if (!list.empty())
+        QApplication::clipboard()->setText(list.join('\n'));
 }
 
 void SearchJobWidget::setStatus(Status value)
@@ -261,7 +275,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
     const QString siteUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_URL)).toString();
 
-    if (torrentUrl.startsWith("bc://bt/", Qt::CaseInsensitive) || torrentUrl.startsWith("magnet:", Qt::CaseInsensitive)) {
+    if (torrentUrl.startsWith("magnet:", Qt::CaseInsensitive)) {
         addTorrentToSession(torrentUrl);
     }
     else {
@@ -358,16 +372,50 @@ void SearchJobWidget::showFilterContextMenu(const QPoint &)
     const Preferences *pref = Preferences::instance();
 
     QMenu *menu = m_lineEditSearchResultsFilter->createStandardContextMenu();
+    menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
-    QAction *useRegexAct = new QAction(tr("Use regular expressions"), menu);
+
+    QAction *useRegexAct = menu->addAction(tr("Use regular expressions"));
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForSearchJob());
-    menu->addAction(useRegexAct);
-
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForSearchJob);
     connect(useRegexAct, &QAction::toggled, this, [this]() { filterSearchResults(m_lineEditSearchResultsFilter->text()); });
 
-    menu->exec(QCursor::pos());
+    menu->popup(QCursor::pos());
+}
+
+void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    auto *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QAction *downloadAction = menu->addAction(
+        UIThemeManager::instance()->getIcon("download"), tr("Download"));
+    connect(downloadAction, &QAction::triggered, this, &SearchJobWidget::downloadTorrents);
+
+    menu->addSeparator();
+
+    const QAction *openDescriptionAction = menu->addAction(
+        UIThemeManager::instance()->getIcon("application-x-mswinurl"), tr("Open description page"));
+    connect(openDescriptionAction, &QAction::triggered, this, &SearchJobWidget::openTorrentPages);
+
+    QMenu *copySubMenu = menu->addMenu(
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
+
+    const QAction *copyNamesAction = copySubMenu->addAction(
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Name"));
+    connect(copyNamesAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentNames);
+
+    const QAction *copyDownloadLinkAction = copySubMenu->addAction(
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Download link"));
+    connect(copyDownloadLinkAction, &QAction::triggered
+        , this, &SearchJobWidget::copyTorrentDownloadLinks);
+
+    const QAction *copyDescriptionAction = copySubMenu->addAction(
+        UIThemeManager::instance()->getIcon("edit-copy"), tr("Description page URL"));
+    connect(copyDescriptionAction, &QAction::triggered, this, &SearchJobWidget::copyTorrentURLs);
+
+    menu->popup(event->globalPos());
 }
 
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)
@@ -403,39 +451,44 @@ void SearchJobWidget::saveSettings() const
     Preferences::instance()->setSearchTabHeaderState(header()->saveState());
 }
 
-void SearchJobWidget::displayToggleColumnsMenu(const QPoint&)
+void SearchJobWidget::displayToggleColumnsMenu(const QPoint &)
 {
-    QMenu hideshowColumn(this);
-    hideshowColumn.setTitle(tr("Column visibility"));
-    QList<QAction*> actions;
+    auto menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setTitle(tr("Column visibility"));
+
     for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
-        QAction *myAct = hideshowColumn.addAction(m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        QAction *myAct = menu->addAction(m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         myAct->setCheckable(true);
         myAct->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
-        actions.append(myAct);
-    }
-    int visibleCols = 0;
-    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
-        if (!m_ui->resultsBrowser->isColumnHidden(i))
-            ++visibleCols;
-
-        if (visibleCols > 1)
-            break;
+        myAct->setData(i);
     }
 
-    // Call menu
-    QAction *act = hideshowColumn.exec(QCursor::pos());
-    if (act) {
-        int col = actions.indexOf(act);
-        Q_ASSERT(col >= 0);
-        Q_ASSERT(visibleCols > 0);
+    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    {
+        int visibleCols = 0;
+        for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+            if (!m_ui->resultsBrowser->isColumnHidden(i))
+                ++visibleCols;
+
+            if (visibleCols > 1)
+                break;
+        }
+
+        const int col = action->data().toInt();
+
         if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (visibleCols == 1))
             return;
+
         m_ui->resultsBrowser->setColumnHidden(col, !m_ui->resultsBrowser->isColumnHidden(col));
+
         if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (m_ui->resultsBrowser->columnWidth(col) <= 5))
             m_ui->resultsBrowser->resizeColumnToContents(col);
+
         saveSettings();
-    }
+    });
+
+    menu->popup(QCursor::pos());
 }
 
 void SearchJobWidget::searchFinished(bool cancelled)
@@ -453,7 +506,7 @@ void SearchJobWidget::searchFailed()
     setStatus(Status::Error);
 }
 
-void SearchJobWidget::appendSearchResults(const QList<SearchResult> &results)
+void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
 {
     for (const SearchResult &result : results) {
         // Add item to search result list

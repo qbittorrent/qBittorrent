@@ -34,14 +34,14 @@
 
 #include "base/settingvalue.h"
 
-namespace Ui
-{
-    class TorrentCreatorDialog;
-}
-
 namespace BitTorrent
 {
     class TorrentCreatorThread;
+}
+
+namespace Ui
+{
+    class TorrentCreatorDialog;
 }
 
 class TorrentCreatorDialog : public QDialog

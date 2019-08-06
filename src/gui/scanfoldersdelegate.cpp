@@ -67,7 +67,7 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
         editor->addItem(index.data().toString());
     }
 
-    connect(editor, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(editor, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &ScanFoldersDelegate::comboboxIndexChanged);
     return editor;
 }

@@ -42,22 +42,23 @@ TrackerEntry::TrackerEntry(const QString &url)
 {
 }
 
-TrackerEntry::TrackerEntry(const libtorrent::announce_entry &nativeEntry)
+TrackerEntry::TrackerEntry(const lt::announce_entry &nativeEntry)
     : m_nativeEntry(nativeEntry)
 {
 }
 
 QString TrackerEntry::url() const
 {
-    return QString::fromStdString(m_nativeEntry.url);
+    return QString::fromStdString(nativeEntry().url);
 }
 
 bool TrackerEntry::isWorking() const
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
-    return m_nativeEntry.is_working();
+    return nativeEntry().is_working();
 #else
-    return std::any_of(m_nativeEntry.endpoints.begin(), m_nativeEntry.endpoints.end()
+    const auto &endpoints = nativeEntry().endpoints;
+    return std::any_of(endpoints.begin(), endpoints.end()
                        , [](const lt::announce_endpoint &endpoint)
     {
         return endpoint.is_working();
@@ -67,19 +68,40 @@ bool TrackerEntry::isWorking() const
 
 int TrackerEntry::tier() const
 {
-    return m_nativeEntry.tier;
+    return nativeEntry().tier;
 }
 
 TrackerEntry::Status TrackerEntry::status() const
 {
-    // libtorrent::announce_entry::is_working() returns
+    // lt::announce_entry::is_working() returns
     // true when the tracker hasn't been tried yet.
-    if (m_nativeEntry.verified && isWorking())
+    if (nativeEntry().verified && isWorking())
         return Working;
-    if ((m_nativeEntry.fails == 0) && m_nativeEntry.updating)
+
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    if ((nativeEntry().fails == 0) && nativeEntry().updating)
         return Updating;
-    if (m_nativeEntry.fails == 0)
+    if (nativeEntry().fails == 0)
         return NotContacted;
+#else
+    const auto &endpoints = nativeEntry().endpoints;
+    const bool allFailed = std::all_of(endpoints.begin(), endpoints.end()
+                                       , [](const lt::announce_endpoint &endpoint)
+    {
+        return (endpoint.fails > 0);
+    });
+    const bool updating = std::any_of(endpoints.begin(), endpoints.end()
+                                      , [](const lt::announce_endpoint &endpoint)
+    {
+        return endpoint.updating;
+    });
+
+    if (!allFailed && updating)
+        return Updating;
+
+    if (!allFailed)
+        return NotContacted;
+#endif
 
     return NotWorking;
 }
@@ -94,8 +116,10 @@ int TrackerEntry::numSeeds() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return nativeEntry().scrape_complete;
 #else
-    // FIXME: Handle all possible endpoints.
-    return nativeEntry().endpoints.empty() ? -1 : nativeEntry().endpoints[0].scrape_complete;
+    int value = -1;
+    for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
+        value = std::max(value, endpoint.scrape_complete);
+    return value;
 #endif
 }
 
@@ -104,8 +128,10 @@ int TrackerEntry::numLeeches() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return nativeEntry().scrape_incomplete;
 #else
-    // FIXME: Handle all possible endpoints.
-    return nativeEntry().endpoints.empty() ? -1 : nativeEntry().endpoints[0].scrape_incomplete;
+    int value = -1;
+    for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
+        value = std::max(value, endpoint.scrape_incomplete);
+    return value;
 #endif
 }
 
@@ -114,17 +140,25 @@ int TrackerEntry::numDownloaded() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return nativeEntry().scrape_downloaded;
 #else
-    // FIXME: Handle all possible endpoints.
-    return nativeEntry().endpoints.empty() ? -1 : nativeEntry().endpoints[0].scrape_downloaded;
+    int value = -1;
+    for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
+        value = std::max(value, endpoint.scrape_downloaded);
+    return value;
 #endif
 }
 
-libtorrent::announce_entry TrackerEntry::nativeEntry() const
+const lt::announce_entry &TrackerEntry::nativeEntry() const
 {
     return m_nativeEntry;
 }
 
 bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
 {
-    return (QUrl(left.url()) == QUrl(right.url()));
+    return ((left.tier() == right.tier())
+        && QUrl(left.url()) == QUrl(right.url()));
+}
+
+uint BitTorrent::qHash(const TrackerEntry &key, const uint seed)
+{
+    return (::qHash(key.url(), seed) ^ key.tier());
 }

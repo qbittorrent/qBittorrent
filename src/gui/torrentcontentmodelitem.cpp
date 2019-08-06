@@ -28,10 +28,8 @@
 
 #include "torrentcontentmodelitem.h"
 
-#include <QDebug>
+#include <QVariant>
 
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
@@ -80,7 +78,7 @@ qreal TorrentContentModelItem::progress() const
 qulonglong TorrentContentModelItem::remaining() const
 {
     Q_ASSERT(!isRootItem());
-    return m_remaining;
+    return (m_priority == BitTorrent::DownloadPriority::Ignored) ? 0 : m_remaining;
 }
 
 qreal TorrentContentModelItem::availability() const

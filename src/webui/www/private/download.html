@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Add Torrent Links)QBT_TR[CONTEXT=downloadFromURL]</title>
-    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
-    <link rel="stylesheet" href="css/Window.css?v=${VERSION}" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <script src="scripts/download.js?v=${VERSION}"></script>
-    <script src="scripts/misc.js?locale=${LANG}&v=${VERSION}"></script>
+    <script src="scripts/download.js?v=${CACHEID}"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
 </head>
 
 <body>
@@ -72,11 +72,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="start_torrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="startTorrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
-                            <input type="checkbox" id="start_torrent" checked="checked" />
-                            <input type="hidden" id="add_paused" name="paused" value="false" readonly />
+                            <input type="hidden" id="startTorrentHidden" name="paused" />
+                            <input type="checkbox" id="startTorrent" />
                         </td>
                     </tr>
                     <tr>
@@ -89,10 +89,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="root_folder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="rootFolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
-                            <input type="checkbox" id="root_folder" name="root_folder" value="true" checked="checked" />
+                            <input type="hidden" id="rootFolderHidden" name="root_folder" />
+                            <input type="checkbox" id="rootFolder" />
                         </td>
                     </tr>
                     <tr>
@@ -113,18 +114,20 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="dlLimit">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="dlLimitText">QBT_TR(Limit download rate)QBT_TR[CONTEXT=HttpServer]</label>
                         </td>
                         <td>
-                            <input type="text" id="dlLimit" name="dlLimit" style="width: 16em;" placeholder="Bytes/s" />
+                            <input type="hidden" id="dlLimitHidden" name="dlLimit" />
+                            <input type="text" id="dlLimitText" style="width: 16em;" placeholder="KiB/s" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="upLimit">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
+                            <label for="upLimitText">QBT_TR(Limit upload rate)QBT_TR[CONTEXT=HttpServer]</label>
                         </td>
                         <td>
-                            <input type="text" id="upLimit" name="upLimit" style="width: 16em;" placeholder="Bytes/s" />
+                            <input type="hidden" id="upLimitHidden" name="upLimit" />
+                            <input type="text" id="upLimitText" style="width: 16em;" placeholder="KiB/s" />
                         </td>
                     </tr>
                 </table>
@@ -137,20 +140,25 @@
     <script>
         'use strict';
 
-        var encodedUrls = new URI().getData('urls');
+        const encodedUrls = new URI().getData('urls');
         if (encodedUrls) {
-            var urls = [];
-            encodedUrls.split('|').each(function(url) {
-                urls.push(decodeURIComponent(url));
+            const urls = encodedUrls.split('|').map(function(url) {
+                return decodeURIComponent(url);
             });
 
             if (urls.length)
                 $('urls').set('value', urls.join("\n"));
         }
 
-        var submitted = false;
+        let submitted = false;
 
         $('downloadForm').addEventListener("submit", function() {
+            $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
+            $('rootFolderHidden').value = $('rootFolder').checked ? 'true' : 'false';
+
+            $('dlLimitHidden').value = $('dlLimitText').value.toInt() * 1024;
+            $('upLimitHidden').value = $('upLimitText').value.toInt() * 1024;
+
             $('download_spinner').style.display = "block";
             submitted = true;
         });
@@ -158,10 +166,6 @@
         $('download_frame').addEventListener("load", function() {
             if (submitted)
                 window.parent.closeWindows();
-        });
-
-        $('start_torrent').addEventListener('change', function() {
-            $('add_paused').value = !$('start_torrent').checked;
         });
     </script>
     <div id="download_spinner" class="mochaSpinner"></div>

@@ -34,77 +34,77 @@
 #include <QMetaObject>
 #include <QThread>
 
+#include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
-#include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "freediskspacechecker.h"
 #include "isessionmanager.h"
 #include "serialize/serialize_torrent.h"
 
-// Sync main data keys
-const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
-const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
-const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
-
-// Sync torrent peers keys
-const char KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS[] = "show_flags";
-
-// Peer keys
-const char KEY_PEER_IP[] = "ip";
-const char KEY_PEER_PORT[] = "port";
-const char KEY_PEER_COUNTRY_CODE[] = "country_code";
-const char KEY_PEER_COUNTRY[] = "country";
-const char KEY_PEER_CLIENT[] = "client";
-const char KEY_PEER_PROGRESS[] = "progress";
-const char KEY_PEER_DOWN_SPEED[] = "dl_speed";
-const char KEY_PEER_UP_SPEED[] = "up_speed";
-const char KEY_PEER_TOT_DOWN[] = "downloaded";
-const char KEY_PEER_TOT_UP[] = "uploaded";
-const char KEY_PEER_CONNECTION_TYPE[] = "connection";
-const char KEY_PEER_FLAGS[] = "flags";
-const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
-const char KEY_PEER_RELEVANCE[] = "relevance";
-const char KEY_PEER_FILES[] = "files";
-
-// TransferInfo keys
-const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
-const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
-const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
-const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
-const char KEY_TRANSFER_UPDATA[] = "up_info_data";
-const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
-const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
-const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
-const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
-
-// Statistics keys
-const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
-const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
-const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
-const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
-const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
-const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
-const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
-const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
-const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
-const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
-const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
-const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
-
-const char KEY_FULL_UPDATE[] = "full_update";
-const char KEY_RESPONSE_ID[] = "rid";
-const char KEY_SUFFIX_REMOVED[] = "_removed";
-
-const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
-
 namespace
 {
+    const int FREEDISKSPACE_CHECK_TIMEOUT = 30000;
+
+    // Sync main data keys
+    const char KEY_SYNC_MAINDATA_QUEUEING[] = "queueing";
+    const char KEY_SYNC_MAINDATA_REFRESH_INTERVAL[] = "refresh_interval";
+    const char KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS[] = "use_alt_speed_limits";
+
+    // Sync torrent peers keys
+    const char KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS[] = "show_flags";
+
+    // Peer keys
+    const char KEY_PEER_CLIENT[] = "client";
+    const char KEY_PEER_CONNECTION_TYPE[] = "connection";
+    const char KEY_PEER_COUNTRY[] = "country";
+    const char KEY_PEER_COUNTRY_CODE[] = "country_code";
+    const char KEY_PEER_DOWN_SPEED[] = "dl_speed";
+    const char KEY_PEER_FILES[] = "files";
+    const char KEY_PEER_FLAGS[] = "flags";
+    const char KEY_PEER_FLAGS_DESCRIPTION[] = "flags_desc";
+    const char KEY_PEER_IP[] = "ip";
+    const char KEY_PEER_PORT[] = "port";
+    const char KEY_PEER_PROGRESS[] = "progress";
+    const char KEY_PEER_RELEVANCE[] = "relevance";
+    const char KEY_PEER_TOT_DOWN[] = "downloaded";
+    const char KEY_PEER_TOT_UP[] = "uploaded";
+    const char KEY_PEER_UP_SPEED[] = "up_speed";
+
+    // TransferInfo keys
+    const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+    const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
+    const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
+    const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
+    const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
+    const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
+    const char KEY_TRANSFER_UPDATA[] = "up_info_data";
+    const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
+    const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
+
+    // Statistics keys
+    const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
+    const char KEY_TRANSFER_ALLTIME_UL[] = "alltime_ul";
+    const char KEY_TRANSFER_AVERAGE_TIME_QUEUE[] = "average_time_queue";
+    const char KEY_TRANSFER_GLOBAL_RATIO[] = "global_ratio";
+    const char KEY_TRANSFER_QUEUED_IO_JOBS[] = "queued_io_jobs";
+    const char KEY_TRANSFER_READ_CACHE_HITS[] = "read_cache_hits";
+    const char KEY_TRANSFER_READ_CACHE_OVERLOAD[] = "read_cache_overload";
+    const char KEY_TRANSFER_TOTAL_BUFFERS_SIZE[] = "total_buffers_size";
+    const char KEY_TRANSFER_TOTAL_PEER_CONNECTIONS[] = "total_peer_connections";
+    const char KEY_TRANSFER_TOTAL_QUEUED_SIZE[] = "total_queued_size";
+    const char KEY_TRANSFER_TOTAL_WASTE_SESSION[] = "total_wasted_session";
+    const char KEY_TRANSFER_WRITE_CACHE_OVERLOAD[] = "write_cache_overload";
+
+    const char KEY_FULL_UPDATE[] = "full_update";
+    const char KEY_RESPONSE_ID[] = "rid";
+    const char KEY_SUFFIX_REMOVED[] = "_removed";
+
     void processMap(const QVariantMap &prevData, const QVariantMap &data, QVariantMap &syncData);
     void processHash(QVariantHash prevData, const QVariantHash &data, QVariantMap &syncData, QVariantList &removedItems);
     void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
@@ -113,29 +113,31 @@ namespace
     QVariantMap getTranserInfo()
     {
         QVariantMap map;
-        const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
-        const BitTorrent::CacheStatus &cacheStatus = BitTorrent::Session::instance()->cacheStatus();
+        const auto *session = BitTorrent::Session::instance();
+
+        const BitTorrent::SessionStatus &sessionStatus = session->status();
+        const BitTorrent::CacheStatus &cacheStatus = session->cacheStatus();
         map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
         map[KEY_TRANSFER_DLDATA] = sessionStatus.totalPayloadDownload;
         map[KEY_TRANSFER_UPSPEED] = sessionStatus.payloadUploadRate;
         map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
-        map[KEY_TRANSFER_DLRATELIMIT] = BitTorrent::Session::instance()->downloadSpeedLimit();
-        map[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
+        map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
+        map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
 
-        quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
-        quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+        const quint64 atd = session->getAlltimeDL();
+        const quint64 atu = session->getAlltimeUL();
         map[KEY_TRANSFER_ALLTIME_DL] = atd;
         map[KEY_TRANSFER_ALLTIME_UL] = atu;
         map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
         map[KEY_TRANSFER_GLOBAL_RATIO] = ((atd > 0) && (atu > 0)) ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2) : "-";
         map[KEY_TRANSFER_TOTAL_PEER_CONNECTIONS] = sessionStatus.peersCount;
 
-        qreal readRatio = cacheStatus.readRatio;
+        const qreal readRatio = cacheStatus.readRatio;
         map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "0";
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
         // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-        const auto torrents = BitTorrent::Session::instance()->torrents();
+        const auto torrents = session->torrents();
         const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
         {
             return (acc + torrent->peersCount());
@@ -149,10 +151,10 @@ namespace
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
-        if (!BitTorrent::Session::instance()->isListening())
-            map[KEY_TRANSFER_CONNECTION_STATUS] = "disconnected";
-        else
-            map[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? "connected" : "firewalled";
+        map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
+            ? (sessionStatus.hasIncomingConnections ? "connected" : "firewalled")
+            : "disconnected";
+
         return map;
     }
 
@@ -163,11 +165,10 @@ namespace
         // initialize output variable
         syncData.clear();
 
-        QVariantList removedItems;
         for (auto i = data.cbegin(); i != data.cend(); ++i) {
             const QString &key = i.key();
             const QVariant &value = i.value();
-            removedItems.clear();
+            QVariantList removedItems;
 
             switch (static_cast<QMetaType::Type>(value.type())) {
             case QMetaType::QVariantMap: {
@@ -315,7 +316,7 @@ namespace
             syncData[KEY_FULL_UPDATE] = true;
         }
 
-        lastResponseId = lastResponseId % 1000000 + 1;  // cycle between 1 and 1000000
+        lastResponseId = (lastResponseId % 1000000) + 1;  // cycle between 1 and 1000000
         lastData = data;
         lastData[KEY_RESPONSE_ID] = lastResponseId;
         syncData[KEY_RESPONSE_ID] = lastResponseId;
@@ -363,7 +364,7 @@ SyncController::~SyncController()
 //  - "progress": Torrent progress
 //  - "dlspeed": Torrent download speed
 //  - "upspeed": Torrent upload speed
-//  - "priority": Torrent priority (-1 if queuing is disabled)
+//  - "priority": Torrent queue position (-1 if queuing is disabled)
 //  - "num_seeds": Torrent seeds connected to
 //  - "num_complete": Torrent seeds in the swarm
 //  - "num_leechs": Torrent leechers connected to
@@ -400,50 +401,65 @@ SyncController::~SyncController()
 //  - "up_info_data: bytes uploaded
 //  - "up_info_speed: upload speed
 //  - "up_rate_limit: upload speed limit
-//  - "queueing": priority system usage flag
+//  - "queueing": queue system usage flag
 //  - "refresh_interval": torrents table refresh interval
 //  - "free_space_on_disk": Free space on the default save path
 // GET param:
 //   - rid (int): last response id
 void SyncController::maindataAction()
 {
-    auto lastResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastResponse")).toMap();
-    auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastAcceptedResponse")).toMap();
+    const auto *session = BitTorrent::Session::instance();
 
     QVariantMap data;
+
+    QVariantMap lastResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastResponse")).toMap();
+    QVariantMap lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastAcceptedResponse")).toMap();
+
     QVariantHash torrents;
+    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents())) {
+        const BitTorrent::InfoHash torrentHash = torrent->hash();
 
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-
-    for (BitTorrent::TorrentHandle *const torrent : asConst(session->torrents())) {
         QVariantMap map = serialize(*torrent);
         map.remove(KEY_TORRENT_HASH);
 
         // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
         // So we don't need unnecessary updates of last activity time in response.
-        if (lastResponse.contains("torrents") && lastResponse["torrents"].toHash().contains(torrent->hash()) &&
-                lastResponse["torrents"].toHash()[torrent->hash()].toMap().contains(KEY_TORRENT_LAST_ACTIVITY_TIME)) {
-            uint lastValue = lastResponse["torrents"].toHash()[torrent->hash()].toMap()[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt();
-            if (qAbs(static_cast<int>(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toUInt())) < 15)
-                map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
+        const auto iterTorrents = lastResponse.find("torrents");
+        if (iterTorrents != lastResponse.end()) {
+            const QVariantHash lastResponseTorrents = iterTorrents->toHash();
+            const auto iterHash = lastResponseTorrents.find(torrentHash);
+
+            if (iterHash != lastResponseTorrents.end()) {
+                const QVariantMap torrentData = iterHash->toMap();
+                const auto iterLastActivity = torrentData.find(KEY_TORRENT_LAST_ACTIVITY_TIME);
+
+                if (iterLastActivity != torrentData.end()) {
+                    const int lastValue = iterLastActivity->toInt();
+                    if (qAbs(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toInt()) < 15)
+                        map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
+                }
+            }
         }
 
-        torrents[torrent->hash()] = map;
+        torrents[torrentHash] = map;
     }
-
     data["torrents"] = torrents;
 
     QVariantHash categories;
     const auto &categoriesList = session->categories();
     for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
-        const auto &key = it.key();
+        const QString &key = it.key();
         categories[key] = QVariantMap {
             {"name", key},
             {"savePath", it.value()}
         };
     }
-
     data["categories"] = categories;
+
+    QVariantList tags;
+    for (const QString &tag : asConst(session->tags()))
+        tags << tag;
+    data["tags"] = tags;
 
     QVariantMap serverState = getTranserInfo();
     serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
@@ -468,13 +484,15 @@ void SyncController::torrentPeersAction()
     auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastAcceptedResponse")).toMap();
 
     const QString hash {params()["hash"]};
-    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    const BitTorrent::TorrentHandle *torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
     QVariantMap data;
     QVariantHash peers;
-    const QList<BitTorrent::PeerInfo> peersList = torrent->peers();
+
+    const QVector<BitTorrent::PeerInfo> peersList = torrent->peers();
+
 #ifndef DISABLE_COUNTRIES_RESOLUTION
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
 #else
@@ -485,30 +503,32 @@ void SyncController::torrentPeersAction()
 
     for (const BitTorrent::PeerInfo &pi : peersList) {
         if (pi.address().ip.isNull()) continue;
-        QVariantMap peer;
+
+        QVariantMap peer = {
+            {KEY_PEER_IP, pi.address().ip.toString()},
+            {KEY_PEER_PORT, pi.address().port},
+            {KEY_PEER_CLIENT, pi.client()},
+            {KEY_PEER_PROGRESS, pi.progress()},
+            {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
+            {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
+            {KEY_PEER_TOT_DOWN, pi.totalDownload()},
+            {KEY_PEER_TOT_UP, pi.totalUpload()},
+            {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
+            {KEY_PEER_FLAGS, pi.flags()},
+            {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
+            {KEY_PEER_RELEVANCE, pi.relevance()},
+            {KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n')}
+        };
+
 #ifndef DISABLE_COUNTRIES_RESOLUTION
         if (resolvePeerCountries) {
             peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
 #endif
-        peer[KEY_PEER_IP] = pi.address().ip.toString();
-        peer[KEY_PEER_PORT] = pi.address().port;
-        peer[KEY_PEER_CLIENT] = pi.client();
-        peer[KEY_PEER_PROGRESS] = pi.progress();
-        peer[KEY_PEER_DOWN_SPEED] = pi.payloadDownSpeed();
-        peer[KEY_PEER_UP_SPEED] = pi.payloadUpSpeed();
-        peer[KEY_PEER_TOT_DOWN] = pi.totalDownload();
-        peer[KEY_PEER_TOT_UP] = pi.totalUpload();
-        peer[KEY_PEER_CONNECTION_TYPE] = pi.connectionType();
-        peer[KEY_PEER_FLAGS] = pi.flags();
-        peer[KEY_PEER_FLAGS_DESCRIPTION] = pi.flagsDescription();
-        peer[KEY_PEER_RELEVANCE] = pi.relevance();
-        peer[KEY_PEER_FILES] = torrent->info().filesForPiece(pi.downloadingPieceIndex()).join(QLatin1String("\n"));
 
         peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
     }
-
     data["peers"] = peers;
 
     const int acceptedResponseId {params()["rid"].toInt()};

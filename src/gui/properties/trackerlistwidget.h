@@ -29,14 +29,10 @@
 #ifndef TRACKERLIST_H
 #define TRACKERLIST_H
 
-#include <QClipboard>
-#include <QList>
-#include <QShortcut>
 #include <QTreeWidget>
+#include <QVector>
 
-#include "propertieswidget.h"
-
-#define NB_STICKY_ITEM 3
+class PropertiesWidget;
 
 namespace BitTorrent
 {
@@ -75,32 +71,29 @@ public slots:
     void moveSelectionDown();
 
     void clear();
-    void loadStickyItems(BitTorrent::TorrentHandle *const torrent);
+    void loadStickyItems(const BitTorrent::TorrentHandle *torrent);
     void loadTrackers();
     void askForTrackers();
     void copyTrackerUrl();
     void reannounceSelected();
     void deleteSelectedTrackers();
     void editSelectedTracker();
-    void showTrackerListMenu(QPoint);
+    void showTrackerListMenu(const QPoint &);
     void displayToggleColumnsMenu(const QPoint &);
     void loadSettings();
     void saveSettings() const;
 
 protected:
-    QList<QTreeWidgetItem *> getSelectedTrackerItems() const;
+    QVector<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
 private:
+    static QStringList headerLabels();
+
     PropertiesWidget *m_properties;
     QHash<QString, QTreeWidgetItem *> m_trackerItems;
     QTreeWidgetItem *m_DHTItem;
     QTreeWidgetItem *m_PEXItem;
     QTreeWidgetItem *m_LSDItem;
-    QShortcut *m_editHotkey;
-    QShortcut *m_deleteHotkey;
-    QShortcut *m_copyHotkey;
-
-    static QStringList headerLabels();
 };
 
 #endif // TRACKERLIST_H

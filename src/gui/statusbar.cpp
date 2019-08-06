@@ -39,7 +39,6 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/utils/misc.h"
-#include "guiiconprovider.h"
 #include "speedlimitdialog.h"
 #include "utils.h"
 

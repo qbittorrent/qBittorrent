@@ -28,7 +28,7 @@
 
 'use strict';
 
-var webseedsDynTable = new Class({
+const webseedsDynTable = new Class({
 
     initialize: function() {},
 
@@ -39,7 +39,7 @@ var webseedsDynTable = new Class({
 
     removeRow: function(url) {
         if (this.rows.has(url)) {
-            var tr = this.rows.get(url);
+            const tr = this.rows.get(url);
             tr.dispose();
             this.rows.erase(url);
             return true;
@@ -54,25 +54,25 @@ var webseedsDynTable = new Class({
     },
 
     updateRow: function(tr, row) {
-        var tds = tr.getElements('td');
-        for (var i = 0; i < row.length; ++i) {
+        const tds = tr.getElements('td');
+        for (let i = 0; i < row.length; ++i) {
             tds[i].set('html', row[i]);
         }
         return true;
     },
 
     insertRow: function(row) {
-        var url = row[0];
+        const url = row[0];
         if (this.rows.has(url)) {
-            var tableRow = this.rows.get(url);
+            const tableRow = this.rows.get(url);
             this.updateRow(tableRow, row);
             return;
         }
         //this.removeRow(id);
-        var tr = new Element('tr');
+        const tr = new Element('tr');
         this.rows.set(url, tr);
-        for (var i = 0; i < row.length; ++i) {
-            var td = new Element('td');
+        for (let i = 0; i < row.length; ++i) {
+            const td = new Element('td');
             td.set('html', row[i]);
             td.injectInside(tr);
         }
@@ -80,16 +80,16 @@ var webseedsDynTable = new Class({
     },
 });
 
-var current_hash = "";
+this.current_hash = "";
 
-var loadWebSeedsDataTimer;
-var loadWebSeedsData = function() {
+let loadWebSeedsDataTimer;
+const loadWebSeedsData = function() {
     if ($('prop_webseeds').hasClass('invisible')
         || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
-    var new_hash = torrentsTable.getCurrentTorrentHash();
+    const new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash === "") {
         wsTable.removeAllRows();
         clearTimeout(loadWebSeedsDataTimer);
@@ -100,7 +100,7 @@ var loadWebSeedsData = function() {
         wsTable.removeAllRows();
         current_hash = new_hash;
     }
-    var url = new URI('api/v2/torrents/webseeds?hash=' + current_hash);
+    const url = new URI('api/v2/torrents/webseeds?hash=' + current_hash);
     new Request.JSON({
         url: url,
         noCache: true,
@@ -115,7 +115,7 @@ var loadWebSeedsData = function() {
             if (webseeds) {
                 // Update WebSeeds data
                 webseeds.each(function(webseed) {
-                    var row = [];
+                    const row = [];
                     row.length = 1;
                     row[0] = webseed.url;
                     wsTable.insertRow(row);
@@ -130,10 +130,10 @@ var loadWebSeedsData = function() {
     }).send();
 };
 
-var updateWebSeedsData = function() {
+updateWebSeedsData = function() {
     clearTimeout(loadWebSeedsDataTimer);
     loadWebSeedsData();
 };
 
-var wsTable = new webseedsDynTable();
+const wsTable = new webseedsDynTable();
 wsTable.setup($('webseedsTable'));

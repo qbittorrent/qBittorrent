@@ -29,10 +29,6 @@
 #include "webapplication.h"
 
 #include <algorithm>
-#include <functional>
-#include <queue>
-#include <stdexcept>
-#include <vector>
 
 #include <QDateTime>
 #include <QDebug>
@@ -41,12 +37,13 @@
 #include <QJsonDocument>
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QNetworkCookie>
 #include <QRegExp>
 #include <QUrl>
 
+#include "base/algorithm.h"
 #include "base/global.h"
 #include "base/http/httperror.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/bytearray.h"
@@ -91,7 +88,7 @@ namespace
         return ret;
     }
 
-    inline QUrl urlFromHostHeader(const QString &hostHeader)
+    QUrl urlFromHostHeader(const QString &hostHeader)
     {
         if (!hostHeader.contains(QLatin1String("://")))
             return {QLatin1String("http://") + hostHeader};
@@ -117,6 +114,7 @@ namespace
 
 WebApplication::WebApplication(QObject *parent)
     : QObject(parent)
+    , m_cacheID {QString::number(Utils::Random::rand(), 36)}
 {
     registerAPIController(QLatin1String("app"), new AppController(this, this));
     registerAPIController(QLatin1String("auth"), new AuthController(this, this));
@@ -156,9 +154,7 @@ void WebApplication::sendWebUIFile()
     const QString path {
         (request().path != QLatin1String("/")
                 ? request().path
-                : (session()
-                   ? QLatin1String("/index.html")
-                   : QLatin1String("/login.html")))
+                : QLatin1String("/index.html"))
     };
 
     QString localPath {
@@ -227,7 +223,7 @@ void WebApplication::translateDocument(QString &data)
         }
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
-        data.replace(QLatin1String("${VERSION}"), QBT_VERSION);
+        data.replace(QLatin1String("${CACHEID}"), m_cacheID);
     }
 }
 
@@ -336,6 +332,7 @@ void WebApplication::configure()
     m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+    m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
@@ -416,20 +413,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     m_request = request;
     m_env = env;
     m_params.clear();
+
     if (m_request.method == Http::METHOD_GET) {
-        // Parse GET parameters
-        using namespace Utils::ByteArray;
-        for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
-            const int sepPos = param.indexOf('=');
-            if (sepPos <= 0) continue; // ignores params without name
-
-            const QByteArray nameComponent = midView(param, 0, sepPos);
-            const QByteArray valueComponent = midView(param, (sepPos + 1));
-
-            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-            const QString paramValue = QString::fromUtf8(QByteArray::fromPercentEncoding(valueComponent));
-            m_params[paramName] = paramValue;
-        }
+        for (auto iter = m_request.query.cbegin(); iter != m_request.query.cend(); ++iter)
+            m_params[iter.key()] = QString::fromUtf8(iter.value());
     }
     else {
         m_params = m_request.posts;
@@ -485,8 +472,7 @@ void WebApplication::sessionInitialize()
     if (!sessionId.isEmpty()) {
         m_currentSession = m_sessions.value(sessionId);
         if (m_currentSession) {
-            const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-            if ((now - m_currentSession->m_timestamp) > INACTIVE_TIME) {
+            if (m_currentSession->hasExpired(m_sessionTimeout)) {
                 // session is outdated - removing it
                 delete m_sessions.take(sessionId);
                 m_currentSession = nullptr;
@@ -537,12 +523,15 @@ void WebApplication::sessionStart()
     Q_ASSERT(!m_currentSession);
 
     // remove outdated sessions
-    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    const QMap<QString, WebSession *> sessionsCopy {m_sessions};
-    for (const auto session : sessionsCopy) {
-        if ((now - session->timestamp()) > INACTIVE_TIME)
-            delete m_sessions.take(session->id());
-    }
+    Algorithm::removeIf(m_sessions, [this](const QString &, const WebSession *session)
+    {
+        if (session->hasExpired(m_sessionTimeout)) {
+            delete session;
+            return true;
+        }
+
+        return false;
+    });
 
     m_currentSession = new WebSession(generateSid());
     m_sessions[m_currentSession->id()] = m_currentSession;
@@ -661,9 +650,16 @@ QString WebSession::id() const
     return m_sid;
 }
 
-qint64 WebSession::timestamp() const
+bool WebSession::hasExpired(const qint64 seconds) const
 {
-    return m_timestamp;
+    if (seconds <= 0)
+        return false;
+    return m_timer.hasExpired(seconds * 1000);
+}
+
+void WebSession::updateTimestamp()
+{
+    m_timer.start();
 }
 
 QVariant WebSession::getData(const QString &id) const
@@ -674,9 +670,4 @@ QVariant WebSession::getData(const QString &id) const
 void WebSession::setData(const QString &id, const QVariant &data)
 {
     m_data[id] = data;
-}
-
-void WebSession::updateTimestamp()
-{
-    m_timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
 }

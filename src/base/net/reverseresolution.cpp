@@ -36,9 +36,12 @@ const int CACHE_SIZE = 500;
 
 using namespace Net;
 
-static inline bool isUsefulHostName(const QString &hostname, const QString &ip)
+namespace
 {
-    return (!hostname.isEmpty() && (hostname != ip));
+    bool isUsefulHostName(const QString &hostname, const QString &ip)
+    {
+        return (!hostname.isEmpty() && (hostname != ip));
+    }
 }
 
 ReverseResolution::ReverseResolution(QObject *parent)

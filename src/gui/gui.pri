@@ -1,6 +1,5 @@
 INCLUDEPATH += $$PWD
 
-include(lineedit/lineedit.pri)
 include(powermanagement/powermanagement.pri)
 include(properties/properties.pri)
 unix:!macx:dbus: include(qtnotify/qtnotify.pri)
@@ -20,15 +19,16 @@ HEADERS += \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
-    $$PWD/fspathedit_p.h \
-    $$PWD/guiiconprovider.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
+    $$PWD/lineedit.h \
     $$PWD/loglistwidget.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/private/fspathedit_p.h \
+    $$PWD/private/tristatewidget.h \
     $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
@@ -57,15 +57,19 @@ HEADERS += \
     $$PWD/torrentcontentmodelitem.h \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/torrentcreatordialog.h \
+    $$PWD/trackerentriesdialog.h \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
     $$PWD/transferlistmodel.h \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
+    $$PWD/tristateaction.h \
+    $$PWD/uithememanager.h \
     $$PWD/updownratiodialog.h \
     $$PWD/utils.h
 
 SOURCES += \
+    $$PWD/aboutdialog.cpp \
     $$PWD/addnewtorrentdialog.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/autoexpandabledialog.cpp \
@@ -78,13 +82,16 @@ SOURCES += \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
-    $$PWD/fspathedit_p.cpp \
-    $$PWD/guiiconprovider.cpp \
+    $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
+    $$PWD/lineedit.cpp \
     $$PWD/loglistwidget.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
+    $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/private/fspathedit_p.cpp \
+    $$PWD/private/tristatewidget.cpp \
     $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
@@ -113,11 +120,14 @@ SOURCES += \
     $$PWD/torrentcontentmodelitem.cpp \
     $$PWD/torrentcontenttreeview.cpp \
     $$PWD/torrentcreatordialog.cpp \
+    $$PWD/trackerentriesdialog.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
     $$PWD/transferlistmodel.cpp \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
+    $$PWD/tristateaction.cpp \
+    $$PWD/uithememanager.cpp \
     $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
 
@@ -155,6 +165,7 @@ FORMS += \
     $$PWD/statsdialog.ui \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
+    $$PWD/trackerentriesdialog.ui \
     $$PWD/updownratiodialog.ui
 
 RESOURCES += $$PWD/about.qrc

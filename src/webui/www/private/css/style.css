@@ -258,6 +258,11 @@ a.propButton img {
     -ms-interpolation-mode: bicubic;
 }
 
+.contextMenu li input[type=checkbox] {
+    position: relative;
+    top: 3px;
+}
+
 /* Sliders */
 
 .slider {
@@ -347,10 +352,23 @@ a.propButton img {
 #torrentsFilterToolbar {
     float: right;
     margin-right: 30px;
-    margin-right: 30px;
 }
 
 #torrentsFilterInput {
+    width: 160px;
+    padding-left: 2em;
+    background-image: url("../images/qbt-theme/edit-find.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position: left;
+}
+
+#torrentFilesFilterToolbar {
+    float: right;
+    margin-right: 30px;
+}
+
+#torrentFilesFilterInput {
     width: 160px;
     padding-left: 2em;
     background-image: url("../images/qbt-theme/edit-find.svg");
@@ -463,6 +481,19 @@ td.generalLabel {
 #torrentTrackersTableDiv,
 #webseedsTable {
     line-height: 25px;
+}
+
+.filesTableCollapseIcon {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    margin-bottom: -3px;
+    padding-right: 5px;
+}
+
+.filesTableCollapseIcon.rotate {
+    transform: rotate(270deg);
+    margin-bottom: -1px;
 }
 
 .unselectable {
@@ -590,4 +621,18 @@ td.statusBarSeparator {
 
 .searchPluginsTableRow {
     cursor: pointer;
+}
+
+#torrentFilesTableDiv .dynamicTable tr.nonAlt {
+    background-color: #fff;
+}
+
+#torrentFilesTableDiv .dynamicTable tr.nonAlt.selected {
+    background-color: #354158;
+    color: #fff;
+}
+
+#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
+    background-color: #ee6600;
+    color: #fff;
 }

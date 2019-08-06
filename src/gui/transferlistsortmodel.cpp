@@ -118,7 +118,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         return dateLessThan(sortColumn(), left, right, true);
         }
 
-    case TransferListModel::TR_PRIORITY: {
+    case TransferListModel::TR_QUEUE_POSITION: {
         return lowerPositionThan(left, right);
         }
 
@@ -152,10 +152,10 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             if (isActiveL != isActiveR)
                 return isActiveL;
 
-            const int prioL = model->data(model->index(left.row(), TransferListModel::TR_PRIORITY)).toInt();
-            const int prioR = model->data(model->index(right.row(), TransferListModel::TR_PRIORITY)).toInt();
-            const bool isSeedingL = (prioL < 0);
-            const bool isSeedingR = (prioR < 0);
+            const int queuePosL = model->data(model->index(left.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
+            const int queuePosR = model->data(model->index(right.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
+            const bool isSeedingL = (queuePosL < 0);
+            const bool isSeedingR = (queuePosR < 0);
             if (isSeedingL != isSeedingR) {
                 const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
                 if (isSeedingL)
@@ -172,7 +172,7 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
                 if (isSeedingL)  // Both seeding
                     return dateLessThan(TransferListModel::TR_SEED_DATE, left, right, true);
 
-                return (prioL < prioR);
+                return (queuePosL < queuePosR);
             }
             if (!isInvalidL && !isInvalidR) {
                 return (etaL < etaR);
@@ -214,9 +214,9 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
 {
     const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
 
-    // Sort according to TR_PRIORITY
-    const int queueL = model->data(model->index(left.row(), TransferListModel::TR_PRIORITY)).toInt();
-    const int queueR = model->data(model->index(right.row(), TransferListModel::TR_PRIORITY)).toInt();
+    // Sort according to TR_QUEUE_POSITION
+    const int queueL = model->data(model->index(left.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
+    const int queueR = model->data(model->index(right.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
     if ((queueL > 0) || (queueR > 0)) {
         if ((queueL > 0) && (queueR > 0))
             return queueL < queueR;

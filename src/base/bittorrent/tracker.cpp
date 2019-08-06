@@ -29,16 +29,11 @@
 
 #include "tracker.h"
 
-#include <vector>
-
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 
-#include "base/global.h"
 #include "base/http/server.h"
 #include "base/preferences.h"
-#include "base/utils/bytearray.h"
-#include "base/utils/string.h"
 
 // static limits
 static const int MAX_TORRENTS = 100;
@@ -63,15 +58,15 @@ QString Peer::uid() const
     return ip.toString() + ':' + QString::number(port);
 }
 
-libtorrent::entry Peer::toEntry(const bool noPeerId) const
+lt::entry Peer::toEntry(const bool noPeerId) const
 {
-    libtorrent::entry::dictionary_type peerMap;
+    lt::entry::dictionary_type peerMap;
     if (!noPeerId)
-        peerMap["id"] = libtorrent::entry(peerId.toStdString());
-    peerMap["ip"] = libtorrent::entry(ip.toString().toStdString());
-    peerMap["port"] = libtorrent::entry(port);
+        peerMap["id"] = lt::entry(peerId.toStdString());
+    peerMap["ip"] = lt::entry(ip.toString().toStdString());
+    peerMap["port"] = lt::entry(port);
 
-    return libtorrent::entry(peerMap);
+    return lt::entry(peerMap);
 }
 
 // Tracker
@@ -133,21 +128,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
 void Tracker::respondToAnnounceRequest()
 {
-    QMap<QString, QByteArray> queryParams;
-    // Parse GET parameters
-    using namespace Utils::ByteArray;
-    for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
-        const int sepPos = param.indexOf('=');
-        if (sepPos <= 0) continue; // ignores params without name
-
-        const QByteArray nameComponent = midView(param, 0, sepPos);
-        const QByteArray valueComponent = midView(param, (sepPos + 1));
-
-        const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-        const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent);
-        queryParams[paramName] = paramValue;
-    }
-
+    const QHash<QString, QByteArray> &queryParams = m_request.query;
     TrackerAnnounceRequest announceReq;
 
     // IP
@@ -266,18 +247,18 @@ void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 void Tracker::replyWithPeerList(const TrackerAnnounceRequest &announceReq)
 {
     // Prepare the entry for bencoding
-    libtorrent::entry::dictionary_type replyDict;
-    replyDict["interval"] = libtorrent::entry(ANNOUNCE_INTERVAL);
+    lt::entry::dictionary_type replyDict;
+    replyDict["interval"] = lt::entry(ANNOUNCE_INTERVAL);
 
-    libtorrent::entry::list_type peerList;
+    lt::entry::list_type peerList;
     for (const Peer &p : m_torrents.value(announceReq.infoHash))
         peerList.push_back(p.toEntry(announceReq.noPeerId));
-    replyDict["peers"] = libtorrent::entry(peerList);
+    replyDict["peers"] = lt::entry(peerList);
 
-    const libtorrent::entry replyEntry(replyDict);
+    const lt::entry replyEntry(replyDict);
     // bencode
     QByteArray reply;
-    libtorrent::bencode(std::back_inserter(reply), replyEntry);
+    lt::bencode(std::back_inserter(reply), replyEntry);
     qDebug("Tracker: reply with the following bencoded data:\n %s", reply.constData());
 
     // HTTP reply

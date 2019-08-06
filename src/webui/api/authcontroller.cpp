@@ -28,6 +28,9 @@
 
 #include "authcontroller.h"
 
+#include <QDateTime>
+#include <QString>
+
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/password.h"

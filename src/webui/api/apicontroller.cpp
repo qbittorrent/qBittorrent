@@ -28,6 +28,8 @@
 
 #include "apicontroller.h"
 
+#include <algorithm>
+
 #include <QJsonDocument>
 #include <QMetaObject>
 
@@ -45,8 +47,8 @@ QVariant APIController::run(const QString &action, const StringMap &params, cons
     m_params = params;
     m_data = data;
 
-    const QString methodName {action + QLatin1String("Action")};
-    if (!QMetaObject::invokeMethod(this, methodName.toLatin1().constData()))
+    const QByteArray methodName = action.toLatin1() + "Action";
+    if (!QMetaObject::invokeMethod(this, methodName.constData()))
         throw APIError(APIErrorType::NotFound);
 
     return m_result;
@@ -69,9 +71,13 @@ const DataMap &APIController::data() const
 
 void APIController::checkParams(const QSet<QString> &requiredParams) const
 {
-    const QSet<QString> params {this->params().keys().toSet()};
+    const bool hasAllRequiredParams = std::all_of(requiredParams.cbegin(), requiredParams.cend()
+        , [this](const QString &requiredParam)
+    {
+        return params().contains(requiredParam);
+    });
 
-    if (!params.contains(requiredParams))
+    if (!hasAllRequiredParams)
         throw APIError(APIErrorType::BadParams);
 }
 

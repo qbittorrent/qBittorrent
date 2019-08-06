@@ -41,15 +41,20 @@ const QString KEY_PASSWORD = SETTINGS_KEY("Password");
 namespace
 {
     inline SettingsStorage *settings() { return SettingsStorage::instance(); }
+}
 
-    inline bool isSameConfig(const Net::ProxyConfiguration &conf1, const Net::ProxyConfiguration &conf2)
-    {
-        return conf1.type == conf2.type
-                && conf1.ip == conf2.ip
-                && conf1.port == conf2.port
-                && conf1.username == conf2.username
-                && conf1.password == conf2.password;
-    }
+bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &right)
+{
+    return (left.type == right.type)
+            && (left.ip == right.ip)
+            && (left.port == right.port)
+            && (left.username == right.username)
+            && (left.password == right.password);
+}
+
+bool Net::operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right)
+{
+    return !(left == right);
 }
 
 using namespace Net;
@@ -97,7 +102,7 @@ ProxyConfiguration ProxyConfigurationManager::proxyConfiguration() const
 
 void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &config)
 {
-    if (!isSameConfig(config, m_config)) {
+    if (config != m_config) {
         m_config = config;
         settings()->storeValue(KEY_TYPE, static_cast<int>(config.type));
         settings()->storeValue(KEY_IP, config.ip);

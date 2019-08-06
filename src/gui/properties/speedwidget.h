@@ -32,13 +32,13 @@
 #include <QComboBox>
 #include <QWidget>
 
-#include "speedplotview.h"
-
-class QVBoxLayout;
 class QHBoxLayout;
 class QLabel;
 class QMenu;
+class QVBoxLayout;
+
 class PropertiesWidget;
+class SpeedPlotView;
 
 class ComboBoxMenuButton : public QComboBox
 {

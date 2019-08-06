@@ -28,18 +28,18 @@
 
 #include "speedwidget.h"
 
-#include <QVBoxLayout>
+#include <QDateTime>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
 #include <QTimer>
-
-#include <libtorrent/session_status.hpp>
+#include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/preferences.h"
 #include "propertieswidget.h"
+#include "speedplotview.h"
 
 ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
     : QComboBox(parent)
@@ -49,8 +49,9 @@ ComboBoxMenuButton::ComboBoxMenuButton(QWidget *parent, QMenu *menu)
 
 void ComboBoxMenuButton::showPopup()
 {
-    QPoint p = mapToGlobal(QPoint(0, height()));
-    m_menu->exec(p);
+    const QPoint p = mapToGlobal(QPoint(0, height()));
+    m_menu->popup(p);
+
     QComboBox::hidePopup();
 }
 
@@ -71,8 +72,10 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("5 Minutes"));
     m_periodCombobox->addItem(tr("30 Minutes"));
     m_periodCombobox->addItem(tr("6 Hours"));
+    m_periodCombobox->addItem(tr("12 Hours"));
+    m_periodCombobox->addItem(tr("24 Hours"));
 
-    connect(m_periodCombobox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged)
+    connect(m_periodCombobox, qOverload<int>(&QComboBox::currentIndexChanged)
         , this, &SpeedWidget::onPeriodChange);
 
     m_graphsMenu = new QMenu(this);
@@ -148,7 +151,7 @@ void SpeedWidget::update()
 
 void SpeedWidget::onPeriodChange(int period)
 {
-    m_plot->setViewableLastPoints(static_cast<SpeedPlotView::TimePeriod>(period));
+    m_plot->setPeriod(static_cast<SpeedPlotView::TimePeriod>(period));
 }
 
 void SpeedWidget::onGraphChange(int id)

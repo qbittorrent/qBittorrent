@@ -32,7 +32,6 @@
 #include <algorithm>
 
 #include <QDebug>
-#include <QDir>
 #include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -572,7 +571,7 @@ QString AutoDownloadRule::savePath() const
 
 void AutoDownloadRule::setSavePath(const QString &savePath)
 {
-    m_dataPtr->savePath = Utils::Fs::fromNativePath(savePath);
+    m_dataPtr->savePath = Utils::Fs::toUniformPath(savePath);
 }
 
 TriStateBool AutoDownloadRule::addPaused() const

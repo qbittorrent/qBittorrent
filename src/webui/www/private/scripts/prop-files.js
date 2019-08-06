@@ -28,18 +28,10 @@
 
 'use strict';
 
-var is_seed = true;
-var current_hash = "";
+let is_seed = true;
+this.current_hash = "";
 
-var FilePriority = {
-    "Ignored": 0,
-    "Normal": 1,
-    "High": 6,
-    "Maximum": 7,
-    "Mixed": -1
-};
-
-var normalizePriority = function(priority) {
+const normalizePriority = function(priority) {
     switch (priority) {
         case FilePriority.Ignored:
         case FilePriority.Normal:
@@ -52,51 +44,108 @@ var normalizePriority = function(priority) {
     }
 };
 
-var fileCheckboxChanged = function(e) {
-    var checkbox = e.target;
-    var priority = checkbox.checked ? FilePriority.Normal : FilePriority.Ignored;
-    var id = checkbox.get('data-id');
+const getAllChildren = function(id, fileId) {
+    const node = torrentFilesTable.getNode(id);
+    if (!node.isFolder) {
+        return {
+            rowIds: [id],
+            fileIds: [fileId]
+        };
+    }
 
-    setFilePriority(id, priority);
-    setGlobalCheckboxState();
-    return true;
+    const rowIds = [];
+    const fileIds = [];
+
+    const getChildFiles = function(node) {
+        if (node.isFolder) {
+            node.children.each(function(child) {
+                getChildFiles(child);
+            });
+        }
+        else {
+            rowIds.push(node.data.rowId);
+            fileIds.push(node.data.fileId);
+        }
+    };
+
+    node.children.each(function(child) {
+        getChildFiles(child);
+    });
+
+    return {
+        rowIds: rowIds,
+        fileIds: fileIds
+    };
 };
 
-var fileComboboxChanged = function(e) {
-    var combobox = e.target;
-    var newPriority = combobox.value;
-    var id = combobox.get('data-id');
+const fileCheckboxClicked = function(e) {
+    e.stopPropagation();
 
-    setFilePriority(id, newPriority);
+    const checkbox = e.target;
+    const priority = checkbox.checked ? FilePriority.Normal : FilePriority.Ignored;
+    const id = checkbox.get('data-id');
+    const fileId = checkbox.get('data-file-id');
+
+    const rows = getAllChildren(id, fileId);
+
+    setFilePriority(rows.rowIds, rows.fileIds, priority);
+    updateGlobalCheckbox();
 };
 
-var isDownloadCheckboxExists = function(id) {
+const fileComboboxChanged = function(e) {
+    const combobox = e.target;
+    const priority = combobox.value;
+    const id = combobox.get('data-id');
+    const fileId = combobox.get('data-file-id');
+
+    const rows = getAllChildren(id, fileId);
+
+    setFilePriority(rows.rowIds, rows.fileIds, priority);
+    updateGlobalCheckbox();
+};
+
+const isDownloadCheckboxExists = function(id) {
     return ($('cbPrio' + id) !== null);
 };
 
-var createDownloadCheckbox = function(id, download) {
-    var checkbox = new Element('input');
+const createDownloadCheckbox = function(id, fileId, checked) {
+    const checkbox = new Element('input');
     checkbox.set('type', 'checkbox');
-    if (download)
-        checkbox.set('checked', 'checked');
     checkbox.set('id', 'cbPrio' + id);
     checkbox.set('data-id', id);
+    checkbox.set('data-file-id', fileId);
     checkbox.set('class', 'DownloadedCB');
-    checkbox.addEvent('change', fileCheckboxChanged);
+    checkbox.addEvent('click', fileCheckboxClicked);
+
+    updateCheckbox(checkbox, checked);
     return checkbox;
 };
 
-var updateDownloadCheckbox = function(id, download) {
-    var checkbox = $('cbPrio' + id);
-    checkbox.checked = download;
+const updateDownloadCheckbox = function(id, checked) {
+    const checkbox = $('cbPrio' + id);
+    updateCheckbox(checkbox, checked);
 };
 
-var isPriorityComboExists = function(id) {
+const updateCheckbox = function(checkbox, checked) {
+    switch (checked) {
+        case TriState.Checked:
+            setCheckboxChecked(checkbox);
+            break;
+        case TriState.Unchecked:
+            setCheckboxUnchecked(checkbox);
+            break;
+        case TriState.Partial:
+            setCheckboxPartial(checkbox);
+            break;
+    }
+}
+
+const isPriorityComboExists = function(id) {
     return ($('comboPrio' + id) !== null);
 };
 
-var createPriorityOptionElement = function(priority, selected, html) {
-    var elem = new Element('option');
+const createPriorityOptionElement = function(priority, selected, html) {
+    const elem = new Element('option');
     elem.set('value', priority.toString());
     elem.set('html', html);
     if (selected)
@@ -104,10 +153,11 @@ var createPriorityOptionElement = function(priority, selected, html) {
     return elem;
 };
 
-var createPriorityCombo = function(id, selectedPriority) {
-    var select = new Element('select');
+const createPriorityCombo = function(id, fileId, selectedPriority) {
+    const select = new Element('select');
     select.set('id', 'comboPrio' + id);
     select.set('data-id', id);
+    select.set('data-file-id', fileId);
     select.set('disabled', is_seed);
     select.addClass('combo_priority');
     select.addEvent('change', fileComboboxChanged);
@@ -117,11 +167,16 @@ var createPriorityCombo = function(id, selectedPriority) {
     createPriorityOptionElement(FilePriority.High, (FilePriority.High === selectedPriority), 'QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]').injectInside(select);
     createPriorityOptionElement(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), 'QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]').injectInside(select);
 
+    // "Mixed" priority is for display only; it shouldn't be selectable
+    const mixedPriorityOption = createPriorityOptionElement(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), 'QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]');
+    mixedPriorityOption.set('disabled', true);
+    mixedPriorityOption.injectInside(select);
+
     return select;
 };
 
-var updatePriorityCombo = function(id, selectedPriority) {
-    var combobox = $('comboPrio' + id);
+const updatePriorityCombo = function(id, selectedPriority) {
+    const combobox = $('comboPrio' + id);
 
     if (parseInt(combobox.value) !== selectedPriority)
         selectComboboxPriority(combobox, selectedPriority);
@@ -130,10 +185,10 @@ var updatePriorityCombo = function(id, selectedPriority) {
         combobox.disabled = is_seed;
 };
 
-var selectComboboxPriority = function(combobox, priority) {
-    var options = combobox.options;
-    for (var i = 0; i < options.length; ++i) {
-        var option = options[i];
+const selectComboboxPriority = function(combobox, priority) {
+    const options = combobox.options;
+    for (let i = 0; i < options.length; ++i) {
+        const option = options[i];
         if (parseInt(option.value) === priority)
             option.setAttribute('selected', '');
         else
@@ -143,79 +198,95 @@ var selectComboboxPriority = function(combobox, priority) {
     combobox.value = priority;
 };
 
-var switchCheckboxState = function() {
-    var rows = [];
-    var priority = FilePriority.Ignored;
+const switchCheckboxState = function(e) {
+    e.stopPropagation();
 
-    if ($('tristate_cb').state === "checked") {
-        setGlobalCheckboxUnchecked();
+    const rowIds = [];
+    const fileIds = [];
+    let priority = FilePriority.Ignored;
+    const checkbox = $('tristate_cb');
+
+    if (checkbox.state === "checked") {
+        setCheckboxUnchecked(checkbox);
         // set file priority for all checked to Ignored
         torrentFilesTable.getFilteredAndSortedRows().forEach(function(row) {
-            if (row.full_data.checked)
-                rows.push(row.full_data.rowId);
+            const rowId = row.rowId;
+            const fileId = row.full_data.fileId;
+            const isChecked = (row.full_data.checked === TriState.Checked);
+            const isFolder = (fileId === -1);
+            if (!isFolder && isChecked) {
+                rowIds.push(rowId);
+                fileIds.push(fileId);
+            }
         });
     }
     else {
-        setGlobalCheckboxChecked();
+        setCheckboxChecked(checkbox);
         priority = FilePriority.Normal;
         // set file priority for all unchecked to Normal
         torrentFilesTable.getFilteredAndSortedRows().forEach(function(row) {
-            if (!row.full_data.checked)
-                rows.push(row.full_data.rowId);
+            const rowId = row.rowId;
+            const fileId = row.full_data.fileId;
+            const isUnchecked = (row.full_data.checked === TriState.Unchecked);
+            const isFolder = (fileId === -1);
+            if (!isFolder && isUnchecked) {
+                rowIds.push(rowId);
+                fileIds.push(fileId);
+            }
         });
     }
 
-    if (rows.length > 0)
-        setFilePriority(rows, priority);
+    if (rowIds.length > 0)
+        setFilePriority(rowIds, fileIds, priority);
 };
 
-var setGlobalCheckboxState = function() {
+const updateGlobalCheckbox = function() {
+    const checkbox = $('tristate_cb');
     if (isAllCheckboxesChecked())
-        setGlobalCheckboxChecked();
+        setCheckboxChecked(checkbox);
     else if (isAllCheckboxesUnchecked())
-        setGlobalCheckboxUnchecked();
+        setCheckboxUnchecked(checkbox);
     else
-        setGlobalCheckboxPartial();
+        setCheckboxPartial(checkbox);
 };
 
-var setGlobalCheckboxChecked = function() {
-    $('tristate_cb').state = "checked";
-    $('tristate_cb').indeterminate = false;
-    $('tristate_cb').checked = true;
+const setCheckboxChecked = function(checkbox) {
+    checkbox.state = "checked";
+    checkbox.indeterminate = false;
+    checkbox.checked = true;
 };
 
-var setGlobalCheckboxUnchecked = function() {
-    $('tristate_cb').state = "unchecked";
-    $('tristate_cb').indeterminate = false;
-    $('tristate_cb').checked = false;
+const setCheckboxUnchecked = function(checkbox) {
+    checkbox.state = "unchecked";
+    checkbox.indeterminate = false;
+    checkbox.checked = false;
 };
 
-var setGlobalCheckboxPartial = function() {
-    $('tristate_cb').state = "partial";
-    $('tristate_cb').indeterminate = true;
+const setCheckboxPartial = function(checkbox) {
+    checkbox.state = "partial";
+    checkbox.indeterminate = true;
 };
 
-var isAllCheckboxesChecked = function() {
-    var checkboxes = $$('input.DownloadedCB');
-    for (var i = 0; i < checkboxes.length; ++i) {
+const isAllCheckboxesChecked = function() {
+    const checkboxes = $$('input.DownloadedCB');
+    for (let i = 0; i < checkboxes.length; ++i) {
         if (!checkboxes[i].checked)
             return false;
     }
     return true;
 };
 
-var isAllCheckboxesUnchecked = function() {
-    var checkboxes = $$('input.DownloadedCB');
-    for (var i = 0; i < checkboxes.length; ++i) {
+const isAllCheckboxesUnchecked = function() {
+    const checkboxes = $$('input.DownloadedCB');
+    for (let i = 0; i < checkboxes.length; ++i) {
         if (checkboxes[i].checked)
             return false;
     }
     return true;
 };
 
-var setFilePriority = function(id, priority) {
+const setFilePriority = function(ids, fileIds, priority) {
     if (current_hash === "") return;
-    var ids = Array.isArray(id) ? id : [id];
 
     clearTimeout(loadTorrentFilesDataTimer);
     new Request({
@@ -223,7 +294,7 @@ var setFilePriority = function(id, priority) {
         method: 'post',
         data: {
             'hash': current_hash,
-            'id': ids.join('|'),
+            'id': fileIds.join('|'),
             'priority': priority
         },
         onComplete: function() {
@@ -231,32 +302,39 @@ var setFilePriority = function(id, priority) {
         }
     }).send();
 
+    const ignore = (priority === FilePriority.Ignored);
     ids.forEach(function(_id) {
-        var combobox = $('comboPrio' + _id);
+        torrentFilesTable.setIgnored(_id, ignore);
+
+        const combobox = $('comboPrio' + _id);
         if (combobox !== null)
             selectComboboxPriority(combobox, priority);
     });
+
+    torrentFilesTable.updateTable(false);
 };
 
-var loadTorrentFilesDataTimer;
-var loadTorrentFilesData = function() {
+let loadTorrentFilesDataTimer;
+const loadTorrentFilesData = function() {
     if ($('prop_files').hasClass('invisible')
         || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
-    var new_hash = torrentsTable.getCurrentTorrentHash();
+    const new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash === "") {
         torrentFilesTable.clear();
         clearTimeout(loadTorrentFilesDataTimer);
         loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
         return;
     }
+    let loadedNewTorrent = false;
     if (new_hash != current_hash) {
         torrentFilesTable.clear();
         current_hash = new_hash;
+        loadedNewTorrent = true;
     }
-    var url = new URI('api/v2/torrents/files?hash=' + current_hash);
+    const url = new URI('api/v2/torrents/files?hash=' + current_hash);
     new Request.JSON({
         url: url,
         noCache: true,
@@ -266,79 +344,173 @@ var loadTorrentFilesData = function() {
             loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
         },
         onSuccess: function(files) {
-            var selectedFiles = torrentFilesTable.selectedRowsIds();
+            clearTimeout(torrentFilesFilterInputTimer);
 
-            if (!files) {
+            if (files.length === 0) {
                 torrentFilesTable.clear();
-                return;
             }
-
-            var i = 0;
-            files.each(function(file) {
-                if (i === 0)
-                    is_seed = file.is_seed;
-
-                var row = {
-                    rowId: i,
-                    checked: (file.priority !== FilePriority.Ignored),
-                    name: escapeHtml(file.name),
-                    size: file.size,
-                    progress: (file.progress * 100).round(1),
-                    priority: normalizePriority(file.priority),
-                    remaining: (file.size * (1.0 - file.progress)),
-                    availability: file.availability
-                };
-
-                if ((row.progress === 100) && (file.progress < 1))
-                    row.progress = 99.9;
-
-                ++i;
-                torrentFilesTable.updateRowData(row);
-            }.bind(this));
-
-            torrentFilesTable.updateTable(false);
-            torrentFilesTable.altRow();
-
-            if (selectedFiles.length > 0)
-                torrentFilesTable.reselectRows(selectedFiles);
-
-            setGlobalCheckboxState();
+            else {
+                handleNewTorrentFiles(files);
+                if (loadedNewTorrent)
+                    collapseAllNodes();
+            }
         }
     }).send();
 };
 
-var updateTorrentFilesData = function() {
+updateTorrentFilesData = function() {
     clearTimeout(loadTorrentFilesDataTimer);
     loadTorrentFilesData();
 };
 
-var torrentFilesContextMenu = new ContextMenu({
+const handleNewTorrentFiles = function(files) {
+    is_seed = (files.length > 0) ? files[0].is_seed : true;
+
+    const rows = files.map(function(file, index) {
+        let progress = (file.progress * 100).round(1);
+        if ((progress === 100) && (file.progress < 1))
+            progress = 99.9;
+
+        const name = escapeHtml(file.name);
+        const ignore = (file.priority === FilePriority.Ignored);
+        const checked = (ignore ? TriState.Unchecked : TriState.Checked);
+        const remaining = (ignore ? 0 : (file.size * (1.0 - file.progress)));
+        const row = {
+            fileId: index,
+            checked: checked,
+            fileName: name,
+            name: fileName(name),
+            size: file.size,
+            progress: progress,
+            priority: normalizePriority(file.priority),
+            remaining: remaining,
+            availability: file.availability
+        };
+
+        return row;
+    });
+
+    addRowsToTable(rows);
+    updateGlobalCheckbox();
+};
+
+const addRowsToTable = function(rows) {
+    const selectedFiles = torrentFilesTable.selectedRowsIds();
+    let rowId = 0;
+
+    const rootNode = new FolderNode();
+
+    rows.forEach(function(row) {
+        let parent = rootNode;
+        const pathFolders = row.fileName.split(PathSeparator);
+        pathFolders.pop();
+        pathFolders.forEach(function(folderName) {
+            if (folderName === '.unwanted')
+                return;
+
+            let parentNode = null;
+            if (parent.children !== null) {
+                for (let i = 0; i < parent.children.length; ++i) {
+                    const childFolder = parent.children[i];
+                    if (childFolder.name === folderName) {
+                        parentNode = childFolder;
+                        break;
+                    }
+                }
+            }
+            if (parentNode === null) {
+                parentNode = new FolderNode();
+                parentNode.name = folderName;
+                parentNode.rowId = rowId;
+                parentNode.root = parent;
+                parent.addChild(parentNode);
+
+                ++rowId;
+            }
+
+            parent = parentNode;
+        });
+
+        const isChecked = row.checked ? TriState.Checked : TriState.Unchecked;
+        const remaining = (row.priority === FilePriority.Ignored) ? 0 : row.remaining;
+        const childNode = new FileNode();
+        childNode.name = row.name;
+        childNode.rowId = rowId;
+        childNode.size = row.size;
+        childNode.checked = isChecked;
+        childNode.remaining = remaining;
+        childNode.progress = row.progress;
+        childNode.priority = row.priority;
+        childNode.availability = row.availability;
+        childNode.root = parent;
+        childNode.data = row;
+        parent.addChild(childNode);
+
+        ++rowId;
+    }.bind(this));
+
+    torrentFilesTable.populateTable(rootNode);
+    torrentFilesTable.updateTable(false);
+    torrentFilesTable.altRow();
+
+    if (selectedFiles.length > 0)
+        torrentFilesTable.reselectRows(selectedFiles);
+};
+
+const collapseIconClicked = function(event) {
+    const id = event.get("data-id");
+    const node = torrentFilesTable.getNode(id);
+    const isCollapsed = (event.parentElement.get("data-collapsed") === "true");
+
+    if (isCollapsed)
+        expandNode(node);
+    else
+        collapseNode(node);
+};
+
+const filesPriorityMenuClicked = function(priority) {
+    const selectedRows = torrentFilesTable.selectedRowsIds();
+    if (selectedRows.length === 0) return;
+
+    const rowIds = [];
+    const fileIds = [];
+    selectedRows.forEach(function(rowId) {
+        const elem = $('comboPrio' + rowId);
+        rowIds.push(rowId);
+        fileIds.push(elem.get("data-file-id"));
+    });
+
+    const uniqueRowIds = {};
+    const uniqueFileIds = {};
+    for (let i = 0; i < rowIds.length; ++i) {
+        const rows = getAllChildren(rowIds[i], fileIds[i]);
+        rows.rowIds.forEach(function(rowId) {
+            uniqueRowIds[rowId] = true;
+        });
+        rows.fileIds.forEach(function(fileId) {
+            uniqueFileIds[fileId] = true;
+        });
+    }
+
+    setFilePriority(Object.keys(uniqueRowIds), Object.keys(uniqueFileIds), priority);
+};
+
+const torrentFilesContextMenu = new ContextMenu({
     targets: '#torrentFilesTableDiv tr',
     menu: 'torrentFilesMenu',
     actions: {
-        FilePrioIgnore: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
-            if (selectedRows.length === 0) return;
 
-            setFilePriority(selectedRows, FilePriority.Ignored);
+        FilePrioIgnore: function(element, ref) {
+            filesPriorityMenuClicked(FilePriority.Ignored);
         },
         FilePrioNormal: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
-            if (selectedRows.length === 0) return;
-
-            setFilePriority(selectedRows, FilePriority.Normal);
+            filesPriorityMenuClicked(FilePriority.Normal);
         },
         FilePrioHigh: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
-            if (selectedRows.length === 0) return;
-
-            setFilePriority(selectedRows, FilePriority.High);
+            filesPriorityMenuClicked(FilePriority.High);
         },
         FilePrioMaximum: function(element, ref) {
-            var selectedRows = torrentFilesTable.selectedRowsIds();
-            if (selectedRows.length === 0) return;
-
-            setFilePriority(selectedRows, FilePriority.Maximum);
+            filesPriorityMenuClicked(FilePriority.Maximum);
         }
     },
     offsets: {
@@ -346,8 +518,6 @@ var torrentFilesContextMenu = new ContextMenu({
         y: 2
     },
     onShow: function() {
-        var selectedRows = torrentFilesTable.selectedRowsIds();
-
         if (is_seed)
             this.hideItem('FilePrio');
         else
@@ -357,17 +527,148 @@ var torrentFilesContextMenu = new ContextMenu({
 
 torrentFilesTable.setup('torrentFilesTableDiv', 'torrentFilesTableFixedHeaderDiv', torrentFilesContextMenu);
 // inject checkbox into table header
-var tableHeaders = $$('#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th');
+const tableHeaders = $$('#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th');
 if (tableHeaders.length > 0) {
-    var checkbox = new Element('input');
+    const checkbox = new Element('input');
     checkbox.set('type', 'checkbox');
     checkbox.set('id', 'tristate_cb');
     checkbox.addEvent('click', switchCheckboxState);
 
-    var checkboxTH = tableHeaders[0];
+    const checkboxTH = tableHeaders[0];
     checkbox.injectInside(checkboxTH);
 }
 
 // default sort by name column
-if (torrentFilesTable.getSortedColunn() === null)
+if (torrentFilesTable.getSortedColumn() === null)
     torrentFilesTable.setSortedColumn('name');
+
+let prevTorrentFilesFilterValue;
+let torrentFilesFilterInputTimer = null;
+// listen for changes to torrentFilesFilterInput
+$('torrentFilesFilterInput').addEvent('input', function() {
+    const value = $('torrentFilesFilterInput').get("value");
+    if (value !== prevTorrentFilesFilterValue) {
+        prevTorrentFilesFilterValue = value;
+        torrentFilesTable.setFilter(value);
+        clearTimeout(torrentFilesFilterInputTimer);
+        torrentFilesFilterInputTimer = setTimeout(function() {
+            if (current_hash === "") return;
+            torrentFilesTable.updateTable(false);
+
+            if (value.trim() === "")
+                collapseAllNodes();
+            else
+                expandAllNodes();
+        }, 400);
+    }
+});
+
+/**
+ * Show/hide a node's row
+ */
+const _hideNode = function(node, shouldHide) {
+    const span = $('filesTablefileName' + node.rowId);
+    // span won't exist if row has been filtered out
+    if (span === null)
+        return;
+    const rowElem = span.parentElement.parentElement;
+    if (shouldHide)
+        rowElem.addClass("invisible");
+    else
+        rowElem.removeClass("invisible");
+}
+
+/**
+ * Update a node's collapsed state and icon
+ */
+const _updateNodeState = function(node, isCollapsed) {
+    const span = $('filesTablefileName' + node.rowId);
+    // span won't exist if row has been filtered out
+    if (span === null)
+        return;
+    const td = span.parentElement;
+    const rowElem = td.parentElement;
+
+    // store collapsed state
+    td.set("data-collapsed", isCollapsed);
+
+    // rotate the collapse icon
+    const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
+    if (isCollapsed)
+        collapseIcon.addClass("rotate");
+    else
+        collapseIcon.removeClass("rotate");
+}
+
+const _isCollapsed = function(node) {
+    const span = $('filesTablefileName' + node.rowId);
+    if (span === null)
+        return true;
+
+    const td = span.parentElement;
+    return (td.get("data-collapsed") === "true");
+};
+
+const expandNode = function(node) {
+    _collapseNode(node, false, false, false);
+    torrentFilesTable.altRow();
+};
+
+const collapseNode = function(node) {
+    _collapseNode(node, true, false, false);
+    torrentFilesTable.altRow();
+};
+
+const expandAllNodes = function() {
+    const root = torrentFilesTable.getRoot();
+    root.children.each(function(node) {
+        node.children.each(function(child) {
+            _collapseNode(child, false, true, false);
+        });
+    });
+    torrentFilesTable.altRow();
+};
+
+const collapseAllNodes = function() {
+    const root = torrentFilesTable.getRoot();
+    root.children.each(function(node) {
+        node.children.each(function(child) {
+            _collapseNode(child, true, true, false);
+        });
+    });
+    torrentFilesTable.altRow();
+}
+
+/**
+ * Collapses a folder node with the option to recursively collapse all children
+ * @param {FolderNode} node the node to collapse/expand
+ * @param {boolean} shouldCollapse true if the node should be collapsed, false if it should be expanded
+ * @param {boolean} applyToChildren true if the node's children should also be collapsed, recursively
+ * @param {boolean} isChildNode true if the current node is a child of the original node we collapsed/expanded
+ */
+const _collapseNode = function(node, shouldCollapse, applyToChildren, isChildNode) {
+    if (!node.isFolder)
+        return;
+
+    const shouldExpand = !shouldCollapse;
+    const isNodeCollapsed = _isCollapsed(node);
+    const nodeInCorrectState = ((shouldCollapse && isNodeCollapsed) || (shouldExpand && !isNodeCollapsed));
+    const canSkipNode = (isChildNode && (!applyToChildren || nodeInCorrectState));
+    if (!isChildNode || applyToChildren || !canSkipNode)
+        _updateNodeState(node, shouldCollapse);
+
+    node.children.each(function(child) {
+        _hideNode(child, shouldCollapse);
+
+        if (!child.isFolder)
+            return;
+
+        // don't expand children that have been independently collapsed, unless applyToChildren is true
+        const shouldExpandChildren = (shouldExpand && applyToChildren);
+        const isChildCollapsed = _isCollapsed(child);
+        if (!shouldExpandChildren && isChildCollapsed)
+            return;
+
+        _collapseNode(child, shouldCollapse, applyToChildren, true);
+    });
+};

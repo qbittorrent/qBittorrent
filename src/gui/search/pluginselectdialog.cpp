@@ -43,10 +43,10 @@
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
 #include "autoexpandabledialog.h"
-#include "guiiconprovider.h"
 #include "pluginsourcedialog.h"
 #include "searchwidget.h"
 #include "ui_pluginselectdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 enum PluginColumns
@@ -79,7 +79,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(GuiIconProvider::instance()->getIcon("list-remove"));
+    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
@@ -163,19 +163,22 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
     }
 }
 
-void PluginSelectDialog::displayContextMenu(const QPoint&)
+void PluginSelectDialog::displayContextMenu(const QPoint &)
 {
-    QMenu myContextMenu(this);
     // Enable/disable pause/start action given the DL state
-    QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
+    const QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
     if (items.isEmpty()) return;
 
-    QString firstID = items.first()->text(PLUGIN_ID);
+    QMenu *myContextMenu = new QMenu(this);
+    myContextMenu->setAttribute(Qt::WA_DeleteOnClose);
+
+    const QString firstID = items.first()->text(PLUGIN_ID);
     m_ui->actionEnable->setChecked(m_pluginManager->pluginInfo(firstID)->enabled);
-    myContextMenu.addAction(m_ui->actionEnable);
-    myContextMenu.addSeparator();
-    myContextMenu.addAction(m_ui->actionUninstall);
-    myContextMenu.exec(QCursor::pos());
+    myContextMenu->addAction(m_ui->actionEnable);
+    myContextMenu->addSeparator();
+    myContextMenu->addAction(m_ui->actionUninstall);
+
+    myContextMenu->popup(QCursor::pos());
 }
 
 void PluginSelectDialog::on_closeButton_clicked()
@@ -235,9 +238,10 @@ void PluginSelectDialog::setRowColor(const int row, const QString &color)
     }
 }
 
-QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
+QVector<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
 {
-    QList<QTreeWidgetItem*> res;
+    QVector<QTreeWidgetItem*> res;
+    res.reserve(m_ui->pluginsTree->topLevelItemCount());
 
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i) {
         QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(i);
@@ -373,7 +377,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         return;
     }
 
-    const QString filePath = Utils::Fs::fromNativePath(result.filePath);
+    const QString filePath = Utils::Fs::toUniformPath(result.filePath);
 
     // Icon downloaded
     QIcon icon(filePath);

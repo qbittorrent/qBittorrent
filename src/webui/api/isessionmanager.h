@@ -28,8 +28,9 @@
 
 #pragma once
 
-#include <QString>
 #include <QVariant>
+
+class QString;
 
 struct ISession
 {

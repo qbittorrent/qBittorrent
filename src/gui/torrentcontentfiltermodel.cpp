@@ -44,11 +44,6 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     setSortCaseSensitivity(Qt::CaseInsensitive);
 }
 
-TorrentContentFilterModel::~TorrentContentFilterModel()
-{
-    delete m_model;
-}
-
 TorrentContentModel *TorrentContentFilterModel::model() const
 {
      return m_model;

@@ -28,9 +28,9 @@
 
 'use strict';
 
-var ProgressBar = new Class({
+const ProgressBar = new Class({
     initialize: function(value, parameters) {
-        var vals = {
+        const vals = {
             'id': 'progressbar_' + (ProgressBars++),
             'value': $pick(value, 0),
             'width': 0,
@@ -42,7 +42,7 @@ var ProgressBar = new Class({
         };
         if (parameters && $type(parameters) == 'object') $extend(vals, parameters);
         if (vals.height < 12) vals.height = 12;
-        var obj = new Element('div', {
+        const obj = new Element('div', {
             'id': vals.id,
             'class': 'progressbar_wrapper',
             'styles': {
@@ -110,7 +110,7 @@ function ProgressBar_setValue(value) {
     this.vals.light.empty();
     this.vals.dark.appendText(value.round(1).toFixed(1) + '%');
     this.vals.light.appendText(value.round(1).toFixed(1) + '%');
-    var r = parseInt(this.vals.width * (value / 100));
+    const r = parseInt(this.vals.width * (value / 100));
     this.vals.dark.setStyle('clip', 'rect(0,' + r + 'px,' + this.vals.height + 'px,0)');
     this.vals.light.setStyle('clip', 'rect(0,' + this.vals.width + 'px,' + this.vals.height + 'px,' + r + 'px)');
 }
@@ -126,15 +126,15 @@ function ProgressBar_setWidth(value) {
 }
 
 function ProgressBar_checkForParent(id) {
-    var obj = $(id);
+    const obj = $(id);
     if (!obj) return;
     if (!obj.parentNode) return setTimeout('ProgressBar_checkForParent("' + id + '")', 1);
     obj.setStyle('width', '100%');
-    var w = obj.offsetWidth;
+    const w = obj.offsetWidth;
     obj.vals.dark.setStyle('width', w);
     obj.vals.light.setStyle('width', w);
     obj.vals.width = w;
     obj.setValue(obj.vals.value);
 }
 
-var ProgressBars = 0;
+let ProgressBars = 0;

@@ -31,8 +31,6 @@
 
 #include <QCoreApplication>
 
-#include "base/utils/fs.h"
-
 Private::Profile::Profile(const QString &configurationName)
     : m_configurationSuffix {configurationName.isEmpty() ? QString() : QLatin1Char('_') + configurationName}
 {
@@ -86,11 +84,6 @@ QString Private::DefaultProfile::dataLocation() const
 
 QString Private::DefaultProfile::downloadLocation() const
 {
-#if defined(Q_OS_WIN)
-    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
-        return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
-            QCoreApplication::translate("fsutils", "Downloads"));
-#endif
     return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 }
 

@@ -31,14 +31,12 @@
 #include "rss_session.h"
 
 #include <QDebug>
-#include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QSaveFile>
 #include <QString>
 #include <QThread>
-#include <QVariantHash>
 
 #include "../asyncfilestorage.h"
 #include "../global.h"

@@ -29,10 +29,13 @@
 #pragma once
 
 #include <vector>
+
+#include <libtorrent/fwd.hpp>
+#include <libtorrent/version.hpp>
+
 #include <QHash>
 
 #include "base/net/portforwarder.h"
-#include "libtorrentfwd.h"
 
 #if (LIBTORRENT_VERSION_NUM < 10200)
 using LTPortMapping = int;
@@ -60,6 +63,6 @@ private:
     void stop();
 
     bool m_active;
-    libtorrent::session *m_provider;
+    lt::session *m_provider;
     QHash<quint16, std::vector<LTPortMapping>> m_mappedPorts;
 };

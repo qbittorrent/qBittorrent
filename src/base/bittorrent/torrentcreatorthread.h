@@ -60,7 +60,7 @@ namespace BitTorrent
         static int calculateTotalPieces(const QString &inputPath, int pieceSize, bool isAlignmentOptimized);
 
     protected:
-        void run();
+        void run() override;
 
     signals:
         void creationFailure(const QString &msg);

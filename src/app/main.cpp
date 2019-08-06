@@ -33,6 +33,9 @@
 #include <cstdlib>
 #include <memory>
 
+#if defined(Q_OS_UNIX)
+#include <sys/resource.h>
+#endif
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #include <unistd.h>
 #elif defined Q_OS_WIN && defined DISABLE_GUI
@@ -116,9 +119,17 @@ void displayBadArgMessage(const QString &message);
 void showSplashScreen();
 #endif  // DISABLE_GUI
 
+#if defined(Q_OS_UNIX)
+void adjustFileDescriptorLimit();
+#endif
+
 // Main
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_UNIX)
+    adjustFileDescriptorLimit();
+#endif
+
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
@@ -261,7 +272,7 @@ int main(int argc, char *argv[])
 
         return app->exec(params.paramList());
     }
-    catch (CommandLineParameterError &er) {
+    catch (const CommandLineParameterError &er) {
         displayBadArgMessage(er.messageForUser());
         return EXIT_FAILURE;
     }
@@ -330,7 +341,11 @@ void showSplashScreen()
     const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+    painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
+#else
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
+#endif
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
     QTimer::singleShot(1500, splash, &QObject::deleteLater);
@@ -397,3 +412,16 @@ bool userAgreesWithLegalNotice()
 
     return false;
 }
+
+#if defined(Q_OS_UNIX)
+void adjustFileDescriptorLimit()
+{
+    rlimit limit {};
+
+    if (getrlimit(RLIMIT_NOFILE, &limit) != 0)
+        return;
+
+    limit.rlim_cur = limit.rlim_max;
+    setrlimit(RLIMIT_NOFILE, &limit);
+}
+#endif

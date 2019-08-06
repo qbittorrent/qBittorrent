@@ -33,12 +33,10 @@
 #include <openssl/evp.h>
 
 #include <QByteArray>
-#include <QList>
 #include <QString>
 
 #include "bytearray.h"
 #include "random.h"
-#include "string.h"
 
 namespace Utils
 {
@@ -99,7 +97,7 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &pa
 
 bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray &password)
 {
-    const QList<QByteArray> list = ByteArray::splitToViews(secret, ":", QString::SkipEmptyParts);
+    const QVector<QByteArray> list = ByteArray::splitToViews(secret, ":", QString::SkipEmptyParts);
     if (list.size() != 2)
         return false;
 

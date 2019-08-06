@@ -29,15 +29,16 @@
 #pragma once
 
 #include <QHash>
-#include <QJsonArray>
-#include <QJsonObject>
 #include <QList>
-#include <QString>
 
 #include "base/search/searchpluginmanager.h"
 #include "apicontroller.h"
-#include "isessionmanager.h"
 
+class QJsonArray;
+class QJsonObject;
+class QStringList;
+
+struct ISession;
 struct SearchResult;
 
 class SearchController : public APIController

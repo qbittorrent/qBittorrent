@@ -28,16 +28,16 @@
 
 'use strict';
 
-var current_hash = "";
+this.current_hash = "";
 
-var loadTrackersDataTimer;
-var loadTrackersData = function() {
+let loadTrackersDataTimer;
+const loadTrackersData = function() {
     if ($('prop_trackers').hasClass('invisible')
         || $('propertiesPanel_collapseToggle').hasClass('panel-expand')) {
         // Tab changed, don't do anything
         return;
     }
-    var new_hash = torrentsTable.getCurrentTorrentHash();
+    const new_hash = torrentsTable.getCurrentTorrentHash();
     if (new_hash === "") {
         torrentTrackersTable.clear();
         clearTimeout(loadTrackersDataTimer);
@@ -48,7 +48,7 @@ var loadTrackersData = function() {
         torrentTrackersTable.clear();
         current_hash = new_hash;
     }
-    var url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
+    const url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
     new Request.JSON({
         url: url,
         noCache: true,
@@ -58,13 +58,13 @@ var loadTrackersData = function() {
             loadTrackersDataTimer = loadTrackersData.delay(10000);
         },
         onSuccess: function(trackers) {
-            var selectedTrackers = torrentTrackersTable.selectedRowsIds();
+            const selectedTrackers = torrentTrackersTable.selectedRowsIds();
             torrentTrackersTable.clear();
 
             if (trackers) {
                 trackers.each(function(tracker) {
-                    var url = escapeHtml(tracker.url);
-                    var status;
+                    const url = escapeHtml(tracker.url);
+                    let status;
                     switch (tracker.status) {
                         case 0:
                             status = "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
@@ -83,7 +83,7 @@ var loadTrackersData = function() {
                             break;
                     }
 
-                    var row = {
+                    const row = {
                         rowId: url,
                         tier: tracker.tier,
                         url: url,
@@ -108,12 +108,12 @@ var loadTrackersData = function() {
     }).send();
 };
 
-var updateTrackersData = function() {
+updateTrackersData = function() {
     clearTimeout(loadTrackersDataTimer);
     loadTrackersData();
 };
 
-var torrentTrackersContextMenu = new ContextMenu({
+const torrentTrackersContextMenu = new ContextMenu({
     targets: '#torrentTrackersTableDiv',
     menu: 'torrentTrackersMenu',
     actions: {
@@ -134,8 +134,8 @@ var torrentTrackersContextMenu = new ContextMenu({
         y: 2
     },
     onShow: function() {
-        var selectedTrackers = torrentTrackersTable.selectedRowsIds();
-        var containsStaticTracker = selectedTrackers.some(function(tracker) {
+        const selectedTrackers = torrentTrackersTable.selectedRowsIds();
+        const containsStaticTracker = selectedTrackers.some(function(tracker) {
             return (tracker.indexOf("** [") === 0);
         });
 
@@ -152,7 +152,7 @@ var torrentTrackersContextMenu = new ContextMenu({
     }
 });
 
-var addTrackerFN = function() {
+const addTrackerFN = function() {
     if (current_hash.length === 0) return;
     new MochaUI.Window({
         id: 'trackersPage',
@@ -173,10 +173,10 @@ var addTrackerFN = function() {
     });
 };
 
-var editTrackerFN = function(element) {
+const editTrackerFN = function(element) {
     if (current_hash.length === 0) return;
 
-    var trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
+    const trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
     new MochaUI.Window({
         id: 'trackersPage',
         title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
@@ -196,10 +196,10 @@ var editTrackerFN = function(element) {
     });
 };
 
-var removeTrackerFN = function(element) {
+const removeTrackerFN = function(element) {
     if (current_hash.length === 0) return;
 
-    var selectedTrackers = torrentTrackersTable.selectedRowsIds();
+    const selectedTrackers = torrentTrackersTable.selectedRowsIds();
     new Request({
         url: 'api/v2/torrents/removeTrackers',
         method: 'post',

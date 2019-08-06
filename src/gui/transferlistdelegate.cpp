@@ -29,6 +29,7 @@
 #include "transferlistdelegate.h"
 
 #include <QApplication>
+#include <QDateTime>
 #include <QModelIndex>
 #include <QPainter>
 #include <QStyleOptionViewItem>
@@ -37,7 +38,6 @@
 #include <QProxyStyle>
 #endif
 
-#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
 #include "base/types.h"
@@ -82,7 +82,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         break;
     case TransferListModel::TR_ETA: {
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
+        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong(), MAX_ETA));
         break;
     }
     case TransferListModel::TR_SEEDS:
@@ -121,8 +121,8 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         }
         break;
     case TransferListModel::TR_TIME_ELAPSED: {
-            const int elapsedTime = index.data().toInt();
-            const int seedingTime = index.data(Qt::UserRole).toInt();
+            const qlonglong elapsedTime = index.data().toLongLong();
+            const qlonglong seedingTime = index.data(Qt::UserRole).toLongLong();
             const QString txt = (seedingTime > 0)
                 ? tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                     .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
@@ -145,10 +145,10 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QItemDelegate::drawDisplay(painter, opt, opt.rect, str);
         }
         break;
-    case TransferListModel::TR_PRIORITY: {
-            const int priority = index.data().toInt();
+    case TransferListModel::TR_QUEUE_POSITION: {
+            const int queuePos = index.data().toInt();
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            if (priority > 0) {
+            if (queuePos > 0) {
                 QItemDelegate::paint(painter, opt, index);
             }
             else {
@@ -192,6 +192,18 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
         }
         break;
+
+    case TransferListModel::TR_AVAILABILITY: {
+            const qreal availability = index.data().toReal();
+            if (hideValues && (availability <= 0))
+                break;
+
+            const QString availabilityStr = Utils::String::fromDouble(availability, 3);
+            opt.displayAlignment = (Qt::AlignRight | Qt::AlignVCenter);
+            QItemDelegate::drawDisplay(painter, opt, option.rect, availabilityStr);
+        }
+        break;
+
     default:
         QItemDelegate::paint(painter, option, index);
     }

@@ -32,7 +32,6 @@
 #include <QHostAddress>
 #include <QVariant>
 
-#include "base/types.h"
 #include "geoipdatabase.h"
 
 namespace
@@ -261,7 +260,7 @@ bool GeoIPDatabase::parseMetadata(const QVariantHash &metadata, QString &error)
     }
 
     CHECK_METADATA_REQ(build_epoch, ULongLong);
-    m_buildEpoch = QDateTime::fromTime_t(metadata.value("build_epoch").toULongLong());
+    m_buildEpoch = QDateTime::fromSecsSinceEpoch(metadata.value("build_epoch").toULongLong());
 
     CHECK_METADATA_OPT(languages, QVariantList);
     CHECK_METADATA_OPT(description, QVariantHash);

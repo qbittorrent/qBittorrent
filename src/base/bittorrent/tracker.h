@@ -30,18 +30,14 @@
 #ifndef BITTORRENT_TRACKER_H
 #define BITTORRENT_TRACKER_H
 
+#include <libtorrent/fwd.hpp>
+
 #include <QHash>
 #include <QObject>
 #include <QHostAddress>
 
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
-#include "base/http/types.h"
-
-namespace libtorrent
-{
-    class entry;
-}
 
 namespace Http
 {
@@ -59,7 +55,7 @@ namespace BitTorrent
         bool operator!=(const Peer &other) const;
         bool operator==(const Peer &other) const;
         QString uid() const;
-        libtorrent::entry toEntry(bool noPeerId) const;
+        lt::entry toEntry(bool noPeerId) const;
     };
 
     struct TrackerAnnounceRequest
@@ -87,7 +83,7 @@ namespace BitTorrent
         ~Tracker();
 
         bool start();
-        Http::Response processRequest(const Http::Request &request, const Http::Environment &env);
+        Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
 
     private:
         void respondToAnnounceRequest();

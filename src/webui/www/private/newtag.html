@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Add Tags)QBT_TR[CONTEXT=TransferListWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('tagNameButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        window.addEvent('domready', function() {
+            const uriAction = safeTrim(new URI().getData('action'));
+            const uriHashes = safeTrim(new URI().getData('hashes'));
+
+            if (uriAction === 'create')
+                $('legendText').innerText = 'QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]';
+
+            $('tagName').focus();
+
+            $('tagNameButton').addEvent('click', function(e) {
+                new Event(e).stop();
+
+                const tagName = $('tagName').value.trim();
+
+                const verifyTagName = function(name) {
+                    if ((name === null) || (name === ""))
+                        return false;
+                    if (name.indexOf(",") >= 0) {
+                        alert("QBT_TR(Invalid tag name)QBT_TR[CONTEXT=TagFilterWidget]");
+                        return false;
+                    }
+                    return true;
+                };
+
+                switch (uriAction) {
+                    case "set":
+                        if (uriHashes === "")
+                            return;
+
+                        new Request({
+                            url: 'api/v2/torrents/addTags',
+                            method: 'post',
+                            data: {
+                                hashes: uriHashes,
+                                tags: tagName,
+                            },
+                            onComplete: function() {
+                                window.parent.closeWindows();
+                            }
+                        }).send();
+                        break;
+
+                    case "create":
+                        if (!verifyTagName(tagName))
+                            return;
+
+                        new Request({
+                            url: 'api/v2/torrents/createTags',
+                            method: 'post',
+                            data: {
+                                tags: tagName,
+                            },
+                            onComplete: function() {
+                                window.parent.closeWindows();
+                            }
+                        }).send();
+                        break;
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p id="legendText" style="font-weight: bold;">QBT_TR(Comma-separated tags:)QBT_TR[CONTEXT=TransferListWidget]</p>
+        <input type="text" id="tagName" value="" maxlength="100" style="width: 220px;" />
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="tagNameButton" />
+        </div>
+    </div>
+</body>
+
+</html>

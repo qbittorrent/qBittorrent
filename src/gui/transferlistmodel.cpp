@@ -38,7 +38,6 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
-#include "base/torrentfilter.h"
 #include "base/utils/fs.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
@@ -95,7 +94,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
             switch (section) {
-            case TR_PRIORITY: return QChar('#');
+            case TR_QUEUE_POSITION: return QChar('#');
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Done", "% Done");
@@ -125,8 +124,8 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Indicates the time when the torrent was last seen complete/whole");
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
-            default:
-                return {};
+            case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
+            default: return {};
             }
         }
         else if (role == Qt::TextAlignmentRole) {
@@ -148,8 +147,9 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_DLLIMIT:
             case TR_RATIO_LIMIT:
             case TR_RATIO:
-            case TR_PRIORITY:
+            case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
+            case TR_AVAILABILITY:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
@@ -179,7 +179,7 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
     switch (index.column()) {
     case TR_NAME:
         return torrent->name();
-    case TR_PRIORITY:
+    case TR_QUEUE_POSITION:
         return torrent->queuePosition();
     case TR_SIZE:
         return torrent->wantedSize();
@@ -240,6 +240,8 @@ QVariant TransferListModel::data(const QModelIndex &index, int role) const
         if (torrent->isPaused() || torrent->isChecking())
             return -1;
         return torrent->timeSinceActivity();
+    case TR_AVAILABILITY:
+        return torrent->distributedCopies();
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
     }

@@ -22,34 +22,73 @@
     <ul class="filterList" id="categoryFilterList">
     </ul>
 </div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('tag');">
+        <img src="images/qbt-theme/go-down.svg">QBT_TR(Tags)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="tagFilterList">
+    </ul>
+</div>
 
 <script>
     'use strict';
 
-    var categoriesFilterContextMenu = new CategoriesFilterContextMenu({
+    const categoriesFilterContextMenu = new CategoriesFilterContextMenu({
         targets: '.categoriesFilterContextMenuTarget',
         menu: 'categoriesFilterMenu',
         actions: {
-            CreateCategory: function(element, ref) {
+            createCategory: function(element, ref) {
                 createCategoryFN();
             },
-            EditCategory: function(element, ref) {
+            editCategory: function(element, ref) {
                 editCategoryFN(element.id);
             },
-            DeleteCategory: function(element, ref) {
+            deleteCategory: function(element, ref) {
                 removeCategoryFN(element.id);
             },
-            DeleteUnusedCategories: function(element, ref) {
+            deleteUnusedCategories: function(element, ref) {
                 deleteUnusedCategoriesFN();
             },
-            StartTorrentsByCategory: function(element, ref) {
+            startTorrentsByCategory: function(element, ref) {
                 startTorrentsByCategoryFN(element.id);
             },
-            PauseTorrentsByCategory: function(element, ref) {
+            pauseTorrentsByCategory: function(element, ref) {
                 pauseTorrentsByCategoryFN(element.id);
             },
-            DeleteTorrentsByCategory: function(element, ref) {
+            deleteTorrentsByCategory: function(element, ref) {
                 deleteTorrentsByCategoryFN(element.id);
+            }
+        },
+        offsets: {
+            x: -15,
+            y: 2
+        },
+        onShow: function() {
+            this.options.element.firstChild.click();
+        }
+    });
+
+    const tagsFilterContextMenu = new TagsFilterContextMenu({
+        targets: '.tagsFilterContextMenuTarget',
+        menu: 'tagsFilterMenu',
+        actions: {
+            createTag: function(element, ref) {
+                createTagFN();
+            },
+            deleteTag: function(element, ref) {
+                removeTagFN(element.id);
+            },
+            deleteUnusedTags: function(element, ref) {
+                deleteUnusedTagsFN();
+            },
+            startTorrentsByTag: function(element, ref) {
+                startTorrentsByTagFN(element.id);
+            },
+            pauseTorrentsByTag: function(element, ref) {
+                pauseTorrentsByTagFN(element.id);
+            },
+            deleteTorrentsByTag: function(element, ref) {
+                deleteTorrentsByTagFN(element.id);
             }
         },
         offsets: {
@@ -66,4 +105,7 @@
 
     if (localStorage.getItem('filter_category_collapsed') === "true")
         toggleFilterDisplay('category');
+
+    if (localStorage.getItem('filter_tag_collapsed') === "true")
+        toggleFilterDisplay('tag');
 </script>

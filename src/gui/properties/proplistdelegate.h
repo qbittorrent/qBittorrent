@@ -35,6 +35,7 @@ class QAbstractItemModel;
 class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
+
 class PropertiesWidget;
 
 // Defines for properties list columns

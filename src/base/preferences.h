@@ -30,15 +30,16 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QDateTime>
 #include <QList>
-#include <QNetworkCookie>
-#include <QSize>
-#include <QStringList>
-#include <QTime>
-#include <QVariant>
 
 #include "base/utils/net.h"
+
+class QDateTime;
+class QNetworkCookie;
+class QSize;
+class QStringList;
+class QTime;
+class QVariant;
 
 enum SchedulerDays
 {
@@ -74,8 +75,6 @@ namespace DNS
     };
 }
 
-class SettingsStorage;
-
 class Preferences : public QObject
 {
     Q_OBJECT
@@ -99,6 +98,10 @@ public:
     // General options
     QString getLocale() const;
     void setLocale(const QString &locale);
+    bool useCustomUITheme() const;
+    void setUseCustomUITheme(bool use);
+    QString customUIThemePath() const;
+    void setCustomUIThemePath(const QString &path);
     bool deleteTorrentFilesAsDefault() const;
     void setDeleteTorrentFilesAsDefault(bool del);
     bool confirmOnExit() const;
@@ -185,12 +188,14 @@ public:
     void setWebUiLocalAuthEnabled(bool enabled);
     bool isWebUiAuthSubnetWhitelistEnabled() const;
     void setWebUiAuthSubnetWhitelistEnabled(bool enabled);
-    QList<Utils::Net::Subnet> getWebUiAuthSubnetWhitelist() const;
+    QVector<Utils::Net::Subnet> getWebUiAuthSubnetWhitelist() const;
     void setWebUiAuthSubnetWhitelist(QStringList subnets);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
     QByteArray getWebUIPassword() const;
     void setWebUIPassword(const QByteArray &password);
+    int getWebUISessionTimeout() const;
+    void setWebUISessionTimeout(int timeout);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;

@@ -34,6 +34,7 @@
 
 class QCheckBox;
 class QResizeEvent;
+
 class TransferListWidget;
 
 namespace BitTorrent
@@ -65,7 +66,7 @@ protected:
     TransferListWidget *transferList;
 
 private slots:
-    virtual void showMenu(QPoint) = 0;
+    virtual void showMenu(const QPoint &) = 0;
     virtual void applyFilter(int row) = 0;
     virtual void handleNewTorrent(BitTorrent::TorrentHandle *const) = 0;
     virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) = 0;
@@ -86,7 +87,7 @@ private slots:
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
-    void showMenu(QPoint) override;
+    void showMenu(const QPoint &) override;
     void applyFilter(int row) override;
     void handleNewTorrent(BitTorrent::TorrentHandle *const) override;
     void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) override;
@@ -98,7 +99,7 @@ class TrackerFiltersList : public BaseFilterWidget
     Q_DISABLE_COPY(TrackerFiltersList)
 
 public:
-    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList);
+    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     ~TrackerFiltersList() override;
 
     // Redefine addItem() to make sure the list stays sorted
@@ -118,7 +119,7 @@ private slots:
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
-    void showMenu(QPoint) override;
+    void showMenu(const QPoint &) override;
     void applyFilter(int row) override;
     void handleNewTorrent(BitTorrent::TorrentHandle *const torrent) override;
     void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent) override;
@@ -144,12 +145,12 @@ class TransferListFiltersWidget : public QFrame
     Q_OBJECT
 
 public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList);
+    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     void setDownloadTrackerFavicon(bool value);
 
 public slots:
-    void addTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(BitTorrent::TorrentHandle *const torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+    void addTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
+    void removeTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void changeTrackerless(BitTorrent::TorrentHandle *const torrent, bool trackerless);
     void trackerSuccess(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
     void trackerWarning(BitTorrent::TorrentHandle *const torrent, const QString &tracker);

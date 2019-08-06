@@ -34,15 +34,6 @@
 #include <memory>
 #endif
 
-#include <QCoreApplication>
-#include <QDebug>
-#include <QDir>
-#include <QDirIterator>
-#include <QFile>
-#include <QFileInfo>
-#include <QStorageInfo>
-#include <QRegularExpression>
-
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -58,20 +49,23 @@
 #include <unistd.h>
 #endif
 
+#include <QDebug>
+#include <QDir>
+#include <QDirIterator>
+#include <QFile>
+#include <QFileInfo>
+#include <QStorageInfo>
+#include <QRegularExpression>
+
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 
-/**
- * Converts a path to a string suitable for display.
- * This function makes sure the directory separator used is consistent
- * with the OS being run.
- */
 QString Utils::Fs::toNativePath(const QString &path)
 {
     return QDir::toNativeSeparators(path);
 }
 
-QString Utils::Fs::fromNativePath(const QString &path)
+QString Utils::Fs::toUniformPath(const QString &path)
 {
     return QDir::fromNativeSeparators(path);
 }
@@ -88,7 +82,7 @@ QString Utils::Fs::fileExtension(const QString &filename)
 
 QString Utils::Fs::fileName(const QString &filePath)
 {
-    const QString path = fromNativePath(filePath);
+    const QString path = toUniformPath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
@@ -97,7 +91,7 @@ QString Utils::Fs::fileName(const QString &filePath)
 
 QString Utils::Fs::folderName(const QString &filePath)
 {
-    const QString path = fromNativePath(filePath);
+    const QString path = toUniformPath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
@@ -249,7 +243,7 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 
 QString Utils::Fs::branchPath(const QString &filePath, QString *removed)
 {
-    QString ret = fromNativePath(filePath);
+    QString ret = toUniformPath(filePath);
     if (ret.endsWith('/'))
         ret.chop(1);
     const int slashIndex = ret.lastIndexOf('/');

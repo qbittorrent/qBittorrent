@@ -329,9 +329,9 @@ void ScanFoldersModel::makePersistent()
 
     for (const PathData *pathData : asConst(m_pathList)) {
         if (pathData->downloadType == CUSTOM_LOCATION)
-            dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), Utils::Fs::fromNativePath(pathData->downloadPath));
+            dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), Utils::Fs::toUniformPath(pathData->downloadPath));
         else
-            dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), pathData->downloadType);
+            dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), pathData->downloadType);
     }
 
     Preferences::instance()->setScanDirs(dirs);
@@ -341,7 +341,7 @@ void ScanFoldersModel::configure()
 {
     const QVariantHash dirs = Preferences::instance()->getScanDirs();
 
-    for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
+    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i) {
         if (i.value().type() == QVariant::Int)
             addPath(i.key(), static_cast<PathType>(i.value().toInt()), QString());
         else

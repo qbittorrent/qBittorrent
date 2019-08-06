@@ -10,14 +10,14 @@ macro(qbt_set_compiler_options)
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         #-Wshadow -Wconversion ?
         set(_GCC_COMMON_C_AND_CXX_FLAGS "-Wall -Wextra"
-            "-Wfloat-equal -Wcast-qual -Wcast-align"
-            "-Wsign-conversion -Winvalid-pch -Wno-long-long"
+            "-Wcast-qual -Wcast-align"
+            "-Winvalid-pch -Wno-long-long"
             #"-fstack-protector-all"
             #"-Werror -Wno-error=deprecated-declarations"
         )
         set(_GCC_COMMON_CXX_FLAGS "-fexceptions -frtti"
             "-Woverloaded-virtual -Wold-style-cast"
-            "-Wnon-virtual-dtor -Wfloat-equal -Wcast-qual -Wcast-align"
+            "-Wnon-virtual-dtor"
             #"-Weffc++"
             #"-Werror -Wno-error=cpp"
             # we should modify code to make these ones obsolete
@@ -61,7 +61,7 @@ macro(qbt_set_compiler_options)
             endif (_STRICT_NULL_SENTINEL_IS_SUPPORTED)
 
             # Code should be improved to render this not needed
-            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wno-error=unused-function -Wno-error=inconsistent-missing-override")
+            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wno-error=unused-function")
         else ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
             # GCC supports it
             list(APPEND _GCC_COMMON_CXX_FLAGS "-Wstrict-null-sentinel")
@@ -73,29 +73,29 @@ macro(qbt_set_compiler_options)
         string(APPEND CMAKE_C_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING}")
         string(APPEND CMAKE_CXX_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING} ${_GCC_COMMON_CXX_FLAGS_STRING}")
 
-        set(QBT_ADDITONAL_FLAGS "${_GCC_COMMON_C_AND_CXX_FLAGS_STRING}" CACHE STRING
-            "Additional qBittorent compile flags" FORCE)
-        set(QBT_ADDITONAL_CXX_FLAGS "${_GCC_COMMON_CXX_FLAGS_STRING}" CACHE STRING
-            "Additional qBittorent C++ compile flags" FORCE)
-
         # check whether we can enable -Og optimization for debug build
         # also let's enable -march=native for debug builds
         check_cxx_compiler_flag(-Og _DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
 
         if (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            string(APPEND CMAKE_C_FLAGS_DEBUG " -Og -g3 -march=native -pipe" )
-            string(APPEND CMAKE_CXX_FLAGS_DEBUG " -Og -g3 -march=native -pipe" )
+            set(QBT_ADDITONAL_FLAGS "-Og -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent compile flags")
+            set(QBT_ADDITONAL_CXX_FLAGS "-Og -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent C++ compile flags")
         else(_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            string(APPEND CMAKE_C_FLAGS_DEBUG " -O0 -g3 -march=native -pipe" )
-            string(APPEND CMAKE_CXX_FLAGS_DEBUG " -O0 -g3 -march=native -pipe" )
+            set(QBT_ADDITONAL_FLAGS "-O0 -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent compile flags")
+            set(QBT_ADDITONAL_CXX_FLAGS "-O0 -g3 -march=native -pipe" CACHE STRING
+                "Additional qBittorent C++ compile flags")
         endif (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
     endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
         set(QBT_ADDITONAL_FLAGS "-wd4290 -wd4275 -wd4251 /W4" CACHE STRING "Additional qBittorent compile flags")
-        string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITONAL_FLAGS}")
-        string(APPEND CMAKE_CXX_FLAGS " ${QBT_ADDITONAL_FLAGS}")
     endif ()
+
+    string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITONAL_FLAGS}")
+    string(APPEND CMAKE_CXX_FLAGS " ${QBT_ADDITONAL_FLAGS}")
 
 # endif (NOT QBT_ADDITONAL_FLAGS)
 endmacro(qbt_set_compiler_options)

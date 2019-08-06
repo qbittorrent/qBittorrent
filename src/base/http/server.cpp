@@ -32,7 +32,6 @@
 
 #include <algorithm>
 
-#include <QMutableListIterator>
 #include <QNetworkProxy>
 #include <QSslCipher>
 #include <QSslConfiguration>
@@ -40,6 +39,7 @@
 #include <QStringList>
 #include <QTimer>
 
+#include "base/algorithm.h"
 #include "base/utils/net.h"
 #include "connection.h"
 
@@ -107,19 +107,26 @@ void Server::incomingConnection(const qintptr socketDescriptor)
     }
 
     auto *c = new Connection(serverSocket, m_requestHandler, this);
-    m_connections.append(c);
+    m_connections.insert(c);
+    connect(serverSocket, &QAbstractSocket::disconnected, this, [c, this]() { removeConnection(c); });
+}
+
+void Server::removeConnection(Connection *connection)
+{
+    m_connections.remove(connection);
+    connection->deleteLater();
 }
 
 void Server::dropTimedOutConnection()
 {
-    QMutableListIterator<Connection *> i(m_connections);
-    while (i.hasNext()) {
-        const auto *connection = i.next();
-        if (connection->isClosed() || connection->hasExpired(KEEP_ALIVE_DURATION)) {
-            delete connection;
-            i.remove();
-        }
-    }
+    Algorithm::removeIf(m_connections, [](Connection *connection)
+    {
+        if (!connection->hasExpired(KEEP_ALIVE_DURATION))
+            return false;
+
+        connection->deleteLater();
+        return true;
+    });
 }
 
 bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privateKey)

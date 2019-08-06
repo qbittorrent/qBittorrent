@@ -31,6 +31,12 @@
 
 #include <QTreeView>
 
+namespace BitTorrent
+{
+    class TorrentHandle;
+    class TorrentInfo;
+}
+
 class TorrentContentTreeView : public QTreeView
 {
     Q_OBJECT
@@ -38,6 +44,9 @@ class TorrentContentTreeView : public QTreeView
 public:
     explicit TorrentContentTreeView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event) override;
+
+    void renameSelectedFile(BitTorrent::TorrentHandle *torrent);
+    void renameSelectedFile(BitTorrent::TorrentInfo &torrent);
 
 private:
     QModelIndex currentNameCell();

@@ -433,3 +433,11 @@ td.speedLabel {
     cursor: pointer;
     min-width: 18em;
 }
+
+#freeSpaceOnDisk {
+    white-space: nowrap;
+}
+
+#DHTNodes {
+    white-space: nowrap;
+}

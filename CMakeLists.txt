@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
 
+if(POLICY CMP0074)
+    cmake_policy(SET CMP0074 NEW)
+endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(FunctionReadVersion)
 
@@ -30,7 +34,7 @@ include(GNUInstallDirs)
 include(FeatureSummary)
 
 # version requirements
-set(requiredBoostVersion 1.35)
+set(requiredBoostVersion 1.40)
 set(requiredQtVersion 5.9.0)
 set(requiredOpensslVersion 1.0)
 set(requiredLibtorrentVersion 1.1.10)

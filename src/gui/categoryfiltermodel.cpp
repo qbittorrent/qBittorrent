@@ -34,7 +34,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
-#include "guiiconprovider.h"
+#include "uithememanager.h"
 
 class CategoryModelItem
 {
@@ -212,7 +212,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
     auto item = static_cast<const CategoryModelItem *>(index.internalPointer());
 
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
-        return GuiIconProvider::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon("inode-directory");
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole)) {

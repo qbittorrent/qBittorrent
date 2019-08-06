@@ -32,27 +32,26 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
-#include <QShortcut>
 #include <QTreeView>
-
-namespace Net
-{
-    class ReverseResolution;
-}
-
-class PeerListDelegate;
-class PeerListSortModel;
-class PropertiesWidget;
 
 class QSortFilterProxyModel;
 class QStandardItem;
 class QStandardItemModel;
+
+class PeerListDelegate;
+class PeerListSortModel;
+class PropertiesWidget;
 
 namespace BitTorrent
 {
     class TorrentHandle;
     class PeerInfo;
     struct PeerAddress;
+}
+
+namespace Net
+{
+    class ReverseResolution;
 }
 
 class PeerListWidget : public QTreeView
@@ -92,7 +91,6 @@ private:
     QPointer<Net::ReverseResolution> m_resolver;
     PropertiesWidget *m_properties;
     bool m_resolveCountries;
-    QShortcut *m_copyHotkey;
 };
 
 #endif // PEERLISTWIDGET_H

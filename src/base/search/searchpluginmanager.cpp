@@ -31,13 +31,11 @@
 
 #include <memory>
 
-#include <QDebug>
 #include <QDir>
 #include <QDirIterator>
 #include <QDomDocument>
 #include <QDomElement>
 #include <QDomNode>
-#include <QList>
 #include <QPointer>
 #include <QProcess>
 
@@ -370,7 +368,7 @@ void SearchPluginManager::versionInfoDownloadFinished(const Net::DownloadResult 
 void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success) {
-        const QString filePath = Utils::Fs::fromNativePath(result.filePath);
+        const QString filePath = Utils::Fs::toUniformPath(result.filePath);
 
         QString pluginName = Utils::Fs::fileName(result.url);
         pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.')); // Remove extension
@@ -494,13 +492,13 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
     QHash<QString, PluginVersion> updateInfo;
     int numCorrectData = 0;
 
-    const QList<QByteArray> lines = Utils::ByteArray::splitToViews(info, "\n", QString::SkipEmptyParts);
+    const QVector<QByteArray> lines = Utils::ByteArray::splitToViews(info, "\n", QString::SkipEmptyParts);
     for (QByteArray line : lines) {
         line = line.trimmed();
         if (line.isEmpty()) continue;
         if (line.startsWith('#')) continue;
 
-        const QList<QByteArray> list = Utils::ByteArray::splitToViews(line, ":", QString::SkipEmptyParts);
+        const QVector<QByteArray> list = Utils::ByteArray::splitToViews(line, ":", QString::SkipEmptyParts);
         if (list.size() != 2) continue;
 
         const QString pluginName = list.first().trimmed();
