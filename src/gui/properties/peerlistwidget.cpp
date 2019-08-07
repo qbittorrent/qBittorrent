@@ -301,7 +301,7 @@ void PeerListWidget::copySelectedPeers()
         int row = m_proxyModel->mapToSource(index).row();
         QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
         QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
-        if (ip.indexOf('.') == -1) // IPv6
+        if (!ip.contains('.')) // IPv6
             selectedPeers << '[' + ip + "]:" + myport;
         else // IPv4
             selectedPeers << ip + ':' + myport;
