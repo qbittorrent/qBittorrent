@@ -226,6 +226,29 @@
             QBT_TR(Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N"))QBT_TR[CONTEXT=OptionsDialog]
         </div>
     </fieldset>
+
+<fieldset class="settings">
+    <legend>
+        RSS
+    </legend>
+    <div class="formRow">
+        <input type="checkbox" id="rss_fetch_checkbox">
+        <label for="rss_fetch_checkbox">Enable fetching RSS feeds</label>
+    </div>
+    <div class="formRow">
+        <label for="rss_fetch_interval_num">Feeds refresh interval</label>
+        <input type="number" id="rss_fetch_interval_num" style="width: 4em;" min="0">
+    </div>
+    <div class="formRow">
+        <label for="rss_max_articles_num">Max number of articles per feed</label>
+        <input type="number" id="rss_max_articles_num" style="width: 4em;" min="1">
+    </div>
+    <div class="formRow">
+        <input type="checkbox" id="rss_auto_downloading_checkbox">
+        <label for="rss_auto_downloading_checkbox">Enable auto downloading of RSS torrents</label>
+    </div>
+    
+</fieldset>
 </div>
 
 <div id="ConnectionTab" class="PrefTab invisible">
@@ -1479,6 +1502,12 @@
                     $('autorunProg_txt').setProperty('value', pref.autorun_program);
                     updateAutoRun();
 
+                    //RSS
+                    $('rss_fetch_checkbox').setProperty('checked', pref.rss_processing_enabled);
+                    $('rss_fetch_interval_num').setProperty('value', pref.rss_refresh_interval);
+                    $('rss_max_articles_num').setProperty('value', pref.rss_max_articles_per_feed);
+                    $('rss_auto_downloading_checkbox').setProperty('checked', pref.rss_auto_downloading_enabled);
+
                     // Connection tab
                     // Listening Port
                     $('port_value').setProperty('value', pref.listen_port.toInt());
@@ -1747,6 +1776,12 @@
         settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
         settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
 
+        //RSS
+        settings.set('rss_processing_enabled', $('rss_fetch_checkbox').getProperty('checked'));
+        settings.set('rss_refresh_interval', $('rss_fetch_interval_num').getProperty('value'));
+        settings.set('rss_max_articles_per_feed', $('rss_max_articles_num').getProperty('value'));
+        settings.set('rss_auto_downloading_enabled', $('rss_auto_downloading_checkbox').getProperty('checked'));
+        
         // Connection tab
         // Listening Port
         const listen_port = $('port_value').getProperty('value').toInt();
