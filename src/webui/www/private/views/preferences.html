@@ -595,6 +595,25 @@
     </fieldset>
 </div>
 
+<div id="RSSTab" class="PrefTab invisible">
+    <div class="formRow">
+        <label for="rssProcessingEnabledCheckbox">QBT_TR(Enable fetching RSS feeds)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <input type="checkbox" id="rssProcessingEnabledCheckbox">
+    </div>
+    <div class="formRow">
+        <label for="rssRefreshIntervalNumber">QBT_TR(Feeds refresh interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <input type="number" id="rssRefreshIntervalNumber" style="width: 4em;" min="0">
+    </div>
+    <div class="formRow">
+        <label for="rssMaxArticlesNumber">QBT_TR(Max number of articles per feed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <input type="number" id="rssMaxArticlesNumber" style="width: 4em;" min="1">
+    </div>
+    <div class="formRow">
+        <label for="rssAutoDownloadingEnabledCheckbox">QBT_TR(Enable auto downloading of RSS torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <input type="checkbox" id="rssAutoDownloadingEnabledCheckbox">
+    </div>
+</div>
+
 <div id="WebUITab" class="PrefTab invisible">
     <fieldset class="settings">
         <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
@@ -1480,6 +1499,12 @@
                     $('autorunProg_txt').setProperty('value', pref.autorun_program);
                     updateAutoRun();
 
+                    // RSS
+                    $('rssProcessingEnabledCheckbox').setProperty('checked', pref.rss_processing_enabled);
+                    $('rssRefreshIntervalNumber').setProperty('value', pref.rss_refresh_interval);
+                    $('rssMaxArticlesNumber').setProperty('value', pref.rss_max_articles_per_feed);
+                    $('rssAutoDownloadingEnabledCheckbox').setProperty('checked', pref.rss_auto_downloading_enabled);
+
                     // Connection tab
                     // Listening Port
                     $('port_value').setProperty('value', pref.listen_port.toInt());
@@ -1747,6 +1772,12 @@
         // Run an external program on torrent completion
         settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
         settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
+
+        // RSS
+        settings.set('rss_processing_enabled', $('rssProcessingEnabledCheckbox').getProperty('checked'));
+        settings.set('rss_refresh_interval', $('rssRefreshIntervalNumber').getProperty('value'));
+        settings.set('rss_max_articles_per_feed', $('rssMaxArticlesNumber').getProperty('value'));
+        settings.set('rss_auto_downloading_enabled', $('rssAutoDownloadingEnabledCheckbox').getProperty('checked'));
 
         // Connection tab
         // Listening Port
@@ -2035,7 +2066,7 @@
         settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
         settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
         settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
-        
+
         // libtorrent section
         settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
         settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
