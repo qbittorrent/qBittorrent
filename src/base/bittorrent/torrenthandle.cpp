@@ -104,6 +104,8 @@ namespace
     std::vector<LTDownloadPriority> toLTDownloadPriorities(const QVector<DownloadPriority> &priorities)
     {
         std::vector<LTDownloadPriority> out;
+        out.reserve(priorities.size());
+
         std::transform(priorities.cbegin(), priorities.cend()
                        , std::back_inserter(out), [](BitTorrent::DownloadPriority priority)
         {
@@ -264,16 +266,17 @@ InfoHash TorrentHandle::hash() const
 QString TorrentHandle::name() const
 {
     QString name = m_name;
-    if (name.isEmpty())
-        name = QString::fromStdString(m_nativeStatus.name);
+    if (!name.isEmpty()) return name;
 
-    if (name.isEmpty() && hasMetadata())
+    name = QString::fromStdString(m_nativeStatus.name);
+    if (!name.isEmpty()) return name;
+
+    if (hasMetadata()) {
         name = QString::fromStdString(m_torrentInfo.nativeInfo()->orig_files().name());
+        if (!name.isEmpty()) return name;
+    }
 
-    if (name.isEmpty())
-        name = m_hash;
-
-    return name;
+    return m_hash;
 }
 
 QDateTime TorrentHandle::creationDate() const
@@ -353,14 +356,15 @@ QString TorrentHandle::rootPath(bool actual) const
         return QDir(savePath(actual)).absoluteFilePath(firstFilePath);
 }
 
-QString TorrentHandle::contentPath(bool actual) const
+QString TorrentHandle::contentPath(const bool actual) const
 {
     if (filesCount() == 1)
         return QDir(savePath(actual)).absoluteFilePath(filePath(0));
-    else if (hasRootFolder())
+
+    if (hasRootFolder())
         return rootPath(actual);
-    else
-        return savePath(actual);
+
+    return savePath(actual);
 }
 
 bool TorrentHandle::isAutoTMMEnabled() const
@@ -412,12 +416,14 @@ void TorrentHandle::setAutoManaged(const bool enable)
 
 QVector<TrackerEntry> TorrentHandle::trackers() const
 {
-    const std::vector<lt::announce_entry> announces = m_nativeHandle.trackers();
+    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
 
     QVector<TrackerEntry> entries;
-    entries.reserve(announces.size());
-    for (const lt::announce_entry &tracker : announces)
+    entries.reserve(nativeTrackers.size());
+
+    for (const lt::announce_entry &tracker : nativeTrackers)
         entries << tracker;
+
     return entries;
 }
 
@@ -428,7 +434,9 @@ QHash<QString, TrackerInfo> TorrentHandle::trackerInfos() const
 
 void TorrentHandle::addTrackers(const QVector<TrackerEntry> &trackers)
 {
-    const QVector<TrackerEntry> currentTrackers = this->trackers();
+    QSet<TrackerEntry> currentTrackers;
+    for (const lt::announce_entry &entry : m_nativeHandle.trackers())
+        currentTrackers << entry;
 
     QVector<TrackerEntry> newTrackers;
     newTrackers.reserve(trackers.size());
@@ -451,16 +459,17 @@ void TorrentHandle::replaceTrackers(const QVector<TrackerEntry> &trackers)
     QVector<TrackerEntry> newTrackers;
     newTrackers.reserve(trackers.size());
 
-    std::vector<lt::announce_entry> announces;
+    std::vector<lt::announce_entry> nativeTrackers;
+    nativeTrackers.reserve(trackers.size());
 
     for (const TrackerEntry &tracker : trackers) {
-        announces.emplace_back(tracker.nativeEntry());
+        nativeTrackers.emplace_back(tracker.nativeEntry());
 
         if (!currentTrackers.removeOne(tracker))
             newTrackers << tracker;
     }
 
-    m_nativeHandle.replace_trackers(announces);
+    m_nativeHandle.replace_trackers(nativeTrackers);
 
     if (newTrackers.isEmpty() && currentTrackers.isEmpty()) {
         // when existing tracker reorders
@@ -477,12 +486,12 @@ void TorrentHandle::replaceTrackers(const QVector<TrackerEntry> &trackers)
 
 QVector<QUrl> TorrentHandle::urlSeeds() const
 {
-    const std::set<std::string> seeds = m_nativeHandle.url_seeds();
+    const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
 
     QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(seeds.size());
+    urlSeeds.reserve(currentSeeds.size());
 
-    for (const std::string &urlSeed : seeds)
+    for (const std::string &urlSeed : currentSeeds)
         urlSeeds.append(QUrl(urlSeed.c_str()));
 
     return urlSeeds;
@@ -490,11 +499,17 @@ QVector<QUrl> TorrentHandle::urlSeeds() const
 
 void TorrentHandle::addUrlSeeds(const QVector<QUrl> &urlSeeds)
 {
+    const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
+
     QVector<QUrl> addedUrlSeeds;
     addedUrlSeeds.reserve(urlSeeds.size());
-    for (const QUrl &urlSeed : urlSeeds) {
-        if (addUrlSeed(urlSeed))
-            addedUrlSeeds << urlSeed;
+
+    for (const QUrl &url : urlSeeds) {
+        const std::string nativeUrl = url.toString().toStdString();
+        if (currentSeeds.find(nativeUrl) == currentSeeds.end()) {
+            m_nativeHandle.add_url_seed(nativeUrl);
+            addedUrlSeeds << url;
+        }
     }
 
     if (!addedUrlSeeds.isEmpty())
@@ -503,33 +518,21 @@ void TorrentHandle::addUrlSeeds(const QVector<QUrl> &urlSeeds)
 
 void TorrentHandle::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 {
+    const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
+
     QVector<QUrl> removedUrlSeeds;
     removedUrlSeeds.reserve(urlSeeds.size());
-    for (const QUrl &urlSeed : urlSeeds) {
-        if (removeUrlSeed(urlSeed))
-            removedUrlSeeds << urlSeed;
+
+    for (const QUrl &url : urlSeeds) {
+        const std::string nativeUrl = url.toString().toStdString();
+        if (currentSeeds.find(nativeUrl) != currentSeeds.end()) {
+            m_nativeHandle.remove_url_seed(nativeUrl);
+            removedUrlSeeds << url;
+        }
     }
 
     if (!removedUrlSeeds.isEmpty())
         m_session->handleTorrentUrlSeedsRemoved(this, removedUrlSeeds);
-}
-
-bool TorrentHandle::addUrlSeed(const QUrl &urlSeed)
-{
-    const QVector<QUrl> seeds = urlSeeds();
-    if (seeds.contains(urlSeed)) return false;
-
-    m_nativeHandle.add_url_seed(urlSeed.toString().toStdString());
-    return true;
-}
-
-bool TorrentHandle::removeUrlSeed(const QUrl &urlSeed)
-{
-    const QVector<QUrl> seeds = urlSeeds();
-    if (!seeds.contains(urlSeed)) return false;
-
-    m_nativeHandle.remove_url_seed(urlSeed.toString().toStdString());
-    return true;
 }
 
 bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)

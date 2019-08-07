@@ -394,8 +394,6 @@ namespace BitTorrent
         void move_impl(QString path, bool overwrite);
         void moveStorage(const QString &newPath, bool overwrite);
         void manageIncompleteFiles();
-        bool addUrlSeed(const QUrl &urlSeed);
-        bool removeUrlSeed(const QUrl &urlSeed);
         void setFirstLastPiecePriorityImpl(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         Session *const m_session;
