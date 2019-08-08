@@ -169,7 +169,7 @@ const initializeWindows = function() {
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: 'xhr',
             toolbar: true,
-            contentURL: 'preferences_content.html',
+            contentURL: 'preferences.html',
             require: {
                 css: ['css/Tabs.css']
             },

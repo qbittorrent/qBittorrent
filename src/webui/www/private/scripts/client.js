@@ -868,7 +868,7 @@ window.addEvent('load', function() {
             bottom: 0,
             left: 0
         },
-        contentURL: 'properties_content.html',
+        contentURL: 'properties.html',
         require: {
             css: ['css/Tabs.css', 'css/dynamicTable.css'],
             js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-peers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
