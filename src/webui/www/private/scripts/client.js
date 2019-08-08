@@ -873,7 +873,7 @@ window.addEvent('load', function() {
             css: ['css/Tabs.css', 'css/dynamicTable.css'],
             js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-peers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
-        tabsURL: 'properties.html',
+        tabsURL: 'propertiesToolbar.html',
         tabsOnload: function() {
             MochaUI.initializeTabs('propertiesTabs');
 

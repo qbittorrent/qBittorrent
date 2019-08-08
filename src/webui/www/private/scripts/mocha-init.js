@@ -173,7 +173,7 @@ const initializeWindows = function() {
             require: {
                 css: ['css/Tabs.css']
             },
-            toolbarURL: 'preferences.html',
+            toolbarURL: 'preferencesToolbar.html',
             maximizable: false,
             closable: true,
             paddingVertical: 0,

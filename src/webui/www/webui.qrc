@@ -20,9 +20,9 @@
         <file>private/installsearchplugin.html</file>
         <file>private/newcategory.html</file>
         <file>private/newtag.html</file>
-        <file>private/preferences.html</file>
+        <file>private/preferencesToolbar.html</file>
         <file>private/preferences_content.html</file>
-        <file>private/properties.html</file>
+        <file>private/propertiesToolbar.html</file>
         <file>private/properties_content.html</file>
         <file>private/rename.html</file>
         <file>private/search.html</file>
