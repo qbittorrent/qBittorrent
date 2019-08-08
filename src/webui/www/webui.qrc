@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/www">
-        <file>private/about.html</file>
-        <file>private/aboutToolbar.html</file>
         <file>private/addpeers.html</file>
         <file>private/addtrackers.html</file>
         <file>private/confirmdeletion.html</file>
@@ -15,18 +13,10 @@
         <file>private/download.html</file>
         <file>private/downloadlimit.html</file>
         <file>private/edittracker.html</file>
-        <file>private/filters.html</file>
         <file>private/index.html</file>
-        <file>private/installsearchplugin.html</file>
         <file>private/newcategory.html</file>
         <file>private/newtag.html</file>
-        <file>private/preferencesToolbar.html</file>
-        <file>private/preferences.html</file>
-        <file>private/propertiesToolbar.html</file>
-        <file>private/properties.html</file>
         <file>private/rename.html</file>
-        <file>private/search.html</file>
-        <file>private/searchplugins.html</file>
         <file>private/scripts/client.js</file>
         <file>private/scripts/contextmenu.js</file>
         <file>private/scripts/download.js</file>
@@ -48,10 +38,20 @@
         <file>private/scripts/speedslider.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
-        <file>private/statistics.html</file>
-        <file>private/transferlist.html</file>
         <file>private/upload.html</file>
         <file>private/uploadlimit.html</file>
+        <file>private/views/about.html</file>
+        <file>private/views/aboutToolbar.html</file>
+        <file>private/views/filters.html</file>
+        <file>private/views/installsearchplugin.html</file>
+        <file>private/views/preferences.html</file>
+        <file>private/views/preferencesToolbar.html</file>
+        <file>private/views/properties.html</file>
+        <file>private/views/propertiesToolbar.html</file>
+        <file>private/views/search.html</file>
+        <file>private/views/searchplugins.html</file>
+        <file>private/views/statistics.html</file>
+        <file>private/views/transferlist.html</file>
         <file>public/css/login.css</file>
         <file>public/css/noscript.css</file>
         <file>public/index.html</file>

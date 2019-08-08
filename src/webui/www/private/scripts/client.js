@@ -223,7 +223,7 @@ window.addEvent('load', function() {
             left: 0
         },
         loadMethod: 'xhr',
-        contentURL: 'filters.html',
+        contentURL: 'views/filters.html',
         onContentLoaded: function() {
             setFilter(selected_filter);
         },
@@ -826,7 +826,7 @@ window.addEvent('load', function() {
                 left: 0
             },
             loadMethod: 'xhr',
-            contentURL: 'search.html',
+            contentURL: 'views/search.html',
             content: '',
             column: 'searchTabColumn',
             height: null
@@ -844,7 +844,7 @@ window.addEvent('load', function() {
             left: 0
         },
         loadMethod: 'xhr',
-        contentURL: 'transferlist.html',
+        contentURL: 'views/transferlist.html',
         onContentLoaded: function() {
             handleDownloadParam();
             updateMainData();
@@ -868,12 +868,12 @@ window.addEvent('load', function() {
             bottom: 0,
             left: 0
         },
-        contentURL: 'properties.html',
+        contentURL: 'views/properties.html',
         require: {
             css: ['css/Tabs.css', 'css/dynamicTable.css'],
             js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-peers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
-        tabsURL: 'propertiesToolbar.html',
+        tabsURL: 'views/propertiesToolbar.html',
         tabsOnload: function() {
             MochaUI.initializeTabs('propertiesTabs');
 
