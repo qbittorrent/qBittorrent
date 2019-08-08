@@ -44,6 +44,7 @@ void PeerListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     painter->save();
 
     const bool hideValues = Preferences::instance()->getHideZeroValues();
+
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
 
@@ -54,7 +55,7 @@ void PeerListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         break;
     case TOT_DOWN:
     case TOT_UP: {
-            qlonglong size = index.data().toLongLong();
+            const qlonglong size = index.data().toLongLong();
             if (hideValues && (size <= 0))
                 break;
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
@@ -63,8 +64,8 @@ void PeerListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         break;
     case DOWN_SPEED:
     case UP_SPEED: {
-            qreal speed = index.data().toDouble();
-            if (speed <= 0.0)
+            const int speed = index.data().toInt();
+            if (speed <= 0)
                 break;
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
             QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::Misc::friendlyUnit(speed, true));
@@ -72,9 +73,9 @@ void PeerListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         break;
     case PROGRESS:
     case RELEVANCE: {
-            qreal progress = index.data().toDouble();
+            const qreal progress = index.data().toReal();
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            QItemDelegate::drawDisplay(painter, opt, opt.rect, Utils::String::fromDouble(progress * 100.0, 1) + '%');
+            QItemDelegate::drawDisplay(painter, opt, opt.rect, (Utils::String::fromDouble(progress * 100, 1) + '%'));
         }
         break;
     default:

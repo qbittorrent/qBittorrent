@@ -35,7 +35,6 @@
 #include "base/utils/misc.h"
 #include "searchsortmodel.h"
 
-
 SearchListDelegate::SearchListDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
