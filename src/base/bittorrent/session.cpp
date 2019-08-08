@@ -909,10 +909,12 @@ bool Session::isTrackerEnabled() const
 
 void Session::setTrackerEnabled(const bool enabled)
 {
-    if (isTrackerEnabled() != enabled) {
-        enableTracker(enabled);
+    if (m_isTrackerEnabled != enabled)
         m_isTrackerEnabled = enabled;
-    }
+
+    // call enableTracker() unconditionally, otherwise port change won't trigger
+    // tracker restart
+    enableTracker(enabled);
 }
 
 qreal Session::globalMaxRatio() const
@@ -1480,13 +1482,9 @@ void Session::enableTracker(const bool enable)
         if (!m_tracker)
             m_tracker = new Tracker(this);
 
-        if (m_tracker->start())
-            LogMsg(tr("Embedded Tracker [ON]"), Log::INFO);
-        else
-            LogMsg(tr("Failed to start the embedded tracker!"), Log::CRITICAL);
+        m_tracker->start();
     }
     else {
-        LogMsg(tr("Embedded Tracker [OFF]"), Log::INFO);
         if (m_tracker)
             delete m_tracker;
     }
