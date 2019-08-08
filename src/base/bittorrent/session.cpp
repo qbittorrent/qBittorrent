@@ -337,7 +337,7 @@ Session::Session(QObject *parent)
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
-    , m_port(BITTORRENT_SESSION_KEY("Port"), 8999)
+    , m_port(BITTORRENT_SESSION_KEY("Port"), -1)
     , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
@@ -375,6 +375,9 @@ Session::Session(QObject *parent)
     , m_extraLimit(0)
     , m_recentErroredTorrentsTimer(new QTimer(this))
 {
+    if (port() < 0)
+        m_port = Utils::Random::rand(1024, 65535);
+
     initResumeFolder();
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
@@ -1146,9 +1149,10 @@ void Session::configure(lt::settings_pack &settingsPack)
     QString chosenIP;
 #endif
     if (m_listenInterfaceChanged) {
-        const ushort port = this->port();
-        const std::pair<int, int> ports(port, port);
-        settingsPack.set_int(lt::settings_pack::max_retry_port_bind, ports.second - ports.first);
+        const int port = useRandomPort() ? 0 : this->port();
+        if (port > 0)  // user specified port
+            settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
+
         for (QString ip : getListeningIPs()) {
             lt::error_code ec;
             std::string interfacesStr;
@@ -2537,15 +2541,12 @@ void Session::setSaveResumeDataInterval(const uint value)
 
 int Session::port() const
 {
-    static int randomPort = Utils::Random::rand(1024, 65535);
-    if (useRandomPort())
-        return randomPort;
     return m_port;
 }
 
 void Session::setPort(const int port)
 {
-    if (port != this->port()) {
+    if (port != m_port) {
         m_port = port;
         configureListeningInterface();
     }
