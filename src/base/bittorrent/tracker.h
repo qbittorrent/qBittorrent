@@ -52,11 +52,12 @@ namespace BitTorrent
         QByteArray peerId;
         int port;
 
-        bool operator!=(const Peer &other) const;
-        bool operator==(const Peer &other) const;
         QString uid() const;
         lt::entry toEntry(bool noPeerId) const;
     };
+
+    bool operator==(const Peer &left, const Peer &right);
+    bool operator!=(const Peer &left, const Peer &right);
 
     struct TrackerAnnounceRequest
     {

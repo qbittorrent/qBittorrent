@@ -43,16 +43,6 @@ static const int ANNOUNCE_INTERVAL = 1800; // 30min
 using namespace BitTorrent;
 
 // Peer
-bool Peer::operator!=(const Peer &other) const
-{
-    return uid() != other.uid();
-}
-
-bool Peer::operator==(const Peer &other) const
-{
-    return uid() == other.uid();
-}
-
 QString Peer::uid() const
 {
     return ip.toString() + ':' + QString::number(port);
@@ -67,6 +57,16 @@ lt::entry Peer::toEntry(const bool noPeerId) const
     peerMap["port"] = lt::entry(port);
 
     return lt::entry(peerMap);
+}
+
+bool BitTorrent::operator==(const Peer &left, const Peer &right)
+{
+    return left.uid() == right.uid();
+}
+
+bool BitTorrent::operator!=(const Peer &left, const Peer &right)
+{
+    return !(left == right);
 }
 
 // Tracker
