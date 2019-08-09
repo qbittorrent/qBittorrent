@@ -2003,7 +2003,11 @@ void MainWindow::installPython()
 {
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
-    const QString installerURL = "https://www.python.org/ftp/python/3.6.6/python-3.6.6.exe";
+#ifdef QBT_APP_64BIT
+    const QString installerURL = "https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe";
+#else
+    const QString installerURL = "https://www.python.org/ftp/python/3.7.4/python-3.7.4.exe";
+#endif
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)
                 , this, &MainWindow::pythonDownloadFinished);
