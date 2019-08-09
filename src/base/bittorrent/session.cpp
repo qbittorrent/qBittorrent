@@ -1529,9 +1529,13 @@ void Session::processShareLimits()
                             LogMsg(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
-                        else if (!torrent->isPaused()) {
+                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused()) {
                             torrent->pause();
                             LogMsg(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
+                        }
+                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding()) {
+                            torrent->setSuperSeeding(true);
+                            LogMsg(tr("'%1' reached the maximum ratio you set. Enabled super seeding for it.").arg(torrent->name()));
                         }
                         continue;
                     }
@@ -1552,9 +1556,13 @@ void Session::processShareLimits()
                             LogMsg(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
-                        else if (!torrent->isPaused()) {
+                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused()) {
                             torrent->pause();
                             LogMsg(tr("'%1' reached the maximum seeding time you set. Paused.").arg(torrent->name()));
+                        }
+                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding()) {
+                            torrent->setSuperSeeding(true);
+                            LogMsg(tr("'%1' reached the maximum seeding time you set. Enabled super seeding for it.").arg(torrent->name()));
                         }
                     }
                 }
