@@ -1505,10 +1505,12 @@ void Session::enableBandwidthScheduler()
 void Session::populateAdditionalTrackers()
 {
     m_additionalTrackerList.clear();
-    for (QString tracker : asConst(additionalTrackers().split('\n'))) {
+
+    const QString trackers = additionalTrackers();
+    for (QStringRef tracker : asConst(trackers.splitRef('\n'))) {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
-            m_additionalTrackerList << tracker;
+            m_additionalTrackerList << tracker.toString();
     }
 }
 

@@ -1354,21 +1354,22 @@ void MainWindow::on_actionOpen_triggered()
         QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir(),
                                       tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
 
-    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
-    if (!pathsList.isEmpty()) {
-        for (const QString &file : pathsList) {
-            qDebug("Dropped file %s on download list", qUtf8Printable(file));
-            if (useTorrentAdditionDialog)
-                AddNewTorrentDialog::show(file, this);
-            else
-                BitTorrent::Session::instance()->addTorrent(file);
-        }
+    if (pathsList.isEmpty())
+        return;
 
-        // Save last dir to remember it
-        QStringList topDir = Utils::Fs::toUniformPath(pathsList.at(0)).split('/');
-        topDir.removeLast();
-        pref->setMainLastDir(Utils::Fs::toUniformPath(topDir.join('/')));
+    const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
+
+    for (const QString &file : pathsList) {
+        if (useTorrentAdditionDialog)
+            AddNewTorrentDialog::show(file, this);
+        else
+            BitTorrent::Session::instance()->addTorrent(file);
     }
+
+    // Save last dir to remember it
+    QString topDir = Utils::Fs::toUniformPath(pathsList.at(0));
+    topDir = topDir.left(topDir.lastIndexOf('/'));
+    pref->setMainLastDir(topDir);
 }
 
 void MainWindow::activate()

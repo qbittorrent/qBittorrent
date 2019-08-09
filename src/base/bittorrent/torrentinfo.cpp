@@ -429,9 +429,10 @@ void TorrentInfo::stripRootFolder()
     lt::file_storage files = m_nativeInfo->files();
 
     // Solution for case of renamed root folder
-    const std::string testName = filePath(0).split('/').value(0).toStdString();
-    if (files.name() != testName) {
-        files.set_name(testName);
+    const QString path = filePath(0);
+    const std::string newName = path.left(path.indexOf('/')).toStdString();
+    if (files.name() != newName) {
+        files.set_name(newName);
         for (int i = 0; i < files.num_files(); ++i)
             files.rename_file(LTFileIndex {i}, files.file_path(LTFileIndex {i}));
     }

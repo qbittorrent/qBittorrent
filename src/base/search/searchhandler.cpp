@@ -32,9 +32,9 @@
 #include <QProcess>
 #include <QTimer>
 
-#include "../global.h"
-#include "../utils/foreignapps.h"
-#include "../utils/fs.h"
+#include "base/global.h"
+#include "base/utils/foreignapps.h"
+#include "base/utils/fs.h"
 #include "searchpluginmanager.h"
 
 namespace
@@ -161,24 +161,29 @@ void SearchHandler::processFailed()
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 bool SearchHandler::parseSearchResult(const QString &line, SearchResult &searchResult)
 {
-    const QStringList parts = line.split('|');
+    const QVector<QStringRef> parts = line.splitRef('|');
     const int nbFields = parts.size();
+
     if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
 
     searchResult = SearchResult();
-    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed(); // download URL
-    searchResult.fileName = parts.at(PL_NAME).trimmed(); // Name
+    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed().toString(); // download URL
+    searchResult.fileName = parts.at(PL_NAME).trimmed().toString(); // Name
     searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
+
     bool ok = false;
+
     searchResult.nbSeeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok); // Seeders
     if (!ok || (searchResult.nbSeeders < 0))
         searchResult.nbSeeders = -1;
+
     searchResult.nbLeechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok); // Leechers
     if (!ok || (searchResult.nbLeechers < 0))
         searchResult.nbLeechers = -1;
-    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed(); // Search site URL
+
+    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search site URL
     if (nbFields == NB_PLUGIN_COLUMNS)
-        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed(); // Description Link
+        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed().toString(); // Description Link
 
     return true;
 }
