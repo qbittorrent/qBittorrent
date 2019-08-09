@@ -114,13 +114,11 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 
     case TransferListModel::TR_ADD_DATE:
     case TransferListModel::TR_SEED_DATE:
-    case TransferListModel::TR_SEEN_COMPLETE_DATE: {
+    case TransferListModel::TR_SEEN_COMPLETE_DATE:
         return dateLessThan(sortColumn(), left, right, true);
-        }
 
-    case TransferListModel::TR_QUEUE_POSITION: {
+    case TransferListModel::TR_QUEUE_POSITION:
         return lowerPositionThan(left, right);
-        }
 
     case TransferListModel::TR_SEEDS:
     case TransferListModel::TR_PEERS: {
@@ -140,20 +138,22 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         }
 
     case TransferListModel::TR_ETA: {
-            const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
-
             // Sorting rules prioritized.
             // 1. Active torrents at the top
             // 2. Seeding torrents at the bottom
             // 3. Torrents with invalid ETAs at the bottom
 
-            const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(left.row())));
-            const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(right.row())));
+            const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+
+            // From QSortFilterProxyModel::lessThan() documentation:
+            //   "Note: The indices passed in correspond to the source model"
+            const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(left));
+            const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(right));
             if (isActiveL != isActiveR)
                 return isActiveL;
 
-            const int queuePosL = model->data(model->index(left.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
-            const int queuePosR = model->data(model->index(right.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
+            const int queuePosL = left.sibling(left.row(), TransferListModel::TR_QUEUE_POSITION).data().toInt();
+            const int queuePosR = right.sibling(right.row(), TransferListModel::TR_QUEUE_POSITION).data().toInt();
             const bool isSeedingL = (queuePosL < 0);
             const bool isSeedingR = (queuePosR < 0);
             if (isSeedingL != isSeedingR) {
@@ -201,22 +201,20 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             return (vL < vR);
         }
 
-    default: {
+    default:
         if (left.data() != right.data())
             return QSortFilterProxyModel::lessThan(left, right);
 
         return lowerPositionThan(left, right);
-        }
     }
 }
 
 bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
-
     // Sort according to TR_QUEUE_POSITION
-    const int queueL = model->data(model->index(left.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
-    const int queueR = model->data(model->index(right.row(), TransferListModel::TR_QUEUE_POSITION)).toInt();
+    const int queueL = left.sibling(left.row(), TransferListModel::TR_QUEUE_POSITION).data().toInt();
+    const int queueR = right.sibling(right.row(), TransferListModel::TR_QUEUE_POSITION).data().toInt();
+
     if ((queueL > 0) || (queueR > 0)) {
         if ((queueL > 0) && (queueR > 0))
             return queueL < queueR;
@@ -233,9 +231,9 @@ bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QMo
 // (detailed discussion in #2526 and #2158).
 bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const
 {
-    const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
-    const QDateTime dateL = model->data(model->index(left.row(), dateColumn)).toDateTime();
-    const QDateTime dateR = model->data(model->index(right.row(), dateColumn)).toDateTime();
+    const QDateTime dateL = left.sibling(left.row(), dateColumn).data().toDateTime();
+    const QDateTime dateR = right.sibling(right.row(), dateColumn).data().toDateTime();
+
     if (dateL.isValid() && dateR.isValid()) {
         if (dateL != dateR)
             return dateL < dateR;
@@ -248,23 +246,24 @@ bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex
     }
 
     // Finally, sort by hash
-    const QString hashL(model->torrentHandle(model->index(left.row()))->hash());
-    const QString hashR(model->torrentHandle(model->index(right.row()))->hash());
+    const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+    const QString hashL = model->torrentHandle(left)->hash();
+    const QString hashR = model->torrentHandle(right)->hash();
     return hashL < hashR;
 }
 
-bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
 {
     return matchFilter(sourceRow, sourceParent)
            && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
 
-bool TransferListSortModel::matchFilter(int sourceRow, const QModelIndex &sourceParent) const
+bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &sourceParent) const
 {
-    auto *model = qobject_cast<TransferListModel *>(sourceModel());
+    const auto *model = qobject_cast<TransferListModel *>(sourceModel());
     if (!model) return false;
 
-    BitTorrent::TorrentHandle *const torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
+    const BitTorrent::TorrentHandle *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
     if (!torrent) return false;
 
     return m_filter.match(torrent);
