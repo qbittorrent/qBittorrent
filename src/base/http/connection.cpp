@@ -131,9 +131,9 @@ bool Connection::acceptsGzipEncoding(QString codings)
 {
     // [rfc7231] 5.3.4. Accept-Encoding
 
-    const auto isCodingAvailable = [](const QStringList &list, const QString &encoding) -> bool
+    const auto isCodingAvailable = [](const QVector<QStringRef> &list, const QString &encoding) -> bool
     {
-        for (const QString &str : list) {
+        for (const QStringRef &str : list) {
             if (!str.startsWith(encoding))
                 continue;
 
@@ -142,11 +142,11 @@ bool Connection::acceptsGzipEncoding(QString codings)
                 return true;
 
             // [rfc7231] 5.3.1. Quality Values
-            const QStringRef substr = str.midRef(encoding.size() + 3);  // ex. skip over "gzip;q="
+            const QStringRef substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
 
             bool ok = false;
             const double qvalue = substr.toDouble(&ok);
-            if (!ok || (qvalue <= 0.0))
+            if (!ok || (qvalue <= 0))
                 return false;
 
             return true;
@@ -154,7 +154,7 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return false;
     };
 
-    const QStringList list = codings.remove(' ').remove('\t').split(',', QString::SkipEmptyParts);
+    const QVector<QStringRef> list = codings.remove(' ').remove('\t').splitRef(',', QString::SkipEmptyParts);
     if (list.isEmpty())
         return false;
 

@@ -119,7 +119,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
         }
     }
     else {
-        files = event->mimeData()->text().split(QLatin1String("\n"));
+        files = event->mimeData()->text().split('\n');
     }
 
     if (files.isEmpty()) return;

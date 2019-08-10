@@ -79,7 +79,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
     m_ui->previewList->setItemDelegate(m_listDelegate);
     m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
     // Fill list in
-    QVector<qreal> fp = torrent->filesProgress();
+    const QVector<qreal> fp = torrent->filesProgress();
     int nbFiles = torrent->filesCount();
     for (int i = 0; i < nbFiles; ++i) {
         QString fileName = torrent->fileName(i);
@@ -89,10 +89,10 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
         if (Utils::Misc::isPreviewable(extension)) {
             int row = m_previewListModel->rowCount();
             m_previewListModel->insertRow(row);
-            m_previewListModel->setData(m_previewListModel->index(row, NAME), QVariant(fileName));
-            m_previewListModel->setData(m_previewListModel->index(row, SIZE), QVariant(torrent->fileSize(i)));
-            m_previewListModel->setData(m_previewListModel->index(row, PROGRESS), QVariant(fp[i]));
-            m_previewListModel->setData(m_previewListModel->index(row, FILE_INDEX), QVariant(i));
+            m_previewListModel->setData(m_previewListModel->index(row, NAME), fileName);
+            m_previewListModel->setData(m_previewListModel->index(row, SIZE), torrent->fileSize(i));
+            m_previewListModel->setData(m_previewListModel->index(row, PROGRESS), fp[i]);
+            m_previewListModel->setData(m_previewListModel->index(row, FILE_INDEX), i);
         }
     }
 

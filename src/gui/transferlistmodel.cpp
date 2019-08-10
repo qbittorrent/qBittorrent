@@ -161,11 +161,11 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
     return {};
 }
 
-QVariant TransferListModel::data(const QModelIndex &index, int role) const
+QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid()) return {};
 
-    BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
+    const BitTorrent::TorrentHandle *torrent = m_torrents.value(index.row());
     if (!torrent) return {};
 
     if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
@@ -259,7 +259,7 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
     BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
     if (!torrent) return false;
 
-    // Category, seed date and Name columns can be edited
+    // Category and Name columns can be edited
     switch (index.column()) {
     case TR_NAME:
         torrent->setName(value.toString());
@@ -276,7 +276,7 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrent(BitTorrent::TorrentHandle *const torrent)
 {
-    if (m_torrents.indexOf(torrent) == -1) {
+    if (!m_torrents.contains(torrent)) {
         const int row = m_torrents.size();
         beginInsertRows(QModelIndex(), row, row);
         m_torrents << torrent;
@@ -323,7 +323,7 @@ void TransferListModel::handleTorrentsUpdated()
 
 // Static functions
 
-QIcon getIconByState(BitTorrent::TorrentState state)
+QIcon getIconByState(const BitTorrent::TorrentState state)
 {
     switch (state) {
     case BitTorrent::TorrentState::Downloading:
@@ -360,7 +360,7 @@ QIcon getIconByState(BitTorrent::TorrentState state)
     }
 }
 
-QColor getColorByState(BitTorrent::TorrentState state)
+QColor getColorByState(const BitTorrent::TorrentState state)
 {
     // Color names taken from http://cloford.com/resources/colours/500col.htm
     bool dark = isDarkTheme();

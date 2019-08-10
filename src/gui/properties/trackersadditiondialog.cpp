@@ -56,11 +56,13 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 
 QStringList TrackersAdditionDialog::newTrackers() const
 {
+    const QString plainText = m_ui->textEditTrackersList->toPlainText();
+
     QStringList cleanTrackers;
-    for (QString url : asConst(m_ui->textEditTrackersList->toPlainText().split('\n'))) {
+    for (QStringRef url : asConst(plainText.splitRef('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty())
-            cleanTrackers << url;
+            cleanTrackers << url.toString();
     }
     return cleanTrackers;
 }

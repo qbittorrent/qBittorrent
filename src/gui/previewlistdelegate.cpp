@@ -50,23 +50,27 @@ PreviewListDelegate::PreviewListDelegate(QObject *parent)
 void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     painter->save();
+
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
+    drawBackground(painter, opt, index);
 
     switch (index.column()) {
     case PreviewSelectDialog::SIZE:
-        QItemDelegate::drawBackground(painter, opt, index);
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
+
     case PreviewSelectDialog::PROGRESS: {
+            const qreal progress = (index.data().toReal() * 100);
+
             QStyleOptionProgressBar newopt;
-            qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
+            newopt.text = ((progress == 100) ? QString("100%") : (Utils::String::fromDouble(progress, 1) + '%'));
             newopt.progress = static_cast<int>(progress);
             newopt.maximum = 100;
             newopt.minimum = 0;
             newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
             // XXX: To avoid having the progress text on the right of the bar
             QProxyStyle st("fusion");
@@ -76,6 +80,7 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 #endif
         }
         break;
+
     default:
         QItemDelegate::paint(painter, option, index);
     }

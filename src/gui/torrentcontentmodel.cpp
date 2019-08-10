@@ -469,14 +469,18 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
     // Iterate over files
     for (int i = 0; i < filesCount; ++i) {
         currentParent = m_rootItem;
-        QString path = Utils::Fs::toUniformPath(info.filePath(i));
+        const QString path = Utils::Fs::toUniformPath(info.filePath(i));
+
         // Iterate of parts of the path to create necessary folders
-        QStringList pathFolders = path.split('/', QString::SkipEmptyParts);
+        QVector<QStringRef> pathFolders = path.splitRef('/', QString::SkipEmptyParts);
         pathFolders.removeLast();
-        for (const QString &pathPart : asConst(pathFolders)) {
-            if (pathPart == ".unwanted")
+
+        for (const QStringRef &pathPartRef : asConst(pathFolders)) {
+            if (pathPartRef == QLatin1String(".unwanted"))
                 continue;
-            TorrentContentModelFolder* newParent = currentParent->childFolderWithName(pathPart);
+
+            const QString pathPart = pathPartRef.toString();
+            TorrentContentModelFolder *newParent = currentParent->childFolderWithName(pathPart);
             if (!newParent) {
                 newParent = new TorrentContentModelFolder(pathPart, currentParent);
                 currentParent->appendChild(newParent);
