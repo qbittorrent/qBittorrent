@@ -2443,9 +2443,6 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
                  <property name="suffix">
                   <string extracomment="minutes"> min</string>
                  </property>
@@ -2489,6 +2486,11 @@
                    <string>Remove them</string>
                   </property>
                  </item>
+                 <item>
+                  <property name="text">
+                   <string>Enable super seeding for them</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
                <item row="1" column="0">
@@ -2502,9 +2504,6 @@
                 <widget class="QDoubleSpinBox" name="spinMaxRatio">
                  <property name="enabled">
                   <bool>false</bool>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignHCenter</set>
                  </property>
                  <property name="maximum">
                   <double>9998.000000000000000</double>
