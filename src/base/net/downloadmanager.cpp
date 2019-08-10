@@ -50,8 +50,8 @@
 #include "base/utils/misc.h"
 #include "proxyconfigurationmanager.h"
 
-// Spoof Firefox 38 user agent to avoid web server banning
-const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0";
+// Disguise as Firefox to avoid web server banning
+const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0";
 
 namespace
 {
