@@ -49,7 +49,7 @@ CookiesDialog::CookiesDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    setWindowIcon(UIThemeManager::instance()->getIcon("CookiesDialog.WindowsIcon"));
+    setWindowIcon(UIThemeManager::instance()->getIcon("CookiesDialog"));
     m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon("CookiesDialog.AddAction"));
     m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon("CookiesDialog.RemoveAction"));
     m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());

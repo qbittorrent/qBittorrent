@@ -60,26 +60,32 @@ void UIThemeManager::initInstance()
 UIThemeManager::UIThemeManager()
 {
     const Preferences *const pref = Preferences::instance();
-    const bool useCustomUITheme = pref->useCustomUITheme();
+    bool useCustomUITheme = pref->useCustomUITheme();
     if (useCustomUITheme
-        && !QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
-        LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
+        && !QResource::registerResource(pref->customUIThemePath(), "/uitheme")) {
+        LogMsg(tr("Failed to load UI theme from file: \"%1\", falling back to system default theme").arg(pref->customUIThemePath()), Log::WARNING);
+
+        useCustomUITheme = false;
+        Preferences::instance()->setUseCustomUITheme(false);
+    }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     m_useSystemTheme = pref->useSystemIconTheme();
 #endif
+
     m_iconsDir = useCustomUITheme ? ":uitheme/icons/" : ":icons/";
 
-    {
-        QFile iconJsonMap(m_iconsDir + "iconconfig.json");
-        if (!iconJsonMap.open(QIODevice::ReadOnly))
-            LogMsg(tr("Failed to open \"iconconfig.json\", error: %1").arg(iconJsonMap.errorString()), Log::WARNING);
+    QFile iconJsonMap(m_iconsDir + "iconconfig.json");
+    if (!iconJsonMap.open(QIODevice::ReadOnly))
+        LogMsg(tr("Failed to open \"%1\", error: %2").arg(iconJsonMap.fileName(), iconJsonMap.errorString()), Log::WARNING);
 
-        QJsonParseError err;
-        m_iconMap = QJsonDocument::fromJson(iconJsonMap.readAll(), &err).object();
-        if (err.error != QJsonParseError::NoError)
-            LogMsg(tr("Error occurred while parsing \"%1\", error: %2").arg(iconJsonMap.fileName(), err.errorString()), Log::WARNING);
-    }
+    QJsonParseError err;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(iconJsonMap.readAll(), &err);
+    if (err.error != QJsonParseError::NoError)
+        LogMsg(tr("Error occurred while parsing \"%1\", error: %2").arg(iconJsonMap.fileName(), err.errorString()), Log::WARNING);
+    if (!jsonDoc.isObject())
+        LogMsg(tr("Json Document isn't an object."), Log::WARNING);
+    m_iconMap = jsonDoc.object();
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -158,22 +164,25 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
 #endif
 
     const auto iter = m_iconMap.find(iconId);
-    QString iconPath = iter != m_iconMap.end() ? iter->toString() : QString{};
+    QString iconPath = (iter != m_iconMap.end()) ? iter->toString() : QString{};
     QString iconIdPattern = iconId;
     while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
         const int sepIndex = iconIdPattern.indexOf('.');
-        iconIdPattern = "*" + (sepIndex == -1 ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
-        const auto iter = m_iconMap.find(iconIdPattern);
-        if (iter != m_iconMap.end())
-            iconPath = iter->toString();
-        iconIdPattern.remove(0, 2);
+        iconIdPattern = "*" + ((sepIndex == -1) ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
+        const auto patternIter = m_iconMap.find(iconIdPattern);
+        if (patternIter != m_iconMap.end())
+            iconPath = patternIter->toString();
+        else
+            iconIdPattern.remove(0, 2); // removes "*."
     }
 
     if (iconPath.isEmpty()) {
         LogMsg(tr("Can't resolve icon id - %1").arg(iconId), Log::WARNING);
         return {};
     }
-    iconPath = m_iconsDir + iconPath;
+
+    m_iconMap[iconId] = iconPath;
+    iconPath.prepend(m_iconsDir);
 
     if (iconPath.lastIndexOf('.') != -1) {
         // resolved name already has an extension
@@ -183,14 +192,13 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
         return {};
     }
 
-    QFile iconFile(iconPath + ".svg");
-    if (iconFile.exists())
-        return iconFile.fileName();
+    const QString allowedExts[] = {".svg", ".png"};
+    for (const QString &ext : allowedExts) {
+        QFile f(iconPath + ext);
+        if (f.exists())
+            return f.fileName();
+    }
 
-    iconFile.setFileName(iconPath + ".png");
-    if (!iconFile.exists())
-        return iconFile.fileName();
-
-    LogMsg(tr(R"(Neither "%1.svg" nor "%1.png" exists)").arg(iconPath), Log::WARNING);
+    LogMsg(tr("Can't match \"%1\" with any of the allowed extensions").arg(iconPath), Log::WARNING);
     return {};
 }

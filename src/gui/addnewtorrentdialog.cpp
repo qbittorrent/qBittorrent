@@ -472,7 +472,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     if (selectedRows.size() == 1) {
-        QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("AddNewTorrentDialog.ContentTree.RenameAction"), tr("Rename..."));
+        QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("AddNewTorrentDialog.TorrentContentView.RenameAction"), tr("Rename..."));
         connect(actRename, &QAction::triggered, this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
 
         menu->addSeparator();

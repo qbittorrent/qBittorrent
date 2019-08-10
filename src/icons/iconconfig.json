@@ -1,6 +1,6 @@
 {
     "AboutDialog.Logo": "skin/qbittorrent-tray.svg",
-    "AddNewTorrentDialog.ContentTree.RenameAction": "qbt-theme/edit-rename",
+    "AddNewTorrentDialog.TorrentContentView.RenameAction": "qbt-theme/edit-rename",
     "CategoryFilter.ContextMenu.AddAction": "qbt-theme/list-add",
     "CategoryFilter.ContextMenu.AddSubcategoryAction": "qbt-theme/list-add",
     "CategoryFilter.ContextMenu.EditAction": "qbt-theme/document-edit",
@@ -12,7 +12,7 @@
     "CategoryFilter.SubCategory": "qbt-theme/inode-directory",
     "CookiesDialog.AddAction": "qbt-theme/list-add",
     "CookiesDialog.RemoveAction": "qbt-theme/list-remove",
-    "CookiesDialog.WindowsIcon": "qbt-theme/preferences-web-browser-cookies",
+    "CookiesDialog": "qbt-theme/preferences-web-browser-cookies",
     "DownloadedEpisodes.RemoveAction": "qbt-theme/edit-clear",
     "ExecutionLog.BlockedIPsTab": "qbt-theme/view-filter",
     "ExecutionLog.GeneralTab": "qbt-theme/view-calendar-journal",
