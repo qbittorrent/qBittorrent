@@ -10,6 +10,7 @@
       <div><label>Name</label><input data-name="name" /></div>\
       <div><label>Must contain</label><input data-name="mustContain" /></div>\
       <div><label>Must NOT contain</label><input data-name="mustNotContain" /></div>\
+      <div><label><input data-name="useRegex"/>Use regex</label></div>\
       <div><label>Ignore days</label><select data-bind="options: $parent.days, value: ignoreDays"></select></div>\
       <div><label>Save path</label><input data-name="savePath" /><select data-bind="options: $parent.paths, value: selectedPath"></select></div>\
       <label>Feeds</label>\
@@ -177,7 +178,7 @@
             }).send();
         },
         addRule: function () {
-            this.rules.push(new Rule("Untitled", { enabled: false, mustContain: "", mustNotContain: "", savePath: "", ignoreDays: 0, affectedFeeds: [] }));
+            this.rules.push(new Rule("Untitled", { enabled: false, mustContain: "", mustNotContain: "", savePath: "", ignoreDays: 0, useRegex: false, affectedFeeds: [] }));
         },
         deleteSelectedRule: function () {
             var rule = this.selectedRule();
@@ -207,6 +208,7 @@
         this.mustNotContain = data.mustNotContain;
         this.savePath = ko.observable(data.savePath);
         this.ignoreDays = data.ignoreDays;
+        this.useRegex = data.useRegex;
         this.feeds = feeds.map(f => new Feed(f, data.affectedFeeds.indexOf(f.data.url) >= 0));
 
         this.data = data;
