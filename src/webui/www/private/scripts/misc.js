@@ -176,28 +176,18 @@ function toFixedPointString(number, digits) {
  */
 function containsAllTerms(text, terms) {
     const textToSearch = text.toLowerCase();
-    for (let i = 0; i < terms.length; ++i) {
-        const term = terms[i].trim().toLowerCase();
-        if ((term[0] === '-')) {
-            // ignore lonely -
+    return terms.every((function(term) {
+        const isTermRequired = (term[0] === '+');
+        const isTermExcluded = (term[0] === '-');
+        if (isTermRequired || isTermExcluded) {
+            // ignore lonely +/-
             if (term.length === 1)
-                continue;
-            // disallow any text after -
-            if (textToSearch.indexOf(term.substring(1)) !== -1)
-                return false;
-        }
-        else if ((term[0] === '+')) {
-            // ignore lonely +
-            if (term.length === 1)
-                continue;
-            // require any text after +
-            if (textToSearch.indexOf(term.substring(1)) === -1)
-                return false;
-        }
-        else if (textToSearch.indexOf(term) === -1){
-            return false;
-        }
-    }
+                return true;
 
-    return true;
+            term = term.substring(1);
+        }
+
+        const textContainsTerm = (textToSearch.indexOf(term) !== -1);
+        return isTermExcluded ? !textContainsTerm : textContainsTerm;
+    }));
 }
