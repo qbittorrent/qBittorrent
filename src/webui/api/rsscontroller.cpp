@@ -91,6 +91,16 @@ void RSSController::itemsAction()
     setResult(jsonVal.toObject());
 }
 
+void RSSController::refreshItemAction()
+{
+    checkParams({"itemPath"});
+
+    const QString itemPath {params()["itemPath"]};
+    RSS::Item *item = RSS::Session::instance()->itemByPath(itemPath);
+    if (item)
+        item->refresh();
+}
+
 void RSSController::setRuleAction()
 {
     checkParams({"ruleName", "ruleDef"});
