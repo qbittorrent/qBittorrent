@@ -44,6 +44,7 @@ private slots:
     void removeItemAction();
     void moveItemAction();
     void itemsAction();
+    void refreshItemAction();
     void setRuleAction();
     void renameRuleAction();
     void removeRuleAction();
