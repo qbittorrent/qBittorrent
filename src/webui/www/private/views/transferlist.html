@@ -18,81 +18,95 @@
 <script>
     'use strict';
 
-    //create a context menu
-    const torrentsTableContextMenu = new TorrentsTableContextMenu({
-        targets: '.torrentsTableContextMenuTarget',
-        menu: 'torrentsTableMenu',
-        actions: {
-            start: function(element, ref) {
-                startFN();
-            },
-            pause: function(element, ref) {
-                pauseFN();
-            },
-            forceStart: function(element, ref) {
-                setForceStartFN();
-            },
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
 
-            delete: function(element, ref) {
-                deleteFN();
-            },
+    window.qBittorrent.TransferList = (function() {
+        const exports = function() {
+            return {
+                contextMenu: contextMenu,
+            };
+        };
 
-            setLocation: function(element, ref) {
-                setLocationFN();
-            },
+        //create a context menu
+        const contextMenu = new window.qBittorrent.ContextMenu.TorrentsTableContextMenu({
+            targets: '.torrentsTableContextMenuTarget',
+            menu: 'torrentsTableMenu',
+            actions: {
+                start: function(element, ref) {
+                    startFN();
+                },
+                pause: function(element, ref) {
+                    pauseFN();
+                },
+                forceStart: function(element, ref) {
+                    setForceStartFN();
+                },
 
-            rename: function(element, ref) {
-                renameFN();
-            },
-            queueTop: function(element, ref) {
-                setQueuePositionFN('topPrio');
-            },
-            queueUp: function(element, ref) {
-                setQueuePositionFN('increasePrio');
-            },
-            queueDown: function(element, ref) {
-                setQueuePositionFN('decreasePrio');
-            },
-            queueBottom: function(element, ref) {
-                setQueuePositionFN('bottomPrio');
-            },
+                delete: function(element, ref) {
+                    deleteFN();
+                },
 
-            downloadLimit: function(element, ref) {
-                downloadLimitFN();
-            },
-            uploadLimit: function(element, ref) {
-                uploadLimitFN();
-            },
-            shareRatio: function(element, ref) {
-                shareRatioFN();
-            },
+                setLocation: function(element, ref) {
+                    setLocationFN();
+                },
 
-            sequentialDownload: function(element, ref) {
-                toggleSequentialDownloadFN();
-            },
-            firstLastPiecePrio: function(element, ref) {
-                toggleFirstLastPiecePrioFN();
-            },
+                rename: function(element, ref) {
+                    renameFN();
+                },
+                queueTop: function(element, ref) {
+                    setQueuePositionFN('topPrio');
+                },
+                queueUp: function(element, ref) {
+                    setQueuePositionFN('increasePrio');
+                },
+                queueDown: function(element, ref) {
+                    setQueuePositionFN('decreasePrio');
+                },
+                queueBottom: function(element, ref) {
+                    setQueuePositionFN('bottomPrio');
+                },
 
-            autoTorrentManagement: function(element, ref) {
-                autoTorrentManagementFN();
-            },
-            forceRecheck: function(element, ref) {
-                recheckFN();
-            },
-            forceReannounce: function(element, ref) {
-                reannounceFN();
-            },
+                downloadLimit: function(element, ref) {
+                    downloadLimitFN();
+                },
+                uploadLimit: function(element, ref) {
+                    uploadLimitFN();
+                },
+                shareRatio: function(element, ref) {
+                    shareRatioFN();
+                },
 
-            superSeeding: function(element, ref) {
-                setSuperSeedingFN(!ref.getItemChecked('superSeeding'));
+                sequentialDownload: function(element, ref) {
+                    toggleSequentialDownloadFN();
+                },
+                firstLastPiecePrio: function(element, ref) {
+                    toggleFirstLastPiecePrioFN();
+                },
+
+                autoTorrentManagement: function(element, ref) {
+                    autoTorrentManagementFN();
+                },
+                forceRecheck: function(element, ref) {
+                    recheckFN();
+                },
+                forceReannounce: function(element, ref) {
+                    reannounceFN();
+                },
+
+                superSeeding: function(element, ref) {
+                    setSuperSeedingFN(!ref.getItemChecked('superSeeding'));
+                }
+            },
+            offsets: {
+                x: -15,
+                y: 2
             }
-        },
-        offsets: {
-            x: -15,
-            y: 2
-        }
-    });
+        });
 
-    torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', torrentsTableContextMenu);
+        torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', contextMenu);
+
+        return exports();
+    })();
 </script>
