@@ -67,13 +67,15 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->textUrls->setWordWrapMode(QTextOption::NoWrap);
 
     // Paste clipboard if there is an URL in it
-    const QStringList clipboardList = qApp->clipboard()->text().split('\n');
+    const QString clipboardText = qApp->clipboard()->text();
+    const QVector<QStringRef> clipboardList = clipboardText.splitRef('\n');
 
     QSet<QString> uniqueURLs;
-    for (QString str : clipboardList) {
-        str = str.trimmed();
-        if (str.isEmpty()) continue;
+    for (QStringRef strRef : clipboardList) {
+        strRef = strRef.trimmed();
+        if (strRef.isEmpty()) continue;
 
+        const QString str = strRef.toString();
         if (isDownloadable(str))
             uniqueURLs << str;
     }
@@ -90,14 +92,15 @@ DownloadFromURLDialog::~DownloadFromURLDialog()
 
 void DownloadFromURLDialog::downloadButtonClicked()
 {
-    const QStringList urls = m_ui->textUrls->toPlainText().split('\n');
+    const QString plainText = m_ui->textUrls->toPlainText();
+    const QVector<QStringRef> urls = plainText.splitRef('\n');
 
     QSet<QString> uniqueURLs;
-    for (QString url : urls) {
+    for (QStringRef url : urls) {
         url = url.trimmed();
         if (url.isEmpty()) continue;
 
-        uniqueURLs << url;
+        uniqueURLs << url.toString();
     }
 
     if (uniqueURLs.isEmpty()) {

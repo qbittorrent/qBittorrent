@@ -624,9 +624,6 @@ void AppController::setPreferencesAction()
     if (hasKey("dyndns_domain"))
         pref->setDynDomainName(it.value().toString());
 
-    // Save preferences
-    pref->apply();
-
     if (hasKey("rss_refresh_interval"))
         RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
     if (hasKey("rss_max_articles_per_feed"))
@@ -738,6 +735,9 @@ void AppController::setPreferencesAction()
         const QHostAddress announceAddr {it.value().toString().trimmed()};
         session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
     }
+
+    // Save preferences
+    pref->apply();
 }
 
 void AppController::defaultSavePathAction()

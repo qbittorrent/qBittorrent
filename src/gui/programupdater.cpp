@@ -139,10 +139,10 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
 {
     const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
     if (regVerMatch.hasMatch()) {
-        QString localVersion = regVerMatch.captured(1);
-        qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
-        QStringList remoteParts = remoteVersion.split('.');
-        QStringList localParts = localVersion.split('.');
+        const QString localVersion = regVerMatch.captured(1);
+        const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
+        const QVector<QStringRef> localParts = localVersion.splitRef('.');
+
         for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i) {
             if (remoteParts[i].toInt() > localParts[i].toInt())
                 return true;

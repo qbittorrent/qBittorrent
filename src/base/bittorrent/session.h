@@ -62,7 +62,8 @@ class ResumeDataSavingManager;
 enum MaxRatioAction
 {
     Pause,
-    Remove
+    Remove,
+    EnableSuperSeeding
 };
 
 enum TorrentExportFolder

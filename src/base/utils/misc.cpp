@@ -465,7 +465,7 @@ QString Utils::Misc::libtorrentVersionString()
 QString Utils::Misc::opensslVersionString()
 {
     const QString version {OPENSSL_VERSION_TEXT};
-    return version.split(' ', QString::SkipEmptyParts)[1];
+    return version.splitRef(' ', QString::SkipEmptyParts)[1].toString();
 }
 
 QString Utils::Misc::zlibVersionString()

@@ -989,13 +989,22 @@ const TorrentsTable = new Class({
             else return 0;
         };
 
-        // name, category
+        // name, category, tags
         this.columns['name'].updateTd = function(td, row) {
             const name = escapeHtml(this.getRowValue(row))
             td.set('html', name);
             td.set('title', name);
         };
         this.columns['category'].updateTd = this.columns['name'].updateTd;
+        this.columns['tags'].updateTd = this.columns['name'].updateTd;
+
+        this.columns['name'].compareRows = function(row1, row2) {
+            const row1Val = this.getRowValue(row1);
+            const row2Val = this.getRowValue(row2);
+            return row1Val.localeCompare(row2Val, undefined, {numeric: true, sensitivity: 'base'});
+        };
+        this.columns['category'].compareRows = this.columns['name'].compareRows;
+        this.columns['tags'].compareRows = this.columns['name'].compareRows;
 
         // size
         this.columns['size'].updateTd = function(td, row) {
@@ -1099,9 +1108,6 @@ const TorrentsTable = new Class({
             td.set('html', string);
             td.set('title', string);
         };
-
-        // tags
-        this.columns['tags'].updateTd = this.columns['name'].updateTd;
 
         // added on
         this.columns['added_on'].updateTd = function(td, row) {
@@ -1278,12 +1284,9 @@ const TorrentsTable = new Class({
             }
         }
 
-        if (filterTerms) {
-            for (let i = 0; i < filterTerms.length; ++i) {
-                if (name.indexOf(filterTerms[i]) === -1)
-                    return false;
-            }
-        }
+        if ((filterTerms !== undefined) && (filterTerms !== null)
+            && (filterTerms.length > 0) && !containsAllTerms(name, filterTerms))
+            return false;
 
         return true;
     },
@@ -1560,16 +1563,6 @@ const SearchResultsTable = new Class({
     },
 
     getFilteredAndSortedRows: function() {
-        const containsAll = function(text, searchTerms) {
-            text = text.toLowerCase();
-            for (let i = 0; i < searchTerms.length; ++i) {
-                if (text.indexOf(searchTerms[i].toLowerCase()) === -1)
-                    return false;
-            }
-
-            return true;
-        };
-
         const getSizeFilters = function() {
             let minSize = (searchSizeFilter.min > 0.00) ? (searchSizeFilter.min * Math.pow(1024, searchSizeFilter.minUnit)) : 0.00;
             let maxSize = (searchSizeFilter.max > 0.00) ? (searchSizeFilter.max * Math.pow(1024, searchSizeFilter.maxUnit)) : 0.00;
@@ -1614,8 +1607,8 @@ const SearchResultsTable = new Class({
             for (let i = 0; i < rows.length; ++i) {
                 const row = rows[i];
 
-                if (searchInTorrentName && !containsAll(row.full_data.fileName, searchTerms)) continue;
-                if ((filterTerms.length > 0) && !containsAll(row.full_data.fileName, filterTerms)) continue;
+                if (searchInTorrentName && !containsAllTerms(row.full_data.fileName, searchTerms)) continue;
+                if ((filterTerms.length > 0) && !containsAllTerms(row.full_data.fileName, filterTerms)) continue;
                 if ((sizeFilters.min > 0.00) && (row.full_data.fileSize < sizeFilters.min)) continue;
                 if ((sizeFilters.max > 0.00) && (row.full_data.fileSize > sizeFilters.max)) continue;
                 if ((seedsFilters.min > 0) && (row.full_data.nbSeeders < seedsFilters.min)) continue;
@@ -1950,12 +1943,7 @@ const TorrentFilesTable = new Class({
             }
         }
 
-        const lowercaseName = node.name.toLowerCase();
-        const matchesFilter = filterTerms.every(function(term) {
-            return (lowercaseName.indexOf(term) !== -1);
-        });
-
-        if (matchesFilter) {
+        if (containsAllTerms(node.name, filterTerms)) {
             const row = this.getRow(node);
             filteredRows.push(row);
             return true;
