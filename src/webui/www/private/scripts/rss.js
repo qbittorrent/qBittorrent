@@ -295,7 +295,7 @@
                                 paddingVertical: 0,
                                 paddingHorizontal: 0,
                                 width: 512,
-                                height: 256,
+                                height: 320,
                                 onClose: function() {
                                     valueAccessor()(null);
                                 }
