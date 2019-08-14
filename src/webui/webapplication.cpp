@@ -191,7 +191,7 @@ void WebApplication::sendWebUIFile()
     sendFile(localPath);
 }
 
-void WebApplication::translateDocument(QString &data)
+void WebApplication::translateDocument(QString &data) const
 {
     const QRegularExpression regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]");
 
