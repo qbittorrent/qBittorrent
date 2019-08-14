@@ -136,6 +136,7 @@ private:
     struct TranslatedFile
     {
         QByteArray data;
+        QString mimeType;
         QDateTime lastModified;
     };
     QHash<QString, TranslatedFile> m_translatedFiles;

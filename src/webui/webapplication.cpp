@@ -368,11 +368,10 @@ void WebApplication::sendFile(const QString &path)
     const QDateTime lastModified {QFileInfo(path).lastModified()};
 
     // find translated file in cache
-    auto it = m_translatedFiles.constFind(path);
-    if ((it != m_translatedFiles.constEnd()) && (lastModified <= (*it).lastModified)) {
-        const QString mimeName {QMimeDatabase().mimeTypeForFileNameAndData(path, (*it).data).name()};
-        print((*it).data, mimeName);
-        header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeName));
+    const auto it = m_translatedFiles.constFind(path);
+    if ((it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified)) {
+        print(it->data, it->mimeType);
+        header(Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType));
         return;
     }
 
@@ -400,7 +399,7 @@ void WebApplication::sendFile(const QString &path)
         translateDocument(dataStr);
         data = dataStr.toUtf8();
 
-        m_translatedFiles[path] = {data, lastModified}; // caching translated file
+        m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
     print(data, mimeType.name());
