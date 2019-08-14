@@ -1162,7 +1162,7 @@
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
                    <property name="text">
-                    <string>To:</string>
+                    <string comment="To receiver">To:</string>
                    </property>
                   </widget>
                  </item>
@@ -1182,7 +1182,7 @@
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_25">
                    <property name="text">
-                    <string>From:</string>
+                    <string comment="From sender">From:</string>
                    </property>
                   </widget>
                  </item>
@@ -1908,7 +1908,7 @@
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_6">
                     <property name="text">
-                     <string extracomment="from (time1 to time2)">From:</string>
+                     <string comment="From start time">From:</string>
                     </property>
                    </widget>
                   </item>
@@ -1932,7 +1932,7 @@
                   <item row="0" column="2">
                    <widget class="QLabel" name="label_17">
                     <property name="text">
-                     <string extracomment="time1 to time2">To:</string>
+                     <string comment="To end time">To:</string>
                     </property>
                    </widget>
                   </item>
