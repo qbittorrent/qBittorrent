@@ -123,7 +123,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(m_iconMap[iconId]);
+        QIcon icon = QIcon::fromTheme(m_iconMap[iconId].toString());
         if (icon.name() != iconId)
             icon = QIcon::fromTheme(fallback, QIcon(getIconPath(iconId)));
         return icon;
