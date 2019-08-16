@@ -382,5 +382,6 @@
         <file>slow_off.svg</file>
         <file>sphere.png</file>
         <file>sphere2.png</file>
+        <file>systemiconconfig.json</file>
     </qresource>
 </RCC>

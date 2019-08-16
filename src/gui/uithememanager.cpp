@@ -71,11 +71,14 @@ UIThemeManager::UIThemeManager()
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     m_useSystemTheme = pref->useSystemIconTheme();
+    const char *iconConfigFile = m_useSystemTheme ? "systemiconconfig.json" : "iconconfig.json";
+#else
+    const char *iconConfigFile = "iconconfig.json";
 #endif
 
     m_iconsDir = useCustomUITheme ? ":uitheme/icons/" : ":icons/";
 
-    QFile iconJsonMap(m_iconsDir + "iconconfig.json");
+    QFile iconJsonMap(m_iconsDir + iconConfigFile);
     if (!iconJsonMap.open(QIODevice::ReadOnly))
         LogMsg(tr("Failed to open \"%1\", error: %2").arg(iconJsonMap.fileName(), iconJsonMap.errorString()), Log::WARNING);
 
@@ -120,9 +123,9 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(iconId);
+        QIcon icon = QIcon::fromTheme(m_iconMap[iconId]);
         if (icon.name() != iconId)
-            icon = QIcon::fromTheme(fallback, QIcon(IconProvider::instance()->getIconPath(iconId)));
+            icon = QIcon::fromTheme(fallback, QIcon(getIconPath(iconId)));
         return icon;
     }
 #else
@@ -194,9 +197,9 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
 
     const QString allowedExts[] = {".svg", ".png"};
     for (const QString &ext : allowedExts) {
-        QFile f(iconPath + ext);
-        if (f.exists())
-            return f.fileName();
+        QString fileName = iconPath + ext;
+        if (QFile::exists(fileName))
+            return fileName;
     }
 
     LogMsg(tr("Can't match \"%1\" with any of the allowed extensions").arg(iconPath), Log::WARNING);
