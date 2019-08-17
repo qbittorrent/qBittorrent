@@ -315,9 +315,18 @@ void TransferListModel::handleTorrentStatusUpdated(BitTorrent::TorrentHandle *co
         emit dataChanged(index(row, 0), index(row, columnCount() - 1));
 }
 
-void TransferListModel::handleTorrentsUpdated()
+void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents)
 {
-    emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
+    const int columns = (columnCount() - 1);
+
+    for (BitTorrent::TorrentHandle *const torrent : torrents) {
+        const int row = m_torrents.indexOf(torrent);
+
+        if (row < 0)
+            continue;
+
+        emit dataChanged(index(row, 0), index(row, columns));
+    }
 }
 
 // Static functions
