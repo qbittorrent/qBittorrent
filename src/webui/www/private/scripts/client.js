@@ -250,6 +250,15 @@ window.addEvent('load', function() {
         $('desktopFooterWrapper').addClass('invisible');
     }
 
+    // Show Filters Sidebar is enabled by default
+    let showFiltersSidebar = (localStorage.getItem('show_filters_sidebar') === null)
+        || (localStorage.getItem('show_filters_sidebar') === "true");
+    if (!showFiltersSidebar) {
+        $('showFiltersSidebarLink').firstChild.style.opacity = '0';
+        $('filtersColumn').addClass('invisible');
+        $('filtersColumn_handle').addClass('invisible');
+    }
+
     let speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
@@ -733,6 +742,22 @@ window.addEvent('load', function() {
 
     $('registerMagnetHandlerLink').addEvent('click', function(e) {
         registerMagnetHandler();
+    });
+
+    $('showFiltersSidebarLink').addEvent('click', function(e) {
+        showFiltersSidebar = !showFiltersSidebar;
+        localStorage.setItem('show_filters_sidebar', showFiltersSidebar.toString());
+        if (showFiltersSidebar) {
+            $('showFiltersSidebarLink').firstChild.style.opacity = '1';
+            $('filtersColumn').removeClass('invisible');
+            $('filtersColumn_handle').removeClass('invisible');
+        }
+        else {
+            $('showFiltersSidebarLink').firstChild.style.opacity = '0';
+            $('filtersColumn').addClass('invisible');
+            $('filtersColumn_handle').addClass('invisible');
+        }
+        MochaUI.Desktop.setDesktopSize();
     });
 
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
