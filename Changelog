@@ -108,7 +108,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.0
     - OTHER: Raise minimum Qt version to 5.9.0 (sledgehammer999)
     - OTHER: Drop support of libtorrent < 1.1.10 (glassez)
     - OTHER: Drop upgrade code from older saving systems (sledgehammer999)
-    - OTHER: Drop support for "BC Link" format (Chocobo1)
     - OTHER: Update INSTALL dependencies (Chocobo1)
     - OTHER: Optimize PNG images losslessly with zopflipng (Peter Dave Hello)
     - OTHER: Optimize svg files using SVGO (sledgehammer999)
