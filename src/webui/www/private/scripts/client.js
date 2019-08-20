@@ -64,17 +64,17 @@ let tagList = {};
 let selectedTag = TAGS_ALL;
 let setTagFilter = function() {};
 
-let selected_filter = getLocalStorageItem('selected_filter', 'all');
+let selected_filter = LocalPreferences.get('selected_filter', 'all');
 let setFilter = function() {};
 let toggleFilterDisplay = function() {};
 
 const loadSelectedCategory = function() {
-    selected_category = getLocalStorageItem('selected_category', CATEGORIES_ALL);
+    selected_category = LocalPreferences.get('selected_category', CATEGORIES_ALL);
 };
 loadSelectedCategory();
 
 const loadSelectedTag = function() {
-    selectedTag = getLocalStorageItem('selected_tag', TAGS_ALL);
+    selectedTag = LocalPreferences.get('selected_tag', TAGS_ALL);
 };
 loadSelectedTag();
 
@@ -115,8 +115,8 @@ window.addEvent('load', function() {
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
         const properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
-        localStorage.setItem('filters_width', filters_width);
-        localStorage.setItem('properties_height_rel', properties_height_rel);
+        LocalPreferences.set('filters_width', filters_width);
+        LocalPreferences.set('properties_height_rel', properties_height_rel);
     };
 
     window.addEvent('resize', function() {
@@ -133,7 +133,7 @@ window.addEvent('load', function() {
     MochaUI.Desktop.initialize();
 
     const buildTransfersTab = function() {
-        let filt_w = localStorage.getItem('filters_width');
+        let filt_w = LocalPreferences.get('filters_width');
         if ($defined(filt_w))
             filt_w = filt_w.toInt();
         else
@@ -169,7 +169,7 @@ window.addEvent('load', function() {
 
     setCategoryFilter = function(hash) {
         selected_category = hash;
-        localStorage.setItem('selected_category', selected_category);
+        LocalPreferences.set('selected_category', selected_category);
         highlightSelectedCategory();
         if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
@@ -177,7 +177,7 @@ window.addEvent('load', function() {
 
     setTagFilter = function(hash) {
         selectedTag = hash.toString();
-        localStorage.setItem('selected_tag', selectedTag);
+        LocalPreferences.set('selected_tag', selectedTag);
         highlightSelectedTag();
         if (torrentsTable.tableBody !== undefined)
             updateMainData();
@@ -196,7 +196,7 @@ window.addEvent('load', function() {
         $("errored_filter").removeClass("selectedFilter");
         $(f + "_filter").addClass("selectedFilter");
         selected_filter = f;
-        localStorage.setItem('selected_filter', f);
+        LocalPreferences.set('selected_filter', f);
         // Reload torrents
         if (typeof torrentsTable.tableBody != 'undefined')
             updateMainData();
@@ -204,7 +204,7 @@ window.addEvent('load', function() {
 
     toggleFilterDisplay = function(filter) {
         const element = filter + "FilterList";
-        localStorage.setItem('filter_' + filter + "_collapsed", !$(element).hasClass("invisible"));
+        LocalPreferences.set('filter_' + filter + "_collapsed", !$(element).hasClass("invisible"));
         $(element).toggleClass("invisible")
         const parent = $(element).getParent(".filterWrapper");
         const toggleIcon = $(parent).getChildren(".filterTitle img");
@@ -234,8 +234,8 @@ window.addEvent('load', function() {
 
     // Show Top Toolbar is enabled by default
     let showTopToolbar = true;
-    if (localStorage.getItem('show_top_toolbar') !== null)
-        showTopToolbar = localStorage.getItem('show_top_toolbar') == "true";
+    if (LocalPreferences.get('show_top_toolbar') !== null)
+        showTopToolbar = LocalPreferences.get('show_top_toolbar') == "true";
     if (!showTopToolbar) {
         $('showTopToolbarLink').firstChild.style.opacity = '0';
         $('mochaToolbar').addClass('invisible');
@@ -243,19 +243,19 @@ window.addEvent('load', function() {
 
     // Show Status Bar is enabled by default
     let showStatusBar = true;
-    if (localStorage.getItem('show_status_bar') !== null)
-        showStatusBar = localStorage.getItem('show_status_bar') === "true";
+    if (LocalPreferences.get('show_status_bar') !== null)
+        showStatusBar = LocalPreferences.get('show_status_bar') === "true";
     if (!showStatusBar) {
         $('showStatusBarLink').firstChild.style.opacity = '0';
         $('desktopFooterWrapper').addClass('invisible');
     }
 
-    let speedInTitle = localStorage.getItem('speed_in_browser_title_bar') == "true";
+    let speedInTitle = LocalPreferences.get('speed_in_browser_title_bar') == "true";
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
 
     // After showing/hiding the toolbar + status bar
-    let showSearchEngine = localStorage.getItem('show_search_engine') !== "false";
+    let showSearchEngine = LocalPreferences.get('show_search_engine') !== "false";
     if (!showSearchEngine) {
         // uncheck menu option
         $('showSearchEngineLink').firstChild.style.opacity = '0';
@@ -705,7 +705,7 @@ window.addEvent('load', function() {
 
     $('showTopToolbarLink').addEvent('click', function(e) {
         showTopToolbar = !showTopToolbar;
-        localStorage.setItem('show_top_toolbar', showTopToolbar.toString());
+        LocalPreferences.set('show_top_toolbar', showTopToolbar.toString());
         if (showTopToolbar) {
             $('showTopToolbarLink').firstChild.style.opacity = '1';
             $('mochaToolbar').removeClass('invisible');
@@ -719,7 +719,7 @@ window.addEvent('load', function() {
 
     $('showStatusBarLink').addEvent('click', function(e) {
         showStatusBar = !showStatusBar;
-        localStorage.setItem('show_status_bar', showStatusBar.toString());
+        LocalPreferences.set('show_status_bar', showStatusBar.toString());
         if (showStatusBar) {
             $('showStatusBarLink').firstChild.style.opacity = '1';
             $('desktopFooterWrapper').removeClass('invisible');
@@ -737,7 +737,7 @@ window.addEvent('load', function() {
 
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
         speedInTitle = !speedInTitle;
-        localStorage.setItem('speed_in_browser_title_bar', speedInTitle.toString());
+        LocalPreferences.set('speed_in_browser_title_bar', speedInTitle.toString());
         if (speedInTitle)
             $('speedInBrowserTitleBarLink').firstChild.style.opacity = '1';
         else
@@ -747,7 +747,7 @@ window.addEvent('load', function() {
 
     $('showSearchEngineLink').addEvent('click', function(e) {
         showSearchEngine = !showSearchEngine;
-        localStorage.setItem('show_search_engine', showSearchEngine.toString());
+        LocalPreferences.set('show_search_engine', showSearchEngine.toString());
         if (showSearchEngine) {
             $('showSearchEngineLink').firstChild.style.opacity = '1';
             $('mainWindowTabs').removeClass('invisible');
@@ -853,7 +853,7 @@ window.addEvent('load', function() {
         onResize: saveColumnSizes,
         height: null
     });
-    let prop_h = localStorage.getItem('properties_height_rel');
+    let prop_h = LocalPreferences.get('properties_height_rel');
     if ($defined(prop_h))
         prop_h = prop_h.toFloat() * Window.getSize().y;
     else
@@ -895,7 +895,7 @@ window.addEvent('load', function() {
                 $('prop_general').removeClass("invisible");
                 hideFilesFilter();
                 updatePropertiesPanel();
-                localStorage.setItem('selected_tab', this.id);
+                LocalPreferences.set('selected_tab', this.id);
             });
 
             $('PropTrackersLink').addEvent('click', function(e) {
@@ -903,7 +903,7 @@ window.addEvent('load', function() {
                 $('prop_trackers').removeClass("invisible");
                 hideFilesFilter();
                 updatePropertiesPanel();
-                localStorage.setItem('selected_tab', this.id);
+                LocalPreferences.set('selected_tab', this.id);
             });
 
             $('PropPeersLink').addEvent('click', function(e) {
@@ -911,7 +911,7 @@ window.addEvent('load', function() {
                 $('prop_peers').removeClass("invisible");
                 hideFilesFilter();
                 updatePropertiesPanel();
-                localStorage.setItem('selected_tab', this.id);
+                LocalPreferences.set('selected_tab', this.id);
             });
 
             $('PropWebSeedsLink').addEvent('click', function(e) {
@@ -919,7 +919,7 @@ window.addEvent('load', function() {
                 $('prop_webseeds').removeClass("invisible");
                 hideFilesFilter();
                 updatePropertiesPanel();
-                localStorage.setItem('selected_tab', this.id);
+                LocalPreferences.set('selected_tab', this.id);
             });
 
             $('PropFilesLink').addEvent('click', function(e) {
@@ -927,7 +927,7 @@ window.addEvent('load', function() {
                 $('prop_files').removeClass("invisible");
                 showFilesFilter();
                 updatePropertiesPanel();
-                localStorage.setItem('selected_tab', this.id);
+                LocalPreferences.set('selected_tab', this.id);
             });
 
             $('propertiesPanel_collapseToggle').addEvent('click', function(e) {

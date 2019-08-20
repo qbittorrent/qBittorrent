@@ -99,12 +99,12 @@
         }
     });
 
-    if (localStorage.getItem('filter_status_collapsed') === "true")
+    if (LocalPreferences.get('filter_status_collapsed') === "true")
         toggleFilterDisplay('status');
 
-    if (localStorage.getItem('filter_category_collapsed') === "true")
+    if (LocalPreferences.get('filter_category_collapsed') === "true")
         toggleFilterDisplay('category');
 
-    if (localStorage.getItem('filter_tag_collapsed') === "true")
+    if (LocalPreferences.get('filter_tag_collapsed') === "true")
         toggleFilterDisplay('tag');
 </script>
