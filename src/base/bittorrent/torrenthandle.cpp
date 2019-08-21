@@ -1136,6 +1136,8 @@ qlonglong TorrentHandle::timeSinceUpload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.time_since_upload;
 #else
+    if (m_nativeStatus.last_upload.time_since_epoch().count() == 0)
+        return -1;
     return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_upload);
 #endif
 }
@@ -1145,6 +1147,8 @@ qlonglong TorrentHandle::timeSinceDownload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.time_since_download;
 #else
+    if (m_nativeStatus.last_download.time_since_epoch().count() == 0)
+        return -1;
     return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_download);
 #endif
 }
