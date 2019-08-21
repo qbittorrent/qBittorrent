@@ -136,9 +136,9 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
     }
     else {
-        QDateTime dt = QDateTime::currentDateTime();
-        dt = dt.addSecs(-torrent.timeSinceActivity());
-        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toSecsSinceEpoch();
+        const qint64 dt = (QDateTime::currentDateTime().toSecsSinceEpoch()
+            - torrent.timeSinceActivity());
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt;
     }
 
     return ret;
