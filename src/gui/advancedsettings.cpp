@@ -228,8 +228,8 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setSpeedWidgetEnabled(m_checkBoxSpeedWidgetEnabled.isChecked());
 
     // Tracker
-    session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
+    session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
     // Choking algorithm
     session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(m_comboBoxChokingAlgorithm.currentIndex()));
     // Seed choking algorithm

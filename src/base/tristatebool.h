@@ -50,18 +50,18 @@ public:
 
     TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++17
 
-    constexpr bool operator==(const TriStateBool &other) const
+    constexpr friend bool operator==(const TriStateBool &left, const TriStateBool &right)
     {
-        return (m_value == other.m_value);
-    }
-
-    constexpr bool operator!=(const TriStateBool &other) const
-    {
-        return !operator==(other);
+        return (left.m_value == right.m_value);
     }
 
 private:
     signed char m_value = -1; // Undefined by default
 };
+
+constexpr bool operator!=(const TriStateBool &left, const TriStateBool &right)
+{
+    return !(left == right);
+}
 
 #endif // TRISTATEBOOL_H
