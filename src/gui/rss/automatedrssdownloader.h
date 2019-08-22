@@ -61,7 +61,6 @@ public:
 private slots:
     void on_addRuleBtn_clicked();
     void on_removeRuleBtn_clicked();
-    void on_browseSP_clicked();
     void on_exportBtn_clicked();
     void on_importBtn_clicked();
 
