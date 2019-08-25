@@ -172,10 +172,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon("list-add"));
     m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon("insert-link"));
-    m_ui->actionSetUploadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"));
-    m_ui->actionSetDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"));
-    m_ui->actionSetGlobalUploadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"));
-    m_ui->actionSetGlobalDownloadLimit->setIcon(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"));
+    m_ui->actionSetGlobalSpeedLimits->setIcon(UIThemeManager::instance()->getIcon("speedometer"));
     m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon("document-edit"));
     m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon("help-about"));
     m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon("view-statistics"));
@@ -1008,36 +1005,11 @@ void MainWindow::handleDownloadFromUrlFailure(const QString &url, const QString 
         , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
 }
 
-void MainWindow::on_actionSetGlobalUploadLimit_triggered()
+void MainWindow::on_actionSetGlobalSpeedLimits_triggered()
 {
-    qDebug() << Q_FUNC_INFO;
-
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-    bool ok = false;
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        this, &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
-
-    if (ok)
-    {
-        qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
-        session->setUploadSpeedLimit(newLimit);
-    }
-}
-
-void MainWindow::on_actionSetGlobalDownloadLimit_triggered()
-{
-    qDebug() << Q_FUNC_INFO;
-
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-    bool ok = false;
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(
-        this, &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
-
-    if (ok)
-    {
-        qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
-        session->setDownloadSpeedLimit(newLimit);
-    }
+    auto dialog = new SpeedLimitDialog {this};
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->open();
 }
 
 // Necessary if we want to close the window
@@ -1808,8 +1780,7 @@ QMenu *MainWindow::trayIconMenu()
     updateAltSpeedsBtn(isAltBWEnabled);
     m_ui->actionUseAlternativeSpeedLimits->setChecked(isAltBWEnabled);
     m_trayIconMenu->addAction(m_ui->actionUseAlternativeSpeedLimits);
-    m_trayIconMenu->addAction(m_ui->actionSetGlobalDownloadLimit);
-    m_trayIconMenu->addAction(m_ui->actionSetGlobalUploadLimit);
+    m_trayIconMenu->addAction(m_ui->actionSetGlobalSpeedLimits);
     m_trayIconMenu->addSeparator();
     m_trayIconMenu->addAction(m_ui->actionStartAll);
     m_trayIconMenu->addAction(m_ui->actionPauseAll);
