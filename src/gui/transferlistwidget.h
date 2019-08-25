@@ -79,8 +79,7 @@ public slots:
     void openSelectedTorrentsFolder() const;
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();
-    void setDlLimitSelectedTorrents();
-    void setUpLimitSelectedTorrents();
+    void setSpeedLimitsSelectedTorrents();
     void setMaxRatioSelectedTorrents();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);

@@ -36,6 +36,15 @@ namespace Ui
     class SpeedLimitDialog;
 }
 
+struct SpeedLimits
+{
+    int uploadLimit = 0;
+    int downloadLimit = 0;
+    int maxUploadLimit = 0;
+    int maxDownloadLimit = 0;
+    bool isGlobalLimits = true;
+};
+
 class SpeedLimitDialog : public QDialog
 {
     Q_OBJECT
@@ -43,15 +52,23 @@ class SpeedLimitDialog : public QDialog
 public:
     explicit SpeedLimitDialog(QWidget *parent);
     ~SpeedLimitDialog();
-    static long askSpeedLimit(QWidget *parent, bool *ok, const QString &title, long defaultVal, long maxVal = 10240000);
+    static bool askNewSpeedLimits(QWidget *parent, const QString &title, SpeedLimits &speedLimits);
 
 private slots:
-    void updateSpinValue(int val);
-    void updateSliderValue(int val);
+    void updateUploadSpinValue(int val);
+    void updateDownloadSpinValue(int val);
+    void updateUploadSliderValue(int val);
+    void updateDownloadSliderValue(int val);
 
 private:
-    void setupDialog(long maxSlider, long val);
-    int getSpeedLimit() const;
+    void setupDialog(const SpeedLimits &speedLimits);
+    int getUploadSpeedLimit() const;
+    int getDownloadSpeedLimit() const;
+    void hideShowWarning();
+
+    int m_globalUploadLimit;
+    int m_globalDownloadLimit;
+    bool m_isGlobalLimits;
 
     Ui::SpeedLimitDialog *m_ui;
 };

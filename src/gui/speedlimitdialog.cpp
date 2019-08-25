@@ -37,10 +37,12 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    // Connect to slots
-    connect(m_ui->bandwidthSlider, &QSlider::valueChanged, this, &SpeedLimitDialog::updateSpinValue);
-    connect(m_ui->spinBandwidth, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &SpeedLimitDialog::updateSliderValue);
+    connect(m_ui->sliderUploadLimit, &QSlider::valueChanged, this, &SpeedLimitDialog::updateUploadSpinValue);
+    connect(m_ui->sliderDownloadLimit, &QSlider::valueChanged, this, &SpeedLimitDialog::updateDownloadSpinValue);
+    connect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
+            , this, &SpeedLimitDialog::updateUploadSliderValue);
+    connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
+            , this, &SpeedLimitDialog::updateDownloadSliderValue);
 
     Utils::Gui::resize(this);
 }
@@ -50,57 +52,116 @@ SpeedLimitDialog::~SpeedLimitDialog()
     delete m_ui;
 }
 
-// -2: if cancel
-long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, const QString &title, const long defaultVal, const long maxVal)
+bool SpeedLimitDialog::askNewSpeedLimits(QWidget *parent, const QString &title, SpeedLimits &speedLimits)
 {
-    if (ok) *ok = false;
-
     SpeedLimitDialog dlg(parent);
     dlg.setWindowTitle(title);
-    dlg.setupDialog((maxVal / 1024.), (defaultVal / 1024.));
+    dlg.setupDialog(speedLimits);
 
-    if (dlg.exec() == QDialog::Accepted) {
-        if (ok) *ok = true;
+    if (dlg.exec() != QDialog::Accepted)
+        return false;
 
-        const int val = dlg.getSpeedLimit();
-        if (val < 0)
-            return 0;
-        return (val * 1024);
+    if (dlg.getUploadSpeedLimit() < 0)
+        speedLimits.uploadLimit = 0;
+    else
+        speedLimits.uploadLimit = (dlg.getUploadSpeedLimit() * 1024);
+
+    if (dlg.getDownloadSpeedLimit() < 0)
+        speedLimits.downloadLimit = 0;
+    else
+        speedLimits.downloadLimit = (dlg.getDownloadSpeedLimit() * 1024);
+
+    return true;
+}
+
+void SpeedLimitDialog::hideShowWarning()
+{
+    if (m_isGlobalLimits) return;
+
+    const int spinUpVal = m_ui->spinUploadLimit->value();
+    const int spinDownVal = m_ui->spinDownloadLimit->value();
+    const bool isOutsideApplicableLimits = ((spinUpVal > m_globalUploadLimit) && (m_globalUploadLimit > 0))
+            || ((spinDownVal > m_globalDownloadLimit) && (m_globalDownloadLimit > 0));
+    const bool isWithinApplicableLimits = ((spinUpVal <= m_globalUploadLimit) || (m_globalUploadLimit <= 0))
+            && ((spinDownVal <= m_globalDownloadLimit) || (m_globalDownloadLimit <= 0));
+
+    if (isOutsideApplicableLimits) {
+        m_ui->labelWarning->show();
+        m_ui->labelWarningIcon->show();
     }
-
-    return -2;
+    else if (isWithinApplicableLimits) {
+        m_ui->labelWarning->hide();
+        m_ui->labelWarningIcon->hide();
+    }
 }
 
-void SpeedLimitDialog::updateSpinValue(const int value)
+void SpeedLimitDialog::updateDownloadSpinValue(const int value)
 {
-    m_ui->spinBandwidth->setValue(value);
+    m_ui->spinDownloadLimit->setValue(value);
+    hideShowWarning();
 }
 
-void SpeedLimitDialog::updateSliderValue(const int value)
+void SpeedLimitDialog::updateUploadSpinValue(const int value)
 {
-    if (value > m_ui->bandwidthSlider->maximum())
-        m_ui->bandwidthSlider->setMaximum(value);
-    m_ui->bandwidthSlider->setValue(value);
+    m_ui->spinUploadLimit->setValue(value);
+    hideShowWarning();
 }
 
-int SpeedLimitDialog::getSpeedLimit() const
+void SpeedLimitDialog::updateDownloadSliderValue(const int value)
 {
-    return m_ui->spinBandwidth->value();
+    if (value > m_ui->sliderDownloadLimit->maximum())
+        m_ui->sliderDownloadLimit->setMaximum(value);
+    m_ui->sliderDownloadLimit->setValue(value);
 }
 
-void SpeedLimitDialog::setupDialog(long maxSlider, long val)
+void SpeedLimitDialog::updateUploadSliderValue(const int value)
 {
-    val = qMax<long>(0, val);
+    if (value > m_ui->sliderUploadLimit->maximum())
+        m_ui->sliderUploadLimit->setMaximum(value);
+    m_ui->sliderUploadLimit->setValue(value);
+}
 
-    if (maxSlider <= 0)
-        maxSlider = 10000;
+int SpeedLimitDialog::getDownloadSpeedLimit() const
+{
+    return m_ui->spinDownloadLimit->value();
+}
 
-    // This can happen for example if global rate limit is lower
-    // than torrent rate limit.
-    if (val > maxSlider)
-        maxSlider = val;
+int SpeedLimitDialog::getUploadSpeedLimit() const
+{
+    return m_ui->spinUploadLimit->value();
+}
 
-    m_ui->bandwidthSlider->setMaximum(maxSlider);
-    m_ui->bandwidthSlider->setValue(val);
-    updateSpinValue(val);
+void SpeedLimitDialog::setupDialog(const SpeedLimits &speedLimits)
+{
+    m_globalUploadLimit = (speedLimits.maxUploadLimit / 1024);
+    m_globalDownloadLimit = (speedLimits.maxDownloadLimit / 1024);
+    m_isGlobalLimits = speedLimits.isGlobalLimits;
+
+    if (!m_isGlobalLimits)
+        m_ui->labelWarningIcon->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/dialog-warning.svg", this, 16));
+    m_ui->labelWarningIcon->hide();
+    m_ui->labelWarning->hide();
+
+    // Keep empty space of the warning labels' height otherwise when they are shown/hidden the other widgets move
+    QSizePolicy retainHiddenSpace = m_ui->labelWarning->sizePolicy();
+    retainHiddenSpace.setRetainSizeWhenHidden(true);
+    m_ui->labelWarning->setSizePolicy(retainHiddenSpace);
+
+    const int uploadVal = qMax(0, (speedLimits.uploadLimit / 1024));
+    const int downloadVal = qMax(0, (speedLimits.downloadLimit / 1024));
+    int maxUpload = (m_globalUploadLimit <= 0) ? 10000 : m_globalUploadLimit;
+    int maxDownload = (m_globalDownloadLimit <= 0) ? 10000 : m_globalDownloadLimit;
+
+    // This can happen for example if global rate limit is lower than torrent rate limit.
+    if (uploadVal > maxUpload)
+        maxUpload = uploadVal;
+    if (downloadVal > maxDownload)
+        maxDownload = downloadVal;
+
+    m_ui->sliderUploadLimit->setMaximum(maxUpload);
+    m_ui->sliderUploadLimit->setValue(uploadVal);
+    m_ui->sliderDownloadLimit->setMaximum(maxDownload);
+    m_ui->sliderDownloadLimit->setValue(downloadVal);
+    updateUploadSpinValue(uploadVal);
+    updateDownloadSpinValue(downloadVal);
 }
