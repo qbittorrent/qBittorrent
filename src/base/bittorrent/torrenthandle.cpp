@@ -2145,12 +2145,20 @@ void TorrentHandle::setSeedingTimeLimit(int limit)
 
 void TorrentHandle::setUploadLimit(const int limit)
 {
-    m_nativeHandle.set_upload_limit(limit);
+     if (limit == uploadLimit())
+         return;
+
+     m_nativeHandle.set_upload_limit(limit);
+     saveResumeData();
 }
 
 void TorrentHandle::setDownloadLimit(const int limit)
 {
+    if (limit == downloadLimit())
+        return;
+
     m_nativeHandle.set_download_limit(limit);
+    saveResumeData();
 }
 
 void TorrentHandle::setSuperSeeding(const bool enable)
