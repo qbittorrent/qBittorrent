@@ -2028,6 +2028,11 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         p.upload_limit = params.uploadLimit;
         p.download_limit = params.downloadLimit;
 
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+        if (params.addedTime.isValid())
+            p.added_time = params.addedTime.toSecsSinceEpoch();
+#endif
+
         // Preallocation mode
         p.storage_mode = isPreallocationEnabled()
             ? lt::storage_mode_allocate : lt::storage_mode_sparse;
@@ -4463,6 +4468,10 @@ namespace
         torrentParams.forced = fast.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
         torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
         torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
+
+        const lt::bdecode_node addedTimeNode = fast.dict_find("qBt-addedTime");
+        if (addedTimeNode.type() == lt::bdecode_node::int_t)
+            torrentParams.addedTime = QDateTime::fromSecsSinceEpoch(addedTimeNode.int_value());
 
         queuePos = fast.dict_find_int_value("qBt-queuePosition");
 
