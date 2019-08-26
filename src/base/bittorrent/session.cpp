@@ -171,11 +171,6 @@ namespace
         return output;
     }
 
-    bool isList(const lt::bdecode_node &entry)
-    {
-        return entry.type() == lt::bdecode_node::list_t;
-    }
-
     QSet<QString> entryListToSet(const lt::bdecode_node &entry)
     {
         return entryListToSetImpl(entry);
@@ -3667,13 +3662,13 @@ void Session::startUpTorrents()
     QStringList fastresumes = resumeDataDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
-    typedef struct
+    struct TorrentResumeData
     {
         QString hash;
         MagnetUri magnetUri;
         CreateTorrentParams addTorrentData;
         QByteArray data;
-    } TorrentResumeData;
+    };
 
     int resumedTorrentsCount = 0;
     const auto startupTorrent = [this, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
@@ -4452,9 +4447,9 @@ namespace
         if (torrentParams.category.isEmpty())
         // **************************************************************************************
             torrentParams.category = fromLTString(fast.dict_find_string_value("qBt-category"));
-        // auto because the return type depends on the #if above.
-        const auto tagsEntry = fast.dict_find_list("qBt-tags");
-        if (isList(tagsEntry))
+
+        const lt::bdecode_node tagsEntry = fast.dict_find("qBt-tags");
+        if (tagsEntry.type() == lt::bdecode_node::list_t)
             torrentParams.tags = entryListToSet(tagsEntry);
         torrentParams.name = fromLTString(fast.dict_find_string_value("qBt-name"));
         torrentParams.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
