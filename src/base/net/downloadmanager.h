@@ -119,7 +119,7 @@ namespace Net
         static DownloadManager *instance();
 
         template <typename Context, typename Func>
-        void download(const DownloadRequest &downloadRequest, Context context, Func slot);
+        void download(const DownloadRequest &downloadRequest, Context context, Func &&slot);
 
         void registerSequentialService(const ServiceID &serviceID);
 
@@ -150,7 +150,7 @@ namespace Net
     };
 
     template <typename Context, typename Func>
-    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func slot)
+    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func &&slot)
     {
         const DownloadHandler *handler = download(downloadRequest);
         connect(handler, &DownloadHandler::finished, context, slot);
