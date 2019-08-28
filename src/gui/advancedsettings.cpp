@@ -70,9 +70,6 @@ enum AdvSettingsRows
     SAVE_RESUME_DATA_INTERVAL,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    UPDATE_CHECK,
-#endif
     // UI related
     LIST_REFRESH,
     RESOLVE_HOSTS,
@@ -235,9 +232,6 @@ void AdvancedSettings::saveAdvancedSettings()
     // Seed choking algorithm
     session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(m_comboBoxSeedChokingAlgorithm.currentIndex()));
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    pref->setUpdateCheckEnabled(m_checkBoxUpdateCheck.isChecked());
-#endif
     // Icon theme
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     pref->useSystemIconTheme(m_checkBoxUseIconTheme.isChecked());
@@ -521,10 +515,6 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", "(?)"))
             , &m_comboBoxSeedChokingAlgorithm);
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    m_checkBoxUpdateCheck.setChecked(pref->isUpdateCheckEnabled());
-    addRow(UPDATE_CHECK, tr("Check for software updates"), &m_checkBoxUpdateCheck);
-#endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     m_checkBoxUseIconTheme.setChecked(pref->useSystemIconTheme());
     addRow(USE_ICON_THEME, tr("Use system icon theme"), &m_checkBoxUseIconTheme);

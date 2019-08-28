@@ -501,6 +501,13 @@
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkProgramUpdates">
+                 <property name="text">
+                  <string>Check for program updates</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
