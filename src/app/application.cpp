@@ -122,20 +122,22 @@ Application::Application(const QString &id, int &argc, char **argv)
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
-#ifndef DISABLE_WEBUI
-    , m_webui(nullptr)
-#endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
 
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");
+#if !defined(DISABLE_GUI)
+    setDesktopFileName("org.qbittorrent.qBittorrent");
+    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
+    setQuitOnLastWindowClosed(false);
+#endif
+
     validateCommandLineParameters();
 
     const QString profileDir = m_commandLineArgs.portableMode
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
-
     Profile::initialize(profileDir, m_commandLineArgs.configurationName,
                         m_commandLineArgs.relativeFastresumePaths || m_commandLineArgs.portableMode);
 
@@ -143,23 +145,16 @@ Application::Application(const QString &id, int &argc, char **argv)
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
+    initializeTranslation();
+
     if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
 
-    initializeTranslation();
-
-#if !defined(DISABLE_GUI)
-    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
-    setQuitOnLastWindowClosed(false);
-    setDesktopFileName("org.qbittorrent.qBittorrent");
-#endif
-
+    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
+    connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
-
-    connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
-    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
 
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));

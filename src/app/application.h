@@ -130,7 +130,7 @@ private:
 #endif
 
 #ifndef DISABLE_WEBUI
-    WebUI *m_webui;
+    WebUI *m_webui = nullptr;
 #endif
 
     // FileLog
