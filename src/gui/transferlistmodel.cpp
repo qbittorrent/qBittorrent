@@ -325,13 +325,20 @@ void TransferListModel::handleTorrentStatusUpdated(BitTorrent::TorrentHandle *co
 void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents)
 {
     const int columns = (columnCount() - 1);
-    for (BitTorrent::TorrentHandle *const torrent : torrents) {
-        const int row = m_torrentMap.value(torrent, -1);
 
-        if (row < 0)
-            continue;
+    if (torrents.size() <= (m_torrentList.size() * 0.5)) {
+        for (BitTorrent::TorrentHandle *const torrent : torrents) {
+            const int row = m_torrentMap.value(torrent, -1);
 
-        emit dataChanged(index(row, 0), index(row, columns));
+            if (row < 0)
+                continue;
+
+            emit dataChanged(index(row, 0), index(row, columns));
+        }
+    }
+    else {
+        // save the overhead when more than half of the torrent list needs update
+        emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
     }
 }
 
