@@ -50,7 +50,6 @@
 #endif
 
 #include <QBitArray>
-#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -1775,6 +1774,8 @@ void TorrentHandle::handleSaveResumeDataAlert(const lt::save_resume_data_alert *
         // restored if qBittorrent quits before the metadata are retrieved:
         resumeData["qBt-firstLastPiecePriority"] = hasFirstLastPiecePriority();
         resumeData["qBt-sequential"] = isSequentialDownload();
+
+        resumeData["qBt-addedTime"] = addedTime().toSecsSinceEpoch();
     }
     else {
         const auto savePath = resumeData.find_key("save_path")->string();
