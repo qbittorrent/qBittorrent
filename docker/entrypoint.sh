@@ -1,15 +1,4 @@
-#!/bin/bash
-
-if [ $(id -u qbittorrent) != $CHUID ]; then
-    usermod -o -u $CHUID qbittorrent 
-fi
-
-if [ $(id -g qbittorrent) != $CHGID ]; then
-    groupmod -o -g $CHGID qbittorrent
-fi
-
-# switch to target user
-su qbittorrent
+#!/bin/sh
 
 if [ ! -f /config/qBittorrent/qBittorrent.conf ]; then
     mkdir -p /config/qBittorrent/
@@ -32,4 +21,4 @@ WebUI\ServerDomains=*
 EOF
 fi
 
-qbittorrent-nox --webui-port=$WEBUI_PORT
+HOME="/config" XDG_CONFIG_HOME="/config" XDG_DATA_HOME="/config" qbittorrent-nox --webui-port=$WEBUI_PORT
