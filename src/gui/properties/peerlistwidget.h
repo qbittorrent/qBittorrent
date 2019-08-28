@@ -77,10 +77,10 @@ private:
 
     void wheelEvent(QWheelEvent *event) override;
 
-    QStandardItemModel *m_listModel;
-    PeerListSortModel *m_proxyModel;
-    PropertiesWidget *m_properties;
-    Net::ReverseResolution *m_resolver;
+    QStandardItemModel *m_listModel = nullptr;
+    PeerListSortModel *m_proxyModel = nullptr;
+    PropertiesWidget *m_properties = nullptr;
+    Net::ReverseResolution *m_resolver = nullptr;
     QHash<QString, QStandardItem *> m_peerItems;
     bool m_resolveCountries;
 };
