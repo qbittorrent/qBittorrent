@@ -200,6 +200,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MAC))
     m_ui->groupFileAssociation->setVisible(false);
+    m_ui->checkProgramUpdates->setVisible(false);
 #endif
 
     m_ui->textWebUIRootFolder->setMode(FileSystemPathEdit::Mode::DirectoryOpen);
@@ -215,7 +216,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
     // Apply button is activated when a value is changed
-    // General tab
+    // Behavior tab
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -243,6 +244,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #if defined(Q_OS_WIN) || defined(Q_OS_MAC)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
     connect(m_ui->checkFileLog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textFileLogPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -594,7 +596,7 @@ void OptionsDialog::saveOptions()
         qApp->installTranslator(translator);
     }
 
-    // General preferences
+    // Behavior preferences
     pref->setLocale(locale);
 
     if (!m_uiThemeFilePath.isEmpty()
@@ -639,6 +641,9 @@ void OptionsDialog::saveOptions()
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+    pref->setUpdateCheckEnabled(m_ui->checkProgramUpdates->isChecked());
+#endif
     auto *const app = static_cast<Application *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
@@ -647,7 +652,7 @@ void OptionsDialog::saveOptions()
     app->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
     app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
     app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
-    // End General preferences
+    // End Behavior preferences
 
     RSS::Session::instance()->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
     RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
@@ -833,7 +838,7 @@ void OptionsDialog::loadOptions()
     bool fileLogDelete = true;
     const Preferences *const pref = Preferences::instance();
 
-    // General preferences
+    // Behavior preferences
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -869,6 +874,9 @@ void OptionsDialog::loadOptions()
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
+#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+    m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
+#endif
 
     const Application *const app = static_cast<Application*>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
@@ -883,7 +891,7 @@ void OptionsDialog::loadOptions()
     m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize() / 1024);
     m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
-    // End General preferences
+    // End Behavior preferences
 
     m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
     m_ui->checkRSSAutoDownloaderEnable->setChecked(RSS::AutoDownloader::instance()->isProcessingEnabled());
