@@ -4354,6 +4354,9 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
+    QVector<BitTorrent::TorrentHandle *> updatedTorrents;
+    updatedTorrents.reserve(p->status.size());
+
     for (const lt::torrent_status &status : p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
 
@@ -4361,6 +4364,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
             continue;
 
         torrent->handleStateUpdate(status);
+        updatedTorrents.push_back(torrent);
     }
 
     m_torrentStatusReport = TorrentStatusReport();
@@ -4383,7 +4387,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
             ++m_torrentStatusReport.nbErrored;
     }
 
-    emit torrentsUpdated();
+    emit torrentsUpdated(updatedTorrents);
 }
 
 namespace
