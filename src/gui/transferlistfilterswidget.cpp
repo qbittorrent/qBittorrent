@@ -146,7 +146,7 @@ void BaseFilterWidget::toggleFilter(bool checked)
 StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *transferList)
     : BaseFilterWidget(parent, transferList)
 {
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::refreshed
             , this, &StatusFilterWidget::updateTorrentNumbers);
 
     // Add status filters

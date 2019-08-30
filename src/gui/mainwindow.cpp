@@ -335,7 +335,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Configure BT session according to options
     loadPreferences(false);
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, this, &MainWindow::updateGUI);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::refreshed, this, &MainWindow::updateGUI);
 
     // Accept drag 'n drops
     setAcceptDrops(true);

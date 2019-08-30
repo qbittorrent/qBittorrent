@@ -486,6 +486,7 @@ namespace BitTorrent
         void subcategoriesSupportChanged();
         void tagAdded(const QString &tag);
         void tagRemoved(const QString &tag);
+        void refreshed();  // emits at regular interval
 
     private slots:
         void configureDeferred();
@@ -496,6 +497,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void handleDownloadFinished(const Net::DownloadResult &result);
+        void updateTorrentStatusReport();
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);

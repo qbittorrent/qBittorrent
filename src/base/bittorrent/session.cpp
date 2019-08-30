@@ -579,10 +579,11 @@ uint Session::refreshInterval() const
 
 void Session::setRefreshInterval(const uint value)
 {
-    if (value != refreshInterval()) {
-        m_refreshTimer->setInterval(value);
-        m_refreshInterval = value;
-    }
+    if (value == refreshInterval())
+        return;
+
+    m_refreshInterval = value;
+    m_refreshTimer->setInterval(value);
 }
 
 bool Session::isPreallocationEnabled() const
@@ -1564,6 +1565,29 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
         break;
     default:
         emit downloadFromUrlFailed(result.url, result.errorString);
+    }
+}
+
+void Session::updateTorrentStatusReport()
+{
+    m_torrentStatusReport = {};
+    for (const TorrentHandle *torrent : asConst(m_torrents)) {
+        if (torrent->isDownloading())
+            ++m_torrentStatusReport.nbDownloading;
+        if (torrent->isUploading())
+            ++m_torrentStatusReport.nbSeeding;
+        if (torrent->isCompleted())
+            ++m_torrentStatusReport.nbCompleted;
+        if (torrent->isPaused())
+            ++m_torrentStatusReport.nbPaused;
+        if (torrent->isResumed())
+            ++m_torrentStatusReport.nbResumed;
+        if (torrent->isActive())
+            ++m_torrentStatusReport.nbActive;
+        if (torrent->isInactive())
+            ++m_torrentStatusReport.nbInactive;
+        if (torrent->isErrored())
+            ++m_torrentStatusReport.nbErrored;
     }
 }
 
@@ -3771,6 +3795,9 @@ void Session::refresh()
 {
     m_nativeSession->post_torrent_updates();
     m_nativeSession->post_session_stats();
+    updateTorrentStatusReport();
+
+    emit refreshed();
 }
 
 void Session::handleIPFilterParsed(const int ruleCount)
@@ -4367,27 +4394,8 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
         updatedTorrents.push_back(torrent);
     }
 
-    m_torrentStatusReport = TorrentStatusReport();
-    for (const TorrentHandle *torrent : asConst(m_torrents)) {
-        if (torrent->isDownloading())
-            ++m_torrentStatusReport.nbDownloading;
-        if (torrent->isUploading())
-            ++m_torrentStatusReport.nbSeeding;
-        if (torrent->isCompleted())
-            ++m_torrentStatusReport.nbCompleted;
-        if (torrent->isPaused())
-            ++m_torrentStatusReport.nbPaused;
-        if (torrent->isResumed())
-            ++m_torrentStatusReport.nbResumed;
-        if (torrent->isActive())
-            ++m_torrentStatusReport.nbActive;
-        if (torrent->isInactive())
-            ++m_torrentStatusReport.nbInactive;
-        if (torrent->isErrored())
-            ++m_torrentStatusReport.nbErrored;
-    }
-
-    emit torrentsUpdated(updatedTorrents);
+    if (!updatedTorrents.isEmpty())
+        emit torrentsUpdated(updatedTorrents);
 }
 
 namespace

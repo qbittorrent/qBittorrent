@@ -187,7 +187,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(m_checkBoxRecheckCompleted.isChecked());
     // Transfer list refresh interval
-    session->setRefreshInterval(m_spinBoxListRefresh.value());
+    session->setRefreshInterval(m_spinBoxRefreshInterval.value());
     // Peer resolution
     pref->resolvePeerCountries(m_checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(m_checkBoxResolveHosts.isChecked());
@@ -441,11 +441,11 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxRecheckCompleted.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
     // Transfer list refresh interval
-    m_spinBoxListRefresh.setMinimum(30);
-    m_spinBoxListRefresh.setMaximum(99999);
-    m_spinBoxListRefresh.setValue(session->refreshInterval());
-    m_spinBoxListRefresh.setSuffix(tr(" ms", " milliseconds"));
-    addRow(LIST_REFRESH, tr("Transfer list refresh interval"), &m_spinBoxListRefresh);
+    m_spinBoxRefreshInterval.setMinimum(30);
+    m_spinBoxRefreshInterval.setMaximum(99999);
+    m_spinBoxRefreshInterval.setValue(session->refreshInterval());
+    m_spinBoxRefreshInterval.setSuffix(tr(" ms", " milliseconds"));
+    addRow(LIST_REFRESH, tr("UI refresh interval"), &m_spinBoxRefreshInterval);
     // Resolve Peer countries
     m_checkBoxResolveCountries.setChecked(pref->resolvePeerCountries());
     addRow(RESOLVE_COUNTRIES, tr("Resolve peer countries (GeoIP)"), &m_checkBoxResolveCountries);
