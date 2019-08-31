@@ -151,7 +151,6 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
 
     // Add status filters
     auto *all = new QListWidgetItem(this);
-
     all->setData(Qt::DisplayRole, tr("All (0)", "this is for the status filter"));
     all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.All"));
     auto *downloading = new QListWidgetItem(this);
@@ -178,7 +177,6 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
     errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("StatusFilter.Error"));
-
 
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
@@ -222,19 +220,11 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     , m_downloadTrackerFavicon(downloadFavicon)
 {
     auto *allTrackers = new QListWidgetItem(this);
-<<<<<<< HEAD
-    allTrackers->setData(Qt::DisplayRole, QVariant(tr("All (0)", "this is for the tracker filter")));
+    allTrackers->setData(Qt::DisplayRole, tr("All (0)", "this is for the tracker filter"));
     allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("TransferFilter.AllTrackers"));
     auto *noTracker = new QListWidgetItem(this);
-    noTracker->setData(Qt::DisplayRole, QVariant(tr("Trackerless (0)")));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("TransferFilter.WithoutTrackers"));
-=======
-    allTrackers->setData(Qt::DisplayRole, tr("All (0)", "this is for the tracker filter"));
-    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
-    auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, tr("Trackerless (0)"));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
->>>>>>> 2d13f87ba4fd41d43802f71c44a3471e0e81cb9b
+    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("TransferFilter.WithoutTrackers"));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, tr("Error (0)"));
     errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));

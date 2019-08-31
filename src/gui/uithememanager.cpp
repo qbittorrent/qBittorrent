@@ -63,10 +63,9 @@ UIThemeManager::UIThemeManager()
     bool useCustomUITheme = pref->useCustomUITheme();
     if (useCustomUITheme
         && !QResource::registerResource(pref->customUIThemePath(), "/uitheme")) {
-        LogMsg(tr("Failed to load UI theme from file: \"%1\", falling back to system default theme").arg(pref->customUIThemePath()), Log::WARNING);
+        LogMsg(tr("Failed to load UI theme from file: \"%1\", falling back to system default theme.").arg(pref->customUIThemePath()), Log::WARNING);
 
         useCustomUITheme = false;
-        Preferences::instance()->setUseCustomUITheme(false);
     }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
@@ -86,9 +85,10 @@ UIThemeManager::UIThemeManager()
     QJsonDocument jsonDoc = QJsonDocument::fromJson(iconJsonMap.readAll(), &err);
     if (err.error != QJsonParseError::NoError)
         LogMsg(tr("Error occurred while parsing \"%1\", error: %2").arg(iconJsonMap.fileName(), err.errorString()), Log::WARNING);
-    if (!jsonDoc.isObject())
-        LogMsg(tr("Json Document isn't an object."), Log::WARNING);
-    m_iconMap = jsonDoc.object();
+    else if (!jsonDoc.isObject())
+        LogMsg(tr("Invalid icon configuration file format. JSON object is expected."), Log::WARNING);
+    else
+        m_iconMap = jsonDoc.object();
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -123,8 +123,9 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(m_iconMap[iconId].toString());
-        if (icon.name() != iconId)
+        QString themeIcon = m_iconMap.value(iconId).toString();
+        QIcon icon = QIcon::fromTheme(themeIcon);
+        if (icon.name() != themeIcon)
             icon = QIcon::fromTheme(fallback, QIcon(getIconPath(iconId)));
         return icon;
     }
@@ -166,8 +167,7 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
     }
 #endif
 
-    const auto iter = m_iconMap.find(iconId);
-    QString iconPath = (iter != m_iconMap.end()) ? iter->toString() : QString{};
+    QString iconPath = m_iconMap.value(iconId).toString();
     QString iconIdPattern = iconId;
     while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
         const int sepIndex = iconIdPattern.indexOf('.');
