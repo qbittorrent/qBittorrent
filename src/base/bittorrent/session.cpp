@@ -156,31 +156,6 @@ namespace
         return QString::fromUtf8(str.data(), static_cast<int>(str.size()));
     }
 
-    template <typename Entry>
-    QSet<QString> entryListToSetImpl(const Entry &entry)
-    {
-        Q_ASSERT(entry.type() == Entry::list_t);
-        QSet<QString> output;
-        for (int i = 0; i < entry.list_size(); ++i) {
-            const QString tag = fromLTString(entry.list_string_value_at(i));
-            if (Session::isValidTag(tag))
-                output.insert(tag);
-            else
-                qWarning() << QString("Dropping invalid stored tag: %1").arg(tag);
-        }
-        return output;
-    }
-
-    bool isList(const lt::bdecode_node &entry)
-    {
-        return entry.type() == lt::bdecode_node::list_t;
-    }
-
-    QSet<QString> entryListToSet(const lt::bdecode_node &entry)
-    {
-        return entryListToSetImpl(entry);
-    }
-
     QString normalizePath(const QString &path)
     {
         QString tmp = Utils::Fs::toUniformPath(path.trimmed());
@@ -909,10 +884,12 @@ bool Session::isTrackerEnabled() const
 
 void Session::setTrackerEnabled(const bool enabled)
 {
-    if (isTrackerEnabled() != enabled) {
-        enableTracker(enabled);
+    if (m_isTrackerEnabled != enabled)
         m_isTrackerEnabled = enabled;
-    }
+
+    // call enableTracker() unconditionally, otherwise port change won't trigger
+    // tracker restart
+    enableTracker(enabled);
 }
 
 qreal Session::globalMaxRatio() const
@@ -1480,13 +1457,9 @@ void Session::enableTracker(const bool enable)
         if (!m_tracker)
             m_tracker = new Tracker(this);
 
-        if (m_tracker->start())
-            LogMsg(tr("Embedded Tracker [ON]"), Log::INFO);
-        else
-            LogMsg(tr("Failed to start the embedded tracker!"), Log::CRITICAL);
+        m_tracker->start();
     }
     else {
-        LogMsg(tr("Embedded Tracker [OFF]"), Log::INFO);
         if (m_tracker)
             delete m_tracker;
     }
@@ -2029,6 +2002,11 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
         p.upload_limit = params.uploadLimit;
         p.download_limit = params.downloadLimit;
+
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+        if (params.addedTime.isValid())
+            p.added_time = params.addedTime.toSecsSinceEpoch();
+#endif
 
         // Preallocation mode
         p.storage_mode = isPreallocationEnabled()
@@ -3664,13 +3642,13 @@ void Session::startUpTorrents()
     QStringList fastresumes = resumeDataDir.entryList(
                 QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
-    typedef struct
+    struct TorrentResumeData
     {
         QString hash;
         MagnetUri magnetUri;
         CreateTorrentParams addTorrentData;
         QByteArray data;
-    } TorrentResumeData;
+    };
 
     int resumedTorrentsCount = 0;
     const auto startupTorrent = [this, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
@@ -4376,6 +4354,9 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
+    QVector<BitTorrent::TorrentHandle *> updatedTorrents;
+    updatedTorrents.reserve(p->status.size());
+
     for (const lt::torrent_status &status : p->status) {
         TorrentHandle *const torrent = m_torrents.value(status.info_hash);
 
@@ -4383,6 +4364,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
             continue;
 
         torrent->handleStateUpdate(status);
+        updatedTorrents.push_back(torrent);
     }
 
     m_torrentStatusReport = TorrentStatusReport();
@@ -4405,7 +4387,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
             ++m_torrentStatusReport.nbErrored;
     }
 
-    emit torrentsUpdated();
+    emit torrentsUpdated(updatedTorrents);
 }
 
 namespace
@@ -4424,49 +4406,59 @@ namespace
 
     bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
     {
+        lt::error_code ec;
+        lt::bdecode_node root;
+        lt::bdecode(data.constData(), (data.constData() + data.size()), root, ec);
+        if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
+
         torrentParams = CreateTorrentParams();
+
         torrentParams.restored = true;
         torrentParams.skipChecking = false;
-
-        lt::error_code ec;
-        lt::bdecode_node fast;
-        lt::bdecode(data.constData(), data.constData() + data.size(), fast, ec);
-        if (ec || (fast.type() != lt::bdecode_node::dict_t)) return false;
-
+        torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
         torrentParams.savePath = Profile::instance().fromPortablePath(
-            Utils::Fs::toUniformPath(fromLTString(fast.dict_find_string_value("qBt-savePath"))));
+            Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
+        torrentParams.disableTempPath = root.dict_find_int_value("qBt-tempPathDisabled");
+        torrentParams.sequential = root.dict_find_int_value("qBt-sequential");
+        torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
+        torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
+        torrentParams.hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
+        torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
 
-        LTString ratioLimitString = fast.dict_find_string_value("qBt-ratioLimit");
+        const bool isAutoManaged = root.dict_find_int_value("auto_managed");
+        const bool isPaused = root.dict_find_int_value("paused");
+        torrentParams.paused = root.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
+        torrentParams.forced = root.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
+
+        const LTString ratioLimitString = root.dict_find_string_value("qBt-ratioLimit");
         if (ratioLimitString.empty())
-            torrentParams.ratioLimit = fast.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
+            torrentParams.ratioLimit = root.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
         else
             torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
-        torrentParams.seedingTimeLimit = fast.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
+
         // **************************************************************************************
         // Workaround to convert legacy label to category
         // TODO: Should be removed in future
-        torrentParams.category = fromLTString(fast.dict_find_string_value("qBt-label"));
+        torrentParams.category = fromLTString(root.dict_find_string_value("qBt-label"));
         if (torrentParams.category.isEmpty())
         // **************************************************************************************
-            torrentParams.category = fromLTString(fast.dict_find_string_value("qBt-category"));
-        // auto because the return type depends on the #if above.
-        const auto tagsEntry = fast.dict_find_list("qBt-tags");
-        if (isList(tagsEntry))
-            torrentParams.tags = entryListToSet(tagsEntry);
-        torrentParams.name = fromLTString(fast.dict_find_string_value("qBt-name"));
-        torrentParams.hasSeedStatus = fast.dict_find_int_value("qBt-seedStatus");
-        torrentParams.disableTempPath = fast.dict_find_int_value("qBt-tempPathDisabled");
-        torrentParams.hasRootFolder = fast.dict_find_int_value("qBt-hasRootFolder");
+            torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
 
-        magnetUri = MagnetUri(fromLTString(fast.dict_find_string_value("qBt-magnetUri")));
-        const bool isAutoManaged = fast.dict_find_int_value("auto_managed");
-        const bool isPaused = fast.dict_find_int_value("paused");
-        torrentParams.paused = fast.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
-        torrentParams.forced = fast.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
-        torrentParams.firstLastPiecePriority = fast.dict_find_int_value("qBt-firstLastPiecePriority");
-        torrentParams.sequential = fast.dict_find_int_value("qBt-sequential");
+        const lt::bdecode_node tagsNode = root.dict_find("qBt-tags");
+        if (tagsNode.type() == lt::bdecode_node::list_t) {
+            for (int i = 0; i < tagsNode.list_size(); ++i) {
+                const QString tag = fromLTString(tagsNode.list_string_value_at(i));
+                if (Session::isValidTag(tag))
+                    torrentParams.tags << tag;
+            }
+        }
 
-        queuePos = fast.dict_find_int_value("qBt-queuePosition");
+        const lt::bdecode_node addedTimeNode = root.dict_find("qBt-addedTime");
+        if (addedTimeNode.type() == lt::bdecode_node::int_t)
+            torrentParams.addedTime = QDateTime::fromSecsSinceEpoch(addedTimeNode.int_value());
+
+        queuePos = root.dict_find_int_value("qBt-queuePosition");
+        magnetUri = MagnetUri(fromLTString(root.dict_find_string_value("qBt-magnetUri")));
 
         return true;
     }

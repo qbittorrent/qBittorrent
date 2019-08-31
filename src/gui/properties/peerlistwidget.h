@@ -30,15 +30,11 @@
 #define PEERLISTWIDGET_H
 
 #include <QHash>
-#include <QPointer>
-#include <QSet>
 #include <QTreeView>
 
-class QSortFilterProxyModel;
 class QStandardItem;
 class QStandardItemModel;
 
-class PeerListDelegate;
 class PeerListSortModel;
 class PropertiesWidget;
 
@@ -46,7 +42,6 @@ namespace BitTorrent
 {
     class TorrentHandle;
     class PeerInfo;
-    struct PeerAddress;
 }
 
 namespace Net
@@ -62,9 +57,7 @@ public:
     explicit PeerListWidget(PropertiesWidget *parent);
     ~PeerListWidget() override;
 
-    void loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution = false);
-    QStandardItem *addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
-    void updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer);
+    void loadPeers(const BitTorrent::TorrentHandle *torrent);
     void updatePeerHostNameResolutionState();
     void updatePeerCountryResolutionState();
     void clear();
@@ -80,16 +73,15 @@ private slots:
     void handleResolved(const QString &ip, const QString &hostname);
 
 private:
+    void updatePeer(const QString &ip, const BitTorrent::TorrentHandle *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
+
     void wheelEvent(QWheelEvent *event) override;
 
-    QStandardItemModel *m_listModel;
-    PeerListDelegate *m_listDelegate;
-    PeerListSortModel *m_proxyModel;
+    QStandardItemModel *m_listModel = nullptr;
+    PeerListSortModel *m_proxyModel = nullptr;
+    PropertiesWidget *m_properties = nullptr;
+    Net::ReverseResolution *m_resolver = nullptr;
     QHash<QString, QStandardItem *> m_peerItems;
-    QHash<QString, BitTorrent::PeerAddress> m_peerAddresses;
-    QSet<QString> m_missingFlags;
-    QPointer<Net::ReverseResolution> m_resolver;
-    PropertiesWidget *m_properties;
     bool m_resolveCountries;
 };
 

@@ -50,7 +50,6 @@
 #endif
 
 #include <QBitArray>
-#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -1136,6 +1135,8 @@ qlonglong TorrentHandle::timeSinceUpload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.time_since_upload;
 #else
+    if (m_nativeStatus.last_upload.time_since_epoch().count() == 0)
+        return -1;
     return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_upload);
 #endif
 }
@@ -1145,6 +1146,8 @@ qlonglong TorrentHandle::timeSinceDownload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.time_since_download;
 #else
+    if (m_nativeStatus.last_download.time_since_epoch().count() == 0)
+        return -1;
     return lt::total_seconds(lt::clock_type::now() - m_nativeStatus.last_download);
 #endif
 }
@@ -1771,6 +1774,8 @@ void TorrentHandle::handleSaveResumeDataAlert(const lt::save_resume_data_alert *
         // restored if qBittorrent quits before the metadata are retrieved:
         resumeData["qBt-firstLastPiecePriority"] = hasFirstLastPiecePriority();
         resumeData["qBt-sequential"] = isSequentialDownload();
+
+        resumeData["qBt-addedTime"] = addedTime().toSecsSinceEpoch();
     }
     else {
         const auto savePath = resumeData.find_key("save_path")->string();

@@ -450,7 +450,7 @@ namespace BitTorrent
 
     signals:
         void statsUpdated();
-        void torrentsUpdated();
+        void torrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
         void addTorrentFailed(const QString &error);
         void torrentAdded(BitTorrent::TorrentHandle *const torrent);
         void torrentNew(BitTorrent::TorrentHandle *const torrent);

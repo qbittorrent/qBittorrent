@@ -105,7 +105,7 @@ private:
     void sendFile(const QString &path);
     void sendWebUIFile();
 
-    void translateDocument(QString &data);
+    void translateDocument(QString &data) const;
 
     // Session management
     QString generateSid() const;
@@ -136,6 +136,7 @@ private:
     struct TranslatedFile
     {
         QByteArray data;
+        QString mimeType;
         QDateTime lastModified;
     };
     QHash<QString, TranslatedFile> m_translatedFiles;

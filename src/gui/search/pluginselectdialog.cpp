@@ -234,7 +234,7 @@ void PluginSelectDialog::setRowColor(const int row, const QString &color)
 {
     QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(row);
     for (int i = 0; i < m_ui->pluginsTree->columnCount(); ++i) {
-        item->setData(i, Qt::ForegroundRole, QVariant(QColor(color)));
+        item->setData(i, Qt::ForegroundRole, QColor(color));
     }
 }
 
@@ -289,7 +289,7 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     // Handle icon
     if (QFile::exists(plugin->iconPath)) {
         // Good, we already have the icon
-        item->setData(PLUGIN_NAME, Qt::DecorationRole, QVariant(QIcon(plugin->iconPath)));
+        item->setData(PLUGIN_NAME, Qt::DecorationRole, QIcon(plugin->iconPath));
     }
     else {
         // Icon is missing, we must download it

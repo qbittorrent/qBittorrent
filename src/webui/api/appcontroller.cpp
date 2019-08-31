@@ -624,9 +624,6 @@ void AppController::setPreferencesAction()
     if (hasKey("dyndns_domain"))
         pref->setDynDomainName(it.value().toString());
 
-    // Save preferences
-    pref->apply();
-
     if (hasKey("rss_refresh_interval"))
         RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
     if (hasKey("rss_max_articles_per_feed"))
@@ -716,10 +713,10 @@ void AppController::setPreferencesAction()
     if (hasKey("enable_multi_connections_from_same_ip"))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());
     // Embedded tracker
-    if (hasKey("enable_embedded_tracker"))
-        session->setTrackerEnabled(it.value().toBool());
     if (hasKey("embedded_tracker_port"))
         pref->setTrackerPort(it.value().toInt());
+    if (hasKey("enable_embedded_tracker"))
+        session->setTrackerEnabled(it.value().toBool());
     // Choking algorithm
     if (hasKey("upload_slots_behavior"))
         session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(it.value().toInt()));
@@ -738,6 +735,9 @@ void AppController::setPreferencesAction()
         const QHostAddress announceAddr {it.value().toString().trimmed()};
         session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
     }
+
+    // Save preferences
+    pref->apply();
 }
 
 void AppController::defaultSavePathAction()

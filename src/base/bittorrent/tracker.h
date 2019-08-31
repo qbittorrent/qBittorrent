@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2019  Mike Tzou (Chocobo1)
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -30,12 +31,15 @@
 #ifndef BITTORRENT_TRACKER_H
 #define BITTORRENT_TRACKER_H
 
-#include <libtorrent/fwd.hpp>
+#include <string>
+
+#include <libtorrent/entry.hpp>
 
 #include <QHash>
 #include <QObject>
-#include <QHostAddress>
+#include <QSet>
 
+#include "base/bittorrent/infohash.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
 
@@ -48,54 +52,58 @@ namespace BitTorrent
 {
     struct Peer
     {
-        QHostAddress ip;
         QByteArray peerId;
-        int port;
+        ushort port = 0;  // self-claimed by peer, might not be the same as socket port
+        bool isSeeder = false;
 
-        bool operator!=(const Peer &other) const;
-        bool operator==(const Peer &other) const;
-        QString uid() const;
-        lt::entry toEntry(bool noPeerId) const;
+        // caching precomputed values
+        lt::entry::string_type address;
+        lt::entry::string_type endpoint;
+
+        QByteArray uniqueID() const;
     };
 
-    struct TrackerAnnounceRequest
-    {
-        QByteArray infoHash;
-        QString event;
-        int numwant;
-        Peer peer;
-        // Extensions
-        bool noPeerId;
-    };
+    bool operator==(const Peer &left, const Peer &right);
+    bool operator!=(const Peer &left, const Peer &right);
+    uint qHash(const Peer &key, uint seed);
 
-    typedef QHash<QString, Peer> PeerList;
-    typedef QHash<QByteArray, PeerList> TorrentList;
-
-    /* Basic Bittorrent tracker implementation in Qt */
-    /* Following http://wiki.theory.org/BitTorrent_Tracker_Protocol */
+    // *Basic* Bittorrent tracker implementation
+    // [BEP-3] The BitTorrent Protocol Specification
+    // also see: https://wiki.theory.org/index.php/BitTorrentSpecification#Tracker_HTTP.2FHTTPS_Protocol
     class Tracker : public QObject, public Http::IRequestHandler, private Http::ResponseBuilder
     {
         Q_OBJECT
         Q_DISABLE_COPY(Tracker)
 
+        struct TrackerAnnounceRequest;
+
+        struct TorrentStats
+        {
+            qint64 seeders = 0;
+            QSet<Peer> peers;
+
+            void setPeer(const Peer &peer);
+            bool removePeer(const Peer &peer);
+        };
+
     public:
         explicit Tracker(QObject *parent = nullptr);
-        ~Tracker();
 
         bool start();
-        Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
 
     private:
-        void respondToAnnounceRequest();
+        Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
+        void processAnnounceRequest();
+
         void registerPeer(const TrackerAnnounceRequest &announceReq);
         void unregisterPeer(const TrackerAnnounceRequest &announceReq);
-        void replyWithPeerList(const TrackerAnnounceRequest &announceReq);
+        void prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq);
 
         Http::Server *m_server;
-        TorrentList m_torrents;
-
         Http::Request m_request;
         Http::Environment m_env;
+
+        QHash<InfoHash, TorrentStats> m_torrents;
     };
 }
 

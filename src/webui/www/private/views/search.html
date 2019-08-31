@@ -186,7 +186,7 @@
 
     const initSearchTab = function() {
         // load "Search in" preference from local storage
-        $('searchInTorrentName').set('value', (localStorage.getItem('search_in_filter') === "names") ? "names" : "everywhere");
+        $('searchInTorrentName').set('value', (LocalPreferences.get('search_in_filter') === "names") ? "names" : "everywhere");
         const searchResultsTableContextMenu = new ContextMenu({
             targets: '.searchTableRow',
             menu: 'searchResultsTableMenu',
@@ -350,7 +350,7 @@
                 id: id,
                 title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
                 loadMethod: 'xhr',
-                contentURL: 'searchplugins.html',
+                contentURL: 'views/searchplugins.html',
                 scrollbars: false,
                 maximizable: false,
                 paddingVertical: 0,
@@ -520,9 +520,9 @@
 
     const searchInTorrentName = function() {
         if ($('searchInTorrentName').get('value') === "names")
-            localStorage.setItem('search_in_filter', "names");
+            LocalPreferences.set('search_in_filter', "names");
         else
-            localStorage.setItem('search_in_filter', "everywhere");
+            LocalPreferences.set('search_in_filter', "everywhere");
 
         searchFilterChanged();
     };

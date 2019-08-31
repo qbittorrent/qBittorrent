@@ -32,7 +32,7 @@ using namespace Http;
 
 void ResponseBuilder::status(const uint code, const QString &text)
 {
-    m_response.status = ResponseStatus(code, text);
+    m_response.status = {code, text};
 }
 
 void ResponseBuilder::header(const QString &name, const QString &value)

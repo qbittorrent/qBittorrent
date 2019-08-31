@@ -50,8 +50,8 @@ const DynamicTable = new Class({
         this.selectedRows = [];
         this.columns = [];
         this.contextMenu = contextMenu;
-        this.sortedColumn = getLocalStorageItem('sorted_column_' + this.dynamicTableDivId, 0);
-        this.reverseSort = getLocalStorageItem('reverse_sort_' + this.dynamicTableDivId, '0');
+        this.sortedColumn = LocalPreferences.get('sorted_column_' + this.dynamicTableDivId, 0);
+        this.reverseSort = LocalPreferences.get('reverse_sort_' + this.dynamicTableDivId, '0');
         this.initColumns();
         this.loadColumnsOrder();
         this.updateTableHeaders();
@@ -214,15 +214,15 @@ const DynamicTable = new Class({
             resetElementBorderStyle(this.lastHoverTh);
             el.setStyle('background-color', '');
             if (this.currentHeaderAction === 'resize')
-                localStorage.setItem('column_' + this.resizeTh.columnName + '_width_' + this.dynamicTableDivId, this.columns[this.resizeTh.columnName].width);
+                LocalPreferences.set('column_' + this.resizeTh.columnName + '_width_' + this.dynamicTableDivId, this.columns[this.resizeTh.columnName].width);
             if ((this.currentHeaderAction === 'drag') && (el !== this.lastHoverTh)) {
                 this.saveColumnsOrder();
-                const val = localStorage.getItem('columns_order_' + this.dynamicTableDivId).split(',');
+                const val = LocalPreferences.get('columns_order_' + this.dynamicTableDivId).split(',');
                 val.erase(el.columnName);
                 let pos = val.indexOf(this.lastHoverTh.columnName);
                 if (this.dropSide === 'right') ++pos;
                 val.splice(pos, 0, el.columnName);
-                localStorage.setItem('columns_order_' + this.dynamicTableDivId, val.join(','));
+                LocalPreferences.set('columns_order_' + this.dynamicTableDivId, val.join(','));
                 this.loadColumnsOrder();
                 this.updateTableHeaders();
                 while (this.tableBody.firstChild)
@@ -283,7 +283,7 @@ const DynamicTable = new Class({
 
     showColumn: function(columnName, show) {
         this.columns[columnName].visible = show ? '1' : '0';
-        localStorage.setItem('column_' + columnName + '_visible_' + this.dynamicTableDivId, show ? '1' : '0');
+        LocalPreferences.set('column_' + columnName + '_visible_' + this.dynamicTableDivId, show ? '1' : '0');
         this.updateColumn(columnName);
     },
 
@@ -339,11 +339,11 @@ const DynamicTable = new Class({
         const column = {};
         column['name'] = name;
         column['title'] = name;
-        column['visible'] = getLocalStorageItem('column_' + name + '_visible_' + this.dynamicTableDivId, defaultVisible ? '1' : '0');
+        column['visible'] = LocalPreferences.get('column_' + name + '_visible_' + this.dynamicTableDivId, defaultVisible ? '1' : '0');
         column['force_hide'] = false;
         column['caption'] = caption;
         column['style'] = style;
-        column['width'] = getLocalStorageItem('column_' + name + '_width_' + this.dynamicTableDivId, defaultWidth);
+        column['width'] = LocalPreferences.get('column_' + name + '_width_' + this.dynamicTableDivId, defaultWidth);
         column['dataProperties'] = [name];
         column['getRowValue'] = function(row, pos) {
             if (pos === undefined)
@@ -372,7 +372,7 @@ const DynamicTable = new Class({
 
     loadColumnsOrder: function() {
         const columnsOrder = [];
-        const val = localStorage.getItem('columns_order_' + this.dynamicTableDivId);
+        const val = LocalPreferences.get('columns_order_' + this.dynamicTableDivId);
         if (val === null || val === undefined) return;
         val.split(',').forEach(function(v) {
             if ((v in this.columns) && (!columnsOrder.contains(v)))
@@ -394,7 +394,7 @@ const DynamicTable = new Class({
                 val += ',';
             val += this.columns[i].name;
         }
-        localStorage.setItem('columns_order_' + this.dynamicTableDivId, val);
+        LocalPreferences.set('columns_order_' + this.dynamicTableDivId, val);
     },
 
     updateTableHeaders: function() {
@@ -456,7 +456,7 @@ const DynamicTable = new Class({
     },
 
     getSortedColumn: function() {
-        return localStorage.getItem('sorted_column_' + this.dynamicTableDivId);
+        return LocalPreferences.get('sorted_column_' + this.dynamicTableDivId);
     },
 
     setSortedColumn: function(column) {
@@ -471,8 +471,8 @@ const DynamicTable = new Class({
             this.reverseSort = this.reverseSort === '0' ? '1' : '0';
             this.setSortedColumnIcon(column, null, (this.reverseSort === '1'));
         }
-        localStorage.setItem('sorted_column_' + this.dynamicTableDivId, column);
-        localStorage.setItem('reverse_sort_' + this.dynamicTableDivId, this.reverseSort);
+        LocalPreferences.set('sorted_column_' + this.dynamicTableDivId, column);
+        LocalPreferences.set('reverse_sort_' + this.dynamicTableDivId, this.reverseSort);
         this.updateTable(false);
     },
 
@@ -1274,12 +1274,9 @@ const TorrentsTable = new Class({
             }
         }
 
-        if (filterTerms) {
-            for (let i = 0; i < filterTerms.length; ++i) {
-                if (name.indexOf(filterTerms[i]) === -1)
-                    return false;
-            }
-        }
+        if ((filterTerms !== undefined) && (filterTerms !== null)
+            && (filterTerms.length > 0) && !containsAllTerms(name, filterTerms))
+            return false;
 
         return true;
     },
@@ -1523,16 +1520,6 @@ const SearchResultsTable = new Class({
     },
 
     getFilteredAndSortedRows: function() {
-        const containsAll = function(text, searchTerms) {
-            text = text.toLowerCase();
-            for (let i = 0; i < searchTerms.length; ++i) {
-                if (text.indexOf(searchTerms[i].toLowerCase()) === -1)
-                    return false;
-            }
-
-            return true;
-        };
-
         const getSizeFilters = function() {
             let minSize = (searchSizeFilter.min > 0.00) ? (searchSizeFilter.min * Math.pow(1024, searchSizeFilter.minUnit)) : 0.00;
             let maxSize = (searchSizeFilter.max > 0.00) ? (searchSizeFilter.max * Math.pow(1024, searchSizeFilter.maxUnit)) : 0.00;
@@ -1577,8 +1564,8 @@ const SearchResultsTable = new Class({
             for (let i = 0; i < rows.length; ++i) {
                 const row = rows[i];
 
-                if (searchInTorrentName && !containsAll(row.full_data.fileName, searchTerms)) continue;
-                if ((filterTerms.length > 0) && !containsAll(row.full_data.fileName, filterTerms)) continue;
+                if (searchInTorrentName && !containsAllTerms(row.full_data.fileName, searchTerms)) continue;
+                if ((filterTerms.length > 0) && !containsAllTerms(row.full_data.fileName, filterTerms)) continue;
                 if ((sizeFilters.min > 0.00) && (row.full_data.fileSize < sizeFilters.min)) continue;
                 if ((sizeFilters.max > 0.00) && (row.full_data.fileSize > sizeFilters.max)) continue;
                 if ((seedsFilters.min > 0) && (row.full_data.nbSeeders < seedsFilters.min)) continue;
@@ -1913,12 +1900,7 @@ const TorrentFilesTable = new Class({
             }
         }
 
-        const lowercaseName = node.name.toLowerCase();
-        const matchesFilter = filterTerms.every(function(term) {
-            return (lowercaseName.indexOf(term) !== -1);
-        });
-
-        if (matchesFilter) {
+        if (containsAllTerms(node.name, filterTerms)) {
             const row = this.getRow(node);
             filteredRows.push(row);
             return true;

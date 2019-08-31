@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,14 +26,22 @@
  * exception statement from your version.
  */
 
-#pragma once
+'use strict';
 
-#include <stdexcept>
-#include <QString>
+const LocalPreferencesClass = new Class({
+    get: function(key, defaultValue) {
+        const value = localStorage.getItem(key);
+        return ((value === null) && (defaultValue !== undefined))
+            ? defaultValue
+            : value;
+    },
 
-class RuntimeError : public std::runtime_error
-{
-public:
-    explicit RuntimeError(const QString &message = {});
-    QString message() const;
-};
+    set: function(key, value) {
+        try {
+            localStorage.setItem(key, value);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+})

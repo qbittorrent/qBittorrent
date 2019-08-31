@@ -38,26 +38,7 @@
    ----------------------------------------------------------------- */
 'use strict';
 
-/* Define localStorage object for older browsers */
-if (typeof localStorage == 'undefined') {
-    window['localStorage'] = {
-        getItem: function(name) {
-            return Cookie.read(name);
-        },
-        setItem: function(name, value) {
-            Cookie.write(name, value, {
-                duration: 365 * 10
-            });
-        }
-    };
-}
-
-function getLocalStorageItem(name, defaultVal) {
-    let val = localStorage.getItem(name);
-    if (val === null || val === undefined)
-        val = defaultVal;
-    return val;
-}
+const LocalPreferences = new LocalPreferencesClass();
 
 let saveWindowSize = function() {};
 let loadWindowWidth = function() {};
@@ -107,16 +88,16 @@ let setQueuePositionFN = function() {};
 const initializeWindows = function() {
     saveWindowSize = function(windowId) {
         const size = $(windowId).getSize();
-        localStorage.setItem('window_' + windowId + '_width', size.x);
-        localStorage.setItem('window_' + windowId + '_height', size.y);
+        LocalPreferences.set('window_' + windowId + '_width', size.x);
+        LocalPreferences.set('window_' + windowId + '_height', size.y);
     };
 
     loadWindowWidth = function(windowId, defaultValue) {
-        return getLocalStorageItem('window_' + windowId + '_width', defaultValue);
+        return LocalPreferences.get('window_' + windowId + '_width', defaultValue);
     };
 
     loadWindowHeight = function(windowId, defaultValue) {
-        return getLocalStorageItem('window_' + windowId + '_height', defaultValue);
+        return LocalPreferences.get('window_' + windowId + '_height', defaultValue);
     };
 
     function addClickEvent(el, fn) {
@@ -169,11 +150,11 @@ const initializeWindows = function() {
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: 'xhr',
             toolbar: true,
-            contentURL: 'preferences_content.html',
+            contentURL: 'views/preferences.html',
             require: {
                 css: ['css/Tabs.css']
             },
-            toolbarURL: 'preferences.html',
+            toolbarURL: 'views/preferencesToolbar.html',
             maximizable: false,
             closable: true,
             paddingVertical: 0,
@@ -362,7 +343,7 @@ const initializeWindows = function() {
             id: id,
             title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
             loadMethod: 'xhr',
-            contentURL: 'statistics.html',
+            contentURL: 'views/statistics.html',
             maximizable: false,
             padding: 10,
             width: loadWindowWidth(id, 275),
@@ -920,12 +901,12 @@ const initializeWindows = function() {
             id: id,
             title: 'QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]',
             loadMethod: 'xhr',
-            contentURL: 'about.html',
+            contentURL: 'views/about.html',
             require: {
                 css: ['css/Tabs.css']
             },
             toolbar: true,
-            toolbarURL: 'aboutToolbar.html',
+            toolbarURL: 'views/aboutToolbar.html',
             padding: 10,
             width: loadWindowWidth(id, 550),
             height: loadWindowHeight(id, 360),

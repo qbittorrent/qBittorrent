@@ -33,6 +33,10 @@
 
 #include <algorithm>
 
+#ifdef DISABLE_GUI
+#include <cstdio>
+#endif
+
 #ifdef Q_OS_WIN
 #include <memory>
 #include <Windows.h>
@@ -47,6 +51,7 @@
 
 #ifndef DISABLE_GUI
 #include <QMessageBox>
+#include <QPixmapCache>
 #ifdef Q_OS_WIN
 #include <QSessionManager>
 #include <QSharedMemory>
@@ -54,14 +59,7 @@
 #ifdef Q_OS_MAC
 #include <QFileOpenEvent>
 #endif // Q_OS_MAC
-#include "addnewtorrentdialog.h"
-#include "gui/uithememanager.h"
-#include "gui/utils.h"
-#include "mainwindow.h"
-#include "shutdownconfirmdialog.h"
-#else // DISABLE_GUI
-#include <cstdio>
-#endif // DISABLE_GUI
+#endif
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -84,6 +82,14 @@
 #include "base/utils/string.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
+
+#ifndef DISABLE_GUI
+#include "addnewtorrentdialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
+#include "mainwindow.h"
+#include "shutdownconfirmdialog.h"
+#endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
@@ -114,6 +120,8 @@ namespace
     const int MIN_FILELOG_SIZE = 1024; // 1KiB
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
     const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
+
+    const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
 }
 
 Application::Application(const QString &id, int &argc, char **argv)
@@ -122,20 +130,23 @@ Application::Application(const QString &id, int &argc, char **argv)
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
-#ifndef DISABLE_WEBUI
-    , m_webui(nullptr)
-#endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
 
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");
+#if !defined(DISABLE_GUI)
+    setDesktopFileName("org.qbittorrent.qBittorrent");
+    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
+    setQuitOnLastWindowClosed(false);
+    QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
+#endif
+
     validateCommandLineParameters();
 
     const QString profileDir = m_commandLineArgs.portableMode
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
-
     Profile::initialize(profileDir, m_commandLineArgs.configurationName,
                         m_commandLineArgs.relativeFastresumePaths || m_commandLineArgs.portableMode);
 
@@ -143,23 +154,16 @@ Application::Application(const QString &id, int &argc, char **argv)
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
+    initializeTranslation();
+
     if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
 
-    initializeTranslation();
-
-#if !defined(DISABLE_GUI)
-    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
-    setQuitOnLastWindowClosed(false);
-    setDesktopFileName("org.qbittorrent.qBittorrent");
-#endif
-
+    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
+    connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
-
-    connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
-    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
 
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
@@ -203,7 +207,7 @@ void Application::setFileLoggerEnabled(const bool value)
 QString Application::fileLoggerPath() const
 {
     return settings()->loadValue(KEY_FILELOGGER_PATH,
-            QVariant(specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER)).toString();
+            {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER}).toString();
 }
 
 void Application::setFileLoggerPath(const QString &path)
