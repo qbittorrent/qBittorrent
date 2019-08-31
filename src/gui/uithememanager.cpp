@@ -34,12 +34,14 @@
 #include <QIcon>
 #include <QJsonDocument>
 #include <QJsonParseError>
+#include <QPixmapCache>
 #include <QResource>
 
 #include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "utils.h"
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
 
@@ -148,6 +150,21 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return {};
     return QIcon(m_iconsDir + "flags/" + countryIsoCode.toLower() + ".svg");
+}
+
+QPixmap UIThemeManager::getPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const
+{
+    const QString iconPath = UIThemeManager::instance()->getIconPath(iconId);
+    const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
+    const QString normalizedKey = iconPath + '@' + QString::number(scaledHeight);
+
+    QPixmap pm;
+    QPixmapCache cache;
+    if (!cache.find(normalizedKey, &pm)) {
+        pm = QIcon(iconPath).pixmap(scaledHeight);
+        cache.insert(normalizedKey, pm);
+    }
+    return pm;
 }
 
 QString UIThemeManager::getIconPath(const QString &iconId) const

@@ -51,7 +51,6 @@
 
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
-#include "gui/uithememanager.h"
 
 void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
 {
@@ -74,35 +73,6 @@ qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 #else
     return widget->devicePixelRatioF();
 #endif // Q_OS_WIN
-}
-
-QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
-{
-    Q_ASSERT(height > 0);
-    const int scaledHeight = height * Utils::Gui::screenScalingFactor(widget);
-    return icon.pixmap(scaledHeight);
-}
-
-QPixmap Utils::Gui::scaledPixmap(const QString &id, const QWidget *widget, const int height)
-{
-    const QPixmap pixmap(UIThemeManager::instance()->getIconPath(id));
-    const int scaledHeight = ((height > 0) ? height : pixmap.height()) * Utils::Gui::screenScalingFactor(widget);
-    return pixmap.scaledToHeight(scaledHeight, Qt::SmoothTransformation);
-}
-
-QPixmap Utils::Gui::scaledPixmapSvg(const QString &id, const QWidget *widget, const int baseHeight)
-{
-    const QString iconPath = UIThemeManager::instance()->getIconPath(id);
-    const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
-    const QString normalizedKey = iconPath + '@' + QString::number(scaledHeight);
-
-    QPixmap pm;
-    QPixmapCache cache;
-    if (!cache.find(normalizedKey, &pm)) {
-        pm = QIcon(iconPath).pixmap(scaledHeight);
-        cache.insert(normalizedKey, pm);
-    }
-    return pm;
 }
 
 QSize Utils::Gui::smallIconSize(const QWidget *widget)

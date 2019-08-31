@@ -32,6 +32,7 @@
 
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
+#include "gui/uithememanager.h"
 #include "ui_aboutdialog.h"
 #include "utils.h"
 
@@ -45,7 +46,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Title
     m_ui->labelName->setText(QString("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
 
-    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg("AboutDialog.Logo", this, 32));
+    m_ui->logo->setPixmap(UIThemeManager::instance()->getPixmap("AboutDialog.Logo", this, 32));
 
     // About
     QString aboutText = QString(
@@ -65,7 +66,9 @@ AboutDialog::AboutDialog(QWidget *parent)
             , tr("Bug Tracker:"));
     m_ui->labelAbout->setText(aboutText);
 
-    m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap("QBittorrent.Mascot", this));
+    QPixmap mascot(":icons/skin/mascot.png");
+    const int mascotScaledHeight = mascot.height() * Utils::Gui::screenScalingFactor(this);
+    m_ui->labelMascot->setPixmap(mascot.scaledToHeight(mascotScaledHeight, Qt::SmoothTransformation));
 
     // Thanks
     QFile thanksfile(":/thanks.html");

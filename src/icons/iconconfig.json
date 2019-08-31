@@ -191,7 +191,6 @@
     "WebSeed.RemoveAction": "qbt-theme/list-remove",
     "WebSeedURL.CopyAction": "qbt-theme/edit-copy",
     "WebSeedURL.EditAction": "qbt-theme/edit-rename",
-    "QBittorrent.Mascot": "skin/mascot.png",
     "Tray.Logo": "skin/qbittorrent-tray.svg",
     "Tray.DarkLogo": "skin/qbittorrent-tray-dark.svg",
     "Tray.LightLogo": "skin/qbittorrent-tray-light.svg",
