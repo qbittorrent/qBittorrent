@@ -1356,7 +1356,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <location filename="../base/bittorrent/session.cpp" line="489"/>
         <location filename="../base/bittorrent/session.cpp" line="2858"/>
         <source>Encryption support [%1]</source>
-        <translation>Support de cryptage [%1]</translation>
+        <translation>Support de chiffrement [%1]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="490"/>
@@ -5250,7 +5250,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="2185"/>
         <source>Encryption mode:</source>
-        <translation>Mode de cryptage:</translation>
+        <translation>Mode de chiffrement:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2193"/>

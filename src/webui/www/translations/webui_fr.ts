@@ -787,7 +787,7 @@
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation>Mode de cryptage:</translation>
+        <translation>Mode de chiffrement:</translation>
     </message>
     <message>
         <source>Prefer encryption</source>
