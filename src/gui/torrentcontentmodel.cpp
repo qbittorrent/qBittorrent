@@ -77,24 +77,6 @@ namespace
     };
 
 #ifdef QBT_PIXMAP_CACHE_FOR_FILE_ICONS
-    struct Q_DECL_UNUSED PixmapCacheSetup
-    {
-        static const int PixmapCacheForIconsSize = 2 * 1024 * 1024; // 2 MiB for file icons
-
-        PixmapCacheSetup()
-        {
-            QPixmapCache::setCacheLimit(QPixmapCache::cacheLimit() + PixmapCacheForIconsSize);
-        }
-
-        ~PixmapCacheSetup()
-        {
-            Q_ASSERT(QPixmapCache::cacheLimit() > PixmapCacheForIconsSize);
-            QPixmapCache::setCacheLimit(QPixmapCache::cacheLimit() - PixmapCacheForIconsSize);
-        }
-    };
-
-    PixmapCacheSetup pixmapCacheSetup;
-
     class CachingFileIconProvider : public UnifiedFileIconProvider
     {
     public:
