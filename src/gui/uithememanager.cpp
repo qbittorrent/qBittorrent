@@ -152,19 +152,9 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
     return QIcon(m_iconsDir + "flags/" + countryIsoCode.toLower() + ".svg");
 }
 
-QPixmap UIThemeManager::getPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const
+QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const
 {
-    const QString iconPath = UIThemeManager::instance()->getIconPath(iconId);
-    const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
-    const QString normalizedKey = iconPath + '@' + QString::number(scaledHeight);
-
-    QPixmap pm;
-    QPixmapCache cache;
-    if (!cache.find(normalizedKey, &pm)) {
-        pm = QIcon(iconPath).pixmap(scaledHeight);
-        cache.insert(normalizedKey, pm);
-    }
-    return pm;
+    return Utils::Gui::scaledPixmapSvg(getIconPath(iconId), widget, baseHeight); 
 }
 
 QString UIThemeManager::getIconPath(const QString &iconId) const

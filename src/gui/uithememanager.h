@@ -48,11 +48,11 @@ public:
     QIcon getIcon(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
-    QPixmap getPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const;
+    QPixmap getScaledPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const;
+    QString getIconPath(const QString &iconId) const;
 
 private:
     UIThemeManager(); // singleton class
-    QString getIconPath(const QString &iconId) const;
 
     static UIThemeManager *m_instance;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))

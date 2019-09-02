@@ -49,6 +49,9 @@ namespace Utils
             return (size * screenScalingFactor(widget));
         }
 
+        QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
+        QPixmap scaledPixmap(const QString &path, const QWidget *widget, int height = 0);
+        QPixmap scaledPixmapSvg(const QString &path, const QWidget *widget, int baseHeight);
         QSize smallIconSize(const QWidget *widget = nullptr);
         QSize mediumIconSize(const QWidget *widget = nullptr);
         QSize largeIconSize(const QWidget *widget = nullptr);
