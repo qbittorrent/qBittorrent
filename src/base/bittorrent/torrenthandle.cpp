@@ -552,7 +552,7 @@ bool TorrentHandle::needSaveResumeData() const
 
 void TorrentHandle::saveResumeData()
 {
-    m_nativeHandle.save_resume_data();
+    m_nativeHandle.save_resume_data(lt::torrent_handle::save_info_dict);
     m_session->handleTorrentSaveResumeDataRequested(this);
 }
 
