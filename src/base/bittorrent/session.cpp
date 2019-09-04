@@ -1941,7 +1941,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             p = lt::read_resume_data(fastresumeData, ec);
 
             // load from .torrent file when fastresume doesn't contain the required `info` dict
-            if (!p.ti->is_valid())
+            if (!p.ti || !p.ti->is_valid())
                 p.ti = torrentInfo.nativeInfo();
 
             // libtorrent will always apply `file_priorities` to torrents,
