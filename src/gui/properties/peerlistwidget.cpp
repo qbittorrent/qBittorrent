@@ -28,6 +28,8 @@
 
 #include "peerlistwidget.h"
 
+#include <algorithm>
+
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>
@@ -242,16 +244,10 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
         connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
         {
             const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
-            int peerCount = 0;
-            for (const BitTorrent::PeerAddress &addr : peersList) {
-                if (torrent->connectPeer(addr)) {
-                    ++peerCount;
-                    LogMsg(tr("Peer \"%1\" added to \"%2\"").arg(addr.ip.toString(), torrent->name()));
-                }
-                else {
-                    LogMsg(tr("Failed to add peer \"%1\" to \"%2\".").arg(addr.ip.toString(), torrent->name()), Log::WARNING);
-                }
-            }
+            const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
+            {
+                return torrent->connectPeer(peer);
+            });
             if (peerCount < peersList.length())
                 QMessageBox::information(this, tr("Adding peers"), tr("Some peers cannot be added. Check the Log for details."));
             else if (peerCount > 0)
