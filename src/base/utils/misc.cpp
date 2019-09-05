@@ -36,7 +36,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <Carbon/Carbon.h>
 #include <CoreServices/CoreServices.h>
 #endif
@@ -51,7 +51,7 @@
 #include <QSet>
 #include <QSysInfo>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #endif
 
@@ -139,7 +139,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     tkp.Privileges[0].Attributes = 0;
     AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
 
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     AEEventID EventToSend;
     if (action != ShutdownDialogAction::Shutdown)
         EventToSend = kAESleep;

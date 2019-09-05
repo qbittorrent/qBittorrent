@@ -43,7 +43,7 @@
 #include <QMimeType>
 #endif
 
-#if defined Q_OS_WIN || defined Q_OS_MAC
+#if defined Q_OS_WIN || defined Q_OS_MACOS
 #define QBT_PIXMAP_CACHE_FOR_FILE_ICONS
 #include <QPixmapCache>
 #endif
@@ -57,7 +57,7 @@
 #include "torrentcontentmodelitem.h"
 #include "uithememanager.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include "macutilities.h"
 #endif
 
@@ -121,7 +121,7 @@ namespace
             return iconPixmap;
         }
     };
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     // There is a similar bug on macOS, to be reported to Qt
     // https://github.com/qbittorrent/qBittorrent/pull/6156#issuecomment-316302615
     class MacFileIconProvider final : public CachingFileIconProvider
@@ -184,7 +184,7 @@ TorrentContentModel::TorrentContentModel(QObject *parent)
 {
 #if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     m_fileIconProvider = new MacFileIconProvider();
 #else
     static bool doesBuiltInProviderWork = doesQFileIconProviderWork();

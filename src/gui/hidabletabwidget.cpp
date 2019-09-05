@@ -30,7 +30,7 @@
 
 #include <QTabBar>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <QPaintEvent>
 #include <QStyle>
 #endif
@@ -53,7 +53,7 @@ void HidableTabWidget::tabRemoved(const int index)
     tabBar()->setVisible(count() != 1);
 }
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 void HidableTabWidget::paintEvent(QPaintEvent *event)
 {
     // Hide the pane for macintosh style

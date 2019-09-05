@@ -67,7 +67,7 @@
 
 #include "ui_propertieswidget.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include "macutilities.h"
 #endif
 
@@ -553,7 +553,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
 
     // Flush data
     m_torrent->flushCache();
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     Q_UNUSED(containingFolder);
     MacUtils::openFiles(QSet<QString>{absolutePath});
 #else

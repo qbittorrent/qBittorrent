@@ -105,7 +105,7 @@ public:
 
 protected:
 #ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
 #endif

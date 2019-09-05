@@ -45,7 +45,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup = new QButtonGroup(this);
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("document-properties"),
 #endif
             tr("General"), parent);
@@ -54,7 +54,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(mainInfosButton, MainTab);
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("Trackers"), parent);
@@ -63,7 +63,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(trackersButton, TrackersTab);
     // Peers tab
     QPushButton *peersButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("edit-find-user"),
 #endif
             tr("Peers"), parent);
@@ -72,7 +72,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(peersButton, PeersTab);
     // URL seeds tab
     QPushButton *URLSeedsButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("HTTP Sources"), parent);
@@ -81,7 +81,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(URLSeedsButton, URLSeedsTab);
     // Files tab
     QPushButton *filesButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("inode-directory"),
 #endif
             tr("Content"), parent);
@@ -92,7 +92,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
     // Speed tab
     QPushButton *speedButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("office-chart-line"),
 #endif
             tr("Speed"), parent);

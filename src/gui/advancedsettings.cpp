@@ -80,7 +80,7 @@ enum AdvSettingsRows
     DOWNLOAD_TRACKER_FAVICON,
     SAVE_PATH_HISTORY_LENGTH,
     ENABLE_SPEED_WIDGET,
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     USE_ICON_THEME,
 #endif
 
@@ -233,7 +233,7 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(m_comboBoxSeedChokingAlgorithm.currentIndex()));
 
     // Icon theme
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     pref->useSystemIconTheme(m_checkBoxUseIconTheme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
@@ -515,7 +515,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", "(?)"))
             , &m_comboBoxSeedChokingAlgorithm);
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_checkBoxUseIconTheme.setChecked(pref->useSystemIconTheme());
     addRow(USE_ICON_THEME, tr("Use system icon theme"), &m_checkBoxUseIconTheme);
 #endif
