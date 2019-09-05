@@ -121,7 +121,9 @@ namespace
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
     const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
 
+#if !defined(DISABLE_GUI)
     const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
+#endif
 }
 
 Application::Application(const QString &id, int &argc, char **argv)
