@@ -360,7 +360,7 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
         else if (!downloadInDefaultFolder(file))
             params.savePath = downloadPathTorrentFolder(file);
 
-        if (file.endsWith(".magnet")) {
+        if (file.endsWith(".magnet", Qt::CaseInsensitive)) {
             QFile f(file);
             if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
                 QTextStream str(&f);

@@ -162,7 +162,7 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
     const QStringList files = dir.entryList({"*.torrent", "*.magnet"}, QDir::Files);
     for (const QString &file : files) {
         const QString fileAbsPath = dir.absoluteFilePath(file);
-        if (file.endsWith(".magnet"))
+        if (file.endsWith(".magnet", Qt::CaseInsensitive))
             torrents << fileAbsPath;
         else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid())
             torrents << fileAbsPath;
