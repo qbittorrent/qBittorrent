@@ -39,7 +39,7 @@
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
-#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -321,7 +321,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
         return false;
 
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
-#elif defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_OPENBSD)
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';

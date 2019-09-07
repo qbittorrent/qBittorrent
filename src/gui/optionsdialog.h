@@ -120,7 +120,7 @@ private:
     static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     bool systrayIntegration() const;
     bool minimizeToTray() const;
     bool closeToTray() const;

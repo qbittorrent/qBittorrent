@@ -54,7 +54,7 @@ private:
     QString getIconPath(const QString &iconId) const;
 
     static UIThemeManager *m_instance;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
 #endif
 };

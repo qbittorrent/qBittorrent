@@ -62,7 +62,7 @@ UIThemeManager::UIThemeManager()
         && !QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
         LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_useSystemTheme = pref->useSystemIconTheme();
 #endif
 }
@@ -97,7 +97,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId) const
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme) {
         QIcon icon = QIcon::fromTheme(iconId);
         if (icon.name() != iconId)
@@ -126,7 +126,7 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme) {
         QString path = Utils::Fs::tempPath() + iconId + ".png";
         if (!QFile::exists(path)) {

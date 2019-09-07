@@ -69,7 +69,7 @@ private:
     QLineEdit m_lineEditAnnounceIP;
 
     // OS dependent settings
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     QCheckBox m_checkBoxUseIconTheme;
 #endif
 };

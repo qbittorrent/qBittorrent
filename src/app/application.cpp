@@ -56,9 +56,9 @@
 #include <QSessionManager>
 #include <QSharedMemory>
 #endif // Q_OS_WIN
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <QFileOpenEvent>
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 #endif
 
 #include "base/bittorrent/session.h"
@@ -121,7 +121,9 @@ namespace
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
     const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
 
+#if !defined(DISABLE_GUI)
     const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
+#endif
 }
 
 Application::Application(const QString &id, int &argc, char **argv)
@@ -586,7 +588,7 @@ bool Application::isRunning()
 }
 
 #ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 bool Application::event(QEvent *ev)
 {
     if (ev->type() == QEvent::FileOpen) {
@@ -605,7 +607,7 @@ bool Application::event(QEvent *ev)
         return BaseApplication::event(ev);
     }
 }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 #endif // DISABLE_GUI
 
 void Application::initializeTranslation()

@@ -69,7 +69,7 @@
 #include "updownratiodialog.h"
 #include "utils.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include "macutilities.h"
 #endif
 
@@ -131,7 +131,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     setItemsExpandable(false);
     setAutoScroll(true);
     setDragDropMode(QAbstractItemView::DragOnly);
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     header()->setStretchLastSection(false);
@@ -259,7 +259,7 @@ void TransferListWidget::torrentDoubleClicked()
             torrent->pause();
         break;
     case OPEN_DEST:
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
         MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
 #else
         if (torrent->filesCount() == 1)
@@ -455,7 +455,7 @@ void TransferListWidget::hideQueuePosColumn(bool hide)
 void TransferListWidget::openSelectedTorrentsFolder() const
 {
     QSet<QString> pathsList;
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     // On macOS you expect both the files and folders to be opened in their parent
     // folders prehilighted for opening, so we use a custom method.
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
@@ -474,7 +474,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         }
         pathsList.insert(path);
     }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 }
 
 void TransferListWidget::previewSelectedTorrents()
