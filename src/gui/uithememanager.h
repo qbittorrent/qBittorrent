@@ -31,7 +31,7 @@
 
 #include <QObject>
 #include <QString>
-#include <QJsonObject>
+#include <QHash>
 
 class UIThemeManager : public QObject
 {
@@ -52,12 +52,16 @@ public:
     QString getIconPath(const QString &iconId) const;
 
 private:
-    UIThemeManager(); // singleton class
+    using IconMap = QHash<QString, QString>;
+
+    static bool loadIconConfig(const QString &configFile, const QString &iconDir, IconMap &config);
+    UIThemeManager(); // singleton clas
 
     static UIThemeManager *m_instance;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
     bool m_useSystemTheme;
 #endif
-    QString m_iconsDir;
-    QJsonObject m_iconMap;
+    QString m_flagsDir;
+    IconMap m_iconMap;
+    bool m_useCustomUITheme;
 };
