@@ -202,17 +202,19 @@ bool SettingsStorage::save()
 
 QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultValue) const
 {
-    QReadLocker locker(&m_lock);
+    const QReadLocker locker(&m_lock);
     return m_data.value(mapKey(key), defaultValue);
 }
 
 void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 {
     const QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
-    if (m_data.value(realKey) != value) {
+    const QWriteLocker locker(&m_lock);
+
+    QVariant &currentValue = m_data[realKey];
+    if (currentValue != value) {
         m_dirty = true;
-        m_data.insert(realKey, value);
+        currentValue = value;
         m_timer.start();
     }
 }
@@ -220,10 +222,9 @@ void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 void SettingsStorage::removeValue(const QString &key)
 {
     const QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
-    if (m_data.contains(realKey)) {
+    const QWriteLocker locker(&m_lock);
+    if (m_data.remove(realKey) > 0) {
         m_dirty = true;
-        m_data.remove(realKey);
         m_timer.start();
     }
 }
