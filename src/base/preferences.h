@@ -254,7 +254,7 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);
 #endif
@@ -268,7 +268,7 @@ public:
     static void setTorrentFileAssoc(bool set);
     static void setMagnetLinkAssoc(bool set);
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     static bool isTorrentFileAssocSet();
     static bool isMagnetLinkAssocSet();
     static void setTorrentFileAssoc();
@@ -276,7 +276,7 @@ public:
 #endif
     int getTrackerPort() const;
     void setTrackerPort(int port);
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);
 #endif
@@ -286,7 +286,7 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
     bool minimizeToTrayNotified() const;
@@ -299,7 +299,7 @@ public:
     void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

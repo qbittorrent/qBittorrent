@@ -182,7 +182,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // Load options
     loadOptions();
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
 #else
     // Disable systray integration if it is not supported by the system
@@ -198,7 +198,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->checkStartup->setVisible(false);
 #endif
 
-#if !(defined(Q_OS_WIN) || defined(Q_OS_MAC))
+#if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->groupFileAssociation->setVisible(false);
     m_ui->checkProgramUpdates->setVisible(false);
 #endif
@@ -237,11 +237,11 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTrayIcon, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QT_DBUS_LIB)
     m_ui->checkPreventFromSuspendWhenDownloading->setDisabled(true);
     m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -611,7 +611,7 @@ void OptionsDialog::saveOptions()
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     pref->setSystrayIntegration(systrayIntegration());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
@@ -629,7 +629,7 @@ void OptionsDialog::saveOptions()
     Preferences::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
     Preferences::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     if (m_ui->checkAssociateTorrents->isChecked()) {
         Preferences::setTorrentFileAssoc();
         m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
@@ -641,7 +641,7 @@ void OptionsDialog::saveOptions()
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     pref->setUpdateCheckEnabled(m_ui->checkProgramUpdates->isChecked());
 #endif
     auto *const app = static_cast<Application *>(QCoreApplication::instance());
@@ -851,7 +851,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
     if (m_ui->checkShowSystray->isChecked()) {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
@@ -868,13 +868,13 @@ void OptionsDialog::loadOptions()
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
 #endif
 
@@ -1222,7 +1222,7 @@ bool OptionsDialog::startMinimized() const
     return m_ui->checkStartMinimized->isChecked();
 }
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
 bool OptionsDialog::systrayIntegration() const
 {
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
@@ -1240,7 +1240,7 @@ bool OptionsDialog::closeToTray() const
     if (!m_ui->checkShowSystray->isChecked()) return false;
     return m_ui->checkCloseToSystray->isChecked();
 }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 
 // Return Share ratio
 qreal OptionsDialog::getMaxRatio() const

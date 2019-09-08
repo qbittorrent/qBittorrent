@@ -31,7 +31,7 @@
 
 #include <QTabWidget>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 class QPaintEvent;
 #endif
 
@@ -44,7 +44,7 @@ private:
     void tabInserted(int index) override;
     void tabRemoved(int index) override;
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     void paintEvent(QPaintEvent *event) override;
 #endif
 };

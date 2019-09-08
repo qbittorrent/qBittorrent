@@ -102,7 +102,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
            << "</p></body></html>" << flush;
     m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     // Icons
     m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("Search.FindAction"));
     m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("Search.Plugins"));

@@ -249,7 +249,7 @@
             <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="random_port_checkbox" />
+            <input type="checkbox" id="random_port_checkbox" onclick="updatePortValueEnabled();" />
             <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
@@ -1201,6 +1201,11 @@
     };
 
     // Connection tab
+    this.updatePortValueEnabled = function() {
+        const checked = $('random_port_checkbox').getProperty('checked');
+        $('port_value').setProperty('disabled', checked);
+    };
+
     this.updateMaxConnecEnabled = function() {
         const isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
         $('max_connec_value').setProperty('disabled', !isMaxConnecEnabled);
@@ -1485,6 +1490,7 @@
                     $('port_value').setProperty('value', pref.listen_port.toInt());
                     $('upnp_checkbox').setProperty('checked', pref.upnp);
                     $('random_port_checkbox').setProperty('checked', pref.random_port);
+                    updatePortValueEnabled();
 
                     // Connections Limits
                     const max_connec = pref.max_connec.toInt();

@@ -30,7 +30,7 @@
 
 #include <QtGlobal>
 
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
+#if defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <cstring>
 #include <sys/mount.h>
 #include <sys/param.h>
@@ -160,7 +160,7 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
     const QStringList files = dir.entryList({"*.torrent", "*.magnet"}, QDir::Files);
     for (const QString &file : files) {
         const QString fileAbsPath = dir.absoluteFilePath(file);
-        if (file.endsWith(".magnet"))
+        if (file.endsWith(".magnet", Qt::CaseInsensitive))
             torrents << fileAbsPath;
         else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid())
             torrents << fileAbsPath;

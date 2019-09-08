@@ -537,11 +537,28 @@ void TorrentHandle::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 bool TorrentHandle::connectPeer(const PeerAddress &peerAddress)
 {
     lt::error_code ec;
+#if (LIBTORRENT_VERSION_NUM < 10200)
     const lt::address addr = lt::address::from_string(peerAddress.ip.toString().toStdString(), ec);
+#else
+    const lt::address addr = lt::make_address(peerAddress.ip.toString().toStdString(), ec);
+#endif
     if (ec) return false;
 
-    const boost::asio::ip::tcp::endpoint ep(addr, peerAddress.port);
-    m_nativeHandle.connect_peer(ep);
+    const lt::tcp::endpoint endpoint(addr, peerAddress.port);
+    try {
+        m_nativeHandle.connect_peer(endpoint);
+    }
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    catch (const boost::system::system_error &err) {
+#else
+    catch (const lt::system_error &err) {
+#endif
+        LogMsg(tr("Failed to add peer \"%1\" to torrent \"%2\". Reason: %3")
+            .arg(peerAddress.toString(), name(), QString::fromLocal8Bit(err.what())), Log::WARNING);
+        return false;
+    }
+
+    LogMsg(tr("Peer \"%1\" is added to torrent \"%2\"").arg(peerAddress.toString(), name()));
     return true;
 }
 
@@ -552,7 +569,7 @@ bool TorrentHandle::needSaveResumeData() const
 
 void TorrentHandle::saveResumeData()
 {
-    m_nativeHandle.save_resume_data();
+    m_nativeHandle.save_resume_data(lt::torrent_handle::save_info_dict);
     m_session->handleTorrentSaveResumeDataRequested(this);
 }
 

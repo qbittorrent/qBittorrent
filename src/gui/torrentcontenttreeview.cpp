@@ -108,7 +108,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
             , modelIndex.data().toString(), &ok, isFile).trimmed();
     if (!ok) return;
 
-    if (newName.isEmpty() || !Utils::Fs::isValidFileSystemName(newName)) {
+    if (!Utils::Fs::isValidFileSystemName(newName)) {
         RaisedMessageBox::warning(this, tr("Rename error"),
                                   tr("The name is empty or contains forbidden characters, please choose a different one."),
                                   QMessageBox::Ok);
@@ -227,7 +227,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
             , modelIndex.data().toString(), &ok, isFile).trimmed();
     if (!ok) return;
 
-    if (newName.isEmpty() || !Utils::Fs::isValidFileSystemName(newName)) {
+    if (!Utils::Fs::isValidFileSystemName(newName)) {
         RaisedMessageBox::warning(this, tr("Rename error"),
                                   tr("The name is empty or contains forbidden characters, please choose a different one."),
                                   QMessageBox::Ok);

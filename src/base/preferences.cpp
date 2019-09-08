@@ -29,7 +29,7 @@
 
 #include "preferences.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <CoreServices/CoreServices.h>
 #endif
 #ifdef Q_OS_WIN
@@ -188,7 +188,7 @@ void Preferences::setHideZeroComboValues(const int n)
 
 // In Mac OS X the dock is sufficient for our needs so we disable the sys tray functionality.
 // See extensive discussion in https://github.com/qbittorrent/qBittorrent/pull/3018
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
 bool Preferences::systrayIntegration() const
 {
     return value("Preferences/General/SystrayEnabled", true).toBool();
@@ -238,7 +238,7 @@ void Preferences::setCloseToTrayNotified(const bool b)
 {
     setValue("Preferences/General/CloseToTrayNotified", b);
 }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 
 bool Preferences::isToolbarDisplayed() const
 {
@@ -884,7 +884,7 @@ void Preferences::resolvePeerHostNames(const bool resolve)
     setValue("Preferences/Connection/ResolvePeerHostNames", resolve);
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
 bool Preferences::useSystemIconTheme() const
 {
     return value("Preferences/Advanced/useSystemIconTheme", true).toBool();
@@ -988,7 +988,7 @@ void Preferences::setMagnetLinkAssoc(const bool set)
 }
 #endif // Q_OS_WIN
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 namespace
 {
     const CFStringRef torrentExtension = CFSTR("torrent");
@@ -1042,7 +1042,7 @@ void Preferences::setMagnetLinkAssoc()
     const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
     LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
 }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 
 int Preferences::getTrackerPort() const
 {
@@ -1054,7 +1054,7 @@ void Preferences::setTrackerPort(const int port)
     setValue("Preferences/Advanced/trackerPort", port);
 }
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {
     return value("Preferences/Advanced/updateCheck", true).toBool();
@@ -1096,7 +1096,7 @@ void Preferences::setConfirmRemoveAllTags(const bool enabled)
     setValue("Preferences/Advanced/confirmRemoveAllTags", enabled);
 }
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {
     return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());

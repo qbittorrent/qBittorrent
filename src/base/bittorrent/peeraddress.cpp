@@ -30,7 +30,9 @@
 
 #include <QString>
 
-BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(const QString &address)
+using namespace BitTorrent;
+
+PeerAddress PeerAddress::parse(const QString &address)
 {
     QVector<QStringRef> ipPort;
 
@@ -54,4 +56,15 @@ BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(const QString &address)
         return {};
 
     return {ip, port};
+}
+
+QString PeerAddress::toString() const
+{
+    if (ip.isNull())
+        return {};
+
+    const QString ipStr = (ip.protocol() == QAbstractSocket::IPv6Protocol)
+        ? ('[' + ip.toString() + ']')
+        : ip.toString();
+    return (ipStr + ':' + QString::number(port));
 }

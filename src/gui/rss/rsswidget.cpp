@@ -72,7 +72,7 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RenameAction"));
     m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RefreshAction"));
     m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RefreshAllAction"));
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon("RSS.NewFeed.AddAction"));
     m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.MarkAllRead"));
     m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RefreshAllAction"));

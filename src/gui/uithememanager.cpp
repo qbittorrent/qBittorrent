@@ -133,7 +133,7 @@ UIThemeManager::UIThemeManager()
         m_useCustomUITheme = false;
     }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_useSystemTheme = pref->useSystemIconTheme();
     const char *iconConfigFile = m_useSystemTheme ? "systemiconconfig.json" : "iconconfig.json";
 #else
@@ -183,7 +183,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId) const
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme) {
         QString themeIcon = m_iconMap.value(iconId).toString();
         QIcon icon = QIcon::fromTheme(themeIcon);
@@ -219,7 +219,7 @@ QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const QWidget *wi
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme) {
         QString path = Utils::Fs::tempPath() + iconId + ".png";
         if (!QFile::exists(path)) {

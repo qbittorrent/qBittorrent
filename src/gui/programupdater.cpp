@@ -78,7 +78,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     const QString OS_TYPE {"Mac OS X"};
 #elif defined(Q_OS_WIN)
     const QString OS_TYPE {(::IsWindows7OrGreater()

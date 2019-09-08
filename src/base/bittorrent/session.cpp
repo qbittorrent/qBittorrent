@@ -1929,12 +1929,20 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
                 , (patchedFastresumeData.constData() + patchedFastresumeData.size())};
             p.flags |= lt::add_torrent_params::flag_use_resume_save_path;
 
+            // load from .torrent file when fastresume doesn't contain the required `info` dict
+            if (!patchedFastresumeData.contains("4:infod"))
+                p.ti = torrentInfo.nativeInfo();
+
             // Still setup the default parameters and let libtorrent handle
             // the parameter merging
             hasCompleteFastresume = false;
 #else
             lt::error_code ec;
             p = lt::read_resume_data(fastresumeData, ec);
+
+            // load from .torrent file when fastresume doesn't contain the required `info` dict
+            if (!p.ti || !p.ti->is_valid())
+                p.ti = torrentInfo.nativeInfo();
 
             // libtorrent will always apply `file_priorities` to torrents,
             // if the field is present then the fastresume is considered to
@@ -1972,9 +1980,9 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
                             static_cast<lt::download_priority_t::underlying_type>(priority));
 #endif
             });
-        }
 
-        p.ti = torrentInfo.nativeInfo();
+            p.ti = torrentInfo.nativeInfo();
+        }
     }
 
     // Common
@@ -3653,6 +3661,11 @@ void Session::startUpTorrents()
     int resumedTorrentsCount = 0;
     const auto startupTorrent = [this, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
     {
+        // TODO: Remove loading of .torrent files when starting up existing torrents
+        // Starting from v4.2.0, the required `info` dict will be stored in fastresume too
+        // (besides .torrent file), that means we can remove loading of .torrent files in
+        // a later release, such as v4.3.0.
+
         const QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))

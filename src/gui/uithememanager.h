@@ -58,7 +58,7 @@ private:
     UIThemeManager(); // singleton clas
 
     static UIThemeManager *m_instance;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
 #endif
     QString m_flagsDir;
