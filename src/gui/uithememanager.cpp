@@ -96,13 +96,16 @@ bool UIThemeManager::loadIconConfig(const QString &configFile, const QString &ic
                 }
             }
         }
+        iconPath.append(ext);
 
-        if (!QFile::exists(iconPath + ext)) {
+        if (!QFile::exists(iconPath)) {
             LogMsg(tr(R"(Error in iconconfig "%1", error: Can't find file "%2" required in {'%3': '%4'})")
-                   .arg(configFile, iconPath + ext, i.key(), i.value().toString()), Log::WARNING);
+                   .arg(configFile, iconPath, i.key(), i.value().toString()), Log::WARNING);
+            valid = false;
+            continue;
         }
 
-        config.insert(i.key(), iconPath + ext);
+        config.insert(i.key(), iconPath);
     }
 
     return valid;
@@ -145,6 +148,7 @@ UIThemeManager::UIThemeManager()
     IconMap customIconMap;
     if (m_useCustomUITheme
         && loadIconConfig(QString(":uitheme/icons/") + iconConfigFile, ":uitheme/icons/", customIconMap)) {
+        // TODO: Merge default icon map and custom icon map
         m_iconMap = std::move(customIconMap);
         m_flagsDir = ":uitheme/icons/flags";
     }
