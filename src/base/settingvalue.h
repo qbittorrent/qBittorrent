@@ -68,6 +68,9 @@ public:
 
     CachedSettingValue<T> &operator=(const T &newValue)
     {
+        if (m_value == newValue)
+            return *this;
+
         m_value = newValue;
         storeValue(m_value);
         return *this;
