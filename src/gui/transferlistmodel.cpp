@@ -127,31 +127,8 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             }
         }
         else if (role == Qt::TextAlignmentRole) {
-            switch (section) {
-            case TR_AMOUNT_DOWNLOADED:
-            case TR_AMOUNT_UPLOADED:
-            case TR_AMOUNT_DOWNLOADED_SESSION:
-            case TR_AMOUNT_UPLOADED_SESSION:
-            case TR_AMOUNT_LEFT:
-            case TR_COMPLETED:
-            case TR_SIZE:
-            case TR_TOTAL_SIZE:
-            case TR_ETA:
-            case TR_SEEDS:
-            case TR_PEERS:
-            case TR_UPSPEED:
-            case TR_DLSPEED:
-            case TR_UPLIMIT:
-            case TR_DLLIMIT:
-            case TR_RATIO_LIMIT:
-            case TR_RATIO:
-            case TR_QUEUE_POSITION:
-            case TR_LAST_ACTIVITY:
-            case TR_AVAILABILITY:
-                return QVariant(Qt::AlignRight | Qt::AlignVCenter);
-            default:
-                return QAbstractListModel::headerData(section, orientation, role);
-            }
+            return QVariant((QLocale::system().textDirection() == Qt::LeftToRight
+                             ? Qt::AlignLeft : Qt::AlignRight) | Qt::AlignVCenter);
         }
     }
 
