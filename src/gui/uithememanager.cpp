@@ -76,7 +76,7 @@ bool UIThemeManager::loadIconConfig(const QString &configFile, const QString &ic
     if (!valid)
         return false;
 
-    // check is icon config valid and replace the values with full icon paths
+    config.reserve(jsonObject.size());
     for (auto i = jsonObject.begin(), e = jsonObject.end(); i != e; i++) {
         if (!i.value().isString()) {
             LogMsg(tr("Error in iconconfig \"%1\", error: Provided value for %2, is not a string.")
@@ -86,10 +86,10 @@ bool UIThemeManager::loadIconConfig(const QString &configFile, const QString &ic
         }
 
         QString iconPath = iconDir + i.value().toString();
-        
+
         const char *ext = nullptr;
         if (Utils::Fs::fileExtension(iconPath).isEmpty()) {
-            for(const char *e : allowedExts) {
+            for (const char *e : allowedExts) {
                 if (QFile::exists(iconPath + e)) {
                     ext = e;
                     break;
@@ -148,12 +148,14 @@ UIThemeManager::UIThemeManager()
     IconMap customIconMap;
     if (m_useCustomUITheme
         && loadIconConfig(QString(":uitheme/icons/") + iconConfigFile, ":uitheme/icons/", customIconMap)) {
-        // TODO: Merge default icon map and custom icon map
-        m_iconMap = std::move(customIconMap);
-        m_flagsDir = ":uitheme/icons/flags";
+        m_flagsDir = ":uitheme/icons/flags/";
+
+        // add unique and replace existing values
+        for (auto i = customIconMap.constBegin(), e = customIconMap.constEnd(); i != e; i++)
+            m_iconMap.insert(i.key(), i.value());
     }
     else {
-        m_flagsDir = ":icons/flags";
+        m_flagsDir = ":icons/flags/";
     }
 }
 
@@ -189,7 +191,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme) {
-        QString themeIcon = m_iconMap.value(iconId).toString();
+        QString themeIcon = m_iconMap.value(iconId);
         QIcon icon = QIcon::fromTheme(themeIcon);
         if (icon.name() != themeIcon)
             icon = QIcon::fromTheme(fallback, QIcon(getIconPath(iconId)));
