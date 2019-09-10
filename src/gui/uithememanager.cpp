@@ -150,14 +150,15 @@ UIThemeManager::UIThemeManager()
     }
 
     // recheck since in case of error should fallback to system default
-    if (!m_useCustomUITheme) {
+    if (!m_useCustomUITheme)
         m_flagsDir = ":icons/flags/";
-        try {
-            defaultIconMap = loadIconConfig(":icons/" + iconConfigFile, ":icons/");
-        } catch (const ThemeError &err) {
-            // only show the error, don't take any action but also system theme should not have any error
-            LogMsg(err.message(), Log::WARNING);
-        }
+
+    // always load defaultIconMap to resolve missing entries in customIconMap
+    try {
+        defaultIconMap = loadIconConfig(":icons/" + iconConfigFile, ":icons/");
+    } catch (const ThemeError &err) {
+        // only show the error, don't take any action but also system theme should not have any error
+        LogMsg(err.message(), Log::WARNING);
     }
 
     // merge defaultIconMap and customIconMap into m_iconMap
