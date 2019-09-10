@@ -62,5 +62,5 @@ private:
 #endif
     QString m_flagsDir;
     IconMap m_iconMap;
-    bool m_useCustomUITheme;
+    bool m_useCustomStylesheet;
 };

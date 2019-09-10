@@ -42,6 +42,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "qfile.h"
 #include "utils.h"
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
@@ -121,10 +122,10 @@ void UIThemeManager::initInstance()
         m_instance = new UIThemeManager;
 }
 
-UIThemeManager::UIThemeManager()
+UIThemeManager::UIThemeManager() : m_useCustomStylesheet(false)
 {
     const Preferences *const pref = Preferences::instance();
-    m_useCustomUITheme = pref->useCustomUITheme();
+    bool useCustomUITheme = pref->useCustomUITheme();
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_useSystemTheme = pref->useSystemIconTheme();
@@ -135,22 +136,23 @@ UIThemeManager::UIThemeManager()
 
     IconMap defaultIconMap, customIconMap;
 
-    if (m_useCustomUITheme) {
+    if (useCustomUITheme) {
         try {
             if (!QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
                 throw ThemeError(tr("Failed to load UI theme from file: \"%1\".")
                                  .arg(pref->customUIThemePath()));
+            m_useCustomStylesheet = QFile::exists(":uitheme/stylesheet.qss");
             customIconMap = loadIconConfig(":uitheme/icons/" + iconConfigFile, ":uitheme/icons/");
             m_flagsDir = ":uitheme/icons/flags/";
         } catch (const ThemeError &err) {
             LogMsg(err.message(), Log::WARNING);
             LogMsg("Encountered error in loading custom icon theme, falling back to system default", Log::WARNING);
-            m_useCustomUITheme = false;
+            useCustomUITheme = false;
         }
     }
 
     // recheck since in case of error should fallback to system default
-    if (!m_useCustomUITheme)
+    if (!useCustomUITheme)
         m_flagsDir = ":icons/flags/";
 
     // always load defaultIconMap to resolve missing entries in customIconMap
@@ -174,7 +176,7 @@ UIThemeManager *UIThemeManager::instance()
 
 void UIThemeManager::applyStyleSheet() const
 {
-    if (!m_useCustomUITheme) {
+    if (!m_useCustomStylesheet) {
         qApp->setStyleSheet({});
         return;
     }
