@@ -76,7 +76,6 @@ window.qBittorrent.PropTrackers = (function() {
 
                 if (trackers) {
                     trackers.each(function(tracker) {
-                        const url = window.qBittorrent.Misc.escapeHtml(tracker.url);
                         let status;
                         switch (tracker.status) {
                             case 0:
@@ -97,15 +96,15 @@ window.qBittorrent.PropTrackers = (function() {
                         }
 
                         const row = {
-                            rowId: url,
+                            rowId: tracker.url,
                             tier: tracker.tier,
-                            url: url,
+                            url: tracker.url,
                             status: status,
                             peers: tracker.num_peers,
                             seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
                             downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            message: window.qBittorrent.Misc.escapeHtml(tracker.msg)
+                            message: tracker.msg
                         };
 
                         torrentTrackersTable.updateRowData(row);

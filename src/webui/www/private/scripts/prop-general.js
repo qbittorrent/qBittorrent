@@ -171,7 +171,7 @@ window.qBittorrent.PropGeneral = (function() {
                         temp = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
                     $('pieces').set('html', temp);
 
-                    $('created_by').set('html', window.qBittorrent.Misc.escapeHtml(data.created_by));
+                    $('created_by').set('text', data.created_by);
                     if (data.addition_date != -1)
                         temp = new Date(data.addition_date * 1000).toLocaleString();
                     else
