@@ -39,6 +39,8 @@ class UIThemeManager : public QObject
     Q_DISABLE_COPY(UIThemeManager)
 
 public:
+    using IconMap = QHash<QString, QString>;
+
     static void initInstance();
     static void freeInstance();
     static UIThemeManager *instance();
@@ -52,9 +54,6 @@ public:
     QString getIconPath(const QString &iconId) const;
 
 private:
-    using IconMap = QHash<QString, QString>;
-
-    static bool loadIconConfig(const QString &configFile, const QString &iconDir, IconMap &config);
     UIThemeManager(); // singleton clas
 
     static UIThemeManager *m_instance;

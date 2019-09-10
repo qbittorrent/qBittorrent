@@ -38,77 +38,73 @@
 #include <QResource>
 
 #include "base/iconprovider.h"
+#include "base/exceptions.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "utils.h"
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
-static const char *allowedExts[] = {".svg", ".png"};
+static const QString allowedExts[] = {".svg", ".png"};
 
-
-bool UIThemeManager::loadIconConfig(const QString &configFile, const QString &iconDir, UIThemeManager::IconMap &config)
+namespace
 {
-    bool valid = false;
-    QFile iconJsonMap(configFile);
-    if (!iconJsonMap.open(QIODevice::ReadOnly)) {
-        LogMsg(tr("Failed to open \"%1\", error: %2.")
-               .arg(iconJsonMap.fileName(), iconJsonMap.errorString()), Log::WARNING);
-        return false;
-    }
+    class ThemeError : public RuntimeError
+    {
+    public:
+        using RuntimeError::RuntimeError;
+    };
 
-    QJsonObject jsonObject;
-    QJsonParseError err;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(iconJsonMap.readAll(), &err);
-    if (err.error != QJsonParseError::NoError) {
-        LogMsg(tr("Error occurred while parsing \"%1\", error: %2.")
-               .arg(iconJsonMap.fileName(), err.errorString()), Log::WARNING);
-    }
-    else if (!jsonDoc.isObject()) {
-        LogMsg(tr("Invalid icon configuration file format in \"%1\". JSON object is expected.")
-               .arg(iconJsonMap.fileName()), Log::WARNING);
-    }
-    else {
-        jsonObject = jsonDoc.object();
-        valid = true;
-    }
+    UIThemeManager::IconMap loadIconConfig(const QString &configFile, const QString &iconDir)
+    {
+        QFile iconJsonMap(configFile);
+        if (!iconJsonMap.open(QIODevice::ReadOnly))
+            throw ThemeError(QObject::tr("Failed to open \"%1\", error: %2.")
+                             .arg(iconJsonMap.fileName(), iconJsonMap.errorString()));
 
-    if (!valid)
-        return false;
+        QJsonObject jsonObject;
+        QJsonParseError err;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(iconJsonMap.readAll(), &err);
+        if (err.error != QJsonParseError::NoError)
+            throw ThemeError(QObject::tr("Error occurred while parsing \"%1\", error: %2.")
+                             .arg(iconJsonMap.fileName(), err.errorString()));
+        else if (!jsonDoc.isObject())
+            throw ThemeError(QObject::tr("Invalid icon configuration file format in \"%1\". JSON object is expected.")
+                             .arg(iconJsonMap.fileName()));
+        else
+            jsonObject = jsonDoc.object();
 
-    config.reserve(jsonObject.size());
-    for (auto i = jsonObject.begin(), e = jsonObject.end(); i != e; i++) {
-        if (!i.value().isString()) {
-            LogMsg(tr("Error in iconconfig \"%1\", error: Provided value for %2, is not a string.")
-                   .arg(configFile, i.key()), Log::WARNING);
-            valid = false;
-            continue;
-        }
+        UIThemeManager::IconMap config;
+        config.reserve(jsonObject.size());
+        for (auto i = jsonObject.begin(), e = jsonObject.end(); i != e; i++) {
+            if (!i.value().isString())
+                throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is not a string.")
+                                 .arg(configFile, i.key()));
+            if (i.value().toString().isEmpty())
+                throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is empty string")
+                                 .arg(configFile, i.key()));
 
-        QString iconPath = iconDir + i.value().toString();
+            QString iconPath = iconDir + i.value().toString();
 
-        const char *ext = nullptr;
-        if (Utils::Fs::fileExtension(iconPath).isEmpty()) {
-            for (const char *e : allowedExts) {
-                if (QFile::exists(iconPath + e)) {
-                    ext = e;
-                    break;
+            QString ext;
+            if (Utils::Fs::fileExtension(iconPath).isEmpty()) {
+                for (const QString allowedExt : allowedExts) {
+                    if (QFile::exists(iconPath + allowedExt)) {
+                        ext = allowedExt;
+                        break;
+                    }
                 }
             }
-        }
-        iconPath.append(ext);
+            iconPath.append(ext);
 
-        if (!QFile::exists(iconPath)) {
-            LogMsg(tr(R"(Error in iconconfig "%1", error: Can't find file "%2" required in {'%3': '%4'})")
-                   .arg(configFile, iconPath, i.key(), i.value().toString()), Log::WARNING);
-            valid = false;
-            continue;
-        }
+            if (!QFile::exists(iconPath))
+                throw ThemeError(QObject::tr(R"(Error in iconconfig "%1", error: Can't find file "%2" required in {'%3': '%4'})")
+                                 .arg(configFile, iconPath, i.key(), i.value().toString()));
 
-        config.insert(i.key(), iconPath);
+            config.insert(i.key(), iconPath);
+        }
+        return config;
     }
-
-    return valid;
 }
 
 void UIThemeManager::freeInstance()
@@ -129,34 +125,45 @@ UIThemeManager::UIThemeManager()
 {
     const Preferences *const pref = Preferences::instance();
     m_useCustomUITheme = pref->useCustomUITheme();
-    if (m_useCustomUITheme
-        && !QResource::registerResource(pref->customUIThemePath(), "/uitheme")) {
-        LogMsg(tr("Failed to load UI theme from file: \"%1\", falling back to system default theme.").arg(pref->customUIThemePath()), Log::WARNING);
-
-        m_useCustomUITheme = false;
-    }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_useSystemTheme = pref->useSystemIconTheme();
-    const char *iconConfigFile = m_useSystemTheme ? "systemiconconfig.json" : "iconconfig.json";
+    const QString iconConfigFile = m_useSystemTheme ? "systemiconconfig.json" : "iconconfig.json";
 #else
-    const char *iconConfigFile = "iconconfig.json";
+    const QString iconConfigFile = "iconconfig.json";
 #endif
 
-    loadIconConfig(QString(":icons/") + iconConfigFile, ":icons/", m_iconMap);
+    IconMap defaultIconMap, customIconMap;
 
-    IconMap customIconMap;
-    if (m_useCustomUITheme
-        && loadIconConfig(QString(":uitheme/icons/") + iconConfigFile, ":uitheme/icons/", customIconMap)) {
-        m_flagsDir = ":uitheme/icons/flags/";
-
-        // add unique and replace existing values
-        for (auto i = customIconMap.constBegin(), e = customIconMap.constEnd(); i != e; i++)
-            m_iconMap.insert(i.key(), i.value());
+    if (m_useCustomUITheme) {
+        try {
+            if (!QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
+                throw ThemeError(tr("Failed to load UI theme from file: \"%1\".")
+                                 .arg(pref->customUIThemePath()));
+            customIconMap = loadIconConfig(":uitheme/icons/" + iconConfigFile, ":uitheme/icons/");
+            m_flagsDir = ":uitheme/icons/flags/";
+        } catch (const ThemeError &err) {
+            LogMsg(err.message(), Log::WARNING);
+            LogMsg("Encountered error in loading custom icon theme, falling back to system default", Log::WARNING);
+            m_useCustomUITheme = false;
+        }
     }
-    else {
+
+    // recheck since in case of error should fallback to system default
+    if (!m_useCustomUITheme) {
         m_flagsDir = ":icons/flags/";
+        try {
+            defaultIconMap = loadIconConfig(":icons/" + iconConfigFile, ":icons/");
+        } catch (const ThemeError &err) {
+            // only show the error, don't take any action but also system theme should not have any error
+            LogMsg(err.message(), Log::WARNING);
+        }
     }
+
+    // merge defaultIconMap and customIconMap into m_iconMap
+    m_iconMap.swap(defaultIconMap);
+    for (auto i = customIconMap.constBegin(), e = customIconMap.constEnd(); i != e; i++)
+        m_iconMap.insert(i.key(), i.value()); // overwrite existing values or insert
 }
 
 UIThemeManager *UIThemeManager::instance()
