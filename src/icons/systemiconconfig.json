@@ -1,4 +1,5 @@
 {
+    "search-dirs": ["qbt-theme/", "skin/"],
     "AboutDialog.Logo": "skin/qbittorrent-tray.svg",
     "AddNewTorrentDialog.TorrentContentView.RenameAction": "edit-rename",
     "CategoryFilter.ContextMenu.AddAction": "list-add",

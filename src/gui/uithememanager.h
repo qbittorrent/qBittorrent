@@ -39,8 +39,6 @@ class UIThemeManager : public QObject
     Q_DISABLE_COPY(UIThemeManager)
 
 public:
-    using IconMap = QHash<QString, QString>;
-
     static void initInstance();
     static void freeInstance();
     static UIThemeManager *instance();
@@ -48,19 +46,20 @@ public:
     void applyStyleSheet() const;
 
     QIcon getIcon(const QString &iconId) const;
-    QIcon getIcon(const QString &iconId, const QString &fallback) const;
+    QIcon getIcon(const QString &iconId, const QString &fallbackSysThemeIcon) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
     QPixmap getScaledPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const;
     QString getIconPath(const QString &iconId) const;
 
 private:
-    UIThemeManager(); // singleton clas
+    UIThemeManager(); // singleton class
+    QString resolveIconId(const QString &iconId) const;
 
     static UIThemeManager *m_instance;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
 #endif
     QString m_flagsDir;
-    IconMap m_iconMap;
+    QHash<QString, QString> m_iconMap;
     bool m_useCustomStylesheet;
 };
