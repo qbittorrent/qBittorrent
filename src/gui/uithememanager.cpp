@@ -30,6 +30,7 @@
 #include "uithememanager.h"
 
 #include <QApplication>
+#include <QDir>
 #include <QFile>
 #include <QIcon>
 #include <QJsonArray>
@@ -206,7 +207,7 @@ UIThemeManager::UIThemeManager() : m_useCustomStylesheet(false)
     }
 
     // recheck since in case of error should fallback to system default
-    if (!useCustomUITheme)
+    if (!useCustomUITheme || !QDir(m_flagsDir).exists())
         m_flagsDir = ":icons/flags/";
 
     // always load defaultIconMap to resolve missing entries in customIconMap
@@ -302,7 +303,17 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallbackSysT
 QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return {};
-    return QIcon(m_flagsDir + countryIsoCode.toLower() + ".svg");
+
+    // cache to avoid rescaling svg icons
+    static QHash<QString, QIcon> flagCache;
+    const QString iconPath = m_flagsDir + countryIsoCode.toLower() + ".svg";
+    const auto iter = flagCache.find(iconPath);
+    if (iter != flagCache.end())
+        return *iter;
+
+    const QIcon icon {iconPath};
+    flagCache[iconPath] = icon;
+    return icon;
 }
 
 QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const
