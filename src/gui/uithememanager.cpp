@@ -66,11 +66,11 @@ namespace
 
         resultant map's values should either be system icons or exists
 
-        if not system icon, every value is searched in `iconDir` with subdirs provided 
+        if not system icon, every value is searched in `iconDir` with subdirs provided
         inside the json config (key - 'search-dirs') and in current `iconDir`
 
         function throws ThemeError if encountered with any error
-    **/
+     **/
     QHash<QString, QString> loadIconConfig(const QString &configFile, const QString &iconDir, bool isSystemIconTheme)
     {
         // load icon config from file
@@ -107,7 +107,7 @@ namespace
             searchDirs.insert(dir.toString());
         }
         jsonObject.remove("search-dirs"); // remove it so that it will not create collision when searching for icons
-        
+
         // resolves the names of icons in theme
         // if system icon theme should be used, then check if given icon is available in icon
         for (auto i = jsonObject.begin(), e = jsonObject.end(); i != e; ++i) {
@@ -122,7 +122,7 @@ namespace
 #ifdef QBT_SYSTEMICONS
             if (isSystemIconTheme) {
                 QIcon icon = QIcon::fromTheme(value);
-                if (icon.name() == value) {
+                if (!icon.name().isEmpty()) {
                     config.insert(i.key(), value);
                     continue;
                 }
@@ -279,12 +279,8 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallbackSysT
     if (m_useSystemTheme) {
         QString themeIcon = resolveIconId(iconId);
         QIcon icon = QIcon::fromTheme(themeIcon);
-        if (icon.name() != themeIcon) {
-            if (QFile::exists(themeIcon))
-                icon = QIcon(themeIcon);
-            else
-                icon = QIcon::fromTheme(fallbackSysThemeIcon, QIcon(getIconPath(themeIcon)));
-        }
+        if (icon.name() != themeIcon)
+            icon = QIcon::fromTheme(fallbackSysThemeIcon, QIcon(themeIcon));
         return icon;
     }
 #else
@@ -316,19 +312,5 @@ QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const QWidget *wi
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
-#ifdef QBT_SYSTEMICONS
-    if (m_useSystemTheme) {
-        // iconId is already resolved here
-        QString path = Utils::Fs::tempPath() + iconId + ".png";
-        if (!QFile::exists(path)) {
-            const QIcon icon = QIcon::fromTheme(iconId);
-            if (!icon.isNull())
-                icon.pixmap(32).save(path);
-            else 
-                return {};
-        }
-        return path;
-    }
-#endif
     return resolveIconId(iconId);
 }
