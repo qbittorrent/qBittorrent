@@ -104,6 +104,8 @@ namespace Net
     public:
         using QObject::QObject;
 
+        virtual void cancel() = 0;
+
     signals:
         void finished(const DownloadResult &result);
     };
@@ -117,6 +119,8 @@ namespace Net
         static void initInstance();
         static void freeInstance();
         static DownloadManager *instance();
+
+        DownloadHandler *download(const DownloadRequest &downloadRequest);
 
         template <typename Context, typename Func>
         void download(const DownloadRequest &downloadRequest, Context context, Func &&slot);
@@ -137,7 +141,6 @@ namespace Net
     private:
         explicit DownloadManager(QObject *parent = nullptr);
 
-        DownloadHandler *download(const DownloadRequest &downloadRequest);
         void applyProxySettings();
         void handleReplyFinished(const QNetworkReply *reply);
 
