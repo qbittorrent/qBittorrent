@@ -125,11 +125,13 @@ void Feed::markAsRead()
 
 void Feed::refresh()
 {
-    if (isLoading()) return;
+    if (isLoading())
+        m_downloadHandler->cancel();
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadManager::instance()->download(m_url, this, &Feed::handleDownloadFinished);
+    m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
+    connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
     m_isLoading = true;
     emit stateChanged(this);
