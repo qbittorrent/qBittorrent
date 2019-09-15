@@ -54,7 +54,7 @@ namespace
 #else
     using LTCreateFlags = lt::create_flags_t;
     using LTPieceIndex = lt::piece_index_t;
-#endif    
+#endif
 
     // do not include files and folders whose
     // name starts with a .
@@ -138,8 +138,8 @@ void TorrentCreatorThread::run()
 
         if (isInterruptionRequested()) return;
 
-        lt::create_torrent newTorrent(fs, m_params.pieceSize, -1
-                                        , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {}));
+        lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
+            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {}));
 
         // Add url seeds
         for (QString seed : asConst(m_params.urlSeeds)) {
@@ -205,7 +205,7 @@ void TorrentCreatorThread::run()
     }
 }
 
-int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized)
+int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
 {
     if (inputPath.isEmpty())
         return 0;
@@ -213,6 +213,6 @@ int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const i
     lt::file_storage fs;
     lt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
 
-    return lt::create_torrent(fs, pieceSize, -1
-                                , (isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {})).num_pieces();
+    return lt::create_torrent(fs, pieceSize, paddedFileSizeLimit
+        , (isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {})).num_pieces();
 }
