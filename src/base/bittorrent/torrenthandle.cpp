@@ -1861,6 +1861,23 @@ void TorrentHandle::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     const QString oldFilePath = m_oldPath[p->index].takeFirst();
     const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
 
+#ifdef Q_OS_WIN
+    // Hide .unwanted folders on Windows
+    const QString parent = Utils::Fs::branchPath(newFilePath);
+    if (QDir(parent).dirName() == ".unwanted") {
+        const QString unwantedAbsPath = QDir(savePath(true)).absoluteFilePath(parent);
+        if (QFile::exists(unwantedAbsPath)) {
+            std::wstring winPath = Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
+            const DWORD attrs = ::GetFileAttributesW(winPath.c_str());
+            if (!(attrs & FILE_ATTRIBUTE_HIDDEN)) {
+                qDebug() << "Hiding .unwanted folder (Windows)";
+                bool ret = ::SetFileAttributesW(winPath.c_str(), attrs | FILE_ATTRIBUTE_HIDDEN);
+                Q_ASSERT(ret != 0); Q_UNUSED(ret);
+            }
+        }
+    }
+#endif
+
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
 
@@ -2238,19 +2255,6 @@ void TorrentHandle::prioritizeFiles(const QVector<DownloadPriority> &priorities)
                     qWarning() << "File" << newAbsPath << "already exists at destination.";
                     continue;
                 }
-
-                const bool created = QDir().mkpath(unwantedAbsPath);
-                qDebug() << "unwanted folder was created:" << created;
-#ifdef Q_OS_WIN
-                if (created) {
-                    // Hide the folder on Windows
-                    qDebug() << "Hiding folder (Windows)";
-                    std::wstring winPath = Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
-                    DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-                    bool ret = ::SetFileAttributesW(winPath.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
-                    Q_ASSERT(ret != 0); Q_UNUSED(ret);
-                }
-#endif
                 QString parentPath = Utils::Fs::branchPath(filepath);
                 if (!parentPath.isEmpty() && !parentPath.endsWith('/'))
                     parentPath += '/';
