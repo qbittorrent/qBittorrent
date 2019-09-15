@@ -3902,6 +3902,11 @@ void Session::handleAlert(const lt::alert *a)
         case lt::external_ip_alert::alert_type:
             handleExternalIPAlert(static_cast<const lt::external_ip_alert*>(a));
             break;
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+        case lt::alerts_dropped_alert::alert_type:
+            handleAlertsDroppedAlert(static_cast<const lt::alerts_dropped_alert *>(a));
+            break;
+#endif
         }
     }
     catch (const std::exception &exc) {
@@ -4364,6 +4369,14 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
     emit statsUpdated();
 }
+
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
+{
+    LogMsg(tr("Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2")
+        .arg(QString::fromStdString(p->dropped_alerts.to_string()), QString::fromStdString(p->message())), Log::CRITICAL);
+}
+#endif
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {

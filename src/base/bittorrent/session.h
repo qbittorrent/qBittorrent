@@ -562,6 +562,9 @@ namespace BitTorrent
         void handleListenFailedAlert(const lt::listen_failed_alert *p);
         void handleExternalIPAlert(const lt::external_ip_alert *p);
         void handleSessionStatsAlert(const lt::session_stats_alert *p);
+#if (LIBTORRENT_VERSION_NUM >= 10200)
+        void handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const;
+#endif
 
         void createTorrentHandle(const lt::torrent_handle &nativeHandle);
 
