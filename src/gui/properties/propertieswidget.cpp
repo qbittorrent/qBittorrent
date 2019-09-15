@@ -333,7 +333,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
         // URL seeds
         loadUrlSeeds();
 
-        m_ui->labelCreatedByVal->setText(m_torrent->creator().toHtmlEscaped());
+        m_ui->labelCreatedByVal->setText(m_torrent->creator());
 
         // List files in torrent
         m_propListModel->model()->setupModelData(m_torrent->info());
