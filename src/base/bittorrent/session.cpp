@@ -4165,7 +4165,7 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 {
     LogMsg(tr("URL seed lookup failed for URL: '%1', message: %2")
         .arg(QString::fromStdString(p->server_url()), QString::fromStdString(p->message()))
-        , Log::CRITICAL);
+        , Log::WARNING);
 }
 
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
