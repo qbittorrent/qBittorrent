@@ -23,98 +23,113 @@
 
 'use strict';
 
-let categories = {};
-let defaultSavePath = "";
+if (window.qBittorrent === undefined) {
+    window.qBittorrent = {};
+}
 
-const getCategories = function() {
-    new Request.JSON({
-        url: 'api/v2/torrents/categories',
-        noCache: true,
-        method: 'get',
-        onSuccess: function(data) {
-            if (data) {
-                categories = data;
-                for (const i in data) {
-                    const category = data[i];
-                    const option = new Element("option");
-                    option.set('value', category.name);
-                    option.set('html', category.name);
-                    $('categorySelect').appendChild(option);
+window.qBittorrent.Download = (function() {
+    const exports = function() {
+        return {
+            changeCategorySelect: changeCategorySelect,
+            changeTMM: changeTMM
+        };
+    };
+
+    let categories = {};
+    let defaultSavePath = "";
+
+    const getCategories = function() {
+        new Request.JSON({
+            url: 'api/v2/torrents/categories',
+            noCache: true,
+            method: 'get',
+            onSuccess: function(data) {
+                if (data) {
+                    categories = data;
+                    for (const i in data) {
+                        const category = data[i];
+                        const option = new Element("option");
+                        option.set('value', category.name);
+                        option.set('html', category.name);
+                        $('categorySelect').appendChild(option);
+                    }
                 }
             }
-        }
-    }).send();
-};
+        }).send();
+    };
 
-const getPreferences = function() {
-    new Request.JSON({
-        url: 'api/v2/app/preferences',
-        method: 'get',
-        noCache: true,
-        onFailure: function() {
-            alert("Could not contact qBittorrent");
-        },
-        onSuccess: function(pref) {
-            if (!pref)
-                return;
+    const getPreferences = function() {
+        new Request.JSON({
+            url: 'api/v2/app/preferences',
+            method: 'get',
+            noCache: true,
+            onFailure: function() {
+                alert("Could not contact qBittorrent");
+            },
+            onSuccess: function(pref) {
+                if (!pref)
+                    return;
 
-            defaultSavePath = pref.save_path;
-            $('savepath').setProperty('value', defaultSavePath);
-            $('rootFolder').checked = pref.create_subfolder_enabled;
-            $('startTorrent').checked = !pref.start_paused_enabled;
+                defaultSavePath = pref.save_path;
+                $('savepath').setProperty('value', defaultSavePath);
+                $('rootFolder').checked = pref.create_subfolder_enabled;
+                $('startTorrent').checked = !pref.start_paused_enabled;
 
-            if (pref.auto_tmm_enabled == 1) {
-                $('autoTMM').selectedIndex = 1;
-                $('savepath').disabled = true;
+                if (pref.auto_tmm_enabled == 1) {
+                    $('autoTMM').selectedIndex = 1;
+                    $('savepath').disabled = true;
+                }
+                else {
+                    $('autoTMM').selectedIndex = 0;
+                }
             }
-            else {
-                $('autoTMM').selectedIndex = 0;
+        }).send();
+    };
+
+    const changeCategorySelect = function(item) {
+        if (item.value == "\\other") {
+            item.nextElementSibling.hidden = false;
+            item.nextElementSibling.value = "";
+            item.nextElementSibling.select();
+
+            if ($('autoTMM').selectedIndex == 1)
+                $('savepath').value = defaultSavePath;
+        }
+        else {
+            item.nextElementSibling.hidden = true;
+            const text = item.options[item.selectedIndex].innerHTML;
+            item.nextElementSibling.value = text;
+
+            if ($('autoTMM').selectedIndex == 1) {
+                const categoryName = item.value;
+                const category = categories[categoryName];
+                let savePath = defaultSavePath;
+                if (category !== undefined)
+                    savePath = (category['savePath'] !== "") ? category['savePath'] : (defaultSavePath + categoryName);
+                $('savepath').value = savePath;
             }
         }
-    }).send();
-};
+    };
 
-const changeCategorySelect = function(item) {
-    if (item.value == "\\other") {
-        item.nextElementSibling.hidden = false;
-        item.nextElementSibling.value = "";
-        item.nextElementSibling.select();
+    const changeTMM = function(item) {
+        if (item.selectedIndex == 1) {
+            $('savepath').disabled = true;
 
-        if ($('autoTMM').selectedIndex == 1)
-            $('savepath').value = defaultSavePath;
-    }
-    else {
-        item.nextElementSibling.hidden = true;
-        const text = item.options[item.selectedIndex].innerHTML;
-        item.nextElementSibling.value = text;
-
-        if ($('autoTMM').selectedIndex == 1) {
-            const categoryName = item.value;
+            const categorySelect = $('categorySelect');
+            const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
             const category = categories[categoryName];
-            let savePath = defaultSavePath;
-            if (category !== undefined)
-                savePath = (category['savePath'] !== "") ? category['savePath'] : (defaultSavePath + categoryName);
-            $('savepath').value = savePath;
+            $('savepath').value = (category === undefined) ? "" : category['savePath'];
         }
-    }
-};
+        else {
+            $('savepath').disabled = false;
+            $('savepath').value = defaultSavePath;
+        }
+    };
 
-const changeTMM = function(item) {
-    if (item.selectedIndex == 1) {
-        $('savepath').disabled = true;
+    $(window).addEventListener("load", function() {
+        getPreferences();
+        getCategories();
+    });
 
-        const categorySelect = $('categorySelect');
-        const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
-        const category = categories[categoryName];
-        $('savepath').value = (category === undefined) ? "" : category['savePath'];
-    }
-    else {
-        $('savepath').disabled = false;
-        $('savepath').value = defaultSavePath;
-    }
-};
-
-$(window).addEventListener("load", function() {
-    getPreferences();
-    getCategories();
-});
+    return exports();
+})();

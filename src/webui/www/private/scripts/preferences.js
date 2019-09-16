@@ -28,20 +28,34 @@
 
 'use strict';
 
-const LocalPreferencesClass = new Class({
-    get: function(key, defaultValue) {
-        const value = localStorage.getItem(key);
-        return ((value === null) && (defaultValue !== undefined))
-            ? defaultValue
-            : value;
-    },
+if (window.qBittorrent === undefined) {
+    window.qBittorrent = {};
+}
 
-    set: function(key, value) {
-        try {
-            localStorage.setItem(key, value);
+window.qBittorrent.LocalPreferences = (function() {
+    const exports = function() {
+        return {
+            LocalPreferencesClass: LocalPreferencesClass
+        };
+    };
+
+    const LocalPreferencesClass = new Class({
+        get: function(key, defaultValue) {
+            const value = localStorage.getItem(key);
+            return ((value === null) && (defaultValue !== undefined))
+                ? defaultValue
+                : value;
+        },
+
+        set: function(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            }
+            catch (err) {
+                console.error(err);
+            }
         }
-        catch (err) {
-            console.error(err);
-        }
-    }
-})
+    })
+
+    return exports();
+})();

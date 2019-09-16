@@ -32,79 +32,94 @@
 <script>
     'use strict';
 
-    const categoriesFilterContextMenu = new CategoriesFilterContextMenu({
-        targets: '.categoriesFilterContextMenuTarget',
-        menu: 'categoriesFilterMenu',
-        actions: {
-            createCategory: function(element, ref) {
-                createCategoryFN();
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.Filters = (function() {
+        const exports = function() {
+            return {
+                categoriesFilterContextMenu: categoriesFilterContextMenu,
+                tagsFilterContextMenu: tagsFilterContextMenu
+            };
+        };
+
+        const categoriesFilterContextMenu = new window.qBittorrent.ContextMenu.CategoriesFilterContextMenu({
+            targets: '.categoriesFilterContextMenuTarget',
+            menu: 'categoriesFilterMenu',
+            actions: {
+                createCategory: function(element, ref) {
+                    createCategoryFN();
+                },
+                editCategory: function(element, ref) {
+                    editCategoryFN(element.id);
+                },
+                deleteCategory: function(element, ref) {
+                    removeCategoryFN(element.id);
+                },
+                deleteUnusedCategories: function(element, ref) {
+                    deleteUnusedCategoriesFN();
+                },
+                startTorrentsByCategory: function(element, ref) {
+                    startTorrentsByCategoryFN(element.id);
+                },
+                pauseTorrentsByCategory: function(element, ref) {
+                    pauseTorrentsByCategoryFN(element.id);
+                },
+                deleteTorrentsByCategory: function(element, ref) {
+                    deleteTorrentsByCategoryFN(element.id);
+                }
             },
-            editCategory: function(element, ref) {
-                editCategoryFN(element.id);
+            offsets: {
+                x: -15,
+                y: 2
             },
-            deleteCategory: function(element, ref) {
-                removeCategoryFN(element.id);
-            },
-            deleteUnusedCategories: function(element, ref) {
-                deleteUnusedCategoriesFN();
-            },
-            startTorrentsByCategory: function(element, ref) {
-                startTorrentsByCategoryFN(element.id);
-            },
-            pauseTorrentsByCategory: function(element, ref) {
-                pauseTorrentsByCategoryFN(element.id);
-            },
-            deleteTorrentsByCategory: function(element, ref) {
-                deleteTorrentsByCategoryFN(element.id);
+            onShow: function() {
+                this.options.element.firstChild.click();
             }
-        },
-        offsets: {
-            x: -15,
-            y: 2
-        },
-        onShow: function() {
-            this.options.element.firstChild.click();
-        }
-    });
+        });
 
-    const tagsFilterContextMenu = new TagsFilterContextMenu({
-        targets: '.tagsFilterContextMenuTarget',
-        menu: 'tagsFilterMenu',
-        actions: {
-            createTag: function(element, ref) {
-                createTagFN();
+        const tagsFilterContextMenu = new window.qBittorrent.ContextMenu.TagsFilterContextMenu({
+            targets: '.tagsFilterContextMenuTarget',
+            menu: 'tagsFilterMenu',
+            actions: {
+                createTag: function(element, ref) {
+                    createTagFN();
+                },
+                deleteTag: function(element, ref) {
+                    removeTagFN(element.id);
+                },
+                deleteUnusedTags: function(element, ref) {
+                    deleteUnusedTagsFN();
+                },
+                startTorrentsByTag: function(element, ref) {
+                    startTorrentsByTagFN(element.id);
+                },
+                pauseTorrentsByTag: function(element, ref) {
+                    pauseTorrentsByTagFN(element.id);
+                },
+                deleteTorrentsByTag: function(element, ref) {
+                    deleteTorrentsByTagFN(element.id);
+                }
             },
-            deleteTag: function(element, ref) {
-                removeTagFN(element.id);
+            offsets: {
+                x: -15,
+                y: 2
             },
-            deleteUnusedTags: function(element, ref) {
-                deleteUnusedTagsFN();
-            },
-            startTorrentsByTag: function(element, ref) {
-                startTorrentsByTagFN(element.id);
-            },
-            pauseTorrentsByTag: function(element, ref) {
-                pauseTorrentsByTagFN(element.id);
-            },
-            deleteTorrentsByTag: function(element, ref) {
-                deleteTorrentsByTagFN(element.id);
+            onShow: function() {
+                this.options.element.firstChild.click();
             }
-        },
-        offsets: {
-            x: -15,
-            y: 2
-        },
-        onShow: function() {
-            this.options.element.firstChild.click();
-        }
-    });
+        });
 
-    if (LocalPreferences.get('filter_status_collapsed') === "true")
-        toggleFilterDisplay('status');
+        if (LocalPreferences.get('filter_status_collapsed') === "true")
+            toggleFilterDisplay('status');
 
-    if (LocalPreferences.get('filter_category_collapsed') === "true")
-        toggleFilterDisplay('category');
+        if (LocalPreferences.get('filter_category_collapsed') === "true")
+            toggleFilterDisplay('category');
 
-    if (LocalPreferences.get('filter_tag_collapsed') === "true")
-        toggleFilterDisplay('tag');
+        if (LocalPreferences.get('filter_tag_collapsed') === "true")
+            toggleFilterDisplay('tag');
+
+        return exports();
+    })();
 </script>
