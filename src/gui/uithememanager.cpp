@@ -62,16 +62,16 @@ namespace
         using RuntimeError::RuntimeError;
     };
 
-    /**
+    /*
         Loads Json Icon Config file from `configFile`, and transforms it into a map
 
-        resultant map's values should either be system icons or exists
+        resultant map's values should either be system icons or icon path that exists
 
         if not system icon, every value is searched in `iconDir` with subdirs provided
         inside the json config (key - 'search-dirs') and in current `iconDir`
 
         function throws ThemeError if encountered with any error
-     **/
+     */
     QHash<QString, QString> loadIconConfig(const QString &configFile, const QString &iconDir, bool isSystemIconTheme)
     {
         // load icon config from file
@@ -105,7 +105,7 @@ namespace
             if (!dir.isString())
                 throw ThemeError(QObject::tr("Invalid icon configuration file format in \"%1\". Member of search dirs should be a string")
                                  .arg(iconJsonMap.fileName()));
-            searchDirs.insert(dir.toString());
+            searchDirs.insert(Utils::Fs::toUniformPath(dir.toString()));
         }
         jsonObject.remove("search-dirs"); // remove it so that it will not create collision when searching for icons
 
@@ -115,11 +115,12 @@ namespace
             if (!i.value().isString())
                 throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is not a string.")
                                  .arg(configFile, i.key()));
-            if (i.value().toString().isEmpty())
+            
+            QString value = i.value().toString();
+            if (value.isEmpty())
                 throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is empty string")
                                  .arg(configFile, i.key()));
 
-            QString value = i.value().toString();
 #ifdef QBT_SYSTEMICONS
             if (isSystemIconTheme) {
                 QIcon icon = QIcon::fromTheme(value);
@@ -131,12 +132,13 @@ namespace
 #else
             Q_UNUSED(isSystemIconTheme)
 #endif
+
             QString iconPath;
             for (const QString &subDir : searchDirs) {
                 iconPath = iconDir + subDir + value;
 
                 QString ext;
-                if (Utils::Fs::fileExtension(iconPath).isEmpty()) {
+                if (!Utils::Fs::hasFileExtension(iconPath)) {
                     for (const QString allowedExt : allowedExts) {
                         if (QFile::exists(iconPath + allowedExt)) {
                             ext = allowedExt;
@@ -200,7 +202,7 @@ UIThemeManager::UIThemeManager() : m_useCustomStylesheet(false)
             m_flagsDir = ":uitheme/icons/flags/";
         } catch (const ThemeError &err) {
             LogMsg(err.message(), Log::WARNING);
-            LogMsg(tr("Encountered error in loading custom icon theme \"%1\", falling back to system default")
+            LogMsg(tr("Encountered error in loading custom icon theme \"%1\", falling back to system default.")
                    .arg(":uitheme/icons/" + iconConfigFile), Log::WARNING);
             useCustomUITheme = false;
         }
@@ -222,28 +224,6 @@ UIThemeManager::UIThemeManager() : m_useCustomStylesheet(false)
     m_iconMap.swap(defaultIconMap);
     for (auto i = customIconMap.constBegin(), e = customIconMap.constEnd(); i != e; i++)
         m_iconMap.insert(i.key(), i.value()); // overwrite existing values or insert
-}
-
-QString UIThemeManager::resolveIconId(const QString &iconId) const
-{
-    QString iconPath = m_iconMap.value(iconId);
-    QString iconIdPattern = iconId;
-    while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
-        const int sepIndex = iconIdPattern.indexOf('.');
-        iconIdPattern = "*" + ((sepIndex == -1) ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
-        const auto patternIter = m_iconMap.find(iconIdPattern);
-        if (patternIter != m_iconMap.end())
-            iconPath = *patternIter;
-        else
-            iconIdPattern.remove(0, 2); // removes "*."
-    }
-
-    if (iconPath.isEmpty()) {
-        LogMsg(tr("Can't resolve icon id - %1").arg(iconId), Log::WARNING);
-        return {};
-    }
-
-    return iconPath;
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -278,9 +258,9 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallbackSysT
 {
 #ifdef QBT_SYSTEMICONS
     if (m_useSystemTheme) {
-        QString themeIcon = resolveIconId(iconId);
+        const QString themeIcon = getIconPath(iconId);
         QIcon icon = QIcon::fromTheme(themeIcon);
-        if (icon.name() != themeIcon)
+        if (icon.name().isEmpty())
             icon = QIcon::fromTheme(fallbackSysThemeIcon, QIcon(themeIcon));
         return icon;
     }
@@ -323,5 +303,22 @@ QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const QWidget *wi
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
-    return resolveIconId(iconId);
+    QString iconPath = m_iconMap.value(iconId);
+    QString iconIdPattern = iconId;
+    while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
+        const int sepIndex = iconIdPattern.indexOf('.');
+        iconIdPattern = "*" + ((sepIndex == -1) ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
+        const auto patternIter = m_iconMap.find(iconIdPattern);
+        if (patternIter != m_iconMap.end())
+            iconPath = *patternIter;
+        else
+            iconIdPattern.remove(0, 2); // removes "*."
+    }
+
+    if (iconPath.isEmpty()) {
+        LogMsg(tr("Can't resolve icon id - %1").arg(iconId), Log::WARNING);
+        return {};
+    }
+
+    return iconPath;
 }

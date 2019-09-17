@@ -53,7 +53,6 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    QString resolveIconId(const QString &iconId) const;
 
     static UIThemeManager *m_instance;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))

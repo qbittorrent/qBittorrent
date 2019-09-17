@@ -53,6 +53,7 @@ namespace Utils
          */
         QString toUniformPath(const QString &path);
 
+        bool hasFileExtension(const QString &filename);
         QString fileExtension(const QString &filename);
         QString fileName(const QString &filePath);
         QString folderName(const QString &filePath);

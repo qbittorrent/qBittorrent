@@ -70,6 +70,11 @@ QString Utils::Fs::toUniformPath(const QString &path)
     return QDir::fromNativeSeparators(path);
 }
 
+bool Utils::Fs::hasFileExtension(const QString &filename)
+{
+    return filename.lastIndexOf('/') < filename.lastIndexOf('.');
+}
+
 /**
  * Returns the file extension part of a file name.
  */
