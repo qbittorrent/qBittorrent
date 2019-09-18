@@ -55,6 +55,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const QString &defau
     , m_storeStartSeeding(SETTINGS_KEY("StartSeeding"))
     , m_storeIgnoreRatio(SETTINGS_KEY("IgnoreRatio"))
     , m_storeOptimizeAlignment(SETTINGS_KEY("OptimizeAlignment"), true)
+    , m_paddedFileSizeLimit(SETTINGS_KEY("PaddedFileSizeLimit"), -1)
     , m_storeLastAddPath(SETTINGS_KEY("LastAddPath"), QDir::homePath())
     , m_storeTrackerList(SETTINGS_KEY("TrackerList"))
     , m_storeWebSeedList(SETTINGS_KEY("WebSeedList"))
@@ -117,6 +118,12 @@ int TorrentCreatorDialog::getPieceSize() const
     return pieceSizes[m_ui->comboPieceSize->currentIndex()] * 1024;
 }
 
+int TorrentCreatorDialog::getPaddedFileSizeLimit() const
+{
+    const int value = m_ui->spinPaddedFileSizeLimit->value();
+    return ((value >= 0) ? (value * 1024) : -1);
+}
+
 void TorrentCreatorDialog::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
@@ -164,14 +171,19 @@ void TorrentCreatorDialog::onCreateButtonClicked()
 
     const QStringList trackers = m_ui->trackersList->toPlainText().trimmed()
         .replace(QRegularExpression("\n\n[\n]+"), "\n\n").split('\n');
-    const QStringList urlSeeds = m_ui->URLSeedsList->toPlainText().split('\n', QString::SkipEmptyParts);
-    const QString comment = m_ui->txtComment->toPlainText();
-    const QString source = m_ui->lineEditSource->text();
+    const BitTorrent::TorrentCreatorParams params {
+        m_ui->checkPrivate->isChecked()
+        , m_ui->checkOptimizeAlignment->isChecked()
+        , getPieceSize(), getPaddedFileSizeLimit()
+        , input, destination
+        , m_ui->txtComment->toPlainText()
+        , m_ui->lineEditSource->text()
+        , trackers
+        , m_ui->URLSeedsList->toPlainText().split('\n', QString::SkipEmptyParts)
+    };
 
     // run the creator thread
-    m_creatorThread->create({ m_ui->checkPrivate->isChecked()
-        , m_ui->checkOptimizeAlignment->isChecked(), getPieceSize()
-        , input, destination, comment, source, trackers, urlSeeds });
+    m_creatorThread->create(params);
 }
 
 void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
@@ -216,11 +228,12 @@ void TorrentCreatorDialog::updatePiecesCount()
     const QString path = m_ui->textInputPath->text().trimmed();
     const bool isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked();
 
-    const int count = BitTorrent::TorrentCreatorThread::calculateTotalPieces(path, getPieceSize(), isAlignmentOptimized);
+    const int count = BitTorrent::TorrentCreatorThread::calculateTotalPieces(path
+        , getPieceSize(), isAlignmentOptimized, getPaddedFileSizeLimit());
     m_ui->labelTotalPieces->setText(QString::number(count));
 }
 
-void TorrentCreatorDialog::setInteractionEnabled(bool enabled)
+void TorrentCreatorDialog::setInteractionEnabled(const bool enabled) const
 {
     m_ui->textInputPath->setEnabled(enabled);
     m_ui->addFileButton->setEnabled(enabled);
@@ -229,10 +242,13 @@ void TorrentCreatorDialog::setInteractionEnabled(bool enabled)
     m_ui->URLSeedsList->setEnabled(enabled);
     m_ui->txtComment->setEnabled(enabled);
     m_ui->comboPieceSize->setEnabled(enabled);
+    m_ui->buttonCalcTotalPieces->setEnabled(enabled);
     m_ui->checkPrivate->setEnabled(enabled);
     m_ui->checkStartSeeding->setEnabled(enabled);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(enabled);
     m_ui->checkIgnoreShareLimits->setEnabled(enabled && m_ui->checkStartSeeding->isChecked());
+    m_ui->checkOptimizeAlignment->setEnabled(enabled);
+    m_ui->spinPaddedFileSizeLimit->setEnabled(enabled);
 }
 
 void TorrentCreatorDialog::saveSettings()
@@ -244,6 +260,7 @@ void TorrentCreatorDialog::saveSettings()
     m_storeStartSeeding = m_ui->checkStartSeeding->isChecked();
     m_storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
     m_storeOptimizeAlignment = m_ui->checkOptimizeAlignment->isChecked();
+    m_paddedFileSizeLimit = m_ui->spinPaddedFileSizeLimit->value();
 
     m_storeTrackerList = m_ui->trackersList->toPlainText();
     m_storeWebSeedList = m_ui->URLSeedsList->toPlainText();
@@ -261,8 +278,9 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->checkPrivate->setChecked(m_storePrivateTorrent);
     m_ui->checkStartSeeding->setChecked(m_storeStartSeeding);
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
-    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
+    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment);
+    m_ui->spinPaddedFileSizeLimit->setValue(m_paddedFileSizeLimit);
 
     m_ui->trackersList->setPlainText(m_storeTrackerList);
     m_ui->URLSeedsList->setPlainText(m_storeWebSeedList);

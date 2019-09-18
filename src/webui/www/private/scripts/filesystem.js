@@ -30,32 +30,49 @@
 
 // This file is the JavaScript implementation of base/utils/fs.cpp
 
-const QB_EXT = '.!qB';
-const PathSeparator = '/';
-
-/**
- * Returns the file extension part of a file name.
- */
-function fileExtension(filename) {
-    const name = filename.endsWith(QB_EXT)
-        ? filename.substring(0, filename.length - QB_EXT.length)
-        : filename;
-    const pointIndex = name.lastIndexOf('.');
-    if (pointIndex === -1)
-        return '';
-    return name.substring(pointIndex + 1);
+if (window.qBittorrent === undefined) {
+    window.qBittorrent = {};
 }
 
-function fileName(filepath) {
-    const slashIndex = filepath.lastIndexOf(PathSeparator);
-    if (slashIndex === -1)
-        return filepath;
-    return filepath.substring(slashIndex + 1);
-}
+window.qBittorrent.Filesystem = (function() {
+    const exports = function() {
+        return {
+            PathSeparator: PathSeparator,
+            fileExtension: fileExtension,
+            fileName: fileName,
+            folderName: folderName
+        };
+    };
 
-function folderName(filepath) {
-    const slashIndex = filepath.lastIndexOf(PathSeparator);
-    if (slashIndex === -1)
-        return filepath;
-    return filepath.substring(0, slashIndex);
-}
+    const QB_EXT = '.!qB';
+    const PathSeparator = '/';
+
+    /**
+     * Returns the file extension part of a file name.
+     */
+    const fileExtension = function(filename) {
+        const name = filename.endsWith(QB_EXT)
+            ? filename.substring(0, filename.length - QB_EXT.length)
+            : filename;
+        const pointIndex = name.lastIndexOf('.');
+        if (pointIndex === -1)
+            return '';
+        return name.substring(pointIndex + 1);
+    };
+
+    const fileName = function(filepath) {
+        const slashIndex = filepath.lastIndexOf(PathSeparator);
+        if (slashIndex === -1)
+            return filepath;
+        return filepath.substring(slashIndex + 1);
+    };
+
+    const folderName = function(filepath) {
+        const slashIndex = filepath.lastIndexOf(PathSeparator);
+        if (slashIndex === -1)
+            return filepath;
+        return filepath.substring(0, slashIndex);
+    };
+
+    return exports();
+})();

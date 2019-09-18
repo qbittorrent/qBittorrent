@@ -68,8 +68,10 @@ private:
 
     void saveSettings();
     void loadSettings();
+    void setInteractionEnabled(bool enabled) const;
+
     int getPieceSize() const;
-    void setInteractionEnabled(bool enabled);
+    int getPaddedFileSizeLimit() const;
 
     Ui::TorrentCreatorDialog *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
@@ -81,6 +83,7 @@ private:
     CachedSettingValue<bool> m_storeStartSeeding;
     CachedSettingValue<bool> m_storeIgnoreRatio;
     CachedSettingValue<bool> m_storeOptimizeAlignment;
+    CachedSettingValue<int> m_paddedFileSizeLimit;
     CachedSettingValue<QString> m_storeLastAddPath;
     CachedSettingValue<QString> m_storeTrackerList;
     CachedSettingValue<QString> m_storeWebSeedList;

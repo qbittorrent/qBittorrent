@@ -38,7 +38,7 @@
    ----------------------------------------------------------------- */
 'use strict';
 
-const LocalPreferences = new LocalPreferencesClass();
+const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferencesClass();
 
 let saveWindowSize = function() {};
 let loadWindowWidth = function() {};

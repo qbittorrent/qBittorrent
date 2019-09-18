@@ -37,9 +37,9 @@
             const origValues = new URI().getData('orig').split('|');
 
             const values = {
-                ratioLimit: friendlyFloat(origValues[0], 2),
+                ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
                 seedingTimeLimit: parseInt(origValues[1]),
-                maxRatio: friendlyFloat(origValues[2], 2),
+                maxRatio: window.qBittorrent.Misc.friendlyFloat(origValues[2], 2),
                 maxSeedingTime: parseInt(origValues[3])
             };
 

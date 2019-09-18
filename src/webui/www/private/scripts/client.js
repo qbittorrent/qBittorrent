@@ -24,20 +24,9 @@
 
 'use strict';
 
-this.torrentsTable = new TorrentsTable();
-const torrentTrackersTable = new TorrentTrackersTable();
-const torrentPeersTable = new TorrentPeersTable();
-const torrentFilesTable = new TorrentFilesTable();
-const searchResultsTable = new SearchResultsTable();
-const searchPluginsTable = new SearchPluginsTable();
+this.torrentsTable = new window.qBittorrent.DynamicTable.TorrentsTable();
 
 let updatePropertiesPanel = function() {};
-
-let updateTorrentData = function() {};
-let updateTrackersData = function() {};
-let updateTorrentPeersData = function() {};
-let updateWebSeedsData = function() {};
-let updateTorrentFilesData = function() {};
 
 this.updateMainData = function() {};
 let alternativeSpeedLimits = false;
@@ -365,12 +354,12 @@ window.addEvent('load', function() {
         const create_link = function(hash, text, count) {
             const html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">'
                 + '<img src="images/qbt-theme/inode-directory.svg"/>'
-                + escapeHtml(text) + ' (' + count + ')' + '</a>';
+                + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
                 id: hash,
                 html: html
             });
-            categoriesFilterContextMenu.addTarget(el);
+            window.qBittorrent.Filters.categoriesFilterContextMenu.addTarget(el);
             return el;
         };
 
@@ -422,12 +411,12 @@ window.addEvent('load', function() {
         const createLink = function(hash, text, count) {
             const html = '<a href="#" onclick="setTagFilter(' + hash + ');return false;">'
                 + '<img src="images/qbt-theme/inode-directory.svg"/>'
-                + escapeHtml(text) + ' (' + count + ')' + '</a>';
+                + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
                 id: hash,
                 html: html
             });
-            tagsFilterContextMenu.addTarget(el);
+            window.qBittorrent.Filters.tagsFilterContextMenu.addTarget(el);
             return el;
         };
 
@@ -579,11 +568,11 @@ window.addEvent('load', function() {
                     updateFiltersList();
                     if (update_categories) {
                         updateCategoryList();
-                        torrentsTableContextMenu.updateCategoriesSubMenu(category_list);
+                        window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(category_list);
                     }
                     if (updateTags) {
                         updateTagList();
-                        torrentsTableContextMenu.updateTagsSubMenu(tagList);
+                        window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(tagList);
                     }
 
                     if (full_update)
@@ -603,39 +592,39 @@ window.addEvent('load', function() {
     };
 
     const processServerState = function() {
-        let transfer_info = friendlyUnit(serverState.dl_info_speed, true);
+        let transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true);
         if (serverState.dl_rate_limit > 0)
-            transfer_info += " [" + friendlyUnit(serverState.dl_rate_limit, true) + "]";
-        transfer_info += " (" + friendlyUnit(serverState.dl_info_data, false) + ")";
+            transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_rate_limit, true) + "]";
+        transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_data, false) + ")";
         $("DlInfos").set('html', transfer_info);
-        transfer_info = friendlyUnit(serverState.up_info_speed, true);
+        transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true);
         if (serverState.up_rate_limit > 0)
-            transfer_info += " [" + friendlyUnit(serverState.up_rate_limit, true) + "]";
-        transfer_info += " (" + friendlyUnit(serverState.up_info_data, false) + ")";
+            transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true) + "]";
+        transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);
         if (speedInTitle) {
-            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", friendlyUnit(serverState.dl_info_speed, true)).replace("%2", friendlyUnit(serverState.up_info_speed, true)).replace("%3", qbtVersion());
+            document.title = "QBT_TR([D: %1, U: %2] qBittorrent %3)QBT_TR[CONTEXT=MainWindow]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true)).replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)).replace("%3", qbtVersion());
             document.title += " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]";
         }
         else
             document.title = ("qBittorrent " + qbtVersion() + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
-        $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", friendlyUnit(serverState.free_space_on_disk)));
+        $('freeSpaceOnDisk').set('html', 'QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]'.replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk)));
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
         if (document.getElementById("statisticspage")) {
-            $('AlltimeDL').set('html', friendlyUnit(serverState.alltime_dl, false));
-            $('AlltimeUL').set('html', friendlyUnit(serverState.alltime_ul, false));
-            $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
+            $('AlltimeDL').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.alltime_dl, false));
+            $('AlltimeUL').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.alltime_ul, false));
+            $('TotalWastedSession').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.total_wasted_session, false));
             $('GlobalRatio').set('html', serverState.global_ratio);
             $('TotalPeerConnections').set('html', serverState.total_peer_connections);
             $('ReadCacheHits').set('html', serverState.read_cache_hits + "%");
-            $('TotalBuffersSize').set('html', friendlyUnit(serverState.total_buffers_size, false));
+            $('TotalBuffersSize').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.total_buffers_size, false));
             $('WriteCacheOverload').set('html', serverState.write_cache_overload + "%");
             $('ReadCacheOverload').set('html', serverState.read_cache_overload + "%");
             $('QueuedIOJobs').set('html', serverState.queued_io_jobs);
             $('AverageTimeInQueue').set('html', serverState.average_time_queue + " ms");
-            $('TotalQueuedSize').set('html', friendlyUnit(serverState.total_queued_size, false));
+            $('TotalQueuedSize').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.total_queued_size, false));
         }
 
         if (serverState.connection_status == "connected")
@@ -790,7 +779,7 @@ window.addEvent('load', function() {
 
     const showSearchTab = function() {
         if (!searchTabInitialized) {
-            initSearchTab();
+            window.qBittorrent.Search.init();
             searchTabInitialized = true;
         }
 
@@ -878,16 +867,26 @@ window.addEvent('load', function() {
             MochaUI.initializeTabs('propertiesTabs');
 
             updatePropertiesPanel = function() {
-                if (!$('prop_general').hasClass('invisible'))
-                    updateTorrentData();
-                else if (!$('prop_trackers').hasClass('invisible'))
-                    updateTrackersData();
-                else if (!$('prop_peers').hasClass('invisible'))
-                    updateTorrentPeersData();
-                else if (!$('prop_webseeds').hasClass('invisible'))
-                    updateWebSeedsData();
-                else if (!$('prop_files').hasClass('invisible'))
-                    updateTorrentFilesData();
+                if (!$('prop_general').hasClass('invisible')) {
+                    if (window.qBittorrent.PropGeneral !== undefined)
+                        window.qBittorrent.PropGeneral.updateData();
+                }
+                else if (!$('prop_trackers').hasClass('invisible')) {
+                    if (window.qBittorrent.PropTrackers !== undefined)
+                        window.qBittorrent.PropTrackers.updateData();
+                }
+                else if (!$('prop_peers').hasClass('invisible')) {
+                    if (window.qBittorrent.PropPeers !== undefined)
+                        window.qBittorrent.PropPeers.updateData();
+                }
+                else if (!$('prop_webseeds').hasClass('invisible')) {
+                    if (window.qBittorrent.PropWebseeds !== undefined)
+                        window.qBittorrent.PropWebseeds.updateData();
+                }
+                else if (!$('prop_files').hasClass('invisible')) {
+                    if (window.qBittorrent.PropFiles !== undefined)
+                        window.qBittorrent.PropFiles.updateData();
+                }
             };
 
             $('PropGeneralLink').addEvent('click', function(e) {

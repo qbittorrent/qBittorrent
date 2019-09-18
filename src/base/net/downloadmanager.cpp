@@ -121,6 +121,8 @@ namespace
         explicit DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent);
         ~DownloadHandlerImpl() override;
 
+        void cancel() override;
+
         QString url() const;
         const Net::DownloadRequest downloadRequest() const;
 
@@ -414,6 +416,17 @@ namespace
     {
         if (m_reply)
             delete m_reply;
+    }
+
+    void DownloadHandlerImpl::cancel()
+    {
+        if (m_reply) {
+            m_reply->abort();
+        }
+        else {
+            setError(errorCodeToString(QNetworkReply::OperationCanceledError));
+            finish();
+        }
     }
 
     void DownloadHandlerImpl::assignNetworkReply(QNetworkReply *reply)
