@@ -478,7 +478,6 @@ namespace BitTorrent
         void torrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
         void torrentTagAdded(TorrentHandle *const torrent, const QString &tag);
         void torrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
-        void trackerAuthenticationRequired(BitTorrent::TorrentHandle *const torrent);
         void trackerError(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
         void trackerlessStateChanged(BitTorrent::TorrentHandle *const torrent, bool trackerless);
         void trackersAdded(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
