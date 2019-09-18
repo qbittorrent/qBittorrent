@@ -1796,11 +1796,6 @@ QHash<InfoHash, TorrentHandle *> Session::torrents() const
     return m_torrents;
 }
 
-TorrentStatusReport Session::torrentStatusReport() const
-{
-    return m_torrentStatusReport;
-}
-
 bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
 {
     // `source`: .torrent file path/url or magnet uri
@@ -4402,26 +4397,6 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
         torrent->handleStateUpdate(status);
         updatedTorrents.push_back(torrent);
-    }
-
-    m_torrentStatusReport = TorrentStatusReport();
-    for (const TorrentHandle *torrent : asConst(m_torrents)) {
-        if (torrent->isDownloading())
-            ++m_torrentStatusReport.nbDownloading;
-        if (torrent->isUploading())
-            ++m_torrentStatusReport.nbSeeding;
-        if (torrent->isCompleted())
-            ++m_torrentStatusReport.nbCompleted;
-        if (torrent->isPaused())
-            ++m_torrentStatusReport.nbPaused;
-        if (torrent->isResumed())
-            ++m_torrentStatusReport.nbResumed;
-        if (torrent->isActive())
-            ++m_torrentStatusReport.nbActive;
-        if (torrent->isInactive())
-            ++m_torrentStatusReport.nbInactive;
-        if (torrent->isErrored())
-            ++m_torrentStatusReport.nbErrored;
     }
 
     emit torrentsUpdated(updatedTorrents);

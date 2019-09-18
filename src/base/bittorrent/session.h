@@ -86,18 +86,6 @@ namespace BitTorrent
     class TrackerEntry;
     struct CreateTorrentParams;
 
-    struct TorrentStatusReport
-    {
-        uint nbDownloading = 0;
-        uint nbSeeding = 0;
-        uint nbCompleted = 0;
-        uint nbActive = 0;
-        uint nbInactive = 0;
-        uint nbPaused = 0;
-        uint nbResumed = 0;
-        uint nbErrored = 0;
-    };
-
     class SessionSettingsEnums
     {
         Q_GADGET
@@ -395,7 +383,6 @@ namespace BitTorrent
         void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QHash<InfoHash, TorrentHandle *> torrents() const;
-        TorrentStatusReport torrentStatusReport() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
         bool hasRunningSeed() const;
@@ -694,7 +681,6 @@ namespace BitTorrent
         QHash<InfoHash, CreateTorrentParams> m_addingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         QHash<InfoHash, RemovingTorrentData> m_removingTorrents;
-        TorrentStatusReport m_torrentStatusReport;
         QStringMap m_categories;
         QSet<QString> m_tags;
 

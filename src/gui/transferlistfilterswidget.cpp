@@ -146,7 +146,11 @@ void BaseFilterWidget::toggleFilter(bool checked)
 StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *transferList)
     : BaseFilterWidget(parent, transferList)
 {
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded
+            , this, &StatusFilterWidget::updateTorrentNumbers);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
+            , this, &StatusFilterWidget::updateTorrentNumbers);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved
             , this, &StatusFilterWidget::updateTorrentNumbers);
 
     // Add status filters
@@ -190,17 +194,44 @@ StatusFilterWidget::~StatusFilterWidget()
 
 void StatusFilterWidget::updateTorrentNumbers()
 {
-    const BitTorrent::TorrentStatusReport report = BitTorrent::Session::instance()->torrentStatusReport();
+    int nbDownloading = 0;
+    int nbSeeding = 0;
+    int nbCompleted = 0;
+    int nbResumed = 0;
+    int nbPaused = 0;
+    int nbActive = 0;
+    int nbInactive = 0;
+    int nbErrored = 0;
 
-    item(TorrentFilter::All)->setData(Qt::DisplayRole, tr("All (%1)").arg(report.nbActive + report.nbInactive));
-    item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, tr("Downloading (%1)").arg(report.nbDownloading));
-    item(TorrentFilter::Seeding)->setData(Qt::DisplayRole, tr("Seeding (%1)").arg(report.nbSeeding));
-    item(TorrentFilter::Completed)->setData(Qt::DisplayRole, tr("Completed (%1)").arg(report.nbCompleted));
-    item(TorrentFilter::Paused)->setData(Qt::DisplayRole, tr("Paused (%1)").arg(report.nbPaused));
-    item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, tr("Resumed (%1)").arg(report.nbResumed));
-    item(TorrentFilter::Active)->setData(Qt::DisplayRole, tr("Active (%1)").arg(report.nbActive));
-    item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, tr("Inactive (%1)").arg(report.nbInactive));
-    item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(report.nbErrored));
+    const QHash<BitTorrent::InfoHash, BitTorrent::TorrentHandle *> torrents = BitTorrent::Session::instance()->torrents();
+    for (const BitTorrent::TorrentHandle *torrent : torrents) {
+        if (torrent->isDownloading())
+            ++nbDownloading;
+        if (torrent->isUploading())
+            ++nbSeeding;
+        if (torrent->isCompleted())
+            ++nbCompleted;
+        if (torrent->isResumed())
+            ++nbResumed;
+        if (torrent->isPaused())
+            ++nbPaused;
+        if (torrent->isActive())
+            ++nbActive;
+        if (torrent->isInactive())
+            ++nbInactive;
+        if (torrent->isErrored())
+            ++nbErrored;
+    }
+
+    item(TorrentFilter::All)->setData(Qt::DisplayRole, tr("All (%1)").arg(torrents.count()));
+    item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, tr("Downloading (%1)").arg(nbDownloading));
+    item(TorrentFilter::Seeding)->setData(Qt::DisplayRole, tr("Seeding (%1)").arg(nbSeeding));
+    item(TorrentFilter::Completed)->setData(Qt::DisplayRole, tr("Completed (%1)").arg(nbCompleted));
+    item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, tr("Resumed (%1)").arg(nbResumed));
+    item(TorrentFilter::Paused)->setData(Qt::DisplayRole, tr("Paused (%1)").arg(nbPaused));
+    item(TorrentFilter::Active)->setData(Qt::DisplayRole, tr("Active (%1)").arg(nbActive));
+    item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, tr("Inactive (%1)").arg(nbInactive));
+    item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(nbErrored));
 }
 
 void StatusFilterWidget::showMenu(const QPoint &) {}
