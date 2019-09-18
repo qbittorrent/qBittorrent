@@ -52,24 +52,25 @@ SpeedLimitDialog::~SpeedLimitDialog()
     delete m_ui;
 }
 
-bool SpeedLimitDialog::askNewSpeedLimits(QWidget *parent, const QString &title, SpeedLimits &speedLimits)
+bool SpeedLimitDialog::askNewSpeedLimits(QWidget *parent, const QString &title
+        , const OldSpeedLimits &oldSpeedLimits, NewSpeedLimits &newSpeedLimits)
 {
     SpeedLimitDialog dlg(parent);
     dlg.setWindowTitle(title);
-    dlg.setupDialog(speedLimits);
+    dlg.setupDialog(oldSpeedLimits);
 
     if (dlg.exec() != QDialog::Accepted)
         return false;
 
     if (dlg.getUploadSpeedLimit() < 0)
-        speedLimits.uploadLimit = 0;
+        newSpeedLimits.uploadLimit = 0;
     else
-        speedLimits.uploadLimit = (dlg.getUploadSpeedLimit() * 1024);
+        newSpeedLimits.uploadLimit = (dlg.getUploadSpeedLimit() * 1024);
 
     if (dlg.getDownloadSpeedLimit() < 0)
-        speedLimits.downloadLimit = 0;
+        newSpeedLimits.downloadLimit = 0;
     else
-        speedLimits.downloadLimit = (dlg.getDownloadSpeedLimit() * 1024);
+        newSpeedLimits.downloadLimit = (dlg.getDownloadSpeedLimit() * 1024);
 
     return true;
 }
@@ -131,11 +132,11 @@ int SpeedLimitDialog::getUploadSpeedLimit() const
     return m_ui->spinUploadLimit->value();
 }
 
-void SpeedLimitDialog::setupDialog(const SpeedLimits &speedLimits)
+void SpeedLimitDialog::setupDialog(const OldSpeedLimits &oldSpeedLimits)
 {
-    m_globalUploadLimit = (speedLimits.maxUploadLimit / 1024);
-    m_globalDownloadLimit = (speedLimits.maxDownloadLimit / 1024);
-    m_isGlobalLimits = speedLimits.isGlobalLimits;
+    m_globalUploadLimit = (oldSpeedLimits.maxUploadLimit / 1024);
+    m_globalDownloadLimit = (oldSpeedLimits.maxDownloadLimit / 1024);
+    m_isGlobalLimits = oldSpeedLimits.isGlobalLimits;
 
     if (!m_isGlobalLimits)
         m_ui->labelWarningIcon->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/dialog-warning.svg", this, 16));
@@ -147,8 +148,8 @@ void SpeedLimitDialog::setupDialog(const SpeedLimits &speedLimits)
     retainHiddenSpace.setRetainSizeWhenHidden(true);
     m_ui->labelWarning->setSizePolicy(retainHiddenSpace);
 
-    const int uploadVal = qMax(0, (speedLimits.uploadLimit / 1024));
-    const int downloadVal = qMax(0, (speedLimits.downloadLimit / 1024));
+    const int uploadVal = qMax(0, (oldSpeedLimits.uploadLimit / 1024));
+    const int downloadVal = qMax(0, (oldSpeedLimits.downloadLimit / 1024));
     int maxUpload = (m_globalUploadLimit <= 0) ? 10000 : m_globalUploadLimit;
     int maxDownload = (m_globalDownloadLimit <= 0) ? 10000 : m_globalDownloadLimit;
 

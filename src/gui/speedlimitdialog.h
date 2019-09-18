@@ -36,13 +36,19 @@ namespace Ui
     class SpeedLimitDialog;
 }
 
-struct SpeedLimits
+struct OldSpeedLimits
 {
     int uploadLimit = 0;
     int downloadLimit = 0;
     int maxUploadLimit = 0;
     int maxDownloadLimit = 0;
     bool isGlobalLimits = true;
+};
+
+struct NewSpeedLimits
+{
+    int uploadLimit = 0;
+    int downloadLimit = 0;
 };
 
 class SpeedLimitDialog : public QDialog
@@ -52,7 +58,8 @@ class SpeedLimitDialog : public QDialog
 public:
     explicit SpeedLimitDialog(QWidget *parent);
     ~SpeedLimitDialog();
-    static bool askNewSpeedLimits(QWidget *parent, const QString &title, SpeedLimits &speedLimits);
+    static bool askNewSpeedLimits(QWidget *parent, const QString &title
+            , const OldSpeedLimits &oldSpeedLimits, NewSpeedLimits &newSpeedLimits);
 
 private slots:
     void updateUploadSpinValue(int val);
@@ -61,7 +68,7 @@ private slots:
     void updateDownloadSliderValue(int val);
 
 private:
-    void setupDialog(const SpeedLimits &speedLimits);
+    void setupDialog(const OldSpeedLimits &oldSpeedLimits);
     int getUploadSpeedLimit() const;
     int getDownloadSpeedLimit() const;
     void hideShowWarning();

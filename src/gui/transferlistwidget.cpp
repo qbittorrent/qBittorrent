@@ -514,19 +514,20 @@ void TransferListWidget::setSpeedLimitsSelectedTorrents()
 
     const BitTorrent::Session *session = BitTorrent::Session::instance();
     const bool isAltLimitEnabled = session->isAltGlobalSpeedLimitEnabled();
-    SpeedLimits speedLimits = {
+    OldSpeedLimits oldSpeedLimits = {
         oldUploadLimit,
         oldDownloadLimit,
         isAltLimitEnabled ? session->altGlobalUploadSpeedLimit() : session->globalUploadSpeedLimit(),
         isAltLimitEnabled ? session->altGlobalDownloadSpeedLimit() : session->globalDownloadSpeedLimit(),
         false
     };
-    const bool ok = SpeedLimitDialog::askNewSpeedLimits(this, tr("Torrent Rate Limits"), speedLimits);
+    NewSpeedLimits newSpeedLimits;
+    const bool ok = SpeedLimitDialog::askNewSpeedLimits(this, tr("Torrent Speed Limits"), oldSpeedLimits, newSpeedLimits);
     if (!ok) return;
 
     for (BitTorrent::TorrentHandle *const torrent : torrentsList) {
-        torrent->setUploadLimit(speedLimits.uploadLimit);
-        torrent->setDownloadLimit(speedLimits.downloadLimit);
+        torrent->setUploadLimit(newSpeedLimits.uploadLimit);
+        torrent->setDownloadLimit(newSpeedLimits.downloadLimit);
     }
 }
 
@@ -804,7 +805,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
     auto *actionSetMaxRatio = new QAction(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), listMenu);
     connect(actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
-    auto *actionSetSpeedLimits = new QAction(UIThemeManager::instance()->getIcon("speedometer"), tr("Limit speed rate..."), listMenu);
+    auto *actionSetSpeedLimits = new QAction(UIThemeManager::instance()->getIcon("speedometer"), tr("Limit speed rates..."), listMenu);
     connect(actionSetSpeedLimits, &QAction::triggered, this, &TransferListWidget::setSpeedLimitsSelectedTorrents);
     auto *actionOpenDestinationFolder = new QAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open destination folder"), listMenu);
     connect(actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);

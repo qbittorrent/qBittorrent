@@ -246,17 +246,18 @@ void StatusBar::capSpeed()
 {
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     const bool isAltLimitEnabled = session->isAltGlobalSpeedLimitEnabled();
-    SpeedLimits speedLimits = {
+    OldSpeedLimits oldSpeedLimits = {
         session->uploadSpeedLimit(),
         session->downloadSpeedLimit(),
         isAltLimitEnabled ? session->altGlobalUploadSpeedLimit() : session->globalUploadSpeedLimit(),
         isAltLimitEnabled ? session->altGlobalDownloadSpeedLimit() : session->globalDownloadSpeedLimit()
     };
-    const QString title = session->isAltGlobalSpeedLimitEnabled() ? tr("Global Alternative Rate Limits") : tr("Global Rate Limits");
-    const bool ok = SpeedLimitDialog::askNewSpeedLimits(parentWidget(), title, speedLimits);
+    NewSpeedLimits newSpeedLimits;
+    const QString title = session->isAltGlobalSpeedLimitEnabled() ? tr("Global Alternative Speed Limits") : tr("Global Speed Limits");
+    const bool ok = SpeedLimitDialog::askNewSpeedLimits(parentWidget(), title, oldSpeedLimits, newSpeedLimits);
     if (!ok) return;
 
-    session->setDownloadSpeedLimit(speedLimits.downloadLimit);
-    session->setUploadSpeedLimit(speedLimits.uploadLimit);
+    session->setDownloadSpeedLimit(newSpeedLimits.downloadLimit);
+    session->setUploadSpeedLimit(newSpeedLimits.uploadLimit);
     refresh();
 }

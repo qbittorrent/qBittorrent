@@ -230,7 +230,7 @@
   </action>
   <action name="actionSetGlobalSpeedLimits">
    <property name="text">
-    <string>Set Global Rate Limits...</string>
+    <string>Set Global Speed Limits...</string>
    </property>
   </action>
   <action name="actionBottomQueuePos">
@@ -282,10 +282,10 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Alternative Rate Limits</string>
+    <string>Alternative Speed Limits</string>
    </property>
    <property name="toolTip">
-    <string>Alternative Rate Limits</string>
+    <string>Alternative Speed Limits</string>
    </property>
   </action>
   <action name="actionTopToolBar">
