@@ -4163,9 +4163,20 @@ void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 {
-    LogMsg(tr("URL seed lookup failed for URL: '%1', message: %2")
-        .arg(QString::fromStdString(p->server_url()), QString::fromStdString(p->message()))
-        , Log::WARNING);
+    const TorrentHandle *torrent = m_torrents.value(p->handle.info_hash());
+    if (!torrent)
+        return;
+
+    if (p->error) {
+        LogMsg(tr("URL seed name lookup failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
+            .arg(torrent->name(), p->server_url(), QString::fromStdString(p->message()))
+            , Log::WARNING);
+    }
+    else {
+        LogMsg(tr("Received error message from a URL seed. Torrent: \"%1\". URL: \"%2\". Message: \"%3\"")
+            .arg(torrent->name(), p->server_url(), p->error_message())
+            , Log::WARNING);
+    }
 }
 
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
