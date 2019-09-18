@@ -115,7 +115,7 @@ namespace
             if (!i.value().isString())
                 throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is not a string.")
                                  .arg(configFile, i.key()));
-            
+
             QString value = i.value().toString();
             if (value.isEmpty())
                 throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is empty string")
@@ -271,6 +271,9 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallbackSysT
     // cache to avoid rescaling svg icons
     static QHash<QString, QIcon> iconCache;
     const QString iconPath = getIconPath(iconId);
+    if (iconPath.isEmpty()) // error already reported by getIconPath
+        return {};
+
     const auto iter = iconCache.find(iconPath);
     if (iter != iconCache.end())
         return *iter;
@@ -287,6 +290,11 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
     // cache to avoid rescaling svg icons
     static QHash<QString, QIcon> flagCache;
     const QString iconPath = m_flagsDir + countryIsoCode.toLower() + ".svg";
+    if (!QFile::exists(iconPath)) {
+        LogMsg(tr("No flag icon for country code - %1").arg(countryIsoCode), Log::WARNING);
+        return {};
+    }
+
     const auto iter = flagCache.find(iconPath);
     if (iter != flagCache.end())
         return *iter;

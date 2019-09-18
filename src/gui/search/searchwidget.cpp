@@ -61,15 +61,15 @@ namespace
     {
         switch (st) {
         case SearchJobWidget::Status::Ongoing:
-            return QLatin1String("task-ongoing");
+            return QLatin1String("SearchStatus.Ongoing");
         case SearchJobWidget::Status::Finished:
-            return QLatin1String("task-complete");
+            return QLatin1String("SearchStatus.Finished");
         case SearchJobWidget::Status::Aborted:
-            return QLatin1String("task-reject");
+            return QLatin1String("SearchStatus.Aborted");
         case SearchJobWidget::Status::Error:
-            return QLatin1String("task-attention");
+            return QLatin1String("SearchStatus.Error");
         case SearchJobWidget::Status::NoResults:
-            return QLatin1String("task-attention");
+            return QLatin1String("SearchStatus.NoResults");
         default:
             return {};
         }
