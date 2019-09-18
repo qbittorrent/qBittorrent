@@ -59,11 +59,20 @@ class BandwidthScheduler;
 class Statistics;
 class ResumeDataSavingManager;
 
+// These values should remain unchanged when adding new items
+// so as not to break the existing user settings.
 enum MaxRatioAction
 {
-    Pause,
-    Remove,
-    EnableSuperSeeding
+    Pause = 0,
+    Remove = 1,
+    DeleteFiles = 3,
+    EnableSuperSeeding = 2
+};
+
+enum DeleteOption
+{
+    Torrent,
+    TorrentAndFiles
 };
 
 enum TorrentExportFolder
@@ -413,7 +422,7 @@ namespace BitTorrent
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
-        bool deleteTorrent(const QString &hash, bool deleteLocalFiles = false);
+        bool deleteTorrent(const QString &hash, DeleteOption deleteOption = Torrent);
         bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);
 
@@ -506,7 +515,7 @@ namespace BitTorrent
         {
             QString name;
             QString savePathToRemove;
-            bool requestedFileDeletion;
+            DeleteOption deleteOption;
         };
 
         explicit Session(QObject *parent = nullptr);

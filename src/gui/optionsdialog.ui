@@ -2485,17 +2485,22 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>Pause them</string>
+                   <string>Pause torrent</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>Remove them</string>
+                   <string>Remove torrent</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>Enable super seeding for them</string>
+                   <string>Remove torrent and its files</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Enable super seeding for torrent</string>
                   </property>
                  </item>
                 </widget>
