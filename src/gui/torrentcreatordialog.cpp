@@ -200,8 +200,8 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
     setCursor(QCursor(Qt::ArrowCursor));
     if (m_ui->checkStartSeeding->isChecked()) {
         // Create save path temp data
-        BitTorrent::TorrentInfo t = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
-        if (!t.isValid()) {
+        const BitTorrent::TorrentInfo info = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
+        if (!info.isValid()) {
             QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
             return;
         }
@@ -212,7 +212,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
         params.ignoreShareLimits = m_ui->checkIgnoreShareLimits->isChecked();
         params.useAutoTMM = TriStateBool::False;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
-        BitTorrent::Session::instance()->addTorrent(t, params);
+        BitTorrent::Session::instance()->addTorrent(info, params);
     }
     QMessageBox::information(this, tr("Torrent creator")
         , QString("%1\n%2").arg(tr("Torrent created:"), Utils::Fs::toNativePath(path)));
