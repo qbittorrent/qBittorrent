@@ -199,6 +199,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
         params.savePath = branchPath;
         params.skipChecking = true;
         params.ignoreShareLimits = m_ui->checkIgnoreShareLimits->isChecked();
+        params.useAutoTMM = TriStateBool::False;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
         BitTorrent::Session::instance()->addTorrent(t, params);
     }
