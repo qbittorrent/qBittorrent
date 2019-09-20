@@ -52,7 +52,6 @@
 #endif
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
-static const QString allowedExts[] = {".svg", ".png"};
 
 namespace
 {
@@ -136,24 +135,12 @@ namespace
             QString iconPath;
             for (const QString &subDir : searchDirs) {
                 iconPath = iconDir + subDir + value;
-
-                QString ext;
-                if (!Utils::Fs::hasFileExtension(iconPath)) {
-                    for (const QString allowedExt : allowedExts) {
-                        if (QFile::exists(iconPath + allowedExt)) {
-                            ext = allowedExt;
-                            break;
-                        }
-                    }
-                }
-                iconPath.append(ext);
-
                 if (QFile::exists(iconPath))
                     break;
             }
 
             if (!QFile::exists(iconPath))
-                throw ThemeError(QObject::tr(R"(Error in iconconfig "%1", error: Can't find file  icon "%2" anywhere)")
+                throw ThemeError(QObject::tr(R"(Error in iconconfig "%1", error: Icon Path "%2" doesn't exists)")
                                  .arg(configFile, i.value().toString()));
 
             config.insert(i.key(), iconPath);
