@@ -249,7 +249,6 @@
         <file>flags/za.svg</file>
         <file>flags/zm.svg</file>
         <file>flags/zw.svg</file>
-        <file>iconconfig.json</file>
         <file>L.gif</file>
         <file>loading.png</file>
         <file>qbt-theme/application-exit.svg</file>
@@ -382,6 +381,5 @@
         <file>slow_off.svg</file>
         <file>sphere.png</file>
         <file>sphere2.png</file>
-        <file>systemiconconfig.json</file>
     </qresource>
 </RCC>

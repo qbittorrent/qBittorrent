@@ -61,5 +61,6 @@ private:
     bool m_useCustomStylesheet;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
+    QHash<QString, QString> m_systemIconMap;
 #endif
 };

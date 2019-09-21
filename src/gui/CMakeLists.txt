@@ -78,6 +78,7 @@ downloadfromurldialog.cpp
 executionlogwidget.cpp
 fspathedit.cpp
 hidabletabwidget.cpp
+iconconfig.cpp
 ipsubnetwhitelistoptionsdialog.cpp
 lineedit.cpp
 loglistwidget.cpp
