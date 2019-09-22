@@ -393,15 +393,14 @@ window.qBittorrent.PropFiles = (function() {
             if ((progress === 100) && (file.progress < 1))
                 progress = 99.9;
 
-            const name = window.qBittorrent.Misc.escapeHtml(file.name);
             const ignore = (file.priority === FilePriority.Ignored);
             const checked = (ignore ? TriState.Unchecked : TriState.Checked);
             const remaining = (ignore ? 0 : (file.size * (1.0 - file.progress)));
             const row = {
                 fileId: index,
                 checked: checked,
-                fileName: name,
-                name: window.qBittorrent.Filesystem.fileName(name),
+                fileName: file.name,
+                name: window.qBittorrent.Filesystem.fileName(file.name),
                 size: file.size,
                 progress: progress,
                 priority: normalizePriority(file.priority),

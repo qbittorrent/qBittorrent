@@ -82,9 +82,6 @@ window.qBittorrent.PropPeers = (function() {
                         for (const key in response['peers']) {
                             response['peers'][key]['rowId'] = key;
 
-                            if (response['peers'][key]['client'])
-                                response['peers'][key]['client'] = window.qBittorrent.Misc.escapeHtml(response['peers'][key]['client']);
-
                             torrentPeersTable.updateRowData(response['peers'][key]);
                         }
                     }
