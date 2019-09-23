@@ -2440,9 +2440,9 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="ratioBox">
+             <widget class="QGroupBox" name="seedingLimitsBox">
               <property name="title">
-               <string>Share Ratio Limiting</string>
+               <string>Seeding Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_91">
                <item row="2" column="1">
@@ -2464,7 +2464,7 @@
                <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxSeedingMinutes">
                  <property name="text">
-                  <string>Seed torrents until their seeding time reaches</string>
+                  <string>When seeding time reaches</string>
                  </property>
                 </widget>
                </item>
@@ -2508,7 +2508,7 @@
                <item row="1" column="0">
                 <widget class="QCheckBox" name="checkMaxRatio">
                  <property name="text">
-                  <string>Seed torrents until their ratio reaches</string>
+                  <string>When ratio reaches</string>
                  </property>
                 </widget>
                </item>

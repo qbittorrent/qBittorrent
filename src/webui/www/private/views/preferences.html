@@ -552,12 +552,12 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Share Ratio Limiting)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <legend>QBT_TR(Seeding Limits)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
                 <td>
                     <input type="checkbox" id="max_ratio_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
-                    <label for="max_ratio_checkbox">QBT_TR(Seed torrents until their ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="max_ratio_value" style="width: 4em;" />
@@ -565,7 +565,7 @@
                 <tr>
                     <td>
                         <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
-                        <label for="max_seeding_time_checkbox">QBT_TR(Seed torrents until their seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <input type="text" id="max_seeding_time_value" style="width: 4em;" /> QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
