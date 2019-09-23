@@ -1,3 +1,8 @@
+* Mon Sep 23 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.8
+    - BUGFIX: Fix filename validation on non-Windows OS (Chocobo1)
+    - BUGFIX: ScanFolders/FileSystemWatcher now detect magnet files with case insensitivity in filename (Chocobo1)
+    - BUGFIX: Fix failed seeding after creating a torrent and auto-adding it to the session (Chocobo1)
+
 * Sun Aug 04 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.7
     - FEATURE: Add 12 hour and 24 hour speed graphs (dzmat)
     - FEATURE: Change "Add new torrent" dialog to horizontal layout (Evgeny Lensky)
