@@ -38,9 +38,9 @@ public:
 
     constexpr TriStateBool() = default;
     constexpr TriStateBool(const TriStateBool &other) = default;
-    explicit constexpr TriStateBool(int value)
-        : m_value(value < 0 ? -1 : (value > 0 ? 1 : 0))
+    explicit constexpr TriStateBool(const bool boolean)
     {
+        *this = boolean ? True : False;
     }
 
     explicit constexpr operator int() const
@@ -56,6 +56,11 @@ public:
     }
 
 private:
+    explicit constexpr TriStateBool(const int value)
+        : m_value((value < 0) ? -1 : ((value > 0) ? 1 : 0))
+    {
+    }
+
     signed char m_value = -1; // Undefined by default
 };
 
