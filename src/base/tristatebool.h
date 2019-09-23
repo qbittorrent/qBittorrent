@@ -43,12 +43,12 @@ public:
         *this = boolean ? True : False;
     }
 
-    explicit constexpr operator int() const
+    TriStateBool &operator=(const TriStateBool &other) = default;  // TODO: add constexpr when using C++17
+
+    explicit constexpr operator signed char() const
     {
         return m_value;
     }
-
-    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++17
 
     constexpr friend bool operator==(const TriStateBool &left, const TriStateBool &right)
     {

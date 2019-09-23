@@ -64,7 +64,7 @@ namespace
 
     QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
     {
-        switch (static_cast<int>(triStateBool)) {
+        switch (static_cast<signed char>(triStateBool)) {
         case 0:  return false;
         case 1:  return true;
         default: return {};
@@ -82,7 +82,7 @@ namespace
 
     int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
     {
-        switch (static_cast<int>(triStateBool)) {
+        switch (static_cast<signed char>(triStateBool)) {
         case 0:  return 2; // never
         case 1:  return 1; // always
         default: return 0; // default
