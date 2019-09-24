@@ -49,7 +49,6 @@ Logger *Logger::m_instance = nullptr;
 Logger::Logger()
     : m_messages(MAX_LOG_MESSAGES)
     , m_peers(MAX_LOG_MESSAGES)
-    , m_lock(QReadWriteLock::Recursive)
 {
 }
 
@@ -75,9 +74,9 @@ void Logger::freeInstance()
 void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
     QWriteLocker locker(&m_lock);
-
     const Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
     m_messages.push_back(temp);
+    locker.unlock();
 
     emit newLogMessage(temp);
 }
@@ -85,9 +84,9 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
 void Logger::addPeer(const QString &ip, const bool blocked, const QString &reason)
 {
     QWriteLocker locker(&m_lock);
-
     const Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
     m_peers.push_back(temp);
+    locker.unlock();
 
     emit newLogPeer(temp);
 }

@@ -155,7 +155,6 @@ SettingsStorage *SettingsStorage::m_instance = nullptr;
 SettingsStorage::SettingsStorage()
     : m_data{TransactionalSettings(QLatin1String("qBittorrent")).read()}
     , m_dirty(false)
-    , m_lock(QReadWriteLock::Recursive)
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
