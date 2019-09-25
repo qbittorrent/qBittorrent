@@ -4399,7 +4399,8 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
         updatedTorrents.push_back(torrent);
     }
 
-    emit torrentsUpdated(updatedTorrents);
+    if (!updatedTorrents.isEmpty())
+        emit torrentsUpdated(updatedTorrents);
 }
 
 namespace

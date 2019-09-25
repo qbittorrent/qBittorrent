@@ -127,7 +127,8 @@ private slots:
     void displayRSSTab();
     void displayExecutionLogTab();
     void focusSearchFilter();
-    void updateGUI();
+    void reloadSessionStats();
+    void reloadTorrentStats(const QVector<BitTorrent::TorrentHandle *> &torrents);
     void loadPreferences(bool configureSession = true);
     void addTorrentFailed(const QString &error) const;
     void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
