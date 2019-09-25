@@ -74,26 +74,26 @@ void Logger::freeInstance()
 void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
     QWriteLocker locker(&m_lock);
-    const Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
-    m_messages.push_back(temp);
+    const Log::Msg msg = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
+    m_messages.push_back(msg);
     locker.unlock();
 
-    emit newLogMessage(temp);
+    emit newLogMessage(msg);
 }
 
 void Logger::addPeer(const QString &ip, const bool blocked, const QString &reason)
 {
     QWriteLocker locker(&m_lock);
-    const Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
-    m_peers.push_back(temp);
+    const Log::Peer msg = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
+    m_peers.push_back(msg);
     locker.unlock();
 
-    emit newLogPeer(temp);
+    emit newLogPeer(msg);
 }
 
 QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
 {
-    QReadLocker locker(&m_lock);
+    const QReadLocker locker(&m_lock);
 
     const int diff = m_msgCounter - lastKnownId - 1;
     const int size = m_messages.size();
@@ -109,7 +109,7 @@ QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
 
 QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
 {
-    QReadLocker locker(&m_lock);
+    const QReadLocker locker(&m_lock);
 
     const int diff = m_peerCounter - lastKnownId - 1;
     const int size = m_peers.size();
