@@ -30,6 +30,7 @@
 #include "torrenthandle.h"
 
 #include <algorithm>
+#include <limits>
 #include <type_traits>
 
 #ifdef Q_OS_WIN
@@ -433,17 +434,28 @@ QHash<QString, TrackerInfo> TorrentHandle::trackerInfos() const
 
 void TorrentHandle::addTrackers(const QVector<TrackerEntry> &trackers)
 {
-    QSet<TrackerEntry> currentTrackers;
-    for (const lt::announce_entry &entry : m_nativeHandle.trackers())
-        currentTrackers << entry;
-
     QVector<TrackerEntry> newTrackers;
     newTrackers.reserve(trackers.size());
 
+    uint8_t nextTier = 0;
+    const std::vector<lt::announce_entry> currentTrackers = m_nativeHandle.trackers();
+    if (!currentTrackers.empty()) {
+        for (const lt::announce_entry &entry : currentTrackers)
+            nextTier = std::max(nextTier, entry.tier);
+        if (nextTier < std::numeric_limits<uint8_t>::max())
+            nextTier += 1;
+    }
+
+    QSet<TrackerEntry> currentTrackersSet;
+    for (const lt::announce_entry &entry : currentTrackers)
+        currentTrackersSet << entry;
+
     for (const TrackerEntry &tracker : trackers) {
-        if (!currentTrackers.contains(tracker)) {
-            m_nativeHandle.add_tracker(tracker.nativeEntry());
-            newTrackers << tracker;
+        if (!currentTrackersSet.contains(tracker)) {
+            TrackerEntry trackerToAdd(tracker);
+            trackerToAdd.setTier(nextTier);
+            m_nativeHandle.add_tracker(trackerToAdd.nativeEntry());
+            newTrackers << trackerToAdd;
         }
     }
 
