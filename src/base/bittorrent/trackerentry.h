@@ -29,11 +29,9 @@
 #ifndef BITTORRENT_TRACKERENTRY_H
 #define BITTORRENT_TRACKERENTRY_H
 
-#include <libtorrent/torrent_info.hpp>
-#include <libtorrent/version.hpp>
-#if LIBTORRENT_VERSION_NUM >= 10100
 #include <libtorrent/announce_entry.hpp>
-#endif
+
+#include <QtGlobal>
 
 class QString;
 
@@ -44,29 +42,37 @@ namespace BitTorrent
     public:
         enum Status
         {
-            NotContacted,
-            Working,
-            Updating,
-            NotWorking
+            NotContacted = 1,
+            Working = 2,
+            Updating = 3,
+            NotWorking = 4
         };
 
+        TrackerEntry() = default;
         TrackerEntry(const QString &url);
-        TrackerEntry(const libtorrent::announce_entry &nativeEntry);
-        TrackerEntry(const TrackerEntry &other);
+        TrackerEntry(const lt::announce_entry &nativeEntry);
+        TrackerEntry(const TrackerEntry &other) = default;
+        TrackerEntry &operator=(const TrackerEntry &other) = default;
 
         QString url() const;
-        int tier() const;
+        bool isWorking() const;
         Status status() const;
 
+        int tier() const;
         void setTier(int value);
-        TrackerEntry &operator=(const TrackerEntry &other);
-        bool operator==(const TrackerEntry &other) const;
 
-        libtorrent::announce_entry nativeEntry() const;
+        int numSeeds() const;
+        int numLeeches() const;
+        int numDownloaded() const;
+
+        const lt::announce_entry &nativeEntry() const;
 
     private:
-        libtorrent::announce_entry m_nativeEntry;
+        lt::announce_entry m_nativeEntry;
     };
+
+    bool operator==(const TrackerEntry &left, const TrackerEntry &right);
+    uint qHash(const TrackerEntry &key, uint seed);
 }
 
 #endif // BITTORRENT_TRACKERENTRY_H

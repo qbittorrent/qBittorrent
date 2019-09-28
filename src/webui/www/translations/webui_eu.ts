@@ -26,6 +26,10 @@
         <source>Create subfolder</source>
         <translation>Sortu azpiagiritegia</translation>
     </message>
+    <message>
+        <source>Torrent Management Mode:</source>
+        <translation>Torrent Kudeaketa Modua:</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -66,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Kategoria Berria</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Editatu kategoria...</translation>
     </message>
 </context>
 <context>
@@ -134,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Ezezaguna</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation>Diska Gogorra</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -294,18 +294,46 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent itzali egin da.</translation>
+        <translation type="vanished">qBittorrent itzali egin da.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Igoera slot kopuru orokorraren muga 0 baino handiagoa edo ezgaituta izan behar da.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Kategoria izen baliogabea:\nMesedez ez erabili hizki berezirik kategoriaren izenean.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
+        <translation>Ezinezkoa kategoria sortzea</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold must be greater than 0.</source>
+        <translation>Igoera neurri muga 0 baino handiagoa izan behar da..</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Editatu</translation>
+    </message>
+    <message>
+        <source>Free space: %1</source>
+        <translation>Toki askea: %1</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer must be greater than 0.</source>
+        <translation>Torrentaren jardungabe denboragailua 0 baino handiagoa izan behar da</translation>
+    </message>
+    <message>
+        <source>Saving Management</source>
+        <translation>Gordetze Kudeaketa</translation>
+    </message>
+    <message>
+        <source>Download rate threshold must be greater than 0.</source>
+        <translation>Igoera neurri muga 0 baino handiagoa izan behar da.</translation>
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -434,7 +462,23 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Aukerazko abiadura mugak</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation>Bilaketa Gailua</translation>
+    </message>
+    <message>
+        <source>Filter torrent list...</source>
+        <translation>Iragazi torrent zerrenda...</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Bilaketa</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation>Eskualdaketak</translation>
     </message>
 </context>
 <context>
@@ -875,19 +919,127 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutu</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Gaitu clickjacking babesa</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>Gaitu Cross-Site Request Forgery (CSRF) babesa</translation>
+    </message>
+    <message>
+        <source>Delete .torrent files afterwards</source>
+        <translation>Ezabatu .torrent agiriak edonola</translation>
+    </message>
+    <message>
+        <source>Download rate threshold:</source>
+        <translation>Jeitsiera neurri mugapena:</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold:</source>
+        <translation>Igoera neurri mugapena:</translation>
+    </message>
+    <message>
+        <source>Change current password</source>
+        <translation>Aldatu oraingo sarhitza</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Berezgaitasunezkoa</translation>
+    </message>
+    <message>
+        <source>Use alternative Web UI</source>
+        <translation>Erabili aukerazko Web EI</translation>
+    </message>
+    <message>
+        <source>Default Save Path:</source>
+        <translation>Berezko Gordetze Helbura:</translation>
+    </message>
+    <message>
+        <source>The alternative Web UI files location cannot be blank.</source>
+        <translation>Web EI agiri kokaleku alternatiboa ezin da hutsik egon.</translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <translation>Ez hasi jeisketa berezgaitasunez</translation>
+    </message>
+    <message>
+        <source>Switch torrent to Manual Mode</source>
+        <translation>Aldatu torrenta Eskuzko Modura</translation>
+    </message>
+    <message>
+        <source>When Torrent Category changed:</source>
+        <translation>Torrent Kategoria aldatzean:</translation>
+    </message>
+    <message>
+        <source>Relocate affected torrents</source>
+        <translation>Berkokatu eragindako torrentak</translation>
+    </message>
+    <message>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation>Ezarri neurri muga LAN-eko hartzaileei</translation>
+    </message>
+    <message>
+        <source>0 means unlimited</source>
+        <translation>0 esanahi du mugagabe</translation>
+    </message>
+    <message>
+        <source>Relocate torrent</source>
+        <translation>Berkokatu torrenta</translation>
+    </message>
+    <message>
+        <source>When Default Save Path changed:</source>
+        <translation>Berezko Gordetze Helburua aldatzean:</translation>
+    </message>
+    <message>
+        <source>Enable Host header validation</source>
+        <translation>Gaitu Hostalari idazburu balioztapena</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Segurtasuna</translation>
+    </message>
+    <message>
+        <source>When Category Save Path changed:</source>
+        <translation>Berezko Gordetze Helburua aldatzen denean:</translation>
+    </message>
+    <message>
+        <source>Create subfolder for torrents with multiple files</source>
+        <translation>Sortu azpiagiritegia agiri ugari duten torrententzat</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>segundu</translation>
+    </message>
+    <message>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation>Aldatu eragindako torrentak Eskuzko Modura</translation>
+    </message>
+    <message>
+        <source>Files location:</source>
+        <translation>Agirien kokalekua:</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Eskuzkoa</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer:</source>
+        <translation>Torrentaren jardungabe denboragailua:</translation>
+    </message>
+    <message>
+        <source>Default Torrent Management Mode:</source>
+        <translation>Berezko Torrent Kudeaketa Modua:</translation>
+    </message>
+    <message>
+        <source>When adding a torrent</source>
+        <translation>Torrent bat gehitzean</translation>
     </message>
 </context>
 <context>
@@ -1131,11 +1283,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Jeitsiera muga:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Igoera muga:</translation>
     </message>
 </context>
 <context>
@@ -1504,6 +1656,70 @@
         <source>Message</source>
         <translation>Mezua</translation>
     </message>
+    <message>
+        <source>Downloaded</source>
+        <translation>Jeitsita</translation>
+    </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation>Aztarnari URL-a:</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation>Eguneratzen...</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation>Lanean</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Ezgaituta</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation>Harremandu gabe oraindik</translation>
+    </message>
+    <message>
+        <source>#</source>
+        <translation>Zbk.</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>E/G</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <translation>Emaritzak</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation>Lan gabe</translation>
+    </message>
+    <message>
+        <source>Copy tracker URL</source>
+        <translation>Kopiatu aztarnari URL-a</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation>Gehitu aztarnari berri bat...</translation>
+    </message>
+    <message>
+        <source>Edit tracker URL...</source>
+        <translation>Editatu aztarnari URL-a...</translation>
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation>Aztarnari edizioa</translation>
+    </message>
+    <message>
+        <source>Leeches</source>
+        <translation>Izainak</translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation>Kendu aztarnaria</translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -1522,6 +1738,70 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>duela %1</translation>
+    </message>
+    <message>
+        <source>Allocating</source>
+        <translation>Esleitzen</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation>Pausatuta</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation>Osatuta</translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation>Mugitzen</translation>
+    </message>
+    <message>
+        <source>[F] Seeding</source>
+        <translation>[B] Emaritzen</translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <translation>Emaritzan</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation>Lerrokatuta</translation>
+    </message>
+    <message>
+        <source>Errored</source>
+        <translation>Akastuna</translation>
+    </message>
+    <message>
+        <source>[F] Downloading</source>
+        <translation>[B] Jeisten</translation>
+    </message>
+    <message>
+        <source>Downloading metadata</source>
+        <translation>Metadatuak jeisten</translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <translation>Egiaztapena</translation>
+    </message>
+    <message>
+        <source>Missing Files</source>
+        <translation>Ez dauden Agiriak </translation>
+    </message>
+    <message>
+        <source>Queued for checking</source>
+        <translation>Egiaztapenerako lerrokatuta</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation>Jeisten</translation>
+    </message>
+    <message>
+        <source>Checking resume data</source>
+        <translation>Berrekite datuak egiaztatzen</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <translation>Geldituta</translation>
     </message>
 </context>
 <context>
@@ -1661,35 +1941,35 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>Behartu Berregiaztapena</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Kategoria Berria</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Kokalekua</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Izen berria</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Ezarri kokalekua</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>Behartu berriragarpena</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Editatu Kategoria</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Gordetze helburua</translation>
     </message>
 </context>
 <context>
@@ -1750,7 +2030,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Ezabapen baieztapena - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -1765,7 +2045,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Gehitu Torrent Loturak</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +2120,182 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Gordetze helburua hutsik dago</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Ezeztatu</translation>
+    </message>
+    <message>
+        <source>Plugin path:</source>
+        <translation>Plugin helburua:</translation>
+    </message>
+    <message>
+        <source>URL or local directory</source>
+        <translation>URL-a edo tokiko zuzenbidea</translation>
+    </message>
+    <message>
+        <source>Install plugin</source>
+        <translation>Ezarri plugina</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ongi</translation>
+    </message>
+</context>
+<context>
+    <name>SearchEngineWidget</name>
+    <message>
+        <source>Seeds:</source>
+        <translation>Emaritzak:</translation>
+    </message>
+    <message>
+        <source>All plugins</source>
+        <translation>Plugin guztiak</translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation>Neurria:</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Gelditu</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Bilaketa</translation>
+    </message>
+    <message>
+        <source>Search plugins...</source>
+        <translation>Bilatu pluginak...</translation>
+    </message>
+    <message>
+        <source>All categories</source>
+        <translation>Kategoria guztiak</translation>
+    </message>
+    <message>
+        <source>Search in:</source>
+        <translation>Bilatu hemen:</translation>
+    </message>
+    <message>
+        <source>Copy description page URL</source>
+        <translation>Kopiatu azalpen orrialdearen URL-a</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation>Joan azalpen orrialdera</translation>
+    </message>
+    <message>
+        <source>Results (showing</source>
+        <translation>Emaitzak (erakusten</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation>Jeitsi</translation>
+    </message>
+    <message>
+        <source>Filter</source>
+        <translation>Iragazkia</translation>
+    </message>
+    <message>
+        <source>Torrent names only</source>
+        <translation>Torrentaren izena bakarrik</translation>
+    </message>
+    <message>
+        <source>Only enabled</source>
+        <translation>Gaituak bakarrik</translation>
+    </message>
+    <message>
+        <source>out of</source>
+        <translation>kanpo -&gt;</translation>
+    </message>
+    <message>
+        <source>Everywhere</source>
+        <translation>Edonon</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <source>Uninstall</source>
+        <translation>Kendu</translation>
+    </message>
+    <message>
+        <source>Install new plugin</source>
+        <translation>Ezarri plugin berria</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here:</source>
+        <translation>Bilaketa gailu plugin berriak lortu ditzakezu hemen:</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Itxi</translation>
+    </message>
+    <message>
+        <source>Installed search plugins:</source>
+        <translation>Ezarritako bilaketa pluginak:</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Gaituta</translation>
+    </message>
+    <message>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Kontuz: Zihurtatu zure herrialdeko kopia-eskubide legeak betetzen dituzula torrentak jeisterakoan bilaketa gailu hauen bidez.</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Egiaztatu eguneraketak</translation>
+    </message>
+    <message>
+        <source>Search plugins</source>
+        <translation>Bilatu pluginak</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Izena</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Neurria</translation>
+    </message>
+    <message>
+        <source>Leechers</source>
+        <translation>Izainak</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>Bilaketa gailua</translation>
+    </message>
+    <message>
+        <source>Seeders</source>
+        <translation>Emaleak</translation>
+    </message>
+</context>
+<context>
+    <name>SearchPluginsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Izena</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>Url-a</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Gaituta</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Bertsioa</translation>
     </message>
 </context>
 </TS>

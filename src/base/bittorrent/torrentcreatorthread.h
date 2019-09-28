@@ -39,6 +39,7 @@ namespace BitTorrent
         bool isPrivate;
         bool isAlignmentOptimized;
         int pieceSize;
+        int paddedFileSizeLimit;
         QString inputPath;
         QString savePath;
         QString comment;
@@ -57,10 +58,11 @@ namespace BitTorrent
 
         void create(const TorrentCreatorParams &params);
 
-        static int calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized);
+        static int calculateTotalPieces(const QString &inputPath
+            , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);
 
     protected:
-        void run();
+        void run() override;
 
     signals:
         void creationFailure(const QString &msg);

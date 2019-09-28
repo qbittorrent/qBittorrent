@@ -30,58 +30,26 @@
 #ifndef STACKTRACEDIALOG_H
 #define STACKTRACEDIALOG_H
 
-#include <QString>
 #include <QDialog>
 
-#include "base/utils/misc.h"
-#include "ui_stacktracedialog.h"
+namespace Ui
+{
+    class StacktraceDialog;
+}
 
-class StacktraceDialog : public QDialog, private Ui::StacktraceDialog
+class StacktraceDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(StacktraceDialog)
 
 public:
-    StacktraceDialog(QWidget *parent = nullptr)
-        : QDialog(parent)
-    {
-        setupUi(this);
-    }
+    explicit StacktraceDialog(QWidget *parent = nullptr);
+    ~StacktraceDialog() override;
 
-    void setStacktraceString(const QString &sigName, const QString &trace)
-    {
-        // try to call Qt function as less as possible
-        QString htmlStr = QString(
-            "<p align=center><b><font size=7 color=red>"
-            "qBittorrent has crashed"
-            "</font></b></p>"
-            "<font size=4><p>"
-            "Please file a bug report at "
-            "<a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a> "
-            "and provide the following information:"
-            "</p></font>"
-            "<br/><hr><br/>"
-            "<p align=center><font size=4>"
-#if defined(__x86_64__) || defined(_M_X64)
-            "qBittorrent version: " QBT_VERSION " (64-bit)<br/>"
-#else
-            "qBittorrent version: " QBT_VERSION " (32-bit)<br/>"
-#endif
-            "Libtorrent version: %1<br/>"
-            "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %2<br/>"
-            "OS version: %3<br/><br/>"
-            "Caught signal: %4"
-            "</font></p>"
-            "<pre><code>%5</code></pre>"
-            "<br/><hr><br/><br/>")
-                .arg(Utils::Misc::libtorrentVersionString())
-                .arg(Utils::Misc::boostVersionString())
-                .arg(Utils::Misc::osName())
-                .arg(sigName)
-                .arg(trace);
+    void setStacktraceString(const QString &sigName, const QString &trace);
 
-        errorText->setHtml(htmlStr);
-    }
+private:
+    Ui::StacktraceDialog *m_ui;
 };
 
 #endif // STACKTRACEDIALOG_H

@@ -72,7 +72,7 @@ public:
     TorrentFilter();
     // category & tags: pass empty string for uncategorized / untagged torrents.
     // Pass null string (QString()) to disable filtering (i.e. all torrents).
-    TorrentFilter(const Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
+    TorrentFilter(Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
     TorrentFilter(const QString &filter, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tags = AnyTag);
 
     bool setType(Type type);

@@ -38,8 +38,6 @@
 // See issue #3059 for more details (https://github.com/qbittorrent/qBittorrent/issues/3059).
 const char C_INFINITY[] = "∞";
 const char C_NON_BREAKING_SPACE[] = " ";
-const char C_UP[] = "▲";
-const char C_DOWN[] = "▼";
 const char C_COPYRIGHT[] = "©";
 const char C_THIN_SPACE[] = " ";
 const char C_UTP[] = "μTP";

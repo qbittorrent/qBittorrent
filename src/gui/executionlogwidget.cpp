@@ -28,33 +28,33 @@
 
 #include "executionlogwidget.h"
 
-#include <QColor>
 #include <QDateTime>
 #include <QPalette>
 
-#include "guiiconprovider.h"
+#include "base/global.h"
 #include "loglistwidget.h"
 #include "ui_executionlogwidget.h"
+#include "uithememanager.h"
 
 ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &types)
     : QWidget(parent)
     , m_ui(new Ui::ExecutionLogWidget)
-    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types)))
-    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
+    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, types, this))
+    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES, Log::ALL, this))
 {
     m_ui->setupUi(this);
 
-#ifndef Q_OS_MAC
-    m_ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
-    m_ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
+#ifndef Q_OS_MACOS
+    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon("view-calendar-journal"));
+    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon("view-filter"));
 #endif
     m_ui->tabGeneral->layout()->addWidget(m_msgList);
     m_ui->tabBan->layout()->addWidget(m_peerList);
 
     const Logger *const logger = Logger::instance();
-    foreach (const Log::Msg &msg, logger->getMessages())
+    for (const Log::Msg &msg : asConst(logger->getMessages()))
         addLogMessage(msg);
-    foreach (const Log::Peer &peer, logger->getPeers())
+    for (const Log::Peer &peer : asConst(logger->getPeers()))
         addPeerMessage(peer);
     connect(logger, &Logger::newLogMessage, this, &ExecutionLogWidget::addLogMessage);
     connect(logger, &Logger::newLogPeer, this, &ExecutionLogWidget::addPeerMessage);
@@ -62,8 +62,6 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
 
 ExecutionLogWidget::~ExecutionLogWidget()
 {
-    delete m_msgList;
-    delete m_peerList;
     delete m_ui;
 }
 
@@ -74,38 +72,35 @@ void ExecutionLogWidget::showMsgTypes(const Log::MsgTypes &types)
 
 void ExecutionLogWidget::addLogMessage(const Log::Msg &msg)
 {
-    QString text;
-    QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-    QColor color;
-
+    QString colorName;
     switch (msg.type) {
     case Log::INFO:
-        color.setNamedColor("blue");
+        colorName = QLatin1String("blue");
         break;
     case Log::WARNING:
-        color.setNamedColor("orange");
+        colorName = QLatin1String("orange");
         break;
     case Log::CRITICAL:
-        color.setNamedColor("red");
+        colorName = QLatin1String("red");
         break;
     default:
-        color = QApplication::palette().color(QPalette::WindowText);
+        colorName = QApplication::palette().color(QPalette::WindowText).name();
     }
 
-    text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
+    const QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
+    const QString text = QString(QLatin1String("<font color='grey'>%1</font> - <font color='%2'>%3</font>"))
+        .arg(time.toString(Qt::SystemLocaleShortDate), colorName, msg.message);
     m_msgList->appendLine(text, msg.type);
 }
 
 void ExecutionLogWidget::addPeerMessage(const Log::Peer &peer)
 {
-    QString text;
-    QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
+    const QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
+    const QString msg = QString(QLatin1String("<font color='grey'>%1</font> - <font color='red'>%2</font>"))
+        .arg(time.toString(Qt::SystemLocaleShortDate), peer.ip);
 
-    if (peer.blocked)
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - "
-            + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip, peer.reason);
-    else
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
-
+    const QString text = peer.blocked
+        ? tr("%1 was blocked %2", "0.0.0.0 was blocked due to reason").arg(msg, peer.reason)
+        : tr("%1 was banned", "0.0.0.0 was banned").arg(msg);
     m_peerList->appendLine(text, Log::NORMAL);
 }

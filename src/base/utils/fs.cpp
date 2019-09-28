@@ -34,21 +34,12 @@
 #include <memory>
 #endif
 
-#include <QCoreApplication>
-#include <QDebug>
-#include <QDir>
-#include <QDirIterator>
-#include <QFile>
-#include <QFileInfo>
-#include <QStorageInfo>
-#include <QRegularExpression>
-
 #include <sys/stat.h>
 #include <sys/types.h>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
-#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -58,20 +49,23 @@
 #include <unistd.h>
 #endif
 
+#include <QDebug>
+#include <QDir>
+#include <QDirIterator>
+#include <QFile>
+#include <QFileInfo>
+#include <QStorageInfo>
+#include <QRegularExpression>
+
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 
-/**
- * Converts a path to a string suitable for display.
- * This function makes sure the directory separator used is consistent
- * with the OS being run.
- */
 QString Utils::Fs::toNativePath(const QString &path)
 {
     return QDir::toNativeSeparators(path);
 }
 
-QString Utils::Fs::fromNativePath(const QString &path)
+QString Utils::Fs::toUniformPath(const QString &path)
 {
     return QDir::fromNativeSeparators(path);
 }
@@ -81,14 +75,14 @@ QString Utils::Fs::fromNativePath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    QString ext = QString(filename).remove(QB_EXT);
+    const QString ext = QString(filename).remove(QB_EXT);
     const int pointIndex = ext.lastIndexOf('.');
     return (pointIndex >= 0) ? ext.mid(pointIndex + 1) : QString();
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
+    const QString path = toUniformPath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
@@ -97,7 +91,7 @@ QString Utils::Fs::fileName(const QString &filePath)
 
 QString Utils::Fs::folderName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
+    const QString path = toUniformPath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
@@ -133,15 +127,15 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     std::sort(dirList.begin(), dirList.end()
               , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
 
-    for (const QString &p : qAsConst(dirList)) {
+    for (const QString &p : asConst(dirList)) {
         // remove unwanted files
         for (const QString &f : deleteFilesList) {
             forceRemove(p + f);
         }
 
         // remove temp files on linux (file ends with '~'), e.g. `filename~`
-        QDir dir(p);
-        QStringList tmpFileList = dir.entryList(QDir::Files);
+        const QDir dir(p);
+        const QStringList tmpFileList = dir.entryList(QDir::Files);
         for (const QString &f : tmpFileList) {
             if (f.endsWith('~'))
                 forceRemove(p + f);
@@ -188,7 +182,7 @@ void Utils::Fs::removeDirRecursive(const QString &path)
 qint64 Utils::Fs::computePathSize(const QString &path)
 {
     // Check if it is a file
-    QFileInfo fi(path);
+    const QFileInfo fi(path);
     if (!fi.exists()) return -1;
     if (fi.isFile()) return fi.size();
 
@@ -221,7 +215,7 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
     return true;
 }
 
-QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
+QString Utils::Fs::toValidFileSystemName(const QString &name, const bool allowSeparators, const QString &pad)
 {
     const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
@@ -232,11 +226,23 @@ QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparato
     return validName;
 }
 
-bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
+bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSeparators)
 {
     if (name.isEmpty()) return false;
 
-    const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]" : "[\\\\/:?\"*<>|]");
+#if defined(Q_OS_WIN)
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[:?\"*<>|]")
+        : QLatin1String("[\\\\/:?\"*<>|]")};
+#elif defined(Q_OS_MACOS)
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[\\0:]")
+        : QLatin1String("[\\0/:]")};
+#else
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[\\0]")
+        : QLatin1String("[\\0/]")};
+#endif
     return !name.contains(regex);
 }
 
@@ -249,7 +255,7 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 
 QString Utils::Fs::branchPath(const QString &filePath, QString *removed)
 {
-    QString ret = fromNativePath(filePath);
+    QString ret = toUniformPath(filePath);
     if (ret.endsWith('/'))
         ret.chop(1);
     const int slashIndex = ret.lastIndexOf('/');
@@ -272,7 +278,7 @@ bool Utils::Fs::sameFileNames(const QString &first, const QString &second)
 
 QString Utils::Fs::expandPath(const QString &path)
 {
-    QString ret = path.trimmed();
+    const QString ret = path.trimmed();
     if (ret.isEmpty())
         return ret;
 
@@ -315,7 +321,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
         return false;
 
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
-#elif defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_OPENBSD)
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -329,7 +335,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else
+#else // Q_OS_WIN
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -351,6 +357,6 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     default:
         return false;
     }
-#endif
+#endif // Q_OS_WIN
 }
-#endif
+#endif // Q_OS_HAIKU

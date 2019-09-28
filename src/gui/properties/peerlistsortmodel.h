@@ -31,34 +31,16 @@
 
 #include <QSortFilterProxyModel>
 
-#include "peerlistdelegate.h"
-
 class PeerListSortModel : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PeerListSortModel)
 
 public:
-    PeerListSortModel(QObject *parent = nullptr)
-        : QSortFilterProxyModel(parent)
-    {
-    }
+    explicit PeerListSortModel(QObject *parent = nullptr);
 
-protected:
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const
-    {
-        switch (sortColumn()) {
-        case PeerListDelegate::IP:
-        case PeerListDelegate::CLIENT: {
-                const QString strL = left.data().toString();
-                const QString strR = right.data().toString();
-                const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
-                return (result < 0);
-            }
-            break;
-        default:
-            return QSortFilterProxyModel::lessThan(left, right);
-        };
-    }
+private:
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 };
 
 #endif // PEERLISTSORTMODEL_H

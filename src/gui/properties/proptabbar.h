@@ -50,7 +50,7 @@ public:
     };
 
     explicit PropTabBar(QWidget *parent = nullptr);
-    ~PropTabBar();
+
     int currentIndex() const;
 
 signals:

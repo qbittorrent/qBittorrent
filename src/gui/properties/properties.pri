@@ -23,6 +23,8 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/downloadedpiecesbar.cpp \
+    $$PWD/peerlistdelegate.cpp \
+    $$PWD/peerlistsortmodel.cpp \
     $$PWD/peerlistwidget.cpp \
     $$PWD/peersadditiondialog.cpp \
     $$PWD/pieceavailabilitybar.cpp \

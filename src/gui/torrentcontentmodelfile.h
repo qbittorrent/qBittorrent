@@ -31,6 +31,11 @@
 
 #include "torrentcontentmodelitem.h"
 
+namespace BitTorrent
+{
+    enum class DownloadPriority;
+}
+
 class TorrentContentModelFile : public TorrentContentModelItem
 {
 public:
@@ -38,7 +43,7 @@ public:
                             TorrentContentModelFolder *parent, int fileIndex);
 
     int fileIndex() const;
-    void setPriority(int newPriority, bool updateParent = true) override;
+    void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
     void setProgress(qreal progress);
     void setAvailability(qreal availability);
     ItemType itemType() const override;

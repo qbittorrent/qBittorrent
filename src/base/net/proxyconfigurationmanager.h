@@ -51,6 +51,8 @@ namespace Net
         QString username;
         QString password;
     };
+    bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
+    bool operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right);
 
     class ProxyConfigurationManager : public QObject
     {

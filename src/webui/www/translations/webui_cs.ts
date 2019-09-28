@@ -26,6 +26,10 @@
         <source>Create subfolder</source>
         <translation>Vytvořit podsložku</translation>
     </message>
+    <message>
+        <source>Torrent Management Mode:</source>
+        <translation>Režim správy torrentu:</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -66,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Nová kategorie</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Editovat kategorii...</translation>
     </message>
 </context>
 <context>
@@ -134,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Neznámý</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation>Pevný disk</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -294,18 +294,47 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent byl ukončen.</translation>
+        <translation type="vanished">qBittorrent byl ukončen.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Celkový počet nahrávacích slotů musí být větší než 0 nebo být vypnutý.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Neplatný název kategorie:
+Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
+        <translation>Nelze vytvořit kategorii</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold must be greater than 0.</source>
+        <translation>Limit odesílání musí být větší než 0.</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Upravit</translation>
+    </message>
+    <message>
+        <source>Free space: %1</source>
+        <translation>Volné místo : %1</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer must be greater than 0.</source>
+        <translation>Časovač nečinnosti torrentu musí být větší než 0:</translation>
+    </message>
+    <message>
+        <source>Saving Management</source>
+        <translation>Správa ukládání</translation>
+    </message>
+    <message>
+        <source>Download rate threshold must be greater than 0.</source>
+        <translation>Limit rychlosti stahování musí být větší než 0.</translation>
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -434,7 +463,23 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Alternativní limity rychlosti</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation>Vyhledávač</translation>
+    </message>
+    <message>
+        <source>Filter torrent list...</source>
+        <translation>Filtrovat seznam torrentů...</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Hledat</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation>Přenosy</translation>
     </message>
 </context>
 <context>
@@ -831,7 +876,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: Štítky (oddělené čárkou)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -875,19 +920,127 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minuty</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Aktivujte ochranu clickjacking</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>Zapnout ochranu  Cross-Site Request Forgery (CSRF)</translation>
+    </message>
+    <message>
+        <source>Delete .torrent files afterwards</source>
+        <translation>Následně smazat .torrent soubory</translation>
+    </message>
+    <message>
+        <source>Download rate threshold:</source>
+        <translation>Limit rychlosti stahování:</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold:</source>
+        <translation>Limit rychlosti odesílání:</translation>
+    </message>
+    <message>
+        <source>Change current password</source>
+        <translation>Změnit současné heslo</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Automatický</translation>
+    </message>
+    <message>
+        <source>Use alternative Web UI</source>
+        <translation>Použít alternativní Web UI</translation>
+    </message>
+    <message>
+        <source>Default Save Path:</source>
+        <translation>Výchozí cesta pro uložení:</translation>
+    </message>
+    <message>
+        <source>The alternative Web UI files location cannot be blank.</source>
+        <translation>Umístění souborů Alternativního UI nemůže být prázdné.</translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <translation>Nespouštět stahování automaticky</translation>
+    </message>
+    <message>
+        <source>Switch torrent to Manual Mode</source>
+        <translation>Přepnout torrent do ručního módu</translation>
+    </message>
+    <message>
+        <source>When Torrent Category changed:</source>
+        <translation>Když je kategorie torrentu změněna:</translation>
+    </message>
+    <message>
+        <source>Relocate affected torrents</source>
+        <translation>Přemístit dotčené torrenty</translation>
+    </message>
+    <message>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation>Omezit poměr sdílení protějškům na LAN</translation>
+    </message>
+    <message>
+        <source>0 means unlimited</source>
+        <translation>0 znamená neomezeno</translation>
+    </message>
+    <message>
+        <source>Relocate torrent</source>
+        <translation>Přemístit torrent</translation>
+    </message>
+    <message>
+        <source>When Default Save Path changed:</source>
+        <translation>Při změně výchozí cesty pro uložení:</translation>
+    </message>
+    <message>
+        <source>Enable Host header validation</source>
+        <translation>Zapnout ověřování hlavičky hostitele</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Bezpečnost</translation>
+    </message>
+    <message>
+        <source>When Category Save Path changed:</source>
+        <translation>Při změně cesty pro uložení Kategorií:</translation>
+    </message>
+    <message>
+        <source>Create subfolder for torrents with multiple files</source>
+        <translation>Vytvořit podadresář pro torrent s více soubory</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>sekundy</translation>
+    </message>
+    <message>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation>Přepnout dotčené torrenty do ručního módu</translation>
+    </message>
+    <message>
+        <source>Files location:</source>
+        <translation>Umístění souborů:</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Manuální</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer:</source>
+        <translation>Časovač nečinnosti torrentu:</translation>
+    </message>
+    <message>
+        <source>Default Torrent Management Mode:</source>
+        <translation>Výchozí režim správy torrentu:</translation>
+    </message>
+    <message>
+        <source>When adding a torrent</source>
+        <translation>Při přidání torrentu</translation>
     </message>
 </context>
 <context>
@@ -1131,11 +1284,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Omezení stahování:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Omezení odesílání:</translation>
     </message>
 </context>
 <context>
@@ -1188,27 +1341,27 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation type="unfinished" />
+        <translation>Připojení peerové:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation type="unfinished" />
+        <translation>Celkový poměr sdílení:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation type="unfinished" />
+        <translation>Celkově staženo:</translation>
     </message>
     <message>
         <source>Session waste:</source>
-        <translation type="unfinished" />
+        <translation>Zahozeno od spuštění:</translation>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished" />
+        <translation>Celkově odesláno:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation type="unfinished" />
+        <translation>Celková velikost vyrovnávací paměti:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -1504,6 +1657,70 @@
         <source>Message</source>
         <translation>Zpráva</translation>
     </message>
+    <message>
+        <source>Downloaded</source>
+        <translation>Staženo</translation>
+    </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation>URL trackeru:</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation>Aktualizuji...</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation>Funkční</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Zakázáno</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation>Dosud nekontaktován</translation>
+    </message>
+    <message>
+        <source>#</source>
+        <translation>#</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>není k dispozici</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <translation>Seedy</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation>Nefunkční</translation>
+    </message>
+    <message>
+        <source>Copy tracker URL</source>
+        <translation>Kopírovat URL trackeru</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation>Přidat nový tracker...</translation>
+    </message>
+    <message>
+        <source>Edit tracker URL...</source>
+        <translation>Upravit URL trackeru</translation>
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation>Upravit tracker</translation>
+    </message>
+    <message>
+        <source>Leeches</source>
+        <translation>Leeches</translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation>Odstranit tracker</translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -1522,6 +1739,70 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>před %1</translation>
+    </message>
+    <message>
+        <source>Allocating</source>
+        <translation>Přiděluji místo</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation>Pozastaveno</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation>Dokončeno</translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation>Přesouvám</translation>
+    </message>
+    <message>
+        <source>[F] Seeding</source>
+        <translation>[F] Sdílím</translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <translation>Sdíleno</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation>Zařazeno do fronty</translation>
+    </message>
+    <message>
+        <source>Errored</source>
+        <translation>S chybou</translation>
+    </message>
+    <message>
+        <source>[F] Downloading</source>
+        <translation>[F] Stahuji</translation>
+    </message>
+    <message>
+        <source>Downloading metadata</source>
+        <translation>Stahuji metadata</translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <translation>Kontroluji</translation>
+    </message>
+    <message>
+        <source>Missing Files</source>
+        <translation>Chybějící soubory</translation>
+    </message>
+    <message>
+        <source>Queued for checking</source>
+        <translation>Ve frontě na kontrolu</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation>Stahuji</translation>
+    </message>
+    <message>
+        <source>Checking resume data</source>
+        <translation>Kontrola dat pro obnovení</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <translation>Pozastaveno</translation>
     </message>
 </context>
 <context>
@@ -1661,35 +1942,35 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>Vynutit překontrolování</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Nová kategorie</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Umístění</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Nový název</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Nastavit umístění</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>Vynutit oznámení</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Upravit kategorii</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Cesta pro uložení</translation>
     </message>
 </context>
 <context>
@@ -1750,7 +2031,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Potvrzení o smazání - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -1765,7 +2046,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Přidat odkazy torrentů</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +2121,182 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Cesta pro uložení je prázdná</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Zrušit</translation>
+    </message>
+    <message>
+        <source>Plugin path:</source>
+        <translation>Cesta k pluginu:</translation>
+    </message>
+    <message>
+        <source>URL or local directory</source>
+        <translation>URL nebo místní složka</translation>
+    </message>
+    <message>
+        <source>Install plugin</source>
+        <translation>Instalovat plugin</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+</context>
+<context>
+    <name>SearchEngineWidget</name>
+    <message>
+        <source>Seeds:</source>
+        <translation>Seedy:</translation>
+    </message>
+    <message>
+        <source>All plugins</source>
+        <translation>Všechny pluginy</translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation>Velikost:</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Zastavit</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Hledat</translation>
+    </message>
+    <message>
+        <source>Search plugins...</source>
+        <translation>Pluginy pro vyhledávání</translation>
+    </message>
+    <message>
+        <source>All categories</source>
+        <translation>Všechny kategorie</translation>
+    </message>
+    <message>
+        <source>Search in:</source>
+        <translation>Hledat v:</translation>
+    </message>
+    <message>
+        <source>Copy description page URL</source>
+        <translation>Kopírovat URL stránky s popisem</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation>Přejít na stránku s popisem</translation>
+    </message>
+    <message>
+        <source>Results (showing</source>
+        <translation>Výsledky (zobrazuji</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation>Stáhnout</translation>
+    </message>
+    <message>
+        <source>Filter</source>
+        <translation>Filtr</translation>
+    </message>
+    <message>
+        <source>Torrent names only</source>
+        <translation>Pouze názvy torrentů</translation>
+    </message>
+    <message>
+        <source>Only enabled</source>
+        <translation>Pouze zapnuté</translation>
+    </message>
+    <message>
+        <source>out of</source>
+        <translation>mimo</translation>
+    </message>
+    <message>
+        <source>Everywhere</source>
+        <translation>Všude</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <source>Uninstall</source>
+        <translation>Odinstalovat</translation>
+    </message>
+    <message>
+        <source>Install new plugin</source>
+        <translation>Instalovat nový plugin</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here:</source>
+        <translation>Nové vyhledávací pluginy můžete získat zde:</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Zavřít</translation>
+    </message>
+    <message>
+        <source>Installed search plugins:</source>
+        <translation>Nainstalované vyhledávací pluginy:</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Zapnuto</translation>
+    </message>
+    <message>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Varování: Ujistěte se, že dodržujete zákony Vaší země o ochraně duševního vlastnictví když stahujete torrenty z kteréhokoliv z těchto vyhledávačů.</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Zkontrolovat aktualizace</translation>
+    </message>
+    <message>
+        <source>Search plugins</source>
+        <translation>Pluginy pro vyhledávání</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Velikost</translation>
+    </message>
+    <message>
+        <source>Leechers</source>
+        <translation>Leecheři</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>Vyhledávač</translation>
+    </message>
+    <message>
+        <source>Seeders</source>
+        <translation>Seedeři</translation>
+    </message>
+</context>
+<context>
+    <name>SearchPluginsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Zapnuto</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Verze</translation>
     </message>
 </context>
 </TS>

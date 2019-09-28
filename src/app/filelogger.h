@@ -29,10 +29,9 @@
 #ifndef FILELOGGER_H
 #define FILELOGGER_H
 
+#include <QFile>
 #include <QObject>
 #include <QTimer>
-
-class QFile;
 
 namespace Log
 {
@@ -52,11 +51,11 @@ public:
         YEARS
     };
 
-    FileLogger(const QString &path, const bool backup, const int maxSize, const bool deleteOld, const int age, const FileLogAgeType ageType);
+    FileLogger(const QString &path, bool backup, int maxSize, bool deleteOld, int age, FileLogAgeType ageType);
     ~FileLogger();
 
     void changePath(const QString &newPath);
-    void deleteOld(const int age, const FileLogAgeType ageType);
+    void deleteOld(int age, FileLogAgeType ageType);
     void setBackup(bool value);
     void setMaxSize(int value);
 
@@ -71,7 +70,7 @@ private:
     QString m_path;
     bool m_backup;
     int m_maxSize;
-    QFile *m_logFile;
+    QFile m_logFile;
     QTimer m_flusher;
 };
 

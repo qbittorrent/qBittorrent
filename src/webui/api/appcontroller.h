@@ -43,8 +43,12 @@ public:
 private slots:
     void webapiVersionAction();
     void versionAction();
+    void buildInfoAction();
     void shutdownAction();
     void preferencesAction();
     void setPreferencesAction();
     void defaultSavePathAction();
+    
+    void networkInterfaceListAction();
+    void networkInterfaceAddressListAction();
 };

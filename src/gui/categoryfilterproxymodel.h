@@ -30,7 +30,8 @@
 #define CATEGORYFILTERPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
-#include <QString>
+
+class QString;
 
 class CategoryFilterProxyModel : public QSortFilterProxyModel
 {

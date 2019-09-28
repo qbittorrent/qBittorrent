@@ -38,7 +38,7 @@ class IndexInterval
 public:
     using IndexType = Index;
 
-    IndexInterval(IndexType first, IndexType last)  // add constexpr when using C++14
+    IndexInterval(IndexType first, IndexType last)  // add constexpr when using C++17
         : m_first {first}
         , m_last {last}
     {

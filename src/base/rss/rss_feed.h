@@ -39,6 +39,12 @@
 
 class AsyncFileStorage;
 
+namespace Net
+{
+    class DownloadHandler;
+    struct DownloadResult;
+}
+
 namespace RSS
 {
     class Article;
@@ -85,9 +91,8 @@ namespace RSS
     private slots:
         void handleSessionProcessingEnabledChanged(bool enabled);
         void handleMaxArticlesPerFeedChanged(int n);
-        void handleIconDownloadFinished(const QString &url, const QString &filePath);
-        void handleDownloadFinished(const QString &url, const QByteArray &data);
-        void handleDownloadFailed(const QString &url, const QString &error);
+        void handleIconDownloadFinished(const Net::DownloadResult &result);
+        void handleDownloadFinished(const Net::DownloadResult &result);
         void handleParsingFinished(const Private::ParsingResult &result);
         void handleArticleRead(Article *article);
 
@@ -104,6 +109,7 @@ namespace RSS
         void increaseUnreadCount();
         void decreaseUnreadCount();
         void downloadIcon();
+        int updateArticles(const QList<QVariantHash> &loadedArticles);
 
         Session *m_session;
         Private::Parser *m_parser;
@@ -120,5 +126,6 @@ namespace RSS
         QString m_dataFileName;
         QBasicTimer m_savingTimer;
         bool m_dirty = false;
+        Net::DownloadHandler *m_downloadHandler = nullptr;
     };
 }

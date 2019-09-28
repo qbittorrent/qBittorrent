@@ -29,12 +29,13 @@
 
 #pragma once
 
-#include <QDateTime>
 #include <QSharedDataPointer>
 #include <QVariant>
 
+class QDateTime;
 class QJsonObject;
 class QRegularExpression;
+
 class TriStateBool;
 
 namespace RSS

@@ -38,12 +38,12 @@ AsyncFileStorage::AsyncFileStorage(const QString &storageFolderPath, QObject *pa
     , m_lockFile(m_storageDir.absoluteFilePath(QStringLiteral("storage.lock")))
 {
     if (!m_storageDir.mkpath(m_storageDir.absolutePath()))
-        throw AsyncFileStorageError(
-                QString("Could not create directory '%1'.").arg(m_storageDir.absolutePath()));
+        throw AsyncFileStorageError {tr("Could not create directory '%1'.")
+                .arg(m_storageDir.absolutePath())};
 
     // TODO: This folder locking approach does not work for UNIX systems. Implement it.
     if (!m_lockFile.open(QFile::WriteOnly))
-        throw AsyncFileStorageError(m_lockFile.errorString());
+        throw AsyncFileStorageError {m_lockFile.errorString()};
 }
 
 AsyncFileStorage::~AsyncFileStorage()
@@ -54,8 +54,13 @@ AsyncFileStorage::~AsyncFileStorage()
 
 void AsyncFileStorage::store(const QString &fileName, const QByteArray &data)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(this, [this, data, fileName]() { store_impl(fileName, data); }
+                              , Qt::QueuedConnection);
+#else
     QMetaObject::invokeMethod(this, "store_impl", Qt::QueuedConnection
                               , Q_ARG(QString, fileName), Q_ARG(QByteArray, data));
+#endif
 }
 
 QDir AsyncFileStorage::storageDir() const
@@ -75,14 +80,4 @@ void AsyncFileStorage::store_impl(const QString &fileName, const QByteArray &dat
             emit failed(filePath, file.errorString());
         }
     }
-}
-
-AsyncFileStorageError::AsyncFileStorageError(const QString &message)
-    : std::runtime_error(message.toUtf8().data())
-{
-}
-
-QString AsyncFileStorageError::message() const
-{
-    return what();
 }

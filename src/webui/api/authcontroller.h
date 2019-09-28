@@ -29,9 +29,10 @@
 #pragma once
 
 #include <QHash>
-#include <QString>
 
 #include "apicontroller.h"
+
+class QString;
 
 class AuthController : public APIController
 {

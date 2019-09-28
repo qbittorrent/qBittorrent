@@ -29,82 +29,24 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <QFile>
+#include <QDialog>
 
-#include "base/unicodestrings.h"
-#include "base/utils/misc.h"
-#include "ui_aboutdialog.h"
-#include "utils.h"
+namespace Ui
+{
+    class AboutDialog;
+}
 
-class AboutDialog : public QDialog, private Ui::AboutDialog
+class AboutDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AboutDialog)
 
 public:
-    AboutDialog(QWidget *parent)
-        : QDialog(parent)
-    {
-        setupUi(this);
-        setAttribute(Qt::WA_DeleteOnClose);
+    explicit AboutDialog(QWidget *parent);
+    ~AboutDialog() override;
 
-        // Title
-#if defined(__x86_64__) || defined(_M_X64)
-        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (64-bit)</h2></b>");
-#else
-        labelName->setText("<b><h2>qBittorrent " QBT_VERSION " (32-bit)</h2></b>");
-#endif
-
-        logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/skin/qbittorrent-tray.svg", this, 32));
-
-        // About
-        QString aboutText = QString(
-            "<p style=\"white-space: pre-wrap;\">"
-            "%1\n\n"
-            "%2\n\n"
-            "<table>"
-            "<tr><td>%3</td><td><a href=\"https://www.qbittorrent.org\">https://www.qbittorrent.org</a></td></tr>"
-            "<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
-            "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
-            "</table>"
-            "</p>")
-            .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
-                , tr("Copyright %1 2006-2018 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
-                , tr("Home Page:")
-                , tr("Forum:")
-                , tr("Bug Tracker:"));
-        labelAbout->setText(aboutText);
-
-        labelMascot->setPixmap(Utils::Gui::scaledPixmap(":/icons/skin/mascot.png", this));
-
-        // Thanks
-        QFile thanksfile(":/thanks.html");
-        if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserThanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
-            thanksfile.close();
-        }
-
-        // Translation
-        QFile translatorsfile(":/translators.html");
-        if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserTranslation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
-            translatorsfile.close();
-        }
-
-        // License
-        QFile licensefile(":/gpl.html");
-        if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
-            licensefile.close();
-        }
-
-        // Libraries
-        labelQtVer->setText(QT_VERSION_STR);
-        labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
-        labelBoostVer->setText(Utils::Misc::boostVersionString());
-
-        Utils::Gui::resize(this);
-        show();
-    }
+private:
+    Ui::AboutDialog *m_ui;
 };
 
 #endif // ABOUTDIALOG_H

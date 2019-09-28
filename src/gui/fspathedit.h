@@ -29,7 +29,6 @@
 #ifndef QBT_FSPATHEDIT_H
 #define QBT_FSPATHEDIT_H
 
-#include <QScopedPointer>
 #include <QWidget>
 
 namespace Private
@@ -105,7 +104,7 @@ private:
     Q_DISABLE_COPY(FileSystemPathEdit)
     class FileSystemPathEditPrivate;
     Q_DECLARE_PRIVATE(FileSystemPathEdit)
-    QScopedPointer<FileSystemPathEditPrivate> const d_ptr;
+    FileSystemPathEditPrivate *d_ptr;
 };
 
 /// Widget which uses QLineEdit for path editing

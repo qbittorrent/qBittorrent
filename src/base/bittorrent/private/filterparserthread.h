@@ -29,9 +29,9 @@
 #ifndef FILTERPARSERTHREAD_H
 #define FILTERPARSERTHREAD_H
 
-#include <QThread>
-
 #include <libtorrent/ip_filter.hpp>
+
+#include <QThread>
 
 class QDataStream;
 
@@ -43,14 +43,14 @@ public:
     FilterParserThread(QObject *parent = nullptr);
     ~FilterParserThread();
     void processFilterFile(const QString &filePath);
-    libtorrent::ip_filter IPfilter();
+    lt::ip_filter IPfilter();
 
 signals:
     void IPFilterParsed(int ruleCount);
     void IPFilterError();
 
 protected:
-    void run();
+    void run() override;
 
 private:
     int findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse = false);
@@ -62,7 +62,7 @@ private:
 
     bool m_abort;
     QString m_filePath;
-    libtorrent::ip_filter m_filter;
+    lt::ip_filter m_filter;
 };
 
 #endif // BITTORRENT_FILTERPARSERTHREAD_H

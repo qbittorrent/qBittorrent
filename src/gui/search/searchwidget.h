@@ -33,8 +33,6 @@
 #include <QPointer>
 #include <QWidget>
 
-class QShortcut;
-class QSignalMapper;
 class QTabWidget;
 
 class MainWindow;
@@ -58,15 +56,11 @@ public:
 
 private slots:
     void on_searchButton_clicked();
-    void on_downloadButton_clicked();
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
     void on_pluginsButton_clicked();
 
 private:
     void tabChanged(int index);
     void closeTab(int index);
-    void resultsCountUpdated();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
@@ -74,18 +68,15 @@ private:
     void fillCatCombobox();
     void fillPluginComboBox();
     void selectActivePage();
-    void searchTextEdited(QString);
-    void updateButtons();
+    void searchTextEdited(const QString &);
 
     QString selectedCategory() const;
     QString selectedPlugin() const;
 
     Ui::SearchWidget *m_ui;
-    QSignalMapper *m_tabStatusChangedMapper;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
     MainWindow *m_mainWindow;
     bool m_isNewQueryString;
-    QShortcut *m_focusSearchHotkey;
 };

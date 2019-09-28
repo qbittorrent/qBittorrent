@@ -29,8 +29,13 @@
 #include "transfercontroller.h"
 
 #include <QJsonObject>
+#include <QVector>
 
+#include "base/bittorrent/peeraddress.h"
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/global.h"
+#include "apierror.h"
 
 const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
 const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
@@ -124,4 +129,14 @@ void TransferController::setPauseUploadsAction()
     checkParams({"enabled"});
     bool en = params()["enabled"].toInt() > 0 ? true : false;
     BitTorrent::Session::instance()->setAltPauseUploads(en);
+void TransferController::banPeersAction()
+{
+    checkParams({"peers"});
+
+    const QStringList peers = params()["peers"].split('|');
+    for (const QString &peer : peers) {
+        const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
+        if (!addr.ip.isNull())
+            BitTorrent::Session::instance()->banIP(addr.ip.toString());
+    }
 }

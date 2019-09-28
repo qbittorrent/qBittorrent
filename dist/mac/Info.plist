@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>qBittorrent</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -21,6 +25,10 @@
 			<array>
 				<string>org.bittorrent.torrent</string>
 			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>org.bittorrent.torrent</string>
+			</array>
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
 		</dict>
@@ -28,6 +36,8 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>magnet</string>
@@ -46,20 +56,18 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>4.2.0</string>
-	<key>CFBundleSignature</key>
-	<string>qBit</string>
 	<key>CFBundleExecutable</key>
 	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.qbittorrent</string>
+	<string>org.qbittorrent.qBittorrent</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>${MACOSX_DEPLOYMENT_TARGET}.0</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSHighResolutionCapable</key>
-	<string>True</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2006-2018 The qBittorrent project</string>
+	<string>Copyright © 2006-2019 The qBittorrent project</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

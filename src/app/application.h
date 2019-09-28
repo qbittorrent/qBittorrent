@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -27,16 +27,15 @@
  * exception statement from your version.
  */
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#pragma once
 
 #include <QPointer>
 #include <QStringList>
 #include <QTranslator>
 
 #ifndef DISABLE_GUI
-#include "qtsingleapplication.h"
-typedef QtSingleApplication BaseApplication;
+#include <QApplication>
+using BaseApplication = QApplication;
 class MainWindow;
 
 #ifdef Q_OS_WIN
@@ -44,17 +43,18 @@ class QSessionManager;
 #endif // Q_OS_WIN
 
 #else
-#include "qtsinglecoreapplication.h"
-typedef QtSingleCoreApplication BaseApplication;
+#include <QCoreApplication>
+using BaseApplication = QCoreApplication;
 #endif // DISABLE_GUI
 
-#include "base/utils/misc.h"
+#include "base/types.h"
 #include "cmdoptions.h"
 
 #ifndef DISABLE_WEBUI
 class WebUI;
 #endif
 
+class ApplicationInstanceManager;
 class FileLogger;
 
 namespace BitTorrent
@@ -77,9 +77,7 @@ public:
     Application(const QString &id, int &argc, char **argv);
     ~Application() override;
 
- #if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
-#endif
     int exec(const QStringList &params);
     bool sendParams(const QStringList &params);
 
@@ -99,18 +97,17 @@ public:
     bool isFileLoggerDeleteOld() const;
     void setFileLoggerDeleteOld(bool value);
     int fileLoggerMaxSize() const;
-    void setFileLoggerMaxSize(const int bytes);
+    void setFileLoggerMaxSize(int bytes);
     int fileLoggerAge() const;
-    void setFileLoggerAge(const int value);
+    void setFileLoggerAge(int value);
     int fileLoggerAgeType() const;
-    void setFileLoggerAgeType(const int value);
+    void setFileLoggerAgeType(int value);
 
 protected:
 #ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
-    bool notify(QObject *receiver, QEvent *event) override;
 #endif
 
 private slots:
@@ -123,6 +120,7 @@ private slots:
 #endif
 
 private:
+    ApplicationInstanceManager *m_instanceManager;
     bool m_running;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
@@ -132,7 +130,7 @@ private:
 #endif
 
 #ifndef DISABLE_WEBUI
-    WebUI *m_webui;
+    WebUI *m_webui = nullptr;
 #endif
 
     // FileLog
@@ -148,5 +146,3 @@ private:
     void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
     void validateCommandLineParameters();
 };
-
-#endif // APPLICATION_H

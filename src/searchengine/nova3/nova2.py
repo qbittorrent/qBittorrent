@@ -1,4 +1,4 @@
-#VERSION: 1.42
+#VERSION: 1.43
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -76,7 +76,7 @@ def initialize_engines():
             # bind class name
             globals()[engi] = getattr(engine_module, engi)
             supported_engines.append(engi)
-        except:
+        except Exception:
             pass
 
     return supported_engines
@@ -93,7 +93,7 @@ def engines_to_xml(supported_engines):
         if hasattr(search_engine, "supported_categories"):
             supported_categories = " ".join((key
                                              for key in search_engine.supported_categories.keys()
-                                             if key is not "all"))
+                                             if key != "all"))
 
         yield "".join((tab, "<", short_name, ">\n",
                        tab, tab, "<name>", search_engine.name, "</name>\n",
@@ -138,7 +138,7 @@ def run_search(engine_list):
             engine.search(what)
 
         return True
-    except:
+    except Exception:
         return False
 
 

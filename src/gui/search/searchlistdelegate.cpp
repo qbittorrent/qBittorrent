@@ -28,19 +28,12 @@
 
 #include "searchlistdelegate.h"
 
-#include <QCoreApplication>
 #include <QModelIndex>
 #include <QPainter>
-#include <QProgressBar>
 #include <QStyleOptionViewItem>
 
 #include "base/utils/misc.h"
 #include "searchsortmodel.h"
-
-namespace
-{
-    const char i18nContext[] = "SearchListDelegate";
-}
 
 SearchListDelegate::SearchListDelegate(QObject *parent)
     : QItemDelegate(parent)
@@ -63,7 +56,7 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     case SearchSortModel::LEECHES:
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect
-            , (index.data().toLongLong() >= 0) ? index.data().toString() : QCoreApplication::translate(i18nContext, "Unknown"));
+            , (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
     default:
         QItemDelegate::paint(painter, option, index);

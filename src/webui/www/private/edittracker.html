@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script>
+        'use strict';
+
+        window.addEvent('domready', function() {
+            new Keyboard({
+                defaultEventType: 'keydown',
+                events: {
+                    'Enter': function(event) {
+                        $('editTrackerButton').click();
+                        event.preventDefault();
+                    },
+                    'Escape': function(event) {
+                        window.parent.closeWindows();
+                        event.preventDefault();
+                    },
+                    'Esc': function(event) {
+                        window.parent.closeWindows();
+                        event.preventDefault();
+                    }
+                }
+            }).activate();
+
+            const currentUrl = new URI().getData('url');
+            if (!currentUrl)
+                return false;
+
+            const decodedUrl = decodeURIComponent(currentUrl);
+            $('trackerUrl').value = decodedUrl;
+            $('trackerUrl').focus();
+
+            $('editTrackerButton').addEvent('click', function(e) {
+                new Event(e).stop();
+                const hash = new URI().getData('hash');
+                new Request({
+                    url: 'api/v2/torrents/editTracker',
+                    method: 'post',
+                    data: {
+                        hash: hash,
+                        origUrl: decodedUrl,
+                        newUrl: $('trackerUrl').value
+                    },
+                    onComplete: function() {
+                        window.parent.closeWindows();
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <br/>
+        <h2 class="vcenter">QBT_TR(Tracker URL:)QBT_TR[CONTEXT=TrackerListWidget]</h2>
+        <div style="text-align: center; padding-top: 10px;">
+            <input id="trackerUrl" style="width: 90%;" />
+        </div>
+        <br/>
+        <input type="button" value="QBT_TR(Edit)QBT_TR[CONTEXT=HttpServer]" id="editTrackerButton" />
+    </div>
+</body>
+
+</html>

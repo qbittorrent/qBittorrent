@@ -316,11 +316,12 @@ li.divider {
 }
 
 .panel-collapse {
-    background: url(../images/skin/collapse-expand.gif) left top no-repeat;
+    background: url(../images/skin/collapse.svg) left top no-repeat;
 }
 
 .panel-expand {
-    background: url(../images/skin/collapse-expand.gif) left -16px no-repeat;
+    background: url(../images/skin/collapse.svg) left top no-repeat;
+    transform: rotate(180deg);
 }
 
 .icon16 {
@@ -431,4 +432,12 @@ div.toolbox.divider {  /* Have to specify div here for IE6's sake */
 td.speedLabel {
     cursor: pointer;
     min-width: 18em;
+}
+
+#freeSpaceOnDisk {
+    white-space: nowrap;
+}
+
+#DHTNodes {
+    white-space: nowrap;
 }
