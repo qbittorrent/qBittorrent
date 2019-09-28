@@ -473,7 +473,7 @@ void TrackerFiltersList::showMenu(const QPoint &)
     const QAction *startAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.ResumeAction"), tr("Resume torrents"));
     connect(startAct, &QAction::triggered, transferList, &TransferListWidget::startVisibleTorrents);
 
-    const QAction *pauseAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.Pause.ction"), tr("Pause torrents"));
+    const QAction *pauseAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.PauseAction"), tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, transferList, &TransferListWidget::pauseVisibleTorrents);
 
     const QAction *deleteTorrentsAct = menu->addAction(UIThemeManager::instance()->getIcon("TransferFilter.Tracker.RemoveAction"), tr("Delete torrents"));
