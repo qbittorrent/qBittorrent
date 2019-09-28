@@ -4531,23 +4531,15 @@ namespace
     QString convertIfaceNameToGuid(const QString &name)
     {
         // Under Windows XP or on Qt version <= 5.5 'name' will be a GUID already.
-        QUuid uuid(name);
+        const QUuid uuid(name);
         if (!uuid.isNull())
             return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
 
-        using PCONVERTIFACENAMETOLUID = NETIO_STATUS (WINAPI *)(const WCHAR *, PNET_LUID);
-        const auto ConvertIfaceNameToLuid = Utils::Misc::loadWinAPI<PCONVERTIFACENAMETOLUID>("Iphlpapi.dll", "ConvertInterfaceNameToLuidW");
-        if (!ConvertIfaceNameToLuid) return {};
-
-        using PCONVERTIFACELUIDTOGUID = NETIO_STATUS (WINAPI *)(const NET_LUID *, GUID *);
-        const auto ConvertIfaceLuidToGuid = Utils::Misc::loadWinAPI<PCONVERTIFACELUIDTOGUID>("Iphlpapi.dll", "ConvertInterfaceLuidToGuid");
-        if (!ConvertIfaceLuidToGuid) return {};
-
-        NET_LUID luid;
-        const LONG res = ConvertIfaceNameToLuid(name.toStdWString().c_str(), &luid);
+        NET_LUID luid {};
+        const LONG res = ::ConvertInterfaceNameToLuidW(name.toStdWString().c_str(), &luid);
         if (res == 0) {
             GUID guid;
-            if (ConvertIfaceLuidToGuid(&luid, &guid) == 0)
+            if (::ConvertInterfaceLuidToGuid(&luid, &guid) == 0)
                 return QUuid(guid).toString().toUpper();
         }
 

@@ -685,11 +685,8 @@ void Application::cleanup()
         m_window->hide();
 
 #ifdef Q_OS_WIN
-        typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
-        const auto shutdownBRCreate = Utils::Misc::loadWinAPI<PSHUTDOWNBRCREATE>("User32.dll", "ShutdownBlockReasonCreate");
-        // Only available on Vista+
-        if (shutdownBRCreate)
-            shutdownBRCreate((HWND)m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
+        ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId())
+            , tr("Saving torrent progress...").toStdWString().c_str());
 #endif // Q_OS_WIN
 
         // Do manual cleanup in MainWindow to force widgets
@@ -728,11 +725,7 @@ void Application::cleanup()
 #ifndef DISABLE_GUI
     if (m_window) {
 #ifdef Q_OS_WIN
-        using PSHUTDOWNBRDESTROY = BOOL (WINAPI *)(HWND);
-        const auto shutdownBRDestroy = Utils::Misc::loadWinAPI<PSHUTDOWNBRDESTROY>("User32.dll", "ShutdownBlockReasonDestroy");
-        // Only available on Vista+
-        if (shutdownBRDestroy)
-            shutdownBRDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
+        ::ShutdownBlockReasonDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
 #endif // Q_OS_WIN
         delete m_window;
         UIThemeManager::freeInstance();
