@@ -155,7 +155,6 @@ SettingsStorage *SettingsStorage::m_instance = nullptr;
 SettingsStorage::SettingsStorage()
     : m_data{TransactionalSettings(QLatin1String("qBittorrent")).read()}
     , m_dirty(false)
-    , m_lock(QReadWriteLock::Recursive)
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
@@ -202,8 +201,9 @@ bool SettingsStorage::save()
 
 QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultValue) const
 {
+    const QString realKey = mapKey(key);
     const QReadLocker locker(&m_lock);
-    return m_data.value(mapKey(key), defaultValue);
+    return m_data.value(realKey, defaultValue);
 }
 
 void SettingsStorage::storeValue(const QString &key, const QVariant &value)
