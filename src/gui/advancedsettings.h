@@ -71,6 +71,8 @@ private:
     // OS dependent settings
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     QCheckBox m_checkBoxUseIconTheme;
+#elif defined(Q_OS_WIN)
+    QComboBox m_comboBoxOSMemoryPriority;
 #endif
 };
 

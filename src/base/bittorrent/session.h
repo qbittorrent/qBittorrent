@@ -132,6 +132,18 @@ namespace BitTorrent
             AntiLeech = 2
         };
         Q_ENUM_NS(SeedChokingAlgorithm)
+
+#if defined(Q_OS_WIN)
+        enum class OSMemoryPriority : int
+        {
+            Normal = 0,
+            BelowNormal = 1,
+            Medium = 2,
+            Low = 3,
+            VeryLow = 4
+        };
+        Q_ENUM_NS(OSMemoryPriority)
+#endif
     }
     using namespace SessionSettingsEnums;
 
@@ -387,6 +399,10 @@ namespace BitTorrent
         void setTrackerFilteringEnabled(bool enabled);
         QStringList bannedIPs() const;
         void setBannedIPs(const QStringList &newList);
+#if defined(Q_OS_WIN)
+        OSMemoryPriority getOSMemoryPriority() const;
+        void setOSMemoryPriority(OSMemoryPriority priority);
+#endif
 
         void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
@@ -530,6 +546,9 @@ namespace BitTorrent
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();
+#if defined(Q_OS_WIN)
+        void applyOSMemoryPriority() const;
+#endif
 
         bool addTorrent_impl(CreateTorrentParams params, const MagnetUri &magnetUri,
                              TorrentInfo torrentInfo = TorrentInfo(),
@@ -661,6 +680,9 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategorySavePathChanged;
         CachedSettingValue<bool> m_isTrackerEnabled;
         CachedSettingValue<QStringList> m_bannedIPs;
+#if defined(Q_OS_WIN)
+        CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
+#endif
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor

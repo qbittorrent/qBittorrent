@@ -61,6 +61,9 @@ enum AdvSettingsRows
 {
     // qBittorrent section
     QBITTORRENT_HEADER,
+#if defined(Q_OS_WIN)
+    OS_MEMORY_PRIORITY,
+#endif
     // network interface
     NETWORK_IFACE,
     //Optional network address
@@ -151,6 +154,28 @@ void AdvancedSettings::saveAdvancedSettings()
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
+#if defined(Q_OS_WIN)
+    BitTorrent::OSMemoryPriority prio = BitTorrent::OSMemoryPriority::Normal;
+    switch (m_comboBoxOSMemoryPriority.currentIndex()) {
+    case 0:
+    default:
+        prio = BitTorrent::OSMemoryPriority::Normal;
+        break;
+    case 1:
+        prio = BitTorrent::OSMemoryPriority::BelowNormal;
+        break;
+    case 2:
+        prio = BitTorrent::OSMemoryPriority::Medium;
+        break;
+    case 3:
+        prio = BitTorrent::OSMemoryPriority::Low;
+        break;
+    case 4:
+        prio = BitTorrent::OSMemoryPriority::VeryLow;
+        break;
+    }
+    session->setOSMemoryPriority(prio);
+#endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
     // File pool size
@@ -320,6 +345,33 @@ void AdvancedSettings::loadAdvancedSettings()
     labelLibtorrentLink->setOpenExternalLinks(true);
     addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
+
+#if defined(Q_OS_WIN)
+    m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});
+    int OSMemoryPriorityIndex = 0;
+    switch (session->getOSMemoryPriority()) {
+    default:
+    case BitTorrent::OSMemoryPriority::Normal:
+        OSMemoryPriorityIndex = 0;
+        break;
+    case BitTorrent::OSMemoryPriority::BelowNormal:
+        OSMemoryPriorityIndex = 1;
+        break;
+    case BitTorrent::OSMemoryPriority::Medium:
+        OSMemoryPriorityIndex = 2;
+        break;
+    case BitTorrent::OSMemoryPriority::Low:
+        OSMemoryPriorityIndex = 3;
+        break;
+    case BitTorrent::OSMemoryPriority::VeryLow:
+        OSMemoryPriorityIndex = 4;
+        break;
+    }
+    m_comboBoxOSMemoryPriority.setCurrentIndex(OSMemoryPriorityIndex);
+    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
+        + ' ' + makeLink("https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", "(?)"))
+        , &m_comboBoxOSMemoryPriority);
+#endif
 
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
