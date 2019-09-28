@@ -56,7 +56,6 @@ private:
 
     static UIThemeManager *m_instance;
 
-    QString m_flagsDir;
     QHash<QString, QString> m_iconMap;
     bool m_useCustomStylesheet;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))

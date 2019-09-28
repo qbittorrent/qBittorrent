@@ -83,7 +83,6 @@ SOURCES += \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/hidabletabwidget.cpp \
-    $$PWD/iconconfig.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
     $$PWD/loglistwidget.cpp \
