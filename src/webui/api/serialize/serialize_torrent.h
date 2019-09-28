@@ -43,7 +43,7 @@ const char KEY_TORRENT_SIZE[] = "size";
 const char KEY_TORRENT_PROGRESS[] = "progress";
 const char KEY_TORRENT_DLSPEED[] = "dlspeed";
 const char KEY_TORRENT_UPSPEED[] = "upspeed";
-const char KEY_TORRENT_PRIORITY[] = "priority";
+const char KEY_TORRENT_QUEUE_POSITION[] = "priority";
 const char KEY_TORRENT_SEEDS[] = "num_seeds";
 const char KEY_TORRENT_NUM_COMPLETE[] = "num_complete";
 const char KEY_TORRENT_LEECHS[] = "num_leechs";
@@ -78,5 +78,6 @@ const char KEY_TORRENT_LAST_ACTIVITY_TIME[] = "last_activity";
 const char KEY_TORRENT_TOTAL_SIZE[] = "total_size";
 const char KEY_TORRENT_AUTO_TORRENT_MANAGEMENT[] = "auto_tmm";
 const char KEY_TORRENT_TIME_ACTIVE[] = "time_active";
+const char KEY_TORRENT_AVAILABILITY[] = "availability";
 
 QVariantMap serialize(const BitTorrent::TorrentHandle &torrent);

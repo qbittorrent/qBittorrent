@@ -107,8 +107,8 @@ void BanListOptionsDialog::on_buttonBanIP_clicked()
 
 void BanListOptionsDialog::on_buttonDeleteIP_clicked()
 {
-    QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
-    for (auto &i : selection)
+    const QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
+    for (const auto &i : selection)
         m_sortFilter->removeRow(i.row());
 
     m_modified = true;

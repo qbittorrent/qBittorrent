@@ -29,15 +29,15 @@
 #include "transferlistdelegate.h"
 
 #include <QApplication>
+#include <QDateTime>
 #include <QModelIndex>
 #include <QPainter>
 #include <QStyleOptionViewItem>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include <QProxyStyle>
 #endif
 
-#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
 #include "base/types.h"
@@ -54,16 +54,18 @@ TransferListDelegate::TransferListDelegate(QObject *parent)
 void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     painter->save();
+
     bool isHideState = true;
     if (Preferences::instance()->getHideZeroComboValues() == 1) {  // paused torrents only
-        QModelIndex stateIndex = index.sibling(index.row(), TransferListModel::TR_STATUS);
+        const QModelIndex stateIndex = index.sibling(index.row(), TransferListModel::TR_STATUS);
         if (stateIndex.data().value<BitTorrent::TorrentState>() != BitTorrent::TorrentState::PausedDownloading)
             isHideState = false;
     }
-    const bool hideValues = Preferences::instance()->getHideZeroValues() & isHideState;
+    const bool hideValues = Preferences::instance()->getHideZeroValues() && isHideState;
 
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
+
     switch (index.column()) {
     case TransferListModel::TR_AMOUNT_DOWNLOADED:
     case TransferListModel::TR_AMOUNT_UPLOADED:
@@ -81,10 +83,10 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         }
         break;
     case TransferListModel::TR_ETA: {
-        opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong()));
+            opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
+            QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::userFriendlyDuration(index.data().toLongLong(), MAX_ETA));
+        }
         break;
-    }
     case TransferListModel::TR_SEEDS:
     case TransferListModel::TR_PEERS: {
             qlonglong value = index.data().toLongLong();
@@ -121,8 +123,8 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         }
         break;
     case TransferListModel::TR_TIME_ELAPSED: {
-            const int elapsedTime = index.data().toInt();
-            const int seedingTime = index.data(Qt::UserRole).toInt();
+            const qlonglong elapsedTime = index.data().toLongLong();
+            const qlonglong seedingTime = index.data(Qt::UserRole).toLongLong();
             const QString txt = (seedingTime > 0)
                 ? tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                     .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
@@ -145,33 +147,35 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QItemDelegate::drawDisplay(painter, opt, opt.rect, str);
         }
         break;
-    case TransferListModel::TR_PRIORITY: {
-            const int priority = index.data().toInt();
+    case TransferListModel::TR_QUEUE_POSITION: {
+            const int queuePos = index.data().toInt();
             opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
-            if (priority > 0) {
+            if (queuePos > 0)
                 QItemDelegate::paint(painter, opt, index);
-            }
-            else {
+            else
                 QItemDelegate::drawDisplay(painter, opt, opt.rect, "*");
-            }
         }
         break;
     case TransferListModel::TR_PROGRESS: {
+            const qreal progress = index.data().toDouble() * 100;
+
             QStyleOptionProgressBar newopt;
-            qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
+            newopt.text = ((progress == 100)
+                ? QString("100%")
+                : (Utils::String::fromDouble(progress, 1) + '%'));
             newopt.progress = static_cast<int>(progress);
             newopt.maximum = 100;
             newopt.minimum = 0;
             newopt.state |= QStyle::State_Enabled;
             newopt.textVisible = true;
-#ifndef Q_OS_WIN
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-#else
-            // XXX: To avoid having the progress text on the right of the bar
+
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+           // XXX: To avoid having the progress text on the right of the bar
             QProxyStyle st("fusion");
-            st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+            st.drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+#else
+            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #endif
         }
         break;
@@ -192,9 +196,22 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QItemDelegate::drawDisplay(painter, opt, option.rect, elapsedString);
         }
         break;
+
+    case TransferListModel::TR_AVAILABILITY: {
+            const qreal availability = index.data().toReal();
+            if (hideValues && (availability <= 0))
+                break;
+
+            const QString availabilityStr = Utils::String::fromDouble(availability, 3);
+            opt.displayAlignment = (Qt::AlignRight | Qt::AlignVCenter);
+            QItemDelegate::drawDisplay(painter, opt, option.rect, availabilityStr);
+        }
+        break;
+
     default:
         QItemDelegate::paint(painter, option, index);
     }
+
     painter->restore();
 }
 
@@ -213,7 +230,7 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
 
     static int nameColHeight = -1;
     if (nameColHeight == -1) {
-        QModelIndex nameColumn = index.sibling(index.row(), TransferListModel::TR_NAME);
+        const QModelIndex nameColumn = index.sibling(index.row(), TransferListModel::TR_NAME);
         nameColHeight = QItemDelegate::sizeHint(option, nameColumn).height();
     }
 
@@ -224,65 +241,41 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
 
 QString TransferListDelegate::getStatusString(const BitTorrent::TorrentState state) const
 {
-    QString str;
-
     switch (state) {
     case BitTorrent::TorrentState::Downloading:
-        str = tr("Downloading");
-        break;
+        return tr("Downloading");
     case BitTorrent::TorrentState::StalledDownloading:
-        str = tr("Stalled", "Torrent is waiting for download to begin");
-        break;
+        return tr("Stalled", "Torrent is waiting for download to begin");
     case BitTorrent::TorrentState::DownloadingMetadata:
-        str = tr("Downloading metadata", "used when loading a magnet link");
-        break;
+        return tr("Downloading metadata", "Used when loading a magnet link");
     case BitTorrent::TorrentState::ForcedDownloading:
-        str = tr("[F] Downloading", "used when the torrent is forced started. You probably shouldn't translate the F.");
-        break;
+        return tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.");
     case BitTorrent::TorrentState::Allocating:
-        str = tr("Allocating", "qBittorrent is allocating the files on disk");
-        break;
+        return tr("Allocating", "qBittorrent is allocating the files on disk");
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::StalledUploading:
-        str = tr("Seeding", "Torrent is complete and in upload-only mode");
-        break;
+        return tr("Seeding", "Torrent is complete and in upload-only mode");
     case BitTorrent::TorrentState::ForcedUploading:
-        str = tr("[F] Seeding", "used when the torrent is forced started. You probably shouldn't translate the F.");
-        break;
+        return tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.");
     case BitTorrent::TorrentState::QueuedDownloading:
     case BitTorrent::TorrentState::QueuedUploading:
-        str = tr("Queued", "i.e. torrent is queued");
-        break;
+        return tr("Queued", "Torrent is queued");
     case BitTorrent::TorrentState::CheckingDownloading:
     case BitTorrent::TorrentState::CheckingUploading:
-        str = tr("Checking", "Torrent local data is being checked");
-        break;
-#if LIBTORRENT_VERSION_NUM < 10100
-    case BitTorrent::TorrentState::QueuedForChecking:
-        str = tr("Queued for checking", "i.e. torrent is queued for hash checking");
-        break;
-#endif
+        return tr("Checking", "Torrent local data is being checked");
     case BitTorrent::TorrentState::CheckingResumeData:
-        str = tr("Checking resume data", "used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
-        break;
+        return tr("Checking resume data", "Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.");
     case BitTorrent::TorrentState::PausedDownloading:
-        str = tr("Paused");
-        break;
+        return tr("Paused");
     case BitTorrent::TorrentState::PausedUploading:
-        str = tr("Completed");
-        break;
+        return tr("Completed");
     case BitTorrent::TorrentState::Moving:
-        str = tr("Moving", "Torrent local data are being moved/relocated");
-        break;
+        return tr("Moving", "Torrent local data are being moved/relocated");
     case BitTorrent::TorrentState::MissingFiles:
-        str = tr("Missing Files");
-        break;
+        return tr("Missing Files");
     case BitTorrent::TorrentState::Error:
-        str = tr("Errored", "torrent status, the torrent has an error");
-        break;
+        return tr("Errored", "Torrent status, the torrent has an error");
     default:
-        str = "";
+        return {};
     }
-
-    return str;
 }

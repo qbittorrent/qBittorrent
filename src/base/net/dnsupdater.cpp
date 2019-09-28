@@ -33,7 +33,6 @@
 #include <QUrlQuery>
 
 #include "base/logger.h"
-#include "base/net/downloadhandler.h"
 #include "base/net/downloadmanager.h"
 
 using namespace Net;
@@ -74,21 +73,22 @@ void DNSUpdater::checkPublicIP()
 {
     Q_ASSERT(m_state == OK);
 
-    DownloadHandler *handler = DownloadManager::instance()->download(
-                DownloadRequest("http://checkip.dyndns.org").userAgent("qBittorrent/" QBT_VERSION_2));
-    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &DNSUpdater::ipRequestFinished);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &DNSUpdater::ipRequestFailed);
+    DownloadManager::instance()->download(
+                DownloadRequest("http://checkip.dyndns.org").userAgent("qBittorrent/" QBT_VERSION_2)
+                , this, &DNSUpdater::ipRequestFinished);
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
 }
 
-void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
+void DNSUpdater::ipRequestFinished(const DownloadResult &result)
 {
-    Q_UNUSED(url);
+    if (result.status != DownloadStatus::Success) {
+        qWarning() << "IP request failed:" << result.errorString;
+        return;
+    }
 
     // Parse response
-    const QRegularExpressionMatch ipRegexMatch = QRegularExpression("Current IP Address:\\s+([^<]+)</body>").match(data);
+    const QRegularExpressionMatch ipRegexMatch = QRegularExpression("Current IP Address:\\s+([^<]+)</body>").match(result.data);
     if (ipRegexMatch.hasMatch()) {
         QString ipStr = ipRegexMatch.captured(1);
         qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ipStr;
@@ -110,22 +110,14 @@ void DNSUpdater::ipRequestFinished(const QString &url, const QByteArray &data)
     }
 }
 
-void DNSUpdater::ipRequestFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-    qWarning() << "IP request failed:" << error;
-}
-
 void DNSUpdater::updateDNSService()
 {
     qDebug() << Q_FUNC_INFO;
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
-    DownloadHandler *handler = DownloadManager::instance()->download(
-                DownloadRequest(getUpdateUrl()).userAgent("qBittorrent/" QBT_VERSION_2));
-    connect(handler, static_cast<void (Net::DownloadHandler::*)(const QString &, const QByteArray &)>(&Net::DownloadHandler::downloadFinished)
-            , this, &DNSUpdater::ipUpdateFinished);
-    connect(handler, &Net::DownloadHandler::downloadFailed, this, &DNSUpdater::ipUpdateFailed);
+    DownloadManager::instance()->download(
+                DownloadRequest(getUpdateUrl()).userAgent("qBittorrent/" QBT_VERSION_2)
+                , this, &DNSUpdater::ipUpdateFinished);
 }
 
 QString DNSUpdater::getUpdateUrl() const
@@ -164,24 +156,19 @@ QString DNSUpdater::getUpdateUrl() const
     return url.toString();
 }
 
-void DNSUpdater::ipUpdateFinished(const QString &url, const QByteArray &data)
+void DNSUpdater::ipUpdateFinished(const DownloadResult &result)
 {
-    Q_UNUSED(url);
-    // Parse reply
-    processIPUpdateReply(data);
-}
-
-void DNSUpdater::ipUpdateFailed(const QString &url, const QString &error)
-{
-    Q_UNUSED(url);
-    qWarning() << "IP update failed:" << error;
+    if (result.status == DownloadStatus::Success)
+        processIPUpdateReply(result.data);
+    else
+        qWarning() << "IP update failed:" << result.errorString;
 }
 
 void DNSUpdater::processIPUpdateReply(const QString &reply)
 {
     Logger *const logger = Logger::instance();
     qDebug() << Q_FUNC_INFO << reply;
-    QString code = reply.split(' ').first();
+    const QString code = reply.split(' ').first();
     qDebug() << Q_FUNC_INFO << "Code:" << code;
 
     if ((code == "good") || (code == "nochg")) {
@@ -284,15 +271,15 @@ void DNSUpdater::updateCredentials()
     }
 }
 
-QUrl DNSUpdater::getRegistrationUrl(int service)
+QUrl DNSUpdater::getRegistrationUrl(const int service)
 {
     switch (service) {
     case DNS::DYNDNS:
-        return QUrl("https://www.dyndns.com/account/services/hosts/add.html");
+        return {"https://www.dyndns.com/account/services/hosts/add.html"};
     case DNS::NOIP:
-        return QUrl("https://www.noip.com/remote-access");
+        return {"https://www.noip.com/remote-access"};
     default:
         Q_ASSERT(0);
     }
-    return QUrl();
+    return {};
 }

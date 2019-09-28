@@ -43,6 +43,7 @@
 #endif
 
 #include "base/logger.h"
+#include "base/utils/bytearray.h"
 
 using namespace Utils::ForeignApps;
 
@@ -61,7 +62,7 @@ namespace
             // Software 'Anaconda' installs its own python interpreter
             // and `python --version` returns a string like this:
             // "Python 3.4.3 :: Anaconda 2.3.0 (64-bit)"
-            const QList<QByteArray> outputSplit = procOutput.split(' ');
+            const QVector<QByteArray> outputSplit = Utils::ByteArray::splitToViews(procOutput, " ", QString::SkipEmptyParts);
             if (outputSplit.size() <= 1)
                 return false;
 
@@ -119,7 +120,7 @@ namespace
         return keys;
     }
 
-    QString getRegValue(const HKEY handle, const QString &name = QString())
+    QString getRegValue(const HKEY handle, const QString &name = {})
     {
         QString result;
 
@@ -227,9 +228,9 @@ namespace
                 return path;
         }
 
-        return QString();
+        return {};
     }
-#endif
+#endif // Q_OS_WIN
 }
 
 bool Utils::ForeignApps::PythonInfo::isValid() const

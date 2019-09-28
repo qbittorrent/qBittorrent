@@ -31,6 +31,11 @@
 
 #include "torrentcontentmodelitem.h"
 
+namespace BitTorrent
+{
+    enum class DownloadPriority;
+}
+
 class TorrentContentModelFolder : public TorrentContentModelItem
 {
 public:
@@ -38,7 +43,7 @@ public:
     TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
 
     // Invisible root item constructor
-    TorrentContentModelFolder(const QList<QVariant> &data);
+    explicit TorrentContentModelFolder(const QVector<QVariant> &data);
 
     ~TorrentContentModelFolder() override;
 
@@ -49,17 +54,17 @@ public:
     void recalculateAvailability();
     void updatePriority();
 
-    void setPriority(int newPriority, bool updateParent = true) override;
+    void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
 
     void deleteAllChildren();
-    const QList<TorrentContentModelItem*> &children() const;
+    const QVector<TorrentContentModelItem*> &children() const;
     void appendChild(TorrentContentModelItem *item);
     TorrentContentModelItem *child(int row) const;
     TorrentContentModelFolder *childFolderWithName(const QString &name) const;
     int childCount() const;
 
 private:
-    QList<TorrentContentModelItem*> m_childItems;
+    QVector<TorrentContentModelItem*> m_childItems;
 };
 
 #endif // TORRENTCONTENTMODELFOLDER_H

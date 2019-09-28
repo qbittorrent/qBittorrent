@@ -28,11 +28,14 @@
 
 #include "webui.h"
 
+#include <QFile>
+
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
 #include "base/preferences.h"
+#include "base/utils/net.h"
 #include "webapplication.h"
 
 WebUI::WebUI()
@@ -77,11 +80,18 @@ void WebUI::configure()
                 m_httpServer->close();
         }
 
-#ifndef QT_NO_OPENSSL
         if (pref->isWebUiHttpsEnabled()) {
-            const QByteArray certs = pref->getWebUiHttpsCertificate();
-            const QByteArray key = pref->getWebUiHttpsKey();
-            bool success = m_httpServer->setupHttps(certs, key);
+            const auto readData = [](const QString &path) -> QByteArray
+            {
+                QFile file(path);
+                if (!file.open(QIODevice::ReadOnly))
+                    return {};
+                return file.read(Utils::Net::MAX_SSL_FILE_SIZE);
+            };
+            const QByteArray cert = readData(pref->getWebUIHttpsCertificatePath());
+            const QByteArray key = readData(pref->getWebUIHttpsKeyPath());
+
+            const bool success = m_httpServer->setupHttps(cert, key);
             if (success)
                 logger->addMessage(tr("Web UI: HTTPS setup successful"));
             else
@@ -90,7 +100,6 @@ void WebUI::configure()
         else {
             m_httpServer->disableHttps();
         }
-#endif
 
         if (!m_httpServer->isListening()) {
             const auto address = (serverAddressString == "*" || serverAddressString.isEmpty())

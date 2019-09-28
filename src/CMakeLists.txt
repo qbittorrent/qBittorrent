@@ -1,5 +1,13 @@
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_STANDARD "11")
+
+# If C++14 is available, use it as libtorent ABI depends on 11/14 version
+if (cxx_std_14 IN_LIST CMAKE_CXX_COMPILE_FEATURES)
+    message(STATUS "Building in C++14 mode")
+    set(CMAKE_CXX_STANDARD "14")
+else()
+    message(STATUS "Building in C++11 mode")
+    set(CMAKE_CXX_STANDARD "11")
+endif()
 
 include(MacroQbtCompilerSettings)
 qbt_set_compiler_options()
@@ -7,7 +15,8 @@ qbt_set_compiler_options()
 include(QbtTargetSources)
 
 find_package(Boost ${requiredBoostVersion} REQUIRED)
-find_package(LibtorrentRasterbar REQUIRED)
+find_package(LibtorrentRasterbar ${requiredLibtorrentVersion} REQUIRED)
+find_package(OpenSSL ${requiredOpensslVersion} REQUIRED)
 
 if (Boost_VERSION VERSION_LESS 106000)
     add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
@@ -38,15 +47,16 @@ list(APPEND CMAKE_AUTORCC_OPTIONS -compress 9 -threshold 5)
 if (APPLE)
     # Workaround CMake bug (autogen does not pass required parameters to moc)
     # Relevant issue: https://gitlab.kitware.com/cmake/cmake/issues/18041
-    list(APPEND CMAKE_AUTOMOC_MOC_OPTIONS -DQ_OS_MAC -DQ_OS_DARWIN)
+    list(APPEND CMAKE_AUTOMOC_MOC_OPTIONS -DQ_OS_MACOS -DQ_OS_DARWIN)
 endif ()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # defines
+add_definitions(-DQT_DEPRECATED_WARNINGS)
 add_definitions(-DQT_NO_CAST_TO_ASCII)
-# Efficient construction for QString & QByteArray (Qt >= 4.8)
 add_definitions(-DQT_USE_QSTRINGBUILDER)
+add_definitions(-DQT_STRICT_ITERATORS)
 
 if (CMAKE_BUILD_TYPE MATCHES "Debug")
     message(STATUS "Project is built in DEBUG mode.")
@@ -58,18 +68,6 @@ endif()
 
 configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-find_package(QtSingleApplication)
-set_package_properties(QtSingleApplication PROPERTIES
-    URL "https://code.qt.io/cgit/qt-solutions/qt-solutions.git/"
-    DESCRIPTION "Qt library to start applications only once per user"
-    TYPE RECOMMENDED
-    PURPOSE "Use the system qtsingleapplication library or shipped one otherwise"
-)
-
-if (NOT QtSingleApplication_FOUND)
-    add_subdirectory(app/qtsingleapplication)
-endif ()
-
 add_subdirectory(app)
 add_subdirectory(base)
 
@@ -80,4 +78,3 @@ endif ()
 if (WEBUI)
     add_subdirectory(webui)
 endif (WEBUI)
-

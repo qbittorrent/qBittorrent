@@ -47,7 +47,7 @@ class TransferListModel : public QAbstractListModel
 public:
     enum Column
     {
-        TR_PRIORITY,
+        TR_QUEUE_POSITION,
         TR_NAME,
         TR_SIZE,
         TR_TOTAL_SIZE,
@@ -77,14 +77,15 @@ public:
         TR_RATIO_LIMIT,
         TR_SEEN_COMPLETE_DATE,
         TR_LAST_ACTIVITY,
+        TR_AVAILABILITY,
 
         NB_COLUMNS
     };
 
     explicit TransferListModel(QObject *parent = nullptr);
 
-    int rowCount(const QModelIndex& index = QModelIndex()) const override;
-    int columnCount(const QModelIndex &parent=QModelIndex()) const override;
+    int rowCount(const QModelIndex &parent = {}) const override;
+    int columnCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
@@ -96,10 +97,11 @@ private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent);
-    void handleTorrentsUpdated();
+    void handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
 
 private:
-    QList<BitTorrent::TorrentHandle *> m_torrents;
+    QList<BitTorrent::TorrentHandle *> m_torrentList;  // maps row number to torrent handle
+    QHash<BitTorrent::TorrentHandle *, int> m_torrentMap;  // maps torrent handle to row number
 };
 
 #endif // TRANSFERLISTMODEL_H

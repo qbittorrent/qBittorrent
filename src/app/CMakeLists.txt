@@ -1,12 +1,20 @@
 add_executable(qBittorrent
+# headers
 application.h
+applicationinstancemanager.h
 cmdoptions.h
 filelogger.h
+qtlocalpeer/qtlocalpeer.h
 upgrade.h
+
+# sources
 application.cpp
+applicationinstancemanager.cpp
 cmdoptions.cpp
 filelogger.cpp
 main.cpp
+qtlocalpeer/qtlocalpeer.cpp
+upgrade.cpp
 )
 
 target_include_directories(qBittorrent PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
@@ -57,11 +65,23 @@ if (STACKTRACE)
     else (UNIX)
         target_sources(qBittorrent PRIVATE stacktrace_win.h)
         if (Qt5Widgets_FOUND)
-            target_sources(qBittorrent PRIVATE stacktracedialog.h)
+            target_sources(qBittorrent PRIVATE stacktracedialog.cpp stacktracedialog.h)
         endif (Qt5Widgets_FOUND)
+        if (MSVC)
+            if (NOT "${WINXXBITS}" STREQUAL "Win64")
+                # i686 arch requires frame pointer preservation
+                add_compile_options(-Oy-)
+            endif (NOT "${WINXXBITS}" STREQUAL "Win64")
+            add_compile_options(-Zi)
+            target_link_libraries(qBittorrent PUBLIC dbghelp -DEBUG)
+        else (MSVC)
+            if (NOT "${WINXXBITS}" STREQUAL "Win64")
+                add_compile_options(-fno-omit-frame-pointer)
+            endif (NOT "${WINXXBITS}" STREQUAL "Win64")
+            target_link_libraries(qBittorrent PUBLIC dbghelp -Wl,--export-all-symbols)
+        endif (MSVC)
     endif (UNIX)
 endif (STACKTRACE)
-
 
 if (Qt5Widgets_FOUND)
     target_link_libraries(qBittorrent PRIVATE qbt_searchengine qbt_gui)
@@ -133,8 +153,6 @@ endif (APPLE)
 target_sources(qBittorrent PRIVATE ${QBT_QM_FILES} ${QBT_APP_RESOURCE_SOURCE})
 
 get_target_property(QBT_EXECUTABLE_NAME qBittorrent OUTPUT_NAME)
-
-target_link_libraries(qBittorrent PRIVATE ${QBT_TARGET_LIBRARIES} QtSingleApplication::QtSingleApplication)
 
 if (APPLE)
     set(qbt_BUNDLE_NAME ${QBT_EXECUTABLE_NAME})

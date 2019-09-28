@@ -30,18 +30,16 @@
 
 #include <QtGlobal>
 
-#if defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
+#if defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <cstring>
 #include <sys/mount.h>
 #include <sys/param.h>
 #endif
 
 #include "base/algorithm.h"
-#include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/preferences.h"
 #include "base/utils/fs.h"
 
 namespace
@@ -64,7 +62,7 @@ FileSystemWatcher::FileSystemWatcher(QObject *parent)
 QStringList FileSystemWatcher::directories() const
 {
     QStringList dirs = QFileSystemWatcher::directories();
-    for (const QDir &dir : qAsConst(m_watchedFolders))
+    for (const QDir &dir : asConst(m_watchedFolders))
         dirs << dir.canonicalPath();
     return dirs;
 }
@@ -113,7 +111,7 @@ void FileSystemWatcher::scanLocalFolder(const QString &path)
 
 void FileSystemWatcher::scanNetworkFolders()
 {
-    for (const QDir &dir : qAsConst(m_watchedFolders))
+    for (const QDir &dir : asConst(m_watchedFolders))
         processTorrentsInDir(dir);
 }
 
@@ -122,7 +120,7 @@ void FileSystemWatcher::processPartialTorrents()
     QStringList noLongerPartial;
 
     // Check which torrents are still partial
-    Dict::removeIf(m_partialTorrents, [&noLongerPartial](const QString &torrentPath, int &value)
+    Algorithm::removeIf(m_partialTorrents, [&noLongerPartial](const QString &torrentPath, int &value)
     {
         if (!QFile::exists(torrentPath))
             return true;
@@ -162,7 +160,7 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
     const QStringList files = dir.entryList({"*.torrent", "*.magnet"}, QDir::Files);
     for (const QString &file : files) {
         const QString fileAbsPath = dir.absoluteFilePath(file);
-        if (file.endsWith(".magnet"))
+        if (file.endsWith(".magnet", Qt::CaseInsensitive))
             torrents << fileAbsPath;
         else if (BitTorrent::TorrentInfo::loadFromFile(fileAbsPath).isValid())
             torrents << fileAbsPath;

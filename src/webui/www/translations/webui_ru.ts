@@ -26,6 +26,10 @@
         <source>Create subfolder</source>
         <translation>Создать подпапку</translation>
     </message>
+    <message>
+        <source>Torrent Management Mode:</source>
+        <translation>Режим управления торрентом:</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -66,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Новая категория</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Изменить категорию…</translation>
     </message>
 </context>
 <context>
@@ -134,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>Неизвестный</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation>Жёсткий диск</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -294,18 +294,46 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent был выключен.</translation>
+        <translation type="vanished">qBittorrent был выключен.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Общее ограничение соотношения отдачи должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Недопустимое название категории:\nПожалуйста, не используйте специальные символы в названии.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
+        <translation>Не удалось создать категорию</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold must be greater than 0.</source>
+        <translation>Порог скорости отдачи должен быть больше 0.</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Правка</translation>
+    </message>
+    <message>
+        <source>Free space: %1</source>
+        <translation>Свободно: %1</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer must be greater than 0.</source>
+        <translation>Таймер бездействия торрента должен быть больше 0.</translation>
+    </message>
+    <message>
+        <source>Saving Management</source>
+        <translation>Управление сохранением</translation>
+    </message>
+    <message>
+        <source>Download rate threshold must be greater than 0.</source>
+        <translation>Порог скорости загрузки должен быть больше 0.</translation>
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -434,7 +462,23 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Альтернативные ограничения скорости</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation>Поисковый движок</translation>
+    </message>
+    <message>
+        <source>Filter torrent list...</source>
+        <translation>Фильтровать список торрентов…</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Поиск</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation>Передачи</translation>
     </message>
 </context>
 <context>
@@ -875,19 +919,127 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>минут</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>КБ/с</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Включить защиту от кликджекинга</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>Включить защиту от межсайтовой подделки запроса (CSRF)</translation>
+    </message>
+    <message>
+        <source>Delete .torrent files afterwards</source>
+        <translation>Удалять .torrent файлы позже</translation>
+    </message>
+    <message>
+        <source>Download rate threshold:</source>
+        <translation>Ограничение скорости загрузки:</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold:</source>
+        <translation>Ограничение скорости отдачи:</translation>
+    </message>
+    <message>
+        <source>Change current password</source>
+        <translation>Изменить текущий пароль</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Автоматически</translation>
+    </message>
+    <message>
+        <source>Use alternative Web UI</source>
+        <translation>Использовать альтернативный веб-интерфейс</translation>
+    </message>
+    <message>
+        <source>Default Save Path:</source>
+        <translation>Путь сохранения по умолчанию:</translation>
+    </message>
+    <message>
+        <source>The alternative Web UI files location cannot be blank.</source>
+        <translation>Расположение файлов альтернативного веб-интерфейса не может быть пустым.</translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <translation>Не начинать загрузку автоматически</translation>
+    </message>
+    <message>
+        <source>Switch torrent to Manual Mode</source>
+        <translation>Переключить торрент в Ручной режим</translation>
+    </message>
+    <message>
+        <source>When Torrent Category changed:</source>
+        <translation>При изменении категории торрента:</translation>
+    </message>
+    <message>
+        <source>Relocate affected torrents</source>
+        <translation>Переместить затронутые торренты</translation>
+    </message>
+    <message>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation>Применять ограничение скорости к локальным пирам</translation>
+    </message>
+    <message>
+        <source>0 means unlimited</source>
+        <translation>0 означает безлимитно</translation>
+    </message>
+    <message>
+        <source>Relocate torrent</source>
+        <translation>Переместить торрент</translation>
+    </message>
+    <message>
+        <source>When Default Save Path changed:</source>
+        <translation>При изменении пути сохранения по умолчанию:</translation>
+    </message>
+    <message>
+        <source>Enable Host header validation</source>
+        <translation>Включить проверку заголовка хоста</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Безопасность</translation>
+    </message>
+    <message>
+        <source>When Category Save Path changed:</source>
+        <translation>При изменении пути сохранения категории:</translation>
+    </message>
+    <message>
+        <source>Create subfolder for torrents with multiple files</source>
+        <translation>Создать подпапку для торрентов с множеством файлов</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>секунд</translation>
+    </message>
+    <message>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation>Переключить затронутые торренты в Ручной режим</translation>
+    </message>
+    <message>
+        <source>Files location:</source>
+        <translation>Расположение файлов:</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Вручную</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer:</source>
+        <translation>Таймер бездействия торрента:</translation>
+    </message>
+    <message>
+        <source>Default Torrent Management Mode:</source>
+        <translation>Режим управления торрентом по умолчанию:</translation>
+    </message>
+    <message>
+        <source>When adding a torrent</source>
+        <translation>При добавлении торрента</translation>
     </message>
 </context>
 <context>
@@ -1131,11 +1283,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Огр. загрузки:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Огр. отдачи:</translation>
     </message>
 </context>
 <context>
@@ -1504,6 +1656,70 @@
         <source>Message</source>
         <translation>Сообщение</translation>
     </message>
+    <message>
+        <source>Downloaded</source>
+        <translation>Загружено</translation>
+    </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation>URL трекера:</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation>Обновляется…</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation>Работает</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Отключен</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation>Не соединился</translation>
+    </message>
+    <message>
+        <source>#</source>
+        <translation>№</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>Н/Д</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <translation>Сиды</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation>Не работает</translation>
+    </message>
+    <message>
+        <source>Copy tracker URL</source>
+        <translation>Скопировать URL трекера</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation>Добавить новый трекер...</translation>
+    </message>
+    <message>
+        <source>Edit tracker URL...</source>
+        <translation>Править адрес трекера...</translation>
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation>Редактирование трекера</translation>
+    </message>
+    <message>
+        <source>Leeches</source>
+        <translation>Личеры</translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation>Удалить трекер</translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -1522,6 +1738,70 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 назад</translation>
+    </message>
+    <message>
+        <source>Allocating</source>
+        <translation>Резервирование места</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation>Приостановлен</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation>Завершён</translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation>Перемещение</translation>
+    </message>
+    <message>
+        <source>[F] Seeding</source>
+        <translation>[F] Раздаётся</translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <translation>Раздаётся</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation>В очереди</translation>
+    </message>
+    <message>
+        <source>Errored</source>
+        <translation>С ошибкой</translation>
+    </message>
+    <message>
+        <source>[F] Downloading</source>
+        <translation>[F] Загружается</translation>
+    </message>
+    <message>
+        <source>Downloading metadata</source>
+        <translation>Получение метаданных</translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <translation>Проверяется</translation>
+    </message>
+    <message>
+        <source>Missing Files</source>
+        <translation>Отсутствуют файлы</translation>
+    </message>
+    <message>
+        <source>Queued for checking</source>
+        <translation>В очереди на проверку</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation>Загружается</translation>
+    </message>
+    <message>
+        <source>Checking resume data</source>
+        <translation>Проверка данных возобновления</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <translation>Простаивает</translation>
     </message>
 </context>
 <context>
@@ -1661,35 +1941,35 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>Проверить принудительно</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Новая категория</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Расположение</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Новое имя</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Установить расположение</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>Переанонсировать принудительно</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Изменить категорию</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Путь сохранения</translation>
     </message>
 </context>
 <context>
@@ -1750,7 +2030,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Подтверждение удаления - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -1765,7 +2045,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Добавить ссылки на торрент</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +2120,182 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Путь сохранения пуст</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Plugin path:</source>
+        <translation>Путь плагина:</translation>
+    </message>
+    <message>
+        <source>URL or local directory</source>
+        <translation>Адрес или локальная папка</translation>
+    </message>
+    <message>
+        <source>Install plugin</source>
+        <translation>Установить плагин</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>ОК</translation>
+    </message>
+</context>
+<context>
+    <name>SearchEngineWidget</name>
+    <message>
+        <source>Seeds:</source>
+        <translation>Сиды:</translation>
+    </message>
+    <message>
+        <source>All plugins</source>
+        <translation>Все плагины</translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation>Размер:</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Остановлено</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Поиск</translation>
+    </message>
+    <message>
+        <source>Search plugins...</source>
+        <translation>Поисковые плагины…</translation>
+    </message>
+    <message>
+        <source>All categories</source>
+        <translation>Все категории</translation>
+    </message>
+    <message>
+        <source>Search in:</source>
+        <translation>Поиск в:</translation>
+    </message>
+    <message>
+        <source>Copy description page URL</source>
+        <translation>Скопировать адрес описания</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation>Открыть страницу описания</translation>
+    </message>
+    <message>
+        <source>Results (showing</source>
+        <translation>Показ результатов</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation>Скачать</translation>
+    </message>
+    <message>
+        <source>Filter</source>
+        <translation>Фильтр</translation>
+    </message>
+    <message>
+        <source>Torrent names only</source>
+        <translation>Только в именах торрентов</translation>
+    </message>
+    <message>
+        <source>Only enabled</source>
+        <translation>Только включённые</translation>
+    </message>
+    <message>
+        <source>out of</source>
+        <translation>вне</translation>
+    </message>
+    <message>
+        <source>Everywhere</source>
+        <translation>Везде</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <source>Uninstall</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Install new plugin</source>
+        <translation>Установить новый плагин</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here:</source>
+        <translation>Вы можете получить новые поисковые плагины здесь:</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Закрыть</translation>
+    </message>
+    <message>
+        <source>Installed search plugins:</source>
+        <translation>Установленные поисковые плагины:</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Включён</translation>
+    </message>
+    <message>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Предупреждение: Обязательно соблюдайте законы об авторских правах вашей страны при загрузке торрентов из этих поисковых систем.</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Проверить обновления</translation>
+    </message>
+    <message>
+        <source>Search plugins</source>
+        <translation>Поисковые плагины</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Размер</translation>
+    </message>
+    <message>
+        <source>Leechers</source>
+        <translation>Личеры</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>Поисковый движок</translation>
+    </message>
+    <message>
+        <source>Seeders</source>
+        <translation>Сиды</translation>
+    </message>
+</context>
+<context>
+    <name>SearchPluginsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>Ссылка</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Включён</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Версия</translation>
     </message>
 </context>
 </TS>

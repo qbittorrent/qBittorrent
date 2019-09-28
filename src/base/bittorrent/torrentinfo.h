@@ -33,8 +33,6 @@
 #include <libtorrent/version.hpp>
 
 #include <QCoreApplication>
-#include <QList>
-#include <QtGlobal>
 #include <QVector>
 
 #include "base/indexrange.h"
@@ -55,15 +53,15 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
     public:
-#if LIBTORRENT_VERSION_NUM < 10100
-        typedef boost::intrusive_ptr<const libtorrent::torrent_info> NativeConstPtr;
-        typedef boost::intrusive_ptr<libtorrent::torrent_info> NativePtr;
+#if (LIBTORRENT_VERSION_NUM < 10200)
+        using NativeConstPtr = boost::shared_ptr<const lt::torrent_info>;
+        using NativePtr = boost::shared_ptr<lt::torrent_info>;
 #else
-        typedef boost::shared_ptr<const libtorrent::torrent_info> NativeConstPtr;
-        typedef boost::shared_ptr<libtorrent::torrent_info> NativePtr;
+        using NativeConstPtr = std::shared_ptr<const lt::torrent_info>;
+        using NativePtr = std::shared_ptr<lt::torrent_info>;
 #endif
 
-        explicit TorrentInfo(NativeConstPtr nativeInfo = NativeConstPtr());
+        explicit TorrentInfo(NativeConstPtr nativeInfo = {});
         TorrentInfo(const TorrentInfo &other);
 
         static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
@@ -89,8 +87,8 @@ namespace BitTorrent
         QString origFilePath(int index) const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
-        QList<TrackerEntry> trackers() const;
-        QList<QUrl> urlSeeds() const;
+        QVector<TrackerEntry> trackers() const;
+        QVector<QUrl> urlSeeds() const;
         QByteArray metadata() const;
         QStringList filesForPiece(int pieceIndex) const;
         QVector<int> fileIndicesForPiece(int pieceIndex) const;

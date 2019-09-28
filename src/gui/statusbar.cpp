@@ -39,14 +39,13 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/utils/misc.h"
-#include "guiiconprovider.h"
 #include "speedlimitdialog.h"
 #include "utils.h"
 
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     // Redefining global stylesheet breaks certain elements on mac like tabs.
     // Qt checks whether the stylesheet class inherts("QMacStyle") and this becomes false.
     qApp->setStyleSheet("QStatusBar::item { border-width: 0; }");
@@ -55,7 +54,7 @@ StatusBar::StatusBar(QWidget *parent)
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
     QWidget *container = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(container);
+    auto *layout = new QHBoxLayout(container);
     layout->setContentsMargins(0,0,0,0);
 
     container->setLayout(layout);
@@ -112,22 +111,22 @@ StatusBar::StatusBar(QWidget *parent)
 
     QFrame *statusSep1 = new QFrame(this);
     statusSep1->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     statusSep1->setFrameShadow(QFrame::Raised);
 #endif
     QFrame *statusSep2 = new QFrame(this);
     statusSep2->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     statusSep2->setFrameShadow(QFrame::Raised);
 #endif
     QFrame *statusSep3 = new QFrame(this);
     statusSep3->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     statusSep3->setFrameShadow(QFrame::Raised);
 #endif
     QFrame *statusSep4 = new QFrame(this);
     statusSep4->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     statusSep4->setFrameShadow(QFrame::Raised);
 #endif
     layout->addWidget(m_DHTLbl);
@@ -206,18 +205,19 @@ void StatusBar::updateSpeedLabels()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
-    QString speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
-    int speedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
-    if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + ']';
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
-    m_dlSpeedLbl->setText(speedLbl);
-    speedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
-    speedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
-    if (speedLimit)
-        speedLbl += " [" + Utils::Misc::friendlyUnit(speedLimit, true) + ']';
-    speedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ')';
-    m_upSpeedLbl->setText(speedLbl);
+    QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
+    const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
+    if (dlSpeedLimit > 0)
+        dlSpeedLbl += " [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + ']';
+    dlSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
+    m_dlSpeedLbl->setText(dlSpeedLbl);
+
+    QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
+    const int upSpeedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
+    if (upSpeedLimit > 0)
+        upSpeedLbl += " [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + ']';
+    upSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ')';
+    m_upSpeedLbl->setText(upSpeedLbl);
 }
 
 void StatusBar::refresh()
@@ -230,12 +230,12 @@ void StatusBar::refresh()
 void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative) {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.png"));
+        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.svg"));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
     else {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.png"));
+        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.svg"));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
     }

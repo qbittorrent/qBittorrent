@@ -1,29 +1,21 @@
 INCLUDEPATH += $$PWD
 
-usesystemqtsingleapplication {
-    nogui {
-        CONFIG += qtsinglecoreapplication
-    } else {
-        CONFIG += qtsingleapplication
-    }
-} else {
-    nogui {
-        include(qtsingleapplication/qtsinglecoreapplication.pri)
-    } else {
-        include(qtsingleapplication/qtsingleapplication.pri)
-    }
-}
-
 HEADERS += \
     $$PWD/application.h \
+    $$PWD/applicationinstancemanager.h \
     $$PWD/cmdoptions.h \
-    $$PWD/filelogger.h
+    $$PWD/filelogger.h \
+    $$PWD/qtlocalpeer/qtlocalpeer.h \
+    $$PWD/upgrade.h
 
 SOURCES += \
     $$PWD/application.cpp \
+    $$PWD/applicationinstancemanager.cpp \
     $$PWD/cmdoptions.cpp \
     $$PWD/filelogger.cpp \
-    $$PWD/main.cpp
+    $$PWD/main.cpp \
+    $$PWD/qtlocalpeer/qtlocalpeer.cpp \
+    $$PWD/upgrade.cpp
 
 stacktrace {
     unix {
@@ -33,10 +25,8 @@ stacktrace {
         HEADERS += $$PWD/stacktrace_win.h
         !nogui {
             HEADERS += $$PWD/stacktracedialog.h
+            SOURCES += $$PWD/stacktracedialog.cpp
             FORMS += $$PWD/stacktracedialog.ui
         }
     }
 }
-
-# upgrade code
-HEADERS += $$PWD/upgrade.h

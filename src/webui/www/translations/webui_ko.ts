@@ -26,6 +26,10 @@
         <source>Create subfolder</source>
         <translation>하위 폴더 만들기</translation>
     </message>
+    <message>
+        <source>Torrent Management Mode:</source>
+        <translation>토런트 관리 모드:</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -66,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>새 카테고리</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>카테고리 편집...</translation>
     </message>
 </context>
 <context>
@@ -134,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation>하드 디스크</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -282,7 +282,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>전송 목록에서 선택한 토런트를 삭제할까요?</translation>
+        <translation>선택하신 토런트를 전송 목록에서 삭제하시겠습니까?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -294,18 +294,46 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>큐빗토런트를 종료했습니다.</translation>
+        <translation type="vanished">큐빗토런트를 종료했습니다.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>전역 업로드 슬롯 제한은 0보다 높거나 비활성화되어야 합니다.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>무효한 카테고리 이름:\n카테고리 이름은 특수 문자를 사용하지 마십시오.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
+        <translation>카테고리를 만들 수 없습니다</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Free space: %1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent inactivity timer must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Saving Management</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download rate threshold must be greater than 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -434,6 +462,22 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filter torrent list...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Transfers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -887,6 +931,114 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete .torrent files afterwards</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download rate threshold:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload rate threshold:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Change current password</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use alternative Web UI</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default Save Path:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The alternative Web UI files location cannot be blank.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Switch torrent to Manual Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When Torrent Category changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Relocate affected torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>0 means unlimited</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Relocate torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When Default Save Path changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable Host header validation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Security</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When Category Save Path changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder for torrents with multiple files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files location:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent inactivity timer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default Torrent Management Mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When adding a torrent</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1504,6 +1656,70 @@
         <source>Message</source>
         <translation>메시지</translation>
     </message>
+    <message>
+        <source>Downloaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Working</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>#</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy tracker URL</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Edit tracker URL...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Leeches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -1522,6 +1738,70 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 전</translation>
+    </message>
+    <message>
+        <source>Allocating</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Seeding</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Errored</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Downloading</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Missing Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queued for checking</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking resume data</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1657,39 +1937,39 @@
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation>차례대로 다운로드</translation>
+        <translation>차례대로 받기</translation>
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>강제로 다시 검사</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>새 카테고리</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>위치</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>새 이름</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>위치 지정</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>강제로 다시 알리기</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>카테고리 편집</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>저장 경로</translation>
     </message>
 </context>
 <context>
@@ -1723,7 +2003,7 @@
     <name>about</name>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Qt 툴킷과 libtorrent-rasterbar 기반의 C++로 짠 고급 비트토런트 클라이언트입니다.</translation>
+        <translation>Qt 툴킷과 libtorrent-rasterbar를 기반으로하는 C++로 작성된 비트토런트 클라이언트입니다.</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -1750,7 +2030,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>삭제 확인 - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -1765,7 +2045,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>토런트 링크 추가</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +2120,182 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
+        <translation>저장 경로가 비어 있습니다</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+    <message>
+        <source>Plugin path:</source>
+        <translation>플러그인 경로:</translation>
+    </message>
+    <message>
+        <source>URL or local directory</source>
+        <translation>URL 또는 로컬 디렉토리</translation>
+    </message>
+    <message>
+        <source>Install plugin</source>
+        <translation>플러그인 설치</translation>
+    </message>
+    <message>
+        <source>Ok</source>
         <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchEngineWidget</name>
+    <message>
+        <source>Seeds:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All plugins</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search plugins...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All categories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search in:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy description page URL</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Results (showing</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filter</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent names only</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Only enabled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>out of</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Everywhere</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <source>Uninstall</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Install new plugin</source>
+        <translation>새 플러그인 설치</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here:</source>
+        <translation>이곳에서 새로운 검색 엔진 플러그인을 얻을 수 있습니다:</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>닫기</translation>
+    </message>
+    <message>
+        <source>Installed search plugins:</source>
+        <translation>설치한 검색 플러그인:</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>활성화됨</translation>
+    </message>
+    <message>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>경고: 이러한 검색 엔진에서 토런트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>업데이트 확인</translation>
+    </message>
+    <message>
+        <source>Search plugins</source>
+        <translation>검색 플러그인</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>크기</translation>
+    </message>
+    <message>
+        <source>Leechers</source>
+        <translation>공유자</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>검색 엔진</translation>
+    </message>
+    <message>
+        <source>Seeders</source>
+        <translation>배포자</translation>
+    </message>
+</context>
+<context>
+    <name>SearchPluginsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>활성화됨</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>버전</translation>
     </message>
 </context>
 </TS>

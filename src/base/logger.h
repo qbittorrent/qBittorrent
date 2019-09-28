@@ -1,5 +1,35 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015  sledgehammer999 <hammered999@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
 #ifndef LOGGER_H
 #define LOGGER_H
+
+#include <boost/circular_buffer.hpp>
 
 #include <QObject>
 #include <QReadWriteLock>
@@ -51,7 +81,7 @@ public:
     static Logger *instance();
 
     void addMessage(const QString &message, const Log::MsgType &type = Log::NORMAL);
-    void addPeer(const QString &ip, bool blocked, const QString &reason = QString());
+    void addPeer(const QString &ip, bool blocked, const QString &reason = {});
     QVector<Log::Msg> getMessages(int lastKnownId = -1) const;
     QVector<Log::Peer> getPeers(int lastKnownId = -1) const;
 
@@ -61,14 +91,14 @@ signals:
 
 private:
     Logger();
-    ~Logger();
+    ~Logger() = default;
 
     static Logger *m_instance;
-    QVector<Log::Msg> m_messages;
-    QVector<Log::Peer> m_peers;
+    boost::circular_buffer_space_optimized<Log::Msg> m_messages;
+    boost::circular_buffer_space_optimized<Log::Peer> m_peers;
     mutable QReadWriteLock m_lock;
-    int m_msgCounter;
-    int m_peerCounter;
+    int m_msgCounter = 0;
+    int m_peerCounter = 0;
 };
 
 // Helper function

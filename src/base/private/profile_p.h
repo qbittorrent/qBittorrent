@@ -55,7 +55,7 @@ namespace Private
         QString profileName() const;
 
     protected:
-        Profile(const QString &configurationName);
+        explicit Profile(const QString &configurationName);
 
         QString configurationSuffix() const;
     private:
@@ -66,7 +66,7 @@ namespace Private
     class DefaultProfile : public Profile
     {
     public:
-        DefaultProfile(const QString &configurationName);
+        explicit DefaultProfile(const QString &configurationName);
 
         QString baseDirectory() const override;
         QString cacheLocation() const override;
@@ -124,7 +124,7 @@ namespace Private
     class Converter : public PathConverter
     {
     public:
-        Converter(const QString &basePath);
+        explicit Converter(const QString &basePath);
         QString toPortablePath(const QString &path) const override;
         QString fromPortablePath(const QString &portablePath) const override;
 

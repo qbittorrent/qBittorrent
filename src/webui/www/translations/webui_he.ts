@@ -26,6 +26,10 @@
         <source>Create subfolder</source>
         <translation>צור תיקיית משנה</translation>
     </message>
+    <message>
+        <source>Torrent Management Mode:</source>
+        <translation>מצב ניהול טורנטים:</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -66,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>קטגוריה חדשה</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>ערוך קטגוריה...</translation>
     </message>
 </context>
 <context>
@@ -134,10 +138,6 @@
     <message>
         <source>Unknown</source>
         <translation>לא ידוע</translation>
-    </message>
-    <message>
-        <source>Hard Disk</source>
-        <translation>כונן קשיח</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -294,18 +294,46 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown.</source>
-        <translation>qBittorrent כובה.</translation>
+        <translation type="vanished">qBittorrent כובה.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>מספר עולמי של מגבלת חריצי העלאה חייב להיות גדול מ־0 או מושבת.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>שם בלתי תקף של קטגוריה:\nאנא אל תשתמש בתווים מיוחדים כלשהם בשם הקטגוריה.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
+        <translation>לא היה ניתן ליצור קטגוריה</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold must be greater than 0.</source>
+        <translation>סף קצב העלאה חייב להיות גדול מ־0.</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>עריכה</translation>
+    </message>
+    <message>
+        <source>Free space: %1</source>
+        <translation>שטח פנוי: %1</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer must be greater than 0.</source>
+        <translation>קוצב־זמן של אי־פעילות טורנט חייבת להיות גדול מ־0.</translation>
+    </message>
+    <message>
+        <source>Saving Management</source>
+        <translation>ניהול שמירה</translation>
+    </message>
+    <message>
+        <source>Download rate threshold must be greater than 0.</source>
+        <translation>סף קצב הורדה חייב להיות גדול מ־0.</translation>
+    </message>
+    <message>
+        <source>qBittorrent has been shutdown</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -434,7 +462,23 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>מגבלות מהירות חלופיות</translation>
+    </message>
+    <message>
+        <source>Search Engine</source>
+        <translation>מנוע חיפוש</translation>
+    </message>
+    <message>
+        <source>Filter torrent list...</source>
+        <translation>סנן רשימת טורנטים...</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>חפש</translation>
+    </message>
+    <message>
+        <source>Transfers</source>
+        <translation>העברות</translation>
     </message>
 </context>
 <context>
@@ -875,19 +919,127 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>דקות</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>ק"ב/ש</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>אפשר הגנה מפני מחטף לחיצה</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>אפשר הגנה מפני זיוף בקשות חוצות־אתרים (CSRF)</translation>
+    </message>
+    <message>
+        <source>Delete .torrent files afterwards</source>
+        <translation>מחק קבצי טורנט לאחר מכן</translation>
+    </message>
+    <message>
+        <source>Download rate threshold:</source>
+        <translation>סף קצב הורדה:</translation>
+    </message>
+    <message>
+        <source>Upload rate threshold:</source>
+        <translation>סף קצב העלאה:</translation>
+    </message>
+    <message>
+        <source>Change current password</source>
+        <translation>שנה סיסמה נוכחית</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>אוטומטי</translation>
+    </message>
+    <message>
+        <source>Use alternative Web UI</source>
+        <translation>השתמש בממשק רשת חלופי</translation>
+    </message>
+    <message>
+        <source>Default Save Path:</source>
+        <translation>נתיב שמירה ברירת מחדל:</translation>
+    </message>
+    <message>
+        <source>The alternative Web UI files location cannot be blank.</source>
+        <translation>המיקום החלופי של קבצי ממשק משתמש רשת אינו יכול להיות ריק.</translation>
+    </message>
+    <message>
+        <source>Do not start the download automatically</source>
+        <translation>אל תתחיל את ההורדה באופן אוטומטי</translation>
+    </message>
+    <message>
+        <source>Switch torrent to Manual Mode</source>
+        <translation>החלף טורנט למצב ידני</translation>
+    </message>
+    <message>
+        <source>When Torrent Category changed:</source>
+        <translation>כאשר קטגורית טורנט השתנתה:</translation>
+    </message>
+    <message>
+        <source>Relocate affected torrents</source>
+        <translation>מקם מחדש טורנטים מושפעים</translation>
+    </message>
+    <message>
+        <source>Apply rate limit to peers on LAN</source>
+        <translation>החל מגבלת קצב על עמיתים ב־LAN</translation>
+    </message>
+    <message>
+        <source>0 means unlimited</source>
+        <translation>0 אומר בלתי מוגבל</translation>
+    </message>
+    <message>
+        <source>Relocate torrent</source>
+        <translation>מקם מחדש טורנט</translation>
+    </message>
+    <message>
+        <source>When Default Save Path changed:</source>
+        <translation>כאשר נתיב ברירת מחדל של שמירה השתנה:</translation>
+    </message>
+    <message>
+        <source>Enable Host header validation</source>
+        <translation>אפשר תיקוף של כותרת מארח</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>אבטחה</translation>
+    </message>
+    <message>
+        <source>When Category Save Path changed:</source>
+        <translation>כאשר נתיב שמירת קטגוריה השתנה:</translation>
+    </message>
+    <message>
+        <source>Create subfolder for torrents with multiple files</source>
+        <translation>צור תיקיית משנה עבור טורנטים עם קבצים רבים</translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>שניות</translation>
+    </message>
+    <message>
+        <source>Switch affected torrents to Manual Mode</source>
+        <translation>החלף טורנטים מושפעים למצב ידני</translation>
+    </message>
+    <message>
+        <source>Files location:</source>
+        <translation>מיקום קבצים:</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>ידני</translation>
+    </message>
+    <message>
+        <source>Torrent inactivity timer:</source>
+        <translation>קוצב־זמן של אי־פעילות טורנט:</translation>
+    </message>
+    <message>
+        <source>Default Torrent Management Mode:</source>
+        <translation>מצב ברירת מחדל של ניהול טורנטים:</translation>
+    </message>
+    <message>
+        <source>When adding a torrent</source>
+        <translation>בעת הוספת טורנט</translation>
     </message>
 </context>
 <context>
@@ -1131,11 +1283,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>מגבלת הורדה:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>מגבלת העלאה:</translation>
     </message>
 </context>
 <context>
@@ -1504,6 +1656,70 @@
         <source>Message</source>
         <translation>הודעה</translation>
     </message>
+    <message>
+        <source>Downloaded</source>
+        <translation>ירד</translation>
+    </message>
+    <message>
+        <source>Tracker URL:</source>
+        <translation>כתובת גשש:</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation>מעדכן...</translation>
+    </message>
+    <message>
+        <source>Working</source>
+        <translation>עובד</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>מושבת</translation>
+    </message>
+    <message>
+        <source>Not contacted yet</source>
+        <translation>לא נוצר קשר עדין</translation>
+    </message>
+    <message>
+        <source>#</source>
+        <translation>#</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>לא זמין</translation>
+    </message>
+    <message>
+        <source>Seeds</source>
+        <translation>זורעים</translation>
+    </message>
+    <message>
+        <source>Not working</source>
+        <translation>לא עובד</translation>
+    </message>
+    <message>
+        <source>Copy tracker URL</source>
+        <translation>העתק כתובת גשש</translation>
+    </message>
+    <message>
+        <source>Add a new tracker...</source>
+        <translation>הוסף גשש חדש...</translation>
+    </message>
+    <message>
+        <source>Edit tracker URL...</source>
+        <translation>ערוך כתובת גשש...</translation>
+    </message>
+    <message>
+        <source>Tracker editing</source>
+        <translation>עריכת גשש</translation>
+    </message>
+    <message>
+        <source>Leeches</source>
+        <translation>עלוקות</translation>
+    </message>
+    <message>
+        <source>Remove tracker</source>
+        <translation>הסר גשש</translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -1522,6 +1738,70 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 קודם לכן</translation>
+    </message>
+    <message>
+        <source>Allocating</source>
+        <translation>מקצה</translation>
+    </message>
+    <message>
+        <source>Paused</source>
+        <translation>מושהה</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation>הושלם</translation>
+    </message>
+    <message>
+        <source>Moving</source>
+        <translation>מעביר</translation>
+    </message>
+    <message>
+        <source>[F] Seeding</source>
+        <translation>[א] זורע</translation>
+    </message>
+    <message>
+        <source>Seeding</source>
+        <translation>זורע</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation>בתור</translation>
+    </message>
+    <message>
+        <source>Errored</source>
+        <translation>נתקל בשגיאה</translation>
+    </message>
+    <message>
+        <source>[F] Downloading</source>
+        <translation>[א] מוריד</translation>
+    </message>
+    <message>
+        <source>Downloading metadata</source>
+        <translation>מוריד מטא־נתונים</translation>
+    </message>
+    <message>
+        <source>Checking</source>
+        <translation>בודק</translation>
+    </message>
+    <message>
+        <source>Missing Files</source>
+        <translation>קבצים חסרים</translation>
+    </message>
+    <message>
+        <source>Queued for checking</source>
+        <translation>בתור לבדיקה</translation>
+    </message>
+    <message>
+        <source>Downloading</source>
+        <translation>מוריד</translation>
+    </message>
+    <message>
+        <source>Checking resume data</source>
+        <translation>בודק נתוני המשכה</translation>
+    </message>
+    <message>
+        <source>Stalled</source>
+        <translation>ממתין</translation>
     </message>
 </context>
 <context>
@@ -1661,35 +1941,35 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>אלץ בדיקה חוזרת</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>קטגוריה חדשה</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>מיקום</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>שם חדש</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>קבע מיקום</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>אלץ הכרזה מחדש</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>ערוך קטגוריה</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>נתיב שמירה</translation>
     </message>
 </context>
 <context>
@@ -1750,7 +2030,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>אישור מחיקה - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -1765,7 +2045,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>הוסף קישורי טורנט</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +2120,182 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>נתיב השמירה ריק</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSourceDlg</name>
+    <message>
+        <source>Cancel</source>
+        <translation>בטל</translation>
+    </message>
+    <message>
+        <source>Plugin path:</source>
+        <translation>נתיב מתקע:</translation>
+    </message>
+    <message>
+        <source>URL or local directory</source>
+        <translation>כתובת או תיקייה מקומית</translation>
+    </message>
+    <message>
+        <source>Install plugin</source>
+        <translation>התקן מתקע</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>אישור</translation>
+    </message>
+</context>
+<context>
+    <name>SearchEngineWidget</name>
+    <message>
+        <source>Seeds:</source>
+        <translation>זורעים:</translation>
+    </message>
+    <message>
+        <source>All plugins</source>
+        <translation>כל המתקעים</translation>
+    </message>
+    <message>
+        <source>Size:</source>
+        <translation>גודל:</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>עצור</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>חפש</translation>
+    </message>
+    <message>
+        <source>Search plugins...</source>
+        <translation>מתקעי חיפוש...</translation>
+    </message>
+    <message>
+        <source>All categories</source>
+        <translation>כל הקטגוריות</translation>
+    </message>
+    <message>
+        <source>Search in:</source>
+        <translation>חפש ב:</translation>
+    </message>
+    <message>
+        <source>Copy description page URL</source>
+        <translation>העתק את כתובת דף התיאור</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation>עבור לדף התיאור</translation>
+    </message>
+    <message>
+        <source>Results (showing</source>
+        <translation>תוצאות (מראה</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation>הורד</translation>
+    </message>
+    <message>
+        <source>Filter</source>
+        <translation>סנן</translation>
+    </message>
+    <message>
+        <source>Torrent names only</source>
+        <translation>שמות טורנט בלבד</translation>
+    </message>
+    <message>
+        <source>Only enabled</source>
+        <translation>רק מאופשרים</translation>
+    </message>
+    <message>
+        <source>out of</source>
+        <translation>מתוך</translation>
+    </message>
+    <message>
+        <source>Everywhere</source>
+        <translation>בכל מקום</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <source>Uninstall</source>
+        <translation>הסר</translation>
+    </message>
+    <message>
+        <source>Install new plugin</source>
+        <translation>התקן מתקע חדש</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here:</source>
+        <translation>אתה יכול להשיג מתקעי מנוע חיפוש חדשים כאן:</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>סגור</translation>
+    </message>
+    <message>
+        <source>Installed search plugins:</source>
+        <translation>מתקעי חיפוש מותקנים:</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>מאופשר</translation>
+    </message>
+    <message>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>אזהרה: הייה בטוח להיענות לחוקי זכויות היוצרים של מדינתך בעת הורדת טורנטים מכל אחד ממנועי חיפוש אלו.</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>בדוק אחר עדכונים</translation>
+    </message>
+    <message>
+        <source>Search plugins</source>
+        <translation>מתקעי חיפוש</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>שם</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>גודל</translation>
+    </message>
+    <message>
+        <source>Leechers</source>
+        <translation>עלוקות</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>מנוע חיפוש</translation>
+    </message>
+    <message>
+        <source>Seeders</source>
+        <translation>זורעים</translation>
+    </message>
+</context>
+<context>
+    <name>SearchPluginsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>שם</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>כתובת אתר</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>מאופשר</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>גרסה</translation>
     </message>
 </context>
 </TS>

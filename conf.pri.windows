@@ -35,26 +35,15 @@ LIBS += zlib.lib
 #LIBS += libcrypto libssl
 #LIBS += libz
 
-DEFINES += NTDDI_VERSION=0x05010000
-DEFINES += _WIN32_WINNT=0x0501
-DEFINES += _WIN32_IE=0x0501
-
 # Disable to use Boost auto-linking
 DEFINES += BOOST_ALL_NO_LIB
 # Use one of the following options
 DEFINES += BOOST_SYSTEM_STATIC_LINK
 #DEFINES += BOOST_SYSTEM_DYN_LINK
-# Boost 1.60+ defaults to Vista+ support. The define below enables XP support again.
-DEFINES += BOOST_USE_WINAPI_VERSION=0x0501
-# Enable if building against libtorrent 1.0.x (RC_1_0) (static linking)
-#DEFINES += BOOST_ASIO_SEPARATE_COMPILATION
-# Enable if building against libtorrent 1.0.x (RC_1_0) (dynamic linking)
-#DEFINES += BOOST_ASIO_DYN_LINK
 # Enable if encountered build error with boost version <= 1.59
 #DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
 
-# Enable if building against libtorrent 1.1.x (RC_1_1)
-# built with this flag defined
+# Enable if libtorrent was built with this flag defined
 #DEFINES += TORRENT_NO_DEPRECATE
 # Enable if linking dynamically against libtorrent
 #DEFINES += TORRENT_LINKING_SHARED

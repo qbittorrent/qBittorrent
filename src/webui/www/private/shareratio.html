@@ -4,33 +4,42 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <script src="scripts/misc.js?locale=${LANG}"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
-        var UseGlobalLimit = -2;
-        var NoLimit = -1;
+        'use strict';
 
-        var keyboardEvents = new Keyboard({
+        const UseGlobalLimit = -2;
+        const NoLimit = -1;
+
+        new Keyboard({
             defaultEventType: 'keydown',
             events: {
-                'enter': function(event) {
+                'Enter': function(event) {
                     $('save').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
                     event.preventDefault();
                 }
             }
-        });
-        keyboardEvents.activate();
+        }).activate();
 
         window.addEvent('domready', function() {
-            var hashesList = new URI().getData('hashes').split('|');
-            var origValues = new URI().getData('orig').split('|');
+            const hashesList = new URI().getData('hashes').split('|');
+            const origValues = new URI().getData('orig').split('|');
 
-            var values = {
-                ratioLimit: friendlyFloat(origValues[0], 2),
+            const values = {
+                ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
                 seedingTimeLimit: parseInt(origValues[1]),
-                maxRatio: friendlyFloat(origValues[2], 2),
+                maxRatio: window.qBittorrent.Misc.friendlyFloat(origValues[2], 2),
                 maxSeedingTime: parseInt(origValues[3])
             };
 
@@ -65,9 +74,9 @@
                     return false;
                 }
 
-                var shareLimit = getSelectedRadioValue('shareLimit');
-                var ratioLimitValue = 0.00;
-                var seedingTimeLimitValue = 0;
+                const shareLimit = getSelectedRadioValue('shareLimit');
+                let ratioLimitValue = 0.00;
+                let seedingTimeLimitValue = 0;
 
                 if (shareLimit === 'default') {
                     ratioLimitValue = seedingTimeLimitValue = UseGlobalLimit;
@@ -99,10 +108,10 @@
         });
 
         function getSelectedRadioValue(name) {
-            var radios = document.getElementsByName(name);
+            const radios = document.getElementsByName(name);
 
-            for (var i = 0; i < radios.length; ++i) {
-                var radio = radios[i];
+            for (let i = 0; i < radios.length; ++i) {
+                const radio = radios[i];
                 if (radio.checked) {
                     return (radio).get('value');
                 }
@@ -110,17 +119,17 @@
         }
 
         function setSelectedRadioValue(name, value) {
-            var radios = document.getElementsByName(name);
+            const radios = document.getElementsByName(name);
 
-            for (var i = 0; i < radios.length; ++i) {
-                var radio = radios[i];
+            for (let i = 0; i < radios.length; ++i) {
+                const radio = radios[i];
                 if (radio.value === value)
                     radio.checked = true;
             }
         }
 
         function shareLimitChanged() {
-            var customShareLimit = getSelectedRadioValue('shareLimit') === 'custom';
+            const customShareLimit = getSelectedRadioValue('shareLimit') === 'custom';
             $('setRatio').set('disabled', !customShareLimit);
             $('setMinutes').set('disabled', !customShareLimit);
 
@@ -150,12 +159,12 @@
 
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setRatio" class="leftLabelLarge">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="ratio" value="0.00" step=".01" min="0" max="9999" class="shareLimitInput" />
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setMinutes" class="shareLimitInput" onclick="enableInputBoxes()" />
-            <label for="setMinutes" class="leftLabelLarge">QBT_TR(minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <label for="setMinutes">QBT_TR(minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="minutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" />
         </div>
         <div style="text-align: center; padding-top: 10px;">

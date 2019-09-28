@@ -28,9 +28,6 @@
 
 #include "reverseresolution.h"
 
-#include <boost/asio/ip/tcp.hpp>
-#include <boost/version.hpp>
-
 #include <QDebug>
 #include <QHostInfo>
 #include <QString>
@@ -39,9 +36,12 @@ const int CACHE_SIZE = 500;
 
 using namespace Net;
 
-static inline bool isUsefulHostName(const QString &hostname, const QString &ip)
+namespace
 {
-    return (!hostname.isEmpty() && (hostname != ip));
+    bool isUsefulHostName(const QString &hostname, const QString &ip)
+    {
+        return (!hostname.isEmpty() && (hostname != ip));
+    }
 }
 
 ReverseResolution::ReverseResolution(QObject *parent)
@@ -65,11 +65,7 @@ void ReverseResolution::resolve(const QString &ip)
     }
     else {
         // Actually resolve the ip
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
         m_lookups.insert(QHostInfo::lookupHost(ip, this, &ReverseResolution::hostResolved), ip);
-#else
-        m_lookups.insert(QHostInfo::lookupHost(ip, this, SLOT(hostResolved(QHostInfo))), ip);
-#endif
     }
 }
 

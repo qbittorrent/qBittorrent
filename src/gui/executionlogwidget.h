@@ -32,11 +32,12 @@
 #include <QWidget>
 #include "base/logger.h"
 
+class LogListWidget;
+
 namespace Ui
 {
     class ExecutionLogWidget;
 }
-class LogListWidget;
 
 class ExecutionLogWidget : public QWidget
 {

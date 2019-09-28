@@ -30,11 +30,11 @@
 
 #include <QtGlobal>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include "powermanagement_x11.h"
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #endif
 
@@ -46,7 +46,7 @@ PowerManagement::PowerManagement(QObject *parent)
     : QObject(parent)
     , m_busy(false)
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     m_inhibitor = new PowerManagementInhibitor(this);
 #endif
 }
@@ -70,9 +70,9 @@ void PowerManagement::setBusy()
 
 #ifdef Q_OS_WIN
     SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
-#elif (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#elif (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     m_inhibitor->requestBusy();
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     IOReturn success = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
         , tr("qBittorrent is active").toCFString(), &m_assertionID);
     if (success != kIOReturnSuccess)
@@ -87,9 +87,9 @@ void PowerManagement::setIdle()
 
 #ifdef Q_OS_WIN
     SetThreadExecutionState(ES_CONTINUOUS);
-#elif (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#elif (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     m_inhibitor->requestIdle();
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     IOPMAssertionRelease(m_assertionID);
 #endif
 }

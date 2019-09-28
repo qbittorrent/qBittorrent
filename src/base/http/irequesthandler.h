@@ -29,10 +29,12 @@
 #ifndef HTTP_IREQUESTHANDLER_H
 #define HTTP_IREQUESTHANDLER_H
 
-#include "types.h"
-
 namespace Http
 {
+    struct Environment;
+    struct Request;
+    struct Response;
+
     class IRequestHandler
     {
     public:

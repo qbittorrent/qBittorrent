@@ -1,6 +1,9 @@
 add_library(qbt_qtnotify STATIC
-notifications.cpp
+# headers
 notifications.h
+
+# sources
+notifications.cpp
 )
 
 set_target_properties(qbt_qtnotify PROPERTIES AUTOUIC False AUTORCC False)

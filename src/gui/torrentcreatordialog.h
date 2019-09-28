@@ -34,14 +34,14 @@
 
 #include "base/settingvalue.h"
 
-namespace Ui
-{
-    class TorrentCreatorDialog;
-}
-
 namespace BitTorrent
 {
     class TorrentCreatorThread;
+}
+
+namespace Ui
+{
+    class TorrentCreatorDialog;
 }
 
 class TorrentCreatorDialog : public QDialog
@@ -49,7 +49,7 @@ class TorrentCreatorDialog : public QDialog
     Q_OBJECT
 
 public:
-    TorrentCreatorDialog(QWidget *parent = nullptr, const QString &defaultPath = QString());
+    TorrentCreatorDialog(QWidget *parent = nullptr, const QString &defaultPath = {});
     ~TorrentCreatorDialog() override;
     void updateInputPath(const QString &path);
 
@@ -68,8 +68,10 @@ private:
 
     void saveSettings();
     void loadSettings();
+    void setInteractionEnabled(bool enabled) const;
+
     int getPieceSize() const;
-    void setInteractionEnabled(bool enabled);
+    int getPaddedFileSizeLimit() const;
 
     Ui::TorrentCreatorDialog *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
@@ -81,6 +83,7 @@ private:
     CachedSettingValue<bool> m_storeStartSeeding;
     CachedSettingValue<bool> m_storeIgnoreRatio;
     CachedSettingValue<bool> m_storeOptimizeAlignment;
+    CachedSettingValue<int> m_paddedFileSizeLimit;
     CachedSettingValue<QString> m_storeLastAddPath;
     CachedSettingValue<QString> m_storeTrackerList;
     CachedSettingValue<QString> m_storeWebSeedList;

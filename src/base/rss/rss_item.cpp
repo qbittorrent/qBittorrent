@@ -81,8 +81,8 @@ QString Item::joinPath(const QString &path1, const QString &path2)
 {
     if (path1.isEmpty())
         return path2;
-    else
-        return path1 + Item::PathSeparator + path2;
+
+    return (path1 + Item::PathSeparator + path2);
 }
 
 QStringList Item::expandPath(const QString &path)

@@ -30,12 +30,15 @@
 
 #include "requestparser.h"
 
+#include <algorithm>
+
 #include <QDebug>
 #include <QRegularExpression>
 #include <QStringList>
 #include <QUrl>
 #include <QUrlQuery>
 
+#include "base/global.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/string.h"
 
@@ -180,11 +183,29 @@ bool RequestParser::parseRequestLine(const QString &line)
     m_request.method = match.captured(1);
 
     // Request Target
-    const QByteArray decodedUrl {QByteArray::fromPercentEncoding(match.captured(2).toLatin1())};
-    const int sepPos = decodedUrl.indexOf('?');
-    m_request.path = QString::fromUtf8(decodedUrl.constData(), (sepPos == -1 ? decodedUrl.size() : sepPos));
-    if (sepPos >= 0)
-        m_request.query = decodedUrl.mid(sepPos + 1);
+    const QByteArray url {match.captured(2).toLatin1()};
+    const int sepPos = url.indexOf('?');
+    const QByteArray pathComponent = ((sepPos == -1) ? url : midView(url, 0, sepPos));
+
+    m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(pathComponent));
+
+    if (sepPos >= 0) {
+        const QByteArray query = midView(url, (sepPos + 1));
+
+        // [rfc3986] 2.4 When to Encode or Decode
+        // URL components should be separated before percent-decoding
+        for (const QByteArray &param : asConst(splitToViews(query, "&"))) {
+            const int eqCharPos = param.indexOf('=');
+            if (eqCharPos <= 0) continue;  // ignores params without name
+
+            const QByteArray nameComponent = midView(param, 0, eqCharPos);
+            const QByteArray valueComponent = midView(param, (eqCharPos + 1));
+            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent).replace('+', ' '));
+            const QByteArray paramValue = QByteArray::fromPercentEncoding(valueComponent).replace('+', ' ');
+
+            m_request.query[paramName] = paramValue;
+        }
+    }
 
     // HTTP-version
     m_request.version = match.captured(3);
@@ -200,7 +221,10 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
     // application/x-www-form-urlencoded
     if (contentTypeLower.startsWith(CONTENT_TYPE_FORM_ENCODED)) {
-        QListIterator<QStringPair> i(QUrlQuery(data).queryItems(QUrl::FullyDecoded));
+        // [URL Standard] 5.1 application/x-www-form-urlencoded parsing
+        const QByteArray processedData = QByteArray(data).replace('+', ' ');
+
+        QListIterator<QStringPair> i(QUrlQuery(processedData).queryItems(QUrl::FullyDecoded));
         while (i.hasNext()) {
             const QStringPair pair = i.next();
             m_request.posts[pair.first] = pair.second;
@@ -229,7 +253,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
         // split data by "dash-boundary"
         const QByteArray dashDelimiter = QByteArray("--") + delimiter + CRLF;
-        QList<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
+        QVector<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
         if (multipart.isEmpty()) {
             qWarning() << Q_FUNC_INFO << "multipart empty";
             return false;
@@ -239,12 +263,10 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
         const QByteArray endDelimiter = QByteArray("--") + delimiter + QByteArray("--") + CRLF;
         multipart.push_back(viewWithoutEndingWith(multipart.takeLast(), endDelimiter));
 
-        for (const auto &part : multipart) {
-            if (!parseFormData(part))
-                return false;
-        }
-
-        return true;
+        return std::all_of(multipart.cbegin(), multipart.cend(), [this](const QByteArray &part)
+        {
+            return this->parseFormData(part);
+        });
     }
 
     qWarning() << Q_FUNC_INFO << "unknown content type:" << contentType;
@@ -253,7 +275,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
 bool RequestParser::parseFormData(const QByteArray &data)
 {
-    const QList<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
+    const QVector<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
 
     if (list.size() != 2) {
         qWarning() << Q_FUNC_INFO << "multipart/form-data format error";

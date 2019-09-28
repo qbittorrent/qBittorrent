@@ -35,8 +35,6 @@
 
 #include "base/logger.h"
 
-namespace libt = libtorrent;
-
 namespace
 {
     class IPv4Parser
@@ -50,7 +48,7 @@ namespace
             char *endptr;
             for (; *str; ++str) {
                 if (*str == '.') {
-                    long int extractedNum = strtol(octetStart, &endptr, 10);
+                    const long int extractedNum = strtol(octetStart, &endptr, 10);
                     if ((extractedNum >= 0L) && (extractedNum <= 255L))
                         m_buf[octetIndex++] = static_cast<unsigned char>(extractedNum);
                     else
@@ -66,7 +64,7 @@ namespace
             }
 
             if (str != octetStart) {
-                long int extractedNum = strtol(octetStart, &endptr, 10);
+                const long int extractedNum = strtol(octetStart, &endptr, 10);
                 if ((extractedNum >= 0L) && (extractedNum <= 255L))
                     m_buf[octetIndex] = static_cast<unsigned char>(strtol(octetStart, &endptr, 10));
                 else
@@ -79,24 +77,24 @@ namespace
             return false;
         }
 
-        libt::address_v4::bytes_type parsed() const
+        lt::address_v4::bytes_type parsed() const
         {
             return m_buf;
         }
 
     private:
-        libt::address_v4::bytes_type m_buf;
+        lt::address_v4::bytes_type m_buf;
     };
 
-    bool parseIPAddress(const char *data, libt::address &address)
+    bool parseIPAddress(const char *data, lt::address &address)
     {
         IPv4Parser parser;
         boost::system::error_code ec;
 
         if (parser.tryParse(data))
-            address = libt::address_v4(parser.parsed());
+            address = lt::address_v4(parser.parsed());
         else
-            address = libt::address_v6::from_string(data, ec);
+            address = lt::address_v6::from_string(data, ec);
 
         return !ec;
     }
@@ -146,7 +144,7 @@ int FilterParserThread::parseDATFilterFile()
         bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
         if (bytesRead < 0)
             break;
-        int dataSize = bytesRead + offset;
+        const int dataSize = bytesRead + offset;
         if ((bytesRead == 0) && (dataSize == 0))
             break;
 
@@ -177,9 +175,8 @@ int FilterParserThread::parseDATFilterFile()
                 memmove(buffer.data(), buffer.data() + start, offset);
                 break;
             }
-            else {
-                ++nbLine;
-            }
+
+            ++nbLine;
 
             if ((buffer[start] == '#')
                 || ((buffer[start] == '/') && ((start + 1 < dataSize) && (buffer[start + 1] == '/')))) {
@@ -190,7 +187,7 @@ int FilterParserThread::parseDATFilterFile()
             // Each line should follow this format:
             // 001.009.096.105 - 001.009.096.105 , 000 , Some organization
             // The 3rd entry is access level and if above 127 the IP range isn't blocked.
-            int firstComma = findAndNullDelimiter(buffer.data(), ',', start, endOfLine);
+            const int firstComma = findAndNullDelimiter(buffer.data(), ',', start, endOfLine);
             if (firstComma != -1)
                 findAndNullDelimiter(buffer.data(), ',', firstComma + 1, endOfLine);
 
@@ -206,8 +203,8 @@ int FilterParserThread::parseDATFilterFile()
             }
 
             // IP Range should be split by a dash
-            int endOfIPRange = ((firstComma == -1) ? (endOfLine - 1) : (firstComma - 1));
-            int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfIPRange);
+            const int endOfIPRange = ((firstComma == -1) ? (endOfLine - 1) : (firstComma - 1));
+            const int delimIP = findAndNullDelimiter(buffer.data(), '-', start, endOfIPRange);
             if (delimIP == -1) {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -215,7 +212,7 @@ int FilterParserThread::parseDATFilterFile()
                 continue;
             }
 
-            libt::address startAddr;
+            lt::address startAddr;
             int newStart = trim(buffer.data(), start, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
                 ++parseErrorCount;
@@ -224,7 +221,7 @@ int FilterParserThread::parseDATFilterFile()
                 continue;
             }
 
-            libt::address endAddr;
+            lt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfIPRange);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
                 ++parseErrorCount;
@@ -245,10 +242,10 @@ int FilterParserThread::parseDATFilterFile()
 
             // Now Add to the filter
             try {
-                m_filter.add_rule(startAddr, endAddr, libt::ip_filter::blocked);
+                m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &e) {
+            catch (const std::exception &e) {
                 ++parseErrorCount;
                 addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
                        .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
@@ -294,7 +291,7 @@ int FilterParserThread::parseP2PFilterFile()
         bytesRead = file.read(buffer.data() + offset, BUFFER_SIZE - offset - 1);
         if (bytesRead < 0)
             break;
-        int dataSize = bytesRead + offset;
+        const int dataSize = bytesRead + offset;
         if ((bytesRead == 0) && (dataSize == 0))
             break;
 
@@ -325,9 +322,8 @@ int FilterParserThread::parseP2PFilterFile()
                 memmove(buffer.data(), buffer.data() + start, offset);
                 break;
             }
-            else {
-                ++nbLine;
-            }
+
+            ++nbLine;
 
             if ((buffer[start] == '#')
                 || ((buffer[start] == '/') && ((start + 1 < dataSize) && (buffer[start + 1] == '/')))) {
@@ -338,7 +334,7 @@ int FilterParserThread::parseP2PFilterFile()
             // Each line should follow this format:
             // Some organization:1.0.0.0-1.255.255.255
             // The "Some organization" part might contain a ':' char itself so we find the last occurrence
-            int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
+            const int partsDelimiter = findAndNullDelimiter(buffer.data(), ':', start, endOfLine, true);
             if (partsDelimiter == -1) {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -347,7 +343,7 @@ int FilterParserThread::parseP2PFilterFile()
             }
 
             // IP Range should be split by a dash
-            int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
+            const int delimIP = findAndNullDelimiter(buffer.data(), '-', partsDelimiter + 1, endOfLine);
             if (delimIP == -1) {
                 ++parseErrorCount;
                 addLog(tr("IP filter line %1 is malformed.").arg(nbLine));
@@ -355,7 +351,7 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
-            libt::address startAddr;
+            lt::address startAddr;
             int newStart = trim(buffer.data(), partsDelimiter + 1, delimIP - 1);
             if (!parseIPAddress(buffer.data() + newStart, startAddr)) {
                 ++parseErrorCount;
@@ -364,7 +360,7 @@ int FilterParserThread::parseP2PFilterFile()
                 continue;
             }
 
-            libt::address endAddr;
+            lt::address endAddr;
             newStart = trim(buffer.data(), delimIP + 1, endOfLine);
             if (!parseIPAddress(buffer.data() + newStart, endAddr)) {
                 ++parseErrorCount;
@@ -384,10 +380,10 @@ int FilterParserThread::parseP2PFilterFile()
             start = endOfLine;
 
             try {
-                m_filter.add_rule(startAddr, endAddr, libt::ip_filter::blocked);
+                m_filter.add_rule(startAddr, endAddr, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &e) {
+            catch (const std::exception &e) {
                 ++parseErrorCount;
                 addLog(tr("IP filter exception thrown for line %1. Exception is: %2")
                        .arg(nbLine).arg(QString::fromLocal8Bit(e.what())));
@@ -404,7 +400,7 @@ int FilterParserThread::parseP2PFilterFile()
     return ruleCount;
 }
 
-int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, char delim)
+int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, const char delim)
 {
     char c;
     int totalRead = 0;
@@ -465,14 +461,14 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
-            libt::address_v4 first(ntohl(start));
-            libt::address_v4 last(ntohl(end));
+            const lt::address_v4 first(ntohl(start));
+            const lt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try {
-                m_filter.add_rule(first, last, libt::ip_filter::blocked);
+                m_filter.add_rule(first, last, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &) {}
+            catch (const std::exception &) {}
         }
     }
     else if (version == 3) {
@@ -515,14 +511,14 @@ int FilterParserThread::parseP2BFilterFile()
             // Network byte order to Host byte order
             // asio address_v4 constructor expects it
             // that way
-            libt::address_v4 first(ntohl(start));
-            libt::address_v4 last(ntohl(end));
+            const lt::address_v4 first(ntohl(start));
+            const lt::address_v4 last(ntohl(end));
             // Apply to bittorrent session
             try {
-                m_filter.add_rule(first, last, libt::ip_filter::blocked);
+                m_filter.add_rule(first, last, lt::ip_filter::blocked);
                 ++ruleCount;
             }
-            catch (std::exception &) {}
+            catch (const std::exception &) {}
 
             if (m_abort) return ruleCount;
         }
@@ -549,12 +545,12 @@ void FilterParserThread::processFilterFile(const QString &filePath)
 
     m_abort = false;
     m_filePath = filePath;
-    m_filter = libt::ip_filter();
+    m_filter = lt::ip_filter();
     // Run it
     start();
 }
 
-libt::ip_filter FilterParserThread::IPfilter()
+lt::ip_filter FilterParserThread::IPfilter()
 {
     return m_filter;
 }
@@ -581,14 +577,14 @@ void FilterParserThread::run()
     try {
         emit IPFilterParsed(ruleCount);
     }
-    catch (std::exception &) {
+    catch (const std::exception &) {
         emit IPFilterError();
     }
 
     qDebug("IP Filter thread: finished parsing, filter applied");
 }
 
-int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse)
+int FilterParserThread::findAndNullDelimiter(char *const data, const char delimiter, const int start, const int end, const bool reverse)
 {
     if (!reverse) {
         for (int i = start; i <= end; ++i) {
@@ -610,7 +606,7 @@ int FilterParserThread::findAndNullDelimiter(char *const data, char delimiter, i
     return -1;
 }
 
-int FilterParserThread::trim(char *const data, int start, int end)
+int FilterParserThread::trim(char *const data, const int start, const int end)
 {
     if (start >= end) return start;
     int newStart = start;

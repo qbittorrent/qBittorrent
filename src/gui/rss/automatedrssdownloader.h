@@ -37,18 +37,17 @@
 
 #include "base/rss/rss_autodownloadrule.h"
 
-namespace Ui
-{
-    class AutomatedRssDownloader;
-}
-
 class QListWidgetItem;
 class QRegularExpression;
-class QShortcut;
 
 namespace RSS
 {
     class Feed;
+}
+
+namespace Ui
+{
+    class AutomatedRssDownloader;
 }
 
 class AutomatedRssDownloader : public QDialog
@@ -62,7 +61,6 @@ public:
 private slots:
     void on_addRuleBtn_clicked();
     void on_removeRuleBtn_clicked();
-    void on_browseSP_clicked();
     void on_exportBtn_clicked();
     void on_importBtn_clicked();
 
@@ -102,8 +100,6 @@ private:
 
     Ui::AutomatedRssDownloader *m_ui;
     QListWidgetItem *m_currentRuleItem;
-    QShortcut *m_editHotkey;
-    QShortcut *m_deleteHotkey;
     QSet<QPair<QString, QString>> m_treeListEntries;
     RSS::AutoDownloadRule m_currentRule;
     QHash<QString, QListWidgetItem *> m_itemsByRuleName;
