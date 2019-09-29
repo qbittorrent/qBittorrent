@@ -373,8 +373,9 @@ void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
     if (Preferences::instance()->confirmTorrentDeletion()
         && !DeletionConfirmationDialog::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
-    for (BitTorrent::TorrentHandle *const torrent : torrents)
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
+    const DeleteOption deleteOption = deleteLocalFiles ? TorrentAndFiles : Torrent;
+    for (const BitTorrent::TorrentHandle *torrent : torrents)
+        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteOption);
 }
 
 void TransferListWidget::deleteVisibleTorrents()
@@ -390,8 +391,9 @@ void TransferListWidget::deleteVisibleTorrents()
         && !DeletionConfirmationDialog::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
         return;
 
-    for (BitTorrent::TorrentHandle *const torrent : asConst(torrents))
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
+    const DeleteOption deleteOption = deleteLocalFiles ? TorrentAndFiles : Torrent;
+    for (const BitTorrent::TorrentHandle *torrent : asConst(torrents))
+        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteOption);
 }
 
 void TransferListWidget::increaseQueuePosSelectedTorrents()

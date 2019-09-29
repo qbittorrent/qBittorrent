@@ -552,12 +552,12 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Share Ratio Limiting)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <legend>QBT_TR(Seeding Limits)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
                 <td>
                     <input type="checkbox" id="max_ratio_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
-                    <label for="max_ratio_checkbox">QBT_TR(Seed torrents until their ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="max_ratio_value" style="width: 4em;" />
@@ -565,7 +565,7 @@
                 <tr>
                     <td>
                         <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
-                        <label for="max_seeding_time_checkbox">QBT_TR(Seed torrents until their seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <input type="text" id="max_seeding_time_value" style="width: 4em;" /> QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
@@ -577,9 +577,10 @@
                     </td>
                     <td>
                         <select id="max_ratio_act">
-                            <option value="0">QBT_TR(Pause them)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="1">QBT_TR(Remove them)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="2">QBT_TR(Enable super seeding for them)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="0">QBT_TR(Pause torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="3">QBT_TR(Remove torrent and its files)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="2">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                         </select>
                     </td>
                 </tr>
@@ -1660,8 +1661,23 @@
                             $('max_seeding_time_value').setProperty('value', pref.max_seeding_time.toInt());
                         else
                             $('max_seeding_time_value').setProperty('value', 1440);
-                        const max_ratio_act = pref.max_ratio_act.toInt();
-                        $('max_ratio_act').getChildren('option')[max_ratio_act].setAttribute('selected', '');
+                        let maxRatioAct = 0;
+                        switch (pref.max_ratio_act.toInt()) {
+                            case 0: // Pause
+                            default:
+                                maxRatioAct = 0;
+                                break;
+                            case 1: // Remove
+                                maxRatioAct = 1;
+                                break;
+                            case 2: // Enable super seeding
+                                maxRatioAct = 3;
+                                break;
+                            case 3: // Remove torrent and files
+                                maxRatioAct = 2;
+                                break;
+                        }
+                        $('max_ratio_act').getChildren('option')[maxRatioAct].setAttribute('selected', '');
                         updateMaxRatioTimeEnabled();
 
                         // Add trackers

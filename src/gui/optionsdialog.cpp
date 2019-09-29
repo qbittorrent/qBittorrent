@@ -747,7 +747,14 @@ void OptionsDialog::saveOptions()
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
-    session->setMaxRatioAction(static_cast<MaxRatioAction>(m_ui->comboRatioLimitAct->currentIndex()));
+
+    const QVector<MaxRatioAction> actIndex = {
+        Pause,
+        Remove,
+        DeleteFiles,
+        EnableSuperSeeding
+    };
+    session->setMaxRatioAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
 
     // Misc preferences
@@ -1130,7 +1137,14 @@ void OptionsDialog::loadOptions()
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
     m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
-    m_ui->comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
+
+    const QHash<MaxRatioAction, int> actIndex = {
+        {Pause, 0},
+        {Remove, 1},
+        {DeleteFiles, 2},
+        {EnableSuperSeeding, 3}
+    };
+    m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(session->maxRatioAction()));
     // End Bittorrent preferences
 
     // Web UI preferences

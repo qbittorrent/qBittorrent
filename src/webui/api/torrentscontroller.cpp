@@ -885,10 +885,11 @@ void TorrentsController::deleteAction()
     checkParams({"hashes", "deleteFiles"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const bool deleteFiles {parseBool(params()["deleteFiles"], false)};
-    applyToTorrents(hashes, [deleteFiles](BitTorrent::TorrentHandle *const torrent)
+    const DeleteOption deleteOption = parseBool(params()["deleteFiles"], false)
+            ? TorrentAndFiles : Torrent;
+    applyToTorrents(hashes, [deleteOption](const BitTorrent::TorrentHandle *torrent)
     {
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteFiles);
+        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteOption);
     });
 }
 

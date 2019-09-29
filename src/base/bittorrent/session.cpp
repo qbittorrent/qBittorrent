@@ -1508,6 +1508,10 @@ void Session::processShareLimits()
                             LogMsg(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
                         }
+                        else if (m_maxRatioAction == DeleteFiles) {
+                            LogMsg(tr("'%1' reached the maximum ratio you set. Removed torrent and its files.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(), TorrentAndFiles);
+                        }
                         else if ((m_maxRatioAction == Pause) && !torrent->isPaused()) {
                             torrent->pause();
                             LogMsg(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
@@ -1534,6 +1538,10 @@ void Session::processShareLimits()
                         if (m_maxRatioAction == Remove) {
                             LogMsg(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
                             deleteTorrent(torrent->hash());
+                        }
+                        else if (m_maxRatioAction == DeleteFiles) {
+                            LogMsg(tr("'%1' reached the maximum seeding time you set. Removed torrent and its files.").arg(torrent->name()));
+                            deleteTorrent(torrent->hash(), TorrentAndFiles);
                         }
                         else if ((m_maxRatioAction == Pause) && !torrent->isPaused()) {
                             torrent->pause();
@@ -1616,8 +1624,8 @@ void Session::banIP(const QString &ip)
 }
 
 // Delete a torrent from the session, given its hash
-// deleteLocalFiles = true means that the torrent will be removed from the hard-drive too
-bool Session::deleteTorrent(const QString &hash, const bool deleteLocalFiles)
+// and from the disk, if the corresponding deleteOption is chosen
+bool Session::deleteTorrent(const QString &hash, const DeleteOption deleteOption)
 {
     TorrentHandle *const torrent = m_torrents.take(hash);
     if (!torrent) return false;
@@ -1626,20 +1634,8 @@ bool Session::deleteTorrent(const QString &hash, const bool deleteLocalFiles)
     emit torrentAboutToBeRemoved(torrent);
 
     // Remove it from session
-    if (deleteLocalFiles) {
-        const QString rootPath = torrent->rootPath(true);
-        if (!rootPath.isEmpty())
-            // torrent with root folder
-            m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteLocalFiles};
-        else if (torrent->useTempPath())
-            // torrent without root folder still has it in its temporary save path
-            m_removingTorrents[torrent->hash()] = {torrent->name(), torrent->savePath(true), deleteLocalFiles};
-        else
-            m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteLocalFiles};
-        m_nativeSession->remove_torrent(torrent->nativeHandle(), lt::session::delete_files);
-    }
-    else {
-        m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteLocalFiles};
+    if (deleteOption == Torrent) {
+        m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteOption};
         QStringList unwantedFiles;
         if (torrent->hasMetadata())
             unwantedFiles = torrent->absoluteFilePathsUnwanted();
@@ -1652,6 +1648,21 @@ bool Session::deleteTorrent(const QString &hash, const bool deleteLocalFiles)
             qDebug("Attempt to remove parent folder (if empty): %s", qUtf8Printable(parentFolder));
             QDir().rmdir(parentFolder);
         }
+    }
+    else {
+        const QString rootPath = torrent->rootPath(true);
+        if (!rootPath.isEmpty()) {
+            // torrent with root folder
+            m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteOption};
+        }
+        else if (torrent->useTempPath()) {
+            // torrent without root folder still has it in its temporary save path
+            m_removingTorrents[torrent->hash()] = {torrent->name(), torrent->savePath(true), deleteOption};
+        }
+        else {
+            m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteOption};
+        }
+        m_nativeSession->remove_torrent(torrent->nativeHandle(), lt::session::delete_files);
     }
 
     // Remove it from torrent resume directory
@@ -4002,7 +4013,7 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 
     if (m_removingTorrents.contains(infoHash)) {
         const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents[infoHash];
-        if (!tmpRemovingTorrentData.requestedFileDeletion) {
+        if (tmpRemovingTorrentData.deleteOption == Torrent) {
             LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
             m_removingTorrents.remove(infoHash);
         }
