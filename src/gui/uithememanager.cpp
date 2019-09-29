@@ -258,7 +258,7 @@ namespace
         {"Tray.Seeding", ":icons/skin/seeding.svg"}};
 
 
-#if QBT_SYSTEMICONS
+#ifdef QBT_SYSTEMICONS
     static const QHash<QString, QString> systemIconConfig = {{"AboutDialog.Logo", "qbittorrent-tray"},
         {"AddNewTorrentDialog.TorrentContentView.RenameAction", "edit-rename"},
         {"CategoryFilter.ContextMenu.AddAction", "list-add"},
