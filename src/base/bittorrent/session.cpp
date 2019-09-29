@@ -1680,9 +1680,10 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
 
 bool Session::cancelLoadMetadata(const InfoHash &hash)
 {
-    if (!m_loadedMetadata.contains(hash)) return false;
+    const auto loadedMetadataIter = m_loadedMetadata.find(hash);
+    if (loadedMetadataIter == m_loadedMetadata.end()) return false;
 
-    m_loadedMetadata.remove(hash);
+    m_loadedMetadata.erase(loadedMetadataIter);
     const lt::torrent_handle torrent = m_nativeSession->find_torrent(hash);
     if (!torrent.is_valid()) return false;
 
@@ -4008,14 +4009,17 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
-    if (m_loadedMetadata.contains(infoHash))
-        emit metadataLoaded(m_loadedMetadata.take(infoHash));
+    const auto loadedMetadataIter = m_loadedMetadata.find(infoHash);
+    if (loadedMetadataIter != m_loadedMetadata.end()) {
+        emit metadataLoaded(*loadedMetadataIter);
+        m_loadedMetadata.erase(loadedMetadataIter);
+    }
 
-    if (m_removingTorrents.contains(infoHash)) {
-        const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents[infoHash];
-        if (tmpRemovingTorrentData.deleteOption == Torrent) {
-            LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
-            m_removingTorrents.remove(infoHash);
+    const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
+    if (removingTorrentDataIter != m_removingTorrents.end()) {
+        if (removingTorrentDataIter->deleteOption == Torrent) {
+            LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+            m_removingTorrents.erase(removingTorrentDataIter);
         }
     }
 }
@@ -4023,44 +4027,48 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
+    const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
 
-    if (!m_removingTorrents.contains(infoHash))
+    if (removingTorrentDataIter == m_removingTorrents.end())
         return;
-    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(infoHash);
-    Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
 
-    LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->savePathToRemove);
+    LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+    m_removingTorrents.erase(removingTorrentDataIter);
 }
 
 void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
+    const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
 
-    if (!m_removingTorrents.contains(infoHash))
+    if (removingTorrentDataIter == m_removingTorrents.end())
         return;
-    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(infoHash);
+
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->savePathToRemove);
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
-                .arg(tmpRemovingTorrentData.name, QString::fromLocal8Bit(p->error.message().c_str()))
+                .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
     else {
-        LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
+        LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
     }
+    m_removingTorrents.erase(removingTorrentDataIter);
 }
 
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     const InfoHash hash {p->handle.info_hash()};
+    const auto loadedMetadataIter = m_loadedMetadata.find(hash);
 
-    if (m_loadedMetadata.contains(hash)) {
+    if (loadedMetadataIter != m_loadedMetadata.end()) {
         --m_extraLimit;
         adjustLimits();
-        m_loadedMetadata[hash] = TorrentInfo(p->handle.torrent_file());
+        *loadedMetadataIter = TorrentInfo(p->handle.torrent_file());
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
     }
 }
