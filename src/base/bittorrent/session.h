@@ -407,7 +407,7 @@ namespace BitTorrent
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
-        bool deleteTorrent(const QString &hash, DeleteOption deleteOption = Torrent);
+        bool deleteTorrent(const InfoHash &hash, DeleteOption deleteOption = Torrent);
         bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);
 

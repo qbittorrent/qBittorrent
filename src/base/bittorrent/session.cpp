@@ -1625,7 +1625,7 @@ void Session::banIP(const QString &ip)
 
 // Delete a torrent from the session, given its hash
 // and from the disk, if the corresponding deleteOption is chosen
-bool Session::deleteTorrent(const QString &hash, const DeleteOption deleteOption)
+bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOption)
 {
     TorrentHandle *const torrent = m_torrents.take(hash);
     if (!torrent) return false;
