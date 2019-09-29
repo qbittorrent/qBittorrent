@@ -74,6 +74,7 @@ categoryfilterproxymodel.cpp
 categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
+deletionconfirmationdialog.cpp
 downloadfromurldialog.cpp
 executionlogwidget.cpp
 fspathedit.cpp
