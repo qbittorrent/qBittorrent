@@ -39,10 +39,12 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
     , m_ui(new Ui::DeletionConfirmationDialog)
 {
     m_ui->setupUi(this);
+
     if (size == 1)
         m_ui->label->setText(tr("Are you sure you want to delete '%1' from the transfer list?", "Are you sure you want to delete 'ubuntu-linux-iso' from the transfer list?").arg(name.toHtmlEscaped()));
     else
         m_ui->label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
+
     // Icons
     const QSize iconSize = Utils::Gui::largeIconSize();
     m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon("dialog-warning").pixmap(iconSize));
@@ -62,19 +64,9 @@ DeletionConfirmationDialog::~DeletionConfirmationDialog()
     delete m_ui;
 }
 
-bool DeletionConfirmationDialog::shouldDeleteLocalFiles() const
+bool DeletionConfirmationDialog::isDeleteFileSelected() const
 {
     return m_ui->checkPermDelete->isChecked();
-}
-
-bool DeletionConfirmationDialog::askForDeletionConfirmation(QWidget *parent, bool &deleteLocalFiles, const int size, const QString &name)
-{
-    DeletionConfirmationDialog dlg(parent, size, name, deleteLocalFiles);
-    if (dlg.exec() == QDialog::Accepted) {
-        deleteLocalFiles = dlg.shouldDeleteLocalFiles();
-        return true;
-    }
-    return false;
 }
 
 void DeletionConfirmationDialog::updateRememberButtonState()

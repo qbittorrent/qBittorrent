@@ -46,8 +46,7 @@ public:
     DeletionConfirmationDialog(QWidget *parent, int size, const QString &name, bool defaultDeleteFiles);
     ~DeletionConfirmationDialog();
 
-    bool shouldDeleteLocalFiles() const;
-    static bool askForDeletionConfirmation(QWidget *parent, bool &deleteLocalFiles, int size, const QString &name);
+    bool isDeleteFileSelected() const;
 
 private slots:
     void updateRememberButtonState();
