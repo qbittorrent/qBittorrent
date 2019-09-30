@@ -37,6 +37,7 @@
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include <QJsonObject>
+#include <QList>
 #include <QResource>
 #include <QSet>
 
@@ -259,7 +260,7 @@ namespace
     };
 
 #ifdef QBT_SYSTEMICONS
-    const QHash<QString, QString> systemIconConfig = {
+    const QMultiHash<QString, QString> systemIconConfig = {
         {"AboutDialog.Logo", "qbittorrent-tray"},
         {"NewTorrentDialog.TorrentContentView.RenameAction", "edit-rename"},
         {"CategoryFilter.AddAction", "list-add"},
@@ -282,6 +283,7 @@ namespace
         {"LogList.ContextMenu.ClearAction", "edit-clear"},
         {"LogList.ContextMenu.CopyAction", "edit-copy"},
         {"MainMenu.ConfigureAction", "configure"},
+        {"MainMenu.ConfigureAction", "preferences-system"},
         {"MainMenu.Documentation.HelpAction", "help-contents"},
         {"MainMenu.DonateAction", "wallet-open"},
         {"MainMenu.DownAction", "go-up"},
@@ -319,9 +321,11 @@ namespace
         {"OptionsDialog.DownloadTab", "folder-download"},
         {"OptionsDialog.GlobalRate", "slow_off"},
         {"OptionsDialog.RSSTab", "rss-config"},
+        {"OptionsDialog.RSSTab", "application-rss+xml"},
         {"OptionsDialog.SSL.HighSecurity", "security-high"},
         {"OptionsDialog.SSL.LowSecurity", "security-low"},
         {"OptionsDialog.SpeedTab", "speedometer"},
+        {"OptionsDialog.SpeedTab", "chronometer"},
         {"OptionsDialog.UITab", "preferences-desktop"},
         {"OptionsDialog.WebUITab", "network-server"},
         {"PeerList.ContextMenu.AddAction", "user-group-new"},
@@ -469,23 +473,6 @@ namespace
     public:
         using RuntimeError::RuntimeError;
     };
-
-    QString resolveIconId(const QString &iconId, const QHash<QString, QString> &iconMap)
-    {
-        QString iconPath = iconMap.value(iconId);
-        QString iconIdPattern = iconId;
-        while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
-            const int sepIndex = iconIdPattern.indexOf('.');
-            iconIdPattern = "*" + ((sepIndex == -1) ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
-            const auto patternIter = iconMap.find(iconIdPattern);
-            if (patternIter != iconMap.end())
-                iconPath = *patternIter;
-            else
-                iconIdPattern.remove(0, 2); // removes "*."
-        }
-
-        return iconPath;
-    }
 }
 
 void UIThemeManager::freeInstance()
@@ -601,26 +588,14 @@ void UIThemeManager::applyStyleSheet() const
 
 QIcon UIThemeManager::getIcon(const QString &iconId) const
 {
-    return getIcon(iconId, iconId);
-}
-
-QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallbackSysThemeIcon) const
-{
 #ifdef QBT_SYSTEMICONS
     if (m_useSystemTheme) {
-        const QString themeIcon = resolveIconId(iconId, m_systemIconMap);
-
-        // QIcon::fromTheme may return valid icons for not registerd system id as well,
-        // for ex: edit-find-user
-        QIcon icon = QIcon::fromTheme(themeIcon);
-        if (icon.isNull() && (fallbackSysThemeIcon != iconId))
-            icon = QIcon::fromTheme(fallbackSysThemeIcon);
-        if (!icon.isNull())
-            return icon;
-        LogMsg(tr("Can't find system icon %1 nor %2").arg(themeIcon, fallbackSysThemeIcon), Log::WARNING);
+        for (QString sysIcon : m_systemIconMap.values(iconId)) {
+            QIcon icon = QIcon::fromTheme(sysIcon);
+            if (!icon.isNull())
+                return icon;
+        }
     }
-#else
-    Q_UNUSED(fallbackSysThemeIcon)
 #endif
 
     // cache to avoid rescaling svg icons
@@ -666,7 +641,17 @@ QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const QWidget *wi
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
-    QString iconPath = resolveIconId(iconId, m_iconMap);
+    QString iconPath = m_iconMap.value(iconId);
+    QString iconIdPattern = iconId;
+    while (iconPath.isEmpty() && !iconIdPattern.isEmpty()) {
+        const int sepIndex = iconIdPattern.indexOf('.');
+        iconIdPattern = "*" + ((sepIndex == -1) ? "" : iconIdPattern.right(iconIdPattern.size() - sepIndex));
+        const auto patternIter = m_iconMap.find(iconIdPattern);
+        if (patternIter != m_iconMap.end())
+            iconPath = *patternIter;
+        else
+            iconIdPattern.remove(0, 2);     // removes "*."
+    }
 
     if (iconPath.isEmpty()) {
         LogMsg(tr("Can't resolve icon id - %1").arg(iconId), Log::WARNING);

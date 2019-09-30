@@ -32,6 +32,7 @@
 #include <QObject>
 #include <QString>
 #include <QHash>
+#include <QMultiHash>
 
 class UIThemeManager : public QObject
 {
@@ -46,7 +47,6 @@ public:
     void applyStyleSheet() const;
 
     QIcon getIcon(const QString &iconId) const;
-    QIcon getIcon(const QString &iconId, const QString &fallbackSysThemeIcon) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
     QPixmap getScaledPixmap(const QString &iconId, const QWidget *widget, int baseHeight) const;
     QString getIconPath(const QString &iconId) const;
@@ -61,6 +61,6 @@ private:
     bool m_useCustomStylesheet = false;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
-    QHash<QString, QString> m_systemIconMap;
+    QMultiHash<QString, QString> m_systemIconMap;
 #endif
 };

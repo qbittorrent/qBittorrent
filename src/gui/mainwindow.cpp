@@ -179,7 +179,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon("MainMenu.DonateAction"));
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ExitAction"));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon("MainMenu.LockAction"));
-    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ConfigureAction", "preferences-system"));
+    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon("MainMenu.ConfigureAction"));
     m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon("MainMenu.PauseAction"));
     m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon("MainMenu.PauseAllAction"));
     m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon("MainMenu.StartAction"));
