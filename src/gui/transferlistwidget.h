@@ -93,6 +93,8 @@ public slots:
     void applyTrackerFilter(const QStringList &hashes);
     void previewFile(const QString &filePath);
     void renameSelectedTorrent();
+    void exportSelectedTorrentsToXML();
+    void importTorrentsFromXML();
 
 protected:
     QModelIndex mapToSource(const QModelIndex &index) const;

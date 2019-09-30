@@ -79,6 +79,8 @@
     </widget>
     <addaction name="actionCreateTorrent"/>
     <addaction name="separator"/>
+    <addaction name="actionExportSelectedTorrentsToXML"/>
+    <addaction name="actionImportTorrentsFromXML"/>
     <addaction name="actionManageCookies"/>
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
@@ -429,6 +431,22 @@
    </property>
    <property name="toolTip">
     <string>Check for Program Updates</string>
+   </property>
+  </action>
+  <action name="actionExportSelectedTorrentsToXML">
+   <property name="text">
+    <string>Export selected torrents to XML</string>
+   </property>
+   <property name="toolTip">
+    <string>Export selected torrents to XML</string>
+   </property>
+  </action>
+  <action name="actionImportTorrentsFromXML">
+   <property name="text">
+    <string>Import torrents from XML</string>
+   </property>
+   <property name="toolTip">
+    <string>Import torrents from XML</string>
    </property>
   </action>
   <action name="actionManageCookies">

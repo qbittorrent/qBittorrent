@@ -276,6 +276,7 @@
         <file>qbt-theme/edit-find.svg</file>
         <file>qbt-theme/edit-paste.svg</file>
         <file>qbt-theme/edit-rename.svg</file>
+	<file>qbt-theme/export-selected-torrents-xml.svg</file>
         <file>qbt-theme/folder-documents.svg</file>
         <file>qbt-theme/folder-download.svg</file>
         <file>qbt-theme/folder-new.svg</file>
@@ -288,6 +289,7 @@
         <file>qbt-theme/go-up.svg</file>
         <file>qbt-theme/help-about.svg</file>
         <file>qbt-theme/help-contents.svg</file>
+        <file>qbt-theme/import-torrents-xml.svg</file>
         <file>qbt-theme/inode-directory.svg</file>
         <file>qbt-theme/insert-link.svg</file>
         <file>qbt-theme/kt-magnet.svg</file>

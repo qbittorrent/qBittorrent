@@ -43,6 +43,8 @@
 #include <QTableView>
 #include <QWheelEvent>
 
+#include "base/bittorrent/infohash.h"
+#include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
@@ -778,6 +780,457 @@ void TransferListWidget::renameSelectedTorrent()
         // Rename the torrent
         m_listModel->setData(mi, name, Qt::DisplayRole);
     }
+}
+
+void TransferListWidget::exportSelectedTorrentsToXML()
+{
+    m_mainWindow->setEnabled(false);
+
+    const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
+    if (torrents.isEmpty()) {
+        QMessageBox::warning(m_mainWindow, tr("Nothing to export!"), tr("Select one or more torrent first."));
+        m_mainWindow->setEnabled(true);
+        return;
+    }
+    
+    QString path = QFileDialog::getExistingDirectory(m_mainWindow, tr("Choose export folder"), ".", QFileDialog::ReadOnly);
+    if (path.isNull()) {
+        m_mainWindow->setEnabled(true);
+        return;
+    }
+
+    // Generate filename with timestamp
+    char timestamp[64];
+    QString timeStr;
+    time_t rawtime = time(0);
+    tm *now = localtime(&rawtime);
+    if (rawtime != -1) {
+        strftime(timestamp, 64, "%m_%d_%y-%H_%M_%S", now);
+        timeStr = QString(timestamp);
+    }
+    else {
+        timeStr = "NOW";
+    }
+
+    QString filename = path + QDir::separator() + "TorrentList-" + timeStr + ".xml";
+
+    Logger::instance()->addMessage(tr("Exporting selected torrent/s to XML file: ") + "\"" + filename + "\".");
+    Logger::instance()->addMessage(tr("Exporting selected torrent/s .torrent files to folder: ") + "\"" + path + "\".");
+
+    // WARNING TODO: Maybe we need to use Utils::String::fromDouble(const double n, const int precision) instead of QString::numbers for double and qreal?
+
+    // Generate XML as a string
+    QString asXMLString = "";
+    asXMLString += QString("<torrentlist>\r\n");
+    bool exportErrors = false; // Errors are logged
+    for (BitTorrent::TorrentHandle *const torrent : torrents) {
+        // Save the .torrent first
+        try {
+            QString hash = torrent->hash();
+            torrent->saveTorrentFile(path + QDir::separator() + hash + ".torrent");
+        }
+        catch (...) {
+            exportErrors = true;
+            std::exception_ptr p = std::current_exception();
+            Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Cannot write .torrent file: ") + 
+                (p ? p.__cxa_exception_type()->name() : "null"), Log::CRITICAL);
+        }
+        // XML data - in the order they are defined in TorrentHandle
+        asXMLString += QString("\t<torrent>\r\n");
+        asXMLString += QString("\t\t<isValid>%1</isValid>\r\n").arg(torrent->isValid() == true ? "True" : "False");
+        asXMLString += QString("\t\t<hash>%1</hash>\r\n").arg(torrent->hash());
+        asXMLString += QString("\t\t<name>%1</name>\r\n").arg(torrent->name());
+        asXMLString += QString("\t\t<creationDate>%1</creationDate>\r\n").arg(!torrent->creationDate().isNull() ? torrent->creationDate().toString(Qt::DefaultLocaleShortDate) : "");
+        asXMLString += QString("\t\t<creator>%1</creator>\r\n").arg(torrent->creator());
+        asXMLString += QString("\t\t<comment>%1</comment>\r\n").arg(torrent->comment());
+        asXMLString += QString("\t\t<isPrivate>%1</isPrivate>\r\n").arg(torrent->isPrivate() == true ? "True" : "False");
+        asXMLString += QString("\t\t<totalSize>%1</totalSize>\r\n").arg(QString::number(torrent->totalSize()));
+        asXMLString += QString("\t\t<wantedSize>%1</wantedSize>\r\n").arg(QString::number(torrent->wantedSize()));
+        asXMLString += QString("\t\t<completedSize>%1</completedSize>\r\n").arg(QString::number(torrent->completedSize()));
+        asXMLString += QString("\t\t<incompletedSize>%1</incompletedSize>\r\n").arg(QString::number(torrent->incompletedSize()));
+        asXMLString += QString("\t\t<pieceLength>%1</pieceLength>\r\n").arg(QString::number(torrent->pieceLength()));
+        asXMLString += QString("\t\t<wastedSize>%1</wastedSize>\r\n").arg(QString::number(torrent->wastedSize()));
+        asXMLString += QString("\t\t<currentTracker>%1</currentTracker>\r\n").arg(torrent->currentTracker());
+        asXMLString += QString("\t\t<savePath>%1</savePath>\r\n").arg(torrent->savePath(false));
+        asXMLString += QString("\t\t<savePath_actual>%1</savePath_actual>\r\n").arg(torrent->savePath(true));
+        asXMLString += QString("\t\t<rootPath>%1</rootPath>\r\n").arg(torrent->rootPath(false));
+        asXMLString += QString("\t\t<rootPath_actual>%1</rootPath_actual>\r\n").arg(torrent->rootPath(true));
+        asXMLString += QString("\t\t<contentPath>%1</contentPath>\r\n").arg(torrent->contentPath(false));
+        asXMLString += QString("\t\t<contentPath_actual>%1</contentPath_actual>\r\n").arg(torrent->contentPath(true));
+        asXMLString += QString("\t\t<useTempPath>%1</useTempPath>\r\n").arg(torrent->useTempPath() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isAutoTMMEnabled>%1</isAutoTMMEnabled>\r\n").arg(torrent->isAutoTMMEnabled() == true ? "True" : "False");
+        asXMLString += QString("\t\t<category>%1</category>\r\n").arg(torrent->category());
+        // Tags
+        asXMLString += QString("\t\t<tags>\r\n");
+        for (const QString &tag : torrent->tags()) {
+            asXMLString += QString("\t\t\t<tag>%1</tag>\r\n").arg(tag);
+        }
+        asXMLString += QString("\t\t</tags>\r\n");
+        
+        asXMLString += QString("\t\t<hasRootFolder>%1</hasRootFolder>\r\n").arg(torrent->hasRootFolder() == true ? "True" : "False");
+        asXMLString += QString("\t\t<filesCount>%1</filesCount>\r\n").arg(QString::number(torrent->filesCount()));
+        asXMLString += QString("\t\t<piecesCount>%1</piecesCount>\r\n").arg(QString::number(torrent->piecesCount()));
+        asXMLString += QString("\t\t<piecesHave>%1</piecesHave>\r\n").arg(QString::number(torrent->piecesHave()));
+        asXMLString += QString("\t\t<progress>%1</progress>\r\n").arg(QString::number(torrent->progress()));
+        asXMLString += QString("\t\t<addedTime>%1</addedTime>\r\n").arg(!torrent->addedTime().isNull() ? torrent->addedTime().toString(Qt::DefaultLocaleShortDate) : "");
+        asXMLString += QString("\t\t<ratioLimit>%1</ratioLimit>\r\n").arg(QString::number(torrent->ratioLimit()));
+        asXMLString += QString("\t\t<seedingTimeLimit>%1</seedingTimeLimit>\r\n").arg(QString::number(torrent->seedingTimeLimit()));
+        // Filepaths
+        asXMLString += QString("\t\t<filePaths>\r\n");
+        for (int i = 0; i < torrent->filesCount(); i++) {
+            asXMLString += QString("\t\t\t<filePath>%1</filePath>\r\n").arg(torrent->filePath(i));
+        }
+        asXMLString += QString("\t\t</filePaths>\r\n");
+        // FileNames
+        asXMLString += QString("\t\t<fileNames>\r\n");
+        for (int i = 0; i < torrent->filesCount(); i++) {
+            asXMLString += QString("\t\t\t<fileName>%1</fileName>\r\n").arg(torrent->fileName(i));
+        }
+        asXMLString += QString("\t\t</fileNames>\r\n");
+        // FileSizes
+        asXMLString += QString("\t\t<fileSizes>\r\n");
+        for (int i = 0; i < torrent->filesCount(); i++) {
+            asXMLString += QString("\t\t\t<fileSize>%1</fileSize>\r\n").arg(QString::number(torrent->fileSize(i)));
+        }
+        asXMLString += QString("\t\t</fileSizes>\r\n");
+        // Absolute file paths
+        asXMLString += QString("\t\t<absoluteFilePaths>\r\n");
+        for (int i = 0; i < torrent->absoluteFilePaths().size(); ++i) {
+            asXMLString += QString("\t\t\t<absoluteFilePath>%1</absoluteFilePath>\r\n").arg(torrent->absoluteFilePaths().at(i));
+        }
+        asXMLString += QString("\t\t</absoluteFilePaths>\r\n");
+        // Absolute file paths unwanted
+        asXMLString += QString("\t\t<absoluteFilePathsUnwanted>\r\n");
+        for (int i = 0; i < torrent->absoluteFilePathsUnwanted().size(); ++i) {
+            asXMLString += QString("\t\t\t<absoluteFilePathUnwanted>%1</absoluteFilePathUnwanted>\r\n").arg(torrent->absoluteFilePathsUnwanted().at(i));
+        }
+        asXMLString += QString("\t\t</absoluteFilePathsUnwanted>\r\n");        
+        
+        asXMLString += QString("\t\t<isSeed>%1</isSeed>\r\n").arg(torrent->isSeed() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isPaused>%1</isPaused>\r\n").arg(torrent->isPaused() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isResumed>%1</isResumed>\r\n").arg(torrent->isResumed() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isQueued>%1</isQueued>\r\n").arg(torrent->isQueued() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isForced>%1</isForced>\r\n").arg(torrent->isForced() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isChecking>%1</isChecking>\r\n").arg(torrent->isChecking() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isDownloading>%1</isDownloading>\r\n").arg(torrent->isDownloading() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isUploading>%1</isUploading>\r\n").arg(torrent->isUploading() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isCompleted>%1</isCompleted>\r\n").arg(torrent->isCompleted() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isActive>%1</isActive>\r\n").arg(torrent->isActive() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isInactive>%1</isInactive>\r\n").arg(torrent->isInactive() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isErrored>%1</isErrored>\r\n").arg(torrent->isErrored() == true ? "True" : "False");
+        asXMLString += QString("\t\t<isSequentialDownload>%1</isSequentialDownload>\r\n").arg(torrent->isSequentialDownload() == true ? "True" : "False");
+        asXMLString += QString("\t\t<hasFirstLastPiecePriority>%1</hadFirstLastPiecePriority>\r\n").arg(torrent->hasFirstLastPiecePriority() == true ? "True" : "False");
+
+        asXMLString += QString("\t\t<hasMetadata>%1</hadMetaData>\r\n").arg(torrent->hasMetadata() == true ? "True" : "False");
+        asXMLString += QString("\t\t<hasMissingFiles>%1</hasMissingFiles>\r\n").arg(torrent->hasMissingFiles() == true ? "True" : "False");
+        asXMLString += QString("\t\t<hasError>%1</hasError>\r\n").arg(torrent->hasError() == true ? "True" : "False");
+        asXMLString += QString("\t\t<hasFilteredPieces>%1</hasFilteredPieces>\r\n").arg(torrent->hasFilteredPieces() == true ? "True" : "False");
+
+        asXMLString += QString("\t\t<error>%1</error>\r\n").arg(torrent->error());
+        asXMLString += QString("\t\t<totalDownload>%1</totalDownload>\r\n").arg(QString::number(torrent->totalDownload()));
+        asXMLString += QString("\t\t<totalUpload>%1</totalUpload>\r\n").arg(QString::number(torrent->totalUpload()));
+        asXMLString += QString("\t\t<activeTime>%1</activeTime>\r\n").arg(QString::number(torrent->activeTime()));
+        asXMLString += QString("\t\t<finishedTime>%1</finishedTime>\r\n").arg(QString::number(torrent->finishedTime()));
+        asXMLString += QString("\t\t<seedingTime>%1</seedingTime>\r\n").arg(QString::number(torrent->seedingTime()));
+        asXMLString += QString("\t\t<eta>%1</eta>\r\n").arg(QString::number(torrent->eta()));
+
+        asXMLString += QString("\t\t<seedsCount>%1</seedsCount>\r\n").arg(QString::number(torrent->seedsCount()));
+        asXMLString += QString("\t\t<peersCount>%1</peersCount>\r\n").arg(QString::number(torrent->peersCount()));
+        asXMLString += QString("\t\t<leechsCount>%1</leechsCount>\r\n").arg(QString::number(torrent->leechsCount()));
+        asXMLString += QString("\t\t<totalSeedsCount>%1</totalSeedsCount>\r\n").arg(QString::number(torrent->totalSeedsCount()));
+        asXMLString += QString("\t\t<totalPeersCount>%1</totalPeersCount>\r\n").arg(QString::number(torrent->totalPeersCount()));
+        asXMLString += QString("\t\t<totalLeechersCount>%1</totalLeechersCount>\r\n").arg(QString::number(torrent->totalLeechersCount()));
+        asXMLString += QString("\t\t<completeCount>%1</completeCount>\r\n").arg(QString::number(torrent->completeCount()));
+        asXMLString += QString("\t\t<incompleteCount>%1</incompleteCount>\r\n").arg(QString::number(torrent->incompleteCount()));
+        asXMLString += QString("\t\t<lastSeenComplete>%1</lastSeenComplete>\r\n").arg(!torrent->lastSeenComplete().isNull() ? torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : "");
+        asXMLString += QString("\t\t<completedTime>%1</completedTime>\r\n").arg(!torrent->completedTime().isNull() ? torrent->completedTime().toString(Qt::DefaultLocaleShortDate) : "");
+        asXMLString += QString("\t\t<timeSinceUpload>%1</timeSinceUpload>\r\n").arg(QString::number(torrent->timeSinceUpload()));
+        asXMLString += QString("\t\t<timeSinceDownload>%1</timeSinceDownload>\r\n").arg(QString::number(torrent->timeSinceDownload()));
+        asXMLString += QString("\t\t<timeSinceActivity>%1</timeSinceActivity>\r\n").arg(QString::number(torrent->timeSinceActivity()));
+        asXMLString += QString("\t\t<downloadLimit>%1</downloadLimit>\r\n").arg(QString::number(torrent->downloadLimit()));
+        asXMLString += QString("\t\t<uploadLimit>%1</uploadLimit>\r\n").arg(QString::number(torrent->uploadLimit()));
+        asXMLString += QString("\t\t<superSeeding>%1</superSeeding>\r\n").arg(torrent->superSeeding() == true ? "True" : "False");
+
+        asXMLString += QString("\t\t<distributedCopies>%1</distributedCopies>\r\n").arg(QString::number(torrent->distributedCopies()));
+        asXMLString += QString("\t\t<maxRatio>%1</maxRatio>\r\n").arg(QString::number(torrent->maxRatio()));
+        asXMLString += QString("\t\t<maxSeedingTime>%1</maxSeedingTime>\r\n").arg(QString::number(torrent->maxSeedingTime()));
+        asXMLString += QString("\t\t<realRatio>%1</realRatio>\r\n").arg(QString::number(torrent->realRatio()));
+        asXMLString += QString("\t\t<uploadPayloadRate>%1</uploadPayloadRate>\r\n").arg(QString::number(torrent->uploadPayloadRate()));
+        asXMLString += QString("\t\t<downloadPayloadRate>%1</downloadPayloadRate>\r\n").arg(QString::number(torrent->downloadPayloadRate()));        
+        asXMLString += QString("\t\t<totalPayloadUpload>%1</totalPayloadUpload>\r\n").arg(QString::number(torrent->totalPayloadUpload()));
+        asXMLString += QString("\t\t<totalPayloadDownload>%1</totalPayloadDownload>\r\n").arg(QString::number(torrent->totalPayloadDownload()));
+        asXMLString += QString("\t\t<connectionsCount>%1</connectionsCount>\r\n").arg(QString::number(torrent->connectionsCount()));
+        asXMLString += QString("\t\t<connectionsLimit>%1</connectionsLimit>\r\n").arg(QString::number(torrent->connectionsLimit()));
+        asXMLString += QString("\t\t<nextAnnounce>%1</nextAnnounce>\r\n").arg(QString::number(torrent->nextAnnounce()));
+
+        asXMLString += QString("\t\t<toMagnetUri>%1</toMagnetUri>\r\n").arg(torrent->toMagnetUri());
+        asXMLString += QString("\t</torrent>\r\n");
+    }
+    asXMLString += QString("</torrentlist>\r\n");
+
+    // Write XML file to disk
+    std::ofstream outfile;
+    outfile.open(filename.toStdString(), std::ios_base::out);
+    if (outfile.is_open()) {
+        try {
+            outfile << asXMLString.toUtf8().constData();
+            outfile.close();
+        }
+        catch (...) {
+            exportErrors = true;
+            std::exception_ptr p = std::current_exception();
+            Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Error writing XML file: ") +
+                "\"" + filename +"\"" + " : " + (p ? p.__cxa_exception_type()->name() : "null"), 
+                Log::CRITICAL);
+            QMessageBox::critical(m_mainWindow, tr("Error exporting XML file"), tr("Error writing XML: ") + 
+                "\n\"" + (p ? p.__cxa_exception_type()->name() : "null"));
+            m_mainWindow->setEnabled(true);
+            return;
+        }
+    }
+    else {
+        Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Cannot open file for writing: ") + " \"" + 
+            filename + "\".", Log::CRITICAL);
+        QMessageBox::critical(m_mainWindow, tr("Error exporting XML file"), tr("Error: Cannot open file for writing."));
+        m_mainWindow->setEnabled(true);
+        return;
+    }
+
+    // .torrent errors reminder
+    if (exportErrors == true) { 
+        Logger::instance()->addMessage(tr("There was some errors during export."), Log::CRITICAL);
+        QMessageBox::critical(m_mainWindow, tr("Error while exporting"), 
+            tr("There was some errors during export, check logs for more informations."));
+    }
+    else {
+        Logger::instance()->addMessage(tr("Selected torrent XML list and .torrent files successfully exported!"));
+    }
+
+    QMessageBox::information(m_mainWindow, tr("Torrent list exported"), 
+        tr("Torrent files have been exported to folder: ") + "\n\"" + path + "\"\n\n" +
+        tr("XML torrent list has been exported to: ") + "\n\"" + filename + "\"");
+
+    m_mainWindow->setEnabled(true);
+}
+
+void TransferListWidget::importTorrentsFromXML()
+{
+    m_mainWindow->setEnabled(false);
+
+    QString filepath = QFileDialog::getOpenFileName(m_mainWindow, tr("Select file"), ".", "XML files (*.xml)");
+    if (filepath.isNull()) {
+        m_mainWindow->setEnabled(true);    
+        return;
+    }
+    
+    Logger::instance()->addMessage(tr("Importing XML file: ") + "\"" + filepath + "\".");
+
+    // Read input file
+    QStringList asXMLStringList;
+    std::ifstream file(filepath.toStdString());
+    if (file.is_open()) {
+        std::string line;
+        while (getline(file, line)) {
+            asXMLStringList += QString::fromUtf8(line.c_str());
+        }
+        file.close();
+    }
+    else {
+        Logger::instance()->addMessage(tr("Error:importTorrentList():Cannot open file for reading: ") + 
+            "\"" + filepath + "\".", Log::CRITICAL);
+        QMessageBox::critical(m_mainWindow, tr("Error importing XML file"), tr("Error: Cannot open file for reading."));
+        m_mainWindow->setEnabled(true);
+        return;
+    }
+    
+    // Parsing with regex
+    int loadedTorrents = 0;
+    QString fullTorrentFilepath;
+    QString hashString;
+    BitTorrent::AddTorrentParams m_torrentParams;
+
+    for (int i = 0; i < asXMLStringList.size(); ++i) {
+        QRegExp rx = QRegExp("");
+        int pos = 0;
+        QString line = asXMLStringList.at(i);
+
+        rx.setPattern("^\\s*<torrent>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            fullTorrentFilepath = "";
+            hashString = "";
+            // Reset m_torrentParams
+            m_torrentParams.name = "";
+            m_torrentParams.category = "";
+            m_torrentParams.tags.clear();
+            m_torrentParams.savePath = "";
+            m_torrentParams.disableTempPath = false; // e.g. for imported torrents
+            m_torrentParams.sequential = false;
+            m_torrentParams.firstLastPiecePriority = false;
+            m_torrentParams.addForced = TriStateBool(false);
+            m_torrentParams.addPaused = TriStateBool(false);
+            m_torrentParams.filePriorities.clear();	// TODO - QVector<DownloadPriority>
+            m_torrentParams.ignoreShareLimits = false;
+            m_torrentParams.skipChecking = false;
+            m_torrentParams.createSubfolder = TriStateBool(false);
+            m_torrentParams.useAutoTMM = TriStateBool(false);
+            m_torrentParams.uploadLimit = -1;
+            m_torrentParams.downloadLimit = -1;
+            continue;
+        }
+
+        rx.setPattern("^\\s*<hash>(.*)</hash>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            hashString = rx.cap(1);
+            fullTorrentFilepath = QFileInfo(filepath).absolutePath() + QDir::separator() + hashString + ".torrent";
+            continue;
+        }
+
+        rx.setPattern("^\\s*<name>(.*)</name>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            m_torrentParams.name = rx.cap(1);
+            continue;
+        }
+        
+        rx.setPattern("^\\s*<category>(.*)</category>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            QString category = rx.cap(1);
+            if (!category.isEmpty()) {
+                // Create the category if needed
+                if (BitTorrent::Session::isValidCategoryName(category)) {
+                    if (!BitTorrent::Session::instance()->categories().contains(category)) {
+                        BitTorrent::Session::instance()->addCategory(category, QDir::tempPath()); // WARNING second parameter is a "save path" we can choose from the dialog, not sure why it's there...
+                    }
+                    m_torrentParams.category = category;
+                }
+            }
+            continue;
+        }
+        
+        rx.setPattern("^\\s*<tag>(.*)</tag>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            QString tag = rx.cap(1);
+            if (!tag.isEmpty()) {
+                // Create the tag if needed
+                if (BitTorrent::Session::isValidTag(tag)) {
+                    if (!BitTorrent::Session::instance()->tags().contains(tag)) {
+                        BitTorrent::Session::instance()->addTag(tag);
+                    }
+                    m_torrentParams.tags << tag;
+                }
+            }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<savePath>(.*)</savePath>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            m_torrentParams.savePath = rx.cap(1);
+            continue;
+        }
+
+        rx.setPattern("^\\s*<isAutoTMMEnabled>(.*)</isAutoTMMEnabled>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            if (rx.cap(1) == "True") {
+                m_torrentParams.useAutoTMM = TriStateBool(true);
+            }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<isSequentialDownload>(.*)</isSequentialDownload>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            if (rx.cap(1) == "True") {
+                m_torrentParams.sequential = true;
+            }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<hasFirstLastPiecePriority>(.*)</hasFirstLastPiecePriority>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            if (rx.cap(1) == "True") {
+                m_torrentParams.firstLastPiecePriority = true;
+            }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<isPaused>(.*)</isPaused>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            if (rx.cap(1) == "True") {
+                m_torrentParams.addPaused = TriStateBool(true);
+            }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<isForced>(.*)</isForced>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            if (rx.cap(1) == "True") {
+                m_torrentParams.addForced = TriStateBool(true);
+            }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<uploadLimit>(.*)</uploadLimit>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            m_torrentParams.uploadLimit = rx.cap(1).toInt();
+            continue;
+        }
+        
+        rx.setPattern("^\\s*<downloadLimit>(.*)</downloadLimit>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            m_torrentParams.downloadLimit = rx.cap(1).toInt();
+            continue;
+        }
+
+        // We should have everything to start loading this torrent.
+        rx.setPattern("^\\s*</torrent>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            bool torrentLoadSuccess = false;
+            BitTorrent::InfoHash m_hash = hashString;
+            
+            // Load from .torrent file
+            if (QFileInfo::exists(fullTorrentFilepath) && 
+                QFileInfo(fullTorrentFilepath).isFile() && 
+                QFileInfo(fullTorrentFilepath).isReadable()) {
+                Logger::instance()->addMessage(tr("Loading torrent from file: ") + "\"" + fullTorrentFilepath + "\".");
+                torrentLoadSuccess = BitTorrent::Session::instance()->addTorrent(fullTorrentFilepath, m_torrentParams);
+            }
+            else { // Fallback on magnet uri hash loading
+                Logger::instance()->addMessage(tr("Torrent file not found or not readable, loading from hash instead: ") + "\"" + hashString + "\".");
+                torrentLoadSuccess = BitTorrent::Session::instance()->addTorrent(m_hash, m_torrentParams);
+            }
+
+            if (torrentLoadSuccess) {
+                loadedTorrents += 1;
+            }
+            else {
+                // TODO add error report from addTorrent() - need to check how...
+                Logger::instance()->addMessage(tr("Cannot load torrent: ") + "\"" + hashString + "\" - \"" + m_torrentParams.name + "\"", Log::CRITICAL);
+            }
+        }
+    }
+
+    if (loadedTorrents > 0) {
+        Logger::instance()->addMessage(tr("Sucessfully loaded ") + QString::number(loadedTorrents) + tr(" torrent/s from XML list!"));
+        QMessageBox::information(m_mainWindow, tr("XML import done!"), tr("Sucessfully loaded ") + QString::number(loadedTorrents) + tr(" torrent/s from XML!"));
+    }
+    else {
+        Logger::instance()->addMessage(tr("XML import: nothing to import."));
+        QMessageBox::information(m_mainWindow, tr("XML import: no torrents"), tr("Torrents not found: nothing to import."));
+    }
+
+    m_mainWindow->setEnabled(true);
 }
 
 void TransferListWidget::setSelectionCategory(const QString &category)

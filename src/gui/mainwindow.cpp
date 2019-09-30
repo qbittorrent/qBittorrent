@@ -185,6 +185,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
     m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon("application-exit"));
+    m_ui->actionExportSelectedTorrentsToXML->setIcon(UIThemeManager::instance()->getIcon("export-selected-torrents-xml"));
+    m_ui->actionImportTorrentsFromXML->setIcon(UIThemeManager::instance()->getIcon("import-torrents-xml"));
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
 
     auto *lockMenu = new QMenu(this);
@@ -327,6 +329,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionOptions->setMenuRole(QAction::PreferencesRole);
 
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
+
+    connect(m_ui->actionExportSelectedTorrentsToXML, &QAction::triggered, m_transferListWidget, &TransferListWidget::exportSelectedTorrentsToXML);
+    connect(m_ui->actionImportTorrentsFromXML, &QAction::triggered, m_transferListWidget, &TransferListWidget::importTorrentsFromXML);
 
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
