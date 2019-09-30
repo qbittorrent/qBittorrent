@@ -240,7 +240,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_splitter->setCollapsible(1, false);
     m_tabs->addTab(m_splitter,
 #ifndef Q_OS_MACOS
-        UIThemeManager::instance()->getIcon("MainMenu.TransfersTab"),
+        UIThemeManager::instance()->getIcon("MainWindow.TransfersTab"),
 #endif
         tr("Transfers"));
 
@@ -673,7 +673,7 @@ void MainWindow::displayRSSTab(bool enable)
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #else
             const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("MainMenu.RSSTab"));
+            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("MainWindow.RSSTab"));
 #endif
         }
     }
@@ -708,7 +708,7 @@ void MainWindow::displaySearchTab(bool enable)
             m_searchWidget = new SearchWidget(this);
             m_tabs->insertTab(1, m_searchWidget,
 #ifndef Q_OS_MACOS
-                UIThemeManager::instance()->getIcon("MainMenu.SearchTab"),
+                UIThemeManager::instance()->getIcon("MainWindow.SearchTab"),
 #endif
                 tr("Search"));
         }

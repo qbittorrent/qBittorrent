@@ -53,11 +53,12 @@ public:
 
 private:
     UIThemeManager(); // singleton class
+    QHash<QString, QString> loadCustomIconConfig() const;
 
     static UIThemeManager *m_instance;
 
     QHash<QString, QString> m_iconMap;
-    bool m_useCustomStylesheet;
+    bool m_useCustomStylesheet = false;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
     QHash<QString, QString> m_systemIconMap;

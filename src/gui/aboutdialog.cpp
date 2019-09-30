@@ -32,8 +32,8 @@
 
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
-#include "gui/uithememanager.h"
 #include "ui_aboutdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 AboutDialog::AboutDialog(QWidget *parent)

@@ -110,7 +110,7 @@ void CategoryFilterWidget::showMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     const QAction *addAct = menu->addAction(
-                          UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.AddAction")
+                          UIThemeManager::instance()->getIcon("CategoryFilter.AddAction")
                           , tr("Add category..."));
     connect(addAct, &QAction::triggered, this, &CategoryFilterWidget::addCategory);
 
@@ -118,41 +118,41 @@ void CategoryFilterWidget::showMenu(const QPoint &)
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
         if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
             const QAction *addSubAct = menu->addAction(
-                        UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.AddSubcategoryAction")
+                        UIThemeManager::instance()->getIcon("CategoryFilter.SubCategory.AddAction")
                         , tr("Add subcategory..."));
             connect(addSubAct, &QAction::triggered, this, &CategoryFilterWidget::addSubcategory);
         }
 
         const QAction *editAct = menu->addAction(
-                    UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.EditAction")
+                    UIThemeManager::instance()->getIcon("CategoryFilter.EditAction")
                     , tr("Edit category..."));
         connect(editAct, &QAction::triggered, this, &CategoryFilterWidget::editCategory);
 
         const QAction *removeAct = menu->addAction(
-                        UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.RemoveAction")
+                        UIThemeManager::instance()->getIcon("CategoryFilter.RemoveAction")
                         , tr("Remove category"));
         connect(removeAct, &QAction::triggered, this, &CategoryFilterWidget::removeCategory);
     }
 
     const QAction *removeUnusedAct = menu->addAction(
-                                   UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.Unused.RemoveAction")
+                                   UIThemeManager::instance()->getIcon("CategoryFilter.UnusedCatergories.RemoveAction")
                                    , tr("Remove unused categories"));
     connect(removeUnusedAct, &QAction::triggered, this, &CategoryFilterWidget::removeUnusedCategories);
 
     menu->addSeparator();
 
     const QAction *startAct = menu->addAction(
-                            UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.Torrent.ResumeAction")
+                            UIThemeManager::instance()->getIcon("CategoryFilter.Torrent.ResumeAction")
                             , tr("Resume torrents"));
     connect(startAct, &QAction::triggered, this, &CategoryFilterWidget::actionResumeTorrentsTriggered);
 
     const QAction *pauseAct = menu->addAction(
-                            UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.Torrent.PauseAction")
+                            UIThemeManager::instance()->getIcon("CategoryFilter.Torrent.PauseAction")
                             , tr("Pause torrents"));
     connect(pauseAct, &QAction::triggered, this, &CategoryFilterWidget::actionPauseTorrentsTriggered);
 
     const QAction *deleteTorrentsAct = menu->addAction(
-                                     UIThemeManager::instance()->getIcon("CategoryFilter.ContextMenu.Torrent.DeleteAction")
+                                     UIThemeManager::instance()->getIcon("CategoryFilter.Torrent.DeleteAction")
                                      , tr("Delete torrents"));
     connect(deleteTorrentsAct, &QAction::triggered, this, &CategoryFilterWidget::actionDeleteTorrentsTriggered);
 

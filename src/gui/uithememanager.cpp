@@ -48,23 +48,23 @@
 #include "utils.h"
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-#define QBT_SYSTEMICONS
+#define QBT_SYSTEMICONS 1
 #endif
 
 namespace
 {
-    static const QHash<QString, QString> iconConfig = {
+    const QHash<QString, QString> iconConfig = {
         {"AboutDialog.Logo", ":icons/skin/qbittorrent-tray.svg"},
-        {"AddNewTorrentDialog.TorrentContentView.RenameAction", ":icons/qbt-theme/edit-rename.svg"},
-        {"CategoryFilter.ContextMenu.AddAction", ":icons/qbt-theme/list-add.svg"},
-        {"CategoryFilter.ContextMenu.AddSubcategoryAction", ":icons/qbt-theme/list-add.svg"},
-        {"CategoryFilter.ContextMenu.EditAction", ":icons/qbt-theme/document-edit.svg"},
-        {"CategoryFilter.ContextMenu.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
-        {"CategoryFilter.ContextMenu.Torrent.DeleteAction", ":icons/qbt-theme/edit-delete.svg"},
-        {"CategoryFilter.ContextMenu.Torrent.PauseAction", ":icons/qbt-theme/media-playback-pause.svg"},
-        {"CategoryFilter.ContextMenu.Torrent.ResumeAction", ":icons/qbt-theme/media-playback-start.svg"},
-        {"CategoryFilter.ContextMenu.Unused.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
+        {"NewTorrentDialog.TorrentContentView.RenameAction", ":icons/qbt-theme/edit-rename.svg"},
+        {"CategoryFilter.AddAction", ":icons/qbt-theme/list-add.svg"},
+        {"CategoryFilter.EditAction", ":icons/qbt-theme/document-edit.svg"},
+        {"CategoryFilter.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
+        {"CategoryFilter.Torrent.DeleteAction", ":icons/qbt-theme/edit-delete.svg"},
+        {"CategoryFilter.Torrent.PauseAction", ":icons/qbt-theme/media-playback-pause.svg"},
+        {"CategoryFilter.Torrent.ResumeAction", ":icons/qbt-theme/media-playback-start.svg"},
+        {"CategoryFilter.UnusedCatergories.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
         {"CategoryFilter.SubCategory", ":icons/qbt-theme/inode-directory.svg"},
+        {"CategoryFilter.SubCategory.AddAction", ":icons/qbt-theme/list-add.svg"},
         {"CookiesDialog.AddAction", ":icons/qbt-theme/list-add.svg"},
         {"CookiesDialog.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
         {"CookiesDialog", ":icons/qbt-theme/preferences-web-browser-cookies.svg"},
@@ -91,8 +91,6 @@ namespace
         {"MainMenu.PauseAllAction", ":icons/qbt-theme/media-playback-pause.svg"},
         {"MainMenu.Queue.BottomAction", ":icons/qbt-theme/go-bottom.svg"},
         {"MainMenu.Queue.DownAction", ":icons/qbt-theme/go-down.svg"},
-        {"MainMenu.RSSTab", ":icons/qbt-theme/application-rss+xml.svg"},
-        {"MainMenu.SearchTab", ":icons/qbt-theme/edit-find.svg"},
         {"MainMenu.Shutdown.ExitAction", ":icons/qbt-theme/application-exit.svg"},
         {"MainMenu.StartAction", ":icons/qbt-theme/media-playback-start.svg"},
         {"MainMenu.StartAllAction", ":icons/qbt-theme/media-playback-start.svg"},
@@ -101,10 +99,12 @@ namespace
         {"MainMenu.Torrent.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
         {"MainMenu.TorrentFile.OpenAction", ":icons/qbt-theme/list-add.svg"},
         {"MainMenu.TorrentURL.OpenAction", ":icons/qbt-theme/insert-link.svg"},
-        {"MainMenu.TransfersTab", ":icons/qbt-theme/folder-remote.svg"},
         {"MainMenu.UpAction", ":icons/qbt-theme/go-top.svg"},
         {"MainMenu.UploadLimit", ":icons/qbt-theme/kt-set-max-upload-speed.svg"},
         {"MainWindow.Logo", ":icons/skin/qbittorrent-tray.svg"},
+        {"MainWindow.TransfersTab", ":icons/qbt-theme/folder-remote.svg"},
+        {"MainWindow.RSSTab", ":icons/qbt-theme/application-rss+xml.svg"},
+        {"MainWindow.SearchTab", ":icons/qbt-theme/edit-find.svg"},
         {"OptionsDialog.AdvancedTab", ":icons/qbt-theme/preferences-other.svg"},
         {"OptionsDialog.BitTorrentTab", ":icons/qbt-theme/preferences-system-network.svg"},
         {"OptionsDialog.ConnectionTab", ":icons/qbt-theme/network-wired.svg"},
@@ -255,21 +255,22 @@ namespace
         {"Tray.DarkLogo", ":icons/skin/qbittorrent-tray-dark.svg"},
         {"Tray.LightLogo", ":icons/skin/qbittorrent-tray-light.svg"},
         {"Tray.Download", ":icons/skin/download.svg"},
-        {"Tray.Seeding", ":icons/skin/seeding.svg"}};
-
+        {"Tray.Seeding", ":icons/skin/seeding.svg"}
+    };
 
 #ifdef QBT_SYSTEMICONS
-    static const QHash<QString, QString> systemIconConfig = {{"AboutDialog.Logo", "qbittorrent-tray"},
-        {"AddNewTorrentDialog.TorrentContentView.RenameAction", "edit-rename"},
-        {"CategoryFilter.ContextMenu.AddAction", "list-add"},
-        {"CategoryFilter.ContextMenu.AddSubcategoryAction", "list-add"},
-        {"CategoryFilter.ContextMenu.EditAction", "document-edit"},
-        {"CategoryFilter.ContextMenu.RemoveAction", "list-remove"},
-        {"CategoryFilter.ContextMenu.Torrent.DeleteAction", "edit-delete"},
-        {"CategoryFilter.ContextMenu.Torrent.PauseAction", "media-playback-pause"},
-        {"CategoryFilter.ContextMenu.Torrent.ResumeAction", "media-playback-start"},
-        {"CategoryFilter.ContextMenu.Unused.RemoveAction", "list-remove"},
+    const QHash<QString, QString> systemIconConfig = {
+        {"AboutDialog.Logo", "qbittorrent-tray"},
+        {"NewTorrentDialog.TorrentContentView.RenameAction", "edit-rename"},
+        {"CategoryFilter.AddAction", "list-add"},
+        {"CategoryFilter.EditAction", "document-edit"},
+        {"CategoryFilter.RemoveAction", "list-remove"},
+        {"CategoryFilter.Torrent.DeleteAction", "edit-delete"},
+        {"CategoryFilter.Torrent.PauseAction", "media-playback-pause"},
+        {"CategoryFilter.Torrent.ResumeAction", "media-playback-start"},
+        {"CategoryFilter.UnusedCatergories.RemoveAction", "list-remove"},
         {"CategoryFilter.SubCategory", "inode-directory"},
+        {"CategoryFilter.SubCategory.AddAction", "list-add"},
         {"CookiesDialog", "preferences-web-browser-cookies"},
         {"CookiesDialog.AddAction", "list-add"},
         {"CookiesDialog.RemoveAction", "list-remove"},
@@ -282,7 +283,8 @@ namespace
         {"LogList.ContextMenu.CopyAction", "edit-copy"},
         {"MainMenu.ConfigureAction", "configure"},
         {"MainMenu.Documentation.HelpAction", "help-contents"},
-        {"MainMenu.DonateAction", "wallet-open"}, {"MainMenu.DownAction", "go-up"},
+        {"MainMenu.DonateAction", "wallet-open"},
+        {"MainMenu.DownAction", "go-up"},
         {"MainMenu.DownloadLimit", "kt-set-max-download-speed"},
         {"MainMenu.ExecutionLogTab", "view-calendar-journal"},
         {"MainMenu.ExitAction", "application-exit"},
@@ -295,8 +297,6 @@ namespace
         {"MainMenu.PauseAllAction", "media-playback-pause"},
         {"MainMenu.Queue.BottomAction", "go-bottom"},
         {"MainMenu.Queue.DownAction", "go-down"},
-        {"MainMenu.RSSTab", "application-rss+xml"},
-        {"MainMenu.SearchTab", "edit-find"},
         {"MainMenu.Shutdown.ExitAction", "application-exit"},
         {"MainMenu.StartAction", "media-playback-start"},
         {"MainMenu.StartAllAction", "media-playback-start"},
@@ -305,9 +305,12 @@ namespace
         {"MainMenu.Torrent.RemoveAction", "list-remove"},
         {"MainMenu.TorrentFile.OpenAction", "list-add"},
         {"MainMenu.TorrentURL.OpenAction", "insert-link"},
-        {"MainMenu.TransfersTab", "folder-remote"}, {"MainMenu.UpAction", "go-top"},
+        {"MainMenu.UpAction", "go-top"},
         {"MainMenu.UploadLimit", "kt-set-max-upload-speed"},
         {"MainWindow.Logo", "qbittorrent-tray"},
+        {"MainWindow.RSSTab", "application-rss+xml"},
+        {"MainWindow.SearchTab", "edit-find"},
+        {"MainWindow.TransfersTab", "folder-remote"},
         {"OptionsDialog.AdvancedTab", "preferences-other"},
         {"OptionsDialog.AlternativeRate", "slow"},
         {"OptionsDialog.BitTorrentTab", "preferences-system-network"},
@@ -336,21 +339,27 @@ namespace
         {"RSS.Feed.RemoveAction", "edit-delete"},
         {"RSS.Feed.RenameAction", "edit-rename"},
         {"RSS.Feed.Subscription.AddAction", "list-add"},
-        {"RSS.FeedUrl.CopyAction", "edit-copy"}, {"RSS.LoadingFeed", "loading"},
+        {"RSS.FeedUrl.CopyAction", "edit-copy"},
+        {"RSS.LoadingFeed", "loading"},
         {"RSS.MustContain.ErrorAction", "task-attention"},
         {"RSS.MustNotContain.ErrorAction", "task-attention"},
-        {"RSS.NewFeed.AddAction", "list-add"}, {"RSS.ReadArticle", "sphere"},
+        {"RSS.NewFeed.AddAction", "list-add"},
+        {"RSS.ReadArticle", "sphere"},
         {"RSS.SelectedFeed.RemoveAction", "list-remove"},
-        {"RSS.UnAvailable", "unavailable"}, {"RSS.UnReadArticle", "sphere2"},
-        {"RSS.Unread", "mail-folder-inbox"}, {"RSSFeedTree", "inode-directory"},
-        {"RSSRule.AddAction", "list-add"}, {"RSSRule.RemoveAction", "list-remove"},
+        {"RSS.UnAvailable", "unavailable"},
+        {"RSS.UnReadArticle", "sphere2"},
+        {"RSS.Unread", "mail-folder-inbox"},
+        {"RSSFeedTree", "inode-directory"},
+        {"RSSRule.AddAction", "list-add"},
+        {"RSSRule.RemoveAction", "list-remove"},
         {"RSSRule.RenameAction", "edit-rename"},
         {"RSSRule.Selected.RemoveAction", "list-remove"},
         {"Search.CopyAction", "edit-copy"},
         {"Search.DescriptionPageURL.CopyAction", "edit-copy"},
         {"Search.DownloadAction", "download"},
         {"Search.DownloadLink.CopyAction", "edit-copy"},
-        {"Search.FindAction", "edit-find"}, {"Search.Name.CopyAction", "edit-copy"},
+        {"Search.FindAction", "edit-find"},
+        {"Search.Name.CopyAction", "edit-copy"},
         {"Search.OpenDescriptionPage", "application-x-mswinurl"},
         {"Search.Plugins", "preferences-system-network"},
         {"StatusBar.AlternateSpeed", "slow"},
@@ -360,12 +369,14 @@ namespace
         {"StatusBar.ErrorConnection", "firewalled"},
         {"StatusBar.RegularSpeed", "slow_off"},
         {"StatusBar.UploadSpeed", "seeding"},
-        {"StatusFilter.Active", "filteractive"}, {"StatusFilter.All", "filterall"},
+        {"StatusFilter.Active", "filteractive"},
+        {"StatusFilter.All", "filterall"},
         {"StatusFilter.Completed", "completed"},
         {"StatusFilter.Downloading", "downloading"},
         {"StatusFilter.Error", "error"},
         {"StatusFilter.InActive", "filterinactive"},
-        {"StatusFilter.Paused", "paused"}, {"StatusFilter.Resumed", "resumed"},
+        {"StatusFilter.Paused", "paused"},
+        {"StatusFilter.Resumed", "resumed"},
         {"StatusFilter.Uploading", "uploading"},
         {"TagFilter.Category.RemoveAction", "list-remove"},
         {"TagFilter.Category.RemoveUnsedAction", "list-remove"},
@@ -374,9 +385,12 @@ namespace
         {"TagFilter.CategoryTorrent.ResumeAction", "media-playback-start"},
         {"TagFilter.NewCategory.AddAction", "list-add"},
         {"TagFilter.SubCategory", "inode-directory"},
-        {"Torrent.Checking", "checking"}, {"Torrent.Completed", "completed"},
-        {"Torrent.Downloading", "downloading"}, {"Torrent.Error", "error"},
-        {"Torrent.Paused", "paused"}, {"Torrent.Queued", "queued"},
+        {"Torrent.Checking", "checking"},
+        {"Torrent.Completed", "completed"},
+        {"Torrent.Downloading", "downloading"},
+        {"Torrent.Error", "error"},
+        {"Torrent.Paused", "paused"},
+        {"Torrent.Queued", "queued"},
         {"Torrent.StalledDownloading", "stalledDL"},
         {"Torrent.StalledUploading", "stalledUP"},
         {"Torrent.Uploading", "uploading"},
@@ -433,12 +447,16 @@ namespace
         {"TransferList.TorrentSaveLocation", "inode-directory"},
         {"TransferList.UpAction", "go-up"},
         {"TransferList.UploadLimit", "kt-set-max-upload-speed"},
-        {"Tray.DarkLogo", "qbittorrent-tray-dark"}, {"Tray.Download", "download"},
+        {"Tray.DarkLogo", "qbittorrent-tray-dark"},
+        {"Tray.Download", "download"},
         {"Tray.LightLogo", "qbittorrent-tray-light"},
-        {"Tray.Logo", "qbittorrent-tray"}, {"Tray.Seeding", "seeding"},
-        {"WebSeed.AddAction", "list-add"}, {"WebSeed.RemoveAction", "list-remove"},
+        {"Tray.Logo", "qbittorrent-tray"},
+        {"Tray.Seeding", "seeding"},
+        {"WebSeed.AddAction", "list-add"},
+        {"WebSeed.RemoveAction", "list-remove"},
         {"WebSeedURL.CopyAction", "edit-copy"},
-        {"WebSeedURL.EditAction", "edit-rename"} };
+        {"WebSeedURL.EditAction", "edit-rename"}
+    };
 #endif
 }
 
@@ -451,49 +469,6 @@ namespace
     public:
         using RuntimeError::RuntimeError;
     };
-
-    /*
-        Loads Json Icon Config file from `configFile`, and transforms it into a map
-
-        function throws ThemeError if encountered with any error
-     */
-    QHash<QString, QString> loadIconConfig(const QString &configFile)
-    {
-        // load icon config from file
-        QFile iconJsonMap(configFile);
-        if (!iconJsonMap.open(QIODevice::ReadOnly))
-            throw ThemeError(QObject::tr("Failed to open \"%1\", error: %2.")
-                             .arg(iconJsonMap.fileName(), iconJsonMap.errorString()));
-
-        QJsonObject jsonObject;
-        QJsonParseError err;
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(iconJsonMap.readAll(), &err);
-        if (err.error != QJsonParseError::NoError)
-            throw ThemeError(QObject::tr("Error occurred while parsing \"%1\", error: %2.")
-                             .arg(iconJsonMap.fileName(), err.errorString()));
-        if (!jsonDoc.isObject())
-            throw ThemeError(QObject::tr("Invalid icon configuration file format in \"%1\". JSON object is expected.")
-                             .arg(iconJsonMap.fileName()));
-        jsonObject = jsonDoc.object();
-
-        QHash<QString, QString> config; // resultant icon-config
-        config.reserve(jsonObject.size());
-
-        // copy jsonObject to config, also check for errors
-        for (auto i = jsonObject.begin(), e = jsonObject.end(); i != e; ++i) {
-            if (!i.value().isString())
-                throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is not a string.")
-                                 .arg(configFile, i.key()));
-
-            QString value = i.value().toString();
-            if (value.isEmpty())
-                throw ThemeError(QObject::tr("Error in iconconfig \"%1\", error: Provided value for %2, is empty string")
-                                 .arg(configFile, i.key()));
-
-            config.insert(i.key(), value);
-        }
-        return config;
-    }
 
     QString resolveIconId(const QString &iconId, const QHash<QString, QString> &iconMap)
     {
@@ -527,17 +502,18 @@ void UIThemeManager::initInstance()
         m_instance = new UIThemeManager;
 }
 
-UIThemeManager::UIThemeManager() : m_useCustomStylesheet(false)
+UIThemeManager::UIThemeManager()
+    : m_iconMap{iconConfig}
+#ifdef QBT_SYSTEMICONS
+    , m_systemIconMap{systemIconConfig}
+#endif
 {
     const Preferences *const pref = Preferences::instance();
     bool useCustomUITheme = pref->useCustomUITheme();
 
 #ifdef QBT_SYSTEMICONS
     m_useSystemTheme = pref->useSystemIconTheme();
-    m_systemIconMap = systemIconConfig;
 #endif
-
-    QHash<QString, QString> customIconMap;
 
     if (useCustomUITheme) {
         try {
@@ -546,31 +522,58 @@ UIThemeManager::UIThemeManager() : m_useCustomStylesheet(false)
                                  .arg(pref->customUIThemePath()));
             m_useCustomStylesheet = QFile::exists(":uitheme/stylesheet.qss");
 
-            customIconMap = loadIconConfig(":uitheme/icons/iconconfig.json");
-            const QString customIconDir{":uitheme/icons/"};
-            for (auto i = customIconMap.begin(); i != customIconMap.end(); i++) {
-                i.value() = customIconDir + i.value();
-                if (!QFile::exists(i.value()))
-                    throw ThemeError(tr("Error in iconconfig \"%1\", error: icon \"%2\" doesn't exists")
-                                     .arg(":uitheme/icons/iconconfig.json", i.value()));
-            }
-
-#ifdef QBT_SYSTEMICONS
-            if (m_useSystemTheme)
-                m_systemIconMap = loadIconConfig(":uitheme/icons/systemiconconfig.json");
-#endif
+            QHash<QString, QString> customIconMap = loadCustomIconConfig();
+            for (auto i = customIconMap.constBegin(), e = customIconMap.constEnd(); i != e; i++)
+                m_iconMap.insert(i.key(), i.value()); // overwrite existing values and insert new one
         } catch (const ThemeError &err) {
             LogMsg(err.message(), Log::WARNING);
             useCustomUITheme = false;
-
-            customIconMap.clear(); // reset icon map, so that erroed state don't interfere with merging
         }
     }
+}
 
-    // merge defaultIconMap and customIconMap into m_iconMap
-    m_iconMap = iconConfig;
-    for (auto i = customIconMap.constBegin(), e = customIconMap.constEnd(); i != e; i++)
-        m_iconMap.insert(i.key(), i.value()); // overwrite existing values or insert
+/*
+    function throws ThemeError if encountered with any error
+ */
+QHash<QString, QString> UIThemeManager::loadCustomIconConfig() const
+{
+    const QString configFile = ":uitheme/icons/iconconfig.json";
+
+    // load icon config from file
+    QFile iconJsonMap(configFile);
+    if (!iconJsonMap.open(QIODevice::ReadOnly))
+        throw ThemeError(QObject::tr("Failed to open \"%1\", error: %2.").arg(iconJsonMap.fileName(), iconJsonMap.errorString()));
+
+    QJsonObject jsonObject;
+    QJsonParseError err;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(iconJsonMap.readAll(), &err);
+    if (err.error != QJsonParseError::NoError)
+        throw ThemeError(tr("Error occurred while parsing \"%1\", error: %2.").arg(iconJsonMap.fileName(), err.errorString()));
+    if (!jsonDoc.isObject())
+        throw ThemeError(tr("Invalid icon configuration file format in \"%1\". JSON object is expected.").arg(iconJsonMap.fileName()));
+    jsonObject = jsonDoc.object();
+
+    QHash<QString, QString> iconMap;
+    iconMap.reserve(jsonObject.size());
+
+    const QString customIconDir{":uitheme/icons/"};
+    // copy jsonObject to config, check for errors and add dir location
+    for (auto i = jsonObject.begin(), e = jsonObject.end(); i != e; ++i) {
+        if (!i.value().isString())
+            throw ThemeError(tr("Icon configuration file format error: Provided value for %1 is not a string.").arg(i.key()));
+
+        QString value = i.value().toString();
+        if (value.isEmpty())
+            throw ThemeError(tr("Icon configuration file format error: Provided value for %2 is empty string").arg(i.key()));
+
+        value.prepend(customIconDir);
+        if (!QFile::exists(value))
+            throw ThemeError(tr("Icon configuration file format error: icon \"%2\" doesn't exists").arg(configFile, value));
+
+        iconMap.insert(i.key(), value);
+    }
+
+    return iconMap;
 }
 
 UIThemeManager *UIThemeManager::instance()
