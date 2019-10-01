@@ -351,6 +351,7 @@ public:
     void setTorImportLastContentDir(const QString &path);
     QByteArray getTorImportGeometry() const;
     void setTorImportGeometry(const QByteArray &geometry);
+    bool activeFilterState() const;
     bool getStatusFilterState() const;
     bool getCategoryFilterState() const;
     bool getTagFilterState() const;
@@ -381,6 +382,7 @@ public:
     void setSpeedWidgetGraphEnable(int id, bool enable);
 
 public slots:
+    void setActiveFilterState(bool checked);
     void setStatusFilterState(bool checked);
     void setCategoryFilterState(bool checked);
     void setTagFilterState(bool checked);

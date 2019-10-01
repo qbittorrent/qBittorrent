@@ -1351,6 +1351,16 @@ void Preferences::setTorImportGeometry(const QByteArray &geometry)
     setValue("TorrentImportDlg/dimensions", geometry);
 }
 
+bool Preferences::activeFilterState() const
+{
+    return value("TransferListFilters/activeFilterState", false).toBool();
+}
+
+void Preferences::setActiveFilterState(const bool checked)
+{
+    setValue("TransferListFilters/activeFilterState", checked);
+}
+
 bool Preferences::getStatusFilterState() const
 {
     return value("TransferListFilters/statusFilterState", true).toBool();

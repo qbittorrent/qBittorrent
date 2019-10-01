@@ -88,6 +88,73 @@ namespace
             style()->drawControl(QStyle::CE_CheckBoxLabel, &labelOption, &painter, this);
         }
     };
+
+    class ActiveFiltersWidget : public BaseFilterWidget
+    {
+    public:
+        using BaseFilterWidget::BaseFilterWidget;
+
+        QSize sizeHint() const override
+        {
+            int cnt = 0;
+            for (int i = 0; i < BaseFilterWidget::count(); i++)
+                if (!item(i)->isHidden())
+                    cnt++;
+
+            return {
+                // Width should be exactly the width of the content
+                sizeHintForColumn(0),
+                // Height should be exactly the height of the content
+                static_cast<int>((sizeHintForRow(0) + 2 * spacing()) * (cnt + 0.5)),
+            };
+        }
+
+        void addFilterList(QListWidget *filterList)
+        {
+            auto filter = new QListWidgetItem(this);
+            auto updateFilter = [this, filterList, filter](int)
+            {
+                auto src = filterList->currentItem();
+                filter->setIcon(src->icon());
+                filter->setText(src->text());
+
+                this->updateGeometry();
+            };
+
+            connect(filterList, &QListWidget::currentRowChanged, updateFilter);
+            connect(filterList, &QListWidget::itemChanged, [filter](QListWidgetItem *item)
+            {
+                if (item->isSelected())
+                    filter->setText(item->text());
+            });
+
+            updateFilter(filterList->currentRow());
+        }
+
+        void addFilterList(QTreeView *filterList)
+        {
+            auto filter = new QListWidgetItem(this);
+            auto updateFilter = [filter, filterList, this](const QModelIndex &, const QModelIndex &)
+            {
+                auto model = filterList->currentIndex();
+                filter->setIcon(model.data(Qt::DecorationRole).value<QIcon>());
+                filter->setText(model.data(Qt::DisplayRole).value<QString>());
+
+                this->updateGeometry();
+            };
+
+            connect(filterList->selectionModel(), &QItemSelectionModel::currentRowChanged, updateFilter);
+            connect(filterList->selectionModel()->model(), &QAbstractItemModel::dataChanged, updateFilter);
+
+            updateFilter(filterList->currentIndex(), filterList->currentIndex());
+        }
+
+    private:
+        virtual void showMenu(const QPoint &) override{}
+        virtual void applyFilter(int) override{}
+        virtual void handleNewTorrent(BitTorrent::TorrentHandle *const) override{}
+        virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) override{}
+    };
 }
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -625,6 +692,14 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     vLayout->addWidget(scroll);
     setLayout(vLayout);
 
+    QCheckBox *activeLabel = new ArrowCheckBox(tr("Filters"), this);
+    activeLabel->setChecked(pref->activeFilterState());
+    activeLabel->setFont(font);
+    frameLayout->addWidget(activeLabel);
+
+    auto activeFilters = new ActiveFiltersWidget(this, transferList);
+    frameLayout->addWidget(activeFilters);
+
     QCheckBox *statusLabel = new ArrowCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
@@ -632,6 +707,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
     auto *statusFilters = new StatusFilterWidget(this, transferList);
     frameLayout->addWidget(statusFilters);
+    activeFilters->addFilterList(statusFilters);
 
     QCheckBox *categoryLabel = new ArrowCheckBox(tr("Categories"), this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
@@ -651,6 +727,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
             , transferList, &TransferListWidget::applyCategoryFilter);
     toggleCategoryFilter(pref->getCategoryFilterState());
     frameLayout->addWidget(m_categoryFilterWidget);
+    activeFilters->addFilterList(m_categoryFilterWidget);
 
     QCheckBox *tagsLabel = new ArrowCheckBox(tr("Tags"), this);
     tagsLabel->setChecked(pref->getTagFilterState());
@@ -669,6 +746,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
             , transferList, &TransferListWidget::applyTagFilter);
     toggleTagFilter(pref->getTagFilterState());
     frameLayout->addWidget(m_tagFilterWidget);
+    activeFilters->addFilterList(m_tagFilterWidget);
 
     QCheckBox *trackerLabel = new ArrowCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
@@ -677,7 +755,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
     m_trackerFilters = new TrackerFiltersList(this, transferList, downloadFavicon);
     frameLayout->addWidget(m_trackerFilters);
+    activeFilters->addFilterList(m_trackerFilters);
 
+    connect(activeLabel, &QCheckBox::toggled, activeFilters, &ActiveFiltersWidget::toggleFilter);
+    connect(activeLabel, &QCheckBox::toggled, pref, &Preferences::setActiveFilterState);
     connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
     connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
     connect(trackerLabel, &QCheckBox::toggled, m_trackerFilters, &TrackerFiltersList::toggleFilter);
