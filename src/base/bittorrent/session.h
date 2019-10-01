@@ -512,7 +512,9 @@ namespace BitTorrent
 
         // Session configuration
         Q_INVOKABLE void configure();
-        void configure(lt::settings_pack &settingsPack);
+        void configureComponents();
+        void initializeNativeSession();
+        void loadLTSettings(lt::settings_pack &settingsPack);
         void configurePeerClasses();
         void adjustLimits(lt::settings_pack &settingsPack);
         void applyBandwidthLimits(lt::settings_pack &settingsPack) const;
