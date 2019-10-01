@@ -29,6 +29,7 @@
 #include "transferlistwidget.h"
 
 #include <algorithm>
+#include <fstream>
 
 #include <QClipboard>
 #include <QDebug>
