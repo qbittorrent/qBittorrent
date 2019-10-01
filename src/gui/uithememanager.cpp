@@ -30,7 +30,6 @@
 #include "uithememanager.h"
 
 #include <QApplication>
-#include <QDir>
 #include <QFile>
 #include <QIcon>
 #include <QJsonArray>
@@ -39,13 +38,10 @@
 #include <QJsonObject>
 #include <QList>
 #include <QResource>
-#include <QSet>
 
-#include "base/iconprovider.h"
 #include "base/exceptions.h"
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "base/utils/fs.h"
 #include "utils.h"
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -123,28 +119,28 @@ namespace
         {"PeerList.ContextMenu.BanAction", ":icons/qbt-theme/user-group-delete.svg"},
         {"PeerList.ContextMenu.CopyAction", ":icons/qbt-theme/edit-copy.svg"},
         {"RSS", ":icons/qbt-theme/inode-directory.svg"},
-        {"RSS.Available", ":icons/qbt-theme/application-rss+xml.svg"},
-        {"RSS.EpisodeFilter.ErrorAction", ":icons/qbt-theme/task-attention.svg"},
-        {"RSS.Feed.DownloadAction", ":icons/qbt-theme/download.svg"},
-        {"RSS.Feed.MarkAllRead", ":icons/qbt-theme/mail-mark-read.svg"},
-        {"RSS.Feed.MarkReadAction", ":icons/qbt-theme/mail-mark-read.svg"},
-        {"RSS.Feed.NewFolderAction", ":icons/qbt-theme/folder-new.svg"},
-        {"RSS.Feed.NewsURL.OpenAction", ":icons/qbt-theme/application-x-mswinurl.svg"},
-        {"RSS.Feed.RefreshAction", ":icons/qbt-theme/view-refresh.svg"},
-        {"RSS.Feed.RefreshAllAction", ":icons/qbt-theme/view-refresh.svg"},
-        {"RSS.Feed.RemoveAction", ":icons/qbt-theme/edit-delete.svg"},
-        {"RSS.Feed.RenameAction", ":icons/qbt-theme/edit-rename.svg"},
-        {"RSS.Feed.Subscription.AddAction", ":icons/qbt-theme/list-add.svg"},
-        {"RSS.FeedUrl.CopyAction", ":icons/qbt-theme/edit-copy.svg"},
-        {"RSS.MustContain.ErrorAction", ":icons/qbt-theme/task-attention.svg"},
-        {"RSS.MustNotContain.ErrorAction", ":icons/qbt-theme/task-attention.svg"},
-        {"RSS.NewFeed.AddAction", ":icons/qbt-theme/list-add.svg"},
-        {"RSS.SelectedFeed.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
-        {"RSS.UnAvailable", ":icons/qbt-theme/unavailable.svg"},
-        {"RSS.Unread", ":icons/qbt-theme/mail-folder-inbox.svg"},
-        {"RSS.ReadArticle", ":icons/sphere.png"},
-        {"RSS.UnReadArticle", ":icons/sphere2.png"},
-        {"RSS.LoadingFeed", ":icons/loading.png"},
+        {"RSSView.Available", ":icons/qbt-theme/application-rss+xml.svg"},
+        {"RSSView.EpisodeFilter.ErrorAction", ":icons/qbt-theme/task-attention.svg"},
+        {"RSSView.Feed.DownloadAction", ":icons/qbt-theme/download.svg"},
+        {"RSSView.Feed.MarkAllRead", ":icons/qbt-theme/mail-mark-read.svg"},
+        {"RSSView.Feed.MarkReadAction", ":icons/qbt-theme/mail-mark-read.svg"},
+        {"RSSView.Feed.NewFolderAction", ":icons/qbt-theme/folder-new.svg"},
+        {"RSSView.Feed.NewsURL.OpenAction", ":icons/qbt-theme/application-x-mswinurl.svg"},
+        {"RSSView.Feed.RefreshAction", ":icons/qbt-theme/view-refresh.svg"},
+        {"RSSView.Feed.RefreshAllAction", ":icons/qbt-theme/view-refresh.svg"},
+        {"RSSView.Feed.RemoveAction", ":icons/qbt-theme/edit-delete.svg"},
+        {"RSSView.Feed.RenameAction", ":icons/qbt-theme/edit-rename.svg"},
+        {"RSSView.Feed.Subscription.AddAction", ":icons/qbt-theme/list-add.svg"},
+        {"RSSView.FeedUrl.CopyAction", ":icons/qbt-theme/edit-copy.svg"},
+        {"RSSView.MustContain.ErrorAction", ":icons/qbt-theme/task-attention.svg"},
+        {"RSSView.MustNotContain.ErrorAction", ":icons/qbt-theme/task-attention.svg"},
+        {"RSSView.NewFeed.AddAction", ":icons/qbt-theme/list-add.svg"},
+        {"RSSView.SelectedFeed.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
+        {"RSSView.UnAvailable", ":icons/qbt-theme/unavailable.svg"},
+        {"RSSView.Unread", ":icons/qbt-theme/mail-folder-inbox.svg"},
+        {"RSSView.ReadArticle", ":icons/sphere.png"},
+        {"RSSView.UnReadArticle", ":icons/sphere2.png"},
+        {"RSSView.LoadingFeed", ":icons/loading.png"},
         {"RSSFeedTree", ":icons/qbt-theme/inode-directory.svg"},
         {"RSSRule.AddAction", ":icons/qbt-theme/list-add.svg"},
         {"RSSRule.RemoveAction", ":icons/qbt-theme/list-remove.svg"},
@@ -331,28 +327,28 @@ namespace
         {"PeerList.ContextMenu.AddAction", "user-group-new"},
         {"PeerList.ContextMenu.BanAction", "user-group-delete"},
         {"PeerList.ContextMenu.CopyAction", "edit-copy"},
-        {"RSS", "inode-directory"}, {"RSS.Available", "application-rss+xml"},
-        {"RSS.EpisodeFilter.ErrorAction", "task-attention"},
-        {"RSS.Feed.DownloadAction", "download"},
-        {"RSS.Feed.MarkAllRead", "mail-mark-read"},
-        {"RSS.Feed.MarkReadAction", "mail-mark-read"},
-        {"RSS.Feed.NewFolderAction", "folder-new"},
-        {"RSS.Feed.NewsURL.OpenAction", "application-x-mswinurl"},
-        {"RSS.Feed.RefreshAction", "view-refresh"},
-        {"RSS.Feed.RefreshAllAction", "view-refresh"},
-        {"RSS.Feed.RemoveAction", "edit-delete"},
-        {"RSS.Feed.RenameAction", "edit-rename"},
-        {"RSS.Feed.Subscription.AddAction", "list-add"},
-        {"RSS.FeedUrl.CopyAction", "edit-copy"},
-        {"RSS.LoadingFeed", "loading"},
-        {"RSS.MustContain.ErrorAction", "task-attention"},
-        {"RSS.MustNotContain.ErrorAction", "task-attention"},
-        {"RSS.NewFeed.AddAction", "list-add"},
-        {"RSS.ReadArticle", "sphere"},
-        {"RSS.SelectedFeed.RemoveAction", "list-remove"},
-        {"RSS.UnAvailable", "unavailable"},
-        {"RSS.UnReadArticle", "sphere2"},
-        {"RSS.Unread", "mail-folder-inbox"},
+        {"RSS", "inode-directory"}, {"RSSView.Available", "application-rss+xml"},
+        {"RSSView.EpisodeFilter.ErrorAction", "task-attention"},
+        {"RSSView.Feed.DownloadAction", "download"},
+        {"RSSView.Feed.MarkAllRead", "mail-mark-read"},
+        {"RSSView.Feed.MarkReadAction", "mail-mark-read"},
+        {"RSSView.Feed.NewFolderAction", "folder-new"},
+        {"RSSView.Feed.NewsURL.OpenAction", "application-x-mswinurl"},
+        {"RSSView.Feed.RefreshAction", "view-refresh"},
+        {"RSSView.Feed.RefreshAllAction", "view-refresh"},
+        {"RSSView.Feed.RemoveAction", "edit-delete"},
+        {"RSSView.Feed.RenameAction", "edit-rename"},
+        {"RSSView.Feed.Subscription.AddAction", "list-add"},
+        {"RSSView.FeedUrl.CopyAction", "edit-copy"},
+        {"RSSView.LoadingFeed", "loading"},
+        {"RSSView.MustContain.ErrorAction", "task-attention"},
+        {"RSSView.MustNotContain.ErrorAction", "task-attention"},
+        {"RSSView.NewFeed.AddAction", "list-add"},
+        {"RSSView.ReadArticle", "sphere"},
+        {"RSSView.SelectedFeed.RemoveAction", "list-remove"},
+        {"RSSView.UnAvailable", "unavailable"},
+        {"RSSView.UnReadArticle", "sphere2"},
+        {"RSSView.Unread", "mail-folder-inbox"},
         {"RSSFeedTree", "inode-directory"},
         {"RSSRule.AddAction", "list-add"},
         {"RSSRule.RemoveAction", "list-remove"},

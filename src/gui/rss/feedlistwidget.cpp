@@ -60,7 +60,7 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     m_unreadStickyItem = new QTreeWidgetItem(this);
     m_unreadStickyItem->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(RSS::Session::instance()->rootFolder()));
     m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSS.Unread"));
+    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSSView.Unread"));
 
     connect(RSS::Session::instance()->rootFolder(), &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 
@@ -85,13 +85,13 @@ void FeedListWidget::handleFeedStateChanged(RSS::Feed *feed)
 
     QIcon icon;
     if (feed->isLoading())
-        icon = UIThemeManager::instance()->getIcon("RSS.LoadingFeed");
+        icon = UIThemeManager::instance()->getIcon("RSSView.LoadingFeed");
     else if (feed->hasError())
-        icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSS.UnAvailable"));
+        icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSSView.UnAvailable"));
     else if (!feed->iconPath().isEmpty())
         icon = QIcon(feed->iconPath());
     else
-        icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSS.Available"));
+        icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSSView.Available"));
     item->setData(0, Qt::DecorationRole, icon);
 }
 
@@ -235,13 +235,13 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     QIcon icon;
     if (auto feed = qobject_cast<RSS::Feed *>(rssItem)) {
         if (feed->isLoading())
-            icon = UIThemeManager::instance()->getIcon("RSS.LoadingFeed");
+            icon = UIThemeManager::instance()->getIcon("RSSView.LoadingFeed");
         else if (feed->hasError())
-            icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSS.UnAvailable"));
+            icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSSView.UnAvailable"));
         else if (!feed->iconPath().isEmpty())
             icon = QIcon(feed->iconPath());
         else
-            icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSS.Available"));
+            icon = UIThemeManager::instance()->getIcon(QStringLiteral("RSSView.Available"));
     }
     else {
         icon = UIThemeManager::instance()->getIcon("RSS");

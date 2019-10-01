@@ -62,21 +62,21 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     // Icons
-    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon("RSS.FeedUrl.CopyAction"));
-    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RemoveAction"));
-    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.DownloadAction"));
-    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.MarkReadAction"));
-    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.NewFolderAction"));
-    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.Subscription.AddAction"));
-    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.NewsURL.OpenAction"));
-    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RenameAction"));
-    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RefreshAction"));
-    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RefreshAllAction"));
+    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon("RSSView.FeedUrl.CopyAction"));
+    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.RemoveAction"));
+    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.DownloadAction"));
+    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.MarkReadAction"));
+    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.NewFolderAction"));
+    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.Subscription.AddAction"));
+    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.NewsURL.OpenAction"));
+    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.RenameAction"));
+    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.RefreshAction"));
+    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.RefreshAllAction"));
 #ifndef Q_OS_MACOS
-    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon("RSS.NewFeed.AddAction"));
-    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.MarkAllRead"));
-    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.RefreshAllAction"));
-    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon("RSS.Feed.DownloadAction"));
+    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon("RSSView.NewFeed.AddAction"));
+    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.MarkAllRead"));
+    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.RefreshAllAction"));
+    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon("RSSView.Feed.DownloadAction"));
 #endif
 
     m_articleListWidget = new ArticleListWidget(m_ui->splitterMain);

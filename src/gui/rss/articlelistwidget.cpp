@@ -99,7 +99,7 @@ void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
     if (!item) return;
 
     item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
-    item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSS.ReadArticle"));
+    item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSSView.ReadArticle"));
 
     checkInvariant();
 }
@@ -124,11 +124,11 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
     item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
     if (article->isRead()) {
         item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
-        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSS.ReadArticle"));
+        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSSView.ReadArticle"));
     }
     else {
         item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Active, QPalette::Link));
-        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSS.UnReadArticle"));
+        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("RSSView.UnReadArticle"));
     }
 
     return item;

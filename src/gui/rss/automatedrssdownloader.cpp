@@ -688,7 +688,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     }
     else {
         m_ui->lineContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon("RSS.MustContain.ErrorAction").pixmap(16, 16));
+        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon("RSSView.MustContain.ErrorAction").pixmap(16, 16));
         m_ui->labelMustStat->setToolTip(error);
     }
 }
@@ -726,7 +726,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     }
     else {
         m_ui->lineNotContains->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon("RSS.MustNotContain.ErrorAction").pixmap(16, 16));
+        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon("RSSView.MustNotContain.ErrorAction").pixmap(16, 16));
         m_ui->labelMustNotStat->setToolTip(error);
     }
 }
@@ -742,7 +742,7 @@ void AutomatedRssDownloader::updateEpisodeFilterValidity()
     }
     else {
         m_ui->lineEFilter->setStyleSheet("QLineEdit { color: #ff0000; }");
-        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon("RSS.EpisodeFilter.ErrorAction").pixmap(16, 16));
+        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon("RSSView.EpisodeFilter.ErrorAction").pixmap(16, 16));
     }
 }
 

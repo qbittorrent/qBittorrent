@@ -79,7 +79,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon("RSS.SelectedFeed.RemoveAction"));
+    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon("RSSView.SelectedFeed.RemoveAction"));
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
