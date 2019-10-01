@@ -832,7 +832,7 @@ void TransferListWidget::exportSelectedTorrentsToXML()
         catch (...) {
             exportErrors = true;
             std::exception_ptr p = std::current_exception();
-            Logger::instance()->addMessage(tr("Error:exportSelectedTorrentsToXML():Cannot write .torrent file: ") + 
+            Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Cannot write .torrent file: ") + 
                 (p ? p.__cxa_exception_type()->name() : "null"), Log::CRITICAL);
         }
         // XML data - in the order they are defined in TorrentHandle
@@ -979,7 +979,7 @@ void TransferListWidget::exportSelectedTorrentsToXML()
         catch (...) {
             exportErrors = true;
             std::exception_ptr p = std::current_exception();
-            Logger::instance()->addMessage(tr("Error:exportSelectedTorrentsToXML():Error writing XML file: ") +
+            Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Error writing XML file: ") +
                 "\"" + filename +"\"" + " : " + (p ? p.__cxa_exception_type()->name() : "null"), 
                 Log::CRITICAL);
             QMessageBox::critical(m_mainWindow, tr("Error exporting XML file"), tr("Error writing XML: ") + 
@@ -989,7 +989,7 @@ void TransferListWidget::exportSelectedTorrentsToXML()
         }
     }
     else {
-        Logger::instance()->addMessage(tr("Error:exportSelectedTorrentsToXML():Cannot open file for writing: ") + " \"" + 
+        Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Cannot open file for writing: ") + " \"" + 
             filename + "\".", Log::CRITICAL);
         QMessageBox::critical(m_mainWindow, tr("Error exporting XML file"), tr("Error: Cannot open file for writing."));
         m_mainWindow->setEnabled(true);
@@ -1036,7 +1036,7 @@ void TransferListWidget::importTorrentsFromXML()
         file.close();
     }
     else {
-        Logger::instance()->addMessage(tr("Error:importTorrentsFromXML():Cannot open file for reading: ") + 
+        Logger::instance()->addMessage(tr("Error:importTorrentList():Cannot open file for reading: ") + 
             "\"" + filepath + "\".", Log::CRITICAL);
         QMessageBox::critical(m_mainWindow, tr("Error importing XML file"), tr("Error: Cannot open file for reading."));
         m_mainWindow->setEnabled(true);
