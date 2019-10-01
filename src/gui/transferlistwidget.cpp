@@ -96,6 +96,14 @@ namespace
 
         return false;
     }
+
+    void removeTorrents(const QVector<BitTorrent::TorrentHandle *> &torrents, const bool isDeleteFileSelected)
+    {
+        auto *session = BitTorrent::Session::instance();
+        const DeleteOption deleteOption = isDeleteFileSelected ? TorrentAndFiles : Torrent;
+        for (const BitTorrent::TorrentHandle *torrent : torrents)
+            session->deleteTorrent(torrent->hash(), deleteOption);
+    }
 }
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
@@ -363,19 +371,25 @@ void TransferListWidget::permDeleteSelectedTorrents()
     deleteSelectedTorrents(true);
 }
 
-void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
+void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
 {
     if (m_mainWindow->currentTabWidget() != this) return;
 
     const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
 
-    if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDialog::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
-        return;
-    const DeleteOption deleteOption = deleteLocalFiles ? TorrentAndFiles : Torrent;
-    for (const BitTorrent::TorrentHandle *torrent : torrents)
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteOption);
+    if (Preferences::instance()->confirmTorrentDeletion()) {
+        auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), deleteLocalFiles);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        {
+            removeTorrents(torrents, dialog->isDeleteFileSelected());
+        });
+        dialog->open();
+    }
+    else {
+        removeTorrents(torrents, deleteLocalFiles);
+    }
 }
 
 void TransferListWidget::deleteVisibleTorrents()
@@ -386,14 +400,18 @@ void TransferListWidget::deleteVisibleTorrents()
     for (int i = 0; i < m_sortFilterModel->rowCount(); ++i)
         torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
 
-    bool deleteLocalFiles = false;
-    if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDialog::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
-        return;
-
-    const DeleteOption deleteOption = deleteLocalFiles ? TorrentAndFiles : Torrent;
-    for (const BitTorrent::TorrentHandle *torrent : asConst(torrents))
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteOption);
+    if (Preferences::instance()->confirmTorrentDeletion()) {
+        auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), false);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        {
+            removeTorrents(torrents, dialog->isDeleteFileSelected());
+        });
+        dialog->open();
+    }
+    else {
+        removeTorrents(torrents, false);
+    }
 }
 
 void TransferListWidget::increaseQueuePosSelectedTorrents()
