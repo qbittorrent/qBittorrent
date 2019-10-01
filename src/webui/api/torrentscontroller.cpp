@@ -1077,8 +1077,8 @@ void TorrentsController::removeCategoriesAction()
 void TorrentsController::categoriesAction()
 {
     QJsonObject categories;
-    const auto categoriesList = BitTorrent::Session::instance()->categories();
-    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
+    const QStringMap categoriesMap = BitTorrent::Session::instance()->categories();
+    for (auto it = categoriesMap.cbegin(); it != categoriesMap.cend(); ++it) {
         const auto &key = it.key();
         categories[key] = QJsonObject {
             {"name", key},

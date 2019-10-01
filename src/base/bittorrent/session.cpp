@@ -585,7 +585,7 @@ QStringList Session::expandCategory(const QString &category)
     return result;
 }
 
-const QStringMap &Session::categories() const
+QStringMap Session::categories() const
 {
     return m_categories;
 }
