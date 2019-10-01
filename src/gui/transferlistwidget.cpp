@@ -831,9 +831,12 @@ void TransferListWidget::exportSelectedTorrentsToXML()
         }
         catch (...) {
             exportErrors = true;
+            /* MSVC chocked on that, disabled for build test.
             std::exception_ptr p = std::current_exception();
             Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Cannot write .torrent file: ") + 
                 (p ? p.__cxa_exception_type()->name() : "null"), Log::CRITICAL);
+            */
+            Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Cannot write .torrent file."), Log::CRITICAL);
         }
         // XML data - in the order they are defined in TorrentHandle
         asXMLString += QString("\t<torrent>\r\n");
@@ -978,12 +981,18 @@ void TransferListWidget::exportSelectedTorrentsToXML()
         }
         catch (...) {
             exportErrors = true;
+            /* MSVC chocked on that, disabled for build test.
             std::exception_ptr p = std::current_exception();
             Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Error writing XML file: ") +
                 "\"" + filename +"\"" + " : " + (p ? p.__cxa_exception_type()->name() : "null"), 
                 Log::CRITICAL);
             QMessageBox::critical(m_mainWindow, tr("Error exporting XML file"), tr("Error writing XML: ") + 
                 "\n\"" + (p ? p.__cxa_exception_type()->name() : "null"));
+            */
+            Logger::instance()->addMessage(tr("Error:exportSelectedTorrent():Error writing XML file: ") +
+                "\"" + filename +"\"", Log::CRITICAL);
+            QMessageBox::critical(m_mainWindow, tr("Error exporting XML file"), tr("Error writing XML."));
+            
             m_mainWindow->setEnabled(true);
             return;
         }
