@@ -94,21 +94,6 @@ namespace
     public:
         using BaseFilterWidget::BaseFilterWidget;
 
-        QSize sizeHint() const override
-        {
-            int cnt = 0;
-            for (int i = 0; i < BaseFilterWidget::count(); i++)
-                if (!item(i)->isHidden())
-                    cnt++;
-
-            return {
-                // Width should be exactly the width of the content
-                sizeHintForColumn(0),
-                // Height should be exactly the height of the content
-                static_cast<int>((sizeHintForRow(0) + 2 * spacing()) * (cnt + 0.5)),
-            };
-        }
-
         void addFilterList(QListWidget *filterList)
         {
             auto filter = new QListWidgetItem(this);
