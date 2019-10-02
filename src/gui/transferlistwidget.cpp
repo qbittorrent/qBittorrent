@@ -936,6 +936,19 @@ void TransferListWidget::exportSelectedTorrentsToXML()
         asXMLString += QString("\t\t<hasError>%1</hasError>\r\n").arg(torrent->hasError() == true ? "True" : "False");
         asXMLString += QString("\t\t<hasFilteredPieces>%1</hasFilteredPieces>\r\n").arg(torrent->hasFilteredPieces() == true ? "True" : "False");
 
+        // Trackers and trackers' tier.
+        asXMLString += QString("\t\t<trackers>\r\n");
+        for (const BitTorrent::TrackerEntry &entry : asConst(torrent->trackers())) {
+            asXMLString += QString("\t\t\t<tracker>%1</tracker>\r\n").arg(entry.url());
+        }
+        asXMLString += QString("\t\t</trackers>\r\n");
+
+        asXMLString += QString("\t\t<trackerTiers>\r\n");
+        for (const BitTorrent::TrackerEntry &entry : asConst(torrent->trackers())) {
+            asXMLString += QString("\t\t\t<trackerTier>%1</trackerTier>\r\n").arg(QString::number(entry.tier()));
+        }
+        asXMLString += QString("\t\t</trackerTiers>\r\n");
+
         asXMLString += QString("\t\t<error>%1</error>\r\n").arg(torrent->error());
         asXMLString += QString("\t\t<totalDownload>%1</totalDownload>\r\n").arg(QString::number(torrent->totalDownload()));
         asXMLString += QString("\t\t<totalUpload>%1</totalUpload>\r\n").arg(QString::number(torrent->totalUpload()));
