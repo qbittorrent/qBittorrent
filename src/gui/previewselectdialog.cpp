@@ -54,6 +54,9 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
 {
     m_ui->setupUi(this);
 
+    m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one of them:")
+        .arg(m_torrent->name()));
+
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PreviewSelectDialog::previewButtonClicked);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -125,7 +128,8 @@ void PreviewSelectDialog::previewButtonClicked()
     if (!QFile::exists(path)) {
         const bool isSingleFile = (m_previewListModel->rowCount() == 1);
         QWidget *parent = isSingleFile ? this->parentWidget() : this;
-        QMessageBox::critical(parent, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+        QMessageBox::critical(parent, tr("Preview impossible")
+            , tr("Sorry, we can't preview this file: \"%1\".").arg(Utils::Fs::toNativePath(path)));
         if (isSingleFile)
             reject();
         return;

@@ -509,7 +509,8 @@ void TransferListWidget::previewSelectedTorrents()
             dialog->show();
         }
         else {
-            QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent does not contain previewable files"));
+            QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent \"%1\" does not contain previewable files")
+                .arg(torrent->name()));
         }
     }
 }
