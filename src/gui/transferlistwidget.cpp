@@ -909,6 +909,12 @@ void TransferListWidget::exportSelectedTorrentsToXML()
             asXMLString += QString("\t\t\t<absoluteFilePathUnwanted>%1</absoluteFilePathUnwanted>\r\n").arg(torrent->absoluteFilePathsUnwanted().at(i));
         }
         asXMLString += QString("\t\t</absoluteFilePathsUnwanted>\r\n");        
+        // File priorities
+        asXMLString += QString("\t\t<filePriorities>\r\n");
+        for (int i = 0; i < torrent->filePriorities().size(); ++i) {
+            asXMLString += QString("\t\t\t<filePriority>%1</filePriority>\r\n").arg(QString::number(static_cast<int>(torrent->filePriorities().at(i))));
+        }
+        asXMLString += QString("\t\t</filePriorities>\r\n");
         
         asXMLString += QString("\t\t<isSeed>%1</isSeed>\r\n").arg(torrent->isSeed() == true ? "True" : "False");
         asXMLString += QString("\t\t<isPaused>%1</isPaused>\r\n").arg(torrent->isPaused() == true ? "True" : "False");
@@ -1079,7 +1085,7 @@ void TransferListWidget::importTorrentsFromXML()
             m_torrentParams.firstLastPiecePriority = false;
             m_torrentParams.addForced = TriStateBool(false);
             m_torrentParams.addPaused = TriStateBool(false);
-            m_torrentParams.filePriorities.clear();	// TODO - QVector<DownloadPriority>
+            m_torrentParams.filePriorities.clear();
             m_torrentParams.ignoreShareLimits = false;
             m_torrentParams.skipChecking = false;
             m_torrentParams.createSubfolder = TriStateBool(false);
@@ -1167,6 +1173,13 @@ void TransferListWidget::importTorrentsFromXML()
             if (rx.cap(1) == "True") {
                 m_torrentParams.firstLastPiecePriority = true;
             }
+            continue;
+        }
+
+        rx.setPattern("^\\s*<filePriority>(.*)</filePriority>\\s*$");
+        pos = rx.indexIn(line);
+        if (pos > -1) {
+            m_torrentParams.filePriorities << static_cast<BitTorrent::DownloadPriority>(rx.cap(1).toInt());
             continue;
         }
 
