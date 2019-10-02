@@ -2034,7 +2034,7 @@ void Session::topTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
             std::vector<QPair<int, TorrentHandle *>>,
-            std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
+            std::less<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     for (const InfoHash infoHash : hashes) {
@@ -2043,7 +2043,7 @@ void Session::topTorrentsPriority(const QStringList &hashes)
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
 
-    // Top torrents priority (starting with the ones with highest priority)
+    // Top torrents priority (starting with the ones with lowest priority)
     while (!torrentQueue.empty()) {
         TorrentHandle *const torrent = torrentQueue.top().second;
         torrentQueuePositionTop(torrent->nativeHandle());
@@ -2057,7 +2057,7 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
 {
     std::priority_queue<QPair<int, TorrentHandle *>,
             std::vector<QPair<int, TorrentHandle *>>,
-            std::less<QPair<int, TorrentHandle *>>> torrentQueue;
+            std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
 
     // Sort torrents by priority
     for (const InfoHash infoHash : hashes) {
@@ -2066,7 +2066,7 @@ void Session::bottomTorrentsPriority(const QStringList &hashes)
             torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
     }
 
-    // Bottom torrents priority (starting with the ones with lowest priority)
+    // Bottom torrents priority (starting with the ones with highest priority)
     while (!torrentQueue.empty()) {
         TorrentHandle *const torrent = torrentQueue.top().second;
         torrentQueuePositionBottom(torrent->nativeHandle());
