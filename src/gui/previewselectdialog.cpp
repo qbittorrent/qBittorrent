@@ -112,21 +112,26 @@ PreviewSelectDialog::~PreviewSelectDialog()
 
 void PreviewSelectDialog::previewButtonClicked()
 {
-    QModelIndexList selectedIndexes = m_ui->previewList->selectionModel()->selectedRows(FILE_INDEX);
+    const QModelIndexList selectedIndexes = m_ui->previewList->selectionModel()->selectedRows(FILE_INDEX);
     if (selectedIndexes.isEmpty()) return;
 
     // Flush data
     m_torrent->flushCache();
 
-    QStringList absolutePaths(m_torrent->absoluteFilePaths());
+    const QStringList absolutePaths = m_torrent->absoluteFilePaths();
     // Only one file should be selected
-    QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
+    const QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
     // File
-    if (QFile::exists(path))
-        emit readyToPreviewFile(path);
-    else
-        QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+    if (!QFile::exists(path)) {
+        const bool isSingleFile = (m_previewListModel->rowCount() == 1);
+        QWidget *parent = isSingleFile ? this->parentWidget() : this;
+        QMessageBox::critical(parent, tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+        if (isSingleFile)
+            reject();
+        return;
+    }
 
+    emit readyToPreviewFile(path);
     accept();
 }
 
