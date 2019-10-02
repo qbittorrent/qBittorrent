@@ -1752,9 +1752,7 @@ void Session::decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 void Session::topTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
     using ElementType = std::pair<int, TorrentHandle *>;
-    std::priority_queue<ElementType
-        , std::vector<ElementType>
-        , std::greater<ElementType>> torrentQueue;
+    std::priority_queue<ElementType> torrentQueue;
 
     // Sort torrents by queue position
     for (const InfoHash &infoHash : hashes) {
@@ -1763,7 +1761,7 @@ void Session::topTorrentsQueuePos(const QVector<InfoHash> &hashes)
             torrentQueue.emplace(torrent->queuePosition(), torrent);
     }
 
-    // Top torrents queue position (starting with the one in the highest queue position)
+    // Top torrents queue position (starting with the one in the lowest queue position)
     while (!torrentQueue.empty()) {
         const TorrentHandle *torrent = torrentQueue.top().second;
         torrentQueuePositionTop(torrent->nativeHandle());
@@ -1778,7 +1776,7 @@ void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
     using ElementType = std::pair<int, TorrentHandle *>;
     std::priority_queue<ElementType
         , std::vector<ElementType>
-        , std::less<ElementType>> torrentQueue;
+        , std::greater<ElementType>> torrentQueue;
 
     // Sort torrents by queue position
     for (const InfoHash &infoHash : hashes) {
@@ -1787,7 +1785,7 @@ void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
             torrentQueue.emplace(torrent->queuePosition(), torrent);
     }
 
-    // Bottom torrents queue position (starting with the one in the lowest queue position)
+    // Bottom torrents queue position (starting with the one in the highest queue position)
     while (!torrentQueue.empty()) {
         const TorrentHandle *torrent = torrentQueue.top().second;
         torrentQueuePositionBottom(torrent->nativeHandle());
