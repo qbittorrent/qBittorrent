@@ -412,10 +412,10 @@ namespace BitTorrent
         bool cancelLoadMetadata(const InfoHash &hash);
 
         void recursiveTorrentDownload(const InfoHash &hash);
-        void increaseTorrentsQueuePos(const QStringList &hashes);
-        void decreaseTorrentsQueuePos(const QStringList &hashes);
-        void topTorrentsQueuePos(const QStringList &hashes);
-        void bottomTorrentsQueuePos(const QStringList &hashes);
+        void increaseTorrentsQueuePos(const QVector<InfoHash> &hashes);
+        void decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes);
+        void topTorrentsQueuePos(const QVector<InfoHash> &hashes);
+        void bottomTorrentsQueuePos(const QVector<InfoHash> &hashes);
 
         // TorrentHandle interface
         void handleTorrentSaveResumeDataRequested(const TorrentHandle *torrent);
