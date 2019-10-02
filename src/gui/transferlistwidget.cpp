@@ -506,6 +506,7 @@ void TransferListWidget::previewSelectedTorrents()
             auto *dialog = new PreviewSelectDialog(this, torrent);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
             connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
+            dialog->show();
         }
         else {
             QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent does not contain previewable files"));

@@ -101,16 +101,6 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
 
     // Restore dialog state
     loadWindowState();
-
-    if (m_previewListModel->rowCount() == 1) {
-        qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
-        // Only one file : no choice
-        previewButtonClicked();
-    }
-    else {
-        qDebug("Displaying media file selection dialog for preview");
-        show();
-    }
 }
 
 PreviewSelectDialog::~PreviewSelectDialog()
@@ -161,13 +151,21 @@ void PreviewSelectDialog::loadWindowState()
 
 void PreviewSelectDialog::showEvent(QShowEvent *event)
 {
-    Q_UNUSED(event);
+    // event originated from system
+    if (event->spontaneous()) {
+        QDialog::showEvent(event);
+        return;
+    }
 
     // Default size, have to be called after show(), because width is needed
     // Set Name column width to 60% of TreeView
     if (!m_headerStateInitialized) {
-        int nameSize = (m_ui->previewList->size().width() * 0.6);
+        const int nameSize = (m_ui->previewList->size().width() * 0.6);
         m_ui->previewList->header()->resizeSection(0, nameSize);
         m_headerStateInitialized = true;
     }
+
+    // Only one file, no choice
+    if (m_previewListModel->rowCount() <= 1)
+        previewButtonClicked();
 }
