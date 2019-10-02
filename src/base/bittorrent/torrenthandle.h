@@ -324,7 +324,7 @@ namespace BitTorrent
         void setUploadLimit(int limit);
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
-        void flushCache();
+        void flushCache() const;
         void addTrackers(const QVector<TrackerEntry> &trackers);
         void replaceTrackers(const QVector<TrackerEntry> &trackers);
         void addUrlSeeds(const QVector<QUrl> &urlSeeds);

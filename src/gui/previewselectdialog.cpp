@@ -45,7 +45,7 @@
 
 #define SETTINGS_KEY(name) "PreviewSelectDialog/" name
 
-PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
+PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::TorrentHandle *torrent)
     : QDialog(parent)
     , m_ui(new Ui::PreviewSelectDialog)
     , m_torrent(torrent)
@@ -53,13 +53,12 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
     , m_storeTreeHeaderState(SETTINGS_KEY("HeaderState"))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PreviewSelectDialog::previewButtonClicked);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    Preferences *const pref = Preferences::instance();
+    const Preferences *pref = Preferences::instance();
     // Preview list
     m_previewListModel = new QStandardItemModel(0, NB_COLUMNS, this);
     m_previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));

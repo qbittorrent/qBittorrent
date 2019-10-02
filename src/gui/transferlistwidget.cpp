@@ -501,9 +501,10 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 
 void TransferListWidget::previewSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (const BitTorrent::TorrentHandle *torrent : asConst(getSelectedTorrents())) {
         if (torrentContainsPreviewableFiles(torrent)) {
-            const auto *dialog = new PreviewSelectDialog(this, torrent);
+            auto *dialog = new PreviewSelectDialog(this, torrent);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
             connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
         }
         else {
