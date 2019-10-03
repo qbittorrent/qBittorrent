@@ -95,18 +95,19 @@ namespace BitTorrent
     class TrackerEntry;
     struct CreateTorrentParams;
 
-    class SessionSettingsEnums
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    namespace SessionSettingsEnums
     {
-        Q_GADGET
+        Q_NAMESPACE
 
-    public:
-        // TODO: remove `SessionSettingsEnums` wrapper when we can use `Q_ENUM_NS` directly (QT >= 5.8 only)
         enum class ChokingAlgorithm : int
         {
             FixedSlots = 0,
             RateBased = 1
         };
-        Q_ENUM(ChokingAlgorithm)
+        Q_ENUM_NS(ChokingAlgorithm)
 
         enum class SeedChokingAlgorithm : int
         {
@@ -114,14 +115,14 @@ namespace BitTorrent
             FastestUpload = 1,
             AntiLeech = 2
         };
-        Q_ENUM(SeedChokingAlgorithm)
+        Q_ENUM_NS(SeedChokingAlgorithm)
 
         enum class MixedModeAlgorithm : int
         {
             TCP = 0,
             Proportional = 1
         };
-        Q_ENUM(MixedModeAlgorithm)
+        Q_ENUM_NS(MixedModeAlgorithm)
 
         enum class BTProtocol : int
         {
@@ -129,12 +130,9 @@ namespace BitTorrent
             TCP = 1,
             UTP = 2
         };
-        Q_ENUM(BTProtocol)
-    };
-    using ChokingAlgorithm = SessionSettingsEnums::ChokingAlgorithm;
-    using SeedChokingAlgorithm = SessionSettingsEnums::SeedChokingAlgorithm;
-    using MixedModeAlgorithm = SessionSettingsEnums::MixedModeAlgorithm;
-    using BTProtocol = SessionSettingsEnums::BTProtocol;
+        Q_ENUM_NS(BTProtocol)
+    }
+    using namespace SessionSettingsEnums;
 
     struct SessionMetricIndices
     {
@@ -409,15 +407,15 @@ namespace BitTorrent
         bool isKnownTorrent(const InfoHash &hash) const;
         bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
-        bool deleteTorrent(const QString &hash, DeleteOption deleteOption = Torrent);
+        bool deleteTorrent(const InfoHash &hash, DeleteOption deleteOption = Torrent);
         bool loadMetadata(const MagnetUri &magnetUri);
         bool cancelLoadMetadata(const InfoHash &hash);
 
         void recursiveTorrentDownload(const InfoHash &hash);
-        void increaseTorrentsQueuePos(const QStringList &hashes);
-        void decreaseTorrentsQueuePos(const QStringList &hashes);
-        void topTorrentsQueuePos(const QStringList &hashes);
-        void bottomTorrentsQueuePos(const QStringList &hashes);
+        void increaseTorrentsQueuePos(const QVector<InfoHash> &hashes);
+        void decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes);
+        void topTorrentsQueuePos(const QVector<InfoHash> &hashes);
+        void bottomTorrentsQueuePos(const QVector<InfoHash> &hashes);
 
         // TorrentHandle interface
         void handleTorrentSaveResumeDataRequested(const TorrentHandle *torrent);

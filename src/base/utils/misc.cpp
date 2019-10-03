@@ -30,6 +30,7 @@
 
 #ifdef Q_OS_WIN
 #include <windows.h>
+#include <powrprof.h>
 #include <Shlobj.h>
 #else
 #include <sys/types.h>
@@ -117,16 +118,11 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    using PSETSUSPENDSTATE = BOOLEAN (WINAPI *)(BOOLEAN, BOOLEAN, BOOLEAN);
-    const auto setSuspendState = Utils::Misc::loadWinAPI<PSETSUSPENDSTATE>("PowrProf.dll", "SetSuspendState");
-
     if (action == ShutdownDialogAction::Suspend) {
-        if (setSuspendState)
-            setSuspendState(false, false, false);
+        ::SetSuspendState(false, false, false);
     }
     else if (action == ShutdownDialogAction::Hibernate) {
-        if (setSuspendState)
-            setSuspendState(true, false, false);
+        ::SetSuspendState(true, false, false);
     }
     else {
         const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");

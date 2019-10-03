@@ -33,6 +33,7 @@
 #include <cstdlib>
 #include <queue>
 #include <string>
+#include <utility>
 
 #ifdef Q_OS_WIN
 #include <wincrypt.h>
@@ -1625,7 +1626,7 @@ void Session::banIP(const QString &ip)
 
 // Delete a torrent from the session, given its hash
 // and from the disk, if the corresponding deleteOption is chosen
-bool Session::deleteTorrent(const QString &hash, const DeleteOption deleteOption)
+bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOption)
 {
     TorrentHandle *const torrent = m_torrents.take(hash);
     if (!torrent) return false;
@@ -1680,9 +1681,10 @@ bool Session::deleteTorrent(const QString &hash, const DeleteOption deleteOption
 
 bool Session::cancelLoadMetadata(const InfoHash &hash)
 {
-    if (!m_loadedMetadata.contains(hash)) return false;
+    const auto loadedMetadataIter = m_loadedMetadata.find(hash);
+    if (loadedMetadataIter == m_loadedMetadata.end()) return false;
 
-    m_loadedMetadata.remove(hash);
+    m_loadedMetadata.erase(loadedMetadataIter);
     const lt::torrent_handle torrent = m_nativeSession->find_torrent(hash);
     if (!torrent.is_valid()) return false;
 
@@ -1698,22 +1700,23 @@ bool Session::cancelLoadMetadata(const InfoHash &hash)
     return true;
 }
 
-void Session::increaseTorrentsQueuePos(const QStringList &hashes)
+void Session::increaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *>>,
-            std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
+    using ElementType = std::pair<int, TorrentHandle *>;
+    std::priority_queue<ElementType
+        , std::vector<ElementType>
+        , std::greater<ElementType>> torrentQueue;
 
     // Sort torrents by queue position
-    for (const InfoHash infoHash : hashes) {
+    for (const InfoHash &infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
-            torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
+            torrentQueue.emplace(torrent->queuePosition(), torrent);
     }
 
     // Increase torrents queue position (starting with the one in the highest queue position)
     while (!torrentQueue.empty()) {
-        TorrentHandle *const torrent = torrentQueue.top().second;
+        const TorrentHandle *torrent = torrentQueue.top().second;
         torrentQueuePositionUp(torrent->nativeHandle());
         torrentQueue.pop();
     }
@@ -1721,22 +1724,21 @@ void Session::increaseTorrentsQueuePos(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::decreaseTorrentsQueuePos(const QStringList &hashes)
+void Session::decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *>>,
-            std::less<QPair<int, TorrentHandle *>>> torrentQueue;
+    using ElementType = std::pair<int, TorrentHandle *>;
+    std::priority_queue<ElementType> torrentQueue;
 
     // Sort torrents by queue position
-    for (const InfoHash infoHash : hashes) {
+    for (const InfoHash &infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
-            torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
+            torrentQueue.emplace(torrent->queuePosition(), torrent);
     }
 
     // Decrease torrents queue position (starting with the one in the lowest queue position)
     while (!torrentQueue.empty()) {
-        TorrentHandle *const torrent = torrentQueue.top().second;
+        const TorrentHandle *torrent = torrentQueue.top().second;
         torrentQueuePositionDown(torrent->nativeHandle());
         torrentQueue.pop();
     }
@@ -1747,22 +1749,21 @@ void Session::decreaseTorrentsQueuePos(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::topTorrentsQueuePos(const QStringList &hashes)
+void Session::topTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *>>,
-            std::greater<QPair<int, TorrentHandle *>>> torrentQueue;
+    using ElementType = std::pair<int, TorrentHandle *>;
+    std::priority_queue<ElementType> torrentQueue;
 
     // Sort torrents by queue position
-    for (const InfoHash infoHash : hashes) {
+    for (const InfoHash &infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
-            torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
+            torrentQueue.emplace(torrent->queuePosition(), torrent);
     }
 
-    // Top torrents queue position (starting with the one in the highest queue position)
+    // Top torrents queue position (starting with the one in the lowest queue position)
     while (!torrentQueue.empty()) {
-        TorrentHandle *const torrent = torrentQueue.top().second;
+        const TorrentHandle *torrent = torrentQueue.top().second;
         torrentQueuePositionTop(torrent->nativeHandle());
         torrentQueue.pop();
     }
@@ -1770,22 +1771,23 @@ void Session::topTorrentsQueuePos(const QStringList &hashes)
     saveTorrentsQueue();
 }
 
-void Session::bottomTorrentsQueuePos(const QStringList &hashes)
+void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    std::priority_queue<QPair<int, TorrentHandle *>,
-            std::vector<QPair<int, TorrentHandle *>>,
-            std::less<QPair<int, TorrentHandle *>>> torrentQueue;
+    using ElementType = std::pair<int, TorrentHandle *>;
+    std::priority_queue<ElementType
+        , std::vector<ElementType>
+        , std::greater<ElementType>> torrentQueue;
 
     // Sort torrents by queue position
-    for (const InfoHash infoHash : hashes) {
+    for (const InfoHash &infoHash : hashes) {
         TorrentHandle *const torrent = m_torrents.value(infoHash);
         if (torrent && !torrent->isSeed())
-            torrentQueue.push(qMakePair(torrent->queuePosition(), torrent));
+            torrentQueue.emplace(torrent->queuePosition(), torrent);
     }
 
-    // Bottom torrents queue position (starting with the one in the lowest queue position)
+    // Bottom torrents queue position (starting with the one in the highest queue position)
     while (!torrentQueue.empty()) {
-        TorrentHandle *const torrent = torrentQueue.top().second;
+        const TorrentHandle *torrent = torrentQueue.top().second;
         torrentQueuePositionBottom(torrent->nativeHandle());
         torrentQueue.pop();
     }
@@ -4008,14 +4010,17 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
 
-    if (m_loadedMetadata.contains(infoHash))
-        emit metadataLoaded(m_loadedMetadata.take(infoHash));
+    const auto loadedMetadataIter = m_loadedMetadata.find(infoHash);
+    if (loadedMetadataIter != m_loadedMetadata.end()) {
+        emit metadataLoaded(*loadedMetadataIter);
+        m_loadedMetadata.erase(loadedMetadataIter);
+    }
 
-    if (m_removingTorrents.contains(infoHash)) {
-        const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents[infoHash];
-        if (tmpRemovingTorrentData.deleteOption == Torrent) {
-            LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
-            m_removingTorrents.remove(infoHash);
+    const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
+    if (removingTorrentDataIter != m_removingTorrents.end()) {
+        if (removingTorrentDataIter->deleteOption == Torrent) {
+            LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+            m_removingTorrents.erase(removingTorrentDataIter);
         }
     }
 }
@@ -4023,44 +4028,48 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
+    const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
 
-    if (!m_removingTorrents.contains(infoHash))
+    if (removingTorrentDataIter == m_removingTorrents.end())
         return;
-    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(infoHash);
-    Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
 
-    LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->savePathToRemove);
+    LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+    m_removingTorrents.erase(removingTorrentDataIter);
 }
 
 void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
 {
     const InfoHash infoHash {p->info_hash};
+    const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
 
-    if (!m_removingTorrents.contains(infoHash))
+    if (removingTorrentDataIter == m_removingTorrents.end())
         return;
-    const RemovingTorrentData tmpRemovingTorrentData = m_removingTorrents.take(infoHash);
+
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    Utils::Fs::smartRemoveEmptyFolderTree(tmpRemovingTorrentData.savePathToRemove);
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->savePathToRemove);
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
-                .arg(tmpRemovingTorrentData.name, QString::fromLocal8Bit(p->error.message().c_str()))
+                .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
     else {
-        LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(tmpRemovingTorrentData.name));
+        LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
     }
+    m_removingTorrents.erase(removingTorrentDataIter);
 }
 
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     const InfoHash hash {p->handle.info_hash()};
+    const auto loadedMetadataIter = m_loadedMetadata.find(hash);
 
-    if (m_loadedMetadata.contains(hash)) {
+    if (loadedMetadataIter != m_loadedMetadata.end()) {
         --m_extraLimit;
         adjustLimits();
-        m_loadedMetadata[hash] = TorrentInfo(p->handle.torrent_file());
+        *loadedMetadataIter = TorrentInfo(p->handle.torrent_file());
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
     }
 }
@@ -4531,23 +4540,15 @@ namespace
     QString convertIfaceNameToGuid(const QString &name)
     {
         // Under Windows XP or on Qt version <= 5.5 'name' will be a GUID already.
-        QUuid uuid(name);
+        const QUuid uuid(name);
         if (!uuid.isNull())
             return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
 
-        using PCONVERTIFACENAMETOLUID = NETIO_STATUS (WINAPI *)(const WCHAR *, PNET_LUID);
-        const auto ConvertIfaceNameToLuid = Utils::Misc::loadWinAPI<PCONVERTIFACENAMETOLUID>("Iphlpapi.dll", "ConvertInterfaceNameToLuidW");
-        if (!ConvertIfaceNameToLuid) return {};
-
-        using PCONVERTIFACELUIDTOGUID = NETIO_STATUS (WINAPI *)(const NET_LUID *, GUID *);
-        const auto ConvertIfaceLuidToGuid = Utils::Misc::loadWinAPI<PCONVERTIFACELUIDTOGUID>("Iphlpapi.dll", "ConvertInterfaceLuidToGuid");
-        if (!ConvertIfaceLuidToGuid) return {};
-
-        NET_LUID luid;
-        const LONG res = ConvertIfaceNameToLuid(name.toStdWString().c_str(), &luid);
+        NET_LUID luid {};
+        const LONG res = ::ConvertInterfaceNameToLuidW(name.toStdWString().c_str(), &luid);
         if (res == 0) {
             GUID guid;
-            if (ConvertIfaceLuidToGuid(&luid, &guid) == 0)
+            if (::ConvertInterfaceLuidToGuid(&luid, &guid) == 0)
                 return QUuid(guid).toString().toUpper();
         }
 
