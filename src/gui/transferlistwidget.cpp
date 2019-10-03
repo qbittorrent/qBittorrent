@@ -43,6 +43,7 @@
 #include <QTableView>
 #include <QWheelEvent>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
@@ -75,12 +76,12 @@
 
 namespace
 {
-    QStringList extractHashes(const QVector<BitTorrent::TorrentHandle *> &torrents)
+    QVector<BitTorrent::InfoHash> extractHashes(const QVector<BitTorrent::TorrentHandle *> &torrents)
     {
-        QStringList hashes;
-        for (BitTorrent::TorrentHandle *const torrent : torrents)
+        QVector<BitTorrent::InfoHash> hashes;
+        hashes.reserve(torrents.size());
+        for (const BitTorrent::TorrentHandle *torrent : torrents)
             hashes << torrent->hash();
-
         return hashes;
     }
 
@@ -283,10 +284,12 @@ void TransferListWidget::torrentDoubleClicked()
 
 QVector<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() const
 {
-    QVector<BitTorrent::TorrentHandle *> torrents;
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
-        torrents << m_listModel->torrentHandle(mapToSource(index));
+    const QModelIndexList selectedRows = selectionModel()->selectedRows();
 
+    QVector<BitTorrent::TorrentHandle *> torrents;
+    torrents.reserve(selectedRows.size());
+    for (const QModelIndex &index : selectedRows)
+        torrents << m_listModel->torrentHandle(mapToSource(index));
     return torrents;
 }
 
