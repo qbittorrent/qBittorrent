@@ -1076,7 +1076,7 @@ void TransferListWidget::importTorrentsFromXML()
     int loadedTorrents = 0;
     QString fullTorrentFilepath;
     QString hashString;
-    BitTorrent::AddTorrentParams m_torrentParams;
+    BitTorrent::AddTorrentParams torrentParams;
 
     for (int i = 0; i < asXMLStringList.size(); ++i) {
         QRegExp rx = QRegExp("");
@@ -1088,23 +1088,23 @@ void TransferListWidget::importTorrentsFromXML()
         if (pos > -1) {
             fullTorrentFilepath = "";
             hashString = "";
-            // Reset m_torrentParams
-            m_torrentParams.name = "";
-            m_torrentParams.category = "";
-            m_torrentParams.tags.clear();
-            m_torrentParams.savePath = "";
-            m_torrentParams.disableTempPath = false; // e.g. for imported torrents
-            m_torrentParams.sequential = false;
-            m_torrentParams.firstLastPiecePriority = false;
-            m_torrentParams.addForced = TriStateBool(false);
-            m_torrentParams.addPaused = TriStateBool(false);
-            m_torrentParams.filePriorities.clear();
-            m_torrentParams.ignoreShareLimits = false;
-            m_torrentParams.skipChecking = false;
-            m_torrentParams.createSubfolder = TriStateBool(false);
-            m_torrentParams.useAutoTMM = TriStateBool(false);
-            m_torrentParams.uploadLimit = -1;
-            m_torrentParams.downloadLimit = -1;
+            // Reset torrentParams
+            torrentParams.name = "";
+            torrentParams.category = "";
+            torrentParams.tags.clear();
+            torrentParams.savePath = "";
+            torrentParams.disableTempPath = false; // e.g. for imported torrents
+            torrentParams.sequential = false;
+            torrentParams.firstLastPiecePriority = false;
+            torrentParams.addForced = TriStateBool(false);
+            torrentParams.addPaused = TriStateBool(false);
+            torrentParams.filePriorities.clear();
+            torrentParams.ignoreShareLimits = false;
+            torrentParams.skipChecking = false;
+            torrentParams.createSubfolder = TriStateBool(false);
+            torrentParams.useAutoTMM = TriStateBool(false);
+            torrentParams.uploadLimit = -1;
+            torrentParams.downloadLimit = -1;
             continue;
         }
 
@@ -1119,7 +1119,7 @@ void TransferListWidget::importTorrentsFromXML()
         rx.setPattern("^\\s*<name>(.*)</name>\\s*$");
         pos = rx.indexIn(line);
         if (pos > -1) {
-            m_torrentParams.name = rx.cap(1);
+            torrentParams.name = rx.cap(1);
             continue;
         }
         
@@ -1133,7 +1133,7 @@ void TransferListWidget::importTorrentsFromXML()
                     if (!BitTorrent::Session::instance()->categories().contains(category)) {
                         BitTorrent::Session::instance()->addCategory(category, QDir::tempPath()); // WARNING second parameter is a "save path" we can choose from the dialog, not sure why it's there...
                     }
-                    m_torrentParams.category = category;
+                    torrentParams.category = category;
                 }
             }
             continue;
@@ -1149,7 +1149,7 @@ void TransferListWidget::importTorrentsFromXML()
                     if (!BitTorrent::Session::instance()->tags().contains(tag)) {
                         BitTorrent::Session::instance()->addTag(tag);
                     }
-                    m_torrentParams.tags << tag;
+                    torrentParams.tags << tag;
                 }
             }
             continue;
@@ -1158,7 +1158,7 @@ void TransferListWidget::importTorrentsFromXML()
         rx.setPattern("^\\s*<savePath>(.*)</savePath>\\s*$");
         pos = rx.indexIn(line);
         if (pos > -1) {
-            m_torrentParams.savePath = rx.cap(1);
+            torrentParams.savePath = rx.cap(1);
             continue;
         }
 
@@ -1166,7 +1166,7 @@ void TransferListWidget::importTorrentsFromXML()
         pos = rx.indexIn(line);
         if (pos > -1) {
             if (rx.cap(1) == "True") {
-                m_torrentParams.useAutoTMM = TriStateBool(true);
+                torrentParams.useAutoTMM = TriStateBool(true);
             }
             continue;
         }
@@ -1175,7 +1175,7 @@ void TransferListWidget::importTorrentsFromXML()
         pos = rx.indexIn(line);
         if (pos > -1) {
             if (rx.cap(1) == "True") {
-                m_torrentParams.sequential = true;
+                torrentParams.sequential = true;
             }
             continue;
         }
@@ -1184,7 +1184,7 @@ void TransferListWidget::importTorrentsFromXML()
         pos = rx.indexIn(line);
         if (pos > -1) {
             if (rx.cap(1) == "True") {
-                m_torrentParams.firstLastPiecePriority = true;
+                torrentParams.firstLastPiecePriority = true;
             }
             continue;
         }
@@ -1192,7 +1192,7 @@ void TransferListWidget::importTorrentsFromXML()
         rx.setPattern("^\\s*<filePriority>(.*)</filePriority>\\s*$");
         pos = rx.indexIn(line);
         if (pos > -1) {
-            m_torrentParams.filePriorities << static_cast<BitTorrent::DownloadPriority>(rx.cap(1).toInt());
+            torrentParams.filePriorities << static_cast<BitTorrent::DownloadPriority>(rx.cap(1).toInt());
             continue;
         }
 
@@ -1200,7 +1200,7 @@ void TransferListWidget::importTorrentsFromXML()
         pos = rx.indexIn(line);
         if (pos > -1) {
             if (rx.cap(1) == "True") {
-                m_torrentParams.addPaused = TriStateBool(true);
+                torrentParams.addPaused = TriStateBool(true);
             }
             continue;
         }
@@ -1209,7 +1209,7 @@ void TransferListWidget::importTorrentsFromXML()
         pos = rx.indexIn(line);
         if (pos > -1) {
             if (rx.cap(1) == "True") {
-                m_torrentParams.addForced = TriStateBool(true);
+                torrentParams.addForced = TriStateBool(true);
             }
             continue;
         }
@@ -1217,14 +1217,14 @@ void TransferListWidget::importTorrentsFromXML()
         rx.setPattern("^\\s*<uploadLimit>(.*)</uploadLimit>\\s*$");
         pos = rx.indexIn(line);
         if (pos > -1) {
-            m_torrentParams.uploadLimit = rx.cap(1).toInt();
+            torrentParams.uploadLimit = rx.cap(1).toInt();
             continue;
         }
         
         rx.setPattern("^\\s*<downloadLimit>(.*)</downloadLimit>\\s*$");
         pos = rx.indexIn(line);
         if (pos > -1) {
-            m_torrentParams.downloadLimit = rx.cap(1).toInt();
+            torrentParams.downloadLimit = rx.cap(1).toInt();
             continue;
         }
 
@@ -1233,26 +1233,49 @@ void TransferListWidget::importTorrentsFromXML()
         pos = rx.indexIn(line);
         if (pos > -1) {
             bool torrentLoadSuccess = false;
-            BitTorrent::InfoHash m_hash = hashString;
+            BitTorrent::InfoHash hash = hashString;
             
             // Load from .torrent file
             if (QFileInfo::exists(fullTorrentFilepath) && 
                 QFileInfo(fullTorrentFilepath).isFile() && 
                 QFileInfo(fullTorrentFilepath).isReadable()) {
                 Logger::instance()->addMessage(tr("Loading torrent from file: ") + "\"" + fullTorrentFilepath + "\".");
-                torrentLoadSuccess = BitTorrent::Session::instance()->addTorrent(fullTorrentFilepath, m_torrentParams);
+                torrentLoadSuccess = BitTorrent::Session::instance()->addTorrent(fullTorrentFilepath, torrentParams);
             }
             else { // Fallback on magnet uri hash loading
                 Logger::instance()->addMessage(tr("Torrent file not found or not readable, loading from hash instead: ") + "\"" + hashString + "\".");
-                torrentLoadSuccess = BitTorrent::Session::instance()->addTorrent(m_hash, m_torrentParams);
+                torrentLoadSuccess = BitTorrent::Session::instance()->addTorrent(hash, torrentParams);
             }
 
             if (torrentLoadSuccess) {
+                /*
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // WIP...
+                // I'm trying to get my torrent handle in order to push back trackers (they are not even loaded ATM)
+                // but for an unknown reason findTorrent() doesn't find it, so i might need some update call that i
+                // don't know about yet.
+                
+                Logger::instance()->addMessage("DEBUG>>>>", Log::CRITICAL);
+                BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+                if (torrent) {
+                    Logger::instance()->addMessage(tr("torrent found: ") + "\"" + torrent->name() + "\".", Log::CRITICAL);
+                }
+                
+                // No torrents will ever appear until i get out of this method back to the main GUI... :/
+                // They are added but i cannot get them, any idea?
+                for (BitTorrent::TorrentHandle *const t : asConst(BitTorrent::Session::instance()->torrents())) {
+                    Logger::instance()->addMessage(tr("looking for: ") + "\"" + torrentParams.name + "\".", Log::CRITICAL);
+                    Logger::instance()->addMessage(tr("scanning: ") + "\"" + t->name() + "\".", Log::CRITICAL);
+                }
+                Logger::instance()->addMessage("DEBUG<<<<", Log::CRITICAL);
+                
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////
+                */
                 loadedTorrents += 1;
             }
             else {
                 // TODO add error report from addTorrent() - need to check how...
-                Logger::instance()->addMessage(tr("Cannot load torrent: ") + "\"" + hashString + "\" - \"" + m_torrentParams.name + "\"", Log::CRITICAL);
+                Logger::instance()->addMessage(tr("Cannot load torrent: ") + "\"" + hashString + "\" - \"" + torrentParams.name + "\"", Log::CRITICAL);
             }
         }
     }
