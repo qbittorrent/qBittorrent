@@ -38,6 +38,8 @@ else()
         # libtorrent is very picky about those. Let's take a set of defaults and
         # hope that they apply. If not, you the user are on your own.
         set(LibtorrentRasterbar_DEFINITIONS
+            -DTORRENT_USE_LIBCRYPTO
+            # TODO: remove the following define as it is not used since OpenSSL >= 1.1
             -DTORRENT_USE_OPENSSL
             -DBOOST_ASIO_ENABLE_CANCELIO
             -DUNICODE -D_UNICODE -D_FILE_OFFSET_BITS=64)

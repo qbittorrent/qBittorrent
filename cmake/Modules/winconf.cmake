@@ -5,8 +5,12 @@ list(APPEND CMAKE_LIBRARY_PATH "$ENV{LIB}")
 set(LibtorrentRasterbar_CUSTOM_DEFINITIONS
     -DBOOST_ASIO_DISABLE_CONNECTEX
     -DBOOST_EXCEPTION_DISABLE
+    -DTORRENT_USE_LIBCRYPTO
+    # TODO: remove the following define as it is not used since OpenSSL >= 1.1
     -DTORRENT_USE_OPENSSL
-    -DTORRENT_DISABLE_RESOLVE_COUNTRIES)
+    # TODO: remove the following define as it is not used since libtorrent >= 1.2
+    -DTORRENT_DISABLE_RESOLVE_COUNTRIES
+)
 
 set(LibtorrentRasterbar_CUSTOM_BOOST_DEPENDENCIES system)
 

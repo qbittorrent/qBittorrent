@@ -3,7 +3,10 @@
 DEFINES += BOOST_ASIO_DISABLE_CONNECTEX
 DEFINES += BOOST_EXCEPTION_DISABLE
 
+DEFINES += TORRENT_USE_LIBCRYPTO
+# TODO: remove the following define as it is not used since OpenSSL >= 1.1
 DEFINES += TORRENT_USE_OPENSSL
+# TODO: remove the following define as it is not used since libtorrent >= 1.2
 DEFINES += TORRENT_DISABLE_RESOLVE_COUNTRIES
 
 DEFINES += NTDDI_VERSION=0x06010000
