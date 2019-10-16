@@ -1012,7 +1012,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
 {
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.value())) {
-        boost::system::error_code ec;
+        lt::error_code ec;
         const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (!ec)
@@ -1612,7 +1612,7 @@ void Session::banIP(const QString &ip)
     QStringList bannedIPs = m_bannedIPs;
     if (!bannedIPs.contains(ip)) {
         lt::ip_filter filter = m_nativeSession->get_ip_filter();
-        boost::system::error_code ec;
+        lt::error_code ec;
         const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec) return;
@@ -4132,7 +4132,7 @@ void Session::handlePortmapAlert(const lt::portmap_alert *p)
 
 void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 {
-    boost::system::error_code ec;
+    lt::error_code ec;
 #if LIBTORRENT_VERSION_NUM < 10200
     const std::string ip = p->ip.to_string(ec);
 #else
@@ -4166,7 +4166,7 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 
 void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
-    boost::system::error_code ec;
+    lt::error_code ec;
 #if (LIBTORRENT_VERSION_NUM < 10200)
     const std::string ip = p->ip.address().to_string(ec);
 #else
@@ -4244,7 +4244,7 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
     }
 #endif
 
-    boost::system::error_code ec;
+    lt::error_code ec;
     LogMsg(tr("Successfully listening on IP: %1, port: %2/%3"
               , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
 #if (LIBTORRENT_VERSION_NUM < 10200)
@@ -4307,7 +4307,7 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
     }
 #endif
 
-    boost::system::error_code ec;
+    lt::error_code ec;
     LogMsg(tr("Failed to listen on IP: %1, port: %2/%3. Reason: %4"
               , "e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use")
 #if (LIBTORRENT_VERSION_NUM < 10200)
@@ -4321,7 +4321,7 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
-    boost::system::error_code ec;
+    lt::error_code ec;
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
         .arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }

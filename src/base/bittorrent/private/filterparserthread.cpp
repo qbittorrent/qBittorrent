@@ -30,6 +30,8 @@
 
 #include <cctype>
 
+#include <libtorrent/error_code.hpp>
+
 #include <QDataStream>
 #include <QFile>
 
@@ -89,7 +91,7 @@ namespace
     bool parseIPAddress(const char *data, lt::address &address)
     {
         IPv4Parser parser;
-        boost::system::error_code ec;
+        lt::error_code ec;
 
         if (parser.tryParse(data))
             address = lt::address_v4(parser.parsed());
