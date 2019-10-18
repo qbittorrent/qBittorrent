@@ -14,7 +14,7 @@ out there. qBittorrent is fast, stable and provides unicode
 support as well as many features.
 
 This product includes GeoLite data created by MaxMind, available from
-https://www.maxmind.com/
+https://www.maxmind.com
 
 ### Installation:
 For installation, follow the instructions from INSTALL file, but simple:
@@ -38,13 +38,13 @@ For more information please visit:
 https://www.qbittorrent.org
 
 or our wiki here:
-http://wiki.qbittorrent.org
+https://github.com/qbittorrent/qBittorrent/wiki
 
 Use the forum for troubleshooting before reporting bugs:
-http://forum.qbittorrent.org
+https://qbforums.shiki.hu
 
 Please report any bug (or feature request) to:
-http://bugs.qbittorrent.org
+https://github.com/qbittorrent/qBittorrent/issues
 
 You can also meet me (sledgehammer_999) on IRC:
 `#qbittorrent on irc.freenode.net`
