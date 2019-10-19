@@ -4178,7 +4178,6 @@ QBT_CXX="$CXX"
 
 # Define --wth-* and --enable-* arguments
 
-
 # Check whether --with-qtsingleapplication was given.
 if test "${with_qtsingleapplication+set}" = set; then :
   withval=$with_qtsingleapplication;
@@ -4749,7 +4748,9 @@ fi
                         case ${host_cpu} in #(
   x86_64) :
     libsubdirs="lib64 libx32 lib lib64" ;; #(
-  ppc64|s390x|sparc64|aarch64|ppc64le) :
+  mips*64*) :
+    libsubdirs="lib64 lib32 lib lib64" ;; #(
+  ppc64|powerpc64|s390x|sparc64|aarch64|ppc64le|powerpc64le|riscv64) :
     libsubdirs="lib64 lib lib64" ;; #(
   *) :
     libsubdirs="lib"
@@ -5271,7 +5272,7 @@ fi
 
             fi
             if test "x$ax_lib" = "x"; then
-                as_fn_error $? "Could not find a version of the library!" "$LINENO" 5
+                as_fn_error $? "Could not find a version of the Boost::System library!" "$LINENO" 5
             fi
 			if test "x$link_system" = "xno"; then
 				as_fn_error $? "Could not link against $ax_lib !" "$LINENO" 5
