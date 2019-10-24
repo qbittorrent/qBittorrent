@@ -1071,7 +1071,11 @@ qulonglong TorrentHandle::eta() const
 
 QVector<qreal> TorrentHandle::filesProgress() const
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
     std::vector<boost::int64_t> fp;
+#else
+    std::vector<int64_t> fp;
+#endif
     m_nativeHandle.file_progress(fp, lt::torrent_handle::piece_granularity);
 
     const int count = static_cast<int>(fp.size());
@@ -1267,15 +1271,25 @@ int TorrentHandle::maxSeedingTime() const
 
 qreal TorrentHandle::realRatio() const
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
     const boost::int64_t upload = m_nativeStatus.all_time_upload;
     // special case for a seeder who lost its stats, also assume nobody will import a 99% done torrent
-    const boost::int64_t download = (m_nativeStatus.all_time_download < m_nativeStatus.total_done * 0.01) ? m_nativeStatus.total_done : m_nativeStatus.all_time_download;
+    const boost::int64_t download = (m_nativeStatus.all_time_download < (m_nativeStatus.total_done * 0.01))
+        ? m_nativeStatus.total_done
+        : m_nativeStatus.all_time_download;
+#else
+    const int64_t upload = m_nativeStatus.all_time_upload;
+    // special case for a seeder who lost its stats, also assume nobody will import a 99% done torrent
+    const int64_t download = (m_nativeStatus.all_time_download < (m_nativeStatus.total_done * 0.01))
+        ? m_nativeStatus.total_done
+        : m_nativeStatus.all_time_download;
+#endif
 
     if (download == 0)
-        return (upload == 0) ? 0.0 : MAX_RATIO;
+        return (upload == 0) ? 0 : MAX_RATIO;
 
     const qreal ratio = upload / static_cast<qreal>(download);
-    Q_ASSERT(ratio >= 0.0);
+    Q_ASSERT(ratio >= 0);
     return (ratio > MAX_RATIO) ? MAX_RATIO : ratio;
 }
 

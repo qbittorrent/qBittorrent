@@ -1012,7 +1012,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
 {
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.value())) {
-        boost::system::error_code ec;
+        lt::error_code ec;
         const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (!ec)
@@ -1131,31 +1131,30 @@ void Session::configure(lt::settings_pack &settingsPack)
         if (port > 0)  // user specified port
             settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
 
-        for (QString ip : getListeningIPs()) {
-            lt::error_code ec;
-            std::string interfacesStr;
-
+        for (const QString &ip : asConst(getListeningIPs())) {
             if (ip.isEmpty()) {
-                ip = QLatin1String("0.0.0.0");
-                interfacesStr = std::string((QString("%1:%2").arg(ip).arg(port)).toLatin1().constData());
-                LogMsg(tr("qBittorrent is trying to listen on any interface port: %1"
-                            , "e.g: qBittorrent is trying to listen on any interface port: TCP/6881")
-                        .arg(QString::number(port))
+                const QString anyIP = QHostAddress(QHostAddress::AnyIPv4).toString();
+                const std::string endpoint = anyIP.toStdString() + ':' + std::to_string(port);
+                settingsPack.set_str(lt::settings_pack::listen_interfaces, endpoint);
+                LogMsg(tr("Trying to listen on IP: %1, port: %2"
+                        , "e.g: Trying to listen on IP: 192.168.0.1, port: 6881")
+                        .arg(anyIP, QString::number(port))
                     , Log::INFO);
-
-                settingsPack.set_str(lt::settings_pack::listen_interfaces, interfacesStr);
                 break;
             }
 
-            const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
+            lt::error_code ec;
+            const lt::address addr = lt::address::from_string(ip.toStdString(), ec);
             if (!ec) {
-                interfacesStr = std::string((addr.is_v6() ? QString("[%1]:%2") : QString("%1:%2"))
-                                            .arg(ip).arg(port).toLatin1().constData());
-                LogMsg(tr("qBittorrent is trying to listen on interface %1 port: %2"
-                            , "e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881")
-                        .arg(ip).arg(port)
+                const std::string endpoint = (addr.is_v6()
+                    ? ('[' + addr.to_string() + ']')
+                    : addr.to_string())
+                    + ':' + std::to_string(port);
+                settingsPack.set_str(lt::settings_pack::listen_interfaces, endpoint);
+                LogMsg(tr("Trying to listen on IP: %1, port: %2"
+                        , "e.g: Trying to listen on IP: 192.168.0.1, port: 6881")
+                        .arg(ip, QString::number(port))
                     , Log::INFO);
-                settingsPack.set_str(lt::settings_pack::listen_interfaces, interfacesStr);
 #ifdef Q_OS_WIN
                 chosenIP = ip;
 #endif
@@ -1165,22 +1164,24 @@ void Session::configure(lt::settings_pack &settingsPack)
 
 #ifdef Q_OS_WIN
         // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
-        // the interface's Luid and not the GUID.
+        // the interface's LUID and not the GUID.
         // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
-        if (!networkInterface().isEmpty()) {
-            const QString guid = convertIfaceNameToGuid(networkInterface());
+        const QString netInterface = networkInterface();
+        if (!netInterface.isEmpty()) {
+            const QString guid = convertIfaceNameToGuid(netInterface);
             if (!guid.isEmpty()) {
                 settingsPack.set_str(lt::settings_pack::outgoing_interfaces, guid.toStdString());
             }
             else {
                 settingsPack.set_str(lt::settings_pack::outgoing_interfaces, chosenIP.toStdString());
-                LogMsg(tr("Could not get GUID of configured network interface. Binding to IP %1").arg(chosenIP)
+                LogMsg(tr("Could not get GUID of configured network interface. Binding to IP: %1").arg(chosenIP)
                        , Log::WARNING);
             }
         }
 #else
         settingsPack.set_str(lt::settings_pack::outgoing_interfaces, networkInterface().toStdString());
 #endif // Q_OS_WIN
+
         m_listenInterfaceChanged = false;
     }
 
@@ -1611,7 +1612,7 @@ void Session::banIP(const QString &ip)
     QStringList bannedIPs = m_bannedIPs;
     if (!bannedIPs.contains(ip)) {
         lt::ip_filter filter = m_nativeSession->get_ip_filter();
-        boost::system::error_code ec;
+        lt::error_code ec;
         const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec) return;
@@ -2298,7 +2299,7 @@ void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
     }
 }
 
-const QStringList Session::getListeningIPs()
+QStringList Session::getListeningIPs() const
 {
     QStringList IPs;
 
@@ -4131,7 +4132,7 @@ void Session::handlePortmapAlert(const lt::portmap_alert *p)
 
 void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 {
-    boost::system::error_code ec;
+    lt::error_code ec;
 #if LIBTORRENT_VERSION_NUM < 10200
     const std::string ip = p->ip.to_string(ec);
 #else
@@ -4165,7 +4166,7 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 
 void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
-    boost::system::error_code ec;
+    lt::error_code ec;
 #if (LIBTORRENT_VERSION_NUM < 10200)
     const std::string ip = p->ip.address().to_string(ec);
 #else
@@ -4243,9 +4244,9 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
     }
 #endif
 
-    boost::system::error_code ec;
-    LogMsg(tr("qBittorrent is successfully listening on interface %1 port: %2/%3"
-              , "e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881")
+    lt::error_code ec;
+    LogMsg(tr("Successfully listening on IP: %1, port: %2/%3"
+              , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
 #if (LIBTORRENT_VERSION_NUM < 10200)
             .arg(p->endpoint.address().to_string(ec).c_str(), proto, QString::number(p->endpoint.port())), Log::INFO);
 #else
@@ -4306,9 +4307,9 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
     }
 #endif
 
-    boost::system::error_code ec;
-    LogMsg(tr("qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4."
-              , "e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.")
+    lt::error_code ec;
+    LogMsg(tr("Failed to listen on IP: %1, port: %2/%3. Reason: %4"
+              , "e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use")
 #if (LIBTORRENT_VERSION_NUM < 10200)
         .arg(p->endpoint.address().to_string(ec).c_str(), proto, QString::number(p->endpoint.port())
             , QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
@@ -4320,8 +4321,9 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
-    boost::system::error_code ec;
-    LogMsg(tr("External IP: %1", "e.g. External IP: 192.168.0.1").arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+    lt::error_code ec;
+    LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
+        .arg(p->external_address.to_string(ec).c_str()), Log::INFO);
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
