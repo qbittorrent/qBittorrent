@@ -1,3 +1,8 @@
+* Sun Oct 27 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.9
+    - BUGFIX: Preserve relative order when moving to top/bottom in queue (Chocobo1)
+    - WINDOWS: Use real physical screen DPI (Chocobo1)
+    - WEBUI: Bump Web API version
+
 * Mon Sep 23 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.8
     - BUGFIX: Fix filename validation on non-Windows OS (Chocobo1)
     - BUGFIX: ScanFolders/FileSystemWatcher now detect magnet files with case insensitivity in filename (Chocobo1)
