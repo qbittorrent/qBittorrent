@@ -568,7 +568,7 @@ namespace BitTorrent
         void saveTorrentsQueue();
         void removeTorrentsQueue();
 
-        void getPendingAlerts(std::vector<lt::alert *> &out, ulong time = 0);
+        std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
         // BitTorrent
         lt::session *m_nativeSession = nullptr;

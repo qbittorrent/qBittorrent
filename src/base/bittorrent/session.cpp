@@ -2195,14 +2195,13 @@ void Session::saveResumeData()
     generateResumeData(true);
 
     while (m_numResumeData > 0) {
-        std::vector<lt::alert *> alerts;
-        getPendingAlerts(alerts, 30 * 1000);
+        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds(30));
         if (alerts.empty()) {
             fprintf(stderr, " aborting with %d outstanding torrents to save resume data for\n", m_numResumeData);
             break;
         }
 
-        for (const auto a : alerts) {
+        for (const lt::alert *a : alerts) {
             switch (a->type()) {
             case lt::save_resume_data_failed_alert::alert_type:
             case lt::save_resume_data_alert::alert_type:
@@ -3812,13 +3811,14 @@ void Session::handleIPFilterError()
     emit IPFilterParsed(true, 0);
 }
 
-void Session::getPendingAlerts(std::vector<lt::alert *> &out, const ulong time)
+std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time) const
 {
-    Q_ASSERT(out.empty());
+    if (time > lt::time_duration::zero())
+        m_nativeSession->wait_for_alert(time);
 
-    if (time > 0)
-        m_nativeSession->wait_for_alert(lt::milliseconds(time));
-    m_nativeSession->pop_alerts(&out);
+    std::vector<lt::alert *> alerts;
+    m_nativeSession->pop_alerts(&alerts);
+    return alerts;
 }
 
 bool Session::isCreateTorrentSubfolder() const
@@ -3834,10 +3834,8 @@ void Session::setCreateTorrentSubfolder(const bool value)
 // Read alerts sent by the BitTorrent session
 void Session::readAlerts()
 {
-    std::vector<lt::alert *> alerts;
-    getPendingAlerts(alerts);
-
-    for (const auto a : alerts)
+    const std::vector<lt::alert *> alerts = getPendingAlerts();
+    for (const lt::alert *a : alerts)
         handleAlert(a);
 }
 
