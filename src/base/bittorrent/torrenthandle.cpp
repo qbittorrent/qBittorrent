@@ -1581,11 +1581,15 @@ bool TorrentHandle::saveTorrentFile(const QString &path)
 #endif
     const lt::entry torrentEntry = torrentCreator.generate();
 
-    QVector<char> out;
+    QByteArray out;
+    out.reserve(1024 * 1024);  // most torrent file sizes are under 1 MB
     lt::bencode(std::back_inserter(out), torrentEntry);
+    if (out.isEmpty())
+        return false;
+
     QFile torrentFile(path);
-    if (!out.empty() && torrentFile.open(QIODevice::WriteOnly))
-        return (torrentFile.write(&out[0], out.size()) == out.size());
+    if (torrentFile.open(QIODevice::WriteOnly))
+        return (torrentFile.write(out) == out.size());
 
     return false;
 }

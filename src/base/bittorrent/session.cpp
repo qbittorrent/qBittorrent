@@ -3507,6 +3507,7 @@ void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const l
     // isn't cheap too.
 
     QByteArray out;
+    out.reserve(1024 * 1024);  // most fastresume file sizes are under 1 MB
     lt::bencode(std::back_inserter(out), data);
 
     const QString filename = QString("%1.fastresume").arg(torrent->hash());
