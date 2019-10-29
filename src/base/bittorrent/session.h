@@ -574,8 +574,8 @@ namespace BitTorrent
         lt::session *m_nativeSession = nullptr;
 
         bool m_deferredConfigureScheduled = false;
-        bool m_IPFilteringChanged = true;  // initialization require this to be true
-        bool m_listenInterfaceChanged = true; // initialization require this to be true
+        bool m_IPFilteringConfigured = false;
+        bool m_listenInterfaceConfigured = false;
 
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
