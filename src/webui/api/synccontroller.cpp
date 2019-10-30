@@ -446,7 +446,7 @@ void SyncController::maindataAction()
     data["torrents"] = torrents;
 
     QVariantHash categories;
-    const auto &categoriesList = session->categories();
+    const QStringMap categoriesList = session->categories();
     for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
         const QString &key = it.key();
         categories[key] = QVariantMap {
