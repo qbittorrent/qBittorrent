@@ -1,3 +1,6 @@
+* Thu Oct 31 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.9.1
+    - WINDOWS: Fix a problem with bigger dialogs due to wrong DPI reported by the system (Chocobo1)
+
 * Sun Oct 27 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.1.9
     - BUGFIX: Preserve relative order when moving to top/bottom in queue (Chocobo1)
     - WINDOWS: Use real physical screen DPI (Chocobo1)
