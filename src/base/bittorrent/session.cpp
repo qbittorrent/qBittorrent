@@ -726,7 +726,7 @@ bool Session::addTag(const QString &tag)
 
     if (!hasTag(tag)) {
         m_tags.insert(tag);
-        m_storedTags = m_tags.toList();
+        m_storedTags = m_tags.values();
         emit tagAdded(tag);
         return true;
     }
@@ -738,7 +738,7 @@ bool Session::removeTag(const QString &tag)
     if (m_tags.remove(tag)) {
         for (TorrentHandle *const torrent : asConst(torrents()))
             torrent->removeTag(tag);
-        m_storedTags = m_tags.toList();
+        m_storedTags = m_tags.values();
         emit tagRemoved(tag);
         return true;
     }
@@ -3752,7 +3752,7 @@ void Session::startUpTorrents()
         }
 
         if (!queue.empty())
-            fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).toList();
+            fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).values();
     }
 
     for (const QString &fastresumeName : asConst(fastresumes)) {

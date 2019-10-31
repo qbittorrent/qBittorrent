@@ -102,7 +102,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_FIRST_LAST_PIECE_PRIO, torrent.hasFirstLastPiecePriority()},
 
         {KEY_TORRENT_CATEGORY, torrent.category()},
-        {KEY_TORRENT_TAGS, torrent.tags().toList().join(", ")},
+        {KEY_TORRENT_TAGS, torrent.tags().values().join(", ")},
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},

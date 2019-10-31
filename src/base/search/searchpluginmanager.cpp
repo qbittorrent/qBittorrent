@@ -157,7 +157,7 @@ QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) 
             categories << category;
     }
 
-    return categories.toList();
+    return categories.values();
 }
 
 PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
