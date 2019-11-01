@@ -200,7 +200,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS: {
-            QStringList tagsList = torrent->tags().toList();
+            QStringList tagsList = torrent->tags().values();
             tagsList.sort();
             return tagsList.join(", ");
         }
