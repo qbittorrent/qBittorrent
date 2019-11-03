@@ -125,17 +125,122 @@ namespace
     using LTString = lt::string_view;
 #endif
 
-    bool readFile(const QString &path, QByteArray &buf);
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri);
+    template <typename LTStr>
+    QString fromLTString(const LTStr &str)
+    {
+        return QString::fromUtf8(str.data(), static_cast<int>(str.size()));
+    }
 
-    void torrentQueuePositionUp(const lt::torrent_handle &handle);
-    void torrentQueuePositionDown(const lt::torrent_handle &handle);
-    void torrentQueuePositionTop(const lt::torrent_handle &handle);
-    void torrentQueuePositionBottom(const lt::torrent_handle &handle);
+    bool readFile(const QString &path, QByteArray &buf)
+    {
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly)) {
+            qDebug("Cannot read file %s: %s", qUtf8Printable(path), qUtf8Printable(file.errorString()));
+            return false;
+        }
 
-#ifdef Q_OS_WIN
-    QString convertIfaceNameToGuid(const QString &name);
-#endif
+        buf = file.readAll();
+        return true;
+    }
+
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
+    {
+        lt::error_code ec;
+        lt::bdecode_node root;
+        lt::bdecode(data.constData(), (data.constData() + data.size()), root, ec);
+        if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
+
+        torrentParams = CreateTorrentParams();
+
+        torrentParams.restored = true;
+        torrentParams.skipChecking = false;
+        torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
+        torrentParams.savePath = Profile::instance().fromPortablePath(
+            Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
+        torrentParams.disableTempPath = root.dict_find_int_value("qBt-tempPathDisabled");
+        torrentParams.sequential = root.dict_find_int_value("qBt-sequential");
+        torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
+        torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
+        torrentParams.hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
+        torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
+
+        const bool isAutoManaged = root.dict_find_int_value("auto_managed");
+        const bool isPaused = root.dict_find_int_value("paused");
+        torrentParams.paused = root.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
+        torrentParams.forced = root.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
+
+        const LTString ratioLimitString = root.dict_find_string_value("qBt-ratioLimit");
+        if (ratioLimitString.empty())
+            torrentParams.ratioLimit = root.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
+        else
+            torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
+
+        // **************************************************************************************
+        // Workaround to convert legacy label to category
+        // TODO: Should be removed in future
+        torrentParams.category = fromLTString(root.dict_find_string_value("qBt-label"));
+        if (torrentParams.category.isEmpty())
+        // **************************************************************************************
+            torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
+
+        const lt::bdecode_node tagsNode = root.dict_find("qBt-tags");
+        if (tagsNode.type() == lt::bdecode_node::list_t) {
+            for (int i = 0; i < tagsNode.list_size(); ++i) {
+                const QString tag = fromLTString(tagsNode.list_string_value_at(i));
+                if (Session::isValidTag(tag))
+                    torrentParams.tags << tag;
+            }
+        }
+
+        const lt::bdecode_node addedTimeNode = root.dict_find("qBt-addedTime");
+        if (addedTimeNode.type() == lt::bdecode_node::int_t)
+            torrentParams.addedTime = QDateTime::fromSecsSinceEpoch(addedTimeNode.int_value());
+
+        queuePos = root.dict_find_int_value("qBt-queuePosition");
+        magnetUri = MagnetUri(fromLTString(root.dict_find_string_value("qBt-magnetUri")));
+
+        return true;
+    }
+
+    void torrentQueuePositionUp(const lt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_up();
+        }
+        catch (const std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
+    }
+
+    void torrentQueuePositionDown(const lt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_down();
+        }
+        catch (const std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
+    }
+
+    void torrentQueuePositionTop(const lt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_top();
+        }
+        catch (const std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
+    }
+
+    void torrentQueuePositionBottom(const lt::torrent_handle &handle)
+    {
+        try {
+            handle.queue_position_bottom();
+        }
+        catch (const std::exception &exc) {
+            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
+        }
+    }
 
     QStringMap map_cast(const QVariantMap &map)
     {
@@ -151,12 +256,6 @@ namespace
         for (auto i = map.cbegin(); i != map.cend(); ++i)
             result[i.key()] = i.value();
         return result;
-    }
-
-    template <typename LTStr>
-    QString fromLTString(const LTStr &str)
-    {
-        return QString::fromUtf8(str.data(), static_cast<int>(str.size()));
     }
 
     QString normalizePath(const QString &path)
@@ -234,6 +333,26 @@ namespace
             return value;
         };
     }
+
+#ifdef Q_OS_WIN
+    QString convertIfaceNameToGuid(const QString &name)
+    {
+        // Under Windows XP or on Qt version <= 5.5 'name' will be a GUID already.
+        const QUuid uuid(name);
+        if (!uuid.isNull())
+            return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
+
+        NET_LUID luid {};
+        const LONG res = ::ConvertInterfaceNameToLuidW(name.toStdWString().c_str(), &luid);
+        if (res == 0) {
+            GUID guid;
+            if (::ConvertInterfaceLuidToGuid(&luid, &guid) == 0)
+                return QUuid(guid).toString().toUpper();
+        }
+
+        return {};
+    }
+#endif
 }
 
 // Session
@@ -4477,138 +4596,4 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
-}
-
-namespace
-{
-    bool readFile(const QString &path, QByteArray &buf)
-    {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly)) {
-            qDebug("Cannot read file %s: %s", qUtf8Printable(path), qUtf8Printable(file.errorString()));
-            return false;
-        }
-
-        buf = file.readAll();
-        return true;
-    }
-
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
-    {
-        lt::error_code ec;
-        lt::bdecode_node root;
-        lt::bdecode(data.constData(), (data.constData() + data.size()), root, ec);
-        if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
-
-        torrentParams = CreateTorrentParams();
-
-        torrentParams.restored = true;
-        torrentParams.skipChecking = false;
-        torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
-        torrentParams.savePath = Profile::instance().fromPortablePath(
-            Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
-        torrentParams.disableTempPath = root.dict_find_int_value("qBt-tempPathDisabled");
-        torrentParams.sequential = root.dict_find_int_value("qBt-sequential");
-        torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
-        torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
-        torrentParams.hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
-        torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
-
-        const bool isAutoManaged = root.dict_find_int_value("auto_managed");
-        const bool isPaused = root.dict_find_int_value("paused");
-        torrentParams.paused = root.dict_find_int_value("qBt-paused", (isPaused && !isAutoManaged));
-        torrentParams.forced = root.dict_find_int_value("qBt-forced", (!isPaused && !isAutoManaged));
-
-        const LTString ratioLimitString = root.dict_find_string_value("qBt-ratioLimit");
-        if (ratioLimitString.empty())
-            torrentParams.ratioLimit = root.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
-        else
-            torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
-
-        // **************************************************************************************
-        // Workaround to convert legacy label to category
-        // TODO: Should be removed in future
-        torrentParams.category = fromLTString(root.dict_find_string_value("qBt-label"));
-        if (torrentParams.category.isEmpty())
-        // **************************************************************************************
-            torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
-
-        const lt::bdecode_node tagsNode = root.dict_find("qBt-tags");
-        if (tagsNode.type() == lt::bdecode_node::list_t) {
-            for (int i = 0; i < tagsNode.list_size(); ++i) {
-                const QString tag = fromLTString(tagsNode.list_string_value_at(i));
-                if (Session::isValidTag(tag))
-                    torrentParams.tags << tag;
-            }
-        }
-
-        const lt::bdecode_node addedTimeNode = root.dict_find("qBt-addedTime");
-        if (addedTimeNode.type() == lt::bdecode_node::int_t)
-            torrentParams.addedTime = QDateTime::fromSecsSinceEpoch(addedTimeNode.int_value());
-
-        queuePos = root.dict_find_int_value("qBt-queuePosition");
-        magnetUri = MagnetUri(fromLTString(root.dict_find_string_value("qBt-magnetUri")));
-
-        return true;
-    }
-
-    void torrentQueuePositionUp(const lt::torrent_handle &handle)
-    {
-        try {
-            handle.queue_position_up();
-        }
-        catch (const std::exception &exc) {
-            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-        }
-    }
-
-    void torrentQueuePositionDown(const lt::torrent_handle &handle)
-    {
-        try {
-            handle.queue_position_down();
-        }
-        catch (const std::exception &exc) {
-            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-        }
-    }
-
-    void torrentQueuePositionTop(const lt::torrent_handle &handle)
-    {
-        try {
-            handle.queue_position_top();
-        }
-        catch (const std::exception &exc) {
-            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-        }
-    }
-
-    void torrentQueuePositionBottom(const lt::torrent_handle &handle)
-    {
-        try {
-            handle.queue_position_bottom();
-        }
-        catch (const std::exception &exc) {
-            qDebug() << Q_FUNC_INFO << " fails: " << exc.what();
-        }
-    }
-
-#ifdef Q_OS_WIN
-    QString convertIfaceNameToGuid(const QString &name)
-    {
-        // Under Windows XP or on Qt version <= 5.5 'name' will be a GUID already.
-        const QUuid uuid(name);
-        if (!uuid.isNull())
-            return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
-
-        NET_LUID luid {};
-        const LONG res = ::ConvertInterfaceNameToLuidW(name.toStdWString().c_str(), &luid);
-        if (res == 0) {
-            GUID guid;
-            if (::ConvertInterfaceLuidToGuid(&luid, &guid) == 0)
-                return QUuid(guid).toString().toUpper();
-        }
-
-        return {};
-    }
-#endif
 }
