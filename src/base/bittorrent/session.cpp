@@ -97,10 +97,6 @@
 #include "tracker.h"
 #include "trackerentry.h"
 
-#if defined(Q_OS_WIN) && (_WIN32_WINNT < 0x0600)
-using NETIO_STATUS = LONG;
-#endif
-
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
 static const char USER_AGENT[] = "qBittorrent/" QBT_VERSION_2;
