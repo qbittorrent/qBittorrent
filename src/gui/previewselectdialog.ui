@@ -16,9 +16,6 @@
   <layout class="QVBoxLayout">
    <item>
     <widget class="QLabel" name="label">
-     <property name="text">
-      <string>The following files support previewing, please select one of them:</string>
-     </property>
      <property name="wordWrap">
       <bool>true</bool>
      </property>
