@@ -69,7 +69,7 @@ const DataMap &APIController::data() const
     return m_data;
 }
 
-void APIController::checkParams(const QSet<QString> &requiredParams) const
+void APIController::requireParams(const QVector<QString> &requiredParams) const
 {
     const bool hasAllRequiredParams = std::all_of(requiredParams.cbegin(), requiredParams.cend()
         , [this](const QString &requiredParam)

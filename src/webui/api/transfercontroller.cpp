@@ -90,7 +90,7 @@ void TransferController::downloadLimitAction()
 
 void TransferController::setUploadLimitAction()
 {
-    checkParams({"limit"});
+    requireParams({"limit"});
     qlonglong limit = params()["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
@@ -99,7 +99,7 @@ void TransferController::setUploadLimitAction()
 
 void TransferController::setDownloadLimitAction()
 {
-    checkParams({"limit"});
+    requireParams({"limit"});
     qlonglong limit = params()["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
@@ -119,7 +119,7 @@ void TransferController::speedLimitsModeAction()
 
 void TransferController::banPeersAction()
 {
-    checkParams({"peers"});
+    requireParams({"peers"});
 
     const QStringList peers = params()["peers"].split('|');
     for (const QString &peer : peers) {

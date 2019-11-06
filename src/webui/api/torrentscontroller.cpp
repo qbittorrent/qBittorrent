@@ -317,7 +317,7 @@ void TorrentsController::infoAction()
 //   - "comment": Torrent comment
 void TorrentsController::propertiesAction()
 {
-    checkParams({"hash"});
+    requireParams({"hash"});
 
     const QString hash {params()["hash"]};
     QJsonObject dataDict;
@@ -385,7 +385,7 @@ void TorrentsController::propertiesAction()
 //   - "msg": Tracker message (last)
 void TorrentsController::trackersAction()
 {
-    checkParams({"hash"});
+    requireParams({"hash"});
 
     const QString hash {params()["hash"]};
     const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
@@ -419,7 +419,7 @@ void TorrentsController::trackersAction()
 //   - "url": Web seed URL
 void TorrentsController::webseedsAction()
 {
-    checkParams({"hash"});
+    requireParams({"hash"});
 
     const QString hash {params()["hash"]};
     QJsonArray webSeedList;
@@ -448,7 +448,7 @@ void TorrentsController::webseedsAction()
 //        and the second number is the ending piece index (inclusive)
 void TorrentsController::filesAction()
 {
-    checkParams({"hash"});
+    requireParams({"hash"});
 
     const QString hash {params()["hash"]};
     QJsonArray fileList;
@@ -491,7 +491,7 @@ void TorrentsController::filesAction()
 // The return value is a JSON-formatted array of strings (hex strings).
 void TorrentsController::pieceHashesAction()
 {
-    checkParams({"hash"});
+    requireParams({"hash"});
 
     const QString hash {params()["hash"]};
     QJsonArray pieceHashes;
@@ -513,7 +513,7 @@ void TorrentsController::pieceHashesAction()
 // 2: piece already downloaded
 void TorrentsController::pieceStatesAction()
 {
-    checkParams({"hash"});
+    requireParams({"hash"});
 
     const QString hash {params()["hash"]};
     QJsonArray pieceStates;
@@ -606,7 +606,7 @@ void TorrentsController::addAction()
 
 void TorrentsController::addTrackersAction()
 {
-    checkParams({"hash", "urls"});
+    requireParams({"hash", "urls"});
 
     const QString hash = params()["hash"];
 
@@ -625,7 +625,7 @@ void TorrentsController::addTrackersAction()
 
 void TorrentsController::editTrackerAction()
 {
-    checkParams({"hash", "origUrl", "newUrl"});
+    requireParams({"hash", "origUrl", "newUrl"});
 
     const QString hash = params()["hash"];
     const QString origUrl = params()["origUrl"];
@@ -666,7 +666,7 @@ void TorrentsController::editTrackerAction()
 
 void TorrentsController::removeTrackersAction()
 {
-    checkParams({"hash", "urls"});
+    requireParams({"hash", "urls"});
 
     const QString hash = params()["hash"];
     const QStringList urls = params()["urls"].split('|');
@@ -694,7 +694,7 @@ void TorrentsController::removeTrackersAction()
 
 void TorrentsController::addPeersAction()
 {
-    checkParams({"hashes", "peers"});
+    requireParams({"hashes", "peers"});
 
     const QStringList hashes = params()["hashes"].split('|');
     const QStringList peers = params()["peers"].split('|');
@@ -730,7 +730,7 @@ void TorrentsController::addPeersAction()
 
 void TorrentsController::pauseAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes = params()["hashes"].split('|');
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent) { torrent->pause(); });
@@ -738,7 +738,7 @@ void TorrentsController::pauseAction()
 
 void TorrentsController::resumeAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes = params()["hashes"].split('|');
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent) { torrent->resume(); });
@@ -746,7 +746,7 @@ void TorrentsController::resumeAction()
 
 void TorrentsController::filePrioAction()
 {
-    checkParams({"hash", "id", "priority"});
+    requireParams({"hash", "id", "priority"});
 
     const QString hash = params()["hash"];
     bool ok = false;
@@ -785,7 +785,7 @@ void TorrentsController::filePrioAction()
 
 void TorrentsController::uploadLimitAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     QJsonObject map;
@@ -802,7 +802,7 @@ void TorrentsController::uploadLimitAction()
 
 void TorrentsController::downloadLimitAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     QJsonObject map;
@@ -819,7 +819,7 @@ void TorrentsController::downloadLimitAction()
 
 void TorrentsController::setUploadLimitAction()
 {
-    checkParams({"hashes", "limit"});
+    requireParams({"hashes", "limit"});
 
     qlonglong limit = params()["limit"].toLongLong();
     if (limit == 0)
@@ -831,7 +831,7 @@ void TorrentsController::setUploadLimitAction()
 
 void TorrentsController::setDownloadLimitAction()
 {
-    checkParams({"hashes", "limit"});
+    requireParams({"hashes", "limit"});
 
     qlonglong limit = params()["limit"].toLongLong();
     if (limit == 0)
@@ -843,7 +843,7 @@ void TorrentsController::setDownloadLimitAction()
 
 void TorrentsController::setShareLimitsAction()
 {
-    checkParams({"hashes", "ratioLimit", "seedingTimeLimit"});
+    requireParams({"hashes", "ratioLimit", "seedingTimeLimit"});
 
     const qreal ratioLimit = params()["ratioLimit"].toDouble();
     const qlonglong seedingTimeLimit = params()["seedingTimeLimit"].toLongLong();
@@ -858,7 +858,7 @@ void TorrentsController::setShareLimitsAction()
 
 void TorrentsController::toggleSequentialDownloadAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent) { torrent->toggleSequentialDownload(); });
@@ -866,7 +866,7 @@ void TorrentsController::toggleSequentialDownloadAction()
 
 void TorrentsController::toggleFirstLastPiecePrioAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent) { torrent->toggleFirstLastPiecePriority(); });
@@ -874,7 +874,7 @@ void TorrentsController::toggleFirstLastPiecePrioAction()
 
 void TorrentsController::setSuperSeedingAction()
 {
-    checkParams({"hashes", "value"});
+    requireParams({"hashes", "value"});
 
     const bool value {parseBool(params()["value"], false)};
     const QStringList hashes {params()["hashes"].split('|')};
@@ -883,7 +883,7 @@ void TorrentsController::setSuperSeedingAction()
 
 void TorrentsController::setForceStartAction()
 {
-    checkParams({"hashes", "value"});
+    requireParams({"hashes", "value"});
 
     const bool value {parseBool(params()["value"], false)};
     const QStringList hashes {params()["hashes"].split('|')};
@@ -892,7 +892,7 @@ void TorrentsController::setForceStartAction()
 
 void TorrentsController::deleteAction()
 {
-    checkParams({"hashes", "deleteFiles"});
+    requireParams({"hashes", "deleteFiles"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     const DeleteOption deleteOption = parseBool(params()["deleteFiles"], false)
@@ -905,7 +905,7 @@ void TorrentsController::deleteAction()
 
 void TorrentsController::increasePrioAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     if (!BitTorrent::Session::instance()->isQueueingSystemEnabled())
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
@@ -916,7 +916,7 @@ void TorrentsController::increasePrioAction()
 
 void TorrentsController::decreasePrioAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     if (!BitTorrent::Session::instance()->isQueueingSystemEnabled())
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
@@ -927,7 +927,7 @@ void TorrentsController::decreasePrioAction()
 
 void TorrentsController::topPrioAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     if (!BitTorrent::Session::instance()->isQueueingSystemEnabled())
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
@@ -938,7 +938,7 @@ void TorrentsController::topPrioAction()
 
 void TorrentsController::bottomPrioAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     if (!BitTorrent::Session::instance()->isQueueingSystemEnabled())
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
@@ -949,7 +949,7 @@ void TorrentsController::bottomPrioAction()
 
 void TorrentsController::setLocationAction()
 {
-    checkParams({"hashes", "location"});
+    requireParams({"hashes", "location"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     const QString newLocation {params()["location"].trimmed()};
@@ -975,7 +975,7 @@ void TorrentsController::setLocationAction()
 
 void TorrentsController::renameAction()
 {
-    checkParams({"hash", "name"});
+    requireParams({"hash", "name"});
 
     const QString hash = params()["hash"];
     QString name = params()["name"].trimmed();
@@ -993,7 +993,7 @@ void TorrentsController::renameAction()
 
 void TorrentsController::setAutoManagementAction()
 {
-    checkParams({"hashes", "enable"});
+    requireParams({"hashes", "enable"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     const bool isEnabled {parseBool(params()["enable"], false)};
@@ -1006,7 +1006,7 @@ void TorrentsController::setAutoManagementAction()
 
 void TorrentsController::recheckAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent) { torrent->forceRecheck(); });
@@ -1014,7 +1014,7 @@ void TorrentsController::recheckAction()
 
 void TorrentsController::reannounceAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     applyToTorrents(hashes, [](BitTorrent::TorrentHandle *const torrent) { torrent->forceReannounce(); });
@@ -1022,7 +1022,7 @@ void TorrentsController::reannounceAction()
 
 void TorrentsController::setCategoryAction()
 {
-    checkParams({"hashes", "category"});
+    requireParams({"hashes", "category"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     const QString category {params()["category"].trimmed()};
@@ -1036,7 +1036,7 @@ void TorrentsController::setCategoryAction()
 
 void TorrentsController::createCategoryAction()
 {
-    checkParams({"category"});
+    requireParams({"category"});
 
     const QString category {params()["category"].trimmed()};
     const QString savePath {params()["savePath"]};
@@ -1053,7 +1053,7 @@ void TorrentsController::createCategoryAction()
 
 void TorrentsController::editCategoryAction()
 {
-    checkParams({"category", "savePath"});
+    requireParams({"category", "savePath"});
 
     const QString category {params()["category"].trimmed()};
     const QString savePath {params()["savePath"]};
@@ -1067,7 +1067,7 @@ void TorrentsController::editCategoryAction()
 
 void TorrentsController::removeCategoriesAction()
 {
-    checkParams({"categories"});
+    requireParams({"categories"});
 
     const QStringList categories {params()["categories"].split('\n')};
     for (const QString &category : categories)
@@ -1091,7 +1091,7 @@ void TorrentsController::categoriesAction()
 
 void TorrentsController::addTagsAction()
 {
-    checkParams({"hashes", "tags"});
+    requireParams({"hashes", "tags"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
@@ -1107,7 +1107,7 @@ void TorrentsController::addTagsAction()
 
 void TorrentsController::removeTagsAction()
 {
-    checkParams({"hashes"});
+    requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
     const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
@@ -1130,7 +1130,7 @@ void TorrentsController::removeTagsAction()
 
 void TorrentsController::createTagsAction()
 {
-    checkParams({"tags"});
+    requireParams({"tags"});
 
     const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
 
@@ -1140,7 +1140,7 @@ void TorrentsController::createTagsAction()
 
 void TorrentsController::deleteTagsAction()
 {
-    checkParams({"tags"});
+    requireParams({"tags"});
 
     const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
     for (const QString &tag : tags)

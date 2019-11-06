@@ -43,7 +43,7 @@ using Utils::String::parseBool;
 
 void RSSController::addFolderAction()
 {
-    checkParams({"path"});
+    requireParams({"path"});
 
     const QString path = params()["path"].trimmed();
     QString error;
@@ -53,7 +53,7 @@ void RSSController::addFolderAction()
 
 void RSSController::addFeedAction()
 {
-    checkParams({"url", "path"});
+    requireParams({"url", "path"});
 
     const QString url = params()["url"].trimmed();
     const QString path = params()["path"].trimmed();
@@ -64,7 +64,7 @@ void RSSController::addFeedAction()
 
 void RSSController::removeItemAction()
 {
-    checkParams({"path"});
+    requireParams({"path"});
 
     const QString path = params()["path"].trimmed();
     QString error;
@@ -74,7 +74,7 @@ void RSSController::removeItemAction()
 
 void RSSController::moveItemAction()
 {
-    checkParams({"itemPath", "destPath"});
+    requireParams({"itemPath", "destPath"});
 
     const QString itemPath = params()["itemPath"].trimmed();
     const QString destPath = params()["destPath"].trimmed();
@@ -93,7 +93,7 @@ void RSSController::itemsAction()
 
 void RSSController::refreshItemAction()
 {
-    checkParams({"itemPath"});
+    requireParams({"itemPath"});
 
     const QString itemPath {params()["itemPath"]};
     RSS::Item *item = RSS::Session::instance()->itemByPath(itemPath);
@@ -103,7 +103,7 @@ void RSSController::refreshItemAction()
 
 void RSSController::setRuleAction()
 {
-    checkParams({"ruleName", "ruleDef"});
+    requireParams({"ruleName", "ruleDef"});
 
     const QString ruleName {params()["ruleName"].trimmed()};
     const QByteArray ruleDef {params()["ruleDef"].trimmed().toUtf8()};
@@ -114,7 +114,7 @@ void RSSController::setRuleAction()
 
 void RSSController::renameRuleAction()
 {
-    checkParams({"ruleName", "newRuleName"});
+    requireParams({"ruleName", "newRuleName"});
 
     const QString ruleName {params()["ruleName"].trimmed()};
     const QString newRuleName {params()["newRuleName"].trimmed()};
@@ -124,7 +124,7 @@ void RSSController::renameRuleAction()
 
 void RSSController::removeRuleAction()
 {
-    checkParams({"ruleName"});
+    requireParams({"ruleName"});
 
     const QString ruleName {params()["ruleName"].trimmed()};
     RSS::AutoDownloader::instance()->removeRule(ruleName);

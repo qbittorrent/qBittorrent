@@ -316,7 +316,7 @@ void AppController::preferencesAction()
 
 void AppController::setPreferencesAction()
 {
-    checkParams({"json"});
+    requireParams({"json"});
 
     Preferences *const pref = Preferences::instance();
     auto session = BitTorrent::Session::instance();
@@ -762,7 +762,7 @@ void AppController::networkInterfaceListAction()
 
 void AppController::networkInterfaceAddressListAction()
 {
-    checkParams({"iface"});
+    requireParams({"iface"});
 
     const QString ifaceName = params().value("iface");
     QJsonArray addressList;
