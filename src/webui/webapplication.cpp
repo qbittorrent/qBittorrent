@@ -267,12 +267,10 @@ void WebApplication::doProcessRequest()
     try {
         const QVariant result = controller->run(action, m_params, data);
         switch (result.userType()) {
-        case QMetaType::QString:
-            print(result.toString(), Http::CONTENT_TYPE_TXT);
-            break;
         case QMetaType::QJsonDocument:
             print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
             break;
+        case QMetaType::QString:
         default:
             print(result.toString(), Http::CONTENT_TYPE_TXT);
             break;
