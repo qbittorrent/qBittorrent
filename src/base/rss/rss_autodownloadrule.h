@@ -79,6 +79,8 @@ namespace RSS
         void setSavePath(const QString &savePath);
         TriStateBool addPaused() const;
         void setAddPaused(const TriStateBool &addPaused);
+        TriStateBool createSubfolder() const;
+        void setCreateSubfolder(const TriStateBool &createSubfolder);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 

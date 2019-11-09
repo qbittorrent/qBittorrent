@@ -269,6 +269,12 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         else if (m_currentRule.addPaused() == TriStateBool::False)
             index = 2;
         m_ui->comboAddPaused->setCurrentIndex(index);
+        index = 0;
+        if (m_currentRule.createSubfolder() == TriStateBool::True)
+            index = 1;
+        else if (m_currentRule.createSubfolder() == TriStateBool::False)
+            index = 2;
+        m_ui->comboCreateSubfolder->setCurrentIndex(index);
         m_ui->spinIgnorePeriod->setValue(m_currentRule.ignoreDays());
         QDateTime dateTime = m_currentRule.lastMatch();
         QString lMatch;
@@ -308,6 +314,8 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
     m_ui->spinIgnorePeriod->setValue(0);
     m_ui->comboAddPaused->clearEditText();
     m_ui->comboAddPaused->setCurrentIndex(-1);
+    m_ui->comboCreateSubfolder->clearEditText();
+    m_ui->comboCreateSubfolder->setCurrentIndex(-1);
     updateFieldsToolTips(m_ui->checkRegex->isChecked());
     updateMustLineValidity();
     updateMustNotLineValidity();
@@ -341,6 +349,12 @@ void AutomatedRssDownloader::updateEditedRule()
     else if (m_ui->comboAddPaused->currentIndex() == 2)
         addPaused = TriStateBool::False;
     m_currentRule.setAddPaused(addPaused);
+    TriStateBool createSubfolder; // Undefined by default
+    if (m_ui->comboCreateSubfolder->currentIndex() == 1)
+        createSubfolder = TriStateBool::True;
+    else if (m_ui->comboCreateSubfolder->currentIndex() == 2)
+        createSubfolder = TriStateBool::False;
+    m_currentRule.setCreateSubfolder(createSubfolder);
     m_currentRule.setIgnoreDays(m_ui->spinIgnorePeriod->value());
 }
 
