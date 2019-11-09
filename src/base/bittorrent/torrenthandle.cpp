@@ -1273,17 +1273,18 @@ void TorrentHandle::forceDHTAnnounce()
 
 void TorrentHandle::forceRecheck()
 {
-    if (m_startupState != Started) return;
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
     m_unchecked = false;
 
-    if (isPaused()) {
+    if ((m_startupState != Started) || isPaused()) {
         m_nativeHandle.stop_when_ready(true);
         m_nativeHandle.auto_managed(true);
-        m_pauseWhenReady = true;
     }
+
+    if ((m_startupState == Started) && isPaused())
+        m_pauseWhenReady = true;
 }
 
 void TorrentHandle::setSequentialDownload(bool b)
