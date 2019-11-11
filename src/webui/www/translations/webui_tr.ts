@@ -1,9 +1,11 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="tr" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation>Hakkında</translation>
+        <translation type="vanished">Hakkında</translation>
     </message>
 </context>
 <context>
@@ -14,7 +16,7 @@
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>Torrent&apos;i başlat</translation>
+        <translation>Torrent'i başlat</translation>
     </message>
     <message>
         <source>Skip hash check</source>
@@ -56,15 +58,15 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrent&apos;lere devam et</translation>
+        <translation>Torrent'lere devam et</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrent&apos;leri duraklat</translation>
+        <translation>Torrent'leri duraklat</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Torrent&apos;leri sil</translation>
+        <translation>Torrent'leri sil</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -79,7 +81,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent&apos;ten Çık</translation>
+        <translation>qBittorrent'ten Çık</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -87,47 +89,47 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Genel gönderme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Genel gönderme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Genel indirme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Genel indirme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatif gönderme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Alternatif gönderme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatif indirme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Alternatif indirme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>En fazla aktif indirme -1&apos;den büyük olmak zorundadır.</translation>
+        <translation>En fazla aktif indirme -1'den büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation>En fazla aktif gönderme -1&apos;den büyük olmak zorundadır.</translation>
+        <translation>En fazla aktif gönderme -1'den büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>En fazla aktif torrent -1&apos;den büyük olmak zorundadır.</translation>
+        <translation>En fazla aktif torrent -1'den büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>En fazla bağlantı sınırı sayısı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>En fazla bağlantı sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Torrent başına en fazla bağlantı sınırı sayısı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Torrent başına en fazla bağlantı sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Torrent başına en fazla gönderme yuvası sınırı sayısı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Torrent başına en fazla gönderme yuvası sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Program tercihleri kaydedilemiyor, qBittorrent&apos;e muhtemelen ulaşılamıyor.</translation>
+        <translation>Program tercihleri kaydedilemiyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
@@ -155,7 +157,7 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Oturum açılamıyor, qBittorrent&apos;e muhtemelen ulaşılamıyor.</translation>
+        <translation>Oturum açılamıyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -188,7 +190,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>Torrent&apos;leri Gönder</translation>
+        <translation>Torrent'leri Gönder</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -224,7 +226,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>Torrent&apos;i yeniden adlandır</translation>
+        <translation>Torrent'i yeniden adlandır</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -272,15 +274,15 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrent&apos;leri URL&apos;lerinden ya da Magnet bağlantılarından indir</translation>
+        <translation>Torrent'leri URL'lerinden ya da Magnet bağlantılarından indir</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
-        <translation>Yerel torrent&apos;i gönder</translation>
+        <translation>Yerel torrent'i gönder</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Seçilen torrent&apos;leri aktarım listesinden silmek istediğinize emin misiniz?</translation>
+        <translation>Seçilen torrent'leri aktarım listesinden silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -292,7 +294,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Genel gönderme yuvası sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Genel gönderme yuvası sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -304,7 +306,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation>Gönderme oranı eşiği 0&apos;dan büyük olmak zorundadır.</translation>
+        <translation>Gönderme oranı eşiği 0'dan büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -316,7 +318,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Torrent boşta durma zamanlayıcısı 0&apos;dan büyük olmak zorundadır.</translation>
+        <translation>Torrent boşta durma zamanlayıcısı 0'dan büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -324,11 +326,27 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation>İndirme oranı eşiği 0&apos;dan büyük olmak zorundadır.</translation>
+        <translation>İndirme oranı eşiği 0'dan büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
         <translation>qBittorrent kapatıldı</translation>
+    </message>
+    <message>
+        <source>Open documentation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Register to handle magnet links...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -363,19 +381,19 @@
     </message>
     <message>
         <source>Minimum Priority</source>
-        <translation>En Düşük Öncelik</translation>
+        <translation type="vanished">En Düşük Öncelik</translation>
     </message>
     <message>
         <source>Top Priority</source>
-        <translation>En Yüksek Öncelik</translation>
+        <translation type="vanished">En Yüksek Öncelik</translation>
     </message>
     <message>
         <source>Decrease Priority</source>
-        <translation>Önceliği Azalt</translation>
+        <translation type="vanished">Önceliği Azalt</translation>
     </message>
     <message>
         <source>Increase Priority</source>
-        <translation>Önceliği Arttır</translation>
+        <translation type="vanished">Önceliği Arttır</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -474,6 +492,38 @@
         <source>Transfers</source>
         <translation>Aktarımlar</translation>
     </message>
+    <message>
+        <source>Move up in the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move Up Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bottom of Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move to the bottom of the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Top of Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move Down Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move down in the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move to the top of the queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -531,7 +581,7 @@
     </message>
     <message>
         <source>Seed torrents until their seeding time reaches</source>
-        <translation>Torrent&apos;leri şu gönderim süresine ulaşıncaya kadar gönder</translation>
+        <translation type="vanished">Torrent'leri şu gönderim süresine ulaşıncaya kadar gönder</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -567,7 +617,7 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Tamamlanmamış torrent&apos;leri şurada tut:</translation>
+        <translation>Tamamlanmamış torrent'leri şurada tut:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -587,7 +637,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>Torrent&apos;leri otomatik olarak şuradan ekle:</translation>
+        <translation>Torrent'leri otomatik olarak şuradan ekle:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -691,11 +741,11 @@
     </message>
     <message>
         <source>Disable connections not supported by proxies</source>
-        <translation>Proksiler tarafından desteklenmeyen bağlantıları etkisizleştir</translation>
+        <translation type="vanished">Proksiler tarafından desteklenmeyen bağlantıları etkisizleştir</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>Sadece torrent&apos;ler için proksi kullan</translation>
+        <translation>Sadece torrent'ler için proksi kullan</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -769,15 +819,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Daha çok kişi bulmak için DHT&apos;yi (merkezsizleştirilmiş ağ) etkinleştir</translation>
+        <translation>Daha çok kişi bulmak için DHT'yi (merkezsizleştirilmiş ağ) etkinleştir</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Daha çok kişi bulmak için Kişi Değişimi&apos;ni (PeX) etkinleştir</translation>
+        <translation>Daha çok kişi bulmak için Kişi Değişimi'ni (PeX) etkinleştir</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Daha çok kişi bulmak için Yerel Kişi Keşfi&apos;ni etkinleştir</translation>
+        <translation>Daha çok kişi bulmak için Yerel Kişi Keşfi'ni etkinleştir</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -785,7 +835,7 @@
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation>Şifrelemeyi tercih et</translation>
+        <translation type="vanished">Şifrelemeyi tercih et</translation>
     </message>
     <message>
         <source>Require encryption</source>
@@ -813,15 +863,15 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Yavaş torrent&apos;leri bu sınırlar içinde sayma</translation>
+        <translation>Yavaş torrent'leri bu sınırlar içinde sayma</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
-        <translation>Paylaşma Oranı Sınırlama</translation>
+        <translation type="vanished">Paylaşma Oranı Sınırlama</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Torrent&apos;leri şu orana ulaşıncaya kadar gönder</translation>
+        <translation type="vanished">Torrent'leri şu orana ulaşıncaya kadar gönder</translation>
     </message>
     <message>
         <source>then</source>
@@ -829,11 +879,11 @@
     </message>
     <message>
         <source>Pause them</source>
-        <translation>Bunları duraklat</translation>
+        <translation type="vanished">Bunları duraklat</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation>Bunları kaldır</translation>
+        <translation type="vanished">Bunları kaldır</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -869,7 +919,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Etiketler (virgülle ayrılmış)</translation>
+        <translation type="vanished">%G: Etiketler (virgülle ayrılmış)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -900,8 +950,8 @@
         <translation>%I: Bilgi adreslemesi</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>İpucu: Metnin boşluktan kesilmesini önlemek için parametreyi tırnak işaretleri arasına alın (örn., &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>İpucu: Metnin boşluktan kesilmesini önlemek için parametreyi tırnak işaretleri arasına alın (örn., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -965,7 +1015,7 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Torrent&apos;i Elle Kipine değiştir</translation>
+        <translation>Torrent'i Elle Kipine değiştir</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
@@ -973,7 +1023,7 @@
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation>Etkilenmiş torrent&apos;lerin yerini değiştir</translation>
+        <translation>Etkilenmiş torrent'lerin yerini değiştir</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -985,7 +1035,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation>Torrent&apos;in yerini değiştir</translation>
+        <translation>Torrent'in yerini değiştir</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1005,7 +1055,7 @@
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
-        <translation>Çoklu dosyaları olan torrent&apos;ler için alt klasör oluştur</translation>
+        <translation>Çoklu dosyaları olan torrent'ler için alt klasör oluştur</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1013,7 +1063,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Etkilenmiş torrent&apos;leri Elle Kipine değiştir</translation>
+        <translation>Etkilenmiş torrent'leri Elle Kipine değiştir</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1034,6 +1084,234 @@
     <message>
         <source>When adding a torrent</source>
         <translation>Bir torrent eklerken</translation>
+    </message>
+    <message>
+        <source>Info: The password is saved unencrypted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Strict super seeding:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>μTP-TCP mixed mode algorithm:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload rate based</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket backlog size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable super seeding for torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Prefer TCP</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outstanding memory when checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Anti-leech</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When ratio reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Allow multiple connections from the same IP address:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>File pool size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Always announce to all tiers:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Embedded tracker port:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Optional IP Address to bind to (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Fastest upload</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pause torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and its files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent Section</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send buffer watermark factor:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>libtorrent Section</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: Disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Recheck torrents on completion:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Allow encryption</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send upload piece suggestions:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: Disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Asynchronous I/O threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>s</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send buffer watermark:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer proportional (throttles TCP)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Fixed slots</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer countries (GeoIP):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload choking algorithm:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding Limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Round-robin</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload slots behavior:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Network Interface (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send buffer low watermark:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save resume data interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Always announce to all trackers in a tier:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Listen on IPv6 address (requires restart):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1098,6 +1376,22 @@
         <source>Country</source>
         <translation>Ülke</translation>
     </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Are you sure you want to permanently ban the selected peers?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy IP:port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -1115,6 +1409,14 @@
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>En yüksek</translation>
+    </message>
+    <message>
+        <source>Mixed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1282,6 +1584,14 @@
     <message>
         <source>Upload limit:</source>
         <translation>Gönderme sınırı:</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filter files...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1464,27 +1774,27 @@
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation>Adı</translation>
+        <translation type="vanished">Adı</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Boyut</translation>
+        <translation type="vanished">Boyut</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>İlerleme</translation>
+        <translation type="vanished">İlerleme</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation>İndirme Önceliği</translation>
+        <translation type="vanished">İndirme Önceliği</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation>Kalan</translation>
+        <translation type="vanished">Kalan</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Kullanılabilirlik</translation>
+        <translation type="vanished">Kullanılabilirlik</translation>
     </message>
 </context>
 <context>
@@ -1631,6 +1941,10 @@
         <comment>i.e. Size including unwanted data</comment>
         <translation>Toplam Boyut</translation>
     </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -1656,7 +1970,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>İzleyici URL&apos;si:</translation>
+        <translation>İzleyici URL'si:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -1676,7 +1990,7 @@
     </message>
     <message>
         <source>#</source>
-        <translation>#</translation>
+        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1692,7 +2006,7 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>İzleyici URL&apos;sini kopyala</translation>
+        <translation>İzleyici URL'sini kopyala</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
@@ -1700,7 +2014,7 @@
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>İzleyici URL&apos;sini düzenle...</translation>
+        <translation>İzleyici URL'sini düzenle...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -1713,6 +2027,34 @@
     <message>
         <source>Remove tracker</source>
         <translation>İzleyiciyi kaldır</translation>
+    </message>
+    <message>
+        <source>Remaining</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tier</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download Priority</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1808,6 +2150,10 @@
         <source>Categories</source>
         <translation>Kategoriler</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -1881,11 +2227,11 @@
     </message>
     <message>
         <source>Copy name</source>
-        <translation>Adı kopyala</translation>
+        <translation type="vanished">Adı kopyala</translation>
     </message>
     <message>
         <source>Copy hash</source>
-        <translation>Adreslemeyi kopyala</translation>
+        <translation type="vanished">Adreslemeyi kopyala</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -1911,7 +2257,7 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation>Öncelik</translation>
+        <translation type="vanished">Öncelik</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -1919,7 +2265,7 @@
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Magnet bağlantısını kopyala</translation>
+        <translation type="vanished">Magnet bağlantısını kopyala</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -1965,6 +2311,46 @@
         <source>Save path</source>
         <translation>Kaydetme yolu</translation>
     </message>
+    <message>
+        <source>Comma-separated tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Tags</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hash</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -1997,19 +2383,19 @@
     <name>about</name>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Qt toolkit ve libtorrent-rasterbar tabanlı, C++ ile programlanmış gelişmiş bir BitTorrent istemcisidir.</translation>
+        <translation type="vanished">Qt toolkit ve libtorrent-rasterbar tabanlı, C++ ile programlanmış gelişmiş bir BitTorrent istemcisidir.</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Ana Sayfa:</translation>
+        <translation type="vanished">Ana Sayfa:</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation>Forum:</translation>
+        <translation type="vanished">Forum:</translation>
     </message>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Hata İzleyicisi:</translation>
+        <translation type="vanished">Hata İzleyicisi:</translation>
     </message>
 </context>
 <context>
@@ -2031,7 +2417,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>URL&apos;lerden indir</translation>
+        <translation>URL'lerden indir</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2176,11 +2562,11 @@
     </message>
     <message>
         <source>Copy description page URL</source>
-        <translation>Açıklama sayfası URL&apos;sini kopyala</translation>
+        <translation type="vanished">Açıklama sayfası URL'sini kopyala</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation>Açıklama sayfasına git</translation>
+        <translation type="vanished">Açıklama sayfasına git</translation>
     </message>
     <message>
         <source>Results (showing</source>
@@ -2188,7 +2574,7 @@
     </message>
     <message>
         <source>Download</source>
-        <translation>İndir</translation>
+        <translation type="vanished">İndir</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2238,8 +2624,8 @@
         <translation>Etkinleştirildi</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Uyarı: Bu arama motorlarının herhangi birinden torrent&apos;leri indirirken ülkenizin telif hakkı yasalarına uyulduğundan emin olun.</translation>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Uyarı: Bu arama motorlarının herhangi birinden torrent'leri indirirken ülkenizin telif hakkı yasalarına uyulduğundan emin olun.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2290,6 +2676,184 @@
     <message>
         <source>Version</source>
         <translation>Sürüm</translation>
+    </message>
+</context>
+<context>
+    <name>PeersAdditionDialog</name>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>List of peers to add (one IP per line):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Format: IPv4:port / [IPv6]:port</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TagFilterWidget</name>
+    <message>
+        <source>New Tag</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add tag...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tag:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pause torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resume torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove unused tags</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invalid tag name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove tag</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TagFilterModel</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Untagged</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>AboutDialog</name>
+    <message>
+        <source>Bug Tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Forum:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>E-mail:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Current maintainer</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Home Page:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Greece</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Special Thanks</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>About qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Libraries</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Translators</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent was built with the following libraries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Nationality:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>OptionDialog</name>
+    <message>
+        <source>All addresses</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchJobWidget</name>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Description page URL</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open description page</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download link</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
