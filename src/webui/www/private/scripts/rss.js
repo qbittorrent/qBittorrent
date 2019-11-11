@@ -22,7 +22,7 @@
 </script>\
 <script id="feeds-template" type="text/html">\
     <div data-name="feeds">\
-        <h2><!--ko text: name --><!--/ko--><a data-name="anySelected" data-bind="click: downloadSelected" style="float:right;"><img class="MyMenuIcon" alt="Add Torrent Link..." src="images/qbt-theme/insert-link.svg" width="32" height="32"></a></h2>\
+        <h2><!--ko text: name --><!--/ko--><a data-bind="click: refresh"><img  alt="Refresh feed..." src="images/qbt-theme/view-refresh.svg" width="16" height="16"></a><a data-name="anySelected" data-bind="click: downloadSelected" style="float:right;"><img class="MyMenuIcon" alt="Add Torrent Link..." src="images/qbt-theme/insert-link.svg" width="32" height="32"></a></h2>\
         <ul data-name="torrents"><li><label data-bind="attr: { title: date.toLocaleString() }"><input data-name="selected"></input> <!--ko text: name --><!--/ko--> </label></li></ul>\
     </div>\
 </script>\
@@ -37,7 +37,7 @@
     <li><input data-name="newName"/> <button data-name="moveFeed">Rename</button> <button data-name="delete">Delete</button></li>\
 </ul>\
 </script>';    
-    var button = new Element("a", { html: "<img class='mochaToolButton' title='RSS Rules' src='images/qbt-theme/rss-config.png' alt='RSS Rules' width='24' height='24'/>" });
+    var button = new Element("a", { html: "<img class='mochaToolButton' title='RSS Rules' src='images/qbt-theme/rss-config.svg' alt='RSS Rules' width='24' height='24'/>" });
     button.setAttribute("data-bind", "click: showRss");
     button.setAttribute("class", "divider");
 
@@ -121,6 +121,15 @@
     };
 
     FeedDownloadsModel.prototype = {
+        refresh: function() {
+            var url = new URI('api/v2/rss/refreshItem');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: { itemPath: this.name },
+            }).send();
+        },
         moveFeed: function() {
             if(!confirm(`Are you sure that you want to rename '${this.name}' to '${this.newName()}'?`)) return;
 
