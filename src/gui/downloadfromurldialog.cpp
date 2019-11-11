@@ -79,7 +79,7 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
         if (isDownloadable(str))
             uniqueURLs << str;
     }
-    m_ui->textUrls->setText(uniqueURLs.toList().join('\n'));
+    m_ui->textUrls->setText(uniqueURLs.values().join('\n'));
 
     Utils::Gui::resize(this);
     show();
@@ -108,6 +108,6 @@ void DownloadFromURLDialog::downloadButtonClicked()
         return;
     }
 
-    emit urlsReadyToBeDownloaded(uniqueURLs.toList());
+    emit urlsReadyToBeDownloaded(uniqueURLs.values());
     accept();
 }

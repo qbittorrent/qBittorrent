@@ -30,18 +30,18 @@
         }).activate();
 
         window.addEvent('domready', function() {
-            const uriAction = safeTrim(new URI().getData('action'));
-            const uriHashes = safeTrim(new URI().getData('hashes'));
-            const uriCategoryName = safeTrim(new URI().getData('categoryName'));
-            const uriSavePath = safeTrim(new URI().getData('savePath'));
+            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData('action'));
+            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData('hashes'));
+            const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData('categoryName'));
+            const uriSavePath = window.qBittorrent.Misc.safeTrim(new URI().getData('savePath'));
 
             if (uriAction === "edit") {
                 if (!uriCategoryName)
                     return false;
 
                 $('categoryName').set('disabled', true);
-                $('categoryName').set('value', escapeHtml(uriCategoryName));
-                $('savePath').set('value', escapeHtml(uriSavePath));
+                $('categoryName').set('value', window.qBittorrent.Misc.escapeHtml(uriCategoryName));
+                $('savePath').set('value', window.qBittorrent.Misc.escapeHtml(uriSavePath));
                 $('savePath').focus();
             }
             else {
@@ -90,7 +90,7 @@
                                 }).send();
                             },
                             onError: function() {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer] " + escapeHtml(categoryName));
+                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer] " + window.qBittorrent.Misc.escapeHtml(categoryName));
                             }
                         }).send();
                         break;

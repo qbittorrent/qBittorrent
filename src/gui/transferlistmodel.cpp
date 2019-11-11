@@ -77,15 +77,13 @@ TransferListModel::TransferListModel(QObject *parent)
     connect(Session::instance(), &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
 }
 
-int TransferListModel::rowCount(const QModelIndex &index) const
+int TransferListModel::rowCount(const QModelIndex &) const
 {
-    Q_UNUSED(index);
-    return m_torrents.size();
+    return m_torrentList.size();
 }
 
-int TransferListModel::columnCount(const QModelIndex &parent) const
+int TransferListModel::columnCount(const QModelIndex &) const
 {
-    Q_UNUSED(parent);
     return NB_COLUMNS;
 }
 
@@ -164,7 +162,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid()) return {};
 
-    const BitTorrent::TorrentHandle *torrent = m_torrents.value(index.row());
+    const BitTorrent::TorrentHandle *torrent = m_torrentList.value(index.row());
     if (!torrent) return {};
 
     if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
@@ -202,7 +200,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS: {
-            QStringList tagsList = torrent->tags().toList();
+            QStringList tagsList = torrent->tags().values();
             tagsList.sort();
             return tagsList.join(", ");
         }
@@ -251,11 +249,9 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 
 bool TransferListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    qDebug() << Q_FUNC_INFO << value;
     if (!index.isValid() || (role != Qt::DisplayRole)) return false;
 
-    qDebug("Index is valid and role is DisplayRole");
-    BitTorrent::TorrentHandle *const torrent = m_torrents.value(index.row());
+    BitTorrent::TorrentHandle *const torrent = m_torrentList.value(index.row());
     if (!torrent) return false;
 
     // Category and Name columns can be edited
@@ -275,12 +271,14 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrent(BitTorrent::TorrentHandle *const torrent)
 {
-    if (!m_torrents.contains(torrent)) {
-        const int row = m_torrents.size();
-        beginInsertRows(QModelIndex(), row, row);
-        m_torrents << torrent;
-        endInsertRows();
-    }
+    Q_ASSERT(!m_torrentMap.contains(torrent));
+
+    const int row = m_torrentList.size();
+
+    beginInsertRows({}, row, row);
+    m_torrentList << torrent;
+    m_torrentMap[torrent] = row;
+    endInsertRows();
 }
 
 Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
@@ -295,29 +293,48 @@ BitTorrent::TorrentHandle *TransferListModel::torrentHandle(const QModelIndex &i
 {
     if (!index.isValid()) return nullptr;
 
-    return m_torrents.value(index.row());
+    return m_torrentList.value(index.row());
 }
 
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent)
 {
-    const int row = m_torrents.indexOf(torrent);
-    if (row >= 0) {
-        beginRemoveRows(QModelIndex(), row, row);
-        m_torrents.removeAt(row);
-        endRemoveRows();
+    const int row = m_torrentMap.value(torrent, -1);
+    Q_ASSERT(row >= 0);
+
+    beginRemoveRows({}, row, row);
+    m_torrentList.removeAt(row);
+    m_torrentMap.remove(torrent);
+    for (int &value : m_torrentMap) {
+        if (value > row)
+            --value;
     }
+    endRemoveRows();
 }
 
 void TransferListModel::handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent)
 {
-    const int row = m_torrents.indexOf(torrent);
-    if (row >= 0)
-        emit dataChanged(index(row, 0), index(row, columnCount() - 1));
+    const int row = m_torrentMap.value(torrent, -1);
+    Q_ASSERT(row >= 0);
+
+    emit dataChanged(index(row, 0), index(row, columnCount() - 1));
 }
 
-void TransferListModel::handleTorrentsUpdated()
+void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents)
 {
-    emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
+    const int columns = (columnCount() - 1);
+
+    if (torrents.size() <= (m_torrentList.size() * 0.5)) {
+        for (BitTorrent::TorrentHandle *const torrent : torrents) {
+            const int row = m_torrentMap.value(torrent, -1);
+            Q_ASSERT(row >= 0);
+
+            emit dataChanged(index(row, 0), index(row, columns));
+        }
+    }
+    else {
+        // save the overhead when more than half of the torrent list needs update
+        emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
+    }
 }
 
 // Static functions

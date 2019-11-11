@@ -32,7 +32,7 @@
 #include <QMainWindow>
 #include <QPointer>
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
 #include <QSystemTrayIcon>
 #endif
 
@@ -127,14 +127,15 @@ private slots:
     void displayRSSTab();
     void displayExecutionLogTab();
     void focusSearchFilter();
-    void updateGUI();
+    void reloadSessionStats();
+    void reloadTorrentStats(const QVector<BitTorrent::TorrentHandle *> &torrents);
     void loadPreferences(bool configureSession = true);
     void addTorrentFailed(const QString &error) const;
     void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
     void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
     void optionsSaved();
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
 #endif
     void toggleAlternativeSpeeds();
@@ -178,7 +179,7 @@ private slots:
     void on_actionLock_triggered();
     // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
     void updatePowerManagementState();
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void checkProgramUpdate();
 #endif
     void toolbarMenuRequested(const QPoint &point);
@@ -187,7 +188,7 @@ private slots:
     void toolbarTextBeside();
     void toolbarTextUnder();
     void toolbarFollowSystem();
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     void on_actionCloseWindow_triggered();
 #else
     void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
@@ -196,7 +197,7 @@ private slots:
 #endif
 
 private:
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     void setupDockClickHandler();
 #else
     void createTrayIcon();
@@ -228,7 +229,7 @@ private:
     QPointer<StatsDialog> m_statsDlg;
     QPointer<TorrentCreatorDialog> m_createTorrentDlg;
     QPointer<DownloadFromURLDialog> m_downloadFromURLDialog;
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QPointer<QSystemTrayIcon> m_systrayIcon;
     QPointer<QTimer> m_systrayCreator;
 #endif
@@ -252,7 +253,7 @@ private:
     // Power Management
     PowerManagement *m_pwr;
     QTimer *m_preventTimer;
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     QTimer *m_programUpdateTimer;
     bool m_wasUpdateCheckEnabled;
 #endif

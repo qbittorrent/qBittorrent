@@ -77,6 +77,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     m_ui->hsplitter->setCollapsible(0, false);
     m_ui->hsplitter->setCollapsible(1, false);
     m_ui->hsplitter->setCollapsible(2, true); // Only the preview list is collapsible
+    m_ui->lineSavePath->setDialogCaption(tr("Destination directory"));
+    m_ui->lineSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
     connect(m_ui->checkRegex, &QAbstractButton::toggled, this, &AutomatedRssDownloader::updateFieldsToolTips);
     connect(m_ui->listRules, &QWidget::customContextMenuRequested, this, &AutomatedRssDownloader::displayRulesListMenu);
@@ -251,7 +253,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         else
             m_ui->lineEFilter->clear();
         m_ui->checkBoxSaveDiffDir->setChecked(!m_currentRule.savePath().isEmpty());
-        m_ui->lineSavePath->setText(Utils::Fs::toNativePath(m_currentRule.savePath()));
+        m_ui->lineSavePath->setSelectedPath(Utils::Fs::toNativePath(m_currentRule.savePath()));
         m_ui->checkRegex->blockSignals(true);
         m_ui->checkRegex->setChecked(m_currentRule.useRegex());
         m_ui->checkRegex->blockSignals(false);
@@ -331,7 +333,7 @@ void AutomatedRssDownloader::updateEditedRule()
     m_currentRule.setMustContain(m_ui->lineContains->text());
     m_currentRule.setMustNotContain(m_ui->lineNotContains->text());
     m_currentRule.setEpisodeFilter(m_ui->lineEFilter->text());
-    m_currentRule.setSavePath(m_ui->checkBoxSaveDiffDir->isChecked() ? m_ui->lineSavePath->text() : "");
+    m_currentRule.setSavePath(m_ui->checkBoxSaveDiffDir->isChecked() ? m_ui->lineSavePath->selectedPath() : "");
     m_currentRule.setCategory(m_ui->comboCategory->currentText());
     TriStateBool addPaused; // Undefined by default
     if (m_ui->comboAddPaused->currentIndex() == 1)
@@ -384,13 +386,6 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
 
     for (const QListWidgetItem *item : selection)
         RSS::AutoDownloader::instance()->removeRule(item->text());
-}
-
-void AutomatedRssDownloader::on_browseSP_clicked()
-{
-    QString savePath = QFileDialog::getExistingDirectory(this, tr("Destination directory"), QDir::homePath());
-    if (!savePath.isEmpty())
-        m_ui->lineSavePath->setText(Utils::Fs::toNativePath(savePath));
 }
 
 void AutomatedRssDownloader::on_exportBtn_clicked()

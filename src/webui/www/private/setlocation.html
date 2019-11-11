@@ -33,7 +33,7 @@
             const path = new URI().getData('path');
             // set text field to current value
             if (path)
-                $('setLocation').value = escapeHtml(decodeURIComponent(path));
+                $('setLocation').value = window.qBittorrent.Misc.escapeHtml(decodeURIComponent(path));
 
             $('setLocation').focus();
             $('setLocationButton').addEvent('click', function(e) {
@@ -68,7 +68,7 @@
 <body>
     <div style="padding: 10px 10px 0px 10px;">
         <p style="font-weight: bold;">QBT_TR(Location)QBT_TR[CONTEXT=TransferListWidget]:</p>
-        <input type="text" id="setLocation" value="" maxlength="100" autocorrect="off" autocapitalize="none" style="width: 370px;" />
+        <input type="text" id="setLocation" value="" autocorrect="off" autocapitalize="none" style="width: 370px;" />
         <div style="float: none; width: 370px;" id="error_div">&nbsp;</div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="setLocationButton" />

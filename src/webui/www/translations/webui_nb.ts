@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation>Om</translation>
+        <translation type="vanished">Om</translation>
     </message>
 </context>
 <context>
@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrentbehandlingsmodus:</translation>
     </message>
 </context>
 <context>
@@ -46,7 +46,7 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation>Legg til kategori…</translation>
+        <translation>Legg til kategori …</translation>
     </message>
     <message>
         <source>Remove category</source>
@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Ny kategori</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Rediger kategori …</translation>
     </message>
 </context>
 <context>
@@ -231,7 +231,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Annen…</translation>
+        <translation>Annen …</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -293,47 +293,59 @@
         <translation>qBittorrent er ikke oppnåelig</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent har blitt avslått.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Globalt antall opplastingsåpninger må være større enn 0 eller deaktivert.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Ugyldig kategorinavn:\nIkke bruk noen spesialtegn i kategorinavnet.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Kunne ikke opprette kategori</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Opplastingsforholdsgrense må være større enn 0.</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Rediger</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Ledig plass: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Timer for Torrentaktivitet må være større enn 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
-        <translation type="unfinished" />
+        <translation>Lagringsbehandling</translation>
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Nedlastingsforholdsgrense må være større enn 0.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
+        <translation>qBittorrent er avsluttet</translation>
+    </message>
+    <message>
+        <source>Open documentation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Register to handle magnet links...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -361,7 +373,7 @@
     </message>
     <message>
         <source>Options...</source>
-        <translation>Alternativer…</translation>
+        <translation>Alternativer …</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -369,19 +381,19 @@
     </message>
     <message>
         <source>Minimum Priority</source>
-        <translation>Minimumsprioritet</translation>
+        <translation type="vanished">Minimumsprioritet</translation>
     </message>
     <message>
         <source>Top Priority</source>
-        <translation>Toppprioritet</translation>
+        <translation type="vanished">Toppprioritet</translation>
     </message>
     <message>
         <source>Decrease Priority</source>
-        <translation>Senk prioritetsnivå</translation>
+        <translation type="vanished">Senk prioritetsnivå</translation>
     </message>
     <message>
         <source>Increase Priority</source>
-        <translation>Øk prioriteringsnivå</translation>
+        <translation type="vanished">Øk prioriteringsnivå</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -425,7 +437,7 @@
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>Legg til torrentfil…</translation>
+        <translation>Legg til torrentfil …</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -433,7 +445,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Legg til torrentlenke…</translation>
+        <translation>Legg til torrentlenke …</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -462,22 +474,54 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Alternative hastighetsgrenser</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Søkemotor</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Filtrer torrentliste …</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Søk</translation>
     </message>
     <message>
         <source>Transfers</source>
+        <translation>Overføringer</translation>
+    </message>
+    <message>
+        <source>Move up in the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move Up Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Bottom of Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move to the bottom of the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Top of Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move Down Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move down in the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Move to the top of the queue</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -537,7 +581,7 @@
     </message>
     <message>
         <source>Seed torrents until their seeding time reaches</source>
-        <translation>Del torrenter til delingstiden deres når</translation>
+        <translation type="vanished">Del torrenter til delingstiden deres når</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -697,7 +741,7 @@
     </message>
     <message>
         <source>Disable connections not supported by proxies</source>
-        <translation>Skru av tilkoblinger som ikke støttes av mellomtjenere</translation>
+        <translation type="vanished">Skru av tilkoblinger som ikke støttes av mellomtjenere</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -791,7 +835,7 @@
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation>Foretrekk kryptering</translation>
+        <translation type="vanished">Foretrekk kryptering</translation>
     </message>
     <message>
         <source>Require encryption</source>
@@ -823,11 +867,11 @@
     </message>
     <message>
         <source>Share Ratio Limiting</source>
-        <translation>Delingsforholdsbegrensning</translation>
+        <translation type="vanished">Delingsforholdsbegrensning</translation>
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Del torrenter til forholdet deres når</translation>
+        <translation type="vanished">Del torrenter til forholdet deres når</translation>
     </message>
     <message>
         <source>then</source>
@@ -835,11 +879,11 @@
     </message>
     <message>
         <source>Pause them</source>
-        <translation>Sett dem på pause</translation>
+        <translation type="vanished">Sett dem på pause</translation>
     </message>
     <message>
         <source>Remove them</source>
-        <translation>Fjern dem</translation>
+        <translation type="vanished">Fjern dem</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -875,7 +919,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation type="unfinished" />
+        <translation type="vanished">%G: Etiketter (adskilt med kommaer)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -883,7 +927,7 @@
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: Rotmappe (første underkatalogsmappe for torrenter)</translation>
+        <translation>%R: Rotmappe (første undermappe for torrenter)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -919,126 +963,354 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutter</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Aktiver beskyttelse mot klikkoverstyring</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>Skru på «Cross-Site Request Forgery»-beskyttelse (CSRF)</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Slett .torrentfiler etterpå</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Nedlastingsforholdsgrense:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Opplastingsforholdsgrense:</translation>
     </message>
     <message>
         <source>Change current password</source>
-        <translation type="unfinished" />
+        <translation>Endre gjeldende passord</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Automatisk</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished" />
+        <translation>Bruk et alternativt nettgrensesnitt</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>Forvalgt lagringsmappe:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>Filplasseringen til det alternative nettgrensesnittet kan ikke være blank.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Ikke start nedlastingen automatisk</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Bytt torrent til manuell modus</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>Når torrentkategori endres:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished" />
+        <translation>Omplasser berørte torrenter</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished" />
+        <translation>Bruk hastighetsgrense for likemenn på lokalnett</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 betyr ubegrenset</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation type="unfinished" />
+        <translation>Flytt torrent</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Når forvalgt lagringsmappe endres:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished" />
+        <translation>Skru på validering av «Host»-feltet i hodet</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished" />
+        <translation>Sikkerhet</translation>
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Når kategoriens lagringssti endres:</translation>
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
-        <translation type="unfinished" />
+        <translation>Opprett undermappe for torrenter med flerfoldige filer</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>sekunder</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Bytt berørte torrenter til manuell modus</translation>
     </message>
     <message>
         <source>Files location:</source>
-        <translation type="unfinished" />
+        <translation>Filenes plassering:</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished" />
+        <translation>Torrent-inaktivitetsklokke:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Forvalgt torrentbehandlingsmodus:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
+        <translation>Når en torrent legges til</translation>
+    </message>
+    <message>
+        <source>Info: The password is saved unencrypted</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Strict super seeding:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>μTP-TCP mixed mode algorithm:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload rate based</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket backlog size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable super seeding for torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Prefer TCP</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outstanding memory when checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Anti-leech</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When ratio reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>sec</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When seeding time reaches</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Allow multiple connections from the same IP address:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>File pool size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Any interface</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Always announce to all tiers:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Embedded tracker port:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Optional IP Address to bind to (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Fastest upload</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pause torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and its files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent Section</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send buffer watermark factor:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>libtorrent Section</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp; writes:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: Disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Recheck torrents on completion:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Allow encryption</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send upload piece suggestions:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: Disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Asynchronous I/O threads:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>s</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send buffer watermark:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer proportional (throttles TCP)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Fixed slots</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer countries (GeoIP):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>min</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload choking algorithm:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding Limits</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Round-robin</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload slots behavior:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Network Interface (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Send buffer low watermark:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save resume data interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Always announce to all trackers in a tier:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Listen on IPv6 address (requires restart):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1104,6 +1376,22 @@
         <source>Country</source>
         <translation>Land</translation>
     </message>
+    <message>
+        <source>Ban peer permanently</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Are you sure you want to permanently ban the selected peers?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy IP:port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -1121,6 +1409,14 @@
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maksimal</translation>
+    </message>
+    <message>
+        <source>Mixed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1283,10 +1579,18 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Nedlastingsgrense:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
+        <translation>Opplastingsgrense:</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1340,27 +1644,27 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation type="unfinished" />
+        <translation>Tilkoblede likemenn:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation type="unfinished" />
+        <translation>Totalt deleforhold:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation type="unfinished" />
+        <translation>Totalt nedlastet:</translation>
     </message>
     <message>
         <source>Session waste:</source>
-        <translation type="unfinished" />
+        <translation>Økts-ødsling:</translation>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished" />
+        <translation>Totalt opplastet:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation type="unfinished" />
+        <translation>Total bufferstørrelse:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -1470,27 +1774,27 @@
     <name>TorrentContentModel</name>
     <message>
         <source>Name</source>
-        <translation>Navn</translation>
+        <translation type="vanished">Navn</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Størrelse</translation>
+        <translation type="vanished">Størrelse</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Framdrift</translation>
+        <translation type="vanished">Framdrift</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation>Nedlastingsprioritet</translation>
+        <translation type="vanished">Nedlastingsprioritet</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation>Gjenstående</translation>
+        <translation type="vanished">Gjenstående</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation>Tilgjengelighet</translation>
+        <translation type="vanished">Tilgjengelighet</translation>
     </message>
 </context>
 <context>
@@ -1637,6 +1941,10 @@
         <comment>i.e. Size including unwanted data</comment>
         <translation>Total størrelse</translation>
     </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -1658,66 +1966,94 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Nedlastet</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished" />
+        <translation>Nettadresse til sporer:</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>Oppdaterer …</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>Virker</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Deaktivert</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished" />
+        <translation>Ikke kontaktet ennå</translation>
     </message>
     <message>
         <source>#</source>
-        <translation type="unfinished" />
+        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Irrelevant</translation>
     </message>
     <message>
         <source>Seeds</source>
-        <translation type="unfinished" />
+        <translation>Delere</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>Virker ikke</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation type="unfinished" />
+        <translation>Kopier sporerens nettadresse</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished" />
+        <translation>Legg til en ny sporer …</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation type="unfinished" />
+        <translation>Rediger sporerens nettadresse …</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished" />
+        <translation>Sporer-redigering</translation>
     </message>
     <message>
         <source>Leeches</source>
-        <translation type="unfinished" />
+        <translation>Snyltere</translation>
     </message>
     <message>
         <source>Remove tracker</source>
+        <translation>Fjern sporer</translation>
+    </message>
+    <message>
+        <source>Remaining</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tier</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download Priority</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1741,67 +2077,67 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation type="unfinished" />
+        <translation>Tildeler</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>Pauset</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Fullført</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Flytter</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] Deler</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Deler</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>I kø</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>Feilet</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[F] Laster ned</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>Laster ned metadata</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Kontrollerer</translation>
     </message>
     <message>
         <source>Missing Files</source>
-        <translation type="unfinished" />
+        <translation>Mangler filer</translation>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>Plassert i kø for gjennomsjekking</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>Laster ned</translation>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Sjekker gjennopptakingsdata</translation>
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>Laster ikke ned</translation>
     </message>
 </context>
 <context>
@@ -1813,6 +2149,10 @@
     <message>
         <source>Categories</source>
         <translation>Kategorier</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1851,15 +2191,15 @@
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Begrens delingsforhold…</translation>
+        <translation>Begrens delingsforhold …</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation>Begrens opplastingshastighet…</translation>
+        <translation>Begrens opplastingshastighet …</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation>Begrens nedlastingshastighet…</translation>
+        <translation>Begrens nedlastingshastighet …</translation>
     </message>
     <message>
         <source>Move up</source>
@@ -1883,15 +2223,15 @@
     </message>
     <message>
         <source>Set location...</source>
-        <translation>Velg plassering…</translation>
+        <translation>Velg plassering …</translation>
     </message>
     <message>
         <source>Copy name</source>
-        <translation>Kopier navn</translation>
+        <translation type="vanished">Kopier navn</translation>
     </message>
     <message>
         <source>Copy hash</source>
-        <translation>Kopier sjekksum</translation>
+        <translation type="vanished">Kopier sjekksum</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -1908,7 +2248,7 @@
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation>Ny…</translation>
+        <translation>Ny …</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -1917,7 +2257,7 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation>Prioritet</translation>
+        <translation type="vanished">Prioritet</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -1925,7 +2265,7 @@
     </message>
     <message>
         <source>Copy magnet link</source>
-        <translation>Kopier magnetlenke</translation>
+        <translation type="vanished">Kopier magnetlenke</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -1933,7 +2273,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Gi nytt navn…</translation>
+        <translation>Gi nytt navn …</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -1941,34 +2281,74 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>Påtving ny gjennomsjekk</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Ny kategori</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Plassering</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Nytt navn</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Angi plassering</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>Tving reannonsering</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Rediger kategori</translation>
     </message>
     <message>
         <source>Save path</source>
+        <translation>Lagringssti</translation>
+    </message>
+    <message>
+        <source>Comma-separated tags:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Tags</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hash</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2003,19 +2383,19 @@
     <name>about</name>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>En avansert BitTorrent-klient, programmert i C++, basert på Qt-verktøyssettet og libtorrent-rasterbar.</translation>
+        <translation type="vanished">En avansert BitTorrent-klient, programmert i C++, basert på Qt-verktøyssettet og libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation>Hjemmeside:</translation>
+        <translation type="vanished">Hjemmeside:</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation>Forum:</translation>
+        <translation type="vanished">Forum:</translation>
     </message>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Feilsporer:</translation>
+        <translation type="vanished">Feilsporer:</translation>
     </message>
 </context>
 <context>
@@ -2030,7 +2410,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Slettingsbekreftelse - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2045,7 +2425,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Legg til torrentlenke …</translation>
     </message>
 </context>
 <context>
@@ -2120,76 +2500,339 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Lagringsstien kan ikke være tom</translation>
     </message>
 </context>
 <context>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>Sti til programtillegg:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>Nettadresse eller lokal mappe</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Installer programtillegg</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
 </context>
 <context>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>Delere:</translation>
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>Alle programtillegg</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Størrelse:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stopp</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Søk</translation>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>Søk i programtillegg …</translation>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Alle kategorier</translation>
     </message>
     <message>
         <source>Search in:</source>
-        <translation type="unfinished" />
+        <translation>Søk i:</translation>
     </message>
     <message>
         <source>Copy description page URL</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Kopier nettadresse for beskrivelsesside</translation>
     </message>
     <message>
         <source>Go to description page</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Gå til beskrivelsesside</translation>
     </message>
     <message>
         <source>Results (showing</source>
+        <translation>Resultater (viser</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation type="vanished">Last ned</translation>
+    </message>
+    <message>
+        <source>Filter</source>
+        <translation>Filter</translation>
+    </message>
+    <message>
+        <source>Torrent names only</source>
+        <translation>Kun torrentnavn</translation>
+    </message>
+    <message>
+        <source>Only enabled</source>
+        <translation>Kun aktiverte</translation>
+    </message>
+    <message>
+        <source>out of</source>
+        <translation>av</translation>
+    </message>
+    <message>
+        <source>Everywhere</source>
+        <translation>Overalt</translation>
+    </message>
+</context>
+<context>
+    <name>PluginSelectDlg</name>
+    <message>
+        <source>Uninstall</source>
+        <translation>Avinstaller</translation>
+    </message>
+    <message>
+        <source>Install new plugin</source>
+        <translation>Installer nytt programtillegg</translation>
+    </message>
+    <message>
+        <source>You can get new search engine plugins here:</source>
+        <translation>Du kan hente nye søkemotor-programtillegg her:</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Lukk</translation>
+    </message>
+    <message>
+        <source>Installed search plugins:</source>
+        <translation>Installerte søketillegg:</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktivert</translation>
+    </message>
+    <message>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Advarsel: Sørg for å overholde ditt lands opphavsrettslovgivning når du laster ned torrenter fra noen av disse søkemotorene.</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Se etter oppdateringer</translation>
+    </message>
+    <message>
+        <source>Search plugins</source>
+        <translation>Søketillegg</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Navn</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Størrelse</translation>
+    </message>
+    <message>
+        <source>Leechers</source>
+        <translation>Snyltere</translation>
+    </message>
+    <message>
+        <source>Search engine</source>
+        <translation>Søkemotor</translation>
+    </message>
+    <message>
+        <source>Seeders</source>
+        <translation>Delere</translation>
+    </message>
+</context>
+<context>
+    <name>SearchPluginsTable</name>
+    <message>
+        <source>Name</source>
+        <translation>Navn</translation>
+    </message>
+    <message>
+        <source>Url</source>
+        <translation>Url</translation>
+    </message>
+    <message>
+        <source>Enabled</source>
+        <translation>Aktivert</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Versjon</translation>
+    </message>
+</context>
+<context>
+    <name>PeersAdditionDialog</name>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>List of peers to add (one IP per line):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Format: IPv4:port / [IPv6]:port</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TagFilterWidget</name>
+    <message>
+        <source>New Tag</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add tag...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tag:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pause torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resume torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove unused tags</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invalid tag name</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove tag</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TagFilterModel</name>
+    <message>
+        <source>All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Untagged</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>AboutDialog</name>
+    <message>
+        <source>Bug Tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Forum:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>E-mail:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Current maintainer</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Home Page:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Greece</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Special Thanks</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>About qBittorrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Libraries</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>License</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Translators</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent was built with the following libraries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Nationality:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>OptionDialog</name>
+    <message>
+        <source>All addresses</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>SearchJobWidget</name>
+    <message>
+        <source>Copy</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2197,104 +2840,19 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Filter</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Torrent names only</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Only enabled</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Everywhere</source>
-        <translation type="unfinished" />
-    </message>
-</context>
-<context>
-    <name>PluginSelectDlg</name>
-    <message>
-        <source>Uninstall</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Install new plugin</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Installed search plugins:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search plugins</source>
-        <translation type="unfinished" />
-    </message>
-</context>
-<context>
-    <name>SearchResultsTable</name>
-    <message>
         <source>Name</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
+        <source>Description page URL</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Leechers</source>
+        <source>Open description page</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Seeders</source>
-        <translation type="unfinished" />
-    </message>
-</context>
-<context>
-    <name>SearchPluginsTable</name>
-    <message>
-        <source>Name</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enabled</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Version</source>
+        <source>Download link</source>
         <translation type="unfinished" />
     </message>
 </context>

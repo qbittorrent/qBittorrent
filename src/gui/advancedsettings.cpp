@@ -61,6 +61,9 @@ enum AdvSettingsRows
 {
     // qBittorrent section
     QBITTORRENT_HEADER,
+#if defined(Q_OS_WIN)
+    OS_MEMORY_PRIORITY,
+#endif
     // network interface
     NETWORK_IFACE,
     //Optional network address
@@ -70,9 +73,6 @@ enum AdvSettingsRows
     SAVE_RESUME_DATA_INTERVAL,
     CONFIRM_RECHECK_TORRENT,
     RECHECK_COMPLETED,
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    UPDATE_CHECK,
-#endif
     // UI related
     LIST_REFRESH,
     RESOLVE_HOSTS,
@@ -83,7 +83,7 @@ enum AdvSettingsRows
     DOWNLOAD_TRACKER_FAVICON,
     SAVE_PATH_HISTORY_LENGTH,
     ENABLE_SPEED_WIDGET,
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     USE_ICON_THEME,
 #endif
 
@@ -154,6 +154,28 @@ void AdvancedSettings::saveAdvancedSettings()
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
+#if defined(Q_OS_WIN)
+    BitTorrent::OSMemoryPriority prio = BitTorrent::OSMemoryPriority::Normal;
+    switch (m_comboBoxOSMemoryPriority.currentIndex()) {
+    case 0:
+    default:
+        prio = BitTorrent::OSMemoryPriority::Normal;
+        break;
+    case 1:
+        prio = BitTorrent::OSMemoryPriority::BelowNormal;
+        break;
+    case 2:
+        prio = BitTorrent::OSMemoryPriority::Medium;
+        break;
+    case 3:
+        prio = BitTorrent::OSMemoryPriority::Low;
+        break;
+    case 4:
+        prio = BitTorrent::OSMemoryPriority::VeryLow;
+        break;
+    }
+    session->setOSMemoryPriority(prio);
+#endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
     // File pool size
@@ -228,18 +250,15 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setSpeedWidgetEnabled(m_checkBoxSpeedWidgetEnabled.isChecked());
 
     // Tracker
-    session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
+    session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
     // Choking algorithm
     session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(m_comboBoxChokingAlgorithm.currentIndex()));
     // Seed choking algorithm
     session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(m_comboBoxSeedChokingAlgorithm.currentIndex()));
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    pref->setUpdateCheckEnabled(m_checkBoxUpdateCheck.isChecked());
-#endif
     // Icon theme
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     pref->useSystemIconTheme(m_checkBoxUseIconTheme.isChecked());
 #endif
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
@@ -326,6 +345,33 @@ void AdvancedSettings::loadAdvancedSettings()
     labelLibtorrentLink->setOpenExternalLinks(true);
     addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
+
+#if defined(Q_OS_WIN)
+    m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});
+    int OSMemoryPriorityIndex = 0;
+    switch (session->getOSMemoryPriority()) {
+    default:
+    case BitTorrent::OSMemoryPriority::Normal:
+        OSMemoryPriorityIndex = 0;
+        break;
+    case BitTorrent::OSMemoryPriority::BelowNormal:
+        OSMemoryPriorityIndex = 1;
+        break;
+    case BitTorrent::OSMemoryPriority::Medium:
+        OSMemoryPriorityIndex = 2;
+        break;
+    case BitTorrent::OSMemoryPriority::Low:
+        OSMemoryPriorityIndex = 3;
+        break;
+    case BitTorrent::OSMemoryPriority::VeryLow:
+        OSMemoryPriorityIndex = 4;
+        break;
+    }
+    m_comboBoxOSMemoryPriority.setCurrentIndex(OSMemoryPriorityIndex);
+    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
+        + ' ' + makeLink("https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", "(?)"))
+        , &m_comboBoxOSMemoryPriority);
+#endif
 
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
@@ -521,11 +567,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", "(?)"))
             , &m_comboBoxSeedChokingAlgorithm);
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    m_checkBoxUpdateCheck.setChecked(pref->isUpdateCheckEnabled());
-    addRow(UPDATE_CHECK, tr("Check for software updates"), &m_checkBoxUpdateCheck);
-#endif
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_checkBoxUseIconTheme.setChecked(pref->useSystemIconTheme());
     addRow(USE_ICON_THEME, tr("Use system icon theme"), &m_checkBoxUseIconTheme);
 #endif

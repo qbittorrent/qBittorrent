@@ -3,7 +3,10 @@
 DEFINES += BOOST_ASIO_DISABLE_CONNECTEX
 DEFINES += BOOST_EXCEPTION_DISABLE
 
+DEFINES += TORRENT_USE_LIBCRYPTO
+# TODO: remove the following define as it is not used since OpenSSL >= 1.1
 DEFINES += TORRENT_USE_OPENSSL
+# TODO: remove the following define as it is not used since libtorrent >= 1.2
 DEFINES += TORRENT_DISABLE_RESOLVE_COUNTRIES
 
 DEFINES += NTDDI_VERSION=0x06010000
@@ -34,7 +37,7 @@ win32-g++* {
 
     RC_FILE = qbittorrent_mingw.rc
 
-    LIBS += libadvapi32 libshell32 libuser32 libole32 libwsock32 libws2_32
+    LIBS += libadvapi32 libiphlpapi libole32 libpowrprof libshell32 libuser32 libwsock32 libws2_32
 }
 else:win32-msvc* {
     CONFIG -= embed_manifest_exe
@@ -42,7 +45,7 @@ else:win32-msvc* {
 
     RC_FILE = qbittorrent.rc
 
-    LIBS += advapi32.lib shell32.lib crypt32.lib User32.lib ole32.lib
+    LIBS += advapi32.lib crypt32.lib Iphlpapi.lib ole32.lib PowrProf.lib shell32.lib User32.lib
 }
 
 # See an example build configuration in "conf.pri.windows"

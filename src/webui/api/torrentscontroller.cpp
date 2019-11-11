@@ -40,6 +40,7 @@
 #include <QUrl>
 
 #include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
@@ -196,6 +197,15 @@ namespace
         };
 
         return {dht, pex, lsd};
+    }
+
+    QVector<BitTorrent::InfoHash> toInfoHashes(const QStringList &hashes)
+    {
+        QVector<BitTorrent::InfoHash> infoHashes;
+        infoHashes.reserve(hashes.size());
+        for (const QString &hash : hashes)
+            infoHashes << hash;
+        return infoHashes;
     }
 }
 
@@ -885,10 +895,11 @@ void TorrentsController::deleteAction()
     checkParams({"hashes", "deleteFiles"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const bool deleteFiles {parseBool(params()["deleteFiles"], false)};
-    applyToTorrents(hashes, [deleteFiles](BitTorrent::TorrentHandle *const torrent)
+    const DeleteOption deleteOption = parseBool(params()["deleteFiles"], false)
+            ? TorrentAndFiles : Torrent;
+    applyToTorrents(hashes, [deleteOption](const BitTorrent::TorrentHandle *torrent)
     {
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteFiles);
+        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteOption);
     });
 }
 
@@ -900,7 +911,7 @@ void TorrentsController::increasePrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->increaseTorrentsQueuePos(hashes);
+    BitTorrent::Session::instance()->increaseTorrentsQueuePos(toInfoHashes(hashes));
 }
 
 void TorrentsController::decreasePrioAction()
@@ -911,7 +922,7 @@ void TorrentsController::decreasePrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->decreaseTorrentsQueuePos(hashes);
+    BitTorrent::Session::instance()->decreaseTorrentsQueuePos(toInfoHashes(hashes));
 }
 
 void TorrentsController::topPrioAction()
@@ -922,7 +933,7 @@ void TorrentsController::topPrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->topTorrentsQueuePos(hashes);
+    BitTorrent::Session::instance()->topTorrentsQueuePos(toInfoHashes(hashes));
 }
 
 void TorrentsController::bottomPrioAction()
@@ -933,7 +944,7 @@ void TorrentsController::bottomPrioAction()
         throw APIError(APIErrorType::Conflict, tr("Torrent queueing must be enabled"));
 
     const QStringList hashes {params()["hashes"].split('|')};
-    BitTorrent::Session::instance()->bottomTorrentsQueuePos(hashes);
+    BitTorrent::Session::instance()->bottomTorrentsQueuePos(toInfoHashes(hashes));
 }
 
 void TorrentsController::setLocationAction()
@@ -1066,8 +1077,8 @@ void TorrentsController::removeCategoriesAction()
 void TorrentsController::categoriesAction()
 {
     QJsonObject categories;
-    const auto categoriesList = BitTorrent::Session::instance()->categories();
-    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
+    const QStringMap categoriesMap = BitTorrent::Session::instance()->categories();
+    for (auto it = categoriesMap.cbegin(); it != categoriesMap.cend(); ++it) {
         const auto &key = it.key();
         categories[key] = QJsonObject {
             {"name", key},

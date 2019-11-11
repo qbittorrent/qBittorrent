@@ -14,31 +14,33 @@
 <script>
     'use strict';
 
-    // Tabs
-    MochaUI.initializeTabs('preferencesTabs');
+    (function() {
+        // Tabs
+        MochaUI.initializeTabs('preferencesTabs');
 
-    $('PrefDownloadsLink').addEvent('click', function(e) {
-        $$('.PrefTab').addClass('invisible');
-        $('DownloadsTab').removeClass('invisible');
-    });
-    $('PrefConnectionLink').addEvent('click', function(e) {
-        $$('.PrefTab').addClass('invisible');
-        $('ConnectionTab').removeClass('invisible');
-    });
-    $('PrefSpeedLink').addEvent('click', function(e) {
-        $$('.PrefTab').addClass('invisible');
-        $('SpeedTab').removeClass('invisible');
-    });
-    $('PrefBittorrentLink').addEvent('click', function(e) {
-        $$('.PrefTab').addClass('invisible');
-        $('BittorrentTab').removeClass('invisible');
-    });
-    $('PrefWebUILink').addEvent('click', function(e) {
-        $$('.PrefTab').addClass('invisible');
-        $('WebUITab').removeClass('invisible');
-    });
-    $('PrefAdvancedLink').addEvent('click', function(e) {
-        $$('.PrefTab').addClass('invisible');
-        $('AdvancedTab').removeClass('invisible');
-    });
+        $('PrefDownloadsLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('DownloadsTab').removeClass('invisible');
+        });
+        $('PrefConnectionLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('ConnectionTab').removeClass('invisible');
+        });
+        $('PrefSpeedLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('SpeedTab').removeClass('invisible');
+        });
+        $('PrefBittorrentLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('BittorrentTab').removeClass('invisible');
+        });
+        $('PrefWebUILink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('WebUITab').removeClass('invisible');
+        });
+        $('PrefAdvancedLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('AdvancedTab').removeClass('invisible');
+        });
+    })();
 </script>

@@ -155,7 +155,9 @@
 <script>
     'use strict';
 
-    const selectedTab = $(getLocalStorageItem('selected_tab', 'PropGeneralLink'));
-    if (selectedTab)
-        selectedTab.click();
+    (function() {
+        const selectedTab = $(LocalPreferences.get('selected_tab', 'PropGeneralLink'));
+        if (selectedTab)
+            selectedTab.click();
+    })();
 </script>

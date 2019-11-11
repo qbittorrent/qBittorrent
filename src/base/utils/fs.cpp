@@ -39,7 +39,7 @@
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
-#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
@@ -230,7 +230,19 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSepar
 {
     if (name.isEmpty()) return false;
 
-    const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]" : "[\\\\/:?\"*<>|]");
+#if defined(Q_OS_WIN)
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[:?\"*<>|]")
+        : QLatin1String("[\\\\/:?\"*<>|]")};
+#elif defined(Q_OS_MACOS)
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[\\0:]")
+        : QLatin1String("[\\0/:]")};
+#else
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[\\0]")
+        : QLatin1String("[\\0/]")};
+#endif
     return !name.contains(regex);
 }
 
@@ -309,7 +321,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
         return false;
 
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
-#elif defined(Q_OS_MAC) || defined(Q_OS_OPENBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_OPENBSD)
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
@@ -336,7 +348,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     // Magic number references:
     // 1. /usr/include/linux/magic.h
     // 2. https://github.com/coreutils/coreutils/blob/master/src/stat.c
-    switch (buf.f_type) {
+    switch (static_cast<unsigned int>(buf.f_type)) {
     case 0xFF534D42:  // CIFS_MAGIC_NUMBER
     case 0x6969:  // NFS_SUPER_MAGIC
     case 0x517B:  // SMB_SUPER_MAGIC

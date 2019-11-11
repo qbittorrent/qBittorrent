@@ -1,8 +1,8 @@
 [Unit]
 Description=qBittorrenti-nox service for user %I
-
 Documentation=man:qbittorrent-nox(1)
-After=network.target
+Wants=network-online.target
+After=network-online.target nss-lookup.target
 
 [Service]
 Type=simple

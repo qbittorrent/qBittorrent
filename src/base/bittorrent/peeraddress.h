@@ -40,5 +40,6 @@ namespace BitTorrent
         ushort port = 0;
 
         static PeerAddress parse(const QString &address);
+        QString toString() const;
     };
 }

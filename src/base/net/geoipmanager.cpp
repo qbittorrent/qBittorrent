@@ -374,7 +374,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         {"VE", tr("Venezuela, Bolivarian Republic of")},
         {"VG", tr("Virgin Islands, British")},
         {"VI", tr("Virgin Islands, U.S.")},
-        {"VN", tr("Viet Nam")},
+        {"VN", tr("Vietnam")},
         {"VU", tr("Vanuatu")},
         {"WF", tr("Wallis and Futuna")},
         {"WS", tr("Samoa")},

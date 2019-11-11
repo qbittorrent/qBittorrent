@@ -43,7 +43,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 2, 0};
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 2, 1};
 
 class APIController;
 class WebApplication;
@@ -105,7 +105,7 @@ private:
     void sendFile(const QString &path);
     void sendWebUIFile();
 
-    void translateDocument(QString &data);
+    void translateDocument(QString &data) const;
 
     // Session management
     QString generateSid() const;
@@ -136,6 +136,7 @@ private:
     struct TranslatedFile
     {
         QByteArray data;
+        QString mimeType;
         QDateTime lastModified;
     };
     QHash<QString, TranslatedFile> m_translatedFiles;

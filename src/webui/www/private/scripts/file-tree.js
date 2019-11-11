@@ -28,149 +28,167 @@
 
 'use strict';
 
-const FilePriority = {
-    "Ignored": 0,
-    "Normal": 1,
-    "High": 6,
-    "Maximum": 7,
-    "Mixed": -1
-};
-Object.freeze(FilePriority);
+if (window.qBittorrent === undefined) {
+    window.qBittorrent = {};
+}
 
-const TriState = {
-    "Unchecked": 0,
-    "Checked": 1,
-    "Partial": 2
-};
-Object.freeze(TriState);
+window.qBittorrent.FileTree = (function() {
+    const exports = function() {
+        return {
+            FilePriority: FilePriority,
+            TriState: TriState,
+            FileTree: FileTree,
+            FileNode: FileNode,
+            FolderNode: FolderNode,
+        };
+    };
 
-const FileTree = new Class({
-    root: null,
-    nodeMap: {},
+    const FilePriority = {
+        "Ignored": 0,
+        "Normal": 1,
+        "High": 6,
+        "Maximum": 7,
+        "Mixed": -1
+    };
+    Object.freeze(FilePriority);
 
-    setRoot: function(root) {
-        this.root = root;
-        this.generateNodeMap(root);
+    const TriState = {
+        "Unchecked": 0,
+        "Checked": 1,
+        "Partial": 2
+    };
+    Object.freeze(TriState);
 
-        if (this.root.isFolder)
-            this.root.calculateSize();
-    },
+    const FileTree = new Class({
+        root: null,
+        nodeMap: {},
 
-    getRoot: function() {
-        return this.root;
-    },
+        setRoot: function(root) {
+            this.root = root;
+            this.generateNodeMap(root);
 
-    generateNodeMap: function(node) {
-        // don't store root node in map
-        if (node.root !== null) {
-            this.nodeMap[node.rowId] = node;
+            if (this.root.isFolder)
+                this.root.calculateSize();
+        },
+
+        getRoot: function() {
+            return this.root;
+        },
+
+        generateNodeMap: function(node) {
+            // don't store root node in map
+            if (node.root !== null) {
+                this.nodeMap[node.rowId] = node;
+            }
+
+            node.children.each(function(child) {
+                this.generateNodeMap(child);
+            }.bind(this));
+        },
+
+        getNode: function(rowId) {
+            return (this.nodeMap[rowId] === undefined)
+                ? null
+                : this.nodeMap[rowId];
+        },
+
+        getRowId: function(node) {
+            return node.rowId;
+        },
+
+        /**
+         * Returns the nodes in dfs order
+         */
+        toArray: function() {
+            const nodes = [];
+            this.root.children.each(function(node) {
+                this._getArrayOfNodes(node, nodes);
+            }.bind(this));
+            return nodes;
+        },
+
+        _getArrayOfNodes: function(node, array) {
+            array.push(node);
+            node.children.each(function(child) {
+                this._getArrayOfNodes(child, array);
+            }.bind(this));
         }
+    });
 
-        node.children.each(function(child) {
-            this.generateNodeMap(child);
-        }.bind(this));
-    },
+    const FileNode = new Class({
+        name: "",
+        rowId: null,
+        size: 0,
+        checked: TriState.Unchecked,
+        remaining: 0,
+        progress: 0,
+        priority: FilePriority.Normal,
+        availability: 0,
+        depth: 0,
+        root: null,
+        data: null,
+        isFolder: false,
+        children: [],
+    });
 
-    getNode: function(rowId) {
-        return (this.nodeMap[rowId] === undefined)
-            ? null
-            : this.nodeMap[rowId];
-    },
+    const FolderNode = new Class({
+        Extends: FileNode,
 
-    getRowId: function(node) {
-        return node.rowId;
-    },
+        initialize: function() {
+            this.isFolder = true;
+        },
 
-    /**
-     * Returns the nodes in dfs order
-     */
-    toArray: function() {
-        const nodes = [];
-        this.root.children.each(function(node) {
-            this._getArrayOfNodes(node, nodes);
-        }.bind(this));
-        return nodes;
-    },
+        addChild(node) {
+            this.children.push(node);
+        },
 
-    _getArrayOfNodes: function(node, array) {
-        array.push(node);
-        node.children.each(function(child) {
-            this._getArrayOfNodes(child, array);
-        }.bind(this));
-    }
-});
+        /**
+         * Recursively calculate size of node and its children
+         */
+        calculateSize: function() {
+            let size = 0;
+            let remaining = 0;
+            let progress = 0;
+            let availability = 0;
+            let checked = TriState.Unchecked;
+            let priority = FilePriority.Normal;
 
-const FileNode = new Class({
-    name: "",
-    rowId: null,
-    size: 0,
-    checked: TriState.Unchecked,
-    remaining: 0,
-    progress: 0,
-    priority: FilePriority.Normal,
-    availability: 0,
-    depth: 0,
-    root: null,
-    data: null,
-    isFolder: false,
-    children: [],
-});
+            let isFirstFile = true;
 
-const FolderNode = new Class({
-    Extends: FileNode,
+            this.children.each(function(node) {
+                if (node.isFolder)
+                    node.calculateSize();
 
-    initialize: function() {
-        this.isFolder = true;
-    },
+                size += node.size;
 
-    addChild(node) {
-        this.children.push(node);
-    },
+                if (isFirstFile) {
+                    priority = node.priority;
+                    checked = node.checked;
+                    isFirstFile = false;
+                }
+                else {
+                    if (priority !== node.priority)
+                        priority = FilePriority.Mixed;
+                    if (checked !== node.checked)
+                        checked = TriState.Partial;
+                }
 
-    /**
-     * Recursively calculate size of node and its children
-     */
-    calculateSize: function() {
-        let size = 0;
-        let remaining = 0;
-        let progress = 0;
-        let availability = 0;
-        let checked = TriState.Unchecked;
-        let priority = FilePriority.Normal;
+                const isIgnored = (node.priority === FilePriority.Ignored);
+                if (!isIgnored) {
+                    remaining += node.remaining;
+                    progress += (node.progress * node.size);
+                    availability += (node.availability * node.size);
+                }
+            }.bind(this));
 
-        let isFirstFile = true;
+            this.size = size;
+            this.remaining = remaining;
+            this.checked = checked;
+            this.progress = (progress / size);
+            this.priority = priority;
+            this.availability = (availability / size);
+        }
+    });
 
-        this.children.each(function(node) {
-            if (node.isFolder)
-                node.calculateSize();
-
-            size += node.size;
-
-            if (isFirstFile) {
-                priority = node.priority;
-                checked = node.checked;
-                isFirstFile = false;
-            }
-            else {
-                if (priority !== node.priority)
-                    priority = FilePriority.Mixed;
-                if (checked !== node.checked)
-                    checked = TriState.Partial;
-            }
-
-            const isIgnored = (node.priority === FilePriority.Ignored);
-            if (!isIgnored) {
-                remaining += node.remaining;
-                progress += (node.progress * node.size);
-                availability += (node.availability * node.size);
-            }
-        }.bind(this));
-
-        this.size = size;
-        this.remaining = remaining;
-        this.checked = checked;
-        this.progress = (progress / size);
-        this.priority = priority;
-        this.availability = (availability / size);
-    }
-});
+    return exports();
+})();

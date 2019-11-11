@@ -30,72 +30,27 @@
 #define DELETIONCONFIRMATIONDIALOG_H
 
 #include <QDialog>
-#include <QPushButton>
 
-#include "base/preferences.h"
 #include "ui_deletionconfirmationdialog.h"
-#include "uithememanager.h"
-#include "utils.h"
+
+namespace Ui
+{
+    class DeletionConfirmationDialog;
+}
 
 class DeletionConfirmationDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    DeletionConfirmationDialog(QWidget *parent, const int &size, const QString &name, bool defaultDeleteFiles)
-        : QDialog(parent)
-        , m_ui(new Ui::DeletionConfirmationDialog)
-    {
-        m_ui->setupUi(this);
-        if (size == 1)
-            m_ui->label->setText(tr("Are you sure you want to delete '%1' from the transfer list?", "Are you sure you want to delete 'ubuntu-linux-iso' from the transfer list?").arg(name.toHtmlEscaped()));
-        else
-            m_ui->label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
-        // Icons
-        const QSize iconSize = Utils::Gui::largeIconSize();
-        m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon("dialog-warning").pixmap(iconSize));
-        m_ui->labelWarning->setFixedWidth(iconSize.width());
-        m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon("object-locked"));
-        m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
+    DeletionConfirmationDialog(QWidget *parent, int size, const QString &name, bool defaultDeleteFiles);
+    ~DeletionConfirmationDialog();
 
-        m_ui->checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
-        connect(m_ui->checkPermDelete, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
-        m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
-
-        Utils::Gui::resize(this);
-    }
-
-    ~DeletionConfirmationDialog()
-    {
-        delete m_ui;
-    }
-
-    bool shouldDeleteLocalFiles() const
-    {
-        return m_ui->checkPermDelete->isChecked();
-    }
-
-    static bool askForDeletionConfirmation(QWidget *parent, bool &deleteLocalFiles, const int &size, const QString &name)
-    {
-        DeletionConfirmationDialog dlg(parent, size, name, deleteLocalFiles);
-        if (dlg.exec() == QDialog::Accepted) {
-            deleteLocalFiles = dlg.shouldDeleteLocalFiles();
-            return true;
-        }
-        return false;
-    }
+    bool isDeleteFileSelected() const;
 
 private slots:
-    void updateRememberButtonState()
-    {
-        m_ui->rememberBtn->setEnabled(m_ui->checkPermDelete->isChecked() != Preferences::instance()->deleteTorrentFilesAsDefault());
-    }
-
-    void on_rememberBtn_clicked()
-    {
-        Preferences::instance()->setDeleteTorrentFilesAsDefault(m_ui->checkPermDelete->isChecked());
-        m_ui->rememberBtn->setEnabled(false);
-    }
+    void updateRememberButtonState();
+    void on_rememberBtn_clicked();
 
 private:
     Ui::DeletionConfirmationDialog *m_ui;

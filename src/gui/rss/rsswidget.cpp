@@ -72,7 +72,7 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon("edit-rename"));
     m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
     m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon("list-add"));
     m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon("mail-mark-read"));
     m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));

@@ -168,8 +168,11 @@ bool PeerInfo::isPlaintextEncrypted() const
 
 PeerAddress PeerInfo::address() const
 {
-    return {QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string()))
-                , m_nativeInfo.ip.port()};
+    // fast path for platforms which boost.asio internal struct maps to `sockaddr`
+    return {QHostAddress(m_nativeInfo.ip.data()), m_nativeInfo.ip.port()};
+    // slow path for the others
+    //return {QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string()))
+    //    , m_nativeInfo.ip.port()};
 }
 
 QString PeerInfo::client() const

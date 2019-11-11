@@ -36,6 +36,7 @@
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
 
+#include <QDateTime>
 #include <QHash>
 #include <QObject>
 #include <QQueue>
@@ -83,6 +84,7 @@ namespace BitTorrent
         int downloadLimit;
         // for new torrents
         QVector<DownloadPriority> filePriorities;
+        QDateTime addedTime;
         // for restored torrents
         qreal ratioLimit;
         int seedingTimeLimit;
@@ -322,7 +324,7 @@ namespace BitTorrent
         void setUploadLimit(int limit);
         void setDownloadLimit(int limit);
         void setSuperSeeding(bool enable);
-        void flushCache();
+        void flushCache() const;
         void addTrackers(const QVector<TrackerEntry> &trackers);
         void replaceTrackers(const QVector<TrackerEntry> &trackers);
         void addUrlSeeds(const QVector<QUrl> &urlSeeds);

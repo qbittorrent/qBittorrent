@@ -38,30 +38,35 @@ public:
 
     constexpr TriStateBool() = default;
     constexpr TriStateBool(const TriStateBool &other) = default;
-    explicit constexpr TriStateBool(int value)
-        : m_value(value < 0 ? -1 : (value > 0 ? 1 : 0))
+    explicit constexpr TriStateBool(const bool boolean)
     {
+        *this = boolean ? True : False;
     }
 
-    explicit constexpr operator int() const
+    TriStateBool &operator=(const TriStateBool &other) = default;  // TODO: add constexpr when using C++17
+
+    explicit constexpr operator signed char() const
     {
         return m_value;
     }
 
-    TriStateBool &operator=(const TriStateBool &other) = default;  // add constexpr when using C++17
-
-    constexpr bool operator==(const TriStateBool &other) const
+    constexpr friend bool operator==(const TriStateBool &left, const TriStateBool &right)
     {
-        return (m_value == other.m_value);
-    }
-
-    constexpr bool operator!=(const TriStateBool &other) const
-    {
-        return !operator==(other);
+        return (left.m_value == right.m_value);
     }
 
 private:
+    explicit constexpr TriStateBool(const int value)
+        : m_value((value < 0) ? -1 : ((value > 0) ? 1 : 0))
+    {
+    }
+
     signed char m_value = -1; // Undefined by default
 };
+
+constexpr bool operator!=(const TriStateBool &left, const TriStateBool &right)
+{
+    return !(left == right);
+}
 
 #endif // TRISTATEBOOL_H

@@ -182,7 +182,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     // Load options
     loadOptions();
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
 #else
     // Disable systray integration if it is not supported by the system
@@ -198,8 +198,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->checkStartup->setVisible(false);
 #endif
 
-#if !(defined(Q_OS_WIN) || defined(Q_OS_MAC))
+#if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->groupFileAssociation->setVisible(false);
+    m_ui->checkProgramUpdates->setVisible(false);
 #endif
 
     m_ui->textWebUIRootFolder->setMode(FileSystemPathEdit::Mode::DirectoryOpen);
@@ -215,7 +216,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkRandomPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
     // Apply button is activated when a value is changed
-    // General tab
+    // Behavior tab
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -236,13 +237,14 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTrayIcon, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && !defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QT_DBUS_LIB)
     m_ui->checkPreventFromSuspendWhenDownloading->setDisabled(true);
     m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     connect(m_ui->checkAssociateTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
     connect(m_ui->checkFileLog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textFileLogPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -594,7 +596,7 @@ void OptionsDialog::saveOptions()
         qApp->installTranslator(translator);
     }
 
-    // General preferences
+    // Behavior preferences
     pref->setLocale(locale);
 
     if (!m_uiThemeFilePath.isEmpty()
@@ -609,7 +611,7 @@ void OptionsDialog::saveOptions()
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     pref->setSystrayIntegration(systrayIntegration());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
@@ -627,7 +629,7 @@ void OptionsDialog::saveOptions()
     Preferences::setTorrentFileAssoc(m_ui->checkAssociateTorrents->isChecked());
     Preferences::setMagnetLinkAssoc(m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     if (m_ui->checkAssociateTorrents->isChecked()) {
         Preferences::setTorrentFileAssoc();
         m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
@@ -639,6 +641,9 @@ void OptionsDialog::saveOptions()
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    pref->setUpdateCheckEnabled(m_ui->checkProgramUpdates->isChecked());
+#endif
     auto *const app = static_cast<Application *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
@@ -647,7 +652,7 @@ void OptionsDialog::saveOptions()
     app->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
     app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
     app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
-    // End General preferences
+    // End Behavior preferences
 
     RSS::Session::instance()->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
     RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
@@ -742,7 +747,14 @@ void OptionsDialog::saveOptions()
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
-    session->setMaxRatioAction(static_cast<MaxRatioAction>(m_ui->comboRatioLimitAct->currentIndex()));
+
+    const QVector<MaxRatioAction> actIndex = {
+        Pause,
+        Remove,
+        DeleteFiles,
+        EnableSuperSeeding
+    };
+    session->setMaxRatioAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
     // End Bittorrent preferences
 
     // Misc preferences
@@ -833,7 +845,7 @@ void OptionsDialog::loadOptions()
     bool fileLogDelete = true;
     const Preferences *const pref = Preferences::instance();
 
-    // General preferences
+    // Behavior preferences
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -846,7 +858,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
     if (m_ui->checkShowSystray->isChecked()) {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
@@ -863,11 +875,14 @@ void OptionsDialog::loadOptions()
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
+#endif
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
 #endif
 
     const Application *const app = static_cast<Application*>(QCoreApplication::instance());
@@ -883,7 +898,7 @@ void OptionsDialog::loadOptions()
     m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize() / 1024);
     m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
-    // End General preferences
+    // End Behavior preferences
 
     m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
     m_ui->checkRSSAutoDownloaderEnable->setChecked(RSS::AutoDownloader::instance()->isProcessingEnabled());
@@ -1122,7 +1137,14 @@ void OptionsDialog::loadOptions()
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
     m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
-    m_ui->comboRatioLimitAct->setCurrentIndex(session->maxRatioAction());
+
+    const QHash<MaxRatioAction, int> actIndex = {
+        {Pause, 0},
+        {Remove, 1},
+        {DeleteFiles, 2},
+        {EnableSuperSeeding, 3}
+    };
+    m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(session->maxRatioAction()));
     // End Bittorrent preferences
 
     // Web UI preferences
@@ -1214,7 +1236,7 @@ bool OptionsDialog::startMinimized() const
     return m_ui->checkStartMinimized->isChecked();
 }
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
 bool OptionsDialog::systrayIntegration() const
 {
     if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
@@ -1232,7 +1254,7 @@ bool OptionsDialog::closeToTray() const
     if (!m_ui->checkShowSystray->isChecked()) return false;
     return m_ui->checkCloseToSystray->isChecked();
 }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 
 // Return Share ratio
 qreal OptionsDialog::getMaxRatio() const

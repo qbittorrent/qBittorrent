@@ -102,7 +102,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
            << "</p></body></html>" << flush;
     m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     // Icons
     m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
     m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
@@ -144,7 +144,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 void SearchWidget::fillCatCombobox()
 {
     m_ui->comboCategory->clear();
-    m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName("all"), QVariant("all"));
+    m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName("all"), "all");
 
     using QStrPair = QPair<QString, QString>;
     QVector<QStrPair> tmpList;
@@ -154,7 +154,7 @@ void SearchWidget::fillCatCombobox()
 
     for (const QStrPair &p : asConst(tmpList)) {
         qDebug("Supported category: %s", qUtf8Printable(p.second));
-        m_ui->comboCategory->addItem(p.first, QVariant(p.second));
+        m_ui->comboCategory->addItem(p.first, p.second);
     }
 
     if (m_ui->comboCategory->count() > 1)
@@ -164,9 +164,9 @@ void SearchWidget::fillCatCombobox()
 void SearchWidget::fillPluginComboBox()
 {
     m_ui->selectPlugin->clear();
-    m_ui->selectPlugin->addItem(tr("Only enabled"), QVariant("enabled"));
-    m_ui->selectPlugin->addItem(tr("All plugins"), QVariant("all"));
-    m_ui->selectPlugin->addItem(tr("Select..."), QVariant("multi"));
+    m_ui->selectPlugin->addItem(tr("Only enabled"), "enabled");
+    m_ui->selectPlugin->addItem(tr("All plugins"), "all");
+    m_ui->selectPlugin->addItem(tr("Select..."), "multi");
 
     using QStrPair = QPair<QString, QString>;
     QVector<QStrPair> tmpList;
@@ -175,7 +175,7 @@ void SearchWidget::fillPluginComboBox()
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
     for (const QStrPair &p : asConst(tmpList))
-        m_ui->selectPlugin->addItem(p.first, QVariant(p.second));
+        m_ui->selectPlugin->addItem(p.first, p.second);
 
     if (m_ui->selectPlugin->count() > 3)
         m_ui->selectPlugin->insertSeparator(3);

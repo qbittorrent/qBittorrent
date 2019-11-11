@@ -85,7 +85,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="temppath_checkbox" onclick="updateTempDirEnabled();" />
+                    <input type="checkbox" id="temppath_checkbox" onclick="qBittorrent.Preferences.updateTempDirEnabled();" />
                     <label for="temppath_checkbox">QBT_TR(Keep incomplete torrents in:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -94,7 +94,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="exportdir_checkbox" onclick="updateExportDirEnabled();" />
+                    <input type="checkbox" id="exportdir_checkbox" onclick="qBittorrent.Preferences.updateExportDirEnabled();" />
                     <label for="exportdir_checkbox">QBT_TR(Copy .torrent files to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -103,7 +103,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="exportdirfin_checkbox" onclick="updateExportDirFinEnabled();" />
+                    <input type="checkbox" id="exportdirfin_checkbox" onclick="qBittorrent.Preferences.updateExportDirFinEnabled();" />
                     <label for="exportdirfin_checkbox">QBT_TR(Copy .torrent files for finished downloads to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -128,13 +128,13 @@
                     <td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt" autocorrect="off" autocapitalize="none" /></td>
                     <td style="padding-top:4px;">
                         <div class="select-watched-folder-editable">
-                            <select id="new_watch_folder_select" onchange="changeWatchFolderSelect(this)">
+                            <select id="new_watch_folder_select" onchange="qBittorrent.Preferences.changeWatchFolderSelect(this)">
                                 <option selected value="watch_folder">QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>
                                 <option value="default_folder">QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>
                                 <option value="other">QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>
                             </select>
                             <input id="new_watch_folder_other_txt" type="text" value="QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]" hidden />
-                            <img src="images/qbt-theme/list-add.svg" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="addWatchFolder();" />
+                            <img src="images/qbt-theme/list-add.svg" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="qBittorrent.Preferences.addWatchFolder();" />
                         </div>
                     </td>
                 </tr>
@@ -144,7 +144,7 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="mail_notification_checkbox" onclick="updateMailNotification();" />
+            <input type="checkbox" id="mail_notification_checkbox" onclick="qBittorrent.Preferences.updateMailNotification();" />
             <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <table>
@@ -178,7 +178,7 @@
         </div>
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="mail_auth_checkbox" onclick="updateMailAuthSettings();" />
+                <input type="checkbox" id="mail_auth_checkbox" onclick="qBittorrent.Preferences.updateMailAuthSettings();" />
                 <label for="mail_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <table>
@@ -204,7 +204,7 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="autorun_checkbox" onclick="updateAutoRun();" />
+            <input type="checkbox" id="autorun_checkbox" onclick="qBittorrent.Preferences.updateAutoRun();" />
             <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <div class="formRow">
@@ -227,28 +227,28 @@
         </div>
     </fieldset>
 
-<fieldset class="settings">
-    <legend>
-        RSS
-    </legend>
-    <div class="formRow">
-        <input type="checkbox" id="rss_fetch_checkbox">
-        <label for="rss_fetch_checkbox">Enable fetching RSS feeds</label>
-    </div>
-    <div class="formRow">
-        <label for="rss_fetch_interval_num">Feeds refresh interval</label>
-        <input type="number" id="rss_fetch_interval_num" style="width: 4em;" min="0">
-    </div>
-    <div class="formRow">
-        <label for="rss_max_articles_num">Max number of articles per feed</label>
-        <input type="number" id="rss_max_articles_num" style="width: 4em;" min="1">
-    </div>
-    <div class="formRow">
-        <input type="checkbox" id="rss_auto_downloading_checkbox">
-        <label for="rss_auto_downloading_checkbox">Enable auto downloading of RSS torrents</label>
-    </div>
-    
-</fieldset>
+    <fieldset class="settings">
+        <legend>
+            RSS
+        </legend>
+        <div class="formRow">
+            <input type="checkbox" id="rss_fetch_checkbox">
+            <label for="rss_fetch_checkbox">Enable fetching RSS feeds</label>
+        </div>
+        <div class="formRow">
+            <label for="rss_fetch_interval_num">Feeds refresh interval</label>
+            <input type="number" id="rss_fetch_interval_num" style="width: 4em;" min="0">
+        </div>
+        <div class="formRow">
+            <label for="rss_max_articles_num">Max number of articles per feed</label>
+            <input type="number" id="rss_max_articles_num" style="width: 4em;" min="1">
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="rss_auto_downloading_checkbox">
+            <label for="rss_auto_downloading_checkbox">Enable auto downloading of RSS torrents</label>
+        </div>
+        
+    </fieldset>
 </div>
 
 <div id="ConnectionTab" class="PrefTab invisible">
@@ -265,14 +265,14 @@
         <div class="formRow">
             <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="port_value" style="width: 4em;" />
-            <button style="margin-left: 1em;" onclick="generateRandomPort();">Random</button>
+            <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">Random</button>
         </div>
         <div class="formRow">
             <input type="checkbox" id="upnp_checkbox" />
             <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="random_port_checkbox" />
+            <input type="checkbox" id="random_port_checkbox" onclick="qBittorrent.Preferences.updatePortValueEnabled();" />
             <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
@@ -282,28 +282,28 @@
         <table>
             <tr>
                 <td>
-                    <input type="checkbox" id="max_connec_checkbox" onclick="updateMaxConnecEnabled();" />
+                    <input type="checkbox" id="max_connec_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecEnabled();" />
                     <label for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td><input type="text" id="max_connec_value" style="width: 4em;" /></td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="max_connec_per_torrent_checkbox" onclick="updateMaxConnecPerTorrentEnabled();" />
+                    <input type="checkbox" id="max_connec_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecPerTorrentEnabled();" />
                     <label for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td><input type="text" id="max_connec_per_torrent_value" style="width: 4em;" /></td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="max_uploads_checkbox" onclick="updateMaxUploadsEnabled();" />
+                    <input type="checkbox" id="max_uploads_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsEnabled();" />
                     <label for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td><input type="text" id="max_uploads_value" style="width: 4em;" /></td>
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox" id="max_uploads_per_torrent_checkbox" onclick="updateMaxUploadsPerTorrentEnabled();" />
+                    <input type="checkbox" id="max_uploads_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsPerTorrentEnabled();" />
                     <label for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td><input type="text" id="max_uploads_per_torrent_value" style="width: 4em;" /></td>
@@ -319,7 +319,7 @@
                     <label for="peer_proxy_type_select">QBT_TR(Type:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
-                    <select id="peer_proxy_type_select" onchange="updatePeerProxySettings();">
+                    <select id="peer_proxy_type_select" onchange="qBittorrent.Preferences.updatePeerProxySettings();">
                         <option value="none">QBT_TR((None))QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="socks4">QBT_TR(SOCKS4)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="socks5">QBT_TR(SOCKS5)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -350,7 +350,7 @@
         </div>
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="updatePeerProxyAuthSettings();" />
+                <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="qBittorrent.Preferences.updatePeerProxyAuthSettings();" />
                 <label for="peer_proxy_auth_checkbox">QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <table>
@@ -372,14 +372,14 @@
                 </tr>
             </table>
             <div class="formRow">
-                <span>Info: The password is saved unencrypted</span>
+                <span>QBT_TR(Info: The password is saved unencrypted)QBT_TR[CONTEXT=OptionsDialog]</span>
             </div>
         </fieldset>
     </fieldset>
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="updateFilterSettings();" />
+            <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();" />
             <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <div class="formRow">
@@ -437,7 +437,7 @@
 
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="limit_sheduling_checkbox" onclick="updateSchedulingEnabled();" />
+                <input type="checkbox" id="limit_sheduling_checkbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
                 <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
@@ -511,7 +511,7 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="queueing_checkbox" onclick="updateQueueingSystem();" />
+            <input type="checkbox" id="queueing_checkbox" onclick="qBittorrent.Preferences.updateQueueingSystem();" />
             <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <table>
@@ -542,7 +542,7 @@
         </table>
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="dont_count_slow_torrents_checkbox" onclick="updateSlowTorrentsSettings();" />
+                <input type="checkbox" id="dont_count_slow_torrents_checkbox" onclick="qBittorrent.Preferences.updateSlowTorrentsSettings();" />
                 <label for="dont_count_slow_torrents_checkbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <table>
@@ -575,20 +575,20 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Share Ratio Limiting)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <legend>QBT_TR(Seeding Limits)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
                 <td>
-                    <input type="checkbox" id="max_ratio_checkbox" onclick="updateMaxRatioTimeEnabled();" />
-                    <label for="max_ratio_checkbox">QBT_TR(Seed torrents until their ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <input type="checkbox" id="max_ratio_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
+                    <label for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="max_ratio_value" style="width: 4em;" />
                 </td>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_seeding_time_checkbox" onclick="updateMaxRatioTimeEnabled();" />
-                        <label for="max_seeding_time_checkbox">QBT_TR(Seed torrents until their seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
+                        <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
                         <input type="text" id="max_seeding_time_value" style="width: 4em;" /> QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
@@ -600,9 +600,10 @@
                     </td>
                     <td>
                         <select id="max_ratio_act">
-                            <option value="0">QBT_TR(Pause them)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="1">QBT_TR(Remove them)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="2">QBT_TR(Enable super seeding for them)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="0">QBT_TR(Pause torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="3">QBT_TR(Remove torrent and its files)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="2">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                         </select>
                     </td>
                 </tr>
@@ -611,7 +612,7 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="add_trackers_checkbox" onclick="updateAddTrackersEnabled();" />
+            <input type="checkbox" id="add_trackers_checkbox" onclick="qBittorrent.Preferences.updateAddTrackersEnabled();" />
             <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
@@ -696,7 +697,7 @@
         </div>
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="use_https_checkbox" onclick="updateHttpsSettings();" />
+                <input type="checkbox" id="use_https_checkbox" onclick="qBittorrent.Preferences.updateHttpsSettings();" />
                 <label for="use_https_checkbox">QBT_TR(Use HTTPS instead of HTTP)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <table>
@@ -745,7 +746,7 @@
                 <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for clients on localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <div class="formRow">
-                <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="updateBypasssAuthSettings();" />
+                <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="qBittorrent.Preferences.updateBypasssAuthSettings();" />
                 <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
@@ -760,7 +761,7 @@
         </fieldset>
 
         <fieldset class="settings">
-            <legend><input type="checkbox" id="use_alt_webui_checkbox" onclick="updateAlternativeWebUISettings();" />
+            <legend><input type="checkbox" id="use_alt_webui_checkbox" onclick="qBittorrent.Preferences.updateAlternativeWebUISettings();" />
                 <label for="use_alt_webui_checkbox">QBT_TR(Use alternative Web UI)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
             <div class="formRow">
                 <label for="webui_files_location_textarea">QBT_TR(Files location:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -781,7 +782,7 @@
 
             <fieldset class="settings">
                 <legend>
-                    <input type="checkbox" id="host_header_validation_checkbox" onclick="updateHostHeaderValidationSettings();" />
+                    <input type="checkbox" id="host_header_validation_checkbox" onclick="qBittorrent.Preferences.updateHostHeaderValidationSettings();" />
                     <label for="host_header_validation_checkbox">QBT_TR(Enable Host header validation)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </legend>
                 <table>
@@ -800,14 +801,14 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="use_dyndns_checkbox" onclick="updateDynDnsSettings();" />
+            <input type="checkbox" id="use_dyndns_checkbox" onclick="qBittorrent.Preferences.updateDynDnsSettings();" />
             <label for="use_dyndns_checkbox">QBT_TR(Update my dynamic domain name)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <select id="dyndns_select">
             <option value="0">DynDNS</option>
             <option value="1">NO-IP</option>
         </select>
-        <input type="button" value="QBT_TR(Register)QBT_TR[CONTEXT=OptionsDialog]" onclick="registerDynDns();" />
+        <input type="button" value="QBT_TR(Register)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.registerDynDns();" />
         <table style="margin-top: 10px;">
             <tr>
                 <td>
@@ -1102,1025 +1103,1089 @@
     </fieldset>
 </div>
 
-<div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="applyPreferences();" /></div>
+<div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="qBittorrent.Preferences.applyPreferences();" /></div>
 
 <script>
     'use strict';
 
-    // Downloads tab
-    this.WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
-
-    this.updateTempDirEnabled = function() {
-        const isTempDirEnabled = $('temppath_checkbox').getProperty('checked');
-        $('temppath_text').setProperty('disabled', !isTempDirEnabled);
-    };
-
-    this.addWatchFolder = function() {
-        const new_folder = $('new_watch_folder_txt').getProperty('value').trim();
-        if (new_folder.length <= 0) return;
-
-        const new_other = $('new_watch_folder_other_txt').getProperty('value').trim();
-        if (new_other.length <= 0) return;
-
-        const new_select = $('new_watch_folder_select').getProperty('value').trim();
-
-        const i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
-        pushWatchFolder(i, new_folder, new_select, new_other);
-
-        // Clear fields
-        $('new_watch_folder_txt').setProperty('value', '');
-        const elt = $('new_watch_folder_select');
-        elt.setProperty('value', 'watch_folder');
-        const text = elt.options[elt.selectedIndex].innerHTML;
-        $('new_watch_folder_other_txt').setProperty('value', text);
-    };
-
-    this.changeWatchFolderSelect = function(item) {
-        if (item.value == "other") {
-            item.nextElementSibling.hidden = false;
-            item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR[CONTEXT=HttpServer]';
-            item.nextElementSibling.select();
-        }
-        else {
-            item.nextElementSibling.hidden = true;
-            const text = item.options[item.selectedIndex].innerHTML;
-            item.nextElementSibling.value = text;
-        }
-    };
-
-    this.pushWatchFolder = function(pos, folder, sel, other) {
-        const myinput = "<input id='text_watch_" + pos + "' type='text' value='" + folder + "'>";
-        const disableInput = (sel != "other");
-        const mycb = "<div class='select-watched-folder-editable'>"
-            + "<select id ='cb_watch_" + pos + "' onchange='changeWatchFolderSelect(this)'>"
-            + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-            + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-            + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>"
-            + "</select>"
-            + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/></div>";
-
-        WatchedFoldersTable.push([myinput, mycb]);
-        $('cb_watch_' + pos).setProperty('value', sel);
-        if (disableInput) {
-            const elt = $('cb_watch_' + pos);
-            other = elt.options[elt.selectedIndex].innerHTML;
-        }
-        $('cb_watch_txt_' + pos).setProperty('value', other);
-    };
-
-    this.getWatchedFolders = function() {
-        const nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-        const folders = new Hash();
-        for (let i = 0; i < nb_folders; ++i) {
-            const fpath = $('text_watch_' + i).getProperty('value').trim();
-            if (fpath.length > 0) {
-                let other;
-                const sel = $('cb_watch_' + i).getProperty('value').trim();
-                if (sel == "other") {
-                    other = $('cb_watch_txt_' + i).getProperty('value').trim();
-                }
-                else {
-                    other = (sel == "watch_folder") ? 0 : 1;
-                }
-                folders.set(fpath, other);
-            }
-        }
-        return folders;
-    };
-
-    this.updateExportDirEnabled = function() {
-        const isExportDirEnabled = $('exportdir_checkbox').getProperty('checked');
-        $('exportdir_text').setProperty('disabled', !isExportDirEnabled);
-    };
-
-    this.updateExportDirFinEnabled = function() {
-        const isExportDirFinEnabled = $('exportdirfin_checkbox').getProperty('checked');
-        $('exportdirfin_text').setProperty('disabled', !isExportDirFinEnabled);
-    };
-
-    this.updateMailNotification = function() {
-        const isMailNotificationEnabled = $('mail_notification_checkbox').getProperty('checked');
-        $('src_email_txt').setProperty('disabled', !isMailNotificationEnabled);
-        $('dest_email_txt').setProperty('disabled', !isMailNotificationEnabled);
-        $('smtp_server_txt').setProperty('disabled', !isMailNotificationEnabled);
-        $('mail_ssl_checkbox').setProperty('disabled', !isMailNotificationEnabled);
-        $('mail_auth_checkbox').setProperty('disabled', !isMailNotificationEnabled);
-
-        if (!isMailNotificationEnabled) {
-            $('mail_auth_checkbox').setProperty('checked', !isMailNotificationEnabled);
-            updateMailAuthSettings();
-        }
-    };
-
-    this.updateMailAuthSettings = function() {
-        const isMailAuthEnabled = $('mail_auth_checkbox').getProperty('checked');
-        $('mail_username_text').setProperty('disabled', !isMailAuthEnabled);
-        $('mail_password_text').setProperty('disabled', !isMailAuthEnabled);
-    };
-
-    this.updateAutoRun = function() {
-        const isAutoRunEnabled = $('autorun_checkbox').getProperty('checked');
-        $('autorunProg_txt').setProperty('disabled', !isAutoRunEnabled);
-    };
-
-    // Connection tab
-    this.updateMaxConnecEnabled = function() {
-        const isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
-        $('max_connec_value').setProperty('disabled', !isMaxConnecEnabled);
-    };
-
-    this.updateMaxConnecPerTorrentEnabled = function() {
-        const isMaxConnecPerTorrentEnabled = $('max_connec_per_torrent_checkbox').getProperty('checked');
-        $('max_connec_per_torrent_value').setProperty('disabled', !isMaxConnecPerTorrentEnabled);
-    };
-
-    this.updateMaxUploadsEnabled = function() {
-        const isMaxUploadsEnabled = $('max_uploads_checkbox').getProperty('checked');
-        $('max_uploads_value').setProperty('disabled', !isMaxUploadsEnabled);
-    };
-
-    this.updateMaxUploadsPerTorrentEnabled = function() {
-        const isMaxUploadsPerTorrentEnabled = $('max_uploads_per_torrent_checkbox').getProperty('checked');
-        $('max_uploads_per_torrent_value').setProperty('disabled', !isMaxUploadsPerTorrentEnabled);
-    };
-
-    this.updatePeerProxySettings = function() {
-        const isPeerProxyTypeSelected = $('peer_proxy_type_select').getProperty('value') != "none";
-        $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
-        $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
-        $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-        $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-
-        if (isPeerProxyTypeSelected) {
-            const isPeerProxyTypeSocks5 = $('peer_proxy_type_select').getProperty('value') == "socks5";
-            $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSocks5);
-
-            if (!isPeerProxyTypeSocks5) {
-                $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSocks5);
-                updatePeerProxyAuthSettings();
-            }
-        }
-        else {
-            $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-            $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSelected);
-            updatePeerProxyAuthSettings();
-        }
-    };
-
-    this.updatePeerProxyAuthSettings = function() {
-        const isPeerProxyAuthEnabled = $('peer_proxy_auth_checkbox').getProperty('checked');
-        $('peer_proxy_username_text').setProperty('disabled', !isPeerProxyAuthEnabled);
-        $('peer_proxy_password_text').setProperty('disabled', !isPeerProxyAuthEnabled);
-    };
-
-    this.updateFilterSettings = function() {
-        const isIPFilterEnabled = $('ipfilter_enabled_checkbox').getProperty('checked');
-        $('ipfilter_text').setProperty('disabled', !isIPFilterEnabled);
-        $('ipfilter_trackers_checkbox').setProperty('disabled', !isIPFilterEnabled);
-        $('banned_IPs_textarea').setProperty('disabled', !isIPFilterEnabled);
-    };
-
-    // Speed tab
-    this.updateSchedulingEnabled = function() {
-        const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
-        $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
-        $('schedule_from_min').setProperty('disabled', !isLimitSchedulingEnabled);
-        $('schedule_to_hour').setProperty('disabled', !isLimitSchedulingEnabled);
-        $('schedule_to_min').setProperty('disabled', !isLimitSchedulingEnabled);
-        $('schedule_freq_select').setProperty('disabled', !isLimitSchedulingEnabled);
-    };
-
-    // Bittorrent tab
-    this.updateQueueingSystem = function() {
-        const isQueueingEnabled = $('queueing_checkbox').getProperty('checked');
-        $('max_active_dl_value').setProperty('disabled', !isQueueingEnabled);
-        $('max_active_up_value').setProperty('disabled', !isQueueingEnabled);
-        $('max_active_to_value').setProperty('disabled', !isQueueingEnabled);
-        $('dont_count_slow_torrents_checkbox').setProperty('disabled', !isQueueingEnabled);
-        updateSlowTorrentsSettings();
-    };
-
-    this.updateSlowTorrentsSettings = function() {
-        const isDontCountSlowTorrentsEnabled = (!$('dont_count_slow_torrents_checkbox').getProperty('disabled')) && $('dont_count_slow_torrents_checkbox').getProperty('checked');
-        $('dl_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
-        $('ul_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
-        $('torrent_inactive_timer').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
-    };
-
-    this.updateMaxRatioTimeEnabled = function() {
-        const isMaxRatioEnabled = $('max_ratio_checkbox').getProperty('checked');
-        $('max_ratio_value').setProperty('disabled', !isMaxRatioEnabled);
-
-        const isMaxSeedingTimeEnabled = $('max_seeding_time_checkbox').getProperty('checked');
-        $('max_seeding_time_value').setProperty('disabled', !isMaxSeedingTimeEnabled);
-
-        $('max_ratio_act').setProperty('disabled', !(isMaxRatioEnabled || isMaxSeedingTimeEnabled));
-    };
-
-    this.updateAddTrackersEnabled = function() {
-        const isAddTrackersEnabled = $('add_trackers_checkbox').getProperty('checked');
-        $('add_trackers_textarea').setProperty('disabled', !isAddTrackersEnabled);
-    };
-
-    // Web UI tab
-    this.updateHttpsSettings = function() {
-        const isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
-        $('ssl_cert_text').setProperty('disabled', !isUseHttpsEnabled);
-        $('ssl_key_text').setProperty('disabled', !isUseHttpsEnabled);
-    };
-
-    this.updateBypasssAuthSettings = function() {
-        const isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
-        $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
-    };
-
-    this.updateAlternativeWebUISettings = function() {
-        const isUseAlternativeWebUIEnabled = $('use_alt_webui_checkbox').getProperty('checked');
-        $('webui_files_location_textarea').setProperty('disabled', !isUseAlternativeWebUIEnabled);
-    };
-
-    this.updateHostHeaderValidationSettings = function() {
-        const isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
-        $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
-    };
-
-    this.updateDynDnsSettings = function() {
-        const isDynDnsEnabled = $('use_dyndns_checkbox').getProperty('checked');
-        $('dyndns_select').setProperty('disabled', !isDynDnsEnabled);
-        $('dyndns_domain_text').setProperty('disabled', !isDynDnsEnabled);
-        $('dyndns_username_text').setProperty('disabled', !isDynDnsEnabled);
-        $('dyndns_password_text').setProperty('disabled', !isDynDnsEnabled);
-    };
-
-    this.registerDynDns = function() {
-        if ($('dyndns_select').getProperty('value').toInt() == 1) {
-            window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
-        }
-        else {
-            window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
-        }
-    };
-
-    this.generateRandomPort = function() {
-        const min = 1024;
-        const max = 65535;
-        const port = Math.floor(Math.random() * (max - min + 1) + min);
-        $('port_value').setProperty('value', port);
-    };
-
-    this.time_padding = function(val) {
-        let ret = val.toString();
-        if (ret.length == 1)
-            ret = '0' + ret;
-        return ret;
-    };
-
-    // Advanced Tab
-    this.updateNetworkInterfaces = function(default_iface) {
-        const url = 'api/v2/app/networkInterfaceList';
-        $('networkInterface').empty();
-        new Request.JSON({
-            url: url,
-            method: 'get',
-            noCache: true,
-            onFailure: function() {
-                alert("Could not contact qBittorrent");
-            },
-            onSuccess: function(ifaces) {
-                if (!ifaces) return;
-
-                $('networkInterface').options.add(new Option('QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]', ''));
-                ifaces.forEach(function(item, index) {
-                    $('networkInterface').options.add(new Option(item.name, item.value));
-                });
-                $('networkInterface').setProperty('value', default_iface);
-            }
-        }).send();
-    };
-
-    this.updateInterfaceAddresses = function(iface, default_addr) {
-        const url = 'api/v2/app/networkInterfaceAddressList';
-        $('optionalIPAddressToBind').empty();
-        new Request.JSON({
-            url: url,
-            method: 'get',
-            noCache: true,
-            data: {
-                'iface': iface
-            },
-            onFailure: function() {
-                alert("Could not contact qBittorrent");
-            },
-            onSuccess: function(addresses) {
-                if (!addresses) return;
-
-                $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]', ''));
-                addresses.forEach(function(item, index) {
-                    $('optionalIPAddressToBind').options.add(new Option(item, item));
-                });
-                $('optionalIPAddressToBind').setProperty('value', default_addr);
-            }
-        }).send();
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
     }
 
-    this.loadPreferences = function() {
-        const url = 'api/v2/app/preferences';
-        new Request.JSON({
-            url: url,
-            method: 'get',
-            noCache: true,
-            onFailure: function() {
-                alert("Could not contact qBittorrent");
-            },
-            onSuccess: function(pref) {
-                if (pref) {
-                    // Downloads tab
-                    // When adding a torrent
-                    $('createsubfolder_checkbox').setProperty('checked', pref.create_subfolder_enabled);
-                    $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
-                    $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
+    window.qBittorrent.Preferences = (function() {
+        const exports = function() {
+            return {
+                updateTempDirEnabled: updateTempDirEnabled,
+                updateExportDirEnabled: updateExportDirEnabled,
+                updateExportDirFinEnabled: updateExportDirFinEnabled,
+                addWatchFolder: addWatchFolder,
+                changeWatchFolderSelect: changeWatchFolderSelect,
+                updateMailNotification: updateMailNotification,
+                updateMailAuthSettings: updateMailAuthSettings,
+                updateAutoRun: updateAutoRun,
+                generateRandomPort: generateRandomPort,
+                updatePortValueEnabled: updatePortValueEnabled,
+                updateMaxConnecEnabled: updateMaxConnecEnabled,
+                updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
+                updateMaxUploadsEnabled: updateMaxUploadsEnabled,
+                updateMaxUploadsPerTorrentEnabled: updateMaxUploadsPerTorrentEnabled,
+                updatePeerProxySettings: updatePeerProxySettings,
+                updatePeerProxyAuthSettings: updatePeerProxyAuthSettings,
+                updateFilterSettings: updateFilterSettings,
+                updateSchedulingEnabled: updateSchedulingEnabled,
+                updateQueueingSystem: updateQueueingSystem,
+                updateSlowTorrentsSettings: updateSlowTorrentsSettings,
+                updateMaxRatioTimeEnabled: updateMaxRatioTimeEnabled,
+                updateMaxRatioTimeEnabled: updateMaxRatioTimeEnabled,
+                updateAddTrackersEnabled: updateAddTrackersEnabled,
+                updateHttpsSettings: updateHttpsSettings,
+                updateBypasssAuthSettings: updateBypasssAuthSettings,
+                updateAlternativeWebUISettings: updateAlternativeWebUISettings,
+                updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
+                updateDynDnsSettings: updateDynDnsSettings,
+                registerDynDns: registerDynDns,
+                applyPreferences: applyPreferences
+            };
+        };
 
-                    $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
-                    $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
-
-                    // Saving Managmenet
-                    $('default_tmm_combobox').setProperty('value', pref.auto_tmm_enabled);
-                    $('torrent_changed_tmm_combobox').setProperty('value', pref.torrent_changed_tmm_enabled);
-                    $('save_path_changed_tmm_combobox').setProperty('value', pref.save_path_changed_tmm_enabled);
-                    $('category_changed_tmm_combobox').setProperty('value', pref.category_changed_tmm_enabled);
-                    $('savepath_text').setProperty('value', pref.save_path);
-                    $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
-                    $('temppath_text').setProperty('value', pref.temp_path);
-                    updateTempDirEnabled();
-                    if (pref.export_dir != '') {
-                        $('exportdir_checkbox').setProperty('checked', true);
-                        $('exportdir_text').setProperty('value', pref.export_dir);
-                    }
-                    else {
-                        $('exportdir_checkbox').setProperty('checked', false);
-                        $('exportdir_text').setProperty('value', '');
-                    }
-                    updateExportDirEnabled();
-                    if (pref.export_dir_fin != '') {
-                        $('exportdirfin_checkbox').setProperty('checked', true);
-                        $('exportdirfin_text').setProperty('value', pref.export_dir_fin);
-                    }
-                    else {
-                        $('exportdirfin_checkbox').setProperty('checked', false);
-                        $('exportdirfin_text').setProperty('value', '');
-                    }
-                    updateExportDirFinEnabled();
-
-                    // Automatically add torrents from
-                    let i = 0;
-                    for (const folder in pref.scan_dirs) {
-                        let sel;
-                        let other = "";
-                        if (typeof pref.scan_dirs[folder] == "string") {
-                            other = pref.scan_dirs[folder];
-                            sel = "other";
-                        }
-                        else {
-                            sel = (pref.scan_dirs[folder] == 0) ? "watch_folder" : "default_folder";
-                        }
-                        pushWatchFolder(i++, folder, sel, other);
-                    }
-
-                    // Email notification upon download completion
-                    $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
-                    $('src_email_txt').setProperty('value', pref.mail_notification_sender);
-                    $('dest_email_txt').setProperty('value', pref.mail_notification_email);
-                    $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
-                    $('mail_ssl_checkbox').setProperty('checked', pref.mail_notification_ssl_enabled);
-                    $('mail_auth_checkbox').setProperty('checked', pref.mail_notification_auth_enabled);
-                    $('mail_username_text').setProperty('value', pref.mail_notification_username);
-                    $('mail_password_text').setProperty('value', pref.mail_notification_password);
-                    updateMailNotification();
-                    updateMailAuthSettings();
-
-                    // Run an external program on torrent completion
-                    $('autorun_checkbox').setProperty('checked', pref.autorun_enabled);
-                    $('autorunProg_txt').setProperty('value', pref.autorun_program);
-                    updateAutoRun();
-
-                    //RSS
-                    $('rss_fetch_checkbox').setProperty('checked', pref.rss_processing_enabled);
-                    $('rss_fetch_interval_num').setProperty('value', pref.rss_refresh_interval);
-                    $('rss_max_articles_num').setProperty('value', pref.rss_max_articles_per_feed);
-                    $('rss_auto_downloading_checkbox').setProperty('checked', pref.rss_auto_downloading_enabled);
-
-                    // Connection tab
-                    // Listening Port
-                    $('port_value').setProperty('value', pref.listen_port.toInt());
-                    $('upnp_checkbox').setProperty('checked', pref.upnp);
-                    $('random_port_checkbox').setProperty('checked', pref.random_port);
-
-                    // Connections Limits
-                    const max_connec = pref.max_connec.toInt();
-                    if (max_connec <= 0) {
-                        $('max_connec_checkbox').setProperty('checked', false);
-                        $('max_connec_value').setProperty('value', 500);
-                    }
-                    else {
-                        $('max_connec_checkbox').setProperty('checked', true);
-                        $('max_connec_value').setProperty('value', max_connec);
-                    }
-                    updateMaxConnecEnabled();
-                    const max_connec_per_torrent = pref.max_connec_per_torrent.toInt();
-                    if (max_connec_per_torrent <= 0) {
-                        $('max_connec_per_torrent_checkbox').setProperty('checked', false);
-                        $('max_connec_per_torrent_value').setProperty('value', 100);
-                    }
-                    else {
-                        $('max_connec_per_torrent_checkbox').setProperty('checked', true);
-                        $('max_connec_per_torrent_value').setProperty('value', max_connec_per_torrent);
-                    }
-                    updateMaxConnecPerTorrentEnabled();
-                    const max_uploads = pref.max_uploads.toInt();
-                    if (max_uploads <= 0) {
-                        $('max_uploads_checkbox').setProperty('checked', false);
-                        $('max_uploads_value').setProperty('value', 8);
-                    }
-                    else {
-                        $('max_uploads_checkbox').setProperty('checked', true);
-                        $('max_uploads_value').setProperty('value', max_uploads);
-                    }
-                    updateMaxUploadsEnabled();
-                    const max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
-                    if (max_uploads_per_torrent <= 0) {
-                        $('max_uploads_per_torrent_checkbox').setProperty('checked', false);
-                        $('max_uploads_per_torrent_value').setProperty('value', 4);
-                    }
-                    else {
-                        $('max_uploads_per_torrent_checkbox').setProperty('checked', true);
-                        $('max_uploads_per_torrent_value').setProperty('value', max_uploads_per_torrent);
-                    }
-                    updateMaxUploadsPerTorrentEnabled();
-
-                    // Proxy Server
-                    switch (pref.proxy_type.toInt()) {
-                        case 5: //SOCKS4
-                            $('peer_proxy_type_select').setProperty('value', 'socks4');
-                            break;
-                        case 2: // SOCKS5
-                        case 4: // SOCKS5_PW
-                            $('peer_proxy_type_select').setProperty('value', 'socks5');
-                            break;
-                        case 1: // HTTP
-                        case 3: // HTTP_PW
-                            $('peer_proxy_type_select').setProperty('value', 'http');
-                            break;
-                        default: // NONE
-                            $('peer_proxy_type_select').setProperty('value', 'none');
-                    }
-                    updatePeerProxySettings();
-                    $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
-                    $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
-                    $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
-                    $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_torrents_only);
-                    $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
-                    updatePeerProxyAuthSettings();
-                    $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
-                    $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
-
-                    // IP Filtering
-                    $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
-                    $('ipfilter_text').setProperty('value', pref.ip_filter_path);
-                    $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
-                    $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
-                    updateFilterSettings();
-
-                    // Speed tab
-                    // Global Rate Limits
-                    $('up_limit_value').setProperty('value', (pref.up_limit.toInt() / 1024));
-                    $('dl_limit_value').setProperty('value', (pref.dl_limit.toInt() / 1024));
-                    // Alternative Global Rate Limits
-                    $('alt_up_limit_value').setProperty('value', (pref.alt_up_limit.toInt() / 1024));
-                    $('alt_dl_limit_value').setProperty('value', (pref.alt_dl_limit.toInt() / 1024));
-
-                    $('enable_protocol_combobox').setProperty('value', pref.bittorrent_protocol);
-                    $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
-                    $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
-                    $('limit_lan_peers_checkbox').setProperty('checked', pref.limit_lan_peers);
-
-                    // Scheduling
-                    $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
-                    $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
-                    $('schedule_from_min').setProperty('value', time_padding(pref.schedule_from_min));
-                    $('schedule_to_hour').setProperty('value', time_padding(pref.schedule_to_hour));
-                    $('schedule_to_min').setProperty('value', time_padding(pref.schedule_to_min));
-                    $('schedule_freq_select').setProperty('value', pref.scheduler_days);
-                    updateSchedulingEnabled();
-
-                    // Bittorrent tab
-                    // Privacy
-                    $('dht_checkbox').setProperty('checked', pref.dht);
-                    $('pex_checkbox').setProperty('checked', pref.pex);
-                    $('lsd_checkbox').setProperty('checked', pref.lsd);
-                    const encryption = pref.encryption.toInt();
-                    $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
-                    $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
-
-                    // Torrent Queueing
-                    $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
-                    $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
-                    $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
-                    $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
-                    $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
-                    $('dl_rate_threshold').setProperty('value', pref.slow_torrent_dl_rate_threshold.toInt());
-                    $('ul_rate_threshold').setProperty('value', pref.slow_torrent_ul_rate_threshold.toInt());
-                    $('torrent_inactive_timer').setProperty('value', pref.slow_torrent_inactive_timer.toInt());
-                    updateQueueingSystem();
-
-                    // Share Limiting
-                    $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
-                    if (pref.max_ratio_enabled)
-                        $('max_ratio_value').setProperty('value', pref.max_ratio);
-                    else
-                        $('max_ratio_value').setProperty('value', 1);
-                    $('max_seeding_time_checkbox').setProperty('checked', pref.max_seeding_time_enabled);
-                    if (pref.max_seeding_time_enabled)
-                        $('max_seeding_time_value').setProperty('value', pref.max_seeding_time.toInt());
-                    else
-                        $('max_seeding_time_value').setProperty('value', 1440);
-                    const max_ratio_act = pref.max_ratio_act.toInt();
-                    $('max_ratio_act').getChildren('option')[max_ratio_act].setAttribute('selected', '');
-                    updateMaxRatioTimeEnabled();
-
-                    // Add trackers
-                    $('add_trackers_checkbox').setProperty('checked', pref.add_trackers_enabled);
-                    $('add_trackers_textarea').setProperty('value', pref.add_trackers);
-                    updateAddTrackersEnabled();
-
-                    // Web UI tab
-                    // Language
-                    $('locale_select').setProperty('value', pref.locale);
-
-                    // HTTP Server
-                    $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
-                    $('webui_address_value').setProperty('value', pref.web_ui_address);
-                    $('webui_port_value').setProperty('value', pref.web_ui_port);
-                    $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
-                    $('use_https_checkbox').setProperty('checked', pref.use_https);
-                    $('ssl_cert_text').setProperty('value', pref.web_ui_https_cert_path);
-                    $('ssl_key_text').setProperty('value', pref.web_ui_https_key_path);
-                    updateHttpsSettings();
-
-                    // Authentication
-                    $('webui_username_text').setProperty('value', pref.web_ui_username);
-                    $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
-                    $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
-                    $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
-                    updateBypasssAuthSettings();
-                    $('webUISessionTimeoutInput').setProperty('value', pref.web_ui_session_timeout.toInt());
-
-                    // Use alternative Web UI
-                    $('use_alt_webui_checkbox').setProperty('checked', pref.alternative_webui_enabled);
-                    $('webui_files_location_textarea').setProperty('value', pref.alternative_webui_path);
-                    updateAlternativeWebUISettings();
-
-                    // Security
-                    $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
-                    $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
-                    $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
-                    updateHostHeaderValidationSettings();
-
-                    // Update my dynamic domain name
-                    $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
-                    $('dyndns_select').setProperty('value', pref.dyndns_service);
-                    $('dyndns_domain_text').setProperty('value', pref.dyndns_domain);
-                    $('dyndns_username_text').setProperty('value', pref.dyndns_username);
-                    $('dyndns_password_text').setProperty('value', pref.dyndns_password);
-                    updateDynDnsSettings();
-
-                    // Advanced settings
-                    // qBittorrent section
-                    updateNetworkInterfaces(pref.current_network_interface);
-                    updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
-                    $('listenOnIPv6Address').setProperty('checked', pref.listen_on_ipv6_address);
-                    $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
-                    $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
-                    $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
-                    // libtorrent section
-                    $('asyncIOThreads').setProperty('value', pref.async_io_threads);
-                    $('filePoolSize').setProperty('value', pref.file_pool_size);
-                    $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
-                    $('diskCache').setProperty('value', pref.disk_cache);
-                    $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
-                    $('enableOSCache').setProperty('checked', pref.enable_os_cache);
-                    $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
-                    $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
-                    $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
-                    $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
-                    $('sendBufferWatermarkFactor').setProperty('value', pref.send_buffer_watermark_factor);
-                    $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
-                    $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
-                    $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
-                    $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
-                    $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
-                    $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
-                    $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
-                    $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
-                    $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
-                    $('strictSuperSeeding').setProperty('checked', pref.enable_super_seeding);
-                    $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
-                    $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
-                    $('announceIP').setProperty('value', pref.announce_ip);
-                }
-            }
-        }).send();
-    };
-
-    this.applyPreferences = function() {
-        const settings = new Hash();
-        // Validate form data
         // Downloads tab
-        // When adding a torrent
-        settings.set('create_subfolder_enabled', $('createsubfolder_checkbox').getProperty('checked'));
-        settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
-        settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
+        const WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
-        settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
-        settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
+        const updateTempDirEnabled = function() {
+            const isTempDirEnabled = $('temppath_checkbox').getProperty('checked');
+            $('temppath_text').setProperty('disabled', !isTempDirEnabled);
+        };
 
-        // Saving Management
-        settings.set('auto_tmm_enabled', $('default_tmm_combobox').getProperty('value'));
-        settings.set('torrent_changed_tmm_enabled', $('torrent_changed_tmm_combobox').getProperty('value'));
-        settings.set('save_path_changed_tmm_enabled', $('save_path_changed_tmm_combobox').getProperty('value'));
-        settings.set('category_changed_tmm_enabled', $('category_changed_tmm_combobox').getProperty('value'));
-        settings.set('save_path', $('savepath_text').getProperty('value'));
-        settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
-        settings.set('temp_path', $('temppath_text').getProperty('value'));
-        if ($('exportdir_checkbox').getProperty('checked'))
-            settings.set('export_dir', $('exportdir_text').getProperty('value'));
-        else
-            settings.set('export_dir', '');
-        if ($('exportdirfin_checkbox').getProperty('checked'))
-            settings.set('export_dir_fin', $('exportdirfin_text').getProperty('value'));
-        else
-            settings.set('export_dir_fin', '');
+        const addWatchFolder = function() {
+            const new_folder = $('new_watch_folder_txt').getProperty('value').trim();
+            if (new_folder.length <= 0) return;
 
-        // Automatically add torrents from
-        settings.set('scan_dirs', getWatchedFolders());
+            const new_other = $('new_watch_folder_other_txt').getProperty('value').trim();
+            if (new_other.length <= 0) return;
 
-        // Email notification upon download completion
-        settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
-        settings.set('mail_notification_sender', $('src_email_txt').getProperty('value'));
-        settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));
-        settings.set('mail_notification_smtp', $('smtp_server_txt').getProperty('value'));
-        settings.set('mail_notification_ssl_enabled', $('mail_ssl_checkbox').getProperty('checked'));
-        settings.set('mail_notification_auth_enabled', $('mail_auth_checkbox').getProperty('checked'));
-        settings.set('mail_notification_username', $('mail_username_text').getProperty('value'));
-        settings.set('mail_notification_password', $('mail_password_text').getProperty('value'));
+            const new_select = $('new_watch_folder_select').getProperty('value').trim();
 
-        // Run an external program on torrent completion
-        settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
-        settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
+            const i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
+            pushWatchFolder(i, new_folder, new_select, new_other);
 
-        //RSS
-        settings.set('rss_processing_enabled', $('rss_fetch_checkbox').getProperty('checked'));
-        settings.set('rss_refresh_interval', $('rss_fetch_interval_num').getProperty('value'));
-        settings.set('rss_max_articles_per_feed', $('rss_max_articles_num').getProperty('value'));
-        settings.set('rss_auto_downloading_enabled', $('rss_auto_downloading_checkbox').getProperty('checked'));
-        
-        // Connection tab
-        // Listening Port
-        const listen_port = $('port_value').getProperty('value').toInt();
-        if (isNaN(listen_port) || listen_port < 1 || listen_port > 65535) {
-            alert("QBT_TR(The port used for incoming connections must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
-            return;
-        }
-        settings.set('listen_port', listen_port);
-        settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
-        settings.set('random_port', $('random_port_checkbox').getProperty('checked'));
+            // Clear fields
+            $('new_watch_folder_txt').setProperty('value', '');
+            const elt = $('new_watch_folder_select');
+            elt.setProperty('value', 'watch_folder');
+            const text = elt.options[elt.selectedIndex].innerHTML;
+            $('new_watch_folder_other_txt').setProperty('value', text);
+        };
 
-        // Connections Limits
-        let max_connec = -1;
-        if ($('max_connec_checkbox').getProperty('checked')) {
-            max_connec = $('max_connec_value').getProperty('value').toInt();
-            if (isNaN(max_connec) || max_connec <= 0) {
-                alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('max_connec', max_connec);
-        let max_connec_per_torrent = -1;
-        if ($('max_connec_per_torrent_checkbox').getProperty('checked')) {
-            max_connec_per_torrent = $('max_connec_per_torrent_value').getProperty('value').toInt();
-            if (isNaN(max_connec_per_torrent) || max_connec_per_torrent <= 0) {
-                alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('max_connec_per_torrent', max_connec_per_torrent);
-        let max_uploads = -1;
-        if ($('max_uploads_checkbox').getProperty('checked')) {
-            max_uploads = $('max_uploads_value').getProperty('value').toInt();
-            if (isNaN(max_uploads) || max_uploads <= 0) {
-                alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('max_uploads', max_uploads);
-        let max_uploads_per_torrent = -1;
-        if ($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
-            max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
-            if (isNaN(max_uploads_per_torrent) || max_uploads_per_torrent <= 0) {
-                alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
-
-        // Proxy Server
-        const proxy_type_str = $('peer_proxy_type_select').getProperty('value');
-        let proxy_type = 0;
-        let proxy_auth_enabled = false;
-        if (proxy_type_str == "socks5") {
-            if ($('peer_proxy_auth_checkbox').getProperty('checked')) {
-                proxy_type = 4;
-                proxy_auth_enabled = true;
+        const changeWatchFolderSelect = function(item) {
+            if (item.value == "other") {
+                item.nextElementSibling.hidden = false;
+                item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR[CONTEXT=HttpServer]';
+                item.nextElementSibling.select();
             }
             else {
-                proxy_type = 2;
+                item.nextElementSibling.hidden = true;
+                const text = item.options[item.selectedIndex].innerHTML;
+                item.nextElementSibling.value = text;
             }
-        }
-        else {
-            if (proxy_type_str == "socks4") {
-                proxy_type = 5;
+        };
+
+        const pushWatchFolder = function(pos, folder, sel, other) {
+            const myinput = "<input id='text_watch_" + pos + "' type='text' value='" + folder + "'>";
+            const disableInput = (sel != "other");
+            const mycb = "<div class='select-watched-folder-editable'>"
+                + "<select id ='cb_watch_" + pos + "' onchange='qBittorrent.Preferences.changeWatchFolderSelect(this)'>"
+                + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
+                + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
+                + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>"
+                + "</select>"
+                + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/></div>";
+
+            WatchedFoldersTable.push([myinput, mycb]);
+            $('cb_watch_' + pos).setProperty('value', sel);
+            if (disableInput) {
+                const elt = $('cb_watch_' + pos);
+                other = elt.options[elt.selectedIndex].innerHTML;
             }
-            else {
-                if (proxy_type_str == "http") {
-                    if ($('peer_proxy_auth_checkbox').getProperty('checked')) {
-                        proxy_type = 3;
-                        proxy_auth_enabled = true;
+            $('cb_watch_txt_' + pos).setProperty('value', other);
+        };
+
+        const getWatchedFolders = function() {
+            const nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+            const folders = new Hash();
+            for (let i = 0; i < nb_folders; ++i) {
+                const fpath = $('text_watch_' + i).getProperty('value').trim();
+                if (fpath.length > 0) {
+                    let other;
+                    const sel = $('cb_watch_' + i).getProperty('value').trim();
+                    if (sel == "other") {
+                        other = $('cb_watch_txt_' + i).getProperty('value').trim();
                     }
                     else {
-                        proxy_type = 1;
+                        other = (sel == "watch_folder") ? 0 : 1;
                     }
+                    folders.set(fpath, other);
                 }
             }
-        }
-        settings.set('proxy_type', proxy_type);
-        settings.set('proxy_auth_enabled', proxy_auth_enabled);
-        settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
-        settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
-        settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
-        settings.set('proxy_torrents_only', $('proxy_only_for_torrents_checkbox').getProperty('checked'));
-        settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
-        settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
+            return folders;
+        };
 
-        // IP Filtering
-        settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
-        settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
-        settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
-        settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
+        const updateExportDirEnabled = function() {
+            const isExportDirEnabled = $('exportdir_checkbox').getProperty('checked');
+            $('exportdir_text').setProperty('disabled', !isExportDirEnabled);
+        };
+
+        const updateExportDirFinEnabled = function() {
+            const isExportDirFinEnabled = $('exportdirfin_checkbox').getProperty('checked');
+            $('exportdirfin_text').setProperty('disabled', !isExportDirFinEnabled);
+        };
+
+        const updateMailNotification = function() {
+            const isMailNotificationEnabled = $('mail_notification_checkbox').getProperty('checked');
+            $('src_email_txt').setProperty('disabled', !isMailNotificationEnabled);
+            $('dest_email_txt').setProperty('disabled', !isMailNotificationEnabled);
+            $('smtp_server_txt').setProperty('disabled', !isMailNotificationEnabled);
+            $('mail_ssl_checkbox').setProperty('disabled', !isMailNotificationEnabled);
+            $('mail_auth_checkbox').setProperty('disabled', !isMailNotificationEnabled);
+
+            if (!isMailNotificationEnabled) {
+                $('mail_auth_checkbox').setProperty('checked', !isMailNotificationEnabled);
+                updateMailAuthSettings();
+            }
+        };
+
+        const updateMailAuthSettings = function() {
+            const isMailAuthEnabled = $('mail_auth_checkbox').getProperty('checked');
+            $('mail_username_text').setProperty('disabled', !isMailAuthEnabled);
+            $('mail_password_text').setProperty('disabled', !isMailAuthEnabled);
+        };
+
+        const updateAutoRun = function() {
+            const isAutoRunEnabled = $('autorun_checkbox').getProperty('checked');
+            $('autorunProg_txt').setProperty('disabled', !isAutoRunEnabled);
+        };
+
+        // Connection tab
+        const updatePortValueEnabled = function() {
+            const checked = $('random_port_checkbox').getProperty('checked');
+            $('port_value').setProperty('disabled', checked);
+        };
+
+        const updateMaxConnecEnabled = function() {
+            const isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
+            $('max_connec_value').setProperty('disabled', !isMaxConnecEnabled);
+        };
+
+        const updateMaxConnecPerTorrentEnabled = function() {
+            const isMaxConnecPerTorrentEnabled = $('max_connec_per_torrent_checkbox').getProperty('checked');
+            $('max_connec_per_torrent_value').setProperty('disabled', !isMaxConnecPerTorrentEnabled);
+        };
+
+        const updateMaxUploadsEnabled = function() {
+            const isMaxUploadsEnabled = $('max_uploads_checkbox').getProperty('checked');
+            $('max_uploads_value').setProperty('disabled', !isMaxUploadsEnabled);
+        };
+
+        const updateMaxUploadsPerTorrentEnabled = function() {
+            const isMaxUploadsPerTorrentEnabled = $('max_uploads_per_torrent_checkbox').getProperty('checked');
+            $('max_uploads_per_torrent_value').setProperty('disabled', !isMaxUploadsPerTorrentEnabled);
+        };
+
+        const updatePeerProxySettings = function() {
+            const isPeerProxyTypeSelected = $('peer_proxy_type_select').getProperty('value') != "none";
+            $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
+            $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
+            $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+            $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+
+            if (isPeerProxyTypeSelected) {
+                const isPeerProxyTypeSocks5 = $('peer_proxy_type_select').getProperty('value') == "socks5";
+                $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSocks5);
+
+                if (!isPeerProxyTypeSocks5) {
+                    $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSocks5);
+                    updatePeerProxyAuthSettings();
+                }
+            }
+            else {
+                $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+                $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSelected);
+                updatePeerProxyAuthSettings();
+            }
+        };
+
+        const updatePeerProxyAuthSettings = function() {
+            const isPeerProxyAuthEnabled = $('peer_proxy_auth_checkbox').getProperty('checked');
+            $('peer_proxy_username_text').setProperty('disabled', !isPeerProxyAuthEnabled);
+            $('peer_proxy_password_text').setProperty('disabled', !isPeerProxyAuthEnabled);
+        };
+
+        const updateFilterSettings = function() {
+            const isIPFilterEnabled = $('ipfilter_enabled_checkbox').getProperty('checked');
+            $('ipfilter_text').setProperty('disabled', !isIPFilterEnabled);
+            $('ipfilter_trackers_checkbox').setProperty('disabled', !isIPFilterEnabled);
+            $('banned_IPs_textarea').setProperty('disabled', !isIPFilterEnabled);
+        };
 
         // Speed tab
-        // Global Rate Limits
-        const up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
-        if (isNaN(up_limit) || up_limit < 0) {
-            alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-            return;
-        }
-        settings.set('up_limit', up_limit);
-
-        const dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
-        if (isNaN(dl_limit) || dl_limit < 0) {
-            alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-            return;
-        }
-        settings.set('dl_limit', dl_limit);
-
-        // Alternative Global Rate Limits
-        const alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
-        if (isNaN(alt_up_limit) || alt_up_limit < 0) {
-            alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-            return;
-        }
-        settings.set('alt_up_limit', alt_up_limit);
-
-        const alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
-        if (isNaN(alt_dl_limit) || alt_dl_limit < 0) {
-            alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
-            return;
-        }
-        settings.set('alt_dl_limit', alt_dl_limit);
-
-        settings.set('bittorrent_protocol', $('enable_protocol_combobox').getProperty('value'));
-        settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
-        settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
-        settings.set('limit_lan_peers', $('limit_lan_peers_checkbox').getProperty('checked'));
-
-        // Scheduler
-        const scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
-        settings.set('scheduler_enabled', scheduling_enabled);
-        if (scheduling_enabled) {
-            settings.set('schedule_from_hour', $('schedule_from_hour').getProperty('value').toInt());
-            settings.set('schedule_from_min', $('schedule_from_min').getProperty('value').toInt());
-            settings.set('schedule_to_hour', $('schedule_to_hour').getProperty('value').toInt());
-            settings.set('schedule_to_min', $('schedule_to_min').getProperty('value').toInt());
-            settings.set('scheduler_days', $('schedule_freq_select').getProperty('value').toInt());
-        }
+        const updateSchedulingEnabled = function() {
+            const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
+            $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
+            $('schedule_from_min').setProperty('disabled', !isLimitSchedulingEnabled);
+            $('schedule_to_hour').setProperty('disabled', !isLimitSchedulingEnabled);
+            $('schedule_to_min').setProperty('disabled', !isLimitSchedulingEnabled);
+            $('schedule_freq_select').setProperty('disabled', !isLimitSchedulingEnabled);
+        };
 
         // Bittorrent tab
-        // Privacy
-        settings.set('dht', $('dht_checkbox').getProperty('checked'));
-        settings.set('pex', $('pex_checkbox').getProperty('checked'));
-        settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
-        settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
-        settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
+        const updateQueueingSystem = function() {
+            const isQueueingEnabled = $('queueing_checkbox').getProperty('checked');
+            $('max_active_dl_value').setProperty('disabled', !isQueueingEnabled);
+            $('max_active_up_value').setProperty('disabled', !isQueueingEnabled);
+            $('max_active_to_value').setProperty('disabled', !isQueueingEnabled);
+            $('dont_count_slow_torrents_checkbox').setProperty('disabled', !isQueueingEnabled);
+            updateSlowTorrentsSettings();
+        };
 
-        // Torrent Queueing
-        settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));
-        if ($('queueing_checkbox').getProperty('checked')) {
-            const max_active_downloads = $('max_active_dl_value').getProperty('value').toInt();
-            if (isNaN(max_active_downloads) || max_active_downloads < -1) {
-                alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings.set('max_active_downloads', max_active_downloads);
-            const max_active_uploads = $('max_active_up_value').getProperty('value').toInt();
-            if (isNaN(max_active_uploads) || max_active_uploads < -1) {
-                alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings.set('max_active_uploads', max_active_uploads);
-            const max_active_torrents = $('max_active_to_value').getProperty('value').toInt();
-            if (isNaN(max_active_torrents) || max_active_torrents < -1) {
-                alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings.set('max_active_torrents', max_active_torrents);
-            settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
-            const dl_rate_threshold = $('dl_rate_threshold').getProperty('value').toInt();
-            if (isNaN(dl_rate_threshold) || (dl_rate_threshold < 1)) {
-                alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings.set('slow_torrent_dl_rate_threshold', dl_rate_threshold);
-            const ul_rate_threshold = $('ul_rate_threshold').getProperty('value').toInt();
-            if (isNaN(ul_rate_threshold) || (ul_rate_threshold < 1)) {
-                alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings.set('slow_torrent_ul_rate_threshold', ul_rate_threshold);
-            const torrent_inactive_timer = $('torrent_inactive_timer').getProperty('value').toInt();
-            if (isNaN(torrent_inactive_timer) || (torrent_inactive_timer < 1)) {
-                alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-            settings.set('slow_torrent_inactive_timer', torrent_inactive_timer);
-        }
+        const updateSlowTorrentsSettings = function() {
+            const isDontCountSlowTorrentsEnabled = (!$('dont_count_slow_torrents_checkbox').getProperty('disabled')) && $('dont_count_slow_torrents_checkbox').getProperty('checked');
+            $('dl_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
+            $('ul_rate_threshold').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
+            $('torrent_inactive_timer').setProperty('disabled', !isDontCountSlowTorrentsEnabled);
+        };
 
-        // Share Ratio Limiting
-        let max_ratio = -1;
-        if ($('max_ratio_checkbox').getProperty('checked')) {
-            max_ratio = $('max_ratio_value').getProperty('value');
-            if (isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
-                alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
-        settings.set('max_ratio', max_ratio);
-        settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+        const updateMaxRatioTimeEnabled = function() {
+            const isMaxRatioEnabled = $('max_ratio_checkbox').getProperty('checked');
+            $('max_ratio_value').setProperty('disabled', !isMaxRatioEnabled);
 
-        let max_seeding_time = -1;
-        if ($('max_seeding_time_checkbox').getProperty('checked')) {
-            max_seeding_time = $('max_seeding_time_value').getProperty('value').toInt();
-            if (isNaN(max_seeding_time) || max_seeding_time < 0 || max_seeding_time > 525600) {
-                alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
-                return;
-            }
-        }
-        settings.set('max_seeding_time_enabled', $('max_seeding_time_checkbox').getProperty('checked'));
-        settings.set('max_seeding_time', max_seeding_time);
-        settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+            const isMaxSeedingTimeEnabled = $('max_seeding_time_checkbox').getProperty('checked');
+            $('max_seeding_time_value').setProperty('disabled', !isMaxSeedingTimeEnabled);
 
-        // Add trackers
-        settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
-        settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
+            $('max_ratio_act').setProperty('disabled', !(isMaxRatioEnabled || isMaxSeedingTimeEnabled));
+        };
+
+        const updateAddTrackersEnabled = function() {
+            const isAddTrackersEnabled = $('add_trackers_checkbox').getProperty('checked');
+            $('add_trackers_textarea').setProperty('disabled', !isAddTrackersEnabled);
+        };
 
         // Web UI tab
-        // Language
-        settings.set('locale', $('locale_select').getProperty('value'));
+        const updateHttpsSettings = function() {
+            const isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
+            $('ssl_cert_text').setProperty('disabled', !isUseHttpsEnabled);
+            $('ssl_key_text').setProperty('disabled', !isUseHttpsEnabled);
+        };
 
-        // HTTP Server
-        settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
-        const web_ui_address = $('webui_address_value').getProperty('value').toString();
-        const web_ui_port = $('webui_port_value').getProperty('value').toInt();
-        if (isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
-            alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
-            return;
-        }
-        settings.set('web_ui_address', web_ui_address);
-        settings.set('web_ui_port', web_ui_port);
-        settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
-        settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
-        settings.set('web_ui_https_cert_path', $('ssl_cert_text').getProperty('value'));
-        settings.set('web_ui_https_key_path', $('ssl_key_text').getProperty('value'));
+        const updateBypasssAuthSettings = function() {
+            const isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
+            $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
+        };
 
-        // Authentication
-        const web_ui_username = $('webui_username_text').getProperty('value');
-        if (web_ui_username.length < 3) {
-            alert("QBT_TR(The Web UI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
-            return;
-        }
-        const web_ui_password = $('webui_password_text').getProperty('value');
-        if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
-            alert("QBT_TR(The Web UI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
-            return;
-        }
+        const updateAlternativeWebUISettings = function() {
+            const isUseAlternativeWebUIEnabled = $('use_alt_webui_checkbox').getProperty('checked');
+            $('webui_files_location_textarea').setProperty('disabled', !isUseAlternativeWebUIEnabled);
+        };
 
-        settings.set('web_ui_username', web_ui_username);
-        if (web_ui_password.length > 0)
-            settings.set('web_ui_password', web_ui_password);
-        settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
-        settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
-        settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
-        settings.set('web_ui_session_timeout', $('webUISessionTimeoutInput').getProperty('value'));
+        const updateHostHeaderValidationSettings = function() {
+            const isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
+            $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
+        };
 
-        // Use alternative Web UI
-        const alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');
-        const webui_files_location_textarea = $('webui_files_location_textarea').getProperty('value');
-        if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
-            alert("QBT_TR(The alternative Web UI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
-            return;
-        }
-        settings.set('alternative_webui_enabled', alternative_webui_enabled);
-        settings.set('alternative_webui_path', webui_files_location_textarea);
+        const updateDynDnsSettings = function() {
+            const isDynDnsEnabled = $('use_dyndns_checkbox').getProperty('checked');
+            $('dyndns_select').setProperty('disabled', !isDynDnsEnabled);
+            $('dyndns_domain_text').setProperty('disabled', !isDynDnsEnabled);
+            $('dyndns_username_text').setProperty('disabled', !isDynDnsEnabled);
+            $('dyndns_password_text').setProperty('disabled', !isDynDnsEnabled);
+        };
 
-        settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
-        settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
-        settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
-
-        // Update my dynamic domain name
-        settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
-        settings.set('dyndns_service', $('dyndns_select').getProperty('value'));
-        settings.set('dyndns_domain', $('dyndns_domain_text').getProperty('value'));
-        settings.set('dyndns_username', $('dyndns_username_text').getProperty('value'));
-        settings.set('dyndns_password', $('dyndns_password_text').getProperty('value'));
-
-        // Update advanced settings
-        // qBittorrent section
-        settings.set('current_network_interface', $('networkInterface').getProperty('value'));
-        settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
-        settings.set('listen_on_ipv6_address', $('listenOnIPv6Address').getProperty('checked'));
-        settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
-        settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
-        settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
-        
-        // libtorrent section
-        settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
-        settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
-        settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
-        settings.set('disk_cache', $('diskCache').getProperty('value'));
-        settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
-        settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
-        settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
-        settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
-        settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));
-        settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));
-        settings.set('send_buffer_watermark_factor', $('sendBufferWatermarkFactor').getProperty('value'));
-        settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
-        settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
-        settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
-        settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
-        settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
-        settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
-        settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
-        settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
-        settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));
-        settings.set('enable_super_seeding', $('strictSuperSeeding').getProperty('checked'));
-        settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
-        settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
-        settings.set('announce_ip', $('announceIP').getProperty('value'));
-
-        // Send it to qBT
-        const json_str = JSON.encode(settings);
-
-        new Request({
-            url: 'api/v2/app/setPreferences',
-            method: 'post',
-            data: {
-                'json': json_str,
-            },
-            onFailure: function() {
-                alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
-                window.parent.closeWindows();
-            },
-            onSuccess: function() {
-                // Close window
-                window.parent.location.reload();
-                window.parent.closeWindows();
+        const registerDynDns = function() {
+            if ($('dyndns_select').getProperty('value').toInt() == 1) {
+                window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
             }
-        }).send();
-    };
+            else {
+                window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
+            }
+        };
 
-    $('networkInterface').addEvent('change', function() {
-        updateInterfaceAddresses($(this).getProperty('value'), '');
-    });
+        const generateRandomPort = function() {
+            const min = 1024;
+            const max = 65535;
+            const port = Math.floor(Math.random() * (max - min + 1) + min);
+            $('port_value').setProperty('value', port);
+        };
 
-    loadPreferences();
+        const time_padding = function(val) {
+            let ret = val.toString();
+            if (ret.length == 1)
+                ret = '0' + ret;
+            return ret;
+        };
+
+        // Advanced Tab
+        const updateNetworkInterfaces = function(default_iface) {
+            const url = 'api/v2/app/networkInterfaceList';
+            $('networkInterface').empty();
+            new Request.JSON({
+                url: url,
+                method: 'get',
+                noCache: true,
+                onFailure: function() {
+                    alert("Could not contact qBittorrent");
+                },
+                onSuccess: function(ifaces) {
+                    if (!ifaces) return;
+
+                    $('networkInterface').options.add(new Option('QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]', ''));
+                    ifaces.forEach(function(item, index) {
+                        $('networkInterface').options.add(new Option(item.name, item.value));
+                    });
+                    $('networkInterface').setProperty('value', default_iface);
+                }
+            }).send();
+        };
+
+        const updateInterfaceAddresses = function(iface, default_addr) {
+            const url = 'api/v2/app/networkInterfaceAddressList';
+            $('optionalIPAddressToBind').empty();
+            new Request.JSON({
+                url: url,
+                method: 'get',
+                noCache: true,
+                data: {
+                    'iface': iface
+                },
+                onFailure: function() {
+                    alert("Could not contact qBittorrent");
+                },
+                onSuccess: function(addresses) {
+                    if (!addresses) return;
+
+                    $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]', ''));
+                    addresses.forEach(function(item, index) {
+                        $('optionalIPAddressToBind').options.add(new Option(item, item));
+                    });
+                    $('optionalIPAddressToBind').setProperty('value', default_addr);
+                }
+            }).send();
+        }
+
+        const loadPreferences = function() {
+            const url = 'api/v2/app/preferences';
+            new Request.JSON({
+                url: url,
+                method: 'get',
+                noCache: true,
+                onFailure: function() {
+                    alert("Could not contact qBittorrent");
+                },
+                onSuccess: function(pref) {
+                    if (pref) {
+                        // Downloads tab
+                        // When adding a torrent
+                        $('createsubfolder_checkbox').setProperty('checked', pref.create_subfolder_enabled);
+                        $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
+                        $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
+
+                        $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
+                        $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
+
+                        // Saving Management
+                        $('default_tmm_combobox').setProperty('value', pref.auto_tmm_enabled);
+                        $('torrent_changed_tmm_combobox').setProperty('value', pref.torrent_changed_tmm_enabled);
+                        $('save_path_changed_tmm_combobox').setProperty('value', pref.save_path_changed_tmm_enabled);
+                        $('category_changed_tmm_combobox').setProperty('value', pref.category_changed_tmm_enabled);
+                        $('savepath_text').setProperty('value', pref.save_path);
+                        $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
+                        $('temppath_text').setProperty('value', pref.temp_path);
+                        updateTempDirEnabled();
+                        if (pref.export_dir != '') {
+                            $('exportdir_checkbox').setProperty('checked', true);
+                            $('exportdir_text').setProperty('value', pref.export_dir);
+                        }
+                        else {
+                            $('exportdir_checkbox').setProperty('checked', false);
+                            $('exportdir_text').setProperty('value', '');
+                        }
+                        updateExportDirEnabled();
+                        if (pref.export_dir_fin != '') {
+                            $('exportdirfin_checkbox').setProperty('checked', true);
+                            $('exportdirfin_text').setProperty('value', pref.export_dir_fin);
+                        }
+                        else {
+                            $('exportdirfin_checkbox').setProperty('checked', false);
+                            $('exportdirfin_text').setProperty('value', '');
+                        }
+                        updateExportDirFinEnabled();
+
+                        // Automatically add torrents from
+                        let i = 0;
+                        for (const folder in pref.scan_dirs) {
+                            let sel;
+                            let other = "";
+                            if (typeof pref.scan_dirs[folder] == "string") {
+                                other = pref.scan_dirs[folder];
+                                sel = "other";
+                            }
+                            else {
+                                sel = (pref.scan_dirs[folder] == 0) ? "watch_folder" : "default_folder";
+                            }
+                            pushWatchFolder(i++, folder, sel, other);
+                        }
+
+                        // Email notification upon download completion
+                        $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
+                        $('src_email_txt').setProperty('value', pref.mail_notification_sender);
+                        $('dest_email_txt').setProperty('value', pref.mail_notification_email);
+                        $('smtp_server_txt').setProperty('value', pref.mail_notification_smtp);
+                        $('mail_ssl_checkbox').setProperty('checked', pref.mail_notification_ssl_enabled);
+                        $('mail_auth_checkbox').setProperty('checked', pref.mail_notification_auth_enabled);
+                        $('mail_username_text').setProperty('value', pref.mail_notification_username);
+                        $('mail_password_text').setProperty('value', pref.mail_notification_password);
+                        updateMailNotification();
+                        updateMailAuthSettings();
+
+                        // Run an external program on torrent completion
+                        $('autorun_checkbox').setProperty('checked', pref.autorun_enabled);
+                        $('autorunProg_txt').setProperty('value', pref.autorun_program);
+                        updateAutoRun();
+
+                        //RSS
+                        $('rss_fetch_checkbox').setProperty('checked', pref.rss_processing_enabled);
+                        $('rss_fetch_interval_num').setProperty('value', pref.rss_refresh_interval);
+                        $('rss_max_articles_num').setProperty('value', pref.rss_max_articles_per_feed);
+                        $('rss_auto_downloading_checkbox').setProperty('checked', pref.rss_auto_downloading_enabled);
+
+                        // Connection tab
+                        // Listening Port
+                        $('port_value').setProperty('value', pref.listen_port.toInt());
+                        $('upnp_checkbox').setProperty('checked', pref.upnp);
+                        $('random_port_checkbox').setProperty('checked', pref.random_port);
+                        updatePortValueEnabled();
+
+                        // Connections Limits
+                        const max_connec = pref.max_connec.toInt();
+                        if (max_connec <= 0) {
+                            $('max_connec_checkbox').setProperty('checked', false);
+                            $('max_connec_value').setProperty('value', 500);
+                        }
+                        else {
+                            $('max_connec_checkbox').setProperty('checked', true);
+                            $('max_connec_value').setProperty('value', max_connec);
+                        }
+                        updateMaxConnecEnabled();
+                        const max_connec_per_torrent = pref.max_connec_per_torrent.toInt();
+                        if (max_connec_per_torrent <= 0) {
+                            $('max_connec_per_torrent_checkbox').setProperty('checked', false);
+                            $('max_connec_per_torrent_value').setProperty('value', 100);
+                        }
+                        else {
+                            $('max_connec_per_torrent_checkbox').setProperty('checked', true);
+                            $('max_connec_per_torrent_value').setProperty('value', max_connec_per_torrent);
+                        }
+                        updateMaxConnecPerTorrentEnabled();
+                        const max_uploads = pref.max_uploads.toInt();
+                        if (max_uploads <= 0) {
+                            $('max_uploads_checkbox').setProperty('checked', false);
+                            $('max_uploads_value').setProperty('value', 8);
+                        }
+                        else {
+                            $('max_uploads_checkbox').setProperty('checked', true);
+                            $('max_uploads_value').setProperty('value', max_uploads);
+                        }
+                        updateMaxUploadsEnabled();
+                        const max_uploads_per_torrent = pref.max_uploads_per_torrent.toInt();
+                        if (max_uploads_per_torrent <= 0) {
+                            $('max_uploads_per_torrent_checkbox').setProperty('checked', false);
+                            $('max_uploads_per_torrent_value').setProperty('value', 4);
+                        }
+                        else {
+                            $('max_uploads_per_torrent_checkbox').setProperty('checked', true);
+                            $('max_uploads_per_torrent_value').setProperty('value', max_uploads_per_torrent);
+                        }
+                        updateMaxUploadsPerTorrentEnabled();
+
+                        // Proxy Server
+                        switch (pref.proxy_type.toInt()) {
+                            case 5: //SOCKS4
+                                $('peer_proxy_type_select').setProperty('value', 'socks4');
+                                break;
+                            case 2: // SOCKS5
+                            case 4: // SOCKS5_PW
+                                $('peer_proxy_type_select').setProperty('value', 'socks5');
+                                break;
+                            case 1: // HTTP
+                            case 3: // HTTP_PW
+                                $('peer_proxy_type_select').setProperty('value', 'http');
+                                break;
+                            default: // NONE
+                                $('peer_proxy_type_select').setProperty('value', 'none');
+                        }
+                        updatePeerProxySettings();
+                        $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
+                        $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
+                        $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
+                        $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_torrents_only);
+                        $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
+                        updatePeerProxyAuthSettings();
+                        $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
+                        $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
+
+                        // IP Filtering
+                        $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
+                        $('ipfilter_text').setProperty('value', pref.ip_filter_path);
+                        $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
+                        $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
+                        updateFilterSettings();
+
+                        // Speed tab
+                        // Global Rate Limits
+                        $('up_limit_value').setProperty('value', (pref.up_limit.toInt() / 1024));
+                        $('dl_limit_value').setProperty('value', (pref.dl_limit.toInt() / 1024));
+                        // Alternative Global Rate Limits
+                        $('alt_up_limit_value').setProperty('value', (pref.alt_up_limit.toInt() / 1024));
+                        $('alt_dl_limit_value').setProperty('value', (pref.alt_dl_limit.toInt() / 1024));
+
+                        $('enable_protocol_combobox').setProperty('value', pref.bittorrent_protocol);
+                        $('limit_utp_rate_checkbox').setProperty('checked', pref.limit_utp_rate);
+                        $('limit_tcp_overhead_checkbox').setProperty('checked', pref.limit_tcp_overhead);
+                        $('limit_lan_peers_checkbox').setProperty('checked', pref.limit_lan_peers);
+
+                        // Scheduling
+                        $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
+                        $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
+                        $('schedule_from_min').setProperty('value', time_padding(pref.schedule_from_min));
+                        $('schedule_to_hour').setProperty('value', time_padding(pref.schedule_to_hour));
+                        $('schedule_to_min').setProperty('value', time_padding(pref.schedule_to_min));
+                        $('schedule_freq_select').setProperty('value', pref.scheduler_days);
+                        updateSchedulingEnabled();
+
+                        // Bittorrent tab
+                        // Privacy
+                        $('dht_checkbox').setProperty('checked', pref.dht);
+                        $('pex_checkbox').setProperty('checked', pref.pex);
+                        $('lsd_checkbox').setProperty('checked', pref.lsd);
+                        const encryption = pref.encryption.toInt();
+                        $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
+                        $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
+
+                        // Torrent Queueing
+                        $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
+                        $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
+                        $('max_active_up_value').setProperty('value', pref.max_active_uploads.toInt());
+                        $('max_active_to_value').setProperty('value', pref.max_active_torrents.toInt());
+                        $('dont_count_slow_torrents_checkbox').setProperty('checked', pref.dont_count_slow_torrents);
+                        $('dl_rate_threshold').setProperty('value', pref.slow_torrent_dl_rate_threshold.toInt());
+                        $('ul_rate_threshold').setProperty('value', pref.slow_torrent_ul_rate_threshold.toInt());
+                        $('torrent_inactive_timer').setProperty('value', pref.slow_torrent_inactive_timer.toInt());
+                        updateQueueingSystem();
+
+                        // Share Limiting
+                        $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
+                        if (pref.max_ratio_enabled)
+                            $('max_ratio_value').setProperty('value', pref.max_ratio);
+                        else
+                            $('max_ratio_value').setProperty('value', 1);
+                        $('max_seeding_time_checkbox').setProperty('checked', pref.max_seeding_time_enabled);
+                        if (pref.max_seeding_time_enabled)
+                            $('max_seeding_time_value').setProperty('value', pref.max_seeding_time.toInt());
+                        else
+                            $('max_seeding_time_value').setProperty('value', 1440);
+                        let maxRatioAct = 0;
+                        switch (pref.max_ratio_act.toInt()) {
+                            case 0: // Pause
+                            default:
+                                maxRatioAct = 0;
+                                break;
+                            case 1: // Remove
+                                maxRatioAct = 1;
+                                break;
+                            case 2: // Enable super seeding
+                                maxRatioAct = 3;
+                                break;
+                            case 3: // Remove torrent and files
+                                maxRatioAct = 2;
+                                break;
+                        }
+                        $('max_ratio_act').getChildren('option')[maxRatioAct].setAttribute('selected', '');
+                        updateMaxRatioTimeEnabled();
+
+                        // Add trackers
+                        $('add_trackers_checkbox').setProperty('checked', pref.add_trackers_enabled);
+                        $('add_trackers_textarea').setProperty('value', pref.add_trackers);
+                        updateAddTrackersEnabled();
+
+                        // Web UI tab
+                        // Language
+                        $('locale_select').setProperty('value', pref.locale);
+
+                        // HTTP Server
+                        $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
+                        $('webui_address_value').setProperty('value', pref.web_ui_address);
+                        $('webui_port_value').setProperty('value', pref.web_ui_port);
+                        $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
+                        $('use_https_checkbox').setProperty('checked', pref.use_https);
+                        $('ssl_cert_text').setProperty('value', pref.web_ui_https_cert_path);
+                        $('ssl_key_text').setProperty('value', pref.web_ui_https_key_path);
+                        updateHttpsSettings();
+
+                        // Authentication
+                        $('webui_username_text').setProperty('value', pref.web_ui_username);
+                        $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
+                        $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
+                        $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
+                        updateBypasssAuthSettings();
+                        $('webUISessionTimeoutInput').setProperty('value', pref.web_ui_session_timeout.toInt());
+
+                        // Use alternative Web UI
+                        $('use_alt_webui_checkbox').setProperty('checked', pref.alternative_webui_enabled);
+                        $('webui_files_location_textarea').setProperty('value', pref.alternative_webui_path);
+                        updateAlternativeWebUISettings();
+
+                        // Security
+                        $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
+                        $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+                        $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
+                        updateHostHeaderValidationSettings();
+
+                        // Update my dynamic domain name
+                        $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
+                        $('dyndns_select').setProperty('value', pref.dyndns_service);
+                        $('dyndns_domain_text').setProperty('value', pref.dyndns_domain);
+                        $('dyndns_username_text').setProperty('value', pref.dyndns_username);
+                        $('dyndns_password_text').setProperty('value', pref.dyndns_password);
+                        updateDynDnsSettings();
+
+                        // Advanced settings
+                        // qBittorrent section
+                        updateNetworkInterfaces(pref.current_network_interface);
+                        updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
+                        $('listenOnIPv6Address').setProperty('checked', pref.listen_on_ipv6_address);
+                        $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
+                        $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
+                        $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
+                        // libtorrent section
+                        $('asyncIOThreads').setProperty('value', pref.async_io_threads);
+                        $('filePoolSize').setProperty('value', pref.file_pool_size);
+                        $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
+                        $('diskCache').setProperty('value', pref.disk_cache);
+                        $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
+                        $('enableOSCache').setProperty('checked', pref.enable_os_cache);
+                        $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
+                        $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
+                        $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
+                        $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
+                        $('sendBufferWatermarkFactor').setProperty('value', pref.send_buffer_watermark_factor);
+                        $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
+                        $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
+                        $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
+                        $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
+                        $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
+                        $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
+                        $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
+                        $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
+                        $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
+                        $('strictSuperSeeding').setProperty('checked', pref.enable_super_seeding);
+                        $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
+                        $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
+                        $('announceIP').setProperty('value', pref.announce_ip);
+                    }
+                }
+            }).send();
+        };
+
+        const applyPreferences = function() {
+            const settings = new Hash();
+            // Validate form data
+            // Downloads tab
+            // When adding a torrent
+            settings.set('create_subfolder_enabled', $('createsubfolder_checkbox').getProperty('checked'));
+            settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
+            settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
+
+            settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
+            settings.set('incomplete_files_ext', $('appendext_checkbox').getProperty('checked'));
+
+            // Saving Management
+            settings.set('auto_tmm_enabled', $('default_tmm_combobox').getProperty('value'));
+            settings.set('torrent_changed_tmm_enabled', $('torrent_changed_tmm_combobox').getProperty('value'));
+            settings.set('save_path_changed_tmm_enabled', $('save_path_changed_tmm_combobox').getProperty('value'));
+            settings.set('category_changed_tmm_enabled', $('category_changed_tmm_combobox').getProperty('value'));
+            settings.set('save_path', $('savepath_text').getProperty('value'));
+            settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
+            settings.set('temp_path', $('temppath_text').getProperty('value'));
+            if ($('exportdir_checkbox').getProperty('checked'))
+                settings.set('export_dir', $('exportdir_text').getProperty('value'));
+            else
+                settings.set('export_dir', '');
+            if ($('exportdirfin_checkbox').getProperty('checked'))
+                settings.set('export_dir_fin', $('exportdirfin_text').getProperty('value'));
+            else
+                settings.set('export_dir_fin', '');
+
+            // Automatically add torrents from
+            settings.set('scan_dirs', getWatchedFolders());
+
+            // Email notification upon download completion
+            settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
+            settings.set('mail_notification_sender', $('src_email_txt').getProperty('value'));
+            settings.set('mail_notification_email', $('dest_email_txt').getProperty('value'));
+            settings.set('mail_notification_smtp', $('smtp_server_txt').getProperty('value'));
+            settings.set('mail_notification_ssl_enabled', $('mail_ssl_checkbox').getProperty('checked'));
+            settings.set('mail_notification_auth_enabled', $('mail_auth_checkbox').getProperty('checked'));
+            settings.set('mail_notification_username', $('mail_username_text').getProperty('value'));
+            settings.set('mail_notification_password', $('mail_password_text').getProperty('value'));
+
+            // Run an external program on torrent completion
+            settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
+            settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
+
+            //RSS
+            settings.set('rss_processing_enabled', $('rss_fetch_checkbox').getProperty('checked'));
+            settings.set('rss_refresh_interval', $('rss_fetch_interval_num').getProperty('value'));
+            settings.set('rss_max_articles_per_feed', $('rss_max_articles_num').getProperty('value'));
+            settings.set('rss_auto_downloading_enabled', $('rss_auto_downloading_checkbox').getProperty('checked'));
+
+            // Connection tab
+            // Listening Port
+            const listen_port = $('port_value').getProperty('value').toInt();
+            if (isNaN(listen_port) || listen_port < 1 || listen_port > 65535) {
+                alert("QBT_TR(The port used for incoming connections must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('listen_port', listen_port);
+            settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
+            settings.set('random_port', $('random_port_checkbox').getProperty('checked'));
+
+            // Connections Limits
+            let max_connec = -1;
+            if ($('max_connec_checkbox').getProperty('checked')) {
+                max_connec = $('max_connec_value').getProperty('value').toInt();
+                if (isNaN(max_connec) || max_connec <= 0) {
+                    alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('max_connec', max_connec);
+            let max_connec_per_torrent = -1;
+            if ($('max_connec_per_torrent_checkbox').getProperty('checked')) {
+                max_connec_per_torrent = $('max_connec_per_torrent_value').getProperty('value').toInt();
+                if (isNaN(max_connec_per_torrent) || max_connec_per_torrent <= 0) {
+                    alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('max_connec_per_torrent', max_connec_per_torrent);
+            let max_uploads = -1;
+            if ($('max_uploads_checkbox').getProperty('checked')) {
+                max_uploads = $('max_uploads_value').getProperty('value').toInt();
+                if (isNaN(max_uploads) || max_uploads <= 0) {
+                    alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('max_uploads', max_uploads);
+            let max_uploads_per_torrent = -1;
+            if ($('max_uploads_per_torrent_checkbox').getProperty('checked')) {
+                max_uploads_per_torrent = $('max_uploads_per_torrent_value').getProperty('value').toInt();
+                if (isNaN(max_uploads_per_torrent) || max_uploads_per_torrent <= 0) {
+                    alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
+
+            // Proxy Server
+            const proxy_type_str = $('peer_proxy_type_select').getProperty('value');
+            let proxy_type = 0;
+            let proxy_auth_enabled = false;
+            if (proxy_type_str == "socks5") {
+                if ($('peer_proxy_auth_checkbox').getProperty('checked')) {
+                    proxy_type = 4;
+                    proxy_auth_enabled = true;
+                }
+                else {
+                    proxy_type = 2;
+                }
+            }
+            else {
+                if (proxy_type_str == "socks4") {
+                    proxy_type = 5;
+                }
+                else {
+                    if (proxy_type_str == "http") {
+                        if ($('peer_proxy_auth_checkbox').getProperty('checked')) {
+                            proxy_type = 3;
+                            proxy_auth_enabled = true;
+                        }
+                        else {
+                            proxy_type = 1;
+                        }
+                    }
+                }
+            }
+            settings.set('proxy_type', proxy_type);
+            settings.set('proxy_auth_enabled', proxy_auth_enabled);
+            settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
+            settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
+            settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
+            settings.set('proxy_torrents_only', $('proxy_only_for_torrents_checkbox').getProperty('checked'));
+            settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
+            settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
+
+            // IP Filtering
+            settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
+            settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
+            settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
+            settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
+
+            // Speed tab
+            // Global Rate Limits
+            const up_limit = $('up_limit_value').getProperty('value').toInt() * 1024;
+            if (isNaN(up_limit) || up_limit < 0) {
+                alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('up_limit', up_limit);
+
+            const dl_limit = $('dl_limit_value').getProperty('value').toInt() * 1024;
+            if (isNaN(dl_limit) || dl_limit < 0) {
+                alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('dl_limit', dl_limit);
+
+            // Alternative Global Rate Limits
+            const alt_up_limit = $('alt_up_limit_value').getProperty('value').toInt() * 1024;
+            if (isNaN(alt_up_limit) || alt_up_limit < 0) {
+                alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('alt_up_limit', alt_up_limit);
+
+            const alt_dl_limit = $('alt_dl_limit_value').getProperty('value').toInt() * 1024;
+            if (isNaN(alt_dl_limit) || alt_dl_limit < 0) {
+                alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('alt_dl_limit', alt_dl_limit);
+
+            settings.set('bittorrent_protocol', $('enable_protocol_combobox').getProperty('value'));
+            settings.set('limit_utp_rate', $('limit_utp_rate_checkbox').getProperty('checked'));
+            settings.set('limit_tcp_overhead', $('limit_tcp_overhead_checkbox').getProperty('checked'));
+            settings.set('limit_lan_peers', $('limit_lan_peers_checkbox').getProperty('checked'));
+
+            // Scheduler
+            const scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
+            settings.set('scheduler_enabled', scheduling_enabled);
+            if (scheduling_enabled) {
+                settings.set('schedule_from_hour', $('schedule_from_hour').getProperty('value').toInt());
+                settings.set('schedule_from_min', $('schedule_from_min').getProperty('value').toInt());
+                settings.set('schedule_to_hour', $('schedule_to_hour').getProperty('value').toInt());
+                settings.set('schedule_to_min', $('schedule_to_min').getProperty('value').toInt());
+                settings.set('scheduler_days', $('schedule_freq_select').getProperty('value').toInt());
+            }
+
+            // Bittorrent tab
+            // Privacy
+            settings.set('dht', $('dht_checkbox').getProperty('checked'));
+            settings.set('pex', $('pex_checkbox').getProperty('checked'));
+            settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
+            settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
+            settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
+
+            // Torrent Queueing
+            settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));
+            if ($('queueing_checkbox').getProperty('checked')) {
+                const max_active_downloads = $('max_active_dl_value').getProperty('value').toInt();
+                if (isNaN(max_active_downloads) || max_active_downloads < -1) {
+                    alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('max_active_downloads', max_active_downloads);
+                const max_active_uploads = $('max_active_up_value').getProperty('value').toInt();
+                if (isNaN(max_active_uploads) || max_active_uploads < -1) {
+                    alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('max_active_uploads', max_active_uploads);
+                const max_active_torrents = $('max_active_to_value').getProperty('value').toInt();
+                if (isNaN(max_active_torrents) || max_active_torrents < -1) {
+                    alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('max_active_torrents', max_active_torrents);
+                settings.set('dont_count_slow_torrents', $('dont_count_slow_torrents_checkbox').getProperty('checked'));
+                const dl_rate_threshold = $('dl_rate_threshold').getProperty('value').toInt();
+                if (isNaN(dl_rate_threshold) || (dl_rate_threshold < 1)) {
+                    alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('slow_torrent_dl_rate_threshold', dl_rate_threshold);
+                const ul_rate_threshold = $('ul_rate_threshold').getProperty('value').toInt();
+                if (isNaN(ul_rate_threshold) || (ul_rate_threshold < 1)) {
+                    alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('slow_torrent_ul_rate_threshold', ul_rate_threshold);
+                const torrent_inactive_timer = $('torrent_inactive_timer').getProperty('value').toInt();
+                if (isNaN(torrent_inactive_timer) || (torrent_inactive_timer < 1)) {
+                    alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings.set('slow_torrent_inactive_timer', torrent_inactive_timer);
+            }
+
+            // Share Ratio Limiting
+            let max_ratio = -1;
+            if ($('max_ratio_checkbox').getProperty('checked')) {
+                max_ratio = $('max_ratio_value').getProperty('value');
+                if (isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
+                    alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
+            settings.set('max_ratio', max_ratio);
+            settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+
+            let max_seeding_time = -1;
+            if ($('max_seeding_time_checkbox').getProperty('checked')) {
+                max_seeding_time = $('max_seeding_time_value').getProperty('value').toInt();
+                if (isNaN(max_seeding_time) || max_seeding_time < 0 || max_seeding_time > 525600) {
+                    alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('max_seeding_time_enabled', $('max_seeding_time_checkbox').getProperty('checked'));
+            settings.set('max_seeding_time', max_seeding_time);
+            settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
+
+            // Add trackers
+            settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
+            settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
+
+            // Web UI tab
+            // Language
+            settings.set('locale', $('locale_select').getProperty('value'));
+
+            // HTTP Server
+            settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
+            const web_ui_address = $('webui_address_value').getProperty('value').toString();
+            const web_ui_port = $('webui_port_value').getProperty('value').toInt();
+            if (isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {
+                alert("QBT_TR(The port used for the Web UI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings.set('web_ui_address', web_ui_address);
+            settings.set('web_ui_port', web_ui_port);
+            settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
+            settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
+            settings.set('web_ui_https_cert_path', $('ssl_cert_text').getProperty('value'));
+            settings.set('web_ui_https_key_path', $('ssl_key_text').getProperty('value'));
+
+            // Authentication
+            const web_ui_username = $('webui_username_text').getProperty('value');
+            if (web_ui_username.length < 3) {
+                alert("QBT_TR(The Web UI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            const web_ui_password = $('webui_password_text').getProperty('value');
+            if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
+                alert("QBT_TR(The Web UI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+
+            settings.set('web_ui_username', web_ui_username);
+            if (web_ui_password.length > 0)
+                settings.set('web_ui_password', web_ui_password);
+            settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
+            settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
+            settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
+            settings.set('web_ui_session_timeout', $('webUISessionTimeoutInput').getProperty('value'));
+
+            // Use alternative Web UI
+            const alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');
+            const webui_files_location_textarea = $('webui_files_location_textarea').getProperty('value');
+            if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
+                alert("QBT_TR(The alternative Web UI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            settings.set('alternative_webui_enabled', alternative_webui_enabled);
+            settings.set('alternative_webui_path', webui_files_location_textarea);
+
+            settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
+            settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
+            settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
+
+            // Update my dynamic domain name
+            settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
+            settings.set('dyndns_service', $('dyndns_select').getProperty('value'));
+            settings.set('dyndns_domain', $('dyndns_domain_text').getProperty('value'));
+            settings.set('dyndns_username', $('dyndns_username_text').getProperty('value'));
+            settings.set('dyndns_password', $('dyndns_password_text').getProperty('value'));
+
+            // Update advanced settings
+            // qBittorrent section
+            settings.set('current_network_interface', $('networkInterface').getProperty('value'));
+            settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
+            settings.set('listen_on_ipv6_address', $('listenOnIPv6Address').getProperty('checked'));
+            settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
+            settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
+            settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
+
+            // libtorrent section
+            settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
+            settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
+            settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
+            settings.set('disk_cache', $('diskCache').getProperty('value'));
+            settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
+            settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
+            settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
+            settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
+            settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));
+            settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));
+            settings.set('send_buffer_watermark_factor', $('sendBufferWatermarkFactor').getProperty('value'));
+            settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
+            settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
+            settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
+            settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
+            settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
+            settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
+            settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
+            settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
+            settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));
+            settings.set('enable_super_seeding', $('strictSuperSeeding').getProperty('checked'));
+            settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
+            settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
+            settings.set('announce_ip', $('announceIP').getProperty('value'));
+
+            // Send it to qBT
+            const json_str = JSON.encode(settings);
+
+            new Request({
+                url: 'api/v2/app/setPreferences',
+                method: 'post',
+                data: {
+                    'json': json_str,
+                },
+                onFailure: function() {
+                    alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                    window.parent.closeWindows();
+                },
+                onSuccess: function() {
+                    // Close window
+                    window.parent.location.reload();
+                    window.parent.closeWindows();
+                }
+            }).send();
+        };
+
+        $('networkInterface').addEvent('change', function() {
+            updateInterfaceAddresses($(this).getProperty('value'), '');
+        });
+
+        loadPreferences();
+
+        return exports();
+    })();
 </script>

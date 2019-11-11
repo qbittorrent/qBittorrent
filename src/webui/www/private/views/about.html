@@ -681,22 +681,24 @@
 <script>
     'use strict';
 
-    $('qbittorrentVersion').innerText = ("qBittorrent " + qbtVersion()
+    (function() {
+        $('qbittorrentVersion').innerText = ("qBittorrent " + qbtVersion()
         + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
 
-    new Request.JSON({
-        url: 'api/v2/app/buildInfo',
-        method: 'get',
-        noCache: true,
-        onSuccess: function(info) {
-            if (!info) return;
+        new Request.JSON({
+            url: 'api/v2/app/buildInfo',
+            method: 'get',
+            noCache: true,
+            onSuccess: function(info) {
+                if (!info) return;
 
-            $('qtVersion').textContent = info.qt;
-            $('libtorrentVersion').textContent = info.libtorrent;
-            $('boostVersion').textContent = info.boost;
-            $('opensslVersion').textContent = info.openssl;
-            $('zlibVersion').textContent = info.zlib;
-            $('qbittorrentVersion').textContent += " (" + info.bitness + "-bit)";
-        }
-    }).send();
+                $('qtVersion').textContent = info.qt;
+                $('libtorrentVersion').textContent = info.libtorrent;
+                $('boostVersion').textContent = info.boost;
+                $('opensslVersion').textContent = info.openssl;
+                $('zlibVersion').textContent = info.zlib;
+                $('qbittorrentVersion').textContent += " (" + info.bitness + "-bit)";
+            }
+        }).send();
+    })();
 </script>

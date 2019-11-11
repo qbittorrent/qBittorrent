@@ -102,7 +102,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_FIRST_LAST_PIECE_PRIO, torrent.hasFirstLastPiecePriority()},
 
         {KEY_TORRENT_CATEGORY, torrent.category()},
-        {KEY_TORRENT_TAGS, torrent.tags().toList().join(", ")},
+        {KEY_TORRENT_TAGS, torrent.tags().values().join(", ")},
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},
@@ -136,9 +136,9 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
     }
     else {
-        QDateTime dt = QDateTime::currentDateTime();
-        dt = dt.addSecs(-torrent.timeSinceActivity());
-        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt.toSecsSinceEpoch();
+        const qint64 dt = (QDateTime::currentDateTime().toSecsSinceEpoch()
+            - torrent.timeSinceActivity());
+        ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt;
     }
 
     return ret;

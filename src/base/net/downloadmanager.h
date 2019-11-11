@@ -104,6 +104,8 @@ namespace Net
     public:
         using QObject::QObject;
 
+        virtual void cancel() = 0;
+
     signals:
         void finished(const DownloadResult &result);
     };
@@ -118,8 +120,10 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
+        DownloadHandler *download(const DownloadRequest &downloadRequest);
+
         template <typename Context, typename Func>
-        void download(const DownloadRequest &downloadRequest, Context context, Func slot);
+        void download(const DownloadRequest &downloadRequest, Context context, Func &&slot);
 
         void registerSequentialService(const ServiceID &serviceID);
 
@@ -137,7 +141,6 @@ namespace Net
     private:
         explicit DownloadManager(QObject *parent = nullptr);
 
-        DownloadHandler *download(const DownloadRequest &downloadRequest);
         void applyProxySettings();
         void handleReplyFinished(const QNetworkReply *reply);
 
@@ -150,7 +153,7 @@ namespace Net
     };
 
     template <typename Context, typename Func>
-    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func slot)
+    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func &&slot)
     {
         const DownloadHandler *handler = download(downloadRequest);
         connect(handler, &DownloadHandler::finished, context, slot);

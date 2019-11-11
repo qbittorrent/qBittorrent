@@ -38,26 +38,7 @@
    ----------------------------------------------------------------- */
 'use strict';
 
-/* Define localStorage object for older browsers */
-if (typeof localStorage == 'undefined') {
-    window['localStorage'] = {
-        getItem: function(name) {
-            return Cookie.read(name);
-        },
-        setItem: function(name, value) {
-            Cookie.write(name, value, {
-                duration: 365 * 10
-            });
-        }
-    };
-}
-
-function getLocalStorageItem(name, defaultVal) {
-    let val = localStorage.getItem(name);
-    if (val === null || val === undefined)
-        val = defaultVal;
-    return val;
-}
+const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferencesClass();
 
 let saveWindowSize = function() {};
 let loadWindowWidth = function() {};
@@ -107,16 +88,16 @@ let setQueuePositionFN = function() {};
 const initializeWindows = function() {
     saveWindowSize = function(windowId) {
         const size = $(windowId).getSize();
-        localStorage.setItem('window_' + windowId + '_width', size.x);
-        localStorage.setItem('window_' + windowId + '_height', size.y);
+        LocalPreferences.set('window_' + windowId + '_width', size.x);
+        LocalPreferences.set('window_' + windowId + '_height', size.y);
     };
 
     loadWindowWidth = function(windowId, defaultValue) {
-        return getLocalStorageItem('window_' + windowId + '_width', defaultValue);
+        return LocalPreferences.get('window_' + windowId + '_width', defaultValue);
     };
 
     loadWindowHeight = function(windowId, defaultValue) {
-        return getLocalStorageItem('window_' + windowId + '_height', defaultValue);
+        return LocalPreferences.get('window_' + windowId + '_height', defaultValue);
     };
 
     function addClickEvent(el, fn) {

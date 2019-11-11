@@ -306,7 +306,7 @@ Example:
 #include <QString>
 #include <QUrl>
 
-#ifdef Q_OS_MAC  // conditional
+#ifdef Q_OS_MACOS  // conditional
 #include <QFont>
 #endif
 

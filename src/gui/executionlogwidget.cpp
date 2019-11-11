@@ -44,7 +44,7 @@ ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &typ
 {
     m_ui->setupUi(this);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon("view-calendar-journal"));
     m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon("view-filter"));
 #endif

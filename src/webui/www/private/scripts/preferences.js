@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,43 +26,36 @@
  * exception statement from your version.
  */
 
-#ifndef POWERMANAGEMENT_H
-#define POWERMANAGEMENT_H
+'use strict';
 
-#include <QObject>
+if (window.qBittorrent === undefined) {
+    window.qBittorrent = {};
+}
 
-#ifdef Q_OS_MACOS
-// Require Mac OS X >= 10.5
-#include <IOKit/pwr_mgt/IOPMLib.h>
-#endif
+window.qBittorrent.LocalPreferences = (function() {
+    const exports = function() {
+        return {
+            LocalPreferencesClass: LocalPreferencesClass
+        };
+    };
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-// Require DBus
-class PowerManagementInhibitor;
-#endif
+    const LocalPreferencesClass = new Class({
+        get: function(key, defaultValue) {
+            const value = localStorage.getItem(key);
+            return ((value === null) && (defaultValue !== undefined))
+                ? defaultValue
+                : value;
+        },
 
-class PowerManagement : public QObject
-{
-  Q_OBJECT
+        set: function(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        }
+    })
 
-public:
-  PowerManagement(QObject *parent = nullptr);
-  virtual ~PowerManagement();
-
-  void setActivityState(bool busy);
-
-private:
-  bool m_busy;
-
-  void setBusy();
-  void setIdle();
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-  PowerManagementInhibitor *m_inhibitor;
-#endif
-#ifdef Q_OS_MACOS
-  IOPMAssertionID m_assertionID;
-#endif
-};
-
-#endif // POWERMANAGEMENT_H
+    return exports();
+})();

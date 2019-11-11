@@ -45,7 +45,7 @@
 
 #define SETTINGS_KEY(name) "PreviewSelectDialog/" name
 
-PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
+PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::TorrentHandle *torrent)
     : QDialog(parent)
     , m_ui(new Ui::PreviewSelectDialog)
     , m_torrent(torrent)
@@ -53,13 +53,15 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
     , m_storeTreeHeaderState(SETTINGS_KEY("HeaderState"))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
+
+    m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one of them:")
+        .arg(m_torrent->name()));
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PreviewSelectDialog::previewButtonClicked);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    Preferences *const pref = Preferences::instance();
+    const Preferences *pref = Preferences::instance();
     // Preview list
     m_previewListModel = new QStandardItemModel(0, NB_COLUMNS, this);
     m_previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
@@ -102,16 +104,6 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHan
 
     // Restore dialog state
     loadWindowState();
-
-    if (m_previewListModel->rowCount() == 1) {
-        qDebug("Torrent file only contains one file, no need to display selection dialog before preview");
-        // Only one file : no choice
-        previewButtonClicked();
-    }
-    else {
-        qDebug("Displaying media file selection dialog for preview");
-        show();
-    }
 }
 
 PreviewSelectDialog::~PreviewSelectDialog()
@@ -123,21 +115,27 @@ PreviewSelectDialog::~PreviewSelectDialog()
 
 void PreviewSelectDialog::previewButtonClicked()
 {
-    QModelIndexList selectedIndexes = m_ui->previewList->selectionModel()->selectedRows(FILE_INDEX);
+    const QModelIndexList selectedIndexes = m_ui->previewList->selectionModel()->selectedRows(FILE_INDEX);
     if (selectedIndexes.isEmpty()) return;
 
     // Flush data
     m_torrent->flushCache();
 
-    QStringList absolutePaths(m_torrent->absoluteFilePaths());
+    const QStringList absolutePaths = m_torrent->absoluteFilePaths();
     // Only one file should be selected
-    QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
+    const QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
     // File
-    if (QFile::exists(path))
-        emit readyToPreviewFile(path);
-    else
-        QMessageBox::critical(this->parentWidget(), tr("Preview impossible"), tr("Sorry, we can't preview this file"));
+    if (!QFile::exists(path)) {
+        const bool isSingleFile = (m_previewListModel->rowCount() == 1);
+        QWidget *parent = isSingleFile ? this->parentWidget() : this;
+        QMessageBox::critical(parent, tr("Preview impossible")
+            , tr("Sorry, we can't preview this file: \"%1\".").arg(Utils::Fs::toNativePath(path)));
+        if (isSingleFile)
+            reject();
+        return;
+    }
 
+    emit readyToPreviewFile(path);
     accept();
 }
 
@@ -162,13 +160,21 @@ void PreviewSelectDialog::loadWindowState()
 
 void PreviewSelectDialog::showEvent(QShowEvent *event)
 {
-    Q_UNUSED(event);
+    // event originated from system
+    if (event->spontaneous()) {
+        QDialog::showEvent(event);
+        return;
+    }
 
     // Default size, have to be called after show(), because width is needed
     // Set Name column width to 60% of TreeView
     if (!m_headerStateInitialized) {
-        int nameSize = (m_ui->previewList->size().width() * 0.6);
+        const int nameSize = (m_ui->previewList->size().width() * 0.6);
         m_ui->previewList->header()->resizeSection(0, nameSize);
         m_headerStateInitialized = true;
     }
+
+    // Only one file, no choice
+    if (m_previewListModel->rowCount() <= 1)
+        previewButtonClicked();
 }

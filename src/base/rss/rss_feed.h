@@ -41,6 +41,7 @@ class AsyncFileStorage;
 
 namespace Net
 {
+    class DownloadHandler;
     struct DownloadResult;
 }
 
@@ -125,5 +126,6 @@ namespace RSS
         QString m_dataFileName;
         QBasicTimer m_savingTimer;
         bool m_dirty = false;
+        Net::DownloadHandler *m_downloadHandler = nullptr;
     };
 }

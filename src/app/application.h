@@ -105,7 +105,7 @@ public:
 
 protected:
 #ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
 #endif
@@ -130,7 +130,7 @@ private:
 #endif
 
 #ifndef DISABLE_WEBUI
-    WebUI *m_webui;
+    WebUI *m_webui = nullptr;
 #endif
 
     // FileLog

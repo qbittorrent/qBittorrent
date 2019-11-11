@@ -43,6 +43,7 @@
 #include <QTableView>
 #include <QWheelEvent>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
@@ -69,18 +70,18 @@
 #include "updownratiodialog.h"
 #include "utils.h"
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include "macutilities.h"
 #endif
 
 namespace
 {
-    QStringList extractHashes(const QVector<BitTorrent::TorrentHandle *> &torrents)
+    QVector<BitTorrent::InfoHash> extractHashes(const QVector<BitTorrent::TorrentHandle *> &torrents)
     {
-        QStringList hashes;
-        for (BitTorrent::TorrentHandle *const torrent : torrents)
+        QVector<BitTorrent::InfoHash> hashes;
+        hashes.reserve(torrents.size());
+        for (const BitTorrent::TorrentHandle *torrent : torrents)
             hashes << torrent->hash();
-
         return hashes;
     }
 
@@ -95,6 +96,14 @@ namespace
         }
 
         return false;
+    }
+
+    void removeTorrents(const QVector<BitTorrent::TorrentHandle *> &torrents, const bool isDeleteFileSelected)
+    {
+        auto *session = BitTorrent::Session::instance();
+        const DeleteOption deleteOption = isDeleteFileSelected ? TorrentAndFiles : Torrent;
+        for (const BitTorrent::TorrentHandle *torrent : torrents)
+            session->deleteTorrent(torrent->hash(), deleteOption);
     }
 }
 
@@ -131,7 +140,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     setItemsExpandable(false);
     setAutoScroll(true);
     setDragDropMode(QAbstractItemView::DragOnly);
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     header()->setStretchLastSection(false);
@@ -192,8 +201,10 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     connect(deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
     const auto *permDeleteHotkey = new QShortcut(Qt::SHIFT + Qt::Key_Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
-    const auto *doubleClickHotkey = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(doubleClickHotkey, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
+    const auto *doubleClickHotkeyReturn = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(doubleClickHotkeyReturn, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
+    const auto *doubleClickHotkeyEnter = new QShortcut(Qt::Key_Enter, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(doubleClickHotkeyEnter, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
     const auto *recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
 
@@ -259,7 +270,7 @@ void TransferListWidget::torrentDoubleClicked()
             torrent->pause();
         break;
     case OPEN_DEST:
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
         MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
 #else
         if (torrent->filesCount() == 1)
@@ -273,10 +284,12 @@ void TransferListWidget::torrentDoubleClicked()
 
 QVector<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() const
 {
-    QVector<BitTorrent::TorrentHandle *> torrents;
-    for (const QModelIndex &index : asConst(selectionModel()->selectedRows()))
-        torrents << m_listModel->torrentHandle(mapToSource(index));
+    const QModelIndexList selectedRows = selectionModel()->selectedRows();
 
+    QVector<BitTorrent::TorrentHandle *> torrents;
+    torrents.reserve(selectedRows.size());
+    for (const QModelIndex &index : selectedRows)
+        torrents << m_listModel->torrentHandle(mapToSource(index));
     return torrents;
 }
 
@@ -361,18 +374,25 @@ void TransferListWidget::permDeleteSelectedTorrents()
     deleteSelectedTorrents(true);
 }
 
-void TransferListWidget::deleteSelectedTorrents(bool deleteLocalFiles)
+void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
 {
     if (m_mainWindow->currentTabWidget() != this) return;
 
     const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
     if (torrents.empty()) return;
 
-    if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDialog::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
-        return;
-    for (BitTorrent::TorrentHandle *const torrent : torrents)
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
+    if (Preferences::instance()->confirmTorrentDeletion()) {
+        auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), deleteLocalFiles);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        {
+            removeTorrents(torrents, dialog->isDeleteFileSelected());
+        });
+        dialog->open();
+    }
+    else {
+        removeTorrents(torrents, deleteLocalFiles);
+    }
 }
 
 void TransferListWidget::deleteVisibleTorrents()
@@ -383,13 +403,18 @@ void TransferListWidget::deleteVisibleTorrents()
     for (int i = 0; i < m_sortFilterModel->rowCount(); ++i)
         torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
 
-    bool deleteLocalFiles = false;
-    if (Preferences::instance()->confirmTorrentDeletion()
-        && !DeletionConfirmationDialog::askForDeletionConfirmation(this, deleteLocalFiles, torrents.size(), torrents[0]->name()))
-        return;
-
-    for (BitTorrent::TorrentHandle *const torrent : asConst(torrents))
-        BitTorrent::Session::instance()->deleteTorrent(torrent->hash(), deleteLocalFiles);
+    if (Preferences::instance()->confirmTorrentDeletion()) {
+        auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), false);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        {
+            removeTorrents(torrents, dialog->isDeleteFileSelected());
+        });
+        dialog->open();
+    }
+    else {
+        removeTorrents(torrents, false);
+    }
 }
 
 void TransferListWidget::increaseQueuePosSelectedTorrents()
@@ -455,7 +480,7 @@ void TransferListWidget::hideQueuePosColumn(bool hide)
 void TransferListWidget::openSelectedTorrentsFolder() const
 {
     QSet<QString> pathsList;
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     // On macOS you expect both the files and folders to be opened in their parent
     // folders prehilighted for opening, so we use a custom method.
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
@@ -474,18 +499,21 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         }
         pathsList.insert(path);
     }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 }
 
 void TransferListWidget::previewSelectedTorrents()
 {
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents())) {
+    for (const BitTorrent::TorrentHandle *torrent : asConst(getSelectedTorrents())) {
         if (torrentContainsPreviewableFiles(torrent)) {
-            const auto *dialog = new PreviewSelectDialog(this, torrent);
+            auto *dialog = new PreviewSelectDialog(this, torrent);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
             connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
+            dialog->show();
         }
         else {
-            QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent does not contain previewable files"));
+            QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent \"%1\" does not contain previewable files")
+                .arg(torrent->name()));
         }
     }
 }

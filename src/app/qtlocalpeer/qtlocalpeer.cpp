@@ -116,14 +116,9 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
                  + QLatin1Char('-') + QString::number(idNum, 16);
 
 #if defined(Q_OS_WIN)
-    using PPROCESSIDTOSESSIONID = BOOL (WINAPI *)(DWORD, DWORD *);
-    const auto processIdToSessionId = Utils::Misc::loadWinAPI<PPROCESSIDTOSESSIONID>("kernel32.dll", "ProcessIdToSessionId");
-
-    if (processIdToSessionId) {
-        DWORD sessionId = 0;
-        processIdToSessionId(GetCurrentProcessId(), &sessionId);
-        socketName += (QLatin1Char('-') + QString::number(sessionId, 16));
-    }
+    DWORD sessionId = 0;
+    ::ProcessIdToSessionId(GetCurrentProcessId(), &sessionId);
+    socketName += (QLatin1Char('-') + QString::number(sessionId, 16));
 #else
     socketName += (QLatin1Char('-') + QString::number(::getuid(), 16));
 #endif

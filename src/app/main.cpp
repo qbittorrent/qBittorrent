@@ -221,7 +221,7 @@ int main(int argc, char *argv[])
 #endif
 #endif // Q_OS_WIN
 
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
         // For more info see issue #5571.
