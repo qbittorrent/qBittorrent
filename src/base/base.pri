@@ -40,6 +40,7 @@ HEADERS += \
     $$PWD/net/downloadmanager.h \
     $$PWD/net/geoipmanager.h \
     $$PWD/net/portforwarder.h \
+    $$PWD/net/private/downloadhandlerimpl.h \
     $$PWD/net/private/geoipdatabase.h \
     $$PWD/net/proxyconfigurationmanager.h \
     $$PWD/net/reverseresolution.h \
@@ -110,6 +111,7 @@ SOURCES += \
     $$PWD/net/downloadmanager.cpp \
     $$PWD/net/geoipmanager.cpp \
     $$PWD/net/portforwarder.cpp \
+    $$PWD/net/private/downloadhandlerimpl.cpp \
     $$PWD/net/private/geoipdatabase.cpp \
     $$PWD/net/proxyconfigurationmanager.cpp \
     $$PWD/net/reverseresolution.cpp \
