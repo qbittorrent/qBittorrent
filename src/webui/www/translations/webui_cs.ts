@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="cs" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,17 +291,12 @@
         <translation>Klient qBittorrent není dostupný</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent byl ukončen.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Celkový počet nahrávacích slotů musí být větší než 0 nebo být vypnutý.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Neplatný název kategorie:
-Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
+        <translation>Neplatný název kategorie:\nProsím nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -335,7 +328,7 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent byl ukončen</translation>
     </message>
 </context>
 <context>
@@ -570,7 +563,7 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation>Aktualizovat můj dynamické doménový název (DDNS)</translation>
+        <translation>Aktualizovat můj dynamický doménový název (DDNS)</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -907,8 +900,8 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>%I: Info hash</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -2245,7 +2238,7 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Zapnuto</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varování: Ujistěte se, že dodržujete zákony Vaší země o ochraně duševního vlastnictví když stahujete torrenty z kteréhokoliv z těchto vyhledávačů.</translation>
     </message>
     <message>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="ms_MY" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ms_MY" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,10 +291,6 @@
         <translation>Klien qBittorrent tidak dapat dicapai</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent telah dimatikan.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Bilangan sejagat had slot muat naik mesti lebih besar dari 0 atau lumpuhkan.</translation>
     </message>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent telah dimatikan</translation>
     </message>
 </context>
 <context>
@@ -875,7 +869,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Tags (diasing dengan tanda koma)</translation>
+        <translation>%G: Tag (diasing dengan tanda koma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -906,8 +900,8 @@
         <translation>%I: Cincangan maklumat</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Petua: Parameter dalam kurungan dengan tanda petikan untuk menghindari teks dipotong pada ruang putih (contohnya., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Petua: Parameter dalam kurungan dengan tanda petikan untuk menghindari teks dipotong pada ruang putih (contohnya., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -2244,7 +2238,7 @@
         <translation>Dibenarkan</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Amaran: Pastikan menuruti undang-undang hakcipta negara anda ketika memuat turun torrent dari mana-mana enjin gelintar.</translation>
     </message>
     <message>

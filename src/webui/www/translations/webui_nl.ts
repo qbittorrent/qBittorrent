@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="nl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -274,7 +272,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrents downloaden via hun URL's of magneetlinks</translation>
+        <translation>Torrents downloaden via hun URL&apos;s of magneetlinks</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -291,10 +289,6 @@
     <message>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent-client is niet bereikbaar</translation>
-    </message>
-    <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent werd afgesloten.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent werd afgesloten</translation>
     </message>
 </context>
 <context>
@@ -697,7 +691,7 @@
     </message>
     <message>
         <source>Disable connections not supported by proxies</source>
-        <translation>Verbindingen die niet ondersteund worden door proxy's uitschakelen</translation>
+        <translation>Verbindingen die niet ondersteund worden door proxy&apos;s uitschakelen</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -709,7 +703,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Manueel verbannen IP-adressen...</translation>
+        <translation>Handmatig verbannen IP-adressen...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -906,8 +900,8 @@
         <translation>%I: info-hash</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1027,7 +1021,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manueel</translation>
+        <translation>Handmatig</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
@@ -2037,7 +2031,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Downloaden uit URL's</translation>
+        <translation>Downloaden uit URL&apos;s</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2244,7 +2238,7 @@
         <translation>Ingeschakeld</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Waarschuwing: verzeker u ervan dat u voldoet aan de wetten op auteursrecht in uw land wanneer u torrents downloadt via een van deze zoekmachines.</translation>
     </message>
     <message>

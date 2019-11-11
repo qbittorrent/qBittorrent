@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="da" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="da" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -274,7 +272,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Download torrents fra deres URL'er eller Magnet-links</translation>
+        <translation>Download torrents fra deres URL&apos;er eller Magnet-links</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -291,10 +289,6 @@
     <message>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent-klienten kan ikke kontaktes</translation>
-    </message>
-    <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent er blevet lukket ned.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent er blevet lukket ned</translation>
     </message>
 </context>
 <context>
@@ -906,8 +900,8 @@
         <translation>%I: Infohash</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: Omslut parameter med citationstegn så teksten ikke bliver afkortet af blanktegn (f.eks. "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: Omslut parameter med citationstegn så teksten ikke bliver afkortet af blanktegn (f.eks. &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -2037,7 +2031,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Download fra URL'er</translation>
+        <translation>Download fra URL&apos;er</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2244,7 +2238,7 @@
         <translation>Aktiveret</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Advarsel: Sørg for at overholde dit lands love om ophavsret når du downloader torrents fra søgemotorerne.</translation>
     </message>
     <message>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="es" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,10 +291,6 @@
         <translation>Imposible conectar a qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent se ha cerrado.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>El máximo número de puestos de subida debe ser mayor que 0 o estar inhabilitado.</translation>
     </message>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent ha sido cerrado</translation>
     </message>
 </context>
 <context>
@@ -585,7 +579,7 @@
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Pre-asignar espacio en el disco para todos los archivos</translation>
+        <translation>Reservar el espacio en el disco para todos los archivos</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -906,8 +900,8 @@
         <translation>%I: Info hash</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -963,7 +957,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>La ubicación de archivos de la Interfaz de Usuario alternativa no puede estar vacía.</translation>
+        <translation>La ubicación de los archivos de la Interfaz de Usuario Web alternativa no puede estar vacía.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1011,7 +1005,7 @@
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
-        <translation>Crear una sub-carpeta para torrentes con múltiples archivos</translation>
+        <translation>Crear una sub-carpeta para torrents con múltiples archivos</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -2244,7 +2238,7 @@
         <translation>Habilitado</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
     </message>
     <message>

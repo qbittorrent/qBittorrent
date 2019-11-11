@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="zh" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -20,7 +18,7 @@
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation>跳过哈希检查</translation>
+        <translation>跳过哈希校验</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -58,23 +56,23 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>继续 torrents</translation>
+        <translation>继续 torrent</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>暂停 torrents</translation>
+        <translation>暂停 torrent</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>删除 torrents</translation>
+        <translation>删除 torrent</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation>新建类别</translation>
+        <translation>新建分类</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>编辑类别...</translation>
+        <translation>编辑分类...</translation>
     </message>
 </context>
 <context>
@@ -113,7 +111,7 @@
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>最大同时活动 torrents 必须大于 -1。</translation>
+        <translation>最大同时活动 torrent 必须大于 -1。</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
@@ -125,7 +123,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>每个 torrent 的最大上传线程数限制必须大于 0 或禁用。</translation>
+        <translation>每个 torrent 上传窗口数上限必须大于 0 或禁用。</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -133,7 +131,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent on Freenode</translation>
+        <translation>IRC：#qbittorrent on Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -153,7 +151,7 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>用于 Web 用户界面的端口必须大于 1 且小于 65535。</translation>
+        <translation>用于 Web UI 的端口必须大于 1 且小于 65535。</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -190,7 +188,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>上传 Torrents</translation>
+        <translation>上传 Torrent</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -274,7 +272,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>从 URL 或磁力链接下载 Torrents</translation>
+        <translation>从 URL 或磁力链接下载 Torrent</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -282,7 +280,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>你确定要从传输列表中删除选中的 torrents 吗？</translation>
+        <translation>你确定要从传输列表中删除选中的 torrent 吗？</translation>
     </message>
     <message>
         <source>Save</source>
@@ -293,12 +291,8 @@
         <translation>无法访问 qBittorrent 客户端</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent 已经关闭。</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>全局上传种子数量限制必须大于 0 或禁用。</translation>
+        <translation>全局上传窗口数上限必须大于 0 或禁用。</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -310,7 +304,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation>上传速率阈值必须大于0。</translation>
+        <translation>上传速率阈值必须大于 0。</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -318,11 +312,11 @@
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation>剩余磁盘空间: %1</translation>
+        <translation>剩余磁盘空间：%1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Torrent 不活动时间必须大于0。</translation>
+        <translation>Torrent 非活动计时器必须大于 0。</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -330,11 +324,11 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation>下载速率阈值必须大于0。</translation>
+        <translation>下载速率阈值必须大于 0。</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 已关闭。</translation>
     </message>
 </context>
 <context>
@@ -470,7 +464,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>过滤 Torrent 列表</translation>
+        <translation>过滤 torrent 列表...</translation>
     </message>
     <message>
         <source>Search</source>
@@ -505,7 +499,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation>Web 用户界面</translation>
+        <translation>Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -537,11 +531,11 @@
     </message>
     <message>
         <source>Seed torrents until their seeding time reaches</source>
-        <translation>分享 torrents 直至达到做种时间限制</translation>
+        <translation>分享 torrent 直至达到做种时间限制</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>自动添加以下 trackers 到新的 torrents：</translation>
+        <translation>自动添加以下 tracker 到新的 torrent：</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -549,7 +543,7 @@
     </message>
     <message>
         <source>IP address:</source>
-        <translation>IP 地址:</translation>
+        <translation>IP 地址：</translation>
     </message>
     <message>
         <source>Server domains:</source>
@@ -573,7 +567,7 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>保存未完成的 torrents 到：</translation>
+        <translation>保存未完成的 torrent 到：</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -593,7 +587,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>自动从此处添加 torrents：</translation>
+        <translation>自动从此处添加 torrent：</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -617,7 +611,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>启用的协议:</translation>
+        <translation>启用的协议：</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -633,7 +627,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>使用我的路由器的 UPnP / NAT-PMP 端口转发</translation>
+        <translation>使用我的路由器的 UPnP / NAT-PMP 功能来转发端口</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
@@ -653,11 +647,11 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>每 torrent 上传线程最大值：</translation>
+        <translation>每个 torrent 上传窗口数上限：</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>全局最大上传线程数：</translation>
+        <translation>全局上传窗口数上限：</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -693,7 +687,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>使用代理服务器进行连接</translation>
+        <translation>使用代理服务器进行用户连接</translation>
     </message>
     <message>
         <source>Disable connections not supported by proxies</source>
@@ -701,7 +695,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>只对 torrents 使用代理</translation>
+        <translation>只对 torrent 使用代理</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -713,7 +707,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation>匹配 trackers</translation>
+        <translation>匹配 tracker</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -775,15 +769,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>启用 DHT（分散网络）以获取更多资源</translation>
+        <translation>启用 DHT (去中心化网络) 以找到更多用户</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>启用用户交换（PeX）以获取更多资源</translation>
+        <translation>启用用户交换 (PeX) 以找到更多用户</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>启用本地资源搜索以获取更多资源</translation>
+        <translation>启用本地用户发现以找到更多用户</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -791,7 +785,7 @@
     </message>
     <message>
         <source>Prefer encryption</source>
-        <translation>偏好加密</translation>
+        <translation>首选加密</translation>
     </message>
     <message>
         <source>Require encryption</source>
@@ -815,7 +809,7 @@
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>最大活动的 torrents 数：</translation>
+        <translation>最大活动的 torrent 数：</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
@@ -827,7 +821,7 @@
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>分享 torrents 直至达到比率</translation>
+        <translation>分享 torrent 直至达到比率</translation>
     </message>
     <message>
         <source>then</source>
@@ -843,7 +837,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>使用我的路由器的 UPnP / NAT-PMP 端口来转发</translation>
+        <translation>使用我的路由器的 UPnP / NAT-PMP 功能来转发端口</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -875,7 +869,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: 标签 (用逗号分隔)</translation>
+        <translation>%G：标签（以逗号分隔）</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -906,16 +900,16 @@
         <translation>%I：哈希值</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如："%N"）</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如：&quot;%N&quot;）</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web 用户界面用户名长度最少为 3 个字符。</translation>
+        <translation>Web UI 的用户名长度最少为 3 个字符。</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web 用户界面密码长度最少为 6 个字符。</translation>
+        <translation>Web UI 的密码长度最少为 6 个字符。</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -931,7 +925,7 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation>启用跨站点请求伪造(CSRF)保护</translation>
+        <translation>启用跨站请求伪造 (CSRF) 保护</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -963,7 +957,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>替代的Web UI文件位置不能为空。</translation>
+        <translation>备用的 Web UI 文件位置不能为空。</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -983,7 +977,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>限制本地用户带宽</translation>
+        <translation>对本地网络用户进行速度限制</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -999,7 +993,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>启用主机标头验证</translation>
+        <translation>启用 Host header 属性验证</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1019,7 +1013,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>将受影响的种子切换到手动模式</translation>
+        <translation>切换受影响的 torrent 至手动模式</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1031,15 +1025,15 @@
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation>种子不活动时间</translation>
+        <translation>Torrent 非活动计时器：</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation>默认种子管理模式</translation>
+        <translation>默认 Torrent 管理模式：</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation>当添加种子时</translation>
+        <translation>添加 torrent 时</translation>
     </message>
 </context>
 <context>
@@ -1215,7 +1209,7 @@
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>重新发布于：</translation>
+        <translation>下次汇报：</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -1411,7 +1405,7 @@
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>进行中 (0)</translation>
+        <translation>恢复 (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
@@ -1423,7 +1417,7 @@
     </message>
     <message>
         <source>Inactive (0)</source>
-        <translation>非活动 (0)</translation>
+        <translation>空闲 (0)</translation>
     </message>
     <message>
         <source>Errored (0)</source>
@@ -1451,7 +1445,7 @@
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>进行中 (%1)</translation>
+        <translation>恢复 (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -1459,7 +1453,7 @@
     </message>
     <message>
         <source>Inactive (%1)</source>
-        <translation>非活动 (%1)</translation>
+        <translation>空闲 (%1)</translation>
     </message>
     <message>
         <source>Errored (%1)</source>
@@ -1662,7 +1656,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>Tracker：</translation>
+        <translation>Tracker URL：</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -1678,7 +1672,7 @@
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>还未联系</translation>
+        <translation>未联系</translation>
     </message>
     <message>
         <source>#</source>
@@ -1698,38 +1692,38 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>复制 Tracker</translation>
+        <translation>复制 tracker URL</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>新增 Tracker</translation>
+        <translation>添加新的 tracker...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>编辑 Tracker</translation>
+        <translation>编辑 tracker URL...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>Tracker 编辑</translation>
+        <translation>编辑 Tracker</translation>
     </message>
     <message>
         <source>Leeches</source>
-        <translation>吸血者</translation>
+        <translation>下载</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation>移除 Tracker</translation>
+        <translation>移除 tracker</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>添加 trackers 对话窗</translation>
+        <translation>添加 tracker 对话窗</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>要添加的 trackers 列表（每行一个）：</translation>
+        <translation>要添加的 tracker 列表（每行一个）：</translation>
     </message>
 </context>
 <context>
@@ -1741,7 +1735,7 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>配置</translation>
+        <translation>分配中</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -1753,7 +1747,7 @@
     </message>
     <message>
         <source>Moving</source>
-        <translation>移动</translation>
+        <translation>移动中</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
@@ -1765,7 +1759,7 @@
     </message>
     <message>
         <source>Queued</source>
-        <translation>队列</translation>
+        <translation>排队</translation>
     </message>
     <message>
         <source>Errored</source>
@@ -1789,7 +1783,7 @@
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation>列队校验</translation>
+        <translation>排队等待校验</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -1895,7 +1889,7 @@
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation>先下载首尾段</translation>
+        <translation>先下载首尾文件块</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -1917,11 +1911,11 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation>优先</translation>
+        <translation>优先级</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>强制再次核对</translation>
+        <translation>强制重新校验</translation>
     </message>
     <message>
         <source>Copy magnet link</source>
@@ -1937,11 +1931,11 @@
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation>以连续顺序下载</translation>
+        <translation>按顺序下载</translation>
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>重新校验</translation>
+        <translation>强制重新校验</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -1965,7 +1959,7 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation>编辑类别...</translation>
+        <translation>编辑分类</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2030,7 +2024,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>确认删除 - qBttorrent</translation>
+        <translation>确认删除 - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2045,7 +2039,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation>添加 Torrent 链接...</translation>
+        <translation>添加 Torrent 链接</translation>
     </message>
 </context>
 <context>
@@ -2135,7 +2129,7 @@
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation>网址或本地目录</translation>
+        <translation>URL 或本地目录</translation>
     </message>
     <message>
         <source>Install plugin</source>
@@ -2174,7 +2168,7 @@
     </message>
     <message>
         <source>All categories</source>
-        <translation>所有类别</translation>
+        <translation>所有分类</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -2182,7 +2176,7 @@
     </message>
     <message>
         <source>Copy description page URL</source>
-        <translation>复制描述页网址</translation>
+        <translation>复制描述页 URL</translation>
     </message>
     <message>
         <source>Go to description page</source>
@@ -2190,7 +2184,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>结果 （显示</translation>
+        <translation>结果 (显示</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2206,11 +2200,11 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation>只针对开启的</translation>
+        <translation>仅启用的</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>缺少</translation>
+        <translation>，总计</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -2244,8 +2238,8 @@
         <translation>启用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>警告：在下载来自这些搜索引擎的 Torrent 时，请确认它符合您所在国家的版权法。</translation>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>警告：在下载来自这些搜索引擎的 torrent 时，请确认它符合您所在国家的版权法。</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2268,7 +2262,7 @@
     </message>
     <message>
         <source>Leechers</source>
-        <translation>吸血者</translation>
+        <translation>下载</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -2287,7 +2281,7 @@
     </message>
     <message>
         <source>Url</source>
-        <translation>网址</translation>
+        <translation>Url</translation>
     </message>
     <message>
         <source>Enabled</source>

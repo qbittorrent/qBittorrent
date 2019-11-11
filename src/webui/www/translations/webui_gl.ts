@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="gl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="gl" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,10 +291,6 @@
         <translation>O cliente qBittorrent non está accesíbel</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">O qBittorrent foi pechado.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Global number of upload slots limit must be greater than 0 or disabled.</translation>
     </message>
@@ -335,7 +329,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>O qBittorrent foi pechado.</translation>
     </message>
 </context>
 <context>
@@ -907,8 +901,8 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>%I: Info hash</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Consello: encapsule o parámetro entre comiñas para evitar cortar o texto nun espazo en branco (p.e: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Consello: encapsule o parámetro entre comiñas para evitar cortar o texto nun espazo en branco (p.e: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -2031,7 +2025,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Confirmación de eliminación - 'qBittorrent</translation>
+        <translation>Confirmación de eliminación - &apos;qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2245,7 +2239,7 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Activados</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: asegúrese de cumprir as leis sobre dereitos de autor do seu país cando descargue torrents con calquera destes motores de busca.</translation>
     </message>
     <message>

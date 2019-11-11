@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="ru" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,10 +291,6 @@
         <translation>Клиент qBittorrent недоступен</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent был выключен.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Общее ограничение соотношения отдачи должно быть больше 0 или отключено.</translation>
     </message>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent выключен</translation>
     </message>
 </context>
 <context>
@@ -462,7 +456,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Альтернативные ограничения скорости</translation>
+        <translation>Другие ограничения скорости</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -470,7 +464,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>Фильтровать список торрентов…</translation>
+        <translation>Фильтр торрентов…</translation>
     </message>
     <message>
         <source>Search</source>
@@ -478,7 +472,7 @@
     </message>
     <message>
         <source>Transfers</source>
-        <translation>Передачи</translation>
+        <translation>Торренты</translation>
     </message>
 </context>
 <context>
@@ -517,7 +511,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Сообщать об окончании загрузки по почте</translation>
+        <translation>Оповещать об окончании загрузки по эл. почте</translation>
     </message>
     <message>
         <source>Run external program on torrent completion</source>
@@ -617,7 +611,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Задействовать протокол:</translation>
+        <translation>Используемый протокол:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -734,12 +728,12 @@
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>От кого:</translation>
+        <translation>От:</translation>
     </message>
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>Кому:</translation>
+        <translation>До:</translation>
     </message>
     <message>
         <source>When:</source>
@@ -906,8 +900,8 @@
         <translation>%I: Хеш-сумма</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Подсказка: Включите параметр в кавычки для защиты от обрезки на пробелах (напр. "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Подсказка: Включите параметр в кавычки для защиты от обрезки на пробелах (напр. &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -935,7 +929,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation>Удалять .torrent файлы позже</translation>
+        <translation>Удалять торрент-файлы после добавления</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -951,7 +945,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation>Автоматически</translation>
+        <translation>Автоматический</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -987,7 +981,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation>0 означает безлимитно</translation>
+        <translation>«0» — без ограничений</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1027,7 +1021,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation>Вручную</translation>
+        <translation>Ручной</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
@@ -1239,7 +1233,7 @@
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Завершён:</translation>
+        <translation>Дата завершения:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -1344,7 +1338,7 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>Общий рейтинг:</translation>
+        <translation>Общий рейтинг раздачи:</translation>
     </message>
     <message>
         <source>All-time download:</source>
@@ -1561,7 +1555,7 @@
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Завершён</translation>
+        <translation>Дата завершения</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2003,7 +1997,7 @@
     <name>about</name>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Продвинутый BitTorrent-клиент, написанный на C++. Использует фреймворк Qt и библиотеку libtorrent-rasterbar.</translation>
+        <translation>Продвинутый клиент сети BitTorrent, написанный на языке C++ с использованием фреймворка Qt и библиотеки libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -2045,7 +2039,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation>Добавить ссылки на торрент</translation>
+        <translation>Добавить ссылки на торренты</translation>
     </message>
 </context>
 <context>
@@ -2194,7 +2188,7 @@
     </message>
     <message>
         <source>Download</source>
-        <translation>Скачать</translation>
+        <translation>Загрузить</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2244,7 +2238,7 @@
         <translation>Включён</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Предупреждение: Обязательно соблюдайте законы об авторских правах вашей страны при загрузке торрентов из этих поисковых систем.</translation>
     </message>
     <message>

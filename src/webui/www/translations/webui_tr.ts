@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="tr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -16,7 +14,7 @@
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>Torrent'i başlat</translation>
+        <translation>Torrent&apos;i başlat</translation>
     </message>
     <message>
         <source>Skip hash check</source>
@@ -58,15 +56,15 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Torrent'lere devam et</translation>
+        <translation>Torrent&apos;lere devam et</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Torrent'leri duraklat</translation>
+        <translation>Torrent&apos;leri duraklat</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Torrent'leri sil</translation>
+        <translation>Torrent&apos;leri sil</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -81,7 +79,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent'ten Çık</translation>
+        <translation>qBittorrent&apos;ten Çık</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -89,47 +87,47 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Genel gönderme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Genel gönderme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Genel indirme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Genel indirme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatif gönderme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Alternatif gönderme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatif indirme oranı sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Alternatif indirme oranı sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>En fazla aktif indirme -1'den büyük olmak zorundadır.</translation>
+        <translation>En fazla aktif indirme -1&apos;den büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation>En fazla aktif gönderme -1'den büyük olmak zorundadır.</translation>
+        <translation>En fazla aktif gönderme -1&apos;den büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>En fazla aktif torrent -1'den büyük olmak zorundadır.</translation>
+        <translation>En fazla aktif torrent -1&apos;den büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>En fazla bağlantı sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>En fazla bağlantı sınırı sayısı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Torrent başına en fazla bağlantı sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Torrent başına en fazla bağlantı sınırı sayısı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Torrent başına en fazla gönderme yuvası sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Torrent başına en fazla gönderme yuvası sınırı sayısı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Program tercihleri kaydedilemiyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
+        <translation>Program tercihleri kaydedilemiyor, qBittorrent&apos;e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
@@ -157,7 +155,7 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Oturum açılamıyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
+        <translation>Oturum açılamıyor, qBittorrent&apos;e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -190,7 +188,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>Torrent'leri Gönder</translation>
+        <translation>Torrent&apos;leri Gönder</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -214,7 +212,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>Konum ayarla</translation>
+        <translation>Yeri ayarla</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -226,7 +224,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>Torrent'i yeniden adlandır</translation>
+        <translation>Torrent&apos;i yeniden adlandır</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -274,15 +272,15 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrent'leri URL'lerinden ya da Magnet bağlantılarından indir</translation>
+        <translation>Torrent&apos;leri URL&apos;lerinden ya da Magnet bağlantılarından indir</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
-        <translation>Yerel torrent'i gönder</translation>
+        <translation>Yerel torrent&apos;i gönder</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Seçilen torrent'leri aktarım listesinden silmek istediğinize emin misiniz?</translation>
+        <translation>Seçilen torrent&apos;leri aktarım listesinden silmek istediğinize emin misiniz?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -293,12 +291,8 @@
         <translation>qBittorrent istemcisine ulaşılamıyor</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent kapatıldı.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Genel gönderme yuvası sınırı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
+        <translation>Genel gönderme yuvası sınırı 0&apos;dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -310,7 +304,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation>Gönderme oranı eşiği 0'dan büyük olmak zorundadır.</translation>
+        <translation>Gönderme oranı eşiği 0&apos;dan büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -322,7 +316,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Torrent boşta durma zamanlayıcısı 0'dan büyük olmak zorundadır.</translation>
+        <translation>Torrent boşta durma zamanlayıcısı 0&apos;dan büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -330,11 +324,11 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation>İndirme oranı eşiği 0'dan büyük olmak zorundadır.</translation>
+        <translation>İndirme oranı eşiği 0&apos;dan büyük olmak zorundadır.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent kapatıldı</translation>
     </message>
 </context>
 <context>
@@ -401,7 +395,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Tümüne Devam Et</translation>
+        <translation>Tümüne Devam</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -537,7 +531,7 @@
     </message>
     <message>
         <source>Seed torrents until their seeding time reaches</source>
-        <translation>Torrent'leri şu gönderim süresine ulaşıncaya kadar gönder</translation>
+        <translation>Torrent&apos;leri şu gönderim süresine ulaşıncaya kadar gönder</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -573,7 +567,7 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>Tamamlanmamış torrent'leri şurada tut:</translation>
+        <translation>Tamamlanmamış torrent&apos;leri şurada tut:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -593,7 +587,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>Torrent'leri otomatik olarak şuradan ekle:</translation>
+        <translation>Torrent&apos;leri otomatik olarak şuradan ekle:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -669,7 +663,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation>(Hiçbiri)</translation>
+        <translation>(Yok)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -701,7 +695,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>Sadece torrent'ler için proksi kullan</translation>
+        <translation>Sadece torrent&apos;ler için proksi kullan</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -775,15 +769,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Daha çok kişi bulmak için DHT'yi (merkezsizleştirilmiş ağ) etkinleştir</translation>
+        <translation>Daha çok kişi bulmak için DHT&apos;yi (merkezsizleştirilmiş ağ) etkinleştir</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Daha çok kişi bulmak için Kişi Değişimi'ni (PeX) etkinleştir</translation>
+        <translation>Daha çok kişi bulmak için Kişi Değişimi&apos;ni (PeX) etkinleştir</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Daha çok kişi bulmak için Yerel Kişi Keşfi'ni etkinleştir</translation>
+        <translation>Daha çok kişi bulmak için Yerel Kişi Keşfi&apos;ni etkinleştir</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -819,7 +813,7 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Yavaş torrent'leri bu sınırlar içinde sayma</translation>
+        <translation>Yavaş torrent&apos;leri bu sınırlar içinde sayma</translation>
     </message>
     <message>
         <source>Share Ratio Limiting</source>
@@ -827,7 +821,7 @@
     </message>
     <message>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Torrent'leri şu orana ulaşıncaya kadar gönder</translation>
+        <translation>Torrent&apos;leri şu orana ulaşıncaya kadar gönder</translation>
     </message>
     <message>
         <source>then</source>
@@ -875,7 +869,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Etiketler (virgülle ayrıldı)</translation>
+        <translation>%G: Etiketler (virgülle ayrılmış)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -906,8 +900,8 @@
         <translation>%I: Bilgi adreslemesi</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>İpucu: Metnin boşluktan kesilmesini önlemek için parametreyi tırnak işaretleri arasına alın (örn., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>İpucu: Metnin boşluktan kesilmesini önlemek için parametreyi tırnak işaretleri arasına alın (örn., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -971,7 +965,7 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Torrent'i Elle Kipine değiştir</translation>
+        <translation>Torrent&apos;i Elle Kipine değiştir</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
@@ -979,7 +973,7 @@
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation>Etkilenmiş torrent'lerin yerini değiştir</translation>
+        <translation>Etkilenmiş torrent&apos;lerin yerini değiştir</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -991,7 +985,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation>Torrent'in yerini değiştir</translation>
+        <translation>Torrent&apos;in yerini değiştir</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1011,7 +1005,7 @@
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
-        <translation>Çoklu dosyaları olan torrent'ler için alt klasör oluştur</translation>
+        <translation>Çoklu dosyaları olan torrent&apos;ler için alt klasör oluştur</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1019,7 +1013,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Etkilenmiş torrent'leri Elle Kipine değiştir</translation>
+        <translation>Etkilenmiş torrent&apos;leri Elle Kipine değiştir</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1662,7 +1656,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>İzleyici URL'si:</translation>
+        <translation>İzleyici URL&apos;si:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -1678,7 +1672,7 @@
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Daha bağlanılamadı</translation>
+        <translation>Daha bağlanmadı</translation>
     </message>
     <message>
         <source>#</source>
@@ -1698,7 +1692,7 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>İzleyici URL'sini kopyala</translation>
+        <translation>İzleyici URL&apos;sini kopyala</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
@@ -1706,7 +1700,7 @@
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>İzleyici URL'sini düzenle...</translation>
+        <translation>İzleyici URL&apos;sini düzenle...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -1957,7 +1951,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>Konum ayarla</translation>
+        <translation>Yeri ayarla</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2037,7 +2031,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>URL'lerden indir</translation>
+        <translation>URL&apos;lerden indir</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2182,7 +2176,7 @@
     </message>
     <message>
         <source>Copy description page URL</source>
-        <translation>Açıklama sayfası URL'sini kopyala</translation>
+        <translation>Açıklama sayfası URL&apos;sini kopyala</translation>
     </message>
     <message>
         <source>Go to description page</source>
@@ -2244,8 +2238,8 @@
         <translation>Etkinleştirildi</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Uyarı: Bu arama motorlarının herhangi birinden torrent'leri indirirken ülkenizin telif hakkı yasalarına uyulduğundan emin olun.</translation>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Uyarı: Bu arama motorlarının herhangi birinden torrent&apos;leri indirirken ülkenizin telif hakkı yasalarına uyulduğundan emin olun.</translation>
     </message>
     <message>
         <source>Check for updates</source>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="pt" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,10 +291,6 @@
         <translation>O cliente qBittorrent encontra-se inacessível</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">O qBittorrent foi desligado.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>O número global do limite de slots para upload deverá ser superior a 0 ou estar desativado.</translation>
     </message>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>O qBittorrent foi desligado.</translation>
     </message>
 </context>
 <context>
@@ -763,7 +757,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Aplicar os limites de rácio para o transporte "overhead"</translation>
+        <translation>Aplicar os limites de rácio para o transporte &quot;overhead&quot;</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -779,11 +773,11 @@
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Ativar a 'Troca de Fontes' (PeX) para encontrar mais fontes</translation>
+        <translation>Ativar a &apos;Troca de Fontes&apos; (PeX) para encontrar mais fontes</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Ativar 'Descoberta de fontes locais' para encontrar mais fontes</translation>
+        <translation>Ativar &apos;Descoberta de fontes locais&apos; para encontrar mais fontes</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -906,8 +900,8 @@
         <translation>%I: Info hash</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -927,7 +921,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation>Ativar a proteção contra o "clickjacking"</translation>
+        <translation>Ativar a proteção contra o &quot;clickjacking&quot;</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -959,7 +953,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Caminho padrão para o 'Guardar':</translation>
+        <translation>Caminho padrão para o &apos;Guardar&apos;:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -971,11 +965,11 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Mudar torrent para o 'Modo manual'</translation>
+        <translation>Mudar torrent para o &apos;Modo manual&apos;</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Quando a 'Categoria do torrent' for alterada:</translation>
+        <translation>Quando a &apos;Categoria do torrent&apos; for alterada:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -995,7 +989,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Quando o 'Caminho padrão para guardar' for alterado:</translation>
+        <translation>Quando o &apos;Caminho padrão para guardar&apos; for alterado:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1007,7 +1001,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>Quando alterar a 'Categoria do caminho para guardar':</translation>
+        <translation>Quando alterar a &apos;Categoria do caminho para guardar&apos;:</translation>
     </message>
     <message>
         <source>Create subfolder for torrents with multiple files</source>
@@ -1019,7 +1013,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Mudar os torrents afetados para o 'Modo manual'</translation>
+        <translation>Mudar os torrents afetados para o &apos;Modo manual&apos;</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1306,7 +1300,7 @@
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Local por defeito para o 'Guardar'</translation>
+        <translation>Local por defeito para o &apos;Guardar&apos;</translation>
     </message>
 </context>
 <context>
@@ -2003,7 +1997,7 @@
     <name>about</name>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Um cliente avançado de BitTorrent programado em C++, baseado em ferramentas QT e em 'libtorrent-rasterbar'.</translation>
+        <translation>Um cliente avançado de BitTorrent programado em C++, baseado em ferramentas QT e em &apos;libtorrent-rasterbar&apos;.</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -2244,7 +2238,7 @@
         <translation>Ativo</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer o download de torrents a partir de qualquer um destes motores de busca.</translation>
     </message>
     <message>

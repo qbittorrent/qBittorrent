@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="he" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -293,10 +291,6 @@
         <translation>לקוח qBittorrent בלתי נגיש</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent כובה.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>מספר עולמי של מגבלת חריצי העלאה חייב להיות גדול מ־0 או מושבת.</translation>
     </message>
@@ -334,7 +328,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent כובה</translation>
     </message>
 </context>
 <context>
@@ -517,7 +511,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>התראת דוא"ל בעת השלמת הורדה</translation>
+        <translation>התראת דוא&quot;ל בעת השלמת הורדה</translation>
     </message>
     <message>
         <source>Run external program on torrent completion</source>
@@ -697,7 +691,7 @@
     </message>
     <message>
         <source>Disable connections not supported by proxies</source>
-        <translation>השבת חיבורים שאינם נתמכים ע"י ייפויי כוח</translation>
+        <translation>השבת חיבורים שאינם נתמכים ע&quot;י ייפויי כוח</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -875,7 +869,7 @@
     </message>
     <message>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: תגיות (מופרדות ע"י פסיק)</translation>
+        <translation>%G: תגיות (מופרדות ע&quot;י פסיק)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -906,8 +900,8 @@
         <translation>%I: גיבוב מידע</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>עצה: תמצת פרמטר בעזרת סימני ציטוט כדי למנוע ממלל להיחתך בשטח לבן (לדוגמה, "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>עצה: תמצת פרמטר בעזרת סימני ציטוט כדי למנוע ממלל להיחתך בשטח לבן (לדוגמה, &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -923,7 +917,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>ק"ב/ש</translation>
+        <translation>ק&quot;ב/ש</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1231,7 +1225,7 @@
     </message>
     <message>
         <source>Created By:</source>
-        <translation>נוצר ע"י:</translation>
+        <translation>נוצר ע&quot;י:</translation>
     </message>
     <message>
         <source>Added On:</source>
@@ -1274,7 +1268,7 @@
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation>%1 (%2 סה"כ)</translation>
+        <translation>%1 (%2 סה&quot;כ)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
@@ -1313,7 +1307,7 @@
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation>ק"ב/ש</translation>
+        <translation>ק&quot;ב/ש</translation>
     </message>
 </context>
 <context>
@@ -1360,7 +1354,7 @@
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation>סה"כ גודל מאגר:</translation>
+        <translation>סה&quot;כ גודל מאגר:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -2058,32 +2052,32 @@
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>ק"ב</translation>
+        <translation>ק&quot;ב</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>מ"ב</translation>
+        <translation>מ&quot;ב</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>ג"ב</translation>
+        <translation>ג&quot;ב</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>ט"ב</translation>
+        <translation>ט&quot;ב</translation>
     </message>
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation>פ"ב</translation>
+        <translation>פ&quot;ב</translation>
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation>ה"ב</translation>
+        <translation>ה&quot;ב</translation>
     </message>
     <message>
         <source>/s</source>
@@ -2093,12 +2087,12 @@
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 ש' %2 ד'</translation>
+        <translation>%1 ש&apos; %2 ד&apos;</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1 י' %2 ש'</translation>
+        <translation>%1 י&apos; %2 ש&apos;</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2244,7 +2238,7 @@
         <translation>מאופשר</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>אזהרה: הייה בטוח להיענות לחוקי זכויות היוצרים של מדינתך בעת הורדת טורנטים מכל אחד ממנועי חיפוש אלו.</translation>
     </message>
     <message>

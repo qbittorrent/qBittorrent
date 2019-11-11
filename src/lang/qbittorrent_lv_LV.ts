@@ -6,301 +6,298 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="15"/>
         <source>About qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Par qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="52"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Par</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="81"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autori</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="87"/>
         <source>Current maintainer</source>
-        <translation type="unfinished"></translation>
+        <translation>Pašreizējais uzturētājs</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="93"/>
         <source>Greece</source>
-        <translation type="unfinished">Grieķija</translation>
+        <translation>Grieķija</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="113"/>
         <location filename="../gui/aboutdialog.ui" line="204"/>
         <source>Nationality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nacionalitāte:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="120"/>
         <location filename="../gui/aboutdialog.ui" line="197"/>
         <source>E-mail:</source>
-        <translation type="unfinished"></translation>
+        <translation>E-pasts:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="127"/>
         <location filename="../gui/aboutdialog.ui" line="190"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vārds:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="157"/>
         <source>Original author</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmas radītājs</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="163"/>
         <source>France</source>
-        <translation type="unfinished">Francija</translation>
+        <translation>Francija</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="241"/>
         <source>Special Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>Īpašs paldies</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="267"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>Tulkotāji</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="293"/>
         <source>License</source>
-        <translation type="unfinished"></translation>
+        <translation>Licence</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="319"/>
         <source>Libraries</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliotēkas</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="325"/>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished"></translation>
+        <translation>Šī qBittorrent versija tika uzbūvēta, izmantojot šīs bibliotēkas:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.h" line="70"/>
+        <location filename="../gui/aboutdialog.cpp" line="61"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Moderns BitTorrent klients programmēts C++ valodā, veidots uz Qt toolkit un libtorrent-rasterbar bāzes.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.h" line="71"/>
         <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Autortiesības %1 2006-2018 The qBittorrent project</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.h" line="72"/>
+        <location filename="../gui/aboutdialog.cpp" line="62"/>
+        <source>Copyright %1 2006-2019 The qBittorrent project</source>
+        <translation type="unfinished">Autortiesības %1 2006-2018 The qBittorrent project {1 2006-2019 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="63"/>
         <source>Home Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mājaslapa:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.h" line="73"/>
+        <location filename="../gui/aboutdialog.cpp" line="64"/>
         <source>Forum:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forums:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.h" line="74"/>
+        <location filename="../gui/aboutdialog.cpp" line="65"/>
         <source>Bug Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>Par kļūmēm:</translation>
     </message>
 </context>
 <context>
     <name>AddNewTorrentDialog</name>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="58"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="80"/>
         <source>Save at</source>
         <translation>Saglabāt šeit</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="87"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="345"/>
         <source>Never show again</source>
         <translation>Vairs nerādīt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="104"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="99"/>
         <source>Torrent settings</source>
         <translation>Torrenta iestatījumi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="110"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="132"/>
         <source>Set as default category</source>
         <translation>Uzstādīt kā noklusēto kategoriju</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="119"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="107"/>
         <source>Category:</source>
         <translation>Kategorija:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="179"/>
         <source>Start torrent</source>
         <translation>Sākt lejupielādi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="204"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="210"/>
         <source>Torrent information</source>
         <translation>Torrenta informācija</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="154"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
         <source>Skip hash check</source>
         <translation>Izlaist jaucējkoda pārbaudi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="257"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="229"/>
         <source>Size:</source>
         <translation>Izmērs:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="223"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="302"/>
         <source>Hash:</source>
         <translation>Jaucējkods:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="271"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="309"/>
         <source>Comment:</source>
         <translation>Komentārs:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="250"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="216"/>
         <source>Date:</source>
         <translation>Datums:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="19"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="41"/>
         <source>Torrent Management Mode:</source>
         <translation>Torrenta pārvaldības režīms:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="26"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="48"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
         <translation>Automātiskais režīms nozīmē, ka torrenta īpašības (piem. saglabāšanas vieta), tiks piešķirta atbilstoši izvēlētajai kategorijai. </translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="30"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="52"/>
         <source>Manual</source>
         <translation>Manuāli</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="35"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="57"/>
         <source>Automatic</source>
         <translation>Automātiski</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="67"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Remember last used save path</source>
         <translation>Atcerēties pēdējo norādīto saglabāšanas vietu</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="77"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="141"/>
         <source>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</source>
         <translation>Ja atzīmēts, .torrent fails netiks dzēsts, neņemot vērā &quot;Lejupielādes&quot; lappuses iestatījumus</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="80"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
         <source>Do not delete .torrent file</source>
         <translation>Neizdzēst .torrent failu</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="177"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="172"/>
         <source>Create subfolder</source>
         <translation>Izveidot apakšmapi</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="187"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">Lejupielādēt secīgā kārtībā</translation>
+        <translation>Lejupielādēt secīgā kārtībā</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="194"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="151"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished">Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
+        <translation>Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="376"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="407"/>
         <source>Normal</source>
         <translation>Normāla</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="381"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="412"/>
         <source>High</source>
         <translation>Augsta</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="386"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="417"/>
         <source>Maximum</source>
-        <translation>Maksimālā</translation>
+        <translation>Augstākā</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="391"/>
+        <location filename="../gui/addnewtorrentdialog.ui" line="422"/>
         <source>Do not download</source>
         <translation>Nelejupielādēt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="276"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="282"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="707"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="571"/>
         <source>I/O Error</source>
         <translation>Ievades/izvades kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="290"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="261"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
         <source>Invalid torrent</source>
         <translation>Nederīgs torents</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="494"/>
         <source>Renaming</source>
-        <translation>Pārdēvēšana</translation>
+        <translation type="vanished">Pārdēvēšana</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="499"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="523"/>
         <source>Rename error</source>
-        <translation>Kļūda pārdēvēšanā</translation>
+        <translation type="vanished">Kļūda pārdēvēšanā</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="500"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
-        <translation>Nosaukums satur neatļautus simbolus, lūdzu izvēlieties citu nosaukumu. </translation>
+        <translation type="vanished">Nosaukuma laukums ir atstāts tukšs vai arī satur neatļautus simbolus, lūdzu izvēlieties citu nosaukumu. </translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="733"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="597"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Nav pieejams</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="734"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="598"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Nav pieejams</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="742"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="606"/>
         <source>Not available</source>
         <translation>Nav pieejams</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="326"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>Invalid magnet link</source>
         <translation>Nederīga magnētsaite</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="276"/>
         <source>The torrent file &apos;%1&apos; does not exist.</source>
-        <translation>Torrenta fails &apos;%1&apos; neeksistē.</translation>
+        <translation type="vanished">Torrenta fails &apos;%1&apos; neeksistē.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="282"/>
         <source>The torrent file &apos;%1&apos; cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation>Torrenta failu &apos;%1&apos; nevar nolasīt no diska. Iespējams, jums nav nepieciešamo tiesību.</translation>
+        <translation type="vanished">Torrenta failu &apos;%1&apos; nevar nolasīt no diska. Iespējams, jums nav nepieciešamo tiesību.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="290"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="262"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
@@ -309,115 +306,131 @@ Error: %2</source>
 Kļūda: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="326"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="305"/>
         <source>This magnet link was not recognized</source>
         <translation>Šī magnētsaite netika atpazīta</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="355"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="334"/>
         <source>Magnet link</source>
         <translation>Magnētsaite</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="361"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="340"/>
         <source>Retrieving metadata...</source>
         <translation>Tiek izgūti metadati...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="445"/>
         <source>Not Available</source>
         <comment>This size is unavailable.</comment>
-        <translation>Nav pieejams</translation>
+        <translation type="vanished">Nav pieejams</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="447"/>
         <source>Free space on disk: %1</source>
-        <translation>Brīvās vietas diskā: %1</translation>
+        <translation type="vanished">Brīvās vietas diskā: %1</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="102"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="100"/>
         <source>Choose save path</source>
         <translation>Izvēlieties vietu, kur saglabāt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="303"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="308"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="337"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="342"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="346"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="282"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="287"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="291"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
         <source>Torrent is already present</source>
-        <translation type="unfinished"></translation>
+        <translation>Šis torrents jau ir pievienots</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="303"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="337"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="282"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="316"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents &apos;%1&apos; jau ir lejupielāžu sarakstā. Jaunie trakeri netika pievienoti, jo tas ir privāts torrents. </translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="308"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="287"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents &apos;%1&apos; jau ir lejupielāžu sarakstā. Tika pievienoti jaunie trakeri. </translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="291"/>
         <source>Torrent is already queued for processing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents jau ir rindā uz pievienošanu.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="342"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="321"/>
         <source>Magnet link &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnētsaite &apos;%1&apos; jau ir lejupielāžu sarakstā. Tika pievienoti jaunie trakeri.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="346"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="325"/>
         <source>Magnet link is already queued for processing.</source>
+        <translation>Magnētsaite jau ir rindā uz pievienošanu.</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="403"/>
+        <source>%1 (Free space on disk: %2)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="494"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="404"/>
+        <source>Not available</source>
+        <comment>This size is unavailable.</comment>
+        <translation type="unfinished">Nav pieejams</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
+        <source>Cannot download &apos;%1&apos;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>New name:</source>
-        <translation>Jaunais nosaukums:</translation>
+        <translation type="vanished">Jaunais nosaukums:</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="524"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="562"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Šajā mapē jau ir fails ar šādu nosaukumu. Lūdzu izvēlieties citu nosaukumu.</translation>
+        <translation type="vanished">Šajā mapē jau ir fails ar šādu nosaukumu. Lūdzu izvēlieties citu nosaukumu.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="561"/>
         <source>The folder could not be renamed</source>
-        <translation>Mapi neizdevās pārdēvēt</translation>
+        <translation type="vanished">Mapi neizdevās pārdēvēt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="609"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="475"/>
         <source>Rename...</source>
         <translation>Pārdēvēt...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="613"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="481"/>
         <source>Priority</source>
         <translation>Prioritāte</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="708"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="572"/>
         <source>Invalid metadata</source>
         <translation>Nederīgi metadati</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="715"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="579"/>
         <source>Parsing metadata...</source>
         <translation>Tiek parsēti metadati...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="719"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="583"/>
         <source>Metadata retrieval complete</source>
         <translation>Metadatu izguve pabeigta</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="774"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
+        <source>Failed to load from URL: %1.
+Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="661"/>
         <source>Download Error</source>
         <translation>Lejupielādes kļūda</translation>
     </message>
@@ -425,323 +438,356 @@ Kļūda: %2</translation>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="258"/>
-        <location filename="../gui/advancedsettings.cpp" line="336"/>
+        <location filename="../gui/advancedsettings.cpp" line="279"/>
+        <location filename="../gui/advancedsettings.cpp" line="400"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="398"/>
+        <location filename="../gui/advancedsettings.cpp" line="471"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Izejošie porti (Min) [0: Atslēgts]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="403"/>
+        <location filename="../gui/advancedsettings.cpp" line="476"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Izejošie porti (Maks.) [0: Atslēgts]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="413"/>
+        <location filename="../gui/advancedsettings.cpp" line="488"/>
         <source>Recheck torrents on completion</source>
         <translation>Atkārtoti pārbaudīt torrentus pēc ielādes pabeigšanas</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="419"/>
+        <location filename="../gui/advancedsettings.cpp" line="494"/>
         <source>Transfer list refresh interval</source>
         <translation>Torrentu saraksta atsvaidzināšanas intervāls</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="418"/>
+        <location filename="../gui/advancedsettings.cpp" line="493"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="126"/>
+        <location filename="../gui/advancedsettings.cpp" line="130"/>
         <source>Setting</source>
         <translation>Iespējas</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="126"/>
+        <location filename="../gui/advancedsettings.cpp" line="130"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Vērtība</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="254"/>
-        <location filename="../gui/advancedsettings.cpp" line="266"/>
+        <location filename="../gui/advancedsettings.cpp" line="275"/>
+        <location filename="../gui/advancedsettings.cpp" line="287"/>
         <source> (disabled)</source>
         <translation>(Atslēgts)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="256"/>
+        <location filename="../gui/advancedsettings.cpp" line="277"/>
         <source> (auto)</source>
         <translation>(automātiski)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="264"/>
+        <location filename="../gui/advancedsettings.cpp" line="285"/>
         <source> min</source>
         <comment> minutes</comment>
-        <translation type="unfinished"></translation>
+        <translation>min</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="277"/>
+        <location filename="../gui/advancedsettings.cpp" line="298"/>
         <source>All addresses</source>
         <translation>Visas adreses</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="314"/>
+        <location filename="../gui/advancedsettings.cpp" line="338"/>
         <source>qBittorrent Section</source>
         <translation>qBittorrent sadaļa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="317"/>
-        <location filename="../gui/advancedsettings.cpp" line="322"/>
+        <location filename="../gui/advancedsettings.cpp" line="335"/>
+        <location filename="../gui/advancedsettings.cpp" line="343"/>
         <source>Open documentation</source>
         <translation>Atvērt dokumentāciju</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="320"/>
+        <location filename="../gui/advancedsettings.cpp" line="346"/>
         <source>libtorrent Section</source>
         <translation>libtorrent sadaļa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="330"/>
+        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <source>Below normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <source>Very low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="371"/>
+        <source>Process memory priority (Windows &gt;= 8 only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="380"/>
         <source>Asynchronous I/O threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="337"/>
+        <location filename="../gui/advancedsettings.cpp" line="387"/>
+        <source>File pool size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="401"/>
         <source>Outstanding memory when checking torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="351"/>
+        <location filename="../gui/advancedsettings.cpp" line="415"/>
         <source>Disk cache</source>
         <translation>Diska kešatmiņa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="356"/>
+        <location filename="../gui/advancedsettings.cpp" line="421"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="357"/>
+        <location filename="../gui/advancedsettings.cpp" line="422"/>
         <source>Disk cache expiry interval</source>
         <translation>Diska kešatmiņas derīguma intervāls</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="360"/>
+        <location filename="../gui/advancedsettings.cpp" line="426"/>
         <source>Enable OS cache</source>
         <translation>Izmantot OS kešatmiņu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="363"/>
-        <source>Guided read cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="367"/>
+        <location filename="../gui/advancedsettings.cpp" line="430"/>
         <source>Coalesce reads &amp; writes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="371"/>
+        <location filename="../gui/advancedsettings.cpp" line="434"/>
         <source>Send upload piece suggestions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="375"/>
-        <location filename="../gui/advancedsettings.cpp" line="380"/>
+        <location filename="../gui/advancedsettings.cpp" line="439"/>
+        <location filename="../gui/advancedsettings.cpp" line="445"/>
         <source> KiB</source>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="377"/>
+        <location filename="../gui/advancedsettings.cpp" line="441"/>
         <source>Send buffer watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="382"/>
+        <location filename="../gui/advancedsettings.cpp" line="447"/>
         <source>Send buffer low watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="387"/>
+        <location filename="../gui/advancedsettings.cpp" line="453"/>
         <source>Send buffer watermark factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="405"/>
-        <source>Prefer TCP</source>
+        <location filename="../gui/advancedsettings.cpp" line="459"/>
+        <source>Socket backlog size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="405"/>
+        <location filename="../gui/advancedsettings.cpp" line="478"/>
+        <source>Prefer TCP</source>
+        <translation>Priekšroku TCP</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="478"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="410"/>
+        <location filename="../gui/advancedsettings.cpp" line="485"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation>Atļaut vairākus savienojumus no vienas IP adreses</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="422"/>
+        <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>Rādīt koplietotāju valstis (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="425"/>
+        <location filename="../gui/advancedsettings.cpp" line="500"/>
         <source>Resolve peer host names</source>
         <translation>Rādīt koplietotāju Datoru nosaukumus</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="433"/>
+        <location filename="../gui/advancedsettings.cpp" line="503"/>
         <source>Strict super seeding</source>
         <translation>Piespiedu super-augšupielādēšana</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="458"/>
+        <location filename="../gui/advancedsettings.cpp" line="523"/>
         <source>Network Interface (requires restart)</source>
         <translation>Interneta savienojums (nepieciešams restarts) </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="461"/>
+        <location filename="../gui/advancedsettings.cpp" line="526"/>
         <source>Optional IP Address to bind to (requires restart)</source>
         <translation>Piesaistīt papildu IP adresi (nepieciešams restarts)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="464"/>
+        <location filename="../gui/advancedsettings.cpp" line="529"/>
         <source>Listen on IPv6 address (requires restart)</source>
         <translation>Klausīties IPv6 adresē (nepieciešams restarts)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="472"/>
+        <location filename="../gui/advancedsettings.cpp" line="537"/>
         <source>Display notifications</source>
         <translation>Rādīt paziņojumus</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="475"/>
+        <location filename="../gui/advancedsettings.cpp" line="540"/>
         <source>Display notifications for added torrents</source>
         <translation>Rādīt paziņojumus par pievienotajiem torrentiem</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="478"/>
+        <location filename="../gui/advancedsettings.cpp" line="543"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>Ielādēt trakera adreses ikonu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="482"/>
+        <location filename="../gui/advancedsettings.cpp" line="547"/>
         <source>Save path history length</source>
-        <translation type="unfinished"></translation>
+        <translation>Saglabāšanas vietu vēstures garums</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="485"/>
+        <location filename="../gui/advancedsettings.cpp" line="550"/>
         <source>Enable speed graphs</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieslēgt ātrumu diagrammas</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="495"/>
+        <location filename="../gui/advancedsettings.cpp" line="560"/>
         <source>Fixed slots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="495"/>
+        <location filename="../gui/advancedsettings.cpp" line="560"/>
         <source>Upload rate based</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="497"/>
+        <location filename="../gui/advancedsettings.cpp" line="562"/>
         <source>Upload slots behavior</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="499"/>
+        <location filename="../gui/advancedsettings.cpp" line="565"/>
         <source>Round-robin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="499"/>
+        <location filename="../gui/advancedsettings.cpp" line="565"/>
         <source>Fastest upload</source>
         <translation>Ātrākā augšupielāde</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="499"/>
+        <location filename="../gui/advancedsettings.cpp" line="565"/>
         <source>Anti-leech</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="501"/>
+        <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Upload choking algorithm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="513"/>
+        <location filename="../gui/advancedsettings.cpp" line="576"/>
         <source>Confirm torrent recheck</source>
         <translation>Apstiprināt torrentu atkārtotu pārbaudi</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="517"/>
+        <location filename="../gui/advancedsettings.cpp" line="580"/>
         <source>Confirm removal of all tags</source>
         <translation>Apstiprināt visu birku noņemšanu</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="521"/>
+        <location filename="../gui/advancedsettings.cpp" line="584"/>
         <source>Always announce to all trackers in a tier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="525"/>
+        <location filename="../gui/advancedsettings.cpp" line="588"/>
         <source>Always announce to all tiers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="435"/>
+        <location filename="../gui/advancedsettings.cpp" line="506"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Automātiski</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="393"/>
+        <location filename="../gui/advancedsettings.cpp" line="466"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>Progresa datu saglabāšanas intervāls</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="407"/>
+        <location filename="../gui/advancedsettings.cpp" line="480"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="430"/>
         <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation>Maksimālais pusatvērto savienojumu skaits [0: Neierobežots]</translation>
+        <translation type="vanished">Atļautais pusatvērto savienojumu skaits [0: Neierobežots]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="467"/>
+        <location filename="../gui/advancedsettings.cpp" line="532"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>IP adrese, kuru paziņot trakeriem (nepieciešams restarts)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="488"/>
+        <location filename="../gui/advancedsettings.cpp" line="553"/>
         <source>Enable embedded tracker</source>
         <translation>Ieslēgt iebūvēto trakeri</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="493"/>
+        <location filename="../gui/advancedsettings.cpp" line="558"/>
         <source>Embedded tracker port</source>
         <translation>Iebūvētā trakera ports</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="505"/>
         <source>Check for software updates</source>
-        <translation>Meklēt programmatūras atjauninājumus</translation>
+        <translation type="vanished">Meklēt programmatūras atjauninājumus</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="509"/>
+        <location filename="../gui/advancedsettings.cpp" line="572"/>
         <source>Use system icon theme</source>
         <translation>Lietot sistēmas ikonu dizainu</translation>
     </message>
@@ -749,94 +795,94 @@ Kļūda: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="160"/>
+        <location filename="../app/application.cpp" line="173"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>Tika ieslēgts qBittorrent %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="311"/>
+        <location filename="../app/application.cpp" line="324"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrents: %1, palaista ārējā programma, komanda: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="338"/>
+        <location filename="../app/application.cpp" line="355"/>
         <source>Torrent name: %1</source>
         <translation>Torenta nosaukums: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="339"/>
+        <location filename="../app/application.cpp" line="356"/>
         <source>Torrent size: %1</source>
         <translation>Torenta izmērs: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="340"/>
+        <location filename="../app/application.cpp" line="357"/>
         <source>Save path: %1</source>
         <translation>Saglabāšanas vieta: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="341"/>
+        <location filename="../app/application.cpp" line="358"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrents tika lejupielādēts %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="343"/>
+        <location filename="../app/application.cpp" line="360"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Paldies, ka izmantojāt qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="350"/>
+        <location filename="../app/application.cpp" line="367"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation>[qBittorrent] &apos;%1&apos; ir pabeidzis lejupielādi</translation>
+        <translation>[qBittorrent] &apos;%1&apos; lejupielāde ir pabeigta</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="364"/>
+        <location filename="../app/application.cpp" line="381"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrents: %1, sūta e-pasta paziņojumu</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="528"/>
+        <location filename="../app/application.cpp" line="541"/>
         <source>Application failed to start.</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmu neizdevās palaist.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="541"/>
+        <location filename="../app/application.cpp" line="554"/>
         <source>Information</source>
         <translation>Informācija</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="542"/>
+        <location filename="../app/application.cpp" line="555"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
         <translation>Lai piekļūtu qBittorrent Web UI kontroles panelim, atveriet %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="547"/>
+        <location filename="../app/application.cpp" line="560"/>
         <source>The Web UI administrator username is: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tālvadības kontroles paneļa administratora lietotājvārds ir: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="548"/>
+        <location filename="../app/application.cpp" line="561"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Tālvadības kontroles paneļa administratora parole vēl aizvien ir noklusētā: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="549"/>
+        <location filename="../app/application.cpp" line="562"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Tas is drošības risks, lūdzam apsvērt paroles maiņu</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="712"/>
+        <location filename="../app/application.cpp" line="689"/>
         <source>Saving torrent progress...</source>
         <translation>Saglabā torrenta progresu...</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="770"/>
+        <location filename="../app/application.cpp" line="744"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="773"/>
+        <location filename="../app/application.cpp" line="747"/>
         <source>Portable mode implies relative fastresume</source>
         <translation type="unfinished"></translation>
     </message>
@@ -846,30 +892,30 @@ Kļūda: %2</translation>
     <message>
         <location filename="../base/asyncfilestorage.cpp" line="41"/>
         <source>Could not create directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās izveidot direktoriju &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
     <name>AuthController</name>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="52"/>
+        <location filename="../webui/api/authcontroller.cpp" line="55"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>WebAPI autorizācijas kļūda. Iemesls: IP ir bloķēta, IP: %1, lietotājs: %2</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="56"/>
+        <location filename="../webui/api/authcontroller.cpp" line="59"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Jūsu IP adrese ir tikusi nobloķēta, vairāku neveiksmīgu pierakstīšanās mēģinājumu dēļ.</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="71"/>
+        <location filename="../webui/api/authcontroller.cpp" line="74"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebAPI autorizācija veiksmīga. IP: %1</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="76"/>
+        <location filename="../webui/api/authcontroller.cpp" line="79"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>WebAPI autorizācijas kļūda. Iemesls: nederīgi autorizācijas dati, mēģinājumu skaits: %1, IP: %2, lietotājvārds: %3</translation>
     </message>
 </context>
 <context>
@@ -908,7 +954,8 @@ Kļūda: %2</translation>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="186"/>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished"></translation>
+        <translation>Viedais epizožu filtrs pārbaudīs epizožu nummurus, lai novērstu duplikātu lejupielādi.
+Atbalsta formātus: S01E01, 1x1, 2017.01.01 un 01.01.2017 (Datumu formātos kā atdalitāju &quot;.&quot; vietā varat izmantot arī &quot;-&quot;)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="190"/>
@@ -941,324 +988,324 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Saglabāt citā mapē</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="268"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="254"/>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
         <comment>... X days</comment>
         <translation>Ignorēt filtra rezultātus uz (0 atslēgt)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="278"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="264"/>
         <source>Disabled</source>
         <translation>Atslēgts</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="281"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="267"/>
         <source> days</source>
         <translation>dienām</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="314"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="300"/>
         <source>Add Paused:</source>
-        <translation>Pievienot nopauzētu:</translation>
+        <translation>Pievienot apstādinātu:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="322"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="308"/>
         <source>Use global settings</source>
         <translation>Lietot globālos iestatījumus</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="327"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="313"/>
         <source>Always</source>
         <translation>Vienmēr</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="332"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="318"/>
         <source>Never</source>
         <translation>Nekad</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="353"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="339"/>
         <source>Apply Rule to Feeds:</source>
         <translation>Pielāgot filtru šiem kanāliem:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="375"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="361"/>
         <source>Matching RSS Articles</source>
         <translation>Filtra iegūtie rezultāti</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="403"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="389"/>
         <source>&amp;Import...</source>
         <translation>&amp;Ievietot filtru...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="413"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="399"/>
         <source>&amp;Export...</source>
         <translation>&amp;Saglabāt filtru...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
         <source>Matches articles based on episode filter.</source>
         <translation>Meklē rezultātus pēc epizožu filtra.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="87"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
         <source>Example: </source>
         <translation>Piemērs:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="89"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation>filtrs atlasīs 2., 5., 8. - 15., 30. un turpmākās pirmās sezonas epizodes</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="89"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
         <source>Episode filter rules: </source>
         <translation>Epizožu filtrs:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="89"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation>Sezonas numurs nedrīkst būt 0</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
         <source>Filter must end with semicolon</source>
         <translation>Filtram jābeidzas ar semikolu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
         <source>Three range types for episodes are supported: </source>
         <translation>Filtram ir atļauti 3 parametru veidi:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation>Parametrs &lt;b&gt;1x25;&lt;/b&gt; atlasīs tikai 1. sezonas 25. epizodi</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation>Parametrs &lt;b&gt;1x25-40;&lt;/b&gt; atlasīs tikai 1. sezonas epizodes, sākot no 25. līdz 40. </translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
         <source>Episode number is a mandatory positive value</source>
         <translation>Epizodes numurs nedrīkst būt 0</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="62"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrs</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="64"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrs (vecmodīgais)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="96"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
         <translation>Parametrs &lt;b&gt;1x25-;&lt;/b&gt; atlasīs visas turpmākās epizodes un sezonas, sākot ar 1. sezonas 25. epizodi</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="277"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="276"/>
         <source>Last Match: %1 days ago</source>
         <translation>Pēdējie rezultāti: pirms %1 dienām</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="279"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="278"/>
         <source>Last Match: Unknown</source>
         <translation>Pēdējie rezultāti: nav atrasti</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
         <source>New rule name</source>
         <translation>Jaunā filtra nosaukums</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="362"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
         <source>Please type the name of the new download rule.</source>
         <translation>Lūdzu ievadiet jaunā filtra nosaukumu.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="367"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="519"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="366"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="510"/>
         <source>Rule name conflict</source>
         <translation>Neatļauts nosaukums</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="368"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="520"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="367"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="511"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Filtrs ar šādu nosaukumu jau pastāv, lūdzu izvēlieties citu nosaukumu.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="382"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="381"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation>Vai esat pārliecināts, ka vēlaties dzēst filtru ar nosaukumu &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Vai esat pārliecināts, ka vēlāties dzēst atlasītos lejupielādes filtrus?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
         <source>Rule deletion confirmation</source>
         <translation>Filtra dzēšanas apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
         <source>Destination directory</source>
         <translation>Izvēlieties saglabāšanas vietu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
         <source>Invalid action</source>
-        <translation type="unfinished"></translation>
+        <translation>Nederīga darbība</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="403"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="395"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Saraksts ir tukšs, nav ko saglabāt.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
         <source>Export RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Saglabāt RSS filtru</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="449"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>I/O Error</source>
-        <translation type="unfinished">Ievades/izvades kļūda</translation>
+        <translation>Ievades/izvades kļūda</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
+        <source>Failed to create the destination file. Reason: %1</source>
+        <translation>Neizdevās izveidot failu: Iemesls: %1</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="433"/>
-        <source>Failed to create the destination file. Reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
         <source>Import RSS rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot RSS filtru</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="450"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="442"/>
         <source>Failed to open the file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās atvērt failu: Iemesls: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="465"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
         <source>Import Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Importēšanas kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="466"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="458"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās importēt izvēlēto filtra failu. Iemesls: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="473"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="467"/>
         <source>Add new rule...</source>
         <translation>Pievienot jaunu filtru...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="481"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="474"/>
         <source>Delete rule</source>
         <translation>Dzēst filtru</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
         <source>Rename rule...</source>
         <translation>Pārdēvēt filtru...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="486"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
         <source>Delete selected rules</source>
         <translation>Dzēst atlasītos filtrus</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="489"/>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Noņemt jau lejupielādētās epizodes...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="513"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="504"/>
         <source>Rule renaming</source>
         <translation>Filtra pārdēvēšana</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="513"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="504"/>
         <source>Please type the new rule name</source>
         <translation>Lūdzu ievadiet jauno filtra nosaukumu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="539"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="530"/>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished"></translation>
+        <translation>Noņemt jau lejupielādētās epizodes...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="540"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="531"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai esat pārliecināts, ka vēlaties no saraksta nodzēst jau lejupielādētās epizodes?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="644"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="635"/>
         <source>Regex mode: use Perl-compatible regular expressions</source>
         <translation>Regex režīms: lietot Perl valodas regulārās izteiksmes</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="686"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="724"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="677"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="715"/>
         <source>Position %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozīcija %1: %2</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="647"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="638"/>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished"></translation>
+        <translation>Aizstājējzīmju režīms: jūs varat lietot</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="648"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="639"/>
         <source>? to match any single character</source>
-        <translation type="unfinished"></translation>
+        <translation>? lai aizstātu vienu jebkuru simbolu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="649"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="640"/>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished"></translation>
+        <translation>* lai aizstātu vairākus jebkurus simbolus</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="650"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="641"/>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished"></translation>
+        <translation>Atstarpes skaitās kā AND operatori (visi vārdi, jebkurā secībā)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="651"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="642"/>
         <source>| is used as OR operator</source>
-        <translation type="unfinished"></translation>
+        <translation>| tiek lietots kā  OR operators</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="652"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="643"/>
         <source>If word order is important use * instead of whitespace.</source>
         <translation>Ja vārdu secība ir svarīga, lietojiet * simbolu.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="659"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="650"/>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
         <comment>We talk about regex/wildcards in the RSS filters section here. So a valid sentence would be: An expression with an empty | clause (e.g. expr|)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="663"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="654"/>
         <source> will match all articles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="664"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="655"/>
         <source> will exclude all articles.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1268,449 +1315,545 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/banlistoptionsdialog.ui" line="14"/>
         <source>List of banned IP addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Saraksts ar bloķētajām IP adresēm</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptionsdialog.ui" line="77"/>
+        <location filename="../gui/banlistoptionsdialog.ui" line="80"/>
         <source>Ban IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloķēt IP</translation>
     </message>
     <message>
-        <location filename="../gui/banlistoptionsdialog.ui" line="84"/>
+        <location filename="../gui/banlistoptionsdialog.ui" line="87"/>
         <source>Delete</source>
-        <translation type="unfinished">Dzēst</translation>
+        <translation>Dzēst</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="87"/>
         <location filename="../gui/banlistoptionsdialog.cpp" line="97"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzmanību</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="87"/>
         <source>The entered IP address is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ievadītā IP adrese nav derīga.</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="97"/>
         <source>The entered IP is already banned.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ievadītā IP adrese jau ir bloķēto sarakstā</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="603"/>
+        <location filename="../base/bittorrent/session.cpp" line="579"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>Nepieciešams restarts, lai mainītu PeX atbalsta iestatījumus: </translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1252"/>
-        <source>Could not get GUID of configured network interface. Binding to IP %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="1754"/>
         <source>Embedded Tracker [ON]</source>
-        <translation>Iebūvētais trakeris [IESLĒGTS]</translation>
+        <translation type="vanished">Iebūvētais trakeris [IESLĒGTS]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1756"/>
         <source>Failed to start the embedded tracker!</source>
-        <translation>Neizdevās ieslēgt iebūvēto trakeri!</translation>
+        <translation type="vanished">Neizdevās ieslēgt iebūvēto trakeri!</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1759"/>
         <source>Embedded Tracker [OFF]</source>
-        <translation>Iebūvētais trakeris [IZSLĒGTS]</translation>
+        <translation type="vanished">Iebūvētais trakeris [IZSLĒGTS]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2472"/>
+        <location filename="../base/bittorrent/session.cpp" line="2399"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Sistēmas tīkla statuss izmainīts uz %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2472"/>
+        <location filename="../base/bittorrent/session.cpp" line="2399"/>
         <source>ONLINE</source>
         <translation>PIESLĒDZIES</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2472"/>
+        <location filename="../base/bittorrent/session.cpp" line="2399"/>
         <source>OFFLINE</source>
         <translation>ATSLĒDZIES</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2494"/>
+        <location filename="../base/bittorrent/session.cpp" line="2412"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Tīkla %1 uzstādījumi ir izmainīti, atjaunojam piesaistītās sesijas datus</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2511"/>
+        <location filename="../base/bittorrent/session.cpp" line="2428"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
         <translation>Tīkla interfeisa uzstādītā adrese %1 nav derīga.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="489"/>
-        <location filename="../base/bittorrent/session.cpp" line="2858"/>
+        <location filename="../base/bittorrent/session.cpp" line="1109"/>
+        <location filename="../base/bittorrent/session.cpp" line="2744"/>
         <source>Encryption support [%1]</source>
         <translation>Šifrēšanas atbalsts [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="490"/>
-        <location filename="../base/bittorrent/session.cpp" line="2859"/>
+        <location filename="../base/bittorrent/session.cpp" line="1110"/>
+        <location filename="../base/bittorrent/session.cpp" line="2745"/>
         <source>FORCED</source>
         <translation>PIESPIEDU</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2983"/>
+        <location filename="../base/bittorrent/session.cpp" line="2855"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
         <translation>%1 adrese nav derīga, tādēļ tā netika pievienota bloķēto adrešu sarakstam. </translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="488"/>
-        <location filename="../base/bittorrent/session.cpp" line="3250"/>
+        <location filename="../base/bittorrent/session.cpp" line="1108"/>
+        <location filename="../base/bittorrent/session.cpp" line="3185"/>
         <source>Anonymous mode [%1]</source>
         <translation>Anonīmais režīms [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3742"/>
+        <location filename="../base/bittorrent/session.cpp" line="1256"/>
+        <location filename="../base/bittorrent/session.cpp" line="1271"/>
+        <source>Trying to listen on IP: %1, port: %2</source>
+        <comment>e.g: Trying to listen on IP: 192.168.0.1, port: 6881</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1294"/>
+        <source>Could not get GUID of configured network interface. Binding to IP: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1631"/>
+        <source>&apos;%1&apos; reached the maximum ratio you set. Removed torrent and its files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1640"/>
+        <source>&apos;%1&apos; reached the maximum ratio you set. Enabled super seeding for it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1662"/>
+        <source>&apos;%1&apos; reached the maximum seeding time you set. Removed torrent and its files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1671"/>
+        <source>&apos;%1&apos; reached the maximum seeding time you set. Enabled super seeding for it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2320"/>
+        <source>Error: Aborted saving resume data for %1 outstanding torrents.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="3656"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>Neizdevās atkodēt &apos;%1&apos; torrenta failu.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3880"/>
+        <location filename="../base/bittorrent/session.cpp" line="3800"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>Faila &apos;%1&apos; rekursīvā lejupielāde torrentam &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3986"/>
+        <location filename="../base/bittorrent/session.cpp" line="3908"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4242"/>
+        <location filename="../base/bittorrent/session.cpp" line="4140"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>Neizdevās saglabāt &apos;%1.torrent&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4289"/>
+        <location filename="../base/bittorrent/session.cpp" line="4192"/>
+        <location filename="../base/bittorrent/session.cpp" line="4229"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; veiksmīgi izdzēsts no torrentu saraksta.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4302"/>
+        <location filename="../base/bittorrent/session.cpp" line="4207"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; veiksmīgi izdzēsts no torrentu saraksta un cietā diskā. </translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4314"/>
+        <location filename="../base/bittorrent/session.cpp" line="4224"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;1%&apos; veiksmīgi izdzēsts no torrentu saraksta, bet failus uz cietā diskā neizdevās izdzēst. Kļūme: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4379"/>
+        <location filename="../base/bittorrent/session.cpp" line="4282"/>
+        <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4325"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>jo %1 ir izslēgts.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4382"/>
+        <location filename="../base/bittorrent/session.cpp" line="4328"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>jo %1 ir izslēgts.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4400"/>
-        <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
-        <translation>Neizdevās atrast tīmekļa devēju: &apos;%1&apos;, ziņojums: %2</translation>
+        <location filename="../base/bittorrent/session.cpp" line="4356"/>
+        <source>URL seed name lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4448"/>
+        <location filename="../base/bittorrent/session.cpp" line="4361"/>
+        <source>Received error message from a URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4417"/>
+        <source>Successfully listening on IP: %1, port: %2/%3</source>
+        <comment>e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4480"/>
+        <source>Failed to listen on IP: %1, port: %2/%3. Reason: %4</source>
+        <comment>e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4494"/>
+        <source>Detected external IP: %1</source>
+        <comment>e.g. Detected external IP: 1.1.1.1</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4573"/>
+        <source>Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
+        <translation type="vanished">Neizdevās atrast tīmekļa devēju: &apos;%1&apos;, ziņojums: %2</translation>
+    </message>
+    <message>
         <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
         <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
-        <translation>qBittorrent neizdevās saklausīt interneta savienojuma %1 portus: %2/%3. Iemesls: %4.</translation>
+        <translation type="vanished">qBittorrent neizdevās saklausīt interneta savienojuma %1 portus: %2/%3. Iemesls: %4.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2100"/>
+        <location filename="../base/bittorrent/session.cpp" line="1935"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Lejupielādējam &apos;%1&apos;, lūdzu uzgaidiet...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1216"/>
-        <location filename="../base/bittorrent/session.cpp" line="2588"/>
         <source>qBittorrent is trying to listen on any interface port: %1</source>
         <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation>qBittorrent šobrīd cenšas nodibināt kontaktu ar jebkuru interneta savienojuma portu: %1</translation>
+        <translation type="vanished">qBittorrent šobrīd cenšas nodibināt kontaktu ar jebkuru interneta savienojuma portu: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2530"/>
+        <location filename="../base/bittorrent/session.cpp" line="2447"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Uzstādītais interneta savienojums ir nederīgs: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1229"/>
-        <location filename="../base/bittorrent/session.cpp" line="2599"/>
         <source>qBittorrent is trying to listen on interface %1 port: %2</source>
         <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>qBittorrent šobrīd cenšas nodibināt kontaktu ar interneta savienojuma %1 portu: %2</translation>
+        <translation type="vanished">qBittorrent šobrīd cenšas nodibināt kontaktu ar interneta savienojuma %1 portu: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="483"/>
+        <location filename="../base/bittorrent/session.cpp" line="1103"/>
         <source>Peer ID: </source>
         <translation>Koplietotāja ID:</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="484"/>
+        <location filename="../base/bittorrent/session.cpp" line="1104"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation>HTTP Lietotāja Aģents ir &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="485"/>
-        <location filename="../base/bittorrent/session.cpp" line="574"/>
+        <location filename="../base/bittorrent/session.cpp" line="551"/>
+        <location filename="../base/bittorrent/session.cpp" line="1105"/>
         <source>DHT support [%1]</source>
         <translation>DHT atbalsts [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="485"/>
-        <location filename="../base/bittorrent/session.cpp" line="486"/>
-        <location filename="../base/bittorrent/session.cpp" line="487"/>
-        <location filename="../base/bittorrent/session.cpp" line="488"/>
-        <location filename="../base/bittorrent/session.cpp" line="490"/>
-        <location filename="../base/bittorrent/session.cpp" line="574"/>
-        <location filename="../base/bittorrent/session.cpp" line="589"/>
-        <location filename="../base/bittorrent/session.cpp" line="2859"/>
-        <location filename="../base/bittorrent/session.cpp" line="3250"/>
+        <location filename="../base/bittorrent/session.cpp" line="551"/>
+        <location filename="../base/bittorrent/session.cpp" line="565"/>
+        <location filename="../base/bittorrent/session.cpp" line="1105"/>
+        <location filename="../base/bittorrent/session.cpp" line="1106"/>
+        <location filename="../base/bittorrent/session.cpp" line="1107"/>
+        <location filename="../base/bittorrent/session.cpp" line="1108"/>
+        <location filename="../base/bittorrent/session.cpp" line="1109"/>
+        <location filename="../base/bittorrent/session.cpp" line="2745"/>
+        <location filename="../base/bittorrent/session.cpp" line="3185"/>
         <source>ON</source>
         <translation>IESLĒGTS</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="485"/>
-        <location filename="../base/bittorrent/session.cpp" line="486"/>
-        <location filename="../base/bittorrent/session.cpp" line="487"/>
-        <location filename="../base/bittorrent/session.cpp" line="488"/>
-        <location filename="../base/bittorrent/session.cpp" line="490"/>
-        <location filename="../base/bittorrent/session.cpp" line="574"/>
-        <location filename="../base/bittorrent/session.cpp" line="589"/>
-        <location filename="../base/bittorrent/session.cpp" line="2859"/>
-        <location filename="../base/bittorrent/session.cpp" line="3250"/>
+        <location filename="../base/bittorrent/session.cpp" line="551"/>
+        <location filename="../base/bittorrent/session.cpp" line="565"/>
+        <location filename="../base/bittorrent/session.cpp" line="1105"/>
+        <location filename="../base/bittorrent/session.cpp" line="1106"/>
+        <location filename="../base/bittorrent/session.cpp" line="1107"/>
+        <location filename="../base/bittorrent/session.cpp" line="1108"/>
+        <location filename="../base/bittorrent/session.cpp" line="1110"/>
+        <location filename="../base/bittorrent/session.cpp" line="2745"/>
+        <location filename="../base/bittorrent/session.cpp" line="3185"/>
         <source>OFF</source>
         <translation>IZSLĒGTS</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="486"/>
-        <location filename="../base/bittorrent/session.cpp" line="589"/>
+        <location filename="../base/bittorrent/session.cpp" line="565"/>
+        <location filename="../base/bittorrent/session.cpp" line="1106"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>Vietējo koplietotāju meklēšana [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="487"/>
+        <location filename="../base/bittorrent/session.cpp" line="1107"/>
         <source>PeX support [%1]</source>
         <translation>PeX atbalsts [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1804"/>
+        <location filename="../base/bittorrent/session.cpp" line="1627"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation>&apos;%1&apos; sasniedzis uzstādīto maksimālo reitingu. Torrents izdzēsts.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1809"/>
+        <location filename="../base/bittorrent/session.cpp" line="1636"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation>&apos;%1&apos; sasniedzis uzstādīto maksimālo reitingu. Torrents nopauzēts.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1829"/>
+        <location filename="../base/bittorrent/session.cpp" line="1658"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation>&apos;%1&apos; sasniedzis uzstādīto atļauto augšupielādes laiku. Torrents izdzēsts.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1834"/>
+        <location filename="../base/bittorrent/session.cpp" line="1667"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation>&apos;%1&apos; sasniedzis uzstādīto atļauto augšupielādes laiku. Torrents nopauzēts.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2564"/>
+        <location filename="../base/bittorrent/session.cpp" line="2481"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
         <translation>qBittorrent nespēja atrast %1 vietējo adresi ar kuru izveidot savienojumu</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2592"/>
         <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
         <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation>qBittorrent nespēja nodibināt kontaktu ar nevienu portu: %1. Iemesls: %2.</translation>
+        <translation type="vanished">qBittorrent nespēja nodibināt kontaktu ar nevienu portu: %1. Iemesls: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3647"/>
+        <location filename="../base/bittorrent/session.cpp" line="3561"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Trakeris &apos;%1&apos; tika pievienots torrentam &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3659"/>
+        <location filename="../base/bittorrent/session.cpp" line="3573"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>Trakeris &apos;%1&apos; tika noņemts torrentam &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3676"/>
+        <location filename="../base/bittorrent/session.cpp" line="3590"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>Tīmekļa devējs &apos;%1&apos; tika pievienots torrentam &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3683"/>
+        <location filename="../base/bittorrent/session.cpp" line="3597"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>Tīmekļa devējs &apos;%1&apos; tika atvienots no torrenta &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3821"/>
+        <location filename="../base/bittorrent/session.cpp" line="3735"/>
         <source>Cannot write to torrent resume folder.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3825"/>
+        <location filename="../base/bittorrent/session.cpp" line="3739"/>
         <source>Cannot create torrent resume folder.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3928"/>
+        <location filename="../base/bittorrent/session.cpp" line="3851"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>Neizdevās atsākt torrenta &apos;%1&apos; ielādi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4005"/>
+        <location filename="../base/bittorrent/session.cpp" line="3927"/>
         <source>Couldn&apos;t load torrents queue from &apos;%1&apos;. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ielādēt torrentus no &apos;%1&apos;. Kļūda: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4055"/>
+        <location filename="../base/bittorrent/session.cpp" line="3975"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Veiksmīgi notikusi IP filtra parsēšana: tika piemēroti %1 nosacījumi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4065"/>
+        <location filename="../base/bittorrent/session.cpp" line="3985"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Kļūme: IP filtra parsēšana neveiksmīga.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4228"/>
+        <location filename="../base/bittorrent/session.cpp" line="4126"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; atjaunots.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4273"/>
+        <location filename="../base/bittorrent/session.cpp" line="4171"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Neizdevās pievienot torentu. Iemesls: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4249"/>
+        <location filename="../base/bittorrent/session.cpp" line="4147"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; pievienots lejupielāžu sarakstam.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4341"/>
         <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
-        <translation>Notikusi Ievades/izvades kļūda, &apos;%1&apos; apstādināts. %2</translation>
+        <translation type="vanished">Notikusi Ievades/izvades kļūda, &apos;%1&apos; apstādināts. %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4351"/>
+        <location filename="../base/bittorrent/session.cpp" line="4293"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Portu skenēšana neveiksmīga, ziņojums: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4357"/>
+        <location filename="../base/bittorrent/session.cpp" line="4299"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Portu skenēšana veiksmīga, ziņojums: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4367"/>
+        <location filename="../base/bittorrent/session.cpp" line="4313"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>IP filtra dēļ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4370"/>
+        <location filename="../base/bittorrent/session.cpp" line="4316"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>portu filtra dēļ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4373"/>
+        <location filename="../base/bittorrent/session.cpp" line="4319"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>dēļ i2p jauktā režīma ierobežojumiem.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4376"/>
+        <location filename="../base/bittorrent/session.cpp" line="4322"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>jo koplietotājs izmanto neatļautu portu.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4421"/>
         <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
         <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation>qBittorrent veiksmīgi aktīvi noklausās interneta savienojuma %1 portus: %2/%3</translation>
+        <translation type="vanished">qBittorrent veiksmīgi aktīvi noklausās interneta savienojuma %1 portus: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4458"/>
         <source>External IP: %1</source>
         <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation>Ārējā IP: %1</translation>
+        <translation type="vanished">Ārējā IP: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="189"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="193"/>
         <source>create new torrent file failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās izveidot jaunu .torrent failu</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::TorrentHandle</name>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1332"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="556"/>
+        <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="561"/>
+        <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1487"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Vispirms ielādēt pirmās un pēdējās daļiņas: %1, torrents: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1333"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1488"/>
         <source>On</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieslēgts</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1333"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1488"/>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Izslēgts</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1449"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1616"/>
         <source>Successfully moved torrent: %1. New path: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Veiksmīgi pārvietots torrents: %1. Jaunā atrašanās vieta: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1484"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1651"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
+        <translation>Neizdevās pārvietot torrentu: &apos;%1&apos;. Iemesls: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1850"/>
+        <source>Save resume data failed. Torrent: &quot;%1&quot;, error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1679"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1863"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
+        <translation>Failu izmēri nesakrīt ar torrentu &apos;%1&apos;, torrents apstādināts.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1866"/>
+        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
+        <translation>Torrenta &apos;%1&apos; ātrās atsākšanas prasība tika noraidīta. Iemesls: %2. Pārbaudām vēlreiz...</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1919"/>
+        <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1682"/>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1983"/>
+        <source>Performance alert: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::Tracker</name>
+    <message>
+        <location filename="../base/bittorrent/tracker.cpp" line="215"/>
+        <source>Embedded Tracker: Now listening on IP: %1, port: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/tracker.cpp" line="219"/>
+        <source>Embedded Tracker: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1767,7 +1910,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="151"/>
         <source>Pause torrents</source>
-        <translation>Nopauzēt torrentus</translation>
+        <translation>Apturēt torrentus</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="156"/>
@@ -1816,29 +1959,29 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="20"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dzēšanas apstiprināšana</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="67"/>
         <source>Remember choice</source>
-        <translation type="unfinished"></translation>
+        <translation>Atcerēties izvēli</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="91"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Izdzēst failus arī uz cietā diska</translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdialog.h" line="52"/>
+        <location filename="../gui/deletionconfirmationdialog.cpp" line="44"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vai esat pārliecināts, ka vēlaties izdzēst &apos;%1&apos; no Torrentu saraksta?</translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdialog.h" line="54"/>
+        <location filename="../gui/deletionconfirmationdialog.cpp" line="46"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vai esat pārliecināts, ka vēlaties izdzēst šos %1 torrentus no Torrentu saraksta? </translation>
     </message>
 </context>
 <context>
@@ -1846,32 +1989,160 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="14"/>
         <source>Download from URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejupielādēt no saitēm</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="26"/>
         <source>Add torrent links</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot torrentu saites</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="48"/>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katrā rindā pa vienai saitei (Ir atbalstītas HTTP saites, Magnētsaites un Jaucējkodi)</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="64"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="63"/>
         <source>Download</source>
-        <translation type="unfinished">Lejupielādēt</translation>
+        <translation>Lejupielādēt</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="105"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="107"/>
         <source>No URL entered</source>
+        <translation>Netika ievadīta adrese</translation>
+    </message>
+    <message>
+        <location filename="../gui/downloadfromurldialog.cpp" line="107"/>
+        <source>Please type at least one URL.</source>
+        <translation>Lūdzu ievadiet vismaz vienu adresi.</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadHandlerImpl</name>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="478"/>
+        <source>I/O Error</source>
+        <translation type="unfinished">Ievades/izvades kļūda</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="494"/>
+        <source>The file size is %1. It exceeds the download limit of %2.</source>
+        <translation type="unfinished">Faila izmērs ir %1. Tas pārsniedz lejupielādes limitu %2.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="513"/>
+        <source>Redirected to magnet URI.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="105"/>
-        <source>Please type at least one URL.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../base/net/downloadmanager.cpp" line="537"/>
+        <source>The remote host name was not found (invalid hostname)</source>
+        <translation type="unfinished">Datora nosaukums (hostname) netika atrasts</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="539"/>
+        <source>The operation was canceled</source>
+        <translation type="unfinished">Darbība tika atcelta</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="541"/>
+        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
+        <translation type="unfinished">Serveris pārtrauca savienojumu priekšlaicīgi, pirms tika pagūts saņemt pilnu atbildes ziņojumu no tā.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="543"/>
+        <source>The connection to the remote server timed out</source>
+        <translation type="unfinished">Neizdevās izveidot savienojumu ar serveri</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="545"/>
+        <source>SSL/TLS handshake failed</source>
+        <translation type="unfinished">SSL/TLS rokasspiediens neizdevās</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="547"/>
+        <source>The remote server refused the connection</source>
+        <translation type="unfinished">Serveris atteicās izveidot savienojumu</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="549"/>
+        <source>The connection to the proxy server was refused</source>
+        <translation type="unfinished">Savienojums ar starpniekserveri tika atteikts</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="551"/>
+        <source>The proxy server closed the connection prematurely</source>
+        <translation type="unfinished">Starpniekserveris pārtrauca savienojumu priekšlaicīgi</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="553"/>
+        <source>The proxy host name was not found</source>
+        <translation type="unfinished">Starpniekservera nosaukums netika atrasts</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="555"/>
+        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
+        <translation type="unfinished">Savienojuma prasības laiks iztecējis vai arī starpniekserveris nepaguva laicīgi atbildēt. </translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="557"/>
+        <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
+        <translation type="unfinished">Starpniekserveris pieprasa veikt autorizāciju priekš savienojuma noslēgšanas, bet piedāvātie autorizācijas dati netika pieņemti. </translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="559"/>
+        <source>The access to the remote content was denied (401)</source>
+        <translation type="unfinished">Piekļuve saturam tika liegta (401)</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="561"/>
+        <source>The operation requested on the remote content is not permitted</source>
+        <translation type="unfinished">Pieprasītā piekļuve materiālam uz servera nav atļauta</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="563"/>
+        <source>The remote content was not found at the server (404)</source>
+        <translation type="unfinished">Meklētais materiāls uz servera netika atrasts (404)</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="565"/>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation type="unfinished">Serveris pieprasa veikt autorizāciju priekš savienojuma noslēgšanas, bet piedāvātie autorizācijas dati netika pieņemti. </translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="567"/>
+        <source>The Network Access API cannot honor the request because the protocol is not known</source>
+        <translation type="unfinished">Tīkla piekļuves API nevar izpildīt jūsu pieprasījumu, jo nav pazīstams protokols.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="569"/>
+        <source>The requested operation is invalid for this protocol</source>
+        <translation type="unfinished">Pieprasītā operācija ar šo protokolu nav saderīga</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="571"/>
+        <source>An unknown network-related error was detected</source>
+        <translation type="unfinished">Atklāta nezināma ar tīklu saistīta kļūda.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="573"/>
+        <source>An unknown proxy-related error was detected</source>
+        <translation type="unfinished">Atklāta nezināma ar starpniekserveri saistīta kļūda.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="575"/>
+        <source>An unknown error related to the remote content was detected</source>
+        <translation type="unfinished">Atklāta nezināma ar meklēto materiālu saistīta kļūda</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="577"/>
+        <source>A breakdown in protocol was detected</source>
+        <translation type="unfinished">Konstatēts protokola traucējums</translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="579"/>
+        <source>Unknown error</source>
+        <translation type="unfinished">Nezināma kļūda</translation>
     </message>
 </context>
 <context>
@@ -1895,25 +2166,35 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>ExecutionLogWidget</name>
     <message>
-        <location filename="../gui/executionlogwidget.ui" line="39"/>
+        <location filename="../gui/executionlogwidget.ui" line="36"/>
         <source>General</source>
-        <translation type="unfinished">Vispārīgi</translation>
+        <translation>Vispārīgi</translation>
     </message>
     <message>
-        <location filename="../gui/executionlogwidget.ui" line="45"/>
+        <location filename="../gui/executionlogwidget.ui" line="42"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloķētās IP</translation>
     </message>
     <message>
-        <location filename="../gui/executionlogwidget.cpp" line="107"/>
         <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
         <comment>x.y.z.w was blocked</comment>
+        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; tika bloķēta %2</translation>
+    </message>
+    <message>
+        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
+        <comment>x.y.z.w was banned</comment>
+        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; tika nobloķēts</translation>
+    </message>
+    <message>
+        <location filename="../gui/executionlogwidget.cpp" line="103"/>
+        <source>%1 was blocked %2</source>
+        <comment>0.0.0.0 was blocked due to reason</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/executionlogwidget.cpp" line="109"/>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
-        <comment>x.y.z.w was banned</comment>
+        <location filename="../gui/executionlogwidget.cpp" line="104"/>
+        <source>%1 was banned</source>
+        <comment>0.0.0.0 was banned</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1926,7 +2207,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="62"/>
-        <location filename="../gui/rss/feedlistwidget.cpp" line="116"/>
+        <location filename="../gui/rss/feedlistwidget.cpp" line="111"/>
         <source>Unread  (%1)</source>
         <translation>Neskatīti (%1)</translation>
     </message>
@@ -1934,111 +2215,111 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <location filename="../app/filelogger.cpp" line="171"/>
+        <location filename="../app/filelogger.cpp" line="164"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Radās kļūda, mēģinot atvērt reģistra failu. Reģistra saglabāšana failā ir atslēgta. </translation>
     </message>
 </context>
 <context>
     <name>FileSystemPathEdit</name>
     <message>
-        <location filename="../gui/fspathedit.cpp" line="56"/>
+        <location filename="../gui/fspathedit.cpp" line="58"/>
         <source>...</source>
         <comment>Launch file dialog button text (brief)</comment>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit.cpp" line="58"/>
+        <location filename="../gui/fspathedit.cpp" line="60"/>
         <source>&amp;Browse...</source>
         <comment>Launch file dialog button text (full)</comment>
         <translation>&amp;Pārlūkot...</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit.cpp" line="60"/>
+        <location filename="../gui/fspathedit.cpp" line="62"/>
         <source>Choose a file</source>
         <comment>Caption for file open/save dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties failu</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit.cpp" line="62"/>
+        <location filename="../gui/fspathedit.cpp" line="64"/>
         <source>Choose a folder</source>
         <comment>Caption for directory open dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties mapi</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit.cpp" line="101"/>
+        <location filename="../gui/fspathedit.cpp" line="103"/>
         <source>Any file</source>
-        <translation type="unfinished"></translation>
+        <translation>Jebkuru failu</translation>
     </message>
 </context>
 <context>
     <name>FileSystemWatcher</name>
     <message>
-        <location filename="../base/filesystemwatcher.cpp" line="83"/>
+        <location filename="../base/filesystemwatcher.cpp" line="81"/>
         <source>Watching remote folder: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzrauga attālo mapi: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/filesystemwatcher.cpp" line="92"/>
+        <location filename="../base/filesystemwatcher.cpp" line="90"/>
         <source>Watching local folder: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzrauga vietējo mapi: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
     <name>FilterParserThread</name>
     <message>
         <location filename="../base/bittorrent/private/filterparserthread.cpp" line="128"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="276"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="438"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="275"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="436"/>
         <source>I/O Error: Could not open IP filter file in read mode.</source>
         <translation>Ievades/Izvades kļūda: Neizdevās nolasīt IP filtra failu.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="213"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="344"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="353"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="212"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="342"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="351"/>
         <source>IP filter line %1 is malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filtra rindiņa %1 ir kļūdaina</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="222"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="362"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="221"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="360"/>
         <source>IP filter line %1 is malformed. Start IP of the range is malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filtra rindiņa %1 ir kļūdaina. IP lauka sākums ir kļūdains.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="231"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="371"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="230"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="369"/>
         <source>IP filter line %1 is malformed. End IP of the range is malformed.</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filtra rindiņa %1 ir kļūdaina. IP lauka beigas ir kļūdains.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="239"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="379"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="238"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="377"/>
         <source>IP filter line %1 is malformed. One IP is IPv4 and the other is IPv6!</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filtra rindiņa %1 ir kļūdaina. Viena IP ir IPv4, otra ir IPv6!</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="253"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="392"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="252"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="390"/>
         <source>IP filter exception thrown for line %1. Exception is: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="263"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="402"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="262"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="400"/>
         <source>%1 extra IP filter parsing errors occurred.</source>
         <comment>513 extra IP filter parsing errors occurred.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="449"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="461"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="482"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="491"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="501"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="511"/>
-        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="531"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="447"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="459"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="480"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="489"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="499"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="509"/>
+        <location filename="../base/bittorrent/private/filterparserthread.cpp" line="529"/>
         <source>Parsing Error: The filter file is not a valid PeerGuardian P2B file.</source>
         <translation>Parsēšanas kļūda: Šis filtra fails nav saderīgs are PeerGuardian P2B failu.</translation>
     </message>
@@ -2046,43 +2327,43 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>GeoIPDatabase</name>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="94"/>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="124"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="93"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="123"/>
         <source>Unsupported database file size.</source>
         <translation>Neatbalstīts datubāzes faila izmērs</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="223"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="221"/>
         <source>Metadata error: &apos;%1&apos; entry not found.</source>
         <translation>Kļūda Metadatos: &quot;%1&apos; ieraksts nav atrasts.</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="224"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="222"/>
         <source>Metadata error: &apos;%1&apos; entry has invalid type.</source>
         <translation>Kļūda Metadatos: &apos;%1&apos; nederīgs ieraksts.</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="233"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="231"/>
         <source>Unsupported database version: %1.%2</source>
         <translation>Neatbalstīta datubāzes versija: %1.%2</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="240"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="238"/>
         <source>Unsupported IP version: %1</source>
         <translation>Neatbalstīta IP versija: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="247"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="245"/>
         <source>Unsupported record size: %1</source>
         <translation>Neatbalstīts ieraksta izmērs: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="260"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="258"/>
         <source>Invalid database type: %1</source>
         <translation>Nederīgs datubāzes veids: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/private/geoipdatabase.cpp" line="281"/>
+        <location filename="../base/net/private/geoipdatabase.cpp" line="279"/>
         <source>Database corrupted: no data section found.</source>
         <translation>Bojāta datubāze: dati netika atrasti</translation>
     </message>
@@ -2091,12 +2372,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <name>Http::Connection</name>
     <message>
         <location filename="../base/http/connection.cpp" line="69"/>
-        <source>Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s</source>
+        <source>Http request size exceeds limiation, closing socket. Limit: %1, IP: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="82"/>
-        <source>Bad Http request, closing socket. IP: %s</source>
+        <source>Bad Http request, closing socket. IP: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2105,32 +2386,32 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
         <source>List of whitelisted IP subnets</source>
-        <translation type="unfinished"></translation>
+        <translation>Apakštīklu IP baltais saraksts</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished"></translation>
+        <translation>Piemērs: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot sarakstam</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
-        <translation type="unfinished">Dzēst</translation>
+        <translation>Dzēst</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
         <source>Error</source>
-        <translation type="unfinished">Kļūda</translation>
+        <translation>Kļūda</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="90"/>
         <source>The entered subnet is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ievadītais apakštīkls nav derīgs.</translation>
     </message>
 </context>
 <context>
@@ -2191,7 +2472,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="223"/>
         <source>Torrent &amp;Creator</source>
-        <translation>Torentu &amp;veidotājs</translation>
+        <translation>Torrentu &amp;veidotājs</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="228"/>
@@ -2214,80 +2495,76 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Uzstādīt Globālo augšupielādes limitu...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="253"/>
         <source>Minimum Priority</source>
-        <translation>Zemākā prioritāte</translation>
+        <translation type="vanished">Zemākā prioritāte</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="261"/>
         <source>Top Priority</source>
-        <translation>Augstākā prioritāte</translation>
+        <translation type="vanished">Augstākā prioritāte</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="269"/>
         <source>Decrease Priority</source>
-        <translation>Samazināt prioritāti</translation>
+        <translation type="vanished">Samazināt prioritāti</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="277"/>
         <source>Increase Priority</source>
-        <translation>Paaugstināt prioritāti</translation>
+        <translation type="vanished">Paaugstināt prioritāti</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="288"/>
-        <location filename="../gui/mainwindow.ui" line="291"/>
+        <location filename="../gui/mainwindow.ui" line="300"/>
+        <location filename="../gui/mainwindow.ui" line="303"/>
         <source>Alternative Speed Limits</source>
         <translation>Alternatīvie ielādes ātrumi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="299"/>
+        <location filename="../gui/mainwindow.ui" line="311"/>
         <source>&amp;Top Toolbar</source>
         <translation>&amp;Augšējā rīkjosla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="302"/>
+        <location filename="../gui/mainwindow.ui" line="314"/>
         <source>Display Top Toolbar</source>
         <translation>Rādīt augšējo rīkjoslu</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="310"/>
+        <location filename="../gui/mainwindow.ui" line="322"/>
         <source>Status &amp;Bar</source>
         <translation>Statusa &amp;josla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="318"/>
+        <location filename="../gui/mainwindow.ui" line="330"/>
         <source>S&amp;peed in Title Bar</source>
         <translation>Ā&amp;trums Nosaukuma joslā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="321"/>
+        <location filename="../gui/mainwindow.ui" line="333"/>
         <source>Show Transfer Speed in Title Bar</source>
         <translation>Rādīt ielādes ātrumus Nosaukuma joslā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="329"/>
+        <location filename="../gui/mainwindow.ui" line="341"/>
         <source>&amp;RSS Reader</source>
         <translation>&amp;RSS lasītājs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="337"/>
+        <location filename="../gui/mainwindow.ui" line="349"/>
         <source>Search &amp;Engine</source>
         <translation>Meklētājs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="342"/>
+        <location filename="../gui/mainwindow.ui" line="354"/>
         <source>L&amp;ock qBittorrent</source>
         <translation>A&amp;izslēgt qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="353"/>
+        <location filename="../gui/mainwindow.ui" line="365"/>
         <source>Do&amp;nate!</source>
         <translation>Zie&amp;dot!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="472"/>
+        <location filename="../gui/mainwindow.ui" line="484"/>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Aizvērt logu</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
@@ -2295,32 +2572,32 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>A&amp;tsākt visus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="424"/>
+        <location filename="../gui/mainwindow.ui" line="436"/>
         <source>Manage Cookies...</source>
         <translation>Sīkfailu pārvaldība...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="427"/>
+        <location filename="../gui/mainwindow.ui" line="439"/>
         <source>Manage stored network cookies</source>
         <translation>Saglabāto tīkla sīkfailu pārvaldība</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="443"/>
+        <location filename="../gui/mainwindow.ui" line="455"/>
         <source>Normal Messages</source>
         <translation>Parasti ziņojumi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="451"/>
+        <location filename="../gui/mainwindow.ui" line="463"/>
         <source>Information Messages</source>
         <translation>Informatīvi ziņojumi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="459"/>
+        <location filename="../gui/mainwindow.ui" line="471"/>
         <source>Warning Messages</source>
         <translation>Brīdinājumu ziņojumi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="467"/>
+        <location filename="../gui/mainwindow.ui" line="479"/>
         <source>Critical Messages</source>
         <translation>Kritiski ziņojumi</translation>
     </message>
@@ -2330,42 +2607,82 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Reģistrs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="364"/>
+        <location filename="../gui/mainwindow.ui" line="253"/>
+        <source>Bottom of Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="256"/>
+        <source>Move to the bottom of the queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="264"/>
+        <source>Top of Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="267"/>
+        <source>Move to the top of the queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="275"/>
+        <source>Move Down Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="278"/>
+        <source>Move down in the queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="286"/>
+        <source>Move Up Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="289"/>
+        <source>Move up in the queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="376"/>
         <source>&amp;Exit qBittorrent</source>
         <translation>&amp;Aizvērt qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="372"/>
+        <location filename="../gui/mainwindow.ui" line="384"/>
         <source>&amp;Suspend System</source>
         <translation>Pārslēgties miega režīmā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="380"/>
+        <location filename="../gui/mainwindow.ui" line="392"/>
         <source>&amp;Hibernate System</source>
         <translation>Pārslēgties hibernācijas režīmā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="388"/>
+        <location filename="../gui/mainwindow.ui" line="400"/>
         <source>S&amp;hutdown System</source>
         <translation>Izslēgt datoru</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="396"/>
+        <location filename="../gui/mainwindow.ui" line="408"/>
         <source>&amp;Disabled</source>
         <translation>&amp;Nedarīt neko</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="411"/>
+        <location filename="../gui/mainwindow.ui" line="423"/>
         <source>&amp;Statistics</source>
         <translation>&amp;Statistika</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="416"/>
+        <location filename="../gui/mainwindow.ui" line="428"/>
         <source>Check for Updates</source>
         <translation>Meklēt atjauninājumus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="419"/>
+        <location filename="../gui/mainwindow.ui" line="431"/>
         <source>Check for Program Updates</source>
         <translation>Meklēt programmas atjauninājumus</translation>
     </message>
@@ -2415,19 +2732,19 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>&amp;Dokumentācija</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="345"/>
+        <location filename="../gui/mainwindow.ui" line="357"/>
         <source>Lock</source>
         <translation>Aizslēgt</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="401"/>
-        <location filename="../gui/mainwindow.ui" line="435"/>
-        <location filename="../gui/mainwindow.cpp" line="1678"/>
+        <location filename="../gui/mainwindow.ui" line="413"/>
+        <location filename="../gui/mainwindow.ui" line="447"/>
+        <location filename="../gui/mainwindow.cpp" line="1650"/>
         <source>Show</source>
         <translation>Rādīt</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1865"/>
+        <location filename="../gui/mainwindow.cpp" line="1836"/>
         <source>Check for program updates</source>
         <translation>Meklēt programmas atjauninājumus</translation>
     </message>
@@ -2437,267 +2754,267 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>Pievienot Torrentu &amp;saites...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="356"/>
+        <location filename="../gui/mainwindow.ui" line="368"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Ja jums patīk qBittorrent, lūdzu, ziedojiet!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1900"/>
-        <location filename="../gui/mainwindow.cpp" line="1902"/>
+        <location filename="../gui/mainwindow.cpp" line="1871"/>
+        <location filename="../gui/mainwindow.cpp" line="1873"/>
         <source>Execution Log</source>
         <translation>Reģistrs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="653"/>
+        <location filename="../gui/mainwindow.cpp" line="638"/>
         <source>Clear the password</source>
         <translation>Notīrīt paroli</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="235"/>
+        <location filename="../gui/mainwindow.cpp" line="219"/>
         <source>Filter torrent list...</source>
         <translation>Meklēt torrentu sarakstā...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="206"/>
+        <location filename="../gui/mainwindow.cpp" line="191"/>
         <source>&amp;Set Password</source>
         <translation>&amp;Uzstādīt paroli</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="174"/>
+        <location filename="../gui/mainwindow.cpp" line="159"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Iestatījumi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="208"/>
+        <location filename="../gui/mainwindow.cpp" line="193"/>
         <source>&amp;Clear Password</source>
         <translation>&amp;Notīrīt paroli</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="261"/>
+        <location filename="../gui/mainwindow.cpp" line="245"/>
         <source>Transfers</source>
         <translation>Torrenti</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="422"/>
-        <location filename="../gui/mainwindow.cpp" line="1247"/>
+        <location filename="../gui/mainwindow.cpp" line="409"/>
+        <location filename="../gui/mainwindow.cpp" line="1229"/>
         <source>qBittorrent is minimized to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ir samazināts tray ikonā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="422"/>
-        <location filename="../gui/mainwindow.cpp" line="1158"/>
-        <location filename="../gui/mainwindow.cpp" line="1247"/>
+        <location filename="../gui/mainwindow.cpp" line="409"/>
+        <location filename="../gui/mainwindow.cpp" line="1140"/>
+        <location filename="../gui/mainwindow.cpp" line="1229"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="462"/>
+        <location filename="../gui/mainwindow.cpp" line="449"/>
         <source>Torrent file association</source>
         <translation>Torrenta faila asociācija</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="463"/>
+        <location filename="../gui/mainwindow.cpp" line="450"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorent nav uzstādīta kā noklusētā programma torrenta failu un magnētsaišu atvēršanai. 
 Vai vēlaties to izdarīt tagad?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="546"/>
+        <location filename="../gui/mainwindow.cpp" line="533"/>
         <source>Icons Only</source>
         <translation>Tikai ikonas</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="548"/>
+        <location filename="../gui/mainwindow.cpp" line="535"/>
         <source>Text Only</source>
         <translation>Tikai tekstu</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="550"/>
+        <location filename="../gui/mainwindow.cpp" line="537"/>
         <source>Text Alongside Icons</source>
         <translation>Teksts blakus ikonām</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="552"/>
+        <location filename="../gui/mainwindow.cpp" line="539"/>
         <source>Text Under Icons</source>
         <translation>Teksts zem ikonām</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="554"/>
+        <location filename="../gui/mainwindow.cpp" line="541"/>
         <source>Follow System Style</source>
         <translation>Sistēmas noklusētais</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="637"/>
-        <location filename="../gui/mainwindow.cpp" line="1050"/>
+        <location filename="../gui/mainwindow.cpp" line="622"/>
+        <location filename="../gui/mainwindow.cpp" line="1032"/>
         <source>UI lock password</source>
         <translation>qBittorrent bloķēšanas parole</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="638"/>
-        <location filename="../gui/mainwindow.cpp" line="1051"/>
+        <location filename="../gui/mainwindow.cpp" line="623"/>
+        <location filename="../gui/mainwindow.cpp" line="1033"/>
         <source>Please type the UI lock password:</source>
         <translation>Lūdzu ievadiet qBittorrent bloķēšanas paroli:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="643"/>
+        <location filename="../gui/mainwindow.cpp" line="628"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Parolei ir jābūt vismaz 3 simbolu garai</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="654"/>
+        <location filename="../gui/mainwindow.cpp" line="639"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Vai esat pārliecināts, ka vēlaties notīrīt paroli?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="707"/>
+        <location filename="../gui/mainwindow.cpp" line="694"/>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Lietot regulāras izteiksmes (regex)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="729"/>
+        <location filename="../gui/mainwindow.cpp" line="714"/>
         <source>Search</source>
         <translation>Meklētājs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="745"/>
+        <location filename="../gui/mainwindow.cpp" line="730"/>
         <source>Transfers (%1)</source>
         <translation>Torrenti (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="839"/>
+        <location filename="../gui/mainwindow.cpp" line="823"/>
         <source>Error</source>
         <translation>Kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="839"/>
+        <location filename="../gui/mainwindow.cpp" line="823"/>
         <source>Failed to add torrent: %1</source>
         <translation>Neizdevās pievienot torentu: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="846"/>
+        <location filename="../gui/mainwindow.cpp" line="830"/>
         <source>Torrent added</source>
         <translation>Torrents pievienots</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="846"/>
+        <location filename="../gui/mainwindow.cpp" line="830"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>&apos;%1&apos; tika pievienots.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="852"/>
+        <location filename="../gui/mainwindow.cpp" line="836"/>
         <source>Download completion</source>
         <translation>Pabeigti</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="858"/>
+        <location filename="../gui/mainwindow.cpp" line="842"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Ievades/izvades kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="951"/>
+        <location filename="../gui/mainwindow.cpp" line="933"/>
         <source>Recursive download confirmation</source>
         <translation>Rekursīvās lejupielādes apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="957"/>
+        <location filename="../gui/mainwindow.cpp" line="939"/>
         <source>Yes</source>
         <translation>Jā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="958"/>
+        <location filename="../gui/mainwindow.cpp" line="940"/>
         <source>No</source>
         <translation>Nē</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="959"/>
+        <location filename="../gui/mainwindow.cpp" line="941"/>
         <source>Never</source>
         <translation>Nekad</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="984"/>
+        <location filename="../gui/mainwindow.cpp" line="966"/>
         <source>Global Upload Speed Limit</source>
         <translation>Globālais augšupielādes ātruma limits</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="999"/>
+        <location filename="../gui/mainwindow.cpp" line="981"/>
         <source>Global Download Speed Limit</source>
         <translation>Globālais lejupielādes ātruma limits</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1072"/>
+        <location filename="../gui/mainwindow.cpp" line="1054"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent nupat tika atjaunināts un ir nepieciešams restarts, lai izmaiņas stātos spēkā.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1158"/>
+        <location filename="../gui/mainwindow.cpp" line="1140"/>
         <source>qBittorrent is closed to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ir samazināts tray ikonā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1171"/>
+        <location filename="../gui/mainwindow.cpp" line="1153"/>
         <source>Some files are currently transferring.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dažu failu ielāde vēl nav pabeigta.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1171"/>
+        <location filename="../gui/mainwindow.cpp" line="1153"/>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai esat pārliecināts, ka vēlaties aizvērt qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1173"/>
+        <location filename="../gui/mainwindow.cpp" line="1155"/>
         <source>&amp;No</source>
         <translation>&amp;Nē</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1174"/>
+        <location filename="../gui/mainwindow.cpp" line="1156"/>
         <source>&amp;Yes</source>
         <translation>&amp;Jā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1175"/>
+        <location filename="../gui/mainwindow.cpp" line="1157"/>
         <source>&amp;Always Yes</source>
         <translation>&amp;Vienmēr jā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1577"/>
+        <location filename="../gui/mainwindow.cpp" line="1520"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1/s</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1786"/>
-        <location filename="../gui/mainwindow.cpp" line="1792"/>
+        <location filename="../gui/mainwindow.cpp" line="1758"/>
+        <location filename="../gui/mainwindow.cpp" line="1764"/>
         <source>Missing Python Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Nav atrasts Python interpretētājs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1811"/>
+        <location filename="../gui/mainwindow.cpp" line="1783"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 2.7.9 / 3.3.0.</source>
         <translation>Jūsu Python versija (1%) ir novecojusi. Lai darbotos meklētājprogrammas, lūdzu veiciet jaunināšanu uz pašreizējo versiju.
 Minimālās prasības: 2.7.9 / 3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1847"/>
+        <location filename="../gui/mainwindow.cpp" line="1818"/>
         <source>qBittorrent Update Available</source>
         <translation>Pieejams qBittorrent atjauninājums</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1859"/>
+        <location filename="../gui/mainwindow.cpp" line="1830"/>
         <source>Already Using the Latest qBittorrent Version</source>
         <translation>Jūs jau lietojat jaunāko qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="852"/>
+        <location filename="../gui/mainwindow.cpp" line="836"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>&apos;%1&apos; ir pabeidzis lejupielādi.</translation>
+        <translation>&apos;%1&apos; lejupielāde ir pabeigta.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="859"/>
+        <location filename="../gui/mainwindow.cpp" line="843"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -2706,153 +3023,154 @@ Minimālās prasības: 2.7.9 / 3.3.0.</translation>
 Iemesls: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="952"/>
+        <location filename="../gui/mainwindow.cpp" line="934"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrenta fails &apos;%1&apos; satur torrentu failus, vai vēlaties veikt to lejupielādi? </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="974"/>
+        <location filename="../gui/mainwindow.cpp" line="956"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Neizdevās ielādēt failu no &apos;%1&apos;, iemesls: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1787"/>
+        <location filename="../gui/mainwindow.cpp" line="1759"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Lai lietotu meklētāju, ir nepieciešams uzinstalēt Python. 
 Vai vēlaties to instalēt tagad?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1793"/>
+        <location filename="../gui/mainwindow.cpp" line="1765"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Lai lietotu meklētāju, ir nepieciešams uzinstalēt Python.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1804"/>
-        <location filename="../gui/mainwindow.cpp" line="1810"/>
+        <location filename="../gui/mainwindow.cpp" line="1776"/>
+        <location filename="../gui/mainwindow.cpp" line="1782"/>
         <source>Old Python Runtime</source>
-        <translation type="unfinished"></translation>
+        <translation>Novecojis Python interpretētājs</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1805"/>
+        <location filename="../gui/mainwindow.cpp" line="1777"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: 2.7.9 / 3.3.0.
 Do you want to install a newer version now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūsu Pythona versija (%1) ir novecojusi. Vecākās atļautās: 2.7.9 / 3.3.0.
+Vai vēlaties ieinstalēt jaunāku versiju tagad?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1848"/>
+        <location filename="../gui/mainwindow.cpp" line="1819"/>
         <source>A new version is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pieejama jauna versija</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1849"/>
+        <location filename="../gui/mainwindow.cpp" line="1820"/>
         <source>Do you want to download %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai vēlaties lejupielādēt %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1850"/>
+        <location filename="../gui/mainwindow.cpp" line="1821"/>
         <source>Open changelog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Atvērt izmaiņu reģistru...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1860"/>
+        <location filename="../gui/mainwindow.cpp" line="1831"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Atjauninājumi nav pieejami. 
 Jūs jau lietojat jaunāko versiju.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1864"/>
+        <location filename="../gui/mainwindow.cpp" line="1835"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Meklēt atjauninājumus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2027"/>
+        <location filename="../gui/mainwindow.cpp" line="1998"/>
         <source>Checking for Updates...</source>
         <translation>Meklē atjauninājumus...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2028"/>
+        <location filename="../gui/mainwindow.cpp" line="1999"/>
         <source>Already checking for program updates in the background</source>
         <translation>Atjauninājumu meklēšana jau ir procesā</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2091"/>
+        <location filename="../gui/mainwindow.cpp" line="2028"/>
         <source>Download error</source>
         <translation>Lejupielādes kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2091"/>
+        <location filename="../gui/mainwindow.cpp" line="2029"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python instalāciju neizdevās lejupielādēt, iemesls: %1. 
 Lūdzam to izdarīt manuāli. </translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="643"/>
-        <location filename="../gui/mainwindow.cpp" line="1058"/>
+        <location filename="../gui/mainwindow.cpp" line="628"/>
+        <location filename="../gui/mainwindow.cpp" line="1040"/>
         <source>Invalid password</source>
         <translation>Nederīga parole</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="678"/>
-        <location filename="../gui/mainwindow.cpp" line="689"/>
-        <location filename="../gui/mainwindow.cpp" line="691"/>
+        <location filename="../gui/mainwindow.cpp" line="663"/>
+        <location filename="../gui/mainwindow.cpp" line="674"/>
+        <location filename="../gui/mainwindow.cpp" line="676"/>
         <source>RSS (%1)</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="973"/>
+        <location filename="../gui/mainwindow.cpp" line="955"/>
         <source>URL download error</source>
         <translation>Tīmekļa lejupielādes kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1058"/>
+        <location filename="../gui/mainwindow.cpp" line="1040"/>
         <source>The password is invalid</source>
         <translation>Parole nav derīga</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1562"/>
-        <location filename="../gui/mainwindow.cpp" line="1569"/>
+        <location filename="../gui/mainwindow.cpp" line="1539"/>
+        <location filename="../gui/mainwindow.cpp" line="1544"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Lejup. ātrums: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1565"/>
-        <location filename="../gui/mainwindow.cpp" line="1571"/>
+        <location filename="../gui/mainwindow.cpp" line="1540"/>
+        <location filename="../gui/mainwindow.cpp" line="1545"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Augšup. ātrums: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1584"/>
+        <location filename="../gui/mainwindow.cpp" line="1552"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[L: %1, A: %2] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1678"/>
+        <location filename="../gui/mainwindow.cpp" line="1650"/>
         <source>Hide</source>
         <translation>Paslēpt</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1169"/>
+        <location filename="../gui/mainwindow.cpp" line="1151"/>
         <source>Exiting qBittorrent</source>
         <translation>Aizvērt qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1373"/>
+        <location filename="../gui/mainwindow.cpp" line="1355"/>
         <source>Open Torrent Files</source>
         <translation>Izvēlieties Torrentu failus</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1374"/>
+        <location filename="../gui/mainwindow.cpp" line="1356"/>
         <source>Torrent Files</source>
         <translation>Torrentu faili</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1424"/>
+        <location filename="../gui/mainwindow.cpp" line="1407"/>
         <source>Options were saved successfully.</source>
         <translation>Iestatījumi veiksmīgi saglabāti.</translation>
     </message>
@@ -2860,52 +3178,52 @@ Lūdzam to izdarīt manuāli. </translation>
 <context>
     <name>Net::DNSUpdater</name>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="188"/>
+        <location filename="../base/net/dnsupdater.cpp" line="175"/>
         <source>Your dynamic DNS was successfully updated.</source>
         <translation>Jūsu dinamiskais DNS ir sekmīgi atjaunināts.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="193"/>
+        <location filename="../base/net/dnsupdater.cpp" line="180"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
         <translation>Dinamiskā DNS kļūme: Pakalpojums īslaicīgi nepieejams; tiks atkārtoti mēģināts pēc 30 minūtēm.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="203"/>
+        <location filename="../base/net/dnsupdater.cpp" line="190"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
         <translation>Dinamiskā DNS kļūme: Norādītais datora nosaukums nav piederīgs norādītajam lietotāja kontam.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="209"/>
+        <location filename="../base/net/dnsupdater.cpp" line="196"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
         <translation>Dinamiskā DNS kļūme: Nederīgs lietotājvārds/parole.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="215"/>
+        <location filename="../base/net/dnsupdater.cpp" line="202"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Dinamiskā DNS kļūme: qBittorrent klients ir nobloķēts un iekļauts melnajā sarakstā. Lūdzu noziņojiet šo gadījumu http://bugs.qbittorrent.org</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="222"/>
+        <location filename="../base/net/dnsupdater.cpp" line="209"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Dinamiskā DNS kļūme: serviss atbildēja ar %1, lūdzu noziņojiet šo gadījumu http://bugs.qbittorrent.org</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="229"/>
+        <location filename="../base/net/dnsupdater.cpp" line="216"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
         <translation>Dinamiskā DNS kļūme: Jūsu lietotāja konts ir bloķēts, noteikumu pārkāpumu pēc. </translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="249"/>
+        <location filename="../base/net/dnsupdater.cpp" line="236"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
         <translation>Dinamiskā DNS kļūme: norādītais domēna nosaukums ir nepareizs. </translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="260"/>
+        <location filename="../base/net/dnsupdater.cpp" line="247"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
         <translation>Dinamiskā DNS kļūme: norādītais lietotājvārds ir par īsu.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="271"/>
+        <location filename="../base/net/dnsupdater.cpp" line="258"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Dinamiskā DNS kļūme: norādītā parole ir par īsu.</translation>
     </message>
@@ -2913,1413 +3231,1400 @@ Lūdzam to izdarīt manuāli. </translation>
 <context>
     <name>Net::DownloadHandler</name>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="127"/>
         <source>I/O Error</source>
-        <translation>Ievades/izvades kļūda</translation>
+        <translation type="vanished">Ievades/izvades kļūda</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="140"/>
         <source>The file size is %1. It exceeds the download limit of %2.</source>
-        <translation>Faila izmērs ir %1. Tas pārsniedz lejupielādes limitu %2.</translation>
+        <translation type="vanished">Faila izmērs ir %1. Tas pārsniedz lejupielādes limitu %2.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="174"/>
         <source>Unexpected redirect to magnet URI.</source>
-        <translation>Negaidīta pāradresācija uz magnētsaiti.</translation>
+        <translation type="vanished">Negaidīta pāradresācija uz magnētsaiti.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="206"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Datora nosaukums (hostname) netika atrasts</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="208"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Darbība tika atcelta</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="210"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Serveris pārtrauca savienojumu priekšlaicīgi, pirms tika pagūts saņemt pilnu atbildes ziņojumu no tā.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="212"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Neizdevās izveidot savienojumu ar serveri</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="214"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">SSL/TLS rokasspiediens neizdevās</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="216"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Serveris atteicās izveidot savienojumu</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="218"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Savienojums ar starpniekserveri tika atteikts</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="220"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Starpniekserveris pārtrauca savienojumu priekšlaicīgi</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="222"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Starpniekservera nosaukums netika atrasts</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="224"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Savienojuma prasības laiks iztecējis vai arī starpniekserveris nepaguva laicīgi atbildēt. </translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="226"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Starpniekserveris pieprasa veikt autorizāciju priekš savienojuma noslēgšanas, bet piedāvātie autorizācijas dati netika pieņemti. </translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="228"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Piekļuve saturam tika liegta (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="230"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Pieprasītā piekļuve materiālam uz servera nav atļauta</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="232"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Meklētais materiāls uz servera netika atrasts (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="234"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Serveris pieprasa veikt autorizāciju priekš savienojuma noslēgšanas, bet piedāvātie autorizācijas dati netika pieņemti. </translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="236"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Tīkla piekļuves API nevar izpildīt jūsu pieprasījumu, jo nav pazīstams protokols.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="238"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Pieprasītā operācija ar šo protokolu nav saderīga</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="240"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Atklāta nezināma ar tīklu saistīta kļūda.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="242"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Atklāta nezināma ar starpniekserveri saistīta kļūda.</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="244"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Atklāta nezināma ar meklēto materiālu saistīta kļūda</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="246"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Konstatēts protokola traucējums</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandler.cpp" line="248"/>
         <source>Unknown error</source>
+        <translation type="vanished">Nezināma kļūda</translation>
+    </message>
+</context>
+<context>
+    <name>Net::DownloadManager</name>
+    <message>
+        <location filename="../base/net/downloadmanager.cpp" line="335"/>
+        <source>Ignoring SSL error, URL: &quot;%1&quot;, errors: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Net::GeoIPManager</name>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="104"/>
-        <location filename="../base/net/geoipmanager.cpp" line="434"/>
+        <location filename="../base/net/geoipmanager.cpp" line="102"/>
+        <location filename="../base/net/geoipmanager.cpp" line="429"/>
         <source>GeoIP database loaded. Type: %1. Build time: %2.</source>
         <translation>GeoIP datubāze ielādēta. Veids: %1. Jaunāka brūve: %2</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="108"/>
-        <location filename="../base/net/geoipmanager.cpp" line="455"/>
+        <location filename="../base/net/geoipmanager.cpp" line="106"/>
+        <location filename="../base/net/geoipmanager.cpp" line="447"/>
         <source>Couldn&apos;t load GeoIP database. Reason: %1</source>
         <translation>Neizdevās ielādēt GeoIP datubāzi. Iemesls: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="381"/>
+        <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>Venezuela, Bolivarian Republic of</source>
         <translation>Venecuēla</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>Viet Nam</source>
-        <translation>Vjetnama</translation>
+        <translation type="vanished">Vjetnama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="394"/>
-        <location filename="../base/net/geoipmanager.cpp" line="398"/>
+        <location filename="../base/net/geoipmanager.cpp" line="387"/>
+        <location filename="../base/net/geoipmanager.cpp" line="390"/>
         <source>N/A</source>
-        <translation>Nav atrasta</translation>
+        <translation>Nav zināms</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="144"/>
+        <location filename="../base/net/geoipmanager.cpp" line="137"/>
         <source>Andorra</source>
         <translation>Andora</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="145"/>
+        <location filename="../base/net/geoipmanager.cpp" line="138"/>
         <source>United Arab Emirates</source>
         <translation>Apvienotie Arābu Emirāti</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="146"/>
+        <location filename="../base/net/geoipmanager.cpp" line="139"/>
         <source>Afghanistan</source>
         <translation>Afganistāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="147"/>
+        <location filename="../base/net/geoipmanager.cpp" line="140"/>
         <source>Antigua and Barbuda</source>
         <translation>Antigva un Barbuda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="148"/>
+        <location filename="../base/net/geoipmanager.cpp" line="141"/>
         <source>Anguilla</source>
         <translation>Angilja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="149"/>
+        <location filename="../base/net/geoipmanager.cpp" line="142"/>
         <source>Albania</source>
         <translation>Albānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="150"/>
+        <location filename="../base/net/geoipmanager.cpp" line="143"/>
         <source>Armenia</source>
         <translation>Armēnija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="151"/>
+        <location filename="../base/net/geoipmanager.cpp" line="144"/>
         <source>Angola</source>
         <translation>Angola</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="152"/>
+        <location filename="../base/net/geoipmanager.cpp" line="145"/>
         <source>Antarctica</source>
         <translation>Antarktīda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="153"/>
+        <location filename="../base/net/geoipmanager.cpp" line="146"/>
         <source>Argentina</source>
         <translation>Agentīna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="154"/>
+        <location filename="../base/net/geoipmanager.cpp" line="147"/>
         <source>American Samoa</source>
         <translation>Amerikāņu Samoa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="155"/>
+        <location filename="../base/net/geoipmanager.cpp" line="148"/>
         <source>Austria</source>
         <translation>Austrija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="156"/>
+        <location filename="../base/net/geoipmanager.cpp" line="149"/>
         <source>Australia</source>
         <translation>Austrālija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="157"/>
+        <location filename="../base/net/geoipmanager.cpp" line="150"/>
         <source>Aruba</source>
         <translation>Aruba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="159"/>
+        <location filename="../base/net/geoipmanager.cpp" line="152"/>
         <source>Azerbaijan</source>
         <translation>Azerbaidžāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="160"/>
+        <location filename="../base/net/geoipmanager.cpp" line="153"/>
         <source>Bosnia and Herzegovina</source>
         <translation>Bosnija un Hercegovina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="161"/>
+        <location filename="../base/net/geoipmanager.cpp" line="154"/>
         <source>Barbados</source>
         <translation>Barbadosa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="162"/>
+        <location filename="../base/net/geoipmanager.cpp" line="155"/>
         <source>Bangladesh</source>
         <translation>Bangladeša</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="163"/>
+        <location filename="../base/net/geoipmanager.cpp" line="156"/>
         <source>Belgium</source>
         <translation>Beļģija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="164"/>
+        <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Burkina Faso</source>
         <translation>Burkinafaso</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="165"/>
+        <location filename="../base/net/geoipmanager.cpp" line="158"/>
         <source>Bulgaria</source>
         <translation>Bulgārija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="166"/>
+        <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>Bahrain</source>
         <translation>Bahreina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="167"/>
+        <location filename="../base/net/geoipmanager.cpp" line="160"/>
         <source>Burundi</source>
         <translation>Burundi</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="168"/>
+        <location filename="../base/net/geoipmanager.cpp" line="161"/>
         <source>Benin</source>
         <translation>Benina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="170"/>
+        <location filename="../base/net/geoipmanager.cpp" line="163"/>
         <source>Bermuda</source>
         <translation>Bermuda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="171"/>
+        <location filename="../base/net/geoipmanager.cpp" line="164"/>
         <source>Brunei Darussalam</source>
         <translation>Bruneja Darusalama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="174"/>
+        <location filename="../base/net/geoipmanager.cpp" line="167"/>
         <source>Brazil</source>
         <translation>Brazīlija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="175"/>
+        <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Bahamas</source>
         <translation>Bahamas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="176"/>
+        <location filename="../base/net/geoipmanager.cpp" line="169"/>
         <source>Bhutan</source>
         <translation>Butāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="177"/>
+        <location filename="../base/net/geoipmanager.cpp" line="170"/>
         <source>Bouvet Island</source>
         <translation>Buvē sala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="178"/>
+        <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Botswana</source>
         <translation>Botsvāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="179"/>
+        <location filename="../base/net/geoipmanager.cpp" line="172"/>
         <source>Belarus</source>
         <translation>Baltkrievija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="180"/>
+        <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Belize</source>
         <translation>Beliza</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="181"/>
+        <location filename="../base/net/geoipmanager.cpp" line="174"/>
         <source>Canada</source>
         <translation>Kanāda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="182"/>
+        <location filename="../base/net/geoipmanager.cpp" line="175"/>
         <source>Cocos (Keeling) Islands</source>
         <translation>Kokosu (Kīlinga) Salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="183"/>
+        <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Congo, The Democratic Republic of the</source>
         <translation>Kongo Demokrātiskā Republika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="184"/>
+        <location filename="../base/net/geoipmanager.cpp" line="177"/>
         <source>Central African Republic</source>
         <translation>Centrālāfrikas Republika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="185"/>
+        <location filename="../base/net/geoipmanager.cpp" line="178"/>
         <source>Congo</source>
         <translation>Kongo Republika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="186"/>
+        <location filename="../base/net/geoipmanager.cpp" line="179"/>
         <source>Switzerland</source>
         <translation>Šveice</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="188"/>
+        <location filename="../base/net/geoipmanager.cpp" line="181"/>
         <source>Cook Islands</source>
         <translation>Kuka salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="189"/>
+        <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Chile</source>
         <translation>Čīle</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="190"/>
+        <location filename="../base/net/geoipmanager.cpp" line="183"/>
         <source>Cameroon</source>
         <translation>Kamerūna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="191"/>
+        <location filename="../base/net/geoipmanager.cpp" line="184"/>
         <source>China</source>
         <translation>Ķīna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="192"/>
+        <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Colombia</source>
         <translation>Kolumbija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="193"/>
+        <location filename="../base/net/geoipmanager.cpp" line="186"/>
         <source>Costa Rica</source>
         <translation>Kostarika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="194"/>
+        <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Cuba</source>
         <translation>Kuba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="195"/>
+        <location filename="../base/net/geoipmanager.cpp" line="188"/>
         <source>Cape Verde</source>
         <translation>Kaboverde</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="196"/>
+        <location filename="../base/net/geoipmanager.cpp" line="189"/>
         <source>Curacao</source>
         <translation>Kirasao</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="197"/>
+        <location filename="../base/net/geoipmanager.cpp" line="190"/>
         <source>Christmas Island</source>
         <translation>Ziemsvētku sala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="198"/>
+        <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Cyprus</source>
         <translation>Kipra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="199"/>
+        <location filename="../base/net/geoipmanager.cpp" line="192"/>
         <source>Czech Republic</source>
         <translation>Čehija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="200"/>
+        <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Germany</source>
         <translation>Vācija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="201"/>
+        <location filename="../base/net/geoipmanager.cpp" line="194"/>
         <source>Djibouti</source>
         <translation>Džibutija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="202"/>
+        <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Denmark</source>
         <translation>Dānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="203"/>
+        <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>Dominica</source>
         <translation>Dominika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="204"/>
+        <location filename="../base/net/geoipmanager.cpp" line="197"/>
         <source>Dominican Republic</source>
         <translation>Dominikānas republika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="205"/>
+        <location filename="../base/net/geoipmanager.cpp" line="198"/>
         <source>Algeria</source>
         <translation>Alžīrija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="206"/>
+        <location filename="../base/net/geoipmanager.cpp" line="199"/>
         <source>Ecuador</source>
         <translation>Ekvadora</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="207"/>
+        <location filename="../base/net/geoipmanager.cpp" line="200"/>
         <source>Estonia</source>
         <translation>Igaunija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="208"/>
+        <location filename="../base/net/geoipmanager.cpp" line="201"/>
         <source>Egypt</source>
         <translation>Ēģipte</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="209"/>
+        <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Western Sahara</source>
         <translation>Rietumsahāra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="210"/>
+        <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Eritrea</source>
         <translation>Eritreja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="211"/>
+        <location filename="../base/net/geoipmanager.cpp" line="204"/>
         <source>Spain</source>
         <translation>Spānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="212"/>
+        <location filename="../base/net/geoipmanager.cpp" line="205"/>
         <source>Ethiopia</source>
         <translation>Etiopija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="213"/>
+        <location filename="../base/net/geoipmanager.cpp" line="206"/>
         <source>Finland</source>
         <translation>Somija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="214"/>
+        <location filename="../base/net/geoipmanager.cpp" line="207"/>
         <source>Fiji</source>
         <translation>Fidži</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="215"/>
+        <location filename="../base/net/geoipmanager.cpp" line="208"/>
         <source>Falkland Islands (Malvinas)</source>
         <translation>Folklenda (Malvinu) Salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="216"/>
+        <location filename="../base/net/geoipmanager.cpp" line="209"/>
         <source>Micronesia, Federated States of</source>
         <translation>Mikronēzijas Federatīvās Valstis</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="217"/>
+        <location filename="../base/net/geoipmanager.cpp" line="210"/>
         <source>Faroe Islands</source>
         <translation>Fēru salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="218"/>
+        <location filename="../base/net/geoipmanager.cpp" line="211"/>
         <source>France</source>
         <translation>Francija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="219"/>
+        <location filename="../base/net/geoipmanager.cpp" line="212"/>
         <source>Gabon</source>
         <translation>Gabona</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="220"/>
+        <location filename="../base/net/geoipmanager.cpp" line="213"/>
         <source>United Kingdom</source>
         <translation>Apvienotā Karaliste</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="221"/>
+        <location filename="../base/net/geoipmanager.cpp" line="214"/>
         <source>Grenada</source>
         <translation>Grenāda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="222"/>
+        <location filename="../base/net/geoipmanager.cpp" line="215"/>
         <source>Georgia</source>
         <translation>Gruzija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="223"/>
+        <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>French Guiana</source>
         <translation>Franču Gviāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="225"/>
+        <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>Ghana</source>
         <translation>Gana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="226"/>
+        <location filename="../base/net/geoipmanager.cpp" line="219"/>
         <source>Gibraltar</source>
         <translation>Gibraltārs</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="227"/>
+        <location filename="../base/net/geoipmanager.cpp" line="220"/>
         <source>Greenland</source>
         <translation>Grenlande</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="228"/>
+        <location filename="../base/net/geoipmanager.cpp" line="221"/>
         <source>Gambia</source>
         <translation>Gambija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="229"/>
+        <location filename="../base/net/geoipmanager.cpp" line="222"/>
         <source>Guinea</source>
         <translation>Gvineja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="230"/>
+        <location filename="../base/net/geoipmanager.cpp" line="223"/>
         <source>Guadeloupe</source>
         <translation>Gvadelupa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="231"/>
+        <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Equatorial Guinea</source>
         <translation>Ekvatoriālā Gvineja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="232"/>
+        <location filename="../base/net/geoipmanager.cpp" line="225"/>
         <source>Greece</source>
         <translation>Grieķija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="233"/>
+        <location filename="../base/net/geoipmanager.cpp" line="226"/>
         <source>South Georgia and the South Sandwich Islands</source>
         <translation>Dienviddžordžija un Dienvidsendviču salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="234"/>
+        <location filename="../base/net/geoipmanager.cpp" line="227"/>
         <source>Guatemala</source>
         <translation>Gvatemala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="235"/>
+        <location filename="../base/net/geoipmanager.cpp" line="228"/>
         <source>Guam</source>
         <translation>Guama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="236"/>
+        <location filename="../base/net/geoipmanager.cpp" line="229"/>
         <source>Guinea-Bissau</source>
         <translation>Gvineja-Bisava</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="237"/>
+        <location filename="../base/net/geoipmanager.cpp" line="230"/>
         <source>Guyana</source>
         <translation>Gajāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="238"/>
+        <location filename="../base/net/geoipmanager.cpp" line="231"/>
         <source>Hong Kong</source>
         <translation>Honkonga</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="239"/>
+        <location filename="../base/net/geoipmanager.cpp" line="232"/>
         <source>Heard Island and McDonald Islands</source>
         <translation>Hērda Sala un Makdonalda Salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="240"/>
+        <location filename="../base/net/geoipmanager.cpp" line="233"/>
         <source>Honduras</source>
         <translation>Hondurasa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="241"/>
+        <location filename="../base/net/geoipmanager.cpp" line="234"/>
         <source>Croatia</source>
         <translation>Horvātija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="242"/>
+        <location filename="../base/net/geoipmanager.cpp" line="235"/>
         <source>Haiti</source>
         <translation>Haiti</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="243"/>
+        <location filename="../base/net/geoipmanager.cpp" line="236"/>
         <source>Hungary</source>
         <translation>Ungārija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="244"/>
+        <location filename="../base/net/geoipmanager.cpp" line="237"/>
         <source>Indonesia</source>
         <translation>Indonēzija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="245"/>
+        <location filename="../base/net/geoipmanager.cpp" line="238"/>
         <source>Ireland</source>
         <translation>Īrija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="246"/>
+        <location filename="../base/net/geoipmanager.cpp" line="239"/>
         <source>Israel</source>
         <translation>Izraēla</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="248"/>
+        <location filename="../base/net/geoipmanager.cpp" line="241"/>
         <source>India</source>
         <translation>Indija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="249"/>
+        <location filename="../base/net/geoipmanager.cpp" line="242"/>
         <source>British Indian Ocean Territory</source>
         <translation>Britu Indijas okeāna teritorija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="250"/>
+        <location filename="../base/net/geoipmanager.cpp" line="243"/>
         <source>Iraq</source>
         <translation>Irāka</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="251"/>
+        <location filename="../base/net/geoipmanager.cpp" line="244"/>
         <source>Iran, Islamic Republic of</source>
         <translation>Irāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="252"/>
+        <location filename="../base/net/geoipmanager.cpp" line="245"/>
         <source>Iceland</source>
         <translation>Īslande</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="253"/>
+        <location filename="../base/net/geoipmanager.cpp" line="246"/>
         <source>Italy</source>
         <translation>Itālija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="255"/>
+        <location filename="../base/net/geoipmanager.cpp" line="248"/>
         <source>Jamaica</source>
         <translation>Jamaika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="256"/>
+        <location filename="../base/net/geoipmanager.cpp" line="249"/>
         <source>Jordan</source>
         <translation>Jordānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="257"/>
+        <location filename="../base/net/geoipmanager.cpp" line="250"/>
         <source>Japan</source>
         <translation>Japāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="258"/>
+        <location filename="../base/net/geoipmanager.cpp" line="251"/>
         <source>Kenya</source>
         <translation>Kenija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="259"/>
+        <location filename="../base/net/geoipmanager.cpp" line="252"/>
         <source>Kyrgyzstan</source>
         <translation>Kirgizstāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="260"/>
+        <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>Cambodia</source>
         <translation>Kambodža</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="261"/>
+        <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>Kiribati</source>
         <translation>Kiribati</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="262"/>
+        <location filename="../base/net/geoipmanager.cpp" line="255"/>
         <source>Comoros</source>
         <translation>Komoras</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="263"/>
+        <location filename="../base/net/geoipmanager.cpp" line="256"/>
         <source>Saint Kitts and Nevis</source>
         <translation>Sentkitsa un Nevisa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="264"/>
+        <location filename="../base/net/geoipmanager.cpp" line="257"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
         <translation>Ziemeļkoreja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="265"/>
+        <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>Korea, Republic of</source>
         <translation>Dienvidkoreja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="266"/>
+        <location filename="../base/net/geoipmanager.cpp" line="259"/>
         <source>Kuwait</source>
         <translation>Kuveita</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="267"/>
+        <location filename="../base/net/geoipmanager.cpp" line="260"/>
         <source>Cayman Islands</source>
         <translation>Kaimanu salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="268"/>
+        <location filename="../base/net/geoipmanager.cpp" line="261"/>
         <source>Kazakhstan</source>
         <translation>Kazahstāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="269"/>
+        <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Lao People&apos;s Democratic Republic</source>
         <translation>Laosas Tautas Demokrātiskā Republika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="270"/>
+        <location filename="../base/net/geoipmanager.cpp" line="263"/>
         <source>Lebanon</source>
         <translation>Libāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="271"/>
+        <location filename="../base/net/geoipmanager.cpp" line="264"/>
         <source>Saint Lucia</source>
         <translation>Sentlūsija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="272"/>
+        <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Liechtenstein</source>
         <translation>Lihtenšteina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="273"/>
+        <location filename="../base/net/geoipmanager.cpp" line="266"/>
         <source>Sri Lanka</source>
         <translation>Šrilanka</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="274"/>
+        <location filename="../base/net/geoipmanager.cpp" line="267"/>
         <source>Liberia</source>
         <translation>Libērija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="275"/>
+        <location filename="../base/net/geoipmanager.cpp" line="268"/>
         <source>Lesotho</source>
         <translation>Lesoto</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="276"/>
+        <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Lithuania</source>
         <translation>Lietuva</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="277"/>
+        <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Luxembourg</source>
         <translation>Luksemburga</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="278"/>
+        <location filename="../base/net/geoipmanager.cpp" line="271"/>
         <source>Latvia</source>
         <translation>Latvija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="280"/>
+        <location filename="../base/net/geoipmanager.cpp" line="273"/>
         <source>Morocco</source>
         <translation>Maroka</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="281"/>
+        <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Monaco</source>
         <translation>Monako</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="282"/>
+        <location filename="../base/net/geoipmanager.cpp" line="275"/>
         <source>Moldova, Republic of</source>
         <translation>Moldova</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="285"/>
+        <location filename="../base/net/geoipmanager.cpp" line="278"/>
         <source>Madagascar</source>
         <translation>Madagaskara</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="286"/>
+        <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Marshall Islands</source>
         <translation>Māršala salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="288"/>
+        <location filename="../base/net/geoipmanager.cpp" line="281"/>
         <source>Mali</source>
         <translation>Mali</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="289"/>
+        <location filename="../base/net/geoipmanager.cpp" line="282"/>
         <source>Myanmar</source>
         <translation>Mjanma</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="290"/>
+        <location filename="../base/net/geoipmanager.cpp" line="283"/>
         <source>Mongolia</source>
         <translation>Mongolija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="292"/>
+        <location filename="../base/net/geoipmanager.cpp" line="285"/>
         <source>Northern Mariana Islands</source>
         <translation>Ziemeļu Marianas salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="293"/>
+        <location filename="../base/net/geoipmanager.cpp" line="286"/>
         <source>Martinique</source>
         <translation>Martinika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="294"/>
+        <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Mauritania</source>
         <translation>Mauritānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="295"/>
+        <location filename="../base/net/geoipmanager.cpp" line="288"/>
         <source>Montserrat</source>
         <translation>Montserrata</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="296"/>
+        <location filename="../base/net/geoipmanager.cpp" line="289"/>
         <source>Malta</source>
         <translation>Malta</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="297"/>
+        <location filename="../base/net/geoipmanager.cpp" line="290"/>
         <source>Mauritius</source>
         <translation>Maurīcija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="298"/>
+        <location filename="../base/net/geoipmanager.cpp" line="291"/>
         <source>Maldives</source>
         <translation>Maldīvija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="299"/>
+        <location filename="../base/net/geoipmanager.cpp" line="292"/>
         <source>Malawi</source>
         <translation>Malāvija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="300"/>
+        <location filename="../base/net/geoipmanager.cpp" line="293"/>
         <source>Mexico</source>
         <translation>Meksika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="301"/>
+        <location filename="../base/net/geoipmanager.cpp" line="294"/>
         <source>Malaysia</source>
         <translation>Malaizija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="302"/>
+        <location filename="../base/net/geoipmanager.cpp" line="295"/>
         <source>Mozambique</source>
         <translation>Mozambika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="303"/>
+        <location filename="../base/net/geoipmanager.cpp" line="296"/>
         <source>Namibia</source>
         <translation>Namībija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="304"/>
+        <location filename="../base/net/geoipmanager.cpp" line="297"/>
         <source>New Caledonia</source>
         <translation>Jaunkaledonija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="305"/>
+        <location filename="../base/net/geoipmanager.cpp" line="298"/>
         <source>Niger</source>
         <translation>Nigēra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="306"/>
+        <location filename="../base/net/geoipmanager.cpp" line="299"/>
         <source>Norfolk Island</source>
         <translation>Norfolkas Sala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="307"/>
+        <location filename="../base/net/geoipmanager.cpp" line="300"/>
         <source>Nigeria</source>
         <translation>Nigērija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="308"/>
+        <location filename="../base/net/geoipmanager.cpp" line="301"/>
         <source>Nicaragua</source>
         <translation>Nikaragva</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="309"/>
+        <location filename="../base/net/geoipmanager.cpp" line="302"/>
         <source>Netherlands</source>
         <translation>Nīderlande</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="310"/>
+        <location filename="../base/net/geoipmanager.cpp" line="303"/>
         <source>Norway</source>
         <translation>Norvēģija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="311"/>
+        <location filename="../base/net/geoipmanager.cpp" line="304"/>
         <source>Nepal</source>
         <translation>Nepāla</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="312"/>
+        <location filename="../base/net/geoipmanager.cpp" line="305"/>
         <source>Nauru</source>
         <translation>Nauru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="313"/>
+        <location filename="../base/net/geoipmanager.cpp" line="306"/>
         <source>Niue</source>
         <translation>Niue</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="314"/>
+        <location filename="../base/net/geoipmanager.cpp" line="307"/>
         <source>New Zealand</source>
         <translation>Jaunzēlande</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="315"/>
+        <location filename="../base/net/geoipmanager.cpp" line="308"/>
         <source>Oman</source>
         <translation>Omāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="316"/>
+        <location filename="../base/net/geoipmanager.cpp" line="309"/>
         <source>Panama</source>
         <translation>Panama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="317"/>
+        <location filename="../base/net/geoipmanager.cpp" line="310"/>
         <source>Peru</source>
         <translation>Peru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="318"/>
+        <location filename="../base/net/geoipmanager.cpp" line="311"/>
         <source>French Polynesia</source>
         <translation>Franču Polinēzija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="319"/>
+        <location filename="../base/net/geoipmanager.cpp" line="312"/>
         <source>Papua New Guinea</source>
         <translation>Papua Jaungvineja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="320"/>
+        <location filename="../base/net/geoipmanager.cpp" line="313"/>
         <source>Philippines</source>
         <translation>Filipīnas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="321"/>
+        <location filename="../base/net/geoipmanager.cpp" line="314"/>
         <source>Pakistan</source>
         <translation>Pakistāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="322"/>
+        <location filename="../base/net/geoipmanager.cpp" line="315"/>
         <source>Poland</source>
         <translation>Polija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="323"/>
+        <location filename="../base/net/geoipmanager.cpp" line="316"/>
         <source>Saint Pierre and Miquelon</source>
         <translation>Senpjēra un Mikelona</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="325"/>
+        <location filename="../base/net/geoipmanager.cpp" line="318"/>
         <source>Puerto Rico</source>
         <translation>Puertoriko</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="327"/>
+        <location filename="../base/net/geoipmanager.cpp" line="320"/>
         <source>Portugal</source>
         <translation>Portugāle</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="328"/>
+        <location filename="../base/net/geoipmanager.cpp" line="321"/>
         <source>Palau</source>
         <translation>Palau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="329"/>
+        <location filename="../base/net/geoipmanager.cpp" line="322"/>
         <source>Paraguay</source>
         <translation>Paragvaja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="330"/>
+        <location filename="../base/net/geoipmanager.cpp" line="323"/>
         <source>Qatar</source>
         <translation>Katara</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="331"/>
+        <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Reunion</source>
         <translation>Reinjona</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="332"/>
+        <location filename="../base/net/geoipmanager.cpp" line="325"/>
         <source>Romania</source>
         <translation>Rumānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="334"/>
+        <location filename="../base/net/geoipmanager.cpp" line="327"/>
         <source>Russian Federation</source>
         <translation>Krievija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="335"/>
+        <location filename="../base/net/geoipmanager.cpp" line="328"/>
         <source>Rwanda</source>
         <translation>Ruanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="336"/>
+        <location filename="../base/net/geoipmanager.cpp" line="329"/>
         <source>Saudi Arabia</source>
         <translation>Saūda Arābija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="337"/>
+        <location filename="../base/net/geoipmanager.cpp" line="330"/>
         <source>Solomon Islands</source>
         <translation>Zālamana salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="338"/>
+        <location filename="../base/net/geoipmanager.cpp" line="331"/>
         <source>Seychelles</source>
         <translation>Seišelu salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="339"/>
+        <location filename="../base/net/geoipmanager.cpp" line="332"/>
         <source>Sudan</source>
         <translation>Sudāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="340"/>
+        <location filename="../base/net/geoipmanager.cpp" line="333"/>
         <source>Sweden</source>
         <translation>Zviedrija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="341"/>
+        <location filename="../base/net/geoipmanager.cpp" line="334"/>
         <source>Singapore</source>
         <translation>Singapūra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="343"/>
+        <location filename="../base/net/geoipmanager.cpp" line="336"/>
         <source>Slovenia</source>
         <translation>Slovēnija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="344"/>
+        <location filename="../base/net/geoipmanager.cpp" line="337"/>
         <source>Svalbard and Jan Mayen</source>
         <translation>Svalbāra un Jana Majena sala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="345"/>
+        <location filename="../base/net/geoipmanager.cpp" line="338"/>
         <source>Slovakia</source>
         <translation>Slovākija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="346"/>
+        <location filename="../base/net/geoipmanager.cpp" line="339"/>
         <source>Sierra Leone</source>
         <translation>Sjerraleone</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="347"/>
+        <location filename="../base/net/geoipmanager.cpp" line="340"/>
         <source>San Marino</source>
         <translation>Sanmarīno</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="348"/>
+        <location filename="../base/net/geoipmanager.cpp" line="341"/>
         <source>Senegal</source>
         <translation>Senegāla</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="349"/>
+        <location filename="../base/net/geoipmanager.cpp" line="342"/>
         <source>Somalia</source>
         <translation>Somālija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="350"/>
+        <location filename="../base/net/geoipmanager.cpp" line="343"/>
         <source>Suriname</source>
         <translation>Surinama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="352"/>
+        <location filename="../base/net/geoipmanager.cpp" line="345"/>
         <source>Sao Tome and Principe</source>
         <translation>Santome un Prinsipi</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="353"/>
+        <location filename="../base/net/geoipmanager.cpp" line="346"/>
         <source>El Salvador</source>
         <translation>Salvadora</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="355"/>
+        <location filename="../base/net/geoipmanager.cpp" line="348"/>
         <source>Syrian Arab Republic</source>
         <translation>Sīrija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="356"/>
+        <location filename="../base/net/geoipmanager.cpp" line="349"/>
         <source>Swaziland</source>
         <translation>Svazilenda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="357"/>
+        <location filename="../base/net/geoipmanager.cpp" line="350"/>
         <source>Turks and Caicos Islands</source>
         <translation>Tērksas un Kaikosas salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="358"/>
+        <location filename="../base/net/geoipmanager.cpp" line="351"/>
         <source>Chad</source>
         <translation>Čada</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="359"/>
+        <location filename="../base/net/geoipmanager.cpp" line="352"/>
         <source>French Southern Territories</source>
         <translation>Franču Dienvidu Teritorijas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="360"/>
+        <location filename="../base/net/geoipmanager.cpp" line="353"/>
         <source>Togo</source>
         <translation>Togo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="361"/>
+        <location filename="../base/net/geoipmanager.cpp" line="354"/>
         <source>Thailand</source>
         <translation>Taizeme</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="362"/>
+        <location filename="../base/net/geoipmanager.cpp" line="355"/>
         <source>Tajikistan</source>
         <translation>Tadžikistāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="363"/>
+        <location filename="../base/net/geoipmanager.cpp" line="356"/>
         <source>Tokelau</source>
         <translation>Tokelau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="365"/>
+        <location filename="../base/net/geoipmanager.cpp" line="358"/>
         <source>Turkmenistan</source>
         <translation>Turkmenistāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="366"/>
+        <location filename="../base/net/geoipmanager.cpp" line="359"/>
         <source>Tunisia</source>
         <translation>Tunisija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="367"/>
+        <location filename="../base/net/geoipmanager.cpp" line="360"/>
         <source>Tonga</source>
         <translation>Tonga</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="423"/>
-        <source>Could not decompress GeoIP database file.</source>
+        <location filename="../base/net/geoipmanager.cpp" line="377"/>
+        <source>Vietnam</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="364"/>
+        <location filename="../base/net/geoipmanager.cpp" line="418"/>
+        <source>Could not decompress GeoIP database file.</source>
+        <translation>Neizdevās atvērt GeoIP datubāzes failu.</translation>
+    </message>
+    <message>
+        <location filename="../base/net/geoipmanager.cpp" line="357"/>
         <source>Timor-Leste</source>
         <translation>Austrumtimora</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="172"/>
+        <location filename="../base/net/geoipmanager.cpp" line="165"/>
         <source>Bolivia, Plurinational State of</source>
         <translation>Bolīvija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="173"/>
+        <location filename="../base/net/geoipmanager.cpp" line="166"/>
         <source>Bonaire, Sint Eustatius and Saba</source>
         <translation>Bonaire, Sintēstatiusa un Saba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="187"/>
+        <location filename="../base/net/geoipmanager.cpp" line="180"/>
         <source>Cote d&apos;Ivoire</source>
         <translation>Kotdivuāra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="279"/>
+        <location filename="../base/net/geoipmanager.cpp" line="272"/>
         <source>Libya</source>
         <translation>Lībija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="284"/>
+        <location filename="../base/net/geoipmanager.cpp" line="277"/>
         <source>Saint Martin (French part)</source>
         <translation>Sentmārtina (Francijas daļa)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="287"/>
+        <location filename="../base/net/geoipmanager.cpp" line="280"/>
         <source>Macedonia, The Former Yugoslav Republic of</source>
         <translation>Maķedonija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="291"/>
+        <location filename="../base/net/geoipmanager.cpp" line="284"/>
         <source>Macao</source>
         <translation>Makao</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="324"/>
+        <location filename="../base/net/geoipmanager.cpp" line="317"/>
         <source>Pitcairn</source>
         <translation>Pitkērna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="326"/>
+        <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>Palestine, State of</source>
         <translation>Palestīna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="342"/>
+        <location filename="../base/net/geoipmanager.cpp" line="335"/>
         <source>Saint Helena, Ascension and Tristan da Cunha</source>
         <translation>Svētās Helēnas sala, Debesbraukšanas salas un Tristana da Kuņas salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="351"/>
+        <location filename="../base/net/geoipmanager.cpp" line="344"/>
         <source>South Sudan</source>
         <translation>Dienvidsudāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="354"/>
+        <location filename="../base/net/geoipmanager.cpp" line="347"/>
         <source>Sint Maarten (Dutch part)</source>
         <translation>Sintmārtena (Nīderlandes daļa)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="368"/>
+        <location filename="../base/net/geoipmanager.cpp" line="361"/>
         <source>Turkey</source>
         <translation>Turcija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="369"/>
+        <location filename="../base/net/geoipmanager.cpp" line="362"/>
         <source>Trinidad and Tobago</source>
         <translation>Trinidada un Tobāgo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="370"/>
+        <location filename="../base/net/geoipmanager.cpp" line="363"/>
         <source>Tuvalu</source>
         <translation>Tuvalu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="371"/>
+        <location filename="../base/net/geoipmanager.cpp" line="364"/>
         <source>Taiwan</source>
         <translation>Taivāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="372"/>
+        <location filename="../base/net/geoipmanager.cpp" line="365"/>
         <source>Tanzania, United Republic of</source>
         <translation>Tanzānija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="373"/>
+        <location filename="../base/net/geoipmanager.cpp" line="366"/>
         <source>Ukraine</source>
         <translation>Ukraina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="374"/>
+        <location filename="../base/net/geoipmanager.cpp" line="367"/>
         <source>Uganda</source>
         <translation>Uganda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="375"/>
+        <location filename="../base/net/geoipmanager.cpp" line="368"/>
         <source>United States Minor Outlying Islands</source>
         <translation>ASV Mazās Aizjūras salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="376"/>
+        <location filename="../base/net/geoipmanager.cpp" line="369"/>
         <source>United States</source>
         <translation>Amerikas Savienotās Valstis</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="377"/>
+        <location filename="../base/net/geoipmanager.cpp" line="370"/>
         <source>Uruguay</source>
         <translation>Urugvaja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="378"/>
+        <location filename="../base/net/geoipmanager.cpp" line="371"/>
         <source>Uzbekistan</source>
         <translation>Uzbekistāna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="379"/>
+        <location filename="../base/net/geoipmanager.cpp" line="372"/>
         <source>Holy See (Vatican City State)</source>
         <translation>Vatikāns (Svētais krēsls)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="380"/>
+        <location filename="../base/net/geoipmanager.cpp" line="373"/>
         <source>Saint Vincent and the Grenadines</source>
         <translation>Sentvinsenta un Grenadīnas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="382"/>
+        <location filename="../base/net/geoipmanager.cpp" line="375"/>
         <source>Virgin Islands, British</source>
         <translation>Britu Virdžīnu salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="383"/>
+        <location filename="../base/net/geoipmanager.cpp" line="376"/>
         <source>Virgin Islands, U.S.</source>
         <translation>ASV Virdžīnu salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="385"/>
+        <location filename="../base/net/geoipmanager.cpp" line="378"/>
         <source>Vanuatu</source>
         <translation>Vanuatu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="386"/>
+        <location filename="../base/net/geoipmanager.cpp" line="379"/>
         <source>Wallis and Futuna</source>
         <translation>Volisa un Futuna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="387"/>
+        <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>Samoa</source>
         <translation>Samoa Neatkarīgā Valsts</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="388"/>
+        <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>Yemen</source>
         <translation>Jemena</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="389"/>
+        <location filename="../base/net/geoipmanager.cpp" line="382"/>
         <source>Mayotte</source>
         <translation>Majota</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="333"/>
+        <location filename="../base/net/geoipmanager.cpp" line="326"/>
         <source>Serbia</source>
         <translation>Serbija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="390"/>
+        <location filename="../base/net/geoipmanager.cpp" line="383"/>
         <source>South Africa</source>
         <translation>Dienvidāfrika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="391"/>
+        <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>Zambia</source>
         <translation>Zambija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="283"/>
+        <location filename="../base/net/geoipmanager.cpp" line="276"/>
         <source>Montenegro</source>
         <translation>Melnkalne</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="392"/>
+        <location filename="../base/net/geoipmanager.cpp" line="385"/>
         <source>Zimbabwe</source>
         <translation>Zimbabve</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="158"/>
+        <location filename="../base/net/geoipmanager.cpp" line="151"/>
         <source>Aland Islands</source>
         <translation>Ālandu salas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="224"/>
+        <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>Guernsey</source>
         <translation>Gērnsija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="247"/>
+        <location filename="../base/net/geoipmanager.cpp" line="240"/>
         <source>Isle of Man</source>
         <translation>Menas sala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="254"/>
+        <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>Jersey</source>
         <translation>Džērsija</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="169"/>
+        <location filename="../base/net/geoipmanager.cpp" line="162"/>
         <source>Saint Barthelemy</source>
         <translation>Senbartelmī</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="444"/>
+        <location filename="../base/net/geoipmanager.cpp" line="438"/>
         <source>Couldn&apos;t save downloaded GeoIP database file.</source>
         <translation>Neizdevās saglabāt lejupielādēto GeoIP datubāzes failu.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="447"/>
+        <location filename="../base/net/geoipmanager.cpp" line="440"/>
         <source>Successfully updated GeoIP database.</source>
         <translation>GeoIP datubāze veiksmīgi atjaunota.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="462"/>
+        <location filename="../base/net/geoipmanager.cpp" line="411"/>
         <source>Couldn&apos;t download GeoIP database file. Reason: %1</source>
         <translation>Neizdevās lejupielādēt GeoIP datubāzes failu. Iemesls: %1</translation>
     </message>
@@ -4327,20 +4632,18 @@ Lūdzam to izdarīt manuāli. </translation>
 <context>
     <name>Net::PortForwarder</name>
     <message>
-        <location filename="../base/net/portforwarder.cpp" line="129"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP atbalsts [IESLĒGTS]</translation>
+        <translation type="vanished">UPnP / NAT-PMP atbalsts [IESLĒGTS]</translation>
     </message>
     <message>
-        <location filename="../base/net/portforwarder.cpp" line="145"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP atbalsts [IZSLĒGTS]</translation>
+        <translation type="vanished">UPnP / NAT-PMP atbalsts [IZSLĒGTS]</translation>
     </message>
 </context>
 <context>
     <name>Net::Smtp</name>
     <message>
-        <location filename="../base/net/smtp.cpp" line="507"/>
+        <location filename="../base/net/smtp.cpp" line="509"/>
         <source>Email Notification Error:</source>
         <translation>E-pasta paziņojuma kļūda:</translation>
     </message>
@@ -4380,7 +4683,7 @@ Lūdzam to izdarīt manuāli. </translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="77"/>
         <source>RSS</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="82"/>
@@ -4393,126 +4696,125 @@ Lūdzam to izdarīt manuāli. </translation>
         <translation>Papildus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="133"/>
         <source>Language</source>
-        <translation>Valoda</translation>
+        <translation type="vanished">Valoda</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="141"/>
         <source>User Interface Language:</source>
-        <translation>Interfeisa valoda: </translation>
+        <translation type="vanished">Interfeisa valoda: </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="169"/>
+        <location filename="../gui/optionsdialog.ui" line="167"/>
+        <location filename="../gui/optionsdialog.ui" line="205"/>
         <source>(Requires restart)</source>
         <translation>(Nepieciešams restarts)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="197"/>
+        <location filename="../gui/optionsdialog.ui" line="218"/>
         <source>Transfer List</source>
         <translation>Torrentu saraksts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="203"/>
+        <location filename="../gui/optionsdialog.ui" line="224"/>
         <source>Confirm when deleting torrents</source>
         <translation>Apstiprināt Torrentu dzēšanu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="213"/>
+        <location filename="../gui/optionsdialog.ui" line="234"/>
         <source>Use alternating row colors</source>
         <extracomment>In transfer list, one every two rows will have grey background.</extracomment>
         <translation>Iekrāsot katru otro rindiņu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="225"/>
+        <location filename="../gui/optionsdialog.ui" line="246"/>
         <source>Hide zero and infinity values</source>
         <translation>Nerādīt nulles un bezgalības vērtības</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="233"/>
+        <location filename="../gui/optionsdialog.ui" line="254"/>
         <source>Always</source>
         <translation>Vienmēr</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="238"/>
+        <location filename="../gui/optionsdialog.ui" line="259"/>
         <source>Paused torrents only</source>
         <translation>Tikai nopauzētiem torrentiem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="267"/>
+        <location filename="../gui/optionsdialog.ui" line="282"/>
         <source>Action on double-click</source>
         <translation>Dubultklikšķa darbība</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="276"/>
+        <location filename="../gui/optionsdialog.ui" line="288"/>
         <source>Downloading torrents:</source>
         <translation>Lejupielādējot torrentus:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="293"/>
-        <location filename="../gui/optionsdialog.ui" line="319"/>
+        <location filename="../gui/optionsdialog.ui" line="299"/>
+        <location filename="../gui/optionsdialog.ui" line="325"/>
         <source>Start / Stop Torrent</source>
         <translation>Sākt / Apturēt torentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="298"/>
-        <location filename="../gui/optionsdialog.ui" line="324"/>
+        <location filename="../gui/optionsdialog.ui" line="304"/>
+        <location filename="../gui/optionsdialog.ui" line="330"/>
         <source>Open destination folder</source>
         <translation>Atvērt failu atrašanās vietu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="303"/>
-        <location filename="../gui/optionsdialog.ui" line="329"/>
+        <location filename="../gui/optionsdialog.ui" line="309"/>
+        <location filename="../gui/optionsdialog.ui" line="335"/>
         <source>No action</source>
         <translation>Nedarīt neko</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="311"/>
+        <location filename="../gui/optionsdialog.ui" line="317"/>
         <source>Completed torrents:</source>
         <translation>Pabeigtajiem torentiem:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="343"/>
+        <location filename="../gui/optionsdialog.ui" line="362"/>
         <source>Desktop</source>
         <translation>Darbvirsma</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="349"/>
+        <location filename="../gui/optionsdialog.ui" line="368"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>Ieslēgt qBittorrent reizē ar Windows</translation>
+        <translation>Ieslēgt qBittorrent reizē ar Datorsistēmu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="356"/>
+        <location filename="../gui/optionsdialog.ui" line="375"/>
         <source>Show splash screen on start up</source>
         <translation>Pirms palaišanas parādīt qBittorrent logo</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="366"/>
+        <location filename="../gui/optionsdialog.ui" line="385"/>
         <source>Start qBittorrent minimized</source>
         <translation>Ieslēgt qBittorrent jau minimizētu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="373"/>
+        <location filename="../gui/optionsdialog.ui" line="392"/>
         <source>Confirmation on exit when torrents are active</source>
         <translation>Apstiprināt programmas aizvēršanu, ja kāda faila ielāde vēl nav pabeigta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="383"/>
+        <location filename="../gui/optionsdialog.ui" line="402"/>
         <source>Confirmation on auto-exit when downloads finish</source>
         <translation>Apstiprināt programmas automātisko aizvēršanu pēc lejupielāžu pabeigšanas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="545"/>
+        <location filename="../gui/optionsdialog.ui" line="581"/>
         <source> KiB</source>
-        <translation type="unfinished">KiB</translation>
+        <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1125"/>
+        <location filename="../gui/optionsdialog.ui" line="1155"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>E-pasta paziņojums par lejupielādes pabeigšanu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1220"/>
+        <location filename="../gui/optionsdialog.ui" line="1250"/>
         <source>Run e&amp;xternal program on torrent completion</source>
         <translation>Programmas palaišana pēc lejupielādes pabeigšanas</translation>
     </message>
@@ -4527,6 +4829,23 @@ Lūdzam to izdarīt manuāli. </translation>
         <translation>Uzstādīt grafiku Alternatīvajiem ielādes ātruma ierobežojumiem</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdialog.ui" line="1918"/>
+        <source>From:</source>
+        <comment>From start time</comment>
+        <translation type="unfinished">No:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="1942"/>
+        <source>To:</source>
+        <comment>To end time</comment>
+        <translation type="unfinished">Uz:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2193"/>
+        <source>Allow encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdialog.ui" line="2238"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Vairāk informācijas&lt;/a&gt;)</translation>
@@ -4534,99 +4853,143 @@ Lūdzam to izdarīt manuāli. </translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2266"/>
         <source>&amp;Torrent Queueing</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentu saraksts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2616"/>
         <source>Seed torrents until their seeding time reaches</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Dalīt torrentus līdz to dalīšanas ilgums sasniedz </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2649"/>
+        <location filename="../gui/optionsdialog.ui" line="2550"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;utomātiski pievienot šos trakerus jaunajām lejupielādēm:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2722"/>
+        <location filename="../gui/optionsdialog.ui" line="2623"/>
         <source>RSS Reader</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS lasītājs</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2728"/>
+        <location filename="../gui/optionsdialog.ui" line="2629"/>
         <source>Enable fetching RSS feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieslēgt RSS kanālu nolasīšanu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2737"/>
+        <location filename="../gui/optionsdialog.ui" line="2638"/>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziņu atsvaidzināšanas intervāls:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2747"/>
+        <location filename="../gui/optionsdialog.ui" line="2655"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Atļautais ziņu skaits katram kanālam:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2581"/>
-        <location filename="../gui/optionsdialog.ui" line="2757"/>
+        <location filename="../gui/optionsdialog.ui" line="2454"/>
+        <location filename="../gui/optionsdialog.ui" line="2662"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
+        <translation>min</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2445"/>
+        <source>Seeding Limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2801"/>
-        <source>RSS Torrent Auto Downloader</source>
+        <location filename="../gui/optionsdialog.ui" line="2467"/>
+        <source>When seeding time reaches</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2488"/>
+        <source>Pause torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2493"/>
+        <source>Remove torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2498"/>
+        <source>Remove torrent and its files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2503"/>
+        <source>Enable super seeding for torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2511"/>
+        <source>When ratio reaches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2696"/>
+        <source>RSS Torrent Auto Downloader</source>
+        <translation>RSS automātiskais torrentu lejupielādētājs</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2702"/>
+        <source>Enable auto downloading of RSS torrents</source>
+        <translation>Ieslēgt RSS automātisko lejupielādi</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2709"/>
+        <source>Edit auto downloading rules...</source>
+        <translation>Rediģēt automātiskās lejupielādes nosacījumus...</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2719"/>
+        <source>RSS Smart Episode Filter</source>
+        <translation>RSS viedais epizožu filtrs</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2725"/>
+        <source>Download REPACK/PROPER episodes</source>
+        <translation>Lejupielādēt REPACK/PROPER epizodes</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2732"/>
+        <source>Filters:</source>
+        <translation>Filtri:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2793"/>
+        <source>Web User Interface (Remote control)</source>
+        <translation>Tālvadības kontroles panelis (Web UI)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2807"/>
-        <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished"></translation>
+        <source>IP address:</source>
+        <translation>IP adrese:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2814"/>
-        <source>Edit auto downloading rules...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2824"/>
-        <source>RSS Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2830"/>
-        <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2837"/>
-        <source>Filters:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2898"/>
-        <source>Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2912"/>
-        <source>IP address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2919"/>
         <source>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3188"/>
-        <source>Server domains:</source>
+        <location filename="../gui/optionsdialog.ui" line="2972"/>
+        <source>Session timeout:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3195"/>
+        <location filename="../gui/optionsdialog.ui" line="2979"/>
+        <source>Disabled</source>
+        <translation type="unfinished">Atslēgts</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="3066"/>
+        <source>Server domains:</source>
+        <translation>Servera domēni:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="3073"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -4635,454 +4998,484 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2960"/>
+        <location filename="../gui/optionsdialog.ui" line="2855"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP vietā izmantot HTTPS</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3088"/>
+        <location filename="../gui/optionsdialog.ui" line="2943"/>
         <source>Bypass authentication for clients on localhost</source>
-        <translation type="unfinished"></translation>
+        <translation>Izlaist pierakstīšanos uz saimnieka datora (localhost)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3095"/>
+        <location filename="../gui/optionsdialog.ui" line="2950"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation type="unfinished"></translation>
+        <translation>Izlaist pierakstīšanos klientiem, kuri atrodas apakštīklu IP baltajā sarakstā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3108"/>
+        <location filename="../gui/optionsdialog.ui" line="2963"/>
         <source>IP subnet whitelist...</source>
-        <translation type="unfinished"></translation>
+        <translation>Apakštīklu IP baltais saraksts...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3214"/>
+        <location filename="../gui/optionsdialog.ui" line="3092"/>
         <source>Upda&amp;te my dynamic domain name</source>
-        <translation type="unfinished"></translation>
+        <translation>Atjaunināt manu dinamisko domēnu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="402"/>
+        <location filename="../gui/optionsdialog.ui" line="421"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>Ar samazināšanas pogu, novietot qBittorrent paziņojumu joslā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="412"/>
+        <location filename="../gui/optionsdialog.ui" line="133"/>
+        <source>Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="139"/>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="190"/>
+        <source>Theme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="431"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>Ar aizvēršanas pogu, novietot qBittorrent paziņojumu joslā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="421"/>
+        <location filename="../gui/optionsdialog.ui" line="440"/>
         <source>Tray icon style:</source>
         <translation>Paziņojumu joslas ikonas stils:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="429"/>
+        <location filename="../gui/optionsdialog.ui" line="448"/>
         <source>Normal</source>
         <translation>Normāls</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="434"/>
+        <location filename="../gui/optionsdialog.ui" line="453"/>
         <source>Monochrome (Dark theme)</source>
         <translation>Vienkrāsains (Gaišais tonis)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="439"/>
+        <location filename="../gui/optionsdialog.ui" line="458"/>
         <source>Monochrome (Light theme)</source>
         <translation>Vienkrāsains (Tumšais tonis)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="452"/>
+        <location filename="../gui/optionsdialog.ui" line="484"/>
         <source>File association</source>
         <translation>Failu asociācija</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="458"/>
+        <location filename="../gui/optionsdialog.ui" line="490"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Lietot qBittorrent .torrent failiem </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="465"/>
+        <location filename="../gui/optionsdialog.ui" line="497"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>Lietot qBittorrent Magnētsaitēm</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="478"/>
+        <location filename="../gui/optionsdialog.ui" line="507"/>
+        <source>Check for program updates</source>
+        <translation type="unfinished">Meklēt programmas atjauninājumus</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="517"/>
         <source>Power Management</source>
         <translation>Barošanas pārvaldība</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="521"/>
+        <location filename="../gui/optionsdialog.ui" line="560"/>
         <source>Save path:</source>
         <translation>Saglabāšanas vieta:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="538"/>
+        <location filename="../gui/optionsdialog.ui" line="574"/>
         <source>Backup the log file after:</source>
         <translation>Izveidot reģistra kopiju ik pēc: </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="581"/>
+        <location filename="../gui/optionsdialog.ui" line="614"/>
         <source>Delete backup logs older than:</source>
         <translation>Dzēst reģistra kopijas vecākas par: </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="605"/>
+        <location filename="../gui/optionsdialog.ui" line="638"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
         <translation>dienām</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="610"/>
+        <location filename="../gui/optionsdialog.ui" line="643"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
         <translation>mēnešiem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="615"/>
+        <location filename="../gui/optionsdialog.ui" line="648"/>
         <source>years</source>
         <comment>Delete backup logs older than 10 years</comment>
         <translation>gadiem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="689"/>
+        <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>When adding a torrent</source>
         <translation>Pievienojot torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="707"/>
+        <location filename="../gui/optionsdialog.ui" line="737"/>
         <source>Bring torrent dialog to the front</source>
         <translation>Novietot torenta dialogu priekšplānā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="730"/>
+        <location filename="../gui/optionsdialog.ui" line="760"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>Lejupielāde netiek sākta automātiski.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="737"/>
+        <location filename="../gui/optionsdialog.ui" line="767"/>
         <source>Should the .torrent file be deleted after adding it</source>
         <translation>.torrent fails tiks izdzēsts uzreiz pēc tā pievienošanas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="752"/>
+        <location filename="../gui/optionsdialog.ui" line="782"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
         <translation>.torrent faili tiks izdzēsti arī pie pievienošanas atcelšanas.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="755"/>
+        <location filename="../gui/optionsdialog.ui" line="785"/>
         <source>Also when addition is cancelled</source>
         <translation>Arī atceļot pievienošanu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="777"/>
+        <location filename="../gui/optionsdialog.ui" line="807"/>
         <source>Warning! Data loss possible!</source>
         <translation>Brīdinājums! Iespējams datu zudums!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="813"/>
+        <location filename="../gui/optionsdialog.ui" line="843"/>
         <source>Saving Management</source>
         <translation>Saglabāšanas iestatījumi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="821"/>
+        <location filename="../gui/optionsdialog.ui" line="851"/>
         <source>Default Torrent Management Mode:</source>
         <translation>Noklusējuma torrentu pārvaldības režīms:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="833"/>
+        <location filename="../gui/optionsdialog.ui" line="863"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
         <translation>Automātiskais režīms nozīmē, ka torrenta īpašības (piem. saglabāšanas vieta), tiks piešķirta atbilstoši izvēlētajai kategorijai. </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="837"/>
+        <location filename="../gui/optionsdialog.ui" line="867"/>
         <source>Manual</source>
         <translation>Manuāli</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="842"/>
+        <location filename="../gui/optionsdialog.ui" line="872"/>
         <source>Automatic</source>
         <translation>Automātiski</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="865"/>
+        <location filename="../gui/optionsdialog.ui" line="895"/>
         <source>When Torrent Category changed:</source>
         <translation>Mainot torrenta kategoriju:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="875"/>
+        <location filename="../gui/optionsdialog.ui" line="905"/>
         <source>Relocate torrent</source>
         <translation>Pārvietot torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="880"/>
+        <location filename="../gui/optionsdialog.ui" line="910"/>
         <source>Switch torrent to Manual Mode</source>
         <translation>Pārslēgt torrentu Manuālajā režīmā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="903"/>
+        <location filename="../gui/optionsdialog.ui" line="933"/>
         <source>When Default Save Path changed:</source>
         <translation>Mainot noklusējuma saglabāšanas vietu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="916"/>
-        <location filename="../gui/optionsdialog.ui" line="957"/>
+        <location filename="../gui/optionsdialog.ui" line="946"/>
+        <location filename="../gui/optionsdialog.ui" line="987"/>
         <source>Relocate affected torrents</source>
         <translation>Pārvietot ietekmētos torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="921"/>
-        <location filename="../gui/optionsdialog.ui" line="962"/>
+        <location filename="../gui/optionsdialog.ui" line="951"/>
+        <location filename="../gui/optionsdialog.ui" line="992"/>
         <source>Switch affected torrents to Manual Mode</source>
         <translation>Pārslēgt ietekmētos torrentus Manuālajā režīmā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="987"/>
+        <location filename="../gui/optionsdialog.ui" line="1017"/>
         <source>Use Subcategories</source>
         <translation>Lietot apakškategorijas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1006"/>
+        <location filename="../gui/optionsdialog.ui" line="1036"/>
         <source>Default Save Path:</source>
         <translation>Noklusētā saglabāšanas vieta:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1020"/>
+        <location filename="../gui/optionsdialog.ui" line="1050"/>
         <source>Keep incomplete torrents in:</source>
         <translation>Glabāt nepabeigtos failus šeit:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1013"/>
+        <location filename="../gui/optionsdialog.ui" line="1043"/>
         <source>Copy .torrent files to:</source>
         <translation>Izveidot .torrent failu kopijas šeit:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="393"/>
+        <location filename="../gui/optionsdialog.ui" line="412"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>Rādīt &amp;qBittorrent paziņojumu joslā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="501"/>
+        <location filename="../gui/optionsdialog.ui" line="540"/>
         <source>&amp;Log file</source>
         <translation>&amp;Reģistra fails</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="695"/>
+        <location filename="../gui/optionsdialog.ui" line="728"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Parādīt torrenta saturu un iestatījumus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="720"/>
+        <location filename="../gui/optionsdialog.ui" line="750"/>
         <source>Create subfolder for torrents with multiple files</source>
         <translation>Izveidot apakšmapi torrentiem, kas satur vairākus failus</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="740"/>
+        <location filename="../gui/optionsdialog.ui" line="770"/>
         <source>De&amp;lete .torrent files afterwards </source>
         <translation>Izdzēst .torrent failu pēc tā pievienošanas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="999"/>
+        <location filename="../gui/optionsdialog.ui" line="1029"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Izveidot .torrent failu kopijas pabeigtajiem torrentiem šeit:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="792"/>
+        <location filename="../gui/optionsdialog.ui" line="822"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Jau iepriekš aizņemt brīvo vietu uz diska jaunajiem failiem</translation>
+        <translation>Rezervēt brīvu vietu uz diska jaunajiem failiem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="484"/>
+        <location filename="../gui/optionsdialog.ui" line="523"/>
         <source>Inhibit system sleep when torrents are downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Neatļaut miega režīmu, ja kādu failu lejupielāde vēl nav pabeigta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="491"/>
+        <location filename="../gui/optionsdialog.ui" line="530"/>
         <source>Inhibit system sleep when torrents are seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Neatļaut miega režīmu, ja kādi faili vēl tiek aktīvi augšupielādēti</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="799"/>
+        <location filename="../gui/optionsdialog.ui" line="829"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Pievienot .!qB galotni nepabeigtajiem failiem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="806"/>
+        <location filename="../gui/optionsdialog.ui" line="836"/>
         <source>Enable recursive download dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Parādīt rekursīvās lejupielādes dialogu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="944"/>
+        <location filename="../gui/optionsdialog.ui" line="974"/>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mainot kategorijas saglabāšanas vietu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1041"/>
+        <location filename="../gui/optionsdialog.ui" line="1071"/>
         <source>Automatically add torrents from:</source>
         <translation>Automātiski pievienot torrentus no:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1088"/>
+        <location filename="../gui/optionsdialog.ui" line="1118"/>
         <source>Add entry</source>
         <translation>Pievienot mapi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1098"/>
+        <location filename="../gui/optionsdialog.ui" line="1128"/>
         <source>Remove entry</source>
         <translation>Noņemt mapi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1149"/>
+        <location filename="../gui/optionsdialog.ui" line="1172"/>
+        <source>To:</source>
+        <comment>To receiver</comment>
+        <translation type="unfinished">Uz:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="1179"/>
         <source>SMTP server:</source>
         <translation>SMTP serveris:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1171"/>
+        <location filename="../gui/optionsdialog.ui" line="1192"/>
+        <source>From:</source>
+        <comment>From sender</comment>
+        <translation type="unfinished">No:</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="1201"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Šim serverim ir nepieciešams šifrēts savienojums (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1178"/>
-        <location filename="../gui/optionsdialog.ui" line="3059"/>
+        <location filename="../gui/optionsdialog.ui" line="1208"/>
+        <location filename="../gui/optionsdialog.ui" line="2906"/>
         <source>Authentication</source>
         <translation>Pierakstīšanās</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1190"/>
+        <location filename="../gui/optionsdialog.ui" line="1220"/>
         <location filename="../gui/optionsdialog.ui" line="1667"/>
-        <location filename="../gui/optionsdialog.ui" line="3115"/>
-        <location filename="../gui/optionsdialog.ui" line="3272"/>
+        <location filename="../gui/optionsdialog.ui" line="2914"/>
+        <location filename="../gui/optionsdialog.ui" line="3150"/>
         <source>Username:</source>
         <translation>Lietotājvārds:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1200"/>
+        <location filename="../gui/optionsdialog.ui" line="1230"/>
         <location filename="../gui/optionsdialog.ui" line="1677"/>
-        <location filename="../gui/optionsdialog.ui" line="3122"/>
-        <location filename="../gui/optionsdialog.ui" line="3286"/>
+        <location filename="../gui/optionsdialog.ui" line="2924"/>
+        <location filename="../gui/optionsdialog.ui" line="3164"/>
         <source>Password:</source>
         <translation>Parole:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1288"/>
+        <location filename="../gui/optionsdialog.ui" line="1312"/>
         <source>Enabled protocol:</source>
         <translation>Protokola izvēle:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1296"/>
+        <location filename="../gui/optionsdialog.ui" line="1320"/>
         <source>TCP and μTP</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP un μTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1316"/>
+        <location filename="../gui/optionsdialog.ui" line="1353"/>
         <source>Listening Port</source>
         <translation>Portu iestatījumi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1324"/>
+        <location filename="../gui/optionsdialog.ui" line="1361"/>
         <source>Port used for incoming connections:</source>
         <translation>Ports, kuru izmanto ienākošajiem savienojumiem:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1344"/>
+        <location filename="../gui/optionsdialog.ui" line="1381"/>
         <source>Random</source>
         <translation>Nejaušs</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1366"/>
+        <location filename="../gui/optionsdialog.ui" line="1403"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Lietot mana rūtera UPnP / NAT-PMP portu pāradresāciju</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1376"/>
+        <location filename="../gui/optionsdialog.ui" line="1413"/>
         <source>Use different port on each startup</source>
         <translation>Automātiski izvēlēties un nomainīt portu pie qBittorrent ieslēgšanas</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1386"/>
+        <location filename="../gui/optionsdialog.ui" line="1423"/>
         <source>Connections Limits</source>
         <translation>Savienojumu ierobežojumi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1402"/>
+        <location filename="../gui/optionsdialog.ui" line="1439"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Maksimālais savienojumu skaits katram torrentam:</translation>
+        <translation>Atļautais savienojumu skaits katram torrentam:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1412"/>
+        <location filename="../gui/optionsdialog.ui" line="1449"/>
         <source>Global maximum number of connections:</source>
-        <translation>Kopējais maksimālais savienojumu skaits:</translation>
+        <translation>Atlautais kopējais savienojumu skaits:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1451"/>
+        <location filename="../gui/optionsdialog.ui" line="1488"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maksimālais augšupielādes slotu skaits katram torrentam:</translation>
+        <translation>Atļautais augšupielādes slotu skaits katram torrentam:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1461"/>
+        <location filename="../gui/optionsdialog.ui" line="1498"/>
         <source>Global maximum number of upload slots:</source>
-        <translation>Kopējais maksimālais augšupielādes slotu skaits:</translation>
+        <translation>Atļautais kopējais augšupielādes slotu skaits:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1500"/>
+        <location filename="../gui/optionsdialog.ui" line="1537"/>
         <source>Proxy Server</source>
         <translation>Starpniekserveris</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1508"/>
+        <location filename="../gui/optionsdialog.ui" line="1545"/>
         <source>Type:</source>
         <translation>Lietot:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1516"/>
+        <location filename="../gui/optionsdialog.ui" line="1553"/>
         <source>(None)</source>
         <translation>(Nevienu)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1521"/>
+        <location filename="../gui/optionsdialog.ui" line="1558"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1526"/>
+        <location filename="../gui/optionsdialog.ui" line="1563"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1531"/>
+        <location filename="../gui/optionsdialog.ui" line="1568"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1542"/>
+        <location filename="../gui/optionsdialog.ui" line="1579"/>
         <source>Host:</source>
         <translation>Adrese:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1562"/>
-        <location filename="../gui/optionsdialog.ui" line="2928"/>
+        <location filename="../gui/optionsdialog.ui" line="1599"/>
+        <location filename="../gui/optionsdialog.ui" line="2823"/>
         <source>Port:</source>
         <translation>Ports:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1590"/>
+        <location filename="../gui/optionsdialog.ui" line="1627"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Pretējā gadījumā, starpniekserveris tiks izmantots tikai savienojumiem ar trakeriem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1593"/>
+        <location filename="../gui/optionsdialog.ui" line="1630"/>
         <source>Use proxy for peer connections</source>
         <translation>Izmantot starpniekserveri koplietotāju savienojumiem</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1602"/>
         <source>Disable connections not supported by proxies</source>
-        <translation>Neatļaut savienojumus, kurus neatbalsta starpniekserveri</translation>
+        <translation type="vanished">Neatļaut savienojumus, kurus neatbalsta starpniekserveri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1612"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;Vairāk informācijas&lt;/a&gt;)</translation>
+        <translation type="vanished">(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;Vairāk informācijas&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1637"/>
@@ -5135,29 +5528,29 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="1887"/>
         <location filename="../gui/optionsdialog.ui" line="2017"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1819"/>
         <location filename="../gui/optionsdialog.ui" line="1835"/>
         <location filename="../gui/optionsdialog.ui" line="1890"/>
         <location filename="../gui/optionsdialog.ui" line="2020"/>
-        <location filename="../gui/optionsdialog.ui" line="2405"/>
-        <location filename="../gui/optionsdialog.ui" line="2418"/>
+        <location filename="../gui/optionsdialog.ui" line="2363"/>
+        <location filename="../gui/optionsdialog.ui" line="2376"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1864"/>
         <location filename="../gui/optionsdialog.ui" line="2046"/>
         <source>Upload:</source>
-        <translation>Augšuplāde:</translation>
+        <translation>Augšupielāde: </translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1871"/>
         <location filename="../gui/optionsdialog.ui" line="2053"/>
         <source>Download:</source>
-        <translation>Lejuplāde:</translation>
+        <translation>Lejupielāde:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1881"/>
@@ -5165,18 +5558,14 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Alternatīvie ātruma ierobežojumi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1162"/>
-        <location filename="../gui/optionsdialog.ui" line="1918"/>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>No:</translation>
+        <translation type="vanished">No:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1142"/>
-        <location filename="../gui/optionsdialog.ui" line="1942"/>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>Līdz:</translation>
+        <translation type="vanished">Uz:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1969"/>
@@ -5254,9 +5643,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Šifrēšanas režīms:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2193"/>
         <source>Prefer encryption</source>
-        <translation>Šifrēšana vēlama</translation>
+        <translation type="vanished">Šifrēšana vēlama</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2198"/>
@@ -5279,458 +5667,499 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Iespējot anonīmo režīmu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2281"/>
+        <location filename="../gui/optionsdialog.ui" line="2278"/>
         <source>Maximum active downloads:</source>
-        <translation>Maksimālais aktīvo lejupielāžu skaits:</translation>
+        <translation>Atļautais aktīvo lejupielāžu skaits:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2301"/>
+        <location filename="../gui/optionsdialog.ui" line="2298"/>
         <source>Maximum active uploads:</source>
-        <translation>Maksimālais aktīvo augšupielāžu skaits:</translation>
+        <translation>Atļautais aktīvo augšupielāžu skaits:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2321"/>
+        <location filename="../gui/optionsdialog.ui" line="2318"/>
         <source>Maximum active torrents:</source>
-        <translation>Maksimālais kopējais aktīvo torrentu skaits:</translation>
+        <translation>Atļautais kopējais aktīvo torrentu skaits:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2380"/>
+        <location filename="../gui/optionsdialog.ui" line="2351"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Neiekļaut šajās robežās lēnos torrentus.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2431"/>
+        <location filename="../gui/optionsdialog.ui" line="2389"/>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepārsniedz Auģsupielādes ātrumu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2438"/>
+        <location filename="../gui/optionsdialog.ui" line="2396"/>
         <source>Download rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepārsniedz Lejupielādes ātrumu:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2471"/>
+        <location filename="../gui/optionsdialog.ui" line="2416"/>
+        <location filename="../gui/optionsdialog.ui" line="2982"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>sek</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2487"/>
+        <location filename="../gui/optionsdialog.ui" line="2432"/>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentu neaktivitātes skaitītājs:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2500"/>
         <source>Share Ratio Limiting</source>
-        <translation>Koplietošanas reitinga limits:</translation>
+        <translation type="vanished">Koplietošanas reitinga limits:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2506"/>
         <source>Seed torrents until their ratio reaches</source>
-        <translation>Dalīt torrentus līdz to Augšupielādes/Lejupielādes attiecība sasniedz limitu </translation>
+        <translation type="vanished">Dalīt torrentus līdz to Augšupielādes/Lejupielādes attiecība sasniedz </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2526"/>
+        <location filename="../gui/optionsdialog.ui" line="2474"/>
         <source>then</source>
         <translation>tad</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2627"/>
         <source>Pause them</source>
-        <translation>Tos nopauzēt</translation>
+        <translation type="vanished">tos apstādināt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2632"/>
         <source>Remove them</source>
-        <translation>Tos izdzēst</translation>
+        <translation type="vanished">tos izdzēst</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2950"/>
+        <location filename="../gui/optionsdialog.ui" line="2845"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Lietot UPnP / NAT-PMP lai pāradresētu portu manā maršrutētājā</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2975"/>
+        <location filename="../gui/optionsdialog.ui" line="2874"/>
         <source>Certificate:</source>
         <translation>Sertifikāts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2987"/>
         <source>Import SSL Certificate</source>
-        <translation>Ievietot SSL sertifikātu</translation>
+        <translation type="vanished">Ievietot SSL sertifikātu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3012"/>
+        <location filename="../gui/optionsdialog.ui" line="2867"/>
         <source>Key:</source>
         <translation>Atslēga:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3024"/>
         <source>Import SSL Key</source>
-        <translation>Ievietot SSL atslēgu</translation>
+        <translation type="vanished">Ievietot SSL atslēgu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3046"/>
+        <location filename="../gui/optionsdialog.ui" line="2887"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Informācija par sertifikātiem&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3081"/>
+        <location filename="../gui/optionsdialog.ui" line="2934"/>
         <source>Change current password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mainīt patreizējo paroli</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3132"/>
+        <location filename="../gui/optionsdialog.ui" line="3010"/>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Lietot citu Tālvadības paneļa interfeisu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3144"/>
+        <location filename="../gui/optionsdialog.ui" line="3022"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Failu atrašanās vieta:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3157"/>
+        <location filename="../gui/optionsdialog.ui" line="3035"/>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Drošība</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3163"/>
+        <location filename="../gui/optionsdialog.ui" line="3041"/>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieslēgt aizsardzību pret clickjacking</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3170"/>
+        <location filename="../gui/optionsdialog.ui" line="3048"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieslēgt aizsardzību pret Cross-Site Request Forgery (CSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3177"/>
+        <location filename="../gui/optionsdialog.ui" line="3055"/>
         <source>Enable Host header validation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3226"/>
+        <location filename="../gui/optionsdialog.ui" line="3104"/>
         <source>Service:</source>
         <translation>Serviss:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3249"/>
+        <location filename="../gui/optionsdialog.ui" line="3127"/>
         <source>Register</source>
         <translation>Reģistrēties</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3258"/>
+        <location filename="../gui/optionsdialog.ui" line="3136"/>
         <source>Domain name:</source>
         <translation>Domēna vārds:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="149"/>
+        <location filename="../gui/optionsdialog.cpp" line="145"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>Iespējojot šo opciju, varat &lt;strong&gt;neatgriezeniski zaudēt&lt;/strong&gt; .torrent failus!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="151"/>
+        <location filename="../gui/optionsdialog.cpp" line="147"/>
         <source>When these options are enabled, qBittorent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>Ja šīs opcijas ir iespējotas, qBittorent &lt;strong&gt;dzēsīs&lt;/strong&gt; .torrent failus pēc tam, kad tie tiks veiksmīgi (pirmais variants) vai ne (otrais variants) pievienoti lejupielādes sarakstam. Tas tiks piemērots &lt;strong&gt;ne tikai&lt;/strong&gt; failiem, kas atvērti, izmantojot &amp;ldquo;Add torrent&amp;rdquo; izvēlnes darbību, bet arī to atverot izmantojot &lt;strong&gt;failu tipu piesaistes&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="156"/>
+        <location filename="../gui/optionsdialog.cpp" line="152"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="213"/>
+        <location filename="../gui/optionsdialog.cpp" line="207"/>
         <source>Choose Alternative UI files location</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties interfeisa failu atrašanās vietu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="305"/>
+        <location filename="../gui/optionsdialog.cpp" line="300"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Nodrošinātie parametri (reģistrjūtīgi):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="306"/>
+        <location filename="../gui/optionsdialog.cpp" line="301"/>
         <source>%N: Torrent name</source>
         <translation>%N: Torrent faila nosaukums</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="307"/>
+        <location filename="../gui/optionsdialog.cpp" line="302"/>
         <source>%L: Category</source>
         <translation>%L: Kategorija</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="308"/>
         <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Birkas (atdalītas ar komatu)</translation>
+        <translation type="vanished">%G: Birkas (atdalītas ar komatu)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="309"/>
+        <location filename="../gui/optionsdialog.cpp" line="304"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Satura ceļš (tāpat kā saknes ceļš daudz-failu torrentam)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="310"/>
+        <location filename="../gui/optionsdialog.cpp" line="305"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: Saknes ceļš (pirmā torrent apakšdirektorija ceļš)</translation>
+        <translation>%R: Saknes ceļš (pirmā torrenta apakšdirektorijas ceļš)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="311"/>
+        <location filename="../gui/optionsdialog.cpp" line="306"/>
         <source>%D: Save path</source>
         <translation>%D: Saglabāšanas vieta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="312"/>
+        <location filename="../gui/optionsdialog.cpp" line="307"/>
         <source>%C: Number of files</source>
         <translation>%C: Failu skaits</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="313"/>
+        <location filename="../gui/optionsdialog.cpp" line="308"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Torrenta izmērs (baitos)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="314"/>
+        <location filename="../gui/optionsdialog.cpp" line="309"/>
         <source>%T: Current tracker</source>
         <translation>%T: Pašreizējais trakeris</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="315"/>
+        <location filename="../gui/optionsdialog.cpp" line="310"/>
         <source>%I: Info hash</source>
         <translation>%I: Jaucējkods</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="316"/>
+        <location filename="../gui/optionsdialog.cpp" line="311"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Padoms: Lai izvairītos no teksta sadalīšanās, ja lietojat atstarpes, ievietojiet parametru pēdiņās (piemēram, &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="385"/>
+        <location filename="../gui/optionsdialog.cpp" line="379"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
+        <translation>Par lēnajiem torrentiem tiek reģistrēti tie, kuru ātrumi nepārsniedz zemāk norādītos, ilgāk kā norādīts &quot;Torrentu neaktivātes skaitītājā&quot;. </translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="388"/>
+        <source>Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1481"/>
+        <location filename="../gui/optionsdialog.cpp" line="389"/>
+        <source>Select certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="391"/>
+        <source>Private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="392"/>
+        <source>Select private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="501"/>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="506"/>
+        <source>Select...</source>
+        <translation type="unfinished">Izvēlēties...</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="514"/>
+        <source>Select qBittorrent theme file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="514"/>
+        <source>qBittorrent Theme File (*.qbtheme)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="1537"/>
         <source>Select folder to monitor</source>
         <translation>Izvēlēties mapi, kuru uzraudzīt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1488"/>
+        <location filename="../gui/optionsdialog.cpp" line="1544"/>
         <source>Folder is already being monitored:</source>
         <translation>Šī mape jau tiek uzraudzīta.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1491"/>
+        <location filename="../gui/optionsdialog.cpp" line="1547"/>
         <source>Folder does not exist:</source>
         <translation>Mape nepastāv.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1494"/>
+        <location filename="../gui/optionsdialog.cpp" line="1550"/>
         <source>Folder is not readable:</source>
         <translation>Mape nav nolasāma.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1505"/>
+        <location filename="../gui/optionsdialog.cpp" line="1561"/>
         <source>Adding entry failed</source>
         <translation>Ieraksta pievienošana neizdevās</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1765"/>
+        <location filename="../gui/optionsdialog.cpp" line="1629"/>
+        <location filename="../gui/optionsdialog.cpp" line="1653"/>
+        <source>Invalid path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="1800"/>
         <source>Location Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Atrašanās vietas kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1765"/>
+        <location filename="../gui/optionsdialog.cpp" line="1800"/>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfeisa failu atrašanās vieta nevar tikt atstāta tukša.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="439"/>
-        <location filename="../gui/optionsdialog.cpp" line="442"/>
-        <location filename="../gui/optionsdialog.cpp" line="1533"/>
-        <location filename="../gui/optionsdialog.cpp" line="1535"/>
+        <location filename="../gui/optionsdialog.cpp" line="448"/>
+        <location filename="../gui/optionsdialog.cpp" line="451"/>
+        <location filename="../gui/optionsdialog.cpp" line="1589"/>
+        <location filename="../gui/optionsdialog.cpp" line="1591"/>
         <source>Choose export directory</source>
         <translation>Izvēlieties eksportēšanas direktoriju</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="436"/>
-        <location filename="../gui/optionsdialog.cpp" line="449"/>
-        <location filename="../gui/optionsdialog.cpp" line="452"/>
+        <location filename="../gui/optionsdialog.cpp" line="303"/>
+        <source>%G: Tags (separated by comma)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.cpp" line="445"/>
+        <location filename="../gui/optionsdialog.cpp" line="458"/>
+        <location filename="../gui/optionsdialog.cpp" line="461"/>
         <source>Choose a save directory</source>
         <translation>Izvēlieties saglabāšanas direktoriju</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="445"/>
+        <location filename="../gui/optionsdialog.cpp" line="454"/>
         <source>Choose an IP filter file</source>
         <translation>Izvēlieties IP filtra failu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="446"/>
+        <location filename="../gui/optionsdialog.cpp" line="455"/>
         <source>All supported filters</source>
         <translation>Visi atbalstītie filtri</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1569"/>
         <source>SSL Certificate</source>
-        <translation>SSL Sertifikāts</translation>
+        <translation type="vanished">SSL Sertifikāts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1619"/>
+        <location filename="../gui/optionsdialog.cpp" line="1693"/>
         <source>Parsing error</source>
         <translation>Parsēšanas kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1619"/>
+        <location filename="../gui/optionsdialog.cpp" line="1693"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Neizdevās parsēt norādīto IP filtru</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1621"/>
+        <location filename="../gui/optionsdialog.cpp" line="1695"/>
         <source>Successfully refreshed</source>
         <translation>Veiksmīgi atsvaidzināts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1621"/>
+        <location filename="../gui/optionsdialog.cpp" line="1695"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP filtra parsēšana veiksmīga: piemēroti %1 nosacījumi.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1594"/>
+        <location filename="../gui/optionsdialog.cpp" line="1659"/>
         <source>Invalid key</source>
         <translation>Nepareiza atslēga</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1594"/>
+        <location filename="../gui/optionsdialog.cpp" line="1659"/>
         <source>This is not a valid SSL key.</source>
-        <translation>Šī nav pareizā SSL atslēga.</translation>
+        <translation>Šī nav derīga SSL atslēga</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1579"/>
+        <location filename="../gui/optionsdialog.cpp" line="1635"/>
         <source>Invalid certificate</source>
         <translation>Nepareizs sertifikāts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="114"/>
+        <location filename="../gui/optionsdialog.cpp" line="110"/>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>Iestatījumi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1569"/>
         <source>Import SSL certificate</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Ievietot SSL sertifikātu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1579"/>
+        <location filename="../gui/optionsdialog.cpp" line="1635"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Šis nav derīgs SSL sertifikāts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1584"/>
         <source>Import SSL key</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Ievietot SSL atslēgu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1584"/>
         <source>SSL key</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">SSL atslēga</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1743"/>
+        <location filename="../gui/optionsdialog.cpp" line="1778"/>
         <source>Time Error</source>
         <translation>Laika kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1743"/>
+        <location filename="../gui/optionsdialog.cpp" line="1778"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Sākuma un beigu laiks nevar būt vienāds</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1752"/>
-        <location filename="../gui/optionsdialog.cpp" line="1756"/>
+        <location filename="../gui/optionsdialog.cpp" line="1787"/>
+        <location filename="../gui/optionsdialog.cpp" line="1791"/>
         <source>Length Error</source>
         <translation>Garuma kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1752"/>
+        <location filename="../gui/optionsdialog.cpp" line="1787"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web interfeisa lietotājvārdam jāsatur vismaz 3 rakstzīmes.</translation>
+        <translation>Tālvadības paneļa lietotājvārdam ir jāsatur vismaz 3 rakstzīmes.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1756"/>
+        <location filename="../gui/optionsdialog.cpp" line="1791"/>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web interfeisa parolei jāsatur vismaz 6 rakstzīmes.</translation>
+        <translation>Tālvadības paneļa parolei ir jāsatur vismaz 6 rakstzīmes.</translation>
     </message>
 </context>
 <context>
     <name>PeerInfo</name>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="283"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="271"/>
         <source>Interested(local) and Choked(peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="289"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="277"/>
         <source>interested(local) and unchoked(peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="298"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="286"/>
         <source>interested(peer) and choked(local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="304"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="292"/>
         <source>interested(peer) and unchoked(local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="312"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="299"/>
         <source>optimistic unchoke</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="319"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="305"/>
         <source>peer snubbed</source>
         <translation>Koplietotājs noraidīts</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="326"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="311"/>
         <source>incoming connection</source>
         <translation>ienākošs savienojums</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="333"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="318"/>
         <source>not interested(local) and unchoked(peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="340"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="325"/>
         <source>not interested(peer) and unchoked(local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="347"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="331"/>
         <source>peer from PEX</source>
         <translation>koplietotājs no PEX</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="354"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="337"/>
         <source>peer from DHT</source>
         <translation>koplietotājs no DHT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="361"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="343"/>
         <source>encrypted traffic</source>
         <translation>Šifrēta datplūsma </translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="368"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="349"/>
         <source>encrypted handshake</source>
         <translation>šifrēts rokasspiediens</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="382"/>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="361"/>
         <source>peer from LSD</source>
         <translation>koplietotājs no LSD</translation>
     </message>
@@ -5738,144 +6167,160 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="73"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="74"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
         <source>Port</source>
         <translation>Ports</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
         <source>Flags</source>
         <translation>Karogi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="76"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
         <source>Connection</source>
         <translation>Savienojums</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="77"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Klients</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="78"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Progress</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="79"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="82"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Lejupielādes ātrums</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="80"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="83"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Augšupielādes ātrums</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="81"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="84"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Lejupielādēti</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="82"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="85"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>Augšupielādēti</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="83"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="86"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
         <translation>Koplietotāja progress</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="84"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="87"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>Faili</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="159"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="161"/>
         <source>Column visibility</source>
         <translation>Kolonnas redzamība</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="235"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="243"/>
         <source>Add a new peer...</source>
         <translation>Pievienot jaunu koplietotāju...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="243"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="282"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="252"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="254"/>
+        <source>Adding peers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="252"/>
+        <source>Some peers cannot be added. Check the Log for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="254"/>
+        <source>Peers are added to this torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="264"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="277"/>
         <source>Ban peer permanently</source>
         <translation>Nobloķēt koplietotāju</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="256"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="278"/>
+        <source>Are you sure you want to permanently ban the selected peers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="286"/>
+        <source>Peer &quot;%1&quot; is manually banned</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Manually adding peer &apos;%1&apos;...</source>
-        <translation>Manuāli pievieno koplietotāju &apos;%1&apos;...</translation>
+        <translation type="vanished">Manuāli pievieno koplietotāju &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="260"/>
         <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
-        <translation>Koplietotāju &apos;%1&apos; neizdevās pievienot šim torrentam.</translation>
+        <translation type="vanished">Koplietotāju &apos;%1&apos; neizdevās pievienot šim torrentam.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="292"/>
         <source>Manually banning peer &apos;%1&apos;...</source>
-        <translation>Manuāli nobloķēts &apos;%1&apos;...</translation>
+        <translation type="vanished">Manuāli nobloķēts &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="264"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="266"/>
         <source>Peer addition</source>
-        <translation>Koplietotāja pievienošana</translation>
+        <translation type="vanished">Koplietotāja pievienošana</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="72"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
         <source>Country</source>
         <translation>Valsts</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="241"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="259"/>
         <source>Copy IP:port</source>
-        <translation>Kopēt IP portu</translation>
+        <translation>Kopēt IP un portu</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="264"/>
         <source>Some peers could not be added. Check the Log for details.</source>
-        <translation>Dažus koplietotājus neizdevās pievienot. Iemeslu skatīt Reģistrā.</translation>
+        <translation type="vanished">Dažus koplietotājus neizdevās pievienot. Iemeslu skatīt Reģistrā.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="266"/>
         <source>The peers were added to this torrent.</source>
-        <translation>Koplietotāji tika veiksmīgi pievienoti torrentam.</translation>
+        <translation type="vanished">Koplietotāji tika veiksmīgi pievienoti torrentam.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="282"/>
         <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation>Vai esat pārliecināts, ka vēlāties nobloķēt atlasītos koplietotājus?</translation>
+        <translation type="vanished">Vai esat pārliecināts, ka vēlāties nobloķēt atlasītos koplietotājus?</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>&amp;Yes</source>
-        <translation>&amp;Jā</translation>
+        <translation type="vanished">&amp;Jā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>&amp;No</source>
-        <translation>&amp;Nē</translation>
+        <translation type="vanished">&amp;Nē</translation>
     </message>
 </context>
 <context>
@@ -5883,37 +6328,37 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="14"/>
         <source>Add Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Koplietotāju pievienošana</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="20"/>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished"></translation>
+        <translation>Saraksts ar jaunajiem koplietotājiem (katrā rindā pa vienam):</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="33"/>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/peersadditiondialog.cpp" line="60"/>
-        <source>No peer entered</source>
-        <translation type="unfinished"></translation>
+        <translation>Paraugs: IPv4:ports / [IPv6]:ports</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="61"/>
-        <source>Please type at least one peer.</source>
-        <translation type="unfinished"></translation>
+        <source>No peer entered</source>
+        <translation>Koplietotājs netika norādīts</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peersadditiondialog.cpp" line="71"/>
-        <source>Invalid peer</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/properties/peersadditiondialog.cpp" line="62"/>
+        <source>Please type at least one peer.</source>
+        <translation>Lūdzu norādiet vismaz vienu koplietotāju.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="72"/>
+        <source>Invalid peer</source>
+        <translation>Nederīgs koplietotājs</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/peersadditiondialog.cpp" line="73"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Koplietotājs &apos;%1&apos; nav derīgs.</translation>
     </message>
 </context>
 <context>
@@ -5932,27 +6377,27 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 <context>
     <name>PiecesBar</name>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="266"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="265"/>
         <source>Files in this piece:</source>
         <translation>Faili šajā daļā:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="270"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="269"/>
         <source>File in this piece</source>
         <translation>Fails šajā daļā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="272"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="271"/>
         <source>File in these pieces</source>
         <translation>Fails šajās daļās</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="291"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="290"/>
         <source>Wait until metadata become available to see detailed information</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzgaidiet līdz kļūs pieejami Metadati, lai iegūtu sīkāku informāciju.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="293"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="292"/>
         <source>Hold Shift key for detailed information</source>
         <translation>Detalizētai informācijai turiet nospiestu Shift taustiņu</translation>
     </message>
@@ -5962,99 +6407,100 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklētāju spraudņi</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="30"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieinstalētie meklētāju spraudņi:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="53"/>
         <source>Name</source>
-        <translation type="unfinished">Nosaukums</translation>
+        <translation>Nosaukums</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="58"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versija</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="63"/>
         <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation>Adrese</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="68"/>
         <location filename="../gui/search/pluginselectdialog.ui" line="134"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ieslēgts</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="81"/>
         <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzmanību: Pārliecinieties, ka ievērojat jūsu valsts autortiesību likumus, pirms lejupielādējat šajos meklētājos atrastos torrentus.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūs varat atrast jaunus meklētāju spraudņus šeit: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
         <source>Install a new one</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalēt jaunu spraudni</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="115"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklēt atjauninājumus</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="122"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Aizvērt</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="139"/>
         <source>Uninstall</source>
-        <translation type="unfinished"></translation>
+        <translation>Atinstalēt</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="159"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="221"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="280"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="157"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="222"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="282"/>
         <source>Yes</source>
-        <translation type="unfinished">Jā</translation>
+        <translation>Jā</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="163"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="202"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="225"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="284"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="161"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="203"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="226"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="286"/>
         <source>No</source>
-        <translation type="unfinished">Nē</translation>
+        <translation>Nē</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="208"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="209"/>
         <source>Uninstall warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Atinstalēšanas brīdinājums</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="208"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="209"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dažus spraudņus nav iespējams atinstalēt, jo tie ir iekļauti qBittorrent. Jūs varat atinstalēt tikai tos spraudņus, kurus pats ieinstalējāt. 
+Esošie spraudņi tika atslēgti. </translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="210"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="211"/>
         <source>Uninstall success</source>
-        <translation type="unfinished"></translation>
+        <translation>Atinstalācija veiksmīga</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="210"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="211"/>
         <source>All selected plugins were uninstalled successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi meklētāju spraudņi tika veiksmīgi atinstalēti</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="323"/>
@@ -6062,69 +6508,69 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdialog.cpp" line="436"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="468"/>
         <source>Search plugin update</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklētāju spraudņu atjaunināšana</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="323"/>
         <source>Plugins installed or updated: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalēti vai atjaunināti spraudņi: %1</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="343"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="350"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Jaunā meklētāja spraudņa adrese</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="344"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="351"/>
         <source>URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adrese:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="348"/>
         <source>Invalid link</source>
-        <translation type="unfinished"></translation>
+        <translation>Nederīga saite</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="348"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zem šīs saites netika atrasts neviens meklētāja spraudnis. </translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="364"/>
         <source>Select search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties meklētāju spraudņus</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="365"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent meklēšanas spraudnis</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="422"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi jūsu spraudņi jau ir atjaunināti. </translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="436"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Atvainojiet, neizdevās sameklēt spraudņu atjauninājumus. %1</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="450"/>
         <source>Search plugin install</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklētāju spraudņu instalācija</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="451"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ieinstalēt &quot;%1&quot; meklētāja spraudni. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="469"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās atjaunināt &quot;%1&quot; meklētāja spraudni. %2</translation>
     </message>
 </context>
 <context>
@@ -6132,22 +6578,35 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="14"/>
         <source>Plugin source</source>
-        <translation type="unfinished"></translation>
+        <translation>Spraudņa avots</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="27"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklēt spraudņa avotu:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="36"/>
         <source>Local file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datorā</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="43"/>
         <source>Web link</source>
-        <translation type="unfinished"></translation>
+        <translation>Internetā</translation>
+    </message>
+</context>
+<context>
+    <name>PortForwarderImpl</name>
+    <message>
+        <location filename="../base/bittorrent/private/portforwarderimpl.cpp" line="103"/>
+        <source>UPnP / NAT-PMP support [ON]</source>
+        <translation type="unfinished">UPnP / NAT-PMP atbalsts [IESLĒGTS]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/private/portforwarderimpl.cpp" line="113"/>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="unfinished">UPnP / NAT-PMP atbalsts [IZSLĒGTS]</translation>
     </message>
 </context>
 <context>
@@ -6155,116 +6614,128 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/powermanagement/powermanagement.cpp" line="77"/>
         <source>qBittorrent is active</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ir aktīvs</translation>
     </message>
 </context>
 <context>
     <name>PreviewSelectDialog</name>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="55"/>
+        <location filename="../gui/previewselectdialog.cpp" line="57"/>
+        <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/previewselectdialog.cpp" line="60"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Priekšskatīt</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="62"/>
+        <location filename="../gui/previewselectdialog.cpp" line="67"/>
         <source>Name</source>
-        <translation type="unfinished">Nosaukums</translation>
+        <translation>Nosaukums</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="63"/>
+        <location filename="../gui/previewselectdialog.cpp" line="68"/>
         <source>Size</source>
-        <translation type="unfinished">Izmērs</translation>
+        <translation>Izmērs</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="64"/>
+        <location filename="../gui/previewselectdialog.cpp" line="69"/>
         <source>Progress</source>
-        <translation type="unfinished">Progress</translation>
+        <translation>Progress</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="97"/>
-        <location filename="../gui/previewselectdialog.cpp" line="142"/>
+        <location filename="../gui/previewselectdialog.cpp" line="131"/>
         <source>Preview impossible</source>
+        <translation>Priekšskatīšana nav iespējama</translation>
+    </message>
+    <message>
+        <location filename="../gui/previewselectdialog.cpp" line="132"/>
+        <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="97"/>
-        <location filename="../gui/previewselectdialog.cpp" line="142"/>
         <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Atvainojiet, šo failu nevar priekšskatīt</translation>
+    </message>
+    <message>
+        <location filename="../gui/previewselectdialog.ui" line="14"/>
+        <source>Preview selection</source>
+        <translation type="unfinished">Priekšskatīt izvēlēto</translation>
     </message>
 </context>
 <context>
     <name>Private::FileLineEdit</name>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="305"/>
+        <location filename="../gui/private/fspathedit_p.cpp" line="308"/>
         <source>&apos;%1&apos; does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; nepastāv</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="307"/>
+        <location filename="../gui/private/fspathedit_p.cpp" line="310"/>
         <source>&apos;%1&apos; does not point to a directory</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; nav atrasta mape</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="309"/>
+        <location filename="../gui/private/fspathedit_p.cpp" line="312"/>
         <source>&apos;%1&apos; does not point to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; nav atrasts fails</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="311"/>
+        <location filename="../gui/private/fspathedit_p.cpp" line="314"/>
         <source>Does not have read permission in &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nav lasīšanas tiesību &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../gui/fspathedit_p.cpp" line="313"/>
+        <location filename="../gui/private/fspathedit_p.cpp" line="316"/>
         <source>Does not have write permission in &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nav rakstīšanas tiesību &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="119"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="121"/>
         <source>Not downloaded</source>
         <translation>Nav lejupielādēts</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="128"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="190"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="130"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="195"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normāla</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="137"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="140"/>
         <source>N/A</source>
-        <translation type="unfinished">Nav atrasta</translation>
+        <translation>Nav zināms</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="189"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="194"/>
         <source>Do not download</source>
         <comment>Do not download (priority)</comment>
-        <translation type="unfinished">Nelejupielādēt</translation>
+        <translation>Nelejupielādēt</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="122"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="191"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="124"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="196"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Augsta</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="116"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="118"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
         <translation>Jaukta</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="125"/>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="192"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="127"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="197"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maksimālā</translation>
+        <translation>Augstākā</translation>
     </message>
 </context>
 <context>
@@ -6421,7 +6892,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="362"/>
         <source>Last Seen Complete:</source>
-        <translation>Pēdējo reizi koplietots</translation>
+        <translation>Pēdējo reizi koplietots:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="622"/>
@@ -6431,7 +6902,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="651"/>
         <source>Pieces:</source>
-        <translation>Daļiņas</translation>
+        <translation>Daļiņas:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="680"/>
@@ -6466,7 +6937,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1096"/>
         <source>Maximum</source>
-        <translation>Maksimālā</translation>
+        <translation>Augstākā</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1088"/>
@@ -6475,159 +6946,151 @@ Those plugins were disabled.</source>
         <translation>Nelejupielādēt</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="454"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="440"/>
         <source>Never</source>
         <translation>Nekad</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="461"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="447"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (ielādētas %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="404"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="407"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="390"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="393"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (%2 šajā sesijā)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="416"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (augšupielādē jau %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="423"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="409"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation>%1 (%2 maks.)</translation>
+        <translation>%1 (%2 atļauti)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="436"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="440"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="426"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (%2 kopā)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="446"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="451"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="432"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="437"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (%2 vidējais)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="594"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="581"/>
         <source>Open</source>
-        <translation>Atvērt</translation>
+        <translation>Atvērt failu</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="595"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="584"/>
         <source>Open Containing Folder</source>
-        <translation>Atvērt failu atrašanās vietu</translation>
+        <translation>Atvērt faila atrašanās vietu</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="596"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="587"/>
         <source>Rename...</source>
         <translation>Pārdēvēt...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="601"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="594"/>
         <source>Priority</source>
         <translation>Prioritāte</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="649"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="653"/>
         <source>New Web seed</source>
         <translation>Pievienot tīmekļa devēju</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="655"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="657"/>
         <source>Remove Web seed</source>
         <translation>Noņemt tīmekļa devēju</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="657"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="662"/>
         <source>Copy Web seed URL</source>
         <translation>Kopēt tīmekļa devēja adresi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="658"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="665"/>
         <source>Edit Web seed URL</source>
         <translation>Izlabot tīmekļa devēja adresi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="687"/>
         <source>New name:</source>
-        <translation>Jaunais nosaukums:</translation>
+        <translation type="vanished">Jaunais nosaukums:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="721"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="759"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation>Šajā mapē jau ir fails ar šādu nosaukumu. Lūdzu izvēlieties citu nosaukumu.</translation>
+        <translation type="vanished">Šajā mapē jau ir fails ar šādu nosaukumu. Lūdzu izvēlieties citu nosaukumu.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="758"/>
         <source>The folder could not be renamed</source>
-        <translation>Mapi neizdevās pārdēvēt</translation>
+        <translation type="vanished">Mapi neizdevās pārdēvēt</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="816"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="695"/>
         <source>&lt;center&gt;&lt;b&gt;Speed graphs are disabled&lt;/b&gt;&lt;p&gt;You may change this setting in Advanced Options &lt;/center&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;center&gt;&lt;b&gt;Ātrumu diagrammas ir atslēgtas&lt;/b&gt;&lt;p&gt;Jūs to varat mainīt Papildus iestatījumos &lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="885"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="766"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="92"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="93"/>
         <source>Filter files...</source>
         <translation>Meklēt failos...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="687"/>
         <source>Renaming</source>
-        <translation>Pārdēvēšana</translation>
+        <translation type="vanished">Pārdēvēšana</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="692"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="720"/>
         <source>Rename error</source>
-        <translation>Kļūda pārdēvēšana</translation>
+        <translation type="vanished">Kļūda pārdēvēšanā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="693"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">Nosaukums satur neatļautus simbolus, lūdzu izvēlieties citu nosaukumu. </translation>
+        <translation type="vanished">Nosaukuma laukums ir atstāts tukšs vai arī satur neatļautus simbolus, lūdzu izvēlieties citu nosaukumu. </translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="828"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="707"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>Pievienot tīmekļa devēju</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="829"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="708"/>
         <source>New URL seed:</source>
         <translation>Pievienot tīmekļa devēju</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="835"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="886"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="714"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="767"/>
         <source>This URL seed is already in the list.</source>
         <translation>Šis tīmekļa devējs jau ir sarakstā.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="879"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="760"/>
         <source>Web seed editing</source>
         <translation>Tīmekļa devēja labošana</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="880"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="761"/>
         <source>Web seed URL:</source>
         <translation>Tīmekļa devēja adrese:</translation>
     </message>
@@ -6635,230 +7098,230 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="133"/>
+        <location filename="../app/main.cpp" line="144"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 ir nezināms komandlīnijas parametrs.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="143"/>
-        <location filename="../app/main.cpp" line="152"/>
+        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="163"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 ir jābūt vienrindiņas komandlīnijas paramateram.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="175"/>
+        <location filename="../app/main.cpp" line="192"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Tu nevari atvērt %1: qBittorrent šim lietotājam jau ir atvērts.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="520"/>
+        <location filename="../app/cmdoptions.cpp" line="523"/>
         <source>Usage:</source>
         <translation>Lietojums:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="523"/>
+        <location filename="../app/cmdoptions.cpp" line="526"/>
         <source>Options:</source>
         <translation>Iespējas:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="157"/>
+        <location filename="../app/cmdoptions.cpp" line="161"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Parametram &apos;%1&apos; ir jāatbilst sintaksei &apos;%1=%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="203"/>
+        <location filename="../app/cmdoptions.cpp" line="207"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Parametram &apos;%1&apos; ir jāatbilst sintaksei &apos;%1=%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="217"/>
+        <location filename="../app/cmdoptions.cpp" line="221"/>
         <source>Expected integer number in environment variable &apos;%1&apos;, but got &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="270"/>
+        <location filename="../app/cmdoptions.cpp" line="274"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
-        <translation type="unfinished"></translation>
+        <translation>Parametram &apos;%1&apos; ir jāatbilst sintaksei &apos;%1=%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="294"/>
+        <location filename="../app/cmdoptions.cpp" line="298"/>
         <source>Expected %1 in environment variable &apos;%2&apos;, but got &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="528"/>
+        <location filename="../app/cmdoptions.cpp" line="531"/>
         <source>port</source>
-        <translation type="unfinished"></translation>
+        <translation>ports</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="419"/>
+        <location filename="../app/cmdoptions.cpp" line="422"/>
         <source>%1 must specify a valid port (1 to 65535).</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 norādiet pareizo portu (starp 1 un 65535).</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="525"/>
+        <location filename="../app/cmdoptions.cpp" line="528"/>
         <source>Display program version and exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="527"/>
+        <location filename="../app/cmdoptions.cpp" line="530"/>
         <source>Display this help message and exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="529"/>
+        <location filename="../app/cmdoptions.cpp" line="532"/>
         <source>Change the Web UI port</source>
-        <translation type="unfinished"></translation>
+        <translation>Mainīt Tālvadības kontroles paneļa portu</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="532"/>
+        <location filename="../app/cmdoptions.cpp" line="535"/>
         <source>Disable splash screen</source>
         <translation>Atslēgt uzlēcošo logu</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="534"/>
+        <location filename="../app/cmdoptions.cpp" line="537"/>
         <source>Run in daemon-mode (background)</source>
         <translation>Darbināt fonā (daemon-mode)</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="537"/>
+        <location filename="../app/cmdoptions.cpp" line="540"/>
         <source>dir</source>
         <extracomment>Use appropriate short form or abbreviation of &quot;directory&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>mape</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="538"/>
+        <location filename="../app/cmdoptions.cpp" line="541"/>
         <source>Store configuration files in &lt;dir&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="539"/>
-        <location filename="../app/cmdoptions.cpp" line="555"/>
-        <source>name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="540"/>
-        <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Glabāt konfigurācijas failus šeit &lt;dir&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="542"/>
+        <location filename="../app/cmdoptions.cpp" line="558"/>
+        <source>name</source>
+        <translation>nosaukums</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="543"/>
+        <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
+        <translation>Glabāt konfigurācijas failu mapēs qBittorrent_&lt;name&gt;</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="545"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="547"/>
+        <location filename="../app/cmdoptions.cpp" line="550"/>
         <source>files or URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>faili vai saites</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="548"/>
+        <location filename="../app/cmdoptions.cpp" line="551"/>
         <source>Download the torrents passed by the user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="562"/>
+        <location filename="../app/cmdoptions.cpp" line="565"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Norādīt vai, pievienojot torrentu, tiks parādīts &quot;Pievienot jaunu torrentu&quot; logs.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="551"/>
+        <location filename="../app/cmdoptions.cpp" line="554"/>
         <source>Options when adding new torrents:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="545"/>
+        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>Shortcut for %1</source>
         <comment>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="555"/>
         <source>path</source>
-        <translation type="unfinished"></translation>
+        <translation>vieta</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="555"/>
         <source>Torrent save path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="553"/>
-        <source>Add torrents as started or paused</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../app/cmdoptions.cpp" line="554"/>
-        <source>Skip hash check</source>
-        <translation type="unfinished">Izlaist jaucējkoda pārbaudi</translation>
+        <translation>Torrenta saglabāšanas vieta</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="556"/>
+        <source>Add torrents as started or paused</source>
+        <translation>Pievienot torrentus sāktus vai apstādinātus</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="557"/>
+        <source>Skip hash check</source>
+        <translation>Izlaist jaucējkoda pārbaudi</translation>
+    </message>
+    <message>
+        <location filename="../app/cmdoptions.cpp" line="559"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Iedalīt torrentus kategorijā. Ja kategorija nepastāv, tā tiks izveidota. </translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="558"/>
+        <location filename="../app/cmdoptions.cpp" line="561"/>
         <source>Download files in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejupielādēt secīgā kārtībā</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="560"/>
+        <location filename="../app/cmdoptions.cpp" line="563"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished">Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
+        <translation>Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="566"/>
+        <location filename="../app/cmdoptions.cpp" line="569"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="571"/>
+        <location filename="../app/cmdoptions.cpp" line="574"/>
         <source>Command line parameters take precedence over environment variables</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="582"/>
+        <location filename="../app/cmdoptions.cpp" line="583"/>
         <source>Help</source>
         <translation>Palīdzība</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="334"/>
+        <location filename="../app/main.cpp" line="363"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Palaist programmu ar -h parametru, lai iegūtu informāciju par komandlīnijas parametriem</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="336"/>
+        <location filename="../app/main.cpp" line="365"/>
         <source>Bad command line</source>
         <translation>Slikta komandlīnija</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="342"/>
+        <location filename="../app/main.cpp" line="371"/>
         <source>Bad command line: </source>
         <translation>Slikta komandlīnija:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="356"/>
+        <location filename="../app/main.cpp" line="385"/>
         <source>Legal Notice</source>
         <translation>Juridiskais ziņojums</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="357"/>
+        <location filename="../app/main.cpp" line="386"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ir failu koplietošanas programma. Katra aktīvi koplietotā torrenta saturs caur augšupielādi būs pieejams citiem lietotājiem internetā. Katrs fails, kuru jūs dalāt ir uz jūsu pašu atbildību. </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="358"/>
+        <location filename="../app/main.cpp" line="387"/>
         <source>No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tālāki atgādinājumi netiks izsniegti.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="370"/>
+        <location filename="../app/main.cpp" line="399"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -6867,69 +7330,73 @@ No further notices will be issued.</source>
 Tālāki atgādinājumi netiks izsniegti. </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="359"/>
+        <location filename="../app/main.cpp" line="388"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Nospiediet taustiņu %1 lai turpinātu...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="371"/>
+        <location filename="../app/main.cpp" line="400"/>
         <source>Legal notice</source>
         <translation>Juridiskais ziņojums</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="372"/>
+        <location filename="../app/main.cpp" line="401"/>
         <source>Cancel</source>
         <translation>Atcelt</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="373"/>
+        <location filename="../app/main.cpp" line="402"/>
         <source>I Agree</source>
         <translation>Es piekrītu</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="64"/>
-        <location filename="../app/upgrade.h" line="78"/>
         <source>Upgrade</source>
-        <translation>Uzlabot</translation>
+        <translation type="vanished">Uzlabot</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="68"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
-        <translation>Jūs veicāt atjaunināšanu no vecākas versijas, kura saglabā lietas savādāk. Jums jāatjaunina arī saglabāšanas sistēma. Jūs nevarēsiet atkārtoti lietot vecāku versiju par v3.3.0. Vai vēlaties turpināt? [j/n]</translation>
+        <translation type="vanished">Jūs veicāt atjaunināšanu no vecākas versijas, kura saglabā lietas savādāk. Jums jāatjaunina arī saglabāšanas sistēma. Jūs nevarēsiet atkārtoti lietot vecāku versiju par v3.3.0. Vai vēlaties turpināt? [j/n]</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="77"/>
         <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
-        <translation>Jūs veicāt atjaunināšanu no vecākas versijas, kura saglabā lietas savādāk. Jums jāatjaunina arī saglabāšanas sistēma. Ja jūs turpināsiet, jūs nevarēsiet atkārtoti lietot vecāku versiju par v3.3.0.</translation>
+        <translation type="vanished">Jūs veicāt atjaunināšanu no vecākas versijas, kura saglabā lietas savādāk. Jums jāatjaunina arī saglabāšanas sistēma. Ja jūs turpināsiet, jūs nevarēsiet atkārtoti lietot vecāku versiju par v3.3.0.</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="210"/>
         <source>Couldn&apos;t migrate torrent with hash: %1</source>
-        <translation>Neizdevās pārvietot torrentu ar jaucējodu: %1</translation>
+        <translation type="vanished">Neizdevās pārvietot torrentu ar jaucējodu: %1</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.h" line="213"/>
         <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
-        <translation>Neizdevās pārvietot torrenta failu. Nederīgs ātrās atsākšanas faila nosaukums: %1</translation>
+        <translation type="vanished">Neizdevās pārvietot torrenta failu. Nederīgs ātrās atsākšanas faila nosaukums: %1</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="241"/>
+        <location filename="../base/settingsstorage.cpp" line="242"/>
         <source>Detected unclean program exit. Using fallback file to restore settings: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Programma netika droši aizvērta. Izmantojam kopijas, lai atjaunotu iestatījumus: %1</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="308"/>
+        <location filename="../base/settingsstorage.cpp" line="309"/>
         <source>An access error occurred while trying to write the configuration file.</source>
         <translation>Piekļuves kļūda mēģinot rakstīt konfigurācijas failā.</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="311"/>
+        <location filename="../base/settingsstorage.cpp" line="312"/>
         <source>A format error occurred while trying to write the configuration file.</source>
         <translation>Formāta kļūda mēģinot rakstīt konfigurācijas failā.</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="314"/>
+        <location filename="../base/settingsstorage.cpp" line="315"/>
         <source>An unknown error occurred while trying to write the configuration file.</source>
+        <translation>Radās nezināma kļūda, mēģinot rakstīt konfigurācijas failā.</translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.cpp" line="46"/>
+        <source>Migrate preferences failed: WebUI https, file: &quot;%1&quot;, error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/upgrade.cpp" line="66"/>
+        <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6939,76 +7406,76 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
         <location filename="../base/rss/rss_autodownloader.cpp" line="81"/>
         <location filename="../base/rss/rss_autodownloader.cpp" line="88"/>
         <source>Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nederīgs datu formāts.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="123"/>
         <source>Couldn&apos;t save RSS AutoDownloader data in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās saglabāt RSS automātiskā ielādētāja datus %1. Kļūda: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="277"/>
         <source>Invalid data format</source>
-        <translation type="unfinished"></translation>
+        <translation>Nederīgs datu formāts.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="418"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās nolasīt RSS automātiskā ielādētāja datus no %1. Kļūda: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="430"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ielādēt RSS automātiskā ielādētāja filtru. Iemesls: %1</translation>
     </message>
 </context>
 <context>
     <name>RSS::Feed</name>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="211"/>
+        <location filename="../base/rss/rss_feed.cpp" line="206"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ielādēt RSS kanālu no &apos;%1&apos;. Iemesls: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="243"/>
+        <location filename="../base/rss/rss_feed.cpp" line="239"/>
         <source>RSS feed at &apos;%1&apos; updated. Added %2 new articles.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanāls &apos;%1&apos; veiksmīgi atjaunināts. Tika pievienota %2 jauni ieraksti. </translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="240"/>
+        <location filename="../base/rss/rss_feed.cpp" line="236"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās parsēt RSS kanālu no &apos;%1&apos;. Iemesls: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="264"/>
+        <location filename="../base/rss/rss_feed.cpp" line="260"/>
         <source>Couldn&apos;t read RSS Session data from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās nolasīt RSS sesijas datus no %1. Kļūda: %2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="275"/>
+        <location filename="../base/rss/rss_feed.cpp" line="271"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās parsēt RSS sesijas datus. Kļūda: %1</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="281"/>
+        <location filename="../base/rss/rss_feed.cpp" line="277"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ielādēt RSS sesijas datus. Nederīgs datu formāts.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_feed.cpp" line="290"/>
+        <location filename="../base/rss/rss_feed.cpp" line="286"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ielādēt RSS ierakstus &apos;%1#%2&apos;. Nederīgs datu formāts.</translation>
     </message>
 </context>
 <context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/private/rss_parser.cpp" line="578"/>
+        <location filename="../base/rss/private/rss_parser.cpp" line="577"/>
         <source>Invalid RSS feed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nederīgs RSS kanāls.</translation>
     </message>
     <message>
-        <location filename="../base/rss/private/rss_parser.cpp" line="581"/>
+        <location filename="../base/rss/private/rss_parser.cpp" line="580"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7016,38 +7483,38 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="162"/>
+        <location filename="../base/rss/rss_session.cpp" line="160"/>
         <source>RSS feed with given URL already exists: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Šis RSS kanāls jau ir pievienots: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="181"/>
+        <location filename="../base/rss/rss_session.cpp" line="179"/>
         <source>Cannot move root folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevar pārvietot root mapi.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="188"/>
-        <location filename="../base/rss/rss_session.cpp" line="226"/>
+        <location filename="../base/rss/rss_session.cpp" line="186"/>
+        <location filename="../base/rss/rss_session.cpp" line="224"/>
         <source>Item doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="219"/>
+        <location filename="../base/rss/rss_session.cpp" line="217"/>
         <source>Cannot delete root folder.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nevar izdzēst root mapi.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="381"/>
+        <location filename="../base/rss/rss_session.cpp" line="379"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="387"/>
+        <location filename="../base/rss/rss_session.cpp" line="385"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="395"/>
+        <location filename="../base/rss/rss_session.cpp" line="393"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7057,50 +7524,50 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="17"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklēt</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="31"/>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS kanālu lasīšana ir atslēgta! Jūs to varat ieslēgt programmas iestatījumos. </translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="43"/>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot kanālu</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="50"/>
         <location filename="../gui/rss/rsswidget.ui" line="174"/>
         <location filename="../gui/rss/rsswidget.ui" line="177"/>
         <source>Mark items read</source>
-        <translation type="unfinished"></translation>
+        <translation>Atzīmēt visus kā skatītus</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="57"/>
         <source>Refresh RSS streams</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsvaidzināt RSS kanālus</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="60"/>
         <source>Update all</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsvaidzināt visus</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="80"/>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS lejupielādētājs...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="108"/>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenti: (dubultklikšķis, lai lejupielādētu)</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="137"/>
         <location filename="../gui/rss/rsswidget.ui" line="140"/>
         <source>Delete</source>
-        <translation type="unfinished">Dzēst</translation>
+        <translation>Dzēst</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="145"/>
@@ -7116,98 +7583,98 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
         <location filename="../gui/rss/rsswidget.ui" line="153"/>
         <location filename="../gui/rss/rsswidget.ui" line="156"/>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsvaidzināt</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="161"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot kanālu...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="166"/>
         <location filename="../gui/rss/rsswidget.ui" line="169"/>
         <source>Update all feeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsvaidzināt visus kanālus</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="182"/>
         <source>Download torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejupielādēt torrentu</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="187"/>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Atvērt ieraksta adresi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="192"/>
         <source>Copy feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopēt kanāla adresi</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="197"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Jauna mape...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="215"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="221"/>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"></translation>
+        <translation>Lūdzu, izvēlēties mapes nosaukumu</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="215"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="221"/>
         <source>Folder name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapes nosaukums:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="216"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="222"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Jauna mape</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="256"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="262"/>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Lūdzu ievadiet RSS kanāla adresi</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="256"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="262"/>
         <source>Feed URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanāle adrese:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="297"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="303"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dzēšanas apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="297"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="303"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vai esat pārliecināts, ka vēlaties izdzēst atlasītos RSS kanālus?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="386"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="392"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Lūdzu izvēlēties jaunu nosaukumu šim RSS kanālam</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="386"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="392"/>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jaunais kanāla nosaukums:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="393"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="399"/>
         <source>Rename failed</source>
         <translation>Pārdēvēšana neizdevās</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="456"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="462"/>
         <source>Date: </source>
-        <translation type="unfinished"></translation>
+        <translation>Datums:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="458"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="464"/>
         <source>Author: </source>
-        <translation type="unfinished"></translation>
+        <translation>Autors:</translation>
     </message>
 </context>
 <context>
@@ -7249,30 +7716,30 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
 <context>
     <name>SearchController</name>
     <message>
-        <location filename="../webui/api/searchcontroller.cpp" line="164"/>
-        <location filename="../webui/api/searchcontroller.cpp" line="170"/>
+        <location filename="../webui/api/searchcontroller.cpp" line="169"/>
+        <location filename="../webui/api/searchcontroller.cpp" line="175"/>
         <source>Offset is out of range</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/searchcontroller.cpp" line="259"/>
+        <location filename="../webui/api/searchcontroller.cpp" line="264"/>
         <source>All plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Visi jūsu spraudņi jau ir atjaunināti. </translation>
     </message>
     <message>
-        <location filename="../webui/api/searchcontroller.cpp" line="263"/>
+        <location filename="../webui/api/searchcontroller.cpp" line="268"/>
         <source>Updating %1 plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Atjaunina %1 spraudņus</translation>
     </message>
     <message>
-        <location filename="../webui/api/searchcontroller.cpp" line="267"/>
+        <location filename="../webui/api/searchcontroller.cpp" line="272"/>
         <source>Updating plugin %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Atjaunina spraudni %1</translation>
     </message>
     <message>
-        <location filename="../webui/api/searchcontroller.cpp" line="274"/>
+        <location filename="../webui/api/searchcontroller.cpp" line="279"/>
         <source>Failed to check for plugin updates: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās sameklēt spraudņu atjauninājumus: %1</translation>
     </message>
 </context>
 <context>
@@ -7280,272 +7747,302 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Forma</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="22"/>
         <source>Results(xxx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rezultāti(xxx)</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="45"/>
         <source>Search in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklēt:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Daži meklētāji meklē meklētājā ierakstītos vārdus gan torrentu aprakstā, gan arī torrentu nosaukumos. Izvēles iespējām tiek piešķirt divi sekojošie režīmi.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Visur &lt;/span&gt;parāda pilnīgi visus rezultātus&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Tikai torrentu nosaukumos&lt;/span&gt; parāda tikai torrentus, kura nosaukumi satur meklētājā ierakstītos vārdus.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="84"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uzstādīt minimālo un maksimālo atļauto devēju skaitu&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="87"/>
         <source>Seeds:</source>
-        <translation type="unfinished">Devēji:</translation>
+        <translation>Devēji:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="94"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimālais devēju skaits&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="116"/>
         <location filename="../gui/search/searchjobwidget.ui" line="204"/>
         <source>to</source>
-        <translation type="unfinished"></translation>
+        <translation>līdz</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maksimālais devēju skaits&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="126"/>
         <location filename="../gui/search/searchjobwidget.ui" line="216"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="167"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uzstādīt mazāko un lielāko izmēru&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="170"/>
         <source>Size:</source>
-        <translation type="unfinished">Izmērs:</translation>
+        <translation>Izmērs:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="179"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mazākais izmērs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="213"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lielākais izmērs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="78"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Nosaukums</translation>
+        <translation>Nosaukums</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="79"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">Izmērs</translation>
+        <translation>Izmērs</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="80"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Devēji</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="81"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ņēmēji</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="82"/>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklētājs</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="132"/>
         <source>Filter search results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklēt rezultātos...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="290"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="303"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rezultāti (parādīti &lt;i&gt;%1&lt;/i&gt; no &lt;i&gt;%2&lt;/i&gt;):</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="341"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="354"/>
         <source>Torrent names only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tikai torrentu nosaukumos</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="342"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="355"/>
         <source>Everywhere</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="363"/>
-        <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Visur</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="378"/>
-        <source>Searching...</source>
+        <source>Use regular expressions</source>
+        <translation>Lietot Regulārās izteiksmes</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="393"/>
+        <source>Download</source>
+        <translation type="unfinished">Lejupielādēt</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="399"/>
+        <source>Open description page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="380"/>
-        <source>Search has finished</source>
-        <translation type="unfinished">Meklēšana pabeigta</translation>
+        <location filename="../gui/search/searchjobwidget.cpp" line="403"/>
+        <source>Copy</source>
+        <translation type="unfinished">Kopēt</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="382"/>
-        <source>Search aborted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="384"/>
-        <source>An error occurred during search...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="386"/>
-        <source>Search returned no results</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/search/searchjobwidget.cpp" line="406"/>
+        <source>Name</source>
+        <translation type="unfinished">Nosaukums</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="410"/>
+        <source>Download link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="415"/>
+        <source>Description page URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="425"/>
+        <source>Searching...</source>
+        <translation>Meklē...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="427"/>
+        <source>Search has finished</source>
+        <translation>Meklēšana pabeigta.</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="429"/>
+        <source>Search aborted</source>
+        <translation>Meklēšana pārtraukta</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="431"/>
+        <source>An error occurred during search...</source>
+        <translation>Meklēšanas laikā radās kļūda...</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="433"/>
+        <source>Search returned no results</source>
+        <translation>Meklēšana nedeva rezultātus</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="458"/>
         <source>Column visibility</source>
-        <translation type="unfinished">Kolonnas redzamība</translation>
+        <translation>Kolonnas redzamība</translation>
     </message>
 </context>
 <context>
     <name>SearchListDelegate</name>
     <message>
-        <location filename="../gui/search/searchlistdelegate.cpp" line="62"/>
+        <location filename="../gui/search/searchlistdelegate.cpp" line="59"/>
         <source>Unknown</source>
-        <translation type="unfinished">Nezināms</translation>
+        <translation>Nezināms</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginManager</name>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="217"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="211"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezināms meklētāja spraudņa faila formāts.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="228"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="222"/>
         <source>Plugin already at version %1, which is greater than %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Pluginam jau ir versija %1, kas ir jaunāka par %2</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="229"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="223"/>
         <source>A more recent version of this plugin is already installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Šobrīd jau ir ieinstalēta šī  spraudņa jaunāka versija.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="250"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="244"/>
         <source>Plugin %1 is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spraudnis %1 nav atbalstīts.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="257"/>
-        <location filename="../base/search/searchpluginmanager.cpp" line="260"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="251"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="254"/>
         <source>Plugin is not supported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spraudnis nav atbalstīts</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="266"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="260"/>
         <source>Plugin %1 has been successfully updated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spraudnis %1 veiksmīgi atjaunināts.</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="330"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="322"/>
         <source>All categories</source>
         <translation>Visas kategorijas</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="331"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="323"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmas</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="332"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="324"/>
         <source>TV shows</source>
-        <translation type="unfinished"></translation>
+        <translation>TV raidījumi</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="333"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="325"/>
         <source>Music</source>
-        <translation type="unfinished"></translation>
+        <translation>Mūzika</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="334"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="326"/>
         <source>Games</source>
-        <translation type="unfinished"></translation>
+        <translation>Spēles</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="335"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="327"/>
         <source>Anime</source>
-        <translation type="unfinished"></translation>
+        <translation>Animācija</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="336"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="328"/>
         <source>Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmatūra</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="337"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="329"/>
         <source>Pictures</source>
-        <translation type="unfinished"></translation>
+        <translation>Attēli</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="338"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="330"/>
         <source>Books</source>
-        <translation type="unfinished"></translation>
+        <translation>Grāmatas</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="377"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="365"/>
         <source>Update server is temporarily unavailable. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Atjauninājumu serveris šobrīd nav pieejams. %1</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="395"/>
-        <location filename="../base/search/searchpluginmanager.cpp" line="397"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="384"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="386"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās lejupielādēt spraudņa failu. %1</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="523"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="513"/>
         <source>Plugin &quot;%1&quot; is outdated, updating to version %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Spraudnis &quot;%1&quot; ir novecojis, atjauninām uz versiju %2</translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="529"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="519"/>
         <source>Incorrect update info received for %1 out of %2 plugins.</source>
-        <translation type="unfinished"></translation>
+        <translation>Par %1 no %2 spraudņiem saņemta kļūdaina atjauninājumu informācija. </translation>
     </message>
     <message>
-        <location filename="../base/search/searchpluginmanager.cpp" line="566"/>
+        <location filename="../base/search/searchpluginmanager.cpp" line="556"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Meklētāja spraudnis &apos;%1&apos; satur nederīgus datus par versiju (&apos;%22&apos;)</translation>
     </message>
 </context>
 <context>
@@ -7553,10 +8050,10 @@ Tālāki atgādinājumi netiks izsniegti. </translation>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
         <location filename="../gui/search/searchwidget.ui" line="51"/>
-        <location filename="../gui/search/searchwidget.cpp" line="286"/>
-        <location filename="../gui/search/searchwidget.cpp" line="306"/>
-        <location filename="../gui/search/searchwidget.cpp" line="377"/>
-        <location filename="../gui/search/searchwidget.cpp" line="385"/>
+        <location filename="../gui/search/searchwidget.cpp" line="252"/>
+        <location filename="../gui/search/searchwidget.cpp" line="272"/>
+        <location filename="../gui/search/searchwidget.cpp" line="335"/>
+        <location filename="../gui/search/searchwidget.cpp" line="343"/>
         <source>Search</source>
         <translation>Meklēt</translation>
     </message>
@@ -7568,102 +8065,99 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. </translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.ui" line="122"/>
         <source>Download</source>
-        <translation>Lejupielādēt</translation>
+        <translation type="vanished">Lejupielādēt</translation>
+    </message>
+    <message>
+        <source>Go to description page</source>
+        <translation type="vanished">Atvērt torrenta apraksta lapu</translation>
+    </message>
+    <message>
+        <source>Copy description page URL</source>
+        <translation type="vanished">Nokopēt apraksta lapas adresi</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="132"/>
-        <source>Go to description page</source>
-        <translation>Atvērt torrenta apraksta lapu</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.ui" line="142"/>
-        <source>Copy description page URL</source>
-        <translation>Nokopēt apraksta lapas adresi</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchwidget.ui" line="162"/>
         <source>Search plugins...</source>
         <translation>Meklētāju spraudņi...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="103"/>
+        <location filename="../gui/search/searchwidget.cpp" line="90"/>
         <source>A phrase to search for.</source>
         <translation>Frāze, ko meklēt.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="104"/>
+        <location filename="../gui/search/searchwidget.cpp" line="91"/>
         <source>Spaces in a search term may be protected by double quotes.</source>
         <translation>Meklējot terminu ar atstarpēm, iekļaujiet to pēdiņās.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="106"/>
+        <location filename="../gui/search/searchwidget.cpp" line="93"/>
         <source>Example:</source>
         <comment>Search phrase example</comment>
         <translation>Piemērs:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="108"/>
+        <location filename="../gui/search/searchwidget.cpp" line="95"/>
         <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
         <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;foo bar&lt;/b&gt;: meklēs &lt;b&gt;foo&lt;/b&gt; un &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="112"/>
+        <location filename="../gui/search/searchwidget.cpp" line="99"/>
         <source>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: search for &lt;b&gt;foo bar&lt;/b&gt;</source>
         <comment>Search phrase example, illustrates quotes usage, double quotedpair of space delimited words, the whole pair is highlighted</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: meklēs &lt;b&gt;foo bar&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="187"/>
+        <location filename="../gui/search/searchwidget.cpp" line="168"/>
         <source>All plugins</source>
         <translation>Visi spraudņi</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="186"/>
+        <location filename="../gui/search/searchwidget.cpp" line="167"/>
         <source>Only enabled</source>
         <translation>Tikai ieslēgtie</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="188"/>
+        <location filename="../gui/search/searchwidget.cpp" line="169"/>
         <source>Select...</source>
         <translation>Izvēlēties...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="299"/>
-        <location filename="../gui/search/searchwidget.cpp" line="371"/>
-        <location filename="../gui/search/searchwidget.cpp" line="373"/>
+        <location filename="../gui/search/searchwidget.cpp" line="265"/>
+        <location filename="../gui/search/searchwidget.cpp" line="329"/>
+        <location filename="../gui/search/searchwidget.cpp" line="331"/>
         <source>Search Engine</source>
         <translation>Meklētājs</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="299"/>
+        <location filename="../gui/search/searchwidget.cpp" line="265"/>
         <source>Please install Python to use the Search Engine.</source>
         <translation>Lūdzu uzinstalējiet Python, lai lietotu meklētāju.</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="316"/>
+        <location filename="../gui/search/searchwidget.cpp" line="282"/>
         <source>Empty search pattern</source>
         <translation>Ievadiet atslēgas vārdus</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="316"/>
+        <location filename="../gui/search/searchwidget.cpp" line="282"/>
         <source>Please type a search pattern first</source>
         <translation>Lūdzu meklētājā ievadiet atslēgas vārdus</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="349"/>
+        <location filename="../gui/search/searchwidget.cpp" line="312"/>
         <source>Stop</source>
         <translation>Pārtraukt</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="373"/>
+        <location filename="../gui/search/searchwidget.cpp" line="331"/>
         <source>Search has finished</source>
         <translation>Meklēšana pabeigta</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchwidget.cpp" line="371"/>
+        <location filename="../gui/search/searchwidget.cpp" line="329"/>
         <source>Search has failed</source>
         <translation>Meklēšana neizdevās</translation>
     </message>
@@ -7673,72 +8167,72 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
     <message>
         <location filename="../gui/shutdownconfirmdialog.ui" line="64"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Vairs nerādīt</translation>
+    </message>
+    <message>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="112"/>
+        <source>qBittorrent will now exit.</source>
+        <translation>qBittorrent klients tagad tiks aizvērts.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="113"/>
-        <source>qBittorrent will now exit.</source>
-        <translation type="unfinished"></translation>
+        <source>E&amp;xit Now</source>
+        <translation>Aizvērt tagad</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="114"/>
-        <source>E&amp;xit Now</source>
-        <translation type="unfinished"></translation>
+        <source>Exit confirmation</source>
+        <translation>Aizvēršanas apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="115"/>
-        <source>Exit confirmation</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="117"/>
+        <source>The computer is going to shutdown.</source>
+        <translation>Dators tagad tiks izslēgts.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="118"/>
-        <source>The computer is going to shutdown.</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Shutdown Now</source>
+        <translation>&amp;Izslēgt tagad</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="119"/>
-        <source>&amp;Shutdown Now</source>
-        <translation type="unfinished"></translation>
+        <source>Shutdown confirmation</source>
+        <translation>Izslēgšanas apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="120"/>
-        <source>Shutdown confirmation</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="122"/>
+        <source>The computer is going to enter suspend mode.</source>
+        <translation>Dators tiks pārslēgts miega režīmā.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="123"/>
-        <source>The computer is going to enter suspend mode.</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Suspend Now</source>
+        <translation>Pārslēgties miega režīmā</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="124"/>
-        <source>&amp;Suspend Now</source>
-        <translation type="unfinished"></translation>
+        <source>Suspend confirmation</source>
+        <translation>Miega režīma apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="125"/>
-        <source>Suspend confirmation</source>
-        <translation type="unfinished"></translation>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="127"/>
+        <source>The computer is going to enter hibernation mode.</source>
+        <translation>Dators tiks pārslēgts hibernācijas režīmā.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="128"/>
-        <source>The computer is going to enter hibernation mode.</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Hibernate Now</source>
+        <translation>Pārslēgties hibernācijas režīmā</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="129"/>
-        <source>&amp;Hibernate Now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="130"/>
         <source>Hibernate confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibernācijas režīma apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="140"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="139"/>
         <source>You can cancel the action within %1 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūs varat atcelt izvēli %1 sekundēs.</translation>
     </message>
 </context>
 <context>
@@ -7746,63 +8240,63 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="26"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="29"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>SpeedPlotView</name>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="164"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="175"/>
         <source>Total Upload</source>
         <translation>Kopējā augšupielāde</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="165"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="176"/>
         <source>Total Download</source>
         <translation>Kopējā lejupielāde</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="169"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="180"/>
         <source>Payload Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="170"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="181"/>
         <source>Payload Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="174"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="185"/>
         <source>Overhead Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="175"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="186"/>
         <source>Overhead Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="179"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="190"/>
         <source>DHT Upload</source>
         <translation>Augšupielāde DHT tīklā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="180"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="191"/>
         <source>DHT Download</source>
         <translation>Lejupielāde DHT tīklā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="184"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="195"/>
         <source>Tracker Upload</source>
         <translation>Augšupielāde trakeros</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="185"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="196"/>
         <source>Tracker Download</source>
         <translation>Lejupielāde trakeros</translation>
     </message>
@@ -7835,57 +8329,67 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
         <translation>6 stundas</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="106"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="103"/>
         <source>Select Graphs</source>
         <translation>Izvēlēties diagrammas</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="80"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
         <source>Total Upload</source>
         <translation>Kopējā augšupielāde</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="81"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="75"/>
+        <source>12 Hours</source>
+        <translation type="unfinished">6 stundas {12 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="76"/>
+        <source>24 Hours</source>
+        <translation type="unfinished">6 stundas {24 ?}</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
         <source>Total Download</source>
         <translation>Kopējā lejupielāde</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>Payload Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Payload Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
         <source>Overhead Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
         <source>Overhead Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
         <source>DHT Upload</source>
         <translation>Augšupielāde DHT tīklā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="89"/>
         <source>DHT Download</source>
         <translation>Lejupielāde DHT tīklā</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="90"/>
         <source>Tracker Upload</source>
         <translation>Augšupielāde trakeros</translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="89"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="91"/>
         <source>Tracker Download</source>
         <translation>Lejupielāde trakeros</translation>
     </message>
@@ -7895,7 +8399,7 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
     <message>
         <location filename="../app/stacktracedialog.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informācija par kļūmi</translation>
     </message>
 </context>
 <context>
@@ -7953,7 +8457,7 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
     <message>
         <location filename="../gui/statsdialog.ui" line="126"/>
         <source>Total buffer size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopējais bufera izmērs:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -7981,7 +8485,7 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/statsdialog.cpp" line="106"/>
+        <location filename="../gui/statsdialog.cpp" line="110"/>
         <source>%1 ms</source>
         <comment>18 milliseconds</comment>
         <translation>%1 ms</translation>
@@ -7990,61 +8494,61 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../gui/statusbar.cpp" line="68"/>
-        <location filename="../gui/statusbar.cpp" line="188"/>
+        <location filename="../gui/statusbar.cpp" line="67"/>
+        <location filename="../gui/statusbar.cpp" line="187"/>
         <source>Connection status:</source>
         <translation>Savienojuma statuss:</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="69"/>
-        <location filename="../gui/statusbar.cpp" line="188"/>
+        <location filename="../gui/statusbar.cpp" line="68"/>
+        <location filename="../gui/statusbar.cpp" line="187"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
         <translation>Nav tieša savienojuma. Tas var norādīt uz nepareizi nokonfigurētu tīkla savienojumu.</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="90"/>
-        <location filename="../gui/statusbar.cpp" line="197"/>
+        <location filename="../gui/statusbar.cpp" line="89"/>
+        <location filename="../gui/statusbar.cpp" line="196"/>
         <source>DHT: %1 nodes</source>
         <translation>DHT: %1 serveri</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="161"/>
+        <location filename="../gui/statusbar.cpp" line="160"/>
         <source>qBittorrent needs to be restarted!</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent ir nepieciešams restarts!</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="178"/>
-        <location filename="../gui/statusbar.cpp" line="184"/>
+        <location filename="../gui/statusbar.cpp" line="177"/>
+        <location filename="../gui/statusbar.cpp" line="183"/>
         <source>Connection Status:</source>
         <translation>Savienojuma statuss:</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="178"/>
+        <location filename="../gui/statusbar.cpp" line="177"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
         <translation>Atslēdzies. Tas parasti nozīmē to, ka qBittorrent neizdevās izveidot kontaktu ar ienākošo savienojumu portu. </translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="184"/>
+        <location filename="../gui/statusbar.cpp" line="183"/>
         <source>Online</source>
         <translation>Pieslēdzies. Tas parasti nozīmē, ka vajadzīgie porti ir atvērti un viss strādā kā nākas. </translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="240"/>
+        <location filename="../gui/statusbar.cpp" line="239"/>
         <source>Click to switch to alternative speed limits</source>
         <translation>Klikšķiniet šeit, lai pielietotu alternatīvos ielādes ātrumus</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="235"/>
+        <location filename="../gui/statusbar.cpp" line="234"/>
         <source>Click to switch to regular speed limits</source>
         <translation>Klikšķiniet šeit, lai pielietotu regulāros ielādes ātrumus</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="252"/>
+        <location filename="../gui/statusbar.cpp" line="251"/>
         <source>Global Download Speed Limit</source>
         <translation>Globālais lejupielādes ātruma limits</translation>
     </message>
     <message>
-        <location filename="../gui/statusbar.cpp" line="266"/>
+        <location filename="../gui/statusbar.cpp" line="265"/>
         <source>Global Upload Speed Limit</source>
         <translation>Globālais augšupielādes ātruma limits</translation>
     </message>
@@ -8052,95 +8556,95 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
 <context>
     <name>StatusFilterWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="135"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="158"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished">Visi (0)</translation>
+        <translation>Visi (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="138"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="161"/>
         <source>Downloading (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejupielādē (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="141"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="164"/>
         <source>Seeding (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Augšupielādē (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="144"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="167"/>
         <source>Completed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pabeigti (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="147"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="170"/>
         <source>Resumed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsākti (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="150"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="173"/>
         <source>Paused (0)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="153"/>
-        <source>Active (0)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="156"/>
-        <source>Inactive (0)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="159"/>
-        <source>Errored (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Apturēti (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="176"/>
-        <source>All (%1)</source>
-        <translation type="unfinished">Visi (%1)</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="177"/>
-        <source>Downloading (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="178"/>
-        <source>Seeding (%1)</source>
-        <translation type="unfinished"></translation>
+        <source>Active (0)</source>
+        <translation>Aktīvi (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="179"/>
-        <source>Completed (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="180"/>
-        <source>Paused (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="181"/>
-        <source>Resumed (%1)</source>
-        <translation type="unfinished"></translation>
+        <source>Inactive (0)</source>
+        <translation>Neaktīvi (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="182"/>
+        <source>Errored (0)</source>
+        <translation>Kļūdaini (0)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="226"/>
+        <source>All (%1)</source>
+        <translation>Visi (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="227"/>
+        <source>Downloading (%1)</source>
+        <translation>Lejupielādē (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="228"/>
+        <source>Seeding (%1)</source>
+        <translation>Augšupielādē (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="229"/>
+        <source>Completed (%1)</source>
+        <translation>Pabeigti (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="231"/>
+        <source>Paused (%1)</source>
+        <translation>Apturēti (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="230"/>
+        <source>Resumed (%1)</source>
+        <translation>Atsākti (%1)</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="232"/>
         <source>Active (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktīvi (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="183"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="233"/>
         <source>Inactive (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Neaktīvi (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="184"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="234"/>
         <source>Errored (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kļūdaini (%1)</translation>
     </message>
 </context>
 <context>
@@ -8153,7 +8657,7 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
     <message>
         <location filename="../gui/tagfiltermodel.cpp" line="258"/>
         <source>All</source>
-        <translation type="unfinished">Visi</translation>
+        <translation>Visi</translation>
     </message>
     <message>
         <location filename="../gui/tagfiltermodel.cpp" line="260"/>
@@ -8164,62 +8668,62 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
 <context>
     <name>TagFilterWidget</name>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="113"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="112"/>
         <source>Add tag...</source>
         <translation>Pievienot birku...</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="120"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="119"/>
         <source>Remove tag</source>
         <translation>Dzēst birku</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="126"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="125"/>
         <source>Remove unused tags</source>
         <translation>Dzēst nelietotās birkas</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="133"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="132"/>
         <source>Resume torrents</source>
-        <translation type="unfinished">Atsākt torrentus</translation>
+        <translation>Atsākt torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="139"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="138"/>
         <source>Pause torrents</source>
-        <translation type="unfinished">Nopauzēt torrentus</translation>
+        <translation>Apturēt torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="145"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="144"/>
         <source>Delete torrents</source>
-        <translation type="unfinished">Dzēst torrentus</translation>
+        <translation>Dzēst torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="188"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="187"/>
         <source>New Tag</source>
         <translation>Jauna birka</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="188"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="187"/>
         <source>Tag:</source>
         <translation>Birka:</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="192"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="191"/>
         <source>Invalid tag name</source>
         <translation>Nederīgs birkas nosaukums</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="193"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="192"/>
         <source>Tag name &apos;%1&apos; is invalid</source>
         <translation>Birkas nosaukums &apos;%1&apos; nav derīgs</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="208"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="207"/>
         <source>Tag exists</source>
         <translation>Kļūda nosaukumā</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="208"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="207"/>
         <source>Tag name already exists.</source>
         <translation>Birka ar šādu nosaukumu jau pastāv.</translation>
     </message>
@@ -8234,42 +8738,44 @@ Spiediet uz &quot;Meklētāju spraudņi...&quot; pogas, lai kādu uzinstalētu. 
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nosaukums:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
-        <translation type="unfinished">Saglabāšanas vieta:</translation>
+        <translation>Saglabāšanas vieta:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="42"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Izvēlieties vietu, kur saglabāt</translation>
+        <translation>Izvēlieties vietu, kur saglabāt</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="58"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="57"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Jauna kategorija</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcategorydialog.cpp" line="66"/>
+        <source>Invalid category name</source>
+        <translation>Nederīgs kategorijas nosaukums</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="67"/>
-        <source>Invalid category name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="68"/>
         <source>Category name cannot contain &apos;\&apos;.
 Category name cannot start/end with &apos;/&apos;.
 Category name cannot contain &apos;//&apos; sequence.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorijas nosaukums nedrīkst saturēt &apos;\&apos;.
+Kategorijas nosaukums nedrīkst sākties vai beigties ar &apos;/&apos;.
+Kategorijas nosaukums nedrīkst saturēt &apos;//&apos; simbolus.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="74"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="73"/>
         <source>Category creation error</source>
         <translation>Kļūda nosaukumā</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="75"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="74"/>
         <source>Category with the given name already exists.
 Please choose a different name and try again.</source>
         <translation>Kategorija ar šādu nosaukumu jau pastāv.
@@ -8279,34 +8785,81 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>TorrentContentModel</name>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="207"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="183"/>
         <source>Name</source>
         <translation>Nosaukums</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="207"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="183"/>
         <source>Size</source>
         <translation>Izmērs</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="207"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="183"/>
         <source>Progress</source>
         <translation>Progress</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="207"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="183"/>
         <source>Download Priority</source>
         <translation>Lejupielādes prioritāte</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="207"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="183"/>
         <source>Remaining</source>
         <translation>Atlikuši</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="207"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="183"/>
         <source>Availability</source>
         <translation>Pieejamība</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="107"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="226"/>
+        <source>Renaming</source>
+        <translation type="unfinished">Pārdēvēšana</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="107"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="226"/>
+        <source>New name:</source>
+        <translation type="unfinished">Jaunais nosaukums:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="112"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="140"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="231"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="255"/>
+        <source>Rename error</source>
+        <translation type="unfinished">Kļūda pārdēvēšanā</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="113"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="232"/>
+        <source>The name is empty or contains forbidden characters, please choose a different one.</source>
+        <translation type="unfinished">Nosaukuma laukums ir atstāts tukšs vai arī satur neatļautus simbolus, lūdzu izvēlieties citu nosaukumu. </translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="141"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="256"/>
+        <source>This name is already in use in this folder. Please use a different name.</source>
+        <translation type="unfinished">Šajā mapē jau ir fails ar šādu nosaukumu. Lūdzu izvēlieties citu nosaukumu.</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="180"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="295"/>
+        <source>The folder could not be renamed</source>
+        <translation type="unfinished">Mapi neizdevās pārdēvēt</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="181"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="296"/>
+        <source>This name is already in use. Please use a different name.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8314,384 +8867,417 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="17"/>
         <source>Torrent Creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentu veidotājs</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="23"/>
         <source>Select file/folder to share</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties failu vai mapi, kuru pievienot torrentam</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="31"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vieta:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="58"/>
         <source>[Drag and drop area]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Ievelc un Nomet]</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="68"/>
         <location filename="../gui/torrentcreatordialog.cpp" line="111"/>
         <source>Select file</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlies failu</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="75"/>
         <location filename="../gui/torrentcreatordialog.cpp" line="104"/>
         <source>Select folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlies mapi</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="87"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Iestatījumi</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="95"/>
         <source>Piece size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Daļiņas izmērs:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="109"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automātiski</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="114"/>
         <source>16 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>16 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="119"/>
         <source>32 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>32 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="124"/>
         <source>64 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>64 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="129"/>
         <source>128 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>128 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="134"/>
         <source>256 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>256 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="139"/>
         <source>512 KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>512 KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="144"/>
         <source>1 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>1 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="149"/>
         <source>2 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>2 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="154"/>
         <source>4 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>4 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="159"/>
         <source>8 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>8 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="164"/>
         <source>16 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>16 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="169"/>
         <source>32 MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>32 MiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="177"/>
         <source>Calculate number of pieces:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aprēķināt daļiņu skaitu:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="206"/>
         <source>Private torrent (Won&apos;t distribute on DHT network)</source>
-        <translation type="unfinished"></translation>
+        <translation>Privāts torrents (netiks koplietots DHT tīklā)</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="213"/>
         <source>Start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Sākt koplietošanu uzreiz pēc torrenta izveides</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="223"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorēt koplietošanas reitinga limitus šim torrentam</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="230"/>
         <source>Optimize alignment</source>
+        <translation>Optimizēt izvietojumu</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="241"/>
+        <source>Align to piece boundary for files larger than:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.ui" line="243"/>
+        <location filename="../gui/torrentcreatordialog.ui" line="248"/>
+        <source>Disabled</source>
+        <translation type="unfinished">Atslēgts</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="251"/>
+        <source> KiB</source>
+        <translation type="unfinished">KiB</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="288"/>
         <source>Fields</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/torrentcreatordialog.ui" line="249"/>
-        <source>You can separate tracker tiers / groups with an empty line.</source>
-        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/torrentcreatordialog.ui" line="259"/>
-        <source>Web seed URLs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/torrentcreatordialog.ui" line="280"/>
-        <source>Tracker URLs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/torrentcreatordialog.ui" line="287"/>
-        <source>Comments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Laukumi</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="294"/>
-        <source>Source:</source>
-        <translation type="unfinished"></translation>
+        <source>You can separate tracker tiers / groups with an empty line.</source>
+        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
+        <translation>Jūs varat atdalīt trakeru adrešu grupas ar tukšu līniju</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.ui" line="309"/>
+        <location filename="../gui/torrentcreatordialog.ui" line="304"/>
+        <source>Web seed URLs:</source>
+        <translation>Tīmekļa devēju adreses:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="325"/>
+        <source>Tracker URLs:</source>
+        <translation>Trakeru adreses:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="332"/>
+        <source>Comments:</source>
+        <translation>Komentārs:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="339"/>
+        <source>Source:</source>
+        <translation>Avots:</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.ui" line="354"/>
         <source>Progress:</source>
-        <translation type="unfinished">Progress:</translation>
+        <translation>Progress:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="70"/>
         <source>Create Torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Izveidot torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="148"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="182"/>
-        <location filename="../gui/torrentcreatordialog.cpp" line="194"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="154"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="193"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="205"/>
         <source>Torrent creation failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta izveida neizdevās</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="148"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="154"/>
         <source>Reason: Path to file/folder is not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Iemesls: Faila/mapes atrašanās vieta nav nolasāma.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="155"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="161"/>
         <source>Select where to save the new torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Izvēlieties, kur saglabāt jauno torrentu</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="155"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="161"/>
         <source>Torrent Files (*.torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentu faili (*.torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="182"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="193"/>
         <source>Reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="194"/>
-        <source>Reason: Created torrent is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Iemesls: %1</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="205"/>
-        <source>Torrent creator</source>
-        <translation type="unfinished"></translation>
+        <source>Reason: Created torrent is invalid. It won&apos;t be added to download list.</source>
+        <translation>Iemesls: Izveidotais torrenta fails nav derīgs. Tas netiks pievienots torrentu sarakstam.</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcreatordialog.cpp" line="206"/>
+        <location filename="../gui/torrentcreatordialog.cpp" line="217"/>
+        <source>Torrent creator</source>
+        <translation>Torrentu veidotājs</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcreatordialog.cpp" line="218"/>
         <source>Torrent created:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrents izveidots:</translation>
     </message>
 </context>
 <context>
     <name>TorrentInfo</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="111"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="125"/>
         <source>File size exceeds max limit %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fails lielums pārsniedz atļauto %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="121"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="135"/>
         <source>Torrent file read error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta faila nolasīšanas kļūda: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="126"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="140"/>
         <source>Torrent file read error: size mismatch</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta faila nolasīšanas kļūda: izmēri nesakrīt</translation>
     </message>
 </context>
 <context>
     <name>TorrentsController</name>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="585"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="595"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kļūda. &apos;%1&apos; nav derīgs torrenta fails.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="706"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="755"/>
         <source>Priority must be an integer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="709"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="758"/>
         <source>Priority is not valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="715"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="764"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta metadati vēl nav lejupielādēti</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="723"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="772"/>
         <source>File IDs must be integers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="725"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="774"/>
         <source>File ID is not valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="861"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="872"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="883"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="894"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="911"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="922"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="933"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="944"/>
         <source>Torrent queueing must be enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="908"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="958"/>
         <source>Save path cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Saglabāšanas vietu nevar atstāt tukšu</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="995"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1012"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1045"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1062"/>
         <source>Category cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoriju nevar atstāt tukšu</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1001"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1051"/>
         <source>Unable to create category</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās izveidot kategoriju</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1015"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1065"/>
         <source>Unable to edit category</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās labot kategoriju</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="912"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="962"/>
         <source>Cannot make save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="916"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="966"/>
         <source>Cannot write to directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="920"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="970"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Pārvietošana: pārvietot &quot;%1&quot;, no &quot;%2&quot; uz &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="934"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="984"/>
         <source>Incorrect torrent name</source>
+        <translation>Nepareizs torrenta nosaukums</translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1033"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1048"/>
+        <source>Incorrect category name</source>
+        <translation>Nepareizs kategorijas nosaukums</translation>
+    </message>
+</context>
+<context>
+    <name>TrackerEntriesDialog</name>
+    <message>
+        <location filename="../gui/trackerentriesdialog.ui" line="14"/>
+        <source>Edit trackers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="983"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="998"/>
-        <source>Incorrect category name</source>
+        <location filename="../gui/trackerentriesdialog.ui" line="20"/>
+        <source>One tracker URL per line.
+
+- You can split the trackers into groups by inserting blank lines.
+- All trackers within the same group will belong to the same tier.
+- The group on top will be tier 0, the next group tier 1 and so on.
+- Below will show the common subset of trackers of the selected torrents.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="204"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="254"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Visi (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="207"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="257"/>
         <source>Trackerless (0)</source>
         <translation>Bez trakeriem (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="210"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="260"/>
         <source>Error (0)</source>
         <translation>Kļūda (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="213"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="263"/>
         <source>Warning (0)</source>
         <translation>Brīdinājums (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="258"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="313"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="308"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="363"/>
         <source>Trackerless (%1)</source>
         <translation>Bez trakeriem (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="355"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="387"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="405"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="437"/>
         <source>Error (%1)</source>
         <translation>Kļūda (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="368"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="402"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="418"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="452"/>
         <source>Warning (%1)</source>
         <translation>Brīdinājums (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="463"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="504"/>
         <source>Resume torrents</source>
         <translation>Atsākt torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="464"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="507"/>
         <source>Pause torrents</source>
-        <translation>Nopauzēt torrentus</translation>
+        <translation>Apturēt torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="465"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="510"/>
         <source>Delete torrents</source>
         <translation>Dzēst torrentus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="499"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="513"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="535"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="549"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Visi (%1)</translation>
@@ -8700,173 +9286,171 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="262"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="352"/>
-        <source>Working</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="263"/>
-        <source>Disabled</source>
-        <translation type="unfinished">Atslēgts</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="284"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="161"/>
-        <source>This torrent is private</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="356"/>
-        <source>Updating...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="360"/>
-        <source>Not working</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="364"/>
-        <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="276"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="370"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="371"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="372"/>
+        <source>Working</source>
+        <translation>Strādā</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="277"/>
+        <source>Disabled</source>
+        <translation>Atslēgts</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="298"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="163"/>
+        <source>This torrent is private</source>
+        <translation>Privāts torrents</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="374"/>
+        <source>Updating...</source>
+        <translation>Atjaunina...</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="378"/>
+        <source>Not working</source>
+        <translation>Nestrādā</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="382"/>
+        <source>Not contacted yet</source>
+        <translation>Vēl nav savienots</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="390"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="393"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="396"/>
         <source>N/A</source>
-        <translation type="unfinished">Nav atrasta</translation>
+        <translation>Nav zināms</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="457"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="486"/>
         <source>Tracker editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Trakera rediģēšana</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="457"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="486"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Trakera adrese:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="472"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="491"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="500"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Trakera rediģēšana neizdevās</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="462"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="491"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ievadītā trakera adrese nav derīga.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="472"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="500"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Šī trakera adrese jau ir pievienota.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="526"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="556"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot jaunu trakeri...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="531"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="560"/>
         <source>Edit tracker URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Rediģēt trakeri adresi...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="532"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="563"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Noņemt trakeri</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="533"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="566"/>
         <source>Copy tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopēt trakera adresi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="538"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="571"/>
         <source>Force reannounce to selected trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Piespiedu datu atjaunināšana ar izvēlētajiem trakeriem</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="540"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="576"/>
         <source>Force reannounce to all trackers</source>
+        <translation>Piespiedu datu atjaunināšana ar visiem trakeriem</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="601"/>
+        <source>Tier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="587"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="602"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Adrese</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="588"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="603"/>
         <source>Status</source>
-        <translation type="unfinished">Statuss</translation>
+        <translation>Statuss</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="590"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="605"/>
         <source>Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Devēji</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="589"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="604"/>
         <source>Peers</source>
-        <translation type="unfinished">Koplietotāji</translation>
+        <translation>Koplietotāji</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="591"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="606"/>
         <source>Leeches</source>
-        <translation type="unfinished"></translation>
+        <translation>Ņēmēji</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="592"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="607"/>
         <source>Downloaded</source>
-        <translation type="unfinished">Lejupielādēti</translation>
+        <translation>Lejupielādēti</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="593"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="608"/>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziņojums</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="613"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="627"/>
         <source>Column visibility</source>
-        <translation type="unfinished">Kolonnas redzamība</translation>
+        <translation>Kolonnas redzamība</translation>
     </message>
 </context>
 <context>
     <name>TrackerLoginDialog</name>
     <message>
-        <location filename="../gui/trackerlogindialog.ui" line="14"/>
-        <location filename="../gui/trackerlogindialog.ui" line="47"/>
         <source>Tracker authentication</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Pierakstīšanās trakerim</translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.ui" line="64"/>
         <source>Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Trakeris:</translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.ui" line="86"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Autorizācija</translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.ui" line="94"/>
         <source>Username:</source>
-        <translation type="unfinished">Lietotājvārds:</translation>
+        <translation type="vanished">Lietotājvārds:</translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.ui" line="117"/>
         <source>Password:</source>
-        <translation type="unfinished">Parole:</translation>
+        <translation type="vanished">Parole:</translation>
     </message>
     <message>
-        <location filename="../gui/trackerlogindialog.cpp" line="46"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Pierakstīties</translation>
     </message>
 </context>
 <context>
@@ -8874,54 +9458,53 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Trakeru pievienošana</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished"></translation>
+        <translation>Saraksts ar jaunajiem trakeriem (katrā rindā pa vienam):</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ar µTorrent saderīgas sarakstes URL:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondialog.cpp" line="117"/>
+        <location filename="../gui/properties/trackersadditiondialog.cpp" line="124"/>
         <source>No change</source>
-        <translation type="unfinished"></translation>
+        <translation>Nav izmaiņu</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondialog.cpp" line="117"/>
+        <location filename="../gui/properties/trackersadditiondialog.cpp" line="124"/>
         <source>No additional trackers were found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jauni trakeri netika atrasti.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondialog.cpp" line="125"/>
+        <location filename="../gui/properties/trackersadditiondialog.cpp" line="86"/>
         <source>Download error</source>
-        <translation type="unfinished">Lejupielādes kļūda</translation>
+        <translation>Lejupielādes kļūda</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackersadditiondialog.cpp" line="125"/>
+        <location filename="../gui/properties/trackersadditiondialog.cpp" line="87"/>
         <source>The trackers list could not be downloaded, reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Trakeru sarakstu neizdevās lejupielādēt, iemesls: %1</translation>
     </message>
 </context>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="231"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="246"/>
         <source>Downloading</source>
         <translation>Lejupielādē</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="237"/>
         <source>Downloading metadata</source>
         <comment>used when loading a magnet link</comment>
-        <translation>Lejupielādējam metadatus</translation>
+        <translation type="vanished">Lejupielādējam metadatus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="243"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="254"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>Nodrošinām brīvo vietu</translation>
@@ -8932,83 +9515,113 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Nopauzēts</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="254"/>
         <source>Queued</source>
         <comment>i.e. torrent is queued</comment>
-        <translation>Ierindots</translation>
+        <translation type="vanished">Ierindots</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="247"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="257"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>Augšupielādē</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="234"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="248"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>Apstājies</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="240"/>
         <source>[F] Downloading</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[P] Lejupielādē</translation>
+        <translation type="vanished">[P] Lejupielādē</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="250"/>
         <source>[F] Seeding</source>
         <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation>[P] Augšupielādēšana</translation>
+        <translation type="vanished">[P] Augšupielādēšana</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="258"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="265"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>Pārbauda</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="262"/>
         <source>Queued for checking</source>
         <comment>i.e. torrent is queued for hash checking</comment>
-        <translation>Ierindots pārbaudei</translation>
+        <translation type="vanished">Ierindots pārbaudei</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="266"/>
         <source>Checking resume data</source>
         <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation>Pārbaudām atsākšanas datus</translation>
+        <translation type="vanished">Pārbaudām atsākšanas datus</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="272"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="250"/>
+        <source>Downloading metadata</source>
+        <comment>Used when loading a magnet link</comment>
+        <translation type="unfinished">Lejupielādējam metadatus</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="252"/>
+        <source>[F] Downloading</source>
+        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <translation type="unfinished">[P] Lejupielādē</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="259"/>
+        <source>[F] Seeding</source>
+        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <translation type="unfinished">[P] Augšupielādēšana</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="262"/>
+        <source>Queued</source>
+        <comment>Torrent is queued</comment>
+        <translation type="unfinished">Ierindots</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="267"/>
+        <source>Checking resume data</source>
+        <comment>Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
+        <translation type="unfinished">Pārbaudām atsākšanas datus</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="271"/>
         <source>Completed</source>
         <translation>Pabeigts</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="275"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="273"/>
         <source>Moving</source>
         <comment>Torrent local data are being moved/relocated</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pārvieto</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="278"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="275"/>
         <source>Missing Files</source>
         <translation>Trūkst faili</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="281"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="277"/>
         <source>Errored</source>
-        <comment>torrent status, the torrent has an error</comment>
-        <translation>Kļūdaini</translation>
+        <comment>Torrent status, the torrent has an error</comment>
+        <translation type="unfinished">Kļūdaini</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="127"/>
+        <source>Errored</source>
+        <comment>torrent status, the torrent has an error</comment>
+        <translation type="vanished">Kļūdaini</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="129"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (augšupielādē jau %2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="188"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="192"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>pirms %1</translation>
@@ -9017,22 +9630,22 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="592"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="628"/>
         <source>Status</source>
         <translation>Statuss</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="600"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="636"/>
         <source>Categories</source>
         <translation>Kategorijas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="619"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="655"/>
         <source>Tags</source>
         <translation>Birkas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="637"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="673"/>
         <source>Trackers</source>
         <translation>Trakeri</translation>
     </message>
@@ -9040,426 +9653,481 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>TransferListModel</name>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="98"/>
+        <location filename="../gui/transferlistmodel.cpp" line="96"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Nosaukums</translation>
+        <translation>Nosaukums</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistmodel.cpp" line="97"/>
+        <source>Size</source>
+        <comment>i.e: torrent size</comment>
+        <translation>Izmērs</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistmodel.cpp" line="98"/>
+        <source>Done</source>
+        <comment>% Done</comment>
+        <translation>Pabeigti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="99"/>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="unfinished">Izmērs</translation>
+        <source>Status</source>
+        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
+        <translation>Statuss</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="100"/>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="unfinished"></translation>
+        <source>Seeds</source>
+        <comment>i.e. full sources (often untranslated)</comment>
+        <translation>Devēji</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="101"/>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">Statuss</translation>
+        <source>Peers</source>
+        <comment>i.e. partial sources (often untranslated)</comment>
+        <translation>Koplietotāji</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="102"/>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <source>Down Speed</source>
+        <comment>i.e: Download speed</comment>
+        <translation>Lejupielādes ātrums</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="103"/>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished">Koplietotāji</translation>
+        <source>Up Speed</source>
+        <comment>i.e: Upload speed</comment>
+        <translation>Augšupielādes ātrums</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="104"/>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="unfinished">Lejupielādes ātrums</translation>
+        <source>Ratio</source>
+        <comment>Share ratio</comment>
+        <translation>Reitings</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="105"/>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="unfinished">Augšupielādes ātrums</translation>
+        <source>ETA</source>
+        <comment>i.e: Estimated Time of Arrival / Time left</comment>
+        <translation>ETA</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="106"/>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="unfinished"></translation>
+        <source>Category</source>
+        <translation>Kategorija</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="107"/>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished"></translation>
+        <source>Tags</source>
+        <translation>Birkas</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="108"/>
-        <source>Category</source>
-        <translation type="unfinished">Kategorija</translation>
+        <source>Added On</source>
+        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
+        <translation>Pievienots</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="109"/>
-        <source>Tags</source>
-        <translation type="unfinished">Birkas</translation>
+        <source>Completed On</source>
+        <comment>Torrent was completed on 01/01/2010 08:00</comment>
+        <translation>Pabeigts</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="110"/>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <source>Tracker</source>
+        <translation>Trakeris</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="111"/>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <source>Down Limit</source>
+        <comment>i.e: Download limit</comment>
+        <translation>Lejupielādes limits</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="112"/>
-        <source>Tracker</source>
-        <translation type="unfinished"></translation>
+        <source>Up Limit</source>
+        <comment>i.e: Upload limit</comment>
+        <translation>Augšupielādes limits</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="113"/>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translation type="unfinished"></translation>
+        <source>Downloaded</source>
+        <comment>Amount of data downloaded (e.g. in MB)</comment>
+        <translation>Lejupielādēti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="114"/>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translation type="unfinished"></translation>
+        <source>Uploaded</source>
+        <comment>Amount of data uploaded (e.g. in MB)</comment>
+        <translation>Augšupielādēti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="115"/>
-        <source>Downloaded</source>
-        <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished">Lejupielādēti</translation>
+        <source>Session Download</source>
+        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
+        <translation>Lejupielādēti šajā sesijā</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="116"/>
-        <source>Uploaded</source>
-        <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished">Augšupielādēti</translation>
+        <source>Session Upload</source>
+        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
+        <translation>Augšupielādēti šajā sesijā</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="117"/>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <source>Remaining</source>
+        <comment>Amount of data left to download (e.g. in MB)</comment>
+        <translation>Atlikuši</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="118"/>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <source>Time Active</source>
+        <comment>Time (duration) the torrent is active (not paused)</comment>
+        <translation>Aktīvs jau</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="119"/>
-        <source>Remaining</source>
-        <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished">Atlikuši</translation>
+        <source>Save path</source>
+        <comment>Torrent save path</comment>
+        <translation>Atrašanās vieta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="120"/>
-        <source>Time Active</source>
-        <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished"></translation>
+        <source>Completed</source>
+        <comment>Amount of data completed (e.g. in MB)</comment>
+        <translation>Pabeigti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="121"/>
-        <source>Save path</source>
-        <comment>Torrent save path</comment>
-        <translation type="unfinished"></translation>
+        <source>Ratio Limit</source>
+        <comment>Upload share ratio limit</comment>
+        <translation>Reitinga limits</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="122"/>
-        <source>Completed</source>
-        <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished">Pabeigts</translation>
+        <source>Last Seen Complete</source>
+        <comment>Indicates the time when the torrent was last seen complete/whole</comment>
+        <translation>Pēdējo reizi koplietots</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="123"/>
-        <source>Ratio Limit</source>
-        <comment>Upload share ratio limit</comment>
-        <translation type="unfinished"></translation>
+        <source>Last Activity</source>
+        <comment>Time passed since a chunk was downloaded/uploaded</comment>
+        <translation>Pēdējā aktivitāte</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="124"/>
-        <source>Last Seen Complete</source>
-        <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="unfinished"></translation>
+        <source>Total Size</source>
+        <comment>i.e. Size including unwanted data</comment>
+        <translation>Kopējais izmērs</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="125"/>
-        <source>Last Activity</source>
-        <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistmodel.cpp" line="126"/>
-        <source>Total Size</source>
-        <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished"></translation>
+        <source>Availability</source>
+        <comment>The number of distributed copies of the torrent</comment>
+        <translation type="unfinished">Pieejamība</translation>
     </message>
 </context>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="704"/>
+        <location filename="../gui/transferlistwidget.cpp" line="634"/>
         <source>Column visibility</source>
         <translation>Kolonnas redzamība</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="399"/>
+        <location filename="../gui/transferlistwidget.cpp" line="304"/>
         <source>Choose save path</source>
         <translation>Izvēlieties vietu, kur saglabāt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="617"/>
+        <location filename="../gui/transferlistwidget.cpp" line="541"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrenta lejupielādes ātruma ierobežošana</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="642"/>
+        <location filename="../gui/transferlistwidget.cpp" line="566"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrenta augšupielādes ātruma ierobežošana</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="686"/>
+        <location filename="../gui/transferlistwidget.cpp" line="615"/>
         <source>Recheck confirmation</source>
         <translation>Pārbaudes apstiprināšana</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="686"/>
+        <location filename="../gui/transferlistwidget.cpp" line="615"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Vai esat pārliecināts, ka vēlāties pārbaudīt izvēlētos torrentus?()</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="833"/>
+        <location filename="../gui/transferlistwidget.cpp" line="799"/>
         <source>Rename</source>
         <translation>Pārdēvēt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="833"/>
+        <location filename="../gui/transferlistwidget.cpp" line="799"/>
         <source>New name:</source>
         <translation>Jaunais nosaukums:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="868"/>
+        <location filename="../gui/transferlistwidget.cpp" line="838"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Atsākt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="872"/>
+        <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>Piespiedu atsākšana</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Nopauzēt</translation>
+        <translation>Apturēt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="406"/>
+        <location filename="../gui/transferlistwidget.cpp" line="311"/>
         <source>Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <comment>Set location: moving &quot;ubuntu_16_04.iso&quot;, from &quot;/home/dir1&quot; to &quot;/home/dir2&quot;</comment>
+        <translation>Pārvietošana: pārvietot &quot;%1&quot;, no &quot;%2&quot; uz &quot;%3&quot;</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="515"/>
+        <source>Unable to preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="775"/>
+        <location filename="../gui/transferlistwidget.cpp" line="515"/>
+        <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="708"/>
         <source>Add Tags</source>
         <translation>Pievienot birkas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="783"/>
+        <location filename="../gui/transferlistwidget.cpp" line="749"/>
         <source>Remove All Tags</source>
         <translation>Dzēst visas birkas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="783"/>
+        <location filename="../gui/transferlistwidget.cpp" line="749"/>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished"></translation>
+        <translation>Noņemt visas birkas no atlasītajiem torrentiem?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="797"/>
+        <location filename="../gui/transferlistwidget.cpp" line="763"/>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>Atdalīt birkas ar komatu:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="804"/>
+        <location filename="../gui/transferlistwidget.cpp" line="770"/>
         <source>Invalid tag</source>
         <translation>Nederīga birka</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="805"/>
+        <location filename="../gui/transferlistwidget.cpp" line="771"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>Birkas nosaukums: &apos;%1&apos; nav derīgs</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="874"/>
+        <location filename="../gui/transferlistwidget.cpp" line="844"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Dzēst</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="876"/>
+        <location filename="../gui/transferlistwidget.cpp" line="846"/>
         <source>Preview file...</source>
         <translation>Priekšskatīt failu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="878"/>
+        <location filename="../gui/transferlistwidget.cpp" line="848"/>
         <source>Limit share ratio...</source>
         <translation>Ierobežot koplietošanas reitingu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="880"/>
+        <location filename="../gui/transferlistwidget.cpp" line="850"/>
         <source>Limit upload rate...</source>
         <translation>Ierobežot augšupielādes ātrumu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="882"/>
+        <location filename="../gui/transferlistwidget.cpp" line="852"/>
         <source>Limit download rate...</source>
         <translation>Ierobežot lejupielādes ātrumu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="884"/>
+        <location filename="../gui/transferlistwidget.cpp" line="854"/>
         <source>Open destination folder</source>
         <translation>Atvērt failu atrašanās vietu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="886"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Pārvietot augšup</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="888"/>
+        <location filename="../gui/transferlistwidget.cpp" line="858"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Pārvietot lejup</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="890"/>
+        <location filename="../gui/transferlistwidget.cpp" line="860"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Novietot saraksta augšgalā</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="892"/>
+        <location filename="../gui/transferlistwidget.cpp" line="862"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Novietot saraksta apakšā</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="894"/>
+        <location filename="../gui/transferlistwidget.cpp" line="864"/>
         <source>Set location...</source>
         <translation>Nomainīt failu atrašanās vietu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="898"/>
+        <location filename="../gui/transferlistwidget.cpp" line="868"/>
         <source>Force reannounce</source>
+        <translation>Piespiedu datu atjaunināšana ar trakeriem</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <source>Magnet link</source>
+        <translation type="unfinished">Magnētsaite</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="872"/>
+        <source>Name</source>
+        <translation type="unfinished">Nosaukums</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="874"/>
+        <source>Hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="902"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1100"/>
+        <source>Queue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="1108"/>
+        <source>Copy</source>
+        <translation type="unfinished">Kopēt</translation>
+    </message>
+    <message>
         <source>Copy name</source>
-        <translation>Kopēt nosaukumu</translation>
+        <translation type="vanished">Kopēt nosaukumu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="904"/>
         <source>Copy hash</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Kopēt jaucējkodu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="914"/>
+        <location filename="../gui/transferlistwidget.cpp" line="882"/>
         <source>Download first and last pieces first</source>
         <translation>Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="917"/>
+        <location filename="../gui/transferlistwidget.cpp" line="884"/>
         <source>Automatic Torrent Management</source>
         <translation>Automātiska torrentu pārvaldība</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="919"/>
+        <location filename="../gui/transferlistwidget.cpp" line="885"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
         <translation>Automātiskais režīms nozīmē, ka torrenta īpašības (piem. saglabāšanas vieta), tiks piešķirta atbilstoši izvēlētajai kategorijai. </translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1022"/>
+        <location filename="../gui/transferlistwidget.cpp" line="887"/>
+        <source>Edit trackers...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="991"/>
         <source>Category</source>
         <translation>Kategorija</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1023"/>
+        <location filename="../gui/transferlistwidget.cpp" line="993"/>
         <source>New...</source>
         <comment>New category...</comment>
         <translation>Jaunu...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1024"/>
+        <location filename="../gui/transferlistwidget.cpp" line="996"/>
         <source>Reset</source>
         <comment>Reset category</comment>
         <translation>Atiestatīt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1041"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1018"/>
         <source>Tags</source>
         <translation>Birkas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1042"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1020"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot birku...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1043"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1023"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>Noņemt visas</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1105"/>
         <source>Priority</source>
-        <translation>Prioritāte</translation>
+        <translation type="vanished">Prioritāte</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="896"/>
+        <location filename="../gui/transferlistwidget.cpp" line="866"/>
         <source>Force recheck</source>
         <translation>Piespiedu pārbaude</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="900"/>
         <source>Copy magnet link</source>
-        <translation>Kopēt magnētsaiti</translation>
+        <translation type="vanished">Kopēt magnētsaiti</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="906"/>
+        <location filename="../gui/transferlistwidget.cpp" line="876"/>
         <source>Super seeding mode</source>
         <translation>Super-augšupielādēšanas režīms</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="909"/>
+        <location filename="../gui/transferlistwidget.cpp" line="878"/>
         <source>Rename...</source>
         <translation>Pārdēvēt...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="911"/>
+        <location filename="../gui/transferlistwidget.cpp" line="880"/>
         <source>Download in sequential order</source>
         <translation>Lejupielādēt secīgā kārtībā</translation>
+    </message>
+</context>
+<context>
+    <name>UIThemeManager</name>
+    <message>
+        <location filename="../gui/uithememanager.cpp" line="63"/>
+        <source>Failed to load UI theme from file: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/uithememanager.cpp" line="85"/>
+        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9467,12 +10135,12 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="14"/>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenta augšupielādes/lejupielādes reitinga ierobežošana</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="20"/>
         <source>Use global share limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Lietot globālos uzstādījumus</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="23"/>
@@ -9484,22 +10152,22 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="30"/>
         <source>Set no share limit</source>
-        <translation type="unfinished"></translation>
+        <translation>Neierobežot</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="42"/>
         <source>Set share limit to</source>
-        <translation type="unfinished"></translation>
+        <translation>Reitinga robeža</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="100"/>
         <source>ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>reitings</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.ui" line="107"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minūtes</translation>
     </message>
     <message>
         <location filename="../gui/updownratiodialog.cpp" line="85"/>
@@ -9515,70 +10183,70 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>Utils::ForeignApps</name>
     <message>
-        <location filename="../base/utils/foreignapps.cpp" line="80"/>
+        <location filename="../base/utils/foreignapps.cpp" line="81"/>
         <source>Python detected, executable name: &apos;%1&apos;, version: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Python atrasts, nosaukums: &apos;%1&apos;, versija: %2</translation>
     </message>
     <message>
-        <location filename="../base/utils/foreignapps.cpp" line="270"/>
+        <location filename="../base/utils/foreignapps.cpp" line="271"/>
         <source>Python not detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Python nav atrasts</translation>
     </message>
 </context>
 <context>
     <name>WebApplication</name>
     <message>
-        <location filename="../webui/webapplication.cpp" line="182"/>
+        <location filename="../webui/webapplication.cpp" line="178"/>
         <source>Unacceptable file type, only regular file is allowed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="189"/>
+        <location filename="../webui/webapplication.cpp" line="185"/>
         <source>Symlinks inside alternative UI folder are forbidden.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="426"/>
+        <location filename="../webui/webapplication.cpp" line="312"/>
         <source>Using built-in Web UI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Izmanto iebūvēto Tālvadības paneļa interfeisu.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="428"/>
+        <location filename="../webui/webapplication.cpp" line="314"/>
         <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Izmanto svešu Tālvadības paneļa interfeisu: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="438"/>
+        <location filename="../webui/webapplication.cpp" line="324"/>
         <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tālvadības paneļa tulkojums (%1) veiksmīgi ielādēts.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="442"/>
+        <location filename="../webui/webapplication.cpp" line="328"/>
         <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Neizdevās ielādet Tālvadības paneļa tulkojumu (%1).</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="500"/>
+        <location filename="../webui/webapplication.cpp" line="386"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
-        <translation type="unfinished"></translation>
+        <translation>Pārsniedza atļauto faila izmēru (%1)!</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="712"/>
+        <location filename="../webui/webapplication.cpp" line="587"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="721"/>
+        <location filename="../webui/webapplication.cpp" line="596"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="738"/>
+        <location filename="../webui/webapplication.cpp" line="613"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="770"/>
+        <location filename="../webui/webapplication.cpp" line="633"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9586,22 +10254,22 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>WebUI</name>
     <message>
-        <location filename="../webui/webui.cpp" line="86"/>
+        <location filename="../webui/webui.cpp" line="96"/>
         <source>Web UI: HTTPS setup successful</source>
         <translation>Tālvadības panelis: HTTPS uzstādīts veiksmīgi</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="88"/>
+        <location filename="../webui/webui.cpp" line="98"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
         <translation>Tālvadības panelis: HTTPS uzstādīšana neizdevās, atgriežamies pie HTTP</translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="100"/>
+        <location filename="../webui/webui.cpp" line="109"/>
         <source>Web UI: Now listening on IP: %1, port: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/webui.cpp" line="103"/>
+        <location filename="../webui/webui.cpp" line="112"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9609,92 +10277,97 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>fsutils</name>
     <message>
-        <location filename="../base/private/profile_p.cpp" line="92"/>
         <source>Downloads</source>
-        <translation>Lejupielādes</translation>
+        <translation type="vanished">Lejupielādes</translation>
     </message>
 </context>
 <context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="81"/>
+        <location filename="../base/utils/misc.cpp" line="66"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="82"/>
+        <location filename="../base/utils/misc.cpp" line="67"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="83"/>
+        <location filename="../base/utils/misc.cpp" line="68"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="84"/>
+        <location filename="../base/utils/misc.cpp" line="69"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
         <translation>GiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="85"/>
+        <location filename="../base/utils/misc.cpp" line="70"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>TiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="86"/>
+        <location filename="../base/utils/misc.cpp" line="71"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation>PiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="87"/>
+        <location filename="../base/utils/misc.cpp" line="72"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation>EiB</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="268"/>
+        <location filename="../base/utils/misc.cpp" line="235"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/s</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="368"/>
+        <location filename="../base/utils/misc.cpp" line="342"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1st %2m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="373"/>
+        <location filename="../base/utils/misc.cpp" line="348"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1d %2st</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="277"/>
+        <location filename="../base/utils/misc.cpp" line="353"/>
+        <source>%1y %2d</source>
+        <comment>e.g: 2years 10days</comment>
+        <translation type="unfinished">%1d %2st {1y?} {2d?}</translation>
+    </message>
+    <message>
+        <location filename="../base/utils/misc.cpp" line="244"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>Nezināms</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="148"/>
+        <location filename="../base/utils/misc.cpp" line="128"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
         <translation>qBittorent tagad izslēgs datoru, jo visas lejupielādes ir pabeigtas.</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="359"/>
+        <location filename="../base/utils/misc.cpp" line="333"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1m</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="363"/>
+        <location filename="../base/utils/misc.cpp" line="337"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
@@ -9703,14 +10376,12 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
 <context>
     <name>preview</name>
     <message>
-        <location filename="../gui/previewselectdialog.ui" line="14"/>
         <source>Preview selection</source>
-        <translation>Priekšskatīt izvēlēto</translation>
+        <translation type="vanished">Priekšskatīt izvēlēto</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.ui" line="20"/>
         <source>The following files support previewing, please select one of them:</source>
-        <translation>Sekojošie faili atbalsta priekšskatīšanu, lūdzu izvēlieties vienu no tiem:</translation>
+        <translation type="vanished">Sekojošie faili atbalsta priekšskatīšanu, lūdzu izvēlieties vienu no tiem:</translation>
     </message>
 </context>
 </TS>
