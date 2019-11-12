@@ -131,9 +131,9 @@
                 onFailure: function (response) {
                     //Unpexted behaviour, eror with status 200 trigger, why?
                     if (response.status !== 200) {
-                        throw "Error deleting rule";
+                        throw "Error refreshing feed";
                     }
-                    loadFeeds();
+                    setTimeout(loadFeeds, 500); //give server some time to update its state
 
                 }
             }).send();
