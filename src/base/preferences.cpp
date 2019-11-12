@@ -116,6 +116,11 @@ void Preferences::setUseCustomUITheme(const bool use)
     setValue("Preferences/General/UseCustomUITheme", use);
 }
 
+QString Preferences::getFontColor(int n, const QString &default_color) const
+{
+    return value("Preferences/Colors/" + QString::number(n), default_color).toString();
+}
+
 QString Preferences::customUIThemePath() const
 {
     return value("Preferences/General/CustomUIThemePath").toString();

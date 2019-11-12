@@ -100,6 +100,7 @@ public:
     void setLocale(const QString &locale);
     bool useCustomUITheme() const;
     void setUseCustomUITheme(bool use);
+    QString getFontColor(int n, const QString &default_color) const;
     QString customUIThemePath() const;
     void setCustomUIThemePath(const QString &path);
     bool deleteTorrentFilesAsDefault() const;
