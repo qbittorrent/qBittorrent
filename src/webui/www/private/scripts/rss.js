@@ -43,24 +43,24 @@
 
     var view =  new Element("div",  { html: "<div><div data-name='modal' data-bind='modal: modal'>" + modalTemplate + "</div></div>"});
 
-    var feeds = null;
+    var feeds = ko.observableArray();
     var feedsUrl = new URI('api/v2/rss/items');
     feedsUrl.setData('withData', true);
 
-    var loadFeeds = function (callback) {
+    var loadFeeds = function(callback) {
         new Request.JSON({
             url: feedsUrl,
             noCache: true,
             method: 'get',
-            onFailure: function () {
+            onFailure: function() {
                 //TODO: error handling
             },
-            onSuccess: function (response) {
-                feeds = Object.keys(response).map(key => ({ name: key, data: response[key] }));
+            onSuccess: function(response) {
+                feeds(Object.keys(response).map(key => ({ name: key, data: response[key] })));
                 if (callback) callback(feeds);
             }
         }).send();
-    }
+    };
     loadFeeds();
 
     window.addEvent('domready', function() {
@@ -87,7 +87,7 @@
     };
 
     var FeedsModel = function() {
-        this.feeds = ko.observable(feeds.map(f => new FeedDownloadsModel(f)));
+        this.feeds = ko.computed(() => feeds().map(f => new FeedDownloadsModel(f)));
         this.url = ko.observable();
         this.path = ko.observable();     
 
@@ -95,7 +95,7 @@
     };
 
     FeedsModel.prototype = {
-        addNewFeed: function () {
+        addNewFeed: function() {
             var feed = { url: this.url() };
             if (this.path()) {
                 feed.path = this.path();
@@ -106,10 +106,10 @@
                 url: url,
                 noCache: true,
                 method: 'post',
-                data: feed  
+                data: feed
             }).send();
         }
-    }
+    };
 
     var FeedDownloadsModel = function(feed) {
         this.name = feed.name;
@@ -128,6 +128,14 @@
                 noCache: true,
                 method: 'post',
                 data: { itemPath: this.name },
+                onFailure: function (response) {
+                    //Unpexted behaviour, eror with status 200 trigger, why?
+                    if (response.status !== 200) {
+                        throw "Error deleting rule";
+                    }
+                    loadFeeds();
+
+                }
             }).send();
         },
         moveFeed: function() {
@@ -218,7 +226,7 @@
         this.savePath = ko.observable(data.savePath);
         this.ignoreDays = data.ignoreDays;
         this.useRegex = data.useRegex;
-        this.feeds = feeds.map(f => new Feed(f, data.affectedFeeds.indexOf(f.data.url) >= 0));
+        this.feeds = feeds().map(f => new Feed(f, data.affectedFeeds.indexOf(f.data.url) >= 0));
 
         this.data = data;
         this.selectedPath = ko.observable(data.savePath);
