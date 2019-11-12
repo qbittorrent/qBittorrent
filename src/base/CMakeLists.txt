@@ -35,6 +35,7 @@ net/dnsupdater.h
 net/downloadmanager.h
 net/geoipmanager.h
 net/portforwarder.h
+net/private/downloadhandlerimpl.h
 net/private/geoipdatabase.h
 net/proxyconfigurationmanager.h
 net/reverseresolution.h
@@ -107,6 +108,7 @@ net/dnsupdater.cpp
 net/downloadmanager.cpp
 net/geoipmanager.cpp
 net/portforwarder.cpp
+net/private/downloadhandlerimpl.cpp
 net/private/geoipdatabase.cpp
 net/proxyconfigurationmanager.cpp
 net/reverseresolution.cpp

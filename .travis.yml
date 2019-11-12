@@ -205,6 +205,8 @@ script:
   - |
     cd "$TRAVIS_BUILD_DIR"
     if [ "$build_system" = "qmake" ]; then
+      # scan only as lupdate is prone to hang
+      lupdate -extensions c,cpp,h,hpp,ui ./
       ./bootstrap.sh
       ./configure $qmake_conf CXXFLAGS="$CXXFLAGS"
     else

@@ -32,6 +32,7 @@
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QShowEvent>
 #include <QStandardItemModel>
 #include <QTableView>
 
