@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,42 +29,39 @@
 
 #pragma once
 
-#include <vector>
+#include <QNetworkReply>
 
-#include <libtorrent/fwd.hpp>
-#include <libtorrent/version.hpp>
+#include "base/net/downloadmanager.h"
 
-#include <QHash>
+class QObject;
+class QUrl;
 
-#include "base/net/portforwarder.h"
-
-#if (LIBTORRENT_VERSION_NUM < 10200)
-using LTPortMapping = int;
-#else
-#include <libtorrent/portmap.hpp>
-using LTPortMapping = lt::port_mapping_t;
-#endif
-
-class PortForwarderImpl : public Net::PortForwarder
+class DownloadHandlerImpl : public Net::DownloadHandler
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PortForwarderImpl)
+    Q_DISABLE_COPY(DownloadHandlerImpl)
 
 public:
-    explicit PortForwarderImpl(lt::session *provider, QObject *parent = nullptr);
-    ~PortForwarderImpl() override;
+    explicit DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent);
+    ~DownloadHandlerImpl() override;
 
-    bool isEnabled() const override;
-    void setEnabled(bool enabled) override;
+    void cancel() override;
 
-    void addPort(quint16 port) override;
-    void deletePort(quint16 port) override;
+    QString url() const;
+    const Net::DownloadRequest downloadRequest() const;
+
+    void assignNetworkReply(QNetworkReply *reply);
 
 private:
-    void start();
-    void stop();
+    void processFinishedDownload();
+    void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
+    void handleRedirection(const QUrl &newUrl);
+    void setError(const QString &error);
+    void finish();
 
-    bool m_active;
-    lt::session *m_provider;
-    QHash<quint16, std::vector<LTPortMapping>> m_mappedPorts;
+    static QString errorCodeToString(QNetworkReply::NetworkError status);
+
+    QNetworkReply *m_reply = nullptr;
+    const Net::DownloadRequest m_downloadRequest;
+    Net::DownloadResult m_result;
 };

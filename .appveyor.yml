@@ -51,6 +51,8 @@ before_build:
 
 build_script:
   - cd "%REPO_DIR%"
+  # scan only as lupdate is prone to hang
+  - lupdate -extensions c,cpp,h,hpp,ui .
   - qmake qbittorrent.pro && cd src && qmake src.pro
   - jom -j2 -f Makefile.Release
 
