@@ -42,6 +42,7 @@ enum DoubleClickAction
 {
     TOGGLE_PAUSE,
     OPEN_DEST,
+    PREVIEW_FILE,
     NO_ACTION
 };
 
