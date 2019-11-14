@@ -101,7 +101,7 @@ namespace
     void openDestinationFolder(const BitTorrent::TorrentHandle *const torrent)
     {
 #ifdef Q_OS_MACOS
-        MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
+        MacUtils::openFiles({torrent->contentPath(true)});
 #else
         if (torrent->filesCount() == 1)
             Utils::Gui::openFolderSelect(torrent->contentPath(true));
