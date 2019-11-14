@@ -102,6 +102,7 @@ const QString Str_AssignedCategory(QStringLiteral("assignedCategory"));
 const QString Str_LastMatch(QStringLiteral("lastMatch"));
 const QString Str_IgnoreDays(QStringLiteral("ignoreDays"));
 const QString Str_AddPaused(QStringLiteral("addPaused"));
+const QString Str_CreateSubfolder(QStringLiteral("createSubfolder"));
 const QString Str_SmartFilter(QStringLiteral("smartFilter"));
 const QString Str_PreviouslyMatched(QStringLiteral("previouslyMatchedEpisodes"));
 
@@ -123,6 +124,7 @@ namespace RSS
         QString savePath;
         QString category;
         TriStateBool addPaused = TriStateBool::Undefined;
+        TriStateBool createSubfolder = TriStateBool::Undefined;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -144,6 +146,7 @@ namespace RSS
                     && (savePath == other.savePath)
                     && (category == other.category)
                     && (addPaused == other.addPaused)
+                    && (createSubfolder == other.createSubfolder)
                     && (smartFilter == other.smartFilter);
         }
     };
@@ -439,6 +442,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
         , {Str_AddPaused, triStateBoolToJsonValue(addPaused())}
+        , {Str_CreateSubfolder, triStateBoolToJsonValue(createSubfolder())}
         , {Str_SmartFilter, useSmartFilter()}
         , {Str_PreviouslyMatched, QJsonArray::fromStringList(previouslyMatchedEpisodes())}};
 }
@@ -455,6 +459,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
     rule.setAddPaused(jsonValueToTriStateBool(jsonObj.value(Str_AddPaused)));
+    rule.setCreateSubfolder(jsonValueToTriStateBool(jsonObj.value(Str_CreateSubfolder)));
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
     rule.setUseSmartFilter(jsonObj.value(Str_SmartFilter).toBool(false));
@@ -582,6 +587,16 @@ TriStateBool AutoDownloadRule::addPaused() const
 void AutoDownloadRule::setAddPaused(const TriStateBool &addPaused)
 {
     m_dataPtr->addPaused = addPaused;
+}
+
+TriStateBool AutoDownloadRule::createSubfolder() const
+{
+    return m_dataPtr->createSubfolder;
+}
+
+void AutoDownloadRule::setCreateSubfolder(const TriStateBool &createSubfolder)
+{
+    m_dataPtr->createSubfolder = createSubfolder;
 }
 
 QString AutoDownloadRule::assignedCategory() const
