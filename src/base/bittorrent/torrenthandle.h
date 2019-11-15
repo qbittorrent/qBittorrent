@@ -271,7 +271,7 @@ namespace BitTorrent
         qlonglong activeTime() const;
         qlonglong finishedTime() const;
         qlonglong seedingTime() const;
-        qulonglong eta() const;
+        qlonglong eta() const;
         QVector<qreal> filesProgress() const;
         int seedsCount() const;
         int peersCount() const;

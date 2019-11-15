@@ -303,7 +303,7 @@ qlonglong TorrentHandle::totalSize() const
     return m_torrentInfo.totalSize();
 }
 
-// get the size of the torrent without the filtered files
+// size without the "don't download" files
 qlonglong TorrentHandle::wantedSize() const
 {
     return m_nativeStatus.total_wanted;
@@ -1031,7 +1031,7 @@ qlonglong TorrentHandle::seedingTime() const
 #endif
 }
 
-qulonglong TorrentHandle::eta() const
+qlonglong TorrentHandle::eta() const
 {
     if (isPaused()) return MAX_ETA;
 

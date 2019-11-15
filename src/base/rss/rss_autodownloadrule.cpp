@@ -62,7 +62,7 @@ namespace
         return TriStateBool::Undefined;
     }
 
-    QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
+    QJsonValue triStateBoolToJsonValue(const TriStateBool triStateBool)
     {
         switch (static_cast<signed char>(triStateBool)) {
         case 0:  return false;
@@ -80,7 +80,7 @@ namespace
         }
     }
 
-    int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
+    int triStateBoolToAddPausedLegacy(const TriStateBool triStateBool)
     {
         switch (static_cast<signed char>(triStateBool)) {
         case 0:  return 2; // never
@@ -584,7 +584,7 @@ TriStateBool AutoDownloadRule::addPaused() const
     return m_dataPtr->addPaused;
 }
 
-void AutoDownloadRule::setAddPaused(const TriStateBool &addPaused)
+void AutoDownloadRule::setAddPaused(const TriStateBool addPaused)
 {
     m_dataPtr->addPaused = addPaused;
 }
@@ -594,7 +594,7 @@ TriStateBool AutoDownloadRule::createSubfolder() const
     return m_dataPtr->createSubfolder;
 }
 
-void AutoDownloadRule::setCreateSubfolder(const TriStateBool &createSubfolder)
+void AutoDownloadRule::setCreateSubfolder(const TriStateBool createSubfolder)
 {
     m_dataPtr->createSubfolder = createSubfolder;
 }
