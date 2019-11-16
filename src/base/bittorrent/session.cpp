@@ -2503,15 +2503,17 @@ int Session::globalDownloadSpeedLimit() const
     return m_globalDownloadSpeedLimit * 1024;
 }
 
-void Session::setGlobalDownloadSpeedLimit(int limit)
+void Session::setGlobalDownloadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
-    limit /= 1024;
-    if (limit < 0) limit = 0;
-    if (limit == globalDownloadSpeedLimit()) return;
+    if (limit <= 0)
+        m_globalDownloadSpeedLimit = 0;
+    else if (limit <= 1024)
+        m_globalDownloadSpeedLimit = 1;
+    else
+        m_globalDownloadSpeedLimit = (limit / 1024);
 
-    m_globalDownloadSpeedLimit = limit;
     if (!isAltGlobalSpeedLimitEnabled())
         configureDeferred();
 }
@@ -2523,15 +2525,17 @@ int Session::globalUploadSpeedLimit() const
     return m_globalUploadSpeedLimit * 1024;
 }
 
-void Session::setGlobalUploadSpeedLimit(int limit)
+void Session::setGlobalUploadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
-    limit /= 1024;
-    if (limit < 0) limit = 0;
-    if (limit == globalUploadSpeedLimit()) return;
+    if (limit <= 0)
+        m_globalUploadSpeedLimit = 0;
+    else if (limit <= 1024)
+        m_globalUploadSpeedLimit = 1;
+    else
+        m_globalUploadSpeedLimit = (limit / 1024);
 
-    m_globalUploadSpeedLimit = limit;
     if (!isAltGlobalSpeedLimitEnabled())
         configureDeferred();
 }
@@ -2543,15 +2547,17 @@ int Session::altGlobalDownloadSpeedLimit() const
     return m_altGlobalDownloadSpeedLimit * 1024;
 }
 
-void Session::setAltGlobalDownloadSpeedLimit(int limit)
+void Session::setAltGlobalDownloadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
-    limit /= 1024;
-    if (limit < 0) limit = 0;
-    if (limit == altGlobalDownloadSpeedLimit()) return;
+    if (limit <= 0)
+        m_altGlobalDownloadSpeedLimit = 0;
+    else if (limit <= 1024)
+        m_altGlobalDownloadSpeedLimit = 1;
+    else
+        m_altGlobalDownloadSpeedLimit = (limit / 1024);
 
-    m_altGlobalDownloadSpeedLimit = limit;
     if (isAltGlobalSpeedLimitEnabled())
         configureDeferred();
 }
@@ -2563,15 +2569,17 @@ int Session::altGlobalUploadSpeedLimit() const
     return m_altGlobalUploadSpeedLimit * 1024;
 }
 
-void Session::setAltGlobalUploadSpeedLimit(int limit)
+void Session::setAltGlobalUploadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
-    limit /= 1024;
-    if (limit < 0) limit = 0;
-    if (limit == altGlobalUploadSpeedLimit()) return;
+    if (limit <= 0)
+        m_altGlobalUploadSpeedLimit = 0;
+    else if (limit <= 1024)
+        m_altGlobalUploadSpeedLimit = 1;
+    else
+        m_altGlobalUploadSpeedLimit = (limit / 1024);
 
-    m_altGlobalUploadSpeedLimit = limit;
     if (isAltGlobalSpeedLimitEnabled())
         configureDeferred();
 }
