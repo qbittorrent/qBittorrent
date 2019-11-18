@@ -303,7 +303,7 @@ qlonglong TorrentHandle::totalSize() const
     return m_torrentInfo.totalSize();
 }
 
-// get the size of the torrent without the filtered files
+// size without the "don't download" files
 qlonglong TorrentHandle::wantedSize() const
 {
     return m_nativeStatus.total_wanted;
@@ -1031,7 +1031,7 @@ qlonglong TorrentHandle::seedingTime() const
 #endif
 }
 
-qulonglong TorrentHandle::eta() const
+qlonglong TorrentHandle::eta() const
 {
     if (isPaused()) return MAX_ETA;
 
@@ -1399,21 +1399,22 @@ void TorrentHandle::forceDHTAnnounce()
 
 void TorrentHandle::forceRecheck()
 {
-    if (m_startupState != Started) return;
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
     m_unchecked = false;
 
-    if (isPaused()) {
+    if ((m_startupState != Started) || isPaused()) {
 #if (LIBTORRENT_VERSION_NUM < 10200)
         m_nativeHandle.stop_when_ready(true);
 #else
         m_nativeHandle.set_flags(lt::torrent_flags::stop_when_ready);
 #endif
         setAutoManaged(true);
-        m_pauseWhenReady = true;
     }
+
+    if ((m_startupState == Started) && isPaused())
+        m_pauseWhenReady = true;
 }
 
 void TorrentHandle::setSequentialDownload(const bool enable)

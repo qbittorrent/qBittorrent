@@ -63,7 +63,7 @@ namespace
 
 void SearchController::startAction()
 {
-    checkParams({"pattern", "category", "plugins"});
+    requireParams({"pattern", "category", "plugins"});
 
     if (!Utils::ForeignApps::pythonInfo().isValid())
         throw APIError(APIErrorType::Conflict, "Python must be installed to use the Search Engine.");
@@ -109,7 +109,7 @@ void SearchController::startAction()
 
 void SearchController::stopAction()
 {
-    checkParams({"id"});
+    requireParams({"id"});
 
     const int id = params()["id"].toInt();
     ISession *const session = sessionManager()->session();
@@ -151,7 +151,7 @@ void SearchController::statusAction()
 
 void SearchController::resultsAction()
 {
-    checkParams({"id"});
+    requireParams({"id"});
 
     const int id = params()["id"].toInt();
     int limit = params()["limit"].toInt();
@@ -184,7 +184,7 @@ void SearchController::resultsAction()
 
 void SearchController::deleteAction()
 {
-    checkParams({"id"});
+    requireParams({"id"});
 
     const int id = params()["id"].toInt();
     ISession *const session = sessionManager()->session();
@@ -222,7 +222,7 @@ void SearchController::pluginsAction()
 
 void SearchController::installPluginAction()
 {
-    checkParams({"sources"});
+    requireParams({"sources"});
 
     const QStringList sources = params()["sources"].split('|');
     for (const QString &source : sources)
@@ -231,7 +231,7 @@ void SearchController::installPluginAction()
 
 void SearchController::uninstallPluginAction()
 {
-    checkParams({"names"});
+    requireParams({"names"});
 
     const QStringList names = params()["names"].split('|');
     for (const QString &name : names)
@@ -240,7 +240,7 @@ void SearchController::uninstallPluginAction()
 
 void SearchController::enablePluginAction()
 {
-    checkParams({"names", "enable"});
+    requireParams({"names", "enable"});
 
     const QStringList names = params()["names"].split('|');
     const bool enable = Utils::String::parseBool(params()["enable"].trimmed(), false);

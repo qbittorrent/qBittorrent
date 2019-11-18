@@ -30,8 +30,8 @@
 
 #include <QHash>
 #include <QObject>
-#include <QSet>
 #include <QVariant>
+#include <QVector>
 
 class QString;
 
@@ -60,7 +60,7 @@ public:
 protected:
     const StringMap &params() const;
     const DataMap &data() const;
-    void checkParams(const QSet<QString> &requiredParams) const;
+    void requireParams(const QVector<QString> &requiredParams) const;
 
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);

@@ -98,6 +98,18 @@ namespace
         return false;
     }
 
+    void openDestinationFolder(const BitTorrent::TorrentHandle *const torrent)
+    {
+#ifdef Q_OS_MACOS
+        MacUtils::openFiles({torrent->contentPath(true)});
+#else
+        if (torrent->filesCount() == 1)
+            Utils::Gui::openFolderSelect(torrent->contentPath(true));
+        else
+            Utils::Gui::openPath(torrent->contentPath(true));
+#endif
+    }
+
     void removeTorrents(const QVector<BitTorrent::TorrentHandle *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
@@ -269,15 +281,19 @@ void TransferListWidget::torrentDoubleClicked()
         else
             torrent->pause();
         break;
+    case PREVIEW_FILE:
+        if (torrentContainsPreviewableFiles(torrent)) {
+            auto *dialog = new PreviewSelectDialog(this, torrent);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
+            dialog->show();
+        }
+        else {
+            openDestinationFolder(torrent);
+        }
+        break;
     case OPEN_DEST:
-#ifdef Q_OS_MACOS
-        MacUtils::openFiles(QSet<QString>{torrent->contentPath(true)});
-#else
-        if (torrent->filesCount() == 1)
-            Utils::Gui::openFolderSelect(torrent->contentPath(true));
-        else
-            Utils::Gui::openPath(torrent->contentPath(true));
-#endif
+        openDestinationFolder(torrent);
         break;
     }
 }

@@ -322,6 +322,42 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
             </item>
            </layout>
           </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="lblCreateSubfolder">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Create Subfolder:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboCreateSubfolder">
+              <item>
+               <property name="text">
+                <string>Use global settings</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Always</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Never</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
          </layout>
         </widget>
        </item>
@@ -435,6 +471,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
   <tabstop>lineSavePath</tabstop>
   <tabstop>spinIgnorePeriod</tabstop>
   <tabstop>comboAddPaused</tabstop>
+  <tabstop>comboCreateSubfolder</tabstop>
   <tabstop>listFeeds</tabstop>
   <tabstop>treeMatchingArticles</tabstop>
   <tabstop>importBtn</tabstop>
