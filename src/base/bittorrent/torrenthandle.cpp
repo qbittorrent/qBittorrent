@@ -1273,17 +1273,18 @@ void TorrentHandle::forceDHTAnnounce()
 
 void TorrentHandle::forceRecheck()
 {
-    if (m_startupState != Started) return;
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
     m_unchecked = false;
 
-    if (isPaused()) {
+    if ((m_startupState != Started) || isPaused()) {
         m_nativeHandle.stop_when_ready(true);
         m_nativeHandle.auto_managed(true);
-        m_pauseWhenReady = true;
     }
+
+    if ((m_startupState == Started) && isPaused())
+        m_pauseWhenReady = true;
 }
 
 void TorrentHandle::setSequentialDownload(bool b)
@@ -1351,30 +1352,27 @@ void TorrentHandle::toggleFirstLastPiecePriority()
 
 void TorrentHandle::pause()
 {
-    if (m_startupState != Started) return;
-    if (m_pauseWhenReady) return;
-    if (isChecking()) {
-        m_pauseWhenReady = true;
-        return;
-    }
-
     if (isPaused()) return;
 
     m_nativeHandle.auto_managed(false);
     m_nativeHandle.pause();
 
-    // Libtorrent doesn't emit a torrent_paused_alert when the
-    // torrent is queued (no I/O)
-    // We test on the cached m_nativeStatus
-    if (isQueued())
-        m_session->handleTorrentPaused(this);
+    if (m_startupState == Started) {
+        if (m_pauseWhenReady) {
+            m_nativeHandle.stop_when_ready(false);
+            m_pauseWhenReady = false;
+        }
+
+        // Libtorrent doesn't emit a torrent_paused_alert when the
+        // torrent is queued (no I/O)
+        // We test on the cached m_nativeStatus
+        if (isQueued())
+            m_session->handleTorrentPaused(this);
+    }
 }
 
 void TorrentHandle::resume(bool forced)
 {
-    if (m_startupState != Started) return;
-
-    m_pauseWhenReady = false;
     resume_impl(forced);
 }
 
