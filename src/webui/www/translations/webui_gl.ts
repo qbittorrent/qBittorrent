@@ -381,22 +381,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Continuar</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Prioridade mínima</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Prioridade máxima</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Disminuír a prioridade</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Aumentar a prioridade</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Barra superior</translation>
     </message>
@@ -581,10 +565,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Cola de torrents</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Sementar torrents até completar os seus tempos de sementeiras</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Engadir automaticamente estes localizadores ás novas descargas:</translation>
     </message>
@@ -741,10 +721,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Usar o proxy para conexións cos pares</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Desactivar as conexións non aceptadas por proxies</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Usar o proxy só para torrents</translation>
     </message>
@@ -835,10 +811,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Modo cifrado:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Preferir cifrado</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Precisa cifrado</translation>
     </message>
@@ -867,24 +839,8 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Non ter en conta os torrents lentos nestes límites</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Limites da taxa de compartición</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Sementar os torrents até alcanzar a taxa</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>despois</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pausalos</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Eliminalos</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -917,10 +873,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>%L: Category</source>
         <translation>%L: Categoría</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: etiquetas (separadas por coma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1773,31 +1725,7 @@ Non use caracteres especiais no nome da categoría.</translation>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nome</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Tamaño</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progreso</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioridade da descarga</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Restante</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Dispoñíbilidade</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1988,10 +1916,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Not contacted yet</source>
         <translation>Aínda sen contactar</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">Nº</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2227,14 +2151,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Estabelecer a localización...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copiar o nome</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Copiar «hash»</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Descargar primeiro os anacos inicial e final</translation>
     </message>
@@ -2257,16 +2173,8 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Restabelecer</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioridade</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Forzar outra comprobación</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copiar a ligazón magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2382,23 +2290,7 @@ Non use caracteres especiais no nome da categoría.</translation>
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Cliente BitTorrent avanzado programado en C++, baseado no QT toolkit e no libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Páxina web:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Foro:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Seguimento de fallos:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2562,20 +2454,8 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Buscar en:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Copiar URL da páxina coa descrición</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Ir á páxina da descrición</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Resultados (mostrando</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Descargar</translation>
     </message>
     <message>
         <source>Filter</source>

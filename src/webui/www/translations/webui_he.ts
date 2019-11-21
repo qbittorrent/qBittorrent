@@ -334,19 +334,19 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>פתח תיעוד</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>הירשם כדי לטפל בקישורי מגנט…</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>לא היה ניתן להוסיף עמיתים. אנא וודא שאתה דובק בתסדיר IP:פתחה.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>JavaScript דרוש! אתה חייב לאפשר JavaScript כדי שממשק הרשת יעבוד כראוי</translation>
     </message>
 </context>
 <context>
@@ -378,22 +378,6 @@
     <message>
         <source>Resume</source>
         <translation>המשך</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">עדיפות מזערית</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">עדיפות עליונה</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">הפחת עדיפות</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">הגבר עדיפות</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -494,35 +478,35 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>הזז למעלה בתור</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>הזז למעלה בתור</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>תחתית התור</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>הזז אל תחתית התור</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>ראש התור</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>הזז למטה בתור</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>הזז למטה בתור</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>הזז אל ראש התור</translation>
     </message>
 </context>
 <context>
@@ -578,10 +562,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>תור טורנטים</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">זרע טורנטים עד שזמן זריעתם מגיע אל</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +720,6 @@
         <translation>השתמש בייפוי כוח עבור חיבורי עמיתים</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">השבת חיבורים שאינם נתמכים ע"י ייפויי כוח</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>השתמש בייפוי כוח רק לטורנטים</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>מצב הצפנה:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">העדף הצפנה</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>דרוש הצפנה</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>אל תחשיב טורנטים איטיים במגבלות אלו</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">הגבלת יחס שיתוף</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">זרע טורנטים עד שיחסם מגיע אל</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>לאחר מכן</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">השהה אותם</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">הסר אותם</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: מדור</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: תגיות (מופרדות ע"י פסיק)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1087,231 +1039,231 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>מידע: הסיסמה נשמרת באופן בלתי מוצפן</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation type="unfinished" />
+        <translation>זריעה קפדנית־על</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>אלגוריתם מצב משולב μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>מבוסס קצב העלאה</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: תגיות (מופרדות ע״י פסיק)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>גודל מצבור תושבת:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>אפשר זריעת־על עבור טורנט</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>העדף TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>זיכרון חריג בעת בדיקת טורנטים:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>נגד־עלוקה</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation>אפשר מטמון OS:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation>כאשר יחס מגיע אל</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>שניות</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>כאשר זמן זריעה מגיע אל</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>אפשר חיבורים רבים מאותה כתובת IP:</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>גודל בריכת קבצים:</translation>
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>כל ממשק שהוא</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>הכרז תמיד לכל הנדבכים:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation>פתחת גשש משובץ:</translation>
     </message>
     <message>
         <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>כתובת IP רשותית לחבור אליה (דורש הפעלה מחדש):</translation>
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>ההעלאה הכי מהירה</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>השהה טורנט</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>הסר טורנט ואת קבציו</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>קטע qBittorrent</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation>שלח גורם סימן מים של חוצץ:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>קטע libtorrent</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>לכד קריאות וכתיבות</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>פתחות יוצאות (מיזער) [0: מושבת]:</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>כתובת IP לדיווח לגששים (דורש הפעלה מחדש):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>בדוק מחדש טורנטים בעת השלמה:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>התר הצפנה</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>שלח הצעות של חתיכות העלאה:</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>מטמון דיסק:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>אפשר גשש משובץ:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>הסר טורנט</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>פתחות יוצאות (מרב) [0: מושבת]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation>תהליכוני ק/פ אי־סינכרוניים:</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>ש'</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation>שלח סימן מים של חוצץ:</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>מרווח תפוגת מטמון דיסק:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>יַחֲסִי עמית (משנקי TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>חריצים מקובעים</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation type="unfinished" />
+        <translation>פתור מדינות עמיתים (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>מתקדם</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>דק'</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>אלגוריתם מחנק העלאה:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>מגבלות זריעה</translation>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>ק״ב</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>סבב־רובין</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>העלה התנהגות חריצים:</translation>
     </message>
     <message>
         <source>Network Interface (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>ממשק רשת (דורש הפעלה מחדש):</translation>
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>מ״ב</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>שלח סימן מים נמוך של חוצץ:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation>מרווח שמירת נתוני המשכה:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>הכרז תמיד לכל הגששים בנדבך:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>פסק זמן של שיח:</translation>
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>האזן על כתובת IPv6 (דורש הפעלה מחדש):</translation>
     </message>
 </context>
 <context>
@@ -1378,19 +1330,19 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>החרם עמית לצמיתות</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>האם אתה בטוח שאתה רוצה להחרים לצמיתות את העמיתים הנבחרים?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>העתק IP:פתחה</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>הוסף עמית חדש…</translation>
     </message>
 </context>
 <context>
@@ -1412,11 +1364,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>מעורבב</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>אל תוריד</translation>
     </message>
 </context>
 <context>
@@ -1587,11 +1539,11 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>עדיפות</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>סנן קבצים...</translation>
     </message>
 </context>
 <context>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">שם</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">גודל</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">התקדמות</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">עדיפות הורדה</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">נותר</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">זמינות</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1943,7 +1871,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>זמינות</translation>
     </message>
 </context>
 <context>
@@ -1989,10 +1917,6 @@
         <translation>לא נוצר קשר עדין</translation>
     </message>
     <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>לא זמין</translation>
     </message>
@@ -2030,31 +1954,31 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>נותר</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>זמינות</translation>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>נדבך</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>עדיפות הורדה</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>שם</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>התקדמות</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>גודל</translation>
     </message>
 </context>
 <context>
@@ -2152,7 +2076,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>תגיות</translation>
     </message>
 </context>
 <context>
@@ -2226,14 +2150,6 @@
         <translation>הגדר מיקום...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">העתק שם</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">העתק גיבוב</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>הורד חתיכה ראשונה ואחרונה תחילה</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>אפס</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">עדיפות</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>אלץ בדיקה חוזרת</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">העתק קישור מגנט</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2313,43 +2221,43 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>תגיות מופרדות פסיקים:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>הוסף תגיות</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>תגיות</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>קישור מגנט</translation>
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>גיבוב</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>הסר הכל</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>שם</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>העתק</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>תור</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>הוסף…</translation>
     </message>
 </context>
 <context>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">לקוח BitTorrent מתקדם המתוכנת ב-C++, מבוסס על ערכת כלים Qt ו-libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">דף הבית:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">קבוצת דיון:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">גשש תקלים:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>חפש ב:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">העתק את כתובת דף התיאור</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">עבור לדף התיאור</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>תוצאות (מראה</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">הורד</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2682,178 +2562,178 @@
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>בטל</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>הוסף עמיתים</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>רשימת עמיתים להוספה (IP אחד לשורה):</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>אשר</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>תסדיר: IPv4:פתחה / [IPv6]:פתחה</translation>
     </message>
 </context>
 <context>
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>תגית חדשה</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>הוסף תגית…</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>מחק טורנטים</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>תגית:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>השהה טורנטים</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>המשך טורנטים</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>הסר תגיות שאינן בשימוש</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>שם תגית בלתי תקף</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>הסר תגית</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>הכל</translation>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>חסר־תגית</translation>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>גשש תקלים:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>אודות</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>קבוצת דיון:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>דוא״ל:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>מתחזק נוכחי</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>דף הבית:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>יוון</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>תודות מיוחדות</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>לקוח BitTorrent מתקדם המתוכנת ב־C++, מבוסס על ערכת כלים Qt ו־libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>שם:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>אודות qBittorrent</translation>
     </message>
     <message>
         <source>Libraries</source>
-        <translation type="unfinished" />
+        <translation>סיפריות</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>רישיון</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>מתרגמים</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent נבנה עם הסיפריות הבאות:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>לאום:</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>מחבר</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>כל הכתובות</translation>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>העתק</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>הורד</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>שם</translation>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>כתובת של דף תיאור</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>פתח דף תיאור</translation>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>קישור הורדה</translation>
     </message>
 </context>
 </TS>

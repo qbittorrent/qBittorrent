@@ -380,22 +380,6 @@
         <translation>Démarrer</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Priorité minimale</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Priorité maximale</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Diminuer la priorité</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Augmenter la priorité</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Barre d'outils</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Priorisation des torrents</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Partager les torrents tant que la durée est inférieure à</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Ajouter automatiquement ces trackers aux nouveaux téléchargements :</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Utiliser le proxy pour se connecter aux clients</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Les connexions désactivées ne sont pas supportées par les proxys.</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Utiliser le proxy seulement pour les torrents</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Mode de cryptage:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Chiffrement préféré</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Chiffrement requis</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Ne pas compter les torrents lents dans ces limites</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Limitation du ratio de partage</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Partager les torrents tant que le ratio est inférieur à</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>puis</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Les mettre en pause</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Les supprimer</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1768,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nom</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Taille</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progression</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Priorité de téléchargement</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Restant</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Disponibilité :</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1983,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Pas encore contacté</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2222,14 +2150,6 @@
         <translation>Chemin de sauvegarde…</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copier nom</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Copier le hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Télécharger premières et dernières pièces en premier</translation>
     </message>
@@ -2252,16 +2172,8 @@
         <translation>Réinitialiser</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorité</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Forcer une revérification</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copier le lien magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2377,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Un client avancé BitTorrent programmé en C++, basé sur l'outil Qt et libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Page d'accueil :</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum :</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Suivi de Bogues :</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2557,20 +2453,8 @@
         <translation>Rechercher dans :</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Copier l'URL de la page de description</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Aller à la page de description</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Résultats</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Télécharger</translation>
     </message>
     <message>
         <source>Filter</source>

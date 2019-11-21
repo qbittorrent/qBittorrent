@@ -380,22 +380,6 @@
         <translation>Obnovit</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Minimální priorita</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Top priorita</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Snížit prioritu</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Zvýšit prioritu</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Horní panel nástrojů</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Řazení torrentů do fronty</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Odesílat torrenty dokud není dosaženo jejich časového limitu</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Automaticky přidat tyto trackery k novým stahováním:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Použít proxy pro připojení k protějškům</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Zakázat připojení nepodporovaná připojením proxy</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Použít proxy pouze pro torrenty</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Režim šifrování:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Upřednostnit šifrování</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Vyžadovat šifrování</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Nezapočítávat pomalé torrenty do těchto limitů</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Omezení ratia</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Sdílet torrenty dokud ratio nedosáhne</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>potom</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pozastavit je</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Odstranit je</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategorie</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Štítky (oddělené čárkou)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Název</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Velikost</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Průběh</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Priorita stahování</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Zbývající</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Dostupnost</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Dosud nekontaktován</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Nastavit umístění...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopírovat název</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Zkopírovat hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Resetovat</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorita</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Vynutit překontrolování</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopírovat Magnet link</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Pokročilý BitTorrent klient naprogramován v jazyce C++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Domovská stránka:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Fórum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Sledování chyb:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Hledat v:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Kopírovat URL stránky s popisem</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Přejít na stránku s popisem</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Výsledky (zobrazuji</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Stáhnout</translation>
     </message>
     <message>
         <source>Filter</source>

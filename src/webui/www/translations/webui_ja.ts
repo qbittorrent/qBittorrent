@@ -380,22 +380,6 @@
         <translation>再開</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">最低優先度</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">最高優先度</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">優先度を下げる</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">優先度を上げる</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>トップツールバー</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrent キュー</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">指定シード時間に達するまでシードする</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>新しいダウンロードに以下のトラッカーを自動追加する:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>ピアとの接続にプロキシを使用する</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">プロキシでサポートされていない接続は無効にする</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Torrent に対してのみプロキシを利用する</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>暗号化モード:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">暗号化を許可</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>暗号化を強制</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>遅いトレントはカウントしない</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">共有比上限</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">指定共有比に達するまでシードする</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>達したら</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">停止する</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">削除する</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1768,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">名前</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">サイズ</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">進行状況</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">ダウンロード優先度</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">残り</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">可用性</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1983,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>まだ接触していません</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2222,14 +2150,6 @@
         <translation>場所の移動...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">名前をコピー</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">ハッシュをコピー</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>先頭と最後のピースを先にダウンロード</translation>
     </message>
@@ -2252,16 +2172,8 @@
         <translation>リセット</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">優先度</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>強制再チェック</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">マグネットリンクをコピー</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2377,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Qt ツールキットと libtorrent-rasterbar を使用し C++ で書かれた高度な BitTorrent クライアントです。</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">ホームページ:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">フォーラム:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">バグトラッカー:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2557,20 +2453,8 @@
         <translation>検索対象:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">説明ページの URL をコピー</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">説明ページへ移動</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>検索結果 (表示中</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">ダウンロード</translation>
     </message>
     <message>
         <source>Filter</source>

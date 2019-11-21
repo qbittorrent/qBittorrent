@@ -334,7 +334,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Atverti žinyną</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>Reikalinga JavaScript! Tam, kad tinklo naudotojo sąsaja tinkamai veiktų, privalote įjungti JavaScript</translation>
     </message>
 </context>
 <context>
@@ -378,22 +378,6 @@
     <message>
         <source>Resume</source>
         <translation>Tęsti</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Žemiausia svarba</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Aukščiausia svarba</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Sumažinti svarbą</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Padidinti svarbą</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -580,10 +564,6 @@
         <translation>Siuntimų eilė</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Skleisti torentus, kol jų skleidimo laikas pasieks</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Į naujus atsiuntimus, automatiškai pridėti šiuos seklius:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Naudoti įgaliotąjį serverį susijungimams su siuntėjais</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Išjungti įgaliotųjų serverių nepalaikomus ryšius</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Naudoti įgaliotąjį serverį tik torentams</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Šifravimo veiksena:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Teikti pirmenybę šifravimui</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Reikalauti šifravimo</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Į šiuos apribojimus neįskaičiuoti lėtus torentus</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Dalinimosi santykio ribojimas</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Skleisti torentus, kol jų dalinimosi santykis pasieks</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>, o tuomet</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">juos pristabdyti</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">juos pašalinti</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategorija</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Žymės (atskirtos kableliais)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1115,11 +1067,11 @@
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>Teikti pirmenybę TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Išsiskirianti atmintis tikrinant torentus:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Vardas</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Dydis</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Eiga</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Atsiuntimo svarba</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Liko</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Prieinamumas</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Dar nesusisiekta</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Nustatyti saugojimo vietą...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopijuoti pavadinimą</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopijuoti maišą</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Visų pirma siųsti pirmas ir paskutines dalis</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Atstatyti</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Svarba</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Priverstinai pertikrinti</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopijuoti Magnet nuorodą</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Pažangus BitTorrent klientas, parašytas C++ programavimo kalba, naudojant Qt bei libtorrent-rasterbar bibliotekas.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Svetainė internete:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Diskusijų forumas:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Klaidų seklys:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Ieškoti:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Kopijuoti aprašo puslapio URL</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Eiti į aprašo puslapį</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Rezultatai (rodoma</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Atsisiųsti</translation>
     </message>
     <message>
         <source>Filter</source>

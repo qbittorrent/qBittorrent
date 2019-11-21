@@ -380,22 +380,6 @@
         <translation>Genoptag</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Laveste prioritet</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Højeste prioritet</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Lavere prioritet</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Højere prioritet</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Øverste værktøjslinje</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrent sat i kø</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Seed torrents indtil deres seedingtid nås</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Tilføj automatisk disse trackere til nye downloads:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Brug proxy til modpartsforbindelser</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Deaktivér forbindelser som ikke understøttes af proxier</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Brug kun proxy til torrents</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Krypteringstilstand:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Foretræk kryptering</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Kræv kryptering</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Tæl ikke langsomme torrents med i disse grænser</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Begrænsning af deleforhold</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Seed torrents indtil deres forhold er nået</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>og så</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Sæt dem på pause</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Fjern dem</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategori</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Mærkatet (separeret af komma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Navn</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Størrelse</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Forløb</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Downloadprioritet</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Tilbage</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Tilgængelighed</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Ikke kontaktet endnu</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">nr.</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Sæt placering...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopiér navn</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopiér hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Start med at downloade første og sidste stykker</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Nulstil</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritet</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Tving gentjek</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopiér magnet-link</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">En avanceret BitTorrent-klient, programmeret in C++, baseret på Qt toolkit og libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Hjemmeside:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Fejltracker:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Søg i:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Kopiér URL for beskrivelsesside</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Gå til beskrivelsessiden</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Resultater (viser</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Download</translation>
     </message>
     <message>
         <source>Filter</source>

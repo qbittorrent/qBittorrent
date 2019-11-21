@@ -380,22 +380,6 @@
         <translation>Συνέχιση</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Ελάχιστη Προτεραιότητα</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Μέγιστη προτεραιότητα</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Μείωση προτεραιότητας</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Αύξηση προτεραιότητας</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Κορυφαία Γραμμή εργαλείων</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrent στην Ουρά</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Διαμοιρασμός των torrent μέχρι το χρονικό όριο</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Αυτόματη προσθήκη αυτών των ιχνηλατών σε νέες λήψεις:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Χρήση μεσολαβητή για συνδέσεις ομότιμων</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Απενεργοποίηση συνδέσεων που δεν υποστηρίζονται από διακομιστές μεσολάβησης</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Χρήση μεσολαβητή μόνο για torrents</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Λειτουργία κρυπτογράφησης:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Προτίμηση κρυπτογράφησης</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Απαίτηση κρυπτογράφησης</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Μη υπολογισμός αργών torrent σε αυτά τα όρια</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Περιορισμός Αναλογίας Διαμοιρασμού</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Διαμοιρασμός των torrent μέχρι η αναλογία τους να φτάσει</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>τότε</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Παύση επιλεγμένων</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Αφαίρεση  επιλεγμένων</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1768,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Όνομα</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Μέγεθος</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Πρόοδος</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Προτεραιότητα Λήψης</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Απομένουν</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Διαθεσιμότητα</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2218,14 +2150,6 @@
         <translation>Ρύθμιση τοποθεσίας…</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Αντιγραφή ονόματος</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Αντιγραφή hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Λήψη πρώτων και τελευταίων κομματιών πρώτα</translation>
     </message>
@@ -2248,16 +2172,8 @@
         <translation>Επαναφορά</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Προτεραιότητα</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Εξαναγκαστικός επανέλεγχος</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Αντιγραφή συνδέσμου magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2373,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Ένας προηγμένος BitTorrent πελάτης προγραμματισμένος σε C++, βασισμένος στην εργαλειοθήκη Qt και στο libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Αρχική Σελίδα:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Φόρουμ:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Ιχνηλάτης Σφαλμάτων:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>

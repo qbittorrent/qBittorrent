@@ -380,22 +380,6 @@
         <translation>Sambung Semula</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Keutamaan Minimum</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Keutamaan Tertinggi</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Rendahkan Keutamaan</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Tingkatkan Keutamaan</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Palang Alat Atas</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Pembarisan Gilir Torrent</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Semai torrent sehingga nisbah mereka tercapai</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Tambah penjejak ini secara automatik ke muat turun baharu:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Guna proksi untuk sambungan rakan</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Lumpuhkan sambungan yang tidak disokong oleh proksi</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Guna proksi hanya untuk torrent</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Mod penyulitan:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Utamakan penyulitan</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Perlu penyulitan</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Jangan kira torrent lembab dalam had ini</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Pembatasan Nisbah Kongsi</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Semai torrent sehingga nisbah mereka tercapai</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>maka</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Jedakannya</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Buangkannya</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategori</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Tag (diasing dengan tanda koma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nama</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Saiz</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Kemajuan</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Keutamaan Muat Turun</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Berbaki</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Ketersediaan</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Belum dihubungi lagi</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Tetapkan lokasi...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Salin nama</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Salin cincangan</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Muat turn cebisan pertama dan terakhir dahulu</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Tetap Semula</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Keutamaan</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Paksa semak semula</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Salin pautan magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Klien BiTorrent lanjutan yang diaturcara dalam C++, berasaskan pada kit alat Qt dan libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Laman Rumah:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Penjejak Pepijat:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Gelintar dalam:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Salin URL halaman keterangan</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Pergi ke halaman keterangan</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Keputusan (menunjukkan</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Muat turun</translation>
     </message>
     <message>
         <source>Filter</source>

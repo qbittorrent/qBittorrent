@@ -380,22 +380,6 @@
         <translation>استئناف</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">أقل أولوية</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">أعلى أولوية</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">خفض الأولوية</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">زيادة الأولوية</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>شريط الأدوات العلوي</translation>
     </message>
@@ -1740,19 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">الاسم</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">الحجم</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">التقدّم</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2178,10 +2150,6 @@
         <translation>تغيير المكان...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">نسخ الاسم</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation type="unfinished" />
     </message>
@@ -2204,16 +2172,8 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">الأولوية</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>اعادة الفحص</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">نسخ الرابط الممغنط</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2329,15 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">الصفحة الرئيسية:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">المنتدى:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>

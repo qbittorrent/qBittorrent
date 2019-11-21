@@ -380,22 +380,6 @@
         <translation>Atsākt</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Zemākā prioritāte</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Augstākā prioritāte</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Samazināt prioritāti</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Paaugstināt prioritāti</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Augšējā rīkjosla</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrentu saraksts</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Dalīt torrentus līdz to dalīšanas ilgums sasniedz </translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Automātiski pievienot šos trakerus jaunajiem torrentiem:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Izmantot starpniekserveri koplietotāju savienojumiem</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Neatļaut savienojumus, kurus neatbalsta starpniekserveri</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Lietot starpniekserveri tikai torrentiem</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Šifrēšanas režīms:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Šifrēšana vēlama</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Pieprasīt šifrēšanu</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Neiekļaut šajās robežās lēnos torrentus.</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Augšupielādes/Lejupielādes attiecības limits</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Dalīt torrentus līdz to Augšupielādes/Lejupielādes attiecība sasniedz limitu </translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>tad</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Tos apturēt</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Tos izdzēst</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategorija</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Birkas (atdalītas ar komatu)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nosaukums</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Izmērs</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progress</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Lejupielādes prioritāte</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Atlikuši</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Pieejamība</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Vēl nav savienots</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Nomainīt failu atrašanās vietu...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopēt nosaukumu</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopēt jaucējkodu</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Atiestatīt</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritāte</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Piespiedu pārbaude</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopēt magnētsaiti</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Moderns BitTorrent klients programmēts C++ valodā, veidots ar Qt toolkit uz libtorrent-rasterbar bāzes.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Mājaslapa:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forums:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Par kļūmēm:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Meklēt:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Nokopēt apraksta lapas adresi</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Atvērt torrenta apraksta lapu</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Rezultāti (parādīti</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Lejupielādēt</translation>
     </message>
     <message>
         <source>Filter</source>

@@ -380,22 +380,6 @@
         <translation>Lanjutkan</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Prioritas Minimum</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Prioritas Utama</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Turunkan Prioritas</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Naikkan Prioritas</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Bilah Alat Atas</translation>
     </message>
@@ -826,10 +810,6 @@
         <translation>Mode enkripsi:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Enkripsi opsional</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Enkripsi wajib</translation>
     </message>
@@ -858,24 +838,8 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Pembatasan Rasio Berbagi</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Bibit torrent sampai rasio tercapai</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>lalu</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Tangguhkan torrent</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Buang torrent</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1760,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nama</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Ukuran</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progres</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioritas Unduh</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Sisa</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Ketersediaan</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2210,10 +2150,6 @@
         <translation>Tetapkan lokasi...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Salin nama</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Unduh bagian-bagian pertama dan akhir terlebih dahulu</translation>
     </message>
@@ -2236,16 +2172,8 @@
         <translation>Setel ulang</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritas</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Paksa periksa ulang</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Salin tautan magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2361,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Klien BitTorrent tingkat lanjut yang diprogram menggunakan C++, berbasis toolkit Qt dan libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Halaman Beranda:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Pelacak Kutu:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>

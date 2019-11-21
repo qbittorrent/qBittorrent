@@ -380,22 +380,6 @@
         <translation>Пауза</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Минимален Приоритет</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Най-висок Приоритет</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Намаляване на Приоритета</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Увеличаване на Приоритета</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Горна Лента с Инструменти</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Нареждане на Oпашка на Торенти</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Споделяне на торентите, докато тяхното време на споделяне не достигне</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Автоматично добавяне на тези тракери към нови сваляния:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Използвайте прокси за свързване между участниците</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Деактивиране на връзките, които не се поддържат от проксита.</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Използване на прокси само за торентите</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Режим на кодиране:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Предпочитане на кодиране</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Изискване на кодиране</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Не изчислявай бавни торенти в тези лимити</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Ограничаване Съотношението на Споделяне</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Споделяне на торенти, докато съотношението им достигне</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>тогава</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Сложи ги в пауза</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Изтрий ги</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1768,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Име</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Размер</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Изпълнение</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Приоритет на Сваляне</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Остават</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Наличност</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2218,14 +2150,6 @@
         <translation>Определи място...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Копиране на име</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Копиране на контролната сума</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Сваляне първо на първото и последното парче</translation>
     </message>
@@ -2248,16 +2172,8 @@
         <translation>Нулиране</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Предимство</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Включени проверки за промени</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Копирай връзка magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2373,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Разширен BitTorrent клиент написан на C++, базиран на Qt toolkit и libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Първоначална страница:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Форум:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Докладване на грешки:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>

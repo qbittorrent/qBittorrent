@@ -380,22 +380,6 @@
         <translation>Fortsetzen</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Niedrigste Priorität</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Höchste Priorität</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Priorität verringern</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Priorität erhöhen</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Obere Werkzeugleiste</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Warteschlange für Torrents</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Torrents seeden, bis deren Seedverhältnis erreicht wurde</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Diese Tracker automatisch zu neuen Downloads hinzufügen:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Proxy für Peer-Verbindungen verwenden</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Deaktiviere Verbindungen die nicht von Proxys unterstützt werden</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Proxy nur für Torrents verwenden</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Verschlüsselungsmodus:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Verschlüsselung bevorzugen</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Verschlüsselung verlangen</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Bei diesen Begrenzungen langsame Torrents nicht mit einbeziehen</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Shareverhältnis-Begrenzung</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Torrents seeden, bis dieses Verhältnis erreicht wurde</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>dann</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Anhalten</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Entfernen</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategorie</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Label (getrennt durch Komma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1135,7 +1087,7 @@
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sec</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1235,7 +1187,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1263,7 +1215,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1275,7 +1227,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1291,7 +1243,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Name</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Größe</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Fortschritt</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Download-Priorität</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Verbleibend</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Verfügbarkeit</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1989,10 +1917,6 @@
         <translation>Noch nicht kontaktiert</translation>
     </message>
     <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>N/V</translation>
     </message>
@@ -2046,7 +1970,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2054,7 +1978,7 @@
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Größe</translation>
     </message>
 </context>
 <context>
@@ -2226,14 +2150,6 @@
         <translation>Speicherort setzen ...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Namen kopieren</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Prüfsumme kopieren</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Erste und letzte Teile zuerst laden</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Zurücksetzen</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorität</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Erzwinge erneute Überprüfung</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopiere Magnet-Link</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2329,7 +2237,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2337,7 +2245,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Ein fortschrittliches BitTorrent Programm erstellt in C++ und basierend auf dem Qt Toolkit sowie libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Webseite:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum: </translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Bugtracker: </translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Suche in:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Kopiere Beschreibungsseiten-URL</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Zur Beschreibungsseite wechseln</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Ergebnisse (zeige</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Download</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2694,7 +2574,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2763,11 +2643,11 @@
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Forum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
@@ -2779,7 +2659,7 @@
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Griechenland</translation>
     </message>
     <message>
         <source>Special Thanks</source>
@@ -2791,7 +2671,7 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Name:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
@@ -2807,7 +2687,7 @@
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Übersetzer</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
@@ -2819,7 +2699,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>Author</translation>
     </message>
 </context>
 <context>
@@ -2841,7 +2721,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Description page URL</source>

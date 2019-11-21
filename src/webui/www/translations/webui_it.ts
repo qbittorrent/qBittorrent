@@ -380,22 +380,6 @@
         <translation>Riprendi</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Priorità minima</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Priorità massima</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Diminuisci priorità</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Aumenta priorità</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Barra strumenti superiore</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Accodamento torrent</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Condividi torrent fino al raggiungimento del tempo di condivisione</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Aggiungi automaticamente questi server traccia ai nuovi scaricamenti:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Usa il proxy per le connessioni ai nodi</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Disabilita connessioni non supportate dai proxy</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Usa il proxy solo per i torrent</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Modalità di cifratura:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Preferisci cifratura</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Esigi cifratura</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Non contare torrent lenti in questi limiti</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Limitazione rapporto di condivisione</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Distribuisci i torrent finché il loro rapporto raggiunge</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>poi</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Mettili in pausa</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Rimuovili</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Categoria</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: tag (separati da virgola)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nome</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Dimensione</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Avanzamento</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Priorità scaricamento</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Rimanente</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Disponibilità</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Non ancora connesso</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Imposta percorso...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copia nome</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Copia hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Scarica la prima e l'ultima parte per prime</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Azzera</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorità</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Forza ricontrollo</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copia collegamento magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Un client BitTorrent avanzato scritto in C++, basato sul toolkit Qt e libtorrent-rastebar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Homepage:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Bug Tracker:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Cerca in:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Copia URL descrizione pagina</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Vai alla descrizione pagina</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Risultati (visualizzano</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Download</translation>
     </message>
     <message>
         <source>Filter</source>

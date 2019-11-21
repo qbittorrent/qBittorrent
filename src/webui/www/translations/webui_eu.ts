@@ -380,22 +380,6 @@
         <translation>Berrekin</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Lehentasun Gutxiena</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Lehentasun Gehiena</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Gutxitu Lehentasuna</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Handitu Lehentasuna</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Goiko Tresnabarra</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrent Lerrokapena</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Emaritu torrentak beren emaritza denbora erdietsi arte</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Berezgaitasunez gehitu aztarnari hauek jeitsiera berriei:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Erabili proxya hartzaile elkarketetarako</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Ezgaitu proxiek sostengatzen ez dituzten elkarketak</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Erabili proxya torrententzat bakarrik</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Enkriptaketa modua:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Hobetsi enkriptaketa</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Enkriptaketa beharrezkoa</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Ez zenbatu torrent geldoak muga hauetan</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Elkarbanatze Maila Mugapena</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Emaritu torrentak beren maila erdietsi arte</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>orduan</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pausatu</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Kendu</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategoria</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Etiketak (kakotxaz bananduta)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Izena</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Neurria</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Garapena</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Jeitsiera Lehentasuna</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Gelditzen da</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Eskuragarritasuna</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Harremandu gabe oraindik</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">Zbk.</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Ezarri kokalekua...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopiatu izena</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopiatu hasha</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Jeitsi lehen eta azken atalak lehenik</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Berrezarri</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Lehentasuna</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Behartu berregiaztapena</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopiatu magnet lotura</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">BitTorrent bezero aurreratua C++-rekin programatua, Qt toolkit-ean eta libtorrent-rasterbar-en ohinarrituta.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Etxeko Orrialdea:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Eztabaidagunea:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Akats Aztarnaria:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Bilatu hemen:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Kopiatu azalpen orrialdearen URL-a</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Joan azalpen orrialdera</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Emaitzak (erakusten</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Jeitsi</translation>
     </message>
     <message>
         <source>Filter</source>

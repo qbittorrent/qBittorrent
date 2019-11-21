@@ -380,22 +380,6 @@
         <translation>Folytatás</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Minimum priorítás</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Top priorítás</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Prioritás csökkentése</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Prioritás növelése</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Felső eszköztár</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrent ütemezés</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Torrent megosztása a megosztási idői lejártáig</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Ezen trackerek automatikus hozzáadása az új letöltésekhez:</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>Proxy használata az ügyfélkapcsolatokhoz</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Proxik által nem támogatott kapcsolatok tiltása</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Csak a torrentekhez használjon proxyt</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>Titkosítás módja:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Titkosítás előnyben részesítése</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Titkosítás megkövetelése</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>Lassú torrentek figyelmen kívül hagyása a korlátoknál</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Megosztási arány korlátozása</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Torrentek megosztása eddig az arányig</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>aztán</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Szüneteltetés</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Eltávolítás</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +872,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategória</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Címkék (vesszővel elválasztva)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1772,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Név</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Méret</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Állapot</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Letöltési prioritás</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Hátralévő</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Elérhetőség</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Még nem kapcsolódott</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2150,6 @@
         <translation>Hely megadása...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Név másolása</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Hash másolása</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Első és utolsó szelet letöltése először</translation>
     </message>
@@ -2256,16 +2172,8 @@
         <translation>Reset</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorítás</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Kényszerített újraellenőrzés</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Magnet link másolása</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Egy kifinomult, C++-ban fejlesztett BitTorrent kliens, Qt és libtorrent-rasterbar programkönyvtárakra alapozva.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Weblap:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Fórum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Hibakövető:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2453,8 @@
         <translation>Keresés itt:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Leírás oldal URL másolása</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Leírás oldal megnyitása</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Találatok:</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Letöltés</translation>
     </message>
     <message>
         <source>Filter</source>

@@ -380,22 +380,6 @@
         <translation>Reluare</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Prioritate minimă</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Prioritate maximă</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Scade prioritatea</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Crește prioritatea</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Bara de unelte superioară</translation>
     </message>
@@ -736,10 +720,6 @@
         <translation>Utilizează proxy pentru conexiuni la parteneri</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Dezactivează conexiunile care nu sunt sprijinite de proxy-uri</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Utilizează proxy doar pentru torrente</translation>
     </message>
@@ -830,10 +810,6 @@
         <translation>Modul criptării:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Preferă criptarea</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Necesită criptarea</translation>
     </message>
@@ -862,24 +838,8 @@
         <translation>Nu socoti torrentele lente în aceste limite</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Limitare raport partajare</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Contribuie torrentele până când raportul lor de partajare atinge</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>apoi</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Suspendă-le</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Elimină-le</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1764,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nume</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Dimensiune</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progres</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioritate descărcare</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Rămas</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Disponibilitate</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2214,14 +2150,6 @@
         <translation>Stabilire locație...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copiază numele</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Copy indexul</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Descarcă prima și ultima bucată întâi</translation>
     </message>
@@ -2244,16 +2172,8 @@
         <translation>Restabilește</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritate</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Forțează reverificarea</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copiază legătura magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2369,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Un client BitTorrent avansat, programat în C++, bazat pe setul de unelte Qt și pe biblioteca libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Pagină de pornire:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Urmăritor de defecțiuni:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>

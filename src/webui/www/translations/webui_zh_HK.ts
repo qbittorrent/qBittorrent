@@ -380,22 +380,6 @@
         <translation>取消暫停</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">最低優先權</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">最高優先權</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">減低優先權</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">提高優先權</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>頂端工具列</translation>
     </message>
@@ -580,10 +564,6 @@
         <translation>Torrent排程</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Torrent做種，直至做種時間達到</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>自動加入以下追蹤器到新下載：</translation>
     </message>
@@ -740,10 +720,6 @@
         <translation>使用代理伺服器來連接同路人</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">停用不被代理伺服器支援的連接</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>代理伺服器僅用於Torrent</translation>
     </message>
@@ -834,10 +810,6 @@
         <translation>加密模式：</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">傾向加密</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>要求加密</translation>
     </message>
@@ -866,24 +838,8 @@
         <translation>此等限制不要計算慢速Torrent</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">最大分享率</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Torrent做種，直至達到分享率</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>然後</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">暫停它們</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">清除它們</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1768,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">名稱</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">大小</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">進度</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">下載優先權</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">剩餘</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">可得度</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1983,10 +1915,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>未嘗連接</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2222,14 +2150,6 @@
         <translation>設定存放位置…</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">複製名稱</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">複製驗證碼</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>先下載首片段和最後片段</translation>
     </message>
@@ -2252,16 +2172,8 @@
         <translation>重設</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">優先權</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>強制重新檢查</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">複製磁性連結</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2377,23 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">一個以C++撰寫，基於Qt工具箱和libtorrent-rasterbar的進階BitTorrent用戶端。</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">網站：</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">論壇：</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">通報軟件問題：</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2557,20 +2453,8 @@
         <translation>搜尋：</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">複製描述頁網址</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">前往描述頁</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>搜尋結果（顯示</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">下載</translation>
     </message>
     <message>
         <source>Filter</source>

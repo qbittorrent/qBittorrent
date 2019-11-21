@@ -380,22 +380,6 @@
         <translation>Reaktivigi</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Minimuma Prioritato</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Plejalta Prioritato</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Malpliigi prioritaton</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Pliigi prioritaton</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation type="unfinished" />
     </message>
@@ -1740,23 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nomo</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Grando</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progreso</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Elŝut-prioritato</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2182,10 +2150,6 @@
         <translation>Agordi lokon...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopii la nomon</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation type="unfinished" />
     </message>
@@ -2208,16 +2172,8 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritato</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Trude rekontroli</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopii la magnet-ligilon</translation>
     </message>
     <message>
         <source>Super seeding mode</source>

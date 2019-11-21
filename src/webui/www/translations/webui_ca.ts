@@ -62,7 +62,7 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Pausa els torrents</translation>
+        <translation>Interromp els torrents</translation>
     </message>
     <message>
         <source>Delete torrents</source>
@@ -335,19 +335,19 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Obre la documentació</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Registreu-vos per gestionar enllaços magnètics...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>No es poden afegir clients. Si us plau, assegureu-vos que us afegiu al format IP:port.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>Cal JavaScript! Heu d'habilitar el JavaScript perquè la Interfície web funcioni correctament.</translation>
     </message>
 </context>
 <context>
@@ -379,22 +379,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Resume</source>
         <translation>Reprèn</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Prioritat mínima</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Prioritat màxima</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Disminueix-ne la prioritat</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Incrementa'n la prioritat</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -434,7 +418,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Pausa-ho tot</translation>
+        <translation>Interromp-ho tot</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -495,35 +479,35 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>Mou cua amunt</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>Mou cua amunt</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>Al capdavall de la cua</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>Mou al capdavall de la cua</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>Al capdamunt de la cua</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>Mou cua avall</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>Mou cua avall</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>Mou al capdamunt de la cua</translation>
     </message>
 </context>
 <context>
@@ -579,10 +563,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Torrent Queueing</source>
         <translation>Cua de torrents</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Sembra torrents fins que s'esgoti el seu temps de sembra.</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -741,10 +721,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Usa un servidor intermediari per a connexions d'igual a igual</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Inhabilita les connexions no admeses per servidors intermediaris</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Utilitza el servidor intermediari només per als torrents</translation>
     </message>
@@ -835,10 +811,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Mode de xifratge:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Preferència de xifratge</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Requereix xifratge</translation>
     </message>
@@ -867,24 +839,8 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>No comptis els torrents lents fora d'aquests límits</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Limitació de ràtio de compartició</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Sembra els torrents fins que la ràtio arribi a </translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>després</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pausa-ho</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Suprimeix-ho</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -917,10 +873,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>%L: Category</source>
         <translation>%L: categoria</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: etiquetes (separades per comes)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1088,231 +1040,231 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Informació: la contrasenya es desa sense encriptar.</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation type="unfinished" />
+        <translation>Supersembra estricta:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Algorisme de mode mesclat uTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Segons la velocitat de pujada</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: Etiquetes (separades per comes)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Mida del registre històric del sòcol:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Habilita la supersembra per al torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>Prefereix TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Memòria excepcional en comprovar torrents:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Antisangoneres</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation>Habilita la memòria cau del sistema operatiu:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation>Quan la ràtio assoleixi</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Quan el temps de sembra assoleixi</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Permet connexions múltiples des de la mateixa adreça IP:</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>Mida de l'agrupació de fitxers:</translation>
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Qualsevol interfície</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>Anuncia sempre a tots els nivells:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation>Port encastat del rastrejador:</translation>
     </message>
     <message>
         <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Adreça IP opcional per vincular (requereix un reinici):</translation>
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>La pujada més ràpida</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Interromp el torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix el torrent i els fitxers</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Secció de qBittorrent</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation>Envia el factor la marca d'aigua de la memòria intermèdia:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Secció de libtorrent</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Fusiona les lectures i escriptures:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Ports de sortida (Min.) [0: desactivat]</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Adreça IP per notificar als rastrejadors (requereix reinici):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Torna a comprovar els torrents completats:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Permet l'encriptació</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>Envia suggeriments de càrrega de trossos:</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>Cau del disc:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Habilita el rastrejador integrat:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix el torrent</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Ports de sortida (Màx.) [0: desactivat]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation>Fils d'E/S asincrònics:</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation>Envia la marca d'aigua de la memòria intermèdia:</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval de caducitat de la memòria cau del disc:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Proporcional als clients (acceleració de TCP):</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Ranures fixes</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation type="unfinished" />
+        <translation>Resol els països dels clients (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Avançat</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation> min.</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Algorisme d'ofec de pujada:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Límits de sembra</translation>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Algorisme Round-robin</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>Comportament de les ranures de pujada:</translation>
     </message>
     <message>
         <source>Network Interface (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Interfície de xarxa (requereix reiniciar):</translation>
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>Envia la marca d'aigua feble de la memòria intermèdia:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval per desar la represa de dades:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>Anuncia sempre a tots els rastrejadors en un nivell:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>Temps d'espera de la sessió:</translation>
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Escolta l'adreça IPv6 (requereix reinici):</translation>
     </message>
 </context>
 <context>
@@ -1379,19 +1331,19 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>Prohibeix el client permanentment</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>Segur que voleu prohibir permanentment els clients seleccionats?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>Copia IP:port</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>Afegeix un client nou...</translation>
     </message>
 </context>
 <context>
@@ -1413,11 +1365,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Mesclat</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>No ho baixis</translation>
     </message>
 </context>
 <context>
@@ -1588,11 +1540,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioritat</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Filtra els fitxers...</translation>
     </message>
 </context>
 <context>
@@ -1720,7 +1672,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Pausats (0)</translation>
+        <translation>En pausa (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -1752,7 +1704,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Pausats (%1)</translation>
+        <translation>En pausa (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
@@ -1773,31 +1725,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nom</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Mida</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progrés</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioritat de baixada</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Restant</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Disponibilitat</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1944,7 +1872,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Disponibilitat</translation>
     </message>
 </context>
 <context>
@@ -1990,10 +1918,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Encara no s'hi ha contactat.</translation>
     </message>
     <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>N / D</translation>
     </message>
@@ -2031,31 +1955,31 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Restant</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Disponibilitat</translation>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Nivell</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioritat de baixada</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progrés</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Mida</translation>
     </message>
 </context>
 <context>
@@ -2153,7 +2077,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Etiquetes</translation>
     </message>
 </context>
 <context>
@@ -2227,14 +2151,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Estableix una destinació...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copia el nom</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Copia'n el resum</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Baixa primer el primer i l'últim tros.</translation>
     </message>
@@ -2257,16 +2173,8 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Restableix</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritat</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Força la verificació</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copia l'enllaç magnètic</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2314,43 +2222,43 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiquetes separades per comes:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Afegeix etiquetes</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Etiquetes</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Enllaç magnètic</translation>
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>Resum</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix-les totes</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copia</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Cua</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Afegeix...</translation>
     </message>
 </context>
 <context>
@@ -2382,23 +2290,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Un client BitTorrent avançat programat en C++, basat en el joc d'eines Qt i libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Pàgina principal:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Fòrum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Rastrejador d'errors:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2562,20 +2454,8 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Cerca a:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Copia l'URL de la pàgina de descripció</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Ves a la pàgina de descripció</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Resultats</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Baixa</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2683,178 +2563,178 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Cancel·la</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Afegeix clients</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>Llista de clients per afegir (una IP per línia):</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>D'acord</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Format: IPv4:port / [IPv6]:port</translation>
     </message>
 </context>
 <context>
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Etiqueta nova</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Afegeix una etiqueta...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix els torrents</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Etiqueta:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Interromp els torrents</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Reprèn els torrents</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix les etiquetes no usades</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>Nom d'etiqueta no vàlid</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix l'etiqueta</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Tot</translation>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Sense etiquetar</translation>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Rastrejador d'errors:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Quant a</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Fòrum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>Correu electrònic:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Mantenidor actual</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Pàgina principal:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Grècia</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Agraïments especials</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Un client BitTorrent avançat programat en C++, basat en el conjunt d'eines Qt i libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Nom:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Quant al qBittorrent</translation>
     </message>
     <message>
         <source>Libraries</source>
-        <translation type="unfinished" />
+        <translation>Biblioteques</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Llicència</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Traductors</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>El qBittorrent s'ha construït amb les biblioteques següents:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Nacionalitat:</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>Autor</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>Totes les adreces</translation>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copia</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Baixa</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>URL de la pàgina de descripció</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>Obre la pàgina de descripció</translation>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>Enllaç de baixada</translation>
     </message>
 </context>
 </TS>

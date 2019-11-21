@@ -380,22 +380,6 @@
         <translation>Jatka</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Matalin tärkeysaste</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Korkein tärkeysaste</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Laske tärkeysastetta</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Nosta tärkeysastetta</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Työkalupalkki</translation>
     </message>
@@ -578,10 +562,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrentien jonotus</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Jatka torrenttien jakamista kunnes jakosuhde saavuttaa</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -830,10 +810,6 @@
         <translation>Salaustila:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Suosi salausta</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Vaadi salaus</translation>
     </message>
@@ -862,24 +838,8 @@
         <translation>Älä laske hitaita torrenteja näihin rajoituksiin</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Jakosuhteen rajoittaminen</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Jatka torrenttien jakamista kunnes jakosuhde saavuttaa</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>sitten</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Keskeytä ne</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Poista ne</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1764,31 +1724,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nimi</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Koko</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Edistyminen</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Latauksen tärkeysaste</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Jäljellä</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Saatavuus</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2214,14 +2150,6 @@
         <translation>Aseta kohdekansio...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopioi nimi</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopioi tarkistussumma</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Lataa ensin ensimmäinen ja viimeinen osa</translation>
     </message>
@@ -2244,16 +2172,8 @@
         <translation>Palauta</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Tärkeysaste</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Pakota uudelleentarkistus</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopioi Magnet-osoite</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2369,15 +2289,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Kotisivu:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Foorumi:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
