@@ -3852,11 +3852,6 @@ void Session::startUpTorrents()
     int resumedTorrentsCount = 0;
     const auto startupTorrent = [this, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
     {
-        // TODO: Remove loading of .torrent files when starting up existing torrents
-        // Starting from v4.2.0, the required `info` dict will be stored in fastresume too
-        // (besides .torrent file), that means we can remove loading of .torrent files in
-        // a later release, such as v4.3.0.
-
         const QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
