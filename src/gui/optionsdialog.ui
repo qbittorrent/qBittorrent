@@ -837,6 +837,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="checkRecursiveDownload">
+              <property name="toolTip">
+               <string>When a torrent is downloaded, ask to download any .torrent files within the torrent</string>
+              </property>
               <property name="text">
                <string>Enable recursive download dialog</string>
               </property>
