@@ -142,8 +142,12 @@ namespace
     bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
     {
         lt::error_code ec;
+#if (LIBTORRENT_VERSION_NUM < 10200)
         lt::bdecode_node root;
         lt::bdecode(data.constData(), (data.constData() + data.size()), root, ec);
+#else
+        const lt::bdecode_node root = lt::bdecode(data, ec);
+#endif
         if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
 
         torrentParams = CreateTorrentParams();
