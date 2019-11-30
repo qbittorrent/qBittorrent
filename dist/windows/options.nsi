@@ -14,6 +14,7 @@ XPStyle on
 !include "MUI.nsh"
 !include "UAC.nsh"
 !include "FileFunc.nsh"
+!include "WinVer.nsh"
 !ifdef APP64BIT
 !include "x64.nsh"
 !endif

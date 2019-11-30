@@ -24,6 +24,8 @@ LangString inst_unist ${LANG_ARABIC} "جاري ازالة النسخة السا�
 LangString launch_qbt ${LANG_ARABIC} "تشغيل البرنامج"
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ARABIC} "هذا المثبت يعمل فقط في نسخ ويندوز 64 بت"
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_ARABIC} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------
