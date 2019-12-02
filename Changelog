@@ -1,3 +1,5 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.0
+
 Tue Dec 03 2019 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.0
     - FEATURE: Libtorrent 1.2.x series are supported now (glassez)
     - FEATURE: Add OpenSSL version to GUI and stackdump (Chocobo1)
