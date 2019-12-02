@@ -322,8 +322,13 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
 
         // List files in torrent
         m_propListModel->model()->setupModelData(m_torrent->info());
-        if (m_propListModel->model()->rowCount() == 1)
-            m_ui->filesList->setExpanded(m_propListModel->index(0, 0), true);
+
+        // Expand single-item folders recursively
+        QModelIndex currentIndex;
+        while (m_propListModel->rowCount(currentIndex) == 1) {
+            currentIndex = m_propListModel->index(0, 0, currentIndex);
+            m_ui->filesList->setExpanded(currentIndex, true);
+        }
 
         // Load file priorities
         m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
