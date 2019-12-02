@@ -24,6 +24,8 @@ LangString inst_unist ${LANG_TURKISH} "Önceki sürüm kaldırılıyor."
 LangString launch_qbt ${LANG_TURKISH} "qBittorrent'i çalıştır."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_TURKISH} "Bu yükleyici sadece 64-bit Windows sürümlerinde çalışır."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_TURKISH} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

@@ -24,6 +24,8 @@ LangString inst_unist ${LANG_CROATIAN} "Deinstaliraj prethodnu verziju."
 LangString launch_qbt ${LANG_CROATIAN} "Pokreni qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_CROATIAN} "This installer works only in 64-bit Windows versions."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_CROATIAN} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------
