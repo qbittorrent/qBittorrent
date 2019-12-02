@@ -1171,7 +1171,7 @@
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation>Включити вбудований трекер:</translation>
+        <translation>Увімкнути вбудований трекер:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -1227,7 +1227,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation>КБ</translation>
+        <translation>КіБ</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1243,7 +1243,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation>МБ</translation>
+        <translation>МіБ</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1263,7 +1263,7 @@
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Слухати адрес IPv6 (потрібно перезапуск):</translation>
+        <translation>Слухати адресу IPv6 (потрібно перезапуск):</translation>
     </message>
 </context>
 <context>

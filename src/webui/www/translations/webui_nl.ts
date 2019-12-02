@@ -807,15 +807,15 @@
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation>Encryptiemodus:</translation>
+        <translation>Versleutelingsmodus:</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation>Encryptie vereisen</translation>
+        <translation>Versleuteling vereisen</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation>Encryptie uitschakelen</translation>
+        <translation>Versleuteling uitschakelen</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
@@ -839,7 +839,7 @@
     </message>
     <message>
         <source>then</source>
-        <translation>en ze dan</translation>
+        <translation>en daarna</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>

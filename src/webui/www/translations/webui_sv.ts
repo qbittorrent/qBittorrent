@@ -1187,7 +1187,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation> s</translation>
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1215,7 +1215,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation> min</translation>
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1259,7 +1259,7 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation>Sessionen löpte ut</translation>
+        <translation>Sessionen löpte ut:</translation>
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
@@ -2635,7 +2635,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Problemhantering:</translation>
+        <translation>Ärendehantering:</translation>
     </message>
     <message>
         <source>About</source>

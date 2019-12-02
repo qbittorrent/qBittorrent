@@ -482,7 +482,7 @@
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation>Переместить вверх по очереди</translation>
+        <translation>Вверх по очереди</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
@@ -498,7 +498,7 @@
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation>Переместить вниз по очереди</translation>
+        <translation>Вниз по очереди</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
@@ -754,7 +754,7 @@
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation>От:</translation>
+        <translation>С:</translation>
     </message>
     <message>
         <source>To:</source>
@@ -1099,7 +1099,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation>Размера пула файла:</translation>
+        <translation>Размера пула файлов:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -1199,7 +1199,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>Пропорционально пирам (регулировка TCP)</translation>
+        <translation>Пропорционально пирам (регулирует TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1231,7 +1231,7 @@
     </message>
     <message>
         <source>Round-robin</source>
-        <translation>По кругу</translation>
+        <translation>Каждому по кругу</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1938,7 +1938,7 @@
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Править адрес трекера...</translation>
+        <translation>Изменить адрес трекера...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2017,7 +2017,7 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[F] Раздаётся</translation>
+        <translation>[П] Раздаётся</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -2033,7 +2033,7 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation>[F] Загружается</translation>
+        <translation>[П] Загружается</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
@@ -2233,7 +2233,7 @@
     </message>
     <message>
         <source>Magnet link</source>
-        <translation>Магнет-ссылка</translation>
+        <translation>Магнет-ссылку</translation>
     </message>
     <message>
         <source>Hash</source>
@@ -2733,7 +2733,7 @@
     </message>
     <message>
         <source>Download link</source>
-        <translation>Загрузить ссылку</translation>
+        <translation>Ссылку загрузки</translation>
     </message>
 </context>
 </TS>
