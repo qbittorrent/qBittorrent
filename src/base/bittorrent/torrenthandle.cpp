@@ -899,7 +899,10 @@ TorrentState TorrentHandle::state() const
 
 void TorrentHandle::updateState()
 {
-    if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
+    if (hasError()) {
+        m_state = TorrentState::Error;
+    }
+    else if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
         m_state = TorrentState::CheckingResumeData;
     }
     else if (isMoveInProgress()) {
@@ -908,8 +911,6 @@ void TorrentHandle::updateState()
     else if (isPaused()) {
         if (hasMissingFiles())
             m_state = TorrentState::MissingFiles;
-        else if (hasError())
-            m_state = TorrentState::Error;
         else
             m_state = isSeed() ? TorrentState::PausedUploading : TorrentState::PausedDownloading;
     }
@@ -961,12 +962,7 @@ bool TorrentHandle::hasMissingFiles() const
 
 bool TorrentHandle::hasError() const
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    return (m_nativeStatus.paused && m_nativeStatus.errc);
-#else
-    return ((m_nativeStatus.flags & lt::torrent_flags::paused)
-            && m_nativeStatus.errc);
-#endif
+    return static_cast<bool>(m_nativeStatus.errc);
 }
 
 bool TorrentHandle::hasFilteredPieces() const

@@ -4179,6 +4179,10 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
     // Send new torrent signal
     if (!params.restored)
         emit torrentNew(torrent);
+
+    // Torrent could have error just after adding to libtorrent
+    if (torrent->hasError())
+        LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: %2.").arg(torrent->name(), torrent->error()), Log::WARNING);
 }
 
 void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
