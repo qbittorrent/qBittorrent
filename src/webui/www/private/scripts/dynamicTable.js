@@ -1602,14 +1602,14 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['enabled'].updateTd = function(td, row) {
                 const value = this.getRowValue(row);
                 if (value) {
-                    td.set('text', "Yes");
-                    td.set('title', "Yes");
+                    td.set('text', 'QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]');
+                    td.set('title', 'QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]');
                     td.getParent("tr").addClass("green");
                     td.getParent("tr").removeClass("red");
                 }
                 else {
-                    td.set('text', "No");
-                    td.set('title', "No");
+                    td.set('text', 'QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]');
+                    td.set('title', 'QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]');
                     td.getParent("tr").addClass("red");
                     td.getParent("tr").removeClass("green");
                 }
