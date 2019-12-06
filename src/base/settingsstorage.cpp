@@ -86,7 +86,6 @@ namespace
             {"BitTorrent/Session/BandwidthSchedulerEnabled", "Preferences/Scheduler/Enabled"},
             {"BitTorrent/Session/Port", "Preferences/Connection/PortRangeMin"},
             {"BitTorrent/Session/UseRandomPort", "Preferences/General/UseRandomPort"},
-            {"BitTorrent/Session/IPv6Enabled", "Preferences/Connection/InterfaceListenIPv6"},
             {"BitTorrent/Session/Interface", "Preferences/Connection/Interface"},
             {"BitTorrent/Session/InterfaceName", "Preferences/Connection/InterfaceName"},
             {"BitTorrent/Session/InterfaceAddress", "Preferences/Connection/InterfaceAddress"},

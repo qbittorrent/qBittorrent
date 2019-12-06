@@ -259,8 +259,6 @@ void AppController::preferencesAction()
     data["current_network_interface"] = session->networkInterface();
     // Current network interface address
     data["current_interface_address"] = BitTorrent::Session::instance()->networkInterfaceAddress();
-    // Listen on IPv6 address
-    data["listen_on_ipv6_address"] = session->isIPv6Enabled();
     // Save resume data interval
     data["save_resume_data_interval"] = static_cast<double>(session->saveResumeDataInterval());
     // Recheck completed torrents
@@ -654,9 +652,6 @@ void AppController::setPreferencesAction()
         const QHostAddress ifaceAddress {it.value().toString().trimmed()};
         session->setNetworkInterfaceAddress(ifaceAddress.isNull() ? QString {} : ifaceAddress.toString());
     }
-    // Listen on IPv6 address
-    if (hasKey("listen_on_ipv6_address"))
-        session->setIPv6Enabled(it.value().toBool());
     // Save resume data interval
     if (hasKey("save_resume_data_interval"))
         session->setSaveResumeDataInterval(it.value().toInt());
@@ -767,14 +762,22 @@ void AppController::networkInterfaceAddressListAction()
     const QString ifaceName = params().value("iface");
     QJsonArray addressList;
 
+    const auto appendAddress = [&addressList](const QHostAddress &addr)
+    {
+        if (addr.protocol() == QAbstractSocket::IPv6Protocol)
+            addressList.append(Utils::Net::canonicalIPv6Addr(addr).toString());
+        else
+            addressList.append(addr.toString());
+    };
+
     if (ifaceName.isEmpty()) {
-        for (const QHostAddress &ip : asConst(QNetworkInterface::allAddresses()))
-            addressList.append(ip.toString());
+        for (const QHostAddress &addr : asConst(QNetworkInterface::allAddresses()))
+            appendAddress(addr);
     }
     else {
         const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
         for (const QNetworkAddressEntry &entry : asConst(iface.addressEntries()))
-            addressList.append(entry.ip().toString());
+            appendAddress(entry.ip());
     }
 
     setResult(addressList);
