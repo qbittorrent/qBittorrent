@@ -68,7 +68,6 @@ enum AdvSettingsRows
     NETWORK_IFACE,
     //Optional network address
     NETWORK_IFACE_ADDRESS,
-    NETWORK_LISTEN_IPV6,
     // behavior
     SAVE_RESUME_DATA_INTERVAL,
     CONFIRM_RECHECK_TORRENT,
@@ -227,18 +226,14 @@ void AdvancedSettings::saveAdvancedSettings()
     }
 
     // Interface address
-    if (m_comboBoxInterfaceAddress.currentIndex() == 0) {
-        // All addresses (default)
-        session->setNetworkInterfaceAddress({});
-    }
-    else {
-        QHostAddress ifaceAddr(m_comboBoxInterfaceAddress.currentText().trimmed());
-        ifaceAddr.isNull() ? session->setNetworkInterfaceAddress({}) : session->setNetworkInterfaceAddress(ifaceAddr.toString());
-    }
-    session->setIPv6Enabled(m_checkBoxListenIPv6.isChecked());
+    // Construct a QHostAddress to filter malformed strings
+    const QHostAddress ifaceAddr(m_comboBoxInterfaceAddress.currentData().toString().trimmed());
+    session->setNetworkInterfaceAddress(ifaceAddr.toString());
+
     // Announce IP
-    QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
-    session->setAnnounceIP(addr.isNull() ? "" : addr.toString());
+    // Construct a QHostAddress to filter malformed strings
+    const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
+    session->setAnnounceIP(addr.toString());
 
     // Program notification
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
@@ -295,33 +290,35 @@ void AdvancedSettings::updateInterfaceAddressCombo()
 
     // Clear all items and reinsert them, default to all
     m_comboBoxInterfaceAddress.clear();
-    m_comboBoxInterfaceAddress.addItem(tr("All addresses"));
-    m_comboBoxInterfaceAddress.setCurrentIndex(0);
+    m_comboBoxInterfaceAddress.addItem(tr("All addresses"), {});
+    m_comboBoxInterfaceAddress.addItem(tr("All IPv4 addresses"), QLatin1String("0.0.0.0"));
+    m_comboBoxInterfaceAddress.addItem(tr("All IPv6 addresses"), QLatin1String("::"));
 
-    auto populateCombo = [this, &currentAddress](const QString &ip, const QAbstractSocket::NetworkLayerProtocol &protocol)
+    const auto populateCombo = [this, &currentAddress](const QHostAddress &addr)
     {
-        Q_ASSERT((protocol == QAbstractSocket::IPv4Protocol) || (protocol == QAbstractSocket::IPv6Protocol));
-        // Only take ipv4 for now?
-        if ((protocol != QAbstractSocket::IPv4Protocol) && (protocol != QAbstractSocket::IPv6Protocol))
-            return;
-        m_comboBoxInterfaceAddress.addItem(ip);
-        //Try to select the last added one
-        if (ip == currentAddress)
-            m_comboBoxInterfaceAddress.setCurrentIndex(m_comboBoxInterfaceAddress.count() - 1);
+        if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
+            const QString str = addr.toString();
+            m_comboBoxInterfaceAddress.addItem(str, str);
+        }
+        else if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
+            const QString str = Utils::Net::canonicalIPv6Addr(addr).toString();
+            m_comboBoxInterfaceAddress.addItem(str, str);
+        }
     };
 
     if (ifaceName.isEmpty()) {
-        for (const QHostAddress &ip : asConst(QNetworkInterface::allAddresses()))
-            populateCombo(ip.toString(), ip.protocol());
+        for (const QHostAddress &addr : asConst(QNetworkInterface::allAddresses()))
+            populateCombo(addr);
     }
     else {
         const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
         const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
-        for (const QNetworkAddressEntry &entry : addresses) {
-            const QHostAddress ip = entry.ip();
-            populateCombo(ip.toString(), ip.protocol());
-        }
+        for (const QNetworkAddressEntry &entry : addresses)
+            populateCombo(entry.ip());
     }
+
+    const int index = m_comboBoxInterfaceAddress.findData(currentAddress);
+    m_comboBoxInterfaceAddress.setCurrentIndex(std::max(index, 0));
 }
 
 void AdvancedSettings::loadAdvancedSettings()
@@ -524,9 +521,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Network interface address
     updateInterfaceAddressCombo();
     addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &m_comboBoxInterfaceAddress);
-    // Listen on IPv6 address
-    m_checkBoxListenIPv6.setChecked(session->isIPv6Enabled());
-    addRow(NETWORK_LISTEN_IPV6, tr("Listen on IPv6 address (requires restart)"), &m_checkBoxListenIPv6);
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);

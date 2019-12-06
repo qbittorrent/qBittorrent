@@ -1438,6 +1438,8 @@
                     if (!addresses) return;
 
                     $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]', ''));
+                    $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]', '0.0.0.0'));
+                    $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]', '::'));
                     addresses.forEach(function(item, index) {
                         $('optionalIPAddressToBind').options.add(new Option(item, item));
                     });

@@ -303,8 +303,6 @@ namespace BitTorrent
         void setNetworkInterfaceName(const QString &name);
         QString networkInterfaceAddress() const;
         void setNetworkInterfaceAddress(const QString &address);
-        bool isIPv6Enabled() const;
-        void setIPv6Enabled(bool enabled);
         int encryption() const;
         void setEncryption(int state);
         bool isProxyPeerConnectionsEnabled() const;
@@ -532,6 +530,7 @@ namespace BitTorrent
         void configureComponents();
         void initializeNativeSession();
         void loadLTSettings(lt::settings_pack &settingsPack);
+        void configureNetworkInterfaces(lt::settings_pack &settingsPack);
         void configurePeerClasses();
         void adjustLimits(lt::settings_pack &settingsPack);
         void applyBandwidthLimits(lt::settings_pack &settingsPack) const;
@@ -662,7 +661,6 @@ namespace BitTorrent
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;
-        CachedSettingValue<bool> m_isIPv6Enabled;
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
         CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
