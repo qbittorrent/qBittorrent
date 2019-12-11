@@ -127,8 +127,9 @@ namespace
         else {
             for (const QString &hash : hashes) {
                 BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-                if (torrent)
-                    func(torrent);
+                if (!torrent)
+                    throw APIError(APIErrorType::NotFound);
+                func(torrent);
             }
         }
     }
@@ -792,8 +793,9 @@ void TorrentsController::uploadLimitAction()
     for (const QString &hash : hashes) {
         int limit = -1;
         const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            limit = torrent->uploadLimit();
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+        limit = torrent->uploadLimit();
         map[hash] = limit;
     }
 
@@ -809,8 +811,9 @@ void TorrentsController::downloadLimitAction()
     for (const QString &hash : hashes) {
         int limit = -1;
         const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
-        if (torrent)
-            limit = torrent->downloadLimit();
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+        limit = torrent->downloadLimit();
         map[hash] = limit;
     }
 
