@@ -35,6 +35,8 @@
             if (name)
                 $('rename').value = decodeURIComponent(name);
 
+            $('renameContainingFolder').checked = localStorage.getItem('renameContainingFolder') == 'true';
+
             $('rename').focus();
             $('renameButton').addEvent('click', function(e) {
                 new Event(e).stop();
@@ -43,6 +45,14 @@
                 if (name === null || name === "")
                     return false;
 
+                const renameContainingFolder = $('renameContainingFolder').checked;
+                try {
+                    localStorage.setItem('renameContainingFolder', renameContainingFolder);
+                }
+                catch (err) {
+                    console.error(err);
+                }
+
                 const hash = new URI().getData('hash');
                 if (hash) {
                     new Request({
@@ -50,7 +60,8 @@
                         method: 'post',
                         data: {
                             hash: hash,
-                            name: name
+                            name: name,
+                            renameContainingFolder: renameContainingFolder
                         },
                         onComplete: function() {
                             window.parent.closeWindows();
@@ -66,6 +77,10 @@
     <div style="padding: 10px 10px 0px 10px;">
         <p style="font-weight: bold;">QBT_TR(New name)QBT_TR[CONTEXT=TransferListWidget]:</p>
         <input type="text" id="rename" value="" maxlength="255" style="width: 220px;" />
+        <br />
+        <br />
+        <input type="checkbox" id="renameContainingFolder" />
+        <label for="renameContainingFolder">QBT_TR(Also rename containing folder)QBT_TR[CONTEXT=TransferListWidget]</label>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="renameButton" />
         </div>

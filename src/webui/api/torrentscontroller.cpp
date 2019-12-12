@@ -981,6 +981,8 @@ void TorrentsController::renameAction()
     const QString hash = params()["hash"];
     QString name = params()["name"].trimmed();
 
+    bool renameContainingFolder = (params()["renameContainingFolder"] == "true");
+
     if (!Utils::Fs::isValidFileSystemName(name, true))
         throw APIError(APIErrorType::Conflict, tr("Incorrect torrent name"));
 
@@ -990,39 +992,41 @@ void TorrentsController::renameAction()
 
     name.replace(QRegularExpression("\r?\n|\r"), " ");
 
-    const QString oldContainingPath = torrent->name();
-    QString newContainingPath = name;
+    if (renameContainingFolder) {
+        const QString oldContainingPath = torrent->name();
+        QString newContainingPath = name;
 
-    qDebug("WebUI Rename: moving \"%s\" to \"%s\"", qUtf8Printable(oldContainingPath), qUtf8Printable(newContainingPath));
+        qDebug("WebUI Rename: moving \"%s\" to \"%s\"", qUtf8Printable(oldContainingPath), qUtf8Printable(newContainingPath));
 
-    // Renaming the containing folder
-    if (oldContainingPath == newContainingPath) {
-        qDebug("Name did not change");
-        return;
-    }
-    if (!newContainingPath.endsWith('/')) newContainingPath += '/';
-
-    bool needForceRecheck = false;
-    // Replace path in all files
-    for (int i = 0; i < torrent->filesCount(); ++i) {
-        const QString currentPath = torrent->filePath(i);
-        if (currentPath.startsWith(oldContainingPath)) {
-            QString newPath {newContainingPath + currentPath.mid(oldContainingPath.length())};
-            if (!needForceRecheck && QDir(torrent->savePath(true)).exists(newPath))
-                needForceRecheck = true;
-            newPath = Utils::Fs::expandPath(newPath);
-            qDebug("Rename %s to %s", qUtf8Printable(currentPath), qUtf8Printable(newPath));
-            torrent->renameFile(i, newPath);
+        // Renaming the containing folder
+        if (oldContainingPath == newContainingPath) {
+            qDebug("Name did not change");
+            return;
         }
-    }
-    // Force recheck
-    if (needForceRecheck) torrent->forceRecheck();
-    // Remove old folder
-    const QDir oldFolder(torrent->savePath(true) + '/' + oldContainingPath);
-    int timeout = 10;
-    while (!Utils::Fs::removeEmptyDir(oldFolder.absolutePath()) && (timeout > 0)) {
-        QThread::msleep(100);
-        --timeout;
+        if (!newContainingPath.endsWith('/')) newContainingPath += '/';
+
+        bool needForceRecheck = false;
+        // Replace path in all files
+        for (int i = 0; i < torrent->filesCount(); ++i) {
+            const QString currentPath = torrent->filePath(i);
+            if (currentPath.startsWith(oldContainingPath)) {
+                QString newPath {newContainingPath + currentPath.mid(oldContainingPath.length())};
+                if (!needForceRecheck && QDir(torrent->savePath(true)).exists(newPath))
+                    needForceRecheck = true;
+                newPath = Utils::Fs::expandPath(newPath);
+                qDebug("Rename %s to %s", qUtf8Printable(currentPath), qUtf8Printable(newPath));
+                torrent->renameFile(i, newPath);
+            }
+        }
+        // Force recheck
+        if (needForceRecheck) torrent->forceRecheck();
+        // Remove old folder
+        const QDir oldFolder(torrent->savePath(true) + '/' + oldContainingPath);
+        int timeout = 10;
+        while (!Utils::Fs::removeEmptyDir(oldFolder.absolutePath()) && (timeout > 0)) {
+            QThread::msleep(100);
+            --timeout;
+        }
     }
 
     torrent->setName(name);
