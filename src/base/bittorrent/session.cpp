@@ -1976,6 +1976,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magnetUri,
                               TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
     params.savePath = normalizeSavePath(params.savePath, "");
 
     if (!params.category.isEmpty()) {
@@ -2007,12 +2008,9 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
             // We need to pause it first to create TorrentHandle within the same
             // underlying state as in other cases.
-#if (LIBTORRENT_VERSION_NUM < 10200)
             handle.auto_managed(false);
-#else
-            handle.unset_flags(lt::torrent_flags::auto_managed);
-#endif
             handle.pause();
+            // createTorrentHandle() for this is called in the torrent_paused_alert handler
 
             m_loadedMetadata.remove(hash);
             m_addingTorrents.insert(hash, params);
@@ -2020,6 +2018,14 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         }
 
         p = magnetUri.addTorrentParams();
+        if (isTempPathEnabled()) {
+            p.save_path = Utils::Fs::toNativePath(tempPath()).toStdString();
+        }
+        else {
+            // If empty then Automatic mode, otherwise Manual mode
+            const QString savePath = params.savePath.isEmpty() ? categorySavePath(params.category) : params.savePath;
+            p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+        }
     }
     else {
         if (!torrentInfo.isValid()) {
@@ -2048,13 +2054,8 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         return true;
     }
 
-    // Record if .fastresume is complete, that is whether it contains
-    // the required fields to resume a torrent.
-    bool hasCompleteFastresume = false;
-
     if (!fromMagnetUri) {
         if (params.restored) {  // load from existing fastresume
-#if (LIBTORRENT_VERSION_NUM < 10200)
             // Make sure the torrent will be initially checked and then paused
             // to perform some service jobs on it. We will start it if needed.
             // (Workaround to easily support libtorrent-1.1
@@ -2065,27 +2066,17 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             p.resume_data = std::vector<char> {patchedFastresumeData.constData()
                 , (patchedFastresumeData.constData() + patchedFastresumeData.size())};
             p.flags |= lt::add_torrent_params::flag_use_resume_save_path;
-
-            // Still setup the default parameters and let libtorrent handle
-            // the parameter merging
-            hasCompleteFastresume = false;
-#else
-            lt::error_code ec;
-            p = lt::read_resume_data(fastresumeData, ec);
-
-            // libtorrent will always apply `file_priorities` to torrents,
-            // if the field is present then the fastresume is considered to
-            // be correctly generated and should be complete.
-            hasCompleteFastresume = !p.file_priorities.empty();
-#endif
         }
         else {  // new torrent
             if (!params.hasRootFolder)
                 torrentInfo.stripRootFolder();
 
+            // If empty then Automatic mode, otherwise Manual mode
+            QString savePath = params.savePath.isEmpty() ? categorySavePath(params.category) : params.savePath;
             // Metadata
             if (!params.hasSeedStatus)
-                findIncompleteFiles(torrentInfo, savePath);
+                findIncompleteFiles(torrentInfo, savePath); // if needed points savePath to incomplete folder too
+            p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
             // if torrent name wasn't explicitly set we handle the case of
             // initial renaming of torrent content and rename torrent accordingly
@@ -2102,12 +2093,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             std::transform(params.filePriorities.cbegin(), params.filePriorities.cend()
                            , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
             {
-#if (LIBTORRENT_VERSION_NUM < 10200)
                 return static_cast<boost::uint8_t>(priority);
-#else
-                return static_cast<lt::download_priority_t>(
-                            static_cast<lt::download_priority_t::underlying_type>(priority));
-#endif
             });
         }
 
@@ -2115,35 +2101,154 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     }
 
     // Common
-#if (LIBTORRENT_VERSION_NUM < 10200)
     p.flags &= ~lt::add_torrent_params::flag_duplicate_is_error; // Already checked
-#else
-    p.flags &= ~lt::torrent_flags::duplicate_is_error; // Already checked
-#endif
     // Make sure the torrent will be initially checked and then paused
     // to perform some service jobs on it. We will start it if needed.
-#if (LIBTORRENT_VERSION_NUM < 10200)
     p.flags |= lt::add_torrent_params::flag_paused;
     p.flags |= lt::add_torrent_params::flag_auto_managed;
     p.flags |= lt::add_torrent_params::flag_stop_when_ready;
-#else
-    p.flags |= lt::torrent_flags::paused;
-    p.flags |= lt::torrent_flags::auto_managed;
-    p.flags |= lt::torrent_flags::stop_when_ready;
-#endif
+    // Limits
+    p.max_connections = maxConnectionsPerTorrent();
+    p.max_uploads = maxUploadsPerTorrent();
+    p.upload_limit = params.uploadLimit;
+    p.download_limit = params.downloadLimit;
+    // Preallocation mode
+    p.storage_mode = isPreallocationEnabled()
+                     ? lt::storage_mode_allocate : lt::storage_mode_sparse;
 
-    if (!hasCompleteFastresume) {
-        // Limits
-        p.max_connections = maxConnectionsPerTorrent();
-        p.max_uploads = maxUploadsPerTorrent();
-        p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+    // Seeding mode
+    // Skip checking and directly start seeding
+    if (params.skipChecking)
+        p.flags |= lt::add_torrent_params::flag_seed_mode;
+    else
+        p.flags &= ~lt::add_torrent_params::flag_seed_mode;
+
+    m_addingTorrents.insert(hash, params);
+    // Adding torrent to BitTorrent session
+    m_nativeSession->async_add_torrent(p);
+
+    return true;
+#else
+    params.savePath = normalizeSavePath(params.savePath, "");
+
+    if (!params.category.isEmpty()) {
+        if (!m_categories.contains(params.category) && !addCategory(params.category))
+            params.category = "";
+    }
+
+    const bool fromMagnetUri = magnetUri.isValid();
+    lt::add_torrent_params p;
+    InfoHash hash;
+
+    if (fromMagnetUri) {
+        hash = magnetUri.hash();
+
+        const auto it = m_loadedMetadata.constFind(hash);
+        if (it != m_loadedMetadata.constEnd()) {
+            // Adding preloaded torrent...
+            const TorrentInfo metadata = it.value();
+            if (metadata.isValid()) {
+                // Metadata is received and torrent_handle is being deleted
+                // so we can't reuse it. Just add torrent using its metadata.
+                return addTorrent_impl(params
+                    , MagnetUri {}, metadata, fastresumeData);
+            }
+
+            // Reuse existing torrent_handle
+            lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
+            // We need to pause it first to create TorrentHandle within the same
+            // underlying state as in other cases.
+            handle.unset_flags(lt::torrent_flags::auto_managed);
+            handle.pause();
+            // createTorrentHandle() for this is called in the torrent_paused_alert handler
+
+            m_loadedMetadata.remove(hash);
+            m_addingTorrents.insert(hash, params);
+            return true;
+        }
+
+        p = magnetUri.addTorrentParams();
+        if (isTempPathEnabled()) {
+            p.save_path = Utils::Fs::toNativePath(tempPath()).toStdString();
+        }
+        else {
+            // If empty then Automatic mode, otherwise Manual mode
+            const QString savePath = params.savePath.isEmpty() ? categorySavePath(params.category) : params.savePath;
+            p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+        }
+    }
+    else {
+        if (!torrentInfo.isValid()) {
+            // We can have an invalid torrentInfo when there isn't a matching
+            // .torrent file to the .fastresume we loaded. Possibly from a
+            // failed upgrade.
+            return false;
+        }
+
+        hash = torrentInfo.hash();
+    }
+
+    // We should not add the torrent if it is already
+    // processed or is pending to add to session
+    if (m_addingTorrents.contains(hash) || m_loadedMetadata.contains(hash))
+        return false;
+
+    TorrentHandle *const torrent = m_torrents.value(hash);
+    if (torrent) {  // a duplicate torrent is added
+        if (torrent->isPrivate() || (!fromMagnetUri && torrentInfo.isPrivate()))
+            return false;
+
+        // merge trackers and web seeds
+        torrent->addTrackers(fromMagnetUri ? magnetUri.trackers() : torrentInfo.trackers());
+        torrent->addUrlSeeds(fromMagnetUri ? magnetUri.urlSeeds() : torrentInfo.urlSeeds());
+        return true;
+    }
+
+    if (!fromMagnetUri) {
+        if (params.restored) {  // load from existing fastresume
+            lt::error_code ec;
+            p = lt::read_resume_data(fastresumeData, ec);
+        }
+        else {  // new torrent
+            if (!params.hasRootFolder)
+                torrentInfo.stripRootFolder();
+
+            // If empty then Automatic mode, otherwise Manual mode
+            QString savePath = params.savePath.isEmpty() ? categorySavePath(params.category) : params.savePath;
+            // Metadata
+            if (!params.hasSeedStatus)
+                findIncompleteFiles(torrentInfo, savePath); // if needed points savePath to incomplete folder too
+            p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+
+            // if torrent name wasn't explicitly set we handle the case of
+            // initial renaming of torrent content and rename torrent accordingly
+            if (params.name.isEmpty()) {
+                QString contentName = torrentInfo.rootFolder();
+                if (contentName.isEmpty() && (torrentInfo.filesCount() == 1))
+                    contentName = torrentInfo.fileName(0);
+
+                if (!contentName.isEmpty() && (contentName != torrentInfo.name()))
+                    params.name = contentName;
+            }
+
+            Q_ASSERT(p.file_priorities.empty());
+            std::transform(params.filePriorities.cbegin(), params.filePriorities.cend()
+                           , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
+            {
+                return static_cast<lt::download_priority_t>(
+                            static_cast<lt::download_priority_t::underlying_type>(priority));
+            });
+        }
+
+        p.ti = torrentInfo.nativeInfo();
+    }
+
+    if (fromMagnetUri && params.restored && params.addedTime.isValid())
+        p.added_time = params.addedTime.toSecsSinceEpoch();
+
+    if (fromMagnetUri || !params.restored) {
         p.upload_limit = params.uploadLimit;
         p.download_limit = params.downloadLimit;
-
-#if (LIBTORRENT_VERSION_NUM >= 10200)
-        if (params.addedTime.isValid())
-            p.added_time = params.addedTime.toSecsSinceEpoch();
-#endif
 
         // Preallocation mode
         p.storage_mode = isPreallocationEnabled()
@@ -2151,27 +2256,29 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
         // Seeding mode
         // Skip checking and directly start seeding
-        if (params.skipChecking) {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-            p.flags |= lt::add_torrent_params::flag_seed_mode;
-#else
+        if (params.skipChecking)
             p.flags |= lt::torrent_flags::seed_mode;
-#endif
-        }
-        else {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-            p.flags &= ~lt::add_torrent_params::flag_seed_mode;
-#else
+        else
             p.flags &= ~lt::torrent_flags::seed_mode;
-#endif
-        }
     }
+
+    // Common
+    p.flags &= ~lt::torrent_flags::duplicate_is_error; // Already checked
+    // Make sure the torrent will be initially checked and then paused
+    // to perform some service jobs on it. We will start it if needed.
+    p.flags |= lt::torrent_flags::paused;
+    p.flags |= lt::torrent_flags::auto_managed;
+    p.flags |= lt::torrent_flags::stop_when_ready;
+    // Limits
+    p.max_connections = maxConnectionsPerTorrent();
+    p.max_uploads = maxUploadsPerTorrent();
 
     m_addingTorrents.insert(hash, params);
     // Adding torrent to BitTorrent session
     m_nativeSession->async_add_torrent(p);
 
     return true;
+#endif
 }
 
 bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const
