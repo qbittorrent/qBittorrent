@@ -138,7 +138,7 @@ These are unstable/unsupported platforms, and in all likelihood, whatever the is
 *   **For performance-related issues**, include as much profiling data as you can (resource usage graphs, etc).
 
 *   Paste the **qBittorrent log** (or put the contents of the log in a gist and provide a link to the gist). The log can be viewed in the GUI (View -> Log -> tick all boxes). If you can't do that, the file is at:
-    -   Linux: `~/.local/share/data/qBittorrent/logs/qBittorrent.log`
+    -   Linux: `~/.local/share/qBittorrent/logs/qBittorrent.log`
     -   Windows: `%LocalAppData%\qBittorrent\logs`
     -   macOS: `~/Library/Application Support/qBittorrent/qBittorrent.log`
 
