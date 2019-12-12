@@ -436,7 +436,6 @@ Session::Session(QObject *parent)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
-    , m_isIPv6Enabled(BITTORRENT_SESSION_KEY("IPv6Enabled"), false)
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
     , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::FixedSlots
@@ -1244,68 +1243,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     // It will not take affect until the listen_interfaces settings is updated
     settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
 
-#ifdef Q_OS_WIN
-    QString chosenIP;
-#endif
-    if (!m_listenInterfaceConfigured) {
-        const int port = useRandomPort() ? 0 : this->port();
-        if (port > 0)  // user specified port
-            settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
-
-        for (const QString &ip : asConst(getListeningIPs())) {
-            if (ip.isEmpty()) {
-                const QString anyIP = QHostAddress(QHostAddress::AnyIPv4).toString();
-                const std::string endpoint = anyIP.toStdString() + ':' + std::to_string(port);
-                settingsPack.set_str(lt::settings_pack::listen_interfaces, endpoint);
-                LogMsg(tr("Trying to listen on IP: %1, port: %2"
-                        , "e.g: Trying to listen on IP: 192.168.0.1, port: 6881")
-                        .arg(anyIP, QString::number(port))
-                    , Log::INFO);
-                break;
-            }
-
-            lt::error_code ec;
-            const lt::address addr = lt::address::from_string(ip.toStdString(), ec);
-            if (!ec) {
-                const std::string endpoint = (addr.is_v6()
-                    ? ('[' + addr.to_string() + ']')
-                    : addr.to_string())
-                    + ':' + std::to_string(port);
-                settingsPack.set_str(lt::settings_pack::listen_interfaces, endpoint);
-                LogMsg(tr("Trying to listen on IP: %1, port: %2"
-                        , "e.g: Trying to listen on IP: 192.168.0.1, port: 6881")
-                        .arg(ip, QString::number(port))
-                    , Log::INFO);
-#ifdef Q_OS_WIN
-                chosenIP = ip;
-#endif
-                break;
-            }
-        }
-
-#ifdef Q_OS_WIN
-        // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
-        // the interface's LUID and not the GUID.
-        // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
-        const QString netInterface = networkInterface();
-        if (!netInterface.isEmpty()) {
-            const QString guid = convertIfaceNameToGuid(netInterface);
-            if (!guid.isEmpty()) {
-                settingsPack.set_str(lt::settings_pack::outgoing_interfaces, guid.toStdString());
-            }
-            else {
-                settingsPack.set_str(lt::settings_pack::outgoing_interfaces, chosenIP.toStdString());
-                LogMsg(tr("Could not get GUID of configured network interface. Binding to IP: %1").arg(chosenIP)
-                       , Log::WARNING);
-            }
-        }
-#else
-        settingsPack.set_str(lt::settings_pack::outgoing_interfaces, networkInterface().toStdString());
-#endif // Q_OS_WIN
-
-        m_listenInterfaceConfigured = true;
-    }
-
+    configureNetworkInterfaces(settingsPack);
     applyBandwidthLimits(settingsPack);
 
     // The most secure, rc4 only so that all streams are encrypted
@@ -1494,6 +1432,75 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
         settingsPack.set_int(lt::settings_pack::seed_choking_algorithm, lt::settings_pack::anti_leech);
         break;
     }
+}
+
+void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
+{
+    if (m_listenInterfaceConfigured)
+        return;
+
+    const int port = useRandomPort() ? 0 : this->port();
+    if (port > 0)  // user specified port
+        settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
+
+    QStringList endpoints;
+    QStringList outgoingInterfaces;
+    const QString portString = ':' + QString::number(port);
+
+    for (const QString &ip : asConst(getListeningIPs())) {
+        const QHostAddress addr {ip};
+        if (!addr.isNull()) {
+            endpoints << ((addr.protocol() == QAbstractSocket::IPv6Protocol)
+                          ? ('[' + Utils::Net::canonicalIPv6Addr(addr).toString() + ']')
+                          : addr.toString())
+                         + portString;
+        }
+        else {
+            // ip holds an interface name
+#ifdef Q_OS_WIN
+            // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
+            // the interface's LUID and not the GUID.
+            // Libtorrent expects GUIDs for the 'listen_interfaces' setting.
+            const QString guid = convertIfaceNameToGuid(ip);
+            if (!guid.isEmpty()) {
+                endpoints << (guid + portString);
+                outgoingInterfaces << guid;
+            }
+            else {
+                LogMsg(tr("Could not get GUID of network interface: %1").arg(ip) , Log::WARNING);
+            }
+#else
+            endpoints << (ip + portString);
+            outgoingInterfaces << ip;
+#endif
+        }
+    }
+
+    if (outgoingInterfaces.isEmpty()) {
+#ifdef Q_OS_WIN
+        // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
+        // the interface's LUID and not the GUID.
+        // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
+        const QString netInterface = networkInterface();
+        if (!netInterface.isEmpty()) {
+            const QString guid = convertIfaceNameToGuid(netInterface);
+            if (!guid.isEmpty())
+                outgoingInterfaces << guid;
+            else
+                LogMsg(tr("Could not get GUID of network interface: %1").arg(netInterface) , Log::WARNING);
+        }
+#else
+        outgoingInterfaces << networkInterface();
+#endif // Q_OS_WIN
+    }
+
+    const QString finalEndpoints = endpoints.join(',');
+    settingsPack.set_str(lt::settings_pack::listen_interfaces, finalEndpoints.toStdString());
+    LogMsg(tr("Trying to listen on: %1", "e.g: Trying to listen on: 192.168.0.1:6881")
+           .arg(finalEndpoints), Log::INFO);
+
+    settingsPack.set_str(lt::settings_pack::outgoing_interfaces, outgoingInterfaces.join(',').toStdString());
+    m_listenInterfaceConfigured = true;
 }
 
 void Session::configurePeerClasses()
@@ -2416,22 +2423,50 @@ QStringList Session::getListeningIPs() const
 
     const QString ifaceName = networkInterface();
     const QString ifaceAddr = networkInterfaceAddress();
-    const bool listenIPv6 = isIPv6Enabled();
+    const QHostAddress configuredAddr(ifaceAddr);
+    const bool allIPv4 = (ifaceAddr == QLatin1String("0.0.0.0")); // Means All IPv4 addresses
+    const bool allIPv6 = (ifaceAddr == QLatin1String("::")); // Means All IPv6 addresses
 
-    if (!ifaceAddr.isEmpty()) {
-        QHostAddress addr(ifaceAddr);
-        if (addr.isNull()) {
-            LogMsg(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.1568.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
-            IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
-            return IPs;
-        }
+    if (!ifaceAddr.isEmpty() && !allIPv4 && !allIPv6 && configuredAddr.isNull()) {
+        LogMsg(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.158.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
+        IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        return IPs;
     }
 
     if (ifaceName.isEmpty()) {
-        if (!ifaceAddr.isEmpty())
-            IPs.append(ifaceAddr);
-        else
-            IPs.append(QString());
+        if (ifaceAddr.isEmpty())
+            return {QLatin1String("0.0.0.0"), QLatin1String("::")}; // Indicates all interfaces + all addresses (aka default)
+
+        if (allIPv4)
+            return {QLatin1String("0.0.0.0")};
+
+        if (allIPv6)
+            return {QLatin1String("::")};
+    }
+
+    const auto checkAndAddIP = [allIPv4, allIPv6, &IPs](const QHostAddress &addr, const QHostAddress &match)
+    {
+        if ((allIPv4 && (addr.protocol() != QAbstractSocket::IPv4Protocol))
+            || (allIPv6 && (addr.protocol() != QAbstractSocket::IPv6Protocol)))
+            return;
+
+        if ((match == addr) || allIPv4 || allIPv6)
+            IPs.append(addr.toString());
+    };
+
+    if (ifaceName.isEmpty()) {
+        const QList<QHostAddress> addresses = QNetworkInterface::allAddresses();
+        for (const auto &addr : addresses)
+            checkAndAddIP(addr, configuredAddr);
+
+        // At this point ifaceAddr was non-empty
+        // If IPs.isEmpty() it means the configured Address was not found
+        if (IPs.isEmpty()) {
+            LogMsg(tr("Can't find the configured address '%1' to listen on"
+                    , "Can't find the configured address '192.168.1.3' to listen on")
+                .arg(ifaceAddr), Log::CRITICAL);
+            IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        }
 
         return IPs;
     }
@@ -2445,40 +2480,24 @@ QStringList Session::getListeningIPs() const
         return IPs;
     }
 
-    const QList<QNetworkAddressEntry> addresses = networkIFace.addressEntries();
-    qDebug("This network interface has %d IP addresses", addresses.size());
-    QHostAddress ip;
-    QString ipString;
-    QAbstractSocket::NetworkLayerProtocol protocol;
-    for (const QNetworkAddressEntry &entry : addresses) {
-        ip = entry.ip();
-        ipString = ip.toString();
-        protocol = ip.protocol();
-        Q_ASSERT((protocol == QAbstractSocket::IPv4Protocol) || (protocol == QAbstractSocket::IPv6Protocol));
-        if ((!listenIPv6 && (protocol == QAbstractSocket::IPv6Protocol))
-            || (listenIPv6 && (protocol == QAbstractSocket::IPv4Protocol)))
-            continue;
-
-        // If an iface address has been defined to only allow ip's that match it to go through
-        if (!ifaceAddr.isEmpty()) {
-            if (ifaceAddr == ipString) {
-                IPs.append(ipString);
-                break;
-            }
-        }
-        else {
-            IPs.append(ipString);
-        }
+    if (ifaceAddr.isEmpty()) {
+        IPs.append(ifaceName);
+        return IPs; // On Windows calling code converts it to GUID
     }
 
+    const QList<QNetworkAddressEntry> addresses = networkIFace.addressEntries();
+    qDebug("This network interface has %d IP addresses", addresses.size());
+    for (const QNetworkAddressEntry &entry : addresses)
+        checkAndAddIP(entry.ip(), configuredAddr);
+
     // Make sure there is at least one IP
-    // At this point there was a valid network interface, with no suitable IP.
-    if (IPs.size() == 0) {
-        LogMsg(tr("qBittorrent didn't find an %1 local address to listen on"
-                , "qBittorrent didn't find an IPv4 local address to listen on")
-            .arg(listenIPv6 ? "IPv6" : "IPv4"), Log::CRITICAL);
+    // At this point there was an explicit interface and an explicit address set
+    // and the address should have been found
+    if (IPs.isEmpty()) {
+        LogMsg(tr("Can't find the configured address '%1' to listen on"
+                  , "Can't find the configured address '192.168.1.3' to listen on")
+            .arg(ifaceAddr), Log::CRITICAL);
         IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
-        return IPs;
     }
 
     return IPs;
@@ -2730,19 +2749,6 @@ void Session::setNetworkInterfaceAddress(const QString &address)
 {
     if (address != networkInterfaceAddress()) {
         m_networkInterfaceAddress = address;
-        configureListeningInterface();
-    }
-}
-
-bool Session::isIPv6Enabled() const
-{
-    return m_isIPv6Enabled;
-}
-
-void Session::setIPv6Enabled(const bool enabled)
-{
-    if (enabled != isIPv6Enabled()) {
-        m_isIPv6Enabled = enabled;
         configureListeningInterface();
     }
 }
