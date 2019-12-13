@@ -33,6 +33,8 @@
 #include <QAbstractListModel>
 #include <QList>
 
+class QWidget;
+
 namespace BitTorrent
 {
     class InfoHash;
@@ -102,6 +104,7 @@ private slots:
 private:
     QList<BitTorrent::TorrentHandle *> m_torrentList;  // maps row number to torrent handle
     QHash<BitTorrent::TorrentHandle *, int> m_torrentMap;  // maps torrent handle to row number
+    const QWidget *const m_view;
 };
 
 #endif // TRANSFERLISTMODEL_H

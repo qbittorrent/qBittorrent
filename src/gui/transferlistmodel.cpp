@@ -29,11 +29,11 @@
 
 #include "transferlistmodel.h"
 
-#include <QApplication>
 #include <QDateTime>
 #include <QDebug>
 #include <QIcon>
 #include <QPalette>
+#include <QWidget>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -41,7 +41,7 @@
 #include "base/utils/fs.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
-static QColor getColorByState(BitTorrent::TorrentState state);
+static QColor getColorByState(BitTorrent::TorrentState state, const QWidget *const view);
 
 static QIcon getPausedIcon();
 static QIcon getQueuedIcon();
@@ -53,12 +53,13 @@ static QIcon getCompletedIcon();
 static QIcon getCheckingIcon();
 static QIcon getErrorIcon();
 
-static bool isDarkTheme();
+static bool isDarkTheme(const QWidget *const view);
 
 // TransferListModel
 
 TransferListModel::TransferListModel(QObject *parent)
     : QAbstractListModel(parent)
+    , m_view(static_cast<QWidget*>(parent))
 {
     // Load the torrents
     using namespace BitTorrent;
@@ -169,7 +170,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         return getIconByState(torrent->state());
 
     if (role == Qt::ForegroundRole)
-        return getColorByState(torrent->state());
+        return getColorByState(torrent->state(), m_view);
 
     if ((role != Qt::DisplayRole) && (role != Qt::UserRole))
         return {};
@@ -376,10 +377,10 @@ QIcon getIconByState(const BitTorrent::TorrentState state)
     }
 }
 
-QColor getColorByState(const BitTorrent::TorrentState state)
+QColor getColorByState(const BitTorrent::TorrentState state, const QWidget *const view)
 {
     // Color names taken from http://cloford.com/resources/colours/500col.htm
-    bool dark = isDarkTheme();
+    bool dark = isDarkTheme(view);
 
     switch (state) {
     case BitTorrent::TorrentState::Downloading:
@@ -484,9 +485,9 @@ QIcon getErrorIcon()
     return cached;
 }
 
-bool isDarkTheme()
+bool isDarkTheme(const QWidget *const view)
 {
-    const QPalette pal = QApplication::palette();
+    const QPalette pal = view->palette();
     // QPalette::Base is used for the background of the Treeview
     const QColor &color = pal.color(QPalette::Active, QPalette::Base);
     return (color.lightness() < 127);
