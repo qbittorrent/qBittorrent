@@ -804,6 +804,18 @@ void Preferences::setAutoRunProgram(const QString &program)
     setValue("AutoRun/program", program);
 }
 
+#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+bool Preferences::isAutoRunConsoleEnabled() const
+{
+    return value("AutoRun/ConsoleEnabled", false).toBool();
+}
+
+void Preferences::setAutoRunConsoleEnabled(const bool enabled)
+{
+    setValue("AutoRun/ConsoleEnabled", enabled);
+}
+#endif
+
 bool Preferences::shutdownWhenDownloadsComplete() const
 {
     return value("Preferences/Downloads/AutoShutDownOnCompletion", false).toBool();

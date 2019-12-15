@@ -345,8 +345,34 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
 
-    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QProcess proc;
+    proc.setProgram(QString::fromWCharArray(args[0]));
+    proc.setArguments(argList);
+    proc.setCreateProcessArgumentsModifier([](QProcess::CreateProcessArguments *args)
+    {
+        if (Preferences::instance()->isAutoRunConsoleEnabled()) {
+            args->flags |= CREATE_NEW_CONSOLE;
+            args->flags &= ~(CREATE_NO_WINDOW | DETACHED_PROCESS);
+        }
+        else {
+            args->flags |= CREATE_NO_WINDOW;
+            args->flags &= ~(CREATE_NEW_CONSOLE | DETACHED_PROCESS);
+        }
+        args->inheritHandles = false;
+        args->startupInfo->dwFlags &= ~STARTF_USESTDHANDLES;
+        ::CloseHandle(args->startupInfo->hStdInput);
+        ::CloseHandle(args->startupInfo->hStdOutput);
+        ::CloseHandle(args->startupInfo->hStdError);
+        args->startupInfo->hStdInput = nullptr;
+        args->startupInfo->hStdOutput = nullptr;
+        args->startupInfo->hStdError = nullptr;
+    });
+    proc.startDetached();
 #else
+    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
+#endif // QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+#else // Q_OS_WIN
     // Cannot give users shell environment by default, as doing so could
     // enable command injection via torrent name and other arguments
     // (especially when some automated download mechanism has been setup).
