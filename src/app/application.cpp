@@ -332,22 +332,20 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
 
 #if defined(Q_OS_WIN)
-    std::unique_ptr<wchar_t[]> programWchar(new wchar_t[program.length() + 1] {});
+    auto programWchar = std::make_unique<wchar_t[]>(program.length() + 1);
     program.toWCharArray(programWchar.get());
 
     // Need to split arguments manually because QProcess::startDetached(QString)
     // will strip off empty parameters.
     // E.g. `python.exe "1" "" "3"` will become `python.exe "1" "3"`
     int argCount = 0;
-    LPWSTR *args = ::CommandLineToArgvW(programWchar.get(), &argCount);
+    std::unique_ptr<LPWSTR[], decltype(&::LocalFree)> args {::CommandLineToArgvW(programWchar.get(), &argCount), ::LocalFree};
 
     QStringList argList;
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
 
     QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
-
-    ::LocalFree(args);
 #else
     // Cannot give users shell environment by default, as doing so could
     // enable command injection via torrent name and other arguments
