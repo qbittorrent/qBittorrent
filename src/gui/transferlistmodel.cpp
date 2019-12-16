@@ -59,6 +59,27 @@ static bool isDarkTheme();
 
 TransferListModel::TransferListModel(QObject *parent)
     : QAbstractListModel(parent)
+    , m_stateForegroundColors {
+        {BitTorrent::TorrentState::Unknown, getColorByState(BitTorrent::TorrentState::Unknown)},
+        {BitTorrent::TorrentState::ForcedDownloading, getColorByState(BitTorrent::TorrentState::ForcedDownloading)},
+        {BitTorrent::TorrentState::Downloading, getColorByState(BitTorrent::TorrentState::Downloading)},
+        {BitTorrent::TorrentState::DownloadingMetadata, getColorByState(BitTorrent::TorrentState::DownloadingMetadata)},
+        {BitTorrent::TorrentState::Allocating, getColorByState(BitTorrent::TorrentState::Allocating)},
+        {BitTorrent::TorrentState::StalledDownloading, getColorByState(BitTorrent::TorrentState::StalledDownloading)},
+        {BitTorrent::TorrentState::ForcedUploading, getColorByState(BitTorrent::TorrentState::ForcedUploading)},
+        {BitTorrent::TorrentState::Uploading, getColorByState(BitTorrent::TorrentState::Uploading)},
+        {BitTorrent::TorrentState::StalledUploading, getColorByState(BitTorrent::TorrentState::StalledUploading)},
+        {BitTorrent::TorrentState::CheckingResumeData, getColorByState(BitTorrent::TorrentState::CheckingResumeData)},
+        {BitTorrent::TorrentState::QueuedDownloading, getColorByState(BitTorrent::TorrentState::QueuedDownloading)},
+        {BitTorrent::TorrentState::QueuedUploading, getColorByState(BitTorrent::TorrentState::QueuedUploading)},
+        {BitTorrent::TorrentState::CheckingUploading, getColorByState(BitTorrent::TorrentState::CheckingUploading)},
+        {BitTorrent::TorrentState::CheckingDownloading, getColorByState(BitTorrent::TorrentState::CheckingDownloading)},
+        {BitTorrent::TorrentState::PausedDownloading, getColorByState(BitTorrent::TorrentState::PausedDownloading)},
+        {BitTorrent::TorrentState::PausedUploading, getColorByState(BitTorrent::TorrentState::PausedUploading)},
+        {BitTorrent::TorrentState::Moving, getColorByState(BitTorrent::TorrentState::Moving)},
+        {BitTorrent::TorrentState::MissingFiles, getColorByState(BitTorrent::TorrentState::MissingFiles)},
+        {BitTorrent::TorrentState::Error, getColorByState(BitTorrent::TorrentState::Error)}
+    }
 {
     // Load the torrents
     using namespace BitTorrent;
@@ -169,7 +190,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         return getIconByState(torrent->state());
 
     if (role == Qt::ForegroundRole)
-        return getColorByState(torrent->state());
+        return stateForeground(torrent->state());
 
     if ((role != Qt::DisplayRole) && (role != Qt::UserRole))
         return {};
@@ -335,6 +356,16 @@ void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::TorrentH
         // save the overhead when more than half of the torrent list needs update
         emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
     }
+}
+
+void TransferListModel::setStateForeground(const BitTorrent::TorrentState state, const QColor &color)
+{
+    m_stateForegroundColors[state] = color;
+}
+
+QColor TransferListModel::stateForeground(const BitTorrent::TorrentState state) const
+{
+    return m_stateForegroundColors[state];
 }
 
 // Static functions

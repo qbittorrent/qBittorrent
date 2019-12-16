@@ -47,6 +47,26 @@ class TransferListWidget : public QTreeView
 {
     Q_OBJECT
 
+    Q_PROPERTY(QColor unknownStateForeground READ unknownStateForeground WRITE setUnknownStateForeground)
+    Q_PROPERTY(QColor forcedDownloadingStateForeground READ forcedDownloadingStateForeground WRITE setForcedDownloadingStateForeground)
+    Q_PROPERTY(QColor downloadingStateForeground READ downloadingStateForeground WRITE setDownloadingStateForeground)
+    Q_PROPERTY(QColor downloadingMetadataStateForeground READ downloadingMetadataStateForeground WRITE setDownloadingMetadataStateForeground)
+    Q_PROPERTY(QColor allocatingStateForeground READ allocatingStateForeground WRITE setAllocatingStateForeground)
+    Q_PROPERTY(QColor stalledDownloadingStateForeground READ stalledDownloadingStateForeground WRITE setStalledDownloadingStateForeground)
+    Q_PROPERTY(QColor forcedUploadingStateForeground READ forcedUploadingStateForeground WRITE setForcedUploadingStateForeground)
+    Q_PROPERTY(QColor uploadingStateForeground READ uploadingStateForeground WRITE setUploadingStateForeground)
+    Q_PROPERTY(QColor stalledUploadingStateForeground READ stalledUploadingStateForeground WRITE setStalledUploadingStateForeground)
+    Q_PROPERTY(QColor checkingResumeDataStateForeground READ checkingResumeDataStateForeground WRITE setCheckingResumeDataStateForeground)
+    Q_PROPERTY(QColor queuedDownloadingStateForeground READ queuedDownloadingStateForeground WRITE setQueuedDownloadingStateForeground)
+    Q_PROPERTY(QColor queuedUploadingStateForeground READ queuedUploadingStateForeground WRITE setQueuedUploadingStateForeground)
+    Q_PROPERTY(QColor checkingUploadingStateForeground READ checkingUploadingStateForeground WRITE setCheckingUploadingStateForeground)
+    Q_PROPERTY(QColor checkingDownloadingStateForeground READ checkingDownloadingStateForeground WRITE setCheckingDownloadingStateForeground)
+    Q_PROPERTY(QColor pausedDownloadingStateForeground READ pausedDownloadingStateForeground WRITE setPausedDownloadingStateForeground)
+    Q_PROPERTY(QColor pausedUploadingStateForeground READ pausedUploadingStateForeground WRITE setPausedUploadingStateForeground)
+    Q_PROPERTY(QColor movingStateForeground READ movingStateForeground WRITE setMovingStateForeground)
+    Q_PROPERTY(QColor missingFilesStateForeground READ missingFilesStateForeground WRITE setMissingFilesStateForeground)
+    Q_PROPERTY(QColor errorStateForeground READ errorStateForeground WRITE setErrorStateForeground)
+
 public:
     TransferListWidget(QWidget *parent, MainWindow *mainWindow);
     ~TransferListWidget() override;
@@ -121,6 +141,47 @@ private:
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
+
+    // supposed to be used with qss only
+    QColor unknownStateForeground() const;
+    QColor forcedDownloadingStateForeground() const;
+    QColor downloadingStateForeground() const;
+    QColor downloadingMetadataStateForeground() const;
+    QColor allocatingStateForeground() const;
+    QColor stalledDownloadingStateForeground() const;
+    QColor forcedUploadingStateForeground() const;
+    QColor uploadingStateForeground() const;
+    QColor stalledUploadingStateForeground() const;
+    QColor checkingResumeDataStateForeground() const;
+    QColor queuedDownloadingStateForeground() const;
+    QColor queuedUploadingStateForeground() const;
+    QColor checkingUploadingStateForeground() const;
+    QColor checkingDownloadingStateForeground() const;
+    QColor pausedDownloadingStateForeground() const;
+    QColor pausedUploadingStateForeground() const;
+    QColor movingStateForeground() const;
+    QColor missingFilesStateForeground() const;
+    QColor errorStateForeground() const;
+
+    void setUnknownStateForeground(const QColor &color);
+    void setForcedDownloadingStateForeground(const QColor &color);
+    void setDownloadingStateForeground(const QColor &color);
+    void setDownloadingMetadataStateForeground(const QColor &color);
+    void setAllocatingStateForeground(const QColor &color);
+    void setStalledDownloadingStateForeground(const QColor &color);
+    void setForcedUploadingStateForeground(const QColor &color);
+    void setUploadingStateForeground(const QColor &color);
+    void setStalledUploadingStateForeground(const QColor &color);
+    void setCheckingResumeDataStateForeground(const QColor &color);
+    void setQueuedDownloadingStateForeground(const QColor &color);
+    void setQueuedUploadingStateForeground(const QColor &color);
+    void setCheckingUploadingStateForeground(const QColor &color);
+    void setCheckingDownloadingStateForeground(const QColor &color);
+    void setPausedDownloadingStateForeground(const QColor &color);
+    void setPausedUploadingStateForeground(const QColor &color);
+    void setMovingStateForeground(const QColor &color);
+    void setMissingFilesStateForeground(const QColor &color);
+    void setErrorStateForeground(const QColor &color);
 
     TransferListDelegate *m_listDelegate;
     TransferListModel *m_listModel;
