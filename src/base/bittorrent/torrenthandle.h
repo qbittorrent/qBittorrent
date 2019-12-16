@@ -129,6 +129,8 @@ namespace BitTorrent
         Error
     };
 
+    uint qHash(TorrentState key, uint seed);
+
     class TorrentHandle : public QObject
     {
         Q_DISABLE_COPY(TorrentHandle)
