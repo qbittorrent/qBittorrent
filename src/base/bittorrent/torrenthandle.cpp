@@ -177,6 +177,11 @@ CreateTorrentParams::CreateTorrentParams(const AddTorrentParams &params)
         savePath = Session::instance()->defaultSavePath();
 }
 
+uint BitTorrent::qHash(const BitTorrent::TorrentState key, const uint seed)
+{
+    return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
+}
+
 // TorrentHandle
 
 const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
