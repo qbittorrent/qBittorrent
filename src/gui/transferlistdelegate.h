@@ -35,11 +35,6 @@ class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
 
-namespace BitTorrent
-{
-    enum class TorrentState;
-}
-
 class TransferListDelegate : public QItemDelegate
 {
     Q_OBJECT
@@ -49,9 +44,6 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-
-private:
-    QString getStatusString(const BitTorrent::TorrentState state) const;
 };
 
 #endif // TRANSFERLISTDELEGATE_H
