@@ -194,13 +194,15 @@ void PropertiesWidget::showPiecesDownloaded(bool show)
 void PropertiesWidget::setVisibility(bool visible)
 {
     if (!visible && (m_state == VISIBLE)) {
+        const int tabBarHeight = m_tabBar->geometry().height(); // take height before hiding
         auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         m_ui->stackedProperties->setVisible(false);
         m_slideSizes = hSplitter->sizes();
         hSplitter->handle(1)->setVisible(false);
         hSplitter->handle(1)->setDisabled(true);
-        QList<int> sizes = QList<int>() << hSplitter->geometry().height() - 30 << 30;
+        const QList<int> sizes {(hSplitter->geometry().height() - tabBarHeight), tabBarHeight};
         hSplitter->setSizes(sizes);
+        setMaximumSize(maximumSize().width(), tabBarHeight);
         m_state = REDUCED;
         return;
     }
@@ -212,6 +214,7 @@ void PropertiesWidget::setVisibility(bool visible)
         hSplitter->handle(1)->setVisible(true);
         hSplitter->setSizes(m_slideSizes);
         m_state = VISIBLE;
+        setMaximumSize(maximumSize().width(), QWIDGETSIZE_MAX);
         // Force refresh
         loadDynamicData();
     }
