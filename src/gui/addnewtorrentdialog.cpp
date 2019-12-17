@@ -421,7 +421,6 @@ void AddNewTorrentDialog::categoryChanged(int index)
     if (m_ui->comboTTM->currentIndex() == 1) {
         QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
-        updateDiskSpaceLabel();
     }
 }
 
@@ -683,7 +682,6 @@ void AddNewTorrentDialog::TMMChanged(int index)
         m_ui->savePath->clear();
         QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->addItem(savePath);
-        updateDiskSpaceLabel();
     }
 }
 
