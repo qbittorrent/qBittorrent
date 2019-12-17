@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Другое ограничение соотношения отдачи должно быть больше 0 или отключено.</translation>
+        <translation>Особое ограничение скорости отдачи должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Другое ограничение соотношения загрузки должно быть больше 0 или отключено.</translation>
+        <translation>Особое ограничение скорости загрузки должно быть больше 0 или отключено.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -137,7 +137,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Неизвестный</translation>
+        <translation>Неизвестно</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -346,7 +346,19 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Требуется JavaScript! Вы должны задействовать JavaScript для правильной работы Веб-интерфейса</translation>
+        <translation>Требуется JavaScript! Вы должны задействовать JavaScript для правильной работы веб-интерфейса</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -405,7 +417,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>О qBittorrent</translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -458,7 +470,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Другие ограничения скорости</translation>
+        <translation>Особые ограничения скорости</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -507,6 +519,14 @@
     <message>
         <source>Move to the top of the queue</source>
         <translation>Переместить в начало очереди</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -557,7 +577,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Запланировать использование других ограничений скорости</translation>
+        <translation>Запланировать использование особых ограничений скорости</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -593,7 +613,7 @@
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation>Обновлять динамическое доменное имя</translation>
+        <translation>Обновлять моё динамическое доменное имя</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -657,7 +677,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Использовать UPnP / NAT-PMP маршрутизатора</translation>
+        <translation>Использовать UPnP / NAT-PMP для проброса портов через мой роутер</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
@@ -749,7 +769,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>Другие ограничения скорости</translation>
+        <translation>Особые ограничения скорости</translation>
     </message>
     <message>
         <source>From:</source>
@@ -779,7 +799,7 @@
     </message>
     <message>
         <source>Rate Limits Settings</source>
-        <translation>Настройки ограничения скорости</translation>
+        <translation>Настройки ограничений скорости</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
@@ -835,7 +855,7 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Не учитывать количество медленных торрентов в этих ограничениях</translation>
+        <translation>Не учитывать медленные торренты в этих ограничениях</translation>
     </message>
     <message>
         <source>then</source>
@@ -843,7 +863,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Использовать UPnP / NAT-PMP для проброса портов через маршрутизатор</translation>
+        <translation>Использовать UPnP / NAT-PMP для проброса порта через мой роутер</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -875,7 +895,7 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: Папка содержимого (та же, что и корневая папка для множественных торрентов)</translation>
+        <translation>%F: Папка содержимого (или корневая папка для торрентов с множеством файлов)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
@@ -935,11 +955,11 @@
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation>Ограничение скорости загрузки:</translation>
+        <translation>Порог скорости загрузки:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation>Ограничение скорости отдачи:</translation>
+        <translation>Порог скорости отдачи:</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -979,7 +999,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Применять ограничение скорости к локальным пирам</translation>
+        <translation>Применять ограничения скорости к локальным пирам</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1047,7 +1067,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation>Алгоритм смешанного режима uTP-TCP:</translation>
+        <translation>Алгоритм смешанного режима μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1207,7 +1227,7 @@
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>Определять страну пира по GeoIP</translation>
+        <translation>Определять страну пира по GeoIP:</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1435,11 +1455,11 @@
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation>Огр. загрузки:</translation>
+        <translation>Порог загрузки:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation>Огр. отдачи:</translation>
+        <translation>Порог отдачи:</translation>
     </message>
     <message>
         <source>Wasted:</source>
@@ -1531,11 +1551,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>Огр. загрузки:</translation>
+        <translation>Порог загрузки:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation>Огр. отдачи:</translation>
+        <translation>Порог отдачи:</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1544,6 +1564,10 @@
     <message>
         <source>Filter files...</source>
         <translation>Фильтр файлов…</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1584,7 +1608,7 @@
     </message>
     <message>
         <source>Cache statistics</source>
-        <translation>Кэш</translation>
+        <translation>Статистика кэша</translation>
     </message>
     <message>
         <source>Read cache hits:</source>
@@ -1592,7 +1616,7 @@
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation>Среднее время простоя в очереди: </translation>
+        <translation>Среднее время в очереди: </translation>
     </message>
     <message>
         <source>Connected peers:</source>
@@ -1624,7 +1648,7 @@
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>Операций ввода/вывода в очереди:</translation>
+        <translation>Операций ввода-вывода в очереди:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -1775,7 +1799,7 @@
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Осталось времени</translation>
+        <translation>Время</translation>
     </message>
     <message>
         <source>Category</source>
@@ -1802,12 +1826,12 @@
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Огр. загрузки</translation>
+        <translation>Порог загрузки</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Огр. отдачи</translation>
+        <translation>Порог отдачи</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -1852,7 +1876,7 @@
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Огр. рейтинга</translation>
+        <translation>Порог рейтинга</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -1898,7 +1922,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>URL трекера:</translation>
+        <translation>Адрес трекера:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -1910,11 +1934,11 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Отключен</translation>
+        <translation>Отключён</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Не соединился</translation>
+        <translation>Нет соединения</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1930,7 +1954,7 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>Скопировать URL трекера</translation>
+        <translation>Копировать адрес трекера</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
@@ -1946,7 +1970,7 @@
     </message>
     <message>
         <source>Leeches</source>
-        <translation>Личеры</translation>
+        <translation>Личи</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -1966,7 +1990,7 @@
     </message>
     <message>
         <source>Download Priority</source>
-        <translation>Приоритет загрузки</translation>
+        <translation>Приоритет</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2001,11 +2025,11 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>Резервирование места</translation>
+        <translation>Резервирует место</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Приостановлен</translation>
+        <translation>Остановлен</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2138,12 +2162,12 @@
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Высший</translation>
+        <translation>В начало</translation>
     </message>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>Низший</translation>
+        <translation>В конец</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -2205,7 +2229,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>Установить расположение</translation>
+        <translation>Переместить</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2284,7 +2308,7 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation>минуты</translation>
+        <translation>минут</translation>
     </message>
 </context>
 <context>
@@ -2298,7 +2322,7 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Полностью удалить загруженные файлы с диска</translation>
+        <translation>Безвозвратно удалить загруженные файлы с диска</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
@@ -2407,7 +2431,7 @@
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation>Адрес или локальная папка</translation>
+        <translation>Адрес или локальный путь</translation>
     </message>
     <message>
         <source>Install plugin</source>
@@ -2434,7 +2458,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation>Остановлено</translation>
+        <translation>Стоп</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2454,7 +2478,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>Показ результатов</translation>
+        <translation>Результаты (показано</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2462,7 +2486,7 @@
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation>Только в именах торрентов</translation>
+        <translation>В именах торрентов</translation>
     </message>
     <message>
         <source>Only enabled</source>
@@ -2470,7 +2494,7 @@
     </message>
     <message>
         <source>out of</source>
-        <translation>вне</translation>
+        <translation>из</translation>
     </message>
     <message>
         <source>Everywhere</source>
@@ -2532,7 +2556,7 @@
     </message>
     <message>
         <source>Search engine</source>
-        <translation>Поисковый движок</translation>
+        <translation>Поисковик</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -2556,6 +2580,14 @@
     <message>
         <source>Version</source>
         <translation>Версия</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2639,7 +2671,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>О qBittorrent</translation>
+        <translation>О программе</translation>
     </message>
     <message>
         <source>Forum:</source>
@@ -2708,6 +2740,14 @@
         <source>All addresses</source>
         <translation>Все адреса</translation>
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2734,6 +2774,17 @@
     <message>
         <source>Download link</source>
         <translation>Ссылку загрузки</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

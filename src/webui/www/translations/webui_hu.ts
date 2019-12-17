@@ -348,6 +348,18 @@
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation>JavaScript szükséges! A webes felhasználói felület megfelelő működéséhez engedélyeznie kell a JavaScriptet</translation>
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -507,6 +519,14 @@
     <message>
         <source>Move to the top of the queue</source>
         <translation>Mozgatás a sor tetejére</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -795,7 +815,7 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>DHT (decentralizált hálózat) engedélyezése, hogy több ügyfélt találjon</translation>
+        <translation>DHT (decentralizált hálózat) engedélyezése, hogy több ügyfelet találjon</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
@@ -1207,7 +1227,7 @@
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>Peer országának megjelenítése:</translation>
+        <translation>Ügyfél országának megjelenítése</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1447,7 +1467,7 @@
     </message>
     <message>
         <source>Connections:</source>
-        <translation>Kapcsolatok:</translation>
+        <translation>Ügyfelek:</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1517,7 +1537,7 @@
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation>%1 (%2 max)</translation>
+        <translation>%1 (%2 maximum)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
@@ -1544,6 +1564,10 @@
     <message>
         <source>Filter files...</source>
         <translation>Fájlok szűrése...</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2557,6 +2581,14 @@
         <source>Version</source>
         <translation>Verzió</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2708,6 +2740,14 @@
         <source>All addresses</source>
         <translation>Összes cím</translation>
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2734,6 +2774,17 @@
     <message>
         <source>Download link</source>
         <translation>Letöltési link</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
