@@ -42,7 +42,7 @@ class QProcessEnvironment;
 
 struct QBtCommandLineParameters
 {
-    bool showHelp, relativeFastresumePaths, portableMode, skipChecking, sequential, firstLastPiecePriority;
+    bool showHelp, relativeFastresumePaths, skipChecking, sequential, firstLastPiecePriority;
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     bool showVersion;
 #endif
