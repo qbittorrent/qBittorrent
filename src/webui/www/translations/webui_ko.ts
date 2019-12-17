@@ -346,6 +346,18 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation>자바스크립트가 필요합니다! 웹 UI가 올바르게 작동하려면 반드시 자바스크립트를 활성화 시켜야합니다</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -506,6 +518,14 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1039,7 +1059,7 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>정보: 비밀번호는 암호화 없이 저장됩니다</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
@@ -1087,7 +1107,7 @@
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>초</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1159,7 +1179,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>암호화 허용</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1167,7 +1187,7 @@
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>디스크 캐쉬:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1187,7 +1207,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>초</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1215,7 +1235,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>분</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1227,7 +1247,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1243,7 +1263,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1364,11 +1384,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>혼합</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>받지 않음</translation>
     </message>
 </context>
 <context>
@@ -1539,10 +1559,14 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>우선 순위</translation>
     </message>
     <message>
         <source>Filter files...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1871,7 +1895,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>가용성</translation>
     </message>
 </context>
 <context>
@@ -2076,7 +2100,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>태그</translation>
     </message>
 </context>
 <context>
@@ -2225,11 +2249,11 @@
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>태그 추가</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>태그</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -2557,12 +2581,20 @@
         <source>Version</source>
         <translation>버전</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>취소</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -2574,7 +2606,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>확인</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2708,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2733,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

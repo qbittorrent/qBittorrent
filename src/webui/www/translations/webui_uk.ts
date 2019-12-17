@@ -338,7 +338,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Зареєструйтесь, щоб обробляти Magnet-посилання</translation>
+        <translation>Зареєструйтесь, щоб обробляти Magnet-посилання...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -346,7 +346,19 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Вимагається JavaScript! Ви повинні задіяти JavaScript для правильної роботи Веб-інтерфейсу</translation>
+        <translation>Вимагається JavaScript! Ви повинні увімкнути JavaScript для правильної роботи Веб-інтерфейсу</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -507,6 +519,14 @@
     <message>
         <source>Move to the top of the queue</source>
         <translation>Перемістити в початок черги</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1047,7 +1067,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation>Алгоритм змішаного режиму uTP-TCP:</translation>
+        <translation>Алгоритм змішаного режиму μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1063,7 +1083,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Задіяти режим суперсіда для торренту</translation>
+        <translation>Задіяти режим суперсіда для торрента</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1083,7 +1103,7 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>По досягненню рейтингу роздачі</translation>
+        <translation>При досягненні коефіцієнта роздачі</translation>
     </message>
     <message>
         <source>sec</source>
@@ -1099,7 +1119,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation>Розміру пулу файлу:</translation>
+        <translation>Розміру пулу файлів:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -1123,7 +1143,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Зупинити торрент</translation>
+        <translation>Призупинити торрент</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1135,7 +1155,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Фактор рівня буфера відправки:</translation>
+        <translation>Множник рівня буфера відправки:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1207,7 +1227,7 @@
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>Визначати країну піра по GeoIP</translation>
+        <translation>Дізнаватись країну пірів (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1219,7 +1239,7 @@
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation>Алгоритм заглушення віддачі:</translation>
+        <translation>Алгоритм приглушення відвантаження:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1231,7 +1251,7 @@
     </message>
     <message>
         <source>Round-robin</source>
-        <translation>По кругу</translation>
+        <translation>По колу</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1330,7 +1350,7 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Заблокувати пір назавжди</translation>
+        <translation>Заблокувати піра назавжди</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -1544,6 +1564,10 @@
     <message>
         <source>Filter files...</source>
         <translation>Фільтр файлів…</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2557,6 +2581,14 @@
         <source>Version</source>
         <translation>Версія</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2695,7 +2727,7 @@
     </message>
     <message>
         <source>Nationality:</source>
-        <translation>Країна</translation>
+        <translation>Країна:</translation>
     </message>
     <message>
         <source>Author</source>
@@ -2707,6 +2739,14 @@
     <message>
         <source>All addresses</source>
         <translation>Всі адреси</translation>
+    </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2734,6 +2774,17 @@
     <message>
         <source>Download link</source>
         <translation>Сторінка завантаження</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

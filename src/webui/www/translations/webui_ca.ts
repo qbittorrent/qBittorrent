@@ -349,6 +349,18 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation>Cal JavaScript! Heu d'habilitar el JavaScript perquè la Interfície web funcioni correctament.</translation>
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -508,6 +520,14 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Move to the top of the queue</source>
         <translation>Mou al capdamunt de la cua</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1546,6 +1566,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>Filter files...</source>
         <translation>Filtra els fitxers...</translation>
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2558,6 +2582,14 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>Version</source>
         <translation>Versió</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2709,6 +2741,14 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>All addresses</source>
         <translation>Totes les adreces</translation>
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2735,6 +2775,17 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Download link</source>
         <translation>Enllaç de baixada</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
