@@ -583,16 +583,18 @@ QString TrackerFiltersList::getHost(const QString &tracker) const
     return longHost.mid(index + 1);
 }
 
-QStringList TrackerFiltersList::getHashes(int row)
+QStringList TrackerFiltersList::getHashes(const int row) const
 {
-    if (row == 1)
+    switch (row) {
+    case 1:
         return m_trackers.value("");
-    if (row == 2)
+    case 2:
         return m_errors.keys();
-    if (row == 3)
+    case 3:
         return m_warnings.keys();
-
-     return m_trackers.value(trackerFromRow(row));
+    default:
+        return m_trackers.value(trackerFromRow(row));
+    }
 }
 
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
