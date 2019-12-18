@@ -41,38 +41,36 @@
 #include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
-    : QItemDelegate(parent)
+    : QStyledItemDelegate {parent}
 {
 }
 
 void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     if (index.column() != TransferListModel::TR_PROGRESS) {
-        QItemDelegate::paint(painter, option, index);
+        QStyledItemDelegate::paint(painter, option, index);
         return;
     }
 
-    painter->save();
-
-    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
-    QItemDelegate::drawBackground(painter, opt, index);
-
     QStyleOptionProgressBar newopt;
-    newopt.rect = opt.rect;
+    newopt.rect = option.rect;
     newopt.text = index.data().toString();
     newopt.progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
     newopt.maximum = 100;
     newopt.minimum = 0;
-    newopt.state |= QStyle::State_Enabled;
+    newopt.state = option.state;
     newopt.textVisible = true;
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     // XXX: To avoid having the progress text on the right of the bar
-    QProxyStyle st("fusion");
-    st.drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+    QProxyStyle fusionStyle {"fusion"};
+    QStyle *style = &fusionStyle;
 #else
-    QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+    QStyle *style = option.widget ? option.widget->style() : QApplication::style();
 #endif
+
+    painter->save();
+    style->drawControl(QStyle::CE_ProgressBar, &newopt, painter, option.widget);
     painter->restore();
 }
 
@@ -92,10 +90,10 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
     static int nameColHeight = -1;
     if (nameColHeight == -1) {
         const QModelIndex nameColumn = index.sibling(index.row(), TransferListModel::TR_NAME);
-        nameColHeight = QItemDelegate::sizeHint(option, nameColumn).height();
+        nameColHeight = QStyledItemDelegate::sizeHint(option, nameColumn).height();
     }
 
-    QSize size = QItemDelegate::sizeHint(option, index);
+    QSize size = QStyledItemDelegate::sizeHint(option, index);
     size.setHeight(std::max(nameColHeight, size.height()));
     return size;
 }
