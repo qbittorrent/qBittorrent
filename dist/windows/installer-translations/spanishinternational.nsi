@@ -24,6 +24,8 @@ LangString inst_unist ${LANG_SPANISHINTERNATIONAL} "Desinstalando la versión an
 LangString launch_qbt ${LANG_SPANISHINTERNATIONAL} "Iniciar qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_SPANISHINTERNATIONAL} "Este instalador solo funciona en versiones de 64-bit de Windows."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_SPANISHINTERNATIONAL} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

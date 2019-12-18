@@ -318,7 +318,7 @@ SearchHandler *SearchPluginManager::startSearch(const QString &pattern, const QS
 
 QString SearchPluginManager::categoryFullName(const QString &categoryName)
 {
-    static const QHash<QString, QString> categoryTable {
+    const QHash<QString, QString> categoryTable {
         {"all", tr("All categories")},
         {"movies", tr("Movies")},
         {"tv", tr("TV shows")},

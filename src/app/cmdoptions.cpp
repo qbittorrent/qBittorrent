@@ -318,7 +318,6 @@ namespace
     constexpr const IntOption WEBUI_PORT_OPTION {"webui-port"};
     constexpr const StringOption PROFILE_OPTION {"profile"};
     constexpr const StringOption CONFIGURATION_OPTION {"configuration"};
-    constexpr const BoolOption PORTABLE_OPTION {"portable"};
     constexpr const BoolOption RELATIVE_FASTRESUME {"relative-fastresume"};
     constexpr const StringOption SAVE_PATH_OPTION {"save-path"};
     constexpr const TriStateBoolOption PAUSED_OPTION {"add-paused", true};
@@ -332,7 +331,6 @@ namespace
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
     : showHelp(false)
     , relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
-    , portableMode(PORTABLE_OPTION.value(env))
     , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
     , sequential(SEQUENTIAL_OPTION.value(env))
     , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
@@ -436,9 +434,6 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             }
             else if (arg == RELATIVE_FASTRESUME) {
                 result.relativeFastresumePaths = true;
-            }
-            else if (arg == PORTABLE_OPTION) {
-                result.portableMode = true;
             }
             else if (arg == CONFIGURATION_OPTION) {
                 result.configurationName = CONFIGURATION_OPTION.value(arg);
@@ -544,9 +539,6 @@ QString makeUsage(const QString &prgName)
     stream << RELATIVE_FASTRESUME.usage()
            << wrapText(QObject::tr("Hack into libtorrent fastresume files and make file paths relative "
                                          "to the profile directory")) << '\n';
-    stream << PORTABLE_OPTION.usage()
-           << wrapText(QObject::tr("Shortcut for %1", "Shortcut for --profile=<exe dir>/profile --relative-fastresume")
-                       .arg(QLatin1String("--profile=<exe dir>/profile --relative-fastresume"))) << '\n';
     stream << Option::padUsageText(QObject::tr("files or URLs"))
            << wrapText(QObject::tr("Download the torrents passed by the user")) << '\n'
            << '\n';

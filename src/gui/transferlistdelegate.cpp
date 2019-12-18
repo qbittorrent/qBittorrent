@@ -100,7 +100,10 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
         break;
     case TransferListModel::TR_STATUS: {
             const auto state = index.data().value<BitTorrent::TorrentState>();
+            const QString errorMsg = index.data(Qt::UserRole).toString();
             QString display = getStatusString(state);
+            if (state == BitTorrent::TorrentState::Error)
+                display += (": " + errorMsg);
             QItemDelegate::drawDisplay(painter, opt, opt.rect, display);
         }
         break;

@@ -969,7 +969,10 @@ window.addEvent('load', function() {
 
 function registerMagnetHandler() {
     if (typeof navigator.registerProtocolHandler !== 'function') {
-        alert("Your browser does not support this feature");
+        if (window.location.protocol !== 'https:')
+            alert("QBT_TR(To use this feature, the WebUI needs to be accessed over HTTPS)QBT_TR[CONTEXT=MainWindow]");
+        else
+            alert("QBT_TR(Your browser does not support this feature)QBT_TR[CONTEXT=MainWindow]");
         return;
     }
 

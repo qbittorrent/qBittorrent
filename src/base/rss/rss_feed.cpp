@@ -33,7 +33,6 @@
 #include <algorithm>
 #include <vector>
 
-#include <QDebug>
 #include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -195,7 +194,8 @@ bool Feed::hasError() const
 void Feed::handleDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success) {
-        qDebug() << "Successfully downloaded RSS feed at" << result.url;
+        LogMsg(tr("RSS feed at '%1' is successfully downloaded. Starting to parse it.")
+                .arg(result.url));
         // Parse the download RSS
         m_parser->parse(result.data);
     }

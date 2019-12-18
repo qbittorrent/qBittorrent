@@ -346,6 +346,18 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation>자바스크립트가 필요합니다! 웹 UI가 올바르게 작동하려면 반드시 자바스크립트를 활성화 시켜야합니다</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>재시작</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">최저 우선 순위</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">최고 우선 순위</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">우선 순위 낮추기</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">우선 순위 높이기</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -524,6 +520,14 @@
         <source>Move to the top of the queue</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -578,10 +582,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>토런트 대기열</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">토런트 배포 시간이</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +740,6 @@
         <translation>피어 연결에 프록시 사용하기</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">프록시가 지원하지 않는 연결 비활성화하기</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>토런트에 프록시만 사용하기</translation>
     </message>
@@ -834,10 +830,6 @@
         <translation>암호화 모드:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">암호화 선호하기</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>암호화 요구하기</translation>
     </message>
@@ -866,24 +858,8 @@
         <translation>이 제한에 느린 토런트는 셈하지 않기</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">공유 비율 제한</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">토런트 배포 비율이 </translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>에 도달하면</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">일시 중지하기</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">제거하기</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +892,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: 카테고리</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: 꼬리표 (쉼표로 구분)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1087,7 +1059,7 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>정보: 비밀번호는 암호화 없이 저장됩니다</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
@@ -1135,7 +1107,7 @@
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>초</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1207,7 +1179,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>암호화 허용</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1215,7 +1187,7 @@
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>디스크 캐쉬:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1235,7 +1207,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>초</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1263,7 +1235,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>분</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1275,7 +1247,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1291,7 +1263,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1412,11 +1384,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>혼합</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>받지 않음</translation>
     </message>
 </context>
 <context>
@@ -1587,10 +1559,14 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>우선 순위</translation>
     </message>
     <message>
         <source>Filter files...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1772,31 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">이름</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">크기</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">진행</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">다운로드 우선순위</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">남음</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">가용성:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1943,7 +1895,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>가용성</translation>
     </message>
 </context>
 <context>
@@ -1987,10 +1939,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>아직 연결되지 않음</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2152,7 +2100,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>태그</translation>
     </message>
 </context>
 <context>
@@ -2226,14 +2174,6 @@
         <translation>위치 지정...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">이름 복사</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">복사 해쉬</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>첫 번째와 마지막 조각을 먼저 다운로드</translation>
     </message>
@@ -2256,16 +2196,8 @@
         <translation>초기화</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">우선순위</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>강제로 다시 검사</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">마그넷 링크 복사</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2317,11 +2249,11 @@
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>태그 추가</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>태그</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -2381,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Qt 툴킷과 libtorrent-rasterbar를 기반으로하는 C++로 작성된 비트 토런트 클라이언트입니다.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">홈페이지:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">포럼:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">버그 트래커:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2477,8 @@
         <translation>찾기:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">설명 페이지 URL 복사</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">설명 페이지로 가기</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>결과 (보기</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">내려받기</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2677,12 +2581,20 @@
         <source>Version</source>
         <translation>버전</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>취소</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -2694,7 +2606,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>확인</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2828,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2853,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

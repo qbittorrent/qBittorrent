@@ -625,8 +625,12 @@ void AddNewTorrentDialog::setupTreeview()
         m_ui->contentTreeView->hideColumn(REMAINING);
         m_ui->contentTreeView->hideColumn(AVAILABILITY);
 
-        // Expand root folder
-        m_ui->contentTreeView->setExpanded(m_contentModel->index(0, 0), true);
+        // Expand single-item folders recursively
+        QModelIndex currentIndex;
+        while (m_contentModel->rowCount(currentIndex) == 1) {
+            currentIndex = m_contentModel->index(0, 0, currentIndex);
+            m_ui->contentTreeView->setExpanded(currentIndex, true);
+        }
     }
 
     updateDiskSpaceLabel();

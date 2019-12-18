@@ -194,13 +194,15 @@ void PropertiesWidget::showPiecesDownloaded(bool show)
 void PropertiesWidget::setVisibility(bool visible)
 {
     if (!visible && (m_state == VISIBLE)) {
+        const int tabBarHeight = m_tabBar->geometry().height(); // take height before hiding
         auto *hSplitter = static_cast<QSplitter *>(parentWidget());
         m_ui->stackedProperties->setVisible(false);
         m_slideSizes = hSplitter->sizes();
         hSplitter->handle(1)->setVisible(false);
         hSplitter->handle(1)->setDisabled(true);
-        QList<int> sizes = QList<int>() << hSplitter->geometry().height() - 30 << 30;
+        const QList<int> sizes {(hSplitter->geometry().height() - tabBarHeight), tabBarHeight};
         hSplitter->setSizes(sizes);
+        setMaximumSize(maximumSize().width(), tabBarHeight);
         m_state = REDUCED;
         return;
     }
@@ -212,6 +214,7 @@ void PropertiesWidget::setVisibility(bool visible)
         hSplitter->handle(1)->setVisible(true);
         hSplitter->setSizes(m_slideSizes);
         m_state = VISIBLE;
+        setMaximumSize(maximumSize().width(), QWIDGETSIZE_MAX);
         // Force refresh
         loadDynamicData();
     }
@@ -322,8 +325,13 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
 
         // List files in torrent
         m_propListModel->model()->setupModelData(m_torrent->info());
-        if (m_propListModel->model()->rowCount() == 1)
-            m_ui->filesList->setExpanded(m_propListModel->index(0, 0), true);
+
+        // Expand single-item folders recursively
+        QModelIndex currentIndex;
+        while (m_propListModel->rowCount(currentIndex) == 1) {
+            currentIndex = m_propListModel->index(0, 0, currentIndex);
+            m_ui->filesList->setExpanded(currentIndex, true);
+        }
 
         // Load file priorities
         m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());

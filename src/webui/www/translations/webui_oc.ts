@@ -348,6 +348,18 @@
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Aviar</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Prioritat minimala</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Prioritat maximala</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Demesir la prioritat</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Aumentar la prioritat</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -522,6 +518,14 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1561,6 +1565,10 @@
         <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1740,27 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nom</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Talha</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progression</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioritat de telecargament</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Restant</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2186,10 +2174,6 @@
         <translation>Camin de salvament…</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copiar nom</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Telecargar primièras e darrièras pèças en primièr</translation>
     </message>
@@ -2212,16 +2196,8 @@
         <translation>Reïnicializar</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritat</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Forçar una reverificacion</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copiar lo ligam magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2337,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Un client avançat BitTorrent programat en C++, basat sus l'aisina Qt e libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Pagina d'acuèlh :</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum :</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Seguiment de Bugs :</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2621,6 +2581,14 @@
         <source>Version</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2772,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2797,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>
