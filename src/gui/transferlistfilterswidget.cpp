@@ -56,6 +56,14 @@
 
 namespace
 {
+    enum TRACKER_FILTER_ROW
+    {
+        ALL_ROW,
+        TRACKERLESS_ROW,
+        ERROR_ROW,
+        WARNING_ROW
+    };
+
     QString getScheme(const QString &tracker)
     {
         const QUrl url {tracker};
@@ -140,7 +148,7 @@ void BaseFilterWidget::toggleFilter(bool checked)
     if (checked)
         applyFilter(currentRow());
     else
-        applyFilter(0);
+        applyFilter(ALL_ROW);
 }
 
 StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -290,7 +298,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
             trackerItem = item(rowFromTracker(host));
         }
         else {
-            trackerItem = item(1);
+            trackerItem = item(TRACKERLESS_ROW);
         }
     }
     else {
@@ -306,8 +314,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     m_trackers.insert(host, tmp);
     if (host == "") {
         trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
-        if (currentRow() == 1)
-            applyFilter(1);
+        if (currentRow() == TRACKERLESS_ROW)
+            applyFilter(TRACKERLESS_ROW);
         return;
     }
 
@@ -359,7 +367,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
     }
     else {
         row = 1;
-        trackerItem = item(1);
+        trackerItem = item(TRACKERLESS_ROW);
         trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
     }
 
@@ -402,9 +410,9 @@ void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &trac
         errored.removeAll(tracker);
         if (errored.empty()) {
             m_errors.remove(hash);
-            item(2)->setText(tr("Error (%1)").arg(m_errors.size()));
-            if (currentRow() == 2)
-                applyFilter(2);
+            item(ERROR_ROW)->setText(tr("Error (%1)").arg(m_errors.size()));
+            if (currentRow() == ERROR_ROW)
+                applyFilter(ERROR_ROW);
         }
         else {
             m_errors.insert(hash, errored);
@@ -415,9 +423,9 @@ void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &trac
         warned.removeAll(tracker);
         if (warned.empty()) {
             m_warnings.remove(hash);
-            item(3)->setText(tr("Warning (%1)").arg(m_warnings.size()));
-            if (currentRow() == 3)
-                applyFilter(3);
+            item(WARNING_ROW)->setText(tr("Warning (%1)").arg(m_warnings.size()));
+            if (currentRow() == WARNING_ROW)
+                applyFilter(WARNING_ROW);
         }
         else {
             m_warnings.insert(hash, warned);
@@ -434,10 +442,10 @@ void TrackerFiltersList::trackerError(const QString &hash, const QString &tracke
 
     trackers.append(tracker);
     m_errors.insert(hash, trackers);
-    item(2)->setText(tr("Error (%1)").arg(m_errors.size()));
+    item(ERROR_ROW)->setText(tr("Error (%1)").arg(m_errors.size()));
 
-    if (currentRow() == 2)
-        applyFilter(2);
+    if (currentRow() == ERROR_ROW)
+        applyFilter(ERROR_ROW);
 }
 
 void TrackerFiltersList::trackerWarning(const QString &hash, const QString &tracker)
@@ -449,10 +457,10 @@ void TrackerFiltersList::trackerWarning(const QString &hash, const QString &trac
 
     trackers.append(tracker);
     m_warnings.insert(hash, trackers);
-    item(3)->setText(tr("Warning (%1)").arg(m_warnings.size()));
+    item(WARNING_ROW)->setText(tr("Warning (%1)").arg(m_warnings.size()));
 
-    if (currentRow() == 3)
-        applyFilter(3);
+    if (currentRow() == WARNING_ROW)
+        applyFilter(WARNING_ROW);
 }
 
 void TrackerFiltersList::downloadFavicon(const QString &url)
@@ -513,9 +521,9 @@ void TrackerFiltersList::showMenu(const QPoint &)
     menu->popup(QCursor::pos());
 }
 
-void TrackerFiltersList::applyFilter(int row)
+void TrackerFiltersList::applyFilter(const int row)
 {
-    if (row == 0)
+    if (row == ALL_ROW)
         transferList->applyTrackerFilterAll();
     else if (isVisible())
         transferList->applyTrackerFilter(getHashes(row));
@@ -532,7 +540,7 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torre
     if (trackers.isEmpty())
         addItem("", hash);
 
-    item(0)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
+    item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
 }
 
 void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
@@ -546,7 +554,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *cons
     if (trackers.isEmpty())
         removeItem("", hash);
 
-    item(0)->setText(tr("All (%1)", "this is for the tracker filter").arg(--m_totalTorrents));
+    item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(--m_totalTorrents));
 }
 
 QString TrackerFiltersList::trackerFromRow(int row) const
@@ -586,11 +594,11 @@ QString TrackerFiltersList::getHost(const QString &tracker) const
 QStringList TrackerFiltersList::getHashes(const int row) const
 {
     switch (row) {
-    case 1:
+    case TRACKERLESS_ROW:
         return m_trackers.value("");
-    case 2:
+    case ERROR_ROW:
         return m_errors.keys();
-    case 3:
+    case WARNING_ROW:
         return m_warnings.keys();
     default:
         return m_trackers.value(trackerFromRow(row));
