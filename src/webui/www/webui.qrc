@@ -25,6 +25,8 @@
         <file>private/scripts/file-tree.js</file>
         <file>private/scripts/filesystem.js</file>
         <file>private/scripts/lib/clipboard-2.0.0.min.js</file>
+        <file>private/scripts/lib/knockout-3.4.2.js</file>
+        <file>private/scripts/lib/Knockout.BindingConventions.js</file>
         <file>private/scripts/lib/mocha-0.9.6-yc.js</file>
         <file>private/scripts/lib/mootools-1.2-core-yc.js</file>
         <file>private/scripts/lib/mootools-1.2-more.js</file>
@@ -37,6 +39,7 @@
         <file>private/scripts/prop-peers.js</file>
         <file>private/scripts/prop-trackers.js</file>
         <file>private/scripts/prop-webseeds.js</file>
+        <file>private/scripts/rss.js</file>
         <file>private/scripts/speedslider.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
