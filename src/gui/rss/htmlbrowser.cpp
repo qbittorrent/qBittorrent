@@ -65,7 +65,7 @@ QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
             url.setScheme("http");
 
         QIODevice *dev = m_diskCache->data(url);
-        if (dev != nullptr) {
+        if (dev) {
             qDebug() << "HtmlBrowser::loadResource() cache " << url.toString();
             QByteArray res = dev->readAll();
             delete dev;

@@ -354,7 +354,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
             updateGeometry();
             return;
         }
-        if (trackerItem != nullptr)
+        if (trackerItem)
             trackerItem->setText(QString("%1 (%2)").arg(host).arg(tmp.size()));
     }
     else {
