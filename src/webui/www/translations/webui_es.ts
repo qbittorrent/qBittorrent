@@ -348,6 +348,18 @@
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Continuar</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Mínima prioridad</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Máxima prioridad</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Disminuir prioridad</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Incrementar prioridad</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -524,6 +520,14 @@
         <source>Move to the top of the queue</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -578,10 +582,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrents en cola</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Sembrar torrents hasta que su tiempo de siembra alcance</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +740,6 @@
         <translation>Usar proxy para las conexiones a los pares</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Deshabilitar conexiones no soportadas por los proxis</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Usar proxy solo para torrents</translation>
     </message>
@@ -834,10 +830,6 @@
         <translation>Modo de cifrado:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Preferir cifrado</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Exigir cifrado</translation>
     </message>
@@ -866,24 +858,8 @@
         <translation>No contar torrents lentos en estos límites</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Limite de ratio de compartición</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Sembrar torrents hasta que su ratio sea</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>luego</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pausarlos</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Eliminarlos</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +892,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Categoría</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Etiquetas (separadas por coma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1593,6 +1565,10 @@
         <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1772,31 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nombre</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Tamaño</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progreso</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioridad de descarga</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Restante</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Disponibilidad</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1939,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Todavía no contactado</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2174,6 @@
         <translation>Establecer destino...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Copiar nombre</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Copiar hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Descargar antes primeras y últimas partes</translation>
     </message>
@@ -2256,16 +2196,8 @@
         <translation>Descategorizar</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioridad</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Forzar verificación de archivo</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Copiar enlace magnet</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Un cliente BitTorrent avanzado programado en C++, basado en el toolkit Qt y en libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Página Web:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Foro: </translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Bug Tracker: </translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2477,8 @@
         <translation>Buscar en:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Copiar URL de la página de descripción</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Ir a la página de la descripción</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Resultados (mostrando</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Descargar</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2676,6 +2580,14 @@
     <message>
         <source>Version</source>
         <translation>Versión</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2828,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2853,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

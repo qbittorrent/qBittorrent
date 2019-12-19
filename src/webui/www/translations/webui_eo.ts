@@ -348,6 +348,18 @@
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Reaktivigi</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Minimuma Prioritato</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Plejalta Prioritato</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Malpliigi prioritaton</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Pliigi prioritaton</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -522,6 +518,14 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1561,6 +1565,10 @@
         <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1740,23 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nomo</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Grando</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Progreso</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Elŝut-prioritato</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2182,10 +2174,6 @@
         <translation>Agordi lokon...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopii la nomon</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation type="unfinished" />
     </message>
@@ -2208,16 +2196,8 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioritato</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Trude rekontroli</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopii la magnet-ligilon</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2601,6 +2581,14 @@
         <source>Version</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2752,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2777,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

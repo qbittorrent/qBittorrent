@@ -348,6 +348,18 @@
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Nadaljuj</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Najmanjša prednost</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Najvišja prednost</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Zmanjšaj prednost</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Povišaj prednost</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -524,6 +520,14 @@
         <source>Move to the top of the queue</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -578,10 +582,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Čakalna vrsta torrentov</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Seji torrente, dokler čas sejanja ne doseže</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +740,6 @@
         <translation>Uporabi posredniški strežnik za povezave s soležniki</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Onemogoči povezave, ki jih posredniški strežniki ne podpirajo</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Uporabi posredniški strežnik le za torrente</translation>
     </message>
@@ -834,10 +830,6 @@
         <translation>Način šifriranja:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Prednost šifriranju</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Zahtevaj šifriranje</translation>
     </message>
@@ -866,24 +858,8 @@
         <translation>V teh omejitvah ne štej počasnih torrentov</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Omejevanje  razmerja izmenjave</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Seji torrente, dokler razmerje ne doseže</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>nato</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Jih ustavi</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Jih odstrani</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1589,6 +1565,10 @@
         <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1768,31 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Ime</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Velikost</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Napredek</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Prioriteta prenosov</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Preostalo</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Na voljo</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2218,14 +2174,6 @@
         <translation>Nastavi mesto ...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopiraj ime</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopiraj šifro</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Prejemanje najprej prvih in zadnjih kosov</translation>
     </message>
@@ -2248,16 +2196,8 @@
         <translation>Ponastavi</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioriteta</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Prisili ponovno preverjanje</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopiraj magnetno povezavo</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2373,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Napreden odjemalec BitTorrent, programiran v C++, temelji na zbirki orodij Qt in libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Domača stran:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum: </translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Sledilnik hroščev:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2657,6 +2581,14 @@
         <source>Version</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2808,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2833,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

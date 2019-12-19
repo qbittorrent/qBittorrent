@@ -184,7 +184,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case TR_PROGRESS:
         return torrent->progress();
     case TR_STATUS:
-        return QVariant::fromValue(torrent->state());
+        return (role == Qt::DisplayRole) ? QVariant::fromValue(torrent->state()) : torrent->error();
     case TR_SEEDS:
         return (role == Qt::DisplayRole) ? torrent->seedsCount() : torrent->totalSeedsCount();
     case TR_PEERS:

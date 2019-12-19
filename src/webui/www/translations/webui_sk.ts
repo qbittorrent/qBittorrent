@@ -334,7 +334,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Otvoriť dokumentáciu</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -346,6 +346,18 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Pokračovať</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Najnižšia priorita</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Najvyššia priorita</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Znížiť prioritu</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Zvýšiť prioritu</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -524,6 +520,14 @@
         <source>Move to the top of the queue</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -578,10 +582,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Zaraďovanie torrentu do fronty</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Seedovať torrenty pokým doba nedosiahne</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +740,6 @@
         <translation>Používať proxy na spojenia s rovesníkmi</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Zakázať spojenia, ktoré proxy nepodporujú</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Používať proxy len na torrenty.</translation>
     </message>
@@ -834,10 +830,6 @@
         <translation>Režim šifrovania:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Uprednostňovať šifrovanie</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Vyžadovať šifrovanie</translation>
     </message>
@@ -866,24 +858,8 @@
         <translation>Nepočítať pomalé torrenty do týchto obmedzení</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Obmedzenie ratia</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Seedovať torrenty pokým nedosiahne ratio</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>potom</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pozastaviť ich</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Odstrániť ich</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +892,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategória</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Značky (oddelené čiarkou)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1593,6 +1565,10 @@
         <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1772,31 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Názov</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Veľkosť</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Priebeh</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Priorita sťahovania</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Ostáva</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Dostupnosť</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1987,10 +1939,6 @@
     <message>
         <source>Not contacted yet</source>
         <translation>Zatiaľ nekontaktovaný</translation>
-    </message>
-    <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2226,14 +2174,6 @@
         <translation>Nastaviť cieľ...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopírovať názov</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Kopírovať hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Sťahovať najprv prvú a poslednú časť</translation>
     </message>
@@ -2256,16 +2196,8 @@
         <translation>Vrátiť pôvodné</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorita</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Vynútiť opätovnú kontrolu</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopírovať magnet URI</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2381,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Pokročilý klient siete BitTorrent naprogramovaný v C++, založený na sade nástrojov Qt a knižnici libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Domovská stránka</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Fórum: </translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Sledovanie chýb:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2477,8 @@
         <translation>Hľadať v:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Skopíruj URL stránky popisu</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Prejsť na stránku popisu</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Výsledky</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Stiahnuť</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2676,6 +2580,14 @@
     <message>
         <source>Version</source>
         <translation>Verzia</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2828,6 +2740,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2853,6 +2773,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

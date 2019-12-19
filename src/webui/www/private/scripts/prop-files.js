@@ -520,6 +520,33 @@ window.qBittorrent.PropFiles = (function() {
         targets: '#torrentFilesTableDiv tr',
         menu: 'torrentFilesMenu',
         actions: {
+            Rename: function(element, ref) {
+                const hash = torrentsTable.getCurrentTorrentHash();
+                if (!hash) return;
+                const rowId = torrentFilesTable.selectedRowsIds()[0];
+                if (!rowId) return;
+                const row = torrentFilesTable.rows[rowId];
+                if (!row) return;
+                const node = torrentFilesTable.getNode(rowId);
+                if (node.isFolder) return;
+
+                const name = row.full_data.name;
+                const fileId = row.full_data.fileId;
+
+                new MochaUI.Window({
+                    id: 'renamePage',
+                    title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
+                    loadMethod: 'iframe',
+                    contentURL: 'rename_file.html?hash=' + hash + '&id=' + fileId + '&name=' + encodeURIComponent(name),
+                    scrollbars: false,
+                    resizable: false,
+                    maximizable: false,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: 250,
+                    height: 100
+                });
+            },
 
             FilePrioIgnore: function(element, ref) {
                 filesPriorityMenuClicked(FilePriority.Ignored);
@@ -543,6 +570,13 @@ window.qBittorrent.PropFiles = (function() {
                 this.hideItem('FilePrio');
             else
                 this.showItem('FilePrio');
+
+            const rowId = torrentFilesTable.selectedRowsIds()[0];
+            const node = torrentFilesTable.getNode(rowId);
+            if (node.isFolder)
+                this.hideItem('Rename');
+            else
+                this.showItem('Rename');
         }
     });
 

@@ -334,18 +334,30 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Otevřít dokumentaci</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Register to handle magnet links...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>Nelze přidat peery. Ujistěte se, že dodržujete formát IP:port.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation>Je vyžadován JavaScript! Musíte povolit JavaScript aby Web UI pracovalo správně</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Obnovit</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Minimální priorita</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Top priorita</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Snížit prioritu</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Zvýšit prioritu</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -494,34 +490,42 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>Přesunout výše ve frontě</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>Přesunout frontu výše</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>Konec fronty</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>Přesunout na konec fronty</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>Začátek fronty</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>Přesunout frontu níže</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>Přesunout níže ve frontě</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
+        <translation>Přesunout na začátek fronty</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -578,10 +582,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Řazení torrentů do fronty</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Odesílat torrenty dokud není dosaženo jejich časového limitu</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +740,6 @@
         <translation>Použít proxy pro připojení k protějškům</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Zakázat připojení nepodporovaná připojením proxy</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Použít proxy pouze pro torrenty</translation>
     </message>
@@ -834,10 +830,6 @@
         <translation>Režim šifrování:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Upřednostnit šifrování</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Vyžadovat šifrování</translation>
     </message>
@@ -866,24 +858,8 @@
         <translation>Nezapočítávat pomalé torrenty do těchto limitů</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Omezení ratia</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Sdílet torrenty dokud ratio nedosáhne</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>potom</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">Pozastavit je</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">Odstranit je</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +892,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategorie</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: Štítky (oddělené čárkou)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1087,231 +1059,231 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Info: Heslo je uloženo nešifrované</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation type="unfinished" />
+        <translation>Striktní super seeding:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>μTP-TCP mixed mode algoritmus:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Dle rychlosti uploadu</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: Štítky (oddělené čárkou)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Socket backlog size:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Zapnout super seeding pro torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>Upřednostnit TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Zbývající paměť při kontrole torrentů:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Priorita pro začínající a končící leechery</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation>Zapnout vyrovnávací paměť systému:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation>Když je dosaženo ratio</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sec</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Když je dosažena doba odesílání</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Povolit více spojení ze stejné IP adresy:</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>Velikost souborového zásobníku:</translation>
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Jakékoli rozhraní</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>Vždy oznamovat všem třídám:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation>Port vestavěného trackeru:</translation>
     </message>
     <message>
         <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Volitelná přidružená  IP adresa (vyžaduje restart):</translation>
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>Nejrychlejší upload</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Pozastavit torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>Odstranit torrent a jeho soubory</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Sekce qBittorrentu</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation>Odeslat buffer watermark faktor:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Sekce libtorrentu</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Sloučení čtecích &amp; zapisovacích operací</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Odchozí porty (Min) [0: Vypnuto]</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP adresa hlášená trackerům (vyžaduje restart):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Při dokončení překontrolovat torrenty:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Povolit šifrování</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>Doporučení pro odeslání částí uploadu:</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>Disková cache:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Zapnout vestavěný tracker:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Odstranit torrent</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Odchozí porty (Max) [0: Vypnuto]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation>Asynchronní I/O vlákna:</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation>Odeslat watermark bufferu:</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval vypršení diskové cache:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Peer proportional (omezit TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Pevné sloty</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation type="unfinished" />
+        <translation>Zjišťovat zemi původu protějšků (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Pokročilé</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Škrtící algoritmus pro upload</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Limity sdílení</translation>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Poměrné rozdělení</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>Chování upload slotů:</translation>
     </message>
     <message>
         <source>Network Interface (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Síťové rozhraní (vyžaduje restart):</translation>
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>Odeslat buffer-low watermark:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval uložení dat obnovení:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>Vždy oznamovat všem trackerům ve třídě:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>Časový limit relace:</translation>
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Naslouchat na adrese IPv6 (vyžaduje restart):</translation>
     </message>
 </context>
 <context>
@@ -1378,19 +1350,19 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>Natrvalo zakázat protějšek</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>Opravdu chcete natrvalo zakázat označené protějšky?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>Kopírovat IP:port</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>Přidat nový protějšek...</translation>
     </message>
 </context>
 <context>
@@ -1412,11 +1384,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Mix</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Nestahovat</translation>
     </message>
 </context>
 <context>
@@ -1587,10 +1559,14 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Priorita</translation>
     </message>
     <message>
         <source>Filter files...</source>
+        <translation>Filtrovat soubory...</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1772,31 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Název</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Velikost</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Průběh</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Priorita stahování</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Zbývající</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Dostupnost</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1943,7 +1895,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Dostupnost</translation>
     </message>
 </context>
 <context>
@@ -1989,10 +1941,6 @@
         <translation>Dosud nekontaktován</translation>
     </message>
     <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>není k dispozici</translation>
     </message>
@@ -2030,31 +1978,31 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Zbývající</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Dostupnost</translation>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Tier</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Priorita stahování</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Název</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Průběh</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Velikost</translation>
     </message>
 </context>
 <context>
@@ -2152,7 +2100,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Štítky</translation>
     </message>
 </context>
 <context>
@@ -2226,14 +2174,6 @@
         <translation>Nastavit umístění...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Kopírovat název</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Zkopírovat hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
@@ -2256,16 +2196,8 @@
         <translation>Resetovat</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Priorita</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Vynutit překontrolování</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Kopírovat Magnet link</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2313,43 +2245,43 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>Čárkou oddelěné štítky:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Přidat Štítek</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Štítky</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet link</translation>
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Odstranit vše</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Název</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopírovat</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Úloha</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Přidat...</translation>
     </message>
 </context>
 <context>
@@ -2381,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Pokročilý BitTorrent klient naprogramován v jazyce C++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Domovská stránka:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Fórum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Sledování chyb:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2561,20 +2477,8 @@
         <translation>Hledat v:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">Kopírovat URL stránky s popisem</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Přejít na stránku s popisem</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Výsledky (zobrazuji</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Stáhnout</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2677,155 +2581,171 @@
         <source>Version</source>
         <translation>Verze</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Zrušit</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Přidání protějšků</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>Seznam protějšků pro přidání (jedna IP na řádek):</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Formát: IPv4:port / [IPv6]:port</translation>
     </message>
 </context>
 <context>
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Nový štítek</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Přidat štítek...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Smazat torrenty</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Štítek:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Pozastavení torrentů</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Pokračování torrentů</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>Odebrat nepoužité štítky</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>Neplatný název štítku</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Odebrat štítek</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Vše</translation>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Neoznačeno</translation>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Sledování chyb:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>O</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Forum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Aktuální správce</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Domovská stránka:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Řecko</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Zvláštní poděkování</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Pokročilý BitTorrent klient naprogramovaný v jazyce C ++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Jméno:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>O qBittorrentu</translation>
     </message>
     <message>
         <source>Libraries</source>
-        <translation type="unfinished" />
+        <translation>Knihovny</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Licence</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Překladatelé</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent byl vytvořen s následujícími knihovnami:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Národnost:</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>Autor</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
+        <translation>Všechny adresy</translation>
+    </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2833,26 +2753,37 @@
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopírovat</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Stáhnout</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Název</translation>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>URL stránky s popisem</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>Otevřít stránku s popisem</translation>
     </message>
     <message>
         <source>Download link</source>
+        <translation>Download link</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

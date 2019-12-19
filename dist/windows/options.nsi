@@ -14,6 +14,7 @@ XPStyle on
 !include "MUI.nsh"
 !include "UAC.nsh"
 !include "FileFunc.nsh"
+!include "WinVer.nsh"
 !ifdef APP64BIT
 !include "x64.nsh"
 !endif
@@ -27,7 +28,7 @@ XPStyle on
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
 ; Program specific
-!define PROG_VERSION "4.2.0"
+!define PROG_VERSION "4.3.0"
 
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun

@@ -85,7 +85,7 @@
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>Slechts één link per regel</translation>
+        <translation>Slechts één koppeling per regel</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrents downloaden via hun URL's of magneetlinks</translation>
+        <translation>Torrents downloaden via hun URL's of magneetkoppelingen</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -334,18 +334,30 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Documentatie openen</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Registreren om magneetkoppelingen te verwerken...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>Niet in staat om peers toe te voegen. Zorg ervoor dat u zich houdt aan het IP:poort formaat.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation>JavaScript vereist! U moet JavaScript inschakelen om de WebUI goed te laten werken</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -378,22 +390,6 @@
     <message>
         <source>Resume</source>
         <translation>Hervatten</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Laagste prioriteit</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Hoogste prioriteit</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Prioriteit verlagen</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Prioriteit verhogen</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -445,7 +441,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Torrent-link toevoegen</translation>
+        <translation>Torrent-koppeling toevoegen</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -494,34 +490,42 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>Naar boven in de wachtrij verplaatsen</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>Naar boven in wachtrij</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>Onderaan wachtrij</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>Naar onderkant van de wachtrij verplaatsen</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>Bovenaan wachtrij</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>Naar beneden in wachtrij</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>Naar beneden in de wachtrij verplaatsen</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
+        <translation>Naar bovenkant van de wachtrij verplaatsen</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -578,10 +582,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrents in wachtrij plaatsen</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">Torrents seeden totdat ze een seed-tijd bereiken van</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -740,10 +740,6 @@
         <translation>Proxy gebruiken voor peer-verbindingen</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">Verbindingen die niet ondersteund worden door proxy's uitschakelen</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Proxy alleen voor torrents gebruiken</translation>
     </message>
@@ -831,19 +827,15 @@
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation>Encryptiemodus:</translation>
-    </message>
-    <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">Encryptie verkiezen</translation>
+        <translation>Versleutelingsmodus:</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation>Encryptie vereisen</translation>
+        <translation>Versleuteling vereisen</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation>Encryptie uitschakelen</translation>
+        <translation>Versleuteling uitschakelen</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
@@ -866,24 +858,8 @@
         <translation>Trage torrents niet meerekenen bij deze begrenzingen</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">Deelverhouding begrenzen</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">Torrents seeden totdat ze een verhouding bereiken van</translation>
-    </message>
-    <message>
         <source>then</source>
-        <translation>en ze dan</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation type="vanished">pauzeren</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">verwijderen</translation>
+        <translation>en daarna</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -916,10 +892,6 @@
     <message>
         <source>%L: Category</source>
         <translation>%L: categorie</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G: labels (gescheiden door komma)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1087,231 +1059,231 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Info: het wachtwoord wordt onversleuteld opgeslagen</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation type="unfinished" />
+        <translation>Strikt super-seeden:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>µTP-TCP gemengde modus algoritme</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Gebaseerd op uploadsnelheid</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: labels (gescheiden door komma)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Grootte socket-backlog:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Superseeden inschakelen voor torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>TCP verkiezen</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Vrij geheugen bij controleren van torrents:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Anti-leech</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation>Systeembuffer inschakelen:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation>Wanneer verhouding bereikt wordt van</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Wanneer een seed-tijd bereikt wordt van</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Meerdere verbindingen van hetzelfde IP-adres toestaan:</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>Grootte filepool:</translation>
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Om het even welke interface</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>Altijd aankondigen bij alle niveaus:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation>Poort ingebedde tracker:</translation>
     </message>
     <message>
         <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Optioneel IP-adres om aan te binden (opnieuw opstarten vereist):</translation>
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>Snelste upload</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent pauzeren</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>Torrent en zijn bestanden verwijderen</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-sectie</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation>Verzendbuffer watermerk factor:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>libtorrent-sectie</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes:</source>
-        <translation type="unfinished" />
+        <translation>Lezen en schrijven combineren:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Uitgaande poorten (min) [0: uitgeschakeld]:</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP-adres om te melden aan trackers (opnieuw opstarten vereist):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Torrents opnieuw controleren bij voltooiing:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Versleuteling toestaan</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>Suggesties voor uploaden van deeltjes zenden:</translation>
     </message>
     <message>
         <source>Disk cache:</source>
-        <translation type="unfinished" />
+        <translation>Schijfbuffer:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Ingebedde tracker inschakelen:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent verwijderen</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Uitgaande poorten (max) [0: uitgeschakeld]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation>Asynchrone I/O-threads:</translation>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation>Verzendbuffer-watermerk:</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval voor verstrijken van schijfbuffer:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Peer-proportioneel (vermindert TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Vaste slots</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation type="unfinished" />
+        <translation>Landen van peers oplossen (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Geavanceerd</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Upload-choking-algoritme:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Begrenzing voor seeden</translation>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Elk om beurt</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>Gedrag van uploadslots:</translation>
     </message>
     <message>
         <source>Network Interface (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Netwerkinterface (opnieuw starten vereist):</translation>
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>Verzendbuffer laag watermerk:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval voor opslaan van hervattingsdata:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>Altijd aankondigen bij alle trackers in een niveau:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>Sessie-timeout:</translation>
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Luisteren op IPv6-adres (opnieuw starten vereist):</translation>
     </message>
 </context>
 <context>
@@ -1378,19 +1350,19 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>Peer permanent verbannen</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>Weet u zeker dat u de geselecteerde peers permanent wilt verbannen?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>IP:poort kopiëren</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>Nieuwe peer toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -1412,11 +1384,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Gemengd</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Niet downloaden</translation>
     </message>
 </context>
 <context>
@@ -1587,10 +1559,14 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioriteit</translation>
     </message>
     <message>
         <source>Filter files...</source>
+        <translation>Bestanden filteren...</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1772,31 +1748,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Naam</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Grootte</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Voortgang</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation type="vanished">Downloadprioriteit</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation type="vanished">Resterend</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation type="vanished">Beschikbaarheid</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1943,7 +1895,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Beschikbaarheid</translation>
     </message>
 </context>
 <context>
@@ -1989,10 +1941,6 @@
         <translation>Nog niet gecontacteerd</translation>
     </message>
     <message>
-        <source>#</source>
-        <translation type="vanished">#</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>N/B</translation>
     </message>
@@ -2030,31 +1978,31 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Resterend</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Beschikbaarheid</translation>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Niveau</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Downloadprioriteit</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Voortgang</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Grootte</translation>
     </message>
 </context>
 <context>
@@ -2152,7 +2100,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Labels</translation>
     </message>
 </context>
 <context>
@@ -2226,14 +2174,6 @@
         <translation>Locatie instellen...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Naam kopiëren</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">Hash kopiëren</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Eerste en laatste deeltjes eerst downloaden</translation>
     </message>
@@ -2256,16 +2196,8 @@
         <translation>Herstellen</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Prioriteit</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Opnieuw controleren forceren</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Magneetlink kopiëren</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2313,43 +2245,43 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>Kommagescheiden labels:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Labels toevoegen</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Labels</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magneetkoppeling</translation>
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Alles verwijderen</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopiëren</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Wachtrij</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -2381,23 +2313,7 @@
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="vanished">Een geavanceerde BitTorrent-client geprogrammeerd in C++, gebaseerd op Qt-toolkit en libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation type="vanished">Homepagina:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation type="vanished">Forum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation type="vanished">Bug-tracker:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2425,7 +2341,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation>Torrent-links toevoegen</translation>
+        <translation>Torrent-koppelingen toevoegen</translation>
     </message>
 </context>
 <context>
@@ -2561,20 +2477,8 @@
         <translation>Zoeken in:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">URL van beschrijvingspagina kopiëren</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">Naar de beschrijvingspagina gaan</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Resultaten (</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Downloaden</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2677,155 +2581,171 @@
         <source>Version</source>
         <translation>Versie</translation>
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Annuleren</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Peers toevoegen</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>Lijst van toe te voegen peers (een IP per regel):</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Formaat: IPv4:poort / [IPv6]:poort</translation>
     </message>
 </context>
 <context>
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Nieuw label</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Label toevoegen...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents verwijderen</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Label:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents pauzeren</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents hervatten</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>Niet-gebruikte labels verwijderen</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>Ongeldige labelnaam</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Label verwijderen</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Alle</translation>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Niet gelabeld</translation>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Bug-tracker:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Over</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Forum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Huidige beheerder</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Homepagina:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Griekenland</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Speciale dank</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Een geavanceerde BitTorrent-client geprogrammeerd in C++, gebaseerd op Qt-toolkit en libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Naam:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Over qBittorrent</translation>
     </message>
     <message>
         <source>Libraries</source>
-        <translation type="unfinished" />
+        <translation>Bibliotheken</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Licentie</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Vertalers</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent werd gebouwd met de volgende bibliotheken:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Nationaliteit:</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>Auteur</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
+        <translation>Alle adressen</translation>
+    </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2833,26 +2753,37 @@
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopiëren</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Downloaden</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>URL van beschrijvingspagina</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>Beschrijvingspagina openen</translation>
     </message>
     <message>
         <source>Download link</source>
+        <translation>Downloadkoppeling</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>

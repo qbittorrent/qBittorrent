@@ -74,18 +74,17 @@ macro(qbt_set_compiler_options)
         string(APPEND CMAKE_CXX_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING} ${_GCC_COMMON_CXX_FLAGS_STRING}")
 
         # check whether we can enable -Og optimization for debug build
-        # also let's enable -march=native for debug builds
         check_cxx_compiler_flag(-Og _DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
 
         if (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            set(QBT_ADDITONAL_FLAGS "-Og -g3 -march=native -pipe" CACHE STRING
+            set(QBT_ADDITONAL_FLAGS "-Og -g3 -pipe" CACHE STRING
                 "Additional qBittorent compile flags")
-            set(QBT_ADDITONAL_CXX_FLAGS "-Og -g3 -march=native -pipe" CACHE STRING
+            set(QBT_ADDITONAL_CXX_FLAGS "-Og -g3 -pipe" CACHE STRING
                 "Additional qBittorent C++ compile flags")
         else(_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            set(QBT_ADDITONAL_FLAGS "-O0 -g3 -march=native -pipe" CACHE STRING
+            set(QBT_ADDITONAL_FLAGS "-O0 -g3 -pipe" CACHE STRING
                 "Additional qBittorent compile flags")
-            set(QBT_ADDITONAL_CXX_FLAGS "-O0 -g3 -march=native -pipe" CACHE STRING
+            set(QBT_ADDITONAL_CXX_FLAGS "-O0 -g3 -pipe" CACHE STRING
                 "Additional qBittorent C++ compile flags")
         endif (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
     endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")

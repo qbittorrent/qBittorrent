@@ -24,6 +24,8 @@ LangString inst_unist ${LANG_UKRAINIAN} "Видалення попередньо
 LangString launch_qbt ${LANG_UKRAINIAN} "Запустити qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_UKRAINIAN} "Ця програма установки працює тільки в 64-розрядних версіях Windows."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_UKRAINIAN} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

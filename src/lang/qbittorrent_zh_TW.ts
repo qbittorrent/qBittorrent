@@ -87,13 +87,9 @@
         <translation>一個以 C++ 撰寫，基於 Qt 工具箱和 libtorrent-rasterbar 的進階 BitTorrent 客戶端。</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2018 The qBittorrent project</source>
-        <translation type="vanished">Copyright %1 2006-2018 qBittorrent 專案</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="62"/>
         <source>Copyright %1 2006-2019 The qBittorrent project</source>
-        <translation type="unfinished">Copyright %1 2006-2018 qBittorrent 專案 {1 2006-2019 ?}</translation>
+        <translation>Copyright %1 2006-2019 qBittorrent 專案</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="63"/>
@@ -250,21 +246,9 @@
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="261"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
         <source>Invalid torrent</source>
         <translation>無效的 torrent</translation>
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="vanished">正在重新命名</translation>
-    </message>
-    <message>
-        <source>Rename error</source>
-        <translation type="vanished">重新命名錯誤</translation>
-    </message>
-    <message>
-        <source>The name is empty or contains forbidden characters, please choose a different one.</source>
-        <translation type="vanished">檔案名稱為空白或是包含禁止使用之字元，請選擇其他名稱。</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="597"/>
@@ -289,14 +273,6 @@
         <translation>無效的磁力連結</translation>
     </message>
     <message>
-        <source>The torrent file &apos;%1&apos; does not exist.</source>
-        <translation type="vanished">Torrent 檔案「%1」不存在。</translation>
-    </message>
-    <message>
-        <source>The torrent file &apos;%1&apos; cannot be read from the disk. Probably you don&apos;t have enough permissions.</source>
-        <translation type="vanished">無法從硬碟中讀取 torrent 檔案「%1」。您可能沒有足夠的權限。</translation>
-    </message>
-    <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="262"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
@@ -319,15 +295,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="340"/>
         <source>Retrieving metadata...</source>
         <translation>檢索中介資料…</translation>
-    </message>
-    <message>
-        <source>Not Available</source>
-        <comment>This size is unavailable.</comment>
-        <translation type="vanished">不可用</translation>
-    </message>
-    <message>
-        <source>Free space on disk: %1</source>
-        <translation type="vanished">硬碟上的可用空間：%1</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="100"/>
@@ -373,30 +340,18 @@ Error: %2</source>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="403"/>
         <source>%1 (Free space on disk: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1（硬碟上的可用空間：%2）</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="404"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
-        <translation type="unfinished">不可得</translation>
+        <translation>無法使用</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="662"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="666"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="vanished">新名稱：</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="vanished">名稱已經在這資料夾中使用。請選擇另一個名稱。</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="vanished">此資料夾無法被重新命名</translation>
+        <translation>無法下載「%1」：%2</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="475"/>
@@ -424,13 +379,14 @@ Error: %2</source>
         <translation>中介資料檢索完成</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="642"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>從 URL 載入失敗：%1。
+錯誤：%2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="661"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="665"/>
         <source>Download Error</source>
         <translation>下載錯誤</translation>
     </message>
@@ -438,360 +394,357 @@ Error: %2</source>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="279"/>
-        <location filename="../gui/advancedsettings.cpp" line="400"/>
+        <location filename="../gui/advancedsettings.cpp" line="274"/>
+        <location filename="../gui/advancedsettings.cpp" line="397"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="471"/>
+        <location filename="../gui/advancedsettings.cpp" line="468"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>連出埠 (最小) [0：停用]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="476"/>
+        <location filename="../gui/advancedsettings.cpp" line="473"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>連出埠 (最大) [0：停用]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="488"/>
+        <location filename="../gui/advancedsettings.cpp" line="485"/>
         <source>Recheck torrents on completion</source>
         <translation>完成後重新檢查 torrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="494"/>
+        <location filename="../gui/advancedsettings.cpp" line="491"/>
         <source>Transfer list refresh interval</source>
         <translation>傳輸清單更新區間</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="493"/>
+        <location filename="../gui/advancedsettings.cpp" line="490"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="130"/>
+        <location filename="../gui/advancedsettings.cpp" line="129"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="130"/>
+        <location filename="../gui/advancedsettings.cpp" line="129"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>值</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="275"/>
-        <location filename="../gui/advancedsettings.cpp" line="287"/>
+        <location filename="../gui/advancedsettings.cpp" line="270"/>
+        <location filename="../gui/advancedsettings.cpp" line="282"/>
         <source> (disabled)</source>
         <translation>(已停用)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="277"/>
+        <location filename="../gui/advancedsettings.cpp" line="272"/>
         <source> (auto)</source>
         <translation>(自動)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="285"/>
+        <location filename="../gui/advancedsettings.cpp" line="280"/>
         <source> min</source>
         <comment> minutes</comment>
         <translation>分鐘</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="298"/>
+        <location filename="../gui/advancedsettings.cpp" line="293"/>
         <source>All addresses</source>
         <translation>所有位置</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="338"/>
+        <location filename="../gui/advancedsettings.cpp" line="335"/>
         <source>qBittorrent Section</source>
         <translation>qBittorrent 小節</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="335"/>
-        <location filename="../gui/advancedsettings.cpp" line="343"/>
+        <location filename="../gui/advancedsettings.cpp" line="332"/>
+        <location filename="../gui/advancedsettings.cpp" line="340"/>
         <source>Open documentation</source>
         <translation>開啟文件</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="346"/>
+        <location filename="../gui/advancedsettings.cpp" line="294"/>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="295"/>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="343"/>
         <source>libtorrent Section</source>
         <translation>libtorrent 小節</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <location filename="../gui/advancedsettings.cpp" line="347"/>
         <source>Normal</source>
-        <translation type="unfinished">一般</translation>
+        <translation>一般</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <location filename="../gui/advancedsettings.cpp" line="347"/>
         <source>Below normal</source>
-        <translation type="unfinished"></translation>
+        <translation>低於一般</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <location filename="../gui/advancedsettings.cpp" line="347"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>中等</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <location filename="../gui/advancedsettings.cpp" line="347"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>低</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="350"/>
+        <location filename="../gui/advancedsettings.cpp" line="347"/>
         <source>Very low</source>
-        <translation type="unfinished"></translation>
+        <translation>非常低</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="371"/>
+        <location filename="../gui/advancedsettings.cpp" line="368"/>
         <source>Process memory priority (Windows &gt;= 8 only)</source>
-        <translation type="unfinished"></translation>
+        <translation>處理程序記憶體優先權（僅適用於 Windows 8 或更新版本）</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="380"/>
+        <location filename="../gui/advancedsettings.cpp" line="377"/>
         <source>Asynchronous I/O threads</source>
         <translation>異步 I/O 執行緒</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="387"/>
+        <location filename="../gui/advancedsettings.cpp" line="384"/>
         <source>File pool size</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案叢集大小</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="401"/>
+        <location filename="../gui/advancedsettings.cpp" line="398"/>
         <source>Outstanding memory when checking torrents</source>
         <translation>檢查 torrent 時的未完成記憶</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="415"/>
+        <location filename="../gui/advancedsettings.cpp" line="412"/>
         <source>Disk cache</source>
         <translation>硬碟快取</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="421"/>
+        <location filename="../gui/advancedsettings.cpp" line="418"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="422"/>
+        <location filename="../gui/advancedsettings.cpp" line="419"/>
         <source>Disk cache expiry interval</source>
         <translation>硬碟快取到期區間</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="426"/>
+        <location filename="../gui/advancedsettings.cpp" line="423"/>
         <source>Enable OS cache</source>
         <translation>啟用作業系統快取</translation>
     </message>
     <message>
-        <source>Guided read cache</source>
-        <translation type="vanished">引導讀取快取</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="430"/>
+        <location filename="../gui/advancedsettings.cpp" line="427"/>
         <source>Coalesce reads &amp; writes</source>
         <translation>合併讀取與寫入</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="434"/>
+        <location filename="../gui/advancedsettings.cpp" line="431"/>
         <source>Send upload piece suggestions</source>
         <translation>傳送上傳分塊建議</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="439"/>
-        <location filename="../gui/advancedsettings.cpp" line="445"/>
+        <location filename="../gui/advancedsettings.cpp" line="436"/>
+        <location filename="../gui/advancedsettings.cpp" line="442"/>
         <source> KiB</source>
         <translation> KiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="441"/>
+        <location filename="../gui/advancedsettings.cpp" line="438"/>
         <source>Send buffer watermark</source>
         <translation>傳送緩衝浮水印</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="447"/>
+        <location filename="../gui/advancedsettings.cpp" line="444"/>
         <source>Send buffer low watermark</source>
         <translation>傳送緩衝低浮水印</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="453"/>
+        <location filename="../gui/advancedsettings.cpp" line="450"/>
         <source>Send buffer watermark factor</source>
         <translation>傳送緩衝浮水印因子</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="459"/>
+        <location filename="../gui/advancedsettings.cpp" line="456"/>
         <source>Socket backlog size</source>
-        <translation type="unfinished"></translation>
+        <translation>Socket 紀錄檔大小</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="478"/>
+        <location filename="../gui/advancedsettings.cpp" line="475"/>
         <source>Prefer TCP</source>
         <translation>偏好 TCP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="478"/>
+        <location filename="../gui/advancedsettings.cpp" line="475"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation>下載者比例 (TCP 節流)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="485"/>
+        <location filename="../gui/advancedsettings.cpp" line="482"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation>允許從同一個 IP 位置而來的多重連線</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="497"/>
+        <location filename="../gui/advancedsettings.cpp" line="494"/>
         <source>Resolve peer countries (GeoIP)</source>
         <translation>解析下載者的國家 (GeoIP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="500"/>
+        <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source>Resolve peer host names</source>
         <translation>解析下載者的主機名</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="503"/>
+        <location filename="../gui/advancedsettings.cpp" line="500"/>
         <source>Strict super seeding</source>
         <translation>嚴格超級種子</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="523"/>
+        <location filename="../gui/advancedsettings.cpp" line="520"/>
         <source>Network Interface (requires restart)</source>
         <translation>網路介面 (需要重新啟動)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="526"/>
+        <location filename="../gui/advancedsettings.cpp" line="523"/>
         <source>Optional IP Address to bind to (requires restart)</source>
         <translation>可選擇綁紮的 IP 位置 (需要重新啟動)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="529"/>
         <source>Listen on IPv6 address (requires restart)</source>
-        <translation>監聽 IPv6 位置 (需要重新啟動)</translation>
+        <translation type="vanished">監聽 IPv6 位置 (需要重新啟動)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="537"/>
+        <location filename="../gui/advancedsettings.cpp" line="531"/>
         <source>Display notifications</source>
         <translation>顯示通知</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="540"/>
+        <location filename="../gui/advancedsettings.cpp" line="534"/>
         <source>Display notifications for added torrents</source>
         <translation>顯示已加入 torrent 的通知</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="543"/>
+        <location filename="../gui/advancedsettings.cpp" line="537"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>下載追蹤者的 favicon</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="547"/>
+        <location filename="../gui/advancedsettings.cpp" line="541"/>
         <source>Save path history length</source>
         <translation>儲存路徑歷史長度</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="550"/>
+        <location filename="../gui/advancedsettings.cpp" line="544"/>
         <source>Enable speed graphs</source>
         <translation>啟用速率圖</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="560"/>
+        <location filename="../gui/advancedsettings.cpp" line="554"/>
         <source>Fixed slots</source>
         <translation>固定通道</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="560"/>
+        <location filename="../gui/advancedsettings.cpp" line="554"/>
         <source>Upload rate based</source>
         <translation>上傳速率基於</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="562"/>
+        <location filename="../gui/advancedsettings.cpp" line="556"/>
         <source>Upload slots behavior</source>
         <translation>上傳通道行為</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="565"/>
+        <location filename="../gui/advancedsettings.cpp" line="559"/>
         <source>Round-robin</source>
         <translation>循環</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="565"/>
+        <location filename="../gui/advancedsettings.cpp" line="559"/>
         <source>Fastest upload</source>
         <translation>上傳最快</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="565"/>
+        <location filename="../gui/advancedsettings.cpp" line="559"/>
         <source>Anti-leech</source>
         <translation>反蝗族</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="567"/>
+        <location filename="../gui/advancedsettings.cpp" line="561"/>
         <source>Upload choking algorithm</source>
         <translation>是否上傳演算法</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="576"/>
+        <location filename="../gui/advancedsettings.cpp" line="570"/>
         <source>Confirm torrent recheck</source>
         <translation>Torrent 重新檢查確認</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="580"/>
+        <location filename="../gui/advancedsettings.cpp" line="574"/>
         <source>Confirm removal of all tags</source>
         <translation>確認移除所有標籤</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="584"/>
+        <location filename="../gui/advancedsettings.cpp" line="578"/>
         <source>Always announce to all trackers in a tier</source>
         <translation>總是發佈到同一追蹤者群組內所有的追蹤者</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="588"/>
+        <location filename="../gui/advancedsettings.cpp" line="582"/>
         <source>Always announce to all tiers</source>
         <translation>總是發佈到所有追蹤者群組</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="506"/>
+        <location filename="../gui/advancedsettings.cpp" line="503"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>任何介面</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="466"/>
+        <location filename="../gui/advancedsettings.cpp" line="463"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>儲存復原資料區間</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="480"/>
+        <location filename="../gui/advancedsettings.cpp" line="477"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation>%1-TCP 混合模式演算法</translation>
     </message>
     <message>
-        <source>Maximum number of half-open connections [0: Unlimited]</source>
-        <translation type="vanished">最大半開啟連線數 [0：無限制]</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="532"/>
+        <location filename="../gui/advancedsettings.cpp" line="526"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>回報至追蹤者的 IP 位置 (需要重新啟動)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="553"/>
+        <location filename="../gui/advancedsettings.cpp" line="547"/>
         <source>Enable embedded tracker</source>
         <translation>啟用嵌入追蹤者</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="558"/>
+        <location filename="../gui/advancedsettings.cpp" line="552"/>
         <source>Embedded tracker port</source>
         <translation>嵌入追蹤者埠</translation>
     </message>
     <message>
-        <source>Check for software updates</source>
-        <translation type="vanished">檢查軟體更新</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="572"/>
+        <location filename="../gui/advancedsettings.cpp" line="566"/>
         <source>Use system icon theme</source>
         <translation>使用系統圖示佈景</translation>
     </message>
@@ -805,90 +758,103 @@ Error: %2</source>
         <translation>qBittorrent %1 已啟動</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="324"/>
+        <location filename="../app/application.cpp" line="175"/>
+        <source>Running in portable mode. Auto detected profile folder at: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="177"/>
+        <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="180"/>
+        <source>Using config directory: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="332"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent：%1，正在執行外部程式，命令：%2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="355"/>
+        <location filename="../app/application.cpp" line="363"/>
         <source>Torrent name: %1</source>
         <translation>Torrent 名稱：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="356"/>
+        <location filename="../app/application.cpp" line="364"/>
         <source>Torrent size: %1</source>
         <translation>Torrent 大小：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="357"/>
+        <location filename="../app/application.cpp" line="365"/>
         <source>Save path: %1</source>
         <translation>儲存路徑：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="358"/>
+        <location filename="../app/application.cpp" line="366"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent 已於 %1 下載完成。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="360"/>
+        <location filename="../app/application.cpp" line="368"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>感謝您使用 qBittorrent。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="367"/>
+        <location filename="../app/application.cpp" line="375"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent]「%1」已下載完成</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="381"/>
+        <location filename="../app/application.cpp" line="389"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent：%1，正在傳送郵件通知</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="541"/>
+        <location filename="../app/application.cpp" line="549"/>
         <source>Application failed to start.</source>
         <translation>應用程式啟動失敗。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="554"/>
+        <location filename="../app/application.cpp" line="562"/>
         <source>Information</source>
         <translation>資訊</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="555"/>
+        <location filename="../app/application.cpp" line="563"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
         <translation>要控制 qBittorrent，從 %1 存取 Web UI</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="560"/>
+        <location filename="../app/application.cpp" line="568"/>
         <source>The Web UI administrator username is: %1</source>
         <translation>Web UI 的管理員使用者名稱為：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="561"/>
+        <location filename="../app/application.cpp" line="569"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation>Web UI 管理者密碼仍是預設的：%1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="562"/>
+        <location filename="../app/application.cpp" line="570"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>這有安全性風險，請考慮從程式偏好設定更改您的密碼。</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="689"/>
+        <location filename="../app/application.cpp" line="697"/>
         <source>Saving torrent progress...</source>
         <translation>正在儲存 torrent 進度…</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="744"/>
         <source>Portable mode and explicit profile directory options are mutually exclusive</source>
-        <translation>可攜式模式與明確的設定檔目錄兩項互相排斥</translation>
+        <translation type="vanished">可攜式模式與明確的設定檔目錄兩項互相排斥</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="747"/>
         <source>Portable mode implies relative fastresume</source>
-        <translation>可攜式模式通常意味著啟動相對快速</translation>
+        <translation type="vanished">可攜式模式通常意味著啟動相對快速</translation>
     </message>
 </context>
 <context>
@@ -1014,36 +980,44 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="308"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="344"/>
         <source>Use global settings</source>
         <translation>使用全域設定</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="313"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="349"/>
         <source>Always</source>
         <translation>總是</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="318"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="354"/>
         <source>Never</source>
         <translation>永不</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="339"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="336"/>
+        <source>Create Subfolder:</source>
+        <translation>建立子資料夾：</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="375"/>
         <source>Apply Rule to Feeds:</source>
         <translation>套用原則到 feed：</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="361"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="397"/>
         <source>Matching RSS Articles</source>
         <translation>配對 RSS 文章</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="389"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="425"/>
         <source>&amp;Import...</source>
         <translation>匯入… (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="399"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="435"/>
         <source>&amp;Export...</source>
         <translation>匯出… (&amp;E)</translation>
     </message>
@@ -1114,49 +1088,49 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>無限範圍：&lt;b&gt;1x25-;&lt;/b&gt; 表示第 1 季的第 25 集和之後章節，以及後面季度的所有章節</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="276"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="282"/>
         <source>Last Match: %1 days ago</source>
         <translation>最後符合：%1 天前</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="278"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="284"/>
         <source>Last Match: Unknown</source>
         <translation>最後符合：未知</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="375"/>
         <source>New rule name</source>
         <translation>新原則名稱</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="361"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="375"/>
         <source>Please type the name of the new download rule.</source>
         <translation>請輸入新下載原則的名稱。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="366"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="510"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="524"/>
         <source>Rule name conflict</source>
         <translation>原則名稱衝突</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="367"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="511"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="381"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="525"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>已有這原則名稱，請選擇另一個名稱。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="381"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="395"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation>您確定要移除已下載的原則「%1」嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="397"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>您確定要移除所選的下載原則嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="398"/>
         <source>Rule deletion confirmation</source>
         <translation>原則刪除確認</translation>
     </message>
@@ -1166,150 +1140,150 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>目的地目錄</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="394"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="408"/>
         <source>Invalid action</source>
         <translation>無效的動作</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="395"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="409"/>
         <source>The list is empty, there is nothing to export.</source>
         <translation>這個清單是空白的，沒有東西可以匯出。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="415"/>
         <source>Export RSS rules</source>
         <translation>匯出 RSS 規則</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="424"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="441"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="438"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="455"/>
         <source>I/O Error</source>
         <translation>I/O 錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="439"/>
         <source>Failed to create the destination file. Reason: %1</source>
         <translation>建立目標檔案失敗。理由：%1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="433"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="447"/>
         <source>Import RSS rules</source>
         <translation>匯入 RSS 規則</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="442"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="456"/>
         <source>Failed to open the file. Reason: %1</source>
         <translation>開啟檔案失敗。理由：%1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="457"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="471"/>
         <source>Import Error</source>
         <translation>匯入錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="458"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="472"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
         <translation>匯入選定的規則檔案失敗。理由：%1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="467"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="481"/>
         <source>Add new rule...</source>
         <translation>增加新原則…</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="474"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="488"/>
         <source>Delete rule</source>
         <translation>刪除原則</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="493"/>
         <source>Rename rule...</source>
         <translation>重新命名原則…</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="497"/>
         <source>Delete selected rules</source>
         <translation>刪除選定的原則</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="489"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="503"/>
         <source>Clear downloaded episodes...</source>
         <translation>清除已下載的章節…</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="504"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="518"/>
         <source>Rule renaming</source>
         <translation>重新命名原則</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="504"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="518"/>
         <source>Please type the new rule name</source>
         <translation>請輸入新原則的名稱</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="530"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="544"/>
         <source>Clear downloaded episodes</source>
         <translation>清除已下載的章節</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="531"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="545"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
         <translation>您確定您要清除選定規則的已下載章節清單嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="635"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="649"/>
         <source>Regex mode: use Perl-compatible regular expressions</source>
         <translation>正規表示法模式：使用相容於 Perl 的正規表示法</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="677"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="715"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="691"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="729"/>
         <source>Position %1: %2</source>
         <translation>位置 %1：%2</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="638"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="652"/>
         <source>Wildcard mode: you can use</source>
         <translation>萬用字元模式：您可以使用</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="639"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="653"/>
         <source>? to match any single character</source>
         <translation>? 可配對為任何單一字元</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="640"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="654"/>
         <source>* to match zero or more of any characters</source>
         <translation>* 可配對為零個或更多個任意字元</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="641"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="655"/>
         <source>Whitespaces count as AND operators (all words, any order)</source>
         <translation>空格會以 AND 運算子來計算（所有文字、任意順序）</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="642"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="656"/>
         <source>| is used as OR operator</source>
         <translation>| 則作為 OR 運算子使用</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="643"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="657"/>
         <source>If word order is important use * instead of whitespace.</source>
         <translation>若文字順序很重要請使用 * 而非空格。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="650"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="664"/>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
         <comment>We talk about regex/wildcards in the RSS filters section here. So a valid sentence would be: An expression with an empty | clause (e.g. expr|)</comment>
         <translation>帶有空白 %1 子句的表達式 (例如 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="654"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="668"/>
         <source> will match all articles.</source>
         <translation>將會配對所有文章。</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="655"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="669"/>
         <source> will exclude all articles.</source>
         <translation>將會排除所有文章。</translation>
     </message>
@@ -1351,434 +1325,405 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="579"/>
+        <location filename="../base/bittorrent/session.cpp" line="582"/>
         <source>Restart is required to toggle PeX support</source>
         <translation>切換 PeX 支援狀態須重新啟動</translation>
     </message>
     <message>
-        <source>Could not get GUID of configured network interface. Binding to IP %1</source>
-        <translation type="vanished">無法取得已設定網路介面的 GUID。綁紮至 IP %1</translation>
-    </message>
-    <message>
-        <source>Embedded Tracker [ON]</source>
-        <translation type="vanished">嵌入式追蹤者 [開啟]</translation>
-    </message>
-    <message>
-        <source>Failed to start the embedded tracker!</source>
-        <translation type="vanished">無法開始嵌入式追蹤者！</translation>
-    </message>
-    <message>
-        <source>Embedded Tracker [OFF]</source>
-        <translation type="vanished">嵌入式追蹤者 [關閉]</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="2399"/>
+        <location filename="../base/bittorrent/session.cpp" line="2509"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>系統的網路狀態變更為 %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2399"/>
+        <location filename="../base/bittorrent/session.cpp" line="2509"/>
         <source>ONLINE</source>
         <translation>上線</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2399"/>
+        <location filename="../base/bittorrent/session.cpp" line="2509"/>
         <source>OFFLINE</source>
         <translation>離線</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2412"/>
+        <location filename="../base/bittorrent/session.cpp" line="2522"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>%1 的網路設定已變更，正在重新整理作業時期綁紮</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2428"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.1568.1 isn&apos;t valid.</comment>
-        <translation>已設定的網路介面位置 %1 無效。</translation>
+        <translation type="vanished">已設定的網路介面位置 %1 無效。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1109"/>
-        <location filename="../base/bittorrent/session.cpp" line="2744"/>
+        <location filename="../base/bittorrent/session.cpp" line="1112"/>
+        <location filename="../base/bittorrent/session.cpp" line="2873"/>
         <source>Encryption support [%1]</source>
         <translation>加密支援 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1110"/>
-        <location filename="../base/bittorrent/session.cpp" line="2745"/>
+        <location filename="../base/bittorrent/session.cpp" line="1113"/>
+        <location filename="../base/bittorrent/session.cpp" line="2874"/>
         <source>FORCED</source>
         <translation>強制</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2855"/>
+        <location filename="../base/bittorrent/session.cpp" line="2984"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
         <translation>%1 不是有效的 IP 位置，其在套用已封鎖位置的清單時被退回。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1108"/>
-        <location filename="../base/bittorrent/session.cpp" line="3185"/>
+        <location filename="../base/bittorrent/session.cpp" line="1111"/>
+        <location filename="../base/bittorrent/session.cpp" line="3321"/>
         <source>Anonymous mode [%1]</source>
         <translation>匿名模式 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1256"/>
-        <location filename="../base/bittorrent/session.cpp" line="1271"/>
         <source>Trying to listen on IP: %1, port: %2</source>
         <comment>e.g: Trying to listen on IP: 192.168.0.1, port: 6881</comment>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">嘗試監聽 IP：%1，連接埠：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1294"/>
         <source>Could not get GUID of configured network interface. Binding to IP: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">無法取得已設定網路介面的 GUID。綁紮至 IP %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1631"/>
+        <location filename="../base/bittorrent/session.cpp" line="1642"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed torrent and its files.</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」已經到達您設定的最大分享率了。已移除 torrent 及其檔案。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1640"/>
+        <location filename="../base/bittorrent/session.cpp" line="1651"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Enabled super seeding for it.</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」已經到達您設定的最大分享率了。已對其啟用超級 seeding。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1662"/>
+        <location filename="../base/bittorrent/session.cpp" line="1673"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed torrent and its files.</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」已經到達您設定的 seeding 時間了。已移除 torrent 及其檔案。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1671"/>
+        <location filename="../base/bittorrent/session.cpp" line="1682"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Enabled super seeding for it.</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」已經到達您設定的 seeding 時間了。已對其啟用超級 seeding。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2320"/>
+        <location filename="../base/bittorrent/session.cpp" line="2430"/>
         <source>Error: Aborted saving resume data for %1 outstanding torrents.</source>
+        <translation>錯誤：已取消儲存 %1 個為完成種子的復原資料。</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2538"/>
+        <source>Configured network interface address %1 isn&apos;t valid.</source>
+        <comment>Configured network interface address 124.5.158.1 isn&apos;t valid.</comment>
+        <translation type="unfinished">已設定的網路介面位置 %1 無效。</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2572"/>
+        <location filename="../base/bittorrent/session.cpp" line="2604"/>
+        <source>Can&apos;t find the configured address &apos;%1&apos; to listen on</source>
+        <comment>Can&apos;t find the configured address &apos;192.168.1.3&apos; to listen on</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3656"/>
+        <location filename="../base/bittorrent/session.cpp" line="3792"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>無法解碼 torrent 檔案「%1」。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3800"/>
+        <location filename="../base/bittorrent/session.cpp" line="3936"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>遞迴下載在 torrent「%2」裡的檔案「%1」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3908"/>
+        <location filename="../base/bittorrent/session.cpp" line="4039"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation>佇列位置將會在 %1 個復原的檔案中校正位置</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4140"/>
+        <location filename="../base/bittorrent/session.cpp" line="4271"/>
         <source>Couldn&apos;t save &apos;%1.torrent&apos;</source>
         <translation>無法儲存「%1.torrent」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4192"/>
-        <location filename="../base/bittorrent/session.cpp" line="4229"/>
+        <location filename="../base/bittorrent/session.cpp" line="4298"/>
+        <source>Torrent errored. Torrent: &quot;%1&quot;. Error: %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4327"/>
+        <location filename="../base/bittorrent/session.cpp" line="4364"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>「%1」已從傳輸清單中移除。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4207"/>
+        <location filename="../base/bittorrent/session.cpp" line="4342"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>「%1」已從傳輸清單與硬碟中移除。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4224"/>
+        <location filename="../base/bittorrent/session.cpp" line="4359"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>「%1」已從傳輸清單中移除，但檔案無法刪除。錯誤：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4282"/>
+        <location filename="../base/bittorrent/session.cpp" line="4417"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案錯誤警告。Torrent：「%1」。檔案：「%2」。理由：%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4325"/>
+        <location filename="../base/bittorrent/session.cpp" line="4460"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>因為 %1 已停用。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4328"/>
+        <location filename="../base/bittorrent/session.cpp" line="4463"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>因為 %1 已停用。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4356"/>
+        <location filename="../base/bittorrent/session.cpp" line="4491"/>
         <source>URL seed name lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL seed 名稱查詢失敗。Torrent：「%1」。URL：「%2」。錯誤：「%3」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4361"/>
+        <location filename="../base/bittorrent/session.cpp" line="4496"/>
         <source>Received error message from a URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>從 URL seed 收到錯誤訊息。Torrent：「%1」。URL：「%2」。訊息：「%3」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4417"/>
+        <location filename="../base/bittorrent/session.cpp" line="4552"/>
         <source>Successfully listening on IP: %1, port: %2/%3</source>
         <comment>e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881</comment>
-        <translation type="unfinished"></translation>
+        <translation>成功監聽 IP：%1，連接埠：%2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4480"/>
+        <location filename="../base/bittorrent/session.cpp" line="4615"/>
         <source>Failed to listen on IP: %1, port: %2/%3. Reason: %4</source>
         <comment>e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"></translation>
+        <translation>監聽 IP 失敗：%1，連接埠：%2/%3。理由：%4</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4494"/>
+        <location filename="../base/bittorrent/session.cpp" line="4629"/>
         <source>Detected external IP: %1</source>
         <comment>e.g. Detected external IP: 1.1.1.1</comment>
-        <translation type="unfinished"></translation>
+        <translation>偵測到外部 IP：%1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4573"/>
+        <location filename="../base/bittorrent/session.cpp" line="4708"/>
         <source>Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤：內部警告佇列已滿，警告已被丟棄，您可能會發現效能變差。被丟棄的警告類型：%1。訊息：%2</translation>
     </message>
     <message>
-        <source>URL seed lookup failed for URL: &apos;%1&apos;, message: %2</source>
-        <translation type="vanished">找不到 URL：「%1」的 URL 種子，訊息：%2</translation>
-    </message>
-    <message>
-        <source>qBittorrent failed listening on interface %1 port: %2/%3. Reason: %4.</source>
-        <comment>e.g: qBittorrent failed listening on interface 192.168.0.1 port: TCP/6881. Reason: already in use.</comment>
-        <translation type="vanished">qBittorrent 監聽介面 %1 的埠：%2/%3 失敗。理由：%4。</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="1935"/>
+        <location filename="../base/bittorrent/session.cpp" line="1946"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>下載「%1」中，請稍候…</translation>
     </message>
     <message>
-        <source>qBittorrent is trying to listen on any interface port: %1</source>
-        <comment>e.g: qBittorrent is trying to listen on any interface port: TCP/6881</comment>
-        <translation type="vanished">qBittorrent 正在嘗試監聽任何的介面埠：%1</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="2447"/>
+        <location filename="../base/bittorrent/session.cpp" line="2585"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>定義的網路介面是無效的：%1</translation>
     </message>
     <message>
-        <source>qBittorrent is trying to listen on interface %1 port: %2</source>
-        <comment>e.g: qBittorrent is trying to listen on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="vanished">qBittorrent 正在嘗試監聽介面 %1 的埠：%2</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="1103"/>
+        <location filename="../base/bittorrent/session.cpp" line="1106"/>
         <source>Peer ID: </source>
         <translation>下載者 ID：</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1104"/>
+        <location filename="../base/bittorrent/session.cpp" line="1107"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation>HTTP 使用者代理為「%1」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="551"/>
-        <location filename="../base/bittorrent/session.cpp" line="1105"/>
+        <location filename="../base/bittorrent/session.cpp" line="554"/>
+        <location filename="../base/bittorrent/session.cpp" line="1108"/>
         <source>DHT support [%1]</source>
         <translation>DHT 支援 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="551"/>
-        <location filename="../base/bittorrent/session.cpp" line="565"/>
-        <location filename="../base/bittorrent/session.cpp" line="1105"/>
-        <location filename="../base/bittorrent/session.cpp" line="1106"/>
-        <location filename="../base/bittorrent/session.cpp" line="1107"/>
+        <location filename="../base/bittorrent/session.cpp" line="554"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
         <location filename="../base/bittorrent/session.cpp" line="1108"/>
         <location filename="../base/bittorrent/session.cpp" line="1109"/>
-        <location filename="../base/bittorrent/session.cpp" line="2745"/>
-        <location filename="../base/bittorrent/session.cpp" line="3185"/>
+        <location filename="../base/bittorrent/session.cpp" line="1110"/>
+        <location filename="../base/bittorrent/session.cpp" line="1111"/>
+        <location filename="../base/bittorrent/session.cpp" line="1112"/>
+        <location filename="../base/bittorrent/session.cpp" line="2874"/>
+        <location filename="../base/bittorrent/session.cpp" line="3321"/>
         <source>ON</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="551"/>
-        <location filename="../base/bittorrent/session.cpp" line="565"/>
-        <location filename="../base/bittorrent/session.cpp" line="1105"/>
-        <location filename="../base/bittorrent/session.cpp" line="1106"/>
-        <location filename="../base/bittorrent/session.cpp" line="1107"/>
+        <location filename="../base/bittorrent/session.cpp" line="554"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
         <location filename="../base/bittorrent/session.cpp" line="1108"/>
+        <location filename="../base/bittorrent/session.cpp" line="1109"/>
         <location filename="../base/bittorrent/session.cpp" line="1110"/>
-        <location filename="../base/bittorrent/session.cpp" line="2745"/>
-        <location filename="../base/bittorrent/session.cpp" line="3185"/>
+        <location filename="../base/bittorrent/session.cpp" line="1111"/>
+        <location filename="../base/bittorrent/session.cpp" line="1113"/>
+        <location filename="../base/bittorrent/session.cpp" line="2874"/>
+        <location filename="../base/bittorrent/session.cpp" line="3321"/>
         <source>OFF</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="565"/>
-        <location filename="../base/bittorrent/session.cpp" line="1106"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
+        <location filename="../base/bittorrent/session.cpp" line="1109"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation>本地下載者搜尋支援 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1107"/>
+        <location filename="../base/bittorrent/session.cpp" line="1110"/>
         <source>PeX support [%1]</source>
         <translation>PeX 支援 [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1627"/>
+        <location filename="../base/bittorrent/session.cpp" line="1470"/>
+        <location filename="../base/bittorrent/session.cpp" line="1490"/>
+        <source>Could not get GUID of network interface: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1499"/>
+        <source>Trying to listen on: %1</source>
+        <comment>e.g: Trying to listen on: 192.168.0.1:6881</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1638"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation>「%1」已經到達您設定的最大分享率了。已移除。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1636"/>
+        <location filename="../base/bittorrent/session.cpp" line="1647"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation>「%1」已經到達您設定的最大分享率了。已暫停。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1658"/>
+        <location filename="../base/bittorrent/session.cpp" line="1669"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation>「%1」已經到達您設定的最大傳送時間了。已移除。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1667"/>
+        <location filename="../base/bittorrent/session.cpp" line="1678"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation>「%1」已經到達您設定的最大傳送時間了。已暫停。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2481"/>
         <source>qBittorrent didn&apos;t find an %1 local address to listen on</source>
         <comment>qBittorrent didn&apos;t find an IPv4 local address to listen on</comment>
-        <translation>qBittorrent 找不到供監聽的 %1 本機位置</translation>
+        <translation type="vanished">qBittorrent 找不到供監聽的 %1 本機位置</translation>
     </message>
     <message>
-        <source>qBittorrent failed to listen on any interface port: %1. Reason: %2.</source>
-        <comment>e.g: qBittorrent failed to listen on any interface port: TCP/6881. Reason: no such interface</comment>
-        <translation type="vanished">qBittorrent 監聽任意介面埠失敗：%1。理由：%2。</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="3561"/>
+        <location filename="../base/bittorrent/session.cpp" line="3697"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>追蹤者「%1」已加入到 torrent「%2」中</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3573"/>
+        <location filename="../base/bittorrent/session.cpp" line="3709"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>追蹤者「%1」已從 torrent「%2」中刪除</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3590"/>
+        <location filename="../base/bittorrent/session.cpp" line="3726"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>URL 種子「%1」已加入到 torrent「%2」中</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3597"/>
+        <location filename="../base/bittorrent/session.cpp" line="3733"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>URL 種子「%1」已從 torrent「%2」中刪除</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3735"/>
+        <location filename="../base/bittorrent/session.cpp" line="3871"/>
         <source>Cannot write to torrent resume folder.</source>
         <translation>無法寫入 torrent 復原資料夾。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3739"/>
+        <location filename="../base/bittorrent/session.cpp" line="3875"/>
         <source>Cannot create torrent resume folder.</source>
         <translation>無法建立 torrent 復原資料夾。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3851"/>
+        <location filename="../base/bittorrent/session.cpp" line="3982"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>無法復原 torrent 檔案：「%1」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3927"/>
+        <location filename="../base/bittorrent/session.cpp" line="4058"/>
         <source>Couldn&apos;t load torrents queue from &apos;%1&apos;. Error: %2</source>
         <translation>無法從「%1」載入 torrent 佇列。錯誤：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3975"/>
+        <location filename="../base/bittorrent/session.cpp" line="4106"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>分析 IP 過濾檔案成功：已套用 %1 個規則。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3985"/>
+        <location filename="../base/bittorrent/session.cpp" line="4116"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>錯誤：IP 過濾器分析失敗。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4126"/>
+        <location filename="../base/bittorrent/session.cpp" line="4257"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
         <translation>「%1」已復原。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4171"/>
+        <location filename="../base/bittorrent/session.cpp" line="4306"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>無法加入 torrent。理由：%1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4147"/>
+        <location filename="../base/bittorrent/session.cpp" line="4278"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>「%1」已增加到下載清單。</translation>
     </message>
     <message>
-        <source>An I/O error occurred, &apos;%1&apos; paused. %2</source>
-        <translation type="vanished">發生 I/O 錯誤，「%1」已暫停。%2</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="4293"/>
+        <location filename="../base/bittorrent/session.cpp" line="4428"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP／NAT-PMP：埠轉送失敗，訊息：%1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4299"/>
+        <location filename="../base/bittorrent/session.cpp" line="4434"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP／NAT-PMP：埠轉送成功，訊息：%1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4313"/>
+        <location filename="../base/bittorrent/session.cpp" line="4448"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>由於 IP 過濾器。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4316"/>
+        <location filename="../base/bittorrent/session.cpp" line="4451"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>由於埠過濾器。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4319"/>
+        <location filename="../base/bittorrent/session.cpp" line="4454"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>由於 i2p 混合模式限制。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4322"/>
+        <location filename="../base/bittorrent/session.cpp" line="4457"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>因為它有著較低的埠。</translation>
-    </message>
-    <message>
-        <source>qBittorrent is successfully listening on interface %1 port: %2/%3</source>
-        <comment>e.g: qBittorrent is successfully listening on interface 192.168.0.1 port: TCP/6881</comment>
-        <translation type="vanished">qBittorrent 成功監聽介面 %1 的埠：%2/%3</translation>
-    </message>
-    <message>
-        <source>External IP: %1</source>
-        <comment>e.g. External IP: 192.168.0.1</comment>
-        <translation type="vanished">外部 IP：%1</translation>
     </message>
 </context>
 <context>
@@ -1794,62 +1739,62 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/torrenthandle.cpp" line="556"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>新增 peer「%1」到 torrent「%2」失敗。理由：%3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandle.cpp" line="561"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Peer「%1」已被加入到 torrent「%2」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1487"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1484"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>先下載第一及最後一塊：%1，torrent：「%2」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1488"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1485"/>
         <source>On</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1488"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1485"/>
         <source>Off</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1616"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1613"/>
         <source>Successfully moved torrent: %1. New path: %2</source>
         <translation>成功移動 torrent：%1。新路徑：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1651"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1648"/>
         <source>Could not move torrent: &apos;%1&apos;. Reason: %2</source>
         <translation>無法移動 torrent：「%1」。理由：%2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1850"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1847"/>
         <source>Save resume data failed. Torrent: &quot;%1&quot;, error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存復原資料失敗。Torrent：「%1」，錯誤：「%2」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1863"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1860"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
         <translation>Torrent「%1」檔案大小不符合，暫停。</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1866"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1863"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>快速復原資料被 torrent「%1」拒絕。理由：%2。再次檢查…</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1919"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1916"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案重新命名失敗。Torrent：「%1」，檔案：「%2」，理由：「%3」</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrenthandle.cpp" line="1983"/>
+        <location filename="../base/bittorrent/torrenthandle.cpp" line="1980"/>
         <source>Performance alert: </source>
-        <translation type="unfinished"></translation>
+        <translation>效能警告</translation>
     </message>
 </context>
 <context>
@@ -1857,12 +1802,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/tracker.cpp" line="215"/>
         <source>Embedded Tracker: Now listening on IP: %1, port: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>已嵌入的追蹤器：現在正在監聽 IP：%1，連接埠：%2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/tracker.cpp" line="219"/>
         <source>Embedded Tracker: Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>已嵌入的追蹤器：無法綁紮到 IP：%1，連接埠：%2。理由：%3</translation>
     </message>
 </context>
 <context>
@@ -2028,129 +1973,129 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>DownloadHandlerImpl</name>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="478"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="127"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O 錯誤</translation>
+        <translation>I/O 錯誤</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="494"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="143"/>
         <source>The file size is %1. It exceeds the download limit of %2.</source>
-        <translation type="unfinished">檔案大小為 %1。它超過了 %2 的下䵧限制。</translation>
+        <translation>檔案大小為 %1。其超過下載限制的 %2。</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="513"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="162"/>
         <source>Redirected to magnet URI.</source>
-        <translation type="unfinished"></translation>
+        <translation>重新導向到磁力 URI。</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="537"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="186"/>
         <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="unfinished">找不到遠端主機名稱（無效的主機名稱）</translation>
+        <translation>找不到遠端主機名稱（無效的主機名稱）</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="539"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="188"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished">操作已取消</translation>
+        <translation>操作已取消</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="541"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="190"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="unfinished">在回應被接收及處理之前遠端伺服器已永遠關閉連線</translation>
+        <translation>遠端伺服器在收到完整回覆並處理前太早關閉連線。</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="543"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="192"/>
         <source>The connection to the remote server timed out</source>
-        <translation type="unfinished">連線到遠端伺服器逾時</translation>
+        <translation>連線到遠端伺服器逾時</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="545"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="194"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished">SSL╱TLS 握手失敗</translation>
+        <translation>SSL／TLS 握手失敗</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="547"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="196"/>
         <source>The remote server refused the connection</source>
-        <translation type="unfinished">遠端伺服器拒絕連線</translation>
+        <translation>遠端伺服器拒絕連線</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="549"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="198"/>
         <source>The connection to the proxy server was refused</source>
-        <translation type="unfinished">連線到代理伺服器被拒絕</translation>
+        <translation>連線到代理伺服器被拒絕</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="551"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="200"/>
         <source>The proxy server closed the connection prematurely</source>
-        <translation type="unfinished">代理伺服器過早關閉連線</translation>
+        <translation>代理伺服器過早關閉連線</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="553"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="202"/>
         <source>The proxy host name was not found</source>
-        <translation type="unfinished">找不到代理伺服器主機名稱</translation>
+        <translation>找不到代理伺服器主機名稱</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="555"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="204"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="unfinished">連線到代理伺服器逾時或是在要求的時間中沒有回應</translation>
+        <translation>連線到代理伺服器逾時或是在要求的時間中沒有回應</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="557"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="206"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="unfinished">為了執行請求，遠端代理伺服器要求驗證，但提供的憑證不被接受</translation>
+        <translation>為了執行要求, 代理伺服器需要認證但是不接受任何提供的憑證</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="559"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="208"/>
         <source>The access to the remote content was denied (401)</source>
-        <translation type="unfinished">存取遠端內容被拒絕 (401)</translation>
+        <translation>存取遠端內容被拒絕 (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="561"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="210"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished">對遠端內容要求的操作不被允許</translation>
+        <translation>對遠端內容要求的操作不被允許</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="563"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="212"/>
         <source>The remote content was not found at the server (404)</source>
-        <translation type="unfinished">遠端內容在伺服器上找不到 (404)</translation>
+        <translation>遠端內容在伺服器上找不到 (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="565"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="214"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="unfinished">為了提供內容，遠端代理伺服器要求驗證，但提供的憑證不被接受</translation>
+        <translation>為了提供內容，遠端代理伺服器要求認證，但提供的憑證不被接受</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="567"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="216"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="unfinished">因為未知的協定，網路存取 API 無法執行要求</translation>
+        <translation>因為未知的協定，網路存取 API 無法執行要求</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="569"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="218"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished">要求的操作對於這協定是無效的</translation>
+        <translation>要求的操作對於這協定是無效的</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="571"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="220"/>
         <source>An unknown network-related error was detected</source>
-        <translation type="unfinished">偵測到一個未知的網路相關錯誤</translation>
+        <translation>偵測到一個未知的網路相關錯誤</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="573"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="222"/>
         <source>An unknown proxy-related error was detected</source>
-        <translation type="unfinished">偵測到一個未知的代理伺服器相關錯誤</translation>
+        <translation>偵測到一個未知的代理伺服器相關錯誤</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="575"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="224"/>
         <source>An unknown error related to the remote content was detected</source>
-        <translation type="unfinished">偵測到一個未知的遠端內容相關錯誤</translation>
+        <translation>偵測到一個未知的遠端內容相關錯誤</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="577"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="226"/>
         <source>A breakdown in protocol was detected</source>
-        <translation type="unfinished">偵測到一個協定錯誤</translation>
+        <translation>偵測到一個協定錯誤</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="579"/>
+        <location filename="../base/net/private/downloadhandlerimpl.cpp" line="228"/>
         <source>Unknown error</source>
-        <translation type="unfinished">未知的錯誤</translation>
+        <translation>未知的錯誤</translation>
     </message>
 </context>
 <context>
@@ -2184,26 +2129,16 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>被封鎖的 IP</translation>
     </message>
     <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was blocked %2</source>
-        <comment>x.y.z.w was blocked</comment>
-        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; 被 %2 阻擋</translation>
-    </message>
-    <message>
-        <source>&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; was banned</source>
-        <comment>x.y.z.w was banned</comment>
-        <translation type="vanished">&lt;font color=&apos;red&apos;&gt;%1&lt;/font&gt; 被禁止</translation>
-    </message>
-    <message>
         <location filename="../gui/executionlogwidget.cpp" line="103"/>
         <source>%1 was blocked %2</source>
         <comment>0.0.0.0 was blocked due to reason</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 已被 %2 封鎖</translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="104"/>
         <source>%1 was banned</source>
         <comment>0.0.0.0 was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 已被封鎖</translation>
     </message>
 </context>
 <context>
@@ -2379,22 +2314,14 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 <context>
     <name>Http::Connection</name>
     <message>
-        <source>Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s</source>
-        <translation type="vanished">HTTP 請求超過數量上限，正在關閉網路插座。限制：%ld，IP：%s</translation>
-    </message>
-    <message>
-        <source>Bad Http request, closing socket. IP: %s</source>
-        <translation type="vanished">不正確的 HTTP 請求，正在關閉網路插座。IP：%s</translation>
-    </message>
-    <message>
         <location filename="../base/http/connection.cpp" line="69"/>
         <source>Http request size exceeds limiation, closing socket. Limit: %1, IP: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP 請求超過數量上限，正在關閉網路插座。限制：%1，IP：%2</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="82"/>
         <source>Bad Http request, closing socket. IP: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>不正確的 HTTP 請求，正在關閉網路插座。IP：%1</translation>
     </message>
 </context>
 <context>
@@ -2511,22 +2438,6 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <translation>設定全域上傳速率限制…</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">最低優先度</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">最高優先度</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">減少優先度</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">增加優先度</translation>
-    </message>
-    <message>
         <location filename="../gui/mainwindow.ui" line="300"/>
         <location filename="../gui/mainwindow.ui" line="303"/>
         <source>Alternative Speed Limits</source>
@@ -2625,42 +2536,42 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="253"/>
         <source>Bottom of Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>佇列底部</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="256"/>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>移動到佇列底部</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="264"/>
         <source>Top of Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>佇列頂部</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="267"/>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>移動到佇列頂部</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="275"/>
         <source>Move Down Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>在佇列中向下移動</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="278"/>
         <source>Move down in the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>在佇列中向下移動</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="286"/>
         <source>Move Up Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>在佇列中向上移動</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="289"/>
         <source>Move up in the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>在佇列中向上移動</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="376"/>
@@ -3244,114 +3155,11 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>Net::DownloadHandler</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="vanished">I/O 錯誤</translation>
-    </message>
-    <message>
-        <source>The file size is %1. It exceeds the download limit of %2.</source>
-        <translation type="vanished">檔案大小為 %1。它超過了 %2 的下䵧限制。</translation>
-    </message>
-    <message>
-        <source>Unexpected redirect to magnet URI.</source>
-        <translation type="vanished">未預期的到磁力 URI 的重新導向。</translation>
-    </message>
-    <message>
-        <source>The remote host name was not found (invalid hostname)</source>
-        <translation type="vanished">找不到遠端主機名稱（無效的主機名稱）</translation>
-    </message>
-    <message>
-        <source>The operation was canceled</source>
-        <translation type="vanished">操作已取消</translation>
-    </message>
-    <message>
-        <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
-        <translation type="vanished">在回應被接收及處理之前遠端伺服器已永遠關閉連線</translation>
-    </message>
-    <message>
-        <source>The connection to the remote server timed out</source>
-        <translation type="vanished">連線到遠端伺服器逾時</translation>
-    </message>
-    <message>
-        <source>SSL/TLS handshake failed</source>
-        <translation type="vanished">SSL╱TLS 握手失敗</translation>
-    </message>
-    <message>
-        <source>The remote server refused the connection</source>
-        <translation type="vanished">遠端伺服器拒絕連線</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy server was refused</source>
-        <translation type="vanished">連線到代理伺服器被拒絕</translation>
-    </message>
-    <message>
-        <source>The proxy server closed the connection prematurely</source>
-        <translation type="vanished">代理伺服器過早關閉連線</translation>
-    </message>
-    <message>
-        <source>The proxy host name was not found</source>
-        <translation type="vanished">找不到代理伺服器主機名稱</translation>
-    </message>
-    <message>
-        <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
-        <translation type="vanished">連線到代理伺服器逾時或是在要求的時間中沒有回應</translation>
-    </message>
-    <message>
-        <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
-        <translation type="vanished">為了執行請求，遠端代理伺服器要求驗證，但提供的憑證不被接受</translation>
-    </message>
-    <message>
-        <source>The access to the remote content was denied (401)</source>
-        <translation type="vanished">存取遠端內容被拒絕 (401)</translation>
-    </message>
-    <message>
-        <source>The operation requested on the remote content is not permitted</source>
-        <translation type="vanished">對遠端內容要求的操作不被允許</translation>
-    </message>
-    <message>
-        <source>The remote content was not found at the server (404)</source>
-        <translation type="vanished">遠端內容在伺服器上找不到 (404)</translation>
-    </message>
-    <message>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation type="vanished">為了提供內容，遠端代理伺服器要求驗證，但提供的憑證不被接受</translation>
-    </message>
-    <message>
-        <source>The Network Access API cannot honor the request because the protocol is not known</source>
-        <translation type="vanished">因為未知的協定，網路存取 API 無法執行要求</translation>
-    </message>
-    <message>
-        <source>The requested operation is invalid for this protocol</source>
-        <translation type="vanished">要求的操作對於這協定是無效的</translation>
-    </message>
-    <message>
-        <source>An unknown network-related error was detected</source>
-        <translation type="vanished">偵測到一個未知的網路相關錯誤</translation>
-    </message>
-    <message>
-        <source>An unknown proxy-related error was detected</source>
-        <translation type="vanished">偵測到一個未知的代理伺服器相關錯誤</translation>
-    </message>
-    <message>
-        <source>An unknown error related to the remote content was detected</source>
-        <translation type="vanished">偵測到一個未知的遠端內容相關錯誤</translation>
-    </message>
-    <message>
-        <source>A breakdown in protocol was detected</source>
-        <translation type="vanished">偵測到一個協定錯誤</translation>
-    </message>
-    <message>
-        <source>Unknown error</source>
-        <translation type="vanished">未知的錯誤</translation>
-    </message>
-</context>
-<context>
     <name>Net::DownloadManager</name>
     <message>
-        <location filename="../base/net/downloadmanager.cpp" line="335"/>
+        <location filename="../base/net/downloadmanager.cpp" line="289"/>
         <source>Ignoring SSL error, URL: &quot;%1&quot;, errors: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>正在忽略 SSL 錯誤，URL：「%1」，錯誤：「%2」</translation>
     </message>
 </context>
 <context>
@@ -3372,10 +3180,6 @@ Please install it manually.</source>
         <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>Venezuela, Bolivarian Republic of</source>
         <translation>委內瑞拉玻利瓦共和國</translation>
-    </message>
-    <message>
-        <source>Viet Nam</source>
-        <translation type="vanished">越南</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="387"/>
@@ -4406,7 +4210,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="377"/>
         <source>Vietnam</source>
-        <translation type="unfinished"></translation>
+        <translation>越南</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="418"/>
@@ -4645,17 +4449,6 @@ Please install it manually.</source>
     </message>
 </context>
 <context>
-    <name>Net::PortForwarder</name>
-    <message>
-        <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="vanished">UPnP／NAT-PMP 支援 [開啟]</translation>
-    </message>
-    <message>
-        <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="vanished">UPnP／NAT-PMP 支援 [關閉]</translation>
-    </message>
-</context>
-<context>
     <name>Net::Smtp</name>
     <message>
         <location filename="../base/net/smtp.cpp" line="509"/>
@@ -4709,14 +4502,6 @@ Please install it manually.</source>
         <location filename="../gui/optionsdialog.ui" line="87"/>
         <source>Advanced</source>
         <translation>進階</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">語言</translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">使用者介面語言：</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="167"/>
@@ -4779,7 +4564,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="309"/>
-        <location filename="../gui/optionsdialog.ui" line="335"/>
+        <location filename="../gui/optionsdialog.ui" line="340"/>
         <source>No action</source>
         <translation>無行動</translation>
     </message>
@@ -4789,200 +4574,196 @@ Please install it manually.</source>
         <translation>已完成的 torrent：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="362"/>
+        <location filename="../gui/optionsdialog.ui" line="367"/>
         <source>Desktop</source>
         <translation>桌面</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="368"/>
+        <location filename="../gui/optionsdialog.ui" line="373"/>
         <source>Start qBittorrent on Windows start up</source>
         <translation>在 Windows 啟動時啟動 qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="375"/>
+        <location filename="../gui/optionsdialog.ui" line="380"/>
         <source>Show splash screen on start up</source>
         <translation>啟動時顯示起始畫面</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="385"/>
+        <location filename="../gui/optionsdialog.ui" line="390"/>
         <source>Start qBittorrent minimized</source>
         <translation>啟動時最小化 qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="392"/>
+        <location filename="../gui/optionsdialog.ui" line="397"/>
         <source>Confirmation on exit when torrents are active</source>
         <translation>當 torrent 活躍時，離開時要確認</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="402"/>
+        <location filename="../gui/optionsdialog.ui" line="407"/>
         <source>Confirmation on auto-exit when downloads finish</source>
         <translation>下載完成時的自動離開要確認</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="581"/>
+        <location filename="../gui/optionsdialog.ui" line="586"/>
         <source> KiB</source>
         <translation> KiB</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1155"/>
+        <location filename="../gui/optionsdialog.ui" line="1160"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>下載完成時使用電子郵件通知 (&amp;U)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1250"/>
+        <location filename="../gui/optionsdialog.ui" line="1255"/>
         <source>Run e&amp;xternal program on torrent completion</source>
         <translation>當 torrent 下載完成時執行外部程式 (&amp;X)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1706"/>
+        <location filename="../gui/optionsdialog.ui" line="1711"/>
         <source>IP Fi&amp;ltering</source>
         <translation>IP 過濾 (&amp;L)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1906"/>
+        <location filename="../gui/optionsdialog.ui" line="1911"/>
         <source>Schedule &amp;the use of alternative rate limits</source>
         <translation>預約使用替補速率限制 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1918"/>
+        <location filename="../gui/optionsdialog.ui" line="1923"/>
         <source>From:</source>
         <comment>From start time</comment>
-        <translation type="unfinished">從：</translation>
+        <translation>從：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1942"/>
+        <location filename="../gui/optionsdialog.ui" line="1947"/>
         <source>To:</source>
         <comment>To end time</comment>
-        <translation type="unfinished">到：</translation>
+        <translation>到：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2193"/>
+        <location filename="../gui/optionsdialog.ui" line="2198"/>
         <source>Allow encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>允許加密</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2238"/>
+        <location filename="../gui/optionsdialog.ui" line="2243"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation>（&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;更多資訊&lt;/a&gt;）</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2266"/>
+        <location filename="../gui/optionsdialog.ui" line="2271"/>
         <source>&amp;Torrent Queueing</source>
         <translation>Torrent 佇列 (&amp;T)</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation type="vanished">對 torrent 做種直到達到做種時間</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2550"/>
+        <location filename="../gui/optionsdialog.ui" line="2555"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
         <translation>自動新增這些追蹤者到新的下載中：(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2623"/>
+        <location filename="../gui/optionsdialog.ui" line="2628"/>
         <source>RSS Reader</source>
         <translation>RSS 閱讀器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2629"/>
+        <location filename="../gui/optionsdialog.ui" line="2634"/>
         <source>Enable fetching RSS feeds</source>
         <translation>啟用抓取 RSS feed</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2638"/>
+        <location filename="../gui/optionsdialog.ui" line="2643"/>
         <source>Feeds refresh interval:</source>
         <translation>Feed 更新區間：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2655"/>
+        <location filename="../gui/optionsdialog.ui" line="2660"/>
         <source>Maximum number of articles per feed:</source>
         <translation>每個 feed 的最大文章數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2454"/>
-        <location filename="../gui/optionsdialog.ui" line="2662"/>
+        <location filename="../gui/optionsdialog.ui" line="2459"/>
+        <location filename="../gui/optionsdialog.ui" line="2667"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
         <translation>分鐘</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2445"/>
+        <location filename="../gui/optionsdialog.ui" line="2450"/>
         <source>Seeding Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>種子限制</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2467"/>
+        <location filename="../gui/optionsdialog.ui" line="2472"/>
         <source>When seeding time reaches</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2488"/>
-        <source>Pause torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>當做種時間達到</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2493"/>
-        <source>Remove torrent</source>
-        <translation type="unfinished"></translation>
+        <source>Pause torrent</source>
+        <translation>暫停 torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2498"/>
-        <source>Remove torrent and its files</source>
-        <translation type="unfinished"></translation>
+        <source>Remove torrent</source>
+        <translation>移除 torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2503"/>
+        <source>Remove torrent and its files</source>
+        <translation>移除 torrent 與其檔案</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2508"/>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>為 torrent 啟用超級做種</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2511"/>
+        <location filename="../gui/optionsdialog.ui" line="2516"/>
         <source>When ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>當分享率達到</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2696"/>
+        <location filename="../gui/optionsdialog.ui" line="2701"/>
         <source>RSS Torrent Auto Downloader</source>
         <translation>RSS torrent 自動下載器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2702"/>
+        <location filename="../gui/optionsdialog.ui" line="2707"/>
         <source>Enable auto downloading of RSS torrents</source>
         <translation>啟用自動 RSS torrent 下載</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2709"/>
+        <location filename="../gui/optionsdialog.ui" line="2714"/>
         <source>Edit auto downloading rules...</source>
         <translation>編輯自動下載規則…</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2719"/>
+        <location filename="../gui/optionsdialog.ui" line="2724"/>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS 智慧型章節過濾器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2725"/>
+        <location filename="../gui/optionsdialog.ui" line="2730"/>
         <source>Download REPACK/PROPER episodes</source>
         <translation>下載 REPACK╱PROPER 章節</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2732"/>
+        <location filename="../gui/optionsdialog.ui" line="2737"/>
         <source>Filters:</source>
         <translation>過濾器：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2793"/>
+        <location filename="../gui/optionsdialog.ui" line="2798"/>
         <source>Web User Interface (Remote control)</source>
         <translation>Web UI（遠端控制）</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2807"/>
+        <location filename="../gui/optionsdialog.ui" line="2812"/>
         <source>IP address:</source>
         <translation>IP 位置：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2814"/>
+        <location filename="../gui/optionsdialog.ui" line="2819"/>
         <source>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
@@ -4991,22 +4772,22 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
 「::」配對任何 IPv6 位置，或是「*」配對任何 IPv4 或 IPv6 位置。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2972"/>
+        <location filename="../gui/optionsdialog.ui" line="2977"/>
         <source>Session timeout:</source>
-        <translation type="unfinished"></translation>
+        <translation>工作階段逾時：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2979"/>
+        <location filename="../gui/optionsdialog.ui" line="2984"/>
         <source>Disabled</source>
-        <translation type="unfinished">已停用</translation>
+        <translation>已停用</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3066"/>
+        <location filename="../gui/optionsdialog.ui" line="3071"/>
         <source>Server domains:</source>
         <translation>伺服器網域：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3073"/>
+        <location filename="../gui/optionsdialog.ui" line="3078"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -5019,812 +4800,771 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
 使用「;」來分隔多個項目。可以使用萬用字元「*」。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2855"/>
+        <location filename="../gui/optionsdialog.ui" line="2860"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
         <translation>使用 HTTPS 而不是 HTTP (&amp;U)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2943"/>
+        <location filename="../gui/optionsdialog.ui" line="2948"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation>在本機上跳過客戶端驗證</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2950"/>
+        <location filename="../gui/optionsdialog.ui" line="2955"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation>讓已在白名單中的 IP 子網路跳過驗證</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2963"/>
+        <location filename="../gui/optionsdialog.ui" line="2968"/>
         <source>IP subnet whitelist...</source>
         <translation>IP 子網白名單…</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3092"/>
+        <location filename="../gui/optionsdialog.ui" line="3097"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>更新我的動態領域名稱 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="421"/>
+        <location filename="../gui/optionsdialog.ui" line="426"/>
         <source>Minimize qBittorrent to notification area</source>
         <translation>最小化 qBittorrent 到通知區域</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="133"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>界面</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="139"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>語言：</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="190"/>
         <source>Theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>佈景主題：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="431"/>
+        <location filename="../gui/optionsdialog.ui" line="436"/>
         <source>Close qBittorrent to notification area</source>
         <comment>i.e: The systray tray icon will still be visible when closing the main window.</comment>
         <translation>關閉 qBittorrent 到通知區域</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="440"/>
+        <location filename="../gui/optionsdialog.ui" line="445"/>
         <source>Tray icon style:</source>
         <translation>圖示樣式：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="448"/>
+        <location filename="../gui/optionsdialog.ui" line="453"/>
         <source>Normal</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="453"/>
+        <location filename="../gui/optionsdialog.ui" line="458"/>
         <source>Monochrome (Dark theme)</source>
         <translation>單色 (暗主題)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="458"/>
+        <location filename="../gui/optionsdialog.ui" line="463"/>
         <source>Monochrome (Light theme)</source>
         <translation>單色 (亮主題)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="484"/>
+        <location filename="../gui/optionsdialog.ui" line="489"/>
         <source>File association</source>
         <translation>檔案關聯</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="490"/>
+        <location filename="../gui/optionsdialog.ui" line="495"/>
         <source>Use qBittorrent for .torrent files</source>
         <translation>Torrent 檔案使用 qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="497"/>
+        <location filename="../gui/optionsdialog.ui" line="502"/>
         <source>Use qBittorrent for magnet links</source>
         <translation>磁力連結使用 qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="507"/>
+        <location filename="../gui/optionsdialog.ui" line="512"/>
         <source>Check for program updates</source>
-        <translation type="unfinished">檢查軟體更新</translation>
+        <translation>檢查程式更新</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="517"/>
+        <location filename="../gui/optionsdialog.ui" line="522"/>
         <source>Power Management</source>
         <translation>電源管理</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="560"/>
+        <location filename="../gui/optionsdialog.ui" line="565"/>
         <source>Save path:</source>
         <translation>儲存路徑：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="574"/>
+        <location filename="../gui/optionsdialog.ui" line="579"/>
         <source>Backup the log file after:</source>
         <translation>備份記錄檔，每滿</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="614"/>
+        <location filename="../gui/optionsdialog.ui" line="619"/>
         <source>Delete backup logs older than:</source>
         <translation>只保存備份記錄：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="638"/>
+        <location filename="../gui/optionsdialog.ui" line="643"/>
         <source>days</source>
         <comment>Delete backup logs older than 10 months</comment>
         <translation>天</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="643"/>
+        <location filename="../gui/optionsdialog.ui" line="648"/>
         <source>months</source>
         <comment>Delete backup logs older than 10 months</comment>
         <translation>月</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="648"/>
+        <location filename="../gui/optionsdialog.ui" line="653"/>
         <source>years</source>
         <comment>Delete backup logs older than 10 years</comment>
         <translation>年</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="722"/>
+        <location filename="../gui/optionsdialog.ui" line="727"/>
         <source>When adding a torrent</source>
         <translation>當增加 torrent 時</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="737"/>
+        <location filename="../gui/optionsdialog.ui" line="742"/>
         <source>Bring torrent dialog to the front</source>
         <translation>把 torrent 對話框帶到最前</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="760"/>
+        <location filename="../gui/optionsdialog.ui" line="765"/>
         <source>Do not start the download automatically</source>
         <comment>The torrent will be added to download list in pause state</comment>
         <translation>不要自動開始下載</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="767"/>
+        <location filename="../gui/optionsdialog.ui" line="772"/>
         <source>Should the .torrent file be deleted after adding it</source>
         <translation>是否應該在加入 .torrent 檔案後刪除它</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="782"/>
+        <location filename="../gui/optionsdialog.ui" line="787"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
         <translation>同時也刪除被取消的 .torrent 檔案</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="785"/>
+        <location filename="../gui/optionsdialog.ui" line="790"/>
         <source>Also when addition is cancelled</source>
         <translation>也當增加被取消時</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="807"/>
+        <location filename="../gui/optionsdialog.ui" line="812"/>
         <source>Warning! Data loss possible!</source>
         <translation>警告！可能遺失資料！</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="843"/>
+        <location filename="../gui/optionsdialog.ui" line="848"/>
         <source>Saving Management</source>
         <translation>存檔管理</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="851"/>
+        <location filename="../gui/optionsdialog.ui" line="856"/>
         <source>Default Torrent Management Mode:</source>
         <translation>預設 torrent 管理模式：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="863"/>
+        <location filename="../gui/optionsdialog.ui" line="868"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
         <translation>自動模式代表了多個 torrent 屬性 (例如儲存路徑) 將會由相關的分類來決定</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="867"/>
+        <location filename="../gui/optionsdialog.ui" line="872"/>
         <source>Manual</source>
         <translation>手動</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="872"/>
+        <location filename="../gui/optionsdialog.ui" line="877"/>
         <source>Automatic</source>
         <translation>自動</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="895"/>
+        <location filename="../gui/optionsdialog.ui" line="900"/>
         <source>When Torrent Category changed:</source>
         <translation>當 Torrent 分類變更時：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="905"/>
+        <location filename="../gui/optionsdialog.ui" line="910"/>
         <source>Relocate torrent</source>
         <translation>重新定位 torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="910"/>
+        <location filename="../gui/optionsdialog.ui" line="915"/>
         <source>Switch torrent to Manual Mode</source>
         <translation>切換 torrent 到手動模式</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="933"/>
+        <location filename="../gui/optionsdialog.ui" line="938"/>
         <source>When Default Save Path changed:</source>
         <translation>當預設儲存路徑變更時：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="946"/>
-        <location filename="../gui/optionsdialog.ui" line="987"/>
+        <location filename="../gui/optionsdialog.ui" line="951"/>
+        <location filename="../gui/optionsdialog.ui" line="992"/>
         <source>Relocate affected torrents</source>
         <translation>重新定位受影響的 torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="951"/>
-        <location filename="../gui/optionsdialog.ui" line="992"/>
+        <location filename="../gui/optionsdialog.ui" line="956"/>
+        <location filename="../gui/optionsdialog.ui" line="997"/>
         <source>Switch affected torrents to Manual Mode</source>
         <translation>切換受影響的 torrent 至手動模式</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1017"/>
+        <location filename="../gui/optionsdialog.ui" line="1022"/>
         <source>Use Subcategories</source>
         <translation>使用子分類</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1036"/>
+        <location filename="../gui/optionsdialog.ui" line="1041"/>
         <source>Default Save Path:</source>
         <translation>預設儲存路徑：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1050"/>
+        <location filename="../gui/optionsdialog.ui" line="1055"/>
         <source>Keep incomplete torrents in:</source>
         <translation>保留未完成的 torrent 於：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1043"/>
+        <location filename="../gui/optionsdialog.ui" line="1048"/>
         <source>Copy .torrent files to:</source>
         <translation>複製 torrent 檔案到：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="412"/>
+        <location filename="../gui/optionsdialog.ui" line="417"/>
         <source>Show &amp;qBittorrent in notification area</source>
         <translation>在通知區域顯示 qBittorrent (&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="540"/>
+        <location filename="../gui/optionsdialog.ui" line="545"/>
         <source>&amp;Log file</source>
         <translation>備份記錄檔 (&amp;L)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="728"/>
+        <location filename="../gui/optionsdialog.ui" line="733"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>顯示 torrent 內容及其他選項 (&amp;T)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="750"/>
+        <location filename="../gui/optionsdialog.ui" line="755"/>
         <source>Create subfolder for torrents with multiple files</source>
         <translation>為有多個檔案的 torrent 建立子資料夾</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="770"/>
+        <location filename="../gui/optionsdialog.ui" line="775"/>
         <source>De&amp;lete .torrent files afterwards </source>
         <translation>事後刪除 .torrent 檔案 (&amp;L)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1029"/>
+        <location filename="../gui/optionsdialog.ui" line="1034"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>複製已完成的 torrent 檔案到：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="822"/>
+        <location filename="../gui/optionsdialog.ui" line="827"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>為所有檔案事先分配硬碟空間</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="523"/>
+        <location filename="../gui/optionsdialog.ui" line="335"/>
+        <source>Preview file, otherwise open destination folder</source>
+        <translation>預覽檔案，否則開啟目標資料夾</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="528"/>
         <source>Inhibit system sleep when torrents are downloading</source>
         <translation>當 torrent 正在下載時，防止系統進入睡眠</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="530"/>
+        <location filename="../gui/optionsdialog.ui" line="535"/>
         <source>Inhibit system sleep when torrents are seeding</source>
         <translation>當 torrent 正在做種時，防止系統進入睡眠</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="829"/>
+        <location filename="../gui/optionsdialog.ui" line="834"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>在未完成檔案加上 .!qB 副檔名</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="836"/>
+        <location filename="../gui/optionsdialog.ui" line="841"/>
         <source>Enable recursive download dialog</source>
         <translation>啟用遞迴下載確認對話框</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="974"/>
+        <location filename="../gui/optionsdialog.ui" line="979"/>
         <source>When Category Save Path changed:</source>
         <translation>當分類儲存路徑變更：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1071"/>
+        <location filename="../gui/optionsdialog.ui" line="1076"/>
         <source>Automatically add torrents from:</source>
         <translation>自動載入 torrent 檔案：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1118"/>
+        <location filename="../gui/optionsdialog.ui" line="1123"/>
         <source>Add entry</source>
         <translation>新增項目</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1128"/>
+        <location filename="../gui/optionsdialog.ui" line="1133"/>
         <source>Remove entry</source>
         <translation>移除項目</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1172"/>
+        <location filename="../gui/optionsdialog.ui" line="1177"/>
         <source>To:</source>
         <comment>To receiver</comment>
-        <translation type="unfinished">到：</translation>
+        <translation>到：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1179"/>
+        <location filename="../gui/optionsdialog.ui" line="1184"/>
         <source>SMTP server:</source>
         <translation>SMTP 伺服器：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1192"/>
+        <location filename="../gui/optionsdialog.ui" line="1197"/>
         <source>From:</source>
         <comment>From sender</comment>
-        <translation type="unfinished">從：</translation>
+        <translation>從：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1201"/>
+        <location filename="../gui/optionsdialog.ui" line="1206"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>這個伺服器需要加密連線 (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1208"/>
-        <location filename="../gui/optionsdialog.ui" line="2906"/>
+        <location filename="../gui/optionsdialog.ui" line="1213"/>
+        <location filename="../gui/optionsdialog.ui" line="2911"/>
         <source>Authentication</source>
         <translation>驗證</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1220"/>
-        <location filename="../gui/optionsdialog.ui" line="1667"/>
-        <location filename="../gui/optionsdialog.ui" line="2914"/>
-        <location filename="../gui/optionsdialog.ui" line="3150"/>
+        <location filename="../gui/optionsdialog.ui" line="1225"/>
+        <location filename="../gui/optionsdialog.ui" line="1672"/>
+        <location filename="../gui/optionsdialog.ui" line="2919"/>
+        <location filename="../gui/optionsdialog.ui" line="3155"/>
         <source>Username:</source>
         <translation>使用者名稱：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1230"/>
-        <location filename="../gui/optionsdialog.ui" line="1677"/>
-        <location filename="../gui/optionsdialog.ui" line="2924"/>
-        <location filename="../gui/optionsdialog.ui" line="3164"/>
+        <location filename="../gui/optionsdialog.ui" line="1235"/>
+        <location filename="../gui/optionsdialog.ui" line="1682"/>
+        <location filename="../gui/optionsdialog.ui" line="2929"/>
+        <location filename="../gui/optionsdialog.ui" line="3169"/>
         <source>Password:</source>
         <translation>密碼：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1312"/>
+        <location filename="../gui/optionsdialog.ui" line="1317"/>
         <source>Enabled protocol:</source>
         <translation>已啟用協定：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1320"/>
+        <location filename="../gui/optionsdialog.ui" line="1325"/>
         <source>TCP and μTP</source>
         <translation>TCP 與 μTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1353"/>
+        <location filename="../gui/optionsdialog.ui" line="1358"/>
         <source>Listening Port</source>
         <translation>監聽埠</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1361"/>
+        <location filename="../gui/optionsdialog.ui" line="1366"/>
         <source>Port used for incoming connections:</source>
         <translation>連入連線時使用的埠：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1381"/>
+        <location filename="../gui/optionsdialog.ui" line="1386"/>
         <source>Random</source>
         <translation>隨機</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1403"/>
+        <location filename="../gui/optionsdialog.ui" line="1408"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>使用從路由器轉送的 UPnP／NAT-PMP 連接埠</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1413"/>
+        <location filename="../gui/optionsdialog.ui" line="1418"/>
         <source>Use different port on each startup</source>
         <translation>每次啟動時使用不同的埠</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1423"/>
+        <location filename="../gui/optionsdialog.ui" line="1428"/>
         <source>Connections Limits</source>
         <translation>連線限制</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1439"/>
+        <location filename="../gui/optionsdialog.ui" line="1444"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>每個 torrent 的最大連線數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1449"/>
+        <location filename="../gui/optionsdialog.ui" line="1454"/>
         <source>Global maximum number of connections:</source>
         <translation>全域最大連線數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1488"/>
+        <location filename="../gui/optionsdialog.ui" line="1493"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>每個 torrent 上傳通道的最大數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1498"/>
+        <location filename="../gui/optionsdialog.ui" line="1503"/>
         <source>Global maximum number of upload slots:</source>
         <translation>全域上傳通道的最大數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1537"/>
+        <location filename="../gui/optionsdialog.ui" line="1542"/>
         <source>Proxy Server</source>
         <translation>代理伺服器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1545"/>
+        <location filename="../gui/optionsdialog.ui" line="1550"/>
         <source>Type:</source>
         <translation>類型：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1553"/>
+        <location filename="../gui/optionsdialog.ui" line="1558"/>
         <source>(None)</source>
         <translation>(無)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1558"/>
+        <location filename="../gui/optionsdialog.ui" line="1563"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1563"/>
+        <location filename="../gui/optionsdialog.ui" line="1568"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1568"/>
+        <location filename="../gui/optionsdialog.ui" line="1573"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1579"/>
+        <location filename="../gui/optionsdialog.ui" line="1584"/>
         <source>Host:</source>
         <translation>主機：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1599"/>
-        <location filename="../gui/optionsdialog.ui" line="2823"/>
+        <location filename="../gui/optionsdialog.ui" line="1604"/>
+        <location filename="../gui/optionsdialog.ui" line="2828"/>
         <source>Port:</source>
         <translation>埠：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1627"/>
+        <location filename="../gui/optionsdialog.ui" line="1632"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>除此之外，代理伺服器僅用於追蹤者連線</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1630"/>
+        <location filename="../gui/optionsdialog.ui" line="1635"/>
         <source>Use proxy for peer connections</source>
         <translation>使用代理伺服器來連線下載者</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation type="vanished">停用不被代理伺服器所支援的連線</translation>
-    </message>
-    <message>
-        <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="vanished">（&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Disable-connections-not-supported-by-proxies&quot;&gt;更多資訊&lt;/a&gt;）</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="1637"/>
+        <location filename="../gui/optionsdialog.ui" line="1642"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
         <translation>RSS feed、搜尋引擎、軟體更新或是任何其他除了 torrent 傳輸及相關動作以外的東西 (像是下載者交換) 都將會使用直接連線</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1640"/>
+        <location filename="../gui/optionsdialog.ui" line="1645"/>
         <source>Use proxy only for torrents</source>
         <translation>只對 torrent 使用代理伺服器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1653"/>
+        <location filename="../gui/optionsdialog.ui" line="1658"/>
         <source>A&amp;uthentication</source>
         <translation>驗證 (&amp;U)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1693"/>
+        <location filename="../gui/optionsdialog.ui" line="1698"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>資訊：密碼以未加密的形式儲存</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1714"/>
+        <location filename="../gui/optionsdialog.ui" line="1719"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>過濾路徑 (.dat, .p2p, .p2b)：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1730"/>
+        <location filename="../gui/optionsdialog.ui" line="1735"/>
         <source>Reload the filter</source>
         <translation>重新載入過濾器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1745"/>
+        <location filename="../gui/optionsdialog.ui" line="1750"/>
         <source>Manually banned IP addresses...</source>
         <translation>手動封鎖 IP 位置…</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1752"/>
+        <location filename="../gui/optionsdialog.ui" line="1757"/>
         <source>Apply to trackers</source>
         <translation>套用到追蹤者</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1810"/>
+        <location filename="../gui/optionsdialog.ui" line="1815"/>
         <source>Global Rate Limits</source>
         <translation>全域速率限制</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1816"/>
-        <location filename="../gui/optionsdialog.ui" line="1832"/>
-        <location filename="../gui/optionsdialog.ui" line="1887"/>
-        <location filename="../gui/optionsdialog.ui" line="2017"/>
+        <location filename="../gui/optionsdialog.ui" line="1821"/>
+        <location filename="../gui/optionsdialog.ui" line="1837"/>
+        <location filename="../gui/optionsdialog.ui" line="1892"/>
+        <location filename="../gui/optionsdialog.ui" line="2022"/>
         <source>∞</source>
         <translation>∞</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1819"/>
-        <location filename="../gui/optionsdialog.ui" line="1835"/>
-        <location filename="../gui/optionsdialog.ui" line="1890"/>
-        <location filename="../gui/optionsdialog.ui" line="2020"/>
-        <location filename="../gui/optionsdialog.ui" line="2363"/>
-        <location filename="../gui/optionsdialog.ui" line="2376"/>
+        <location filename="../gui/optionsdialog.ui" line="1824"/>
+        <location filename="../gui/optionsdialog.ui" line="1840"/>
+        <location filename="../gui/optionsdialog.ui" line="1895"/>
+        <location filename="../gui/optionsdialog.ui" line="2025"/>
+        <location filename="../gui/optionsdialog.ui" line="2368"/>
+        <location filename="../gui/optionsdialog.ui" line="2381"/>
         <source> KiB/s</source>
         <translation> KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1864"/>
-        <location filename="../gui/optionsdialog.ui" line="2046"/>
+        <location filename="../gui/optionsdialog.ui" line="1869"/>
+        <location filename="../gui/optionsdialog.ui" line="2051"/>
         <source>Upload:</source>
         <translation>上傳：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1871"/>
-        <location filename="../gui/optionsdialog.ui" line="2053"/>
+        <location filename="../gui/optionsdialog.ui" line="1876"/>
+        <location filename="../gui/optionsdialog.ui" line="2058"/>
         <source>Download:</source>
         <translation>下載：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1881"/>
+        <location filename="../gui/optionsdialog.ui" line="1886"/>
         <source>Alternative Rate Limits</source>
         <translation>替補速率限制</translation>
     </message>
     <message>
-        <source>From:</source>
-        <extracomment>from (time1 to time2)</extracomment>
-        <translation type="vanished">從：</translation>
-    </message>
-    <message>
-        <source>To:</source>
-        <extracomment>time1 to time2</extracomment>
-        <translation type="vanished">到：</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="1969"/>
+        <location filename="../gui/optionsdialog.ui" line="1974"/>
         <source>When:</source>
         <translation>何時：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1983"/>
+        <location filename="../gui/optionsdialog.ui" line="1988"/>
         <source>Every day</source>
         <translation>每天</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1988"/>
+        <location filename="../gui/optionsdialog.ui" line="1993"/>
         <source>Weekdays</source>
         <translation>平日</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1993"/>
+        <location filename="../gui/optionsdialog.ui" line="1998"/>
         <source>Weekends</source>
         <translation>週末</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2063"/>
+        <location filename="../gui/optionsdialog.ui" line="2068"/>
         <source>Rate Limits Settings</source>
         <translation>速率限制設定</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2083"/>
+        <location filename="../gui/optionsdialog.ui" line="2088"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>在 LAN 上套用對下載者的速率限制</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2076"/>
+        <location filename="../gui/optionsdialog.ui" line="2081"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>套用速率限制至傳輸負載</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2069"/>
+        <location filename="../gui/optionsdialog.ui" line="2074"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>套用速率限制到 µTP 協定</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2141"/>
+        <location filename="../gui/optionsdialog.ui" line="2146"/>
         <source>Privacy</source>
         <translation>隱私</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2147"/>
+        <location filename="../gui/optionsdialog.ui" line="2152"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>啟用 DHT (分散式網路) 來尋找更多下載者</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2157"/>
+        <location filename="../gui/optionsdialog.ui" line="2162"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>與相容的 Bittorrent 客戶端 (µTorrent、Vuze 等) 交換下載者資訊</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2160"/>
+        <location filename="../gui/optionsdialog.ui" line="2165"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>啟用下載者交換 (PeX) 來尋找更多下載者</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2170"/>
+        <location filename="../gui/optionsdialog.ui" line="2175"/>
         <source>Look for peers on your local network</source>
         <translation>在本地網路找尋下載者</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2173"/>
+        <location filename="../gui/optionsdialog.ui" line="2178"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>啟用本地下載者搜尋來尋找更多下載者</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2185"/>
+        <location filename="../gui/optionsdialog.ui" line="2190"/>
         <source>Encryption mode:</source>
         <translation>加密模式：</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation type="vanished">偏好加密</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2198"/>
+        <location filename="../gui/optionsdialog.ui" line="2203"/>
         <source>Require encryption</source>
         <translation>要求加密</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2203"/>
+        <location filename="../gui/optionsdialog.ui" line="2208"/>
         <source>Disable encryption</source>
         <translation>停用加密</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2228"/>
+        <location filename="../gui/optionsdialog.ui" line="2233"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>當使用代理伺服器或 VPN 連線時啟用</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2231"/>
+        <location filename="../gui/optionsdialog.ui" line="2236"/>
         <source>Enable anonymous mode</source>
         <translation>啟用匿名模式</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2278"/>
+        <location filename="../gui/optionsdialog.ui" line="2283"/>
         <source>Maximum active downloads:</source>
         <translation>最大活躍的下載數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2298"/>
+        <location filename="../gui/optionsdialog.ui" line="2303"/>
         <source>Maximum active uploads:</source>
         <translation>最大活躍的上傳數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2318"/>
+        <location filename="../gui/optionsdialog.ui" line="2323"/>
         <source>Maximum active torrents:</source>
         <translation>最大活躍的 torrent 數：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2351"/>
+        <location filename="../gui/optionsdialog.ui" line="2356"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>在這些限制中不要計算速率慢的 torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2389"/>
+        <location filename="../gui/optionsdialog.ui" line="2394"/>
         <source>Upload rate threshold:</source>
         <translation>上傳速率閾值：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2396"/>
+        <location filename="../gui/optionsdialog.ui" line="2401"/>
         <source>Download rate threshold:</source>
         <translation>下載速率閾值：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2416"/>
-        <location filename="../gui/optionsdialog.ui" line="2982"/>
+        <location filename="../gui/optionsdialog.ui" line="2421"/>
+        <location filename="../gui/optionsdialog.ui" line="2987"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2432"/>
+        <location filename="../gui/optionsdialog.ui" line="2437"/>
         <source>Torrent inactivity timer:</source>
         <translation>Torrent 不活躍計時器：</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation type="vanished">分享率限制</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation type="vanished">對 torrent 做種直到達到分享率</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2474"/>
+        <location filename="../gui/optionsdialog.ui" line="2479"/>
         <source>then</source>
         <translation>然後</translation>
     </message>
     <message>
-        <source>Pause them</source>
-        <translation type="vanished">暫停它們</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation type="vanished">移除它們</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2845"/>
+        <location filename="../gui/optionsdialog.ui" line="2850"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>使用 UPnP／NAT-PMP 轉送路由器連接埠</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2874"/>
+        <location filename="../gui/optionsdialog.ui" line="2879"/>
         <source>Certificate:</source>
         <translation>憑證：</translation>
     </message>
     <message>
-        <source>Import SSL Certificate</source>
-        <translation type="vanished">匯入 SSL 憑證</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2867"/>
+        <location filename="../gui/optionsdialog.ui" line="2872"/>
         <source>Key:</source>
         <translation>鍵值：</translation>
     </message>
     <message>
-        <source>Import SSL Key</source>
-        <translation type="vanished">匯入 SSL 金鑰</translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2887"/>
+        <location filename="../gui/optionsdialog.ui" line="2892"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;關於憑證的資訊&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2934"/>
+        <location filename="../gui/optionsdialog.ui" line="2939"/>
         <source>Change current password</source>
         <translation>變更目前的密碼</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3010"/>
+        <location filename="../gui/optionsdialog.ui" line="3015"/>
         <source>Use alternative Web UI</source>
         <translation>使用替補 Web UI</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3022"/>
+        <location filename="../gui/optionsdialog.ui" line="3027"/>
         <source>Files location:</source>
         <translation>檔案位置：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3035"/>
+        <location filename="../gui/optionsdialog.ui" line="3040"/>
         <source>Security</source>
         <translation>安全</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3041"/>
+        <location filename="../gui/optionsdialog.ui" line="3046"/>
         <source>Enable clickjacking protection</source>
         <translation>啟用點選劫持保護</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3048"/>
+        <location filename="../gui/optionsdialog.ui" line="3053"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation>啟用跨站請求偽造 (CSRF) 保護</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3055"/>
+        <location filename="../gui/optionsdialog.ui" line="3060"/>
         <source>Enable Host header validation</source>
         <translation>啟用主機檔頭驗證</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3104"/>
+        <location filename="../gui/optionsdialog.ui" line="3109"/>
         <source>Service:</source>
         <translation>服務：</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3127"/>
+        <location filename="../gui/optionsdialog.ui" line="3132"/>
         <source>Register</source>
         <translation>註冊</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3136"/>
+        <location filename="../gui/optionsdialog.ui" line="3141"/>
         <source>Domain name:</source>
         <translation>網域名稱：</translation>
     </message>
@@ -5862,10 +5602,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.cpp" line="302"/>
         <source>%L: Category</source>
         <translation>%L：分類</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation type="vanished">%G：標籤（以逗號分隔）</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="304"/>
@@ -5915,42 +5651,42 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.cpp" line="388"/>
         <source>Certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>憑證</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="389"/>
         <source>Select certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>選取憑證</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="391"/>
         <source>Private key</source>
-        <translation type="unfinished"></translation>
+        <translation>私密金鑰</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="392"/>
         <source>Select private key</source>
-        <translation type="unfinished"></translation>
+        <translation>選取私密金鑰</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="501"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>預設</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="506"/>
         <source>Select...</source>
-        <translation type="unfinished">選擇…</translation>
+        <translation>選取……</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="514"/>
         <source>Select qBittorrent theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>選取 qBittorrent 佈景主題檔案</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="514"/>
         <source>qBittorrent Theme File (*.qbtheme)</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent 佈景主題檔案 (*.qbtheme)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1537"/>
@@ -5981,7 +5717,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.cpp" line="1629"/>
         <location filename="../gui/optionsdialog.cpp" line="1653"/>
         <source>Invalid path</source>
-        <translation type="unfinished"></translation>
+        <translation>無效的路徑</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1800"/>
@@ -6004,7 +5740,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.cpp" line="303"/>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G：標籤（以逗號分隔）</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="445"/>
@@ -6022,10 +5758,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.cpp" line="455"/>
         <source>All supported filters</source>
         <translation>所有支援的過濾器</translation>
-    </message>
-    <message>
-        <source>SSL Certificate</source>
-        <translation type="vanished">SSL 憑證</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1693"/>
@@ -6069,21 +5801,9 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>偏好設定</translation>
     </message>
     <message>
-        <source>Import SSL certificate</source>
-        <translation type="vanished">匯入 SSL 憑證</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="1635"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>這不是一個有效的 SSL 憑證。</translation>
-    </message>
-    <message>
-        <source>Import SSL key</source>
-        <translation type="vanished">匯入 SSL 金鑰</translation>
-    </message>
-    <message>
-        <source>SSL key</source>
-        <translation type="vanished">SSL 金鑰</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1778"/>
@@ -6269,17 +5989,17 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/properties/peerlistwidget.cpp" line="252"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="254"/>
         <source>Adding peers</source>
-        <translation type="unfinished"></translation>
+        <translation>正在新增 peer</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="252"/>
         <source>Some peers cannot be added. Check the Log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>有些下載者無法被新增。檢查記錄檔以取得更多資訊。</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="254"/>
         <source>Peers are added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>下載者已新增到此 torrent 中。</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="264"/>
@@ -6290,28 +6010,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="278"/>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished"></translation>
+        <translation>您確定要永遠封鎖選定的下載者嗎？</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="286"/>
         <source>Peer &quot;%1&quot; is manually banned</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manually adding peer &apos;%1&apos;...</source>
-        <translation type="vanished">正在手動加入下載者「%1」…</translation>
-    </message>
-    <message>
-        <source>The peer &apos;%1&apos; could not be added to this torrent.</source>
-        <translation type="vanished">下載者「%1」無法新增到這 torrent 中。</translation>
-    </message>
-    <message>
-        <source>Manually banning peer &apos;%1&apos;...</source>
-        <translation type="vanished">正在手動封鎖下載者「%1」…</translation>
-    </message>
-    <message>
-        <source>Peer addition</source>
-        <translation type="vanished">新增下載者</translation>
+        <translation>Peer「%1」已被手動封鎖</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="75"/>
@@ -6322,26 +6026,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/properties/peerlistwidget.cpp" line="259"/>
         <source>Copy IP:port</source>
         <translation>複製 IP:埠</translation>
-    </message>
-    <message>
-        <source>Some peers could not be added. Check the Log for details.</source>
-        <translation type="vanished">有些下載者無法被新增。檢查記錄檔以取得更多資訊。</translation>
-    </message>
-    <message>
-        <source>The peers were added to this torrent.</source>
-        <translation type="vanished">下載者已新增到這 torrent 中。</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation type="vanished">您確定要永遠封鎖選定的下載者嗎？</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation type="vanished">是 (&amp;Y)</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="vanished">否 (&amp;N)</translation>
     </message>
 </context>
 <context>
@@ -6622,12 +6306,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../base/bittorrent/private/portforwarderimpl.cpp" line="103"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation type="unfinished">UPnP／NAT-PMP 支援 [開啟]</translation>
+        <translation>UPnP / NAT-PMP 支援 [開啟]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/private/portforwarderimpl.cpp" line="113"/>
         <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation type="unfinished">UPnP／NAT-PMP 支援 [關閉]</translation>
+        <translation>UPnP / NAT-PMP 支援 [關閉]</translation>
     </message>
 </context>
 <context>
@@ -6641,48 +6325,44 @@ Those plugins were disabled.</source>
 <context>
     <name>PreviewSelectDialog</name>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="57"/>
+        <location filename="../gui/previewselectdialog.cpp" line="58"/>
         <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>以下從「%1」而來的檔案支援預覽，請從中選取：</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="60"/>
+        <location filename="../gui/previewselectdialog.cpp" line="61"/>
         <source>Preview</source>
         <translation>預覽</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="67"/>
+        <location filename="../gui/previewselectdialog.cpp" line="68"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="68"/>
+        <location filename="../gui/previewselectdialog.cpp" line="69"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="69"/>
+        <location filename="../gui/previewselectdialog.cpp" line="70"/>
         <source>Progress</source>
         <translation>進度</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="131"/>
+        <location filename="../gui/previewselectdialog.cpp" line="132"/>
         <source>Preview impossible</source>
         <translation>不可預覽</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="132"/>
+        <location filename="../gui/previewselectdialog.cpp" line="133"/>
         <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="vanished">抱歉，我們無法預覽這個檔案</translation>
+        <translation>抱歉，我們無法預覽此檔案：「%1」。</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.ui" line="14"/>
         <source>Preview selection</source>
-        <translation type="unfinished">選擇預覽</translation>
+        <translation>選擇預覽</translation>
     </message>
 </context>
 <context>
@@ -6967,107 +6647,95 @@ Those plugins were disabled.</source>
         <translation>不要下載</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="440"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="448"/>
         <source>Never</source>
         <translation>永不</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="447"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="455"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
         <translation>%1 x %2 (已完成 %3)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="390"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="393"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="398"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="401"/>
         <source>%1 (%2 this session)</source>
         <translation>%1 (今期 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="402"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="410"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (已做種 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="409"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="417"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
         <translation>%1 (最大 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="426"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="430"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="434"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
         <translation>%1 (總共 %2 個)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="432"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="437"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="440"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="445"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
         <translation>%1 (平均 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="581"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="589"/>
         <source>Open</source>
         <translation>開啟</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="584"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="592"/>
         <source>Open Containing Folder</source>
         <translation>開啟包含的目錄</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="587"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="595"/>
         <source>Rename...</source>
         <translation>重新命名…</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="594"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="602"/>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="653"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="661"/>
         <source>New Web seed</source>
         <translation>新網頁種子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="657"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="665"/>
         <source>Remove Web seed</source>
         <translation>移除網頁種子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="662"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="670"/>
         <source>Copy Web seed URL</source>
         <translation>複製網頁種子 URL</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="665"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="673"/>
         <source>Edit Web seed URL</source>
         <translation>編輯網頁種子 URL</translation>
     </message>
     <message>
-        <source>New name:</source>
-        <translation type="vanished">新名稱：</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="vanished">這名稱已在這資料夾中使用。請選擇另一個名稱。</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="vanished">此資料夾無法被重新命名</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="695"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="703"/>
         <source>&lt;center&gt;&lt;b&gt;Speed graphs are disabled&lt;/b&gt;&lt;p&gt;You may change this setting in Advanced Options &lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;速率圖已停用&lt;/b&gt;&lt;p&gt;您可以在進階選項中變更這設定 &lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="766"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="774"/>
         <source>qBittorrent</source>
         <translation>qBittorrent</translation>
     </message>
@@ -7077,41 +6745,29 @@ Those plugins were disabled.</source>
         <translation>過濾檔案…</translation>
     </message>
     <message>
-        <source>Renaming</source>
-        <translation type="vanished">正在重新命名</translation>
-    </message>
-    <message>
-        <source>Rename error</source>
-        <translation type="vanished">重新命名錯誤</translation>
-    </message>
-    <message>
-        <source>The name is empty or contains forbidden characters, please choose a different one.</source>
-        <translation type="vanished">檔案名稱為空白或是包含禁止使用之字元，請選擇其他名稱。</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="707"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="715"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>新的 URL 種子</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="708"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="716"/>
         <source>New URL seed:</source>
         <translation>新的 URL 種子：</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="714"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="767"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="722"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="775"/>
         <source>This URL seed is already in the list.</source>
         <translation>這 URL 種子已經在清單裡了。.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="760"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="768"/>
         <source>Web seed editing</source>
         <translation>編輯網頁種子中</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="761"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="769"/>
         <source>Web seed URL:</source>
         <translation>網頁種子 URL：</translation>
     </message>
@@ -7136,12 +6792,12 @@ Those plugins were disabled.</source>
         <translation>您不能使用 %1：qBittorrent 已經由這使用者執行。</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="523"/>
+        <location filename="../app/cmdoptions.cpp" line="518"/>
         <source>Usage:</source>
         <translation>使用：</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="526"/>
+        <location filename="../app/cmdoptions.cpp" line="521"/>
         <source>Options:</source>
         <translation>選項：</translation>
     </message>
@@ -7174,140 +6830,139 @@ Those plugins were disabled.</source>
         <translation>預期環境變數「%2」為 %1 ，但得到的是「%3」</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="531"/>
+        <location filename="../app/cmdoptions.cpp" line="526"/>
         <source>port</source>
         <translation>埠</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="422"/>
+        <location filename="../app/cmdoptions.cpp" line="420"/>
         <source>%1 must specify a valid port (1 to 65535).</source>
         <translation>%1 必須指定有效的埠 (1 到 65535)。</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="528"/>
+        <location filename="../app/cmdoptions.cpp" line="523"/>
         <source>Display program version and exit</source>
         <translation>顯示程式版本並結束</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="530"/>
+        <location filename="../app/cmdoptions.cpp" line="525"/>
         <source>Display this help message and exit</source>
         <translation>顯示這說明訊息並結束</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="532"/>
+        <location filename="../app/cmdoptions.cpp" line="527"/>
         <source>Change the Web UI port</source>
         <translation>變更 Web UI 埠</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="535"/>
+        <location filename="../app/cmdoptions.cpp" line="530"/>
         <source>Disable splash screen</source>
         <translation>停用起始畫面</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="537"/>
+        <location filename="../app/cmdoptions.cpp" line="532"/>
         <source>Run in daemon-mode (background)</source>
         <translation>以守護模式開啟 (背景執行)</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="540"/>
+        <location filename="../app/cmdoptions.cpp" line="535"/>
         <source>dir</source>
         <extracomment>Use appropriate short form or abbreviation of &quot;directory&quot;</extracomment>
         <translation>目錄</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="541"/>
+        <location filename="../app/cmdoptions.cpp" line="536"/>
         <source>Store configuration files in &lt;dir&gt;</source>
         <translation>儲存設定檔到 &lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="542"/>
-        <location filename="../app/cmdoptions.cpp" line="558"/>
+        <location filename="../app/cmdoptions.cpp" line="537"/>
+        <location filename="../app/cmdoptions.cpp" line="550"/>
         <source>name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="543"/>
+        <location filename="../app/cmdoptions.cpp" line="538"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
         <translation>儲存設定檔到目錄 qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="545"/>
+        <location filename="../app/cmdoptions.cpp" line="540"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
         <translation>私自存取 libtorrent 快速復原檔案，並讓檔案路徑是相對於設定檔目錄</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="550"/>
+        <location filename="../app/cmdoptions.cpp" line="542"/>
         <source>files or URLs</source>
         <translation>檔案或 URL</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="551"/>
+        <location filename="../app/cmdoptions.cpp" line="543"/>
         <source>Download the torrents passed by the user</source>
         <translation>下載由使用者傳遞的 torrent</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="565"/>
+        <location filename="../app/cmdoptions.cpp" line="557"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
         <translation>指定是否要在新增 torrent 時開啟「新增 torrent」對話框。</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="554"/>
+        <location filename="../app/cmdoptions.cpp" line="546"/>
         <source>Options when adding new torrents:</source>
         <translation>當新增 torrent 時的選項：</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>Shortcut for %1</source>
         <comment>Shortcut for --profile=&lt;exe dir&gt;/profile --relative-fastresume</comment>
-        <translation>%1 的檔案捷徑</translation>
+        <translation type="vanished">%1 的檔案捷徑</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="555"/>
+        <location filename="../app/cmdoptions.cpp" line="547"/>
         <source>path</source>
         <translation>路徑</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="555"/>
+        <location filename="../app/cmdoptions.cpp" line="547"/>
         <source>Torrent save path</source>
         <translation>Torrent 儲存路徑</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="556"/>
+        <location filename="../app/cmdoptions.cpp" line="548"/>
         <source>Add torrents as started or paused</source>
         <translation>新增 torrent 為已開始或已暫停</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="557"/>
+        <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Skip hash check</source>
         <translation>跳過雜湊值檢查</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="559"/>
+        <location filename="../app/cmdoptions.cpp" line="551"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation>指派 torrent 到分類。若分類不存在，其將會被建立。</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="561"/>
+        <location filename="../app/cmdoptions.cpp" line="553"/>
         <source>Download files in sequential order</source>
         <translation>依順序下載檔案</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="563"/>
+        <location filename="../app/cmdoptions.cpp" line="555"/>
         <source>Download first and last pieces first</source>
         <translation>先下載第一和最後一塊</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="569"/>
+        <location filename="../app/cmdoptions.cpp" line="561"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
         <translation>選項的值可以透過環境變數提供。選項名為「parameter-name」時，環境變數將會名為「QBT_PARAMETER_NAME」(全大寫，並以「_」替代「-」)。要傳遞旗標值，設定變數為「1」或「TRUE」。舉例來說，要「停用起始畫面」就是：</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="574"/>
+        <location filename="../app/cmdoptions.cpp" line="566"/>
         <source>Command line parameters take precedence over environment variables</source>
         <translation>命令列的參數優先於環境變數</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="583"/>
+        <location filename="../app/cmdoptions.cpp" line="575"/>
         <source>Help</source>
         <translation>說明</translation>
     </message>
@@ -7371,54 +7026,34 @@ No further notices will be issued.</source>
         <translation>我同意</translation>
     </message>
     <message>
-        <source>Upgrade</source>
-        <translation type="vanished">更新</translation>
-    </message>
-    <message>
-        <source>You updated from an older version that saved things differently. You must migrate to the new saving system. You will not be able to use an older version than v3.3.0 again. Continue? [y/n]</source>
-        <translation type="vanished">您從一個較舊且以完全不同的方式儲存的版本更新。您必須升遷到新的儲存系統。您將無法再次使用比 v3.3.0 更舊的版本。要繼續嗎？[y/n]</translation>
-    </message>
-    <message>
-        <source>You updated from an older version that saved things differently. You must migrate to the new saving system. If you continue, you will not be able to use an older version than v3.3.0 again.</source>
-        <translation type="vanished">您從一個較舊且以完全不同的方式儲存的版本更新。您必須升遷到新的儲存系統。若要繼續，您將無法再次使用比 v3.3.0 更舊的版本。</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t migrate torrent with hash: %1</source>
-        <translation type="vanished">無法搬動雜湊值為 %1 的 torrent</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t migrate torrent. Invalid fastresume file name: %1</source>
-        <translation type="vanished">無法搬動 torrent。無效的快速復原檔案名稱：%1</translation>
-    </message>
-    <message>
-        <location filename="../base/settingsstorage.cpp" line="242"/>
+        <location filename="../base/settingsstorage.cpp" line="241"/>
         <source>Detected unclean program exit. Using fallback file to restore settings: %1</source>
         <translation>已偵測到不清潔的程式退出。正在使用後備檔案來復原設定：%1</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="309"/>
+        <location filename="../base/settingsstorage.cpp" line="308"/>
         <source>An access error occurred while trying to write the configuration file.</source>
         <translation>嘗試寫入設定檔時遇到存取錯誤。</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="312"/>
+        <location filename="../base/settingsstorage.cpp" line="311"/>
         <source>A format error occurred while trying to write the configuration file.</source>
         <translation>嘗試寫入設定檔時遇到格式錯誤。</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="315"/>
+        <location filename="../base/settingsstorage.cpp" line="314"/>
         <source>An unknown error occurred while trying to write the configuration file.</source>
         <translation>嘗試寫入設定檔時遇到未知錯誤。</translation>
     </message>
     <message>
         <location filename="../app/upgrade.cpp" line="46"/>
         <source>Migrate preferences failed: WebUI https, file: &quot;%1&quot;, error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>遷移偏好設定失敗：WebUI https，檔案：「%1」，錯誤：「%2」</translation>
     </message>
     <message>
         <location filename="../app/upgrade.cpp" line="66"/>
         <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>已遷移偏好設定：WebUI https，已匯出資料到檔案：「%1」</translation>
     </message>
 </context>
 <context>
@@ -7440,12 +7075,12 @@ No further notices will be issued.</source>
         <translation>無效的資料格式</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="418"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="419"/>
         <source>Couldn&apos;t read RSS AutoDownloader rules from %1. Error: %2</source>
         <translation>無法從 %1 讀取 RSS 自動下載器規則。錯誤：%2</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_autodownloader.cpp" line="430"/>
+        <location filename="../base/rss/rss_autodownloader.cpp" line="431"/>
         <source>Couldn&apos;t load RSS AutoDownloader rules. Reason: %1</source>
         <translation>無法載入 RSS 自動下載器規則。理由：%1</translation>
     </message>
@@ -7466,6 +7101,11 @@ No further notices will be issued.</source>
         <location filename="../base/rss/rss_feed.cpp" line="236"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
         <translation>在「%1」解析 RSS feed 失敗。理由：%2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_feed.cpp" line="197"/>
+        <source>RSS feed at &apos;%1&apos; is successfully downloaded. Starting to parse it.</source>
+        <translation>在「%1」的 RSS feed 已成功下載。開始解析它。</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="260"/>
@@ -7895,32 +7535,32 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="393"/>
         <source>Download</source>
-        <translation type="unfinished">下載</translation>
+        <translation>下載</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="399"/>
         <source>Open description page</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟描述頁面</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="403"/>
         <source>Copy</source>
-        <translation type="unfinished">複製</translation>
+        <translation>複製</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="406"/>
         <source>Name</source>
-        <translation type="unfinished">名稱</translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="410"/>
         <source>Download link</source>
-        <translation type="unfinished"></translation>
+        <translation>下載連結</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="415"/>
         <source>Description page URL</source>
-        <translation type="unfinished"></translation>
+        <translation>描述頁面的 URL</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="425"/>
@@ -8084,18 +7724,6 @@ No further notices will be issued.</source>
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation>沒有安裝任何搜尋外掛。
 點選視窗右下角的「搜尋外掛…」按鈕來安裝一些吧。</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">下載</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation type="vanished">到描述頁</translation>
-    </message>
-    <message>
-        <source>Copy description page URL</source>
-        <translation type="vanished">複製描述頁面的 URL</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="132"/>
@@ -8362,12 +7990,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="75"/>
         <source>12 Hours</source>
-        <translation type="unfinished">6 小時 {12 ?}</translation>
+        <translation>12 小時</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="76"/>
         <source>24 Hours</source>
-        <translation type="unfinished">6 小時 {24 ?}</translation>
+        <translation>24 小時</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="83"/>
@@ -8842,13 +8470,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontenttreeview.cpp" line="107"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="226"/>
         <source>Renaming</source>
-        <translation type="unfinished">正在重新命名</translation>
+        <translation>正在重新命名</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="107"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="226"/>
         <source>New name:</source>
-        <translation type="unfinished">新名稱：</translation>
+        <translation>新名稱：</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="112"/>
@@ -8856,31 +8484,31 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontenttreeview.cpp" line="231"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="255"/>
         <source>Rename error</source>
-        <translation type="unfinished">重新命名錯誤</translation>
+        <translation>重新命名錯誤</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="113"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="232"/>
         <source>The name is empty or contains forbidden characters, please choose a different one.</source>
-        <translation type="unfinished">檔案名稱為空白或是包含禁止使用之字元，請選擇其他名稱。</translation>
+        <translation>檔案名稱為空白或是包含禁止使用之字元，請選擇其他名稱。</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="141"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="256"/>
         <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>這名稱已在這資料夾中使用。請選擇另一個名稱。</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="180"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="295"/>
         <source>The folder could not be renamed</source>
-        <translation type="unfinished">此資料夾無法被重新命名</translation>
+        <translation>此資料夾無法被重新命名</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="181"/>
         <location filename="../gui/torrentcontenttreeview.cpp" line="296"/>
         <source>This name is already in use. Please use a different name.</source>
-        <translation type="unfinished"></translation>
+        <translation>此名稱已被使用。請使用另一個名稱。</translation>
     </message>
 </context>
 <context>
@@ -9020,17 +8648,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="241"/>
         <source>Align to piece boundary for files larger than:</source>
-        <translation type="unfinished"></translation>
+        <translation>對齊大於以下內容的檔案邊界：</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="248"/>
         <source>Disabled</source>
-        <translation type="unfinished">已停用</translation>
+        <translation>已停用</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="251"/>
         <source> KiB</source>
-        <translation type="unfinished"> KiB</translation>
+        <translation> KiB</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="288"/>
@@ -9119,17 +8747,17 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentInfo</name>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="125"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="130"/>
         <source>File size exceeds max limit %1</source>
         <translation>檔案大小超過上限 %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="135"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="140"/>
         <source>Torrent file read error: %1</source>
         <translation>Torrent 檔案讀取錯誤：%1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentinfo.cpp" line="140"/>
+        <location filename="../base/bittorrent/torrentinfo.cpp" line="145"/>
         <source>Torrent file read error: size mismatch</source>
         <translation>Torrent 檔案讀取錯誤：大小不符合</translation>
     </message>
@@ -9196,6 +8824,26 @@ Please choose a different name and try again.</source>
         <translation>無法編輯分類</translation>
     </message>
     <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1169"/>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1171"/>
+        <source>Name is not valid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1178"/>
+        <source>ID is not valid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1195"/>
+        <source>Name is already in use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="962"/>
         <source>Cannot make save path</source>
         <translation>無法建立儲存路徑</translation>
@@ -9227,7 +8875,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/trackerentriesdialog.ui" line="14"/>
         <source>Edit trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯追蹤者</translation>
     </message>
     <message>
         <location filename="../gui/trackerentriesdialog.ui" line="20"/>
@@ -9237,7 +8885,12 @@ Please choose a different name and try again.</source>
 - All trackers within the same group will belong to the same tier.
 - The group on top will be tier 0, the next group tier 1 and so on.
 - Below will show the common subset of trackers of the selected torrents.</source>
-        <translation type="unfinished"></translation>
+        <translation>一行一個追蹤者 URL。
+
+- 您可以透過插入空白行將追蹤者分組。
+- 所有在同一個群組的追蹤者都會屬於同一層。
+- 頂部的群組會是第 0 層，下一個群組會是第 1 層，以此類推。
+- 下面將會顯示選定種子追蹤者的一般子集。</translation>
     </message>
 </context>
 <context>
@@ -9404,7 +9057,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="601"/>
         <source>Tier</source>
-        <translation type="unfinished"></translation>
+        <translation>層</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="602"/>
@@ -9448,33 +9101,6 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TrackerLoginDialog</name>
-    <message>
-        <source>Tracker authentication</source>
-        <translation type="vanished">追蹤者驗證</translation>
-    </message>
-    <message>
-        <source>Tracker:</source>
-        <translation type="vanished">追蹤者：</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="vanished">登入</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="vanished">使用者名稱：</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">密碼：</translation>
-    </message>
-    <message>
-        <source>Log in</source>
-        <translation type="vanished">登入</translation>
-    </message>
-</context>
-<context>
     <name>TrackersAdditionDialog</name>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="14"/>
@@ -9515,134 +9141,99 @@ Please choose a different name and try again.</source>
 <context>
     <name>TransferListDelegate</name>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="246"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="249"/>
         <source>Downloading</source>
         <translation>下載中</translation>
     </message>
     <message>
-        <source>Downloading metadata</source>
-        <comment>used when loading a magnet link</comment>
-        <translation type="vanished">中介資料下載中</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="254"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="257"/>
         <source>Allocating</source>
         <comment>qBittorrent is allocating the files on disk</comment>
         <translation>分配中</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="269"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="272"/>
         <source>Paused</source>
         <translation>暫停</translation>
     </message>
     <message>
-        <source>Queued</source>
-        <comment>i.e. torrent is queued</comment>
-        <translation type="vanished">佇列</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="257"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="260"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
         <translation>做種中</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="248"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="251"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
         <translation>等待開始</translation>
     </message>
     <message>
-        <source>[F] Downloading</source>
-        <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="vanished">強制下載</translation>
-    </message>
-    <message>
-        <source>[F] Seeding</source>
-        <comment>used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="vanished">強制做種</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="265"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="268"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
         <translation>檢查中</translation>
     </message>
     <message>
-        <source>Queued for checking</source>
-        <comment>i.e. torrent is queued for hash checking</comment>
-        <translation type="vanished">正等待查核中</translation>
-    </message>
-    <message>
-        <source>Checking resume data</source>
-        <comment>used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="vanished">正在檢查復原資料</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="250"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="253"/>
         <source>Downloading metadata</source>
         <comment>Used when loading a magnet link</comment>
-        <translation type="unfinished">中介資料下載中</translation>
+        <translation>正在下䵧詮釋資料</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="252"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="255"/>
         <source>[F] Downloading</source>
         <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished">強制下載</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="259"/>
-        <source>[F] Seeding</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished">強制做種</translation>
+        <translation>[F] 正在下載</translation>
     </message>
     <message>
         <location filename="../gui/transferlistdelegate.cpp" line="262"/>
+        <source>[F] Seeding</source>
+        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <translation>[F] 正在做種</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistdelegate.cpp" line="265"/>
         <source>Queued</source>
         <comment>Torrent is queued</comment>
-        <translation type="unfinished">佇列</translation>
+        <translation>佇列</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="267"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="270"/>
         <source>Checking resume data</source>
         <comment>Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished">正在檢查復原資料</translation>
+        <translation>正在檢查復原資料</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="271"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="274"/>
         <source>Completed</source>
         <translation>已完成</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="273"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="276"/>
         <source>Moving</source>
         <comment>Torrent local data are being moved/relocated</comment>
         <translation>正在移動</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="275"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="278"/>
         <source>Missing Files</source>
         <translation>遺失的檔案</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="277"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="280"/>
         <source>Errored</source>
         <comment>Torrent status, the torrent has an error</comment>
-        <translation type="unfinished">錯誤</translation>
+        <translation>錯誤</translation>
     </message>
     <message>
-        <source>Errored</source>
-        <comment>torrent status, the torrent has an error</comment>
-        <translation type="vanished">錯誤</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="129"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="132"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation>%1 (已做種 %2)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistdelegate.cpp" line="192"/>
+        <location filename="../gui/transferlistdelegate.cpp" line="195"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 前</translation>
@@ -9848,292 +9439,276 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="125"/>
         <source>Availability</source>
         <comment>The number of distributed copies of the torrent</comment>
-        <translation type="unfinished">可得性</translation>
+        <translation>可得性</translation>
     </message>
 </context>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="634"/>
+        <location filename="../gui/transferlistwidget.cpp" line="650"/>
         <source>Column visibility</source>
         <translation>欄目顯示</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="304"/>
+        <location filename="../gui/transferlistwidget.cpp" line="320"/>
         <source>Choose save path</source>
         <translation>選擇儲存路徑</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="541"/>
+        <location filename="../gui/transferlistwidget.cpp" line="557"/>
         <source>Torrent Download Speed Limiting</source>
         <translation>Torrent 下載速率限制</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="566"/>
+        <location filename="../gui/transferlistwidget.cpp" line="582"/>
         <source>Torrent Upload Speed Limiting</source>
         <translation>Torrent 上傳速率限制</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="615"/>
+        <location filename="../gui/transferlistwidget.cpp" line="631"/>
         <source>Recheck confirmation</source>
         <translation>確認重新檢查</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="615"/>
+        <location filename="../gui/transferlistwidget.cpp" line="631"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>確定要重新檢查選定的 torrent 嗎？</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="799"/>
+        <location filename="../gui/transferlistwidget.cpp" line="815"/>
         <source>Rename</source>
         <translation>重新命名</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="799"/>
+        <location filename="../gui/transferlistwidget.cpp" line="815"/>
         <source>New name:</source>
         <translation>新名稱：</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="838"/>
+        <location filename="../gui/transferlistwidget.cpp" line="854"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>繼續</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="842"/>
+        <location filename="../gui/transferlistwidget.cpp" line="858"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>強制繼續</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="840"/>
+        <location filename="../gui/transferlistwidget.cpp" line="856"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>暫停</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="311"/>
+        <location filename="../gui/transferlistwidget.cpp" line="327"/>
         <source>Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <comment>Set location: moving &quot;ubuntu_16_04.iso&quot;, from &quot;/home/dir1&quot; to &quot;/home/dir2&quot;</comment>
         <translation>設定位置：正在移動「%1」，從「%2」到「%3」</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="515"/>
+        <location filename="../gui/transferlistwidget.cpp" line="531"/>
         <source>Unable to preview</source>
-        <translation type="unfinished"></translation>
+        <translation>無法預覽</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="515"/>
+        <location filename="../gui/transferlistwidget.cpp" line="531"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
-        <translation type="unfinished"></translation>
+        <translation>選定的 torrent「%1」不包含可預覽的檔案</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="708"/>
+        <location filename="../gui/transferlistwidget.cpp" line="724"/>
         <source>Add Tags</source>
         <translation>新增標籤</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="749"/>
+        <location filename="../gui/transferlistwidget.cpp" line="765"/>
         <source>Remove All Tags</source>
         <translation>移除所有標籤</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="749"/>
+        <location filename="../gui/transferlistwidget.cpp" line="765"/>
         <source>Remove all tags from selected torrents?</source>
         <translation>從選定的 torrent 中移除所有標籤？</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="763"/>
+        <location filename="../gui/transferlistwidget.cpp" line="779"/>
         <source>Comma-separated tags:</source>
         <translation>逗號分隔標籤：</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="770"/>
+        <location filename="../gui/transferlistwidget.cpp" line="786"/>
         <source>Invalid tag</source>
         <translation>無效的標籤</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="771"/>
+        <location filename="../gui/transferlistwidget.cpp" line="787"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>標籤名稱：「%1」無效</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="844"/>
+        <location filename="../gui/transferlistwidget.cpp" line="860"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>刪除</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="846"/>
+        <location filename="../gui/transferlistwidget.cpp" line="862"/>
         <source>Preview file...</source>
         <translation>預覽檔案…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="848"/>
+        <location filename="../gui/transferlistwidget.cpp" line="864"/>
         <source>Limit share ratio...</source>
         <translation>限制分享率…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="850"/>
+        <location filename="../gui/transferlistwidget.cpp" line="866"/>
         <source>Limit upload rate...</source>
         <translation>限制上傳速率…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="852"/>
+        <location filename="../gui/transferlistwidget.cpp" line="868"/>
         <source>Limit download rate...</source>
         <translation>限制下載速率…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="854"/>
+        <location filename="../gui/transferlistwidget.cpp" line="870"/>
         <source>Open destination folder</source>
         <translation>開啟目的地資料夾</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="856"/>
+        <location filename="../gui/transferlistwidget.cpp" line="872"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>向上移</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="858"/>
+        <location filename="../gui/transferlistwidget.cpp" line="874"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>向下移</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="860"/>
+        <location filename="../gui/transferlistwidget.cpp" line="876"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>移到最上面</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="862"/>
+        <location filename="../gui/transferlistwidget.cpp" line="878"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>移到最下面</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="864"/>
+        <location filename="../gui/transferlistwidget.cpp" line="880"/>
         <source>Set location...</source>
         <translation>設定位置…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="868"/>
+        <location filename="../gui/transferlistwidget.cpp" line="884"/>
         <source>Force reannounce</source>
         <translation>強制重新回報</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="886"/>
         <source>Magnet link</source>
-        <translation type="unfinished">磁力連結</translation>
+        <translation>磁力連結</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="872"/>
+        <location filename="../gui/transferlistwidget.cpp" line="888"/>
         <source>Name</source>
-        <translation type="unfinished">名稱</translation>
+        <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="874"/>
+        <location filename="../gui/transferlistwidget.cpp" line="890"/>
         <source>Hash</source>
-        <translation type="unfinished"></translation>
+        <translation>雜湊值</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1100"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1116"/>
         <source>Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>佇列</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1108"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1124"/>
         <source>Copy</source>
-        <translation type="unfinished">複製</translation>
+        <translation>複製</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">複製名稱</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation type="vanished">複製雜湊值</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="882"/>
+        <location filename="../gui/transferlistwidget.cpp" line="898"/>
         <source>Download first and last pieces first</source>
         <translation>先下載第一和最後一塊</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="884"/>
+        <location filename="../gui/transferlistwidget.cpp" line="900"/>
         <source>Automatic Torrent Management</source>
         <translation>自動 torrent 管理</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="885"/>
+        <location filename="../gui/transferlistwidget.cpp" line="901"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
         <translation>自動模式代表了多個 torrent 屬性 (例如儲存路徑) 將會由相關的分類來決定</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="887"/>
+        <location filename="../gui/transferlistwidget.cpp" line="903"/>
         <source>Edit trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯追蹤者……</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="991"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1007"/>
         <source>Category</source>
         <translation>分類</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="993"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1009"/>
         <source>New...</source>
         <comment>New category...</comment>
         <translation>新…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="996"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1012"/>
         <source>Reset</source>
         <comment>Reset category</comment>
         <translation>重設</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1018"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1034"/>
         <source>Tags</source>
         <translation>標籤</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1020"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1036"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation>新增…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1023"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1039"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
         <translation>移除所有</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">優先度</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="866"/>
+        <location filename="../gui/transferlistwidget.cpp" line="882"/>
         <source>Force recheck</source>
         <translation>強制重新檢查</translation>
     </message>
     <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">複製磁力連結</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="876"/>
+        <location filename="../gui/transferlistwidget.cpp" line="892"/>
         <source>Super seeding mode</source>
         <translation>超級種子模式</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="878"/>
+        <location filename="../gui/transferlistwidget.cpp" line="894"/>
         <source>Rename...</source>
         <translation>重新命名…</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="880"/>
+        <location filename="../gui/transferlistwidget.cpp" line="896"/>
         <source>Download in sequential order</source>
         <translation>依順序下載</translation>
     </message>
@@ -10143,12 +9718,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/uithememanager.cpp" line="63"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案載入 UI 佈景主題時失敗：「%1」</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="85"/>
         <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法套用佈景主題樣式表，stylesheet.qss 無法開啟。理由：%1</translation>
     </message>
 </context>
 <context>
@@ -10227,47 +9802,47 @@ Please choose a different name and try again.</source>
         <translation>在替補 UI 資料夾中的符號連結是被禁止的。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="312"/>
+        <location filename="../webui/webapplication.cpp" line="310"/>
         <source>Using built-in Web UI.</source>
         <translation>正在使用內建的 Web UI。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="314"/>
+        <location filename="../webui/webapplication.cpp" line="312"/>
         <source>Using custom Web UI. Location: &quot;%1&quot;.</source>
         <translation>正在使用自訂的 Web UI。位置：「%1」。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="324"/>
+        <location filename="../webui/webapplication.cpp" line="322"/>
         <source>Web UI translation for selected locale (%1) has been successfully loaded.</source>
         <translation>選定語系 (%1) 的 Web UI 翻譯已成功載入。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="328"/>
+        <location filename="../webui/webapplication.cpp" line="326"/>
         <source>Couldn&apos;t load Web UI translation for selected locale (%1).</source>
         <translation>無法載入選定語系 (%1) 的 Web UI 翻譯。</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="386"/>
+        <location filename="../webui/webapplication.cpp" line="384"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
         <translation>超過允許的最大檔案大小（%1）！</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="587"/>
+        <location filename="../webui/webapplication.cpp" line="585"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>WebUI：來源檔頭與目標源頭不符合！來源 IP：「%1」╱來源檔頭：「%2」╱目標源頭：「%3」</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="596"/>
+        <location filename="../webui/webapplication.cpp" line="594"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>WebUI：Referer 檔頭與目標源頭不符合！來源 IP：「%1」╱Referer 檔頭：「%2」╱目標源頭：「%3」</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="613"/>
+        <location filename="../webui/webapplication.cpp" line="611"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
         <translation>WebUI：無效的主機檔頭、埠不符合。請求來源 IP：「%1」╱伺服器埠：「%2」╱收到主機檔頭：「%3」</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="633"/>
+        <location filename="../webui/webapplication.cpp" line="631"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>WebUI：無效的主機檔頭。請求來源 IP：「%1」╱收到主機檔頭：「%2」</translation>
     </message>
@@ -10293,13 +9868,6 @@ Please choose a different name and try again.</source>
         <location filename="../webui/webui.cpp" line="112"/>
         <source>Web UI: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation>Web UI：無法綁紮到 IP：%1，連接埠：%2。理由：%3</translation>
-    </message>
-</context>
-<context>
-    <name>fsutils</name>
-    <message>
-        <source>Downloads</source>
-        <translation type="vanished">下載</translation>
     </message>
 </context>
 <context>
@@ -10368,7 +9936,7 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="353"/>
         <source>%1y %2d</source>
         <comment>e.g: 2years 10days</comment>
-        <translation type="unfinished">%1 天 %2 小時 {1y?} {2d?}</translation>
+        <translation>%1y %2d</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="244"/>
@@ -10392,17 +9960,6 @@ Please choose a different name and try again.</source>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分鐘</translation>
-    </message>
-</context>
-<context>
-    <name>preview</name>
-    <message>
-        <source>Preview selection</source>
-        <translation type="vanished">選擇預覽</translation>
-    </message>
-    <message>
-        <source>The following files support previewing, please select one of them:</source>
-        <translation type="vanished">以下檔案支援預覽，請從中選擇：</translation>
     </message>
 </context>
 </TS>

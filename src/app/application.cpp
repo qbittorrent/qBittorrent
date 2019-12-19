@@ -144,13 +144,13 @@ Application::Application(const QString &id, int &argc, char **argv)
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
-    validateCommandLineParameters();
+    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && QDir(QCoreApplication::applicationDirPath()).exists(DEFAULT_PORTABLE_MODE_PROFILE_DIR);
 
-    const QString profileDir = m_commandLineArgs.portableMode
+    const QString profileDir = portableModeEnabled
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
     Profile::initialize(profileDir, m_commandLineArgs.configurationName,
-                        m_commandLineArgs.relativeFastresumePaths || m_commandLineArgs.portableMode);
+                        (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
 
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -171,6 +171,14 @@ Application::Application(const QString &id, int &argc, char **argv)
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
+    if (portableModeEnabled) {
+        Logger::instance()->addMessage(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir));
+        if (m_commandLineArgs.relativeFastresumePaths)
+            Logger::instance()->addMessage(tr("Redundant command line flag detected: \"%1\". Portable mode implies relative fastresume.").arg("--relative-fastresume"), Log::WARNING); // to avoid translating the `--relative-fastresume` string
+    }
+    else {
+        Logger::instance()->addMessage(tr("Using config directory: %1").arg(Profile::instance().location(SpecialFolder::Config)));
+    }
 }
 
 Application::~Application()
@@ -736,13 +744,4 @@ void Application::cleanup()
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
-}
-
-void Application::validateCommandLineParameters()
-{
-    if (m_commandLineArgs.portableMode && !m_commandLineArgs.profileDir.isEmpty())
-        throw CommandLineParameterError(tr("Portable mode and explicit profile directory options are mutually exclusive"));
-
-    if (m_commandLineArgs.portableMode && m_commandLineArgs.relativeFastresumePaths)
-        Logger::instance()->addMessage(tr("Portable mode implies relative fastresume"), Log::WARNING);
 }

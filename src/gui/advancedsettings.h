@@ -63,7 +63,7 @@ private:
              m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxSavePathHistoryLength;
     QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts, m_checkBoxSuperSeeding,
               m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
-              m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxListenIPv6, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
+              m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
               m_checkBoxMultiConnectionsPerIp, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
     QLineEdit m_lineEditAnnounceIP;

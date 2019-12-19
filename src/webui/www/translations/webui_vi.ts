@@ -348,6 +348,18 @@
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -506,6 +518,14 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1545,6 +1565,10 @@
         <source>Filter files...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2577,6 +2601,14 @@
         <source>Version</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
@@ -2728,6 +2760,14 @@
         <source>All addresses</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
@@ -2753,6 +2793,17 @@
     </message>
     <message>
         <source>Download link</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>New name:</source>
         <translation type="unfinished" />
     </message>
 </context>
