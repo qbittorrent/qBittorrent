@@ -781,7 +781,7 @@ bool Preferences::isUILocked() const
 
 void Preferences::setUILocked(const bool locked)
 {
-    return setValue("Locking/locked", locked);
+    setValue("Locking/locked", locked);
 }
 
 bool Preferences::isAutoRunEnabled() const
@@ -791,7 +791,7 @@ bool Preferences::isAutoRunEnabled() const
 
 void Preferences::setAutoRunEnabled(const bool enabled)
 {
-    return setValue("AutoRun/enabled", enabled);
+    setValue("AutoRun/enabled", enabled);
 }
 
 QString Preferences::getAutoRunProgram() const
