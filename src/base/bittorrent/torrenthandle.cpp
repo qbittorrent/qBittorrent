@@ -1693,7 +1693,17 @@ void TorrentHandle::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
 
     m_trackerInfos[trackerUrl].lastMessage = message;
 
-    m_session->handleTorrentTrackerError(this, trackerUrl);
+    // Starting with libtorrent 1.2.x each tracker has multiple local endpoints from which
+    // an announce is attempted. Some endpoints might succeed while others might fail.
+    // Emit the signal only if all endpoints have failed. TrackerEntry::isWorking() returns
+    // true if at least one endpoint works.
+    const QVector<TrackerEntry> trackerList = trackers();
+    const auto iter = std::find_if(trackerList.cbegin(), trackerList.cend(), [&trackerUrl](const TrackerEntry &entry)
+    {
+        return (entry.url() == trackerUrl);
+    });
+    if ((iter != trackerList.cend()) && !iter->isWorking())
+        m_session->handleTorrentTrackerError(this, trackerUrl);
 }
 
 void TorrentHandle::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)

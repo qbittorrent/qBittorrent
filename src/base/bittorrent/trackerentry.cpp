@@ -54,9 +54,13 @@ QString TrackerEntry::url() const
 
 bool TrackerEntry::isWorking() const
 {
+    // lt::announce_entry::is_working() returns
+    // true when the tracker hasn't been tried yet.
 #if (LIBTORRENT_VERSION_NUM < 10200)
-    return nativeEntry().is_working();
+    return nativeEntry().verified && nativeEntry().is_working();
 #else
+    if (!nativeEntry().verified)
+        return false;
     const auto &endpoints = nativeEntry().endpoints;
     return std::any_of(endpoints.begin(), endpoints.end()
                        , [](const lt::announce_endpoint &endpoint)
@@ -73,9 +77,7 @@ int TrackerEntry::tier() const
 
 TrackerEntry::Status TrackerEntry::status() const
 {
-    // lt::announce_entry::is_working() returns
-    // true when the tracker hasn't been tried yet.
-    if (nativeEntry().verified && isWorking())
+    if (isWorking())
         return Working;
 
 #if (LIBTORRENT_VERSION_NUM < 10200)
