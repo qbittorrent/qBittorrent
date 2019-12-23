@@ -756,6 +756,10 @@
                 <input type="checkbox" id="csrf_protection_checkbox" />
                 <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
+            <div class="formRow">
+                <input type="checkbox" id="secureCookieCheckbox" />
+                <label for="secureCookieCheckbox">QBT_TR(Enable cookie Secure flag (requires HTTPS))QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
 
             <fieldset class="settings">
                 <legend>
@@ -1350,6 +1354,7 @@
             const isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
             $('ssl_cert_text').setProperty('disabled', !isUseHttpsEnabled);
             $('ssl_key_text').setProperty('disabled', !isUseHttpsEnabled);
+            $('secureCookieCheckbox').setProperty('disabled', !isUseHttpsEnabled);
         };
 
         const updateBypasssAuthSettings = function() {
@@ -1717,6 +1722,7 @@
                         // Security
                         $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
                         $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+                        $('secureCookieCheckbox').setProperty('checked', pref.web_ui_secure_cookie_enabled);
                         $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
                         updateHostHeaderValidationSettings();
 
@@ -2082,6 +2088,7 @@
 
             settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
+            settings.set('web_ui_secure_cookie_enabled', $('secureCookieCheckbox').getProperty('checked'));
             settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
 
             // Update my dynamic domain name

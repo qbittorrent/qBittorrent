@@ -409,6 +409,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, m_ui->checkSecureCookie, &QWidget::setEnabled);
+    connect(m_ui->checkSecureCookie, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupHostHeaderValidation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkDynDNS, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboDNSService, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -793,6 +795,7 @@ void OptionsDialog::saveOptions()
         // Security
         pref->setWebUiClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
         pref->setWebUiCSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
+        pref->setWebUiSecureCookieEnabled(m_ui->checkSecureCookie->isChecked());
         pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
         // DynDNS
         pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
@@ -1165,6 +1168,8 @@ void OptionsDialog::loadOptions()
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUiClickjackingProtectionEnabled());
     m_ui->checkCSRFProtection->setChecked(pref->isWebUiCSRFProtectionEnabled());
+    m_ui->checkSecureCookie->setEnabled(pref->isWebUiHttpsEnabled());
+    m_ui->checkSecureCookie->setChecked(pref->isWebUiSecureCookieEnabled());
     m_ui->groupHostHeaderValidation->setChecked(pref->isWebUIHostHeaderValidationEnabled());
 
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());

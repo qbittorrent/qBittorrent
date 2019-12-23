@@ -653,6 +653,16 @@ void Preferences::setWebUiCSRFProtectionEnabled(const bool enabled)
     setValue("Preferences/WebUI/CSRFProtection", enabled);
 }
 
+bool Preferences::isWebUiSecureCookieEnabled() const
+{
+    return value("Preferences/WebUI/SecureCookie", true).toBool();
+}
+
+void Preferences::setWebUiSecureCookieEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/SecureCookie", enabled);
+}
+
 bool Preferences::isWebUIHostHeaderValidationEnabled() const
 {
     return value("Preferences/WebUI/HostHeaderValidation", true).toBool();

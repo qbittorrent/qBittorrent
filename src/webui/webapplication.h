@@ -153,6 +153,7 @@ private:
     QStringList m_domainList;
     bool m_isClickjackingProtectionEnabled;
     bool m_isCSRFProtectionEnabled;
+    bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
     QString m_contentSecurityPolicy;

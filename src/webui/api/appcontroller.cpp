@@ -239,6 +239,7 @@ void AppController::preferencesAction()
     // Security
     data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
+    data["web_ui_secure_cookie_enabled"] = pref->isWebUiSecureCookieEnabled();
     data["web_ui_host_header_validation_enabled"] = pref->isWebUIHostHeaderValidationEnabled();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
@@ -608,6 +609,8 @@ void AppController::setPreferencesAction()
         pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());
     if (hasKey("web_ui_csrf_protection_enabled"))
         pref->setWebUiCSRFProtectionEnabled(it.value().toBool());
+    if (hasKey("web_ui_secure_cookie_enabled"))
+        pref->setWebUiSecureCookieEnabled(it.value().toBool());
     if (hasKey("web_ui_host_header_validation_enabled"))
         pref->setWebUIHostHeaderValidationEnabled(it.value().toBool());
     // Update my dynamic domain name
