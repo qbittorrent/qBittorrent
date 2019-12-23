@@ -1246,7 +1246,7 @@ QVector<int> TorrentHandle::pieceAvailability() const
     std::vector<int> avail;
     m_nativeHandle.piece_availability(avail);
 
-    return QVector<int>::fromStdVector(avail);
+    return Vector::fromStdVector(avail);
 }
 
 qreal TorrentHandle::distributedCopies() const
