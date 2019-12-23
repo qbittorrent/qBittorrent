@@ -294,7 +294,7 @@ void AdvancedSettings::updateInterfaceAddressCombo()
     m_comboBoxInterfaceAddress.addItem(tr("All IPv4 addresses"), QLatin1String("0.0.0.0"));
     m_comboBoxInterfaceAddress.addItem(tr("All IPv6 addresses"), QLatin1String("::"));
 
-    const auto populateCombo = [this, &currentAddress](const QHostAddress &addr)
+    const auto populateCombo = [this](const QHostAddress &addr)
     {
         if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
             const QString str = addr.toString();
