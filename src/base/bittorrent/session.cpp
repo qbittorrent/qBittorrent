@@ -501,7 +501,7 @@ Session::Session(QObject *parent)
         m_storedCategories = map_cast(m_categories);
     }
 
-    m_tags = QSet<QString>::fromList(m_storedTags.value());
+    m_tags = List::toSet(m_storedTags.value());
 
     m_refreshTimer->setInterval(refreshInterval());
     connect(m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
@@ -4060,7 +4060,7 @@ void Session::startUpTorrents()
         }
 
         if (!queue.empty())
-            fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).values();
+            fastresumes = queue + List::toSet(fastresumes).subtract(List::toSet(queue)).values();
     }
 
     for (const QString &fastresumeName : asConst(fastresumes)) {
