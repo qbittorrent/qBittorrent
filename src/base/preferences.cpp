@@ -781,7 +781,7 @@ bool Preferences::isUILocked() const
 
 void Preferences::setUILocked(const bool locked)
 {
-    return setValue("Locking/locked", locked);
+    setValue("Locking/locked", locked);
 }
 
 bool Preferences::isAutoRunEnabled() const
@@ -791,7 +791,7 @@ bool Preferences::isAutoRunEnabled() const
 
 void Preferences::setAutoRunEnabled(const bool enabled)
 {
-    return setValue("AutoRun/enabled", enabled);
+    setValue("AutoRun/enabled", enabled);
 }
 
 QString Preferences::getAutoRunProgram() const
@@ -803,6 +803,18 @@ void Preferences::setAutoRunProgram(const QString &program)
 {
     setValue("AutoRun/program", program);
 }
+
+#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+bool Preferences::isAutoRunConsoleEnabled() const
+{
+    return value("AutoRun/ConsoleEnabled", false).toBool();
+}
+
+void Preferences::setAutoRunConsoleEnabled(const bool enabled)
+{
+    setValue("AutoRun/ConsoleEnabled", enabled);
+}
+#endif
 
 bool Preferences::shutdownWhenDownloadsComplete() const
 {

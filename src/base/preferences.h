@@ -238,6 +238,10 @@ public:
     void setAutoRunEnabled(bool enabled);
     QString getAutoRunProgram() const;
     void setAutoRunProgram(const QString &program);
+#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    bool isAutoRunConsoleEnabled() const;
+    void setAutoRunConsoleEnabled(bool enabled);
+#endif
     bool shutdownWhenDownloadsComplete() const;
     void setShutdownWhenDownloadsComplete(bool shutdown);
     bool suspendWhenDownloadsComplete() const;
