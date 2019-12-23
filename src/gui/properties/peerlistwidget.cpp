@@ -72,7 +72,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     header()->setStretchLastSection(false);
     // List Model
     m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT, this);
-    m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, tr("Country")); // Country flag column
+    m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, tr("Country/Region")); // Country flag column
     m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
     m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, tr("Port"));
     m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
