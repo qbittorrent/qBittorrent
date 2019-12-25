@@ -843,14 +843,6 @@
             </tr>
             <tr>
                 <td>
-                    <label for="listenOnIPv6Address">QBT_TR(Listen on IPv6 address (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td>
-                    <input type="checkbox" id="listenOnIPv6Address">
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label for="saveResumeDataInterval">QBT_TR(Save resume data interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -1738,7 +1730,6 @@
                         // qBittorrent section
                         updateNetworkInterfaces(pref.current_network_interface);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
-                        $('listenOnIPv6Address').setProperty('checked', pref.listen_on_ipv6_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
@@ -2102,7 +2093,6 @@
             // qBittorrent section
             settings.set('current_network_interface', $('networkInterface').getProperty('value'));
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
-            settings.set('listen_on_ipv6_address', $('listenOnIPv6Address').getProperty('checked'));
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
