@@ -35,6 +35,8 @@ let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
 let searchTabInitialized = false;
 
+let syncRequestInProgress = false;
+
 let clipboardEvent;
 
 const CATEGORIES_ALL = 1;
@@ -458,7 +460,7 @@ window.addEvent('load', function() {
     const syncMainData = function() {
         const url = new URI('api/v2/sync/maindata');
         url.setData('rid', syncMainDataLastResponseId);
-        new Request.JSON({
+        const request = new Request.JSON({
             url: url,
             noCache: true,
             method: 'get',
@@ -466,8 +468,8 @@ window.addEvent('load', function() {
                 const errorDiv = $('error_div');
                 if (errorDiv)
                     errorDiv.set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
-                clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(2000);
+                syncRequestInProgress = false;
+                syncData(2000);
             },
             onSuccess: function(response) {
                 $('error_div').set('html', '');
@@ -579,17 +581,25 @@ window.addEvent('load', function() {
                         // re-select previously selected rows
                         torrentsTable.reselectRows(torrentsTableSelectedRows);
                 }
-                clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(getSyncMainDataInterval());
+                syncRequestInProgress = false;
+                syncData(getSyncMainDataInterval())
             }
-        }).send();
+        });
+        syncRequestInProgress = true;
+        request.send();
     };
 
     updateMainData = function() {
         torrentsTable.updateTable();
-        clearTimeout(syncMainDataTimer);
-        syncMainDataTimer = syncMainData.delay(100);
+        syncData(100);
     };
+
+    const syncData = function(delay) {
+        if (!syncRequestInProgress){
+            clearTimeout(syncMainDataTimer);
+            syncMainDataTimer = syncMainData.delay(delay);
+        }
+    }
 
     const processServerState = function() {
         let transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true);
@@ -764,8 +774,7 @@ window.addEvent('load', function() {
         $("mainColumn").removeClass("invisible");
 
         customSyncMainDataInterval = null;
-        clearTimeout(syncMainDataTimer);
-        syncMainDataTimer = syncMainData.delay(100);
+        syncData(100);
 
         hideSearchTab();
     };
