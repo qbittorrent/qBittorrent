@@ -622,7 +622,7 @@ window.addEvent('load', function() {
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
-        if (document.getElementById("statisticspage")) {
+        if (document.getElementById("statisticsContent")) {
             $('AlltimeDL').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.alltime_dl, false));
             $('AlltimeUL').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.alltime_ul, false));
             $('TotalWastedSession').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.total_wasted_session, false));
