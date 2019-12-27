@@ -26,32 +26,23 @@
  * exception statement from your version.
  */
 
-#ifndef TRANSFERLISTDELEGATE_H
-#define TRANSFERLISTDELEGATE_H
+#pragma once
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
 
-namespace BitTorrent
-{
-    enum class TorrentState;
-}
-
-class TransferListDelegate : public QItemDelegate
+class TransferListDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TransferListDelegate)
 
 public:
-    TransferListDelegate(QObject *parent);
+    explicit TransferListDelegate(QObject *parent);
+
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-
-private:
-    QString getStatusString(const BitTorrent::TorrentState state) const;
 };
-
-#endif // TRANSFERLISTDELEGATE_H
