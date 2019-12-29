@@ -468,7 +468,7 @@ window.addEvent('load', function() {
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
-        if (document.getElementById("statisticspage")) {
+        if (document.getElementById("statisticsContent")) {
             $('AlltimeDL').set('html', friendlyUnit(serverState.alltime_dl, false));
             $('AlltimeUL').set('html', friendlyUnit(serverState.alltime_ul, false));
             $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
