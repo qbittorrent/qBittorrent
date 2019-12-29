@@ -71,13 +71,13 @@ public:
     QString fromPortablePath(const QString &portablePath) const;
 
 private:
-    Profile(Private::Profile *impl, Private::PathConverter *pathConverter);
+    Profile(const QString &rootProfilePath, const QString &configurationName, bool convertPathsToProfileRelative);
     ~Profile() = default;  // to generate correct call to ProfilePrivate::~ProfileImpl()
 
     void ensureDirectoryExists(SpecialFolder folder) const;
 
-    const std::unique_ptr<Private::Profile> m_profileImpl;
-    const std::unique_ptr<Private::PathConverter> m_pathConverterImpl;
+    std::unique_ptr<Private::Profile> m_profileImpl;
+    std::unique_ptr<Private::PathConverter> m_pathConverterImpl;
     static Profile *m_instance;
 };
 
