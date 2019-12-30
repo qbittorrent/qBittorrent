@@ -636,3 +636,11 @@ td.statusBarSeparator {
     background-color: #ee6600;
     color: #fff;
 }
+div.form div.row label {
+    float:left; 
+    width: 110px;
+}
+
+div.form div.row {
+    clear:both;
+}

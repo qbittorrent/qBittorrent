@@ -5,14 +5,14 @@
    <select data-name="rules"></select>\
    <button data-name="addRule">Add</button>\
    <button data-name="deleteSelectedRule">Delete</button>\
-   <div data-name="selectedRule">\
-      <div><label><input data-name="enabled"/>Enabled</label></div>\
-      <div><label>Name</label><input data-name="name" /></div>\
-      <div><label>Must contain</label><input data-name="mustContain" /></div>\
-      <div><label>Must NOT contain</label><input data-name="mustNotContain" /></div>\
-      <div><label><input data-name="useRegex"/>Use regex</label></div>\
-      <div><label>Ignore days</label><select data-bind="options: $parent.days, value: ignoreDays"></select></div>\
-      <div><label>Save path</label><input data-name="savePath" /><select data-bind="options: $parent.paths, value: selectedPath"></select></div>\
+   <div data-name="selectedRule" class="form">\
+      <div class="row"><label><input data-name="enabled"/>Enabled</label></div>\
+      <div class="row"><label>Name</label><input data-name="name" /></div>\
+      <div class="row"><label>Must contain</label><input data-name="mustContain" /></div>\
+      <div class="row"><label>Must NOT contain</label><input data-name="mustNotContain" /></div>\
+      <div class="row"><label><input data-name="useRegex"/>Use regex</label></div>\
+      <div class="row"><label>Ignore days</label><select data-bind="options: $parent.days, value: ignoreDays"></select></div>\
+      <div class="row"><label>Save path</label><input data-name="savePath" /><select data-bind="options: $parent.paths, value: selectedPath"></select></div>\
       <label>Feeds</label>\
       <div data-name="feeds">\
           <div><label><input data-name="enabled"/><span data-name="name"></span></label></div>\
