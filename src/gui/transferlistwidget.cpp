@@ -1219,7 +1219,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     }
 
     // Tag Menu
-    QStringList tags(BitTorrent::Session::instance()->tags().toList());
+    QStringList tags(BitTorrent::Session::instance()->tags().values());
     std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
 
     QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Tags"));

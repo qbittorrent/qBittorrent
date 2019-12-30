@@ -1401,7 +1401,7 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
 
         initColumns: function() {
-            this.newColumn('country', '', 'QBT_TR(Country)QBT_TR[CONTEXT=PeerListWidget]', 22, true);
+            this.newColumn('country', '', 'QBT_TR(Country/Region)QBT_TR[CONTEXT=PeerListWidget]', 22, true);
             this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR[CONTEXT=PeerListWidget]', 80, true);
             this.newColumn('port', '', 'QBT_TR(Port)QBT_TR[CONTEXT=PeerListWidget]', 35, true);
             this.newColumn('connection', '', 'QBT_TR(Connection)QBT_TR[CONTEXT=PeerListWidget]', 50, true);

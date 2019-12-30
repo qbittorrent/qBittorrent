@@ -374,8 +374,8 @@ Session::Session(QObject *parent)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
-    , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 16)
-    , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
+    , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
+    , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
 #ifdef Q_OS_WIN
@@ -432,7 +432,7 @@ Session::Session(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_port(BITTORRENT_SESSION_KEY("Port"), -1)
-    , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
+    , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), true)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
@@ -501,7 +501,7 @@ Session::Session(QObject *parent)
         m_storedCategories = map_cast(m_categories);
     }
 
-    m_tags = QSet<QString>::fromList(m_storedTags.value());
+    m_tags = List::toSet(m_storedTags.value());
 
     m_refreshTimer->setInterval(refreshInterval());
     connect(m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
@@ -4060,7 +4060,7 @@ void Session::startUpTorrents()
         }
 
         if (!queue.empty())
-            fastresumes = queue + fastresumes.toSet().subtract(queue.toSet()).values();
+            fastresumes = queue + List::toSet(fastresumes).subtract(List::toSet(queue)).values();
     }
 
     for (const QString &fastresumeName : asConst(fastresumes)) {

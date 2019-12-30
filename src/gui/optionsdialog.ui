@@ -1265,6 +1265,13 @@
                 <widget class="QLineEdit" name="lineEditAutoRun"/>
                </item>
                <item>
+                <widget class="QCheckBox" name="autoRunConsole">
+                 <property name="text">
+                  <string>Show console window</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="labelAutoRunParam">
                  <property name="wordWrap">
                   <bool>true</bool>
@@ -3051,6 +3058,13 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                    <widget class="QCheckBox" name="checkCSRFProtection">
                     <property name="text">
                      <string>Enable Cross-Site Request Forgery (CSRF) protection</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkSecureCookie">
+                    <property name="text">
+                     <string>Enable cookie Secure flag (requires HTTPS)</string>
                     </property>
                    </widget>
                   </item>

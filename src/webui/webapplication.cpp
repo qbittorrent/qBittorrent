@@ -337,6 +337,7 @@ void WebApplication::configure()
 
     m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
+    m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
 
@@ -535,6 +536,7 @@ void WebApplication::sessionStart()
 
     QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
     cookie.setHttpOnly(true);
+    cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
     cookie.setPath(QLatin1String("/"));
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)

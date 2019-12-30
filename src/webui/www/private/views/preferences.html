@@ -779,6 +779,10 @@
                 <input type="checkbox" id="csrf_protection_checkbox" />
                 <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
+            <div class="formRow">
+                <input type="checkbox" id="secureCookieCheckbox" />
+                <label for="secureCookieCheckbox">QBT_TR(Enable cookie Secure flag (requires HTTPS))QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
 
             <fieldset class="settings">
                 <legend>
@@ -858,14 +862,6 @@
                 <td>
                     <select id="optionalIPAddressToBind" style="width: 15em;">
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="listenOnIPv6Address">QBT_TR(Listen on IPv6 address (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td>
-                    <input type="checkbox" id="listenOnIPv6Address">
                 </td>
             </tr>
             <tr>
@@ -1373,6 +1369,7 @@
             const isUseHttpsEnabled = $('use_https_checkbox').getProperty('checked');
             $('ssl_cert_text').setProperty('disabled', !isUseHttpsEnabled);
             $('ssl_key_text').setProperty('disabled', !isUseHttpsEnabled);
+            $('secureCookieCheckbox').setProperty('disabled', !isUseHttpsEnabled);
         };
 
         const updateBypasssAuthSettings = function() {
@@ -1746,6 +1743,7 @@
                         // Security
                         $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
                         $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+                        $('secureCookieCheckbox').setProperty('checked', pref.web_ui_secure_cookie_enabled);
                         $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
                         updateHostHeaderValidationSettings();
 
@@ -1761,7 +1759,6 @@
                         // qBittorrent section
                         updateNetworkInterfaces(pref.current_network_interface);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
-                        $('listenOnIPv6Address').setProperty('checked', pref.listen_on_ipv6_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
@@ -2117,6 +2114,7 @@
 
             settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
+            settings.set('web_ui_secure_cookie_enabled', $('secureCookieCheckbox').getProperty('checked'));
             settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
 
             // Update my dynamic domain name
@@ -2130,7 +2128,6 @@
             // qBittorrent section
             settings.set('current_network_interface', $('networkInterface').getProperty('value'));
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
-            settings.set('listen_on_ipv6_address', $('listenOnIPv6Address').getProperty('checked'));
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
