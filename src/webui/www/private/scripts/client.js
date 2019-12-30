@@ -41,6 +41,7 @@ var queueing_enabled = true;
 var serverSyncMainDataInterval = 1500;
 var customSyncMainDataInterval = null;
 
+let syncRequestInProgress = false;
 var clipboardEvent;
 
 var CATEGORIES_ALL = 1;
@@ -334,7 +335,7 @@ window.addEvent('load', function() {
     var syncMainData = function() {
         var url = new URI('api/v2/sync/maindata');
         url.setData('rid', syncMainDataLastResponseId);
-        new Request.JSON({
+        const request = new Request.JSON({
             url: url,
             noCache: true,
             method: 'get',
@@ -342,8 +343,8 @@ window.addEvent('load', function() {
                 var errorDiv = $('error_div');
                 if (errorDiv)
                     errorDiv.set('html', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
-                clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(2000);
+                syncRequestInProgress = false;
+                syncData(2000);
             },
             onSuccess: function(response) {
                 $('error_div').set('html', '');
@@ -426,17 +427,25 @@ window.addEvent('load', function() {
                         // re-select previously selected rows
                         torrentsTable.reselectRows(torrentsTableSelectedRows);
                 }
-                clearTimeout(syncMainDataTimer);
-                syncMainDataTimer = syncMainData.delay(getSyncMainDataInterval());
+                syncRequestInProgress = false;
+                syncData(getSyncMainDataInterval())
             }
-        }).send();
+        });
+        syncRequestInProgress = true;
+        request.send();
     };
 
     updateMainData = function() {
         torrentsTable.updateTable();
-        clearTimeout(syncMainDataTimer);
-        syncMainDataTimer = syncMainData.delay(100);
+        syncData(100);
     };
+
+    const syncData = function(delay) {
+        if (!syncRequestInProgress){
+            clearTimeout(syncMainDataTimer);
+            syncMainDataTimer = syncMainData.delay(delay);
+        }
+    }
 
     var processServerState = function() {
         var transfer_info = friendlyUnit(serverState.dl_info_speed, true);
@@ -459,7 +468,7 @@ window.addEvent('load', function() {
         $('DHTNodes').set('html', 'QBT_TR(DHT: %1 nodes)QBT_TR[CONTEXT=StatusBar]'.replace("%1", serverState.dht_nodes));
 
         // Statistics dialog
-        if (document.getElementById("statisticspage")) {
+        if (document.getElementById("statisticsContent")) {
             $('AlltimeDL').set('html', friendlyUnit(serverState.alltime_dl, false));
             $('AlltimeUL').set('html', friendlyUnit(serverState.alltime_ul, false));
             $('TotalWastedSession').set('html', friendlyUnit(serverState.total_wasted_session, false));
@@ -607,8 +616,7 @@ window.addEvent('load', function() {
         $("mainColumn").removeClass("invisible");
 
         customSyncMainDataInterval = null;
-        clearTimeout(syncMainDataTimer);
-        syncMainDataTimer = syncMainData.delay(100);
+        syncData(100);
 
         hideSearchTab();
     };
