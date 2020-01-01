@@ -1772,11 +1772,12 @@ void TorrentHandle::handleTorrentPausedAlert(const lt::torrent_paused_alert *p)
         if (!m_pauseWhenReady) {
             updateStatus();
             m_speedMonitor.reset();
-            m_session->handleTorrentPaused(this);
         }
         else {
             m_pauseWhenReady = false;
         }
+
+        m_session->handleTorrentPaused(this);
     }
 }
 
