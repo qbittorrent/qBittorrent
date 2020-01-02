@@ -1078,7 +1078,7 @@ void Session::initializeNativeSession()
     pack.set_str(lt::settings_pack::user_agent, USER_AGENT);
     pack.set_bool(lt::settings_pack::use_dht_as_fallback, false);
     // Speed up exit
-    pack.set_int(lt::settings_pack::stop_tracker_timeout, 1);
+    pack.set_int(lt::settings_pack::stop_tracker_timeout, 5);
     pack.set_int(lt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
     pack.set_int(lt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
     pack.set_int(lt::settings_pack::connection_speed, 20); // default is 10
