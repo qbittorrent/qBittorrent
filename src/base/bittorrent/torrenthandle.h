@@ -443,20 +443,8 @@ namespace BitTorrent
         bool m_hasMissingFiles;
         bool m_hasRootFolder;
         bool m_needsToSetFirstLastPiecePriority;
-        bool m_needsToStartForced;
 
         QHash<QString, TrackerInfo> m_trackerInfos;
-
-        enum StartupState
-        {
-            Preparing, // torrent is preparing to start regular processing
-            Starting, // torrent is prepared and starting to perform regular processing
-            Started // torrent is performing regular processing
-        };
-        StartupState m_startupState = Preparing;
-        // Handle torrent state when it starts performing some service job
-        // being in Paused state so it might be unpaused internally and then paused again
-        bool m_pauseWhenReady;
 
         bool m_unchecked = false;
     };
