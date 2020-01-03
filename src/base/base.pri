@@ -11,6 +11,8 @@ HEADERS += \
     $$PWD/bittorrent/private/bandwidthscheduler.h \
     $$PWD/bittorrent/private/filterparserthread.h \
     $$PWD/bittorrent/private/ltunderlyingtype.h \
+    $$PWD/bittorrent/private/nativesessionextension.h \
+    $$PWD/bittorrent/private/nativetorrentextension.h \
     $$PWD/bittorrent/private/portforwarderimpl.h \
     $$PWD/bittorrent/private/resumedatasavingmanager.h \
     $$PWD/bittorrent/private/speedmonitor.h \
@@ -87,6 +89,8 @@ SOURCES += \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/private/bandwidthscheduler.cpp \
     $$PWD/bittorrent/private/filterparserthread.cpp \
+    $$PWD/bittorrent/private/nativesessionextension.cpp \
+    $$PWD/bittorrent/private/nativetorrentextension.cpp \
     $$PWD/bittorrent/private/portforwarderimpl.cpp \
     $$PWD/bittorrent/private/resumedatasavingmanager.cpp \
     $$PWD/bittorrent/private/speedmonitor.cpp \

@@ -90,6 +90,7 @@
 #include "private/bandwidthscheduler.h"
 #include "private/filterparserthread.h"
 #include "private/ltunderlyingtype.h"
+#include "private/nativesessionextension.h"
 #include "private/portforwarderimpl.h"
 #include "private/resumedatasavingmanager.h"
 #include "private/statistics.h"
@@ -1127,6 +1128,12 @@ void Session::initializeNativeSession()
     m_nativeSession->add_extension(&lt::create_ut_metadata_plugin);
     if (isPeXEnabled())
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
+
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    m_nativeSession->add_extension(boost::shared_ptr<lt::plugin> {new NativeSessionExtension});
+#else
+    m_nativeSession->add_extension(std::make_shared<NativeSessionExtension>());
+#endif
 }
 
 void Session::processBannedIPs(lt::ip_filter &filter)
@@ -2012,14 +2019,28 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
             // Reuse existing torrent_handle
             lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
-            // We need to pause it first to create TorrentHandle within the same
-            // underlying state as in other cases.
-            handle.auto_managed(false);
-            handle.pause();
-            // createTorrentHandle() for this is called in the torrent_paused_alert handler
+
+            // Preloaded torrent is in "Upload mode" so we need to disable it
+            // otherwise the torrent never be downloaded (until application restart)
+            handle.set_upload_mode(false);
+
+            if (params.paused) {
+                // Preloaded torrent isn't auto managed already
+                handle.pause();
+            }
+            else if (!params.forced) {
+                handle.auto_managed(true);
+                handle.pause();
+            }
 
             m_loadedMetadata.remove(hash);
             m_addingTorrents.insert(hash, params);
+
+            --m_extraLimit;
+            adjustLimits();
+
+            // use common 2nd step of torrent addition
+            createTorrentHandle(handle);
             return true;
         }
 
@@ -2108,11 +2129,14 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
     // Common
     p.flags &= ~lt::add_torrent_params::flag_duplicate_is_error; // Already checked
-    // Make sure the torrent will be initially checked and then paused
-    // to perform some service jobs on it. We will start it if needed.
-    p.flags |= lt::add_torrent_params::flag_paused;
-    p.flags |= lt::add_torrent_params::flag_auto_managed;
-    p.flags |= lt::add_torrent_params::flag_stop_when_ready;
+    if (params.paused || !params.forced)
+        p.flags |= lt::add_torrent_params::flag_paused;
+    else
+        p.flags &= ~lt::add_torrent_params::flag_paused;
+    if (params.paused || params.forced)
+        p.flags &= ~lt::add_torrent_params::flag_auto_managed;
+    else
+        p.flags |= lt::add_torrent_params::flag_auto_managed;
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
@@ -2162,14 +2186,29 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
             // Reuse existing torrent_handle
             lt::torrent_handle handle = m_nativeSession->find_torrent(hash);
-            // We need to pause it first to create TorrentHandle within the same
-            // underlying state as in other cases.
-            handle.unset_flags(lt::torrent_flags::auto_managed);
-            handle.pause();
-            // createTorrentHandle() for this is called in the torrent_paused_alert handler
+
+            // Preloaded torrent is in "Upload mode" so we need to disable it
+            // otherwise the torrent never be downloaded (until application restart)
+            handle.unset_flags(lt::torrent_flags::upload_mode);
+
+            if (params.paused) {
+                // Preloaded torrent isn't auto managed already
+                handle.pause();
+            }
+            else if (!params.forced) {
+                handle.set_flags(lt::torrent_flags::auto_managed);
+                handle.pause();
+            }
+
 
             m_loadedMetadata.remove(hash);
             m_addingTorrents.insert(hash, params);
+
+            --m_extraLimit;
+            adjustLimits();
+
+            // use common 2nd step of torrent addition
+            createTorrentHandle(handle);
             return true;
         }
 
@@ -2270,11 +2309,15 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
     // Common
     p.flags &= ~lt::torrent_flags::duplicate_is_error; // Already checked
-    // Make sure the torrent will be initially checked and then paused
-    // to perform some service jobs on it. We will start it if needed.
-    p.flags |= lt::torrent_flags::paused;
-    p.flags |= lt::torrent_flags::auto_managed;
-    p.flags |= lt::torrent_flags::stop_when_ready;
+    if (params.paused || !params.forced)
+        p.flags |= lt::torrent_flags::paused;
+    else
+        p.flags &= ~lt::torrent_flags::paused;
+    if (params.paused || params.forced)
+        p.flags &= ~lt::torrent_flags::auto_managed;
+    else
+        p.flags |= lt::torrent_flags::auto_managed;
+
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
@@ -4265,9 +4308,6 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
     }
 
     switch (a->type()) {
-    case lt::torrent_paused_alert::alert_type:
-        handleTorrentPausedAlert(static_cast<const lt::torrent_paused_alert*>(a));
-        break;
     case lt::metadata_received_alert::alert_type:
         handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
         break;
@@ -4409,29 +4449,6 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
         adjustLimits();
         *loadedMetadataIter = TorrentInfo(p->handle.torrent_file());
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
-    }
-}
-
-void Session::handleTorrentPausedAlert(const libtorrent::torrent_paused_alert *p)
-{
-    const InfoHash hash {p->handle.info_hash()};
-
-    if (m_addingTorrents.contains(hash)) {
-        // Adding preloaded torrent
-        lt::torrent_handle handle = p->handle;
-        --m_extraLimit;
-
-        // Preloaded torrent is in "Upload mode" so we need to disable it
-        // otherwise the torrent never be downloaded (until application restart)
-#if (LIBTORRENT_VERSION_NUM < 10200)
-        handle.set_upload_mode(false);
-#else
-        handle.unset_flags(lt::torrent_flags::upload_mode);
-#endif
-
-        adjustLimits();
-        // use common 2nd step of torrent addition
-        createTorrentHandle(handle);
     }
 }
 
