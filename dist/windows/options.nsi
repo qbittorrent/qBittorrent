@@ -51,7 +51,7 @@ XPStyle on
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
-VIAddVersionKey "LegalCopyright" "Copyright ©2006-2019 The qBittorrent project"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2020 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
@@ -67,7 +67,7 @@ VIProductVersion "${PROG_VERSION}.0"
   InstallDir $PROGRAMFILES64\qBittorrent
 !endif
 
-; Registry key to check for directory (so if you install again, it will 
+; Registry key to check for directory (so if you install again, it will
 ; overwrite the old one automatically)
 InstallDirRegKey HKLM Software\qbittorrent InstallLocation
 
@@ -85,8 +85,8 @@ RequestExecutionLevel user
 
 ;--------------------------------
 ;Remember the unistaller/installer language
-!define MUI_LANGDLL_REGISTRY_ROOT "HKLM" 
-!define MUI_LANGDLL_REGISTRY_KEY "Software\qbittorrent" 
+!define MUI_LANGDLL_REGISTRY_ROOT "HKLM"
+!define MUI_LANGDLL_REGISTRY_KEY "Software\qbittorrent"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 ;--------------------------------
