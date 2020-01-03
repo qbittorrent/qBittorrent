@@ -47,13 +47,12 @@ lang_file.close()
 # update search_engine directory
 os.chdir('gui/searchengine')
 search_list = []
-for nova_folder in ['nova/', 'nova3']:
-  for root, dirs, files in os.walk(nova_folder):
-    for file in files:
-      if file.startswith("__"):
-        continue
-      if splitext(file)[-1] in ('.py', '.png'):
-        search_list.append(join(root, file))
+for root, dirs, files in os.walk('nova3'):
+  for file in files:
+    if file.startswith("__"):
+      continue
+    if splitext(file)[-1] in ('.py', '.png'):
+      search_list.append(join(root, file))
 
 output = '''<!DOCTYPE RCC><RCC version="1.0">
 <qresource>
