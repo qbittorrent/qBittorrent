@@ -55,5 +55,9 @@ build_script:
   - lupdate -extensions c,cpp,h,hpp,ui .
   - qmake qbittorrent.pro && cd src && qmake src.pro
   - jom -j2 -f Makefile.Release
+  
+artifacts:
+  - path: release # pack the entire release directory
+    name: qbtexe
 
 test: off
