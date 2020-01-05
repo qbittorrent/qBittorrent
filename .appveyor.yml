@@ -56,8 +56,12 @@ build_script:
   - qmake qbittorrent.pro && cd src && qmake src.pro
   - jom -j2 -f Makefile.Release
   
+after_build:
+  - cd %REPO_DIR%
+  - 7z a -mm=Deflate -mfb=258 -mpass=15 -r qbt_cibuild.zip ".\src\release\qbittorrent.exe" ".\src\release\qbittorrent.pde"
+  
 artifacts:
-  - path: release # pack the entire release directory
-    name: qbtexe
-
+  - path: qbt_cibuild.zip
+    name: qbt_cibuild
+  
 test: off
