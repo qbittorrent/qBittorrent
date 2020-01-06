@@ -160,7 +160,7 @@ window.qBittorrent.PropFiles = (function() {
                 setCheckboxPartial(checkbox);
                 break;
         }
-    }
+    };
 
     const isPriorityComboExists = function(id) {
         return ($('comboPrio' + id) !== null);
@@ -631,7 +631,7 @@ window.qBittorrent.PropFiles = (function() {
             rowElem.addClass("invisible");
         else
             rowElem.removeClass("invisible");
-    }
+    };
 
     /**
      * Update a node's collapsed state and icon
@@ -653,7 +653,7 @@ window.qBittorrent.PropFiles = (function() {
             collapseIcon.addClass("rotate");
         else
             collapseIcon.removeClass("rotate");
-    }
+    };
 
     const _isCollapsed = function(node) {
         const span = $('filesTablefileName' + node.rowId);
@@ -692,7 +692,7 @@ window.qBittorrent.PropFiles = (function() {
             });
         });
         torrentFilesTable.altRow();
-    }
+    };
 
     /**
      * Collapses a folder node with the option to recursively collapse all children

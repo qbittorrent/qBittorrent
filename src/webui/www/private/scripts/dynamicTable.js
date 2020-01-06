@@ -1716,7 +1716,7 @@ window.qBittorrent.DynamicTable = (function() {
                 const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
                 td.set('text', size);
                 td.set('title', size);
-            }
+            };
             const displayPercentage = function(td, row) {
                 const value = window.qBittorrent.Misc.friendlyPercentage(this.getRowValue(row));
                 td.set('text', value);
