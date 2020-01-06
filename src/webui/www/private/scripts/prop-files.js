@@ -642,7 +642,6 @@ window.qBittorrent.PropFiles = (function() {
         if (span === null)
             return;
         const td = span.parentElement;
-        const rowElem = td.parentElement;
 
         // store collapsed state
         td.set("data-collapsed", isCollapsed);
