@@ -76,6 +76,7 @@ HEADERS += \
     $$PWD/utils/password.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
+    $$PWD/utils/tar.h \
     $$PWD/utils/version.h
 
 SOURCES += \
@@ -143,4 +144,5 @@ SOURCES += \
     $$PWD/utils/net.cpp \
     $$PWD/utils/password.cpp \
     $$PWD/utils/random.cpp \
-    $$PWD/utils/string.cpp
+    $$PWD/utils/string.cpp \
+    $$PWD/utils/tar.cpp
