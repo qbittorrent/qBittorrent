@@ -69,6 +69,7 @@ namespace Net
 
         bool m_enabled;
         GeoIPDatabase *m_geoIPDatabase;
+        QString m_dbCompleteUrl;
 
         static GeoIPManager *m_instance;
     };

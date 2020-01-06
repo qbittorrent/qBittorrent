@@ -39,10 +39,11 @@
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
+#include "base/utils/tar.h"
 #include "downloadmanager.h"
 #include "private/geoipdatabase.h"
 
-static const char DATABASE_URL[] = "https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz";
+static const char DATABASE_URL[] = "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&suffix=tar.gz&license_key=";
 static const char GEOIP_FOLDER[] = "GeoIP";
 static const char GEOIP_FILENAME[] = "GeoLite2-Country.mmdb";
 static const int UPDATE_INTERVAL = 30; // Days between database updates
@@ -105,7 +106,15 @@ void GeoIPManager::loadDatabase()
     else
         Logger::instance()->addMessage(tr("Couldn't load GeoIP database. Reason: %1").arg(error), Log::WARNING);
 
-    manageDatabaseUpdate();
+    if (m_dbCompleteUrl.isEmpty()) {
+        if (m_geoIPDatabase)
+            Logger::instance()->addMessage(tr("A GeoIP license key hasn't been configured. A newer GeoIP database can't be downloaded."), Log::WARNING);
+        else
+            Logger::instance()->addMessage(tr("A GeoIP license key hasn't been configured."), Log::WARNING);
+    }
+    else {
+        manageDatabaseUpdate();
+    }
 }
 
 void GeoIPManager::manageDatabaseUpdate()
@@ -116,7 +125,7 @@ void GeoIPManager::manageDatabaseUpdate()
 
 void GeoIPManager::downloadDatabaseFile()
 {
-    DownloadManager::instance()->download({DATABASE_URL}, this, &GeoIPManager::downloadFinished);
+    DownloadManager::instance()->download({m_dbCompleteUrl}, this, &GeoIPManager::downloadFinished);
 }
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
@@ -392,10 +401,15 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
 
 void GeoIPManager::configure()
 {
-    const bool enabled = Preferences::instance()->resolvePeerCountries();
-    if (m_enabled != enabled) {
+    const Preferences *const pref = Preferences::instance();
+    const bool enabled = pref->resolvePeerCountries();
+    QString license = pref->geoIPLicenseKey();
+    QString dbCompleteUrl = license.isEmpty() ? QString {} : QString {DATABASE_URL + license};
+    if ((m_enabled != enabled) || (m_dbCompleteUrl != dbCompleteUrl)) {
         m_enabled = enabled;
-        if (m_enabled && !m_geoIPDatabase) {
+        if (m_enabled
+            && (!m_geoIPDatabase || (m_dbCompleteUrl != dbCompleteUrl))) {
+            m_dbCompleteUrl = dbCompleteUrl;
             loadDatabase();
         }
         else if (!m_enabled && m_geoIPDatabase) {
@@ -420,7 +434,17 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
     }
 
     QString error;
-    GeoIPDatabase *geoIPDatabase = GeoIPDatabase::load(data, error);
+    const QHash<QString, QByteArray> files = Utils::Tar::untar(data, error);
+
+    GeoIPDatabase *geoIPDatabase = nullptr;
+    for (auto iter = files.cbegin(); iter != files.cend(); ++iter) {
+        if (!iter.key().endsWith(GEOIP_FILENAME))
+            continue;
+
+        geoIPDatabase = GeoIPDatabase::load(iter.value(), error);
+        break;
+    }
+
     if (geoIPDatabase) {
         if (!m_geoIPDatabase || (geoIPDatabase->buildEpoch() > m_geoIPDatabase->buildEpoch())) {
             if (m_geoIPDatabase)
@@ -433,11 +457,16 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
                         specialFolderLocation(SpecialFolder::Data) + GEOIP_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
-            QFile targetFile(QString("%1/%2").arg(targetPath, GEOIP_FILENAME));
-            if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(data) == -1))
-                LogMsg(tr("Couldn't save downloaded GeoIP database file."), Log::WARNING);
-            else
-                LogMsg(tr("Successfully updated GeoIP database."), Log::INFO);
+
+            for (auto iter = files.cbegin(); iter != files.cend(); ++iter) {
+                QString targetFileName = iter.key();
+                targetFileName = targetFileName.mid(targetFileName.lastIndexOf('/') + 1);
+                QFile targetFile(QString("%1/%2").arg(targetPath, targetFileName));
+                if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(iter.value()) == -1))
+                    LogMsg(tr("Couldn't save downloaded GeoIP file: %1").arg(targetFileName), Log::WARNING);
+                else
+                    LogMsg(tr("Successfully updated GeoIP file: %1").arg(targetFileName), Log::INFO);
+            }
         }
         else {
             delete geoIPDatabase;

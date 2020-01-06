@@ -66,7 +66,7 @@ private:
               m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
               m_checkBoxMultiConnectionsPerIp, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
-    QLineEdit m_lineEditAnnounceIP;
+    QLineEdit m_lineEditAnnounceIP, m_lineEditGeoIPLicense;
 
     // OS dependent settings
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))

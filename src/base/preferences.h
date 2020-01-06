@@ -258,6 +258,8 @@ public:
     void recheckTorrentsOnCompletion(bool recheck);
     bool resolvePeerCountries() const;
     void resolvePeerCountries(bool resolve);
+    QString geoIPLicenseKey() const;
+    void setGeoIPLicenseKey(const QString &key);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))

@@ -896,6 +896,16 @@ void Preferences::resolvePeerCountries(const bool resolve)
     setValue("Preferences/Connection/ResolvePeerCountries", resolve);
 }
 
+QString Preferences::geoIPLicenseKey() const
+{
+    return value("GeoIP/LicenseKey").toString();
+}
+
+void Preferences::setGeoIPLicenseKey(const QString &key)
+{
+    setValue("GeoIP/LicenseKey", key);
+}
+
 bool Preferences::resolvePeerHostNames() const
 {
     return value("Preferences/Connection/ResolvePeerHostNames", false).toBool();

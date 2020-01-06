@@ -76,6 +76,7 @@ enum AdvSettingsRows
     LIST_REFRESH,
     RESOLVE_HOSTS,
     RESOLVE_COUNTRIES,
+    GEOIP_LICENSE_KEY,
     PROGRAM_NOTIFICATIONS,
     TORRENT_ADDED_NOTIFICATIONS,
     CONFIRM_REMOVE_ALL_TAGS,
@@ -211,6 +212,7 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setRefreshInterval(m_spinBoxListRefresh.value());
     // Peer resolution
     pref->resolvePeerCountries(m_checkBoxResolveCountries.isChecked());
+    pref->setGeoIPLicenseKey(m_lineEditGeoIPLicense.text().trimmed());
     pref->resolvePeerHostNames(m_checkBoxResolveHosts.isChecked());
     // Super seeding
     session->setSuperSeedingEnabled(m_checkBoxSuperSeeding.isChecked());
@@ -492,6 +494,10 @@ void AdvancedSettings::loadAdvancedSettings()
     // Resolve Peer countries
     m_checkBoxResolveCountries.setChecked(pref->resolvePeerCountries());
     addRow(RESOLVE_COUNTRIES, tr("Resolve peer countries (GeoIP)"), &m_checkBoxResolveCountries);
+    // Resolve Peer countries
+    m_lineEditGeoIPLicense.setText(pref->geoIPLicenseKey());
+    addRow(GEOIP_LICENSE_KEY, (tr("GeoIP license key") + ' ' + makeLink("https://github.com/qbittorrent/qBittorrent/wiki/How-to-use-MaxMind's-GeoIP-database", "(?)"))
+           , &m_lineEditGeoIPLicense);
     // Resolve peer hosts
     m_checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &m_checkBoxResolveHosts);
