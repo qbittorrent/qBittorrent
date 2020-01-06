@@ -373,6 +373,7 @@ Session::Session(QObject *parent)
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
+    , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 1)    
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
@@ -1078,7 +1079,6 @@ void Session::initializeNativeSession()
     pack.set_str(lt::settings_pack::user_agent, USER_AGENT);
     pack.set_bool(lt::settings_pack::use_dht_as_fallback, false);
     // Speed up exit
-    pack.set_int(lt::settings_pack::stop_tracker_timeout, 1);
     pack.set_int(lt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
     pack.set_int(lt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
     pack.set_int(lt::settings_pack::connection_speed, 20); // default is 10
@@ -1304,7 +1304,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
-
+    settingsPack.set_int(lt::settings_pack::stop_tracker_timeout, stopTrackerTimeout());
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
@@ -3146,6 +3146,20 @@ void Session::setAsyncIOThreads(const int num)
         return;
 
     m_asyncIOThreads = num;
+    configureDeferred();
+}
+
+int Session::stopTrackerTimeout() const
+{
+    return m_stopTrackerTimeout;
+}
+
+void Session::setStopTrackerTimeout(const int value)
+{
+    if (value == m_stopTrackerTimeout)
+        return;
+
+    m_stopTrackerTimeout = value;
     configureDeferred();
 }
 
