@@ -89,6 +89,7 @@ enum AdvSettingsRows
     // libtorrent section
     LIBTORRENT_HEADER,
     ASYNC_IO_THREADS,
+    STOP_TRACKER_TIMEOUT,
     FILE_POOL_SIZE,
     CHECKING_MEM_USAGE,
     // cache
@@ -177,6 +178,8 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
+    // Stop tracker timeout
+    session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // File pool size
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
@@ -376,7 +379,11 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
             , &m_spinBoxAsyncIOThreads);
-
+    // stop tracker timeout
+    m_spinBoxStopTrackerTimeout.setValue(session->stopTrackerTimeout());
+    m_spinBoxStopTrackerTimeout.setSuffix(tr(" s", " seconds"));
+    addRow(STOP_TRACKER_TIMEOUT, (tr("Stop tracker timeout") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout", "(?)"))
+           , &m_spinBoxStopTrackerTimeout);
     // File pool size
     m_spinBoxFilePoolSize.setMinimum(1);
     m_spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());
