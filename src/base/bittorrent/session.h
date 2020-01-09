@@ -325,8 +325,6 @@ namespace BitTorrent
         void setAnnounceToAllTiers(bool val);
         int asyncIOThreads() const;
         void setAsyncIOThreads(int num);
-        int stopTrackerTimeout() const;
-        void setStopTrackerTimeout(int value);
         int filePoolSize() const;
         void setFilePoolSize(int size);
         int checkingMemUsage() const;
@@ -371,6 +369,8 @@ namespace BitTorrent
         void setIncludeOverheadInLimits(bool include);
         QString announceIP() const;
         void setAnnounceIP(const QString &ip);
+        int stopTrackerTimeout() const;
+        void setStopTrackerTimeout(int value);
         bool isSuperSeedingEnabled() const;
         void setSuperSeedingEnabled(bool enabled);
         int maxConnections() const;
@@ -606,7 +606,6 @@ namespace BitTorrent
         CachedSettingValue<bool> m_announceToAllTrackers;
         CachedSettingValue<bool> m_announceToAllTiers;
         CachedSettingValue<int> m_asyncIOThreads;
-        CachedSettingValue<int> m_stopTrackerTimeout;
         CachedSettingValue<int> m_filePoolSize;
         CachedSettingValue<int> m_checkingMemUsage;
         CachedSettingValue<int> m_diskCacheSize;
@@ -632,6 +631,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
+        CachedSettingValue<int> m_stopTrackerTimeout;
         CachedSettingValue<bool> m_isSuperSeedingEnabled;
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxUploads;

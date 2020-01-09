@@ -373,7 +373,6 @@ Session::Session(QObject *parent)
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
-    , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 1)    
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
@@ -403,6 +402,7 @@ Session::Session(QObject *parent)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY("IgnoreLimitsOnLAN"), false)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
+    , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 1)
     , m_isSuperSeedingEnabled(BITTORRENT_SESSION_KEY("SuperSeedingEnabled"), false)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), -1, lowerLimited(0, -1))
@@ -1304,7 +1304,6 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
-    settingsPack.set_int(lt::settings_pack::stop_tracker_timeout, stopTrackerTimeout());
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
@@ -1360,6 +1359,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
     settingsPack.set_str(lt::settings_pack::announce_ip, announceIP().toStdString());
+    // Stop tracker timeout
+    settingsPack.set_int(lt::settings_pack::stop_tracker_timeout, stopTrackerTimeout());
     // Super seeding
     settingsPack.set_bool(lt::settings_pack::strict_super_seeding, isSuperSeedingEnabled());
     // * Max connections limit
@@ -3149,20 +3150,6 @@ void Session::setAsyncIOThreads(const int num)
     configureDeferred();
 }
 
-int Session::stopTrackerTimeout() const
-{
-    return m_stopTrackerTimeout;
-}
-
-void Session::setStopTrackerTimeout(const int value)
-{
-    if (value == m_stopTrackerTimeout)
-        return;
-
-    m_stopTrackerTimeout = value;
-    configureDeferred();
-}
-
 int Session::filePoolSize() const
 {
     return m_filePoolSize;
@@ -3515,6 +3502,20 @@ void Session::setAnnounceIP(const QString &ip)
         m_announceIP = ip;
         configureDeferred();
     }
+}
+
+int Session::stopTrackerTimeout() const
+{
+    return m_stopTrackerTimeout;
+}
+
+void Session::setStopTrackerTimeout(const int value)
+{
+    if (value == m_stopTrackerTimeout)
+        return;
+
+    m_stopTrackerTimeout = value;
+    configureDeferred();
 }
 
 bool Session::isSuperSeedingEnabled() const
