@@ -880,14 +880,6 @@
             </tr>
             <tr>
                 <td>
-                    <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
-                </td>
-                <td>
-                    <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label for="filePoolSize">QBT_TR(File pool size:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#file_pool_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1080,6 +1072,14 @@
                     <input type="text" id="announceIP" style="width: 15em;" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
+                </td>
+             </tr>
         </table>
     </fieldset>
 </div>
@@ -1742,7 +1742,6 @@
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
-                        $('stopTrackerTimeout').setProperty('value', pref.stop_tracker_timeout);
                         $('filePoolSize').setProperty('value', pref.file_pool_size);
                         $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
                         $('diskCache').setProperty('value', pref.disk_cache);
@@ -1766,6 +1765,7 @@
                         $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
                         $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
                         $('announceIP').setProperty('value', pref.announce_ip);
+                        $('stopTrackerTimeout').setProperty('value', pref.stop_tracker_timeout);
                     }
                 }
             }).send();
@@ -2107,7 +2107,6 @@
 
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
-            settings.set('stop_tracker_timeout', $('stopTrackerTimeout').getProperty('value'));
             settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
             settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
             settings.set('disk_cache', $('diskCache').getProperty('value'));
@@ -2131,6 +2130,7 @@
             settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
             settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
             settings.set('announce_ip', $('announceIP').getProperty('value'));
+            settings.set('stop_tracker_timeout', $('stopTrackerTimeout').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);
