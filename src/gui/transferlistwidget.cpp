@@ -141,6 +141,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     m_sortFilterModel->setFilterKeyColumn(TransferListModel::TR_NAME);
     m_sortFilterModel->setFilterRole(Qt::DisplayRole);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    m_sortFilterModel->setSortRole(TransferListModel::UnderlyingDataRole);
 
     setModel(m_sortFilterModel);
 
