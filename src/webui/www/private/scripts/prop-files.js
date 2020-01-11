@@ -524,7 +524,7 @@ window.qBittorrent.PropFiles = (function() {
                 const hash = torrentsTable.getCurrentTorrentHash();
                 if (!hash) return;
                 const rowId = torrentFilesTable.selectedRowsIds()[0];
-                if (!rowId) return;
+                if (rowId === undefined) return;
                 const row = torrentFilesTable.rows[rowId];
                 if (!row) return;
                 const node = torrentFilesTable.getNode(rowId);
