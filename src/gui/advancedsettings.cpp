@@ -89,7 +89,6 @@ enum AdvSettingsRows
     // libtorrent section
     LIBTORRENT_HEADER,
     ASYNC_IO_THREADS,
-    STOP_TRACKER_TIMEOUT,
     FILE_POOL_SIZE,
     CHECKING_MEM_USAGE,
     // cache
@@ -118,6 +117,7 @@ enum AdvSettingsRows
     ANNOUNCE_ALL_TRACKERS,
     ANNOUNCE_ALL_TIERS,
     ANNOUNCE_IP,
+    STOP_TRACKER_TIMEOUT,
 
     ROW_COUNT
 };
@@ -178,8 +178,6 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
-    // Stop tracker timeout
-    session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // File pool size
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
@@ -237,7 +235,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.toString());
-
+    // Stop tracker timeout
+    session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Program notification
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
@@ -379,11 +378,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
             , &m_spinBoxAsyncIOThreads);
-    // stop tracker timeout
-    m_spinBoxStopTrackerTimeout.setValue(session->stopTrackerTimeout());
-    m_spinBoxStopTrackerTimeout.setSuffix(tr(" s", " seconds"));
-    addRow(STOP_TRACKER_TIMEOUT, (tr("Stop tracker timeout") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout", "(?)"))
-           , &m_spinBoxStopTrackerTimeout);
     // File pool size
     m_spinBoxFilePoolSize.setMinimum(1);
     m_spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());
@@ -531,6 +525,11 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);
+    // stop tracker timeout
+    m_spinBoxStopTrackerTimeout.setValue(session->stopTrackerTimeout());
+    m_spinBoxStopTrackerTimeout.setSuffix(tr(" s", " seconds"));
+    addRow(STOP_TRACKER_TIMEOUT, (tr("Stop tracker timeout") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout", "(?)"))
+           , &m_spinBoxStopTrackerTimeout);
 
     // Program notifications
     const MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
