@@ -133,14 +133,56 @@
                <string>Interface</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_81">
-               <item row="0" column="0">
+               <item row="3" column="0" colspan="3">
+                <widget class="QGroupBox" name="checkUseCustomTheme">
+                 <property name="title">
+                  <string>Use custom UI Theme</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_18">
+                  <item>
+                   <widget class="QLabel" name="label_16">
+                    <property name="text">
+                     <string>UI Theme file:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="FileSystemPathLineEdit" name="customThemeFilePath" native="true"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <spacer name="horizontalSpacer_111">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>200</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="0">
                 <widget class="QLabel" name="label_9">
                  <property name="text">
                   <string>Language:</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
+               <item row="2" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkUseSystemIcon">
+                 <property name="text">
+                  <string>Use system icon theme</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
                 <widget class="QComboBox" name="comboI18n">
                  <property name="minimumSize">
                   <size>
@@ -156,56 +198,15 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2">
-                <widget class="QLabel" name="lbl_i18n_info_2">
-                 <property name="font">
-                  <font>
-                   <italic>true</italic>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>(Requires restart)</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="3">
-                <spacer name="horizontalSpacer_111">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>200</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="0">
+               <item row="0" column="0" colspan="2">
                 <widget class="QLabel" name="label_15">
-                 <property name="text">
-                  <string>Theme:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="comboTheme"/>
-               </item>
-               <item row="1" column="2">
-                <widget class="QLabel" name="lbl_i18n_info_3">
                  <property name="font">
                   <font>
                    <italic>true</italic>
                   </font>
                  </property>
                  <property name="text">
-                  <string>(Requires restart)</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                  <string>Changing Interface settings requires application restart</string>
                  </property>
                 </widget>
                </item>
@@ -3258,6 +3259,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
+  <tabstop>checkUseSystemIcon</tabstop>
+  <tabstop>checkUseCustomTheme</tabstop>
+  <tabstop>customThemeFilePath</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
