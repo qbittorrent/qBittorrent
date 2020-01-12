@@ -69,9 +69,7 @@ private:
     QLineEdit m_lineEditAnnounceIP;
 
     // OS dependent settings
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    QCheckBox m_checkBoxUseIconTheme;
-#elif defined(Q_OS_WIN)
+#if defined(Q_OS_WIN)
     QComboBox m_comboBoxOSMemoryPriority;
 #endif
 };
