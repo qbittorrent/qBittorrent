@@ -175,7 +175,17 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Languages supported
     initializeLanguageCombo();
 
-    initializeThemeCombo();
+    m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
+    m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
+    m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
+    m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
+    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme)"));
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_ui->checkUseSystemIcon->setChecked(Preferences::instance()->useSystemIconTheme());
+#else
+    m_ui->checkUseSystemIcon->setVisible(false);
+#endif
 
     // Load week days (scheduler)
     m_ui->comboBoxScheduleDays->addItems(translatedWeekdayNames());
@@ -218,7 +228,11 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Apply button is activated when a value is changed
     // Behavior tab
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboTheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -499,38 +513,6 @@ void OptionsDialog::initializeLanguageCombo()
     }
 }
 
-void OptionsDialog::initializeThemeCombo()
-{
-    m_ui->comboTheme->addItem(tr("Default"));
-    const QString customUIThemePath = Preferences::instance()->customUIThemePath();
-    if (!customUIThemePath.isEmpty())
-        m_ui->comboTheme->addItem(Utils::Fs::toNativePath(customUIThemePath));
-    m_ui->comboTheme->insertSeparator(m_ui->comboTheme->count());
-    m_ui->comboTheme->addItem(tr("Select..."));
-    m_ui->comboTheme->setCurrentIndex(Preferences::instance()->useCustomUITheme() ? 1 : 0);
-
-    connect(m_ui->comboTheme, qOverload<int>(&QComboBox::currentIndexChanged), this, [this](const int index)
-    {
-        if (index != (m_ui->comboTheme->count() - 1))
-            return;
-
-        m_uiThemeFilePath = QFileDialog::getOpenFileName(this, tr("Select qBittorrent theme file"), {}, tr("qBittorrent Theme File (*.qbtheme)"));
-        m_ui->comboTheme->blockSignals(true);
-        if (!m_uiThemeFilePath.isEmpty()) {
-            if (m_ui->comboTheme->count() == 3)
-                m_ui->comboTheme->insertItem(1, Utils::Fs::toNativePath(m_uiThemeFilePath));
-            else
-                m_ui->comboTheme->setItemText(1, Utils::Fs::toNativePath(m_uiThemeFilePath));
-            m_ui->comboTheme->setCurrentIndex(1);
-        }
-        else {
-            // don't leave "Select..." as current text
-            m_ui->comboTheme->setCurrentIndex(Preferences::instance()->useCustomUITheme() ? 1 : 0);
-        }
-        m_ui->comboTheme->blockSignals(false);
-    });
-}
-
 // Main destructor
 OptionsDialog::~OptionsDialog()
 {
@@ -602,13 +584,12 @@ void OptionsDialog::saveOptions()
     // Behavior preferences
     pref->setLocale(locale);
 
-    if (!m_uiThemeFilePath.isEmpty()
-        && (m_ui->comboTheme->currentIndex() == 1)) {
-        // only change if current selection is still new m_uiThemeFilePath
-        pref->setCustomUIThemePath(m_uiThemeFilePath);
-        m_uiThemeFilePath.clear();
-    }
-    pref->setUseCustomUITheme(m_ui->comboTheme->currentIndex() == 1);
+    pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
+    pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    pref->useSystemIconTheme(m_ui->checkUseSystemIcon->isChecked());
+#endif
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());

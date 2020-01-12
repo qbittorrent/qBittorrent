@@ -117,7 +117,6 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
-    void initializeThemeCombo();
     static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
@@ -184,7 +183,6 @@ private:
     AdvancedSettings *m_advancedSettings;
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
-    QString m_uiThemeFilePath;
 };
 
 #endif // OPTIONSDIALOG_H
