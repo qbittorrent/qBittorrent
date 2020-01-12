@@ -42,6 +42,7 @@ namespace
         MIN1_SEC = 60,
         MIN5_SEC = 5 * 60,
         MIN30_SEC = 30 * 60,
+        HOUR2_SEC = 2 * 60 * 60,
         HOUR6_SEC = 6 * 60 * 60,
         HOUR12_SEC = 12 * 60 * 60,
         HOUR24_SEC = 24 * 60 * 60
@@ -49,10 +50,12 @@ namespace
 
     const int MIN5_BUF_SIZE = 5 * 60;
     const int MIN30_BUF_SIZE = 5 * 60;
+    const int HOUR2_BUF_SIZE = 5 * 60;
     const int HOUR6_BUF_SIZE = 5 * 60;
     const int HOUR12_BUF_SIZE = 10 * 60;
     const int HOUR24_BUF_SIZE = 10 * 60;
     const int DIVIDER_30MIN = MIN30_SEC / MIN30_BUF_SIZE;
+    const int DIVIDER_2HOUR = HOUR2_SEC / HOUR2_BUF_SIZE;
     const int DIVIDER_6HOUR = HOUR6_SEC / HOUR6_BUF_SIZE;
     const int DIVIDER_12HOUR = HOUR12_SEC / HOUR12_BUF_SIZE;
     const int DIVIDER_24HOUR = HOUR24_SEC / HOUR24_BUF_SIZE;
@@ -154,11 +157,13 @@ SpeedPlotView::SpeedPlotView(QWidget *parent)
     : QGraphicsView(parent)
     , m_data5Min(MIN5_BUF_SIZE)
     , m_data30Min(MIN30_BUF_SIZE)
+    , m_data2Hour(HOUR2_BUF_SIZE)
     , m_data6Hour(HOUR6_BUF_SIZE)
     , m_data12Hour(HOUR12_BUF_SIZE)
     , m_data24Hour(HOUR24_BUF_SIZE)
     , m_currentData(&m_data5Min)
     , m_averager30Min(DIVIDER_30MIN, m_data30Min)
+    , m_averager2Hour(DIVIDER_2HOUR, m_data2Hour)
     , m_averager6Hour(DIVIDER_6HOUR, m_data6Hour)
     , m_averager12Hour(DIVIDER_12HOUR, m_data12Hour)
     , m_averager24Hour(DIVIDER_24HOUR, m_data24Hour)
@@ -206,6 +211,7 @@ void SpeedPlotView::pushPoint(const SpeedPlotView::PointData &point)
 {
     m_data5Min.push_back(point);
     m_averager30Min.push(point);
+    m_averager2Hour.push(point);
     m_averager6Hour.push(point);
     m_averager12Hour.push(point);
     m_averager24Hour.push(point);
@@ -227,6 +233,10 @@ void SpeedPlotView::setPeriod(const TimePeriod period)
     case SpeedPlotView::MIN30:
         m_viewablePointsCount = MIN30_BUF_SIZE;
         m_currentData = &m_data30Min;
+        break;
+    case SpeedPlotView::HOUR2:
+        m_viewablePointsCount = HOUR2_BUF_SIZE;
+        m_currentData = &m_data2Hour;
         break;
     case SpeedPlotView::HOUR6:
         m_viewablePointsCount = HOUR6_BUF_SIZE;
@@ -250,6 +260,7 @@ void SpeedPlotView::replot()
     if ((m_period == MIN1)
         || (m_period == MIN5)
         || ((m_period == MIN30) && m_averager30Min.isReady())
+        || ((m_period == HOUR2) && m_averager2Hour.isReady())
         || ((m_period == HOUR6) && m_averager6Hour.isReady())
         || ((m_period == HOUR12) && m_averager12Hour.isReady())
         || ((m_period == HOUR24) && m_averager24Hour.isReady()) )
