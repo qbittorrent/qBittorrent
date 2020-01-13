@@ -337,6 +337,8 @@ namespace BitTorrent
         void setUseOSCache(bool use);
         bool isCoalesceReadWriteEnabled() const;
         void setCoalesceReadWriteEnabled(bool enabled);
+        bool usePieceExtentAffinity() const;
+        void setPieceExtentAffinity(bool enabled);
         bool isSuggestModeEnabled() const;
         void setSuggestMode(bool mode);
         int sendBufferWatermark() const;
@@ -610,6 +612,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
+        CachedSettingValue<bool> m_usePieceExtentAffinity;
         CachedSettingValue<bool> m_isSuggestMode;
         CachedSettingValue<int> m_sendBufferWatermark;
         CachedSettingValue<int> m_sendBufferLowWatermark;

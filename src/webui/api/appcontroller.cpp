@@ -281,6 +281,8 @@ void AppController::preferencesAction()
     data["enable_os_cache"] = session->useOSCache();
     // Coalesce reads & writes
     data["enable_coalesce_read_write"] = session->isCoalesceReadWriteEnabled();
+    // Piece Extent Affinity
+    data["enable_piece_extent_affinity"] = session->usePieceExtentAffinity();
     // Suggest mode
     data["enable_upload_suggestions"] = session->isSuggestModeEnabled();
     // Send buffer watermark
@@ -686,6 +688,9 @@ void AppController::setPreferencesAction()
     // Coalesce reads & writes
     if (hasKey("enable_coalesce_read_write"))
         session->setCoalesceReadWriteEnabled(it.value().toBool());
+    // Piece extent affinity
+    if (hasKey("enable_piece_extent_affinity"))
+        session->setPieceExtentAffinity(it.value().toBool());
     // Suggest mode
     if (hasKey("enable_upload_suggestions"))
         session->setSuggestMode(it.value().toBool());
