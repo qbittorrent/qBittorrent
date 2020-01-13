@@ -231,7 +231,7 @@ namespace
 //   - "force_start": Torrent force start state
 //   - "category": Torrent category
 // GET params:
-//   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive
+//   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive, stalled, stalled_uploading, stalled_downloading
 //   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
 //   - sort (string): name of column for sorting by its value
