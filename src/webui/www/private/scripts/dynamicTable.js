@@ -1225,6 +1225,18 @@ window.qBittorrent.DynamicTable = (function() {
                     if (state.indexOf('paused') > -1)
                         return false;
                     break;
+                case 'stalled':
+                    if ((state != 'stalledUP') && (state != 'stalledDL'))
+                        return false;
+                    break;
+                case 'stalled_uploading':
+                    if (state != 'stalledUP')
+                        return false;
+                    break;
+                case 'stalled_downloading':
+                    if (state != 'stalledDL')
+                        return false;
+                    break;
                 case 'inactive':
                     inactive = true;
                     // fallthrough
