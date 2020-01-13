@@ -349,6 +349,7 @@
         <file>skin/filteractive.svg</file>
         <file>skin/filterall.svg</file>
         <file>skin/filterinactive.svg</file>
+        <file>skin/filterstalled.svg</file>
         <file>skin/firewalled.svg</file>
         <file>skin/handle-icon-horizontal.gif</file>
         <file>skin/handle-icon.gif</file>
