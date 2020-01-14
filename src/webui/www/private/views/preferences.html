@@ -928,6 +928,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="pieceExtentAffinity">QBT_TR(Use piece extent affinity (requires libtorrent >= 1.2.2):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://libtorrent.org/single-page-ref.html#piece_extent_affinity" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="pieceExtentAffinity" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="sendUploadPieceSuggestions">QBT_TR(Send upload piece suggestions:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#suggest_mode" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1748,6 +1756,7 @@
                         $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
                         $('enableOSCache').setProperty('checked', pref.enable_os_cache);
                         $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
+                        $('pieceExtentAffinity').setProperty('checked', pref.enable_piece_extent_affinity);
                         $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
                         $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
                         $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
@@ -2113,6 +2122,7 @@
             settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
             settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
             settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
+            settings.set('enable_piece_extent_affinity', $('pieceExtentAffinity').getProperty('checked'));
             settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
             settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));
             settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));

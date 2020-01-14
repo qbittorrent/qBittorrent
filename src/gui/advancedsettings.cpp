@@ -96,6 +96,9 @@ enum AdvSettingsRows
     DISK_CACHE_TTL,
     OS_CACHE,
     COALESCE_RW,
+#if (LIBTORRENT_VERSION_NUM >= 10202)
+    PIECE_EXTENT_AFFINITY,
+#endif
     SUGGEST_MODE,
     SEND_BUF_WATERMARK,
     SEND_BUF_LOW_WATERMARK,
@@ -189,6 +192,10 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUseOSCache(m_checkBoxOsCache.isChecked());
     // Coalesce reads & writes
     session->setCoalesceReadWriteEnabled(m_checkBoxCoalesceRW.isChecked());
+#if (LIBTORRENT_VERSION_NUM >= 10202)
+    // Piece extent affinity
+    session->setPieceExtentAffinity(m_checkBoxPieceExtentAffinity.isChecked());
+#endif
     // Suggest mode
     session->setSuggestMode(m_checkBoxSuggestMode.isChecked());
     // Send buffer watermark
@@ -427,6 +434,11 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
     addRow(COALESCE_RW, (tr("Coalesce reads & writes") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#coalesce_reads", "(?)"))
             , &m_checkBoxCoalesceRW);
+#if (LIBTORRENT_VERSION_NUM >= 10202)
+    // Piece extent affinity
+    m_checkBoxPieceExtentAffinity.setChecked(session->usePieceExtentAffinity());
+    addRow(PIECE_EXTENT_AFFINITY, (tr("Use piece extent affinity") + ' ' + makeLink("https://libtorrent.org/single-page-ref.html#piece_extent_affinity", "(?)")), &m_checkBoxPieceExtentAffinity);
+#endif
     // Suggest mode
     m_checkBoxSuggestMode.setChecked(session->isSuggestModeEnabled());
     addRow(SUGGEST_MODE, (tr("Send upload piece suggestions") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#suggest_mode", "(?)"))
