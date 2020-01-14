@@ -6445,7 +6445,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="51"/>
         <source>General</source>
-        <translation>普通</translation>
+        <translation>通用</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="60"/>
