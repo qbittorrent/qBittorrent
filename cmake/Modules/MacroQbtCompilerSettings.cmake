@@ -72,21 +72,6 @@ macro(qbt_set_compiler_options)
 
         string(APPEND CMAKE_C_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING}")
         string(APPEND CMAKE_CXX_FLAGS " ${_GCC_COMMON_C_AND_CXX_FLAGS_STRING} ${_GCC_COMMON_CXX_FLAGS_STRING}")
-
-        # check whether we can enable -Og optimization for debug build
-        check_cxx_compiler_flag(-Og _DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-
-        if (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            set(QBT_ADDITONAL_FLAGS "-Og -g3 -pipe" CACHE STRING
-                "Additional qBittorent compile flags")
-            set(QBT_ADDITONAL_CXX_FLAGS "-Og -g3 -pipe" CACHE STRING
-                "Additional qBittorent C++ compile flags")
-        else(_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
-            set(QBT_ADDITONAL_FLAGS "-O0 -g3 -pipe" CACHE STRING
-                "Additional qBittorent compile flags")
-            set(QBT_ADDITONAL_CXX_FLAGS "-O0 -g3 -pipe" CACHE STRING
-                "Additional qBittorent C++ compile flags")
-        endif (_DEBUG_OPTIMIZATION_LEVEL_IS_SUPPORTED)
     endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
@@ -98,4 +83,3 @@ macro(qbt_set_compiler_options)
 
 # endif (NOT QBT_ADDITONAL_FLAGS)
 endmacro(qbt_set_compiler_options)
-

@@ -281,6 +281,8 @@ void AppController::preferencesAction()
     data["enable_os_cache"] = session->useOSCache();
     // Coalesce reads & writes
     data["enable_coalesce_read_write"] = session->isCoalesceReadWriteEnabled();
+    // Piece Extent Affinity
+    data["enable_piece_extent_affinity"] = session->usePieceExtentAffinity();
     // Suggest mode
     data["enable_upload_suggestions"] = session->isSuggestModeEnabled();
     // Send buffer watermark
@@ -309,6 +311,8 @@ void AppController::preferencesAction()
     data["announce_to_all_trackers"] = session->announceToAllTrackers();
     data["announce_to_all_tiers"] = session->announceToAllTiers();
     data["announce_ip"] = session->announceIP();
+    // Stop tracker timeout
+    data["stop_tracker_timeout"] = session->stopTrackerTimeout();
 
     setResult(data);
 }
@@ -647,8 +651,8 @@ void AppController::setPreferencesAction()
         });
         const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString {};
 
-	    session->setNetworkInterface(ifaceValue);
-	    session->setNetworkInterfaceName(ifaceName);
+        session->setNetworkInterface(ifaceValue);
+        session->setNetworkInterfaceName(ifaceName);
     }
     // Current network interface address
     if (hasKey("current_interface_address")) {
@@ -686,6 +690,9 @@ void AppController::setPreferencesAction()
     // Coalesce reads & writes
     if (hasKey("enable_coalesce_read_write"))
         session->setCoalesceReadWriteEnabled(it.value().toBool());
+    // Piece extent affinity
+    if (hasKey("enable_piece_extent_affinity"))
+        session->setPieceExtentAffinity(it.value().toBool());
     // Suggest mode
     if (hasKey("enable_upload_suggestions"))
         session->setSuggestMode(it.value().toBool());
@@ -733,6 +740,9 @@ void AppController::setPreferencesAction()
         const QHostAddress announceAddr {it.value().toString().trimmed()};
         session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
     }
+    // Stop tracker timeout
+    if (hasKey("stop_tracker_timeout"))
+        session->setStopTrackerTimeout(it.value().toInt());
 
     // Save preferences
     pref->apply();

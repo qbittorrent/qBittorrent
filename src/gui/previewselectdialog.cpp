@@ -61,6 +61,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Preview"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PreviewSelectDialog::previewButtonClicked);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    connect(m_ui->previewList, &QAbstractItemView::doubleClicked, this, &PreviewSelectDialog::previewButtonClicked);
 
     const Preferences *pref = Preferences::instance();
     // Preview list

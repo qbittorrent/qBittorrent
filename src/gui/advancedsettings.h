@@ -60,11 +60,11 @@ private:
     QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage, m_spinBoxCache,
              m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxListRefresh,
              m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
-             m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxSavePathHistoryLength;
+             m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxStopTrackerTimeout, m_spinBoxSavePathHistoryLength;
     QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts, m_checkBoxSuperSeeding,
               m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
               m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
-              m_checkBoxMultiConnectionsPerIp, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
+              m_checkBoxMultiConnectionsPerIp, m_checkBoxPieceExtentAffinity, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
     QLineEdit m_lineEditAnnounceIP;
 

@@ -96,6 +96,9 @@ enum AdvSettingsRows
     DISK_CACHE_TTL,
     OS_CACHE,
     COALESCE_RW,
+#if (LIBTORRENT_VERSION_NUM >= 10202)
+    PIECE_EXTENT_AFFINITY,
+#endif
     SUGGEST_MODE,
     SEND_BUF_WATERMARK,
     SEND_BUF_LOW_WATERMARK,
@@ -117,6 +120,7 @@ enum AdvSettingsRows
     ANNOUNCE_ALL_TRACKERS,
     ANNOUNCE_ALL_TIERS,
     ANNOUNCE_IP,
+    STOP_TRACKER_TIMEOUT,
 
     ROW_COUNT
 };
@@ -188,6 +192,10 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUseOSCache(m_checkBoxOsCache.isChecked());
     // Coalesce reads & writes
     session->setCoalesceReadWriteEnabled(m_checkBoxCoalesceRW.isChecked());
+#if (LIBTORRENT_VERSION_NUM >= 10202)
+    // Piece extent affinity
+    session->setPieceExtentAffinity(m_checkBoxPieceExtentAffinity.isChecked());
+#endif
     // Suggest mode
     session->setSuggestMode(m_checkBoxSuggestMode.isChecked());
     // Send buffer watermark
@@ -234,7 +242,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.toString());
-
+    // Stop tracker timeout
+    session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Program notification
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
@@ -376,7 +385,6 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
             , &m_spinBoxAsyncIOThreads);
-
     // File pool size
     m_spinBoxFilePoolSize.setMinimum(1);
     m_spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());
@@ -426,6 +434,11 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
     addRow(COALESCE_RW, (tr("Coalesce reads & writes") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#coalesce_reads", "(?)"))
             , &m_checkBoxCoalesceRW);
+#if (LIBTORRENT_VERSION_NUM >= 10202)
+    // Piece extent affinity
+    m_checkBoxPieceExtentAffinity.setChecked(session->usePieceExtentAffinity());
+    addRow(PIECE_EXTENT_AFFINITY, (tr("Use piece extent affinity") + ' ' + makeLink("https://libtorrent.org/single-page-ref.html#piece_extent_affinity", "(?)")), &m_checkBoxPieceExtentAffinity);
+#endif
     // Suggest mode
     m_checkBoxSuggestMode.setChecked(session->isSuggestModeEnabled());
     addRow(SUGGEST_MODE, (tr("Send upload piece suggestions") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#suggest_mode", "(?)"))
@@ -524,6 +537,11 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);
+    // stop tracker timeout
+    m_spinBoxStopTrackerTimeout.setValue(session->stopTrackerTimeout());
+    m_spinBoxStopTrackerTimeout.setSuffix(tr(" s", " seconds"));
+    addRow(STOP_TRACKER_TIMEOUT, (tr("Stop tracker timeout") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout", "(?)"))
+           , &m_spinBoxStopTrackerTimeout);
 
     // Program notifications
     const MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();

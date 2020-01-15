@@ -160,7 +160,7 @@ window.qBittorrent.PropFiles = (function() {
                 setCheckboxPartial(checkbox);
                 break;
         }
-    }
+    };
 
     const isPriorityComboExists = function(id) {
         return ($('comboPrio' + id) !== null);
@@ -524,7 +524,7 @@ window.qBittorrent.PropFiles = (function() {
                 const hash = torrentsTable.getCurrentTorrentHash();
                 if (!hash) return;
                 const rowId = torrentFilesTable.selectedRowsIds()[0];
-                if (!rowId) return;
+                if (rowId === undefined) return;
                 const row = torrentFilesTable.rows[rowId];
                 if (!row) return;
                 const node = torrentFilesTable.getNode(rowId);
@@ -631,7 +631,7 @@ window.qBittorrent.PropFiles = (function() {
             rowElem.addClass("invisible");
         else
             rowElem.removeClass("invisible");
-    }
+    };
 
     /**
      * Update a node's collapsed state and icon
@@ -642,7 +642,6 @@ window.qBittorrent.PropFiles = (function() {
         if (span === null)
             return;
         const td = span.parentElement;
-        const rowElem = td.parentElement;
 
         // store collapsed state
         td.set("data-collapsed", isCollapsed);
@@ -653,7 +652,7 @@ window.qBittorrent.PropFiles = (function() {
             collapseIcon.addClass("rotate");
         else
             collapseIcon.removeClass("rotate");
-    }
+    };
 
     const _isCollapsed = function(node) {
         const span = $('filesTablefileName' + node.rowId);
@@ -692,7 +691,7 @@ window.qBittorrent.PropFiles = (function() {
             });
         });
         torrentFilesTable.altRow();
-    }
+    };
 
     /**
      * Collapses a folder node with the option to recursively collapse all children

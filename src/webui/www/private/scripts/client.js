@@ -584,7 +584,7 @@ window.addEvent('load', function() {
                         torrentsTable.reselectRows(torrentsTableSelectedRows);
                 }
                 syncRequestInProgress = false;
-                syncData(getSyncMainDataInterval())
+                syncData(getSyncMainDataInterval());
             }
         });
         syncRequestInProgress = true;
@@ -601,7 +601,7 @@ window.addEvent('load', function() {
             clearTimeout(syncMainDataTimer);
             syncMainDataTimer = syncMainData.delay(delay);
         }
-    }
+    };
 
     const processServerState = function() {
         let transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true);

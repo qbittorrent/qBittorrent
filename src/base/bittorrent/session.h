@@ -337,6 +337,8 @@ namespace BitTorrent
         void setUseOSCache(bool use);
         bool isCoalesceReadWriteEnabled() const;
         void setCoalesceReadWriteEnabled(bool enabled);
+        bool usePieceExtentAffinity() const;
+        void setPieceExtentAffinity(bool enabled);
         bool isSuggestModeEnabled() const;
         void setSuggestMode(bool mode);
         int sendBufferWatermark() const;
@@ -369,6 +371,8 @@ namespace BitTorrent
         void setIncludeOverheadInLimits(bool include);
         QString announceIP() const;
         void setAnnounceIP(const QString &ip);
+        int stopTrackerTimeout() const;
+        void setStopTrackerTimeout(int value);
         bool isSuperSeedingEnabled() const;
         void setSuperSeedingEnabled(bool enabled);
         int maxConnections() const;
@@ -610,6 +614,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
+        CachedSettingValue<bool> m_usePieceExtentAffinity;
         CachedSettingValue<bool> m_isSuggestMode;
         CachedSettingValue<int> m_sendBufferWatermark;
         CachedSettingValue<int> m_sendBufferLowWatermark;
@@ -629,6 +634,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
+        CachedSettingValue<int> m_stopTrackerTimeout;
         CachedSettingValue<bool> m_isSuperSeedingEnabled;
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxUploads;
