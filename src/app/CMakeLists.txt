@@ -36,7 +36,7 @@ include(QbtTranslations)
 file(GLOB QBT_TS_FILES ../lang/*.ts)
 qbt_add_translations(qBittorrent QRC_FILE "../lang/lang.qrc" TS_FILES ${QBT_TS_FILES})
 
-if (WEBUI)
+if (NOT DISABLE_WEBUI)
     file(GLOB QBT_WEBUI_TS_FILES ../webui/www/translations/*.ts)
     qbt_add_translations(qBittorrent QRC_FILE "../webui/www/translations/webui_translations.qrc" TS_FILES ${QBT_WEBUI_TS_FILES})
 endif()
@@ -97,9 +97,9 @@ else(Qt5Widgets_FOUND)
     )
 endif (Qt5Widgets_FOUND)
 
-if (WEBUI)
+if (NOT DISABLE_WEBUI)
     target_link_libraries(qBittorrent PRIVATE qbt_webui)
-endif (WEBUI)
+endif()
 
 # we have to include resources into the bundle
 if (APPLE)
