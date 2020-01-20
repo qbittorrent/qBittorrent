@@ -82,10 +82,6 @@ enum AdvSettingsRows
     DOWNLOAD_TRACKER_FAVICON,
     SAVE_PATH_HISTORY_LENGTH,
     ENABLE_SPEED_WIDGET,
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    USE_ICON_THEME,
-#endif
-
     // libtorrent section
     LIBTORRENT_HEADER,
     ASYNC_IO_THREADS,
@@ -261,10 +257,6 @@ void AdvancedSettings::saveAdvancedSettings()
     // Seed choking algorithm
     session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(m_comboBoxSeedChokingAlgorithm.currentIndex()));
 
-    // Icon theme
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    pref->useSystemIconTheme(m_checkBoxUseIconTheme.isChecked());
-#endif
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
 
     pref->setConfirmRemoveAllTags(m_checkBoxConfirmRemoveAllTags.isChecked());
@@ -579,10 +571,6 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", "(?)"))
             , &m_comboBoxSeedChokingAlgorithm);
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    m_checkBoxUseIconTheme.setChecked(pref->useSystemIconTheme());
-    addRow(USE_ICON_THEME, tr("Use system icon theme"), &m_checkBoxUseIconTheme);
-#endif
     // Torrent recheck confirmation
     m_checkBoxConfirmTorrentRecheck.setChecked(pref->confirmTorrentRecheck());
     addRow(CONFIRM_RECHECK_TORRENT, tr("Confirm torrent recheck"), &m_checkBoxConfirmTorrentRecheck);
