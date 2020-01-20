@@ -75,6 +75,6 @@ if (Qt5Widgets_FOUND)
     add_subdirectory(gui)
 endif ()
 
-if (WEBUI)
+if (NOT DISABLE_WEBUI)
     add_subdirectory(webui)
-endif (WEBUI)
+endif()
