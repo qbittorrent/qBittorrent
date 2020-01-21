@@ -2294,6 +2294,9 @@
                </item>
                <item row="0" column="1">
                 <widget class="QSpinBox" name="spinMaxActiveDownloads">
+                 <property name="specialValueText">
+                  <string>∞</string>
+                 </property>
                  <property name="minimum">
                   <number>-1</number>
                  </property>
@@ -2314,6 +2317,9 @@
                </item>
                <item row="1" column="1">
                 <widget class="QSpinBox" name="spinMaxActiveUploads">
+                 <property name="specialValueText">
+                  <string>∞</string>
+                 </property>
                  <property name="minimum">
                   <number>-1</number>
                  </property>
@@ -2334,6 +2340,9 @@
                </item>
                <item row="2" column="1">
                 <widget class="QSpinBox" name="spinMaxActiveTorrents">
+                 <property name="specialValueText">
+                  <string>∞</string>
+                 </property>
                  <property name="minimum">
                   <number>-1</number>
                  </property>
