@@ -205,8 +205,8 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
 
 QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent, const int column) const
 {
-    const bool isHideState = (Preferences::instance()->getHideZeroComboValues() == 1)
-            && (torrent->state() == BitTorrent::TorrentState::PausedDownloading); // paused torrents only
+    const bool isHideState = (Preferences::instance()->getHideZeroComboValues() == 0)
+            || (torrent->state() == BitTorrent::TorrentState::PausedDownloading); // paused torrents only
     const bool hideValues = Preferences::instance()->getHideZeroValues() && isHideState;
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
