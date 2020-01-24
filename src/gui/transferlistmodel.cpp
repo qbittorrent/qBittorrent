@@ -105,6 +105,9 @@ TransferListModel::TransferListModel(QObject *parent)
         {BitTorrent::TorrentState::Error, getColorByState(BitTorrent::TorrentState::Error)}
     }
 {
+    configure();
+    connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
+
     // Load the torrents
     using namespace BitTorrent;
     for (TorrentHandle *const torrent : asConst(Session::instance()->torrents()))
@@ -205,9 +208,11 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
 
 QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent, const int column) const
 {
-    const bool isHideState = (Preferences::instance()->getHideZeroComboValues() == 1)
-            && (torrent->state() == BitTorrent::TorrentState::PausedDownloading); // paused torrents only
-    const bool hideValues = Preferences::instance()->getHideZeroValues() && isHideState;
+    bool hideValues = false;
+    if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
+        hideValues = true;
+    else if (m_hideZeroValuesMode != HideZeroValuesMode::Never)
+        hideValues = (torrent->state() == BitTorrent::TorrentState::PausedDownloading);
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
     {
@@ -572,6 +577,24 @@ void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::TorrentH
     else {
         // save the overhead when more than half of the torrent list needs update
         emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
+    }
+}
+
+void TransferListModel::configure()
+{
+    const Preferences *pref = Preferences::instance();
+
+    HideZeroValuesMode hideZeroValuesMode = HideZeroValuesMode::Never;
+    if (pref->getHideZeroValues()) {
+        if (pref->getHideZeroComboValues() == 1)
+            hideZeroValuesMode = HideZeroValuesMode::Paused;
+        else
+            hideZeroValuesMode = HideZeroValuesMode::Always;
+    }
+
+    if (m_hideZeroValuesMode != hideZeroValuesMode) {
+        m_hideZeroValuesMode = hideZeroValuesMode;
+        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
     }
 }
 

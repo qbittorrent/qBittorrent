@@ -111,6 +111,7 @@ private slots:
     void handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
 
 private:
+    void configure();
     QString displayValue(const BitTorrent::TorrentHandle *torrent, int column) const;
     QVariant internalValue(const BitTorrent::TorrentHandle *torrent, int column, bool alt = false) const;
 
@@ -119,6 +120,15 @@ private:
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
     QHash<BitTorrent::TorrentState, QColor> m_stateForegroundColors;
+
+    enum class HideZeroValuesMode
+    {
+        Never,
+        Paused,
+        Always
+    };
+
+    HideZeroValuesMode m_hideZeroValuesMode = HideZeroValuesMode::Never;
 };
 
 #endif // TRANSFERLISTMODEL_H
