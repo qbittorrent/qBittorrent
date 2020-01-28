@@ -38,6 +38,8 @@ class QStandardItemModel;
 class PeerListSortModel;
 class PropertiesWidget;
 
+struct PeerEndpoint;
+
 namespace BitTorrent
 {
     class TorrentHandle;
@@ -73,7 +75,7 @@ private slots:
     void handleResolved(const QString &ip, const QString &hostname);
 
 private:
-    void updatePeer(const QString &ip, const BitTorrent::TorrentHandle *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
+    void updatePeer(const BitTorrent::TorrentHandle *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
 
     void wheelEvent(QWheelEvent *event) override;
 
@@ -81,7 +83,7 @@ private:
     PeerListSortModel *m_proxyModel = nullptr;
     PropertiesWidget *m_properties = nullptr;
     Net::ReverseResolution *m_resolver = nullptr;
-    QHash<QString, QStandardItem *> m_peerItems;
+    QHash<PeerEndpoint, QStandardItem *> m_peerItems;
     bool m_resolveCountries;
 };
 
