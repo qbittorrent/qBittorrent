@@ -42,4 +42,7 @@ namespace BitTorrent
         static PeerAddress parse(const QString &address);
         QString toString() const;
     };
+
+    bool operator==(const PeerAddress &left, const PeerAddress &right);
+    uint qHash(const PeerAddress &addr, uint seed);
 }
