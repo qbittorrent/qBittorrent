@@ -33,6 +33,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>
+#include <QHostAddress>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSet>
@@ -405,7 +406,7 @@ void PeerListWidget::updatePeer(const BitTorrent::TorrentHandle *torrent, const 
     m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join('\n'), Qt::ToolTipRole);
 
     if (m_resolver)
-        m_resolver->resolve(peerIp);
+        m_resolver->resolve(peerEndpoint.address.ip);
 
     if (m_resolveCountries) {
         const QIcon icon = UIThemeManager::instance()->getFlagIcon(peer.country());
@@ -417,10 +418,10 @@ void PeerListWidget::updatePeer(const BitTorrent::TorrentHandle *torrent, const 
     }
 }
 
-void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)
+void PeerListWidget::handleResolved(const QHostAddress &ip, const QString &hostname) const
 {
     for (auto iter = m_peerItems.cbegin(); iter != m_peerItems.cend(); ++iter) {
-        if (iter.key().address.ip.toString() == ip) {
+        if (iter.key().address.ip == ip) {
             QStandardItem *item {iter.value()};
             item->setData(hostname, Qt::DisplayRole);
             break;

@@ -32,6 +32,7 @@
 #include <QHash>
 #include <QTreeView>
 
+class QHostAddress;
 class QStandardItem;
 class QStandardItemModel;
 
@@ -72,7 +73,7 @@ private slots:
     void banSelectedPeers();
     void copySelectedPeers();
     void handleSortColumnChanged(int col);
-    void handleResolved(const QString &ip, const QString &hostname);
+    void handleResolved(const QHostAddress &ip, const QString &hostname) const;
 
 private:
     void updatePeer(const BitTorrent::TorrentHandle *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
