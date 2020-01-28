@@ -82,7 +82,7 @@ namespace libtorrent
         template <typename T, typename Tag>
         uint qHash(const strong_typedef<T, Tag> &key, const uint seed)
         {
-            return static_cast<uint>((std::hash<strong_typedef<T, Tag>> {})(key) ^ seed);
+            return ::qHash((std::hash<strong_typedef<T, Tag>> {})(key), seed);
         }
     }
 }
