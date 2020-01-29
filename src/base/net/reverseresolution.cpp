@@ -52,6 +52,9 @@ ReverseResolution::ReverseResolution(QObject *parent)
 
 ReverseResolution::~ReverseResolution()
 {
+    // abort on-going lookups instead of waiting them
+    for (auto iter = m_lookups.cbegin(); iter != m_lookups.cend(); ++iter)
+        QHostInfo::abortHostLookup(iter.key());
 }
 
 void ReverseResolution::resolve(const QHostAddress &ip)
