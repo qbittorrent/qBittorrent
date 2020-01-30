@@ -428,6 +428,9 @@ void PeerListWidget::updatePeer(const BitTorrent::TorrentHandle *torrent, const 
 
 void PeerListWidget::handleResolved(const QHostAddress &ip, const QString &hostname) const
 {
+    if (hostname.isEmpty())
+        return;
+
     const QSet<QStandardItem *> items = m_itemsByIP.value(ip);
     for (QStandardItem *item : items)
         item->setData(hostname, Qt::DisplayRole);

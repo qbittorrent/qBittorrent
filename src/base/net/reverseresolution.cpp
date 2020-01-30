@@ -59,15 +59,9 @@ ReverseResolution::~ReverseResolution()
 
 void ReverseResolution::resolve(const QHostAddress &ip)
 {
-    if (ip.isNull())
-        return;
-
     const QString *hostname = m_cache.object(ip);
     if (hostname) {
-        if (hostname->isEmpty())
-            ;  // resolution didn't get meaningful results, so do nothing
-        else
-            emit ipResolved(ip, *hostname);
+        emit ipResolved(ip, *hostname);
         return;
     }
 
@@ -80,15 +74,14 @@ void ReverseResolution::hostResolved(const QHostInfo &host)
 {
     const QHostAddress ip = m_lookups.take(host.lookupId());
 
-    if (host.error() != QHostInfo::NoError)
+    if (host.error() != QHostInfo::NoError) {
+        emit ipResolved(ip, {});
         return;
+    }
 
-    const QString hostname = host.hostName();
-    if (isUsefulHostName(hostname, ip)) {
-        m_cache.insert(ip, new QString(hostname));
-        emit ipResolved(ip, hostname);
-    }
-    else {
-        m_cache.insert(ip, new QString());
-    }
+    const QString hostname = isUsefulHostName(host.hostName(), ip)
+        ? host.hostName()
+        : QString();
+    m_cache.insert(ip, new QString(hostname));
+    emit ipResolved(ip, hostname);
 }
