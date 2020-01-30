@@ -68,3 +68,13 @@ QString PeerAddress::toString() const
         : ip.toString();
     return (ipStr + ':' + QString::number(port));
 }
+
+bool BitTorrent::operator==(const BitTorrent::PeerAddress &left, const BitTorrent::PeerAddress &right)
+{
+    return (left.ip == right.ip) && (left.port == right.port);
+}
+
+uint BitTorrent::qHash(const BitTorrent::PeerAddress &addr, const uint seed)
+{
+    return (::qHash(addr.ip, seed) ^ ::qHash(addr.port));
+}
