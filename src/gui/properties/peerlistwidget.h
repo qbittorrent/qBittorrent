@@ -30,6 +30,7 @@
 #define PEERLISTWIDGET_H
 
 #include <QHash>
+#include <QSet>
 #include <QTreeView>
 
 class QHostAddress;
@@ -85,6 +86,7 @@ private:
     PropertiesWidget *m_properties = nullptr;
     Net::ReverseResolution *m_resolver = nullptr;
     QHash<PeerEndpoint, QStandardItem *> m_peerItems;
+    QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
     bool m_resolveCountries;
 };
 
