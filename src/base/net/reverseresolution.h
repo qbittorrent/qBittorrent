@@ -32,6 +32,7 @@
 #include <QCache>
 #include <QObject>
 
+class QHostAddress;
 class QHostInfo;
 class QString;
 
@@ -46,17 +47,17 @@ namespace Net
         explicit ReverseResolution(QObject *parent = nullptr);
         ~ReverseResolution();
 
-        void resolve(const QString &ip);
+        void resolve(const QHostAddress &ip);
 
     signals:
-        void ipResolved(const QString &ip, const QString &hostname);
+        void ipResolved(const QHostAddress &ip, const QString &hostname);
 
     private slots:
         void hostResolved(const QHostInfo &host);
 
     private:
-        QHash<int /* LookupID */, QString /* IP */> m_lookups;
-        QCache<QString /* IP */, QString /* HostName */> m_cache;
+        QHash<int, QHostAddress> m_lookups;  // <LookupID, IP>
+        QCache<QHostAddress, QString> m_cache;  // <IP, HostName>
     };
 }
 
