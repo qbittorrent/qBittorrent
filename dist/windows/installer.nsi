@@ -119,6 +119,18 @@ Section $(inst_startmenu) ;"Create Start Menu Shortcut"
 
 SectionEnd
 
+Section /o $(inst_startup) ;"Start qBittorrent on Windows start up"
+
+  !insertmacro UAC_AsUser_Call Function inst_startup_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
+
+SectionEnd
+
+Function inst_startup_user
+
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "qBittorrent" "$INSTDIR\qbittorrent.exe"
+
+FunctionEnd
+
 Section $(inst_torrent) ;"Open .torrent files with qBittorrent"
 
   ReadRegStr $0 HKLM "Software\Classes\.torrent" ""
