@@ -77,10 +77,8 @@ void Preferences::initInstance()
 
 void Preferences::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const

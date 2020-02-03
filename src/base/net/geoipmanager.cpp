@@ -63,8 +63,7 @@ GeoIPManager::GeoIPManager()
 
 GeoIPManager::~GeoIPManager()
 {
-    if (m_geoIPDatabase)
-        delete m_geoIPDatabase;
+    delete m_geoIPDatabase;
 }
 
 void GeoIPManager::initInstance()
@@ -75,10 +74,8 @@ void GeoIPManager::initInstance()
 
 void GeoIPManager::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 GeoIPManager *GeoIPManager::instance()
@@ -88,10 +85,8 @@ GeoIPManager *GeoIPManager::instance()
 
 void GeoIPManager::loadDatabase()
 {
-    if (m_geoIPDatabase) {
-        delete m_geoIPDatabase;
-        m_geoIPDatabase = nullptr;
-    }
+    delete m_geoIPDatabase;
+    m_geoIPDatabase = nullptr;
 
     const QString filepath = Utils::Fs::expandPathAbs(
         QString("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEOIP_FOLDER, GEOIP_FILENAME));
@@ -398,7 +393,7 @@ void GeoIPManager::configure()
         if (m_enabled && !m_geoIPDatabase) {
             loadDatabase();
         }
-        else if (!m_enabled && m_geoIPDatabase) {
+        else if (!m_enabled) {
             delete m_geoIPDatabase;
             m_geoIPDatabase = nullptr;
         }
@@ -423,8 +418,7 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
     GeoIPDatabase *geoIPDatabase = GeoIPDatabase::load(data, error);
     if (geoIPDatabase) {
         if (!m_geoIPDatabase || (geoIPDatabase->buildEpoch() > m_geoIPDatabase->buildEpoch())) {
-            if (m_geoIPDatabase)
-                delete m_geoIPDatabase;
+            delete m_geoIPDatabase;
             m_geoIPDatabase = geoIPDatabase;
             LogMsg(tr("GeoIP database loaded. Type: %1. Build time: %2.")
                 .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
