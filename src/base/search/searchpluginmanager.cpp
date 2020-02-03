@@ -104,8 +104,7 @@ SearchPluginManager *SearchPluginManager::instance()
 
 void SearchPluginManager::freeInstance()
 {
-    if (m_instance)
-        delete m_instance;
+    delete m_instance;
 }
 
 QStringList SearchPluginManager::allPlugins() const

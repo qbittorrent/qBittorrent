@@ -127,21 +127,15 @@ void WebUI::configure()
                 m_dnsUpdater->updateCredentials();
         }
         else {
-            if (m_dnsUpdater)
-                delete m_dnsUpdater;
+            delete m_dnsUpdater;
         }
     }
     else {
         Net::PortForwarder::instance()->deletePort(oldPort);
 
-        if (m_httpServer)
-            delete m_httpServer;
-
-        if (m_webapp)
-            delete m_webapp;
-
-        if (m_dnsUpdater)
-            delete m_dnsUpdater;
+        delete m_httpServer;
+        delete m_webapp;
+        delete m_dnsUpdater;
     }
 }
 
