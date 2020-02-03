@@ -69,10 +69,8 @@ bool ScanFoldersModel::initInstance(QObject *parent)
 
 void ScanFoldersModel::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 ScanFoldersModel *ScanFoldersModel::instance()

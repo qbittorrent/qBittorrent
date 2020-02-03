@@ -46,10 +46,8 @@ void IconProvider::initInstance()
 
 void IconProvider::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 IconProvider *IconProvider::instance()

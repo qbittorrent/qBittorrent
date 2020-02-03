@@ -63,8 +63,7 @@ DownloadHandlerImpl::DownloadHandlerImpl(const Net::DownloadRequest &downloadReq
 
 DownloadHandlerImpl::~DownloadHandlerImpl()
 {
-    if (m_reply)
-        delete m_reply;
+    delete m_reply;
 }
 
 void DownloadHandlerImpl::cancel()

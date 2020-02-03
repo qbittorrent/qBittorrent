@@ -678,7 +678,7 @@ void MainWindow::displayRSSTab(bool enable)
 #endif
         }
     }
-    else if (m_rssWidget) {
+    else {
         delete m_rssWidget;
     }
 }
@@ -714,7 +714,7 @@ void MainWindow::displaySearchTab(bool enable)
                 tr("Search"));
         }
     }
-    else if (m_searchWidget) {
+    else {
         delete m_searchWidget;
     }
 }
@@ -1170,8 +1170,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 
     // abort search if any
-    if (m_searchWidget)
-        delete m_searchWidget;
+    delete m_searchWidget;
 
     hide();
 #ifndef Q_OS_MACOS
@@ -1875,7 +1874,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
         m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon("view-calendar-journal"));
 #endif
     }
-    else if (m_executionLog) {
+    else {
         delete m_executionLog;
     }
 

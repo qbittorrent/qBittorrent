@@ -152,10 +152,8 @@ void Net::DownloadManager::initInstance()
 
 void Net::DownloadManager::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 Net::DownloadManager *Net::DownloadManager::instance()

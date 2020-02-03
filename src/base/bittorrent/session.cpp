@@ -977,8 +977,7 @@ Session::~Session()
 
     // We must delete FilterParserThread
     // before we delete lt::session
-    if (m_filterParser)
-        delete m_filterParser;
+    delete m_filterParser;
 
     // We must delete PortForwarderImpl before
     // we delete lt::session
@@ -1002,10 +1001,8 @@ void Session::initInstance()
 
 void Session::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 Session *Session::instance()
@@ -1605,8 +1602,7 @@ void Session::enableTracker(const bool enable)
         m_tracker->start();
     }
     else {
-        if (m_tracker)
-            delete m_tracker;
+        delete m_tracker;
     }
 }
 
