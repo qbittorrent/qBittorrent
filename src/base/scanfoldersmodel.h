@@ -65,7 +65,7 @@ public:
         CUSTOM_LOCATION
     };
 
-    static bool initInstance(QObject *parent = nullptr);
+    static void initInstance();
     static void freeInstance();
     static ScanFoldersModel *instance();
 

@@ -57,14 +57,10 @@ struct ScanFoldersModel::PathData
 
 ScanFoldersModel *ScanFoldersModel::m_instance = nullptr;
 
-bool ScanFoldersModel::initInstance(QObject *parent)
+void ScanFoldersModel::initInstance()
 {
-    if (!m_instance) {
-        m_instance = new ScanFoldersModel(parent);
-        return true;
-    }
-
-    return false;
+    if (!m_instance)
+        m_instance = new ScanFoldersModel;
 }
 
 void ScanFoldersModel::freeInstance()
