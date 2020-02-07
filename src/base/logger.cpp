@@ -65,10 +65,8 @@ void Logger::initInstance()
 
 void Logger::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 void Logger::addMessage(const QString &message, const Log::MsgType &type)

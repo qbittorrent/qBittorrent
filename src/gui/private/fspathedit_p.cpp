@@ -259,10 +259,8 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
         FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
         QValidator::State lastState = validator->lastValidationState();
         if (lastTestResult == FileSystemPathValidator::TestResult::OK) {
-            if (m_warningAction) {
-                delete m_warningAction;
-                m_warningAction = nullptr;
-            }
+            delete m_warningAction;
+            m_warningAction = nullptr;
         }
         else {
             if (!m_warningAction) {
