@@ -4631,18 +4631,18 @@ Please install it manually.</source>
         <location filename="../gui/optionsdialog.ui" line="1923"/>
         <source>From:</source>
         <comment>From start time</comment>
-        <translation type="unfinished"></translation>
+        <translation>З:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1947"/>
         <source>To:</source>
         <comment>To end time</comment>
-        <translation type="unfinished"></translation>
+        <translation>До:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2198"/>
         <source>Allow encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Дозволити шифрування</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2243"/>
