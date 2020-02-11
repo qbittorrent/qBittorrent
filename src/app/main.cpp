@@ -168,22 +168,25 @@ int main(int argc, char *argv[])
         if (!qputenv("QBITTORRENT", QBT_VERSION))
             fprintf(stderr, "Couldn't set environment variable...\n");
 
+        const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
+        if (firstTimeUser) {
 #ifndef DISABLE_GUI
-        if (!userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (!userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 
 #elif defined(Q_OS_WIN)
-        if (_isatty(_fileno(stdin))
-            && _isatty(_fileno(stdout))
-            && !userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (_isatty(_fileno(stdin))
+                && _isatty(_fileno(stdout))
+                && !userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 #else
-        if (!params.shouldDaemonize
-            && isatty(fileno(stdin))
-            && isatty(fileno(stdout))
-            && !userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (!params.shouldDaemonize
+                && isatty(fileno(stdin))
+                && isatty(fileno(stdout))
+                && !userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 #endif
+        }
 
         // Check if qBittorrent is already running for this user
         if (app->isRunning()) {
@@ -233,16 +236,24 @@ int main(int argc, char *argv[])
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
+        if (!firstTimeUser) {
+            handleChangedDefaults(DefaultPreferencesMode::Legacy);
+
 #ifndef DISABLE_GUI
-        if (!upgrade()) return EXIT_FAILURE;
+            if (!upgrade()) return EXIT_FAILURE;
 #elif defined(Q_OS_WIN)
-        if (!upgrade(_isatty(_fileno(stdin))
-                     && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
+            if (!upgrade(_isatty(_fileno(stdin))
+                         && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
 #else
-        if (!upgrade(!params.shouldDaemonize
-                     && isatty(fileno(stdin))
-                     && isatty(fileno(stdout)))) return EXIT_FAILURE;
+            if (!upgrade(!params.shouldDaemonize
+                         && isatty(fileno(stdin))
+                         && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
+        }
+        else {
+            handleChangedDefaults(DefaultPreferencesMode::Current);
+        }
+
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
@@ -378,8 +389,7 @@ void displayBadArgMessage(const QString &message)
 bool userAgreesWithLegalNotice()
 {
     Preferences *const pref = Preferences::instance();
-    if (pref->getAcceptedLegal()) // Already accepted once
-        return true;
+    Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI
     const QString eula = QString("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
