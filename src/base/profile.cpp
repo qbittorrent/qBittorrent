@@ -42,25 +42,30 @@ Profile::Profile(Private::Profile *impl, Private::PathConverter *pathConverter)
     ensureDirectoryExists(SpecialFolder::Data);
 }
 
-// to generate correct call to ProfilePrivate::~ProfileImpl()
-Profile::~Profile() = default;
-
-void Profile::initialize(const QString &rootProfilePath, const QString &configurationName,
-                         bool convertPathsToProfileRelative)
+void Profile::initInstance(const QString &rootProfilePath, const QString &configurationName,
+    const bool convertPathsToProfileRelative)
 {
-    std::unique_ptr<Private::Profile> profile(rootProfilePath.isEmpty()
-                                             ? static_cast<Private::Profile *>(new Private::DefaultProfile(configurationName))
-                                             : static_cast<Private::Profile *>(new Private::CustomProfile(rootProfilePath, configurationName)));
+    if (m_instance)
+        return;
 
+    std::unique_ptr<Private::Profile> profile(rootProfilePath.isEmpty()
+        ? static_cast<Private::Profile *>(new Private::DefaultProfile(configurationName))
+        : static_cast<Private::Profile *>(new Private::CustomProfile(rootProfilePath, configurationName)));
     std::unique_ptr<Private::PathConverter> converter(convertPathsToProfileRelative
-                                                     ? static_cast<Private::PathConverter *>(new Private::Converter(profile->baseDirectory()))
-                                                     : static_cast<Private::PathConverter *>(new Private::NoConvertConverter()));
+        ? static_cast<Private::PathConverter *>(new Private::Converter(profile->baseDirectory()))
+        : static_cast<Private::PathConverter *>(new Private::NoConvertConverter()));
     m_instance = new Profile(profile.release(), converter.release());
 }
 
-const Profile &Profile::instance()
+void Profile::freeInstance()
 {
-    return *m_instance;
+    delete m_instance;
+    m_instance = nullptr;
+}
+
+const Profile *Profile::instance()
+{
+    return m_instance;
 }
 
 QString Profile::location(const SpecialFolder folder) const
@@ -96,7 +101,7 @@ SettingsPtr Profile::applicationSettings(const QString &name) const
     return m_profileImpl->applicationSettings(name);
 }
 
-void Profile::ensureDirectoryExists(const SpecialFolder folder)
+void Profile::ensureDirectoryExists(const SpecialFolder folder) const
 {
     const QString locationPath = location(folder);
     if (!locationPath.isEmpty() && !QDir().mkpath(locationPath))
@@ -115,5 +120,5 @@ QString Profile::fromPortablePath(const QString &portablePath) const
 
 QString specialFolderLocation(const SpecialFolder folder)
 {
-    return Profile::instance().location(folder);
+    return Profile::instance()->location(folder);
 }
