@@ -36,6 +36,8 @@
 #include "base/utils/gzip.h"
 #include "base/utils/misc.h"
 
+const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
+
 namespace
 {
     bool saveToFile(const QByteArray &replyData, QString &filePath)
@@ -53,8 +55,9 @@ namespace
     }
 }
 
-DownloadHandlerImpl::DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent)
-    : DownloadHandler {parent}
+DownloadHandlerImpl::DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest)
+    : DownloadHandler {manager}
+    , m_manager {manager}
     , m_downloadRequest {downloadRequest}
 {
     m_result.url = url();
@@ -86,7 +89,6 @@ void DownloadHandlerImpl::assignNetworkReply(QNetworkReply *reply)
     if (m_downloadRequest.limit() > 0)
         connect(m_reply, &QNetworkReply::downloadProgress, this, &DownloadHandlerImpl::checkDownloadSize);
     connect(m_reply, &QNetworkReply::finished, this, &DownloadHandlerImpl::processFinishedDownload);
-    connect(m_reply, &QNetworkReply::redirected, this, &DownloadHandlerImpl::handleRedirection);
 }
 
 // Returns original url
@@ -110,6 +112,13 @@ void DownloadHandlerImpl::processFinishedDownload()
         qDebug("Download failure (%s), reason: %s", qUtf8Printable(url()), qUtf8Printable(errorCodeToString(m_reply->error())));
         setError(errorCodeToString(m_reply->error()));
         finish();
+        return;
+    }
+
+    // Check if the server ask us to redirect somewhere else
+    const QVariant redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if (redirection.isValid()) {
+        handleRedirection(redirection.toUrl());
         return;
     }
 
@@ -139,7 +148,7 @@ void DownloadHandlerImpl::checkDownloadSize(const qint64 bytesReceived, const qi
 
     if ((bytesTotal > m_downloadRequest.limit()) || (bytesReceived > m_downloadRequest.limit())) {
         m_reply->abort();
-        setError(tr("The file size is %1. It exceeds the download limit of %2.")
+        setError(tr("The file size (%1) exceeds the download limit (%2)")
                  .arg(Utils::Misc::friendlyUnit(bytesTotal)
                       , Utils::Misc::friendlyUnit(m_downloadRequest.limit())));
         finish();
@@ -148,6 +157,12 @@ void DownloadHandlerImpl::checkDownloadSize(const qint64 bytesReceived, const qi
 
 void DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
 {
+    if (m_redirectionCount >= MAX_REDIRECTIONS) {
+        setError(tr("Exceeded max redirections (%1)").arg(MAX_REDIRECTIONS));
+        finish();
+        return;
+    }
+
     // Resolve relative urls
     const QUrl resolvedUrl = newUrl.isRelative() ? m_reply->url().resolved(newUrl) : newUrl;
     const QString newUrlString = resolvedUrl.toString();
@@ -158,13 +173,21 @@ void DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
         qDebug("Magnet redirect detected.");
         m_result.status = Net::DownloadStatus::RedirectedToMagnet;
         m_result.magnet = newUrlString;
-        m_result.errorString = tr("Redirected to magnet URI.");
+        m_result.errorString = tr("Redirected to magnet URI");
 
         finish();
         return;
     }
 
-    emit m_reply->redirectAllowed();
+    auto redirected = static_cast<DownloadHandlerImpl *>(
+                m_manager->download(Net::DownloadRequest(m_downloadRequest).url(newUrlString)));
+    redirected->m_redirectionCount = m_redirectionCount + 1;
+    connect(redirected, &DownloadHandlerImpl::finished, this, [this](const Net::DownloadResult &result)
+    {
+        m_result = result;
+        m_result.url = url();
+        finish();
+    });
 }
 
 void DownloadHandlerImpl::setError(const QString &error)
