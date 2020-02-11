@@ -299,7 +299,7 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    const SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
+    const SettingsPtr qBTRSSFeeds = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
     const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
     for (const QVariant &var : asConst(allOldItems.value(m_url).toList())) {
