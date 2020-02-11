@@ -156,7 +156,7 @@ namespace
         torrentParams.restored = true;
         torrentParams.skipChecking = false;
         torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
-        torrentParams.savePath = Profile::instance().fromPortablePath(
+        torrentParams.savePath = Profile::instance()->fromPortablePath(
             Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
         torrentParams.disableTempPath = root.dict_find_int_value("qBt-tempPathDisabled");
         torrentParams.sequential = root.dict_find_int_value("qBt-sequential");
