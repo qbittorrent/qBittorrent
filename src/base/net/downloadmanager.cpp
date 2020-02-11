@@ -52,8 +52,6 @@ namespace
     // Disguise as Firefox to avoid web server banning
     const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0";
 
-    const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
-
     class NetworkCookieJar : public QNetworkCookieJar
     {
     public:
@@ -123,9 +121,8 @@ namespace
         request.setRawHeader("Referer", request.url().toEncoded().data());
         // Accept gzip
         request.setRawHeader("Accept-Encoding", "gzip");
-
-        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::UserVerifiedRedirectPolicy);
-        request.setMaximumRedirectsAllowed(MAX_REDIRECTIONS);
+        // Qt doesn't support Magnet protocol so we need to handle redirections manually
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::ManualRedirectPolicy);
 
         return request;
     }
@@ -168,7 +165,7 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     const ServiceID id = ServiceID::fromURL(request.url());
     const bool isSequentialService = m_sequentialServices.contains(id);
 
-    auto downloadHandler = new DownloadHandlerImpl {downloadRequest, this};
+    auto downloadHandler = new DownloadHandlerImpl {this, downloadRequest};
     connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
     connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
     {

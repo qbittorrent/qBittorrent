@@ -42,7 +42,7 @@ class DownloadHandlerImpl : public Net::DownloadHandler
     Q_DISABLE_COPY(DownloadHandlerImpl)
 
 public:
-    explicit DownloadHandlerImpl(const Net::DownloadRequest &downloadRequest, QObject *parent);
+    DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest);
     ~DownloadHandlerImpl() override;
 
     void cancel() override;
@@ -61,7 +61,9 @@ private:
 
     static QString errorCodeToString(QNetworkReply::NetworkError status);
 
+    Net::DownloadManager *m_manager = nullptr;
     QNetworkReply *m_reply = nullptr;
     const Net::DownloadRequest m_downloadRequest;
+    short m_redirectionCount = 0;
     Net::DownloadResult m_result;
 };
