@@ -44,7 +44,7 @@ public:
 
 private slots:
     void loginAction();
-    void logoutAction();
+    void logoutAction() const;
 
 private:
     bool isBanned() const;
