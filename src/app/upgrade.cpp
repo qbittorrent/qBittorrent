@@ -93,7 +93,8 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
     };
 
     const QVector<DefaultValue> changedDefaults {
-        {QLatin1String {"BitTorrent/Session/QueueingSystemEnabled"}, true, false}
+        {QLatin1String {"BitTorrent/Session/QueueingSystemEnabled"}, true, false},
+        {QLatin1String {"BitTorrent/Session/UseRandomPort"}, false, true}
     };
 
     SettingsStorage *settingsStorage {SettingsStorage::instance()};
