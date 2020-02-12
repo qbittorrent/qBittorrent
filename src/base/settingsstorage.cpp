@@ -279,7 +279,7 @@ bool TransactionalSettings::write(const QVariantHash &data) const
 
 QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data) const
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(name);
+    SettingsPtr settings = Profile::instance()->applicationSettings(name);
 
     if (settings->allKeys().isEmpty())
         return {};
@@ -295,7 +295,7 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
 
 QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data) const
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(name);
+    SettingsPtr settings = Profile::instance()->applicationSettings(name);
     for (auto i = data.begin(); i != data.end(); ++i)
         settings->setValue(i.key(), i.value());
 

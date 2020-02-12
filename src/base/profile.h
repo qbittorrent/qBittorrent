@@ -36,8 +36,6 @@
 
 class QString;
 
-class Application;
-
 namespace Private
 {
     class Profile;
@@ -57,6 +55,11 @@ enum class SpecialFolder
 class Profile
 {
 public:
+    static void initInstance(const QString &rootProfilePath, const QString &configurationName,
+        bool convertPathsToProfileRelative);
+    static void freeInstance();
+    static const Profile *instance();
+
     QString location(SpecialFolder folder) const;
     SettingsPtr applicationSettings(const QString &name) const;
 
@@ -67,16 +70,11 @@ public:
     QString toPortablePath(const QString &absolutePath) const;
     QString fromPortablePath(const QString &portablePath) const;
 
-    static const Profile &instance();
-
 private:
     Profile(Private::Profile *impl, Private::PathConverter *pathConverter);
-    ~Profile();
+    ~Profile() = default;  // to generate correct call to ProfilePrivate::~ProfileImpl()
 
-    friend class ::Application;
-    static void initialize(const QString &rootProfilePath, const QString &configurationName,
-                                             bool convertPathsToProfileRelative);
-    void ensureDirectoryExists(SpecialFolder folder);
+    void ensureDirectoryExists(SpecialFolder folder) const;
 
     const std::unique_ptr<Private::Profile> m_profileImpl;
     const std::unique_ptr<Private::PathConverter> m_pathConverterImpl;
