@@ -36,8 +36,6 @@
 #include "apierror.h"
 #include "isessionmanager.h"
 
-constexpr int BAN_TIME = 3600000; // 1 hour
-
 void AuthController::loginAction()
 {
     if (sessionManager()->session()) {
@@ -116,6 +114,6 @@ void AuthController::increaseFailedAttempts()
     if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount()) {
         // Max number of failed attempts reached
         // Start ban period
-        failedLogin.banTimer.setRemainingTime(BAN_TIME);
+        failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());
     }
 }

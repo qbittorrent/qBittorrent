@@ -733,6 +733,10 @@
                     <td><label for="webUIMaxAuthFailCountInput">QBT_TR(Ban client after consecutive failures:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td><input type="number" id="webUIMaxAuthFailCountInput" style="width: 4em;" min="0" /></td>
                 </tr>
+                <tr>
+                    <td style="text-align: right;"><label for="webUIBanDurationInput">QBT_TR(ban for:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input type="number" id="webUIBanDurationInput" style="width: 4em;" min="1" />QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
+                </tr>
             </table>
             <table>
                 <tr>
@@ -1725,6 +1729,7 @@
                         $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
                         updateBypasssAuthSettings();
                         $('webUIMaxAuthFailCountInput').setProperty('value', pref.web_ui_max_auth_fail_count.toInt());
+                        $('webUIBanDurationInput').setProperty('value', pref.web_ui_ban_duration.toInt());
                         $('webUISessionTimeoutInput').setProperty('value', pref.web_ui_session_timeout.toInt());
 
                         // Use alternative Web UI
@@ -2089,6 +2094,7 @@
             settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
             settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
             settings.set('web_ui_max_auth_fail_count', $('webUIMaxAuthFailCountInput').getProperty('value'));
+            settings.set('web_ui_ban_duration', $('webUIBanDurationInput').getProperty('value'));
             settings.set('web_ui_session_timeout', $('webUISessionTimeoutInput').getProperty('value'));
 
             // Use alternative Web UI
