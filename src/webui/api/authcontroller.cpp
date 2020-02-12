@@ -28,7 +28,6 @@
 
 #include "authcontroller.h"
 
-#include <QDateTime>
 #include <QString>
 
 #include "base/logger.h"
@@ -89,12 +88,13 @@ void AuthController::logoutAction() const
 
 bool AuthController::isBanned() const
 {
-    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    const FailedLogin failedLogin = m_clientFailedLogins.value(sessionManager()->clientId());
+    const auto failedLoginIter = m_clientFailedLogins.find(sessionManager()->clientId());
+    if (failedLoginIter == m_clientFailedLogins.end())
+        return false;
 
-    bool isBanned = (failedLogin.bannedAt > 0);
-    if (isBanned && ((now - failedLogin.bannedAt) > BAN_TIME)) {
-        m_clientFailedLogins.remove(sessionManager()->clientId());
+    bool isBanned = (failedLoginIter->banTimer.remainingTime() >= 0);
+    if (isBanned && failedLoginIter->banTimer.hasExpired()) {
+        m_clientFailedLogins.erase(failedLoginIter);
         isBanned = false;
     }
 
@@ -116,6 +116,6 @@ void AuthController::increaseFailedAttempts()
     if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount()) {
         // Max number of failed attempts reached
         // Start ban period
-        failedLogin.bannedAt = QDateTime::currentMSecsSinceEpoch() / 1000;
+        failedLogin.banTimer.setRemainingTime(BAN_TIME);
     }
 }

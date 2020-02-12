@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include <QDeadlineTimer>
 #include <QHash>
 
 #include "apicontroller.h"
@@ -54,7 +55,7 @@ private:
     struct FailedLogin
     {
         int failedAttemptsCount = 0;
-        qint64 bannedAt = 0;
+        QDeadlineTimer banTimer {-1};
     };
     mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };
