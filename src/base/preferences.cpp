@@ -621,6 +621,16 @@ void Preferences::setWebUIPassword(const QByteArray &password)
     setValue("Preferences/WebUI/Password_PBKDF2", password);
 }
 
+int Preferences::getWebUIMaxAuthFailCount() const
+{
+    return value("Preferences/WebUI/MaxAuthenticationFailCount", 5).toInt();
+}
+
+void Preferences::setWebUIMaxAuthFailCount(const int count)
+{
+    setValue("Preferences/WebUI/MaxAuthenticationFailCount", count);
+}
+
 int Preferences::getWebUISessionTimeout() const
 {
     return value("Preferences/WebUI/SessionTimeout", 3600).toInt();
