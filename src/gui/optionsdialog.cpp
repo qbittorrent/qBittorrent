@@ -421,6 +421,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, m_ui->IPSubnetWhitelistButton, &QPushButton::setEnabled);
+    connect(m_ui->spinBanCounter, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
@@ -770,6 +771,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUiHttpsEnabled(m_ui->checkWebUiHttps->isChecked());
         pref->setWebUIHttpsCertificatePath(m_ui->textWebUIHttpsCert->selectedPath());
         pref->setWebUIHttpsKeyPath(m_ui->textWebUIHttpsKey->selectedPath());
+        pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
         pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
         // Authentication
         pref->setWebUiUsername(webUiUsername());
@@ -1153,6 +1155,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
     m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
+    m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
 
     // Security
