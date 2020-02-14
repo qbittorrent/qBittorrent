@@ -5,7 +5,7 @@
         <li id="aboutSpecialThanksLink"><a>QBT_TR(Special Thanks)QBT_TR[CONTEXT=AboutDialog]</a></li>
         <li id="aboutTranslatorsLink"><a>QBT_TR(Translators)QBT_TR[CONTEXT=AboutDialog]</a></li>
         <li id="aboutLicenseLink"><a>QBT_TR(License)QBT_TR[CONTEXT=AboutDialog]</a></li>
-        <li id="aboutLibrariesLink"><a>QBT_TR(Libraries)QBT_TR[CONTEXT=AboutDialog]</a></li>
+        <li id="aboutSoftwareUsedLink"><a>QBT_TR(Software Used)QBT_TR[CONTEXT=AboutDialog]</a></li>
     </ul>
     <div class="clear"></div>
 </div>
@@ -41,9 +41,9 @@
             $('aboutLicenseContent').removeClass('invisible');
         });
 
-        $('aboutLibrariesLink').addEvent('click', function() {
+        $('aboutSoftwareUsedLink').addEvent('click', function() {
             $$('.aboutTabContent').addClass('invisible');
-            $('aboutLibrariesContent').removeClass('invisible');
+            $('aboutSoftwareUsedContent').removeClass('invisible');
         });
     })();
 </script>
