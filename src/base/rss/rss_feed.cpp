@@ -124,7 +124,7 @@ void Feed::markAsRead()
 
 void Feed::refresh()
 {
-    if (isLoading())
+    if (m_downloadHandler)
         m_downloadHandler->cancel();
 
     // NOTE: Should we allow manually refreshing for disabled session?
@@ -193,6 +193,8 @@ bool Feed::hasError() const
 
 void Feed::handleDownloadFinished(const Net::DownloadResult &result)
 {
+    m_downloadHandler = nullptr; // will be deleted by DownloadManager later
+
     if (result.status == Net::DownloadStatus::Success) {
         LogMsg(tr("RSS feed at '%1' is successfully downloaded. Starting to parse it.")
                 .arg(result.url));
