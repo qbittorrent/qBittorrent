@@ -314,11 +314,11 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="librariesTab">
+     <widget class="QWidget" name="SoftwareUsedTab">
       <attribute name="title">
-       <string>Libraries</string>
+       <string>Software Used</string>
       </attribute>
-      <layout class="QVBoxLayout" name="librariesTabLayout">
+      <layout class="QVBoxLayout" name="SoftwareUsedTabLayout">
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
@@ -467,6 +467,22 @@
         <widget class="Line" name="line">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelDBIP">
+         <property name="text">
+          <string notr="true">DB-IP license text</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse</set>
          </property>
         </widget>
        </item>

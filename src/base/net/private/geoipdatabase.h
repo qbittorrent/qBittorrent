@@ -93,6 +93,7 @@ private:
     int m_indexSize;
     int m_recordBytes;
     QDateTime m_buildEpoch;
+    QString m_dbType;
     // Search data
     mutable QHash<quint32, QString> m_countries;
     quint32 m_size;
