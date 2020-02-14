@@ -38,7 +38,6 @@
 namespace
 {
     const qint32 MAX_FILE_SIZE = 67108864; // 64MB
-    const char DB_TYPE[] = "GeoLite2-Country";
     const quint32 MAX_METADATA_SIZE = 131072; // 128KB
     const char METADATA_BEGIN_MARK[] = "\xab\xcd\xefMaxMind.com";
     const char DATA_SECTION_SEPARATOR[16] = {0};
@@ -144,7 +143,7 @@ GeoIPDatabase::~GeoIPDatabase()
 
 QString GeoIPDatabase::type() const
 {
-    return DB_TYPE;
+    return m_dbType;
 }
 
 quint16 GeoIPDatabase::ipVersion() const
@@ -255,11 +254,7 @@ bool GeoIPDatabase::parseMetadata(const QVariantHash &metadata, QString &error)
     m_indexSize = m_nodeCount * m_nodeSize;
 
     CHECK_METADATA_REQ(database_type, QString);
-    QString dbType = metadata.value("database_type").toString();
-    if (dbType != DB_TYPE) {
-        error = tr("Invalid database type: %1").arg(dbType);
-        return false;
-    }
+    m_dbType = metadata.value("database_type").toString();
 
     CHECK_METADATA_REQ(build_epoch, ULongLong);
     m_buildEpoch = QDateTime::fromTime_t(metadata.value("build_epoch").toULongLong());
@@ -272,7 +267,7 @@ bool GeoIPDatabase::parseMetadata(const QVariantHash &metadata, QString &error)
 
 bool GeoIPDatabase::loadDB(QString &error) const
 {
-    qDebug() << "Parsing MaxMindDB index tree...";
+    qDebug() << "Parsing IP geolocation database index tree...";
 
     const int nodeSize = m_recordSize / 4; // in bytes
     const int indexSize = m_nodeCount * nodeSize;

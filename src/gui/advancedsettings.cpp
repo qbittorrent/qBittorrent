@@ -419,7 +419,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(LIST_REFRESH, tr("Transfer list refresh interval"), &spinBoxListRefresh);
     // Resolve Peer countries
     checkBoxResolveCountries.setChecked(pref->resolvePeerCountries());
-    addRow(RESOLVE_COUNTRIES, tr("Resolve peer countries (GeoIP)"), &checkBoxResolveCountries);
+    addRow(RESOLVE_COUNTRIES, tr("Resolve peer countries"), &checkBoxResolveCountries);
     // Resolve peer hosts
     checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &checkBoxResolveHosts);
