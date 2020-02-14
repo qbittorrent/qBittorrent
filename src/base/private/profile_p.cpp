@@ -179,7 +179,7 @@ QString Private::Converter::toPortablePath(const QString &path) const
 
 QString Private::Converter::fromPortablePath(const QString &portablePath) const
 {
-    if (QDir::isAbsolutePath(portablePath))
+    if (portablePath.isEmpty() || QDir::isAbsolutePath(portablePath))
         return portablePath;
 
     return QDir::cleanPath(m_baseDir.absoluteFilePath(portablePath));
