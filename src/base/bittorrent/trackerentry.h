@@ -55,7 +55,6 @@ namespace BitTorrent
         TrackerEntry &operator=(const TrackerEntry &other) = default;
 
         QString url() const;
-        bool isWorking() const;
         Status status() const;
 
         int tier() const;
