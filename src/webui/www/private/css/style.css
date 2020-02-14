@@ -457,6 +457,7 @@ ul.filterList a {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: inherit;
 }
 
 ul.filterList li:hover {
