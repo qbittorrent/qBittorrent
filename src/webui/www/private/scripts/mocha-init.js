@@ -934,6 +934,7 @@ const initializeWindows = function() {
                 url: 'api/v2/app/shutdown',
                 onSuccess: function() {
                     document.write('<!doctype html><html lang="${LANG}"><head> <meta charset="utf-8"> <title>QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</title></head><body> <h1 style="text-align: center;">QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</h1></body></html>');
+                    document.close();
                     stop();
                 }
             }).send();
