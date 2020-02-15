@@ -29,6 +29,8 @@
 
 #include "preferences.h"
 
+#include <chrono>
+
 #ifdef Q_OS_MACOS
 #include <CoreServices/CoreServices.h>
 #endif
@@ -619,6 +621,26 @@ QByteArray Preferences::getWebUIPassword() const
 void Preferences::setWebUIPassword(const QByteArray &password)
 {
     setValue("Preferences/WebUI/Password_PBKDF2", password);
+}
+
+int Preferences::getWebUIMaxAuthFailCount() const
+{
+    return value("Preferences/WebUI/MaxAuthenticationFailCount", 5).toInt();
+}
+
+void Preferences::setWebUIMaxAuthFailCount(const int count)
+{
+    setValue("Preferences/WebUI/MaxAuthenticationFailCount", count);
+}
+
+std::chrono::seconds Preferences::getWebUIBanDuration() const
+{
+    return std::chrono::seconds {value("Preferences/WebUI/BanDuration", 3600).toInt()};
+}
+
+void Preferences::setWebUIBanDuration(const std::chrono::seconds duration)
+{
+    setValue("Preferences/WebUI/BanDuration", static_cast<int>(duration.count()));
 }
 
 int Preferences::getWebUISessionTimeout() const

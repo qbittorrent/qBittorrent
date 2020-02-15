@@ -232,6 +232,8 @@ void AppController::preferencesAction()
     for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
     data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
+    data["web_ui_max_auth_fail_count"] = pref->getWebUIMaxAuthFailCount();
+    data["web_ui_ban_duration"] = static_cast<int>(pref->getWebUIBanDuration().count());
     data["web_ui_session_timeout"] = pref->getWebUISessionTimeout();
     // Use alternative Web UI
     data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
@@ -601,6 +603,10 @@ void AppController::setPreferencesAction()
         // recognize new lines and commas as delimiters
         pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
+    if (hasKey("web_ui_max_auth_fail_count"))
+        pref->setWebUIMaxAuthFailCount(it.value().toInt());
+    if (hasKey("web_ui_ban_duration"))
+        pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
     if (hasKey("web_ui_session_timeout"))
         pref->setWebUISessionTimeout(it.value().toInt());
     // Use alternative Web UI
