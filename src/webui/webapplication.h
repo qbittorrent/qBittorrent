@@ -43,7 +43,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 4, 0};
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 4, 1};
 
 class APIController;
 class WebApplication;
