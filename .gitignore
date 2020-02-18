@@ -37,6 +37,9 @@ src/icons/qbt-theme/build-icons/node_modules/
 src/icons/skin/build-icons/node_modules/
 src/icons/skin/build-icons/icons/*.png
 
+# CMake build directory
+build/
+
 # Web UI tools
 node_modules
 package-lock.json
