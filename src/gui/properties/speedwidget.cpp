@@ -71,6 +71,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("1 Minute"));
     m_periodCombobox->addItem(tr("5 Minutes"));
     m_periodCombobox->addItem(tr("30 Minutes"));
+    m_periodCombobox->addItem(tr("1 Hour"));
     m_periodCombobox->addItem(tr("6 Hours"));
     m_periodCombobox->addItem(tr("12 Hours"));
     m_periodCombobox->addItem(tr("24 Hours"));
