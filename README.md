@@ -13,8 +13,7 @@ It aims to be a good alternative to all other bittorrent clients
 out there. qBittorrent is fast, stable and provides unicode
 support as well as many features.
 
-This product includes GeoLite data created by MaxMind, available from
-https://www.maxmind.com/
+The free [IP to Country Lite database](https://db-ip.com/db/download/ip-to-country-lite) by [DB-IP](https://db-ip.com/) is used for resolving the countries of peers. The database is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
 ### Installation:
 For installation, follow the instructions from INSTALL file, but simple:
