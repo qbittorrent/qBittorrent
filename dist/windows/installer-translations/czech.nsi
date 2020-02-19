@@ -19,15 +19,15 @@ LangString inst_firewallinfo ${LANG_CZECH} "Vytváření pravidla ve Windows Fir
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_CZECH} "qBittorrent je spuštěn. Před instalací aplikaci ukončete, prosím."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
-LangString inst_uninstall_question ${LANG_CZECH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+LangString inst_uninstall_question ${LANG_CZECH} "Předchozí instalace byla nalezena. Bude odinstalována ale uživatelská nastavení budou zachována."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
-LangString inst_unist ${LANG_CZECH} "Odebírání předchozí verze."
+LangString inst_unist ${LANG_CZECH} "Odinstalace předchozí verze."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_CZECH} "Spustit qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
-LangString inst_requires_64bit ${LANG_CZECH} "This installer works only in 64-bit Windows versions."
+LangString inst_requires_64bit ${LANG_CZECH} "Tento instalátor funguje pouze v 64-bit Windows."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
-LangString inst_requires_win7 ${LANG_CZECH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_CZECH} "Tato verze qBittorrent vyžaduje minimálně Windows 7."
 
 
 ;------------------------------------
