@@ -66,6 +66,7 @@ namespace BitTorrent
 
         static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
         static TorrentInfo loadFromFile(const QString &path, QString *error = nullptr) noexcept;
+        void saveToFile(const QString &path) const;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 

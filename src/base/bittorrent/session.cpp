@@ -3831,12 +3831,17 @@ void Session::handleTorrentMetadataReceived(TorrentHandle *const torrent)
     torrent->saveResumeData();
 
     // Save metadata
-    const QDir resumeDataDir(m_resumeFolderPath);
-    QString torrentFile = resumeDataDir.absoluteFilePath(QString("%1.torrent").arg(torrent->hash()));
-    if (torrent->saveTorrentFile(torrentFile)) {
+    const QDir resumeDataDir {m_resumeFolderPath};
+    const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->hash())};
+    try {
+        torrent->info().saveToFile(resumeDataDir.absoluteFilePath(torrentFileName));
         // Copy the torrent file to the export folder
         if (!torrentExportDirectory().isEmpty())
             exportTorrentFile(torrent);
+    }
+    catch (const RuntimeError &err) {
+        LogMsg(tr("Couldn't save torrent metadata file '%1'. Reason: %2")
+               .arg(torrentFileName, err.message()), Log::CRITICAL);
     }
 
     emit torrentMetadataLoaded(torrent);
@@ -4352,15 +4357,17 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
         // The following is useless for newly added magnet
         if (!fromMagnetUri) {
             // Backup torrent file
-            const QDir resumeDataDir(m_resumeFolderPath);
-            const QString newFile = resumeDataDir.absoluteFilePath(QString("%1.torrent").arg(torrent->hash()));
-            if (torrent->saveTorrentFile(newFile)) {
+            const QDir resumeDataDir {m_resumeFolderPath};
+            const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->hash())};
+            try {
+                torrent->info().saveToFile(resumeDataDir.absoluteFilePath(torrentFileName));
                 // Copy the torrent file to the export folder
                 if (!torrentExportDirectory().isEmpty())
                     exportTorrentFile(torrent);
             }
-            else {
-                LogMsg(tr("Couldn't save '%1.torrent'").arg(torrent->hash()), Log::CRITICAL);
+            catch (const RuntimeError &err) {
+                LogMsg(tr("Couldn't save torrent metadata file '%1'. Reason: %2")
+                       .arg(torrentFileName, err.message()), Log::CRITICAL);
             }
         }
 
