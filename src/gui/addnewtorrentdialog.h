@@ -104,6 +104,7 @@ private:
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void setSavePath(const QString &newPath);
+    void saveTorrentFile();
 
     void showEvent(QShowEvent *event) override;
 
