@@ -38,15 +38,16 @@
 
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
-#include <libtorrent/bencode.hpp>
-#include <libtorrent/create_torrent.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/time.hpp>
 #include <libtorrent/version.hpp>
 
 #if (LIBTORRENT_VERSION_NUM >= 10200)
+#include <libtorrent/storage_defs.hpp>
 #include <libtorrent/write_resume_data.hpp>
+#else
+#include <libtorrent/storage.hpp>
 #endif
 
 #include <QBitArray>
@@ -1531,29 +1532,6 @@ void TorrentHandle::renameFile(const int index, const QString &name)
     m_oldPath[LTFileIndex {index}].push_back(filePath(index));
     ++m_renameCount;
     m_nativeHandle.rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(name).toStdString());
-}
-
-bool TorrentHandle::saveTorrentFile(const QString &path)
-{
-    if (!m_torrentInfo.isValid()) return false;
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    const lt::create_torrent torrentCreator = lt::create_torrent(*(m_torrentInfo.nativeInfo()), true);
-#else
-    const lt::create_torrent torrentCreator = lt::create_torrent(*(m_torrentInfo.nativeInfo()));
-#endif
-    const lt::entry torrentEntry = torrentCreator.generate();
-
-    QByteArray out;
-    out.reserve(1024 * 1024);  // most torrent file sizes are under 1 MB
-    lt::bencode(std::back_inserter(out), torrentEntry);
-    if (out.isEmpty())
-        return false;
-
-    QFile torrentFile(path);
-    if (torrentFile.open(QIODevice::WriteOnly))
-        return (torrentFile.write(out) == out.size());
-
-    return false;
 }
 
 void TorrentHandle::handleStateUpdate(const lt::torrent_status &nativeStatus)
