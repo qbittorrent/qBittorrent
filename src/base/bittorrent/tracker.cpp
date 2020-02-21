@@ -272,6 +272,12 @@ void Tracker::processAnnounceRequest()
     announceReq.socketAddress = m_env.clientAddress;
     announceReq.claimedAddress = queryParams.value(ANNOUNCE_REQUEST_IP);
 
+    // Enforce using IPv4 if address is indeed IPv4 or if it is an IPv4-mapped IPv6 address
+    bool ok = false;
+    const qint32 decimalIPv4 = announceReq.socketAddress.toIPv4Address(&ok);
+    if (ok)
+        announceReq.socketAddress = QHostAddress(decimalIPv4);
+
     // 1. info_hash
     const auto infoHashIter = queryParams.find(ANNOUNCE_REQUEST_INFO_HASH);
     if (infoHashIter == queryParams.end())
@@ -387,7 +393,7 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
         {ANNOUNCE_RESPONSE_COMPLETE, torrentStats.seeders},
         {ANNOUNCE_RESPONSE_INCOMPLETE, (torrentStats.peers.size() - torrentStats.seeders)},
 
-        // [BEP-24] Tracker Returns External IP
+        // [BEP-24] Tracker Returns External IP (partial support - might not work properly for all IPv6 cases)
         {ANNOUNCE_RESPONSE_EXTERNAL_IP, toBigEndianByteArray(announceReq.socketAddress).toStdString()}
     };
 
