@@ -392,26 +392,26 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
     };
 
     // peer list
-    // [BEP-7] IPv6 Tracker Extension (partial support)
+    // [BEP-7] IPv6 Tracker Extension (partial support - only the part that concerns BEP-23)
     // [BEP-23] Tracker Returns Compact Peer Lists
     if (announceReq.compact) {
-        lt::entry::list_type peerList;
-        lt::entry::list_type peer6List;
+        lt::entry::string_type peers;
+        lt::entry::string_type peers6;
 
         int counter = 0;
         for (const Peer &peer : asConst(torrentStats.peers)) {
             if (counter++ >= announceReq.numwant)
                 break;
 
-            if (peer.endpoint.size() == 6)  // IPv4
-                peerList.emplace_back(peer.endpoint);
-            else if (peer.endpoint.size() == 18)  // IPv6
-                peer6List.emplace_back(peer.endpoint);
+            if (peer.endpoint.size() == 6)  // IPv4 + port
+                peers.append(peer.endpoint);
+            else if (peer.endpoint.size() == 18)  // IPv6 + port
+                peers6.append(peer.endpoint);
         }
 
-        replyDict[ANNOUNCE_RESPONSE_PEERS] = peerList;  // required, even it's empty
-        if (!peer6List.empty())
-            replyDict[ANNOUNCE_RESPONSE_PEERS6] = peer6List;
+        replyDict[ANNOUNCE_RESPONSE_PEERS] = peers;  // required, even it's empty
+        if (!peers6.empty())
+            replyDict[ANNOUNCE_RESPONSE_PEERS6] = peers6;
     }
     else {
         lt::entry::list_type peerList;
