@@ -107,8 +107,8 @@ namespace
         case QAbstractSocket::IPv6Protocol: {
                 const Q_IPV6ADDR ipv6 = addr.toIPv6Address();
                 QByteArray ret;
-                for (int i = (sizeof(ipv6.c) - 1); i >= 0; --i)
-                    ret.append(static_cast<char>(ipv6.c[i]));
+                for (const quint8 i : ipv6.c)
+                    ret.append(i);
                 return ret;
             }
 
