@@ -216,7 +216,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Name filter
     m_searchFilter = new LineEdit(this);
-    m_searchFilter->setPlaceholderText(tr("Filter torrent list..."));
+    m_searchFilter->setPlaceholderText(tr("Filter torrent names..."));
     m_searchFilter->setFixedWidth(Utils::Gui::scaledSize(this, 200));
     m_searchFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
