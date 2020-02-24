@@ -349,9 +349,9 @@ void Tracker::processAnnounceRequest()
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_COMPLETED)
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_STARTED)
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_PAUSED)) {
-        // [BEP-21] Extension for partial seeds (partial support)
+        // [BEP-21] Extension for partial seeds
+        // (partial support - we don't support BEP-48 so the part that concerns that is not supported)
         registerPeer(announceReq);
-        prepareAnnounceResponse(announceReq);
     }
     else if (announceReq.event == ANNOUNCE_REQUEST_EVENT_STOPPED) {
         unregisterPeer(announceReq);
@@ -359,6 +359,8 @@ void Tracker::processAnnounceRequest()
     else {
         throw TrackerError("Invalid \"event\" parameter");
     }
+
+    prepareAnnounceResponse(announceReq);
 }
 
 void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
@@ -404,15 +406,17 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
         lt::entry::string_type peers;
         lt::entry::string_type peers6;
 
-        int counter = 0;
-        for (const Peer &peer : asConst(torrentStats.peers)) {
-            if (counter++ >= announceReq.numwant)
-                break;
+        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED) {
+            int counter = 0;
+            for (const Peer &peer : asConst(torrentStats.peers)) {
+                if (counter++ >= announceReq.numwant)
+                    break;
 
-            if (peer.endpoint.size() == 6)  // IPv4 + port
-                peers.append(peer.endpoint);
-            else if (peer.endpoint.size() == 18)  // IPv6 + port
-                peers6.append(peer.endpoint);
+                if (peer.endpoint.size() == 6)  // IPv4 + port
+                    peers.append(peer.endpoint);
+                else if (peer.endpoint.size() == 18)  // IPv6 + port
+                    peers6.append(peer.endpoint);
+            }
         }
 
         replyDict[ANNOUNCE_RESPONSE_PEERS] = peers;  // required, even it's empty
@@ -422,20 +426,22 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
     else {
         lt::entry::list_type peerList;
 
-        int counter = 0;
-        for (const Peer &peer : torrentStats.peers) {
-            if (counter++ >= announceReq.numwant)
-                break;
+        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED) {
+            int counter = 0;
+            for (const Peer &peer : torrentStats.peers) {
+                if (counter++ >= announceReq.numwant)
+                    break;
 
-            lt::entry::dictionary_type peerDict = {
-                {ANNOUNCE_RESPONSE_PEERS_IP, peer.address},
-                {ANNOUNCE_RESPONSE_PEERS_PORT, peer.port}
-            };
+                lt::entry::dictionary_type peerDict = {
+                    {ANNOUNCE_RESPONSE_PEERS_IP, peer.address},
+                    {ANNOUNCE_RESPONSE_PEERS_PORT, peer.port}
+                };
 
-            if (!announceReq.noPeerId)
-                peerDict[ANNOUNCE_RESPONSE_PEERS_PEER_ID] = peer.peerId.constData();
+                if (!announceReq.noPeerId)
+                    peerDict[ANNOUNCE_RESPONSE_PEERS_PEER_ID] = peer.peerId.constData();
 
-            peerList.emplace_back(peerDict);
+                peerList.emplace_back(peerDict);
+            }
         }
 
         replyDict[ANNOUNCE_RESPONSE_PEERS] = peerList;
