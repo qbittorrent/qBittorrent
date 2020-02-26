@@ -251,7 +251,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
             <item>
              <widget class="QLabel" name="lblIgnoreDays">
               <property name="text">
-               <string comment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
+               <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
               </property>
              </widget>
             </item>
