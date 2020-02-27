@@ -78,7 +78,6 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/utils/misc.h"
 #include "application.h"
 #include "cmdoptions.h"
 #include "upgrade.h"
@@ -141,11 +140,9 @@ int main(int argc, char *argv[])
 
     try {
         // Create Application
-        const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
-        auto app = std::make_unique<Application>(appId, argc, argv);
+        auto app = std::make_unique<Application>(argc, argv);
 
         const QBtCommandLineParameters params = app->commandLineArgs();
-
         if (!params.unknownParameter.isEmpty()) {
             throw CommandLineParameterError(QObject::tr("%1 is an unknown command line parameter.",
                                                         "--random-parameter is an unknown command line parameter.")
@@ -264,7 +261,7 @@ int main(int argc, char *argv[])
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
             if (daemon(1, 0) == 0) {
-                app = std::make_unique<Application>(appId, argc, argv);
+                app = std::make_unique<Application>(argc, argv);
                 if (app->isRunning()) {
                     // Another instance had time to start.
                     return EXIT_FAILURE;
