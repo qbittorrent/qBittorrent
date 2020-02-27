@@ -74,7 +74,7 @@ class Application : public BaseApplication
     Q_DISABLE_COPY(Application)
 
 public:
-    Application(const QString &id, int &argc, char **argv);
+    Application(int &argc, char **argv);
     ~Application() override;
 
     bool isRunning();
@@ -120,7 +120,7 @@ private slots:
 #endif
 
 private:
-    ApplicationInstanceManager *m_instanceManager;
+    ApplicationInstanceManager *m_instanceManager = nullptr;
     bool m_running;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
