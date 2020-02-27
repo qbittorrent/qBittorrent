@@ -107,8 +107,8 @@ namespace
         case QAbstractSocket::IPv6Protocol: {
                 const Q_IPV6ADDR ipv6 = addr.toIPv6Address();
                 QByteArray ret;
-                for (int i = (sizeof(ipv6.c) - 1); i >= 0; --i)
-                    ret.append(static_cast<char>(ipv6.c[i]));
+                for (const quint8 i : ipv6.c)
+                    ret.append(i);
                 return ret;
             }
 
@@ -272,6 +272,12 @@ void Tracker::processAnnounceRequest()
     announceReq.socketAddress = m_env.clientAddress;
     announceReq.claimedAddress = queryParams.value(ANNOUNCE_REQUEST_IP);
 
+    // Enforce using IPv4 if address is indeed IPv4 or if it is an IPv4-mapped IPv6 address
+    bool ok = false;
+    const qint32 decimalIPv4 = announceReq.socketAddress.toIPv4Address(&ok);
+    if (ok)
+        announceReq.socketAddress = QHostAddress(decimalIPv4);
+
     // 1. info_hash
     const auto infoHashIter = queryParams.find(ANNOUNCE_REQUEST_INFO_HASH);
     if (infoHashIter == queryParams.end())
@@ -343,9 +349,9 @@ void Tracker::processAnnounceRequest()
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_COMPLETED)
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_STARTED)
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_PAUSED)) {
-        // [BEP-21] Extension for partial seeds (partial support)
+        // [BEP-21] Extension for partial seeds
+        // (partial support - we don't support BEP-48 so the part that concerns that is not supported)
         registerPeer(announceReq);
-        prepareAnnounceResponse(announceReq);
     }
     else if (announceReq.event == ANNOUNCE_REQUEST_EVENT_STOPPED) {
         unregisterPeer(announceReq);
@@ -353,6 +359,8 @@ void Tracker::processAnnounceRequest()
     else {
         throw TrackerError("Invalid \"event\" parameter");
     }
+
+    prepareAnnounceResponse(announceReq);
 }
 
 void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
@@ -387,49 +395,53 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
         {ANNOUNCE_RESPONSE_COMPLETE, torrentStats.seeders},
         {ANNOUNCE_RESPONSE_INCOMPLETE, (torrentStats.peers.size() - torrentStats.seeders)},
 
-        // [BEP-24] Tracker Returns External IP
+        // [BEP-24] Tracker Returns External IP (partial support - might not work properly for all IPv6 cases)
         {ANNOUNCE_RESPONSE_EXTERNAL_IP, toBigEndianByteArray(announceReq.socketAddress).toStdString()}
     };
 
     // peer list
-    // [BEP-7] IPv6 Tracker Extension (partial support)
+    // [BEP-7] IPv6 Tracker Extension (partial support - only the part that concerns BEP-23)
     // [BEP-23] Tracker Returns Compact Peer Lists
     if (announceReq.compact) {
-        lt::entry::list_type peerList;
-        lt::entry::list_type peer6List;
+        lt::entry::string_type peers;
+        lt::entry::string_type peers6;
 
-        int counter = 0;
-        for (const Peer &peer : asConst(torrentStats.peers)) {
-            if (counter++ >= announceReq.numwant)
-                break;
+        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED) {
+            int counter = 0;
+            for (const Peer &peer : asConst(torrentStats.peers)) {
+                if (counter++ >= announceReq.numwant)
+                    break;
 
-            if (peer.endpoint.size() == 6)  // IPv4
-                peerList.emplace_back(peer.endpoint);
-            else if (peer.endpoint.size() == 18)  // IPv6
-                peer6List.emplace_back(peer.endpoint);
+                if (peer.endpoint.size() == 6)  // IPv4 + port
+                    peers.append(peer.endpoint);
+                else if (peer.endpoint.size() == 18)  // IPv6 + port
+                    peers6.append(peer.endpoint);
+            }
         }
 
-        replyDict[ANNOUNCE_RESPONSE_PEERS] = peerList;  // required, even it's empty
-        if (!peer6List.empty())
-            replyDict[ANNOUNCE_RESPONSE_PEERS6] = peer6List;
+        replyDict[ANNOUNCE_RESPONSE_PEERS] = peers;  // required, even it's empty
+        if (!peers6.empty())
+            replyDict[ANNOUNCE_RESPONSE_PEERS6] = peers6;
     }
     else {
         lt::entry::list_type peerList;
 
-        int counter = 0;
-        for (const Peer &peer : torrentStats.peers) {
-            if (counter++ >= announceReq.numwant)
-                break;
+        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED) {
+            int counter = 0;
+            for (const Peer &peer : torrentStats.peers) {
+                if (counter++ >= announceReq.numwant)
+                    break;
 
-            lt::entry::dictionary_type peerDict = {
-                {ANNOUNCE_RESPONSE_PEERS_IP, peer.address},
-                {ANNOUNCE_RESPONSE_PEERS_PORT, peer.port}
-            };
+                lt::entry::dictionary_type peerDict = {
+                    {ANNOUNCE_RESPONSE_PEERS_IP, peer.address},
+                    {ANNOUNCE_RESPONSE_PEERS_PORT, peer.port}
+                };
 
-            if (!announceReq.noPeerId)
-                peerDict[ANNOUNCE_RESPONSE_PEERS_PEER_ID] = peer.peerId.constData();
+                if (!announceReq.noPeerId)
+                    peerDict[ANNOUNCE_RESPONSE_PEERS_PEER_ID] = peer.peerId.constData();
 
-            peerList.emplace_back(peerDict);
+                peerList.emplace_back(peerDict);
+            }
         }
 
         replyDict[ANNOUNCE_RESPONSE_PEERS] = peerList;
