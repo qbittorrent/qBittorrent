@@ -75,11 +75,27 @@ namespace
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
             , Utils::Fs::toNativePath(configPath + QLatin1String("WebUIPrivateKey.pem")));
     }
+
+    void removeUnusedOptions()
+    {
+        SettingsStorage *settingsStorage {SettingsStorage::instance()};
+        const QVector<QString> removed_options {"BitTorrent/Session/MaxHalfOpenConnections"};
+
+        for(auto const &option : removed_options)
+        {
+            if(!settingsStorage->loadValue(option).isNull())
+            {
+                LogMsg(QObject::tr("Migrated preferences: removed unused option %1").arg(option), Log::INFO);
+                settingsStorage->removeValue(option);
+            }
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
 {
     exportWebUIHttpsFiles();
+    removeUnusedOptions();
     return true;
 }
 
