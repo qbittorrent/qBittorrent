@@ -1498,7 +1498,8 @@ void TorrentHandle::resume_impl(bool forced)
     }
 
     setAutoManaged(!forced);
-    m_nativeHandle.resume();
+    if (forced)
+        m_nativeHandle.resume();
 }
 
 void TorrentHandle::moveStorage(const QString &newPath, bool overwrite)
