@@ -1202,10 +1202,10 @@ QVector<PeerInfo> TorrentHandle::peers() const
 QBitArray TorrentHandle::pieces() const
 {
     QBitArray result(m_nativeStatus.pieces.size());
-
-    for (int i = 0; i < m_nativeStatus.pieces.size(); ++i)
-        result.setBit(i, m_nativeStatus.pieces.get_bit(LTPieceIndex {i}));
-
+    for (int i = 0; i < result.size(); ++i) {
+        if (m_nativeStatus.pieces[LTPieceIndex {i}])
+            result.setBit(i, true);
+    }
     return result;
 }
 
