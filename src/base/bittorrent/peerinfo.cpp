@@ -208,11 +208,10 @@ qlonglong PeerInfo::totalDownload() const
 QBitArray PeerInfo::pieces() const
 {
     QBitArray result(m_nativeInfo.pieces.size());
-
-    int i = 0;
-    for (const bool bit : m_nativeInfo.pieces)
-        result.setBit(i++, bit);
-
+    for (int i = 0; i < result.size(); ++i) {
+        if (m_nativeInfo.pieces[i])
+            result.setBit(i, true);
+    }
     return result;
 }
 
