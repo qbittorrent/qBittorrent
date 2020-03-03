@@ -133,6 +133,12 @@ int main(int argc, char *argv[])
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
+#if !defined(DISABLE_GUI) && (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    // Attribute Qt::AA_EnableHighDpiScaling must be set before QCoreApplication is created
+    if (qgetenv("QT_ENABLE_HIGHDPI_SCALING").isEmpty() && qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+        Application::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+#endif
+
     try {
         // Create Application
         const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
