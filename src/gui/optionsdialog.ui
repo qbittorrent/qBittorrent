@@ -221,6 +221,9 @@
               <layout class="QVBoxLayout" name="verticalLayout_4">
                <item>
                 <widget class="QCheckBox" name="confirmDeletion">
+                 <property name="toolTip">
+                  <string>Shows a confirmation dialog upon torrent deletion</string>
+                 </property>
                  <property name="text">
                   <string>Confirm when deleting torrents</string>
                  </property>
@@ -232,7 +235,7 @@
                <item>
                 <widget class="QCheckBox" name="checkAltRowColors">
                  <property name="text">
-                  <string extracomment="In transfer list, one every two rows will have grey background.">Use alternating row colors</string>
+                  <string extracomment="In table elements, every other row will have a grey background.">Use alternating row colors</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -387,6 +390,9 @@
                </item>
                <item>
                 <widget class="QCheckBox" name="checkStartMinimized">
+                 <property name="toolTip">
+                  <string>When qBittorrent is started, the main window will be minimized</string>
+                 </property>
                  <property name="text">
                   <string>Start qBittorrent minimized</string>
                  </property>
@@ -394,6 +400,9 @@
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProgramExitConfirm">
+                 <property name="toolTip">
+                  <string>Shows a confirmation dialog when exiting with active torrents</string>
+                 </property>
                  <property name="text">
                   <string>Confirmation on exit when torrents are active</string>
                  </property>
@@ -423,6 +432,9 @@
                  <layout class="QVBoxLayout" name="verticalLayout_22">
                   <item>
                    <widget class="QCheckBox" name="checkMinimizeToSysTray">
+                    <property name="toolTip">
+                     <string>When minimizing, the main window is closed and must be reopened from the systray icon</string>
+                    </property>
                     <property name="text">
                      <string>Minimize qBittorrent to notification area</string>
                     </property>
@@ -433,8 +445,11 @@
                   </item>
                   <item>
                    <widget class="QCheckBox" name="checkCloseToSystray">
+                    <property name="toolTip">
+                      <string>The systray icon will still be visible when closing the main window</string>
+                    </property>
                     <property name="text">
-                     <string comment="i.e: The systray tray icon will still be visible when closing the main window.">Close qBittorrent to notification area</string>
+                     <string extracomment="The systray icon will still be visible when closing the main window">Close qBittorrent to notification area</string>
                     </property>
                    </widget>
                   </item>
@@ -576,6 +591,9 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_8">
                  <item>
                   <widget class="QCheckBox" name="checkFileLogBackup">
+                   <property name="toolTip">
+                    <string>Creates an additional log file after the log file reaches the specified file size</string>
+                   </property>
                    <property name="text">
                     <string>Backup the log file after:</string>
                    </property>
@@ -641,17 +659,17 @@
                    </property>
                    <item>
                     <property name="text">
-                     <string comment="Delete backup logs older than 10 months">days</string>
+                     <string extracomment="Delete backup logs older than 10 days">days</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string comment="Delete backup logs older than 10 months">months</string>
+                     <string extracomment="Delete backup logs older than 10 months">months</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string comment="Delete backup logs older than 10 years">years</string>
+                     <string extracomment="Delete backup logs older than 10 years">years</string>
                     </property>
                    </item>
                   </widget>
@@ -762,8 +780,11 @@
                </item>
                <item>
                 <widget class="QCheckBox" name="checkStartPaused">
+                 <property name="toolTip">
+                  <string>The torrent will be added to download list in a paused state</string>
+                 </property>
                  <property name="text">
-                  <string comment="The torrent will be added to download list in pause state">Do not start the download automatically</string>
+                  <string extracomment="The torrent will be added to download list in a paused state">Do not start the download automatically</string>
                  </property>
                 </widget>
                </item>
@@ -824,6 +845,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="checkPreallocateAll">
+              <property name="toolTip">
+               <string>Allocate full file sizes on disk before starting downloads, to minimize fragmentation. Only useful for HDDs.</string>
+              </property>
               <property name="text">
                <string>Pre-allocate disk space for all files</string>
               </property>
@@ -838,6 +862,9 @@
             </item>
             <item>
              <widget class="QCheckBox" name="checkRecursiveDownload">
+              <property name="toolTip">
+               <string>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</string>
+              </property>
               <property name="text">
                <string>Enable recursive download dialog</string>
               </property>
@@ -866,7 +893,8 @@
                    <item>
                     <widget class="QComboBox" name="comboSavingMode">
                      <property name="toolTip">
-                      <string>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</string>
+                      <string>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
+Manual: Various torrent properties (e.g. save path) must be assigned manually</string>
                      </property>
                      <item>
                       <property name="text">
@@ -1174,6 +1202,9 @@
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
+                   <property name="toolTip">
+                    <string>Receiver</string>
+                   </property>
                    <property name="text">
                     <string comment="To receiver">To:</string>
                    </property>
@@ -1194,6 +1225,9 @@
                  </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="label_25">
+                   <property name="toolTip">
+                    <string>Sender</string>
+                   </property>
                    <property name="text">
                     <string comment="From sender">From:</string>
                    </property>
@@ -1927,6 +1961,9 @@
                  <layout class="QGridLayout" name="gridLayout_7">
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_6">
+                    <property name="toolTip">
+                     <string>Start time</string>
+                    </property>
                     <property name="text">
                      <string comment="From start time">From:</string>
                     </property>
@@ -1951,6 +1988,9 @@
                   </item>
                   <item row="0" column="2">
                    <widget class="QLabel" name="label_17">
+                    <property name="toolTip">
+                     <string>End time</string>
+                    </property>
                     <property name="text">
                      <string comment="To end time">To:</string>
                     </property>
@@ -2156,6 +2196,9 @@
               <layout class="QVBoxLayout" name="verticalLayout_14">
                <item>
                 <widget class="QCheckBox" name="checkDHT">
+                 <property name="toolTip">
+                  <string>Find peers on the DHT network</string>
+                 </property>
                  <property name="text">
                   <string>Enable DHT (decentralized network) to find more peers</string>
                  </property>
@@ -2201,6 +2244,11 @@
                  </item>
                  <item>
                   <widget class="QComboBox" name="comboEncryption">
+                   <property name="toolTip">
+                    <string>Allow encryption: Connect to peers regardless of setting
+Require encryption: Only connect to peers with protocol encryption
+Disable encryption: Only connect to peers without protocol encryption</string>
+                   </property>
                    <item>
                     <property name="text">
                      <string>Allow encryption</string>
