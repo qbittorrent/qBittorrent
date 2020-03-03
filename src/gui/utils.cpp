@@ -62,6 +62,10 @@ void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
 
 qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    Q_UNUSED(widget);
+    return 1;
+#else
     if (!widget)
         return 1;
 
@@ -77,6 +81,7 @@ qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 #else
     return widget->devicePixelRatioF();
 #endif // Q_OS_WIN
+#endif // QT_VERSION
 }
 
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
