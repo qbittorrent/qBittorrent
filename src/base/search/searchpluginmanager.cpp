@@ -457,7 +457,7 @@ void SearchPluginManager::update()
         if (!engineElem.isNull()) {
             const QString pluginName = engineElem.tagName();
 
-            std::unique_ptr<PluginInfo> plugin {new PluginInfo {}};
+            auto plugin = std::make_unique<PluginInfo>();
             plugin->name = pluginName;
             plugin->version = getPluginVersion(pluginPath(pluginName));
             plugin->fullName = engineElem.elementsByTagName("name").at(0).toElement().text();

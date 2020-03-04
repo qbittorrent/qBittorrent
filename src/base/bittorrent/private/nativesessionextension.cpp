@@ -60,7 +60,7 @@ std::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt
 #else
 boost::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, void *)
 {
-    return boost::shared_ptr<lt::torrent_plugin> {new NativeTorrentExtension {torrentHandle}};
+    return boost::make_shared<NativeTorrentExtension>(torrentHandle);
 }
 #endif
 
