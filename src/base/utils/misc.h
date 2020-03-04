@@ -99,7 +99,7 @@ namespace Utils
 
             path += source;
 
-            std::unique_ptr<wchar_t[]> pathWchar(new wchar_t[path.length() + 1] {});
+            auto pathWchar = std::make_unique<wchar_t[]>(path.length() + 1);
             path.toWCharArray(pathWchar.get());
 
             return reinterpret_cast<T>(

@@ -327,7 +327,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
 {
 #if defined(Q_OS_WIN)
     const std::wstring pathW {path.toStdWString()};
-    std::unique_ptr<wchar_t[]> volumePath {new wchar_t[path.length() + 1] {}};
+    auto volumePath = std::make_unique<wchar_t[]>(path.length() + 1);
     if (!::GetVolumePathNameW(pathW.c_str(), volumePath.get(), (path.length() + 1)))
         return false;
 

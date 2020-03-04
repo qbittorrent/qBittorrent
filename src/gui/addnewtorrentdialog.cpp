@@ -268,7 +268,7 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
         return false;
     }
 
-    m_torrentGuard.reset(new TorrentFileGuard(decodedPath));
+    m_torrentGuard = std::make_unique<TorrentFileGuard>(decodedPath);
 
     return loadTorrentImpl();
 }
@@ -310,7 +310,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
-    m_torrentGuard.reset(new TorrentFileGuard(QString()));
+    m_torrentGuard = std::make_unique<TorrentFileGuard>();
     m_hash = magnetUri.hash();
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Session::instance()->isKnownTorrent(m_hash)) {
@@ -678,7 +678,7 @@ void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &resu
             return;
         }
 
-        m_torrentGuard.reset(new TorrentFileGuard);
+        m_torrentGuard = std::make_unique<TorrentFileGuard>();
 
         if (loadTorrentImpl())
             open();
