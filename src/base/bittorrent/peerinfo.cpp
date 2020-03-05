@@ -207,9 +207,15 @@ qlonglong PeerInfo::totalDownload() const
 
 QBitArray PeerInfo::pieces() const
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    using PieceIndex = int;
+#else
+    using PieceIndex = lt::piece_index_t;
+#endif
+
     QBitArray result(m_nativeInfo.pieces.size());
     for (int i = 0; i < result.size(); ++i) {
-        if (m_nativeInfo.pieces[i])
+        if (m_nativeInfo.pieces[PieceIndex {i}])
             result.setBit(i, true);
     }
     return result;
