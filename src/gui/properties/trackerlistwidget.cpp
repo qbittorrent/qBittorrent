@@ -482,7 +482,7 @@ void TrackerListWidget::editSelectedTracker()
     // During multi-select only process item selected last
     const QUrl trackerURL = selectedTrackerItems.last()->text(COL_URL);
 
-    bool ok;
+    bool ok = false;
     const QUrl newTrackerURL = AutoExpandableDialog::getText(this, tr("Tracker editing"), tr("Tracker URL:"),
                                                          QLineEdit::Normal, trackerURL.toString(), &ok).trimmed();
     if (!ok) return;
