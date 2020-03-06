@@ -216,7 +216,7 @@ void RSSWidget::displayItemsListMenu(const QPoint &)
 
 void RSSWidget::askNewFolder()
 {
-    bool ok;
+    bool ok = false;
     QString newName = AutoExpandableDialog::getText(
                 this, tr("Please choose a folder name"), tr("Folder name:"), QLineEdit::Normal
                 , tr("New folder"), &ok);
@@ -257,7 +257,7 @@ void RSSWidget::on_newFeedButton_clicked()
     const QString clipText = qApp->clipboard()->text();
     const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : "http://";
 
-    bool ok;
+    bool ok = false;
     QString newURL = AutoExpandableDialog::getText(
                 this, tr("Please type a RSS feed URL"), tr("Feed URL:"), QLineEdit::Normal, defaultURL, &ok);
     if (!ok) return;
@@ -386,7 +386,7 @@ void RSSWidget::renameSelectedRSSItem()
 
     RSS::Item *rssItem = m_feedListWidget->getRSSItem(item);
     const QString parentPath = RSS::Item::parentPath(rssItem->path());
-    bool ok;
+    bool ok = false;
     do {
         QString newName = AutoExpandableDialog::getText(
                     this, tr("Please choose a new name for this RSS feed"), tr("New feed name:")
