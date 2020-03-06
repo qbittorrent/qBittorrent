@@ -710,7 +710,7 @@ void PropertiesWidget::configure()
 
 void PropertiesWidget::askWebSeed()
 {
-    bool ok;
+    bool ok = false;
     // Ask user for a new url seed
     const QString urlSeed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
