@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
     try {
         // Create Application
         const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
-        std::unique_ptr<Application> app(new Application(appId, argc, argv));
+        auto app = std::make_unique<Application>(appId, argc, argv);
 
         const QBtCommandLineParameters params = app->commandLineArgs();
 
@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
             if (daemon(1, 0) == 0) {
-                app.reset(new Application(appId, argc, argv));
+                app = std::make_unique<Application>(appId, argc, argv);
                 if (app->isRunning()) {
                     // Another instance had time to start.
                     return EXIT_FAILURE;

@@ -126,7 +126,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     }
     else {
         const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
-        std::unique_ptr<wchar_t[]> msgWchar(new wchar_t[msg.length() + 1] {});
+        auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
         msg.toWCharArray(msgWchar.get());
         ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, true, false);
     }
