@@ -84,7 +84,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>org.bittorrent.torrent</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.bittorrent.org/beps/bep_0000.html</string>
+			<string>https://www.bittorrent.org/beps/bep_0000.html</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>
