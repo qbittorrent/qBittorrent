@@ -116,34 +116,34 @@ if (APPLE)
             MACOSX_PACKAGE_LOCATION Resources)
     set(QT_TR_DIR "${qBittorrent_SOURCE_DIR}/dist/qt-translations")
     set(QT_TRANSLATIONS
-        ${QT_TR_DIR}/qt_ar.qm
-        ${QT_TR_DIR}/qt_bg.qm
-        ${QT_TR_DIR}/qt_ca.qm
-        ${QT_TR_DIR}/qt_cs.qm
-        ${QT_TR_DIR}/qt_da.qm
-        ${QT_TR_DIR}/qt_de.qm
-        ${QT_TR_DIR}/qt_es.qm
-        ${QT_TR_DIR}/qt_eu.qm
-        ${QT_TR_DIR}/qt_fi.qm
-        ${QT_TR_DIR}/qt_fr.qm
+        ${QT_TR_DIR}/qtbase_ar.qm
+        ${QT_TR_DIR}/qtbase_bg.qm
+        ${QT_TR_DIR}/qtbase_ca.qm
+        ${QT_TR_DIR}/qtbase_cs.qm
+        ${QT_TR_DIR}/qtbase_da.qm
+        ${QT_TR_DIR}/qtbase_de.qm
+        ${QT_TR_DIR}/qtbase_es.qm
+        ${QT_TR_DIR}/qtbase_fi.qm
+        ${QT_TR_DIR}/qtbase_fr.qm
+        ${QT_TR_DIR}/qtbase_gd.qm
+        ${QT_TR_DIR}/qtbase_he.qm
+        ${QT_TR_DIR}/qtbase_hu.qm
+        ${QT_TR_DIR}/qtbase_it.qm
+        ${QT_TR_DIR}/qtbase_ja.qm
+        ${QT_TR_DIR}/qtbase_ko.qm
+        ${QT_TR_DIR}/qtbase_lv.qm
+        ${QT_TR_DIR}/qtbase_pl.qm
+        ${QT_TR_DIR}/qtbase_ru.qm
+        ${QT_TR_DIR}/qtbase_sk.qm
+        ${QT_TR_DIR}/qtbase_uk.qm
+        ${QT_TR_DIR}/qtbase_zh_TW.qm
+        ${QT_TR_DIR}/qt_fa.qm
         ${QT_TR_DIR}/qt_gl.qm
-        ${QT_TR_DIR}/qt_he.qm
-        ${QT_TR_DIR}/qt_hu.qm
-        ${QT_TR_DIR}/qt_it.qm
-        ${QT_TR_DIR}/qt_ja.qm
-        ${QT_TR_DIR}/qt_ko.qm
         ${QT_TR_DIR}/qt_lt.qm
-        ${QT_TR_DIR}/qt_nl.qm
-        ${QT_TR_DIR}/qt_pl.qm
         ${QT_TR_DIR}/qt_pt.qm
-        ${QT_TR_DIR}/qt_pt_BR.qm
-        ${QT_TR_DIR}/qt_ru.qm
-        ${QT_TR_DIR}/qt_sk.qm
+        ${QT_TR_DIR}/qt_sl.qm
         ${QT_TR_DIR}/qt_sv.qm
-        ${QT_TR_DIR}/qt_tr.qm
-        ${QT_TR_DIR}/qt_uk.qm
         ${QT_TR_DIR}/qt_zh_CN.qm
-        ${QT_TR_DIR}/qt_zh_TW.qm
     )
     list(APPEND QBT_APP_RESOURCE_SOURCE ${QT_TRANSLATIONS})
     set_source_files_properties(${QT_TRANSLATIONS}
