@@ -640,7 +640,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     // The selected torrent might have disappeared during exec()
     // so we just close menu when an appropriate model is reset
     connect(m_ui->filesList->model(), &QAbstractItemModel::modelAboutToBeReset
-            , menu, [&menu]()
+            , menu, [menu]()
     {
         menu->setActiveAction(nullptr);
         menu->close();
