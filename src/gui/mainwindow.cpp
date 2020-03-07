@@ -1773,14 +1773,14 @@ void MainWindow::on_actionSearchWidget_triggered()
 
 #ifdef Q_OS_WIN
             const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Minimum requirement: 2.7.9 / 3.3.0.\nDo you want to install a newer version now?")
+                , tr("Your Python version (%1) is outdated. Minimum requirement: 3.3.0.\nDo you want to install a newer version now?")
                     .arg(pyInfo.version)
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
             if (buttonPressed == QMessageBox::Yes)
                 installPython();
 #else
             QMessageBox::information(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 2.7.9 / 3.3.0.")
+                , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 3.3.0.")
                 .arg(pyInfo.version));
 #endif
             return;
