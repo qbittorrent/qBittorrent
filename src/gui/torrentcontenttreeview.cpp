@@ -94,7 +94,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
     if (selectedIndexes.size() != 1) return;
 
-    const QModelIndex modelIndex = selectedIndexes.first();
+    const QPersistentModelIndex modelIndex = selectedIndexes.first();
     if (!modelIndex.isValid()) return;
 
     auto model = dynamic_cast<TorrentContentFilterModel *>(TorrentContentTreeView::model());
@@ -106,7 +106,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
     bool ok = false;
     QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
             , modelIndex.data().toString(), &ok, isFile).trimmed();
-    if (!ok) return;
+    if (!ok || !modelIndex.isValid()) return;
 
     if (!Utils::Fs::isValidFileSystemName(newName)) {
         RaisedMessageBox::warning(this, tr("Rename error"),
@@ -213,7 +213,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
     if (selectedIndexes.size() != 1) return;
 
-    const QModelIndex modelIndex = selectedIndexes.first();
+    const QPersistentModelIndex modelIndex = selectedIndexes.first();
     if (!modelIndex.isValid()) return;
 
     auto model = dynamic_cast<TorrentContentFilterModel *>(TorrentContentTreeView::model());
@@ -225,7 +225,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
     bool ok = false;
     QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
             , modelIndex.data().toString(), &ok, isFile).trimmed();
-    if (!ok) return;
+    if (!ok || !modelIndex.isValid()) return;
 
     if (!Utils::Fs::isValidFileSystemName(newName)) {
         RaisedMessageBox::warning(this, tr("Rename error"),
