@@ -808,8 +808,7 @@ bool TorrentHandle::isActive() const
     if (m_state == TorrentState::StalledDownloading)
         return (uploadPayloadRate() > 0);
 
-    return m_state == TorrentState::DownloadingMetadata
-            || m_state == TorrentState::Downloading
+    return m_state == TorrentState::Downloading
             || m_state == TorrentState::ForcedDownloading
             || m_state == TorrentState::Uploading
             || m_state == TorrentState::ForcedUploading
