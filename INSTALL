@@ -17,7 +17,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - pkg-config (compile-time only)
 
-  - Python >= 2.7.9 / 3.3.0 (optional, runtime only)
+  - Python >= 3.3.0 (optional, runtime only)
       * Required by the internal search engine
 
 2a) Compile and install qBittorrent with Qt graphical interface
