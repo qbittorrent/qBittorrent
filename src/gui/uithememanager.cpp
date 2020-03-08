@@ -38,6 +38,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "applicationpalette.h"
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
 
@@ -54,6 +55,7 @@ void UIThemeManager::initInstance()
 }
 
 UIThemeManager::UIThemeManager()
+    : m_applicationPalette(new ApplicationPalette)
 {
     const Preferences *const pref = Preferences::instance();
     if (pref->useCustomUITheme()
@@ -63,6 +65,11 @@ UIThemeManager::UIThemeManager()
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_useSystemTheme = pref->useSystemIconTheme();
 #endif
+}
+
+UIThemeManager::~UIThemeManager()
+{
+    delete m_applicationPalette;
 }
 
 UIThemeManager *UIThemeManager::instance()

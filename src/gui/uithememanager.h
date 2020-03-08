@@ -33,6 +33,8 @@
 
 class QString;
 
+class ApplicationPalette;
+
 class UIThemeManager : public QObject
 {
     Q_OBJECT
@@ -51,9 +53,11 @@ public:
 
 private:
     UIThemeManager(); // singleton class
+    ~UIThemeManager();
     QString getIconPath(const QString &iconId) const;
 
     static UIThemeManager *m_instance;
+    ApplicationPalette *m_applicationPalette; // stylesheet would not be examined till some widget's show event so we need to keep it around
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
 #endif

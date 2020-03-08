@@ -14,6 +14,7 @@ add_library(qbt_gui STATIC
 aboutdialog.h
 addnewtorrentdialog.h
 advancedsettings.h
+applicationpalette.h
 autoexpandabledialog.h
 banlistoptionsdialog.h
 categoryfiltermodel.h
@@ -67,6 +68,7 @@ utils.h
 aboutdialog.cpp
 addnewtorrentdialog.cpp
 advancedsettings.cpp
+applicationpalette.cpp
 autoexpandabledialog.cpp
 banlistoptionsdialog.cpp
 categoryfiltermodel.cpp

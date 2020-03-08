@@ -8,6 +8,7 @@ HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/addnewtorrentdialog.h \
     $$PWD/advancedsettings.h \
+    $$PWD/applicationpalette.h \
     $$PWD/autoexpandabledialog.h \
     $$PWD/banlistoptionsdialog.h \
     $$PWD/categoryfiltermodel.h \
@@ -72,6 +73,7 @@ SOURCES += \
     $$PWD/aboutdialog.cpp \
     $$PWD/addnewtorrentdialog.cpp \
     $$PWD/advancedsettings.cpp \
+    $$PWD/applicationpalette.cpp \
     $$PWD/autoexpandabledialog.cpp \
     $$PWD/banlistoptionsdialog.cpp \
     $$PWD/categoryfiltermodel.cpp \
