@@ -126,9 +126,8 @@ namespace
 #endif
 }
 
-Application::Application(const QString &id, int &argc, char **argv)
+Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
-    , m_instanceManager(new ApplicationInstanceManager {id, this})
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
@@ -144,11 +143,16 @@ Application::Application(const QString &id, int &argc, char **argv)
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
-    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && QDir(QCoreApplication::applicationDirPath()).exists(DEFAULT_PORTABLE_MODE_PROFILE_DIR);
+    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty()
+            && QDir(QCoreApplication::applicationDirPath()).exists(DEFAULT_PORTABLE_MODE_PROFILE_DIR);
 
     const QString profileDir = portableModeEnabled
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
+    const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString() + '@' + profileDir
+            + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName));
+    m_instanceManager = new ApplicationInstanceManager {appId, this};
+
     Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
                         (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
 
