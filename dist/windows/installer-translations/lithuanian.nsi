@@ -14,6 +14,8 @@ LangString inst_torrent ${LANG_LITHUANIAN} "Atidaryti .torrent failus su qBittor
 LangString inst_magnet ${LANG_LITHUANIAN} "Atidaryti magneto nuorodas su qBittorrent"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_LITHUANIAN} "Sukurti Windows užkardos leidimą"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_LITHUANIAN} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_LITHUANIAN} "Pridedu Windows užkardos leidimą"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
