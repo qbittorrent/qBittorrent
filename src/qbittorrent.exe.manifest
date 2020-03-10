@@ -36,4 +36,10 @@
           <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
       </application>
   </compatibility>
+  <!-- Enable long paths that exceed MAX_PATH in length -->
+  <asmv3:application>
+    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
+      <longPathAware>true</longPathAware>
+    </asmv3:windowsSettings>
+  </asmv3:application>
 </assembly>

@@ -14,6 +14,8 @@ LangString inst_torrent ${LANG_JAPANESE} ".torrent ファイルを qBittorrent �
 LangString inst_magnet ${LANG_JAPANESE} "マグネットリンクを qBittorrent で開く"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_JAPANESE} "Windows ファイアウォールのルールを追加"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_JAPANESE} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_JAPANESE} "Windows ファイアウォールのルールを追加"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."

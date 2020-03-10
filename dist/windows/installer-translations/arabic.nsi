@@ -14,6 +14,8 @@ LangString inst_torrent ${LANG_ARABIC} "فتح ملفات التورنت باس�
 LangString inst_magnet ${LANG_ARABIC} "فتح الروابط المغناطيسية باستخدام qBittorrent"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_ARABIC} "اضافة قاعدة للجدار الناري لويندوز"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_ARABIC} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_ARABIC} "جاري اضافة القاعدة للجدار الناري"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."

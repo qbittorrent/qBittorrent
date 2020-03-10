@@ -187,6 +187,12 @@ Section $(inst_firewall)
 
 SectionEnd
 
+Section $(inst_pathlimit) ;"Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+
+  WriteRegDWORD HKLM "SYSTEM\CurrentControlSet\Control\FileSystem" "LongPathsEnabled" 1
+
+SectionEnd
+
 ;--------------------------------
 
 Function .onInit
