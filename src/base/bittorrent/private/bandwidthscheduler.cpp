@@ -33,6 +33,7 @@
 
 #include <QDate>
 #include <QTime>
+#include <QTimer>
 
 #include "base/preferences.h"
 
@@ -55,7 +56,7 @@ void BandwidthScheduler::start()
 
 bool BandwidthScheduler::isTimeForAlternative() const
 {
-    const Preferences* const pref = Preferences::instance();
+    const Preferences *const pref = Preferences::instance();
 
     QTime start = pref->getSchedulerStartTime();
     QTime end = pref->getSchedulerEndTime();
@@ -93,7 +94,7 @@ bool BandwidthScheduler::isTimeForAlternative() const
 
 void BandwidthScheduler::onTimeout()
 {
-    bool alternative = isTimeForAlternative();
+    const bool alternative = isTimeForAlternative();
 
     if (alternative != m_lastAlternative) {
         m_lastAlternative = alternative;

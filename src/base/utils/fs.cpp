@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2012  Christophe Dumez
+ * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,44 +24,48 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "fs.h"
 
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QFileInfo>
-#include <QDirIterator>
-#include <QCoreApplication>
-#include <QStorageInfo>
+#include <cstring>
+
+#if defined(Q_OS_WIN)
+#include <memory>
+#endif
+
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
-#elif defined(Q_OS_MAC) || defined(Q_OS_FREEBSD)
+#elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
 #elif defined(Q_OS_HAIKU)
 #include <kernel/fs_info.h>
 #else
 #include <sys/vfs.h>
+#include <unistd.h>
 #endif
 
-#include "base/bittorrent/torrenthandle.h"
+#include <QDebug>
+#include <QDir>
+#include <QDirIterator>
+#include <QFile>
+#include <QFileInfo>
+#include <QStorageInfo>
+#include <QRegularExpression>
 
-/**
- * Converts a path to a string suitable for display.
- * This function makes sure the directory separator used is consistent
- * with the OS being run.
- */
+#include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
+
 QString Utils::Fs::toNativePath(const QString &path)
 {
     return QDir::toNativeSeparators(path);
 }
 
-QString Utils::Fs::fromNativePath(const QString &path)
+QString Utils::Fs::toUniformPath(const QString &path)
 {
     return QDir::fromNativeSeparators(path);
 }
@@ -71,15 +75,15 @@ QString Utils::Fs::fromNativePath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    QString ext = QString(filename).remove(QB_EXT);
-    const int pointIndex = ext.lastIndexOf(".");
+    const QString ext = QString(filename).remove(QB_EXT);
+    const int pointIndex = ext.lastIndexOf('.');
     return (pointIndex >= 0) ? ext.mid(pointIndex + 1) : QString();
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
-    const int slashIndex = path.lastIndexOf("/");
+    const QString path = toUniformPath(filePath);
+    const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
     return path.mid(slashIndex + 1);
@@ -87,55 +91,66 @@ QString Utils::Fs::fileName(const QString &filePath)
 
 QString Utils::Fs::folderName(const QString &filePath)
 {
-    QString path = fromNativePath(filePath);
-    const int slashIndex = path.lastIndexOf("/");
+    const QString path = toUniformPath(filePath);
+    const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
         return path;
     return path.left(slashIndex);
 }
 
 /**
- * This function will first remove system cache files, e.g. `Thumbs.db`,
- * `.DS_Store`. Then will try to remove the whole tree if the tree consist
- * only of folders
+ * This function will first check if there are only system cache files, e.g. `Thumbs.db`,
+ * `.DS_Store` and/or only temp files that end with '~', e.g. `filename~`.
+ * If they are the only files it will try to remove them and delete the folder.
+ * This action will be performed for each subfolder starting from the deepest folder.
+ * There is an inherent race condition here. A file might appear after it is checked
+ * that only the above mentioned "useless" files exist but before the whole folder is removed.
+ * In this case, the folder will not be removed but the "useless" files will be deleted.
  */
 bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
 {
     if (path.isEmpty() || !QDir(path).exists())
         return true;
 
-    static const QStringList deleteFilesList = {
+    const QStringList deleteFilesList = {
         // Windows
-        "Thumbs.db",
-        "desktop.ini",
+        QLatin1String("Thumbs.db"),
+        QLatin1String("desktop.ini"),
         // Linux
-        ".directory",
+        QLatin1String(".directory"),
         // Mac OS
-        ".DS_Store"
+        QLatin1String(".DS_Store")
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
-    QStringList dirList(path + "/");  // get all sub directories paths
+    QStringList dirList(path + '/');  // get all sub directories paths
     QDirIterator iter(path, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
     while (iter.hasNext())
-        dirList << iter.next() + "/";
+        dirList << iter.next() + '/';
     // sort descending by directory depth
     std::sort(dirList.begin(), dirList.end()
-              , [](const QString &l, const QString &r) { return l.count("/") > r.count("/"); });
+              , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
 
-    for (const QString &p : dirList) {
-        // remove unwanted files
-        for (const QString &f : deleteFilesList) {
+    for (const QString &p : asConst(dirList)) {
+        const QDir dir(p);
+        // A deeper folder may have not been removed in the previous iteration
+        // so don't remove anything from this folder either.
+        if (!dir.isEmpty(QDir::Dirs | QDir::NoDotAndDotDot))
+            continue;
+
+        const QStringList tmpFileList = dir.entryList(QDir::Files);
+
+        // deleteFilesList contains unwanted files, usually created by the OS
+        // temp files on linux usually end with '~', e.g. `filename~`
+        const bool hasOtherFiles = std::any_of(tmpFileList.cbegin(), tmpFileList.cend(), [&deleteFilesList](const QString &f)
+        {
+            return (!f.endsWith('~') && !deleteFilesList.contains(f, Qt::CaseInsensitive));
+        });
+        if (hasOtherFiles)
+            continue;
+
+        for (const QString &f : tmpFileList)
             forceRemove(p + f);
-        }
-
-        // remove temp files on linux (file ends with '~'), e.g. `filename~`
-        QDir dir(p);
-        QStringList tmpFileList = dir.entryList(QDir::Files);
-        for (const QString &f : tmpFileList) {
-            if (f.endsWith("~"))
-                forceRemove(p + f);
-        }
 
         // remove directory if empty
         dir.rmdir(p);
@@ -145,7 +160,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
 }
 
 /**
- * Removes the file with the given file_path.
+ * Removes the file with the given filePath.
  *
  * This function will try to fix the file permissions before removing it.
  */
@@ -162,7 +177,6 @@ bool Utils::Fs::forceRemove(const QString &filePath)
 
 /**
  * Removes directory and its content recursively.
- *
  */
 void Utils::Fs::removeDirRecursive(const QString &path)
 {
@@ -179,7 +193,7 @@ void Utils::Fs::removeDirRecursive(const QString &path)
 qint64 Utils::Fs::computePathSize(const QString &path)
 {
     // Check if it is a file
-    QFileInfo fi(path);
+    const QFileInfo fi(path);
     if (!fi.exists()) return -1;
     if (fi.isFile()) return fi.size();
 
@@ -205,16 +219,16 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
     if (!f2.open(QIODevice::ReadOnly)) return false;
 
     const int readSize = 1024 * 1024;  // 1 MiB
-    while(!f1.atEnd() && !f2.atEnd()) {
+    while (!f1.atEnd() && !f2.atEnd()) {
         if (f1.read(readSize) != f2.read(readSize))
             return false;
     }
     return true;
 }
 
-QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparators, const QString &pad)
+QString Utils::Fs::toValidFileSystemName(const QString &name, const bool allowSeparators, const QString &pad)
 {
-    QRegExp regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
+    const QRegularExpression regex(allowSeparators ? "[:?\"*<>|]+" : "[\\\\/:?\"*<>|]+");
 
     QString validName = name.trimmed();
     validName.replace(regex, pad);
@@ -223,11 +237,23 @@ QString Utils::Fs::toValidFileSystemName(const QString &name, bool allowSeparato
     return validName;
 }
 
-bool Utils::Fs::isValidFileSystemName(const QString &name, bool allowSeparators)
+bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSeparators)
 {
     if (name.isEmpty()) return false;
 
-    QRegExp regex(allowSeparators ? "[:?\"*<>|]" : "[\\\\/:?\"*<>|]");
+#if defined(Q_OS_WIN)
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[:?\"*<>|]")
+        : QLatin1String("[\\\\/:?\"*<>|]")};
+#elif defined(Q_OS_MACOS)
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[\\0:]")
+        : QLatin1String("[\\0/:]")};
+#else
+    const QRegularExpression regex {allowSeparators
+        ? QLatin1String("[\\0]")
+        : QLatin1String("[\\0/]")};
+#endif
     return !name.contains(regex);
 }
 
@@ -240,10 +266,10 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 
 QString Utils::Fs::branchPath(const QString &filePath, QString *removed)
 {
-    QString ret = fromNativePath(filePath);
-    if (ret.endsWith("/"))
+    QString ret = toUniformPath(filePath);
+    if (ret.endsWith('/'))
         ret.chop(1);
-    const int slashIndex = ret.lastIndexOf("/");
+    const int slashIndex = ret.lastIndexOf('/');
     if (slashIndex >= 0) {
         if (removed)
             *removed = ret.mid(slashIndex + 1);
@@ -263,7 +289,7 @@ bool Utils::Fs::sameFileNames(const QString &first, const QString &second)
 
 QString Utils::Fs::expandPath(const QString &path)
 {
-    QString ret = path.trimmed();
+    const QString ret = path.trimmed();
     if (ret.isEmpty())
         return ret;
 
@@ -281,3 +307,67 @@ QString Utils::Fs::tempPath()
     QDir().mkdir(path);
     return path;
 }
+
+bool Utils::Fs::isRegularFile(const QString &path)
+{
+    struct ::stat st;
+    if (::stat(path.toUtf8().constData(), &st) != 0) {
+        //  analyse erno and log the error
+        const auto err = errno;
+        qDebug("Could not get file stats for path '%s'. Error: %s"
+               , qUtf8Printable(path), qUtf8Printable(strerror(err)));
+        return false;
+    }
+
+    return (st.st_mode & S_IFMT) == S_IFREG;
+}
+
+#if !defined Q_OS_HAIKU
+bool Utils::Fs::isNetworkFileSystem(const QString &path)
+{
+#if defined(Q_OS_WIN)
+    const std::wstring pathW {path.toStdWString()};
+    auto volumePath = std::make_unique<wchar_t[]>(path.length() + 1);
+    if (!::GetVolumePathNameW(pathW.c_str(), volumePath.get(), (path.length() + 1)))
+        return false;
+
+    return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
+#elif defined(Q_OS_MACOS) || defined(Q_OS_OPENBSD)
+    QString file = path;
+    if (!file.endsWith('/'))
+        file += '/';
+    file += '.';
+
+    struct statfs buf {};
+    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+
+    // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
+    return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
+#else // Q_OS_WIN
+    QString file = path;
+    if (!file.endsWith('/'))
+        file += '/';
+    file += '.';
+
+    struct statfs buf {};
+    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+
+    // Magic number references:
+    // 1. /usr/include/linux/magic.h
+    // 2. https://github.com/coreutils/coreutils/blob/master/src/stat.c
+    switch (static_cast<unsigned int>(buf.f_type)) {
+    case 0xFF534D42:  // CIFS_MAGIC_NUMBER
+    case 0x6969:  // NFS_SUPER_MAGIC
+    case 0x517B:  // SMB_SUPER_MAGIC
+    case 0xFE534D42:  // S_MAGIC_SMB2
+        return true;
+    default:
+        return false;
+    }
+#endif // Q_OS_WIN
+}
+#endif // Q_OS_HAIKU

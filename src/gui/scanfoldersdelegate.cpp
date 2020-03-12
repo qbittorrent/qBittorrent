@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  sledgehammer999
+ * Copyright (C) 2015  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,21 +24,17 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : hammered999@gmail.com
  */
 
-#include <QDebug>
-#include <QPainter>
-#include <QComboBox>
-#include <QFileDialog>
-#include <QTreeView>
-#include <QItemSelectionModel>
-
-#include "base/scanfoldersmodel.h"
-#include "base/bittorrent/session.h"
 #include "scanfoldersdelegate.h"
 
+#include <QComboBox>
+#include <QDebug>
+#include <QFileDialog>
+#include <QTreeView>
+
+#include "base/bittorrent/session.h"
+#include "base/scanfoldersmodel.h"
 
 ScanFoldersDelegate::ScanFoldersDelegate(QObject *parent, QTreeView *foldersView)
     : QItemDelegate(parent)
@@ -48,7 +44,7 @@ ScanFoldersDelegate::ScanFoldersDelegate(QObject *parent, QTreeView *foldersView
 
 void ScanFoldersDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    auto *combobox = static_cast<QComboBox*>(editor);
     // Set combobox index
     if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION)
         combobox->setCurrentIndex(4); // '4' is the index of the item after the separator in the QComboBox menu
@@ -58,9 +54,9 @@ void ScanFoldersDelegate::setEditorData(QWidget *editor, const QModelIndex &inde
 
 QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
 {
-    if (index.column() != ScanFoldersModel::DOWNLOAD) return 0;
+    if (index.column() != ScanFoldersModel::DOWNLOAD) return nullptr;
 
-    QComboBox* editor = new QComboBox(parent);
+    auto *editor = new QComboBox(parent);
 
     editor->setFocusPolicy(Qt::StrongFocus);
     editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER));
@@ -71,14 +67,15 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
         editor->addItem(index.data().toString());
     }
 
-    connect(editor, SIGNAL(currentIndexChanged(int)), this, SLOT(comboboxIndexChanged(int)));
+    connect(editor, qOverload<int>(&QComboBox::currentIndexChanged)
+            , this, &ScanFoldersDelegate::comboboxIndexChanged);
     return editor;
 }
 
 void ScanFoldersDelegate::comboboxIndexChanged(int index)
 {
     if (index == ScanFoldersModel::CUSTOM_LOCATION) {
-        QWidget *w = static_cast<QWidget *>(sender());
+        auto *w = static_cast<QWidget *>(sender());
         if (w && w->parentWidget())
             w->parentWidget()->setFocus();
     }
@@ -86,7 +83,7 @@ void ScanFoldersDelegate::comboboxIndexChanged(int index)
 
 void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    QComboBox *combobox = static_cast<QComboBox*>(editor);
+    auto *combobox = static_cast<QComboBox*>(editor);
     int value = combobox->currentIndex();
 
     switch (value) {
@@ -99,7 +96,7 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
         model->setData(
                     index,
                     QFileDialog::getExistingDirectory(
-                        0, tr("Select save location"),
+                        nullptr, tr("Select save location"),
                         index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION ?
                             index.data().toString() :
                             BitTorrent::Session::instance()->defaultSavePath()),

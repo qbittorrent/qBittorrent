@@ -1,0 +1,109 @@
+/**************************************************************
+
+    Dynamic Table
+    v 0.4
+
+**************************************************************/
+
+.dynamicTable tbody tr {
+    background-color: #fff;
+}
+
+.dynamicTable tbody tr:nth-child(even),
+.dynamicTable tbody tr.alt {
+    background-color: #eee;
+}
+
+#transferList .dynamicTable td {
+    padding: 0 2px;
+}
+
+.dynamicTable tbody tr.selected {
+    background-color: #354158;
+    color: #fff;
+}
+
+.dynamicTable tbody tr:hover {
+    background-color: #ee6600;
+    color: #fff;
+}
+
+#transferList tr:hover {
+    cursor: pointer;
+}
+
+#transferList img.stateIcon {
+    height: 1.3em;
+    vertical-align: middle;
+    margin-bottom: -1px;
+}
+
+tr.dynamicTableHeader {
+    cursor: pointer;
+}
+
+.dynamicTable {
+    table-layout: fixed;
+    width: 1%;
+    padding: 0;
+    border-spacing: 0;
+}
+
+.dynamicTable th {
+    background-color: #eee;
+    padding: 4px;
+    white-space: nowrap;
+    border-right-color: #ccc;
+    border-right-style: solid;
+    border-right-width: 1px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.dynamicTable td {
+    padding: 0px 4px;
+    white-space: nowrap;
+}
+
+.dynamicTable thead tr {
+    background-color: #eee;
+}
+
+.dynamicTable th,
+.dynamicTable td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dynamicTable th.sorted {
+    background-image: url(../images/qbt-theme/go-up.svg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 15px;
+}
+
+.dynamicTable th.sorted.reverse {
+    background-image: url(../images/qbt-theme/go-down.svg);
+}
+
+.dynamicTable td img.flags {
+    height: 1.25em;
+    vertical-align: middle;
+}
+
+.dynamicTableFixedHeaderDiv {
+    overflow: hidden;
+}
+
+.dynamicTableDiv {
+    overflow: auto;
+}
+
+.dynamicTableDiv thead th {
+    line-height: 0px !important;
+    height: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,22 +24,25 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef PROGRAMUPDATER_H
 #define PROGRAMUPDATER_H
 
 #include <QObject>
-#include <QUrl>
 
-class ProgramUpdater: public QObject
+namespace Net
+{
+    struct DownloadResult;
+}
+
+class ProgramUpdater : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(ProgramUpdater)
 
 public:
-    explicit ProgramUpdater(QObject *parent = 0, bool invokedByUser = false);
+    explicit ProgramUpdater(QObject *parent = nullptr, bool invokedByUser = false);
 
     void checkForUpdates();
     void updateProgram();
@@ -48,8 +51,7 @@ signals:
     void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
 
 private slots:
-    void rssDownloadFinished(const QString &url, const QByteArray &data);
-    void rssDownloadFailed(const QString &url, const QString &error);
+    void rssDownloadFinished(const Net::DownloadResult &result);
 
 private:
     bool isVersionMoreRecent(const QString &remoteVersion) const;

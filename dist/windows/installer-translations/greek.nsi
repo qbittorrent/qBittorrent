@@ -6,6 +6,8 @@ LangString inst_qbt_req ${LANG_GREEK} "qBittorrent (απαιτείται)"
 LangString inst_dekstop ${LANG_GREEK} "Δημιουργία συντόμευσης στην Επιφάνεια Εργασίας"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_GREEK} "Δημιουργία συντόμευσης στο Μενού Έναρξης"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_GREEK} "Ξεκινήστε το qBittorrent στα Windows"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_GREEK} "Άνοιγμα των αρχείων .torrent με το qBittorrent"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
@@ -24,6 +26,8 @@ LangString inst_unist ${LANG_GREEK} "Γίνεται απεγκατάσταση �
 LangString launch_qbt ${LANG_GREEK} "Εκκίνηση του qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_GREEK} "Αυτό το αρχείο εγκατάστασης λειτουργεί μόνο σε 64-bit εκδόσεις των Windows."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_GREEK} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

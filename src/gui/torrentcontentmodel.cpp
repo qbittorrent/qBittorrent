@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,15 +24,15 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QDir>
+#include "torrentcontentmodel.h"
+
+#include <algorithm>
+
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QIcon>
-#include <QMap>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
@@ -43,31 +43,27 @@
 #include <QMimeType>
 #endif
 
-#if defined Q_OS_WIN || defined Q_OS_MAC
+#if defined Q_OS_WIN || defined Q_OS_MACOS
 #define QBT_PIXMAP_CACHE_FOR_FILE_ICONS
 #include <QPixmapCache>
 #endif
 
-#include "guiiconprovider.h"
-#include "base/utils/misc.h"
+#include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/torrentinfo.h"
+#include "base/global.h"
 #include "base/utils/fs.h"
-#include "torrentcontentmodel.h"
-#include "torrentcontentmodelitem.h"
-#include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelfile.h"
-#ifdef Q_OS_MAC
+#include "torrentcontentmodelfolder.h"
+#include "torrentcontentmodelitem.h"
+#include "uithememanager.h"
+
+#ifdef Q_OS_MACOS
 #include "macutilities.h"
 #endif
 
 namespace
 {
-    QIcon getDirectoryIcon()
-    {
-        static QIcon cached = GuiIconProvider::instance()->getIcon("inode-directory");
-        return cached;
-    }
-
-    class UnifiedFileIconProvider: public QFileIconProvider
+    class UnifiedFileIconProvider : public QFileIconProvider
     {
     public:
         using QFileIconProvider::icon;
@@ -75,31 +71,13 @@ namespace
         QIcon icon(const QFileInfo &info) const override
         {
             Q_UNUSED(info);
-            static QIcon cached = GuiIconProvider::instance()->getIcon("text-plain");
+            static QIcon cached = UIThemeManager::instance()->getIcon("text-plain");
             return cached;
         }
     };
 
 #ifdef QBT_PIXMAP_CACHE_FOR_FILE_ICONS
-    struct Q_DECL_UNUSED PixmapCacheSetup
-    {
-        static const int PixmapCacheForIconsSize = 2 * 1024 * 1024; // 2 MiB for file icons
-
-        PixmapCacheSetup()
-        {
-            QPixmapCache::setCacheLimit(QPixmapCache::cacheLimit() + PixmapCacheForIconsSize);
-        }
-
-        ~PixmapCacheSetup()
-        {
-            Q_ASSERT(QPixmapCache::cacheLimit() > PixmapCacheForIconsSize);
-            QPixmapCache::setCacheLimit(QPixmapCache::cacheLimit() - PixmapCacheForIconsSize);
-        }
-    };
-
-    PixmapCacheSetup pixmapCacheSetup;
-
-    class CachingFileIconProvider: public UnifiedFileIconProvider
+    class CachingFileIconProvider : public UnifiedFileIconProvider
     {
     public:
         using QFileIconProvider::icon;
@@ -109,12 +87,12 @@ namespace
             const QString ext = info.suffix();
             if (!ext.isEmpty()) {
                 QPixmap cached;
-                if (QPixmapCache::find(ext, &cached)) return QIcon(cached);
+                if (QPixmapCache::find(ext, &cached)) return {cached};
 
                 const QPixmap pixmap = pixmapForExtension(ext);
                 if (!pixmap.isNull()) {
                     QPixmapCache::insert(ext, pixmap);
-                    return QIcon(pixmap);
+                    return {pixmap};
                 }
             }
             return UnifiedFileIconProvider::icon(info);
@@ -123,30 +101,30 @@ namespace
     protected:
         virtual QPixmap pixmapForExtension(const QString &ext) const = 0;
     };
-#endif
+#endif // QBT_PIXMAP_CACHE_FOR_FILE_ICONS
 
 #if defined(Q_OS_WIN)
     // See QTBUG-25319 for explanation why this is required
-    class WinShellFileIconProvider final: public CachingFileIconProvider
+    class WinShellFileIconProvider final : public CachingFileIconProvider
     {
         QPixmap pixmapForExtension(const QString &ext) const override
         {
             const QString extWithDot = QLatin1Char('.') + ext;
-            SHFILEINFO sfi = { 0 };
+            SHFILEINFO sfi {};
             HRESULT hr = ::SHGetFileInfoW(extWithDot.toStdWString().c_str(),
                 FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
             if (FAILED(hr))
-                return QPixmap();
+                return {};
 
             QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
             ::DestroyIcon(sfi.hIcon);
             return iconPixmap;
         }
     };
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     // There is a similar bug on macOS, to be reported to Qt
     // https://github.com/qbittorrent/qBittorrent/pull/6156#issuecomment-316302615
-    class MacFileIconProvider final: public CachingFileIconProvider
+    class MacFileIconProvider final : public CachingFileIconProvider
     {
         QPixmap pixmapForExtension(const QString &ext) const override
         {
@@ -174,7 +152,7 @@ namespace
         return (!testIcon1.isNull() || !testIcon2.isNull());
     }
 
-    class MimeFileIconProvider: public UnifiedFileIconProvider
+    class MimeFileIconProvider : public UnifiedFileIconProvider
     {
         using QFileIconProvider::icon;
 
@@ -197,16 +175,16 @@ namespace
     private:
         QMimeDatabase m_db;
     };
-#endif
+#endif // Q_OS_WIN
 }
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QList<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
+    , m_rootItem(new TorrentContentModelFolder(QVector<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 {
 #if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     m_fileIconProvider = new MacFileIconProvider();
 #else
     static bool doesBuiltInProviderWork = doesQFileIconProviderWork();
@@ -232,10 +210,10 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
     m_rootItem->recalculateAvailability();
-    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
-void TorrentContentModel::updateFilesPriorities(const QVector<int> &fprio)
+void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::DownloadPriority> &fprio)
 {
     Q_ASSERT(m_filesIndex.size() == fprio.size());
     // XXX: Why is this necessary?
@@ -244,8 +222,8 @@ void TorrentContentModel::updateFilesPriorities(const QVector<int> &fprio)
 
     emit layoutAboutToBeChanged();
     for (int i = 0; i < fprio.size(); ++i)
-        m_filesIndex[i]->setPriority(fprio[i]);
-    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+        m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
@@ -259,53 +237,54 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
-    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
-QVector<int> TorrentContentModel::getFilePriorities() const
+QVector<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() const
 {
-    QVector<int> prio;
+    QVector<BitTorrent::DownloadPriority> prio;
     prio.reserve(m_filesIndex.size());
-    foreach (const TorrentContentModelFile* file, m_filesIndex)
+    for (const TorrentContentModelFile *file : asConst(m_filesIndex))
         prio.push_back(file->priority());
     return prio;
 }
 
 bool TorrentContentModel::allFiltered() const
 {
-    foreach (const TorrentContentModelFile* fileItem, m_filesIndex)
-        if (fileItem->priority() != prio::IGNORED)
-            return false;
-    return true;
+    return std::all_of(m_filesIndex.cbegin(), m_filesIndex.cend(), [](const TorrentContentModelFile *fileItem)
+    {
+        return (fileItem->priority() == BitTorrent::DownloadPriority::Ignored);
+    });
 }
 
-int TorrentContentModel::columnCount(const QModelIndex& parent) const
+int TorrentContentModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return static_cast<TorrentContentModelItem*>(parent.internalPointer())->columnCount();
-    else
-        return m_rootItem->columnCount();
+
+    return m_rootItem->columnCount();
 }
 
-bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& value, int role)
+bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!index.isValid())
         return false;
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
-        TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         qDebug("setData(%s, %d", qUtf8Printable(item->name()), value.toInt());
-        if (item->priority() != value.toInt()) {
+        if (static_cast<int>(item->priority()) != value.toInt()) {
+            BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
             if (value.toInt() == Qt::PartiallyChecked)
-                item->setPriority(prio::MIXED);
+                prio = BitTorrent::DownloadPriority::Mixed;
             else if (value.toInt() == Qt::Unchecked)
-                item->setPriority(prio::IGNORED);
-            else
-                item->setPriority(prio::NORMAL);
+                prio = BitTorrent::DownloadPriority::Ignored;
+
+            item->setPriority(prio);
             // Update folders progress in the tree
             m_rootItem->recalculateProgress();
             m_rootItem->recalculateAvailability();
-            emit dataChanged(this->index(0, 0), this->index(rowCount() - 1, columnCount() - 1));
+            emit dataChanged(this->index(0, 0), this->index((rowCount() - 1), (columnCount() - 1)));
             emit filteredFilesChanged();
         }
         return true;
@@ -313,13 +292,13 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
 
     if (role == Qt::EditRole) {
         Q_ASSERT(index.isValid());
-        TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         switch (index.column()) {
         case TorrentContentModelItem::COL_NAME:
             item->setName(value.toString());
             break;
         case TorrentContentModelItem::COL_PRIO:
-            item->setPriority(value.toInt());
+            item->setPriority(static_cast<BitTorrent::DownloadPriority>(value.toInt()));
             break;
         default:
             return false;
@@ -331,14 +310,14 @@ bool TorrentContentModel::setData(const QModelIndex& index, const QVariant& valu
     return false;
 }
 
-TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelIndex& index) const
+TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelIndex &index) const
 {
     return static_cast<const TorrentContentModelItem*>(index.internalPointer())->itemType();
 }
 
-int TorrentContentModel::getFileIndex(const QModelIndex& index)
+int TorrentContentModel::getFileIndex(const QModelIndex &index)
 {
-    TorrentContentModelItem *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if (item->itemType() == TorrentContentModelItem::FileType)
         return static_cast<TorrentContentModelFile*>(item)->fileIndex();
 
@@ -346,24 +325,24 @@ int TorrentContentModel::getFileIndex(const QModelIndex& index)
     return -1;
 }
 
-QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
+QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
-        return QVariant();
+        return {};
 
-    TorrentContentModelItem* item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::DecorationRole)) {
         if (item->itemType() == TorrentContentModelItem::FolderType)
-            return getDirectoryIcon();
-        else
-            return m_fileIconProvider->icon(QFileInfo(item->name()));
+            return m_fileIconProvider->icon(QFileIconProvider::Folder);
+
+        return m_fileIconProvider->icon(QFileInfo(item->name()));
     }
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
-        if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::IGNORED)
+        if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == static_cast<int>(BitTorrent::DownloadPriority::Ignored))
             return Qt::Unchecked;
-        if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == prio::MIXED)
+        if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == static_cast<int>(BitTorrent::DownloadPriority::Mixed))
             return Qt::PartiallyChecked;
         return Qt::Checked;
     }
@@ -371,13 +350,13 @@ QVariant TorrentContentModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole)
         return item->data(index.column());
 
-    return QVariant();
+    return {};
 }
 
-Qt::ItemFlags TorrentContentModel::flags(const QModelIndex& index) const
+Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return 0;
+        return Qt::NoItemFlags;
 
     if (itemType(index) == TorrentContentModelItem::FolderType)
         return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsTristate;
@@ -390,18 +369,18 @@ QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientatio
     if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole))
         return m_rootItem->data(section);
 
-    return QVariant();
+    return {};
 }
 
-QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex& parent) const
+QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (parent.isValid() && (parent.column() != 0))
-        return QModelIndex();
+        return {};
 
     if (column >= TorrentContentModelItem::NB_COL)
-        return QModelIndex();
+        return {};
 
-    TorrentContentModelFolder* parentItem;
+    TorrentContentModelFolder *parentItem;
     if (!parent.isValid())
         parentItem = m_rootItem;
     else
@@ -409,36 +388,36 @@ QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex& p
     Q_ASSERT(parentItem);
 
     if (row >= parentItem->childCount())
-        return QModelIndex();
+        return {};
 
-    TorrentContentModelItem* childItem = parentItem->child(row);
+    TorrentContentModelItem *childItem = parentItem->child(row);
     if (childItem)
         return createIndex(row, column, childItem);
-    return QModelIndex();
+    return {};
 }
 
-QModelIndex TorrentContentModel::parent(const QModelIndex& index) const
+QModelIndex TorrentContentModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QModelIndex();
+        return {};
 
-    TorrentContentModelItem* childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
     if (!childItem)
-        return QModelIndex();
+        return {};
 
     TorrentContentModelItem *parentItem = childItem->parent();
     if (parentItem == m_rootItem)
-        return QModelIndex();
+        return {};
 
     return createIndex(parentItem->row(), 0, parentItem);
 }
 
-int TorrentContentModel::rowCount(const QModelIndex& parent) const
+int TorrentContentModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.column() > 0)
         return 0;
 
-    TorrentContentModelFolder* parentItem;
+    TorrentContentModelFolder *parentItem;
     if (!parent.isValid())
         parentItem = m_rootItem;
     else
@@ -468,18 +447,22 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
     qDebug("Torrent contains %d files", filesCount);
     m_filesIndex.reserve(filesCount);
 
-    TorrentContentModelFolder* currentParent;
+    TorrentContentModelFolder *currentParent;
     // Iterate over files
     for (int i = 0; i < filesCount; ++i) {
         currentParent = m_rootItem;
-        QString path = Utils::Fs::fromNativePath(info.filePath(i));
+        const QString path = Utils::Fs::toUniformPath(info.filePath(i));
+
         // Iterate of parts of the path to create necessary folders
-        QStringList pathFolders = path.split("/", QString::SkipEmptyParts);
+        QVector<QStringRef> pathFolders = path.splitRef('/', QString::SkipEmptyParts);
         pathFolders.removeLast();
-        foreach (const QString& pathPart, pathFolders) {
-            if (pathPart == ".unwanted")
+
+        for (const QStringRef &pathPartRef : asConst(pathFolders)) {
+            if (pathPartRef == QLatin1String(".unwanted"))
                 continue;
-            TorrentContentModelFolder* newParent = currentParent->childFolderWithName(pathPart);
+
+            const QString pathPart = pathPartRef.toString();
+            TorrentContentModelFolder *newParent = currentParent->childFolderWithName(pathPart);
             if (!newParent) {
                 newParent = new TorrentContentModelFolder(pathPart, currentParent);
                 currentParent->appendChild(newParent);
@@ -487,7 +470,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
             currentParent = newParent;
         }
         // Actually create the file
-        TorrentContentModelFile* fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), currentParent, i);
+        TorrentContentModelFile *fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), currentParent, i);
         currentParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }
@@ -498,15 +481,15 @@ void TorrentContentModel::selectAll()
 {
     for (int i = 0; i < m_rootItem->childCount(); ++i) {
         TorrentContentModelItem* child = m_rootItem->child(i);
-        if (child->priority() == prio::IGNORED)
-            child->setPriority(prio::NORMAL);
+        if (child->priority() == BitTorrent::DownloadPriority::Ignored)
+            child->setPriority(BitTorrent::DownloadPriority::Normal);
     }
-    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentModel::selectNone()
 {
     for (int i = 0; i < m_rootItem->childCount(); ++i)
-        m_rootItem->child(i)->setPriority(prio::IGNORED);
-    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+        m_rootItem->child(i)->setPriority(BitTorrent::DownloadPriority::Ignored);
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }

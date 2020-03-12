@@ -2,7 +2,7 @@
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2016  Eugene Shalygin <eugene.shalygin@gmail.com>
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +26,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef APP_OPTIONS_H
@@ -44,29 +42,38 @@ class QProcessEnvironment;
 
 struct QBtCommandLineParameters
 {
-    bool showHelp, relativeFastresumePaths, portableMode, skipChecking, sequential, firstLastPiecePriority;
-#ifndef Q_OS_WIN
+    bool showHelp;
+    bool relativeFastresumePaths;
+    bool skipChecking;
+    bool sequential;
+    bool firstLastPiecePriority;
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     bool showVersion;
 #endif
 #ifndef DISABLE_GUI
     bool noSplash;
-#else
+#elif !defined(Q_OS_WIN)
     bool shouldDaemonize;
 #endif
     int webUiPort;
-    TriStateBool addPaused, skipDialog;
+    TriStateBool addPaused;
+    TriStateBool skipDialog;
     QStringList torrents;
-    QString profileDir, configurationName, savePath, category, unknownParameter;
+    QString profileDir;
+    QString configurationName;
+    QString savePath;
+    QString category;
+    QString unknownParameter;
 
-    QBtCommandLineParameters(const QProcessEnvironment&);
+    explicit QBtCommandLineParameters(const QProcessEnvironment &);
     QStringList paramList() const;
 };
 
-class CommandLineParameterError: public std::runtime_error
+class CommandLineParameterError : public std::runtime_error
 {
 public:
-    CommandLineParameterError(const QString &messageForUser);
-    const QString& messageForUser() const;
+    explicit CommandLineParameterError(const QString &messageForUser);
+    const QString &messageForUser() const;
 
 private:
     const QString m_messageForUser;

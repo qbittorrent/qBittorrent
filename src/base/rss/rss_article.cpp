@@ -30,13 +30,25 @@
 
 #include "rss_article.h"
 
-#include <stdexcept>
 #include <QJsonObject>
 #include <QVariant>
 
 #include "rss_feed.h"
 
 using namespace RSS;
+
+namespace
+{
+    QVariantHash articleDataFromJSON(const QJsonObject &jsonObj)
+    {
+        auto varHash = jsonObj.toVariantHash();
+        // JSON object store DateTime as string so we need to convert it
+        varHash[Article::KeyDate] =
+                QDateTime::fromString(jsonObj.value(Article::KeyDate).toString(), Qt::RFC2822Date);
+
+        return varHash;
+    }
+}
 
 const QString Article::KeyId(QStringLiteral("id"));
 const QString Article::KeyDate(QStringLiteral("date"));
@@ -60,28 +72,11 @@ Article::Article(Feed *feed, const QVariantHash &varHash)
     , m_isRead(varHash.value(KeyIsRead, false).toBool())
     , m_data(varHash)
 {
-    // If item does not have a guid, fall back to some other identifier
-    if (m_guid.isEmpty())
-        m_guid = varHash.value(KeyTorrentURL).toString();
-    if (m_guid.isEmpty())
-        m_guid = varHash.value(KeyTitle).toString();
-    if (m_guid.isEmpty())
-        throw std::runtime_error("Bad RSS Article data");
-
-    m_data[KeyId] = m_guid;
-
-    if (m_torrentURL.isEmpty()) {
-        m_torrentURL = m_link;
-        m_data[KeyTorrentURL] = m_torrentURL;
-    }
 }
 
 Article::Article(Feed *feed, const QJsonObject &jsonObj)
-    : Article(feed, jsonObj.toVariantHash())
+    : Article(feed, articleDataFromJSON(jsonObj))
 {
-    // JSON object store DateTime as string so we need to convert it
-    m_date = QDateTime::fromString(jsonObj.value(KeyDate).toString(), Qt::RFC2822Date);
-    m_data[KeyDate] = m_date;
 }
 
 QString Article::guid() const
@@ -147,7 +142,7 @@ QJsonObject Article::toJsonObject() const
     return jsonObj;
 }
 
-bool Article::articleDateRecentThan(Article *article, const QDateTime &date)
+bool Article::articleDateRecentThan(const Article *article, const QDateTime &date)
 {
     return article->date() > date;
 }

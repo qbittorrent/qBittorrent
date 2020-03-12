@@ -39,7 +39,7 @@ namespace RSS
 {
     class Feed;
 
-    class Article: public QObject
+    class Article : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Article)
@@ -74,7 +74,7 @@ namespace RSS
 
         QJsonObject toJsonObject() const;
 
-        static bool articleDateRecentThan(Article *article, const QDateTime &date);
+        static bool articleDateRecentThan(const Article *article, const QDateTime &date);
 
     signals:
         void read(Article *article = nullptr);

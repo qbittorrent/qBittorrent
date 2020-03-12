@@ -31,29 +31,11 @@
 
 #include <QCheckBox>
 #include <QComboBox>
-#include <QEvent>
-#include <QLabel>
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QTableWidget>
 
-class WheelEventEater: public QObject
-{
-    Q_OBJECT
-
-private:
-    bool eventFilter(QObject *obj, QEvent *event)
-    {
-        switch (event->type()) {
-        case QEvent::Wheel:
-            return true;
-        default:
-            return QObject::eventFilter(obj, event);
-        }
-    }
-};
-
-class AdvancedSettings: public QTableWidget
+class AdvancedSettings : public QTableWidget
 {
     Q_OBJECT
 
@@ -68,29 +50,27 @@ signals:
 
 private slots:
     void updateCacheSpinSuffix(int value);
+    void updateSaveResumeDataIntervalSuffix(int value);
     void updateInterfaceAddressCombo();
 
 private:
     void loadAdvancedSettings();
-    template <typename T> void addRow(int row, const QString &rowText, T* widget);
+    template <typename T> void addRow(int row, const QString &text, T *widget);
 
-    QLabel labelQbtLink, labelLibtorrentLink;
-    QSpinBox spin_cache, spin_save_resume_data_interval, outgoing_ports_min, outgoing_ports_max, spin_list_refresh, spin_maxhalfopen, spin_tracker_port, spin_cache_ttl,
-             spinSendBufferWatermark, spinSendBufferLowWatermark, spinSendBufferWatermarkFactor, spinSavePathHistoryLength;
-    QCheckBox cb_os_cache, cb_recheck_completed, cb_resolve_countries, cb_resolve_hosts, cb_super_seeding,
-              cb_program_notifications, cb_torrent_added_notifications, cb_tracker_favicon, cb_tracker_status,
-              cb_confirm_torrent_recheck, cb_confirm_remove_all_tags, cb_listen_ipv6, cb_announce_all_trackers, cb_announce_all_tiers,
-              cbGuidedReadCache, cbMultiConnectionsPerIp, cbSuggestMode;
-    QComboBox combo_iface, combo_iface_address, comboUtpMixedMode, comboChokingAlgorithm, comboSeedChokingAlgorithm;
-    QLineEdit txtAnnounceIP;
+    QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage, m_spinBoxCache,
+             m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxListRefresh,
+             m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
+             m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxStopTrackerTimeout, m_spinBoxSavePathHistoryLength;
+    QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts, m_checkBoxSuperSeeding,
+              m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
+              m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
+              m_checkBoxMultiConnectionsPerIp, m_checkBoxPieceExtentAffinity, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
+    QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
+    QLineEdit m_lineEditAnnounceIP;
 
     // OS dependent settings
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    QCheckBox cb_update_check;
-#endif
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    QCheckBox cb_use_icon_theme;
+#if defined(Q_OS_WIN)
+    QComboBox m_comboBoxOSMemoryPriority;
 #endif
 };
 

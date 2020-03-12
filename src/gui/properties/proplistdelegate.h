@@ -35,6 +35,7 @@ class QAbstractItemModel;
 class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
+
 class PropertiesWidget;
 
 // Defines for properties list columns
@@ -53,7 +54,7 @@ class PropListDelegate : public QItemDelegate
     Q_OBJECT
 
 public:
-    PropListDelegate(PropertiesWidget *properties);
+    explicit PropListDelegate(PropertiesWidget *properties);
 
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;

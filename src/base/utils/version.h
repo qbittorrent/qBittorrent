@@ -34,7 +34,6 @@
 
 #include <QDebug>
 #include <QString>
-#include <QStringList>
 
 namespace Utils
 {
@@ -50,7 +49,7 @@ namespace Utils
         typedef Version<T, N, Mandatory> ThisType;
 
         constexpr Version()
-            : m_components {}
+            : m_components {{}}
         {
         }
 
@@ -58,7 +57,7 @@ namespace Utils
 
         template <typename ... Other>
         constexpr Version(Other ... components)
-            : m_components {{components ...}}
+            : m_components {{static_cast<T>(components) ...}}
         {
         }
 
@@ -84,31 +83,31 @@ namespace Utils
         {
         }
 
-        ComponentType majorNumber() const
+        constexpr ComponentType majorNumber() const
         {
             static_assert(N >= 1, "The number of version components is too small");
-            return (*this)[0];
+            return m_components[0];
         }
 
-        ComponentType minorNumber() const
+        constexpr ComponentType minorNumber() const
         {
             static_assert(N >= 2, "The number of version components is too small");
-            return (*this)[1];
+            return m_components[1];
         }
 
-        ComponentType revisionNumber() const
+        constexpr ComponentType revisionNumber() const
         {
             static_assert(N >= 3, "The number of version components is too small");
-            return (*this)[2];
+            return m_components[2];
         }
 
-        ComponentType patchNumber() const
+        constexpr ComponentType patchNumber() const
         {
             static_assert(N >= 4, "The number of version components is too small");
-            return (*this)[3];
+            return m_components[3];
         }
 
-        ComponentType operator[](std::size_t i) const
+        constexpr ComponentType operator[](const std::size_t i) const
         {
             return m_components.at(i);
         }
@@ -117,7 +116,7 @@ namespace Utils
         {
             // find the last one non-zero component
             std::size_t lastSignificantIndex = N - 1;
-            while (lastSignificantIndex > 0 && (*this)[lastSignificantIndex] == 0)
+            while ((lastSignificantIndex > 0) && ((*this)[lastSignificantIndex] == 0))
                 --lastSignificantIndex;
 
             if (lastSignificantIndex + 1 < Mandatory)     // lastSignificantIndex >= 0
@@ -129,19 +128,24 @@ namespace Utils
             return res;
         }
 
-        bool operator==(const ThisType &other) const
+        constexpr bool isValid() const
         {
-            return m_components == other.m_components;
+            return (*this != ThisType {});
         }
 
-        bool operator<(const ThisType &other) const
+        constexpr bool operator==(const ThisType &other) const
         {
-            return m_components < other.m_components;
+            return (m_components == other.m_components);
         }
 
-        bool operator>(const ThisType &other) const
+        constexpr bool operator<(const ThisType &other) const
         {
-            return m_components > other.m_components;
+            return (m_components < other.m_components);
+        }
+
+        constexpr bool operator>(const ThisType &other) const
+        {
+            return (m_components > other.m_components);
         }
 
         template <typename StringClassWithSplitMethod>
@@ -150,7 +154,7 @@ namespace Utils
             try {
                 return Version(s);
             }
-            catch (std::runtime_error &er) {
+            catch (const std::runtime_error &er) {
                 qDebug() << "Error parsing version:" << er.what();
                 return defaultVersion;
             }
@@ -164,12 +168,12 @@ namespace Utils
         {
             if ((static_cast<std::size_t>(versionParts.size()) > N)
                 || (static_cast<std::size_t>(versionParts.size()) < Mandatory))
-                throw std::runtime_error ("Incorrect number of version components");
+                throw std::runtime_error("Incorrect number of version components");
 
             bool ok = false;
-            ComponentsArray res{};
+            ComponentsArray res {{}};
             for (std::size_t i = 0; i < static_cast<std::size_t>(versionParts.size()); ++i) {
-                res[i] = static_cast<T>(versionParts[i].toInt(&ok));
+                res[i] = static_cast<T>(versionParts[static_cast<typename StringsList::size_type>(i)].toInt(&ok));
                 if (!ok)
                     throw std::runtime_error("Can not parse version component");
             }
@@ -186,9 +190,21 @@ namespace Utils
     };
 
     template <typename T, std::size_t N, std::size_t Mandatory>
-    inline bool operator!=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    constexpr bool operator!=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
     {
         return !(left == right);
+    }
+
+    template <typename T, std::size_t N, std::size_t Mandatory>
+    constexpr bool operator<=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    {
+        return !(left > right);
+    }
+
+    template <typename T, std::size_t N, std::size_t Mandatory>
+    constexpr bool operator>=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    {
+        return !(left < right);
     }
 }
 

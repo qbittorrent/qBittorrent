@@ -31,10 +31,13 @@
 #ifndef HTTP_RESPONSEGENERATOR_H
 #define HTTP_RESPONSEGENERATOR_H
 
-#include "types.h"
+class QByteArray;
+class QString;
 
 namespace Http
 {
+    struct Response;
+
     QByteArray toByteArray(Response response);
     QString httpDate();
     void compressContent(Response &response);

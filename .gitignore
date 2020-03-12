@@ -4,6 +4,7 @@ src/qbittorrent
 src/qbittorrent-nox
 src/release
 src/debug
+CMakeLists.txt.user*
 qbittorrent.pro.user*
 conf.pri
 Makefile*
@@ -22,6 +23,7 @@ qrc_*.cpp
 ui_*.h
 *.moc
 src/lang/qbittorrent_*.qm
+src/webui/www/translations/webui_*.qm
 .DS_Store
 .qmake.stash
 src/qbittorrent.app
@@ -34,3 +36,10 @@ config.status
 src/icons/qbt-theme/build-icons/node_modules/
 src/icons/skin/build-icons/node_modules/
 src/icons/skin/build-icons/icons/*.png
+
+# CMake build directory
+build/
+
+# Web UI tools
+node_modules
+package-lock.json

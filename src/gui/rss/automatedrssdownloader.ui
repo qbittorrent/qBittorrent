@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>816</width>
-    <height>523</height>
+    <width>818</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -140,7 +140,7 @@
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLabel" name="lbl_mustnot_stat">
+             <widget class="QLabel" name="labelMustNotStat">
               <property name="maximumSize">
                <size>
                 <width>18</width>
@@ -153,7 +153,7 @@
              <widget class="QLineEdit" name="lineContains"/>
             </item>
             <item row="0" column="2">
-             <widget class="QLabel" name="lbl_must_stat">
+             <widget class="QLabel" name="labelMustStat">
               <property name="maximumSize">
                <size>
                 <width>18</width>
@@ -163,7 +163,7 @@
              </widget>
             </item>
             <item row="2" column="2">
-             <widget class="QLabel" name="lbl_epfilter_stat">
+             <widget class="QLabel" name="labelEpFilterStat">
               <property name="maximumSize">
                <size>
                 <width>18</width>
@@ -179,6 +179,17 @@
              <widget class="QLineEdit" name="lineEFilter"/>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkSmart">
+            <property name="toolTip">
+             <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
+            </property>
+            <property name="text">
+             <string>Use Smart Episode Filter</string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="Line" name="line">
@@ -212,7 +223,7 @@
            </layout>
           </item>
           <item>
-           <widget class="QCheckBox" name="saveDiffDir_check">
+           <widget class="QCheckBox" name="checkBoxSaveDiffDir">
             <property name="text">
              <string>Save to a Different Directory</string>
             </property>
@@ -231,21 +242,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineSavePath">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="browseSP">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string notr="true">...</string>
-              </property>
-             </widget>
+             <widget class="FileSystemPathLineEdit" name="lineSavePath" native="true"/>
             </item>
            </layout>
           </item>
@@ -254,7 +251,7 @@
             <item>
              <widget class="QLabel" name="lblIgnoreDays">
               <property name="text">
-               <string comment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
+               <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
               </property>
              </widget>
             </item>
@@ -306,6 +303,42 @@
             </item>
             <item>
              <widget class="QComboBox" name="comboAddPaused">
+              <item>
+               <property name="text">
+                <string>Use global settings</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Always</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Never</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="lblCreateSubfolder">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Create Subfolder:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboCreateSubfolder">
               <item>
                <property name="text">
                 <string>Use global settings</string>
@@ -405,6 +438,9 @@
      </item>
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Close</set>
        </property>
@@ -414,6 +450,33 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileSystemPathLineEdit</class>
+   <extends>QWidget</extends>
+   <header>fspathedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>removeRuleBtn</tabstop>
+  <tabstop>addRuleBtn</tabstop>
+  <tabstop>listRules</tabstop>
+  <tabstop>checkRegex</tabstop>
+  <tabstop>checkSmart</tabstop>
+  <tabstop>lineContains</tabstop>
+  <tabstop>lineNotContains</tabstop>
+  <tabstop>lineEFilter</tabstop>
+  <tabstop>comboCategory</tabstop>
+  <tabstop>checkBoxSaveDiffDir</tabstop>
+  <tabstop>lineSavePath</tabstop>
+  <tabstop>spinIgnorePeriod</tabstop>
+  <tabstop>comboAddPaused</tabstop>
+  <tabstop>comboCreateSubfolder</tabstop>
+  <tabstop>listFeeds</tabstop>
+  <tabstop>treeMatchingArticles</tabstop>
+  <tabstop>importBtn</tabstop>
+  <tabstop>exportBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -449,7 +512,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>saveDiffDir_check</sender>
+   <sender>checkBoxSaveDiffDir</sender>
    <signal>toggled(bool)</signal>
    <receiver>label_6</receiver>
    <slot>setEnabled(bool)</slot>
@@ -465,7 +528,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>saveDiffDir_check</sender>
+   <sender>checkBoxSaveDiffDir</sender>
    <signal>toggled(bool)</signal>
    <receiver>lineSavePath</receiver>
    <slot>setEnabled(bool)</slot>
@@ -477,22 +540,6 @@
     <hint type="destinationlabel">
      <x>476</x>
      <y>204</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>saveDiffDir_check</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>browseSP</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>544</x>
-     <y>166</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>549</x>
-     <y>209</y>
     </hint>
    </hints>
   </connection>

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef NET_REVERSERESOLUTION_H
@@ -34,10 +32,9 @@
 #include <QCache>
 #include <QObject>
 
-QT_BEGIN_NAMESPACE
+class QHostAddress;
 class QHostInfo;
 class QString;
-QT_END_NAMESPACE
 
 namespace Net
 {
@@ -47,20 +44,20 @@ namespace Net
         Q_DISABLE_COPY(ReverseResolution)
 
     public:
-        explicit ReverseResolution(QObject *parent = 0);
+        explicit ReverseResolution(QObject *parent = nullptr);
         ~ReverseResolution();
 
-        void resolve(const QString &ip);
+        void resolve(const QHostAddress &ip);
 
     signals:
-        void ipResolved(const QString &ip, const QString &hostname);
+        void ipResolved(const QHostAddress &ip, const QString &hostname);
 
     private slots:
         void hostResolved(const QHostInfo &host);
 
     private:
-        QHash<int /* LookupID */, QString /* IP */> m_lookups;
-        QCache<QString /* IP */, QString /* HostName */> m_cache;
+        QHash<int, QHostAddress> m_lookups;  // <LookupID, IP>
+        QCache<QHostAddress, QString> m_cache;  // <IP, HostName>
     };
 }
 

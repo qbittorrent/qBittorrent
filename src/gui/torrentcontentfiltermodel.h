@@ -35,18 +35,17 @@
 
 class TorrentContentModel;
 
-class TorrentContentFilterModel: public QSortFilterProxyModel
+class TorrentContentFilterModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    TorrentContentFilterModel(QObject *parent = 0);
-    virtual ~TorrentContentFilterModel();
+    TorrentContentFilterModel(QObject *parent = nullptr);
 
     TorrentContentModel *model() const;
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
     int getFileIndex(const QModelIndex &index) const;
-    virtual QModelIndex parent(const QModelIndex &child) const;
+    QModelIndex parent(const QModelIndex &child) const override;
 
 public slots:
     void selectAll();
@@ -56,12 +55,13 @@ signals:
     void filteredFilesChanged();
 
 protected:
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-    virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
 private:
-    TorrentContentModel *m_model;
     bool hasFiltered(const QModelIndex &folder) const;
+
+    TorrentContentModel *m_model;
 };
 
 #endif // TORRENTCONTENTFILTERMODEL_H

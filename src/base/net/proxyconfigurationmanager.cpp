@@ -27,9 +27,10 @@
  */
 
 #include "proxyconfigurationmanager.h"
+
 #include "base/settingsstorage.h"
 
-#define SETTINGS_KEY(name) "Network/Proxy/" name
+#define SETTINGS_KEY(name) QStringLiteral("Network/Proxy/" name)
 const QString KEY_ONLY_FOR_TORRENTS = SETTINGS_KEY("OnlyForTorrents");
 const QString KEY_TYPE = SETTINGS_KEY("Type");
 const QString KEY_IP = SETTINGS_KEY("IP");
@@ -39,16 +40,21 @@ const QString KEY_PASSWORD = SETTINGS_KEY("Password");
 
 namespace
 {
-    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+    inline SettingsStorage *settings() { return SettingsStorage::instance(); }
+}
 
-    inline bool isSameConfig(const Net::ProxyConfiguration &conf1, const Net::ProxyConfiguration &conf2)
-    {
-        return conf1.type == conf2.type
-                && conf1.ip == conf2.ip
-                && conf1.port == conf2.port
-                && conf1.username == conf2.username
-                && conf1.password == conf2.password;
-    }
+bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &right)
+{
+    return (left.type == right.type)
+            && (left.ip == right.ip)
+            && (left.port == right.port)
+            && (left.username == right.username)
+            && (left.password == right.password);
+}
+
+bool Net::operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right)
+{
+    return !(left == right);
 }
 
 using namespace Net;
@@ -78,10 +84,8 @@ void ProxyConfigurationManager::initInstance()
 
 void ProxyConfigurationManager::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = 0;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 ProxyConfigurationManager *ProxyConfigurationManager::instance()
@@ -96,7 +100,7 @@ ProxyConfiguration ProxyConfigurationManager::proxyConfiguration() const
 
 void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &config)
 {
-    if (!isSameConfig(config, m_config)) {
+    if (config != m_config) {
         m_config = config;
         settings()->storeValue(KEY_TYPE, static_cast<int>(config.type));
         settings()->storeValue(KEY_IP, config.ip);
@@ -135,18 +139,18 @@ void ProxyConfigurationManager::configureProxy()
     if (!m_isProxyOnlyForTorrents) {
         switch (m_config.type) {
         case ProxyType::HTTP_PW:
-            proxyStrHTTP = QString("http://%1:%2@%3:%4").arg(m_config.username)
-                    .arg(m_config.password).arg(m_config.ip).arg(m_config.port);
+            proxyStrHTTP = QString("http://%1:%2@%3:%4").arg(m_config.username
+                , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::HTTP:
-            proxyStrHTTP = QString("http://%1:%2").arg(m_config.ip).arg(m_config.port);
+            proxyStrHTTP = QString("http://%1:%2").arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5:
-            proxyStrSOCK = QString("%1:%2").arg(m_config.ip).arg(m_config.port);
+            proxyStrSOCK = QString("%1:%2").arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5_PW:
-            proxyStrSOCK = QString("%1:%2@%3:%4").arg(m_config.username)
-                    .arg(m_config.password).arg(m_config.ip).arg(m_config.port);
+            proxyStrSOCK = QString("%1:%2@%3:%4").arg(m_config.username
+                , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         default:
             qDebug("Disabling HTTP communications proxy");

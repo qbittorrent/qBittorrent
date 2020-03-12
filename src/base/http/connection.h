@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez
+ * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,8 +25,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 
@@ -36,13 +34,12 @@
 #include <QElapsedTimer>
 #include <QObject>
 
-#include "types.h"
-
 class QTcpSocket;
 
 namespace Http
 {
     class IRequestHandler;
+    struct Response;
 
     class Connection : public QObject
     {
@@ -50,7 +47,7 @@ namespace Http
         Q_DISABLE_COPY(Connection)
 
     public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = 0);
+        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
         ~Connection();
 
         bool hasExpired(qint64 timeout) const;
@@ -61,7 +58,7 @@ namespace Http
 
     private:
         static bool acceptsGzipEncoding(QString codings);
-        void sendResponse(const Response &response);
+        void sendResponse(const Response &response) const;
 
         QTcpSocket *m_socket;
         IRequestHandler *m_requestHandler;

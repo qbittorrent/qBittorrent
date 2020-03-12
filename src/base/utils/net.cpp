@@ -27,9 +27,11 @@
  */
 
 #include "net.h"
-#include <QHostAddress>
+
+#include <QNetworkInterface>
+#include <QSslCertificate>
+#include <QSslKey>
 #include <QString>
-#include <QStringList>
 
 namespace Utils
 {
@@ -63,7 +65,7 @@ namespace Utils
                     || (addr == QHostAddress(QLatin1String("::ffff:127.0.0.1")));
         }
 
-        bool isIPInRange(const QHostAddress &addr, const QList<Subnet> &subnets)
+        bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets)
         {
             QHostAddress protocolEquivalentAddress;
             bool addrConversionOk = false;
@@ -88,6 +90,64 @@ namespace Utils
         QString subnetToString(const Subnet &subnet)
         {
             return subnet.first.toString() + '/' + QString::number(subnet.second);
+        }
+
+        QHostAddress canonicalIPv6Addr(const QHostAddress &addr)
+        {
+            // Link-local IPv6 textual address always contains a scope id (or zone index)
+            // The scope id is appended to the IPv6 address using the '%' character
+            // The scope id can be either a interface name or an interface number
+            // Examples:
+            // fe80::1%ethernet_17
+            // fe80::1%13
+            // The interface number is the mandatory supported way
+            // Unfortunately for us QHostAddress::toString() outputs (at least on Windows)
+            // the interface name, and libtorrent/boost.asio only support an interface number
+            // as scope id. Furthermore, QHostAddress doesn't have any convenient method to
+            // affect this, so we jump through hoops here.
+            if (addr.protocol() != QAbstractSocket::IPv6Protocol)
+                return QHostAddress{addr.toIPv6Address()};
+
+            // QHostAddress::setScopeId(addr.scopeId()); // Even though the docs say that setScopeId
+            // will convert a name to a number, this doesn't happen. Probably a Qt bug.
+            const QString scopeIdTxt = addr.scopeId();
+            if (scopeIdTxt.isEmpty())
+                return addr;
+
+            const int id = QNetworkInterface::interfaceIndexFromName(scopeIdTxt);
+            if (id == 0) // This failure might mean that the scope id was already a number
+                return addr;
+
+            QHostAddress canonical(addr.toIPv6Address());
+            canonical.setScopeId(QString::number(id));
+            return canonical;
+        }
+
+        QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
+        {
+            const QList<QSslCertificate> certs {QSslCertificate::fromData(data)};
+            if (std::any_of(certs.cbegin(), certs.cend(), [](const QSslCertificate &c) { return c.isNull(); }))
+                return {};
+            return certs;
+        }
+
+        bool isSSLCertificatesValid(const QByteArray &data)
+        {
+            return !loadSSLCertificate(data).isEmpty();
+        }
+
+        QSslKey loadSSLKey(const QByteArray &data)
+        {
+            // try different formats
+            QSslKey key {data, QSsl::Rsa};
+            if (!key.isNull())
+                return key;
+            return {data, QSsl::Ec};
+        }
+
+        bool isSSLKeyValid(const QByteArray &data)
+        {
+            return !loadSSLKey(data).isNull();
         }
     }
 }

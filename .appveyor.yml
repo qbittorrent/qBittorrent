@@ -45,13 +45,14 @@ before_build:
   - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
   - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
   # setup project
-  - COPY /Y "%CACHE_DIR%\winconf.pri" "%REPO_DIR%"
-  - COPY /Y "%CACHE_DIR%\winconf-msvc.pri" "%REPO_DIR%"
+  - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
   # workarounds
   - MKLINK /J "c:\qbt\base" "%CACHE_DIR%\base"
 
 build_script:
   - cd "%REPO_DIR%"
+  # scan only as lupdate is prone to hang
+  - lupdate -extensions c,cpp,h,hpp,ui .
   - qmake qbittorrent.pro && cd src && qmake src.pro
   - jom -j2 -f Makefile.Release
 

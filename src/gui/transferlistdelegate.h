@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,39 +24,25 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#ifndef TRANSFERLISTDELEGATE_H
-#define TRANSFERLISTDELEGATE_H
+#pragma once
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
-QT_BEGIN_NAMESPACE
+class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
-class QModelIndex;
-QT_END_NAMESPACE
 
-namespace BitTorrent
-{
-    enum class TorrentState;
-}
-// Defines for download list list columns
-
-class TransferListDelegate: public QItemDelegate
+class TransferListDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TransferListDelegate)
 
 public:
-    TransferListDelegate(QObject *parent);
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
-    QWidget* createEditor(QWidget*, const QStyleOptionViewItem &, const QModelIndex &) const;
-    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+    explicit TransferListDelegate(QObject *parent);
 
-private:
-    QString getStatusString(const BitTorrent::TorrentState state) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
-
-#endif // TRANSFERLISTDELEGATE_H

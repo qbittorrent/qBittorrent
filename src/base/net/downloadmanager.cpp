@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,6 +29,8 @@
 
 #include "downloadmanager.h"
 
+#include <algorithm>
+
 #include <QDateTime>
 #include <QDebug>
 #include <QNetworkCookie>
@@ -39,24 +41,26 @@
 #include <QSslError>
 #include <QUrl>
 
+#include "base/global.h"
+#include "base/logger.h"
 #include "base/preferences.h"
-#include "downloadhandler.h"
+#include "private/downloadhandlerimpl.h"
 #include "proxyconfigurationmanager.h"
-
-// Spoof Firefox 38 user agent to avoid web server banning
-const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux i686; rv:38.0) Gecko/20100101 Firefox/38.0";
 
 namespace
 {
-    class NetworkCookieJar: public QNetworkCookieJar
+    // Disguise as Firefox to avoid web server banning
+    const char DEFAULT_USER_AGENT[] = "Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0";
+
+    class NetworkCookieJar : public QNetworkCookieJar
     {
     public:
-        explicit NetworkCookieJar(QObject *parent = 0)
+        explicit NetworkCookieJar(QObject *parent = nullptr)
             : QNetworkCookieJar(parent)
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
-            foreach (const QNetworkCookie &cookie, Preferences::instance()->getNetworkCookies()) {
+            for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -64,11 +68,11 @@ namespace
             setAllCookies(cookies);
         }
 
-        ~NetworkCookieJar()
+        ~NetworkCookieJar() override
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = allCookies();
-            foreach (const QNetworkCookie &cookie, allCookies()) {
+            for (const QNetworkCookie &cookie : asConst(allCookies())) {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -81,9 +85,9 @@ namespace
 
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const override
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
-            foreach (const QNetworkCookie &cookie, QNetworkCookieJar::cookiesForUrl(url)) {
+            for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url))) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -93,9 +97,9 @@ namespace
 
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url) override
         {
-            QDateTime now = QDateTime::currentDateTime();
+            const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = cookieList;
-            foreach (const QNetworkCookie &cookie, cookieList) {
+            for (const QNetworkCookie &cookie : cookieList) {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -103,94 +107,127 @@ namespace
             return QNetworkCookieJar::setCookiesFromUrl(cookies, url);
         }
     };
+
+    QNetworkRequest createNetworkRequest(const Net::DownloadRequest &downloadRequest)
+    {
+        QNetworkRequest request {downloadRequest.url()};
+
+        if (downloadRequest.userAgent().isEmpty())
+            request.setRawHeader("User-Agent", DEFAULT_USER_AGENT);
+        else
+            request.setRawHeader("User-Agent", downloadRequest.userAgent().toUtf8());
+
+        // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
+        request.setRawHeader("Referer", request.url().toEncoded().data());
+        // Accept gzip
+        request.setRawHeader("Accept-Encoding", "gzip");
+        // Qt doesn't support Magnet protocol so we need to handle redirections manually
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::ManualRedirectPolicy);
+
+        return request;
+    }
 }
 
-using namespace Net;
+Net::DownloadManager *Net::DownloadManager::m_instance = nullptr;
 
-DownloadManager *DownloadManager::m_instance = 0;
-
-DownloadManager::DownloadManager(QObject *parent)
+Net::DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
 {
-#ifndef QT_NO_OPENSSL
-    connect(&m_networkManager, SIGNAL(sslErrors(QNetworkReply *, QList<QSslError>)), this, SLOT(ignoreSslErrors(QNetworkReply *, QList<QSslError>)));
-#endif
+    connect(&m_networkManager, &QNetworkAccessManager::sslErrors, this, &Net::DownloadManager::ignoreSslErrors);
+    connect(&m_networkManager, &QNetworkAccessManager::finished, this, &DownloadManager::handleReplyFinished);
+    connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
+            , this, &DownloadManager::applyProxySettings);
     m_networkManager.setCookieJar(new NetworkCookieJar(this));
+    applyProxySettings();
 }
 
-void DownloadManager::initInstance()
+void Net::DownloadManager::initInstance()
 {
     if (!m_instance)
         m_instance = new DownloadManager;
 }
 
-void DownloadManager::freeInstance()
+void Net::DownloadManager::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = 0;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
-DownloadManager *DownloadManager::instance()
+Net::DownloadManager *Net::DownloadManager::instance()
 {
     return m_instance;
 }
 
-DownloadHandler *DownloadManager::downloadUrl(const QString &url, bool saveToFile, qint64 limit, bool handleRedirectToMagnet, const QString &userAgent)
+Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &downloadRequest)
 {
-    // Update proxy settings
-    applyProxySettings();
-
     // Process download request
-    qDebug("url is %s", qUtf8Printable(url));
-    const QUrl qurl = QUrl(url);
-    QNetworkRequest request(qurl);
+    const QNetworkRequest request = createNetworkRequest(downloadRequest);
+    const ServiceID id = ServiceID::fromURL(request.url());
+    const bool isSequentialService = m_sequentialServices.contains(id);
 
-    if (userAgent.isEmpty())
-        request.setRawHeader("User-Agent", DEFAULT_USER_AGENT);
-    else
-        request.setRawHeader("User-Agent", userAgent.toUtf8());
+    auto downloadHandler = new DownloadHandlerImpl {this, downloadRequest};
+    connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
+    connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
+    {
+        m_waitingJobs[id].removeOne(downloadHandler);
+    });
 
-    // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
-    request.setRawHeader("Referer", request.url().toEncoded().data());
+    if (isSequentialService && m_busyServices.contains(id)) {
+        m_waitingJobs[id].enqueue(downloadHandler);
+    }
+    else {
+        qDebug("Downloading %s...", qUtf8Printable(downloadRequest.url()));
+        if (isSequentialService)
+            m_busyServices.insert(id);
+        downloadHandler->assignNetworkReply(m_networkManager.get(request));
+    }
 
-    qDebug("Downloading %s...", request.url().toEncoded().data());
-    qDebug() << "Cookies:" << m_networkManager.cookieJar()->cookiesForUrl(request.url());
-    // accept gzip
-    request.setRawHeader("Accept-Encoding", "gzip");
-    return new DownloadHandler(m_networkManager.get(request), this, saveToFile, limit, handleRedirectToMagnet);
+    return downloadHandler;
 }
 
-QList<QNetworkCookie> DownloadManager::cookiesForUrl(const QUrl &url) const
+void Net::DownloadManager::registerSequentialService(const Net::ServiceID &serviceID)
+{
+    m_sequentialServices.insert(serviceID);
+}
+
+QList<QNetworkCookie> Net::DownloadManager::cookiesForUrl(const QUrl &url) const
 {
     return m_networkManager.cookieJar()->cookiesForUrl(url);
 }
 
-bool DownloadManager::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
+bool Net::DownloadManager::setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url)
 {
     return m_networkManager.cookieJar()->setCookiesFromUrl(cookieList, url);
 }
 
-QList<QNetworkCookie> DownloadManager::allCookies() const
+QList<QNetworkCookie> Net::DownloadManager::allCookies() const
 {
     return static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->allCookies();
 }
 
-void DownloadManager::setAllCookies(const QList<QNetworkCookie> &cookieList)
+void Net::DownloadManager::setAllCookies(const QList<QNetworkCookie> &cookieList)
 {
     static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->setAllCookies(cookieList);
 }
 
-bool DownloadManager::deleteCookie(const QNetworkCookie &cookie)
+bool Net::DownloadManager::deleteCookie(const QNetworkCookie &cookie)
 {
     return static_cast<NetworkCookieJar *>(m_networkManager.cookieJar())->deleteCookie(cookie);
 }
 
-void DownloadManager::applyProxySettings()
+bool Net::DownloadManager::hasSupportedScheme(const QString &url)
 {
-    auto proxyManager = ProxyConfigurationManager::instance();
-    ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+    const QStringList schemes = instance()->m_networkManager.supportedSchemes();
+    return std::any_of(schemes.cbegin(), schemes.cend(), [&url](const QString &scheme)
+    {
+        return url.startsWith((scheme + QLatin1Char(':')), Qt::CaseInsensitive);
+    });
+}
+
+void Net::DownloadManager::applyProxySettings()
+{
+    const auto *proxyManager = ProxyConfigurationManager::instance();
+    const ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     QNetworkProxy proxy;
 
     if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None)) {
@@ -208,7 +245,7 @@ void DownloadManager::applyProxySettings()
         }
         // Authentication?
         if (proxyManager->isAuthenticationRequired()) {
-            qDebug("Proxy requires authentication, authenticating");
+            qDebug("Proxy requires authentication, authenticating...");
             proxy.setUser(proxyConfig.username);
             proxy.setPassword(proxyConfig.password);
         }
@@ -220,11 +257,96 @@ void DownloadManager::applyProxySettings()
     m_networkManager.setProxy(proxy);
 }
 
-#ifndef QT_NO_OPENSSL
-void DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
+void Net::DownloadManager::handleReplyFinished(const QNetworkReply *reply)
 {
-    Q_UNUSED(errors)
+    // QNetworkReply::url() may be different from that of the original request
+    // so we need QNetworkRequest::url() to properly process Sequential Services
+    // in the case when the redirection occurred.
+    const ServiceID id = ServiceID::fromURL(reply->request().url());
+    const auto waitingJobsIter = m_waitingJobs.find(id);
+    if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty()) {
+        // No more waiting jobs for given ServiceID
+        m_busyServices.remove(id);
+        return;
+    }
+
+    auto handler = static_cast<DownloadHandlerImpl *>(waitingJobsIter.value().dequeue());
+    qDebug("Downloading %s...", qUtf8Printable(handler->url()));
+    handler->assignNetworkReply(m_networkManager.get(createNetworkRequest(handler->downloadRequest())));
+    handler->disconnect(this);
+}
+
+void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
+{
+    QStringList errorList;
+    for (const QSslError &error : errors)
+        errorList += error.errorString();
+    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(". ")), Log::WARNING);
+
     // Ignore all SSL errors
     reply->ignoreSslErrors();
 }
-#endif
+
+Net::DownloadRequest::DownloadRequest(const QString &url)
+    : m_url {url}
+{
+}
+
+QString Net::DownloadRequest::url() const
+{
+    return m_url;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::url(const QString &value)
+{
+    m_url = value;
+    return *this;
+}
+
+QString Net::DownloadRequest::userAgent() const
+{
+    return m_userAgent;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::userAgent(const QString &value)
+{
+    m_userAgent = value;
+    return *this;
+}
+
+qint64 Net::DownloadRequest::limit() const
+{
+    return m_limit;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::limit(const qint64 value)
+{
+    m_limit = value;
+    return *this;
+}
+
+bool Net::DownloadRequest::saveToFile() const
+{
+    return m_saveToFile;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
+{
+    m_saveToFile = value;
+    return *this;
+}
+
+Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
+{
+    return {url.host(), url.port(80)};
+}
+
+uint Net::qHash(const ServiceID &serviceID, const uint seed)
+{
+    return ::qHash(serviceID.hostName, seed) ^ ::qHash(serviceID.port);
+}
+
+bool Net::operator==(const ServiceID &lhs, const ServiceID &rhs)
+{
+    return ((lhs.hostName == rhs.hostName) && (lhs.port == rhs.port));
+}

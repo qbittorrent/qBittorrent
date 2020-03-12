@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,28 +24,38 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "torrentcreatorthread.h"
 
 #include <fstream>
 
-#include <boost/bind.hpp>
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/storage.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 
+#include <QDirIterator>
 #include <QFile>
+#include <QFileInfo>
+#include <QHash>
 
+#include "base/global.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "private/ltunderlyingtype.h"
 
 namespace
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    using LTCreateFlags = int;
+    using LTPieceIndex = int;
+#else
+    using LTCreateFlags = lt::create_flags_t;
+    using LTPieceIndex = lt::piece_index_t;
+#endif
+
     // do not include files and folders whose
     // name starts with a .
     bool fileFilter(const std::string &f)
@@ -54,7 +64,6 @@ namespace
     }
 }
 
-namespace libt = libtorrent;
 using namespace BitTorrent;
 
 TorrentCreatorThread::TorrentCreatorThread(QObject *parent)
@@ -86,23 +95,61 @@ void TorrentCreatorThread::run()
     emit updateProgress(0);
 
     try {
-        libt::file_storage fs;
+        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + '/';
+
         // Adding files to the torrent
-        libt::add_files(fs, Utils::Fs::toNativePath(m_params.inputPath).toStdString(), fileFilter);
+        lt::file_storage fs;
+        if (QFileInfo(m_params.inputPath).isFile()) {
+            lt::add_files(fs, Utils::Fs::toNativePath(m_params.inputPath).toStdString(), fileFilter);
+        }
+        else {
+            // need to sort the file names by natural sort order
+            QStringList dirs = {m_params.inputPath};
+
+            QDirIterator dirIter(m_params.inputPath, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
+            while (dirIter.hasNext()) {
+                dirIter.next();
+                dirs += dirIter.filePath();
+            }
+            std::sort(dirs.begin(), dirs.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+
+            QStringList fileNames;
+            QHash<QString, qint64> fileSizeMap;
+
+            for (const auto &dir : asConst(dirs)) {
+                QStringList tmpNames;  // natural sort files within each dir
+
+                QDirIterator fileIter(dir, QDir::Files);
+                while (fileIter.hasNext()) {
+                    fileIter.next();
+
+                    const QString relFilePath = fileIter.filePath().mid(parentPath.length());
+                    tmpNames += relFilePath;
+                    fileSizeMap[relFilePath] = fileIter.fileInfo().size();
+                }
+
+                std::sort(tmpNames.begin(), tmpNames.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+                fileNames += tmpNames;
+            }
+
+            for (const auto &fileName : asConst(fileNames))
+                fs.add_file(fileName.toStdString(), fileSizeMap[fileName]);
+        }
 
         if (isInterruptionRequested()) return;
 
-        libt::create_torrent newTorrent(fs, m_params.pieceSize);
+        lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
+            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {}));
 
         // Add url seeds
-        foreach (QString seed, m_params.urlSeeds) {
+        for (QString seed : asConst(m_params.urlSeeds)) {
             seed = seed.trimmed();
             if (!seed.isEmpty())
                 newTorrent.add_url_seed(seed.toStdString());
         }
 
         int tier = 0;
-        foreach (const QString &tracker, m_params.trackers) {
+        for (const QString &tracker : asConst(m_params.trackers)) {
             if (tracker.isEmpty())
                 ++tier;
             else
@@ -112,9 +159,11 @@ void TorrentCreatorThread::run()
         if (isInterruptionRequested()) return;
 
         // calculate the hash for all pieces
-        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + "/";
-        libt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
-            , [this, &newTorrent](const int n) { sendProgressSignal(n, newTorrent.num_pieces()); });
+        lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
+            , [this, &newTorrent](const LTPieceIndex n)
+        {
+            sendProgressSignal(LTUnderlyingType<LTPieceIndex> {n}, newTorrent.num_pieces());
+        });
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
         newTorrent.set_creator(creatorStr.toUtf8().constData());
@@ -124,7 +173,7 @@ void TorrentCreatorThread::run()
 
         if (isInterruptionRequested()) return;
 
-        libt::entry entry = newTorrent.generate();
+        lt::entry entry = newTorrent.generate();
 
         // add source field
         if (!m_params.source.isEmpty())
@@ -145,7 +194,7 @@ void TorrentCreatorThread::run()
 
         if (isInterruptionRequested()) return;
 
-        libt::bencode(std::ostream_iterator<char>(outfile), entry);
+        lt::bencode(std::ostream_iterator<char>(outfile), entry);
         outfile.close();
 
         emit updateProgress(100);
@@ -156,12 +205,14 @@ void TorrentCreatorThread::run()
     }
 }
 
-int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize)
+int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
 {
     if (inputPath.isEmpty())
         return 0;
 
-    libt::file_storage fs;
-    libt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
-    return libt::create_torrent(fs, pieceSize).num_pieces();
+    lt::file_storage fs;
+    lt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
+
+    return lt::create_torrent(fs, pieceSize, paddedFileSizeLimit
+        , (isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {})).num_pieces();
 }

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TOFFENTFILEGURAD_H
-#define TOFFENTFILEGURAD_H
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -38,7 +37,7 @@ template <typename T> class CachedSettingValue;
 class FileGuard
 {
 public:
-    FileGuard(const QString &path = QString());
+    explicit FileGuard(const QString &path = {});
     ~FileGuard();
 
     /// Cancels or re-enables deferred file deletion
@@ -51,12 +50,12 @@ private:
 
 /// Reads settings for .torrent files from preferences
 /// and sets the file guard up accordingly
-class TorrentFileGuard: private FileGuard
+class TorrentFileGuard : private FileGuard
 {
     Q_GADGET
 
 public:
-    TorrentFileGuard(const QString &path = QString());
+    explicit TorrentFileGuard(const QString &path = {});
     ~TorrentFileGuard();
 
     /// marks the torrent file as loaded (added) into the BitTorrent::Session
@@ -82,5 +81,3 @@ private:
     AutoDeleteMode m_mode;
     bool m_wasAdded;
 };
-
-#endif // TOFFENTFILEGURAD_H

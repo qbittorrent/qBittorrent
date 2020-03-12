@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,21 +24,19 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include "base/utils/misc.h"
-#include "base/utils/fs.h"
 #include "torrentcontentmodelitem.h"
+
+#include <QVariant>
+
 #include "torrentcontentmodelfolder.h"
-#include <QDebug>
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
     : m_parentItem(parent)
     , m_size(0)
     , m_remaining(0)
-    , m_priority(prio::NORMAL)
+    , m_priority(BitTorrent::DownloadPriority::Normal)
     , m_progress(0)
     , m_availability(-1.)
 {
@@ -74,25 +72,23 @@ qreal TorrentContentModelItem::progress() const
 {
     Q_ASSERT(!isRootItem());
 
-    if (m_size > 0) return m_progress;
-
-    return 1;
+    return (m_size > 0) ? m_progress : 1;
 }
 
 qulonglong TorrentContentModelItem::remaining() const
 {
     Q_ASSERT(!isRootItem());
-    return m_remaining;
+    return (m_priority == BitTorrent::DownloadPriority::Ignored) ? 0 : m_remaining;
 }
 
 qreal TorrentContentModelItem::availability() const
 {
     Q_ASSERT(!isRootItem());
 
-    return m_size > 0 ? m_availability : 0.;
+    return (m_size > 0) ? m_availability : 0;
 }
 
-int TorrentContentModelItem::priority() const
+BitTorrent::DownloadPriority TorrentContentModelItem::priority() const
 {
     Q_ASSERT(!isRootItem());
     return m_priority;
@@ -112,7 +108,7 @@ QVariant TorrentContentModelItem::data(int column) const
     case COL_NAME:
         return m_name;
     case COL_PRIO:
-        return m_priority;
+        return static_cast<int>(m_priority);
     case COL_PROGRESS:
         return progress();
     case COL_SIZE:
@@ -123,7 +119,7 @@ QVariant TorrentContentModelItem::data(int column) const
         return availability();
     default:
         Q_ASSERT(false);
-        return QVariant();
+        return {};
     }
 }
 
@@ -138,4 +134,3 @@ TorrentContentModelFolder *TorrentContentModelItem::parent() const
 {
     return m_parentItem;
 }
-

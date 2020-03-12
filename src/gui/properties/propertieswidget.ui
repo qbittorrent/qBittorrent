@@ -905,7 +905,7 @@
       </layout>
      </widget>
      <widget class="QWidget" name="pageTrackers">
-      <layout class="QHBoxLayout" name="horizontalLayout_trackers">
+      <layout class="QHBoxLayout" name="hBoxLayoutTrackers">
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -957,7 +957,7 @@
       </layout>
      </widget>
      <widget class="QWidget" name="pagePeers">
-      <layout class="QVBoxLayout" name="peerpage_layout">
+      <layout class="QVBoxLayout" name="vBoxLayoutPeerPage">
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -1083,7 +1083,7 @@
     </widget>
    </item>
   </layout>
-  <action name="actionNot_downloaded">
+  <action name="actionNotDownloaded">
    <property name="text">
     <string>Do not download</string>
    </property>

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014, 2017  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,95 +26,135 @@
  * exception statement from your version.
  */
 
-#ifndef WEBAPPLICATION_H
-#define WEBAPPLICATION_H
+#pragma once
 
-#include <QStringList>
-#include "abstractwebapplication.h"
+#include <QDateTime>
+#include <QElapsedTimer>
+#include <QHash>
+#include <QObject>
+#include <QRegularExpression>
+#include <QSet>
+#include <QTranslator>
 
-class WebApplication : public AbstractWebApplication
+#include "api/isessionmanager.h"
+#include "base/http/irequesthandler.h"
+#include "base/http/responsebuilder.h"
+#include "base/http/types.h"
+#include "base/utils/net.h"
+#include "base/utils/version.h"
+
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 4, 1};
+
+class APIController;
+class WebApplication;
+
+constexpr char C_SID[] = "SID"; // name of session id cookie
+
+class WebSession : public ISession
 {
+public:
+    explicit WebSession(const QString &sid);
+
+    QString id() const override;
+
+    bool hasExpired(qint64 seconds) const;
+    void updateTimestamp();
+
+    QVariant getData(const QString &id) const override;
+    void setData(const QString &id, const QVariant &data) override;
+
+private:
+    const QString m_sid;
+    QElapsedTimer m_timer;  // timestamp
+    QVariantHash m_data;
+};
+
+class WebApplication
+        : public QObject, public Http::IRequestHandler, public ISessionManager
+        , private Http::ResponseBuilder
+{
+    Q_OBJECT
     Q_DISABLE_COPY(WebApplication)
+
+#ifndef Q_MOC_RUN
+#define WEBAPI_PUBLIC
+#define WEBAPI_PRIVATE
+#endif
 
 public:
     explicit WebApplication(QObject *parent = nullptr);
+    ~WebApplication() override;
+
+    Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
+
+    QString clientId() const override;
+    WebSession *session() override;
+    void sessionStart() override;
+    void sessionEnd() override;
+
+    const Http::Request &request() const;
+    const Http::Environment &env() const;
 
 private:
-    // Actions
-    void action_public_webui();
-    void action_public_index();
-    void action_public_login();
-    void action_public_logout();
-    void action_public_theme();
-    void action_public_images();
-    void action_query_torrents();
-    void action_query_preferences();
-    void action_query_transferInfo();
-    void action_query_propertiesGeneral();
-    void action_query_propertiesTrackers();
-    void action_query_propertiesWebSeeds();
-    void action_query_propertiesFiles();
-    void action_query_getLog();
-    void action_query_getPeerLog();
-    void action_query_getPieceHashes();
-    void action_query_getPieceStates();
-    void action_sync_maindata();
-    void action_sync_torrent_peers();
-    void action_command_shutdown();
-    void action_command_download();
-    void action_command_upload();
-    void action_command_addTrackers();
-    void action_command_resumeAll();
-    void action_command_pauseAll();
-    void action_command_resume();
-    void action_command_pause();
-    void action_command_setPreferences();
-    void action_command_setFilePrio();
-    void action_command_getGlobalUpLimit();
-    void action_command_getGlobalDlLimit();
-    void action_command_setGlobalUpLimit();
-    void action_command_setGlobalDlLimit();
-    void action_command_getTorrentsUpLimit();
-    void action_command_getTorrentsDlLimit();
-    void action_command_setTorrentsUpLimit();
-    void action_command_setTorrentsDlLimit();
-    void action_command_alternativeSpeedLimitsEnabled();
-    void action_command_toggleAlternativeSpeedLimits();
-    void action_command_toggleSequentialDownload();
-    void action_command_toggleFirstLastPiecePrio();
-    void action_command_setSuperSeeding();
-    void action_command_setForceStart();
-    void action_command_delete();
-    void action_command_deletePerm();
-    void action_command_increasePrio();
-    void action_command_decreasePrio();
-    void action_command_topPrio();
-    void action_command_bottomPrio();
-    void action_command_setLocation();
-    void action_command_rename();
-    void action_command_setAutoTMM();
-    void action_command_recheck();
-    void action_command_setCategory();
-    void action_command_addCategory();
-    void action_command_removeCategories();
-    void action_command_getSavePath();
-    void action_version_api();
-    void action_version_api_min();
-    void action_version_qbittorrent();
+    void doProcessRequest();
+    void configure();
 
-    typedef void (WebApplication::*Action)();
+    void registerAPIController(const QString &scope, APIController *controller);
+    void declarePublicAPI(const QString &apiPath);
 
-    QString scope_;
-    QString action_;
-    QStringList args_;
+    void sendFile(const QString &path);
+    void sendWebUIFile();
 
-    void doProcessRequest() override;
+    void translateDocument(QString &data) const;
 
-    bool isPublicScope();
-    void parsePath();
+    // Session management
+    QString generateSid() const;
+    void sessionInitialize();
+    bool isAuthNeeded();
+    bool isPublicAPI(const QString &scope, const QString &action) const;
 
-    static QMap<QString, QMap<QString, Action> > initializeActions();
-    static QMap<QString, QMap<QString, Action> > actions_;
+    bool isCrossSiteRequest(const Http::Request &request) const;
+    bool validateHostHeader(const QStringList &domains) const;
+
+    // Persistent data
+    QHash<QString, WebSession *> m_sessions;
+
+    // Current data
+    WebSession *m_currentSession = nullptr;
+    Http::Request m_request;
+    Http::Environment m_env;
+    QHash<QString, QString> m_params;
+    const QString m_cacheID;
+
+    const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
+
+    QHash<QString, APIController *> m_apiControllers;
+    QSet<QString> m_publicAPIs;
+    bool m_isAltUIUsed = false;
+    QString m_rootFolder;
+
+    struct TranslatedFile
+    {
+        QByteArray data;
+        QString mimeType;
+        QDateTime lastModified;
+    };
+    QHash<QString, TranslatedFile> m_translatedFiles;
+    QString m_currentLocale;
+    QTranslator m_translator;
+    bool m_translationFileLoaded = false;
+
+    bool m_isLocalAuthEnabled;
+    bool m_isAuthSubnetWhitelistEnabled;
+    QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
+    int m_sessionTimeout;
+
+    // security related
+    QStringList m_domainList;
+    bool m_isClickjackingProtectionEnabled;
+    bool m_isCSRFProtectionEnabled;
+    bool m_isSecureCookieEnabled;
+    bool m_isHostHeaderValidationEnabled;
+    bool m_isHttpsEnabled;
+    QString m_contentSecurityPolicy;
 };
-
-#endif // WEBAPPLICATION_H

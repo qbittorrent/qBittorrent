@@ -38,8 +38,9 @@ else()
         # libtorrent is very picky about those. Let's take a set of defaults and
         # hope that they apply. If not, you the user are on your own.
         set(LibtorrentRasterbar_DEFINITIONS
+            -DTORRENT_USE_LIBCRYPTO
+            # TODO: remove the following define as it is not used since OpenSSL >= 1.1
             -DTORRENT_USE_OPENSSL
-            -DTORRENT_DISABLE_GEO_IP
             -DBOOST_ASIO_ENABLE_CANCELIO
             -DUNICODE -D_UNICODE -D_FILE_OFFSET_BITS=64)
     endif()
@@ -47,7 +48,7 @@ else()
     if(NOT LibtorrentRasterbar_USE_STATIC_LIBS)
         list(APPEND LibtorrentRasterbar_DEFINITIONS
             -DTORRENT_LINKING_SHARED
-            -DBOOST_SYSTEM_DYN_LINK -DBOOST_CHRONO_DYN_LINK)
+            -DBOOST_SYSTEM_DYN_LINK)
     endif()
 endif()
 
@@ -99,6 +100,7 @@ list(FIND LibtorrentRasterbar_DEFINITIONS -DTORRENT_USE_OPENSSL LibtorrentRaster
 if(LibtorrentRasterbar_ENCRYPTION_INDEX GREATER -1)
     find_package(OpenSSL REQUIRED)
     set(LibtorrentRasterbar_LIBRARIES ${LibtorrentRasterbar_LIBRARIES} OpenSSL::SSL OpenSSL::Crypto)
+    list(APPEND LibtorrentRasterbar_INCLUDE_DIRS "${OPENSSL_INCLUDE_DIR}")
     set(LibtorrentRasterbar_OPENSSL_ENABLED ON)
 endif()
 
@@ -113,10 +115,10 @@ mark_as_advanced(LibtorrentRasterbar_INCLUDE_DIR LibtorrentRasterbar_LIBRARY
     LibtorrentRasterbar_ORIG_CMAKE_FIND_LIBRARY_SUFFIXES
     LibtorrentRasterbar_ENCRYPTION_INDEX)
 
-if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::LibTorrent)
-    add_library(LibtorrentRasterbar::LibTorrent UNKNOWN IMPORTED)
+if (LibtorrentRasterbar_FOUND AND NOT TARGET LibtorrentRasterbar::torrent-rasterbar)
+    add_library(LibtorrentRasterbar::torrent-rasterbar UNKNOWN IMPORTED)
 
-    set_target_properties(LibtorrentRasterbar::LibTorrent PROPERTIES
+    set_target_properties(LibtorrentRasterbar::torrent-rasterbar PROPERTIES
         IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
         IMPORTED_LOCATION "${LibtorrentRasterbar_LIBRARY}"
         INTERFACE_INCLUDE_DIRECTORIES "${LibtorrentRasterbar_INCLUDE_DIRS}"

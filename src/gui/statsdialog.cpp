@@ -28,10 +28,13 @@
 
 #include "statsdialog.h"
 
+#include <algorithm>
+
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "ui_statsdialog.h"
@@ -63,7 +66,7 @@ void StatsDialog::update()
     const BitTorrent::SessionStatus &ss = BitTorrent::Session::instance()->status();
     const BitTorrent::CacheStatus &cs = BitTorrent::Session::instance()->cacheStatus();
 
-    // Alltime DL/UL
+    // All-time DL/UL
     quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
     quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
     m_ui->labelAlltimeDL->setText(Utils::Misc::friendlyUnit(atd));
@@ -77,7 +80,10 @@ void StatsDialog::update()
                 : "-");
     // Cache hits
     qreal readRatio = cs.readRatio;
-    m_ui->labelCacheHits->setText((readRatio >= 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "-");
+    m_ui->labelCacheHits->setText(QString("%1%").arg(
+        readRatio > 0
+        ? Utils::String::fromDouble(100 * readRatio, 2)
+        : "0"));
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent
@@ -85,9 +91,11 @@ void StatsDialog::update()
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
     // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-    quint32 peers = 0;
-    foreach (BitTorrent::TorrentHandle *const torrent, BitTorrent::Session::instance()->torrents())
-        peers += torrent->peersCount();
+    const auto torrents = BitTorrent::Session::instance()->torrents();
+    const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
+    {
+        return (acc + torrent->peersCount());
+    });
 
     m_ui->labelWriteStarve->setText(QString("%1%")
                                     .arg(((ss.diskWriteQueue > 0) && (peers > 0))

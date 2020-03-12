@@ -30,20 +30,19 @@
 #ifndef UTILS_STRING_H
 #define UTILS_STRING_H
 
-#include <QString>
+#include <QLatin1String>
+#include <QVector>
 
-class QByteArray;
-class QLatin1String;
+class QString;
+class QStringRef;
+
+class TriStateBool;
 
 namespace Utils
 {
     namespace String
     {
         QString fromDouble(double n, int precision);
-
-        // Implements constant-time comparison to protect against timing attacks
-        // Taken from https://crackstation.net/hashing-security.htm
-        bool slowEquals(const QByteArray &a, const QByteArray &b);
 
         int naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity);
         template <Qt::CaseSensitivity caseSensitivity>
@@ -59,13 +58,18 @@ namespace Utils
         {
             if (str.length() < 2) return str;
 
-            for (auto const quote : quotes) {
+            for (const auto &quote : quotes) {
                 if (str.startsWith(quote) && str.endsWith(quote))
                     return str.mid(1, str.length() - 2);
             }
 
             return str;
         }
+
+        bool parseBool(const QString &string, bool defaultValue);
+        TriStateBool parseTriStateBool(const QString &string);
+
+        QString join(const QVector<QStringRef> &strings, const QString &separator);
     }
 }
 

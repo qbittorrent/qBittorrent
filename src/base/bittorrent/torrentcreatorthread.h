@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef BITTORRENT_TORRENTCREATORTHREAD_H
@@ -39,7 +37,9 @@ namespace BitTorrent
     struct TorrentCreatorParams
     {
         bool isPrivate;
+        bool isAlignmentOptimized;
         int pieceSize;
+        int paddedFileSizeLimit;
         QString inputPath;
         QString savePath;
         QString comment;
@@ -58,10 +58,11 @@ namespace BitTorrent
 
         void create(const TorrentCreatorParams &params);
 
-        static int calculateTotalPieces(const QString &inputPath, const int pieceSize);
+        static int calculateTotalPieces(const QString &inputPath
+            , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);
 
     protected:
-        void run();
+        void run() override;
 
     signals:
         void creationFailure(const QString &msg);

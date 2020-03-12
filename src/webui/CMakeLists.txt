@@ -1,24 +1,38 @@
-set(QBT_WEBUI_HEADERS
-abstractwebapplication.h
-btjson.h
-extra_translations.h
-jsonutils.h
-prefjson.h
+add_library(qbt_webui STATIC
+# headers
+api/apicontroller.h
+api/apierror.h
+api/appcontroller.h
+api/authcontroller.h
+api/freediskspacechecker.h
+api/isessionmanager.h
+api/logcontroller.h
+api/rsscontroller.h
+api/searchcontroller.h
+api/synccontroller.h
+api/torrentscontroller.h
+api/transfercontroller.h
+api/serialize/serialize_torrent.h
 webapplication.h
-websessiondata.h
 webui.h
-)
 
-set(QBT_WEBUI_SOURCES
-abstractwebapplication.cpp
-btjson.cpp
-prefjson.cpp
+# sources
+api/apicontroller.cpp
+api/apierror.cpp
+api/appcontroller.cpp
+api/authcontroller.cpp
+api/freediskspacechecker.cpp
+api/logcontroller.cpp
+api/rsscontroller.cpp
+api/searchcontroller.cpp
+api/synccontroller.cpp
+api/torrentscontroller.cpp
+api/transfercontroller.cpp
+api/serialize/serialize_torrent.cpp
 webapplication.cpp
 webui.cpp
 )
 
-qbt_target_sources(webui.qrc)
+qbt_target_sources(qBittorrent PRIVATE www/webui.qrc)
 
-add_library(qbt_webui STATIC ${QBT_WEBUI_HEADERS} ${QBT_WEBUI_SOURCES})
-target_link_libraries(qbt_webui qbt_base)
-
+target_link_libraries(qbt_webui PUBLIC qbt_base)

@@ -35,10 +35,12 @@
 #include <QList>
 #include <QObject>
 #include <QPointer>
+#include <QRegularExpression>
 #include <QSharedPointer>
 
 class QThread;
 class QTimer;
+
 class Application;
 class AsyncFileStorage;
 struct ProcessingJob;
@@ -58,7 +60,7 @@ namespace RSS
         QString message() const;
     };
 
-    class AutoDownloader final: public QObject
+    class AutoDownloader final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(AutoDownloader)
@@ -79,6 +81,13 @@ namespace RSS
 
         bool isProcessingEnabled() const;
         void setProcessingEnabled(bool enabled);
+
+        QStringList smartEpisodeFilters() const;
+        void setSmartEpisodeFilters(const QStringList &filters);
+        QRegularExpression smartEpisodeRegex() const;
+
+        bool downloadRepacks() const;
+        void setDownloadRepacks(bool downloadRepacks);
 
         bool hasRule(const QString &ruleName) const;
         AutoDownloadRule ruleByName(const QString &ruleName) const;
@@ -102,14 +111,14 @@ namespace RSS
         void process();
         void handleTorrentDownloadFinished(const QString &url);
         void handleTorrentDownloadFailed(const QString &url);
-        void handleNewArticle(Article *article);
+        void handleNewArticle(const Article *article);
 
     private:
         void timerEvent(QTimerEvent *event) override;
         void setRule_impl(const AutoDownloadRule &rule);
         void resetProcessingQueue();
         void startProcessing();
-        void addJobForArticle(Article *article);
+        void addJobForArticle(const Article *article);
         void processJob(const QSharedPointer<ProcessingJob> &job);
         void load();
         void loadRules(const QByteArray &data);
@@ -132,5 +141,6 @@ namespace RSS
         QHash<QString, QSharedPointer<ProcessingJob>> m_waitingJobs;
         bool m_dirty = false;
         QBasicTimer m_savingTimer;
+        QRegularExpression m_smartEpisodeRegex;
     };
 }

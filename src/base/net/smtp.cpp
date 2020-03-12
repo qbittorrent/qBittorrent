@@ -33,19 +33,19 @@
 #include "smtp.h"
 
 #include <QCryptographicHash>
+#include <QDateTime>
 #include <QDebug>
-#include <QHostAddress>
 #include <QHostInfo>
-#include <QNetworkInterface>
 #include <QStringList>
 #include <QTextCodec>
-#include <QTextStream>
+
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else
 #include <QTcpSocket>
 #endif
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 
@@ -67,7 +67,7 @@ namespace
         // ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have large
         // Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
 
-        for (int i = 0; i < key.length(); i++) {
+        for (int i = 0; i < key.length(); ++i) {
             innerPadding[i] = innerPadding[i] ^ key.at(i); // XOR operation between every byte in key and innerpadding, of key length
             outerPadding[i] = outerPadding[i] ^ key.at(i); // XOR operation between every byte in key and outerpadding, of key length
         }
@@ -111,9 +111,10 @@ Smtp::Smtp(QObject *parent)
     m_socket = new QTcpSocket(this);
 #endif
 
-    connect(m_socket, SIGNAL(readyRead()), SLOT(readyRead()));
-    connect(m_socket, SIGNAL(disconnected()), SLOT(deleteLater()));
-    connect(m_socket, SIGNAL(error(QAbstractSocket::SocketError)), SLOT(error(QAbstractSocket::SocketError)));
+    connect(m_socket, &QIODevice::readyRead, this, &Smtp::readyRead);
+    connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
+    connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QAbstractSocket::error)
+            , this, &Smtp::error);
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()
@@ -129,8 +130,8 @@ Smtp::~Smtp()
 
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body)
 {
-    const Preferences* const pref = Preferences::instance();
-    QTextCodec* latin1 = QTextCodec::codecForName("latin1");
+    const Preferences *const pref = Preferences::instance();
+    QTextCodec *latin1 = QTextCodec::codecForName("latin1");
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
                 + encodeMimeHeader("From", from, latin1)
                 + encodeMimeHeader("Subject", subject, latin1)
@@ -140,9 +141,9 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
                 + "Content-Transfer-Encoding: base64\r\n"
                 + "\r\n";
     // Encode the body in base64
-    QString crlf_body = body;
-    QByteArray b = crlf_body.replace("\n", "\r\n").toUtf8().toBase64();
-    int ct = b.length();
+    QString crlfBody = body;
+    const QByteArray b = crlfBody.replace("\n", "\r\n").toUtf8().toBase64();
+    const int ct = b.length();
     for (int i = 0; i < ct; i += 78)
         m_message += b.mid(i, 78);
     m_from = from;
@@ -164,7 +165,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     m_socket->connectToHost(pref->getMailNotificationSMTP(), DEFAULT_PORT);
     m_useSsl = false;
 #ifndef QT_NO_OPENSSL
-}
+    }
 #endif
 }
 
@@ -174,16 +175,16 @@ void Smtp::readyRead()
     // SMTP is line-oriented
     m_buffer += m_socket->readAll();
     while (true) {
-        int pos = m_buffer.indexOf("\r\n");
+        const int pos = m_buffer.indexOf("\r\n");
         if (pos < 0) return; // Loop exit condition
-        QByteArray line = m_buffer.left(pos);
+        const QByteArray line = m_buffer.left(pos);
         m_buffer = m_buffer.mid(pos + 2);
         qDebug() << "Response line:" << line;
         // Extract response code
-        QByteArray code = line.left(3);
+        const QByteArray code = line.left(3);
 
         switch (m_state) {
-        case Init: {
+        case Init:
             if (code[0] == '2') {
                 // The server may send a multiline greeting/INIT/220 response.
                 // We wait until it finishes.
@@ -197,7 +198,6 @@ void Smtp::readyRead()
                 m_state = Close;
             }
             break;
-        }
         case EhloSent:
         case HeloSent:
         case EhloGreetReceived:
@@ -287,14 +287,14 @@ void Smtp::readyRead()
     }
 }
 
-QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, QTextCodec *latin1, const QByteArray &prefix)
+QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, const QTextCodec *latin1, const QByteArray &prefix)
 {
     QByteArray rv = "";
     QByteArray line = key.toLatin1() + ": ";
     if (!prefix.isEmpty()) line += prefix;
     if (!value.contains("=?") && latin1->canEncode(value)) {
         bool firstWord = true;
-        foreach (const QByteArray& word, value.toLatin1().split(' ')) {
+        for (const QByteArray &word : asConst(value.toLatin1().split(' '))) {
             if (line.size() > 78) {
                 rv = rv + line + "\r\n";
                 line.clear();
@@ -302,17 +302,17 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, QTex
             if (firstWord)
                 line += word;
             else
-                line += " " + word;
+                line += ' ' + word;
             firstWord = false;
         }
     }
     else {
         // The text cannot be losslessly encoded as Latin-1. Therefore, we
         // must use base64 encoding.
-        QByteArray utf8 = value.toUtf8();
+        const QByteArray utf8 = value.toUtf8();
         // Use base64 encoding
-        QByteArray base64 = utf8.toBase64();
-        int ct = base64.length();
+        const QByteArray base64 = utf8.toBase64();
+        const int ct = base64.length();
         line += "=?utf-8?b?";
         for (int i = 0; i < ct; i += 4) {
             /*if (line.length() > 72) {
@@ -328,7 +328,7 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, QTex
 
 void Smtp::ehlo()
 {
-    QByteArray address = determineFQDN();
+    const QByteArray address = determineFQDN();
     m_socket->write("ehlo " + address + "\r\n");
     m_socket->flush();
     m_state = EhloSent;
@@ -336,13 +336,13 @@ void Smtp::ehlo()
 
 void Smtp::helo()
 {
-    QByteArray address = determineFQDN();
+    const QByteArray address = determineFQDN();
     m_socket->write("helo " + address + "\r\n");
     m_socket->flush();
     m_state = HeloSent;
 }
 
-void Smtp::parseEhloResponse(const QByteArray &code, bool continued, const QString &line)
+void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const QString &line)
 {
     if (code != "250") {
         // Error
@@ -409,7 +409,7 @@ void Smtp::authenticate()
     // AUTH extension is supported, check which
     // authentication modes are supported by
     // the server
-    QStringList auth = m_extensions["AUTH"].toUpper().split(' ', QString::SkipEmptyParts);
+    const QStringList auth = m_extensions["AUTH"].toUpper().split(' ', QString::SkipEmptyParts);
     if (auth.contains("CRAM-MD5")) {
         qDebug() << "Using CRAM-MD5 authentication...";
         authCramMD5();
@@ -426,7 +426,7 @@ void Smtp::authenticate()
         // Skip authentication
         logError("The SMTP server does not seem to support any of the authentications modes "
                  "we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, "
-                 "knowing it is likely to fail... Server Auth Modes: " + auth.join("|"));
+                 "knowing it is likely to fail... Server Auth Modes: " + auth.join('|'));
         m_state = Authenticated;
         // At this point the server will not send any response
         // So fill the buffer with a fake one to pass the tests
@@ -447,7 +447,7 @@ void Smtp::startTLS()
 #endif
 }
 
-void Smtp::authCramMD5(const QByteArray& challenge)
+void Smtp::authCramMD5(const QByteArray &challenge)
 {
     if (m_state != AuthRequestSent) {
         m_socket->write("auth cram-md5\r\n");
@@ -456,7 +456,7 @@ void Smtp::authCramMD5(const QByteArray& challenge)
         m_state = AuthRequestSent;
     }
     else {
-        QByteArray response = m_username.toLatin1() + ' '
+        const QByteArray response = m_username.toLatin1() + ' '
                               + hmacMD5(m_password.toLatin1(), QByteArray::fromBase64(challenge)).toHex();
         m_socket->write(response.toBase64() + "\r\n");
         m_socket->flush();
@@ -506,7 +506,7 @@ void Smtp::authLogin()
 void Smtp::logError(const QString &msg)
 {
     qDebug() << "Email Notification Error:" << msg;
-    Logger::instance()->addMessage(tr("Email Notification Error:") + " " + msg, Log::CRITICAL);
+    Logger::instance()->addMessage(tr("Email Notification Error:") + ' ' + msg, Log::CRITICAL);
 }
 
 QString Smtp::getCurrentDateTime() const
@@ -516,23 +516,23 @@ QString Smtp::getCurrentDateTime() const
     const QDate nowDate = nowDateTime.date();
     const QLocale eng(QLocale::English);
 
-    QString timeStr = nowDateTime.time().toString("HH:mm:ss");
-    QString weekDayStr = eng.dayName(nowDate.dayOfWeek(), QLocale::ShortFormat);
-    QString dayStr = QString::number(nowDate.day());
-    QString monthStr = eng.monthName(nowDate.month(), QLocale::ShortFormat);
-    QString yearStr = QString::number(nowDate.year());
+    const QString timeStr = nowDateTime.time().toString("HH:mm:ss");
+    const QString weekDayStr = eng.dayName(nowDate.dayOfWeek(), QLocale::ShortFormat);
+    const QString dayStr = QString::number(nowDate.day());
+    const QString monthStr = eng.monthName(nowDate.month(), QLocale::ShortFormat);
+    const QString yearStr = QString::number(nowDate.year());
 
     QDateTime tmp = nowDateTime;
     tmp.setTimeSpec(Qt::UTC);
-    int timeOffsetHour = nowDateTime.secsTo(tmp) / 3600;
-    int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
-    int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
+    const int timeOffsetHour = nowDateTime.secsTo(tmp) / 3600;
+    const int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
+    const int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
     // buf size = 11 to avoid format truncation warnings from snprintf
     char buf[11] = {0};
     std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
-    QString timeOffsetStr = buf;
+    const QString timeOffsetStr = buf;
 
-    QString ret = weekDayStr + ", " + dayStr + " " + monthStr + " " + yearStr + " " + timeStr + " " + timeOffsetStr;
+    const QString ret = weekDayStr + ", " + dayStr + ' ' + monthStr + ' ' + yearStr + ' ' + timeStr + ' ' + timeOffsetStr;
     return ret;
 }
 

@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/searchengine">
+        <file>nova3/helpers.py</file>
+        <file>nova3/nova2.py</file>
+        <file>nova3/nova2dl.py</file>
+        <file>nova3/novaprinter.py</file>
+        <file>nova3/sgmllib3.py</file>
+        <file>nova3/socks.py</file>
+    </qresource>
+</RCC>

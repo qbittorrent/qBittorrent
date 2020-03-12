@@ -31,11 +31,11 @@
 #define SETTINGSSTORAGE_H
 
 #include <QObject>
-#include <QVariantHash>
-#include <QTimer>
 #include <QReadWriteLock>
+#include <QTimer>
+#include <QVariantHash>
 
-class SettingsStorage: public QObject
+class SettingsStorage : public QObject
 {
     Q_OBJECT
     SettingsStorage();
@@ -44,9 +44,9 @@ class SettingsStorage: public QObject
 public:
     static void initInstance();
     static void freeInstance();
-    static SettingsStorage* instance();
+    static SettingsStorage *instance();
 
-    QVariant loadValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    QVariant loadValue(const QString &key, const QVariant &defaultValue = {}) const;
     void storeValue(const QString &key, const QVariant &value);
     void removeValue(const QString &key);
 

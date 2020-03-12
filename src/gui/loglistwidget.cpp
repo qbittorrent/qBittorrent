@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2011  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,20 +24,22 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
-#include <QKeyEvent>
+
+#include "loglistwidget.h"
+
+#include <QAction>
 #include <QApplication>
 #include <QClipboard>
-#include <QListWidgetItem>
+#include <QKeyEvent>
 #include <QLabel>
-#include <QRegExp>
-#include <QAction>
-#include "loglistwidget.h"
-#include "guiiconprovider.h"
+#include <QListWidgetItem>
+#include <QRegularExpression>
 
-LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *parent)
+#include "base/global.h"
+#include "uithememanager.h"
+
+LogListWidget::LogListWidget(const int maxLines, const Log::MsgTypes &types, QWidget *parent)
     : QListWidget(parent)
     , m_maxLines(maxLines)
     , m_types(types)
@@ -45,10 +47,10 @@ LogListWidget::LogListWidget(int maxLines, const Log::MsgTypes &types, QWidget *
     // Allow multiple selections
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     // Context menu
-    QAction *copyAct = new QAction(GuiIconProvider::instance()->getIcon("edit-copy"), tr("Copy"), this);
-    QAction *clearAct = new QAction(GuiIconProvider::instance()->getIcon("edit-clear"), tr("Clear"), this);
-    connect(copyAct, SIGNAL(triggered()), SLOT(copySelection()));
-    connect(clearAct, SIGNAL(triggered()), SLOT(clear()));
+    auto *copyAct = new QAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"), this);
+    auto *clearAct = new QAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear"), this);
+    connect(copyAct, &QAction::triggered, this, &LogListWidget::copySelection);
+    connect(clearAct, &QAction::triggered, this, &LogListWidget::clear);
     addAction(copyAct);
     addAction(clearAct);
     setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -76,10 +78,12 @@ void LogListWidget::keyPressEvent(QKeyEvent *event)
 
 void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 {
-    QListWidgetItem *item = new QListWidgetItem;
     // We need to use QLabel here to support rich text
-    QLabel *lbl = new QLabel(line);
+    auto *lbl = new QLabel(line);
+    lbl->setTextFormat(Qt::RichText);
     lbl->setContentsMargins(4, 2, 4, 2);
+
+    auto *item = new QListWidgetItem;
     item->setSizeHint(lbl->sizeHint());
     item->setData(Qt::UserRole, type);
     insertItem(0, item);
@@ -94,10 +98,11 @@ void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
 
 void LogListWidget::copySelection()
 {
-    static QRegExp htmlTag("<[^>]+>");
-    QStringList strings;
-    foreach (QListWidgetItem* it, selectedItems())
-        strings << static_cast<QLabel*>(itemWidget(it))->text().replace(htmlTag, "");
+    const QRegularExpression htmlTag("<[^>]+>");
 
-    QApplication::clipboard()->setText(strings.join("\n"));
+    QStringList strings;
+    for (QListWidgetItem *it : asConst(selectedItems()))
+        strings << static_cast<QLabel*>(itemWidget(it))->text().remove(htmlTag);
+
+    QApplication::clipboard()->setText(strings.join('\n'));
 }

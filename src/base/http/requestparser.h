@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
@@ -37,32 +38,35 @@ namespace Http
     class RequestParser
     {
     public:
-        enum ErrorCode
+        enum class ParseStatus
         {
-            NoError = 0,
-            IncompleteRequest,
+            OK,
+            Incomplete,
             BadRequest
         };
 
-        // when result != NoError parsed request is undefined
-        // Warning! Header names are converted to lower-case.
-        static ErrorCode parse(const QByteArray &data, Request &request, uint maxContentLength = 10000000 /* ~10MB */);
+        struct ParseResult
+        {
+            // when `status != ParseStatus::OK`, `request` & `frameSize` are undefined
+            ParseStatus status;
+            Request request;
+            long frameSize;  // http request frame size (bytes)
+        };
+
+        static ParseResult parse(const QByteArray &data);
+
+        static const long MAX_CONTENT_SIZE = 64 * 1024 * 1024;  // 64 MB
 
     private:
-        RequestParser(uint maxContentLength);
+        RequestParser();
 
-        ErrorCode parseHttpRequest(const QByteArray &data, Request &request);
+        ParseResult doParse(const QByteArray &data);
+        bool parseStartLines(const QString &data);
+        bool parseRequestLine(const QString &line);
 
-        bool parseHttpHeader(const QByteArray &data);
-        bool parseStartingLine(const QString &line);
-        bool parseContent(const QByteArray &data);
+        bool parsePostMessage(const QByteArray &data);
         bool parseFormData(const QByteArray &data);
-        QList<QByteArray> splitMultipartData(const QByteArray &data, const QByteArray &boundary);
 
-        static bool parseHeaderLine(const QString &line, QPair<QString, QString> &out);
-        static bool parseHeaderValue(const QString &value, QStringMap &out);
-
-        const uint m_maxContentLength;
         Request m_request;
     };
 }

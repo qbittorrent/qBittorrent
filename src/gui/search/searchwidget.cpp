@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -25,59 +25,62 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #include "searchwidget.h"
 
-#include <QHeaderView>
-#include <QMessageBox>
-#include <QSystemTrayIcon>
-#include <QTimer>
-#include <QDir>
-#include <QMenu>
-#include <QClipboard>
-#include <QMimeData>
-#include <QStandardItemModel>
-#include <QSortFilterProxyModel>
-#include <QFileDialog>
-#include <QDesktopServices>
-#include <QClipboard>
-#include <QProcess>
-#include <QDebug>
-#include <QTextStream>
-#include <QTreeView>
+#include <QtGlobal>
 
-#include <iostream>
 #ifdef Q_OS_WIN
-#include <stdlib.h>
+#include <cstdlib>
 #endif
 
-#include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/preferences.h"
-#include "base/searchengine.h"
-#include "searchlistdelegate.h"
-#include "mainwindow.h"
-#include "addnewtorrentdialog.h"
-#include "guiiconprovider.h"
-#include "pluginselectdlg.h"
-#include "searchsortmodel.h"
-#include "searchtab.h"
+#include <QDebug>
+#include <QMessageBox>
+#include <QRegularExpression>
+#include <QShortcut>
+#include <QTextStream>
+#include <QVector>
 
+#include "base/global.h"
+#include "base/search/searchhandler.h"
+#include "base/search/searchpluginmanager.h"
+#include "base/utils/foreignapps.h"
+#include "mainwindow.h"
+#include "pluginselectdialog.h"
+#include "searchjobwidget.h"
 #include "ui_searchwidget.h"
+#include "uithememanager.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 #define URL_COLUMN 5
+
+namespace
+{
+    QString statusIconName(SearchJobWidget::Status st)
+    {
+        switch (st) {
+        case SearchJobWidget::Status::Ongoing:
+            return QLatin1String("task-ongoing");
+        case SearchJobWidget::Status::Finished:
+            return QLatin1String("task-complete");
+        case SearchJobWidget::Status::Aborted:
+            return QLatin1String("task-reject");
+        case SearchJobWidget::Status::Error:
+            return QLatin1String("task-attention");
+        case SearchJobWidget::Status::NoResults:
+            return QLatin1String("task-attention");
+        default:
+            return {};
+        }
+    }
+}
 
 SearchWidget::SearchWidget(MainWindow *mainWindow)
     : QWidget(mainWindow)
     , m_ui(new Ui::SearchWidget())
     , m_mainWindow(mainWindow)
     , m_isNewQueryString(false)
-    , m_noSearchResults(true)
 {
     m_ui->setupUi(this);
 
@@ -97,15 +100,12 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
                  "Search phrase example, illustrates quotes usage, double quoted"
                  "pair of space delimited words, the whole pair is highlighted")
            << "</p></body></html>" << flush;
-    m_ui->m_searchPattern->setToolTip(searchPatternHint);
+    m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     // Icons
-    m_ui->searchButton->setIcon(GuiIconProvider::instance()->getIcon("edit-find"));
-    m_ui->downloadButton->setIcon(GuiIconProvider::instance()->getIcon("download"));
-    m_ui->goToDescBtn->setIcon(GuiIconProvider::instance()->getIcon("application-x-mswinurl"));
-    m_ui->pluginsButton->setIcon(GuiIconProvider::instance()->getIcon("preferences-system-network"));
-    m_ui->copyURLBtn->setIcon(GuiIconProvider::instance()->getIcon("edit-copy"));
+    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
+    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -113,49 +113,50 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     m_ui->tabWidget->setIconSize(iconSize);
 #endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
+    connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
 
-    m_searchEngine = new SearchEngine;
-    connect(m_searchEngine, &SearchEngine::searchStarted, this, &SearchWidget::searchStarted);
-    connect(m_searchEngine, &SearchEngine::newSearchResults, this, &SearchWidget::appendSearchResults);
-    connect(m_searchEngine, &SearchEngine::searchFinished, this, &SearchWidget::searchFinished);
-    connect(m_searchEngine, &SearchEngine::searchFailed, this, &SearchWidget::searchFailed);
-    connect(m_searchEngine, &SearchEngine::torrentFileDownloaded, this, &SearchWidget::addTorrentToSession);
-
+    const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
     {
-        fillCatCombobox();
         fillPluginComboBox();
+        fillCatCombobox();
         selectActivePage();
     };
-    connect(m_searchEngine, &SearchEngine::pluginInstalled, this, onPluginChanged);
-    connect(m_searchEngine, &SearchEngine::pluginUninstalled, this, onPluginChanged);
-    connect(m_searchEngine, &SearchEngine::pluginUpdated, this, onPluginChanged);
-    connect(m_searchEngine, &SearchEngine::pluginEnabled, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginInstalled, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginUninstalled, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginUpdated, this, onPluginChanged);
+    connect(searchManager, &SearchPluginManager::pluginEnabled, this, onPluginChanged);
 
     // Fill in category combobox
     onPluginChanged();
 
-    connect(m_ui->m_searchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
-    connect(m_ui->m_searchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
-    connect(m_ui->selectPlugin, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SearchWidget::selectMultipleBox);
+    connect(m_ui->lineEditSearchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
+    connect(m_ui->lineEditSearchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
+    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
+            , this, &SearchWidget::selectMultipleBox);
+    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
+            , this, &SearchWidget::fillCatCombobox);
+
+    const auto focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
+    connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 }
 
 void SearchWidget::fillCatCombobox()
 {
     m_ui->comboCategory->clear();
-    m_ui->comboCategory->addItem(SearchEngine::categoryFullName("all"), QVariant("all"));
+    m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName("all"), "all");
 
     using QStrPair = QPair<QString, QString>;
-    QList<QStrPair> tmpList;
-    foreach (const QString &cat, m_searchEngine->supportedCategories())
-        tmpList << qMakePair(SearchEngine::categoryFullName(cat), cat);
+    QVector<QStrPair> tmpList;
+    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
+        tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
-    foreach (const QStrPair &p, tmpList) {
+    for (const QStrPair &p : asConst(tmpList)) {
         qDebug("Supported category: %s", qUtf8Printable(p.second));
-        m_ui->comboCategory->addItem(p.first, QVariant(p.second));
+        m_ui->comboCategory->addItem(p.first, p.second);
     }
-    
+
     if (m_ui->comboCategory->count() > 1)
         m_ui->comboCategory->insertSeparator(1);
 }
@@ -163,18 +164,18 @@ void SearchWidget::fillCatCombobox()
 void SearchWidget::fillPluginComboBox()
 {
     m_ui->selectPlugin->clear();
-    m_ui->selectPlugin->addItem(tr("Only enabled"), QVariant("enabled"));
-    m_ui->selectPlugin->addItem(tr("All plugins"), QVariant("all"));
-    m_ui->selectPlugin->addItem(tr("Select..."), QVariant("multi"));
+    m_ui->selectPlugin->addItem(tr("Only enabled"), "enabled");
+    m_ui->selectPlugin->addItem(tr("All plugins"), "all");
+    m_ui->selectPlugin->addItem(tr("Select..."), "multi");
 
     using QStrPair = QPair<QString, QString>;
-    QList<QStrPair> tmpList;
-    foreach (const QString &name, m_searchEngine->enabledPlugins())
-        tmpList << qMakePair(m_searchEngine->pluginFullName(name), name);
+    QVector<QStrPair> tmpList;
+    for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
+        tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
-    foreach (const QStrPair &p, tmpList)
-        m_ui->selectPlugin->addItem(p.first, QVariant(p.second));
+    for (const QStrPair &p : asConst(tmpList))
+        m_ui->selectPlugin->addItem(p.first, p.second);
 
     if (m_ui->selectPlugin->count() > 3)
         m_ui->selectPlugin->insertSeparator(3);
@@ -192,16 +193,16 @@ QString SearchWidget::selectedPlugin() const
 
 void SearchWidget::selectActivePage()
 {
-    if (m_searchEngine->allPlugins().isEmpty()) {
+    if (SearchPluginManager::instance()->allPlugins().isEmpty()) {
         m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
-        m_ui->m_searchPattern->setEnabled(false);
+        m_ui->lineEditSearchPattern->setEnabled(false);
         m_ui->comboCategory->setEnabled(false);
         m_ui->selectPlugin->setEnabled(false);
         m_ui->searchButton->setEnabled(false);
     }
     else {
         m_ui->stackedPages->setCurrentWidget(m_ui->searchPage);
-        m_ui->m_searchPattern->setEnabled(true);
+        m_ui->lineEditSearchPattern->setEnabled(true);
         m_ui->comboCategory->setEnabled(true);
         m_ui->selectPlugin->setEnabled(true);
         m_ui->searchButton->setEnabled(true);
@@ -211,36 +212,14 @@ void SearchWidget::selectActivePage()
 SearchWidget::~SearchWidget()
 {
     qDebug("Search destruction");
-    delete m_searchEngine;
     delete m_ui;
 }
 
-void SearchWidget::downloadTorrent(const QString &siteUrl, const QString &url)
+void SearchWidget::tabChanged(int index)
 {
-    if (url.startsWith("bc://bt/", Qt::CaseInsensitive) || url.startsWith("magnet:", Qt::CaseInsensitive))
-        addTorrentToSession(url);
-    else
-        m_searchEngine->downloadTorrent(siteUrl, url);
-}
-
-void SearchWidget::tab_changed(int t)
-{
-    //when we switch from a tab that is not empty to another that is empty the download button
-    //doesn't have to be available
-    if (t > -1) {
-        //-1 = no more tab
-        m_currentSearchTab = m_allTabs.at(m_ui->tabWidget->currentIndex());
-        if (m_currentSearchTab->getCurrentSearchListModel()->rowCount()) {
-            m_ui->downloadButton->setEnabled(true);
-            m_ui->goToDescBtn->setEnabled(true);
-            m_ui->copyURLBtn->setEnabled(true);
-        }
-        else {
-            m_ui->downloadButton->setEnabled(false);
-            m_ui->goToDescBtn->setEnabled(false);
-            m_ui->copyURLBtn->setEnabled(false);
-        }
-    }
+    // when we switch from a tab that is not empty to another that is empty
+    // the download button doesn't have to be available
+    m_currentSearchTab = ((index < 0) ? nullptr : m_allTabs.at(m_ui->tabWidget->currentIndex()));
 }
 
 void SearchWidget::selectMultipleBox(int index)
@@ -250,20 +229,24 @@ void SearchWidget::selectMultipleBox(int index)
         on_pluginsButton_clicked();
 }
 
-void SearchWidget::addTorrentToSession(const QString &source)
+void SearchWidget::toggleFocusBetweenLineEdits()
 {
-    if (AddNewTorrentDialog::isEnabled())
-        AddNewTorrentDialog::show(source, this);
-    else
-        BitTorrent::Session::instance()->addTorrent(source);
+    if (m_ui->lineEditSearchPattern->hasFocus() && m_currentSearchTab) {
+        m_currentSearchTab->lineEditSearchResultsFilter()->setFocus();
+        m_currentSearchTab->lineEditSearchResultsFilter()->selectAll();
+    }
+    else {
+        m_ui->lineEditSearchPattern->setFocus();
+        m_ui->lineEditSearchPattern->selectAll();
+    }
 }
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    new PluginSelectDlg(m_searchEngine, this);
+    new PluginSelectDialog(SearchPluginManager::instance(), this);
 }
 
-void SearchWidget::searchTextEdited(QString)
+void SearchWidget::searchTextEdited(const QString &)
 {
     // Enable search button
     m_ui->searchButton->setText(tr("Search"));
@@ -272,25 +255,19 @@ void SearchWidget::searchTextEdited(QString)
 
 void SearchWidget::giveFocusToSearchInput()
 {
-    m_ui->m_searchPattern->setFocus();
-}
-
-QTabWidget *SearchWidget::searchTabs() const
-{
-    return m_ui->tabWidget;
+    m_ui->lineEditSearchPattern->setFocus();
 }
 
 // Function called when we click on search button
 void SearchWidget::on_searchButton_clicked()
 {
-    if (Utils::Misc::pythonVersion() < 0) {
+    if (!Utils::ForeignApps::pythonInfo().isValid()) {
         m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }
 
-    if (m_searchEngine->isActive()) {
-        m_searchEngine->cancelSearch();
-
+    if (m_activeSearchTab) {
+        m_activeSearchTab->cancelSearch();
         if (!m_isNewQueryString) {
             m_ui->searchButton->setText(tr("Search"));
             return;
@@ -299,180 +276,71 @@ void SearchWidget::on_searchButton_clicked()
 
     m_isNewQueryString = false;
 
-    const QString pattern = m_ui->m_searchPattern->text().trimmed();
+    const QString pattern = m_ui->lineEditSearchPattern->text().trimmed();
     // No search pattern entered
     if (pattern.isEmpty()) {
         QMessageBox::critical(this, tr("Empty search pattern"), tr("Please type a search pattern first"));
         return;
     }
 
-    // Tab Addition
-    m_currentSearchTab = new SearchTab(this);
-    m_activeSearchTab = m_currentSearchTab;
-    m_allTabs.append(m_currentSearchTab);
-    QString tabName = pattern;
-    tabName.replace(QRegExp("&{1}"), "&&");
-    m_ui->tabWidget->addTab(m_currentSearchTab, tabName);
-    m_ui->tabWidget->setCurrentWidget(m_currentSearchTab);
-    m_currentSearchTab->getCurrentSearchListProxy()->setNameFilter(pattern);
-
     QStringList plugins;
-    if (selectedPlugin() == "all") plugins = m_searchEngine->allPlugins();
-    else if (selectedPlugin() == "enabled") plugins = m_searchEngine->enabledPlugins();
-    else if (selectedPlugin() == "multi") plugins = m_searchEngine->enabledPlugins();
-    else plugins << selectedPlugin();
+    if (selectedPlugin() == "all")
+        plugins = SearchPluginManager::instance()->allPlugins();
+    else if (selectedPlugin() == "enabled")
+        plugins = SearchPluginManager::instance()->enabledPlugins();
+    else if (selectedPlugin() == "multi")
+        plugins = SearchPluginManager::instance()->enabledPlugins();
+    else
+        plugins << selectedPlugin();
 
     qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
-    // Update SearchEngine widgets
-    m_noSearchResults = true;
-
-    // Changing the text of the current label
-    m_activeSearchTab->updateResultsCount();
-
     // Launch search
-    m_searchEngine->startSearch(pattern, selectedCategory(), plugins);
-}
+    auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
 
-void SearchWidget::searchStarted()
-{
-    // Update SearchEngine widgets
-    m_activeSearchTab->setStatus(SearchTab::Status::Ongoing);
+    // Tab Addition
+    auto *newTab = new SearchJobWidget(searchHandler, this);
+    m_allTabs.append(newTab);
+
+    QString tabName = pattern;
+    tabName.replace(QRegularExpression("&{1}"), "&&");
+    m_ui->tabWidget->addTab(newTab, tabName);
+    m_ui->tabWidget->setCurrentWidget(newTab);
+
+    connect(newTab, &SearchJobWidget::statusChanged, this, [this, newTab]() { tabStatusChanged(newTab); });
+
     m_ui->searchButton->setText(tr("Stop"));
+    m_activeSearchTab = newTab;
+    tabStatusChanged(newTab);
 }
 
-// Slot called when search is Finished
-// Search can be finished for 3 reasons :
-// Error | Stopped by user | Finished normally
-void SearchWidget::searchFinished(bool cancelled)
+void SearchWidget::tabStatusChanged(QWidget *tab)
 {
-    if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
-        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+    const int tabIndex = m_ui->tabWidget->indexOf(tab);
+    m_ui->tabWidget->setTabToolTip(tabIndex, tab->statusTip());
+    m_ui->tabWidget->setTabIcon(tabIndex, UIThemeManager::instance()->getIcon(
+                                 statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
 
-    if (m_activeSearchTab.isNull()) return; // The active tab was closed
+    if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing)) {
+        Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
 
-    if (cancelled)
-        m_activeSearchTab->setStatus(SearchTab::Status::Aborted);
-    else if (m_noSearchResults)
-        m_activeSearchTab->setStatus(SearchTab::Status::NoResults);
-    else
-        m_activeSearchTab->setStatus(SearchTab::Status::Finished);
+        if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this)) {
+            if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
+                m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
+            else
+                m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+        }
 
-    m_activeSearchTab = 0;
-    m_ui->searchButton->setText(tr("Search"));
-}
-
-void SearchWidget::searchFailed()
-{
-    if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
-        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
-
-    if (m_activeSearchTab.isNull()) return; // The active tab was closed
-
-#ifdef Q_OS_WIN
-    m_activeSearchTab->setStatus(SearchTab::Status::Aborted);
-#else
-    m_activeSearchTab->setStatus(SearchTab::Status::Error);
-#endif
-}
-
-void SearchWidget::appendSearchResults(const QList<SearchResult> &results)
-{
-    if (m_activeSearchTab.isNull()) {
-        m_searchEngine->cancelSearch();
-        return;
+        m_activeSearchTab = nullptr;
+        m_ui->searchButton->setText(tr("Search"));
     }
-
-    Q_ASSERT(m_activeSearchTab);
-
-    QStandardItemModel *curModel = m_activeSearchTab->getCurrentSearchListModel();
-    Q_ASSERT(curModel);
-
-    foreach (const SearchResult &result, results) {
-        // Add item to search result list
-        int row = curModel->rowCount();
-        curModel->insertRow(row);
-
-        curModel->setData(curModel->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
-        curModel->setData(curModel->index(row, SearchSortModel::NAME), result.fileName); // Name
-        curModel->setData(curModel->index(row, SearchSortModel::SIZE), result.fileSize); // Size
-        curModel->setData(curModel->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
-        curModel->setData(curModel->index(row, SearchSortModel::LEECHES), result.nbLeechers); // Leechers
-        curModel->setData(curModel->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
-        curModel->setData(curModel->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
-    }
-
-    m_noSearchResults = false;
-    m_activeSearchTab->updateResultsCount();
-
-    // Enable clear & download buttons
-    m_ui->downloadButton->setEnabled(true);
-    m_ui->goToDescBtn->setEnabled(true);
-    m_ui->copyURLBtn->setEnabled(true);
 }
 
 void SearchWidget::closeTab(int index)
 {
-    // Search is run for active tab so if user decided to close it, then stop search
-    if (!m_activeSearchTab.isNull() && index == m_ui->tabWidget->indexOf(m_activeSearchTab)) {
-        qDebug("Closed active search Tab");
-        if (m_searchEngine->isActive())
-            m_searchEngine->cancelSearch();
-        m_activeSearchTab = 0;
-    }
+    SearchJobWidget *tab = m_allTabs.takeAt(index);
+    if (tab == m_activeSearchTab)
+        m_ui->searchButton->setText(tr("Search"));
 
-    delete m_allTabs.takeAt(index);
-
-    if (!m_allTabs.size()) {
-        m_ui->downloadButton->setEnabled(false);
-        m_ui->goToDescBtn->setEnabled(false);
-        m_ui->copyURLBtn->setEnabled(false);
-    }
-}
-
-// Download selected items in search results list
-void SearchWidget::on_downloadButton_clicked()
-{
-    //QModelIndexList selectedIndexes = currentSearchTab->getCurrentTreeView()->selectionModel()->selectedIndexes();
-    QModelIndexList selectedIndexes =
-        m_allTabs.at(m_ui->tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
-    foreach (const QModelIndex &index, selectedIndexes) {
-        if (index.column() == SearchSortModel::NAME)
-            m_allTabs.at(m_ui->tabWidget->currentIndex())->downloadItem(index);
-    }
-}
-
-void SearchWidget::on_goToDescBtn_clicked()
-{
-    QModelIndexList selectedIndexes =
-        m_allTabs.at(m_ui->tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
-    foreach (const QModelIndex &index, selectedIndexes) {
-        if (index.column() == SearchSortModel::NAME) {
-            QSortFilterProxyModel *model = m_allTabs.at(m_ui->tabWidget->currentIndex())->getCurrentSearchListProxy();
-            const QString descUrl = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
-            if (!descUrl.isEmpty())
-                QDesktopServices::openUrl(QUrl::fromEncoded(descUrl.toUtf8()));
-        }
-    }
-}
-
-void SearchWidget::on_copyURLBtn_clicked()
-{
-    QStringList urls;
-    QModelIndexList selectedIndexes =
-        m_allTabs.at(m_ui->tabWidget->currentIndex())->getCurrentTreeView()->selectionModel()->selectedIndexes();
-
-    foreach (const QModelIndex &index, selectedIndexes) {
-        if (index.column() == SearchSortModel::NAME) {
-            QSortFilterProxyModel *model = m_allTabs.at(m_ui->tabWidget->currentIndex())->getCurrentSearchListProxy();
-            const QString descUrl = model->data(model->index(index.row(), SearchSortModel::DESC_LINK)).toString();
-            if (!descUrl.isEmpty())
-                urls << descUrl.toUtf8();
-        }
-    }
-
-    if (!urls.empty()) {
-        QClipboard *clipboard = QApplication::clipboard();
-        clipboard->setText(urls.join("\n"));
-    }
+    delete tab;
 }

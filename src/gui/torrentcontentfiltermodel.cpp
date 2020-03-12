@@ -35,18 +35,13 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_model(new TorrentContentModel(this))
 {
-    connect(m_model, SIGNAL(filteredFilesChanged()), this, SIGNAL(filteredFilesChanged()));
+    connect(m_model, &TorrentContentModel::filteredFilesChanged, this, &TorrentContentFilterModel::filteredFilesChanged);
     setSourceModel(m_model);
     // Filter settings
     setFilterKeyColumn(TorrentContentModelItem::COL_NAME);
     setFilterRole(Qt::DisplayRole);
     setDynamicSortFilter(true);
     setSortCaseSensitivity(Qt::CaseInsensitive);
-}
-
-TorrentContentFilterModel::~TorrentContentFilterModel()
-{
-    delete m_model;
 }
 
 TorrentContentModel *TorrentContentFilterModel::model() const
@@ -66,10 +61,10 @@ int TorrentContentFilterModel::getFileIndex(const QModelIndex &index) const
 
 QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 {
-    if (!child.isValid()) return QModelIndex();
+    if (!child.isValid()) return {};
 
     QModelIndex sourceParent = m_model->parent(mapToSource(child));
-    if (!sourceParent.isValid()) return QModelIndex();
+    if (!sourceParent.isValid()) return {};
 
     return mapFromSource(sourceParent);
 }
@@ -96,12 +91,11 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
                 const QString strR = right.data().toString();
                 return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
             }
-            else if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
+            if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
                 return true;
             }
-            else {
-                return false;
-            }
+
+            return false;
         }
     default:
         return QSortFilterProxyModel::lessThan(left, right);
@@ -113,7 +107,7 @@ void TorrentContentFilterModel::selectAll()
     for (int i = 0; i < rowCount(); ++i)
         setData(index(i, 0), Qt::Checked, Qt::CheckStateRole);
 
-    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentFilterModel::selectNone()
@@ -121,7 +115,7 @@ void TorrentContentFilterModel::selectNone()
     for (int i = 0; i < rowCount(); ++i)
         setData(index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
 
-    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
@@ -131,13 +125,12 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
     QString name = folder.data().toString();
     if (name.contains(filterRegExp()))
         return true;
-    for (int child = 0; child < m_model->rowCount(folder); child++) {
+    for (int child = 0; child < m_model->rowCount(folder); ++child) {
         QModelIndex childIndex = m_model->index(child, 0, folder);
         if (m_model->hasChildren(childIndex)) {
             if (hasFiltered(childIndex))
                 return true;
-            else
-                continue;
+            continue;
         }
         name = childIndex.data().toString();
         if (name.contains(filterRegExp()))

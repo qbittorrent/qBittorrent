@@ -1,59 +1,44 @@
 set(CMAKE_AUTORCC True)
 set(CMAKE_AUTOUIC True)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
+add_library(qbt_gui_headers INTERFACE)
+target_include_directories(qbt_gui_headers INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_subdirectory(lineedit)
 add_subdirectory(properties)
 add_subdirectory(powermanagement)
 add_subdirectory(rss)
 add_subdirectory(search)
 
-if (UNIX AND NOT APPLE AND DBUS)
-   add_subdirectory(qtnotify)
-   include_directories(qtnotify)
-   list(APPEND QBT_GUI_OPTIONAL_LINK_LIBRARIES qbt_qtnotify)
-endif (UNIX AND NOT APPLE AND DBUS)
-
-include_directories(
-${CMAKE_CURRENT_BINARY_DIR}/properties
-${CMAKE_CURRENT_BINARY_DIR}/rss
-${CMAKE_CURRENT_BINARY_DIR}/search
-lineedit/src
-powermanagement
-properties
-rss
-../app
-)
-
-set(QBT_GUI_HEADERS
-about_imp.h
+add_library(qbt_gui STATIC
+# headers
+aboutdialog.h
 addnewtorrentdialog.h
 advancedsettings.h
 autoexpandabledialog.h
-banlistoptions.h
+banlistoptionsdialog.h
 categoryfiltermodel.h
 categoryfilterproxymodel.h
 categoryfilterwidget.h
 cookiesdialog.h
 cookiesmodel.h
-deletionconfirmationdlg.h
-downloadfromurldlg.h
-executionlog.h
+deletionconfirmationdialog.h
+downloadfromurldialog.h
+executionlogwidget.h
 fspathedit.h
-fspathedit_p.h
-guiiconprovider.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
+lineedit.h
 loglistwidget.h
 mainwindow.h
-messageboxraised.h
-optionsdlg.h
+optionsdialog.h
 previewlistdelegate.h
 previewselectdialog.h
+private/fspathedit_p.h
+private/tristatewidget.h
+raisedmessagebox.h
 scanfoldersdelegate.h
-shutdownconfirmdlg.h
-speedlimitdlg.h
+shutdownconfirmdialog.h
+speedlimitdialog.h
 statsdialog.h
 statusbar.h
 tagfiltermodel.h
@@ -66,40 +51,47 @@ torrentcontentmodelfile.h
 torrentcontentmodelfolder.h
 torrentcontentmodelitem.h
 torrentcontenttreeview.h
-torrentcreatordlg.h
-torrentmodel.h
-trackerlogin.h
+torrentcreatordialog.h
+trackerentriesdialog.h
 transferlistdelegate.h
 transferlistfilterswidget.h
+transferlistmodel.h
 transferlistsortmodel.h
 transferlistwidget.h
-updownratiodlg.h
+tristateaction.h
+uithememanager.h
+updownratiodialog.h
 utils.h
-)
 
-set(QBT_GUI_SOURCES
+# sources
+aboutdialog.cpp
 addnewtorrentdialog.cpp
 advancedsettings.cpp
 autoexpandabledialog.cpp
-banlistoptions.cpp
+banlistoptionsdialog.cpp
 categoryfiltermodel.cpp
 categoryfilterproxymodel.cpp
 categoryfilterwidget.cpp
 cookiesdialog.cpp
 cookiesmodel.cpp
-executionlog.cpp
+deletionconfirmationdialog.cpp
+downloadfromurldialog.cpp
+executionlogwidget.cpp
 fspathedit.cpp
-fspathedit_p.cpp
-guiiconprovider.cpp
+hidabletabwidget.cpp
 ipsubnetwhitelistoptionsdialog.cpp
+lineedit.cpp
 loglistwidget.cpp
 mainwindow.cpp
-messageboxraised.cpp
-optionsdlg.cpp
+optionsdialog.cpp
+previewlistdelegate.cpp
 previewselectdialog.cpp
+private/fspathedit_p.cpp
+private/tristatewidget.cpp
+raisedmessagebox.cpp
 scanfoldersdelegate.cpp
-shutdownconfirmdlg.cpp
-speedlimitdlg.cpp
+shutdownconfirmdialog.cpp
+speedlimitdialog.cpp
 statsdialog.cpp
 statusbar.cpp
 tagfiltermodel.cpp
@@ -112,60 +104,69 @@ torrentcontentmodelfile.cpp
 torrentcontentmodelfolder.cpp
 torrentcontentmodelitem.cpp
 torrentcontenttreeview.cpp
-torrentcreatordlg.cpp
-torrentmodel.cpp
-trackerlogin.cpp
+torrentcreatordialog.cpp
+trackerentriesdialog.cpp
 transferlistdelegate.cpp
 transferlistfilterswidget.cpp
+transferlistmodel.cpp
 transferlistsortmodel.cpp
 transferlistwidget.cpp
-updownratiodlg.cpp
+tristateaction.cpp
+uithememanager.cpp
+updownratiodialog.cpp
 utils.cpp
+
+# forms
+aboutdialog.ui
+addnewtorrentdialog.ui
+autoexpandabledialog.ui
+banlistoptionsdialog.ui
+cookiesdialog.ui
+deletionconfirmationdialog.ui
+downloadfromurldialog.ui
+executionlogwidget.ui
+ipsubnetwhitelistoptionsdialog.ui
+mainwindow.ui
+optionsdialog.ui
+previewselectdialog.ui
+shutdownconfirmdialog.ui
+speedlimitdialog.ui
+statsdialog.ui
+torrentcategorydialog.ui
+torrentcreatordialog.ui
+trackerentriesdialog.ui
+updownratiodialog.ui
 )
 
+target_link_libraries(qbt_gui
+    PRIVATE
+        qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
+        qbt_base
+)
+
+target_include_directories(qbt_gui
+    PRIVATE ../app
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+if (UNIX AND Qt5DBus_FOUND)
+   add_subdirectory(qtnotify)
+   target_link_libraries(qbt_gui PRIVATE qbt_qtnotify)
+endif (UNIX AND Qt5DBus_FOUND)
+
 if (APPLE)
-    list(APPEND QBT_GUI_HEADERS macutilities.h)
-    list(APPEND QBT_GUI_SOURCES macutilities.mm)
+    target_sources(qbt_gui PRIVATE macutilities.h macutilities.mm)
+    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS MacExtras)
+    target_link_libraries(qbt_gui PRIVATE Qt5::MacExtras objc)
 endif (APPLE)
 
 if (WIN32 OR APPLE)
-    list(APPEND QBT_GUI_HEADERS programupdater.h)
-    list(APPEND QBT_GUI_SOURCES programupdater.cpp)
+    target_sources(qbt_gui PRIVATE programupdater.h programupdater.cpp)
 endif (WIN32 OR APPLE)
 
-set(QBT_GUI_FORMS
-mainwindow.ui
-about.ui
-banlistoptions.ui
-cookiesdialog.ui
-ipsubnetwhitelistoptionsdialog.ui
-previewselectdialog.ui
-login.ui
-downloadfromurldlg.ui
-bandwidth_limit.ui
-updownratiodlg.ui
-confirmdeletiondlg.ui
-executionlog.ui
-addnewtorrentdialog.ui
-autoexpandabledialog.ui
-statsdialog.ui
-optionsdlg.ui
-torrentcategorydialog.ui
-torrentcreatordlg.ui
-shutdownconfirmdlg.ui
-)
+qbt_target_sources(qBittorrent PRIVATE about.qrc)
 
-qbt_target_sources(about.qrc)
-
-add_library(qbt_gui STATIC ${QBT_GUI_HEADERS} ${QBT_GUI_SOURCES} ${QBT_GUI_FORMS})
-target_link_libraries(qbt_gui qbt_lineedit qbt_powermanagement qbt_rss qbt_properties qbt_searchengine
-    ${QBT_GUI_OPTIONAL_LINK_LIBRARIES} qbt_base
-    QtSingleApplication::QtSingleApplication
-)
 if(WIN32)
-    target_link_libraries(qbt_gui Qt5::WinExtras)
+    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS WinExtras)
+    target_link_libraries(qbt_gui PRIVATE Qt5::WinExtras)
 endif(WIN32)
-
-if (APPLE)
-    target_link_libraries(qbt_gui Qt5::MacExtras)
-endif()

@@ -25,14 +25,11 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
  */
 
 #include "profile_p.h"
 
 #include <QCoreApplication>
-
-#include "base/utils/fs.h"
 
 Private::Profile::Profile(const QString &configurationName)
     : m_configurationSuffix {configurationName.isEmpty() ? QString() : QLatin1Char('_') + configurationName}
@@ -76,7 +73,7 @@ QString Private::DefaultProfile::configLocation() const
 
 QString Private::DefaultProfile::dataLocation() const
 {
-#if defined(Q_OS_WIN) || defined (Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
     return locationWithConfigurationName(QStandardPaths::AppLocalDataLocation);
 #else
     // on Linux gods know why qBittorrent creates 'data' subdirectory in ~/.local/share/
@@ -87,24 +84,19 @@ QString Private::DefaultProfile::dataLocation() const
 
 QString Private::DefaultProfile::downloadLocation() const
 {
-#if defined(Q_OS_WIN)
-    if (QSysInfo::windowsVersion() <= QSysInfo::WV_XP)  // Windows XP
-        return QDir(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).absoluteFilePath(
-            QCoreApplication::translate("fsutils", "Downloads"));
-#endif
     return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
 }
 
 SettingsPtr Private::DefaultProfile::applicationSettings(const QString &name) const
 {
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, profileName(), name));
 #else
     return SettingsPtr(new QSettings(profileName(), name));
 #endif
 }
 
-QString Private::DefaultProfile::locationWithConfigurationName(QStandardPaths::StandardLocation location) const
+QString Private::DefaultProfile::locationWithConfigurationName(const QStandardPaths::StandardLocation location) const
 {
     return QStandardPaths::writableLocation(location) + configurationSuffix();
 }
@@ -143,7 +135,7 @@ QString Private::CustomProfile::downloadLocation() const
 SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) const
 {
     // here we force QSettings::IniFormat format always because we need it to be portable across platforms
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     constexpr const char *CONF_FILE_EXTENSION = ".ini";
 #else
     constexpr const char *CONF_FILE_EXTENSION = ".conf";
@@ -175,9 +167,9 @@ QString Private::Converter::toPortablePath(const QString &path) const
 
 #ifdef Q_OS_WIN
     if (QDir::isAbsolutePath(path)) {
-        QChar driveLeter = path[0].toUpper();
-        QChar baseDriveLetter = m_baseDir.path()[0].toUpper();
-        bool onSameDrive = (driveLeter.category() == QChar::Letter_Uppercase) && (driveLeter == baseDriveLetter);
+        const QChar driveLeter = path[0].toUpper();
+        const QChar baseDriveLetter = m_baseDir.path()[0].toUpper();
+        const bool onSameDrive = (driveLeter.category() == QChar::Letter_Uppercase) && (driveLeter == baseDriveLetter);
         if (!onSameDrive)
             return path;
     }
@@ -187,7 +179,7 @@ QString Private::Converter::toPortablePath(const QString &path) const
 
 QString Private::Converter::fromPortablePath(const QString &portablePath) const
 {
-    if (QDir::isAbsolutePath(portablePath))
+    if (portablePath.isEmpty() || QDir::isAbsolutePath(portablePath))
         return portablePath;
 
     return QDir::cleanPath(m_baseDir.absoluteFilePath(portablePath));

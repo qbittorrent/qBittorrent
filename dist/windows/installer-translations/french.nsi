@@ -6,6 +6,8 @@ LangString inst_qbt_req ${LANG_FRENCH} "qBittorrent (requis)"
 LangString inst_dekstop ${LANG_FRENCH} "Créer Raccourci Bureau"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_FRENCH} "Créer Raccourci dans le Menu Démarrer"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_FRENCH} "Démarrez qBittorrent au démarrage de Windows"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_FRENCH} "Ouvrir fichiers .torrent avec qBittorrent"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
@@ -24,6 +26,8 @@ LangString inst_unist ${LANG_FRENCH} "Désinstallation de la version précédent
 LangString launch_qbt ${LANG_FRENCH} "Lancer qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_FRENCH} "Cet installateur ne fonctionne que dans les versions 64 bits de Windows."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_FRENCH} "Cette version de qBittorrent nécessite au moins Windows 7."
 
 
 ;------------------------------------

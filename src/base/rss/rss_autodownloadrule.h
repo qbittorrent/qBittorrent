@@ -29,12 +29,13 @@
 
 #pragma once
 
-#include <QDateTime>
 #include <QSharedDataPointer>
 #include <QVariant>
 
+class QDateTime;
 class QJsonObject;
 class QRegularExpression;
+
 class TriStateBool;
 
 namespace RSS
@@ -66,17 +67,25 @@ namespace RSS
         void setLastMatch(const QDateTime &lastMatch);
         bool useRegex() const;
         void setUseRegex(bool enabled);
+        bool useSmartFilter() const;
+        void setUseSmartFilter(bool enabled);
         QString episodeFilter() const;
         void setEpisodeFilter(const QString &e);
+
+        QStringList previouslyMatchedEpisodes() const;
+        void setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes);
 
         QString savePath() const;
         void setSavePath(const QString &savePath);
         TriStateBool addPaused() const;
-        void setAddPaused(const TriStateBool &addPaused);
+        void setAddPaused(TriStateBool addPaused);
+        TriStateBool createSubfolder() const;
+        void setCreateSubfolder(TriStateBool createSubfolder);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 
-        bool matches(const QString &articleTitle) const;
+        bool matches(const QVariantHash &articleData) const;
+        bool accepts(const QVariantHash &articleData);
 
         AutoDownloadRule &operator=(const AutoDownloadRule &other);
         bool operator==(const AutoDownloadRule &other) const;
@@ -89,7 +98,11 @@ namespace RSS
         static AutoDownloadRule fromLegacyDict(const QVariantHash &dict);
 
     private:
-        bool matches(const QString &articleTitle, const QString &expression) const;
+        bool matchesMustContainExpression(const QString &articleTitle) const;
+        bool matchesMustNotContainExpression(const QString &articleTitle) const;
+        bool matchesEpisodeFilterExpression(const QString &articleTitle) const;
+        bool matchesSmartEpisodeFilter(const QString &articleTitle) const;
+        bool matchesExpression(const QString &articleTitle, const QString &expression) const;
         QRegularExpression cachedRegex(const QString &expression, bool isRegex = true) const;
 
         QSharedDataPointer<AutoDownloadRuleData> m_dataPtr;

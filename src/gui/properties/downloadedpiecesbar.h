@@ -31,9 +31,10 @@
 
 #include <QBitArray>
 #include <QVector>
-#include <QWidget>
 
 #include "piecesbar.h"
+
+class QWidget;
 
 class DownloadedPiecesBar : public PiecesBar
 {

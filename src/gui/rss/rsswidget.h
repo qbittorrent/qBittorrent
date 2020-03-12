@@ -31,20 +31,20 @@
 #ifndef RSSWIDGET_H
 #define RSSWIDGET_H
 
-#include <QPointer>
-#include <QShortcut>
+#include <QWidget>
+
+class QListWidgetItem;
+class QTreeWidgetItem;
 
 class ArticleListWidget;
 class FeedListWidget;
-class QListWidgetItem;
-class QTreeWidgetItem;
 
 namespace Ui
 {
     class RSSWidget;
 }
 
-class RSSWidget: public QWidget
+class RSSWidget : public QWidget
 {
     Q_OBJECT
 
@@ -85,8 +85,6 @@ private:
     Ui::RSSWidget *m_ui;
     ArticleListWidget *m_articleListWidget;
     FeedListWidget *m_feedListWidget;
-    QShortcut *m_editHotkey;
-    QShortcut *m_deleteHotkey;
 };
 
 #endif // RSSWIDGET_H

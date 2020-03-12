@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/lib/mocha-0.9.6-yc.js"></script>
+    <script src="scripts/speedslider.js?v=${CACHEID}"></script>
+</head>
+
+<body>
+    <div style="width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
+        <div id="uplimitSlider" class="slider">
+            <div id="uplimitUpdate" class="update">QBT_TR(Upload limit:)QBT_TR[CONTEXT=PropertiesWidget] <input id="uplimitUpdatevalue" size="6" placeholder="∞" style="text-align: center;"> <span id="upLimitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimitDialog]</span></div>
+            <div class="sliderWrapper">
+                <div id="uplimitSliderknob" class="sliderknob"></div>
+                <div id="uplimitSliderarea" class="sliderarea"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <script>
+            'use strict';
+
+            const hashes = new URI().getData('hashes').split('|');
+            const setUpLimit = function() {
+                const limit = $("uplimitUpdatevalue").value.toInt() * 1024;
+                if (hashes[0] == "global") {
+                    new Request({
+                        url: 'api/v2/transfer/setUploadLimit',
+                        method: 'post',
+                        data: {
+                            'limit': limit
+                        },
+                        onComplete: function() {
+                            window.parent.updateMainData();
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
+                else {
+                    new Request({
+                        url: 'api/v2/torrents/setUploadLimit',
+                        method: 'post',
+                        data: {
+                            'hashes': hashes.join('|'),
+                            'limit': limit
+                        },
+                        onComplete: function() {
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
+            }
+        </script>
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setUpLimit()" />
+    </div>
+
+    <script>
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('applyButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        $('uplimitUpdatevalue').focus();
+
+        MochaUI.addUpLimitSlider(hashes);
+    </script>
+
+</body>
+
+</html>

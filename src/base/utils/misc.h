@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,23 +24,21 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef UTILS_MISC_H
 #define UTILS_MISC_H
 
-#include <vector>
+#include <QtGlobal>
+
+#ifdef Q_OS_WIN
+#include <memory>
+#include <Windows.h>
+#endif
+
 #include <QString>
-#include <QStringList>
-#include <ctime>
-#include <QPoint>
-#include <QFile>
-#include <QDir>
-#include <QUrl>
-#include <QSize>
-#include "base/types.h"
+
+enum class ShutdownDialogAction;
 
 /*  Miscellaneous functions that can be useful */
 
@@ -64,51 +62,51 @@ namespace Utils
             // YobiByte,   // 1024^8
         };
 
-        QString parseHtmlLinks(const QString &raw_text);
-        bool isUrl(const QString &s);
+        QString parseHtmlLinks(const QString &rawText);
 
         void shutdownComputer(const ShutdownDialogAction &action);
 
         QString osName();
         QString boostVersionString();
         QString libtorrentVersionString();
+        QString opensslVersionString();
+        QString zlibVersionString();
 
-        int pythonVersion();
-        QString pythonExecutable();
-        QString pythonVersionComplete();
+        QString unitString(SizeUnit unit, bool isSpeed = false);
 
-        QString unitString(SizeUnit unit);
-
-        // return best user friendly storage unit (B, KiB, MiB, GiB, TiB)
+        // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
         // value must be given in bytes
-        bool friendlyUnit(qint64 sizeInBytes, qreal& val, SizeUnit& unit);
         QString friendlyUnit(qint64 bytesValue, bool isSpeed = false);
         int friendlyUnitPrecision(SizeUnit unit);
         qint64 sizeInBytes(qreal size, SizeUnit unit);
 
-        bool isPreviewable(const QString& extension);
+        bool isPreviewable(const QString &extension);
 
-        // Take a number of seconds and return an user-friendly
+        // Take a number of seconds and return a user-friendly
         // time duration like "1d 2h 10m".
-        QString userFriendlyDuration(qlonglong seconds);
+        QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1);
         QString getUserIDString();
-
-        // Convert functions
-        QStringList toStringList(const QList<bool> &l);
-        QList<int> intListfromStringList(const QStringList &l);
-        QList<bool> boolListfromStringList(const QStringList &l);
-
-#ifndef DISABLE_GUI
-        void openPath(const QString& absolutePath);
-        void openFolderSelect(const QString& absolutePath);
-
-        QPoint screenCenter(const QWidget *w);
-#endif
 
 #ifdef Q_OS_WIN
         QString windowsSystemPath();
-#endif
+
+        template <typename T>
+        T loadWinAPI(const QString &source, const char *funcName)
+        {
+            QString path = windowsSystemPath();
+            if (!path.endsWith('\\'))
+                path += '\\';
+
+            path += source;
+
+            auto pathWchar = std::make_unique<wchar_t[]>(path.length() + 1);
+            path.toWCharArray(pathWchar.get());
+
+            return reinterpret_cast<T>(
+                ::GetProcAddress(::LoadLibraryW(pathWchar.get()), funcName));
+        }
+#endif // Q_OS_WIN
     }
 }
 
-#endif
+#endif // UTILS_MISC_H

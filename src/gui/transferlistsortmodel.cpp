@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2013  Nick Tiskov
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,21 +24,23 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : daymansmail@gmail.com
  */
 
-#include <QStringList>
-
-#include "base/types.h"
-#include "base/utils/string.h"
-#include "base/bittorrent/torrenthandle.h"
-#include "torrentmodel.h"
 #include "transferlistsortmodel.h"
 
+#include <QDateTime>
+#include <QStringList>
+
+#include "base/bittorrent/torrenthandle.h"
+#include "base/global.h"
+#include "base/types.h"
+#include "base/utils/string.h"
+#include "transferlistmodel.h"
+
 TransferListSortModel::TransferListSortModel(QObject *parent)
-    : QSortFilterProxyModel(parent)
+    : QSortFilterProxyModel {parent}
 {
+    QMetaType::registerComparators<BitTorrent::TorrentState>();
 }
 
 void TransferListSortModel::setStatusFilter(TorrentFilter::Type filter)
@@ -73,7 +75,7 @@ void TransferListSortModel::disableTagFilter()
 
 void TransferListSortModel::setTrackerFilter(const QStringList &hashes)
 {
-    if (m_filter.setHashSet(hashes.toSet()))
+    if (m_filter.setHashSet(List::toSet(hashes)))
         invalidateFilter();
 }
 
@@ -85,187 +87,182 @@ void TransferListSortModel::disableTrackerFilter()
 
 bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    switch (sortColumn()) {
-    case TorrentModel::TR_CATEGORY:
-    case TorrentModel::TR_TAGS:
-    case TorrentModel::TR_NAME: {
-        const QVariant vL = left.data();
-        const QVariant vR = right.data();
-        if (!vL.isValid() || !vR.isValid() || (vL == vR))
-            return lowerPositionThan(left, right);
+    return lessThan_impl(left, right);
+}
 
-        const int result = Utils::String::naturalCompare(vL.toString(), vR.toString(), Qt::CaseInsensitive);
-        return (result < 0);
-    }
+bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelIndex &right) const
+{
+    Q_ASSERT(left.column() == right.column());
 
-    case TorrentModel::TR_STATUS: {
+    const auto invokeLessThanForColumn = [this, &left, &right](const int column) -> bool
+    {
+        return lessThan_impl(left.sibling(left.row(), column), right.sibling(left.row(), column));
+    };
+
+    const int sortColumn = left.column();
+    const QVariant leftValue = left.data(TransferListModel::UnderlyingDataRole);
+    const QVariant rightValue = right.data(TransferListModel::UnderlyingDataRole);
+
+    switch (sortColumn) {
+    case TransferListModel::TR_CATEGORY:
+    case TransferListModel::TR_TAGS:
+    case TransferListModel::TR_NAME:
+        if (!leftValue.isValid() || !rightValue.isValid() || (leftValue == rightValue))
+            return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
+        return (Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive) < 0);
+
+    case TransferListModel::TR_STATUS:
         // QSortFilterProxyModel::lessThan() uses the < operator only for specific QVariant types
         // so our custom type is outside that list.
         // In this case QSortFilterProxyModel::lessThan() converts other types to QString and
         // sorts them.
         // Thus we can't use the code in the default label.
-        const BitTorrent::TorrentState leftValue = left.data().value<BitTorrent::TorrentState>();
-        const BitTorrent::TorrentState rightValue = right.data().value<BitTorrent::TorrentState>();
         if (leftValue != rightValue)
             return leftValue < rightValue;
+        return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
 
-        return lowerPositionThan(left, right);
-    }
+    case TransferListModel::TR_ADD_DATE:
+    case TransferListModel::TR_SEED_DATE:
+    case TransferListModel::TR_SEEN_COMPLETE_DATE: {
+            const QDateTime dateL = leftValue.toDateTime();
+            const QDateTime dateR = rightValue.toDateTime();
 
-    case TorrentModel::TR_ADD_DATE:
-    case TorrentModel::TR_SEED_DATE:
-    case TorrentModel::TR_SEEN_COMPLETE_DATE: {
-        return dateLessThan(sortColumn(), left, right, true);
-    }
+            if (dateL.isValid() && dateR.isValid()) {
+                if (dateL != dateR)
+                    return dateL < dateR;
+            }
+            else if (dateL.isValid()) {
+                return true;
+            }
+            else if (dateR.isValid()) {
+                return false;
+            }
+        }
+        break;
 
-    case TorrentModel::TR_PRIORITY: {
-        return lowerPositionThan(left, right);
-    }
+    case TransferListModel::TR_QUEUE_POSITION: {
+            // QVariant has comparators for all basic types
+            if ((leftValue > 0) || (rightValue > 0)) {
+                if ((leftValue > 0) && (rightValue > 0))
+                    return leftValue < rightValue;
 
-    case TorrentModel::TR_SEEDS:
-    case TorrentModel::TR_PEERS: {
-        const int leftActive = left.data().toInt();
-        const int leftTotal = left.data(Qt::UserRole).toInt();
-        const int rightActive = right.data().toInt();
-        const int rightTotal = right.data(Qt::UserRole).toInt();
+                return leftValue != 0;
+            }
 
-        // Active peers/seeds take precedence over total peers/seeds.
-        if (leftActive != rightActive)
-            return (leftActive < rightActive);
+            // Sort according to TR_SEED_DATE
+            const QDateTime dateL = left.sibling(left.row(), TransferListModel::TR_SEED_DATE)
+                    .data(TransferListModel::UnderlyingDataRole).toDateTime();
+            const QDateTime dateR = right.sibling(right.row(), TransferListModel::TR_SEED_DATE)
+                    .data(TransferListModel::UnderlyingDataRole).toDateTime();
 
-        if (leftTotal != rightTotal)
-            return (leftTotal < rightTotal);
+            if (dateL.isValid() && dateR.isValid()) {
+                if (dateL != dateR)
+                    return dateL < dateR;
+            }
+            else if (dateL.isValid()) {
+                return false;
+            }
+            else if (dateR.isValid()) {
+                return true;
+            }
+        }
+        break;
 
-        return lowerPositionThan(left, right);
-    }
+    case TransferListModel::TR_SEEDS:
+    case TransferListModel::TR_PEERS: {
+            // QVariant has comparators for all basic types
+            // Active peers/seeds take precedence over total peers/seeds.
+            if (leftValue != rightValue)
+                return (leftValue < rightValue);
 
-    case TorrentModel::TR_ETA: {
-        const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
+            const QVariant leftValueTotal = left.data(TransferListModel::AdditionalUnderlyingDataRole);
+            const QVariant rightValueTotal = right.data(TransferListModel::AdditionalUnderlyingDataRole);
+            if (leftValueTotal != rightValueTotal)
+                return (leftValueTotal < rightValueTotal);
 
-        // Sorting rules prioritized.
-        // 1. Active torrents at the top
-        // 2. Seeding torrents at the bottom
-        // 3. Torrents with invalid ETAs at the bottom
+            return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
+        }
 
-        const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(left.row())));
-        const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(model->index(right.row())));
-        if (isActiveL != isActiveR)
-            return isActiveL;
+    case TransferListModel::TR_ETA: {
+            // Sorting rules prioritized.
+            // 1. Active torrents at the top
+            // 2. Seeding torrents at the bottom
+            // 3. Torrents with invalid ETAs at the bottom
 
-        const int prioL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();
-        const int prioR = model->data(model->index(right.row(), TorrentModel::TR_PRIORITY)).toInt();
-        const bool isSeedingL = (prioL < 0);
-        const bool isSeedingR = (prioR < 0);
-        if (isSeedingL != isSeedingR) {
-            const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
-            if (isSeedingL)
-                return !isAscendingOrder;
-            else
+            const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+
+            // From QSortFilterProxyModel::lessThan() documentation:
+            //   "Note: The indices passed in correspond to the source model"
+            const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(left));
+            const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(right));
+            if (isActiveL != isActiveR)
+                return isActiveL;
+
+            const int queuePosL = left.sibling(left.row(), TransferListModel::TR_QUEUE_POSITION)
+                    .data(TransferListModel::UnderlyingDataRole).toInt();
+            const int queuePosR = right.sibling(right.row(), TransferListModel::TR_QUEUE_POSITION)
+                    .data(TransferListModel::UnderlyingDataRole).toInt();
+            const bool isSeedingL = (queuePosL < 0);
+            const bool isSeedingR = (queuePosR < 0);
+            if (isSeedingL != isSeedingR) {
+                const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
+                if (isSeedingL)
+                    return !isAscendingOrder;
+
                 return isAscendingOrder;
-        }
+            }
 
-        const qlonglong etaL = left.data().toLongLong();
-        const qlonglong etaR = right.data().toLongLong();
-        const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA));
-        const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
-        if (isInvalidL && isInvalidR) {
-            if (isSeedingL)  // Both seeding
-                return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, true);
-            else
-                return (prioL < prioR);
-        }
-        else if (!isInvalidL && !isInvalidR) {
-            return (etaL < etaR);
-        }
-        else {
+            const qlonglong etaL = leftValue.toLongLong();
+            const qlonglong etaR = rightValue.toLongLong();
+            const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA));
+            const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
+            if (isInvalidL && isInvalidR) {
+                if (isSeedingL)  // Both seeding
+                    return invokeLessThanForColumn(TransferListModel::TR_SEED_DATE);
+
+                return (queuePosL < queuePosR);
+            }
+
+            if (!isInvalidL && !isInvalidR)
+                return (etaL < etaR);
+
             return !isInvalidL;
         }
-    }
 
-    case TorrentModel::TR_LAST_ACTIVITY: {
-        const qlonglong vL = left.data().toLongLong();
-        const qlonglong vR = right.data().toLongLong();
+    case TransferListModel::TR_LAST_ACTIVITY:
+    case TransferListModel::TR_RATIO_LIMIT:
+        // QVariant has comparators for all basic types
+        if (leftValue < 0) return false;
+        if (rightValue < 0) return true;
 
-        if (vL == -1) return false;
-        if (vR == -1) return true;
+        return (leftValue < rightValue);
 
-        return vL < vR;
-    }
-
-    case TorrentModel::TR_RATIO_LIMIT: {
-        const qreal vL = left.data().toDouble();
-        const qreal vR = right.data().toDouble();
-
-        if (vL == -1) return false;
-        if (vR == -1) return true;
-
-        return vL < vR;
-    }
-
-    default: {
-        if (left.data() != right.data())
+    default:
+        if (leftValue != rightValue)
             return QSortFilterProxyModel::lessThan(left, right);
 
-        return lowerPositionThan(left, right);
-    }
-    }
-}
-
-bool TransferListSortModel::lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const
-{
-    const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
-
-    // Sort according to TR_PRIORITY
-    const int queueL = model->data(model->index(left.row(), TorrentModel::TR_PRIORITY)).toInt();
-    const int queueR = model->data(model->index(right.row(), TorrentModel::TR_PRIORITY)).toInt();
-    if ((queueL > 0) || (queueR > 0)) {
-        if ((queueL > 0) && (queueR > 0))
-            return queueL < queueR;
-        else
-            return queueL != 0;
-    }
-
-    // Sort according to TR_SEED_DATE
-    return dateLessThan(TorrentModel::TR_SEED_DATE, left, right, false);
-}
-
-// Every time we compare QDateTimes we need a fallback comparison in case both
-// values are empty. This is a workaround for unstable sort in QSortFilterProxyModel
-// (detailed discussion in #2526 and #2158).
-bool TransferListSortModel::dateLessThan(const int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const
-{
-    const TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
-    const QDateTime dateL = model->data(model->index(left.row(), dateColumn)).toDateTime();
-    const QDateTime dateR = model->data(model->index(right.row(), dateColumn)).toDateTime();
-    if (dateL.isValid() && dateR.isValid()) {
-        if (dateL != dateR)
-            return dateL < dateR;
-    }
-    else if (dateL.isValid()) {
-        return sortInvalidInBottom;
-    }
-    else if (dateR.isValid()) {
-        return !sortInvalidInBottom;
+        return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
     }
 
     // Finally, sort by hash
-    const QString hashL(model->torrentHandle(model->index(left.row()))->hash());
-    const QString hashR(model->torrentHandle(model->index(right.row()))->hash());
+    const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+    const QString hashL = model->torrentHandle(left)->hash();
+    const QString hashR = model->torrentHandle(right)->hash();
     return hashL < hashR;
 }
 
-bool TransferListSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
 {
     return matchFilter(sourceRow, sourceParent)
            && QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
 
-bool TransferListSortModel::matchFilter(int sourceRow, const QModelIndex &sourceParent) const
+bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &sourceParent) const
 {
-    TorrentModel *model = qobject_cast<TorrentModel *>(sourceModel());
+    const auto *model = qobject_cast<TransferListModel *>(sourceModel());
     if (!model) return false;
 
-    BitTorrent::TorrentHandle *const torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
+    const BitTorrent::TorrentHandle *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
     if (!torrent) return false;
 
     return m_filter.match(torrent);

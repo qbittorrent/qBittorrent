@@ -42,7 +42,7 @@ namespace Net
     class DNSUpdater;
 }
 
-class AbstractWebApplication;
+class WebApplication;
 
 class WebUI : public QObject
 {
@@ -64,7 +64,7 @@ private:
     bool m_isErrored;
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;
-    QPointer<AbstractWebApplication> m_webapp;
+    QPointer<WebApplication> m_webapp;
     quint16 m_port;
 };
 

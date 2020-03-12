@@ -1,5 +1,5 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
+ * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef POWERMANAGEMENT_H
@@ -33,12 +31,12 @@
 
 #include <QObject>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 // Require Mac OS X >= 10.5
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #endif
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 // Require DBus
 class PowerManagementInhibitor;
 #endif
@@ -48,7 +46,7 @@ class PowerManagement : public QObject
   Q_OBJECT
 
 public:
-  PowerManagement(QObject *parent = 0);
+  PowerManagement(QObject *parent = nullptr);
   virtual ~PowerManagement();
 
   void setActivityState(bool busy);
@@ -59,10 +57,10 @@ private:
   void setBusy();
   void setIdle();
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
   PowerManagementInhibitor *m_inhibitor;
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   IOPMAssertionID m_assertionID;
 #endif
 };

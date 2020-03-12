@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/lib/mocha-0.9.6-yc.js"></script>
+    <script src="scripts/speedslider.js?v=${CACHEID}"></script>
+</head>
+
+<body>
+    <div style="width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
+        <div id="dllimitSlider" class="slider">
+            <div id="dllimitUpdate" class="update">QBT_TR(Download limit:)QBT_TR[CONTEXT=PropertiesWidget] <input id="dllimitUpdatevalue" size="6" placeholder="∞" style="text-align: center;"> <span id="dlLimitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimitDialog]</span></div>
+            <div class="sliderWrapper">
+                <div id="dllimitSliderknob" class="sliderknob"></div>
+                <div id="dllimitSliderarea" class="sliderarea"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <script>
+            'use strict';
+
+            const hashes = new URI().getData('hashes').split('|');
+            const setDlLimit = function() {
+                const limit = $("dllimitUpdatevalue").value.toInt() * 1024;
+                if (hashes[0] == "global") {
+                    new Request({
+                        url: 'api/v2/transfer/setDownloadLimit',
+                        method: 'post',
+                        data: {
+                            'limit': limit
+                        },
+                        onComplete: function() {
+                            window.parent.updateMainData();
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
+                else {
+                    new Request({
+                        url: 'api/v2/torrents/setDownloadLimit',
+                        method: 'post',
+                        data: {
+                            'hashes': hashes.join('|'),
+                            'limit': limit
+                        },
+                        onComplete: function() {
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                }
+            }
+        </script>
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setDlLimit()" />
+    </div>
+
+    <script>
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('applyButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        $('dllimitUpdatevalue').focus();
+
+        MochaUI.addDlLimitSlider(hashes);
+    </script>
+
+</body>
+
+</html>

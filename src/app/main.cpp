@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -25,12 +25,24 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
+#include <QtGlobal>
+
+#include <csignal>
+#include <cstdlib>
+#include <memory>
+
+#if defined(Q_OS_UNIX)
+#include <sys/resource.h>
+#endif
+#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#include <unistd.h>
+#elif defined Q_OS_WIN && defined DISABLE_GUI
+#include <io.h>
+#endif
+
 #include <QDebug>
-#include <QScopedPointer>
 #include <QThread>
 
 #ifndef DISABLE_GUI
@@ -41,6 +53,7 @@
 #include <QPen>
 #include <QPushButton>
 #include <QSplashScreen>
+#include <QTimer>
 
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
@@ -50,40 +63,36 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #else
 // NoGUI-only includes
 #include <cstdio>
-#ifdef Q_OS_UNIX
-#include "unistd.h"
-#endif
 #endif // DISABLE_GUI
 
+#ifdef STACKTRACE
 #ifdef Q_OS_UNIX
-#include <signal.h>
-#include <execinfo.h>
 #include "stacktrace.h"
-#endif // Q_OS_UNIX
-
-#ifdef STACKTRACE_WIN
-#include <signal.h>
+#else
 #include "stacktrace_win.h"
-#include "stacktrace_win_dlg.h"
-#endif //STACKTRACE_WIN
+#ifndef DISABLE_GUI
+#include "stacktracedialog.h"
+#endif // DISABLE_GUI
+#endif // Q_OS_UNIX
+#endif //STACKTRACE
 
-#include <cstdlib>
-#include <iostream>
-
-#include "application.h"
-#include "base/profile.h"
-#include "base/utils/misc.h"
 #include "base/preferences.h"
+#include "base/profile.h"
+#include "application.h"
 #include "cmdoptions.h"
-
 #include "upgrade.h"
 
+#ifndef DISABLE_GUI
+#include "gui/utils.h"
+#endif
+
 // Signal handlers
-#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigNormalHandler(int signum);
+#ifdef STACKTRACE
 void sigAbnormalHandler(int signum);
+#endif
 // sys_signame[] is only defined in BSD
-const char *sysSigName[] = {
+const char *const sysSigName[] = {
 #if defined(Q_OS_WIN)
     "", "", "SIGINT", "", "SIGILL", "", "SIGABRT_COMPAT", "", "SIGFPE", "",
     "", "SIGSEGV", "", "", "", "SIGTERM", "", "", "", "",
@@ -96,10 +105,9 @@ const char *sysSigName[] = {
     "SIGPWR", "SIGUNUSED"
 #endif
 };
-#endif
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-void reportToUser(const char* str);
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
+void reportToUser(const char *str);
 #endif
 
 void displayVersion();
@@ -108,47 +116,39 @@ void displayBadArgMessage(const QString &message);
 
 #if !defined(DISABLE_GUI)
 void showSplashScreen();
+#endif  // DISABLE_GUI
 
 #if defined(Q_OS_UNIX)
-void setupDpi();
-#endif  // Q_OS_UNIX
-#endif  // DISABLE_GUI
+void adjustFileDescriptorLimit();
+#endif
 
 // Main
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_UNIX)
+    adjustFileDescriptorLimit();
+#endif
+
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
-#ifdef Q_OS_MAC
-    // On macOS 10.12 Sierra, Apple changed the behaviour of CFPreferencesSetValue() https://bugreports.qt.io/browse/QTBUG-56344
-    // Due to this, we have to move from native plist to IniFormat
-    macMigratePlists();
-#endif
-
-#if !defined(DISABLE_GUI) && defined(Q_OS_UNIX)
-    setupDpi();
+#if !defined(DISABLE_GUI) && (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    // Attribute Qt::AA_EnableHighDpiScaling must be set before QCoreApplication is created
+    if (qgetenv("QT_ENABLE_HIGHDPI_SCALING").isEmpty() && qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+        Application::setAttribute(Qt::AA_EnableHighDpiScaling, true);
 #endif
 
     try {
         // Create Application
-        QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
-        QScopedPointer<Application> app(new Application(appId, argc, argv));
-
-#ifndef DISABLE_GUI
-        // after the application object creation because we need a profile to be set already
-        // for the migration
-        migrateRSS();
-#endif
+        auto app = std::make_unique<Application>(argc, argv);
 
         const QBtCommandLineParameters params = app->commandLineArgs();
-
         if (!params.unknownParameter.isEmpty()) {
             throw CommandLineParameterError(QObject::tr("%1 is an unknown command line parameter.",
                                                         "--random-parameter is an unknown command line parameter.")
                                                         .arg(params.unknownParameter));
         }
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
         if (params.showVersion) {
             if (isOneArg) {
                 displayVersion();
@@ -169,22 +169,31 @@ int main(int argc, char *argv[])
 
         // Set environment variable
         if (!qputenv("QBITTORRENT", QBT_VERSION))
-            std::cerr << "Couldn't set environment variable...\n";
+            fprintf(stderr, "Couldn't set environment variable...\n");
 
+        const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
+        if (firstTimeUser) {
 #ifndef DISABLE_GUI
-        if (!userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (!userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
+
+#elif defined(Q_OS_WIN)
+            if (_isatty(_fileno(stdin))
+                && _isatty(_fileno(stdout))
+                && !userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 #else
-        if (!params.shouldDaemonize
-            && isatty(fileno(stdin))
-            && isatty(fileno(stdout))
-            && !userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (!params.shouldDaemonize
+                && isatty(fileno(stdin))
+                && isatty(fileno(stdout))
+                && !userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 #endif
+        }
 
         // Check if qBittorrent is already running for this user
         if (app->isRunning()) {
-#ifdef DISABLE_GUI
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
             if (params.shouldDaemonize) {
                 throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
                                      .arg(QLatin1String("-d (or --daemon)")));
@@ -212,13 +221,13 @@ int main(int argc, char *argv[])
         // 3. https://bugreports.qt.io/browse/QTBUG-46015
 
         qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && !defined(DISABLE_GUI)
         // this is the default in Qt6
         app->setAttribute(Qt::AA_DisableWindowContextHelpButton);
 #endif
-#endif
+#endif // Q_OS_WIN
 
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
         // For more info see issue #5571.
@@ -230,18 +239,29 @@ int main(int argc, char *argv[])
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
+        if (!firstTimeUser) {
+            handleChangedDefaults(DefaultPreferencesMode::Legacy);
+
 #ifndef DISABLE_GUI
-        if (!upgrade()) return EXIT_FAILURE;
+            if (!upgrade()) return EXIT_FAILURE;
+#elif defined(Q_OS_WIN)
+            if (!upgrade(_isatty(_fileno(stdin))
+                         && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
 #else
-        if (!upgrade(!params.shouldDaemonize
-                     && isatty(fileno(stdin))
-                     && isatty(fileno(stdout)))) return EXIT_FAILURE;
+            if (!upgrade(!params.shouldDaemonize
+                         && isatty(fileno(stdin))
+                         && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
-#ifdef DISABLE_GUI
+        }
+        else {
+            handleChangedDefaults(DefaultPreferencesMode::Current);
+        }
+
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
-            if ((daemon(1, 0) == 0)) {
-                app.reset(new Application(appId, argc, argv));
+            if (daemon(1, 0) == 0) {
+                app = std::make_unique<Application>(argc, argv);
                 if (app->isRunning()) {
                     // Another instance had time to start.
                     return EXIT_FAILURE;
@@ -252,41 +272,45 @@ int main(int argc, char *argv[])
                 return EXIT_FAILURE;
             }
         }
-#else
+#elif !defined(DISABLE_GUI)
         if (!(params.noSplash || Preferences::instance()->isSplashScreenDisabled()))
             showSplashScreen();
 #endif
 
-#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
         signal(SIGINT, sigNormalHandler);
         signal(SIGTERM, sigNormalHandler);
+#ifdef STACKTRACE
         signal(SIGABRT, sigAbnormalHandler);
         signal(SIGSEGV, sigAbnormalHandler);
 #endif
 
         return app->exec(params.paramList());
     }
-    catch (CommandLineParameterError &er) {
+    catch (const CommandLineParameterError &er) {
         displayBadArgMessage(er.messageForUser());
         return EXIT_FAILURE;
     }
 }
 
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
-void reportToUser(const char* str)
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
+void reportToUser(const char *str)
 {
     const size_t strLen = strlen(str);
+#ifndef Q_OS_WIN
     if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
-        auto dummy = write(STDOUT_FILENO, str, strLen);
+        const auto dummy = write(STDOUT_FILENO, str, strLen);
+#else
+    if (_write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
+        const auto dummy = _write(STDOUT_FILENO, str, strLen);
+#endif
         Q_UNUSED(dummy);
     }
 }
 #endif
 
-#if defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
 void sigNormalHandler(int signum)
 {
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
     const char msg1[] = "Catching signal: ";
     const char msg2[] = "\nExiting cleanly\n";
     reportToUser(msg1);
@@ -297,10 +321,11 @@ void sigNormalHandler(int signum)
     qApp->exit();  // unsafe, but exit anyway
 }
 
+#ifdef STACKTRACE
 void sigAbnormalHandler(int signum)
 {
     const char *sigName = sysSigName[signum];
-#if !defined Q_OS_WIN && !defined Q_OS_HAIKU
+#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
     const char msg[] = "\n\n*************************************************************\n"
         "Please file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
         "qBittorrent version: " QBT_VERSION "\n\n"
@@ -309,74 +334,75 @@ void sigAbnormalHandler(int signum)
     reportToUser(sigName);
     reportToUser("\n");
     print_stacktrace();  // unsafe
-#endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
-#ifdef STACKTRACE_WIN
-    StraceDlg dlg;  // unsafe
+#endif
+
+#if defined Q_OS_WIN && !defined DISABLE_GUI
+    StacktraceDialog dlg;  // unsafe
     dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
     dlg.exec();
-#endif // STACKTRACE_WIN
+#endif
+
     signal(signum, SIG_DFL);
     raise(signum);
 }
-#endif // defined(Q_OS_UNIX) || defined(STACKTRACE_WIN)
+#endif // STACKTRACE
 
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splash_img(":/icons/skin/splash.png");
-    QPainter painter(&splash_img);
-    QString version = QBT_VERSION;
+    QPixmap splashImg(":/icons/skin/splash.png");
+    QPainter painter(&splashImg);
+    const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+    painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
+#else
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
-    QSplashScreen *splash = new QSplashScreen(splash_img);
+#endif
+    QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
-    QTimer::singleShot(1500, splash, SLOT(deleteLater()));
+    QTimer::singleShot(1500, splash, &QObject::deleteLater);
     qApp->processEvents();
 }
-
-#if defined(Q_OS_UNIX)
-void setupDpi()
-{
-    if (qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
-        qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "1");
-}
-#endif  // Q_OS_UNIX
 #endif  // DISABLE_GUI
 
 void displayVersion()
 {
-    std::cout << qPrintable(qApp->applicationName()) << " " << QBT_VERSION << std::endl;
+    printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
 }
 
-void displayBadArgMessage(const QString& message)
+void displayBadArgMessage(const QString &message)
 {
-    QString help = QObject::tr("Run application with -h option to read about command line parameters.");
-#ifdef Q_OS_WIN
+    const QString help = QObject::tr("Run application with -h option to read about command line parameters.");
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
                        message + QLatin1Char('\n') + help, QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #else
-    std::cerr << qPrintable(QObject::tr("Bad command line: "));
-    std::cerr << qPrintable(message) << std::endl;
-    std::cerr << qPrintable(help) << std::endl;
+    const QString errMsg = QObject::tr("Bad command line: ") + '\n'
+        + message + '\n'
+        + help + '\n';
+    fprintf(stderr, "%s", qUtf8Printable(errMsg));
 #endif
 }
 
 bool userAgreesWithLegalNotice()
 {
-    Preferences* const pref = Preferences::instance();
-    if (pref->getAcceptedLegal()) // Already accepted once
-        return true;
+    Preferences *const pref = Preferences::instance();
+    Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI
-    std::cout << std::endl << "*** " << qPrintable(QObject::tr("Legal Notice")) << " ***" << std::endl;
-    std::cout << qPrintable(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued.")) << std::endl << std::endl;
-    std::cout << qPrintable(QObject::tr("Press %1 key to accept and continue...").arg("'y'")) << std::endl;
-    char ret = getchar(); // Read pressed key
-    if (ret == 'y' || ret == 'Y') {
+    const QString eula = QString("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
+        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
+        + QObject::tr("No further notices will be issued.") + "\n\n"
+        + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
+    printf("%s", qUtf8Printable(eula));
+
+    const char ret = getchar(); // Read pressed key
+    if ((ret == 'y') || (ret == 'Y')) {
         // Save the answer
         pref->setAcceptedLegal(true);
         return true;
@@ -386,16 +412,29 @@ bool userAgreesWithLegalNotice()
     msgBox.setText(QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.\n\nNo further notices will be issued."));
     msgBox.setWindowTitle(QObject::tr("Legal notice"));
     msgBox.addButton(QObject::tr("Cancel"), QMessageBox::RejectRole);
-    QAbstractButton *agree_button = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
+    const QAbstractButton *agreeButton = msgBox.addButton(QObject::tr("I Agree"), QMessageBox::AcceptRole);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
-    if (msgBox.clickedButton() == agree_button) {
+    if (msgBox.clickedButton() == agreeButton) {
         // Save the answer
         pref->setAcceptedLegal(true);
         return true;
     }
-#endif
+#endif // DISABLE_GUI
 
     return false;
 }
+
+#if defined(Q_OS_UNIX)
+void adjustFileDescriptorLimit()
+{
+    rlimit limit {};
+
+    if (getrlimit(RLIMIT_NOFILE, &limit) != 0)
+        return;
+
+    limit.rlim_cur = limit.rlim_max;
+    setrlimit(RLIMIT_NOFILE, &limit);
+}
+#endif

@@ -6,6 +6,8 @@ LangString inst_qbt_req ${LANG_TURKISH} "qBittorrent (zorunlu)"
 LangString inst_dekstop ${LANG_TURKISH} "Masaüstü Kısayolu oluştur"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_TURKISH} "Başlangıç Menüsü Kısayolu oluştur"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_TURKISH} "Windows başlangıcında qBittorrent'i başlat"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_TURKISH} ".torrent dosyalarını qBittorrent ile aç"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
@@ -24,6 +26,8 @@ LangString inst_unist ${LANG_TURKISH} "Önceki sürüm kaldırılıyor."
 LangString launch_qbt ${LANG_TURKISH} "qBittorrent'i çalıştır."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_TURKISH} "Bu yükleyici sadece 64-bit Windows sürümlerinde çalışır."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_TURKISH} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

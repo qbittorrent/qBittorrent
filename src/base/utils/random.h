@@ -24,20 +24,19 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
  */
 
 #ifndef UTILS_RANDOM_H
 #define UTILS_RANDOM_H
 
 #include <cstdint>
-#include <cstdlib>
+#include <limits>
 
 namespace Utils
 {
     namespace Random
     {
-        uint32_t rand(uint32_t min = 0, uint32_t max = UINT32_MAX);
+        uint32_t rand(uint32_t min = 0, uint32_t max = std::numeric_limits<uint32_t>::max());
     }
 }
 

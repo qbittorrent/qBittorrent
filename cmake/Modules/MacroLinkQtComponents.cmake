@@ -1,5 +1,5 @@
 # - macro similar to target_link_libraries, which links Qt components
-# names of the components are pased in Qt4/Qt5 agnostic way (Core, DBus, Xml...)
+# names of the components are passed in Qt4/Qt5 agnostic way (Core, DBus, Xml...)
 # and the macro links Qt4 ones if QT4_FOUND is set or Qt5 ones if not
 
 macro (target_link_qt_components target)

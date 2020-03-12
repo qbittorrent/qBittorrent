@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,24 +24,16 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
-#include <QCoreApplication>
+#include "searchlistdelegate.h"
+
 #include <QModelIndex>
 #include <QPainter>
-#include <QProgressBar>
 #include <QStyleOptionViewItem>
 
 #include "base/utils/misc.h"
-#include "searchlistdelegate.h"
 #include "searchsortmodel.h"
-
-namespace
-{
-    const char i18nContext[] = "SearchListDelegate";
-}
 
 SearchListDelegate::SearchListDelegate(QObject *parent)
     : QItemDelegate(parent)
@@ -64,7 +56,7 @@ void SearchListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     case SearchSortModel::LEECHES:
         opt.displayAlignment = Qt::AlignRight | Qt::AlignVCenter;
         QItemDelegate::drawDisplay(painter, opt, option.rect
-            , (index.data().toLongLong() >= 0) ? index.data().toString() : QCoreApplication::translate(i18nContext, "Unknown"));
+            , (index.data().toLongLong() >= 0) ? index.data().toString() : tr("Unknown"));
         break;
     default:
         QItemDelegate::paint(painter, option, index);

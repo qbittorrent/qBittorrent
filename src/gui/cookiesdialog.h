@@ -31,12 +31,12 @@
 
 #include <QDialog>
 
+class CookiesModel;
+
 namespace Ui
 {
     class CookiesDialog;
 }
-
-class CookiesModel;
 
 class CookiesDialog : public QDialog
 {

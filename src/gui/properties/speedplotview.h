@@ -64,21 +64,23 @@ public:
         MIN1 = 0,
         MIN5,
         MIN30,
-        HOUR6
+        HOUR6,
+        HOUR12,
+        HOUR24
     };
 
     struct PointData
     {
-        uint x;
-        int y[NB_GRAPHS];
+        qint64 x;
+        quint64 y[NB_GRAPHS];
     };
 
     explicit SpeedPlotView(QWidget *parent = nullptr);
 
     void setGraphEnable(GraphID id, bool enable);
-    void setViewableLastPoints(TimePeriod period);
+    void setPeriod(TimePeriod period);
 
-    void pushPoint(PointData point);
+    void pushPoint(const PointData &point);
 
     void replot();
 
@@ -86,19 +88,18 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    enum PeriodInSeconds
+    class Averager
     {
-        MIN1_SEC = 60,
-        MIN5_SEC = 5 * 60,
-        MIN30_SEC = 30 * 60,
-        HOUR6_SEC = 6 * 60 * 60
-    };
+    public:
+        Averager(int divider, boost::circular_buffer<PointData> &sink);
+        void push(const PointData &pointData);
+        bool isReady() const;
 
-    enum PointsToSave
-    {
-        MIN5_BUF_SIZE = 5 * 60,
-        MIN30_BUF_SIZE = 10 * 60,
-        HOUR6_BUF_SIZE = 20 * 60
+    private:
+        const int m_divider;
+        boost::circular_buffer<PointData> &m_sink;
+        int m_counter;
+        PointData m_accumulator;
     };
 
     struct GraphProperties
@@ -111,19 +112,24 @@ private:
         bool enable;
     };
 
-    int maxYValue();
+    quint64 maxYValue();
     boost::circular_buffer<PointData> &getCurrentData();
 
     boost::circular_buffer<PointData> m_data5Min;
     boost::circular_buffer<PointData> m_data30Min;
     boost::circular_buffer<PointData> m_data6Hour;
+    boost::circular_buffer<PointData> m_data12Hour;
+    boost::circular_buffer<PointData> m_data24Hour;
+    boost::circular_buffer<PointData> *m_currentData;
+    Averager m_averager30Min;
+    Averager m_averager6Hour;
+    Averager m_averager12Hour;
+    Averager m_averager24Hour;
+
     QMap<GraphID, GraphProperties> m_properties;
 
     TimePeriod m_period;
     int m_viewablePointsCount;
-
-    int m_counter30Min;
-    int m_counter6Hour;
 };
 
 #endif // SPEEDPLOTVIEW_H

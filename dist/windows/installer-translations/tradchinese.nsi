@@ -6,6 +6,8 @@ LangString inst_qbt_req ${LANG_TRADCHINESE} "qBittorrent (必要)"
 LangString inst_dekstop ${LANG_TRADCHINESE} "建立桌面捷徑"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_TRADCHINESE} "建立開始功能表捷徑"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_TRADCHINESE} "在 Windows 啟動時啟動 qBittorrent"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_TRADCHINESE} "使用 qBittorrent 開啟 .torrent 檔案"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
@@ -24,6 +26,8 @@ LangString inst_unist ${LANG_TRADCHINESE} "正在移除先前版本"
 LangString launch_qbt ${LANG_TRADCHINESE} "啟動 qBittorrent"
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_TRADCHINESE} "This installer works only in 64-bit Windows versions."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_TRADCHINESE} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

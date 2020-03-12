@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christian Kandeler, Christophe Dumez
+ * Copyright (C) 2010  Christian Kandeler, Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,8 +24,6 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef SCANFOLDERSMODEL_H
@@ -35,9 +33,10 @@
 #include <QList>
 
 class QStringList;
+
 class FileSystemWatcher;
 
-class ScanFoldersModel: public QAbstractListModel
+class ScanFoldersModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(ScanFoldersModel)
@@ -66,17 +65,17 @@ public:
         CUSTOM_LOCATION
     };
 
-    static bool initInstance(QObject *parent = 0);
+    static void initInstance();
     static void freeInstance();
-    static ScanFoldersModel* instance();
+    static ScanFoldersModel *instance();
 
-    static QString pathTypeDisplayName(const PathType type);
+    static QString pathTypeDisplayName(PathType type);
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-    Qt::ItemFlags flags(const QModelIndex &index) const;
+    int rowCount(const QModelIndex &parent = {}) const override;
+    int columnCount(const QModelIndex &parent = {}) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     // TODO: removePaths(); singular version becomes private helper functions;
     // also: remove functions should take modelindexes
@@ -97,16 +96,15 @@ private slots:
     void addTorrentsToSession(const QStringList &pathList);
 
 private:
-    explicit ScanFoldersModel(QObject *parent = 0);
+    explicit ScanFoldersModel(QObject *parent = nullptr);
     ~ScanFoldersModel();
 
-    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    virtual bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
     bool downloadInWatchFolder(const QString &filePath) const;
     bool downloadInDefaultFolder(const QString &filePath) const;
     QString downloadPathTorrentFolder(const QString &filePath) const;
     int findPathData(const QString &path) const;
 
-private:
     static ScanFoldersModel *m_instance;
     struct PathData;
 

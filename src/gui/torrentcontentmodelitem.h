@@ -1,6 +1,6 @@
 /*
- * Bittorrent Client using Qt4 and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,27 +24,16 @@
  * modify file(s), you may extend this exception to your version of the file(s),
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
- *
- * Contact : chris@qbittorrent.org
  */
 
 #ifndef TORRENTCONTENTMODELITEM_H
 #define TORRENTCONTENTMODELITEM_H
 
-#include <QList>
-#include <QVariant>
+#include <QVector>
 
-namespace prio
-{
-    enum FilePriority
-    {
-        IGNORED=0,
-        NORMAL=1,
-        HIGH=6,
-        MAXIMUM=7,
-        MIXED=-1
-    };
-}
+#include "base/bittorrent/downloadpriority.h"
+
+class QVariant;
 
 class TorrentContentModelFolder;
 
@@ -68,7 +57,7 @@ public:
         FolderType
     };
 
-    TorrentContentModelItem(TorrentContentModelFolder *parent);
+    explicit TorrentContentModelItem(TorrentContentModelFolder *parent);
     virtual ~TorrentContentModelItem();
 
     bool isRootItem() const;
@@ -84,8 +73,8 @@ public:
 
     qreal availability() const;
 
-    int priority() const;
-    virtual void setPriority(int newPriority, bool updateParent = true) = 0;
+    BitTorrent::DownloadPriority priority() const;
+    virtual void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) = 0;
 
     int columnCount() const;
     QVariant data(int column) const;
@@ -94,12 +83,12 @@ public:
 protected:
     TorrentContentModelFolder *m_parentItem;
     // Root item members
-    QList<QVariant> m_itemData;
+    QVector<QVariant> m_itemData;
     // Non-root item members
     QString m_name;
     qulonglong m_size;
     qulonglong m_remaining;
-    int m_priority;
+    BitTorrent::DownloadPriority m_priority;
     qreal m_progress;
     qreal m_availability;
 };

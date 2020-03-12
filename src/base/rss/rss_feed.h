@@ -33,10 +33,17 @@
 #include <QBasicTimer>
 #include <QHash>
 #include <QList>
+#include <QUuid>
 
 #include "rss_item.h"
 
 class AsyncFileStorage;
+
+namespace Net
+{
+    class DownloadHandler;
+    struct DownloadResult;
+}
 
 namespace RSS
 {
@@ -49,14 +56,14 @@ namespace RSS
         struct ParsingResult;
     }
 
-    class Feed final: public Item
+    class Feed final : public Item
     {
         Q_OBJECT
         Q_DISABLE_COPY(Feed)
 
         friend class Session;
 
-        Feed(const QString &url, const QString &path, Session *session);
+        Feed(const QUuid &uid, const QString &url, const QString &path, Session *session);
         ~Feed() override;
 
     public:
@@ -65,6 +72,7 @@ namespace RSS
         void markAsRead() override;
         void refresh() override;
 
+        QUuid uid() const;
         QString url() const;
         QString title() const;
         QString lastBuildDate() const;
@@ -83,9 +91,8 @@ namespace RSS
     private slots:
         void handleSessionProcessingEnabledChanged(bool enabled);
         void handleMaxArticlesPerFeedChanged(int n);
-        void handleIconDownloadFinished(const QString &url, const QString &filePath);
-        void handleDownloadFinished(const QString &url, const QByteArray &data);
-        void handleDownloadFailed(const QString &url, const QString &error);
+        void handleIconDownloadFinished(const Net::DownloadResult &result);
+        void handleDownloadFinished(const Net::DownloadResult &result);
         void handleParsingFinished(const Private::ParsingResult &result);
         void handleArticleRead(Article *article);
 
@@ -102,9 +109,11 @@ namespace RSS
         void increaseUnreadCount();
         void decreaseUnreadCount();
         void downloadIcon();
+        int updateArticles(const QList<QVariantHash> &loadedArticles);
 
         Session *m_session;
         Private::Parser *m_parser;
+        const QUuid m_uid;
         const QString m_url;
         QString m_title;
         QString m_lastBuildDate;
@@ -117,5 +126,6 @@ namespace RSS
         QString m_dataFileName;
         QBasicTimer m_savingTimer;
         bool m_dirty = false;
+        Net::DownloadHandler *m_downloadHandler = nullptr;
     };
 }

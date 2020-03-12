@@ -6,6 +6,8 @@ LangString inst_qbt_req ${LANG_CROATIAN} "qBittorrent (neophodno)"
 LangString inst_dekstop ${LANG_CROATIAN} "Kreiraj prečac na radnoj površini"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_CROATIAN} "Kreiraj prečac u početnom meniju"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_CROATIAN} "Pokrenite qBittorrent u sustavu Windows start up"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_CROATIAN} "Otvori .torrent datoteke s qBittorrentom"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
@@ -24,6 +26,8 @@ LangString inst_unist ${LANG_CROATIAN} "Deinstaliraj prethodnu verziju."
 LangString launch_qbt ${LANG_CROATIAN} "Pokreni qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_CROATIAN} "This installer works only in 64-bit Windows versions."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_CROATIAN} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

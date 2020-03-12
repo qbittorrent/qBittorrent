@@ -1,10 +1,38 @@
-﻿All new code must follow the following coding guidelines.  
-If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes instead.  
+﻿All new code **must** follow the following coding guidelines.  
+If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes.  
+For programming languages other than C++ (e.g. JavaScript) used in this repository and submodules, unless otherwise specified, coding guidelines listed here applies as much as possible.
+
 **Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style.  
 **Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder.  
 **Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.  
 
-### 1. Curly braces ###
+### Table Of Contents
+
+* [1. New lines &amp; curly braces](#1-new-lines--curly-braces)
+  * [a. Function blocks, class/struct definitions, namespaces](#a-function-blocks-classstruct-definitions-namespaces)
+  * [b. Other code blocks](#b-other-code-blocks)
+  * [c. Blocks in switch's case labels](#c-blocks-in-switchs-case-labels)
+  * [d. If-else statements](#d-if-else-statements)
+  * [e. Single statement if blocks](#e-single-statement-if-blocks)
+  * [f. Acceptable conditions to omit braces](#f-acceptable-conditions-to-omit-braces)
+  * [g. Brace enclosed initializers](#g-brace-enclosed-initializers)
+* [2. Indentation](#2-indentation)
+* [3. File encoding and line endings](#3-file-encoding-and-line-endings)
+* [4. Initialization lists](#4-initialization-lists)
+* [5. Enums](#5-enums)
+* [6. Names](#6-names)
+  * [a. Type names and namespaces](#a-type-names-and-namespaces)
+  * [b. Variable names](#b-variable-names)
+  * [c. Private member variable names](#c-private-member-variable-names)
+* [7. Header inclusion order](#7-header-inclusion-order)
+* [8. Include guard](#8-include-guard)
+* [9. Misc](#9-misc)
+* [10. Git commit message](#10-git-commit-message)
+* [11. Not covered above](#11-not-covered-above)
+---
+
+### 1. New lines & curly braces ###
+
 #### a. Function blocks, class/struct definitions, namespaces ####
 ```c++
 int myFunction(int a)
@@ -89,18 +117,8 @@ default:
 }
 ```
 
-#### d. Brace enclosed initializers ####
-Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions.<br/>
-But you must insert a space between the variable name and initializer.
-```c++
-Class obj {}; // empty
-Class obj {expr};
-Class obj {expr1, /*...,*/ exprN};
-QVariantMap map {{"key1", 5}, {"key2", 10}};
-```
-
-### 2. If blocks ###
-#### a. Multiple tests ####
+#### d. If-else statements ####
+The `else if`/`else` must be on their own lines:
 ```c++
 if (condition) {
     // code
@@ -112,40 +130,71 @@ else {
     // code
 }
 ```
-The `else if`/`else` must be on their own lines.
 
-#### b. Single statement if blocks ####
-**Most** single statement if blocks should look like this:
+#### e. Single statement if blocks ####
+Most single statement if blocks should look like this:
 ```c++
 if (condition)
     a = a + b;
 ```
 
-One acceptable exception to this **can be** `return`, `break` or `continue` statements, provided that the test condition isn't very long. However you can choose to use the first rule instead.
+One acceptable exception to this can be `return`, `break` or `continue` statements,
+provided that the test condition isn't very long and its body statement occupies only one line.
+However you can still choose to use the first rule.
 ```c++
-a = myFunction();
-b = a * 1500;
+if (a > 0) return;
 
-if (b > 0) return;
-c = 100 / b;
+while (p) {
+    // ...
+    if (!b) continue;
+}
 ```
 
-#### c. Using curly braces for single statement if blocks ####
+#### f. Acceptable conditions to omit braces ####
+When the conditional statement in `if`/`else` has only one line and its body occupy only one line,
+this also applies to loops statements.  
+Notice that for a series of `if - else` branches, if one branch needs braces then all branches must add braces.
+```c++
+if (a < b)  // conditional statement
+    do(a);  // body
 
-However, there are cases where curly braces for single statement if blocks **should** be used.
-* If some branch needs braces then all others should use them. Unless you have multiple `else if` in a row and the one needing the braces is only for a very small sub-block of code.
-* Another exception would be when we have nested if blocks or generally multiple levels of code that affect code readability.
+if (a < b)
+    do(a);
+else if (a > b)
+    do(b);
+else
+    do(c);
 
-Generally it will depend on the particular piece of code and would be determined on how readable that piece of code is. **If in doubt** always use braces if one of the above exceptions applies.
+if (a < b) {
+    do(a);
+}
+else if (a > b) {  // curly braces required here, then all branches should also add them
+    do(b);
+    do(d);
+}
+else {
+    do(c);
+}
+```
 
-### 3. Indentation ###
+#### g. Brace enclosed initializers ####
+Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions.<br/>
+But you must insert a space between the variable name and initializer.
+```c++
+Class obj {}; // empty
+Class obj {expr};
+Class obj {expr1, /*...,*/ exprN};
+QVariantMap map {{"key1", 5}, {"key2", 10}};
+```
+
+### 2. Indentation ###
 4 spaces.
 
-### 4. File encoding and line endings. ###
+### 3. File encoding and line endings ###
 
 UTF-8 and Unix-like line ending (LF). Unless some platform specific files need other encodings/line endings.
 
-### 5. Initialization lists. ###
+### 4. Initialization lists ###
 Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
 ```c++
 myClass::myClass(int a, int b, int c, int d)
@@ -158,7 +207,7 @@ myClass::myClass(int a, int b, int c, int d)
 }
 ```
 
-### 6. Enums. ###
+### 5. Enums ###
 Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
 ```c++
 enum Days
@@ -173,7 +222,7 @@ enum Days
 };
 ```
 
-### 7. Names. ###
+### 6. Names ###
 All names should be camelCased.
 
 #### a. Type names and namespaces ####
@@ -207,40 +256,73 @@ class MyClass
 }
 ```
 
-### 8. Header inclusion order. ###
-The headers should be placed in the following order:
- 1. Module header (in .cpp)
- 2. System/Qt/Boost etc. headers (splitted in subcategories if you have many).
- 3. Application headers, starting from *Base* headers.
+### 7. Header inclusion order ###
+The headers should be placed in the following group order:
+  1. Module header (in .cpp)
+  2. C++ Standard Library headers
+  3. System headers
+  4. Boost library headers
+  5. Libtorrent headers
+  6. Qt headers
+  7. qBittorrent's own headers, starting from the *base* headers.
 
-The headers should be ordered alphabetically within each group (subgroup).<br/>
-<br/>
+The headers should be ordered alphabetically within each group.  
+If there are conditionals for the same header group, then put them at the bottom of the respective group.  
+If there are conditionals that contain headers from several different header groups, then put them above the "qBittorrent's own headers" group.
+
+One exception is the header containing the library version (for example, QtGlobal), this particular header isn't constrained by the aforementioned order.
+
 Example:
 ```c++
-// examplewidget.cpp
+// file: examplewidget.cpp
 
+// Module header
 #include "examplewidget.h"
 
-#include <cmath>
+// exceptions, headers containing version number
+#include <boost/version.hpp>
+#include <libtorrent/version.hpp>
+#include <QtGlobal>
+
+// C++ Standard Library headers
 #include <cstdio>
 
-#include <QDateTime>
-#include <QList>
+#ifdef Q_OS_WIN  // conditional
+#include <cmath>
+#endif
+
+// System headers
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#endif
+
+// Boost library headers
+#include <boost/circular_buffer.hpp>
+
+// Libtorrent headers
+#include <libtorrent/session.hpp>
+
+// Qt headers
 #include <QString>
 #include <QUrl>
 
-#include <libtorrent/version.hpp>
+#ifdef Q_OS_MACOS  // conditional
+#include <QFont>
+#endif
 
+// conditional that contains headers from several different header groups
+#if LIBTORRENT_VERSION_NUM >= 10100
+#include <memory>
+#include <QElapsedTimer>
+#endif
+
+// qBittorrent's own headers
 #include "base/bittorrent/infohash.h"
-#include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
+#include "anothermodule.h"
 #include "ui_examplewidget.h"
-
 ```
 
-### 9. Include guard. ###
+### 8. Include guard ###
 `#pragma once` should be used instead of "include guard" in new code:
 ```c++
 // examplewidget.h
@@ -256,7 +338,7 @@ class ExampleWidget : public QWidget
 
 ```
 
-### 10. Misc. ###
+### 9. Misc ###
 
 * Line breaks for long lines with operation:
 
@@ -332,5 +414,16 @@ i++, j--;  // No
 
 * Method definitions aren't allowed in header files
 
-### 10. Not covered above ###
-If something isn't covered above, just follow the same style the file you are editing has. If that particular detail isn't present in the file you are editing, then use whatever the rest of the project uses.
+### 10. Git commit message ###
+1. Limit the subject line to 50 characters. Subject should contain only the very essence of the changes (you should avoid extra details and internals)
+2. Separate subject from body with a blank line
+3. Capitalize the subject line
+4. Do not end the subject line with a period
+5. Use the imperative mood in the subject line (it's like you're ordering the program to do something (e.g. "Don't create temporary substrings")
+6. Wrap the body at 72 characters
+7. Use the body to explain what and why vs. how
+8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)
+
+### 11. Not covered above ###
+If something isn't covered above, just follow the same style the file you are editing has.  
+*This guide is not exhaustive and the style for a particular piece of code not specified here will be determined by project members on code review.*

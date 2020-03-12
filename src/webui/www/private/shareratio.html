@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        const UseGlobalLimit = -2;
+        const NoLimit = -1;
+
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('save').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        window.addEvent('domready', function() {
+            const hashesList = new URI().getData('hashes').split('|');
+            const origValues = new URI().getData('orig').split('|');
+
+            const values = {
+                ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
+                seedingTimeLimit: parseInt(origValues[1]),
+                maxRatio: window.qBittorrent.Misc.friendlyFloat(origValues[2], 2),
+                maxSeedingTime: parseInt(origValues[3])
+            };
+
+            // select default when orig values not passed. using double equals to compare string and int
+            if ((origValues[0] === "") || ((values.ratioLimit == UseGlobalLimit) && (values.seedingTimeLimit == UseGlobalLimit))) {
+                // use default option
+                setSelectedRadioValue('shareLimit', 'default');
+            }
+            else if ((values.maxRatio == NoLimit) && (values.maxSeedingTime == NoLimit)) {
+                setSelectedRadioValue('shareLimit', 'none');
+                // TODO set input boxes to *global* max ratio and seeding time
+            }
+            else {
+                setSelectedRadioValue('shareLimit', 'custom');
+                if (values.ratioLimit >= 0) {
+                    $('setRatio').set('checked', true);
+                    $('ratio').set('value', values.ratioLimit);
+                }
+                if (values.seedingTimeLimit >= 0) {
+                    $('setMinutes').set('checked', true);
+                    $('minutes').set('value', values.seedingTimeLimit);
+                }
+            }
+
+            shareLimitChanged();
+
+            $('default').focus();
+            $('save').addEvent('click', function(e) {
+                new Event(e).stop();
+
+                if (!isFormValid()) {
+                    return false;
+                }
+
+                const shareLimit = getSelectedRadioValue('shareLimit');
+                let ratioLimitValue = 0.00;
+                let seedingTimeLimitValue = 0;
+
+                if (shareLimit === 'default') {
+                    ratioLimitValue = seedingTimeLimitValue = UseGlobalLimit;
+                }
+                else if (shareLimit === 'none') {
+                    ratioLimitValue = seedingTimeLimitValue = NoLimit;
+                }
+                else if (shareLimit === 'custom') {
+                    ratioLimitValue = $('setRatio').get('checked') ? $('ratio').get('value') : -1;
+                    seedingTimeLimitValue = $('setMinutes').get('checked') ? $('minutes').get('value') : -1;
+                }
+                else {
+                    return false;
+                }
+
+                new Request({
+                    url: 'api/v2/torrents/setShareLimits',
+                    method: 'post',
+                    data: {
+                        hashes: hashesList.join('|'),
+                        ratioLimit: ratioLimitValue,
+                        seedingTimeLimit: seedingTimeLimitValue
+                    },
+                    onComplete: function() {
+                        window.parent.closeWindows();
+                    }
+                }).send();
+            });
+        });
+
+        function getSelectedRadioValue(name) {
+            const radios = document.getElementsByName(name);
+
+            for (let i = 0; i < radios.length; ++i) {
+                const radio = radios[i];
+                if (radio.checked) {
+                    return (radio).get('value');
+                }
+            }
+        }
+
+        function setSelectedRadioValue(name, value) {
+            const radios = document.getElementsByName(name);
+
+            for (let i = 0; i < radios.length; ++i) {
+                const radio = radios[i];
+                if (radio.value === value)
+                    radio.checked = true;
+            }
+        }
+
+        function shareLimitChanged() {
+            const customShareLimit = getSelectedRadioValue('shareLimit') === 'custom';
+            $('setRatio').set('disabled', !customShareLimit);
+            $('setMinutes').set('disabled', !customShareLimit);
+
+            enableInputBoxes();
+
+            $('save').set('disabled', !isFormValid());
+        }
+
+        function enableInputBoxes() {
+            $('ratio').set('disabled', ($('setRatio').get('disabled') || !$('setRatio').get('checked')));
+            $('minutes').set('disabled', ($('setMinutes').get('disabled') || !$('setMinutes').get('checked')));
+
+            $('save').set('disabled', !isFormValid());
+        }
+
+        function isFormValid() {
+            return !((getSelectedRadioValue('shareLimit') === 'custom') && !$('setRatio').get('checked') && !$('setMinutes').get('checked'));
+        }
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <input type="radio" name="shareLimit" id="default" value="default" onchange="shareLimitChanged()" checked style="margin-bottom: 5px;" />QBT_TR(Use global share limit)QBT_TR[CONTEXT=UpDownRatioDialog]</br>
+        <input type="radio" name="shareLimit" value="none" onchange="shareLimitChanged()" style="margin-bottom: 5px;" />QBT_TR(Set no share limit)QBT_TR[CONTEXT=UpDownRatioDialog]</br>
+        <input type="radio" name="shareLimit" value="custom" onchange="shareLimitChanged()" style="margin-bottom: 5px;" />QBT_TR(Set share limit to)QBT_TR[CONTEXT=UpDownRatioDialog]</br>
+
+        <div style="margin-left: 40px; margin-bottom: 5px;">
+            <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()" />
+            <label for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <input type="number" id="ratio" value="0.00" step=".01" min="0" max="9999" class="shareLimitInput" />
+        </div>
+        <div style="margin-left: 40px; margin-bottom: 5px;">
+            <input type="checkbox" id="setMinutes" class="shareLimitInput" onclick="enableInputBoxes()" />
+            <label for="setMinutes">QBT_TR(minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <input type="number" id="minutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" />
+        </div>
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="save" />
+        </div>
+    </div>
+</body>
+
+</html>

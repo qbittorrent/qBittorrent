@@ -29,13 +29,13 @@
 #ifndef GEOIPDATABASE_H
 #define GEOIPDATABASE_H
 
-#include <QtGlobal>
 #include <QCoreApplication>
+#include <QtGlobal>
 
-class QHostAddress;
-class QString;
 class QByteArray;
 class QDateTime;
+class QHostAddress;
+class QString;
 
 struct DataFieldDescriptor;
 
@@ -55,7 +55,7 @@ public:
     QString lookup(const QHostAddress &hostAddr) const;
 
 private:
-    GeoIPDatabase(quint32 size);
+    explicit GeoIPDatabase(quint32 size);
 
     bool parseMetadata(const QVariantHash &metadata, QString &error);
     bool loadDB(QString &error) const;
@@ -93,6 +93,7 @@ private:
     int m_indexSize;
     int m_recordBytes;
     QDateTime m_buildEpoch;
+    QString m_dbType;
     // Search data
     mutable QHash<quint32, QString> m_countries;
     quint32 m_size;

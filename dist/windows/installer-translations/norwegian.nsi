@@ -6,6 +6,8 @@ LangString inst_qbt_req ${LANG_NORWEGIAN} "qBittorrent (kreves)"
 LangString inst_dekstop ${LANG_NORWEGIAN} "Opprett Skrivebordssnarvei"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_NORWEGIAN} "Opprett Startmeny-snarvei"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_NORWEGIAN} "Start qBittorrent på oppstart av Windows"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_NORWEGIAN} "Åpne .torrent filer med qBittorrent"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
@@ -24,6 +26,8 @@ LangString inst_unist ${LANG_NORWEGIAN} "Avinstallerer forrige versjon."
 LangString launch_qbt ${LANG_NORWEGIAN} "Sett i gang qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_NORWEGIAN} "This installer works only in 64-bit Windows versions."
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_NORWEGIAN} "This qBittorrent version requires at least Windows 7."
 
 
 ;------------------------------------

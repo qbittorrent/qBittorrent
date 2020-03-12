@@ -28,6 +28,8 @@
 
 #include "fspathedit.h"
 
+#include <memory>
+
 #include <QAction>
 #include <QApplication>
 #include <QCoreApplication>
@@ -37,11 +39,10 @@
 #include <QToolButton>
 
 #include "base/utils/fs.h"
-#include "fspathedit_p.h"
+#include "private/fspathedit_p.h"
 
 namespace
 {
-    const char i18nContext[] = "FileSystemPathEdit";
     struct TrStringWithComment
     {
         const char *source;
@@ -49,18 +50,18 @@ namespace
 
         QString tr() const
         {
-            return QCoreApplication::translate(i18nContext, source, comment);
+            return QCoreApplication::translate("FileSystemPathEdit", source, comment);
         }
     };
 
     constexpr TrStringWithComment browseButtonBriefText =
-        QT_TRANSLATE_NOOP3(i18nContext, "...", "Launch file dialog button text (brief)");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "...", "Launch file dialog button text (brief)");
     constexpr TrStringWithComment browseButtonFullText =
-        QT_TRANSLATE_NOOP3(i18nContext, "&Browse...", "Launch file dialog button text (full)");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "&Browse...", "Launch file dialog button text (full)");
     constexpr TrStringWithComment defaultDialogCaptionForFile =
-        QT_TRANSLATE_NOOP3(i18nContext, "Choose a file", "Caption for file open/save dialog");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a file", "Caption for file open/save dialog");
     constexpr TrStringWithComment defaultDialogCaptionForDirectory =
-        QT_TRANSLATE_NOOP3(i18nContext, "Choose a folder", "Caption for directory open dialog");
+        QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a folder", "Caption for directory open dialog");
 }
 
 class FileSystemPathEdit::FileSystemPathEditPrivate
@@ -75,7 +76,7 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
     QString dialogCaptionOrDefault() const;
 
     FileSystemPathEdit *q_ptr;
-    QScopedPointer<Private::FileEditorWithCompletion> m_editor;
+    std::unique_ptr<Private::FileEditorWithCompletion> m_editor;
     QAction *m_browseAction;
     QToolButton *m_browseBtn;
     QString m_fileNameFilter;
@@ -185,19 +186,22 @@ FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor
     Q_D(FileSystemPathEdit);
     editor->widget()->setParent(this);
 
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(editor->widget());
     layout->addWidget(d->m_browseBtn);
 
-    connect(d->m_browseAction, &QAction::triggered, [this]() {this->d_func()->browseActionTriggered();});
+    connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
 }
 
-FileSystemPathEdit::~FileSystemPathEdit() = default;
+FileSystemPathEdit::~FileSystemPathEdit()
+{
+    delete d_ptr;
+}
 
 QString FileSystemPathEdit::selectedPath() const
 {
-    return Utils::Fs::fromNativePath(editWidgetText());
+    return Utils::Fs::toUniformPath(editWidgetText());
 }
 
 void FileSystemPathEdit::setSelectedPath(const QString &val)
@@ -343,7 +347,7 @@ int FileSystemPathComboEdit::count() const
 
 QString FileSystemPathComboEdit::item(int index) const
 {
-    return Utils::Fs::fromNativePath(editWidget<WidgetType>()->itemText(index));
+    return Utils::Fs::toUniformPath(editWidget<WidgetType>()->itemText(index));
 }
 
 void FileSystemPathComboEdit::addItem(const QString &text)
@@ -351,7 +355,7 @@ void FileSystemPathComboEdit::addItem(const QString &text)
     editWidget<WidgetType>()->addItem(Utils::Fs::toNativePath(text));
 }
 
-void FileSystemPathComboEdit::insertItem(int index, const QString& text)
+void FileSystemPathComboEdit::insertItem(int index, const QString &text)
 {
     editWidget<WidgetType>()->insertItem(index, Utils::Fs::toNativePath(text));
 }
