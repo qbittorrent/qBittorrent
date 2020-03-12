@@ -408,9 +408,9 @@ Session::Session(QObject *parent)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 1)
     , m_isSuperSeedingEnabled(BITTORRENT_SESSION_KEY("SuperSeedingEnabled"), false)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
-    , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), -1, lowerLimited(0, -1))
+    , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), 20, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY("MaxConnectionsPerTorrent"), 100, lowerLimited(0, -1))
-    , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), -1, lowerLimited(0, -1))
+    , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY("MaxUploadsPerTorrent"), 4, lowerLimited(0, -1))
     , m_btProtocol(BITTORRENT_SESSION_KEY("BTProtocol"), BTProtocol::Both
         , clampValue(BTProtocol::Both, BTProtocol::UTP))
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
@@ -442,8 +442,13 @@ Session::Session(QObject *parent)
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::RateBased
+        , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
+#else
     , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::FixedSlots
         , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
+#endif
     , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY("SeedChokingAlgorithm"), SeedChokingAlgorithm::FastestUpload
         , clampValue(SeedChokingAlgorithm::RoundRobin, SeedChokingAlgorithm::AntiLeech))
     , m_storedCategories(BITTORRENT_SESSION_KEY("Categories"))
