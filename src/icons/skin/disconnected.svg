@@ -2,11 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
@@ -14,7 +16,7 @@
    height="16"
    id="svg3773"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   sodipodi:docname="nm-signal-100.svg">
+   sodipodi:docname="disconnected.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -29,14 +31,33 @@
      id="namedview8"
      showgrid="false"
      inkscape:zoom="14.75"
-     inkscape:cx="0.32191375"
-     inkscape:cy="8.2237288"
+     inkscape:cx="3.6100493"
+     inkscape:cy="5.5118644"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="g3-4-8" />
   <defs
-     id="defs3775" />
+     id="defs3775">
+    <linearGradient
+       id="linearGradient894"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#f49550;stop-opacity:1;"
+         offset="0"
+         id="stop892" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient894"
+       id="linearGradient896"
+       x1="481.78339"
+       y1="272.86331"
+       x2="633.98385"
+       y2="272.86331"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.63748185,0,0,0.57461152,163.51838,173.60537)" />
+  </defs>
   <metadata
      id="metadata3778">
     <rdf:RDF>
@@ -90,5 +111,10 @@
         </g>
       </g>
     </g>
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#linearGradient896);fill-opacity:1;stroke-width:24.69298935"
+       d="m 519.05746,142.84583 c -20.66425,0 -36.93047,16.03123 -36.93047,34.89089 v 191.89984 c 0,18.85965 16.24203,34.93666 36.93047,34.93666 20.68842,0 36.98127,-16.07701 36.98127,-34.93666 V 177.73672 c 0,-18.85966 -16.31703,-34.89089 -36.98127,-34.89089 z m 0.10169,287.6895 c -12.97317,0 -25.18222,4.52141 -34.33974,12.77501 -9.14106,8.23948 -14.17288,19.18338 -14.17288,30.90729 0,11.72432 5.01614,22.6987 14.17277,30.95306 9.15795,8.25476 21.36744,12.77501 34.33977,12.77501 12.97312,0 25.18223,-4.52139 34.33972,-12.77501 9.15796,-8.25474 14.17278,-19.22951 14.17278,-30.95306 0,-11.72467 -5.03349,-22.66821 -14.17278,-30.90729 -9.15793,-8.25473 -21.36703,-12.77506 -34.33972,-12.77501 z"
+       id="path2" />
   </g>
 </svg>
