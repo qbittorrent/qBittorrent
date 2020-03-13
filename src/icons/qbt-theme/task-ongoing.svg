@@ -1,3 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path d="M21.878 24.367l-2.312 2.312c-.308.308-.616.462-1.079.462s-.77-.154-1.079-.462l-2.158-2.158-5.858-5.858c-.308-.308-.462-.616-.462-1.079 0-.462.154-.77.462-1.079l2.159-2.158c.308-.308.616-.462 1.079-.462s.77.154 1.079.462l4.778 4.779 10.27-10.567c-2.564-4.386-7.31-7.34-12.757-7.34C7.837 1.219 1.219 7.837 1.219 16S7.837 30.781 16 30.781 30.781 24.163 30.781 16c0-.172-.02-.34-.026-.51l-8.877 8.877z" fill="#375273"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   enable-background="new"
+   height="16"
+   width="16"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="task-ongoing.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <metadata
+     id="metadata17">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs15" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview13"
+     showgrid="false"
+     inkscape:zoom="14.75"
+     inkscape:cx="8"
+     inkscape:cy="4.4156678"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <filter
+     id="a"
+     color-interpolation-filters="sRGB">
+    <feBlend
+       in2="BackgroundImage"
+       mode="darken"
+       id="feBlend2" />
+  </filter>
+  <g
+     transform="translate(-485.00137 234.99797)"
+     id="g9"
+     style="fill:#1d99f3;fill-opacity:1">
+    <path
+       d="m492.89656-232.99678c-1.15515.0228-2.3143.38246-3.33401 1.09579-2.71923 1.90228-3.37649 5.62744-1.47247 8.34418 1.90404 2.71675 5.6309 3.37341 8.35014 1.47112 1.95548-1.36799 2.84386-3.67355 2.48206-5.87946-.0843-.51541-.24472-.9951-.45281-1.45938l-5.45384 6.22629-.59033.69703-.67082-.64342-2.57598-2.57362c-.32319-.32285-.32316-.91032 0-1.23319.32317-.32287.91118-.32289 1.23433 0l1.93198 1.93022 5.17208-5.91298c-.92461-1.06487-2.15457-1.74178-3.47154-1.97379-.37872-.0667-.76374-.0964-1.14879-.0888z"
+       fill="#bebebe"
+       id="path5"
+       style="fill:#1d99f3;fill-opacity:1" />
+    <g
+       filter="url(#a)"
+       id="g7"
+       style="fill:#1d99f3;fill-opacity:1" />
+  </g>
 </svg>

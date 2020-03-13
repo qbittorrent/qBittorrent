@@ -1,3 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#733737" d="M13.7 24.8v1.1c0 .1-.1.2-.2.3-.1.1-.2.1-.3.1H8c-1.3 0-2.4-.5-3.3-1.4-.9-.9-1.4-2-1.4-3.3V10.3c0-1.3.5-2.4 1.4-3.3.9-.9 2-1.4 3.3-1.4h5.2c.1 0 .3.1.4.2.1.1.2.2.2.4v1.1c0 .1-.1.2-.2.3-.1.1-.2.1-.3.1H8c-.7.1-1.3.3-1.8.8s-.8 1.1-.8 1.8v11.3c0 .7.3 1.3.8 1.8.5.6 1.1.8 1.8.8h5.4l.1.1c.1 0 .1.1.1.1.1.2.1.3.1.4zM28.6 16c0 .3-.1.5-.3.7l-8.8 8.8c-.2.2-.4.3-.7.3-.3 0-.5-.1-.7-.3-.2-.2-.3-.4-.3-.7v-4.6h-7.2c-.3 0-.5-.1-.7-.3-.2-.2-.3-.4-.3-.7V13c0-.3.1-.5.3-.7.2-.2.4-.3.7-.3h7.2V7.2c0-.3.1-.5.3-.7.2-.2.4-.3.7-.3.3 0 .5.1.7.3l8.8 8.8c.2.2.3.4.3.7z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 22 22"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="system-log-out.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="11"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+     .ColorScheme-Text {
+       color:#f2f2f2;
+     }
+     </style>
+  </defs>
+  <path
+     style="color:#f2f2f2;fill:#da4453;fill-opacity:1;stroke:none"
+     d="M 11.65419,11.004 9.17969,8.52943 C 9.05401,8.40382 8.99127,8.25021 8.99127,8.06859 c 0,-0.18161 0.0627,-0.33516 0.18842,-0.46077 L 9.56154,7.22591 C 9.68709,7.10035 9.8407,7.03755 10.02225,7.03755 c 0.18161,0 0.33517,0.0628 0.46084,0.18836 l 3.31975,3.31469 c 0.12562,0.12561 0.18843,0.27922 0.18843,0.46084 0,0.18161 -0.0628,0.33516 -0.18843,0.46077 l -3.31975,3.31469 c -0.12567,0.12562 -0.27923,0.18843 -0.46084,0.18843 -0.18155,0 -0.33516,-0.0628 -0.46071,-0.18843 L 9.17969,14.39506 C 9.05401,14.2695 8.99127,14.1167 8.99127,13.93678 c 0,-0.17986 0.0627,-0.33435 0.18842,-0.46334 z M 3,11 a 8.0000003,8.0000003 0 0 0 8,8 8.0000003,8.0000003 0 0 0 8,-8 8.0000003,8.0000003 0 0 0 -8,-8 8.0000003,8.0000003 0 0 0 -8,8 z"
+     class="ColorScheme-Text"
+     id="path4"
+     inkscape:connector-curvature="0" />
 </svg>

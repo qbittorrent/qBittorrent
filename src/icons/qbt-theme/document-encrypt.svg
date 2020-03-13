@@ -1,3 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#D1954E" d="M27.1 16.6v11.1c0 .5-.2 1-.5 1.3-.4.4-.8.5-1.3.5H6.7c-.5 0-1-.2-1.3-.5-.4-.4-.5-.8-.5-1.3V16.6c0-.5.2-1 .5-1.3.4-.4.8-.5 1.3-.5h.6v-3.7c0-2.4.8-4.4 2.5-6.1 1.7-1.7 3.7-2.5 6.1-2.5 2.4 0 4.4.8 6.1 2.5 1.7 1.7 2.5 3.7 2.5 6.1v3.7h.6c.5 0 1 .2 1.3.5.5.4.7.8.7 1.3zm-16-1.8H21v-3.7c0-1.4-.5-2.5-1.4-3.5S17.4 6.1 16 6.1s-2.5.5-3.5 1.4c-1 1-1.4 2.1-1.4 3.5v3.8z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 22 22"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="document-encrypt.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="11"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="m14.151208 9.8569581h-6.3023708v-1.9680334c0-1.7578223 1.4135972-3.1878544 3.1511858-3.1878544 1.737587 0 3.151185 1.4301314 3.151185 3.1878544zm1.681102.01789v-1.9861225c0-2.6955724-2.16774-4.8887256-4.832287-4.8887256-2.6645485 0-4.8322889 2.1931532-4.8322889 4.8887259v1.9861225c-.3808113.0805064-.6677339.4233046-.6677339.8321976v7.442667c0 .468825.3770712.850287.8405513.850287h9.3188995c.463479 0 .840549-.381462.840549-.850287v-7.442667c0-.408893-.286876-.7512936-.66769-.8321976z"
+     fill="#2ecc71"
+     id="path2"
+     style="fill:#f47750;fill-opacity:1" />
 </svg>

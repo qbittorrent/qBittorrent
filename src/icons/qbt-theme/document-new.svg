@@ -1,5 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="984 984 32 32">
-  <path fill="none" d="M-43.8-437.5H2700v2625H-43.8z"/>
-  <path fill="#375273" d="M1010 992.4c.2.3.5.6.6 1 .2.4.3.8.3 1.2v15.4c0 .4-.1.7-.4.9-.3.2-.6.4-.9.4h-18c-.4 0-.7-.1-.9-.4-.2-.3-.4-.6-.4-.9v-21.4c0-.4.1-.7.4-.9.3-.2.6-.4.9-.4h12c.4 0 .8.1 1.2.3.4.2.8.4 1 .6l4.2 4.2zm-.8 17.2v-13.7h-5.6c-.4 0-.7-.1-.9-.4-.3-.2-.4-.6-.4-.9V989H992v20.6h17.2zm-5.2-20.4v5h5c-.1-.3-.2-.4-.3-.5l-4.2-4.2c0-.1-.2-.2-.5-.3z"/>
-  <path fill="#427337" d="M1000 1006.5v1.5c0 .2-.1.4-.2.5-.1.1-.3.2-.5.2H996v3.2c0 .2-.1.4-.2.5-.1.1-.3.2-.5.2h-1.5c-.2 0-.4-.1-.5-.2-.1-.1-.2-.3-.2-.5v-3.2h-3.2c-.2 0-.4-.1-.5-.2-.1-.1-.2-.3-.2-.5v-1.5c0-.2.1-.4.2-.5.1-.1.3-.2.5-.2h3.2v-3.2c0-.2.1-.4.2-.5.1-.1.3-.2.5-.2h1.5c.2 0 .4.1.5.2.1.1.2.3.2.5v3.2h3.2c.2 0 .4.1.5.2.2.1.3.3.3.5z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 22 22"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="journal-new.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="11"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+     .ColorScheme-Text {
+       color:#f2f2f2;
+     }
+     </style>
+  </defs>
+  <path
+     style="color:#f2f2f2;fill:#1d99f3;fill-opacity:1;stroke:none;stroke-width:1.1730808"
+     d="M 17.688614,2.1720245 10.577547,2.820761 H 3.2388896 C 2.3319748,2.7553361 1.9639139,2.8369828 1.9639139,3.6367674 V 19.012047 c -0.056964,0.877668 0.3187698,0.858954 1.2006602,0.858954 h 7.4919329 l 7.092488,0.806965 c 0.547437,0 0.73076,-0.182399 0.789601,-0.528935 h 0.643295 c 0.145911,0 0.268277,0.0059 0.3948,-0.01356 0.126525,-0.0167 0.278792,-0.06498 0.385512,-0.183092 0.106718,-0.118114 0.143545,-0.261752 0.160243,-0.411394 0.01632,-0.146302 0.01382,-0.315953 0.0046,-0.533456 V 18.993964 3.6299862 c 0,-0.4054951 0.03125,-0.6602108 -0.160243,-0.9041623 -0.09574,-0.1219408 -0.256395,-0.1868714 -0.392479,-0.2034365 -0.125818,-0.015313 -0.24942,-0.00679 -0.392479,0.011307 H 18.557167 C 18.475884,2.2374688 18.270465,2.1287538 17.688605,2.1720296 Z m 1.818406,0.8973811 c 0.0073,0.00588 0.03248,0.017783 0,0.013563 -0.01177,-0.00937 0.03948,0.164446 0.03948,0.5492786 v 15.3797998 0.0068 c 0.0093,0.214023 0.0081,0.3697 -0.0024,0.463383 -0.01046,0.09369 -0.0304,0.112539 -0.01858,0.09946 0.01177,-0.01323 0.03209,-0.01165 -0.02554,-0.0068 -0.05763,0.0076 -0.169119,0.0068 -0.318163,0.0068 h -0.620071 c -0.0032,-0.06217 -3.7e-4,-0.108395 -0.0046,-0.176311 L 18.617526,3.14176 c -2e-6,-0.018184 -0.0023,-0.027605 -0.0024,-0.045208 h 0.582913 0.01394 c 0.14469,-0.015313 0.248926,-0.018435 0.292617,-0.013563 h 0.0024 c 2.9e-4,2.304e-4 -3.7e-4,-0.01403 0,-0.013563 z M 9.6207345,7.3686973 h 1.6628105 v 3.2414217 h 3.330263 v 1.618451 h -3.330263 v 3.241421 H 9.6207345 V 12.22857 H 6.2904704 v -1.618451 h 3.3302641 z"
+     class="ColorScheme-Text"
+     id="path4"
+     inkscape:connector-curvature="0" />
 </svg>
