@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="view-calendar-journal.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview10"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="-1.2118641"
+     inkscape:cy="15.449151"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#eff0f1;
+      }
+      </style>
+  </defs>
+  <g
+     id="g816">
+    <path
+       inkscape:connector-curvature="0"
+       id="path4"
+       class="ColorScheme-Text"
+       d="m 7.2499999,1.9999999 c 0,0 -1.75,-5.25e-5 -1.75,1.75 h -3.5 v 5.25 V 28.25 30 H 30 v -1.75 -19.2500001 -5.25 h -3.5 c 0,-1.7500525 -1.75,-1.75 -1.75,-1.75 H 19.5 c 0,0 -1.75,-5.25e-5 -1.75,1.75 h -3.5 c 0,-1.7500525 -1.75,-1.75 -1.75,-1.75 z m 0,1.75 H 12.5 v 1.75 H 7.2499999 Z m 12.2500001,0 h 5.25 v 1.75 H 19.5 Z m -15.75,5.25 h 24.5 V 28.25 H 3.7499999 Z M 7.25,10.75 v 3.5 h 3.5 v -3.5 z m 7,0 v 3.5 h 3.5 v -3.5 z m 7,0 v 3.5 h 3.5 v -3.5 z m 0,12.25 v 3.5 h 3.5 V 23 Z"
+       style="color:#eff0f1;fill:#4285f4;fill-opacity:1;stroke:none;stroke-width:1.75" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path6"
+       d="m 6,21 v 2 h 2 v -2 z m 4,0 v 2 h 2 v -2 z m 4,0 v 2 h 2 v -2 z"
+       style="fill:#0fbb58;fill-opacity:1;stroke:none" />
+  </g>
+</svg>
