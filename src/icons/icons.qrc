@@ -259,7 +259,6 @@
         <file>qbt-theme/dialog-cancel.svg</file>
         <file>qbt-theme/dialog-information.svg</file>
         <file>qbt-theme/dialog-warning.svg</file>
-        <file>qbt-theme/document-edit-verify.svg</file>
         <file>qbt-theme/document-edit.svg</file>
         <file>qbt-theme/document-encrypt.svg</file>
         <file>qbt-theme/document-import.svg</file>
@@ -280,8 +279,6 @@
         <file>qbt-theme/folder-download.svg</file>
         <file>qbt-theme/folder-new.svg</file>
         <file>qbt-theme/folder-remote.svg</file>
-        <file>qbt-theme/gear.svg</file>
-        <file>qbt-theme/gear32.svg</file>
         <file>qbt-theme/go-bottom.svg</file>
         <file>qbt-theme/go-down.svg</file>
         <file>qbt-theme/go-top.svg</file>
@@ -308,6 +305,7 @@
         <file>qbt-theme/preferences-other.svg</file>
         <file>qbt-theme/preferences-system-network.svg</file>
         <file>qbt-theme/preferences-web-browser-cookies.svg</file>
+        <file>qbt-theme/reannounce.svg</file>
         <file>qbt-theme/rss-config.svg</file>
         <file>qbt-theme/security-high.svg</file>
         <file>qbt-theme/security-low.svg</file>
@@ -315,6 +313,7 @@
         <file>qbt-theme/speedometer.svg</file>
         <file>qbt-theme/system-log-out.svg</file>
         <file>qbt-theme/tab-close.svg</file>
+        <file>qbt-theme/tags.svg</file>
         <file>qbt-theme/task-attention.svg</file>
         <file>qbt-theme/task-complete.svg</file>
         <file>qbt-theme/task-ongoing.svg</file>
