@@ -99,6 +99,12 @@ namespace BitTorrent
         int numPeers = 0;
     };
 
+    enum class MoveStorageMode
+    {
+        KeepExistingFiles,
+        Overwrite
+    };
+
     enum class TorrentState
     {
         Unknown = -1,
@@ -345,6 +351,7 @@ namespace BitTorrent
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
         void saveResumeData();
+        void handleStorageMoved(const QString &newPath, const QString &errorMessage);
 
         /**
          * @brief fraction of file pieces that are available at least from one peer
@@ -376,8 +383,6 @@ namespace BitTorrent
         void handlePerformanceAlert(const lt::performance_alert *p) const;
         void handleSaveResumeDataAlert(const lt::save_resume_data_alert *p);
         void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p);
-        void handleStorageMovedAlert(const lt::storage_moved_alert *p);
-        void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *p);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *p);
         void handleTorrentPausedAlert(const lt::torrent_paused_alert *p);
@@ -388,14 +393,14 @@ namespace BitTorrent
 
         void resume_impl(bool forced);
         bool isMoveInProgress() const;
-        QString nativeActualSavePath() const;
+        QString actualStorageLocation() const;
         bool isAutoManaged() const;
         void setAutoManaged(bool enable);
 
         void adjustActualSavePath();
         void adjustActualSavePath_impl();
-        void move_impl(QString path, bool overwrite);
-        void moveStorage(const QString &newPath, bool overwrite);
+        void move_impl(QString path, MoveStorageMode mode);
+        void moveStorage(const QString &newPath, MoveStorageMode mode);
         void manageIncompleteFiles();
         void setFirstLastPiecePriorityImpl(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
@@ -408,16 +413,7 @@ namespace BitTorrent
 
         InfoHash m_hash;
 
-        struct
-        {
-            QString oldPath;
-            QString newPath;
-            // queuedPath is where files should be moved to,
-            // when current moving is completed
-            QString queuedPath;
-            bool queuedOverwrite = true;
-        } m_moveStorageInfo;
-
+        bool m_storageIsMoving = false;
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;

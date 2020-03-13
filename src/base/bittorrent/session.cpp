@@ -1815,8 +1815,19 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
     for (const QString &file : files)
         Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
 
+    if (m_moveStorageQueue.size() > 1) {
+        // Delete "move storage job" for the deleted torrent
+        // (note: we shouldn't delete active job)
+        const auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
+                                 , [torrent](const MoveStorageJob &job)
+        {
+            return job.torrent == torrent;
+        });
+        if (iter != m_moveStorageQueue.end())
+            m_moveStorageQueue.erase(iter);
+    }
+
     delete torrent;
-    qDebug("Torrent deleted.");
     return true;
 }
 
@@ -3938,6 +3949,78 @@ void Session::handleTorrentTrackerError(TorrentHandle *const torrent, const QStr
     emit trackerError(torrent, trackerUrl);
 }
 
+bool Session::addMoveTorrentStorageJob(TorrentHandle *torrent, const QString &newPath, const MoveStorageMode mode)
+{
+    Q_ASSERT(torrent);
+
+    if (m_moveStorageQueue.size() > 1) {
+        const auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
+                                 , [torrent](const MoveStorageJob &job)
+        {
+            return job.torrent == torrent;
+        });
+
+        if (iter != m_moveStorageQueue.end()) {
+            // remove existing inactive job
+            m_moveStorageQueue.erase(iter);
+        }
+    }
+
+    QString currentLocation = QString::fromStdString(
+                torrent->nativeHandle().status(lt::torrent_handle::query_save_path).save_path);
+    if (!m_moveStorageQueue.isEmpty() && (m_moveStorageQueue.first().torrent == torrent)) {
+        // if there is active job for this torrent consider its target path as current location
+        // of this torrent to prevent creating meaningless job that will do nothing
+        currentLocation = m_moveStorageQueue.first().path;
+    }
+
+    if (QDir {currentLocation} == QDir {newPath})
+        return false;
+
+    const MoveStorageJob moveStorageJob {torrent, newPath, mode};
+    qDebug("Move storage from \"%s\" to \"%s\" is enqueued.", qUtf8Printable(currentLocation), qUtf8Printable(newPath));
+
+    if (m_moveStorageQueue.size() == 1)
+        moveTorrentStorage(moveStorageJob);
+
+    return true;
+}
+
+void Session::moveTorrentStorage(const MoveStorageJob &job) const
+{
+    lt::torrent_handle handle = job.torrent->nativeHandle();
+
+    qDebug("Moving torrent storage to \"%s\"...", qUtf8Printable(job.path));
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    handle.move_storage(job.path.toUtf8().constData()
+                            , ((job.mode == MoveStorageMode::Overwrite)
+                             ? lt::always_replace_files : lt::dont_replace));
+#else
+    handle.move_storage(job.path.toUtf8().constData()
+                            , ((job.mode == MoveStorageMode::Overwrite)
+                             ? lt::move_flags_t::always_replace_files : lt::move_flags_t::dont_replace));
+#endif
+}
+
+void Session::handleMoveTorrentStorageJobFinished(const QString &errorMessage)
+{
+    Q_ASSERT(!m_moveStorageQueue.isEmpty());
+
+    const MoveStorageJob finishedJob = m_moveStorageQueue.takeFirst();
+    if (!m_moveStorageQueue.isEmpty())
+        moveTorrentStorage(m_moveStorageQueue.first());
+
+    const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
+                                   , [&finishedJob](const MoveStorageJob &job)
+    {
+        return job.torrent == finishedJob.torrent;
+    });
+    if (iter == m_moveStorageQueue.cend()) {
+        // There is no more job for this torrent
+        finishedJob.torrent->handleStorageMoved(finishedJob.path, errorMessage);
+    }
+}
+
 void Session::handleTorrentTrackerWarning(TorrentHandle *const torrent, const QString &trackerUrl)
 {
     emit trackerWarning(torrent, trackerUrl);
@@ -4254,8 +4337,6 @@ void Session::handleAlert(const lt::alert *a)
         case lt::torrent_finished_alert::alert_type:
         case lt::save_resume_data_alert::alert_type:
         case lt::save_resume_data_failed_alert::alert_type:
-        case lt::storage_moved_alert::alert_type:
-        case lt::storage_moved_failed_alert::alert_type:
         case lt::torrent_paused_alert::alert_type:
         case lt::torrent_resumed_alert::alert_type:
         case lt::tracker_error_alert::alert_type:
@@ -4319,6 +4400,12 @@ void Session::handleAlert(const lt::alert *a)
             handleAlertsDroppedAlert(static_cast<const lt::alerts_dropped_alert *>(a));
             break;
 #endif
+        case lt::storage_moved_alert::alert_type:
+            handleStorageMovedAlert(static_cast<const lt::storage_moved_alert*>(a));
+            break;
+        case lt::storage_moved_failed_alert::alert_type:
+            handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert*>(a));
+            break;
         }
     }
     catch (const std::exception &exc) {
@@ -4812,6 +4899,29 @@ void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
         .arg(QString::fromStdString(p->dropped_alerts.to_string()), QString::fromStdString(p->message())), Log::CRITICAL);
 }
 #endif
+
+void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
+{
+    if (m_moveStorageQueue.isEmpty()) return;
+
+    const TorrentHandle *torrent = m_torrents.value(p->handle.info_hash());
+    const MoveStorageJob &currentJob = m_moveStorageQueue.first();
+    if (currentJob.torrent != torrent) return;
+
+    const QString newPath {p->storage_path()};
+    handleMoveTorrentStorageJobFinished(newPath != currentJob.path ? tr("New path doesn't match a target path.") : QString {});
+}
+
+void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
+{
+    if (m_moveStorageQueue.isEmpty()) return;
+
+    const TorrentHandle *torrent = m_torrents.value(p->handle.info_hash());
+    const MoveStorageJob &currentJob = m_moveStorageQueue.first();
+    if (currentJob.torrent != torrent) return;
+
+    handleMoveTorrentStorageJobFinished(QString::fromStdString(p->message()));
+}
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
