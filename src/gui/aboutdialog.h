@@ -102,6 +102,14 @@ public:
         labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
         labelBoostVer->setText(Utils::Misc::boostVersionString());
 
+        const QString DBIPText = QString(
+                                         "<html><head/><body><p>"
+                                         "%1"
+                                         " (<a href=\"https://db-ip.com/\">https://db-ip.com/</a>)</p></body></html>")
+                                     .arg(tr("The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. "
+                                             "The database is licensed under the Creative Commons Attribution 4.0 International License"));
+        labelDBIP->setText(DBIPText);
+
         Utils::Gui::resize(this);
         show();
     }
