@@ -43,8 +43,9 @@
 #endif
 
 #include <boost/version.hpp>
-#include <openssl/opensslv.h>
 #include <libtorrent/version.hpp>
+#include <openssl/crypto.h>
+#include <openssl/opensslv.h>
 #include <zlib.h>
 
 #include <QCoreApplication>
@@ -445,29 +446,37 @@ QString Utils::Misc::boostVersionString()
 {
     // static initialization for usage in signal handler
     static const QString ver = QString("%1.%2.%3")
-                               .arg(BOOST_VERSION / 100000)
-                               .arg((BOOST_VERSION / 100) % 1000)
-                               .arg(BOOST_VERSION % 100);
+        .arg(QString::number(BOOST_VERSION / 100000)
+            , QString::number((BOOST_VERSION / 100) % 1000)
+            , QString::number(BOOST_VERSION % 100));
     return ver;
 }
 
 QString Utils::Misc::libtorrentVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString ver = LIBTORRENT_VERSION;
-    return ver;
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    static const auto version {QString::fromLatin1(libtorrent::version())};
+#else
+    static const auto version {QString::fromLatin1(lt::version())};
+#endif
+    return version;
 }
 
 QString Utils::Misc::opensslVersionString()
 {
-    const QString version {OPENSSL_VERSION_TEXT};
+#if (OPENSSL_VERSION_NUMBER >= 0x1010000f)
+    static const auto version {QString::fromLatin1(OpenSSL_version(OPENSSL_VERSION))};
+#else
+    static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
+#endif
     return version.splitRef(' ', QString::SkipEmptyParts)[1].toString();
 }
 
 QString Utils::Misc::zlibVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString version {ZLIB_VERSION};
+    static const auto version {QString::fromLatin1(zlibVersion())};
     return version;
 }
 
