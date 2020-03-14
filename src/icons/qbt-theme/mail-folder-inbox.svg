@@ -7,11 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 16 16"
+   viewBox="0 0 32 32"
    version="1.1"
    id="svg6"
    sodipodi:docname="mail-folder-inbox.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -36,7 +39,7 @@
      inkscape:window-height="703"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="14.75"
+     inkscape:zoom="7.375"
      inkscape:cx="8"
      inkscape:cy="8"
      inkscape:window-x="0"
@@ -54,9 +57,9 @@
       </style>
   </defs>
   <path
-     style="color:#f2f2f2;fill:#1d99f3;fill-opacity:1;stroke:none;stroke-width:0.86216056"
+     style="color:#f2f2f2;fill:#1d99f3;fill-opacity:1;stroke:none;stroke-width:1.75"
      class="ColorScheme-Text"
-     d="m 2.7269303,1.0847458 c -0.8361582,0 -1.5065913,0.7016949 -1.5065913,1.5593221 V 13.559322 a 1.5065914,1.5593221 0 0 0 1.5065913,1.559322 H 13.273069 a 1.5065914,1.5593221 0 0 0 1.506592,-1.559322 V 2.6440679 A 1.5065914,1.5593221 0 0 0 13.273069,1.0847458 Z m 0,1.5593221 H 13.273069 V 10.440678 H 10.259887 A 2.259887,2.3389831 0 0 1 8,12.779661 2.259887,2.3389831 0 0 1 5.7401129,10.440678 H 2.7269303 Z m 3.7664783,1.559322 v 2.338983 H 4.9868173 L 8,9.661017 11.013183,6.5423729 H 9.506591 v -2.338983 z"
+     d="m 5.1450093,2.0338982 c -1.7266666,0 -3.111111,1.4000002 -3.111111,3.1111111 V 26.922787 a 3.1111112,3.1111113 0 0 0 3.111111,3.111111 H 26.922786 a 3.1111112,3.1111113 0 0 0 3.111112,-3.111111 V 5.1450093 A 3.1111112,3.1111113 0 0 0 26.922786,2.0338982 Z m 0,3.1111111 H 26.922786 V 20.700565 h -6.222221 a 4.6666667,4.6666669 0 0 1 -4.666667,4.666666 4.6666667,4.6666669 0 0 1 -4.666667,-4.666666 H 5.1450093 Z M 12.922787,8.2561204 V 12.922787 H 9.811676 l 6.222222,6.222222 6.222223,-6.222222 H 19.145008 V 8.2561204 Z"
      id="path4"
      inkscape:connector-curvature="0" />
 </svg>

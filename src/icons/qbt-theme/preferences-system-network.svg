@@ -20,6 +20,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -47,7 +48,7 @@
      inkscape:current-layer="svg6" />
   <g
      id="g10"
-     transform="translate(-0.54237288,-0.13559322)">
+     transform="matrix(0.9929078,0,0,0.9929078,-0.25487438,-0.05487438)">
     <path
        style="fill:#1d4ef3;fill-opacity:1"
        id="path2"

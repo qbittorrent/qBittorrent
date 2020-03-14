@@ -7,11 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 22 22"
+   viewBox="0 0 32 32"
    version="1.1"
    id="svg6"
    sodipodi:docname="edit-paste.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,8 +57,9 @@
      </style>
   </defs>
   <path
-     style="fill:#1d99f3;fill-opacity:1;stroke:none"
-     d="m14.12662 8.00521h-.9452v-2.22935c0-.23294-.18815-.4217-.42014-.4217h-.45273l-.90589-3.0529c-.053-.17871-.21679-.30126-.40266-.30126-.18578 0-.34963.12255-.40266.30126l-.90589 3.0529h-.45273c-.23199 0-.42014.18876-.42014.4217v2.22942h-.9452c-1.03295 0-1.87338.84348-1.87338 1.88035v8.23403c0 1.03686.84035 1.88034 1.87338 1.88034h6.25324c1.03295 0 1.87338-.84348 1.87338-1.88034v-8.23403c0-1.03696-.84035-1.88042-1.87338-1.88042z"
+     style="color:#f2f2f2;fill:#1d99f3;fill-opacity:1;stroke:none;stroke-width:1.95789003"
+     d="M 23.10648,10.940886 H 20.932519 V 7.2253034 c 0,-0.3882333 -0.432745,-0.7028333 -0.966321,-0.7028333 h -1.04128 L 16.841372,1.4343034 c -0.1219,-0.2978499 -0.498617,-0.50210003 -0.926118,-0.50210003 -0.427294,0 -0.804149,0.20425013 -0.926118,0.50210003 L 12.905588,6.5224701 H 11.86431 c -0.533577,0 -0.966323,0.3146 -0.966323,0.7028333 V 10.941003 H 8.7240283 c -2.375785,0 -4.308774,1.4058 -4.308774,3.133917 v 13.723383 c 0,1.7281 1.932805,3.1339 4.308774,3.1339 H 23.10648 c 2.375784,0 4.308774,-1.4058 4.308774,-3.1339 V 14.07492 c 0,-1.728267 -1.932805,-3.134034 -4.308774,-3.134034 z"
      class="ColorScheme-Text"
-     id="path4" />
+     id="path4"
+     inkscape:connector-curvature="0" />
 </svg>

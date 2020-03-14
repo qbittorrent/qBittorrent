@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   enable-background="new"
-   height="16"
-   width="16"
+   height="32"
+   width="32"
    version="1.1"
    id="svg11"
    sodipodi:docname="task-complete.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   style="enable-background:new">
   <metadata
      id="metadata17">
     <rdf:RDF>
@@ -22,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,7 +41,7 @@
      inkscape:window-height="703"
      id="namedview13"
      showgrid="false"
-     inkscape:zoom="20.48"
+     inkscape:zoom="7.2407734"
      inkscape:cx="8"
      inkscape:cy="6.7977842"
      inkscape:window-x="0"
@@ -49,14 +50,15 @@
      inkscape:current-layer="svg11" />
   <filter
      id="a"
-     color-interpolation-filters="sRGB">
+     style="color-interpolation-filters:sRGB">
     <feBlend
        in2="BackgroundImage"
        mode="darken"
        id="feBlend2" />
   </filter>
   <g
-     id="g830">
+     id="g830"
+     transform="matrix(2.1658858,0,0,2.2247078,-1.2669914,-2.0984353)">
     <g
        id="g826">
       <path
@@ -69,5 +71,5 @@
   <g
      style="fill:#f47750;fill-opacity:1;filter:url(#a)"
      id="g7"
-     transform="translate(-485.00137,234.99797)" />
+     transform="translate(-485.00137,250.99797)" />
 </svg>

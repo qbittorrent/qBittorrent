@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 24 24"
+   viewBox="0 0 31.999999 31.999999"
    version="1.1"
    id="svg6"
    sodipodi:docname="media-playback-pause.svg"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   width="18pt"
-   height="18pt">
+   width="32"
+   height="32">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -41,16 +41,17 @@
      inkscape:window-height="703"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="9.8333333"
+     inkscape:zoom="4.9166667"
      inkscape:cx="8.7966101"
      inkscape:cy="12"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg6"
-     units="pt" />
+     units="px" />
   <g
-     id="g10">
+     id="g10"
+     transform="matrix(1.2727273,0,0,1.2727273,0.74422187,0.71032063)">
     <path
        inkscape:connector-curvature="0"
        style="fill:#f47750;fill-opacity:1"

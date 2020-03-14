@@ -7,11 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 22 22"
+   viewBox="0 0 32 32"
    version="1.1"
    id="svg12"
    sodipodi:docname="text-plain.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
   <metadata
      id="metadata16">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -36,7 +39,7 @@
      inkscape:window-height="703"
      id="namedview14"
      showgrid="false"
-     inkscape:zoom="10.727273"
+     inkscape:zoom="5.3636364"
      inkscape:cx="11"
      inkscape:cy="11"
      inkscape:window-x="0"
@@ -53,11 +56,6 @@
      }
      </style>
   </defs>
-  <path
-     style="fill:#1d99f3;fill-opacity:1;stroke:none"
-     d="m9 3v1h8v10h-4v1 3h-8v-10h-1v11h1 8 1v-.0098l.007812.0098 3.992188-3.992188v-.007812-1.40625-10.59375h-1zm0 3v1h6v-1zm-2 3v1h8v-1zm0 3v1h8v-1zm0 3v1h4v-1z"
-     class="ColorScheme-Text"
-     id="path4" />
   <defs
      id="defs8">
     <style
@@ -68,9 +66,20 @@
      }
      </style>
   </defs>
-  <path
-     style="fill:#f47750;fill-opacity:1;stroke:none"
-     d="m3 3 2 3 2-3z"
-     class="ColorScheme-Text"
-     id="path10" />
+  <g
+     id="g13"
+     transform="matrix(1.8666667,0,0,1.75,-3.3457627,-21.004237)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path4"
+       class="ColorScheme-Text"
+       d="m 9,13 v 1 h 8 v 10 h -4 v 1 3 H 5 V 18 H 4 v 11 h 1 8 1 V 28.9902 L 14.007812,29 18,25.007812 V 25 23.59375 13 h -1 z m 0,3 v 1 h 6 v -1 z m -2,3 v 1 h 8 v -1 z m 0,3 v 1 h 8 v -1 z m 0,3 v 1 h 4 v -1 z"
+       style="color:#f2f2f2;fill:#1d99f3;fill-opacity:1;stroke:none" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path10"
+       class="ColorScheme-Text"
+       d="m 3,13 2,3 2,-3 z"
+       style="color:#3daee9;fill:#f47750;fill-opacity:1;stroke:none" />
+  </g>
 </svg>

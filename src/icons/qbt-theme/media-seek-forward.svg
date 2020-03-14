@@ -7,11 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 24 24"
+   viewBox="0 0 32 32"
    version="1.1"
    id="svg6"
    sodipodi:docname="media-seek-forward.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -47,7 +50,7 @@
      inkscape:current-layer="svg6" />
   <g
      id="g10"
-     transform="matrix(0.96764253,0,0,0.98613251,0.33744222,0.21725731)">
+     transform="matrix(1.2727273,0,0,1.2727273,0.74422189,0.50693373)">
     <path
        style="fill:#fdbc4b;fill-opacity:1"
        id="path2"

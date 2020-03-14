@@ -7,11 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 22 22"
+   viewBox="0 0 32 32"
    version="1.1"
    id="svg8"
-   sodipodi:docname="view-calendar-week.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   sodipodi:docname="view-calendar-journal.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,12 +57,14 @@
       </style>
   </defs>
   <path
-     style="fill:#1d99f3;fill-opacity:1;stroke:none"
-     d="M 6 3 C 6 3 5 2.99997 5 4 L 3 4 L 3 7 L 3 18 L 3 19 L 19 19 L 19 18 L 19 7 L 19 4 L 17 4 C 17 2.99997 16 3 16 3 L 13 3 C 13 3 12 2.99997 12 4 L 10 4 C 10 2.99997 9 3 9 3 L 6 3 z M 6 4 L 9 4 L 9 5 L 6 5 L 6 4 z M 13 4 L 16 4 L 16 5 L 13 5 L 13 4 z M 4 7 L 18 7 L 18 18 L 4 18 L 4 7 z M 6 8 L 6 10 L 8 10 L 8 8 L 6 8 z M 10 8 L 10 10 L 12 10 L 12 8 L 10 8 z M 14 8 L 14 10 L 16 10 L 16 8 L 14 8 z M 14 15 L 14 17 L 16 17 L 16 15 L 14 15 z "
+     style="color:#eff0f1;fill:#1d99f3;fill-opacity:1;stroke:none;stroke-width:1.75"
+     d="m 7.4110169,2.0254237 c 0,0 -1.75,-5.25e-5 -1.75,1.75 h -3.5 v 5.25 19.2500003 1.75 H 30.161017 v -1.75 -19.2500003 -5.25 h -3.5 c 0,-1.7500525 -1.75,-1.75 -1.75,-1.75 h -5.25 c 0,0 -1.75,-5.25e-5 -1.75,1.75 h -3.5 c 0,-1.7500525 -1.75,-1.75 -1.75,-1.75 z m 0,1.75 h 5.2500001 v 1.75 H 7.4110169 Z m 12.2500001,0 h 5.25 v 1.75 h -5.25 z m -15.7500001,5.25 H 28.411017 V 28.275424 H 3.9110169 Z m 3.5,1.7500003 v 3.5 h 3.5000001 v -3.5 z m 7.0000001,0 v 3.5 h 3.5 v -3.5 z m 7,0 v 3.5 h 3.5 v -3.5 z m 0,12.25 v 3.5 h 3.5 v -3.5 z"
      class="ColorScheme-Text"
-     id="path4" />
+     id="path4"
+     inkscape:connector-curvature="0" />
   <path
      style="fill:#2ecc71;fill-opacity:1;stroke:none"
-     d="M 6 11 L 6 13 L 8 13 L 8 11 L 6 11 z M 10 11 L 10 13 L 12 13 L 12 11 L 10 11 z M 14 11 L 14 13 L 16 13 L 16 11 L 14 11 z "
-     id="path6" />
+     d="m 6,21 v 2 h 2 v -2 z m 4,0 v 2 h 2 v -2 z m 4,0 v 2 h 2 v -2 z"
+     id="path6"
+     inkscape:connector-curvature="0" />
 </svg>

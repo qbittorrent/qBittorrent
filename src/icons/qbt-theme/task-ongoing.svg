@@ -7,13 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   enable-background="new"
-   height="16"
-   width="16"
+   height="32"
+   width="32"
    version="1.1"
    id="svg11"
    sodipodi:docname="task-ongoing.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   style="enable-background:new">
   <metadata
      id="metadata17">
     <rdf:RDF>
@@ -22,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,7 +41,7 @@
      inkscape:window-height="703"
      id="namedview13"
      showgrid="false"
-     inkscape:zoom="14.75"
+     inkscape:zoom="5.2149125"
      inkscape:cx="8"
      inkscape:cy="4.4156678"
      inkscape:window-x="0"
@@ -49,14 +50,15 @@
      inkscape:current-layer="svg11" />
   <filter
      id="a"
-     color-interpolation-filters="sRGB">
+     style="color-interpolation-filters:sRGB">
     <feBlend
        in2="BackgroundImage"
        mode="darken"
        id="feBlend2" />
   </filter>
   <g
-     id="g18">
+     id="g18"
+     transform="matrix(2.1851847,0,0,2.1851878,-1.1212284,-1.3468527)">
     <path
        d="M 7.8880842,1.6622863 C 6.654619,1.6866321 5.4168826,2.0706759 4.3280397,2.8323673 1.4244552,4.8636156 0.72263514,8.8413291 2.7557413,11.742255 4.7888687,14.643192 8.7683971,15.344371 11.671993,13.313112 13.760048,11.852377 14.708657,9.3905076 14.322328,7.0350442 14.232313,6.4846911 14.061017,5.9724797 13.838819,5.4767231 L 8.0152268,12.125135 7.3848744,12.869421 6.6685751,12.18238 3.9179524,9.4342766 c -0.3451012,-0.3447381 -0.3450691,-0.9720367 0,-1.3167962 0.3450799,-0.3447595 0.9729549,-0.3447809 1.3180134,0 L 7.2989275,10.178563 12.821657,3.8647024 C 11.834362,2.7276378 10.521015,2.0048355 9.1147583,1.757096 8.7103624,1.685874 8.2992393,1.6541604 7.8880842,1.6622757 Z"
        id="path5"
@@ -66,5 +68,5 @@
   <g
      style="fill:#1d99f3;fill-opacity:1;filter:url(#a)"
      id="g7"
-     transform="translate(-485.00137,234.99797)" />
+     transform="translate(-485.00137,250.99797)" />
 </svg>
