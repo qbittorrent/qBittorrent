@@ -11,7 +11,9 @@
    version="1.1"
    id="svg6"
    sodipodi:docname="media-playback-pause.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="18pt"
+   height="18pt">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -39,19 +42,24 @@
      id="namedview8"
      showgrid="false"
      inkscape:zoom="9.8333333"
-     inkscape:cx="-11.542373"
+     inkscape:cx="8.7966101"
      inkscape:cy="12"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg6" />
-  <path
-     d="m12 1c-6.094 0-11 4.906-11 11s4.906 11 11 11 11-4.906 11-11-4.906-11-11-11z"
-     fill="#bdc3c7"
-     id="path2"
-     style="fill:#f47750;fill-opacity:1" />
-  <path
-     d="m7 6v12h3.427734v-12zm6.857422 0v12h3.427734v-12z"
-     fill="#fff"
-     id="path4" />
+     inkscape:current-layer="svg6"
+     units="pt" />
+  <g
+     id="g10">
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#f47750;fill-opacity:1"
+       id="path2"
+       d="M 12,0.99999997 C 5.906,0.99999997 1,5.9059998 1,12 1,18.094 5.906,23 12,23 18.094,23 23,18.094 23,12 23,5.9059998 18.094,0.99999997 12,0.99999997 Z" />
+    <path
+       style="fill:#ffffff"
+       inkscape:connector-curvature="0"
+       id="path4"
+       d="M 7,5.9999998 V 18 h 3.427734 V 5.9999998 Z m 6.857422,0 V 18 h 3.427734 V 5.9999998 Z" />
+  </g>
 </svg>

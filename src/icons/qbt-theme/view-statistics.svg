@@ -45,9 +45,13 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4" />
-  <path
-     fill="#375273"
-     d="M29.7 24.6v1.7H2.3V5.7H4v18.9h25.7zM10.9 16v6.9H7.4V16h3.5zM16 9.1v13.7h-3.4V9.1H16zm5.1 3.5v10.3h-3.4V12.6h3.4zm5.2-5.2v15.4h-3.4V7.4h3.4z"
-     id="path2"
-     style="fill:#1d99f3;fill-opacity:1" />
+  <g
+     id="g8"
+     transform="matrix(1,0,0,1.1250617,0.13559322,-2.2043772)">
+    <path
+       style="fill:#1d99f3;fill-opacity:1"
+       id="path2"
+       d="m 29.7,24.6 v 1.7 H 2.3 V 5.7 H 4 V 24.6 Z M 10.9,16 v 6.9 H 7.4 V 16 Z M 16,9.1 V 22.8 H 12.6 V 9.1 Z m 5.1,3.5 V 22.9 H 17.7 V 12.6 Z M 26.3,7.4 V 22.8 H 22.9 V 7.4 Z"
+       inkscape:connector-curvature="0" />
+  </g>
 </svg>

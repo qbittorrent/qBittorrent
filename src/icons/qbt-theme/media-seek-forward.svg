@@ -45,15 +45,19 @@
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg6" />
-  <path
-     d="m12 1c-6.094 0-11 4.906-11 11s4.906 11 11 11 11-4.906 11-11-4.906-11-11-11z"
-     fill="#bdc3c7"
-     id="path2"
-     style="fill:#fdbc4b;fill-opacity:1" />
-  <path
-     inkscape:connector-curvature="0"
-     style="fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:0.64231318"
-     d="M 12.796247,8.2372881 V 17.389831 L 17.394069,12.81356 M 7.9279664,17.389831 12.525787,12.81356 7.9279664,8.2372881 Z"
-     class="ColorScheme-Text"
-     id="path4" />
+  <g
+     id="g10"
+     transform="matrix(0.96764253,0,0,0.98613251,0.33744222,0.21725731)">
+    <path
+       style="fill:#fdbc4b;fill-opacity:1"
+       id="path2"
+       d="M 12,1 C 5.906,1 1,5.906 1,12 1,18.094 5.906,23 12,23 18.094,23 23,18.094 23,12 23,5.906 18.094,1 12,1 Z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path4"
+       class="ColorScheme-Text"
+       d="M 12.796247,8.2372881 V 17.389831 L 17.394069,12.81356 M 7.9279664,17.389831 12.525787,12.81356 7.9279664,8.2372881 Z"
+       style="fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:0.64231318"
+       inkscape:connector-curvature="0" />
+  </g>
 </svg>
