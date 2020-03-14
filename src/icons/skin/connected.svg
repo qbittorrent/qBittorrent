@@ -10,11 +10,11 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="16"
-   height="16"
+   width="32"
+   height="32"
    id="svg3773"
    inkscape:version="0.92.4 5da689c313, 2019-01-14"
-   sodipodi:docname="nm-signal-1010.svg">
+   sodipodi:docname="connected.svg">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -28,9 +28,9 @@
      inkscape:window-height="703"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="14.75"
+     inkscape:zoom="5.2149125"
      inkscape:cx="16.016829"
-     inkscape:cy="8.2237288"
+     inkscape:cy="13.647458"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -45,17 +45,18 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     transform="matrix(0.02451023,0,0,0.02451023,-4.6569066,0.63409144)"
+     transform="matrix(0.02451023,0,0,0.02451023,-4.6569066,16.634091)"
      id="g3-4-8"
      style="fill:#323232;fill-opacity:0.4">
     <g
        id="Wi-Fi-38"
-       style="fill:#2ecc71;fill-opacity:1">
+       style="fill:#2ecc71;fill-opacity:1"
+       transform="matrix(1.8666664,0,0,2.619203,-119.75629,-808.42704)">
       <g
          id="g6-0"
          style="fill:#2ecc71;fill-opacity:1">

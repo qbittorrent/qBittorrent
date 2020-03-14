@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="24"
-   viewBox="0 0 24 24"
-   width="24"
+   height="32"
+   viewBox="0 0 32 32"
+   width="32"
    version="1.1"
    id="svg4"
    sodipodi:docname="queued.svg"
@@ -22,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -48,8 +49,8 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4" />
   <path
-     d="m 16.406123,14.996813 -4.19196,-3.046322 0.589744,-4.9964702 -1.435726,-0.1391788 -0.66009,5.849525 4.790814,3.481513 z M 11.898305,2.3898301 A 10.016949,9.6101695 0 0 0 1.8813559,12 c 0,5.285593 4.4775752,9.610169 10.0169491,9.610169 A 10.016949,9.6101695 0 0 0 21.915254,12 10.016949,9.6101695 0 0 0 11.898305,2.3898301 Z m 0,1.9220339 A 8.0135593,7.6881356 0 0 1 19.911864,12 8.0135593,7.6881356 0 0 1 11.898305,19.688135 8.0135593,7.6881356 0 0 1 3.8847458,12 8.0135593,7.6881356 0 0 1 11.898305,4.311864 Z"
+     d="m 22.486708,20.484372 -5.858814,-4.437851 0.824245,-7.278809 -2.006616,-0.2027546 -0.922562,8.5215306 6.695791,5.071834 z M 16.186441,2.1186436 A 14,14 0 0 0 2.1864406,16.118645 c 0,7.699999 6.2579986,13.999999 14.0000004,13.999999 a 14,14 0 0 0 14,-13.999999 14,14 0 0 0 -14,-14.0000014 z m 0,2.8000001 a 11.2,11.2 0 0 1 11.2,11.2000013 11.2,11.2 0 0 1 -11.2,11.199999 A 11.2,11.2 0 0 1 4.9864407,16.118645 11.2,11.2 0 0 1 16.186441,4.9186437 Z"
      id="path2"
-     style="fill:#f47750;fill-opacity:1;stroke-width:0.98112553"
+     style="fill:#f47750;fill-opacity:1;stroke-width:1.39997196"
      inkscape:connector-curvature="0" />
 </svg>

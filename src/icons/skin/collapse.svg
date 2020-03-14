@@ -7,11 +7,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 512 512"
+   viewBox="0 0 32 32"
    version="1.1"
    id="svg4"
-   sodipodi:docname="arrow-alt-circle-up.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   sodipodi:docname="collapse.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -20,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -38,18 +41,19 @@
      inkscape:window-height="703"
      id="namedview6"
      showgrid="false"
-     inkscape:zoom="0.4609375"
-     inkscape:cx="256"
-     inkscape:cy="237.85468"
+     inkscape:zoom="10.429825"
+     inkscape:cx="49.240296"
+     inkscape:cy="18.386389"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg4" />
   <g
      id="g26"
-     style="fill:#1d99f3;fill-opacity:1">
+     style="fill:#1d99f3;fill-opacity:1"
+     transform="matrix(0.06013395,0,0,0.06013395,0.50703535,0.56376867)">
     <path
-       style="stroke-width:0.93876433;fill:#1d99f3;fill-opacity:1"
+       style="fill:#1d99f3;fill-opacity:1;stroke-width:0.93876433"
        sodipodi:nodetypes="ssssssssss"
        inkscape:connector-curvature="0"
        id="path2"
