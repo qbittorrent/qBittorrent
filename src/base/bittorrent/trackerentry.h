@@ -34,6 +34,7 @@
 #include <QtGlobal>
 
 class QString;
+class QStringList;
 
 namespace BitTorrent
 {
@@ -55,6 +56,7 @@ namespace BitTorrent
         TrackerEntry &operator=(const TrackerEntry &other) = default;
 
         QString url() const;
+        QStringList messages() const;
         Status status() const;
 
         int tier() const;

@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QString>
+#include <QStringList>
 #include <QUrl>
 
 using namespace BitTorrent;
@@ -48,6 +49,28 @@ TrackerEntry::TrackerEntry(const lt::announce_entry &nativeEntry)
 QString TrackerEntry::url() const
 {
     return QString::fromStdString(nativeEntry().url);
+}
+
+QStringList TrackerEntry::messages() const
+{
+    // Use QStringList as opposed to QSet. In practice there will be only
+    // few messages stored and QSet would not be optimal for our use case.
+    QStringList messages;
+    const auto addMessage = [&messages](const std::string &msg)
+    {
+        const QString message = QString::fromStdString(msg).trimmed();
+        if (!message.isEmpty() && !messages.contains(message))
+            messages << message;
+    };
+    const auto &endpoints = nativeEntry().endpoints;
+    for (const lt::announce_endpoint &endpoint : endpoints)
+        addMessage(endpoint.message);
+    // If there were no response from the tracker and it is not working show error messages
+    if (messages.isEmpty() && (status() == TrackerEntry::NotWorking)) {
+        for (const lt::announce_endpoint &endpoint : endpoints)
+            addMessage(endpoint.last_error.message());
+    }
+    return messages;
 }
 
 int TrackerEntry::tier() const

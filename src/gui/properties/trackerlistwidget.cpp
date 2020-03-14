@@ -376,7 +376,7 @@ void TrackerListWidget::loadTrackers()
             break;
         case BitTorrent::TrackerEntry::NotWorking:
             item->setText(COL_STATUS, tr("Not working"));
-            item->setText(COL_MSG, data.lastMessage.trimmed());
+            item->setText(COL_MSG, entry.messages().join(" | "));
             break;
         case BitTorrent::TrackerEntry::NotContacted:
             item->setText(COL_STATUS, tr("Not contacted yet"));

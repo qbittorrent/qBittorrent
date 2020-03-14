@@ -81,7 +81,6 @@ namespace BitTorrent
 
     struct TrackerInfo
     {
-        QString lastMessage;
         int numPeers = 0;
     };
 

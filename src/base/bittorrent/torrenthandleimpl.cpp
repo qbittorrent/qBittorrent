@@ -1343,40 +1343,31 @@ void TorrentHandleImpl::handleTrackerReplyAlert(const lt::tracker_reply_alert *p
 {
     const QString trackerUrl(p->tracker_url());
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
-    // Connection was successful now. Remove possible old errors
-    m_trackerInfos[trackerUrl] = {{}, p->num_peers};
+    // Connection was successful now.
+    m_trackerInfos[trackerUrl].numPeers = p->num_peers;
 
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }
 
 void TorrentHandleImpl::handleTrackerWarningAlert(const lt::tracker_warning_alert *p)
 {
-    const QString trackerUrl = p->tracker_url();
-    const QString message = p->warning_message();
-
     // Connection was successful now but there is a warning message
-    m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
-
-    m_session->handleTorrentTrackerWarning(this, trackerUrl);
+    m_session->handleTorrentTrackerWarning(this, p->tracker_url());
 }
 
 void TorrentHandleImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
 {
-    const QString trackerUrl = p->tracker_url();
-    const QString message = p->error_message();
-
-    m_trackerInfos[trackerUrl].lastMessage = message;
-
     // Starting with libtorrent 1.2.x each tracker has multiple local endpoints from which
     // an announce is attempted. Some endpoints might succeed while others might fail.
     // Emit the signal only if all endpoints have failed.
-    const QVector<TrackerEntry> trackerList = trackers();
-    const auto iter = std::find_if(trackerList.cbegin(), trackerList.cend(), [&trackerUrl](const TrackerEntry &entry)
+    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
+    const auto iter = std::find_if(nativeTrackers.cbegin(), nativeTrackers.cend(), [cstr = p->tracker_url()](const lt::announce_entry &entry)
     {
-        return (entry.url() == trackerUrl);
+        // Explicitly call compare() instead of == operator to ensure that .url is actually std::string and not char*
+        return (entry.url.compare(cstr) == 0);
     });
-    if ((iter != trackerList.cend()) && (iter->status() == TrackerEntry::NotWorking))
-        m_session->handleTorrentTrackerError(this, trackerUrl);
+    if ((iter != nativeTrackers.cend()) && (TrackerEntry(*iter).status() == TrackerEntry::NotWorking))
+        m_session->handleTorrentTrackerError(this, p->tracker_url());
 }
 
 void TorrentHandleImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)

@@ -398,14 +398,17 @@ void TorrentsController::trackersAction()
 
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
+        const BitTorrent::TrackerEntry::Status status = tracker.status();
         const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
 
         trackerList << QJsonObject {
             {KEY_TRACKER_URL, tracker.url()},
             {KEY_TRACKER_TIER, tracker.tier()},
-            {KEY_TRACKER_STATUS, static_cast<int>(tracker.status())},
+            {KEY_TRACKER_STATUS, int(status)},
             {KEY_TRACKER_PEERS_COUNT, data.numPeers},
-            {KEY_TRACKER_MSG, data.lastMessage.trimmed()},
+            {KEY_TRACKER_MSG, ((status == BitTorrent::TrackerEntry::NotWorking)
+                               ? tracker.messages().join(" | ")
+                               : "")},
             {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds()},
             {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches()},
             {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded()}
