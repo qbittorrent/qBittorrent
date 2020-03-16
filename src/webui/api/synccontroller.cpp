@@ -110,7 +110,7 @@ namespace
     void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
     QVariantMap generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
-    QVariantMap getTranserInfo()
+    QVariantMap getTransferInfo()
     {
         QVariantMap map;
         const auto *session = BitTorrent::Session::instance();
@@ -136,15 +136,12 @@ namespace
         map[KEY_TRANSFER_READ_CACHE_HITS] = (readRatio > 0) ? Utils::String::fromDouble(100 * readRatio, 2) : "0";
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
-        // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-        const auto torrents = session->torrents();
-        const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
-        {
-            return (acc + torrent->peersCount());
-        });
-
-        map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue) / peers, 2) : "0";
-        map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (peers > 0)) ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue) / peers, 2) : "0";
+        map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (sessionStatus.peersCount > 0))
+            ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue / sessionStatus.peersCount), 2)
+            : QLatin1String("0");
+        map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (sessionStatus.peersCount > 0))
+            ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue / sessionStatus.peersCount), 2)
+            : QLatin1String("0");
 
         map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
@@ -461,7 +458,7 @@ void SyncController::maindataAction()
         tags << tag;
     data["tags"] = tags;
 
-    QVariantMap serverState = getTranserInfo();
+    QVariantMap serverState = getTransferInfo();
     serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
