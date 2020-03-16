@@ -3978,6 +3978,7 @@ bool Session::addMoveTorrentStorageJob(TorrentHandle *torrent, const QString &ne
         return false;
 
     const MoveStorageJob moveStorageJob {torrent, newPath, mode};
+    m_moveStorageQueue << moveStorageJob;
     qDebug("Move storage from \"%s\" to \"%s\" is enqueued.", qUtf8Printable(currentLocation), qUtf8Printable(newPath));
 
     if (m_moveStorageQueue.size() == 1)
