@@ -64,7 +64,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
     m_connecStatusLblIcon->setIcon(QIcon(":/icons/skin/firewalled.svg"));
     m_connecStatusLblIcon->setToolTip(
-        QString(QLatin1String("<b>%1</b><br><i>%2</i>")).arg(tr("Connection status:")
+        QString::fromLatin1("<b>%1</b><br><i>%2</i>").arg(tr("Connection status:")
             , tr("No direct connections. This may indicate network configuration problems.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 

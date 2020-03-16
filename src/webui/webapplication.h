@@ -126,7 +126,7 @@ private:
     QHash<QString, QString> m_params;
     const QString m_cacheID;
 
-    const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
+    const QRegularExpression m_apiPathPattern {QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
