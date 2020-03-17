@@ -88,7 +88,7 @@ void ExecutionLogWidget::addLogMessage(const Log::Msg &msg)
     }
 
     const QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-    const QString text = QString(QLatin1String("<font color='grey'>%1</font> - <font color='%2'>%3</font>"))
+    const QString text = QString::fromLatin1("<font color='grey'>%1</font> - <font color='%2'>%3</font>")
         .arg(time.toString(Qt::SystemLocaleShortDate), colorName, msg.message);
     m_msgList->appendLine(text, msg.type);
 }
@@ -96,7 +96,7 @@ void ExecutionLogWidget::addLogMessage(const Log::Msg &msg)
 void ExecutionLogWidget::addPeerMessage(const Log::Peer &peer)
 {
     const QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
-    const QString msg = QString(QLatin1String("<font color='grey'>%1</font> - <font color='red'>%2</font>"))
+    const QString msg = QString::fromLatin1("<font color='grey'>%1</font> - <font color='red'>%2</font>")
         .arg(time.toString(Qt::SystemLocaleShortDate), peer.ip);
 
     const QString text = peer.blocked

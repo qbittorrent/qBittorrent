@@ -292,7 +292,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     {
         progress *= 100;
         return (static_cast<int>(progress) == 100)
-                ? QString {QLatin1String {"100%"}}
+                ? QString::fromLatin1("100%")
                 : Utils::String::fromDouble(progress, 1) + '%';
     };
 

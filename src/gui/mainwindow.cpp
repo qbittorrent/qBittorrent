@@ -1525,7 +1525,7 @@ void MainWindow::reloadSessionStats()
 #else
     if (m_systrayIcon) {
 #ifdef Q_OS_UNIX
-        const QString toolTip = QString(QLatin1String(
+        const QString toolTip = QString::fromLatin1(
                 "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>"
                 "qBittorrent"
                 "</div>"
@@ -1534,7 +1534,7 @@ void MainWindow::reloadSessionStats()
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
                 "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;%2"
-                "</div>"))
+                "</div>")
             .arg(tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
                  , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #else

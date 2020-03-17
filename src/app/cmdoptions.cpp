@@ -83,7 +83,7 @@ namespace
         QString envVarName() const
         {
             return QLatin1String("QBT_")
-                   + QString(QLatin1String(m_name)).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
+                   + QString::fromLatin1(m_name).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
         }
 
     public:
