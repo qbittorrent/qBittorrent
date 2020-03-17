@@ -72,8 +72,8 @@ void LogListWidget::keyPressEvent(QKeyEvent *event)
 {
     if (event->matches(QKeySequence::Copy))
         copySelection();
-    else if (event->matches(QKeySequence::SelectAll))
-        selectAll();
+    else
+        QListWidget::keyPressEvent(event);
 }
 
 void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
