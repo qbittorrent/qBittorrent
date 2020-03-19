@@ -349,10 +349,14 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
         qDebug("File %s added", qUtf8Printable(file));
 
         BitTorrent::AddTorrentParams params;
-        if (downloadInWatchFolder(file))
+        if (downloadInWatchFolder(file)) {
             params.savePath = QFileInfo(file).dir().path();
-        else if (!downloadInDefaultFolder(file))
+            params.useAutoTMM = TriStateBool::False;
+        }
+        else if (!downloadInDefaultFolder(file)) {
             params.savePath = downloadPathTorrentFolder(file);
+            params.useAutoTMM = TriStateBool::False;
+        }
 
         if (file.endsWith(".magnet", Qt::CaseInsensitive)) {
             QFile f(file);
