@@ -515,55 +515,70 @@ QString makeUsage(const QString &prgName)
     QTextStream stream(&text, QIODevice::WriteOnly);
     QString indentation = QString(USAGE_INDENTATION, ' ');
 
-    stream << QObject::tr("Usage:") << '\n';
-    stream << indentation << prgName << QLatin1String(" [options] [(<filename> | <url>)...]") << '\n';
-
-    stream << QObject::tr("Options:") << '\n';
+    stream << QObject::tr("Usage:") << '\n'
+        << indentation << prgName << QLatin1String(" [OPTIONS] [URI...]") << '\n'
+           
+        << QObject::tr("Options:") << '\n'
+        << SHOW_HELP_OPTION.usage()
+            << wrapText(QObject::tr("Display this help message and exit")) << '\n'
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
-    stream << SHOW_VERSION_OPTION.usage() << wrapText(QObject::tr("Display program version and exit")) << '\n';
+        << SHOW_VERSION_OPTION.usage()
+            << wrapText(QObject::tr("Display program version and exit")) << '\n'
 #endif
-    stream << SHOW_HELP_OPTION.usage() << wrapText(QObject::tr("Display this help message and exit")) << '\n';
-    stream << WEBUI_PORT_OPTION.usage(QObject::tr("port"))
-           << wrapText(QObject::tr("Change the Web UI port"))
-           << '\n';
+        << '\n'
+
+        << CONFIGURATION_OPTION.usage(QObject::tr("name"))
+            << wrapText(QObject::tr("Store configuration files in separate "
+                                    "qBittorrent_<name> directories")) << '\n'
 #ifndef DISABLE_GUI
-    stream << NO_SPLASH_OPTION.usage() << wrapText(QObject::tr("Disable splash screen")) << '\n';
+        << NO_SPLASH_OPTION.usage()
+            << wrapText(QObject::tr("Do not display the splash screen on startup")) << '\n'
 #elif !defined(Q_OS_WIN)
-    stream << DAEMON_OPTION.usage() << wrapText(QObject::tr("Run in daemon-mode (background)")) << '\n';
+        << DAEMON_OPTION.usage()
+            << wrapText(QObject::tr("Run in daemon-mode (background)")) << '\n'
 #endif
-    //: Use appropriate short form or abbreviation of "directory"
-    stream << PROFILE_OPTION.usage(QObject::tr("dir"))
-           << wrapText(QObject::tr("Store configuration files in <dir>")) << '\n';
-    stream << CONFIGURATION_OPTION.usage(QObject::tr("name"))
-           << wrapText(QObject::tr("Store configuration files in directories qBittorrent_<name>")) << '\n';
-    stream << RELATIVE_FASTRESUME.usage()
-           << wrapText(QObject::tr("Hack into libtorrent fastresume files and make file paths relative "
-                                         "to the profile directory")) << '\n';
-    stream << Option::padUsageText(QObject::tr("files or URLs"))
-           << wrapText(QObject::tr("Download the torrents passed by the user")) << '\n'
-           << '\n';
+        << PROFILE_OPTION.usage(QObject::tr("path"))
+            << wrapText(QObject::tr("Store configuration files in <path> (portable mode)")) << '\n'
+        << RELATIVE_FASTRESUME.usage()
+            << wrapText(QObject::tr("Make qBittorrent store paths of torrents' files "
+                                    "relative to the profile directory")) << '\n'
+        << WEBUI_PORT_OPTION.usage(QObject::tr("port"))
+            << wrapText(QObject::tr("Change the Web UI port (default: 8080)")) << '\n'
+        << '\n'
+        
+        << Option::padUsageText(QObject::tr("URI (files, magnets, ...)"))
+            << wrapText(QObject::tr("Download the torrents passed by the user")) << '\n'
+        << '\n'
 
-    stream << wrapText(QObject::tr("Options when adding new torrents:"), 0) << '\n';
-    stream << SAVE_PATH_OPTION.usage(QObject::tr("path")) << wrapText(QObject::tr("Torrent save path")) << '\n';
-    stream << PAUSED_OPTION.usage() << wrapText(QObject::tr("Add torrents as started or paused")) << '\n';
-    stream << SKIP_HASH_CHECK_OPTION.usage() << wrapText(QObject::tr("Skip hash check")) << '\n';
-    stream << CATEGORY_OPTION.usage(QObject::tr("name"))
-           << wrapText(QObject::tr("Assign torrents to category. If the category doesn't exist, it will be "
-                                   "created.")) << '\n';
-    stream << SEQUENTIAL_OPTION.usage() << wrapText(QObject::tr("Download files in sequential order")) << '\n';
-    stream << FIRST_AND_LAST_OPTION.usage()
-           << wrapText(QObject::tr("Download first and last pieces first")) << '\n';
-    stream << SKIP_DIALOG_OPTION.usage()
-           << wrapText(QObject::tr("Specify whether the \"Add New Torrent\" dialog opens when adding a "
-                                   "torrent.")) << '\n';
-    stream << '\n';
+        << wrapText(QObject::tr("Options when adding new torrents:"), 0) << '\n'
+        << PAUSED_OPTION.usage()
+            << wrapText(QObject::tr("Add torrents as started or paused")) << '\n'
+        << CATEGORY_OPTION.usage(QObject::tr("name"))
+            << wrapText(QObject::tr("Assign torrents to category."
+                                    "If the category doesn't exist, it will be created.")) << '\n'
+        << FIRST_AND_LAST_OPTION.usage()
+            << wrapText(QObject::tr("Download first and last pieces first")) << '\n'
+        << SAVE_PATH_OPTION.usage(QObject::tr("path"))
+            << wrapText(QObject::tr("Save torrents to this path")) << '\n'
+        << SEQUENTIAL_OPTION.usage()
+            << wrapText(QObject::tr("Download torrent pieces in sequential order")) << '\n'
+        << SKIP_DIALOG_OPTION.usage()
+            << wrapText(QObject::tr("Specify whether the \"Add New Torrent\" dialog "
+                                    "opens when adding a torrent.")) << '\n'
+        << SKIP_HASH_CHECK_OPTION.usage()
+            << wrapText(QObject::tr("Skip hash check")) << '\n'
+        << '\n'
 
-    stream << wrapText(QObject::tr("Option values may be supplied via environment variables. For option named "
-                                   "'parameter-name', environment variable name is 'QBT_PARAMETER_NAME' (in upper "
-                                   "case, '-' replaced with '_'). To pass flag values, set the variable to '1' or "
-                                   "'TRUE'. For example, to disable the splash screen: "), 0) << "\n"
-           << QLatin1String("QBT_NO_SPLASH=1 ") << prgName << '\n'
-           << wrapText(QObject::tr("Command line parameters take precedence over environment variables"), 0) << '\n';
+        << wrapText(QObject::tr("Option values may be supplied via environment variables. "
+                                "For an option named 'parameter-name', "
+                                "its environment variable name is 'QBT_PARAMETER_NAME' "
+                                "(in upper case, '-' replaced with '_'). To pass flag values, "
+                                "set the variable to '1' or 'TRUE'. For example, "
+                                "to prevent added torrents from auto-starting: "), 0) << "\n"
+            << QLatin1String("QBT_ADD_PAUSED=1 ") << prgName << '\n'
+        << wrapText(QObject::tr("Command line parameters "
+                                "take precedence over environment variables"), 0)
+        << '\n';
 
     return text;
 }

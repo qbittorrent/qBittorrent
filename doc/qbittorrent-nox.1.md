@@ -30,6 +30,12 @@ the default account user name is "admin" with "adminadmin" as a password.
 
 
 # OPTIONS
+
+TODO: in addition to basically copy pasting the other manpage:
+- no torrent creator
+- no skip splash option
+- daemon: start in background, cant use if already started (but probably instances with different configuration names can still coexist)
+
 **`--help`** Prints the command line options.
 
 **`--version`** Prints qbittorrent program version number.
