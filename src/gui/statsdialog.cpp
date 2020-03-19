@@ -90,21 +90,13 @@ void StatsDialog::update()
     // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
-    // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-    const auto torrents = BitTorrent::Session::instance()->torrents();
-    const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
-    {
-        return (acc + torrent->peersCount());
-    });
+    m_ui->labelWriteStarve->setText(QString("%1%").arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
+        ? Utils::String::fromDouble((100. * ss.diskWriteQueue / ss.peersCount), 2)
+        : QLatin1String("0")));
+    m_ui->labelReadStarve->setText(QString("%1%").arg(((ss.diskReadQueue > 0) && (ss.peersCount > 0))
+        ? Utils::String::fromDouble((100. * ss.diskReadQueue / ss.peersCount), 2)
+        : QLatin1String("0")));
 
-    m_ui->labelWriteStarve->setText(QString("%1%")
-                                    .arg(((ss.diskWriteQueue > 0) && (peers > 0))
-                                         ? Utils::String::fromDouble((100. * ss.diskWriteQueue) / peers, 2)
-                                         : "0"));
-    m_ui->labelReadStarve->setText(QString("%1%")
-                                   .arg(((ss.diskReadQueue > 0) && (peers > 0))
-                                        ? Utils::String::fromDouble((100. * ss.diskReadQueue) / peers, 2)
-                                        : "0"));
     // Disk queues
     m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));
     m_ui->labelJobsTime->setText(tr("%1 ms", "18 milliseconds").arg(cs.averageJobTime));
