@@ -22,6 +22,34 @@ QMAKE_BUNDLE_DATA += qt_conf
 
 qt_translations.path = Contents/translations
 qt_translations.files = \
+    $$QT_LANG_PATH/qt_ar.qm \
+    $$QT_LANG_PATH/qt_bg.qm \
+    $$QT_LANG_PATH/qt_ca.qm \
+    $$QT_LANG_PATH/qt_cs.qm \
+    $$QT_LANG_PATH/qt_da.qm \
+    $$QT_LANG_PATH/qt_de.qm \
+    $$QT_LANG_PATH/qt_es.qm \
+    $$QT_LANG_PATH/qt_fa.qm \
+    $$QT_LANG_PATH/qt_fi.qm \
+    $$QT_LANG_PATH/qt_fr.qm \
+    $$QT_LANG_PATH/qt_gd.qm \
+    $$QT_LANG_PATH/qt_gl.qm \
+    $$QT_LANG_PATH/qt_he.qm \
+    $$QT_LANG_PATH/qt_hu.qm \
+    $$QT_LANG_PATH/qt_it.qm \
+    $$QT_LANG_PATH/qt_ja.qm \
+    $$QT_LANG_PATH/qt_ko.qm \
+    $$QT_LANG_PATH/qt_lt.qm \
+    $$QT_LANG_PATH/qt_lv.qm \
+    $$QT_LANG_PATH/qt_pl.qm \
+    $$QT_LANG_PATH/qt_pt.qm \
+    $$QT_LANG_PATH/qt_ru.qm \
+    $$QT_LANG_PATH/qt_sk.qm \
+    $$QT_LANG_PATH/qt_sl.qm \
+    $$QT_LANG_PATH/qt_sv.qm \
+    $$QT_LANG_PATH/qt_uk.qm \
+    $$QT_LANG_PATH/qt_zh_CN.qm \
+    $$QT_LANG_PATH/qt_zh_TW.qm \
     $$QT_LANG_PATH/qtbase_ar.qm \
     $$QT_LANG_PATH/qtbase_bg.qm \
     $$QT_LANG_PATH/qtbase_ca.qm \
@@ -42,14 +70,7 @@ qt_translations.files = \
     $$QT_LANG_PATH/qtbase_ru.qm \
     $$QT_LANG_PATH/qtbase_sk.qm \
     $$QT_LANG_PATH/qtbase_uk.qm \
-    $$QT_LANG_PATH/qtbase_zh_TW.qm \
-    $$QT_LANG_PATH/qt_fa.qm \
-    $$QT_LANG_PATH/qt_gl.qm \
-    $$QT_LANG_PATH/qt_lt.qm \
-    $$QT_LANG_PATH/qt_pt.qm \
-    $$QT_LANG_PATH/qt_sl.qm \
-    $$QT_LANG_PATH/qt_sv.qm \
-    $$QT_LANG_PATH/qt_zh_CN.qm
+    $$QT_LANG_PATH/qtbase_zh_TW.qm
 QMAKE_BUNDLE_DATA += qt_translations
 
 ICON = $$DIST_PATH/qbittorrent_mac.icns
