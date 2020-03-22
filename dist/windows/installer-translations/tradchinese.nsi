@@ -14,6 +14,8 @@ LangString inst_torrent ${LANG_TRADCHINESE} "使用 qBittorrent 開啟 .torrent 
 LangString inst_magnet ${LANG_TRADCHINESE} "使用 qBittorrent 開啟 magnet 連結"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_TRADCHINESE} "建立 Windows 防火牆規則"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_TRADCHINESE} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_TRADCHINESE} "正在建立 Windows 防火牆規則"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."

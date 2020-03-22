@@ -14,6 +14,8 @@ LangString inst_torrent ${LANG_GALICIAN} "Abrir os ficheiros .torrent co qBittor
 LangString inst_magnet ${LANG_GALICIAN} "Abrir as ligazóns magnet co qBittorrent"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_GALICIAN} "Engadir unha regra á devasa (firewall) de Windows"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_GALICIAN} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_GALICIAN} "Engadindo unha regra á devasa de Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."

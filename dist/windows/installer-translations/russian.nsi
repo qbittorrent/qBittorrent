@@ -14,6 +14,8 @@ LangString inst_torrent ${LANG_RUSSIAN} "Открывать торрент-фа�
 LangString inst_magnet ${LANG_RUSSIAN} "Открывать магнет-ссылки с помощью qBittorrent"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_RUSSIAN} "Добавить в список исключений брандмауэра"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_RUSSIAN} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_RUSSIAN} "Добавление в список исключений брандмауэра"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
