@@ -113,7 +113,7 @@ void FeedListWidget::handleItemUnreadCountChanged(RSS::Item *rssItem)
     else {
         QTreeWidgetItem *item = mapRSSItem(rssItem);
         Q_ASSERT(item);
-        item->setData(0, Qt::DisplayRole, QString("%1  (%2)").arg(rssItem->name()).arg(rssItem->unreadCount()));
+        item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
     }
 }
 
@@ -122,7 +122,7 @@ void FeedListWidget::handleItemPathChanged(RSS::Item *rssItem)
     QTreeWidgetItem *item = mapRSSItem(rssItem);
     Q_ASSERT(item);
 
-    item->setData(0, Qt::DisplayRole, QString("%1  (%2)").arg(rssItem->name()).arg(rssItem->unreadCount()));
+    item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
 
     RSS::Item *parentRssItem = RSS::Session::instance()->itemByPath(RSS::Item::parentPath(rssItem->path()));
     QTreeWidgetItem *parentItem = mapRSSItem(parentRssItem);
@@ -228,7 +228,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
 QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem)
 {
     auto *item = new QTreeWidgetItem;
-    item->setData(0, Qt::DisplayRole, QString("%1  (%2)").arg(rssItem->name()).arg(rssItem->unreadCount()));
+    item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
     item->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(rssItem));
     m_rssToTreeItemMapping[rssItem] = item;
 

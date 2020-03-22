@@ -330,7 +330,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         }
         else {
             LogMsg(tr("Couldn't load RSS Item '%1'. Invalid data format.")
-                   .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+                   .arg(QString::fromLatin1("%1\\%2").arg(folder->path(), key)), Log::WARNING);
         }
     }
 

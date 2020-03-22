@@ -1559,7 +1559,7 @@ void OptionsDialog::on_addScanFolderButton_clicked()
         }
 
         if (!error.isEmpty())
-            QMessageBox::critical(this, tr("Adding entry failed"), QString("%1\n%2").arg(error, dir));
+            QMessageBox::critical(this, tr("Adding entry failed"), QString::fromLatin1("%1\n%2").arg(error, dir));
     }
 }
 

@@ -587,7 +587,7 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_WEBUI
     Preferences *const pref = Preferences::instance();
     // Display some information to the user
-    const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
+    const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
         + tr("To control qBittorrent, access the Web UI at %1")
             .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
     printf("%s", qUtf8Printable(mesg));
