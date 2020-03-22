@@ -66,7 +66,7 @@ void SearchController::startAction()
     requireParams({"pattern", "category", "plugins"});
 
     if (!Utils::ForeignApps::pythonInfo().isValid())
-        throw APIError(APIErrorType::Conflict, "Python must be installed to use the Search Engine.");
+        throw APIError(APIErrorType::Conflict, tr("Python must be installed to use the Search Engine."));
 
     const QString pattern = params()["pattern"].trimmed();
     const QString category = params()["category"].trimmed();
@@ -89,7 +89,7 @@ void SearchController::startAction()
     ISession *const session = sessionManager()->session();
     auto activeSearches = session->getData<QSet<int>>(ACTIVE_SEARCHES);
     if (activeSearches.size() >= MAX_CONCURRENT_SEARCHES)
-        throw APIError(APIErrorType::Conflict, QString("Unable to create more than %1 concurrent searches.").arg(MAX_CONCURRENT_SEARCHES));
+        throw APIError(APIErrorType::Conflict, tr("Unable to create more than %1 concurrent searches.").arg(MAX_CONCURRENT_SEARCHES));
 
     const auto id = generateSearchId();
     const SearchHandlerPtr searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
