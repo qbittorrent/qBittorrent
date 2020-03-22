@@ -80,20 +80,19 @@ void StatsDialog::update()
                 : "-");
     // Cache hits
     qreal readRatio = cs.readRatio;
-    m_ui->labelCacheHits->setText(QString("%1%").arg(
-        readRatio > 0
+    m_ui->labelCacheHits->setText(QString::fromLatin1("%1%").arg((readRatio > 0)
         ? Utils::String::fromDouble(100 * readRatio, 2)
-        : "0"));
+        : QLatin1String("0")));
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent
     // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
-    m_ui->labelWriteStarve->setText(QString("%1%").arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
+    m_ui->labelWriteStarve->setText(QString::fromLatin1("%1%").arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
         ? Utils::String::fromDouble((100. * ss.diskWriteQueue / ss.peersCount), 2)
         : QLatin1String("0")));
-    m_ui->labelReadStarve->setText(QString("%1%").arg(((ss.diskReadQueue > 0) && (ss.peersCount > 0))
+    m_ui->labelReadStarve->setText(QString::fromLatin1("%1%").arg(((ss.diskReadQueue > 0) && (ss.peersCount > 0))
         ? Utils::String::fromDouble((100. * ss.diskReadQueue / ss.peersCount), 2)
         : QLatin1String("0")));
 

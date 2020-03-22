@@ -400,7 +400,7 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    const auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    const auto iconUrl = QString::fromLatin1("%1://%2/favicon.ico").arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true)
                 , this, &Feed::handleIconDownloadFinished);

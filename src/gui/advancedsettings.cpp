@@ -333,7 +333,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelQbtLink->setOpenExternalLinks(true);
-    addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), labelQbtLink);
+    addRow(QBITTORRENT_HEADER, QString::fromLatin1("<b>%1</b>").arg(tr("qBittorrent Section")), labelQbtLink);
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     auto *labelLibtorrentLink = new QLabel(
@@ -341,7 +341,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelLibtorrentLink->setOpenExternalLinks(true);
-    addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
+    addRow(LIBTORRENT_HEADER, QString::fromLatin1("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
 #if defined(Q_OS_WIN)
