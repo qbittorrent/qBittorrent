@@ -4220,8 +4220,8 @@ void Session::startUpTorrents()
             }
 
             if (numOfRemappedFiles > 0) {
-                LogMsg(QString(tr("Queue positions were corrected in %1 resume files"))
-                    .arg(numOfRemappedFiles), Log::CRITICAL);
+                LogMsg(tr("Queue positions were corrected in %1 resume files").arg(numOfRemappedFiles)
+                    , Log::CRITICAL);
             }
 
             // starting up downloading torrents (queue position > 0)
