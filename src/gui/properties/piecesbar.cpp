@@ -33,6 +33,7 @@
 #include <QDebug>
 #include <QHelpEvent>
 #include <QPainter>
+#include <QPainterPath>
 #include <QTextStream>
 #include <QToolTip>
 
