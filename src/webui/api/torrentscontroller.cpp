@@ -544,7 +544,7 @@ void TorrentsController::addAction()
     const TriStateBool addPaused = parseTriStateBool(params()["paused"]);
     const TriStateBool rootFolder = parseTriStateBool(params()["root_folder"]);
     const QString savepath = params()["savepath"].trimmed();
-    const QString category = params()["category"].trimmed();
+    const QString category = params()["category"];
     const QString cookie = params()["cookie"];
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = params()["upLimit"].toInt();
@@ -1025,7 +1025,7 @@ void TorrentsController::setCategoryAction()
     requireParams({"hashes", "category"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const QString category {params()["category"].trimmed()};
+    const QString category {params()["category"]};
 
     applyToTorrents(hashes, [category](BitTorrent::TorrentHandle *const torrent)
     {
@@ -1038,7 +1038,7 @@ void TorrentsController::createCategoryAction()
 {
     requireParams({"category"});
 
-    const QString category {params()["category"].trimmed()};
+    const QString category {params()["category"]};
     const QString savePath {params()["savePath"]};
 
     if (category.isEmpty())
@@ -1055,7 +1055,7 @@ void TorrentsController::editCategoryAction()
 {
     requireParams({"category", "savePath"});
 
-    const QString category {params()["category"].trimmed()};
+    const QString category {params()["category"]};
     const QString savePath {params()["savePath"]};
 
     if (category.isEmpty())
