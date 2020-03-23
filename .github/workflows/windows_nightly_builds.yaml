@@ -1,0 +1,169 @@
+name: Nightly builds (Windows)
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    types: [edited, opened, reopened, synchronize]
+    branches: [ master ]
+
+env:
+  # Qt5: 5.15.0 LTS
+  # libtorrent: RC_1_2 HEAD, 1.2.10
+  VCPKG_COMMIT: fdac1fc5aa36e8edeb9f358f0fad041de2626215
+  VCPKG_DEST: C:\qbt_tools\vcpkg
+
+jobs:
+  vcpkg_qmake_x64_static_release:
+
+    name: vcpkg, qmake, x64 static release
+    runs-on: windows-2019
+
+    strategy:
+      matrix:
+        libtorrent: [RC_1_2-head, release]
+        # when using a vcpkg release that includes a more recent Qt latest, include it in the qt5 matrix leg,
+        # replacing all instances of the placeholder (x.y.z) in this file by the actual version.
+        qt5: [qt5-lts-5.15.0] #,qt5-latest-x.y.z]
+      fail-fast: false
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+    # This has to be done first, otherwise there are weird issues.
+    # Repo files will be immediately at top-level in the default working dir.
+    # Example: README.md is at ".\README.md", not ".\qBittorrent\README.md"
+    - name: checkout repository
+      uses: actions/checkout@v2.3.2
+
+    # By default the latest available versions of toolset and sdk are used.
+    # A specific "major.minor" toolset version will use the latest available patch version.
+    # Alternatively, the toolset version can be set to a specific "major.minor.patch" version.
+    - name: enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.3.0
+      with:
+        arch: x64
+        spectre: true
+
+    # TODO: include this file in the repository instead of generating it here?
+    - name: generate vcpkg response_file
+      run: |
+        Write-Output @'
+        boost-circular-buffer:x64-windows-static-release
+        libtorrent:x64-windows-static-release
+        qt5-base:x64-windows-static-release
+        qt5-svg:x64-windows-static-release
+        qt5-tools:x64-windows-static-release
+        qt5-winextras:x64-windows-static-release
+        '@ | Out-File -Encoding UTF8NoBOM response_file.txt
+
+    # Currently, qt5-base controls the versions of the other Qt 5 packages.
+    # The other Qt packages don't have a [latest] feature
+    - name: adjust vcpkg response_file to use latest Qt version instead of LTS
+      if: matrix.qt5 == 'qt5-latest-x.y.z'
+      run: |
+        ((Get-Content -Path response_file.txt) `
+          -replace "qt5-base", "qt5-base[latest]") |
+          Set-Content -Path response_file.txt
+
+    # Setup vcpkg without caching anything, since these builds do not need to be fast,
+    # and caching space is more important for other things like CI
+    - name: setup vcpkg (cached, if possible)
+      uses: lukka/run-vcpkg@v3.3
+      with:
+        vcpkgDirectory: ${{ env.VCPKG_DEST }}
+        vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
+        setupOnly: true
+        doNotCache: true
+
+    # Tell vcpkg to only build Release variants of the dependencies
+    - name: configure vcpkg triplet overlay for release builds only
+      run: |
+        New-Item -Path ${{ github.workspace }} -Name "triplets_overlay" -ItemType Directory
+        Copy-Item ${{ env.RUNVCPKG_VCPKG_ROOT }}\triplets\x64-windows-static.cmake `
+          ${{ github.workspace }}\triplets_overlay\x64-windows-static-release.cmake
+        Add-Content ${{ github.workspace }}\triplets_overlay\x64-windows-static-release.cmake `
+          -Value "set(VCPKG_BUILD_TYPE release)"
+
+    # If a package is installed with --head, vcpkg will not install a different version if it is
+    # told to install again without --head, and vice-versa.
+    # To accomplish this, one would need to explicitly remove the pacakge first.
+    - name: install libtorrent via vcpkg (from HEAD)
+      if: matrix.libtorrent == 'RC_1_2-head'
+      run: |
+        ${{ env.RUNVCPKG_VCPKG_ROOT }}\vcpkg.exe install libtorrent:x64-windows-static-release `
+          --head `
+          --clean-after-build `
+          --overlay-triplets=${{ github.workspace }}\triplets_overlay
+
+    # Install one package at a time, clearing buildtrees after each installation instead of
+    # installing all packages at once from the response_file to reduce disk space requirements.
+    - name: install dependencies via vcpkg
+      run: |
+        foreach($package in Get-Content response_file.txt)
+        {
+          ${{ env.RUNVCPKG_VCPKG_ROOT }}\vcpkg.exe install $package `
+            --clean-after-build `
+            --overlay-triplets=${{ github.workspace }}\triplets_overlay
+        }
+
+    - name: get versions/short commit SHAs for artifact names
+      run: |
+        $short_sha_qbit = "${{ github.sha }}".Substring(0,7)
+        $short_sha_vcpkg = "${{ env.VCPKG_COMMIT }}".Substring(0,7)
+        $version_libt = (${{ env.RUNVCPKG_VCPKG_ROOT }}\vcpkg.exe list --x-full-desc |
+          Select-String -Pattern 'libtorrent[\S]*[\s]+(\S+)').Matches.Groups[1].Value
+        if($version_libt -match "[a-f0-9]{40}")
+        {
+          $version_libt = $version_libt.Substring(0,7)
+        }
+        echo "::set-env name=QBIT_COMMIT_SHORT::$short_sha_qbit"
+        echo "::set-env name=VCPKG_COMMIT_SHORT::$short_sha_vcpkg"
+        echo "::set-env name=LIBTORRENT_VERSION::$version_libt"
+
+    - name: adjust/generate conf.pri
+      run: |
+        Remove-Item conf.pri.windows
+        Write-Output @'
+        INCLUDEPATH += $$quote(${{ env.RUNVCPKG_VCPKG_ROOT }}\installed\x64-windows-static\include)
+        INCLUDEPATH += $$quote(${{ env.RUNVCPKG_VCPKG_ROOT }}\installed\x64-windows-static\include\boost)
+
+        LIBS += $$quote(-L${{ env.RUNVCPKG_VCPKG_ROOT }}\installed\x64-windows-static\lib)
+        LIBS += torrent-rasterbar.lib boost_system-vc140-mt.lib zlib.lib libcrypto.lib libssl.lib
+
+        DEFINES += BOOST_ALL_NO_LIB
+        DEFINES += BOOST_SYSTEM_STATIC_LINK
+        DEFINES += TORRENT_NO_DEPRECATE
+
+        # Enable stack trace support
+        CONFIG += stacktrace
+
+        win32-msvc* {
+            QMAKE_CXXFLAGS += "/guard:cf"
+            QMAKE_LFLAGS += "/guard:cf"
+            QMAKE_LFLAGS_RELEASE += "/OPT:REF /OPT:ICF"
+        }
+        '@ | Out-File -NoNewLine -Encoding UTF8NoBOM conf.pri
+
+    - name: build qBittorrent (qmake)
+      shell: cmd
+      run: |
+        SET PATH=${{ env.RUNVCPKG_VCPKG_ROOT }}\installed\x64-windows-static-release\tools\qt5\bin;%PATH%
+        lupdate.exe -extensions c,cpp,h,hpp,ui .
+        qmake.exe qbittorrent.pro "CONFIG += static release"
+        CHDIR src
+        qmake.exe src.pro
+
+        IF DEFINED _CL_ (SET _CL_=%_CL_% /MP) ELSE (SET _CL_=/MP)
+        nmake.exe
+
+    - name: upload artifact as zip
+      uses: actions/upload-artifact@v2.1.3
+      with:
+        name: qBittorrent-nightly-${{ env.QBIT_COMMIT_SHORT }}_vcpkg-${{ env.VCPKG_COMMIT_SHORT }}_${{ matrix.qt5 }}_libtorrent-${{ matrix.libtorrent }}-${{ env.LIBTORRENT_VERSION }}_x64-static-release
+        path: |
+          src\release\qbittorrent.exe
+          src\release\qbittorrent.pdb
+          dist\windows\qt.conf
