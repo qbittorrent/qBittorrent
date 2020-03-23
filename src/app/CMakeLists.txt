@@ -115,28 +115,9 @@ if (APPLE)
         PROPERTIES
             MACOSX_PACKAGE_LOCATION Resources)
     set(QT_TR_DIR "${qBittorrent_SOURCE_DIR}/dist/qt-translations")
-    set(QT_TRANSLATIONS
-        ${QT_TR_DIR}/qtbase_ar.qm
-        ${QT_TR_DIR}/qtbase_bg.qm
-        ${QT_TR_DIR}/qtbase_ca.qm
-        ${QT_TR_DIR}/qtbase_cs.qm
-        ${QT_TR_DIR}/qtbase_da.qm
-        ${QT_TR_DIR}/qtbase_de.qm
-        ${QT_TR_DIR}/qtbase_es.qm
-        ${QT_TR_DIR}/qtbase_fi.qm
-        ${QT_TR_DIR}/qtbase_fr.qm
-        ${QT_TR_DIR}/qtbase_gd.qm
-        ${QT_TR_DIR}/qtbase_he.qm
-        ${QT_TR_DIR}/qtbase_hu.qm
-        ${QT_TR_DIR}/qtbase_it.qm
-        ${QT_TR_DIR}/qtbase_ja.qm
-        ${QT_TR_DIR}/qtbase_ko.qm
-        ${QT_TR_DIR}/qtbase_lv.qm
-        ${QT_TR_DIR}/qtbase_pl.qm
-        ${QT_TR_DIR}/qtbase_ru.qm
-        ${QT_TR_DIR}/qtbase_sk.qm
-        ${QT_TR_DIR}/qtbase_uk.qm
-        ${QT_TR_DIR}/qtbase_zh_TW.qm
+
+    FILE(GLOB QT_TRANSLATIONS "${QT_TR_DIR}/qtbase_*.qm")
+    list(APPEND QT_TRANSLATIONS
         ${QT_TR_DIR}/qt_fa.qm
         ${QT_TR_DIR}/qt_gl.qm
         ${QT_TR_DIR}/qt_lt.qm
