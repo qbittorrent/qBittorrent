@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Porten som brukes for nettbrukergrensesnittet må være mellom 1 og 65535.</translation>
+        <translation>Porten som brukes for nettgrensesnittet må være mellom 1 og 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -338,27 +338,27 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Registrer for å håndtere magnet-lenker …</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>Klarte ikke legge til likemenn. Sørg for at du bruker formatet «IP:port».</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>JavaScript kreves. Du må aktivere JavaScript for at nettgrensesnittet skal virke.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Navnet kan ikke være tomt</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Navnet er uendret</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Klarte ikke oppdatere navn</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,11 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Nettleseren din støtter ikke denne funksjonen</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Nettgrensesnittet må brukes over HTTPS for å kunne bruke denne funksjonen.</translation>
     </message>
 </context>
 <context>
@@ -927,11 +927,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Brukernavn for nettbrukergrensesnittet må være minst 3 tegn.</translation>
+        <translation>Brukernavn for nettgrensesnittet må være minst 3 tegn.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Passordet for nettbrukergrensesnittet må være minst 6 tegn.</translation>
+        <translation>Passordet for nettgrensesnittet må være minst 6 tegn.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1107,7 +1107,7 @@
     </message>
     <message>
         <source>sec</source>
-        <translation>sek</translation>
+        <translation type="vanished">sek</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1227,7 +1227,7 @@
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>Finn fram til geografisk tilhørighet for likemenn (GeoIP):</translation>
+        <translation type="vanished">Finn fram til geografisk tilhørighet for likemenn (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1283,7 +1283,31 @@
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Lytt til IPv6-adresse (krever omstart):</translation>
+        <translation type="vanished">Lytt til IPv6-adresse (krever omstart):</translation>
+    </message>
+    <message>
+        <source>Resolve peer countries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1346,7 +1370,7 @@
     </message>
     <message>
         <source>Country</source>
-        <translation>Land</translation>
+        <translation type="vanished">Land</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -1363,6 +1387,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Legg til ny likemann …</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1567,7 +1595,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Gi nytt navn …</translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1772,30 @@
     <message>
         <source>Errored (%1)</source>
         <translation>Feilede (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2583,11 +2635,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ja</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nei</translation>
     </message>
 </context>
 <context>
@@ -2711,7 +2763,7 @@
     </message>
     <message>
         <source>Libraries</source>
-        <translation>Bibliotek</translation>
+        <translation type="vanished">Bibliotek</translation>
     </message>
     <message>
         <source>License</source>
@@ -2733,6 +2785,14 @@
         <source>Author</source>
         <translation>Opphavsperson</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2802,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Alle IPv6-adresser</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Alle IPv4-adresser</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2840,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Gir nytt navn</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nytt navn:</translation>
     </message>
 </context>
 </TS>
