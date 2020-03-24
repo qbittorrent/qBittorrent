@@ -4407,6 +4407,11 @@ void Session::handleAlert(const lt::alert *a)
         case lt::storage_moved_failed_alert::alert_type:
             handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert*>(a));
             break;
+#if (LIBTORRENT_VERSION_NUM >= 10204)
+        case lt::socks5_alert::alert_type:
+            handleSocks5Alert(static_cast<const lt::socks5_alert *>(a));
+            break;
+#endif
         }
     }
     catch (const std::exception &exc) {
@@ -4942,3 +4947,13 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
 }
+
+#if (LIBTORRENT_VERSION_NUM >= 10204)
+void Session::handleSocks5Alert(const lt::socks5_alert *p) const
+{
+    if (p->error) {
+        LogMsg(tr("SOCKS5 proxy error. Message: %1").arg(QString::fromStdString(p->message()))
+            , Log::WARNING);
+    }
+}
+#endif
