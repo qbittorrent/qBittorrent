@@ -15,7 +15,7 @@ LangString inst_magnet ${LANG_TURKISH} "Magnet bağlantılarını qBittorrent il
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_TURKISH} "Windows Güvenlik Duvarı kuralı ekle"
 ;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
-LangString inst_pathlimit ${LANG_TURKISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_TURKISH} "Windows yol uzunluğu sınırını etkisizleştir (260 karakter MAX_PATH sınırlaması, Windows 10 1607 veya sonrasını gerektirir)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_TURKISH} "Windows Güvenlik Duvarı kuralı ekleniyor"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
@@ -25,11 +25,11 @@ LangString inst_uninstall_question ${LANG_TURKISH} "Önceki bir kurulum algılan
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_TURKISH} "Önceki sürüm kaldırılıyor."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
-LangString launch_qbt ${LANG_TURKISH} "qBittorrent'i çalıştır."
+LangString launch_qbt ${LANG_TURKISH} "qBittorrent'i başlat"
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_TURKISH} "Bu yükleyici sadece 64-bit Windows sürümlerinde çalışır."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
-LangString inst_requires_win7 ${LANG_TURKISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_TURKISH} "Bu qBittorrent sürümü en az Windows 7 gerektirir."
 
 
 ;------------------------------------
