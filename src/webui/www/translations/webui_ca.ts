@@ -351,15 +351,15 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>El nom no pot estar en blanc.</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>No s'ha canviat el nom.</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Ha fallat actualitzar el nom.</translation>
     </message>
 </context>
 <context>
@@ -523,11 +523,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>El navegador no admet aquesta funció.</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Per usar aquesta funció, cal accedir a la interfície d'usuari de xarxa per HTTPS.</translation>
     </message>
 </context>
 <context>
@@ -1108,7 +1108,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation>s</translation>
+        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1228,7 +1228,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>Resol els països dels clients (GeoIP):</translation>
+        <translation type="vanished">Resol els països dels clients (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1284,7 +1284,31 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Escolta l'adreça IPv6 (requereix reinici):</translation>
+        <translation type="vanished">Escolta l'adreça IPv6 (requereix reinici):</translation>
+    </message>
+    <message>
+        <source>Resolve peer countries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1347,7 +1371,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Country</source>
-        <translation>País</translation>
+        <translation type="vanished">País</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -1364,6 +1388,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Add a new peer...</source>
         <translation>Afegeix un client nou...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1568,7 +1596,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Canvia'n el nom...</translation>
     </message>
 </context>
 <context>
@@ -1745,6 +1773,30 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Errored (%1)</source>
         <translation>Amb errors (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2417,7 +2469,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>El camí per desar és buit</translation>
+        <translation>El camí per desar està en blanc.</translation>
     </message>
 </context>
 <context>
@@ -2584,11 +2636,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Sí</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>No</translation>
     </message>
 </context>
 <context>
@@ -2712,7 +2764,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Libraries</source>
-        <translation>Biblioteques</translation>
+        <translation type="vanished">Biblioteques</translation>
     </message>
     <message>
         <source>License</source>
@@ -2734,6 +2786,14 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2743,11 +2803,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Totes les adreces d'IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Totes les adreces d'IPv4</translation>
     </message>
 </context>
 <context>
@@ -2781,11 +2841,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Canvi de nom</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nom nou:</translation>
     </message>
 </context>
 </TS>

@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Nazwa nie może być pusta</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Nazwa jest niezmieniona</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Nie udało się zaktualizować nazwy</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,11 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Twoja przeglądarka nie obsługuje tej funkcji</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Aby skorzystać z tej funkcji, interfejs WWW musi być dostępny przez HTTPS</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1107,7 @@
     </message>
     <message>
         <source>sec</source>
-        <translation> s</translation>
+        <translation type="vanished"> s</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1227,7 +1227,7 @@
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>Odczytuj kraje partnerów (GeoIP):</translation>
+        <translation type="vanished">Odczytuj kraje partnerów (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1283,7 +1283,31 @@
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Nasłuchuj adres IPv6 (wymaga ponownego uruchomienia):</translation>
+        <translation type="vanished">Nasłuchuj adres IPv6 (wymaga ponownego uruchomienia):</translation>
+    </message>
+    <message>
+        <source>Resolve peer countries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1346,7 +1370,7 @@
     </message>
     <message>
         <source>Country</source>
-        <translation>Kraj</translation>
+        <translation type="vanished">Kraj</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -1363,6 +1387,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Dodaj nowego partnera...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1567,7 +1595,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Zmień nazwę...</translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1772,30 @@
     <message>
         <source>Errored (%1)</source>
         <translation>Błędne (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2583,11 +2635,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Tak</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nie</translation>
     </message>
 </context>
 <context>
@@ -2711,7 +2763,7 @@
     </message>
     <message>
         <source>Libraries</source>
-        <translation>Biblioteki</translation>
+        <translation type="vanished">Biblioteki</translation>
     </message>
     <message>
         <source>License</source>
@@ -2733,6 +2785,14 @@
         <source>Author</source>
         <translation>Autor</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2802,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Wszystkie adresy IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Wszystkie adresy IPv4</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2840,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Zmiana nazwy</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nowa nazwa:</translation>
     </message>
 </context>
 </TS>

@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>名稱不能為空</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>名稱未變更</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>更新名稱失敗</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,11 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>您的瀏覽器不支援此功能</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>要使用此功能，必須透過 HTTPS 存取 WebUI</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1107,7 @@
     </message>
     <message>
         <source>sec</source>
-        <translation>秒</translation>
+        <translation type="vanished">秒</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1227,7 +1227,7 @@
     </message>
     <message>
         <source>Resolve peer countries (GeoIP):</source>
-        <translation>解析下載者的國家 (GeoIP)：</translation>
+        <translation type="vanished">解析下載者的國家 (GeoIP)：</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1283,7 +1283,31 @@
     </message>
     <message>
         <source>Listen on IPv6 address (requires restart):</source>
-        <translation>監聽 IPv6 位置（需要重新啟動）：</translation>
+        <translation type="vanished">監聽 IPv6 位置（需要重新啟動）：</translation>
+    </message>
+    <message>
+        <source>Resolve peer countries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1346,7 +1370,7 @@
     </message>
     <message>
         <source>Country</source>
-        <translation>國籍</translation>
+        <translation type="vanished">國籍</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -1363,6 +1387,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>新增下載者……</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1567,7 +1595,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>重新命名……</translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1772,30 @@
     <message>
         <source>Errored (%1)</source>
         <translation>錯誤 (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2583,11 +2635,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>是</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>否</translation>
     </message>
 </context>
 <context>
@@ -2711,7 +2763,7 @@
     </message>
     <message>
         <source>Libraries</source>
-        <translation>函式庫</translation>
+        <translation type="vanished">函式庫</translation>
     </message>
     <message>
         <source>License</source>
@@ -2733,6 +2785,14 @@
         <source>Author</source>
         <translation>作者</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2802,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>所有 IPv6 地址</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>所有 IPv4 地址</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2840,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>正在重新命名</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>新名稱：</translation>
     </message>
 </context>
 </TS>
