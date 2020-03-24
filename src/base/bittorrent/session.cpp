@@ -1087,8 +1087,9 @@ void Session::initializeNativeSession()
     // turn them off before `lt::session` ctor to avoid split second effects
     pack.set_bool(lt::settings_pack::enable_upnp, false);
     pack.set_bool(lt::settings_pack::enable_natpmp, false);
+#if (LIBTORRENT_VERSION_NUM < 10204)
     pack.set_bool(lt::settings_pack::upnp_ignore_nonrouters, true);
-
+#endif
 #if (LIBTORRENT_VERSION_NUM < 10200)
     // Disable support for SSL torrents for now
     pack.set_int(lt::settings_pack::ssl_listen, 0);
