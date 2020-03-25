@@ -1,5 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 17.8">
-  <path d="M36.7 14.9C35 7.1 28.3 1.1 20.1.3H20c-.5 0-1-.1-1.5-.1s-1 0-1.5.1h-.1C8.6 1.1 2 7.1.2 14.9c-.1.3 0 .4.1.6s.5.3.5.3h35.3s.4-.1.5-.3c.1-.2.2-.3.1-.6z" fill="#375273"/>
-  <path d="M17.1 17c-.1 0-.3 0-.3-.1L3.4 4c-.2-.2-.2-.5-.1-.7.1-.1.2-.2.4-.2.1 0 .2 0 .2.1l16.2 9.1c.1.1.2.2.2.3 0 .1 0 .3-.1.4l-2.8 3.8c0 .1-.1.2-.3.2z" fill="#fff"/>
-  <path d="M3.7 3.6l16.2 9.1-2.8 3.8L3.7 3.6m0-1c-.3 0-.6.2-.8.4-.3.4-.2 1 .1 1.3l13.4 12.8c.2.2.4.3.7.3h.1c.3 0 .5-.2.7-.4l2.8-3.8c.2-.2.2-.5.2-.8-.1-.3-.2-.5-.5-.7L4.2 2.8c-.1-.1-.3-.2-.5-.2z" fill="#375273"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="slow.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="1.5847458"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+     .ColorScheme-Text {
+       color:#f2f2f2;
+     }
+     </style>
+  </defs>
+  <path
+     style="color:#f2f2f2;fill:#1d8dff;fill-opacity:1;stroke:none;stroke-width:1.87869477"
+     d="m 16.067797,23.060845 a 4.2,4.8404492 0 0 0 4.2,-4.840447 c 0,-1.807101 -0.854,-3.388317 -2.1,-4.211193 L 4.5737959,4.9414318 12.315797,20.3986 c 0.7,1.581211 2.114,2.662245 3.752,2.662245 m 0,-20.9752782 c -2.534,0 -4.9,0.8067415 -6.9580004,2.1297976 L 12.049797,6.167679 c 1.218,-0.5485843 2.618,-0.8551461 4.018,-0.8551461 a 11.2,12.907865 0 0 1 11.2,12.9078651 c 0,3.565795 -1.246,6.792763 -3.276,9.116177 h -0.014 c -0.546,0.629258 -0.546,1.645753 0,2.275013 0.546,0.629257 1.442,0.629257 1.988,0.01613 2.534,-2.920399 4.102,-6.954109 4.102,-11.40732 a 14,16.134831 0 0 0 -14,-16.1348312 M 2.0677966,18.220398 c 0,4.453211 1.568,8.486921 4.1019998,11.407323 0.5459998,0.613124 1.428,0.613124 1.9739999,-0.01614 0.5460001,-0.629258 0.5460001,-1.645753 0,-2.275013 -2.0300001,-2.339548 -3.2760001,-5.550382 -3.2760001,-9.116177 0,-1.613485 0.266,-3.226966 0.7560001,-4.679101 L 3.9297966,10.152982 c -1.162,2.420225 -1.862,5.130877 -1.862,8.067416 z"
+     class="ColorScheme-Text"
+     id="path4"
+     inkscape:connector-curvature="0" />
 </svg>
