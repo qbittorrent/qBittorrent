@@ -43,7 +43,6 @@ class DownloadHandlerImpl : public Net::DownloadHandler
 
 public:
     DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest);
-    ~DownloadHandlerImpl() override;
 
     void cancel() override;
 
