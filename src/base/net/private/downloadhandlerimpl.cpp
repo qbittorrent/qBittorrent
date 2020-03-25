@@ -64,11 +64,6 @@ DownloadHandlerImpl::DownloadHandlerImpl(Net::DownloadManager *manager, const Ne
     m_result.status = Net::DownloadStatus::Success;
 }
 
-DownloadHandlerImpl::~DownloadHandlerImpl()
-{
-    delete m_reply;
-}
-
 void DownloadHandlerImpl::cancel()
 {
     if (m_reply) {
@@ -83,6 +78,7 @@ void DownloadHandlerImpl::cancel()
 void DownloadHandlerImpl::assignNetworkReply(QNetworkReply *reply)
 {
     Q_ASSERT(reply);
+    Q_ASSERT(!m_reply);
 
     m_reply = reply;
     m_reply->setParent(this);
