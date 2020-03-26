@@ -114,23 +114,23 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 {
     if (!m_logFile.isOpen()) return;
 
-    QTextStream str(&m_logFile);
+    QTextStream stream(&m_logFile);
 
     switch (msg.type) {
     case Log::INFO:
-        str << "(I) ";
+        stream << "(I) ";
         break;
     case Log::WARNING:
-        str << "(W) ";
+        stream << "(W) ";
         break;
     case Log::CRITICAL:
-        str << "(C) ";
+        stream << "(C) ";
         break;
     default:
-        str << "(N) ";
+        stream << "(N) ";
     }
 
-    str << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
+    stream << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
 
     if (m_backup && (m_logFile.size() >= m_maxSize)) {
         closeLogFile();
