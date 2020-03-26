@@ -28,6 +28,8 @@
 
 #include "filelogger.h"
 
+#include <chrono>
+
 #include <QDateTime>
 #include <QDir>
 #include <QTextStream>
@@ -36,11 +38,16 @@
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
+namespace
+{
+    const std::chrono::seconds FLUSH_INTERVAL {2};
+}
+
 FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize, const bool deleteOld, const int age, const FileLogAgeType ageType)
     : m_backup(backup)
     , m_maxSize(maxSize)
 {
-    m_flusher.setInterval(0);
+    m_flusher.setInterval(FLUSH_INTERVAL);
     m_flusher.setSingleShot(true);
     connect(&m_flusher, &QTimer::timeout, this, &FileLogger::flushLog);
 
@@ -131,7 +138,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
         stream << "(N) ";
     }
 
-    stream << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
+    stream << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << '\n';
 
     if (m_backup && (m_logFile.size() >= m_maxSize)) {
         closeLogFile();
@@ -147,7 +154,8 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
         openLogFile();
     }
     else {
-        m_flusher.start();
+        if (!m_flusher.isActive())
+            m_flusher.start();
     }
 }
 
