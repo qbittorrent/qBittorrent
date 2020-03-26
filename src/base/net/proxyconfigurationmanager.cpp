@@ -139,17 +139,17 @@ void ProxyConfigurationManager::configureProxy()
     if (!m_isProxyOnlyForTorrents) {
         switch (m_config.type) {
         case ProxyType::HTTP_PW:
-            proxyStrHTTP = QString("http://%1:%2@%3:%4").arg(m_config.username
+            proxyStrHTTP = QString::fromLatin1("http://%1:%2@%3:%4").arg(m_config.username
                 , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::HTTP:
-            proxyStrHTTP = QString("http://%1:%2").arg(m_config.ip, QString::number(m_config.port));
+            proxyStrHTTP = QString::fromLatin1("http://%1:%2").arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5:
-            proxyStrSOCK = QString("%1:%2").arg(m_config.ip, QString::number(m_config.port));
+            proxyStrSOCK = QString::fromLatin1("%1:%2").arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5_PW:
-            proxyStrSOCK = QString("%1:%2@%3:%4").arg(m_config.username
+            proxyStrSOCK = QString::fromLatin1("%1:%2@%3:%4").arg(m_config.username
                 , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         default:

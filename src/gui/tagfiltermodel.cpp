@@ -319,7 +319,7 @@ QVector<TagModelItem *> TagFilterModel::findItems(const QSet<QString> &tags)
         if (item)
             items.push_back(item);
         else
-            qWarning() << QString("Requested tag '%1' missing from the model.").arg(tag);
+            qWarning() << QString::fromLatin1("Requested tag '%1' missing from the model.").arg(tag);
     }
     return items;
 }

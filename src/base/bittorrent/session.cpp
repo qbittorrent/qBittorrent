@@ -1810,7 +1810,7 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
     // Remove it from torrent resume directory
     const QDir resumeDataDir(m_resumeFolderPath);
     QStringList filters;
-    filters << QString("%1.*").arg(torrent->hash());
+    filters << QString::fromLatin1("%1.*").arg(torrent->hash());
     const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
     for (const QString &file : files)
         Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
@@ -2457,8 +2457,8 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
              ((folder == TorrentExportFolder::Finished) && !finishedTorrentExportDirectory().isEmpty()));
 
     const QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
-    const QString torrentFilename = QString("%1.torrent").arg(torrent->hash());
-    QString torrentExportFilename = QString("%1.torrent").arg(validName);
+    const QString torrentFilename = QString::fromLatin1("%1.torrent").arg(torrent->hash());
+    QString torrentExportFilename = QString::fromLatin1("%1.torrent").arg(validName);
     const QString torrentPath = QDir(m_resumeFolderPath).absoluteFilePath(torrentFilename);
     const QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
     if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath())) {
@@ -2466,7 +2466,7 @@ void Session::exportTorrentFile(TorrentHandle *const torrent, TorrentExportFolde
         int counter = 0;
         while (QFile::exists(newTorrentPath) && !Utils::Fs::sameFiles(torrentPath, newTorrentPath)) {
             // Append number to torrent name to make it unique
-            torrentExportFilename = QString("%1 %2.torrent").arg(validName).arg(++counter);
+            torrentExportFilename = QString::fromLatin1("%1 %2.torrent").arg(validName).arg(++counter);
             newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         }
 
@@ -3923,7 +3923,7 @@ void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const l
     out.reserve(1024 * 1024);  // most fastresume file sizes are under 1 MB
     lt::bencode(std::back_inserter(out), data);
 
-    const QString filename = QString("%1.fastresume").arg(torrent->hash());
+    const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataSavingManager
         , [this, filename, out]() { m_resumeDataSavingManager->save(filename, out); });
@@ -4160,7 +4160,7 @@ void Session::startUpTorrents()
     int resumedTorrentsCount = 0;
     const auto startupTorrent = [this, &resumeDataDir, &resumedTorrentsCount](const TorrentResumeData &params)
     {
-        const QString filePath = resumeDataDir.filePath(QString("%1.torrent").arg(params.hash));
+        const QString filePath = resumeDataDir.filePath(QString::fromLatin1("%1.torrent").arg(params.hash));
         qDebug() << "Starting up torrent" << params.hash << "...";
         if (!addTorrent_impl(params.addTorrentData, params.magnetUri, TorrentInfo::loadFromFile(filePath), params.data))
             LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
@@ -4220,8 +4220,8 @@ void Session::startUpTorrents()
             }
 
             if (numOfRemappedFiles > 0) {
-                LogMsg(QString(tr("Queue positions were corrected in %1 resume files"))
-                    .arg(numOfRemappedFiles), Log::CRITICAL);
+                LogMsg(tr("Queue positions were corrected in %1 resume files").arg(numOfRemappedFiles)
+                    , Log::CRITICAL);
             }
 
             // starting up downloading torrents (queue position > 0)

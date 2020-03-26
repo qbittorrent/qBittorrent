@@ -75,7 +75,7 @@ public:
         if (!m_parent || m_parent->name().isEmpty())
             return m_name;
 
-        return QString("%1/%2").arg(m_parent->fullName(), m_name);
+        return QString::fromLatin1("%1/%2").arg(m_parent->fullName(), m_name);
     }
 
     CategoryModelItem *parent() const

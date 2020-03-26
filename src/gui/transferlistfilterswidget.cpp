@@ -327,7 +327,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
 
         const QString scheme = getScheme(tracker);
-        downloadFavicon(QString("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
+        downloadFavicon(QString::fromLatin1("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
     }
     if (!trackerItem) return;
 
@@ -340,7 +340,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         return;
     }
 
-    trackerItem->setText(QString("%1 (%2)").arg(host).arg(tmp.size()));
+    trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
     if (exists) {
         if (currentRow() == rowFromTracker(host))
             applyFilter(currentRow());
@@ -384,7 +384,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
             return;
         }
         if (trackerItem)
-            trackerItem->setText(QString("%1 (%2)").arg(host).arg(tmp.size()));
+            trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
     }
     else {
         row = 1;

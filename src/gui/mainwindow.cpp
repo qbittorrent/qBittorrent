@@ -1539,7 +1539,7 @@ void MainWindow::reloadSessionStats()
                  , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #else
         // OSes such as Windows do not support html here
-        const QString toolTip = QString("%1\n%2").arg(
+        const QString toolTip = QString::fromLatin1("%1\n%2").arg(
             tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
             , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #endif // Q_OS_UNIX
@@ -1818,7 +1818,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
         answer = QMessageBox::question(this, tr("qBittorrent Update Available")
             , tr("A new version is available.") + "<br/>"
                 + tr("Do you want to download %1?").arg(newVersion) + "<br/><br/>"
-                + QString("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))
+                + QString::fromLatin1("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))
             , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (answer == QMessageBox::Yes) {
             // The user want to update, let's download the update

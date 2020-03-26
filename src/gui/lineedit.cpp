@@ -27,7 +27,7 @@ LineEdit::LineEdit(QWidget *parent)
     m_searchButton->setStyleSheet("QToolButton {border: none; padding: 2px;}");
 
     // padding between text and widget borders
-    setStyleSheet(QString("QLineEdit {padding-left: %1px;}").arg(m_searchButton->sizeHint().width()));
+    setStyleSheet(QString::fromLatin1("QLineEdit {padding-left: %1px;}").arg(m_searchButton->sizeHint().width()));
 
     setClearButtonEnabled(true);
 
