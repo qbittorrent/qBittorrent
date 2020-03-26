@@ -115,6 +115,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
     if (!m_logFile.isOpen()) return;
 
     QTextStream stream(&m_logFile);
+    stream.setCodec("UTF-8");
 
     switch (msg.type) {
     case Log::INFO:
