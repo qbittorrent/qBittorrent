@@ -596,6 +596,9 @@ namespace BitTorrent
 #endif
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
+#if (LIBTORRENT_VERSION_NUM >= 10204)
+        void handleSocks5Alert(const lt::socks5_alert *p) const;
+#endif
 
         void createTorrentHandle(const lt::torrent_handle &nativeHandle);
 
