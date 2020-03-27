@@ -64,10 +64,10 @@ namespace
 
 struct DataFieldDescriptor
 {
-    DataType fieldType;
+    DataType fieldType {DataType::Unknown};
     union
     {
-        quint32 fieldSize;
+        quint32 fieldSize = 0;
         quint32 offset; // Pointer
     };
 };
