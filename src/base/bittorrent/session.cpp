@@ -402,6 +402,7 @@ Session::Session(QObject *parent)
     , m_slowTorrentsInactivityTimer(BITTORRENT_SESSION_KEY("SlowTorrentsInactivityTimer"), 60)
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY("OutgoingPortsMin"), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY("OutgoingPortsMax"), 0)
+    , m_UPnPLeaseDuration(BITTORRENT_SESSION_KEY("UPnPLeaseDuration"), 0)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY("IgnoreLimitsOnLAN"), false)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
@@ -1366,6 +1367,10 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     // Outgoing ports
     settingsPack.set_int(lt::settings_pack::outgoing_port, outgoingPortsMin());
     settingsPack.set_int(lt::settings_pack::num_outgoing_ports, outgoingPortsMax() - outgoingPortsMin() + 1);
+
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    settingsPack.set_int(lt::settings_pack::upnp_lease_duration, UPnPLeaseDuration());
+#endif
 
     // Include overhead in transfer limits
     settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
@@ -3550,6 +3555,19 @@ void Session::setOutgoingPortsMax(const int max)
 {
     if (max != m_outgoingPortsMax) {
         m_outgoingPortsMax = max;
+        configureDeferred();
+    }
+}
+
+int Session::UPnPLeaseDuration() const
+{
+    return m_UPnPLeaseDuration;
+}
+
+void Session::setUPnPLeaseDuration(const int duration)
+{
+    if (duration != m_UPnPLeaseDuration) {
+        m_UPnPLeaseDuration = duration;
         configureDeferred();
     }
 }

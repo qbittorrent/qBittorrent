@@ -296,6 +296,8 @@ void AppController::preferencesAction()
     // Outgoing ports
     data["outgoing_ports_min"] = session->outgoingPortsMin();
     data["outgoing_ports_max"] = session->outgoingPortsMax();
+    // UPnP lease duration
+    data["upnp_lease_duration"] = session->UPnPLeaseDuration();
     // uTP-TCP mixed mode
     data["utp_tcp_mixed_mode"] = static_cast<int>(session->utpMixedMode());
     // Multiple connections per IP
@@ -717,6 +719,9 @@ void AppController::setPreferencesAction()
         session->setOutgoingPortsMin(it.value().toInt());
     if (hasKey("outgoing_ports_max"))
         session->setOutgoingPortsMax(it.value().toInt());
+    // UPnP lease duration
+    if (hasKey("upnp_lease_duration"))
+        session->setUPnPLeaseDuration(it.value().toInt());
     // uTP-TCP mixed mode
     if (hasKey("utp_tcp_mixed_mode"))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));

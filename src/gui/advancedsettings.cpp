@@ -103,6 +103,9 @@ enum AdvSettingsRows
     SOCKET_BACKLOG_SIZE,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    UPNP_LEASE_DURATION,
+#endif
     UTP_MIX_MODE,
     MULTI_CONNECTIONS_PER_IP,
     // embedded tracker
@@ -205,6 +208,10 @@ void AdvancedSettings::saveAdvancedSettings()
     // Outgoing ports
     session->setOutgoingPortsMin(m_spinBoxOutgoingPortsMin.value());
     session->setOutgoingPortsMax(m_spinBoxOutgoingPortsMax.value());
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    // UPnP lease duration
+    session->setUPnPLeaseDuration(m_spinBoxUPnPLeaseDuration.value());
+#endif
     // uTP-TCP mixed mode
     session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(m_comboBoxUtpMixedMode.currentIndex()));
     // multiple connections per IP
@@ -476,6 +483,15 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxOutgoingPortsMax.setMaximum(65535);
     m_spinBoxOutgoingPortsMax.setValue(session->outgoingPortsMax());
     addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &m_spinBoxOutgoingPortsMax);
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    // UPnP lease duration
+    m_spinBoxUPnPLeaseDuration.setMinimum(0);
+    m_spinBoxUPnPLeaseDuration.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxUPnPLeaseDuration.setValue(session->UPnPLeaseDuration());
+    m_spinBoxUPnPLeaseDuration.setSuffix(tr(" s", " seconds"));
+    addRow(UPNP_LEASE_DURATION, (tr("UPnP lease duration [0: Permanent lease]") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration", "(?)"))
+        , &m_spinBoxUPnPLeaseDuration);
+#endif
     // uTP-TCP mixed mode
     m_comboBoxUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
     m_comboBoxUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));

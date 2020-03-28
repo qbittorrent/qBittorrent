@@ -58,8 +58,8 @@ private:
     template <typename T> void addRow(int row, const QString &text, T *widget);
 
     QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage, m_spinBoxCache,
-             m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxListRefresh,
-             m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
+             m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxUPnPLeaseDuration,
+             m_spinBoxListRefresh, m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
              m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxStopTrackerTimeout, m_spinBoxSavePathHistoryLength;
     QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts, m_checkBoxSuperSeeding,
               m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
