@@ -53,6 +53,12 @@
 #include <QTimer>
 #include <QUuid>
 
+#ifdef Q_OS_WIN
+// TODO: Remove together with fixBrokenSavePath()
+#define NEED_TO_FIX_BROKEN_PATH
+#include <QSaveFile>
+#endif
+
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
@@ -141,16 +147,71 @@ namespace
         return true;
     }
 
+#ifdef NEED_TO_FIX_BROKEN_PATH
+    // TODO: Remove this after 4.2.5 && if at least one month has passed from v4.2.3
+    // Check the commit that introduced this function and identify all other pieces of code that
+    // need removal alongside this one.
+    void fixBrokenSavePath(QByteArray &data, lt::bdecode_node &root)
+    {
+        const QString path = fromLTString(root.dict_find_string_value("save_path"));
+        const int index = path.indexOf(QLatin1String("//"));
+        if (index < 1)
+            return;
+        const QString goodPath = path.mid(index).replace('/', '\\');
+        lt::entry entry {root};
+        entry["save_path"] = goodPath.toStdString();
+
+        const auto rawView = root.dict_find_string_value("info-hash");
+        const QByteArray rawHashView = QByteArray::fromRawData(rawView.data(), rawView.length());
+        const QString hexHash = QString::fromLatin1(rawHashView.toHex());
+
+        data.clear();
+        lt::bencode(std::back_inserter(data), entry);
+
+        const QString filename = QString("%1.fastresume").arg(hexHash);
+        const QDir resumeDataDir {Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER)};
+        const QString filepath = resumeDataDir.absoluteFilePath(filename);
+
+        QSaveFile file {filepath};
+        if (file.open(QIODevice::WriteOnly)) {
+            file.write(data);
+            if (!file.commit()) {
+                Logger::instance()->addMessage(QString("Couldn't save data in '%1'. Error: %2")
+                                               .arg(filepath, file.errorString()), Log::WARNING);
+            }
+        }
+
+        lt::error_code ec;
+#if (LIBTORRENT_VERSION_NUM < 10200)
+        lt::bdecode(data.constData(), (data.constData() + data.size()), root, ec);
+#else
+        root = lt::bdecode(data, ec);
+#endif
+    }
+#endif
+
+#ifdef NEED_TO_FIX_BROKEN_PATH
+    // TODO: Remove together with fixBrokenSavePath()
+    bool loadTorrentResumeData(QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
+#else
     bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
+#endif
     {
         lt::error_code ec;
 #if (LIBTORRENT_VERSION_NUM < 10200)
         lt::bdecode_node root;
         lt::bdecode(data.constData(), (data.constData() + data.size()), root, ec);
+#elif defined(NEED_TO_FIX_BROKEN_PATH)
+        // TODO: Remove together with fixBrokenSavePath()
+        lt::bdecode_node root = lt::bdecode(data, ec);
 #else
         const lt::bdecode_node root = lt::bdecode(data, ec);
 #endif
         if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
+
+#ifdef NEED_TO_FIX_BROKEN_PATH
+        fixBrokenSavePath(data, root);
+#endif
 
         torrentParams = CreateTorrentParams();
 
