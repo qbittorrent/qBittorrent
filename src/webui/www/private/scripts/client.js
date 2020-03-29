@@ -643,12 +643,23 @@ window.addEvent('load', function() {
             $('TotalQueuedSize').set('html', window.qBittorrent.Misc.friendlyUnit(serverState.total_queued_size, false));
         }
 
-        if (serverState.connection_status == "connected")
-            $('connectionStatus').src = 'images/skin/connected.svg';
-        else if (serverState.connection_status == "firewalled")
-            $('connectionStatus').src = 'images/skin/firewalled.svg';
-        else
-            $('connectionStatus').src = 'images/skin/disconnected.svg';
+        switch (serverState.connection_status) {
+        case 'connected': {
+                $('connectionStatus').src = 'images/skin/connected.svg';
+                $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
+            }
+            break;
+        case 'firewalled': {
+                $('connectionStatus').src = 'images/skin/firewalled.svg';
+                $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
+            }
+            break;
+        default: {
+                $('connectionStatus').src = 'images/skin/disconnected.svg';
+                $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';    
+            }
+            break;
+        }  
 
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
@@ -681,10 +692,14 @@ window.addEvent('load', function() {
     };
 
     const updateAltSpeedIcon = function(enabled) {
-        if (enabled)
-            $('alternativeSpeedLimits').src = "images/slow.svg";
-        else
-            $('alternativeSpeedLimits').src = "images/slow_off.svg";
+        if (enabled) {
+            $('alternativeSpeedLimits').src = 'images/slow.svg';
+            $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
+        }        
+        else {
+            $('alternativeSpeedLimits').src = 'images/slow_off.svg';
+            $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
+        }
     };
 
     $('alternativeSpeedLimits').addEvent('click', function() {
