@@ -2113,7 +2113,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
                 const int len = Utils::ByteArray::midView(patchedFastresumeData, start, (end - start)).toInt();
                 if (len > 0) {
                     const QByteArray relativePath = Utils::ByteArray::midView(patchedFastresumeData, (end + 1), len);
-                    const QByteArray absolutePath = Profile::instance()->fromPortablePath(Utils::Fs::toUniformPath(QString::fromUtf8(relativePath))).toUtf8();
+                    const QByteArray absolutePath = Profile::instance()->fromPortablePath(QString::fromUtf8(relativePath)).toUtf8();
                     if (relativePath != absolutePath) {
                         const QByteArray replaceBefore = "9:save_path" + QByteArray::number(len) + ':' + relativePath;
                         const QByteArray replaceAfter = "9:save_path" + QByteArray::number(absolutePath.size()) + ':' + absolutePath;
@@ -2285,7 +2285,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
         if (params.restored) {  // load from existing fastresume
             lt::error_code ec;
             p = lt::read_resume_data(fastresumeData, ec);
-            p.save_path = Profile::instance()->fromPortablePath(Utils::Fs::toUniformPath(fromLTString(p.save_path))).toStdString();
+            p.save_path = Profile::instance()->fromPortablePath(fromLTString(p.save_path)).toStdString();
         }
         else {  // new torrent
             if (!params.hasRootFolder)
