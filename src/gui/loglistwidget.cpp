@@ -68,6 +68,11 @@ void LogListWidget::showMsgTypes(const Log::MsgTypes &types)
     }
 }
 
+int LogListWidget::sizeHintForRow(const int) const
+{
+    return m_maxRowHeight;
+}
+
 void LogListWidget::keyPressEvent(QKeyEvent *event)
 {
     if (event->matches(QKeySequence::Copy))
@@ -82,9 +87,9 @@ void LogListWidget::appendLine(const QString &line, const Log::MsgType &type)
     auto *lbl = new QLabel(line);
     lbl->setTextFormat(Qt::RichText);
     lbl->setContentsMargins(4, 2, 4, 2);
+    m_maxRowHeight = std::max(m_maxRowHeight, lbl->height());
 
     auto *item = new QListWidgetItem;
-    item->setSizeHint(lbl->sizeHint());
     item->setData(Qt::UserRole, type);
     insertItem(0, item);
     setItemWidget(item, lbl);

@@ -53,8 +53,11 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
+    int sizeHintForRow(int row) const override;
+    
     const int m_maxLines;
     Log::MsgTypes m_types;
+    int m_maxRowHeight = -1;
 };
 
 #endif // LOGLISTWIDGET_H
