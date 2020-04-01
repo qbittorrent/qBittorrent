@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>要使用此功能，必須透過 HTTPS 存取 WebUI</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1106,10 +1138,6 @@
         <translation>當分享率達到</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">秒</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>當做種時間達到</translation>
     </message>
@@ -1226,10 +1254,6 @@
         <translation>固定通道</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">解析下載者的國家 (GeoIP)：</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>進階</translation>
     </message>
@@ -1282,31 +1306,31 @@
         <translation>工作階段逾時：</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">監聽 IPv6 位置（需要重新啟動）：</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>解析 peer 國家：</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>封鎖：</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>使用片段範圍關聯（需要 libtorrent &gt;= 1.2.2）：</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>停止追蹤器逾時：</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>連續失敗後封鎖客戶端：</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>啟用 cookie 安全旗標（需要 HTTPS）</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1369,10 +1393,6 @@
         <translation>檔案</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="vanished">國籍</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>永遠封鎖下載者</translation>
     </message>
@@ -1390,7 +1410,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>國家／區域</translation>
     </message>
 </context>
 <context>
@@ -1775,27 +1795,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>停止上傳 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>停止下載 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>停止下載 (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>停止 (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>停止上傳 (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>停止 (%1)</translation>
     </message>
 </context>
 <context>
@@ -2762,10 +2782,6 @@
         <translation>關於 qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="vanished">函式庫</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>授權條款</translation>
     </message>
@@ -2787,11 +2803,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>使用的軟體</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>由 DB-IP 提供，用於解析 peer 的所在國家的免費 IP 對國家 Lite 資料庫。此資料庫以創用 CC 姓名標示 4.0 國際授權條款授權</translation>
     </message>
 </context>
 <context>

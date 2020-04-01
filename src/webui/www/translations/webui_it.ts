@@ -529,6 +529,38 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>Per usare questa funzionalità la WebUI deve accedere via HTTPS</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1107,10 +1139,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Quando raggiungi rapporto</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">sec</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>Quando raggiungi tempo seeding</translation>
     </message>
@@ -1227,10 +1255,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Slot fissi</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Risolvi nazioni peer (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Avanzate</translation>
     </message>
@@ -1283,10 +1307,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Tiimeout sessione:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">Ascolta indirizzo IPv6 (richiede riavvio):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
         <translation type="unfinished" />
     </message>
@@ -1308,6 +1328,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1368,10 +1392,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>File</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="vanished">Paese</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -2761,10 +2781,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>About qBittorrent</source>
         <translation>Info su qBittorrent</translation>
-    </message>
-    <message>
-        <source>Libraries</source>
-        <translation type="vanished">Librerie</translation>
     </message>
     <message>
         <source>License</source>

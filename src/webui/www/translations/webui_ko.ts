@@ -394,7 +394,7 @@
     </message>
     <message>
         <source>Top Toolbar</source>
-        <translation>상단 도구모음</translation>
+        <translation>기본 도구모음</translation>
     </message>
     <message>
         <source>Status Bar</source>
@@ -528,6 +528,38 @@
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>이 기능을 사용하려면 WebUI를 HTTPS를 통해 접근해야 합니다.</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1107,10 +1139,6 @@
         <translation>배포 비율에 도달했을 때</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">초</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>배포 시간에 도달했을 때</translation>
     </message>
@@ -1228,10 +1256,6 @@
         <translation>슬롯 고정</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">피어 국가 표시(지역 IP)</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>고급</translation>
     </message>
@@ -1284,31 +1308,31 @@
         <translation>세션 만료시간:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">IPv6 주소 수신 대기(다시 시작):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>피어 국가 분석:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>금지 대상:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>조각 범위 선호도 사용 (libtorrent &gt;= 1.2.2 필요)</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>트래커 만료시간 중지</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>연속 실패 후 클라이언트 금지:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>쿠키 보안 상태 사용(HTTPS 필요)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1371,10 +1395,6 @@
         <translation>파일</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="vanished">국가</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>피어 영구 추방</translation>
     </message>
@@ -1392,7 +1412,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>국가/지역</translation>
     </message>
 </context>
 <context>
@@ -1777,27 +1797,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>정체된 올리기 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>정체된 받기 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>정체된 받기 (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>정체 (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>정체된 올리기 (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>정체 (%1)</translation>
     </message>
 </context>
 <context>
@@ -2139,7 +2159,7 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation>정체됨</translation>
+        <translation>정체</translation>
     </message>
 </context>
 <context>
@@ -2764,10 +2784,6 @@
         <translation>qBittorrent 소개</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="vanished">라이브러리</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>라이선스</translation>
     </message>
@@ -2789,11 +2805,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>사용된 소프트웨어</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>DB-IP의 IP/국가 변환 데이터베이스를 피어 국가 분석에 사용합니다. 이 DB는 CCA(Creative Commons Attribution) 4.0 국제 라이선스 하에서 사용됩니다.</translation>
     </message>
 </context>
 <context>

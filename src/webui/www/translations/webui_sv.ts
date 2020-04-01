@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>För att använda den här funktionen måste WebUI nås via HTTPS</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -983,7 +1015,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation>Börja inte hämtning automatiskt</translation>
+        <translation>Starta inte hämtningen automatiskt</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1106,10 +1138,6 @@
         <translation>När förhållandet når</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">sek</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>När distribueringstiden når</translation>
     </message>
@@ -1226,10 +1254,6 @@
         <translation>Fasta platser</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Slå upp nodernas länder (GeoIP)</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Avancerat</translation>
     </message>
@@ -1282,20 +1306,16 @@
         <translation>Sessionen löpte ut:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">Lyssna på IPv6-adress (kräver omstart):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Slå upp nodernas länder:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>förbud för:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Använd delutsträckningsaffinitet (kräver libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1303,10 +1323,14 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Förbud mot klient efter påföljande misslyckanden:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1369,10 +1393,6 @@
         <translation>Filer</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="vanished">Land</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Förbjud noden permanent</translation>
     </message>
@@ -1390,7 +1410,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Land/Region</translation>
     </message>
 </context>
 <context>
@@ -1775,27 +1795,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Avstannade sändningar (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Avstannade hämtningar (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Avstannade hämtningar (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Avstannade (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Avstannade sändningar (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Avstannade (%1)</translation>
     </message>
 </context>
 <context>
@@ -2762,10 +2782,6 @@
         <translation>Om qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="vanished">Bibliotek</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licens</translation>
     </message>
@@ -2787,11 +2803,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Mjukvara som används</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Den fria databasen IP to Country Lite av DB-IP används för att slå upp nodernas länder. Databasen är licensierad enligt Creative Commons Attribution 4.0 International License</translation>
     </message>
 </context>
 <context>

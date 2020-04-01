@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>Aby skorzystać z tej funkcji, interfejs WWW musi być dostępny przez HTTPS</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1106,10 +1138,6 @@
         <translation>Gdy współczynnik udziału osiągnie</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished"> s</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>Gdy czas seedowania osiągnie</translation>
     </message>
@@ -1226,10 +1254,6 @@
         <translation>Stałe sloty</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Odczytuj kraje partnerów (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Zaawansowane</translation>
     </message>
@@ -1282,31 +1306,31 @@
         <translation>Limit czasu sesji:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">Nasłuchuj adres IPv6 (wymaga ponownego uruchomienia):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Uzgodnij państwa partnera:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>ban na:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Użyj koligacji zakresu części (wymaga libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Limit czasu zatrzymania trackera:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Zbanuj klienta po kolejnych niepowodzeniach:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Włącz flagę bezpieczeństwa ciasteczka (wymaga HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1369,10 +1393,6 @@
         <translation>Pliki</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="vanished">Kraj</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Zbanuj partnera na stałe</translation>
     </message>
@@ -1390,7 +1410,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Kraj/Region</translation>
     </message>
 </context>
 <context>
@@ -1775,27 +1795,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Oczekujące wysyłanie (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Oczekujące pobieranie (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Oczekujące pobieranie (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Oczekujące (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Oczekujące wysyłanie (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Oczekujące (%1)</translation>
     </message>
 </context>
 <context>
@@ -2762,10 +2782,6 @@
         <translation>O qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="vanished">Biblioteki</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licencja</translation>
     </message>
@@ -2787,11 +2803,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Użyte oprogramowanie</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Bezpłatna baza danych IP to Country Lite firmy DB-IP służy do uzgadniania krajów partnerów. Baza danych jest licencjonowana na podstawie licencji Creative Commons Attribution 4.0 International</translation>
     </message>
 </context>
 <context>

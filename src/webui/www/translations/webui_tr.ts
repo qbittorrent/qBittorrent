@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>Bu özelliği kullanmak için Web Arayüzü'ne HTTPS üzerinden erişilmesi gerekir</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -995,7 +1027,7 @@
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation>Etkilenmiş torrent'lerin yerini değiştir</translation>
+        <translation>Etkilenen torrent'lerin yerini değiştir</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -1035,7 +1067,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Etkilenmiş torrent'leri Elle Kipine değiştir</translation>
+        <translation>Etkilenen torrent'leri Elle Kipine değiştir</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1104,10 +1136,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Oran şu değere ulaştığında</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation type="vanished">san</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1226,10 +1254,6 @@
         <translation>Sabit yuvalar</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Kişi ülkelerini çöz (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Gelişmiş</translation>
     </message>
@@ -1282,31 +1306,31 @@
         <translation>Oturum zaman aşımı:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">IPv6 adresinde dinle (yeniden başlatma gerektirir):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Kişi ülkelerini çöz:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>yasaklama süresi:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Parça kapsam benzeşimi kullan (libtorrent &gt;= 1.2.2 gerektirir):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>İzleyiciyi durdurma zaman aşımı:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Art arda şu kadar hatadan sonra istemciyi yasakla:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Tanımlama bilgisi Güvenli işaretini etkinleştir (HTTPS gerektirir)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1369,10 +1393,6 @@
         <translation>Dosyalar</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="vanished">Ülke</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Kişiyi kalıcı olarak yasakla</translation>
     </message>
@@ -1390,7 +1410,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Ülke/Bölge</translation>
     </message>
 </context>
 <context>
@@ -1719,7 +1739,7 @@
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Devam edildi (0)</translation>
+        <translation>Devam Edildi (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
@@ -1731,11 +1751,11 @@
     </message>
     <message>
         <source>Inactive (0)</source>
-        <translation>Etkin değil (0)</translation>
+        <translation>Etkin Değil (0)</translation>
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation>Hata oldu (0)</translation>
+        <translation>Hata Oldu (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -1759,7 +1779,7 @@
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Devam edildi (%1)</translation>
+        <translation>Devam Edildi (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -1767,35 +1787,35 @@
     </message>
     <message>
         <source>Inactive (%1)</source>
-        <translation>Etkin değil (%1)</translation>
+        <translation>Etkin Değil (%1)</translation>
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation>Hata oldu (%1)</translation>
+        <translation>Hata Oldu (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Durdurulan Gönderme (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Durdurulan İndirme (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Durdurulan İndirme (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Durduruldu (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Durdurulan Gönderme (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Durduruldu (%1)</translation>
     </message>
 </context>
 <context>
@@ -2105,7 +2125,7 @@
     </message>
     <message>
         <source>Errored</source>
-        <translation>Hata oldu</translation>
+        <translation>Hata Oldu</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2137,7 +2157,7 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Askıda</translation>
+        <translation>Durduruldu</translation>
     </message>
 </context>
 <context>
@@ -2374,7 +2394,7 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Aynı zamanda sabit diskteki dosyaları sil</translation>
+        <translation>Aynı zamanda sabit diskteki dosyaları da sil</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
@@ -2542,7 +2562,7 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation>Sadece etkinleştirilmişler</translation>
+        <translation>Sadece etkinleştirilenler</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2762,10 +2782,6 @@
         <translation>qBittorrent Hakkında</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="vanished">Kütüphaneler</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Lisans</translation>
     </message>
@@ -2787,11 +2803,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Kullanılan Yazılımlar</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>DB-IP tarafından sunulan ücretsiz IP to Country Lite veritabanı kişilerin ülkelerinin çözülmesi için kullanılır. Veritabanı Creative Commons Attribution 4.0 Uluslararası Lisansı altında lisanslanmıştır</translation>
     </message>
 </context>
 <context>
