@@ -33,12 +33,38 @@
  * Utility functions related to file system.
  */
 
+#include <iterator>
+
+#include <QByteArray>
 #include <QString>
+
+class QIODevice;
 
 namespace Utils
 {
     namespace Fs
     {
+        // A wrapper class that satisfy LegacyOutputIterator requirement
+        class FileOutputIterator
+            : public std::iterator<std::output_iterator_tag, void, void, void, void>
+        {
+        public:
+            explicit FileOutputIterator(QIODevice &device, const int bufferSize = (4 * 1024));
+            ~FileOutputIterator();
+
+            // mimic std::ostream_iterator behavior
+            FileOutputIterator &operator=(const char c);
+            // TODO: make these `constexpr` in C++17
+            FileOutputIterator &operator*();
+            FileOutputIterator &operator++();
+            FileOutputIterator &operator++(int);
+
+        private:
+            QIODevice &m_device;
+            QByteArray m_buffer;
+            const int m_bufferSize;
+        };
+
         /**
          * Converts a path to a string suitable for display.
          * This function makes sure the directory separator used is consistent

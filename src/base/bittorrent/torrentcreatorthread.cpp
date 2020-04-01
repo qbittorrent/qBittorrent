@@ -182,20 +182,10 @@ void TorrentCreatorThread::run()
         if (isInterruptionRequested()) return;
 
         // create the torrent
-        std::ofstream outfile(
-#ifdef _MSC_VER
-            Utils::Fs::toNativePath(m_params.savePath).toStdWString().c_str()
-#else
-            Utils::Fs::toNativePath(m_params.savePath).toUtf8().constData()
-#endif
-            , (std::ios_base::out | std::ios_base::binary | std::ios_base::trunc));
-        if (outfile.fail())
+        QFile outfile {m_params.savePath};
+        if (!outfile.open(QIODevice::WriteOnly))
             throw std::runtime_error(tr("create new torrent file failed").toStdString());
-
-        if (isInterruptionRequested()) return;
-
-        lt::bencode(std::ostream_iterator<char>(outfile), entry);
-        outfile.close();
+        lt::bencode(Utils::Fs::FileOutputIterator {outfile}, entry);
 
         emit updateProgress(100);
         emit creationSuccess(m_params.savePath, parentPath);

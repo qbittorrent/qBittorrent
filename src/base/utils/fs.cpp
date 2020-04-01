@@ -54,11 +54,50 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
+#include <QIODevice>
 #include <QStorageInfo>
 #include <QRegularExpression>
 
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
+
+Utils::Fs::FileOutputIterator::FileOutputIterator(QIODevice &device, const int bufferSize)
+    : m_device {device}
+    , m_bufferSize {bufferSize}
+{
+    m_buffer.reserve(m_bufferSize);
+}
+
+Utils::Fs::FileOutputIterator::~FileOutputIterator()
+{
+    m_device.write(m_buffer);
+    m_buffer.clear();
+}
+
+Utils::Fs::FileOutputIterator &Utils::Fs::FileOutputIterator::operator=(const char c)
+{
+    m_buffer.append(c);
+    if (m_buffer.size() >= m_bufferSize) {
+        m_device.write(m_buffer);
+        m_buffer.clear();
+    }
+    return *this;
+}
+
+Utils::Fs::FileOutputIterator &Utils::Fs::FileOutputIterator::operator*()
+{
+    return *this;
+}
+
+Utils::Fs::FileOutputIterator &Utils::Fs::FileOutputIterator::operator++()
+{
+    return *this;
+}
+
+Utils::Fs::FileOutputIterator &Utils::Fs::FileOutputIterator::operator++(int)
+{
+    return *this;
+}
 
 QString Utils::Fs::toNativePath(const QString &path)
 {

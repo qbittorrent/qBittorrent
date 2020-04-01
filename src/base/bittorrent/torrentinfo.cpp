@@ -166,13 +166,10 @@ void TorrentInfo::saveToFile(const QString &path) const
 #endif
     const lt::entry torrentEntry = torrentCreator.generate();
 
-    QByteArray out;
-    out.reserve(1024 * 1024);  // most torrent file sizes are under 1 MB
-    lt::bencode(std::back_inserter(out), torrentEntry);
-
-    QFile torrentFile{path};
-    if (!torrentFile.open(QIODevice::WriteOnly) || (torrentFile.write(out) != out.size()))
+    QFile torrentFile {path};
+    if (!torrentFile.open(QIODevice::WriteOnly))
         throw RuntimeError {torrentFile.errorString()};
+    lt::bencode(Utils::Fs::FileOutputIterator {torrentFile}, torrentEntry);
 }
 
 bool TorrentInfo::isValid() const
