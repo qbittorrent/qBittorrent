@@ -2159,14 +2159,8 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
 
     if (!fromMagnetUri) {
         if (params.restored) {  // load from existing fastresume
-            // Make sure the torrent will be initially checked and then paused
-            // to perform some service jobs on it. We will start it if needed.
-            // (Workaround to easily support libtorrent-1.1
-            QByteArray patchedFastresumeData = fastresumeData;
-            patchedFastresumeData.replace("6:pausedi0e", "6:pausedi1e");
-            patchedFastresumeData.replace("12:auto_managedi0e", "12:auto_managedi1e");
-
             // converting relative save_path to absolute
+            QByteArray patchedFastresumeData = fastresumeData;
             int start = patchedFastresumeData.indexOf("9:save_path");
             if (start > -1) {
                 start += 11;
