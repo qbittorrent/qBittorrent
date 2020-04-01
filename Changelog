@@ -1,3 +1,20 @@
+Wed Apr 01 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.3
+    - FEATURE: Add logging for SOCKS5 proxy errors (Chocobo1)
+    - FEATURE: Add UPnP lease duration advanced option (NotTsunami)
+    - BUGFIX: Allow to translate error messages (Chocobo1)
+    - BUGFIX: Don't round scaling factor (Nick Korotysh)
+    - BUGFIX: Save log file in UTF-8 encoding (Chocobo1)
+    - BUGFIX: Avoid log file excessive flushing (Chocobo1)
+    - BUGFIX: Fix regression when fastresume contains network path (Tester798)
+    - BUGFIX: Fix broken UNC paths in fastresumes on Windows (sledgehammer999)
+    - BUGFIX: Prevent multiple instances for the same app config (glassez)
+    - BUGFIX: Fix unexpected torrent resume after app restart with libtorrent 1.1.x (glassez)
+    - WEBUI: Add alt and title tags for WebUI footer (LameLemon)
+    - WINDOWS: Installer: Update Finnish translation (Roope Jukkara)
+    - WINDOWS: Installer: Update Japanese translation (maboroshin)
+    - WINDOWS: Installer: Update Turkish translation (Burak Yavuz)
+    - WINDOWS: Installer: Update Russian translation (Andrei Stepanov)
+
 Tue Mar 24 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.2
     - FEATURE: Allow transfer list text color changes through QSS (Prince Gupta)
     - FEATURE: Option to show console when external program is run (sledgehammer999)
