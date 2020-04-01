@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>Para utilizar este recurso, a interface web necessita de ser acedida através de HTTPS</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1106,10 +1138,6 @@
         <translation>Quando o rácio atingir</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">seg</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>Quando o tempo a semear atingir</translation>
     </message>
@@ -1226,10 +1254,6 @@
         <translation>Slots corrigidos</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Resolver fontes dos países (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Avançado</translation>
     </message>
@@ -1282,10 +1306,6 @@
         <translation>Terminado o tempo da sessão:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">Receber de endereços IPv6 (necessita de reiniciar):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
         <translation type="unfinished" />
     </message>
@@ -1307,6 +1327,10 @@
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1367,10 +1391,6 @@
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>Ficheiros</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="vanished">País</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -2760,10 +2780,6 @@
     <message>
         <source>About qBittorrent</source>
         <translation>Acerca do qBittorrent</translation>
-    </message>
-    <message>
-        <source>Libraries</source>
-        <translation type="vanished">Bibliotecas</translation>
     </message>
     <message>
         <source>License</source>

@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>Ennek a szolgáltatásnak a használatához a WebUI-t HTTPS-en keresztül kell elérni</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1106,10 +1138,6 @@
         <translation>Amikor az arányt eléri</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">mp</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>Amikor a megosztási időt eléri</translation>
     </message>
@@ -1226,10 +1254,6 @@
         <translation>Rögzített szálak / slotok</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Ügyfél országának megjelenítése</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Speciális beállítások</translation>
     </message>
@@ -1282,12 +1306,8 @@
         <translation>Munkamenet időtúllépés:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">Figyelés IPv6 címen (újraindítást igényel):</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Ügyfél országának megjelenítése:</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1307,6 +1327,10 @@
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1367,10 +1391,6 @@
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>Fájlok</translation>
-    </message>
-    <message>
-        <source>Country</source>
-        <translation type="vanished">Ország</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -2760,10 +2780,6 @@
     <message>
         <source>About qBittorrent</source>
         <translation>A qBittorrent névjegye</translation>
-    </message>
-    <message>
-        <source>Libraries</source>
-        <translation type="vanished">Könyvtárak</translation>
     </message>
     <message>
         <source>License</source>

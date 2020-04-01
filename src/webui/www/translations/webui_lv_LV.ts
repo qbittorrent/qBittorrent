@@ -89,19 +89,19 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Globālajam augšupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Galvenajam atļautajam kopējam augšupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Globālajam lejupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Galvenajam atļautajam kopējam lejupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam. </translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatīvajam augšupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Alternatīvajam atļautajam kopējam augšupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatīvajam lejupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Alternatīvajam atļautajam kopējam lejupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Globālajam augšupielādes slotu skaita limitam ir jābūt lielākam par 0 vai arī atslēgtam.</translation>
+        <translation>Atļautajam kopējam augšupielādes slotu skaitam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -453,11 +453,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Globālā augšupielādes ātruma robeža</translation>
+        <translation>Atļautais kopējais augšupielādes ātrums</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Globālā lejupielādes ātruma robeža</translation>
+        <translation>Atļautais kopējais lejupielādes ātrums</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Alternatīvie ātruma limiti</translation>
+        <translation>Alternatīvie atļautie ātrumi</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -528,6 +528,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation>Lai izmantotu šo iespēju, WebUI ir jāatver caur HTTPS</translation>
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -577,7 +609,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Uzstādīt Alternatīvo ielādes ātruma ierobežojumu pielietošanu</translation>
+        <translation>Uzstādīt laiku Alternatīvo atļauto ātrumu pielietošanai</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -757,7 +789,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation>Globālā ielādes ātruma ierobežojumi</translation>
+        <translation>Galvenie atļautie kopējie ātrumi</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -769,7 +801,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>Alternatīvie ātruma ierobežojumi</translation>
+        <translation>Alternatīvie atļautie kopējie ātrumi</translation>
     </message>
     <message>
         <source>From:</source>
@@ -1106,10 +1138,6 @@
         <translation>Kad reitings sasniedz</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation type="vanished">sek</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>Kad augšupielādes laiks sasniedz</translation>
     </message>
@@ -1226,10 +1254,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="vanished">Rādīt koplietotāju valstis (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Papildus</translation>
     </message>
@@ -1282,16 +1306,12 @@
         <translation>Sesijas noildze:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation type="vanished">Klausīties IPv6 adresē (nepieciešams restarts)</translation>
-    </message>
-    <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Rādīt koplietotāju valstis:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>liegt piekļuvi uz:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
@@ -1303,10 +1323,14 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Liegt piekļuvi pēc atkārtotiem mēģinājumiem:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Ieslēgt sīkdatņu Secure Flag (nepieciešams HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1369,10 +1393,6 @@
         <translation>Faili</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation type="vanished">Valsts</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Nobloķēt koplietotāju</translation>
     </message>
@@ -1390,7 +1410,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Valsts/Apgabals</translation>
     </message>
 </context>
 <context>
@@ -1775,27 +1795,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Apstājušās Augšupielādes (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Apstājušās Lejupielādes (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Apstājušās Lejupielādes (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Apstājušies (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Apstājušās Augšupielādes (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Apstājušies (%1)</translation>
     </message>
 </context>
 <context>
@@ -2344,7 +2364,7 @@
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation>Lietot globālos uzstādījumus</translation>
+        <translation>Lietot galvenos uzstādījumus</translation>
     </message>
     <message>
         <source>Set no share limit</source>
@@ -2762,10 +2782,6 @@
         <translation>Par qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="vanished">Bibliotēkas</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licence</translation>
     </message>
@@ -2787,11 +2803,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Programmatūra</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Bezmaksas "Valsts pēc IP" kompaktā datubāze (IP to Country Lite) no DB-IP tiek izmantota, lai pēc IP adresēm noteiktu un parādītu jums koplietotāju valstis. Datubāze ir licencēta zem Attiecinājums 4.0 Starptautisks (CC BY 4.0)</translation>
     </message>
 </context>
 <context>
