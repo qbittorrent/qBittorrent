@@ -73,6 +73,7 @@ HEADERS += \
     $$PWD/utils/foreignapps.h \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
+    $$PWD/utils/io.h \
     $$PWD/utils/misc.h \
     $$PWD/utils/net.h \
     $$PWD/utils/password.h \
@@ -143,6 +144,7 @@ SOURCES += \
     $$PWD/utils/foreignapps.cpp \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \
+    $$PWD/utils/io.cpp \
     $$PWD/utils/misc.cpp \
     $$PWD/utils/net.cpp \
     $$PWD/utils/password.cpp \

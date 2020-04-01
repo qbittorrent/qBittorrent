@@ -58,6 +58,7 @@ utils/bytearray.h
 utils/foreignapps.h
 utils/fs.h
 utils/gzip.h
+utils/io.h
 utils/misc.h
 utils/net.h
 utils/password.h
@@ -133,6 +134,7 @@ utils/bytearray.cpp
 utils/foreignapps.cpp
 utils/fs.cpp
 utils/gzip.cpp
+utils/io.cpp
 utils/misc.cpp
 utils/net.cpp
 utils/password.cpp
