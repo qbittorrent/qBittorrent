@@ -35,6 +35,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
+#include <QMutex>
+#include <QMutexLocker>
 #include <QNetworkCookie>
 #include <QRegularExpression>
 #include <QUrl>
@@ -208,6 +210,14 @@ namespace
         return infoHashes;
     }
 }
+
+TorrentsController::TorrentsController(ISessionManager *sessionManager, QObject *parent)
+    : APIController(sessionManager, parent)
+    , m_torrentCreatorStatus()
+    , m_torrentCreatorStatusMutex()
+{}
+
+TorrentsController::~TorrentsController() {}
 
 // Returns all the torrents in JSON format.
 // The return value is a JSON-formatted list of dictionaries.
@@ -532,6 +542,69 @@ void TorrentsController::pieceStatesAction()
     }
 
     setResult(pieceStates);
+}
+
+void TorrentsController::createAction()
+{
+    const bool isPrivate = parseBool(params()["isPrivate"], false);
+    const bool isAlignmentOptimized = parseBool(params()["isAlignmentOptimied"], true);
+    const int pieceSize = params()["pieceSize"].toInt();
+    const int paddedFileSizeLimit = params()["paddedFileSizeLimit"].toInt();
+    const QString inputPath = params()["inputPath"].trimmed();
+    const QString savePath = params()["savePath"].trimmed();
+    const QString comment = params()["comment"];
+    const QString source = params()["source"];
+    const QStringList trackers = params()["trackers"].trimmed().split('\n');
+    const QStringList urlSeeds = params()["urlSeeds"].trimmed().split('\n', QString::SkipEmptyParts);
+
+    BitTorrent::TorrentCreatorParams params {
+        isPrivate
+        , isAlignmentOptimized
+        , pieceSize
+        , paddedFileSizeLimit
+        , inputPath
+        , savePath
+        , comment
+        , source
+        , trackers
+        , urlSeeds
+    };
+
+    // run the creator thread
+    int creatorId = m_torrentCreatorCount++;
+    APITorrentCreatorThread *thread = new APITorrentCreatorThread(creatorId, this);
+    connect(thread, &APITorrentCreatorThread::creationUpdate, this, &TorrentsController::torrentCreationUpdated);
+    thread->create(params);
+
+    const QJsonObject result = {{"id", creatorId}};
+    setResult(result);
+}
+
+void TorrentsController::creatorStatusAction()
+{
+    requireParams({"id"});
+    int creatorId = params()["id"].toInt();
+    QMutexLocker locker(m_torrentCreatorStatusMutex);
+    if (!m_torrentCreatorStatus.contains(creatorId)) {
+        throw APIError(APIErrorType::NotFound);
+    }
+    struct TorrentCreatorStatus status = m_torrentCreatorStatus.value(creatorId);
+    locker.unlock();
+    const QJsonObject result = {
+        {"success", status.success}
+        , {"failure", status.failure}
+        , {"progress", status.progress}
+        , {"path", status.path}
+        , {"branchPath", status.branchPath}
+        , {"msg", status.msg}
+    };
+    setResult(result);
+}
+
+void TorrentsController::torrentCreationUpdated(int creatorId, const struct TorrentCreatorStatus &status)
+{
+    QMutexLocker locker(m_torrentCreatorStatusMutex);
+    m_torrentCreatorStatus.insert(creatorId, status);
 }
 
 void TorrentsController::addAction()
