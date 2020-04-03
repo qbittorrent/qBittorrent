@@ -309,12 +309,9 @@ void Application::processMessage(const QString &message)
 void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) const
 {
     QString program = Preferences::instance()->getAutoRunProgram().trimmed();
-    program.replace("%N", torrent->name());
-    program.replace("%L", torrent->category());
 
     QStringList tags = torrent->tags().values();
     std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
-    program.replace("%G", tags.join(','));
 
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString
@@ -323,18 +320,80 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
             return str.mid(0, (str.length() -1));
         return str;
     };
+    program.replace("%N", torrent->name());
+    program.replace("%L", torrent->category());
+    program.replace("%G", tags.join(','));
     program.replace("%F", chopPathSep(Utils::Fs::toNativePath(torrent->contentPath())));
     program.replace("%R", chopPathSep(Utils::Fs::toNativePath(torrent->rootPath())));
     program.replace("%D", chopPathSep(Utils::Fs::toNativePath(torrent->savePath())));
-#else
-    program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
-    program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
-    program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
-#endif
     program.replace("%C", QString::number(torrent->filesCount()));
     program.replace("%Z", QString::number(torrent->totalSize()));
     program.replace("%T", torrent->currentTracker());
     program.replace("%I", torrent->hash());
+#else
+    const auto quoteString = [](const QString &str, bool needQuote) -> QString
+    {
+        QString result = str;
+        if (needQuote)
+            result.replace(QLatin1String("\""), QLatin1String("\"\"\""));
+        return result;
+    };
+    QString p = "";
+    bool inQuote = false;
+    int last = 0;
+    for (int i = 0, len = program.size() - 1; i <= len; ++i) {
+        switch (program[i].toLatin1()) {
+        case '"':
+            if (inQuote && i + 2 <= len && program[i+1] == '"' && program[i+2] == '"')
+                i += 2;
+            else
+                inQuote = !inQuote;
+            break;
+        case '%':
+            if (i < len) {
+                p.append(program.midRef(last, i - last));
+                last = i + 2;
+                switch (program[++i].toLatin1()) {
+                case 'N':
+                    p.append(quoteString(torrent->name(), inQuote));
+                    break;
+                case 'L':
+                    p.append(quoteString(torrent->category(), inQuote));
+                    break;
+                case 'G':
+                    p.append(quoteString(tags.join(','), inQuote));
+                    break;
+                case 'F':
+                    p.append(quoteString(Utils::Fs::toNativePath(torrent->contentPath()), inQuote));
+                    break;
+                case 'R':
+                    p.append(quoteString(Utils::Fs::toNativePath(torrent->rootPath()), inQuote));
+                    break;
+                case 'D':
+                    p.append(quoteString(Utils::Fs::toNativePath(torrent->savePath()), inQuote));
+                    break;
+                case 'C':
+                    p.append(quoteString(QString::number(torrent->filesCount()), inQuote));
+                    break;
+                case 'Z':
+                    p.append(quoteString(QString::number(torrent->totalSize()), inQuote));
+                    break;
+                case 'T':
+                    p.append(quoteString(torrent->currentTracker(), inQuote));
+                    break;
+                case 'I':
+                    p.append(quoteString(torrent->hash(), inQuote));
+                    break;
+                default:
+                    last = --i;
+                }
+            }
+            break;
+        }
+    }
+    p.append(program.midRef(last));
+    program = p;
+#endif
 
     Logger *logger = Logger::instance();
     logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
