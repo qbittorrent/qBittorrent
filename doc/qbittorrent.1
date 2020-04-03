@@ -74,7 +74,6 @@ Some \f[I]OPTIONS\f[R] have both a long form
 (\f[B]\f[CB]--option\f[B]\f[R]) and a short form
 (\f[B]\f[CB]-o\f[B]\f[R]), others only have one of the two.
 .PP
-TODO: is the following right?
 \f[I]OPTIONS\f[R] can be passed in from several sources.
 If the same option is specified in multiple sources, the last one takes
 precedence, in the following order:
@@ -84,6 +83,11 @@ The main configuration file (see the \f[I]FILES\f[R] section)
 \f[I]ENVIRONMENT\f[R] variables
 .IP "3." 3
 Command-line \f[I]OPTIONS\f[R]
+.PP
+\f[B]IMPORTANT NOTE:\f[R] Settings changed via command-line
+\f[I]OPTIONS\f[R] or \f[I]ENVIRONMENT\f[R] variables not only
+\f[B]override\f[R] their corresponding values in the configuration file,
+they \f[B]also overwrite\f[R] them.
 .PP
 \f[I]ENVIRONMENT\f[R] variables and command-line \f[I]OPTIONS\f[R] can
 currently only override a small subset of all the available settings

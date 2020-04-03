@@ -41,13 +41,14 @@ In addition, the "Add New Torrent" dialog can be entirely skipped, to just autom
 
 Some _OPTIONS_ have both a long form (**`--option`**) and a short form (**`-o`**), others only have one of the two.
 
-TODO: is the following right?
 _OPTIONS_ can be passed in from several sources.
 If the same option is specified in multiple sources, the last one takes precedence, in the following order:
 
 1. The main configuration file (see the _FILES_ section)
 2. _ENVIRONMENT_ variables
 3. Command-line _OPTIONS_
+
+**IMPORTANT NOTE:** Settings changed via command-line _OPTIONS_ or _ENVIRONMENT_ variables not only **override** their corresponding values in the configuration file, they **also overwrite** them.
 
 _ENVIRONMENT_ variables and command-line _OPTIONS_ can currently only override a small subset of all the available settings that can be configured in the main configuration file.
 
