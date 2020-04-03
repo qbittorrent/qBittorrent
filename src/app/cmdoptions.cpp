@@ -574,7 +574,7 @@ QString makeUsage(const QString &prgName)
                                 "its environment variable name is 'QBT_PARAMETER_NAME' "
                                 "(in upper case, '-' replaced with '_'). To pass flag values, "
                                 "set the variable to '1' or 'TRUE'. For example, "
-                                "to prevent added torrents from auto-starting: "), 0) << "\n"
+                                "to prevent added torrents from auto-starting: "), 0) << '\n'
             << QLatin1String("QBT_ADD_PAUSED=1 ") << prgName << '\n'
         << wrapText(QObject::tr("Command line parameters "
                                 "take precedence over environment variables"), 0)
