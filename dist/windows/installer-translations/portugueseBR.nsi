@@ -15,7 +15,7 @@ LangString inst_magnet ${LANG_PORTUGUESEBR} "Abrir links magnéticos com qBittor
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_PORTUGUESEBR} "Adicionar regra no firewall do Windows"
 ;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
-LangString inst_pathlimit ${LANG_PORTUGUESEBR} "Desativar limite de caracteres em caminhos do Windows (limite de 260 caracteres, requer Windows 10 1067 ou superior)"
+LangString inst_pathlimit ${LANG_PORTUGUESEBR} "Desativar limite de caracteres em caminhos do Windows (limite MAX_PATH de 260 caracteres, requer Windows 10 1067 ou superior)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_PORTUGUESEBR} "Adicionando regra no firewall do Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
