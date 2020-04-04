@@ -3989,25 +3989,20 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const lt::entry &data)
+void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const std::shared_ptr<lt::entry> &data)
 {
     --m_numResumeData;
 
     // Separated thread is used for the blocking IO which results in slow processing of many torrents.
-    // Encoding data in parallel while doing IO saves time. Copying lt::entry objects around
-    // isn't cheap too.
-
-    QByteArray out;
-    out.reserve(1024 * 1024);  // most fastresume file sizes are under 1 MB
-    lt::bencode(std::back_inserter(out), data);
+    // Copying lt::entry objects around isn't cheap.
 
     const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataSavingManager
-        , [this, filename, out]() { m_resumeDataSavingManager->save(filename, out); });
+        , [this, filename, data]() { m_resumeDataSavingManager->save(filename, data); });
 #else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save",
-                              Q_ARG(QString, filename), Q_ARG(QByteArray, out));
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
+        , Q_ARG(QString, filename), Q_ARG(std::shared_ptr<lt::entry>, data));
 #endif
 }
 
