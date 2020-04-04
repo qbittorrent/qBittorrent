@@ -16,7 +16,7 @@
 **qBittorrent** is an advanced BitTorrent client written in C++ / Qt, using the **libtorrent-rasterbar** library by Arvid Norberg as the backend.
 qBittorrent provides a familiar, easy-to-use GUI, and is fast, stable and light.
 
-qBittorrent supports several important modern features such as UPnP port forwarding / NAT-PMP, DHT (Mainline) and magnet URI (also known as magnet link) support, IPv6, uTP, PeX, LSD, UDP tracker protocol support and more.
+qBittorrent supports several important modern features and BEPs (BitTorrent Enhancement Proposals) such as UPnP port forwarding / NAT-PMP, DHT (Mainline) and magnet URI (also known as magnet link) support, IPv6, uTP, PeX, LSD, UDP tracker protocol support and more.
 Refer to the **libtorrent-rasterbar** documentation for the full list of features and supported BEPs.
 
 In addition, qBittorrent supports Unicode and it provides a good integrated Python-based torrent search engine, an RSS downloader, a torrent creation GUI, a basic embedded tracker to facilitate sharing torrents with friends, and an HTTP API/Web UI combo for remote access/administration.
@@ -25,8 +25,8 @@ When qBittorrent is started from a terminal, its **stdout** and **stderr** will 
 
 If no arguments are specified, qBittorrent simply starts and shows the GUI.
 
-If either **-h** or **-v** is specified, the relevant information is printed to the terminal and qBittorrent exits.
-Passing any other option alongside **-h** or **-v** is not allowed.
+If either **`-h`** or **`-v`** is specified, the relevant information is printed to the terminal and qBittorrent exits.
+Passing any other option alongside **`-h`** or **`-v`** is not allowed.
 
 _URI_ is a string pointing to a BitTorrent metainfo file (a "torrent").
 It may be a path to a file on disk or an online resource accessible through a supported URI scheme such as **magnet**, **HTTP**, or **HTTPS**.
@@ -52,7 +52,7 @@ If the same option is specified in multiple sources, the last one takes preceden
 
 _ENVIRONMENT_ variables and command-line _OPTIONS_ can currently only override a small subset of all the available settings that can be configured in the main configuration file.
 
-qBittorrent can be cleanly terminated by fully closing the GUI (including the system tray, if that option is enabled) or by sending the **SIGINT** or **SIGTERM** signals.
+qBittorrent can be cleanly terminated by fully closing the GUI (including the system tray, if that option is enabled) or by sending the **SIGINT** or **SIGTERM** signals to its process.
 
 # OPTIONS
 

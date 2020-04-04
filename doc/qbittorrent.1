@@ -20,10 +20,10 @@ the backend.
 qBittorrent provides a familiar, easy-to-use GUI, and is fast, stable
 and light.
 .PP
-qBittorrent supports several important modern features such as UPnP port
-forwarding / NAT-PMP, DHT (Mainline) and magnet URI (also known as
-magnet link) support, IPv6, uTP, PeX, LSD, UDP tracker protocol support
-and more.
+qBittorrent supports several important modern features and BEPs
+(BitTorrent Enhancement Proposals) such as UPnP port forwarding /
+NAT-PMP, DHT (Mainline) and magnet URI (also known as magnet link)
+support, IPv6, uTP, PeX, LSD, UDP tracker protocol support and more.
 Refer to the \f[B]libtorrent-rasterbar\f[R] documentation for the full
 list of features and supported BEPs.
 .PP
@@ -39,10 +39,11 @@ When qBittorrent is started from a terminal, its \f[B]stdout\f[R] and
 If no arguments are specified, qBittorrent simply starts and shows the
 GUI.
 .PP
-If either \f[B]-h\f[R] or \f[B]-v\f[R] is specified, the relevant
-information is printed to the terminal and qBittorrent exits.
-Passing any other option alongside \f[B]-h\f[R] or \f[B]-v\f[R] is not
-allowed.
+If either \f[B]\f[CB]-h\f[B]\f[R] or \f[B]\f[CB]-v\f[B]\f[R] is
+specified, the relevant information is printed to the terminal and
+qBittorrent exits.
+Passing any other option alongside \f[B]\f[CB]-h\f[B]\f[R] or
+\f[B]\f[CB]-v\f[B]\f[R] is not allowed.
 .PP
 \f[I]URI\f[R] is a string pointing to a BitTorrent metainfo file (a
 \[lq]torrent\[rq]).
@@ -95,7 +96,7 @@ that can be configured in the main configuration file.
 .PP
 qBittorrent can be cleanly terminated by fully closing the GUI
 (including the system tray, if that option is enabled) or by sending the
-\f[B]SIGINT\f[R] or \f[B]SIGTERM\f[R] signals.
+\f[B]SIGINT\f[R] or \f[B]SIGTERM\f[R] signals to its process.
 .SH OPTIONS
 .SS Generic program information
 .TP
