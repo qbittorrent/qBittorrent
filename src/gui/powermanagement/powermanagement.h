@@ -52,10 +52,10 @@ public:
   void setActivityState(bool busy);
 
 private:
-  bool m_busy;
-
   void setBusy();
   void setIdle();
+
+  bool m_busy = false;
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
   PowerManagementInhibitor *m_inhibitor;
