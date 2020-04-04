@@ -28,6 +28,10 @@
 
 #pragma once
 
+#include <memory>
+
+#include <libtorrent/fwd.hpp>
+
 #include <QDir>
 #include <QObject>
 
@@ -43,8 +47,9 @@ public:
 
 public slots:
     void save(const QString &filename, const QByteArray &data) const;
+    void save(const QString &filename, const std::shared_ptr<lt::entry> &data) const;
     void remove(const QString &filename) const;
 
 private:
-    QDir m_resumeDataDir;
+    const QDir m_resumeDataDir;
 };

@@ -28,11 +28,15 @@
 
 #include "resumedatasavingmanager.h"
 
+#include <libtorrent/bencode.hpp>
+#include <libtorrent/entry.hpp>
+
 #include <QByteArray>
 #include <QSaveFile>
 
 #include "base/logger.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 
 ResumeDataSavingManager::ResumeDataSavingManager(const QString &resumeFolderPath)
     : m_resumeDataDir(resumeFolderPath)
@@ -45,6 +49,24 @@ void ResumeDataSavingManager::save(const QString &filename, const QByteArray &da
 
     QSaveFile file {filepath};
     if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit()) {
+        LogMsg(tr("Couldn't save data to '%1'. Error: %2")
+            .arg(filepath, file.errorString()), Log::CRITICAL);
+    }
+}
+
+void ResumeDataSavingManager::save(const QString &filename, const std::shared_ptr<lt::entry> &data) const
+{
+    const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
+
+    QSaveFile file {filepath};
+    if (!file.open(QIODevice::WriteOnly)) {
+        LogMsg(tr("Couldn't save data to '%1'. Error: %2")
+            .arg(filepath, file.errorString()), Log::CRITICAL);
+        return;
+    }
+
+    lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, *data);
+    if ((file.error() != QFileDevice::NoError) || !file.commit()) {
         LogMsg(tr("Couldn't save data to '%1'. Error: %2")
             .arg(filepath, file.errorString()), Log::CRITICAL);
     }

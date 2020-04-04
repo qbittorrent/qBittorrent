@@ -30,6 +30,7 @@
 #ifndef BITTORRENT_SESSION_H
 #define BITTORRENT_SESSION_H
 
+#include <memory>
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
@@ -459,7 +460,7 @@ namespace BitTorrent
         void handleTorrentTrackersChanged(TorrentHandle *const torrent);
         void handleTorrentUrlSeedsAdded(TorrentHandle *const torrent, const QVector<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentHandle *const torrent, const QVector<QUrl> &urlSeeds);
-        void handleTorrentResumeDataReady(TorrentHandle *const torrent, const lt::entry &data);
+        void handleTorrentResumeDataReady(TorrentHandle *const torrent, const std::shared_ptr<lt::entry> &data);
         void handleTorrentResumeDataFailed(TorrentHandle *const torrent);
         void handleTorrentTrackerReply(TorrentHandle *const torrent, const QString &trackerUrl);
         void handleTorrentTrackerWarning(TorrentHandle *const torrent, const QString &trackerUrl);

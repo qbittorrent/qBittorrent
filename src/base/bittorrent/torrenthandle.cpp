@@ -30,6 +30,7 @@
 #include "torrenthandle.h"
 
 #include <algorithm>
+#include <memory>
 #include <type_traits>
 
 #ifdef Q_OS_WIN
@@ -1647,14 +1648,16 @@ void TorrentHandle::handleSaveResumeDataAlert(const lt::save_resume_data_alert *
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
     const bool useDummyResumeData = !(p && p->resume_data);
-    lt::entry dummyEntry;
-
-    lt::entry &resumeData = useDummyResumeData ? dummyEntry : *(p->resume_data);
+    auto resumeDataPtr = std::make_shared<lt::entry>(useDummyResumeData
+        ? lt::entry {}
+        : *(p->resume_data));
 #else
     const bool useDummyResumeData = !p;
-
-    lt::entry resumeData = useDummyResumeData ? lt::entry() : lt::write_resume_data(p->params);
+    auto resumeDataPtr = std::make_shared<lt::entry>(useDummyResumeData
+        ? lt::entry {}
+        : lt::write_resume_data(p->params));
 #endif
+    lt::entry &resumeData = *resumeDataPtr;
 
     updateStatus();
 
@@ -1697,7 +1700,7 @@ void TorrentHandle::handleSaveResumeDataAlert(const lt::save_resume_data_alert *
         resumeData["auto_managed"] = false;
     }
 
-    m_session->handleTorrentResumeDataReady(this, resumeData);
+    m_session->handleTorrentResumeDataReady(this, resumeDataPtr);
 }
 
 void TorrentHandle::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p)
