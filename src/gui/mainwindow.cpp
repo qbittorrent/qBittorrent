@@ -1454,8 +1454,11 @@ void MainWindow::loadPreferences(const bool configureSession)
 
     showStatusBar(pref->isStatusbarDisplayed());
 
-    if ((pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) && !m_preventTimer->isActive()) {
-        m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+    if (pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) {
+        if (!m_preventTimer->isActive()) {
+            updatePowerManagementState();
+            m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+        }
     }
     else {
         m_preventTimer->stop();
