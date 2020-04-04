@@ -30,10 +30,6 @@
 
 #include <QtGlobal>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-#include "powermanagement_x11.h"
-#endif
-
 #ifdef Q_OS_MACOS
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #endif
@@ -42,9 +38,12 @@
 #include <windows.h>
 #endif
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#include "powermanagement_x11.h"
+#endif
+
 PowerManagement::PowerManagement(QObject *parent)
     : QObject(parent)
-    , m_busy(false)
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     m_inhibitor = new PowerManagementInhibitor(this);
@@ -55,7 +54,7 @@ PowerManagement::~PowerManagement()
 {
 }
 
-void PowerManagement::setActivityState(bool busy)
+void PowerManagement::setActivityState(const bool busy)
 {
     if (busy)
         setBusy();
