@@ -81,6 +81,73 @@ namespace
             ret.append(locale.toString(date.addDays(i), "dddd"));
         return ret;
     }
+
+    QString languageToLocalizedString(const QLocale &locale)
+    {
+        switch (locale.language()) {
+        case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
+        case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
+        case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
+        case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
+        case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
+        case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
+        case QLocale::Chinese:
+            switch (locale.country()) {
+            case QLocale::China: return QString::fromUtf8(C_LOCALE_CHINESE_SIMPLIFIED);
+            case QLocale::HongKong: return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
+            default: return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
+            }
+        case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
+        case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
+        case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
+        case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
+        case QLocale::English:
+            switch (locale.country()) {
+            case QLocale::Australia: return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
+            case QLocale::UnitedKingdom: return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
+            default: return QString::fromUtf8(C_LOCALE_ENGLISH);
+            }
+        case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
+        case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
+        case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
+        case QLocale::Georgian: return QString::fromUtf8(C_LOCALE_GEORGIAN);
+        case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
+        case QLocale::Greek: return QString::fromUtf8(C_LOCALE_GREEK);
+        case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
+        case QLocale::Hindi: return QString::fromUtf8(C_LOCALE_HINDI);
+        case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
+        case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
+        case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
+        case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
+        case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
+        case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
+        case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
+        case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
+        case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
+        case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
+        case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
+        case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
+        case QLocale::Portuguese:
+            if (locale.country() == QLocale::Brazil)
+                return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
+            return QString::fromUtf8(C_LOCALE_PORTUGUESE);
+        case QLocale::Romanian: return QString::fromUtf8(C_LOCALE_ROMANIAN);
+        case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
+        case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
+        case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
+        case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
+        case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
+        case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
+        case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
+        case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
+        case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
+        case QLocale::Vietnamese: return QString::fromUtf8(C_LOCALE_VIETNAMESE);
+        default:
+            const QString lang = QLocale::languageToString(locale.language());
+            qWarning() << "Unrecognized language name: " << lang;
+            return lang;
+        }
+    }
 }
 
 class WheelEventEater : public QObject
@@ -1696,81 +1763,6 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
-}
-
-QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
-{
-    switch (locale.language()) {
-    case QLocale::English: {
-        if (locale.country() == QLocale::Australia)
-            return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
-        if (locale.country() == QLocale::UnitedKingdom)
-            return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
-        return QString::fromUtf8(C_LOCALE_ENGLISH);
-    }
-    case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
-    case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
-    case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
-    case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
-    case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
-    case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
-    case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
-    case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
-    case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
-    case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
-    case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
-    case QLocale::Portuguese: {
-        if (locale.country() == QLocale::Brazil)
-            return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
-        return QString::fromUtf8(C_LOCALE_PORTUGUESE);
-    }
-    case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
-    case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
-    case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
-    case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
-    case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
-    case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
-    case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
-    case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
-    case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
-    case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
-    case QLocale::Romanian: return QString::fromUtf8(C_LOCALE_ROMANIAN);
-    case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
-    case QLocale::Greek: return QString::fromUtf8(C_LOCALE_GREEK);
-    case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
-    case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
-    case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
-    case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
-    case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
-    case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
-    case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
-    case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
-    case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
-    case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
-    case QLocale::Hindi: return QString::fromUtf8(C_LOCALE_HINDI);
-    case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
-    case QLocale::Georgian: return QString::fromUtf8(C_LOCALE_GEORGIAN);
-    case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
-    case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
-    case QLocale::Vietnamese: return QString::fromUtf8(C_LOCALE_VIETNAMESE);
-    case QLocale::Chinese: {
-        switch (locale.country()) {
-        case QLocale::China:
-            return QString::fromUtf8(C_LOCALE_CHINESE_SIMPLIFIED);
-        case QLocale::HongKong:
-            return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
-        default:
-            return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
-        }
-    }
-    case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
-    default: {
-        // Fallback to English
-        const QString engLang = QLocale::languageToString(locale.language());
-        qWarning() << "Unrecognized language name: " << engLang;
-        return engLang;
-    }
-    }
 }
 
 bool OptionsDialog::schedTimesOk()

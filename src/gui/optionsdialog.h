@@ -117,7 +117,6 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
-    static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
 #ifndef Q_OS_MACOS
