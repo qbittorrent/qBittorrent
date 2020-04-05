@@ -472,7 +472,6 @@ Session::Session(QObject *parent)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 1)
-    , m_isSuperSeedingEnabled(BITTORRENT_SESSION_KEY("SuperSeedingEnabled"), false)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), -1, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY("MaxConnectionsPerTorrent"), 100, lowerLimited(0, -1))
@@ -1443,8 +1442,6 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_str(lt::settings_pack::announce_ip, announceIP().toStdString());
     // Stop tracker timeout
     settingsPack.set_int(lt::settings_pack::stop_tracker_timeout, stopTrackerTimeout());
-    // Super seeding
-    settingsPack.set_bool(lt::settings_pack::strict_super_seeding, isSuperSeedingEnabled());
     // * Max connections limit
     settingsPack.set_int(lt::settings_pack::connections_limit, maxConnections());
     // * Global max upload slots
@@ -3685,19 +3682,6 @@ void Session::setStopTrackerTimeout(const int value)
 
     m_stopTrackerTimeout = value;
     configureDeferred();
-}
-
-bool Session::isSuperSeedingEnabled() const
-{
-    return m_isSuperSeedingEnabled;
-}
-
-void Session::setSuperSeedingEnabled(const bool enabled)
-{
-    if (enabled != m_isSuperSeedingEnabled) {
-        m_isSuperSeedingEnabled = enabled;
-        configureDeferred();
-    }
 }
 
 int Session::maxConnections() const
