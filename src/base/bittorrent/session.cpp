@@ -438,7 +438,11 @@ Session::Session(QObject *parent)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
+#if (LIBTORRENT_VERSION_NUM >= 10206)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
+#else
+    , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
+#endif
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
 #ifdef Q_OS_WIN
