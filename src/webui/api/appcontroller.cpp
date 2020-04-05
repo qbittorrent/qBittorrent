@@ -309,8 +309,6 @@ void AppController::preferencesAction()
     data["upload_slots_behavior"] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
     data["upload_choking_algorithm"] = static_cast<int>(session->seedChokingAlgorithm());
-    // Super seeding
-    data["enable_super_seeding"] = session->isSuperSeedingEnabled();
     // Announce
     data["announce_to_all_trackers"] = session->announceToAllTrackers();
     data["announce_to_all_tiers"] = session->announceToAllTiers();
@@ -739,9 +737,6 @@ void AppController::setPreferencesAction()
     // Seed choking algorithm
     if (hasKey("upload_choking_algorithm"))
         session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(it.value().toInt()));
-    // Super seeding
-    if (hasKey("enable_super_seeding"))
-        session->setSuperSeedingEnabled(it.value().toBool());
     // Announce
     if (hasKey("announce_to_all_trackers"))
         session->setAnnounceToAllTrackers(it.value().toBool());

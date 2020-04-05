@@ -114,7 +114,6 @@ enum AdvSettingsRows
     // seeding
     CHOKING_ALGORITHM,
     SEED_CHOKING_ALGORITHM,
-    SUPER_SEEDING,
     // tracker
     ANNOUNCE_ALL_TRACKERS,
     ANNOUNCE_ALL_TIERS,
@@ -223,8 +222,6 @@ void AdvancedSettings::saveAdvancedSettings()
     // Peer resolution
     pref->resolvePeerCountries(m_checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(m_checkBoxResolveHosts.isChecked());
-    // Super seeding
-    session->setSuperSeedingEnabled(m_checkBoxSuperSeeding.isChecked());
     // Network interface
     if (m_comboBoxInterface.currentIndex() == 0) {
         // All interfaces (default)
@@ -516,10 +513,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Resolve peer hosts
     m_checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &m_checkBoxResolveHosts);
-    // Super seeding
-    m_checkBoxSuperSeeding.setChecked(session->isSuperSeedingEnabled());
-    addRow(SUPER_SEEDING, (tr("Strict super seeding") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#strict_super_seeding", "(?)"))
-            , &m_checkBoxSuperSeeding);
     // Network interface
     m_comboBoxInterface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString currentInterface = session->networkInterface();
