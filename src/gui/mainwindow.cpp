@@ -28,6 +28,8 @@
 
 #include "mainwindow.h"
 
+#include <chrono>
+
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
@@ -99,9 +101,6 @@
 #include "programupdater.h"
 #endif
 
-#define TIME_TRAY_BALLOON 5000
-#define PREVENT_SUSPEND_INTERVAL 60000
-
 namespace
 {
 #define SETTINGS_KEY(name) "GUI/" name
@@ -118,6 +117,9 @@ namespace
 
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
+
+    const int TIME_TRAY_BALLOON = 5000;
+    const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -776,8 +778,9 @@ void MainWindow::cleanup()
     if (m_systrayCreator)
         m_systrayCreator->stop();
 #endif
-    if (m_preventTimer)
-        m_preventTimer->stop();
+
+    m_preventTimer->stop();
+
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_programUpdateTimer->stop();
 #endif
@@ -1401,7 +1404,7 @@ void MainWindow::showStatusBar(bool show)
     }
 }
 
-void MainWindow::loadPreferences(bool configureSession)
+void MainWindow::loadPreferences(const bool configureSession)
 {
     Logger::instance()->addMessage(tr("Options were saved successfully."));
     const Preferences *const pref = Preferences::instance();
@@ -1451,8 +1454,11 @@ void MainWindow::loadPreferences(bool configureSession)
 
     showStatusBar(pref->isStatusbarDisplayed());
 
-    if ((pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) && !m_preventTimer->isActive()) {
-        m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+    if (pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) {
+        if (!m_preventTimer->isActive()) {
+            updatePowerManagementState();
+            m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+        }
     }
     else {
         m_preventTimer->stop();
