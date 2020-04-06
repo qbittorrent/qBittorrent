@@ -118,8 +118,10 @@ namespace
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
 
-    const int TIME_TRAY_BALLOON = 5000;
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
+#if !defined(Q_OS_MACOS)
+    const int TIME_TRAY_BALLOON = 5000;
+#endif
 
     // just a shortcut
     inline SettingsStorage *settings()
