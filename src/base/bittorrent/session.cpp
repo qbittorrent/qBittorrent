@@ -1533,10 +1533,11 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
     for (const QString &ip : asConst(getListeningIPs())) {
         const QHostAddress addr {ip};
         if (!addr.isNull()) {
-            endpoints << ((addr.protocol() == QAbstractSocket::IPv6Protocol)
+            const QString ip = ((addr.protocol() == QAbstractSocket::IPv6Protocol)
                           ? ('[' + Utils::Net::canonicalIPv6Addr(addr).toString() + ']')
-                          : addr.toString())
-                         + portString;
+                          : addr.toString());
+            endpoints << (ip + portString);
+            outgoingInterfaces << ip;
         }
         else {
             // ip holds an interface name
