@@ -1343,8 +1343,10 @@ bool TorrentHandle::setCategory(const QString &category)
 
 void TorrentHandle::move(QString path)
 {
-    m_useAutoTMM = false;
-    m_session->handleTorrentSavingModeChanged(this);
+    if (m_useAutoTMM) {
+        m_useAutoTMM = false;
+        m_session->handleTorrentSavingModeChanged(this);
+    }
 
     path = Utils::Fs::toUniformPath(path.trimmed());
     if (path.isEmpty())
@@ -1526,6 +1528,7 @@ void TorrentHandle::handleStorageMoved(const QString &newPath, const QString &er
         LogMsg(tr("Successfully moved torrent: %1. New path: %2").arg(name(), newPath));
 
     updateStatus();
+    saveResumeData();
 
     while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
