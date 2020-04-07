@@ -487,7 +487,7 @@ int MainWindow::executionLogMsgTypes() const
 
 void MainWindow::setExecutionLogMsgTypes(const int value)
 {
-    m_executionLog->showMsgTypes(static_cast<Log::MsgTypes>(value));
+    m_executionLog->setMsgTypes(static_cast<Log::MsgTypes>(value));
     settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
 }
 

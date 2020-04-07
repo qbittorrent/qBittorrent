@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,43 +27,71 @@
  * exception statement from your version.
  */
 
-#ifndef EXECUTIONLOGWIDGET_H
-#define EXECUTIONLOGWIDGET_H
+#pragma once
 
-#include <QWidget>
+#include <QAbstractListModel>
+#include <deque>
 
-#include "base/logger.h"
-
-namespace Ui
+namespace Log
 {
-    class ExecutionLogWidget;
+    struct Msg;
+    struct Peer;
 }
 
-class BaseLogModel;
-class LogFilterModel;
-class LogListView;
-class LogMessageModel;
-class LogPeerModel;
+class BaseLogModel : public QAbstractListModel
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(BaseLogModel)
 
-class ExecutionLogWidget : public QWidget
+public:
+    enum DataRole
+    {
+        TimeRole = Qt::UserRole + 1,
+        MessageRole
+    };
+    
+    using QAbstractListModel::QAbstractListModel;
+
+    int rowCount(const QModelIndex &parent = {}) const override;
+    int columnCount(const QModelIndex &parent = {}) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
+public slots:
+    void reset();
+
+protected:
+    struct Message
+    {
+        QVariant time;
+        QVariant message;
+        QVariant foregroundRole;
+        QVariant userRole;
+    };
+
+    void addNewMessage(Message message);
+
+private:
+    std::deque<Message> m_messages; // when logger is full, pop_front may take considerable time on vector like container
+};
+
+class LogMessageModel : public BaseLogModel
 {
     Q_OBJECT
 
 public:
-    ExecutionLogWidget(QWidget *parent, Log::MsgTypes types);
-    ~ExecutionLogWidget();
-    
-    void setMsgTypes(Log::MsgTypes types);
+    explicit LogMessageModel(QObject *parent = nullptr);
 
-private:
-    void displayContextMenu(const QPoint &pos, const LogListView *view, const BaseLogModel *model) const;
-
-    Ui::ExecutionLogWidget *m_ui;
-    LogMessageModel *m_messageModel;
-    LogPeerModel *m_peerModel;
-    LogFilterModel *m_messageFilterModel;
-    LogListView *m_messageView;
-    LogListView *m_peerView;
+private slots:
+    void handleNewMessage(const Log::Msg &msg);
 };
 
-#endif // EXECUTIONLOGWIDGET_H
+class LogPeerModel : public BaseLogModel
+{
+    Q_OBJECT
+
+public:
+    explicit LogPeerModel(QObject *parent = nullptr);
+
+private slots:
+    void handleNewMessage(const Log::Peer &peer);
+};

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,43 +26,25 @@
  * exception statement from your version.
  */
 
-#ifndef EXECUTIONLOGWIDGET_H
-#define EXECUTIONLOGWIDGET_H
+#include "logfiltermodel.h"
 
-#include <QWidget>
-
-#include "base/logger.h"
-
-namespace Ui
+LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
+    : QSortFilterProxyModel(parent)
+    , m_types(types)
 {
-    class ExecutionLogWidget;
 }
 
-class BaseLogModel;
-class LogFilterModel;
-class LogListView;
-class LogMessageModel;
-class LogPeerModel;
-
-class ExecutionLogWidget : public QWidget
+void LogFilterModel::setMsgTypes(const Log::MsgTypes types)
 {
-    Q_OBJECT
+    m_types = types;
+    invalidateFilter();
+}
 
-public:
-    ExecutionLogWidget(QWidget *parent, Log::MsgTypes types);
-    ~ExecutionLogWidget();
-    
-    void setMsgTypes(Log::MsgTypes types);
+bool LogFilterModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
+{
+    const QAbstractItemModel *const sourceModel = this->sourceModel();
+    const QModelIndex index = sourceModel->index(sourceRow, 0, sourceParent);
+    const Log::MsgType type = static_cast<Log::MsgType>(sourceModel->data(index, Qt::UserRole).toInt());
 
-private:
-    void displayContextMenu(const QPoint &pos, const LogListView *view, const BaseLogModel *model) const;
-
-    Ui::ExecutionLogWidget *m_ui;
-    LogMessageModel *m_messageModel;
-    LogPeerModel *m_peerModel;
-    LogFilterModel *m_messageFilterModel;
-    LogListView *m_messageView;
-    LogListView *m_peerView;
-};
-
-#endif // EXECUTIONLOGWIDGET_H
+    return m_types.testFlag(type);
+}
