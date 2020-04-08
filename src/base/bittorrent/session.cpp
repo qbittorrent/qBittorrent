@@ -2587,6 +2587,7 @@ void Session::saveResumeData()
 
 void Session::saveTorrentsQueue()
 {
+    // store hash in textual representation
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
     for (const TorrentHandle *torrent : asConst(torrents())) {
         // We require actual (non-cached) queue position here!
@@ -2596,6 +2597,7 @@ void Session::saveTorrentsQueue()
     }
 
     QByteArray data;
+    data.reserve(((InfoHash::length() * 2) + 1) * queue.size());
     for (const QString &hash : asConst(queue))
         data += (hash.toLatin1() + '\n');
 
