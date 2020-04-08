@@ -40,25 +40,6 @@
 #include <iphlpapi.h>
 #endif
 
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QHostAddress>
-#include <QNetworkAddressEntry>
-#include <QNetworkConfigurationManager>
-#include <QNetworkInterface>
-#include <QRegularExpression>
-#include <QString>
-#include <QThread>
-#include <QTimer>
-#include <QUuid>
-
-#ifdef Q_OS_WIN
-// TODO: Remove together with fixBrokenSavePath()
-#define NEED_TO_FIX_BROKEN_PATH
-#include <QSaveFile>
-#endif
-
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
@@ -76,6 +57,25 @@
 
 #if (LIBTORRENT_VERSION_NUM >= 10200)
 #include <libtorrent/read_resume_data.hpp>
+#endif
+
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QHostAddress>
+#include <QNetworkAddressEntry>
+#include <QNetworkConfigurationManager>
+#include <QNetworkInterface>
+#include <QRegularExpression>
+#include <QString>
+#include <QThread>
+#include <QTimer>
+#include <QUuid>
+
+#ifdef Q_OS_WIN
+// TODO: Remove together with fixBrokenSavePath()
+#define NEED_TO_FIX_BROKEN_PATH
+#include <QSaveFile>
 #endif
 
 #include "base/algorithm.h"
