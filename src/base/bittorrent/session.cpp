@@ -40,25 +40,6 @@
 #include <iphlpapi.h>
 #endif
 
-#include <QDebug>
-#include <QDir>
-#include <QFile>
-#include <QHostAddress>
-#include <QNetworkAddressEntry>
-#include <QNetworkConfigurationManager>
-#include <QNetworkInterface>
-#include <QRegularExpression>
-#include <QString>
-#include <QThread>
-#include <QTimer>
-#include <QUuid>
-
-#ifdef Q_OS_WIN
-// TODO: Remove together with fixBrokenSavePath()
-#define NEED_TO_FIX_BROKEN_PATH
-#include <QSaveFile>
-#endif
-
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
@@ -76,6 +57,25 @@
 
 #if (LIBTORRENT_VERSION_NUM >= 10200)
 #include <libtorrent/read_resume_data.hpp>
+#endif
+
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QHostAddress>
+#include <QNetworkAddressEntry>
+#include <QNetworkConfigurationManager>
+#include <QNetworkInterface>
+#include <QRegularExpression>
+#include <QString>
+#include <QThread>
+#include <QTimer>
+#include <QUuid>
+
+#ifdef Q_OS_WIN
+// TODO: Remove together with fixBrokenSavePath()
+#define NEED_TO_FIX_BROKEN_PATH
+#include <QSaveFile>
 #endif
 
 #include "base/algorithm.h"
@@ -2587,6 +2587,7 @@ void Session::saveResumeData()
 
 void Session::saveTorrentsQueue()
 {
+    // store hash in textual representation
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
     for (const TorrentHandle *torrent : asConst(torrents())) {
         // We require actual (non-cached) queue position here!
@@ -2596,6 +2597,7 @@ void Session::saveTorrentsQueue()
     }
 
     QByteArray data;
+    data.reserve(((InfoHash::length() * 2) + 1) * queue.size());
     for (const QString &hash : asConst(queue))
         data += (hash.toLatin1() + '\n');
 
@@ -3989,25 +3991,20 @@ void Session::handleTorrentFinished(TorrentHandle *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const lt::entry &data)
+void Session::handleTorrentResumeDataReady(TorrentHandle *const torrent, const std::shared_ptr<lt::entry> &data)
 {
     --m_numResumeData;
 
     // Separated thread is used for the blocking IO which results in slow processing of many torrents.
-    // Encoding data in parallel while doing IO saves time. Copying lt::entry objects around
-    // isn't cheap too.
-
-    QByteArray out;
-    out.reserve(1024 * 1024);  // most fastresume file sizes are under 1 MB
-    lt::bencode(std::back_inserter(out), data);
+    // Copying lt::entry objects around isn't cheap.
 
     const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataSavingManager
-        , [this, filename, out]() { m_resumeDataSavingManager->save(filename, out); });
+        , [this, filename, data]() { m_resumeDataSavingManager->save(filename, data); });
 #else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save",
-                              Q_ARG(QString, filename), Q_ARG(QByteArray, out));
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
+        , Q_ARG(QString, filename), Q_ARG(std::shared_ptr<lt::entry>, data));
 #endif
 }
 
