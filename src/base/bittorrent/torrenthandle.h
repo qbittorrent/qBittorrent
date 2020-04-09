@@ -129,6 +129,7 @@ namespace BitTorrent
         PausedDownloading,
         PausedUploading,
 
+        QueuedMoving,
         Moving,
 
         MissingFiles,

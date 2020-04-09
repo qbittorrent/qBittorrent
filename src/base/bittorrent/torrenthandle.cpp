@@ -897,7 +897,7 @@ void TorrentHandle::updateState()
         m_state = TorrentState::CheckingResumeData;
     }
     else if (isMoveInProgress()) {
-        m_state = TorrentState::Moving;
+        m_state = m_nativeStatus.moving_storage ? TorrentState::Moving : TorrentState::QueuedMoving;
     }
     else if (hasMissingFiles()) {
         m_state = TorrentState::MissingFiles;

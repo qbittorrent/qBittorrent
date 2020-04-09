@@ -64,6 +64,7 @@ class TransferListWidget : public QTreeView
     Q_PROPERTY(QColor pausedDownloadingStateForeground READ pausedDownloadingStateForeground WRITE setPausedDownloadingStateForeground)
     Q_PROPERTY(QColor pausedUploadingStateForeground READ pausedUploadingStateForeground WRITE setPausedUploadingStateForeground)
     Q_PROPERTY(QColor movingStateForeground READ movingStateForeground WRITE setMovingStateForeground)
+    Q_PROPERTY(QColor queuedMovingStateForeground READ queuedMovingStateForeground WRITE setQueuedMovingStateForeground)
     Q_PROPERTY(QColor missingFilesStateForeground READ missingFilesStateForeground WRITE setMissingFilesStateForeground)
     Q_PROPERTY(QColor errorStateForeground READ errorStateForeground WRITE setErrorStateForeground)
 
@@ -160,6 +161,7 @@ private:
     QColor pausedDownloadingStateForeground() const;
     QColor pausedUploadingStateForeground() const;
     QColor movingStateForeground() const;
+    QColor queuedMovingStateForeground() const;
     QColor missingFilesStateForeground() const;
     QColor errorStateForeground() const;
 
@@ -180,6 +182,7 @@ private:
     void setPausedDownloadingStateForeground(const QColor &color);
     void setPausedUploadingStateForeground(const QColor &color);
     void setMovingStateForeground(const QColor &color);
+    void setQueuedMovingStateForeground(const QColor &color);
     void setMissingFilesStateForeground(const QColor &color);
     void setErrorStateForeground(const QColor &color);
 

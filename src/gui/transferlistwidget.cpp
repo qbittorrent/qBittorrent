@@ -325,6 +325,11 @@ QColor TransferListWidget::movingStateForeground() const
     return m_listModel->stateForeground(BitTorrent::TorrentState::Moving);
 }
 
+QColor TransferListWidget::queuedMovingStateForeground() const
+{
+    return m_listModel->stateForeground(BitTorrent::TorrentState::QueuedMoving);
+}
+
 QColor TransferListWidget::missingFilesStateForeground() const
 {
     return m_listModel->stateForeground(BitTorrent::TorrentState::MissingFiles);
@@ -418,6 +423,11 @@ void TransferListWidget::setPausedUploadingStateForeground(const QColor &color)
 void TransferListWidget::setMovingStateForeground(const QColor &color)
 {
     m_listModel->setStateForeground(BitTorrent::TorrentState::Moving, color);
+}
+
+void TransferListWidget::setQueuedMovingStateForeground(const QColor &color)
+{
+    m_listModel->setStateForeground(BitTorrent::TorrentState::QueuedMoving, color);
 }
 
 void TransferListWidget::setMissingFilesStateForeground(const QColor &color)

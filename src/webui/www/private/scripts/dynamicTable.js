@@ -880,6 +880,7 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "queuedDL":
                     case "queuedUP":
+                    case "queuedMoving":
                         state = "queued";
                         break;
                     case "checkingDL":
@@ -966,6 +967,9 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "moving":
                         status = "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
+                    case "queuedMoving":
+                        status = "QBT_TR([Q] Moving)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "missingFiles":
                         status = "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]";
