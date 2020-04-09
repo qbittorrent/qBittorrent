@@ -72,10 +72,13 @@ qBittorrent can be cleanly terminated by fully closing the GUI (including the sy
 
 :    Use a different configuration with name _NAME_.
 This enables running multiple separate instances of qBittorrent at the same time without conflict (provided they don't listen on the same ports for WebUI access, incoming connections, etc).
-Configuration and data files will be stored under a configuration hierarchy similar to the default one (see the _FILES_ section for more information) but with a final directory named **qBittorrent\__NAME_** instead of **qBittorrent**.
-For example, while the main configuration file is stored as _~/.config/qBittorrent/qBittorrent.conf_, the configuration file for a configuration named **foo** will be stored as _~/.config/qBittorrent\_**foo**/qBittorrent.conf_.
-If a configuration with the given _NAME_ does not exist yet, it is created with default settings.
-If it already exists, it is loaded as a normal configuration would be.
+
+    Configuration and data files will be stored under a configuration hierarchy similar to the default one (see the _FILES_ section for more information) but with a final directory named **qBittorrent\__NAME_** instead of **qBittorrent**.
+
+    For example, while the main configuration file is stored as _~/.config/qBittorrent/qBittorrent.conf_, the configuration file for a configuration named **foo** will be stored as _~/.config/qBittorrent\_**foo**/qBittorrent.conf_.
+
+    If a configuration with the given _NAME_ does not exist yet, it is created with default settings.
+    If it already exists, it is loaded as a normal configuration would be.
 
 `--no-splash`
 
@@ -84,21 +87,27 @@ If it already exists, it is loaded as a normal configuration would be.
 `--profile=`_PATH_
 
 :    Store configuration _FILES_ in _PATH_.
-This enables what is known as "portable mode".
 Similarly to **`--configuration`**, this option can be used to run multiple separate instances of qBittorrent at the same time without conflitcts (the same caveats about listening port conflicts and other potential unavoidable conflicts apply).
-The difference is that configuration files are all stored together under the specified configuration _PATH_, instead of scattered under a separate directory hierarchy in the system's configuration directories (see the _FILES_ section for more information).
-This enables one to migrate their entire configuration from system to system by simply copying around one directory.
-If _PATH_ does not exist, it is created, with configuration files initialized with default settings inside it that a new instance of qBittorrent loads.
+
+    The difference is that configuration files are all stored together under the specified configuration _PATH_, instead of scattered under a separate directory hierarchy in the system's configuration directories (see the _FILES_ section for more information).
+
+    If _PATH_ does not exist, it is created, with configuration files initialized with default settings inside it that a new instance of qBittorrent loads.
 If it exists, the configurations are loaded from there.
+If a directory literally named **`profile`** exists in the same directory as the qBittorrent executable, executing qBittorrent without any options is the same as using the options **`--profile=profile --relative-fastresume`**. Note that if this folder is present, but a different **`--profile=`** is specified, the command line option will take precedence and **`--relative-fastresume`** will not be implied.
 A relative _PATH_ may be used, in which case it will be relative to the current working directory that qBittorrent is started from.
-Note that **`~`** will not get expanded, and will be interpreted as a folder literally named **`~`**.
-If both **`--configuration`** and **`--profile`** are specified, only **`--profile`** takes effect.
-Implies **`--relative-fastresume`**.
+Note that **`~`** will not get expanded, and will be interpreted as a directory literally named **`~`**.
+
+    This option enables one to migrate their entire configuration from one system to another by simply copying around one directory (a kind of "portable mode"), with some caveats:
+
+    - In general, the _BT_backup_ directory and the _.fastresume_ files stored within it are not portable between machines. However, using **`--relative-fastresume`** will make it so, as long as all paths are relative (i.e. no paths on different disks or UNC paths on Windows).
+    - Save paths and related settings stored in the main configuration file might not be present on the other computer, and thus may need to be adjusted in the new computer after migrating. In addition, if one wishes for _BT_backup_ to be portable, the paths must all be relative.
+
+    If both **`--configuration`** and **`--profile`** are specified, only **`--profile`** takes effect.
 
 `--relative-fastresume`
 
-:    Make qBittorrent store paths of torrents' files relative to the **`--profile`** directory.
-Implied by **`--profile`**.
+:    Make the paths of torrents' files stored in the _.fastresume_ files be relative to the **`--profile`** directory.
+Implied by **`--profile`** under some circumstances, check the documentation for that option.
 Don't use this explicitly unless you know you need it.
 If you have to ask, you don't need it.
 
@@ -131,7 +140,7 @@ If this category does not exist, it will be automatically created.
 `--save-path=`_PATH_
 :    Save the torrent(s) to the specified _PATH_.
 A relative _PATH_ may be used, in which case it will be relative to the current working directory that qBittorrent is started from.
-Note that **`~`** will not get expanded, and will be interpreted as a folder literally named **`~`**.
+Note that **`~`** will not get expanded, and will be interpreted as a directory literally named **`~`**.
 
 `--sequential`
 :    Download pieces in sequential order.

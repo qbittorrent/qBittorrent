@@ -112,51 +112,84 @@ Use a different configuration with name \f[I]NAME\f[R].
 This enables running multiple separate instances of qBittorrent at the
 same time without conflict (provided they don\[cq]t listen on the same
 ports for WebUI access, incoming connections, etc).
+.RS
+.PP
 Configuration and data files will be stored under a configuration
 hierarchy similar to the default one (see the \f[I]FILES\f[R] section
 for more information) but with a final directory named
 \f[B]qBittorrent_\f[BI]NAME\f[B]\f[R] instead of \f[B]qBittorrent\f[R].
+.PP
 For example, while the main configuration file is stored as
 \f[I]\[ti]/.config/qBittorrent/qBittorrent.conf\f[R], the configuration
 file for a configuration named \f[B]foo\f[R] will be stored as
 \f[I]\[ti]/.config/qBittorrent_\f[BI]foo\f[I]/qBittorrent.conf\f[R].
+.PP
 If a configuration with the given \f[I]NAME\f[R] does not exist yet, it
 is created with default settings.
 If it already exists, it is loaded as a normal configuration would be.
+.RE
 .TP
 \f[B]\f[CB]--no-splash\f[B]\f[R]
 Do not display the splash screen on startup.
 .TP
 \f[B]\f[CB]--profile=\f[B]\f[R]\f[I]PATH\f[R]
 Store configuration \f[I]FILES\f[R] in \f[I]PATH\f[R].
-This enables what is known as \[lq]portable mode\[rq].
 Similarly to \f[B]\f[CB]--configuration\f[B]\f[R], this option can be
 used to run multiple separate instances of qBittorrent at the same time
 without conflitcts (the same caveats about listening port conflicts and
 other potential unavoidable conflicts apply).
+.RS
+.PP
 The difference is that configuration files are all stored together under
 the specified configuration \f[I]PATH\f[R], instead of scattered under a
 separate directory hierarchy in the system\[cq]s configuration
 directories (see the \f[I]FILES\f[R] section for more information).
-This enables one to migrate their entire configuration from system to
-system by simply copying around one directory.
+.PP
 If \f[I]PATH\f[R] does not exist, it is created, with configuration
 files initialized with default settings inside it that a new instance of
 qBittorrent loads.
 If it exists, the configurations are loaded from there.
+If a directory literally named \f[B]\f[CB]profile\f[B]\f[R] exists in
+the same directory as the qBittorrent executable, executing qBittorrent
+without any options is the same as using the options
+\f[B]\f[CB]--profile=profile --relative-fastresume\f[B]\f[R].
+Note that if this folder is present, but a different
+\f[B]\f[CB]--profile=\f[B]\f[R] is specified, the command line option
+will take precedence and \f[B]\f[CB]--relative-fastresume\f[B]\f[R] will
+not be implied.
 A relative \f[I]PATH\f[R] may be used, in which case it will be relative
 to the current working directory that qBittorrent is started from.
 Note that \f[B]\f[CB]\[ti]\f[B]\f[R] will not get expanded, and will be
-interpreted as a folder literally named \f[B]\f[CB]\[ti]\f[B]\f[R].
+interpreted as a directory literally named \f[B]\f[CB]\[ti]\f[B]\f[R].
+.PP
+This option enables one to migrate their entire configuration from one
+system to another by simply copying around one directory (a kind of
+\[lq]portable mode\[rq]), with some caveats:
+.IP \[bu] 2
+In general, the \f[I]BT_backup\f[R] directory and the
+\f[I].fastresume\f[R] files stored within it are not portable between
+machines.
+However, using \f[B]\f[CB]--relative-fastresume\f[B]\f[R] will make it
+so, as long as all paths are relative (i.e.\ no paths on different disks
+or UNC paths on Windows).
+.IP \[bu] 2
+Save paths and related settings stored in the main configuration file
+might not be present on the other computer, and thus may need to be
+adjusted in the new computer after migrating.
+In addition, if one wishes for \f[I]BT_backup\f[R] to be portable, the
+paths must all be relative.
+.PP
 If both \f[B]\f[CB]--configuration\f[B]\f[R] and
 \f[B]\f[CB]--profile\f[B]\f[R] are specified, only
 \f[B]\f[CB]--profile\f[B]\f[R] takes effect.
-Implies \f[B]\f[CB]--relative-fastresume\f[B]\f[R].
+.RE
 .TP
 \f[B]\f[CB]--relative-fastresume\f[B]\f[R]
-Make qBittorrent store paths of torrents\[cq] files relative to the
+Make the paths of torrents\[cq] files stored in the
+\f[I].fastresume\f[R] files be relative to the
 \f[B]\f[CB]--profile\f[B]\f[R] directory.
-Implied by \f[B]\f[CB]--profile\f[B]\f[R].
+Implied by \f[B]\f[CB]--profile\f[B]\f[R] under some circumstances,
+check the documentation for that option.
 Don\[cq]t use this explicitly unless you know you need it.
 If you have to ask, you don\[cq]t need it.
 .TP
@@ -189,7 +222,7 @@ Save the torrent(s) to the specified \f[I]PATH\f[R].
 A relative \f[I]PATH\f[R] may be used, in which case it will be relative
 to the current working directory that qBittorrent is started from.
 Note that \f[B]\f[CB]\[ti]\f[B]\f[R] will not get expanded, and will be
-interpreted as a folder literally named \f[B]\f[CB]\[ti]\f[B]\f[R].
+interpreted as a directory literally named \f[B]\f[CB]\[ti]\f[B]\f[R].
 .TP
 \f[B]\f[CB]--sequential\f[B]\f[R]
 Download pieces in sequential order.
