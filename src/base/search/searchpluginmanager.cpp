@@ -188,6 +188,15 @@ void SearchPluginManager::updatePlugin(const QString &name)
     installPlugin(QString::fromLatin1("%1%2.py").arg(m_updateUrl, name));
 }
 
+// Updates shipped plugin
+void SearchPluginManager::updatePluginFromUpdateUrl(const QString &name)
+{
+    QString updateUrl = getPluginUpdateUrl(pluginPath(name));
+    if (!updateUrl.isEmpty()) {
+        installPlugin(updateUrl);
+    }
+}
+
 // Install or update plugin from file or url
 void SearchPluginManager::installPlugin(const QString &source)
 {
@@ -483,6 +492,9 @@ void SearchPluginManager::update()
 void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 {
     QHash<QString, PluginVersion> updateInfo;
+
+    QStringList pluginsWithoutVersion = allPlugins();
+
     int numCorrectData = 0;
 
     const QVector<QByteArray> lines = Utils::ByteArray::splitToViews(info, "\n", QString::SkipEmptyParts);
@@ -496,6 +508,8 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 
         const QString pluginName = list.first().trimmed();
         const PluginVersion version = PluginVersion::tryParse(list.last().trimmed(), {});
+        if (!pluginsWithoutVersion.removeOne(pluginName))
+            LogMsg(tr("Plugin \"%1\" is not on plugins list").arg(pluginName), Log::INFO);
 
         if (!version.isValid()) continue;
 
@@ -511,7 +525,7 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
             .arg(QString::number(lines.size() - numCorrectData), QString::number(lines.size())));
     }
     else {
-        emit checkForUpdatesFinished(updateInfo);
+        emit checkForUpdatesFinished(updateInfo, pluginsWithoutVersion);
     }
 }
 
@@ -550,4 +564,20 @@ PluginVersion SearchPluginManager::getPluginVersion(const QString &filePath)
     }
 
     return {};
+}
+
+QString SearchPluginManager::getPluginUpdateUrl(const QString &filePath)
+{
+    QFile pluginFile(filePath);
+    if (!pluginFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        return {};
+
+    while (!pluginFile.atEnd()) {
+        const QString line = QString(pluginFile.readLine()).remove(' ').remove('\n');
+        if (!line.startsWith("#UPDATEURL:", Qt::CaseInsensitive)) continue;
+
+        return line.mid(11);
+    }
+
+    return QString();
 }

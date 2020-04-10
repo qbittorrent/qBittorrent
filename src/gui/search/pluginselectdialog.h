@@ -76,8 +76,7 @@ private slots:
     void askForLocalPlugin();
     void askForPluginUrl();
     void iconDownloadFinished(const Net::DownloadResult &result);
-
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
+    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo, const QStringList &pluginsWithoutVersion);
     void checkForUpdatesFailed(const QString &reason);
     void pluginInstalled(const QString &name);
     void pluginInstallationFailed(const QString &name, const QString &reason);

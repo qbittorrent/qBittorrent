@@ -415,10 +415,16 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
     Utils::Fs::forceRemove(filePath);
 }
 
-void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
+void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo, const QStringList &pluginsWithoutVersion)
 {
+    foreach(QString pluginName, pluginsWithoutVersion) {
+        startAsyncOp();
+        ++m_pendingUpdates;
+        m_pluginManager->updatePluginFromUpdateUrl(pluginName);
+    }
+
     finishAsyncOp();
-    if (updateInfo.isEmpty()) {
+    if (updateInfo.isEmpty() && pluginsWithoutVersion.isEmpty()) {
         QMessageBox::information(this, tr("Search plugin update"), tr("All your plugins are already up to date."));
         return;
     }

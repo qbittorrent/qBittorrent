@@ -71,12 +71,14 @@ public:
 
     QStringList allPlugins() const;
     QStringList enabledPlugins() const;
+    QStringList unofficialPlugins() const;
     QStringList supportedCategories() const;
     QStringList getPluginCategories(const QString &pluginName) const;
     PluginInfo *pluginInfo(const QString &name) const;
 
     void enablePlugin(const QString &name, bool enabled = true);
     void updatePlugin(const QString &name);
+    void updatePluginFromUpdateUrl(const QString &name);
     void installPlugin(const QString &source);
     bool uninstallPlugin(const QString &name);
     static void updateIconPath(PluginInfo *const plugin);
@@ -86,6 +88,7 @@ public:
     SearchDownloadHandler *downloadTorrent(const QString &siteUrl, const QString &url);
 
     static PluginVersion getPluginVersion(const QString &filePath);
+    static QString getPluginUpdateUrl(const QString &filePath);
     static QString categoryFullName(const QString &categoryName);
     QString pluginFullName(const QString &pluginName);
     static QString pluginsLocation();
@@ -99,7 +102,7 @@ signals:
     void pluginUpdated(const QString &name);
     void pluginUpdateFailed(const QString &name, const QString &reason);
 
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
+    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo, const QStringList &pluginsWithoutVersion);
     void checkForUpdatesFailed(const QString &reason);
 
 private:
