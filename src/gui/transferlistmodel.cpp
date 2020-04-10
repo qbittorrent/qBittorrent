@@ -359,7 +359,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
-        return torrent->lastSeenComplete().toString();
+        return torrent->lastSeenComplete().toLocalTime().toString(Qt::DefaultLocaleShortDate);
     case TR_LAST_ACTIVITY:
         return lastActivityString((torrent->isPaused() || torrent->isChecking()) ? -1 : torrent->timeSinceActivity());
     case TR_AVAILABILITY:
