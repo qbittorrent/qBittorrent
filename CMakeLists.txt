@@ -14,6 +14,12 @@ read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_B
 
 project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
 
+# check for invalid compiler version/CXX standard as early as possible
+include(FunctionQbtCXXCompilerAndModeCheck)
+qbt_minimum_cxx_mode_check(14)
+message(STATUS "Building in C++${CMAKE_CXX_STANDARD} mode.\n"
+            "Make sure libtorrent was built with the same C++ mode for ABI compatibility.")
+
 set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
 
 if (NOT VER_BUILD EQUAL 0)
