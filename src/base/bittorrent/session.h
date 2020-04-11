@@ -378,8 +378,6 @@ namespace BitTorrent
         void setAnnounceIP(const QString &ip);
         int stopTrackerTimeout() const;
         void setStopTrackerTimeout(int value);
-        bool isSuperSeedingEnabled() const;
-        void setSuperSeedingEnabled(bool enabled);
         int maxConnections() const;
         void setMaxConnections(int max);
         int maxConnectionsPerTorrent() const;
@@ -658,7 +656,6 @@ namespace BitTorrent
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
         CachedSettingValue<int> m_stopTrackerTimeout;
-        CachedSettingValue<bool> m_isSuperSeedingEnabled;
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxUploads;
         CachedSettingValue<int> m_maxConnectionsPerTorrent;

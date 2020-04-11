@@ -1067,14 +1067,6 @@
             </tr>
             <tr>
                 <td>
-                    <label for="strictSuperSeeding">QBT_TR(Strict super seeding:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#strict_super_seeding" target="_blank">(?)</a></label>
-                </td>
-                <td>
-                    <input type="checkbox" id="strictSuperSeeding" />
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <label for="announceAllTrackers">QBT_TR(Always announce to all trackers in a tier:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -1789,7 +1781,6 @@
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
                         $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
                         $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
-                        $('strictSuperSeeding').setProperty('checked', pref.enable_super_seeding);
                         $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
                         $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
                         $('announceIP').setProperty('value', pref.announce_ip);
@@ -2157,7 +2148,6 @@
             settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
             settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
             settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));
-            settings.set('enable_super_seeding', $('strictSuperSeeding').getProperty('checked'));
             settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
             settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
             settings.set('announce_ip', $('announceIP').getProperty('value'));
