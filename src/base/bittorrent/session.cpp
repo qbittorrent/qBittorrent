@@ -1534,7 +1534,9 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
                           ? ('[' + Utils::Net::canonicalIPv6Addr(addr).toString() + ']')
                           : addr.toString());
             endpoints << (ip + portString);
-            outgoingInterfaces << ip;
+
+            if ((ip != "0.0.0.0") && (ip != "[::]"))
+                outgoingInterfaces << ip;
         }
         else {
             // ip holds an interface name
