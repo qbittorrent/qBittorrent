@@ -88,13 +88,17 @@
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>
-				<string>TORR</string>
+				<array>
+					<string>TORR</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>torrent</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>application/x-bittorrent</string>
+				<array>
+					<string>application/x-bittorrent</string>
+				</array>
 			</dict>
 		</dict>
 	</array>
