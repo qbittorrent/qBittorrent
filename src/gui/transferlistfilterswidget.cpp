@@ -38,6 +38,7 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
@@ -223,7 +224,7 @@ void StatusFilterWidget::updateTorrentNumbers()
     int nbStalledDownloading = 0;
     int nbErrored = 0;
 
-    const QHash<BitTorrent::InfoHash, BitTorrent::TorrentHandle *> torrents = BitTorrent::Session::instance()->torrents();
+    const QVector<BitTorrent::TorrentHandle *> torrents = BitTorrent::Session::instance()->torrents();
     for (const BitTorrent::TorrentHandle *torrent : torrents) {
         if (torrent->isDownloading())
             ++nbDownloading;
