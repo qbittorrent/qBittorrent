@@ -31,6 +31,7 @@
 #include <QDateTime>
 #include <QStringList>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/types.h"

@@ -61,6 +61,7 @@
 #endif // Q_OS_MACOS
 #endif
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/exceptions.h"
