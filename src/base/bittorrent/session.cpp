@@ -1555,30 +1555,16 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
             }
             else {
                 LogMsg(tr("Could not get GUID of network interface: %1").arg(ip) , Log::WARNING);
+                // Since we can't get the GUID, we'll pass the interface name instead.
+                // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
+                endpoints << (ip + portString);
+                outgoingInterfaces << ip;
             }
 #else
             endpoints << (ip + portString);
             outgoingInterfaces << ip;
 #endif
         }
-    }
-
-    if (outgoingInterfaces.isEmpty()) {
-#ifdef Q_OS_WIN
-        // On Vista+ versions and after Qt 5.5 QNetworkInterface::name() returns
-        // the interface's LUID and not the GUID.
-        // Libtorrent expects GUIDs for the 'outgoing_interfaces' setting.
-        const QString netInterface = networkInterface();
-        if (!netInterface.isEmpty()) {
-            const QString guid = convertIfaceNameToGuid(netInterface);
-            if (!guid.isEmpty())
-                outgoingInterfaces << guid;
-            else
-                LogMsg(tr("Could not get GUID of network interface: %1").arg(netInterface) , Log::WARNING);
-        }
-#else
-        outgoingInterfaces << networkInterface();
-#endif // Q_OS_WIN
     }
 
     const QString finalEndpoints = endpoints.join(',');
@@ -2688,7 +2674,11 @@ QStringList Session::getListeningIPs() const
 
     if (!ifaceAddr.isEmpty() && !allIPv4 && !allIPv6 && configuredAddr.isNull()) {
         LogMsg(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.158.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
-        IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        // Pass the invalid user configured interface name/address to libtorrent
+        // in hopes that it will come online later.
+        // This will not cause IP leak but allow user to reconnect the interface
+        // and re-establish connection without restarting the client.
+        IPs.append(ifaceAddr);
         return IPs;
     }
 
@@ -2724,7 +2714,7 @@ QStringList Session::getListeningIPs() const
             LogMsg(tr("Can't find the configured address '%1' to listen on"
                     , "Can't find the configured address '192.168.1.3' to listen on")
                 .arg(ifaceAddr), Log::CRITICAL);
-            IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+            IPs.append(ifaceAddr);
         }
 
         return IPs;
@@ -2735,7 +2725,7 @@ QStringList Session::getListeningIPs() const
     if (!networkIFace.isValid()) {
         qDebug("Invalid network interface: %s", qUtf8Printable(ifaceName));
         LogMsg(tr("The network interface defined is invalid: %1").arg(ifaceName), Log::CRITICAL);
-        IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        IPs.append(ifaceName);
         return IPs;
     }
 
@@ -2756,7 +2746,7 @@ QStringList Session::getListeningIPs() const
         LogMsg(tr("Can't find the configured address '%1' to listen on"
                   , "Can't find the configured address '192.168.1.3' to listen on")
             .arg(ifaceAddr), Log::CRITICAL);
-        IPs.append("127.0.0.1"); // Force listening to localhost and avoid accidental connection that will expose user data.
+        IPs.append(ifaceAddr);
     }
 
     return IPs;
