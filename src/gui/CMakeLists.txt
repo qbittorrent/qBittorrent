@@ -28,7 +28,9 @@ fspathedit.h
 hidabletabwidget.h
 ipsubnetwhitelistoptionsdialog.h
 lineedit.h
-loglistwidget.h
+log/logfiltermodel.h
+log/loglistview.h
+log/logmodel.h
 mainwindow.h
 optionsdialog.h
 previewlistdelegate.h
@@ -81,7 +83,9 @@ fspathedit.cpp
 hidabletabwidget.cpp
 ipsubnetwhitelistoptionsdialog.cpp
 lineedit.cpp
-loglistwidget.cpp
+log/logfiltermodel.cpp
+log/loglistview.cpp
+log/logmodel.cpp
 mainwindow.cpp
 optionsdialog.cpp
 previewlistdelegate.cpp
