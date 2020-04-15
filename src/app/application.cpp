@@ -133,6 +133,7 @@ Application::Application(int &argc, char **argv)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
+    qRegisterMetaType<Log::Peer>("Log::Peer");
 
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");
