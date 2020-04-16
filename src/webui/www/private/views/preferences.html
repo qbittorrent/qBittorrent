@@ -1292,26 +1292,19 @@
             $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
             $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
             $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-            $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+            const isPeerProxyAuthenticatable = ($('peer_proxy_type_select').getProperty('value') === "socks5" || $('peer_proxy_type_select').getProperty('value') === "http");
+            $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyAuthenticatable);
 
-            if (isPeerProxyTypeSelected) {
-                const isPeerProxyTypeSocks5 = $('peer_proxy_type_select').getProperty('value') == "socks5";
-                $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSocks5);
+            if ($('peer_proxy_type_select').getProperty('value') === "socks4")
+                $('proxy_only_for_torrents_checkbox').setProperty('checked', true);
 
-                if (!isPeerProxyTypeSocks5) {
-                    $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSocks5);
-                    updatePeerProxyAuthSettings();
-                }
-            }
-            else {
-                $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-                $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSelected);
-                updatePeerProxyAuthSettings();
-            }
+            $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyAuthenticatable);
+
+            updatePeerProxyAuthSettings();
         };
 
         const updatePeerProxyAuthSettings = function() {
-            const isPeerProxyAuthEnabled = $('peer_proxy_auth_checkbox').getProperty('checked');
+            const isPeerProxyAuthEnabled = (!$('peer_proxy_auth_checkbox').getProperty('disabled') && $('peer_proxy_auth_checkbox').getProperty('checked'));
             $('peer_proxy_username_text').setProperty('disabled', !isPeerProxyAuthEnabled);
             $('peer_proxy_password_text').setProperty('disabled', !isPeerProxyAuthEnabled);
         };
