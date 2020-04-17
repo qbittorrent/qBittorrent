@@ -22,6 +22,7 @@ bittorrent/session.h
 bittorrent/sessionstatus.h
 bittorrent/torrentcreatorthread.h
 bittorrent/torrenthandle.h
+bittorrent/torrenthandleimpl.h
 bittorrent/torrentinfo.h
 bittorrent/tracker.h
 bittorrent/trackerentry.h
@@ -100,6 +101,7 @@ bittorrent/private/statistics.cpp
 bittorrent/session.cpp
 bittorrent/torrentcreatorthread.cpp
 bittorrent/torrenthandle.cpp
+bittorrent/torrenthandleimpl.cpp
 bittorrent/torrentinfo.cpp
 bittorrent/tracker.cpp
 bittorrent/trackerentry.cpp
