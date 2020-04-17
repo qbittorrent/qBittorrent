@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,35 +26,27 @@
  * exception statement from your version.
  */
 
-#ifndef LOGLISTWIDGET_H
-#define LOGLISTWIDGET_H
+#include "logfiltermodel.h"
 
-#include <QListWidget>
-#include "base/logger.h"
+#include "logmodel.h"
 
-class QKeyEvent;
-
-class LogListWidget : public QListWidget
+LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
+    : QSortFilterProxyModel(parent)
+    , m_types(types)
 {
-    Q_OBJECT
+}
 
-public:
-    // -1 is the portable way to have all the bits set
-    explicit LogListWidget(int maxLines, const Log::MsgTypes &types = Log::ALL, QWidget *parent = nullptr);
-    void showMsgTypes(const Log::MsgTypes &types);
+void LogFilterModel::setMessageTypes(const Log::MsgTypes types)
+{
+    m_types = types;
+    invalidateFilter();
+}
 
-public slots:
-    void appendLine(const QString &line, const Log::MsgType &type);
+bool LogFilterModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
+{
+    const QAbstractItemModel *const sourceModel = this->sourceModel();
+    const QModelIndex index = sourceModel->index(sourceRow, 0, sourceParent);
+    const Log::MsgType type = static_cast<Log::MsgType>(sourceModel->data(index, BaseLogModel::TypeRole).toInt());
 
-protected slots:
-    void copySelection();
-
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-
-private:
-    const int m_maxLines;
-    Log::MsgTypes m_types;
-};
-
-#endif // LOGLISTWIDGET_H
+    return m_types.testFlag(type);
+}
