@@ -1,0 +1,3 @@
+version=3
+opts=uversionmangle=s/(\d)[_\.\-\+]?((RC|rc|pre|dev|beta|alpha)\d*)$/$1~$2/ \
+  https://github.com/arvidn/libtorrent/releases .*/libtorrent-rasterbar-(\d\S*)\.tar\.gz

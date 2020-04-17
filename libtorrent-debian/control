@@ -1,0 +1,53 @@
+Source: libtorrent-rasterbar
+Section: libs
+Priority: optional
+Maintainer: Cristian Greco <cristian@debian.org>
+Uploaders: Andrew Starr-Bochicchio <asb@debian.org>
+Build-Depends: debhelper (>= 9),
+               dh-autoreconf,
+               dpkg-dev (>= 1.16.1~),
+               libboost-system-dev,
+               libssl-dev,
+               pkg-config
+Standards-Version: 3.9.8
+Vcs-Git: git://anonscm.debian.org/collab-maint/libtorrent-rasterbar.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/libtorrent-rasterbar.git
+Homepage: http://www.rasterbar.com/products/libtorrent/index.html
+
+Package: libtorrent-rasterbar10
+Architecture: any
+Pre-Depends: dpkg (>= 1.15.6~)
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: libtorrent-rasterbar-dbg
+Description: C++ bittorrent library by Rasterbar Software
+ Bittorrent library by Rasterbar Software (Arvid Norberg).
+ libtorrent-rasterbar is a C++ library that aims to be a good alternative to
+ all the other bittorrent implementations around.
+ .
+ The main goals of libtorrent-rasterbar are:
+  * to be cpu efficient
+  * to be memory efficient
+  * to be very easy to use
+ .
+ This package contains libtorrent-rasterbar run time shared library.
+
+Package: libtorrent-rasterbar-dev
+Section: libdevel
+Architecture: any
+Pre-Depends: dpkg (>= 1.15.6~)
+Depends: ${misc:Depends},
+         libtorrent-rasterbar10 (= ${binary:Version}),
+         libboost-system-dev,
+         libssl-dev,
+         pkg-config
+Description: Development files for libtorrent-rasterbar
+ Bittorrent library by Rasterbar Software (Arvid Norberg).
+ libtorrent-rasterbar is a C++ library that aims to be a good alternative to
+ all the other bittorrent implementations around.
+ .
+ The main goals of libtorrent-rasterbar are:
+  * to be cpu efficient
+  * to be memory efficient
+  * to be very easy to use
+ .
+ This package contains header files and static version of the library.

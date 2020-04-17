@@ -1,0 +1,50 @@
+#!/usr/bin/make -f
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+export DEB_LDFLAGS_MAINT_APPEND  = -Wl,--as-needed
+
+CONFIGURE_ARGS = --with-libiconv --with-boost-libdir=/usr/lib/$(DEB_HOST_MULTIARCH) --disable-deprecated-functions CXXFLAGS=-std=c++14 CPPFLAGS=-std=c++14
+
+%:
+	dh $@ --parallel --with autoreconf
+
+override_dh_auto_configure-nopy:
+	dh_auto_configure --builddirectory build -- $(CONFIGURE_ARGS)
+
+# By default dh_autoreconf runs `autoreconf -f -i`
+# But that fails because it can't find `config.rpath`
+# Running `autotool.sh` just works
+override_dh_autoreconf:
+	./autotool.sh
+
+override_dh_auto_configure: override_dh_auto_configure-nopy
+
+
+override_dh_auto_build-nopy:
+	dh_auto_build --builddirectory build
+
+override_dh_auto_build: override_dh_auto_build-nopy
+
+
+override_dh_auto_install-nopy:
+	dh_auto_install --builddirectory build
+
+override_dh_auto_install: override_dh_auto_install-nopy
+
+# During initial build, there is a "clean" step performed
+# at this point there isn't a Makefile yet and
+# dh_auto_clean falsely detects that it has to run `setup.py`
+# and fails.
+override_dh_auto_clean:
+	[ ! -f Makefile ] || dh_auto_clean
+
+override_dh_compress:
+	dh_compress -Xcpp
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V
+
+override_dh_builddeb:
+	dh_builddeb -- -Z xz

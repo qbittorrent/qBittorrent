@@ -1,0 +1,74 @@
+libtorrent-rasterbar for Debian
+-------------------------------
+
+* libtorrent-rasterbar 0.14.2-2
+
+Revert build dependencies to boost1.37 only.
+
+ -- Cristian Greco <cristian.debian@gmail.com>  Wed, 11 Mar 2009 16:27:20 +0100
+
+* libtorrent-rasterbar 0.14.2-1
+
+Enabled building against boost1.37 due to the boost library transition: build
+dependencies will be updated each time a new version of boost get uploaded in
+Debian (this will happen likely two times a year in the future).
+Building against boost1.34.1 is still supported for backport purposes.
+
+ -- Cristian Greco <cristian.debian@gmail.com>  Fri, 27 Feb 2009 07:46:38 +0100
+
+
+* libtorrent-rasterbar 0.14.1-1
+
+While version 0.14 was built against boost1.36, it seems like this release of
+the boost libraries has been deleted from Debian and maintainers encourage use
+of the next stable release boost1.37.
+Anyhow, the best choice actually is to build 0.14.1 against boost1.34.1 because
+it is a widely used and well tested release, and on the other hand maybe
+libtorrent-rasterbar is not yet ready to support boost1.37.
+
+ -- Cristian Greco <cristian.debian@gmail.com>  Mon, 15 Dec 2008 15:34:17 +0100
+
+
+* libtorrent-rasterbar 0.14-1
+
+- Python bindings for libtorrent-rasterbar
+Added a patch (merged upstream, will be available in 0.14.1) to build python
+bindings using configure and make. The name of the python module (and package)
+is 'python-libtorrent' (as requested by upstream).
+
+- Lintian Info tag 'no-symbols-control-file'
+Maintaining a symbols control file for that library is more a cost than a
+benefit. In fact, libtorrent-rasterbar exports a lot of symbols (quite big
+symbols files, ~600Kb) and the C++ ABI mangling requires one to maintain a
+different control file for each architecture.  Moreover this library has a few
+reverse dependencies (less than 10 clients, much of them not yet packaged for
+Debian), so it wouldn't be difficult to maintain them.
+
+ -- Cristian Greco <cristian.debian@gmail.com>  Sun, 23 Nov 2008 18:55:24 +0100
+
+
+* libtorrent-rasterbar 0.13.1-2
+
+Building a debug version (--enable-debug) of libtorrent-rasterbar seems to
+cause some clients to crash (such as qbittorrent, btg - qbittorrent needs a
+special option in order to build against a debug version), and actually most
+clients upstream developers seems to prefer a release build of the library.
+
+Then, now libtorrent-rasterbar builds a release version (--disable-debug).
+
+NOTE for maintainers of all clients which depend on libtorrent-rasterbar:
+please build-depends on this exact revision of the package in your
+debian/control file:
+  Build-Depends: libtorrent-rasterbar-dev (>= 0.13.1-2)
+
+ -- Cristian Greco <cgreco@cs.unibo.it>  Wed, 23 Jul 2008 11:18:31 +0200
+
+
+* libtorrent-rasterbar 0.13.1-1
+
+Actually, libtorrent-rasterbar has to be built against boost-1.34 and libasio
+instead of boost-1.35 (which includes libasio and conflicts with version 1.34);
+this is for compatibility with most bittorrent clients which depend also on
+boost-1.34.
+
+ -- Cristian Greco <cgreco@cs.unibo.it>  Wed, 02 Jul 2008 10:46:21 +0200
