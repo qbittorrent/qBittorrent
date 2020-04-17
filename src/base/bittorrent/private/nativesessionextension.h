@@ -31,7 +31,7 @@
 #include <libtorrent/extensions.hpp>
 #include <libtorrent/version.hpp>
 
-class NativeSessionExtension : public lt::plugin
+class NativeSessionExtension final : public lt::plugin
 {
 #if (LIBTORRENT_VERSION_NUM >= 10200)
     lt::feature_flags_t implemented_features() override;

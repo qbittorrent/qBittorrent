@@ -44,7 +44,7 @@ using LTPortMapping = int;
 using LTPortMapping = lt::port_mapping_t;
 #endif
 
-class PortForwarderImpl : public Net::PortForwarder
+class PortForwarderImpl final : public Net::PortForwarder
 {
     Q_OBJECT
     Q_DISABLE_COPY(PortForwarderImpl)

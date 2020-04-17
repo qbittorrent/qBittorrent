@@ -36,7 +36,7 @@ class QStringList;
 
 class FileSystemWatcher;
 
-class ScanFoldersModel : public QAbstractListModel
+class ScanFoldersModel final : public QAbstractListModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(ScanFoldersModel)

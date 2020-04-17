@@ -35,7 +35,7 @@
 
 class QDataStream;
 
-class FilterParserThread : public QThread
+class FilterParserThread final : public QThread
 {
     Q_OBJECT
 
