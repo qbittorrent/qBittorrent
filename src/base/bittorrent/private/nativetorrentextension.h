@@ -32,7 +32,7 @@
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/version.hpp>
 
-class NativeTorrentExtension : public lt::torrent_plugin
+class NativeTorrentExtension final : public lt::torrent_plugin
 {
 public:
     explicit NativeTorrentExtension(const lt::torrent_handle &torrentHandle);

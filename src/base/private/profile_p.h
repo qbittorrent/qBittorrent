@@ -63,7 +63,7 @@ namespace Private
     };
 
     /// Default implementation. Takes paths from system
-    class DefaultProfile : public Profile
+    class DefaultProfile final : public Profile
     {
     public:
         explicit DefaultProfile(const QString &configurationName);
@@ -86,7 +86,7 @@ namespace Private
     };
 
     /// Custom tree: creates directories under the specified root directory
-    class CustomProfile : public Profile
+    class CustomProfile final : public Profile
     {
     public:
         CustomProfile(const QString &rootPath, const QString &configurationName);
@@ -114,14 +114,14 @@ namespace Private
         virtual ~PathConverter() = default;
     };
 
-    class NoConvertConverter : public PathConverter
+    class NoConvertConverter final : public PathConverter
     {
     public:
         QString toPortablePath(const QString &path) const override;
         QString fromPortablePath(const QString &portablePath) const override;
     };
 
-    class Converter : public PathConverter
+    class Converter final : public PathConverter
     {
     public:
         explicit Converter(const QString &basePath);

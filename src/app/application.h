@@ -68,7 +68,7 @@ namespace RSS
     class AutoDownloader;
 }
 
-class Application : public BaseApplication
+class Application final : public BaseApplication
 {
     Q_OBJECT
     Q_DISABLE_COPY(Application)

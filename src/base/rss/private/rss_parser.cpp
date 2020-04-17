@@ -44,7 +44,7 @@
 
 namespace
 {
-    class XmlStreamEntityResolver : public QXmlStreamEntityResolver
+    class XmlStreamEntityResolver final : public QXmlStreamEntityResolver
     {
     public:
         QString resolveUndeclaredEntity(const QString &name) override
