@@ -354,7 +354,7 @@ bool TorrentHandleImpl::isAutoManaged() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.auto_managed;
 #else
-    return bool {m_nativeStatus.flags & lt::torrent_flags::auto_managed};
+    return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::auto_managed);
 #endif
 }
 
@@ -699,7 +699,7 @@ QVector<DownloadPriority> TorrentHandleImpl::filePriorities() const
     QVector<DownloadPriority> ret;
     std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](LTDownloadPriority priority)
     {
-        return static_cast<DownloadPriority>(LTUnderlyingType<LTDownloadPriority> {priority});
+        return static_cast<DownloadPriority>(static_cast<LTUnderlyingType<LTDownloadPriority>>(priority));
     });
     return ret;
 }
@@ -822,7 +822,7 @@ bool TorrentHandleImpl::isSequentialDownload() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.sequential_download;
 #else
-    return bool {m_nativeStatus.flags & lt::torrent_flags::sequential_download};
+    return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::sequential_download);
 #endif
 }
 
@@ -1148,7 +1148,7 @@ bool TorrentHandleImpl::superSeeding() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
     return m_nativeStatus.super_seeding;
 #else
-    return bool {m_nativeStatus.flags & lt::torrent_flags::super_seeding};
+    return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::super_seeding);
 #endif
 }
 
@@ -1185,7 +1185,7 @@ QBitArray TorrentHandleImpl::downloadingPieces() const
 #if (LIBTORRENT_VERSION_NUM < 10200)
         result.setBit(info.piece_index);
 #else
-        result.setBit(LTUnderlyingType<LTPieceIndex> {info.piece_index});
+        result.setBit(static_cast<LTUnderlyingType<LTPieceIndex>>(info.piece_index));
 #endif
 
     return result;
@@ -1737,7 +1737,7 @@ void TorrentHandleImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 void TorrentHandleImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
 {
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
-        .arg(name(), filePath(LTUnderlyingType<LTFileIndex> {p->index})
+        .arg(name(), filePath(static_cast<LTUnderlyingType<LTFileIndex>>(p->index))
              , QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
 
     m_oldPath[p->index].removeFirst();
@@ -1760,12 +1760,12 @@ void TorrentHandleImpl::handleFileCompletedAlert(const lt::file_completed_alert 
 
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled()) {
-        QString name = filePath(LTUnderlyingType<LTFileIndex> {p->index});
+        QString name = filePath(static_cast<LTUnderlyingType<LTFileIndex>>(p->index));
         if (name.endsWith(QB_EXT)) {
             const QString oldName = name;
             name.chop(QB_EXT.size());
             qDebug("Renaming %s to %s", qUtf8Printable(oldName), qUtf8Printable(name));
-            renameFile(LTUnderlyingType<LTFileIndex> {p->index}, name);
+            renameFile(static_cast<LTUnderlyingType<LTFileIndex>>(p->index), name);
         }
     }
 }

@@ -164,7 +164,7 @@ void TorrentCreatorThread::run()
         lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
             , [this, &newTorrent](const LTPieceIndex n)
         {
-            sendProgressSignal(LTUnderlyingType<LTPieceIndex> {n}, newTorrent.num_pieces());
+            sendProgressSignal(static_cast<LTUnderlyingType<LTPieceIndex>>(n), newTorrent.num_pieces());
         });
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
