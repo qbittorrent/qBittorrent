@@ -31,7 +31,7 @@
 
 #include <QSortFilterProxyModel>
 
-class PeerListSortModel : public QSortFilterProxyModel
+class PeerListSortModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(PeerListSortModel)

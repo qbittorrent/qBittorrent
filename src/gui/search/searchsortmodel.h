@@ -32,7 +32,7 @@
 #include <QSortFilterProxyModel>
 #include <QStringList>
 
-class SearchSortModel : public QSortFilterProxyModel
+class SearchSortModel final : public QSortFilterProxyModel
 {
     using base = QSortFilterProxyModel;
 

@@ -31,7 +31,7 @@
 
 #include "piecesbar.h"
 
-class PieceAvailabilityBar : public PiecesBar
+class PieceAvailabilityBar final : public PiecesBar
 {
     using base = PiecesBar;
     Q_OBJECT

@@ -51,7 +51,7 @@ namespace Ui
     class SearchJobWidget;
 }
 
-class SearchJobWidget : public QWidget
+class SearchJobWidget final : public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(SearchJobWidget)

@@ -31,7 +31,7 @@
 
 #include <QItemDelegate>
 
-class PreviewListDelegate : public QItemDelegate
+class PreviewListDelegate final : public QItemDelegate
 {
     Q_OBJECT
     Q_DISABLE_COPY(PreviewListDelegate)

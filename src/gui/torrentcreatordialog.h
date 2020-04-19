@@ -44,7 +44,7 @@ namespace Ui
     class TorrentCreatorDialog;
 }
 
-class TorrentCreatorDialog : public QDialog
+class TorrentCreatorDialog final : public QDialog
 {
     Q_OBJECT
 

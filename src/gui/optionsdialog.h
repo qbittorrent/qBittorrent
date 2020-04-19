@@ -56,7 +56,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog : public QDialog
+class OptionsDialog final : public QDialog
 {
     Q_OBJECT
     using ThisType = OptionsDialog;

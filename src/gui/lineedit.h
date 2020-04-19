@@ -14,7 +14,7 @@
 
 class QToolButton;
 
-class LineEdit : public QLineEdit
+class LineEdit final : public QLineEdit
 {
     Q_OBJECT
 

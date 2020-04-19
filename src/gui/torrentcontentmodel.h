@@ -45,7 +45,7 @@ namespace BitTorrent
     class TorrentInfo;
 }
 
-class TorrentContentModel : public QAbstractItemModel
+class TorrentContentModel final : public QAbstractItemModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(TorrentContentModel)

@@ -33,7 +33,7 @@
 #include <QList>
 #include <QNetworkCookie>
 
-class CookiesModel : public QAbstractItemModel
+class CookiesModel final : public QAbstractItemModel
 {
      Q_OBJECT
 

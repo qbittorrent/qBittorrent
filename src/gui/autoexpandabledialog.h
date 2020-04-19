@@ -39,7 +39,7 @@ namespace Ui
     class AutoExpandableDialog;
 }
 
-class AutoExpandableDialog : public QDialog
+class AutoExpandableDialog final : public QDialog
 {
     Q_OBJECT
 

@@ -30,7 +30,7 @@
 
 #include <QTreeView>
 
-class CategoryFilterWidget : public QTreeView
+class CategoryFilterWidget final : public QTreeView
 {
     Q_OBJECT
     Q_DISABLE_COPY(CategoryFilterWidget)
