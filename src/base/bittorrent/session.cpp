@@ -1199,7 +1199,8 @@ void Session::initializeNativeSession()
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
 
 #if (LIBTORRENT_VERSION_NUM < 10200)
-    m_nativeSession->add_extension(boost::shared_ptr<lt::plugin> {new NativeSessionExtension});
+    boost::shared_ptr<lt::plugin> ptr = boost::make_shared<NativeSessionExtension>();
+    m_nativeSession->add_extension(ptr);
 #else
     m_nativeSession->add_extension(std::make_shared<NativeSessionExtension>());
 #endif
@@ -2114,7 +2115,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             handle.set_upload_mode(false);
 
             if (params.paused) {
-                // Preloaded torrent isn't auto managed already
+                // Preloaded torrent isn't auto managed yet
                 handle.pause();
             }
             else if (!params.forced) {
@@ -2292,7 +2293,7 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
             handle.unset_flags(lt::torrent_flags::upload_mode);
 
             if (params.paused) {
-                // Preloaded torrent isn't auto managed already
+                // Preloaded torrent isn't auto managed yet
                 handle.pause();
             }
             else if (!params.forced) {
