@@ -34,7 +34,7 @@ class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
 
-class TransferListDelegate : public QStyledItemDelegate
+class TransferListDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
     Q_DISABLE_COPY(TransferListDelegate)

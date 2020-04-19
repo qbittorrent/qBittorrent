@@ -31,7 +31,7 @@
 
 #include <QTreeView>
 
-class TagFilterWidget : public QTreeView
+class TagFilterWidget final : public QTreeView
 {
     Q_OBJECT
 

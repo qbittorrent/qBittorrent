@@ -40,7 +40,7 @@ class QVBoxLayout;
 class PropertiesWidget;
 class SpeedPlotView;
 
-class ComboBoxMenuButton : public QComboBox
+class ComboBoxMenuButton final : public QComboBox
 {
     Q_OBJECT
 

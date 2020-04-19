@@ -150,7 +150,7 @@ namespace
     }
 }
 
-class WheelEventEater : public QObject
+class WheelEventEater final : public QObject
 {
 public:
     using QObject::QObject;

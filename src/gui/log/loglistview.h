@@ -31,7 +31,7 @@
 
 #include <QListView>
 
-class LogListView : public QListView
+class LogListView final : public QListView
 {
     Q_OBJECT
     Q_DISABLE_COPY(LogListView)

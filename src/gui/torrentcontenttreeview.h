@@ -37,7 +37,7 @@ namespace BitTorrent
     class TorrentInfo;
 }
 
-class TorrentContentTreeView : public QTreeView
+class TorrentContentTreeView final : public QTreeView
 {
     Q_OBJECT
 

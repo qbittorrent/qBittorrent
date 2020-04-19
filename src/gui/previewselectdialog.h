@@ -45,7 +45,7 @@ namespace Ui
 }
 class PreviewListDelegate;
 
-class PreviewSelectDialog : public QDialog
+class PreviewSelectDialog final : public QDialog
 {
     Q_OBJECT
 

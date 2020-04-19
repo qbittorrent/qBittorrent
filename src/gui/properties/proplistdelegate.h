@@ -49,7 +49,7 @@ enum PropColumn
     AVAILABILITY
 };
 
-class PropListDelegate : public QItemDelegate
+class PropListDelegate final : public QItemDelegate
 {
     Q_OBJECT
 

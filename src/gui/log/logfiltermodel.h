@@ -32,7 +32,7 @@
 
 #include "base/logger.h"
 
-class LogFilterModel : public QSortFilterProxyModel
+class LogFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(LogFilterModel)

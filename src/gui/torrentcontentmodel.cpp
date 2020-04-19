@@ -82,7 +82,7 @@ namespace
     public:
         using QFileIconProvider::icon;
 
-        QIcon icon(const QFileInfo &info) const final override
+        QIcon icon(const QFileInfo &info) const final
         {
             const QString ext = info.suffix();
             if (!ext.isEmpty()) {
