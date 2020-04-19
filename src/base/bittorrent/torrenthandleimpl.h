@@ -298,7 +298,7 @@ namespace BitTorrent
         Session *const m_session;
         lt::torrent_handle m_nativeHandle;
         lt::torrent_status m_nativeStatus;
-        TorrentState m_state;
+        TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
 
@@ -308,7 +308,7 @@ namespace BitTorrent
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
-        int m_renameCount;
+        int m_renameCount = 0;
 
         // Until libtorrent provide an "old_name" field in `file_renamed_alert`
         // we will rely on this workaround to remove empty leftover folders
@@ -325,10 +325,10 @@ namespace BitTorrent
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         bool m_tempPathDisabled;
-        bool m_fastresumeDataRejected;
-        bool m_hasMissingFiles;
+        bool m_fastresumeDataRejected = false;
+        bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
-        bool m_needsToSetFirstLastPiecePriority;
+        bool m_needsToSetFirstLastPiecePriority = false;
 
         QHash<QString, TrackerInfo> m_trackerInfos;
 
