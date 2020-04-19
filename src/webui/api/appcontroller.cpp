@@ -258,6 +258,8 @@ void AppController::preferencesAction()
     data["rss_max_articles_per_feed"] = RSS::Session::instance()->maxArticlesPerFeed();
     data["rss_processing_enabled"] = RSS::Session::instance()->isProcessingEnabled();
     data["rss_auto_downloading_enabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
+    data["rss_download_repack_proper_episodes"] = RSS::AutoDownloader::instance()->downloadRepacks();
+    data["rss_smart_episode_filters"] = RSS::AutoDownloader::instance()->smartEpisodeFilters().join('\n');
 
     // Advanced settings
     // qBitorrent preferences
@@ -651,6 +653,10 @@ void AppController::setPreferencesAction()
         RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
     if (hasKey("rss_auto_downloading_enabled"))
         RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
+    if (hasKey("rss_download_repack_proper_episodes"))
+        RSS::AutoDownloader::instance()->setDownloadRepacks(it.value().toBool());
+    if (hasKey("rss_smart_episode_filters"))
+        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(it.value().toString().split('\n'));
 
     // Advanced settings
     // qBittorrent preferences
