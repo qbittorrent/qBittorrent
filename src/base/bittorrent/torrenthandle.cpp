@@ -49,6 +49,16 @@ namespace BitTorrent
     const qreal TorrentHandle::MAX_RATIO = 9999.;
     const int TorrentHandle::MAX_SEEDING_TIME = 525600;
 
+    bool TorrentHandle::isResumed() const
+    {
+        return !isPaused();
+    }
+
+    qlonglong TorrentHandle::remainingSize() const
+    {
+        return wantedSize() - completedSize();
+    }
+
     void TorrentHandle::toggleSequentialDownload()
     {
         setSequentialDownload(!isSequentialDownload());
