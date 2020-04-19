@@ -47,7 +47,7 @@ namespace
 #if (LIBTORRENT_VERSION_NUM < 10200)
         return torrentStatus.auto_managed;
 #else
-        return bool {torrentStatus.flags & lt::torrent_flags::auto_managed};
+        return static_cast<bool>(torrentStatus.flags & lt::torrent_flags::auto_managed);
 #endif
     }
 }

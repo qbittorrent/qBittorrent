@@ -55,14 +55,13 @@ addons:
   apt:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
-      - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
+      - sourceline: 'ppa:qbittorrent-team/qbt-libtorrent-travisci'
       - sourceline: 'ppa:beineri/opt-qt59-xenial'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
       - [autoconf, automake, colormake]
       - [libboost-dev, libboost-system-dev]
       - libssl-dev
-      - libtorrent-rasterbar-dev
       - [qt59base, qt59svg, qt59tools]
       - zlib1g-dev
       # required for Qt 5.9 from 'beineri' PPA
@@ -132,7 +131,7 @@ install:
       ccache -V && ccache --show-stats && ccache --zero-stats
     fi
   - |
-    if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
       wget https://builds.shiki.hu/travis/deb/version
       if ! cmp --quiet "version" "$HOME/travis/deb/version" ; then
         echo "Cached files are different from server. Downloading new ones."
@@ -141,11 +140,16 @@ install:
         mkdir "$HOME/travis/deb"
         cp "version" $HOME/travis/deb
         cd "$HOME/travis/deb"
-        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb
-        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb
+        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar-dev_1.1.x_amd64.deb
+        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar9_1.1.x_amd64.deb
       fi
 
-      sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb"
+      sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.1.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar9_1.1.x_amd64.deb"
+    fi
+  - |
+    if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      # Will install latest 1.2.x daily build from the PPA
+      sudo apt-get -y install libtorrent-rasterbar-dev
     fi
   - |
     if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then

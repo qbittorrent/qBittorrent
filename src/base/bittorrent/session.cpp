@@ -2599,7 +2599,7 @@ void Session::saveTorrentsQueue()
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
     for (const TorrentHandleImpl *torrent : asConst(m_torrents)) {
         // We require actual (non-cached) queue position here!
-        const int queuePos = LTUnderlyingType<LTQueuePosition> {torrent->nativeHandle().queue_position()};
+        const int queuePos = static_cast<LTUnderlyingType<LTQueuePosition>>(torrent->nativeHandle().queue_position());
         if (queuePos >= 0)
             queue[queuePos] = torrent->hash();
     }
