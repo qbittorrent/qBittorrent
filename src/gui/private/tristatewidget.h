@@ -32,7 +32,7 @@
 
 class QString;
 
-class TriStateWidget : public QWidget
+class TriStateWidget final : public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(TriStateWidget)

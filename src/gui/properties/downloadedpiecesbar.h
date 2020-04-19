@@ -36,7 +36,7 @@
 
 class QWidget;
 
-class DownloadedPiecesBar : public PiecesBar
+class DownloadedPiecesBar final : public PiecesBar
 {
     using base = PiecesBar;
     Q_OBJECT

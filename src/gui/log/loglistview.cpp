@@ -59,7 +59,7 @@ namespace
                                                  , index.data(BaseLogModel::MessageRole).toString());
     }
 
-    class LogItemDelegate : public QStyledItemDelegate
+    class LogItemDelegate final : public QStyledItemDelegate
     {
     public:
         using QStyledItemDelegate::QStyledItemDelegate;

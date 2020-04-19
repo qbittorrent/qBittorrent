@@ -35,7 +35,7 @@
 class QPaintEvent;
 #endif
 
-class HidableTabWidget : public QTabWidget
+class HidableTabWidget final : public QTabWidget
 {
 public:
     explicit HidableTabWidget(QWidget *parent = nullptr);

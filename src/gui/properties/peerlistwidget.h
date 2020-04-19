@@ -53,7 +53,7 @@ namespace Net
     class ReverseResolution;
 }
 
-class PeerListWidget : public QTreeView
+class PeerListWidget final : public QTreeView
 {
     Q_OBJECT
 

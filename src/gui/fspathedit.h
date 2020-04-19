@@ -108,7 +108,7 @@ private:
 };
 
 /// Widget which uses QLineEdit for path editing
-class FileSystemPathLineEdit : public FileSystemPathEdit
+class FileSystemPathLineEdit final : public FileSystemPathEdit
 {
     using base = FileSystemPathEdit;
     using WidgetType = Private::FileLineEdit;
@@ -124,7 +124,7 @@ private:
 };
 
 /// Widget which uses QComboBox for path editing
-class FileSystemPathComboEdit : public FileSystemPathEdit
+class FileSystemPathComboEdit final : public FileSystemPathEdit
 {
     using base = FileSystemPathEdit;
     using WidgetType = Private::FileComboEdit;

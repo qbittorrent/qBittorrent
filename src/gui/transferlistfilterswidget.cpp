@@ -74,7 +74,7 @@ namespace
         return scheme;
     }
 
-    class ArrowCheckBox : public QCheckBox
+    class ArrowCheckBox final : public QCheckBox
     {
     public:
         using QCheckBox::QCheckBox;

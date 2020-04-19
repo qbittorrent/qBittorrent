@@ -38,7 +38,7 @@
 
 class QPen;
 
-class SpeedPlotView : public QGraphicsView
+class SpeedPlotView final : public QGraphicsView
 {
     Q_OBJECT
 

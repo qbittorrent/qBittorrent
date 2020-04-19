@@ -48,7 +48,7 @@ namespace Ui
     class PluginSelectDialog;
 }
 
-class PluginSelectDialog : public QDialog
+class PluginSelectDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY(PluginSelectDialog)

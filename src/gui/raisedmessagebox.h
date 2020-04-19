@@ -31,7 +31,7 @@
 
 #include <QMessageBox>
 
-class RaisedMessageBox : public QMessageBox
+class RaisedMessageBox final : public QMessageBox
 {
   Q_OBJECT
 

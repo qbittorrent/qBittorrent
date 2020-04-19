@@ -35,7 +35,7 @@
 
 class TorrentContentModel;
 
-class TorrentContentFilterModel : public QSortFilterProxyModel
+class TorrentContentFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
 

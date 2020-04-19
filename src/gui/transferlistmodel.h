@@ -41,7 +41,7 @@ namespace BitTorrent
     class InfoHash;
 }
 
-class TransferListModel : public QAbstractListModel
+class TransferListModel final : public QAbstractListModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(TransferListModel)

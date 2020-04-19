@@ -33,7 +33,7 @@
 
 class QString;
 
-class TagFilterProxyModel : public QSortFilterProxyModel
+class TagFilterProxyModel final : public QSortFilterProxyModel
 {
 public:
     explicit TagFilterProxyModel(QObject *parent = nullptr);

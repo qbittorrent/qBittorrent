@@ -31,7 +31,7 @@
 
 #include <QItemDelegate>
 
-class SearchListDelegate : public QItemDelegate
+class SearchListDelegate final : public QItemDelegate
 {
     Q_OBJECT
 
