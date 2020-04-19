@@ -77,7 +77,7 @@
 
 namespace QtLP_Private
 {
-    class QtLockedFile : public QFile
+    class QtLockedFile final : public QFile
     {
     public:
         enum LockMode
