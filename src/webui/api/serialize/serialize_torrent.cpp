@@ -119,7 +119,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_AMOUNT_UPLOADED, torrent.totalUpload()},
         {KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION, torrent.totalPayloadDownload()},
         {KEY_TORRENT_AMOUNT_UPLOADED_SESSION, torrent.totalPayloadUpload()},
-        {KEY_TORRENT_AMOUNT_LEFT, torrent.incompletedSize()},
+        {KEY_TORRENT_AMOUNT_LEFT, torrent.remainingSize()},
         {KEY_TORRENT_AMOUNT_COMPLETED, torrent.completedSize()},
         {KEY_TORRENT_MAX_RATIO, torrent.maxRatio()},
         {KEY_TORRENT_MAX_SEEDING_TIME, torrent.maxSeedingTime()},
