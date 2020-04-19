@@ -166,8 +166,6 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     : QObject(session)
     , m_session(session)
     , m_nativeHandle(nativeHandle)
-    , m_state(TorrentState::Unknown)
-    , m_renameCount(0)
     , m_useAutoTMM(params.savePath.isEmpty())
     , m_name(params.name)
     , m_savePath(Utils::Fs::toNativePath(params.savePath))
@@ -177,10 +175,7 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_tempPathDisabled(params.disableTempPath)
-    , m_fastresumeDataRejected(false)
-    , m_hasMissingFiles(false)
     , m_hasRootFolder(params.hasRootFolder)
-    , m_needsToSetFirstLastPiecePriority(false)
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
