@@ -55,12 +55,16 @@ namespace BitTorrent
 
     struct CreateTorrentParams
     {
-        bool restored = false; // is existing torrent job?
+        CreateTorrentParams() = default;
+        explicit CreateTorrentParams(const AddTorrentParams &params);
+
         // for both new and restored torrents
         QString name;
         QString category;
         QSet<QString> tags;
         QString savePath;
+        int uploadLimit = -1;
+        int downloadLimit = -1;
         bool disableTempPath = false;
         bool sequential = false;
         bool firstLastPiecePriority = false;
@@ -69,17 +73,15 @@ namespace BitTorrent
         bool hasRootFolder = true;
         bool forced = false;
         bool paused = false;
-        int uploadLimit = -1;
-        int downloadLimit = -1;
+        bool restored = false;  // is existing torrent job?
+
         // for new torrents
         QVector<DownloadPriority> filePriorities;
         QDateTime addedTime;
+
         // for restored torrents
         qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
         int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
-
-        CreateTorrentParams() = default;
-        explicit CreateTorrentParams(const AddTorrentParams &params);
     };
 
     enum class MoveStorageMode
@@ -298,39 +300,38 @@ namespace BitTorrent
         Session *const m_session;
         lt::torrent_handle m_nativeHandle;
         lt::torrent_status m_nativeStatus;
-        TorrentState m_state;
+        TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
 
         InfoHash m_hash;
 
-        bool m_storageIsMoving = false;
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
         QQueue<EventTrigger> m_moveFinishedTriggers;
-        int m_renameCount;
+        int m_renameCount = 0;
+        bool m_storageIsMoving = false;
 
         // Until libtorrent provide an "old_name" field in `file_renamed_alert`
         // we will rely on this workaround to remove empty leftover folders
         QHash<LTFileIndex, QVector<QString>> m_oldPath;
 
-        bool m_useAutoTMM;
+        QHash<QString, TrackerInfo> m_trackerInfos;
 
         // Persistent data
         QString m_name;
         QString m_savePath;
         QString m_category;
         QSet<QString> m_tags;
-        bool m_hasSeedStatus;
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
+        bool m_hasSeedStatus;
         bool m_tempPathDisabled;
-        bool m_fastresumeDataRejected;
-        bool m_hasMissingFiles;
+        bool m_fastresumeDataRejected = false;
+        bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
-        bool m_needsToSetFirstLastPiecePriority;
-
-        QHash<QString, TrackerInfo> m_trackerInfos;
+        bool m_needsToSetFirstLastPiecePriority = false;
+        bool m_useAutoTMM;
 
         bool m_unchecked = false;
     };
