@@ -336,6 +336,7 @@ void WebApplication::configure()
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
     m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    m_isCorsEnabled = pref->isWebUiCorsHeaderEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
     m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
@@ -444,6 +445,9 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     if (m_isClickjackingProtectionEnabled)
         header(QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN"));
+
+    if (m_isCorsEnabled)
+        header(QLatin1String(Http::HEADER_ALLOW_ORIGIN), QLatin1String("*"))
 
     if (!m_isAltUIUsed)
         header(QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin"));

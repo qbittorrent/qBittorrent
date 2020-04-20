@@ -51,6 +51,7 @@ namespace Http
     const char HEADER_DATE[] = "date";
     const char HEADER_HOST[] = "host";
     const char HEADER_ORIGIN[] = "origin";
+    const char HEADER_ALLOW_ORIGIN[] = "access-control-allow-origin";
     const char HEADER_REFERER[] = "referer";
     const char HEADER_REFERRER_POLICY[] = "referrer-policy";
     const char HEADER_SET_COOKIE[] = "set-cookie";
