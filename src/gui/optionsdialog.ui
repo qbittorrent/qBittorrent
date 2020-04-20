@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>0</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -121,9 +121,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <y>-512</y>
+             <width>618</width>
+             <height>1233</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -446,7 +446,7 @@
                   <item>
                    <widget class="QCheckBox" name="checkCloseToSystray">
                     <property name="toolTip">
-                      <string>The systray icon will still be visible when closing the main window</string>
+                     <string>The systray icon will still be visible when closing the main window</string>
                     </property>
                     <property name="text">
                      <string extracomment="The systray icon will still be visible when closing the main window">Close qBittorrent to notification area</string>
@@ -735,8 +735,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>645</width>
+             <height>1401</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1346,8 +1346,8 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>545</width>
+             <height>890</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1846,8 +1846,8 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>459</width>
+             <height>548</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2183,8 +2183,8 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>559</width>
+             <height>886</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2682,8 +2682,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>498</width>
+             <height>466</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -2851,9 +2851,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <y>-631</y>
+             <width>541</width>
+             <height>1203</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">
@@ -3170,13 +3170,6 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkCors">
-                    <property name="text">
-                     <string>Enable Cross-Origin requests</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
                    <widget class="QCheckBox" name="checkCSRFProtection">
                     <property name="text">
                      <string>Enable Cross-Site Request Forgery (CSRF) protection</string>
@@ -3199,6 +3192,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                      <bool>true</bool>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_32">
+                     <property name="bottomMargin">
+                      <number>6</number>
+                     </property>
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_10">
                        <item>
@@ -3218,6 +3214,44 @@ you should put in domain names used by WebUI server.
 Use ';' to split multiple entries. Can use wildcard '*'.</string>
                          </property>
                         </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupCorsHeader">
+                    <property name="title">
+                     <string>Allow Cross-Origin requests</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_8">
+                     <property name="leftMargin">
+                      <number>6</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>6</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>6</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>6</number>
+                     </property>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_19">
+                       <item>
+                        <widget class="QLabel" name="labelCorsDomain">
+                         <property name="text">
+                          <string>Origin domain:</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="textCorsDomain"/>
                        </item>
                       </layout>
                      </item>
