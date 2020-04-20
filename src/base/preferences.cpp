@@ -665,7 +665,7 @@ void Preferences::setWebUiClickjackingProtectionEnabled(const bool enabled)
 
 bool Preferences::isWebUiCorsHeaderEnabled() const
 {
-    return value("Preferences/WebUI/CorsHeader", true).toBool();
+    return value("Preferences/WebUI/CorsHeader", false).toBool();
 }
 
 void Preferences::setWebUiCorsHeaderEnabled(const bool enabled)
