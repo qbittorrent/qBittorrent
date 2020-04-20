@@ -82,7 +82,7 @@ class OptionsDialog final : public QDialog
 public:
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
-    ~OptionsDialog();
+    ~OptionsDialog() override;
 
 public slots:
     void showConnectionTab();

@@ -882,7 +882,6 @@ Net::ProxyType OptionsDialog::getProxyType() const
     switch (m_ui->comboProxyType->currentIndex()) {
     case 1:
         return Net::ProxyType::SOCKS4;
-        break;
     case 2:
         if (isProxyAuthEnabled())
             return Net::ProxyType::SOCKS5_PW;
@@ -1443,28 +1442,27 @@ void OptionsDialog::toggleComboRatioLimitAct()
     m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
-void OptionsDialog::enableProxy(int index)
+void OptionsDialog::enableProxy(const int index)
 {
-    if (index) {
+    if (index >= 1) { // Any proxy type is used
         //enable
         m_ui->lblProxyIP->setEnabled(true);
         m_ui->textProxyIP->setEnabled(true);
         m_ui->lblProxyPort->setEnabled(true);
         m_ui->spinProxyPort->setEnabled(true);
         m_ui->checkProxyPeerConnecs->setEnabled(true);
-        if (index > 1) {
+        if (index >= 2) { // SOCKS5 or HTTP
             m_ui->checkProxyAuth->setEnabled(true);
             m_ui->isProxyOnlyForTorrents->setEnabled(true);
         }
         else {
             m_ui->checkProxyAuth->setEnabled(false);
-            m_ui->checkProxyAuth->setChecked(false);
             m_ui->isProxyOnlyForTorrents->setEnabled(false);
             m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
     }
-    else {
-        //disable
+    else { // No proxy
+        // disable
         m_ui->lblProxyIP->setEnabled(false);
         m_ui->textProxyIP->setEnabled(false);
         m_ui->lblProxyPort->setEnabled(false);
@@ -1472,7 +1470,6 @@ void OptionsDialog::enableProxy(int index)
         m_ui->checkProxyPeerConnecs->setEnabled(false);
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
-        m_ui->checkProxyAuth->setChecked(false);
     }
 }
 
