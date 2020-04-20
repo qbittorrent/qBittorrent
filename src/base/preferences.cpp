@@ -663,6 +663,16 @@ void Preferences::setWebUiClickjackingProtectionEnabled(const bool enabled)
     setValue("Preferences/WebUI/ClickjackingProtection", enabled);
 }
 
+bool Preferences::isWebUiCorsHeaderEnabled() const
+{
+    return value("Preferences/WebUI/CorsHeader", true).toBool();
+}
+
+void Preferences::setWebUiCorsHeaderEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/CorsHeader", enabled);
+}
+
 bool Preferences::isWebUiCSRFProtectionEnabled() const
 {
     return value("Preferences/WebUI/CSRFProtection", true).toBool();
