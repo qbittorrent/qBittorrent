@@ -152,6 +152,7 @@ private:
     // security related
     QStringList m_domainList;
     bool m_isClickjackingProtectionEnabled;
+    bool m_isCorsEnabled;
     bool m_isCSRFProtectionEnabled;
     bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;

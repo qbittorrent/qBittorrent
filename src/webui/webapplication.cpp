@@ -447,7 +447,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         header(QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN"));
 
     if (m_isCorsEnabled)
-        header(QLatin1String(Http::HEADER_ALLOW_ORIGIN), QLatin1String("*"))
+        header(QLatin1String(Http::HEADER_ALLOW_ORIGIN), QLatin1String("*"));
 
     if (!m_isAltUIUsed)
         header(QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin"));
