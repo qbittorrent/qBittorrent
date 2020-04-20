@@ -240,6 +240,7 @@ void AppController::preferencesAction()
     data["alternative_webui_path"] = pref->getWebUiRootFolder();
     // Security
     data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
+    data["web_ui_cors_header_enabled"] = pref->isWebUiCorsHeaderEnabled();
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
     data["web_ui_secure_cookie_enabled"] = pref->isWebUiSecureCookieEnabled();
     data["web_ui_host_header_validation_enabled"] = pref->isWebUIHostHeaderValidationEnabled();
@@ -617,6 +618,8 @@ void AppController::setPreferencesAction()
     // Security
     if (hasKey("web_ui_clickjacking_protection_enabled"))
         pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());
+    if (hasKey("web_ui_cors_header_enabled"))
+        pref->setWebUiCorsHeaderEnabled(it.value().toBool());
     if (hasKey("web_ui_csrf_protection_enabled"))
         pref->setWebUiCSRFProtectionEnabled(it.value().toBool());
     if (hasKey("web_ui_secure_cookie_enabled"))
