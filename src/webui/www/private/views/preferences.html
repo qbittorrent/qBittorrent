@@ -762,10 +762,6 @@
                 <label for="clickjacking_protection_checkbox">QBT_TR(Enable clickjacking protection)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <div class="formRow">
-                <input type="checkbox" id="cors_header_checkbox" />
-                <label for="cors_header_checkbox">QBT_TR(Enable Cross-Origin requests)QBT_TR[CONTEXT=OptionsDialog]</label>
-            </div>
-            <div class="formRow">
                 <input type="checkbox" id="csrf_protection_checkbox" />
                 <label for="csrf_protection_checkbox">QBT_TR(Enable Cross-Site Request Forgery (CSRF) protection)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
@@ -786,6 +782,22 @@
                         </td>
                         <td>
                             <textarea id="webui_domain_textarea" rows="1" cols="60"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset class="settings">
+                <legend>
+                    <input type="checkbox" id="cors_header_checkbox" onclick="qBittorrent.Preferences.updateCorsHeaderSettings();" />
+                    <label for="cors_header_checkbox">QBT_TR(Enable Cross-Origin requests)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </legend>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="webui_cors_header_text">QBT_TR(Cross-Origin Domain:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="webui_cors_header_text" />
                         </td>
                     </tr>
                 </table>
@@ -1143,6 +1155,7 @@
                 updateBypasssAuthSettings: updateBypasssAuthSettings,
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
+                updateCorsHeaderSettings: updateCorsHeaderSettings,
                 updateDynDnsSettings: updateDynDnsSettings,
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
@@ -1390,6 +1403,11 @@
         const updateHostHeaderValidationSettings = function() {
             const isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
             $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
+        };
+
+        const updateCorsHeaderSettings = function() {
+            const isCorsHeaderEnabled = $('cors_header_checkbox').getProperty('checked');
+            $('webui_cors_header_text').setProperty('disabled', !isCorsHeaderEnabled);
         };
 
         const updateDynDnsSettings = function() {
@@ -1718,6 +1736,7 @@
 
                         // HTTP Server
                         $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
+                        $('webui_cors_header_text').setProperty('value', pref.web_ui_cors_header);
                         $('webui_address_value').setProperty('value', pref.web_ui_address);
                         $('webui_port_value').setProperty('value', pref.web_ui_port);
                         $('webui_upnp_checkbox').setProperty('checked', pref.web_ui_upnp);
@@ -1744,10 +1763,11 @@
                         // Security
                         $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
                         $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
-                        $('cors_header_checkbox').setProperty('checked', perf.web_ui_cors_header_enabled);
+                        $('cors_header_checkbox').setProperty('checked', pref.web_ui_cors_header_enabled);
                         $('secureCookieCheckbox').setProperty('checked', pref.web_ui_secure_cookie_enabled);
                         $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
                         updateHostHeaderValidationSettings();
+                        updateCorsHeaderSettings();
 
                         // Update my dynamic domain name
                         $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
@@ -2066,6 +2086,7 @@
 
             // HTTP Server
             settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
+            settings.set('web_ui_cors_header', $('webui_cors_header_text').getProperty('value'));
             const web_ui_address = $('webui_address_value').getProperty('value').toString();
             const web_ui_port = $('webui_port_value').getProperty('value').toInt();
             if (isNaN(web_ui_port) || web_ui_port < 1 || web_ui_port > 65535) {

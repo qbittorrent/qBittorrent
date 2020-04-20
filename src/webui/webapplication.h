@@ -151,6 +151,7 @@ private:
 
     // security related
     QStringList m_domainList;
+    QString m_corsDomain;
     bool m_isClickjackingProtectionEnabled;
     bool m_isCorsEnabled;
     bool m_isCSRFProtectionEnabled;

@@ -218,6 +218,7 @@ void AppController::preferencesAction()
     data["locale"] = pref->getLocale();
     // HTTP Server
     data["web_ui_domain_list"] = pref->getServerDomains();
+    data["web_ui_cors_header"] = pref->getCorsDomain();
     data["web_ui_address"] = pref->getWebUiAddress();
     data["web_ui_port"] = pref->getWebUiPort();
     data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
@@ -579,6 +580,8 @@ void AppController::setPreferencesAction()
     // HTTP Server
     if (hasKey("web_ui_domain_list"))
         pref->setServerDomains(it.value().toString());
+    if (hasKey("web_ui_cors_header"))
+        pref->setCorsDomain(it.value().toString());
     if (hasKey("web_ui_address"))
         pref->setWebUiAddress(it.value().toString());
     if (hasKey("web_ui_port"))
