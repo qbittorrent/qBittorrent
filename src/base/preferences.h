@@ -204,6 +204,8 @@ public:
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;
     void setWebUiClickjackingProtectionEnabled(bool enabled);
+    bool isWebUiCorsHeaderEnabled() const;
+    void setWebUiCorsHeaderEnabled(bool enabled);
     bool isWebUiCSRFProtectionEnabled() const;
     void setWebUiCSRFProtectionEnabled(bool enabled);
     bool isWebUiSecureCookieEnabled () const;
