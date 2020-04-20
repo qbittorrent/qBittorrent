@@ -1744,6 +1744,7 @@
                         // Security
                         $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
                         $('csrf_protection_checkbox').setProperty('checked', pref.web_ui_csrf_protection_enabled);
+                        $('cors_header_checkbox').setProperty('checked', perf.web_ui_cors_header_enabled);
                         $('secureCookieCheckbox').setProperty('checked', pref.web_ui_secure_cookie_enabled);
                         $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
                         updateHostHeaderValidationSettings();
@@ -2111,6 +2112,7 @@
             settings.set('alternative_webui_path', webui_files_location_textarea);
 
             settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
+            settings.set('web_ui_cors_header_enabled', $('cors_header_checkbox').getProperty('checked'));
             settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_secure_cookie_enabled', $('secureCookieCheckbox').getProperty('checked'));
             settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
