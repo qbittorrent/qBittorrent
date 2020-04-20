@@ -567,6 +567,16 @@ void Preferences::setServerDomains(const QString &str)
     setValue("Preferences/WebUI/ServerDomains", str);
 }
 
+QString Preferences::getCorsDomain() const
+{
+    return value("Preferences/WebUI/CorsDomain", QChar('*')).toString();
+}
+
+void Preferences::setCorsDomain(const QString &str)
+{
+    setValue("Preferences/WebUI/CorsDomain", str);
+}
+
 QString Preferences::getWebUiAddress() const
 {
     return value("Preferences/WebUI/Address", QChar('*')).toString().trimmed();

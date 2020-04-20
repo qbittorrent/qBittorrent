@@ -176,6 +176,8 @@ public:
     void setWebUiEnabled(bool enabled);
     QString getServerDomains() const;
     void setServerDomains(const QString &str);
+    QString getCorsDomain() const;
+    void setCorsDomain(const QString &str);
     QString getWebUiAddress() const;
     void setWebUiAddress(const QString &addr);
     quint16 getWebUiPort() const;
