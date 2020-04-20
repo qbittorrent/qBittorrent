@@ -90,7 +90,7 @@
      </widget>
      <widget class="QStackedWidget" name="tabOption">
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabBehaviorPage">
        <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -121,7 +121,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-512</y>
+             <y>0</y>
              <width>618</width>
              <height>1233</height>
             </rect>
@@ -2851,7 +2851,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-631</y>
+             <y>-618</y>
              <width>541</width>
              <height>1203</height>
             </rect>

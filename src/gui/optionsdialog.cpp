@@ -474,6 +474,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->textWebUIHttpsKey->setDialogCaption(tr("Select private key"));
 
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textCorsDomain, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUi, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinWebUiPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -492,11 +493,11 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinBanDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkCors, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, m_ui->checkSecureCookie, &QWidget::setEnabled);
     connect(m_ui->checkSecureCookie, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupHostHeaderValidation, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupCorsHeader, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkDynDNS, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboDNSService, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->domainNameTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -834,6 +835,7 @@ void OptionsDialog::saveOptions()
     pref->setWebUiEnabled(isWebUiEnabled());
     if (isWebUiEnabled()) {
         pref->setServerDomains(m_ui->textServerDomains->text());
+        pref->setCorsDomain(m_ui->textCorsDomain->text());
         pref->setWebUiAddress(m_ui->textWebUiAddress->text());
         pref->setWebUiPort(m_ui->spinWebUiPort->value());
         pref->setUPnPForWebUIPort(m_ui->checkWebUIUPnP->isChecked());
@@ -851,7 +853,6 @@ void OptionsDialog::saveOptions()
         pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
         // Security
         pref->setWebUiClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
-        pref->setWebUiCorsHeaderEnabled(m_ui->checkCors->isChecked());
         pref->setWebUiCSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
         pref->setWebUiSecureCookieEnabled(m_ui->checkSecureCookie->isChecked());
         pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
@@ -1215,6 +1216,7 @@ void OptionsDialog::loadOptions()
 
     // Web UI preferences
     m_ui->textServerDomains->setText(pref->getServerDomains());
+    m_ui->textCorsDomain->setText(pref->getCorsDomain());
     m_ui->checkWebUi->setChecked(pref->isWebUiEnabled());
     m_ui->textWebUiAddress->setText(pref->getWebUiAddress());
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
@@ -1232,11 +1234,11 @@ void OptionsDialog::loadOptions()
 
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUiClickjackingProtectionEnabled());
-    m_ui->checkCors->setChecked(pref->isWebUiCorsHeaderEnabled());
     m_ui->checkCSRFProtection->setChecked(pref->isWebUiCSRFProtectionEnabled());
     m_ui->checkSecureCookie->setEnabled(pref->isWebUiHttpsEnabled());
     m_ui->checkSecureCookie->setChecked(pref->isWebUiSecureCookieEnabled());
     m_ui->groupHostHeaderValidation->setChecked(pref->isWebUIHostHeaderValidationEnabled());
+    m_ui->groupCorsHeader->setChecked(pref->isWebUiCorsHeaderEnabled());
 
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
     m_ui->comboDNSService->setCurrentIndex(static_cast<int>(pref->getDynDNSService()));
