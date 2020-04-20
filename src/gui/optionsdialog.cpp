@@ -492,6 +492,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinBanDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkCors, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, m_ui->checkSecureCookie, &QWidget::setEnabled);
     connect(m_ui->checkSecureCookie, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
@@ -850,6 +851,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
         // Security
         pref->setWebUiClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
+        pref->setWebUiCorsHeaderEnabled(m_ui->checkCors->isChecked());
         pref->setWebUiCSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
         pref->setWebUiSecureCookieEnabled(m_ui->checkSecureCookie->isChecked());
         pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
@@ -1230,6 +1232,7 @@ void OptionsDialog::loadOptions()
 
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUiClickjackingProtectionEnabled());
+    m_ui->checkCors->setChecked(pref->isWebUiCorsHeaderEnabled());
     m_ui->checkCSRFProtection->setChecked(pref->isWebUiCSRFProtectionEnabled());
     m_ui->checkSecureCookie->setEnabled(pref->isWebUiHttpsEnabled());
     m_ui->checkSecureCookie->setChecked(pref->isWebUiSecureCookieEnabled());
