@@ -446,7 +446,7 @@
                   <item>
                    <widget class="QCheckBox" name="checkCloseToSystray">
                     <property name="toolTip">
-                      <string>The systray icon will still be visible when closing the main window</string>
+                     <string>The systray icon will still be visible when closing the main window</string>
                     </property>
                     <property name="text">
                      <string extracomment="The systray icon will still be visible when closing the main window">Close qBittorrent to notification area</string>
@@ -471,12 +471,12 @@
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (Dark theme)</string>
+                        <string>Monochrome (for dark theme)</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (Light theme)</string>
+                        <string>Monochrome (for light theme)</string>
                        </property>
                       </item>
                      </widget>
