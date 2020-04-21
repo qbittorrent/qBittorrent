@@ -98,6 +98,7 @@ namespace BitTorrent
         void registerPeer(const TrackerAnnounceRequest &announceReq);
         void unregisterPeer(const TrackerAnnounceRequest &announceReq);
         void prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq);
+        QHostAddress sanitizeAddress(const QHostAddress &addr, quint16 requestPort);
 
         Http::Server *m_server;
         Http::Request m_request;
