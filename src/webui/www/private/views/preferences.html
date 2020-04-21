@@ -1768,6 +1768,7 @@
                         $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
                         $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
+                        $('UPnPLeaseDuration').setProperty('value', pref.upnp_lease_duration);
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
@@ -2135,6 +2136,7 @@
             settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
             settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
+            settings.set('upnp_lease_duration', $('UPnPLeaseDuration').getProperty('value'));
             settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
             settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
