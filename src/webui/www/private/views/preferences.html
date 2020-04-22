@@ -787,6 +787,14 @@
                 </table>
             </fieldset>
         </fieldset>
+
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="webUIUseCustomHTTPHeadersCheckbox" onclick="qBittorrent.Preferences.updateWebUICustomHTTPHeadersSettings();" />
+                <label for="webUIUseCustomHTTPHeadersCheckbox">QBT_TR(Add custom HTTP headers)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" style="width: 90%;"></textarea>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -1139,6 +1147,7 @@
                 updateBypasssAuthSettings: updateBypasssAuthSettings,
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
+                updateWebUICustomHTTPHeadersSettings: updateWebUICustomHTTPHeadersSettings,
                 updateDynDnsSettings: updateDynDnsSettings,
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
@@ -1379,6 +1388,11 @@
         const updateHostHeaderValidationSettings = function() {
             const isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
             $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
+        };
+
+        const updateWebUICustomHTTPHeadersSettings = function() {
+            const isEnabled = $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked');
+            $('webUICustomHTTPHeadersTextarea').setProperty('disabled', !isEnabled);
         };
 
         const updateDynDnsSettings = function() {
@@ -1736,6 +1750,11 @@
                         $('secureCookieCheckbox').setProperty('checked', pref.web_ui_secure_cookie_enabled);
                         $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
                         updateHostHeaderValidationSettings();
+
+                        // Custom HTTP headers
+                        $('webUIUseCustomHTTPHeadersCheckbox').setProperty('checked', pref.web_ui_use_custom_http_headers_enabled);
+                        $('webUICustomHTTPHeadersTextarea').setProperty('value', pref.web_ui_custom_http_headers);
+                        updateWebUICustomHTTPHeadersSettings();
 
                         // Update my dynamic domain name
                         $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
@@ -2100,10 +2119,15 @@
             settings.set('alternative_webui_enabled', alternative_webui_enabled);
             settings.set('alternative_webui_path', webui_files_location_textarea);
 
+            // Security
             settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_secure_cookie_enabled', $('secureCookieCheckbox').getProperty('checked'));
             settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
+
+            // Custom HTTP headers
+            settings.set('web_ui_use_custom_http_headers_enabled', $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked'));
+            settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
 
             // Update my dynamic domain name
             settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));

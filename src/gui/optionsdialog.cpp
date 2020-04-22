@@ -503,6 +503,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSPasswordTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupWebUIAddCustomHTTPHeaders, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUICustomHTTPHeaders, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
 #endif // DISABLE_WEBUI
 
     // RSS tab
@@ -862,6 +864,9 @@ void OptionsDialog::saveOptions()
         // Alternative UI
         pref->setAltWebUiEnabled(m_ui->groupAltWebUI->isChecked());
         pref->setWebUiRootFolder(m_ui->textWebUIRootFolder->selectedPath());
+        // Custom HTTP headers
+        pref->setWebUICustomHTTPHeadersEnabled(m_ui->groupWebUIAddCustomHTTPHeaders->isChecked());
+        pref->setWebUICustomHTTPHeaders(m_ui->textWebUICustomHTTPHeaders->toPlainText());
     }
     // End Web UI
     // End preferences
@@ -1242,6 +1247,9 @@ void OptionsDialog::loadOptions()
 
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUiEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUiRootFolder());
+    // Custom HTTP headers
+    m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
+    m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());
     // End Web UI preferences
 }
 

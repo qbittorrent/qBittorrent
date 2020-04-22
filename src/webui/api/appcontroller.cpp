@@ -243,6 +243,9 @@ void AppController::preferencesAction()
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
     data["web_ui_secure_cookie_enabled"] = pref->isWebUiSecureCookieEnabled();
     data["web_ui_host_header_validation_enabled"] = pref->isWebUIHostHeaderValidationEnabled();
+    // Custom HTTP headers
+    data["web_ui_use_custom_http_headers_enabled"] = pref->isWebUICustomHTTPHeadersEnabled();
+    data["web_ui_custom_http_headers"] = pref->getWebUICustomHTTPHeaders();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
     data["dyndns_service"] = pref->getDynDNSService();
@@ -623,6 +626,11 @@ void AppController::setPreferencesAction()
         pref->setWebUiSecureCookieEnabled(it.value().toBool());
     if (hasKey("web_ui_host_header_validation_enabled"))
         pref->setWebUIHostHeaderValidationEnabled(it.value().toBool());
+    // Custom HTTP headers
+    if (hasKey("web_ui_use_custom_http_headers_enabled"))
+        pref->setWebUICustomHTTPHeadersEnabled(it.value().toBool());
+    if (hasKey("web_ui_custom_http_headers"))
+        pref->setWebUICustomHTTPHeaders(it.value().toString());
     // Update my dynamic domain name
     if (hasKey("dyndns_enabled"))
         pref->setDynDNSEnabled(it.value().toBool());
