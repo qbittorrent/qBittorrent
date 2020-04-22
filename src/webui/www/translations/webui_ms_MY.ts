@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Super penyemaian ketat:</translation>
+        <translation type="vanished">Super penyemaian ketat:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>

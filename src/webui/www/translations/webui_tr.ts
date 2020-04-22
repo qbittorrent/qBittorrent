@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrent'leri URL'lerinden ya da Magnet bağlantılarından indir</translation>
+        <translation>Torrent'leri URL'lerinden ya da Magnet bağlantılarından indirin</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Bağlantı durumu: Güvenlik Duvarlı</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Bağlantı durumu: Bağlandı</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatif hız sınırları: Kapalı</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>İndirme hızı simgesi</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Bağlantı durumu</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatif hız sınırları: Açık</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Gönderme hızı simgesi</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Bağlantı durumu: Bağlantı Kesildi</translation>
     </message>
 </context>
 <context>
@@ -979,7 +979,7 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation>Siteler Arası İstek Sahteciliği (CSRF) korumasını etkinleştir</translation>
+        <translation>Siteler Arası İstek Sahtekarlığı (CSRF) korumasını etkinleştir</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -1071,7 +1071,7 @@
     </message>
     <message>
         <source>Files location:</source>
-        <translation>Dosyalar konumu:</translation>
+        <translation>Dosyaların konumu:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Değişmez süper gönderim:</translation>
+        <translation type="vanished">Değişmez süper gönderim:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1195,7 +1195,7 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Giden b.noktaları (En az) [0: Etkisizleştirildi]:</translation>
+        <translation>Giden bağlantı noktaları (En az) [0: Etkisizleştirildi]</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
@@ -1227,7 +1227,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Giden b.noktaları (En fazla) [0: Etkisizleştirildi]:</translation>
+        <translation>Giden bağlantı noktaları (En fazla) [0: Etkisizleştirildi]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1331,7 +1331,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>UPnP kiralama süresi [0: Kalıcı kiralama]:</translation>
     </message>
 </context>
 <context>
@@ -2856,7 +2856,7 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation>Yeniden adlandırma</translation>
+        <translation>Yeniden adlandır</translation>
     </message>
     <message>
         <source>New name:</source>

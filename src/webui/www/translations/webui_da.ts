@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Streng superseeding:</translation>
+        <translation type="vanished">Streng superseeding:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>

@@ -530,35 +530,36 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Стан з'єднання: закрито брандмауером</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Стан з'єднання: підключено</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Особливі обмеження швидкості: вимкн.</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Значок швидкості завантаження</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Статус з'єднання:
+</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Особливі обмеження швидкості: увімк.</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Значок швидкості віддачі</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Стан з'єднання: відключено</translation>
     </message>
 </context>
 <context>
@@ -1095,7 +1096,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Традиційний суперсід:</translation>
+        <translation type="vanished">Традиційний суперсід:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1331,7 +1332,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>Термін оренди UPnP [0: постійний]:</translation>
     </message>
 </context>
 <context>

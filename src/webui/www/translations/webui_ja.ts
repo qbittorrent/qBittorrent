@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>正確なスーパーシード</translation>
+        <translation type="vanished">正確なスーパーシード</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>

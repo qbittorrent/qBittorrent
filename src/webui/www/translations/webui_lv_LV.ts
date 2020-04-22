@@ -498,7 +498,7 @@
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>Saraksta apakšā</translation>
+        <translation>Novietot saraksta apakšā</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
@@ -506,7 +506,7 @@
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>Saraksta augšā</translation>
+        <translation>Novietot saraksta augšā</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Savienojuma statuss: Aiz ugunsmūra</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Savienojuma statuss: Savienots</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatīvie ielādes ātrumi: Nē</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Lejupielādes ātruma ikona</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Savienojuma statuss</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatīvie ielādes ātrumi: Jā</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Augšupielādes ātruma ikona</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Savienojuma statuss: Nav savienots</translation>
     </message>
 </context>
 <context>
@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Piespiedu super-augšupielādēšana:</translation>
+        <translation type="vanished">Piespiedu super-augšupielādēšana:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
