@@ -223,6 +223,12 @@ public:
     QString getWebUiRootFolder() const;
     void setWebUiRootFolder(const QString &path);
 
+    // WebUI custom HTTP headers
+    bool isWebUICustomHTTPHeadersEnabled() const;
+    void setWebUICustomHTTPHeadersEnabled(bool enabled);
+    QString getWebUICustomHTTPHeaders() const;
+    void setWebUICustomHTTPHeaders(const QString &headers);
+
     // Dynamic DNS
     bool isDynDNSEnabled() const;
     void setDynDNSEnabled(bool enabled);

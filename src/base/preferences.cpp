@@ -743,6 +743,26 @@ void Preferences::setWebUiRootFolder(const QString &path)
     setValue("Preferences/WebUI/RootFolder", path);
 }
 
+bool Preferences::isWebUICustomHTTPHeadersEnabled() const
+{
+    return value("Preferences/WebUI/CustomHTTPHeadersEnabled", false).toBool();
+}
+
+void Preferences::setWebUICustomHTTPHeadersEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/CustomHTTPHeadersEnabled", enabled);
+}
+
+QString Preferences::getWebUICustomHTTPHeaders() const
+{
+    return value("Preferences/WebUI/CustomHTTPHeaders").toString();
+}
+
+void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
+{
+    setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
+}
+
 bool Preferences::isDynDNSEnabled() const
 {
     return value("Preferences/DynDNS/Enabled", false).toBool();
