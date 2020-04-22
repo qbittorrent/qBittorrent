@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלת קצב חלופי של העלאה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלת קצב חלופי של העלאה חייבת להיות גדולה מן 0 או מושבתת.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלת קצב חלופי של הורדה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלת קצב חלופי של הורדה חייבת להיות גדולה מן 0 או מושבתת.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>מגבלות מהירות חלופיות</translation>
+        <translation>מגבלות מהירות חלופית</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>מעמד חיבור: מאוחרי חומת אש</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>מעמד חיבור: מחובר</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>מגבלות מהירות חלופית: כבוי</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>צלמית מהירות הורדה</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>מעמד חיבור</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>מגבלות מהירות חלופית: פועל</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>צלמית מהירות העלאה</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>מעמד חיבור: מנותק</translation>
     </message>
 </context>
 <context>
@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>זריעה קפדנית־על</translation>
+        <translation type="vanished">זריעה קפדנית־על</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1331,7 +1331,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>משך חכירת UPnP [0: חכירה קבועה]:</translation>
     </message>
 </context>
 <context>

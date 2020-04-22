@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus: firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus: verbonden</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatieve snelheidsbegrenzingen: uit</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Pictogram downloadsnelheid</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatieve snelheidsbegrenzingen: aan</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Pictogram uploadsnelheid</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus: niet verbonden</translation>
     </message>
 </context>
 <context>
@@ -1095,7 +1095,7 @@
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Strikt super-seeden:</translation>
+        <translation type="vanished">Strikt super-seeden:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1331,7 +1331,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>UPnP-leaseduur [0: permanente lease]:</translation>
     </message>
 </context>
 <context>

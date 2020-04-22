@@ -105,7 +105,7 @@
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>Il numero massimo di scaricamenti attivi deve essere maggiore di -1.</translation>
+        <translation>Il numero massimo di download attivi deve essere maggiore di -1.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
@@ -386,7 +386,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Options...</source>
-        <translation>Opzioni...</translation>
+        <translation>Impostazioni...</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -491,15 +491,15 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation>Sposta coda in su</translation>
+        <translation>Sposta in su nella coda</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation>Sposta coda in su</translation>
+        <translation>Sposta in su nella coda</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>In fondo alla coda</translation>
+        <translation>Sposta in fondo alla coda</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
@@ -507,15 +507,15 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>In alto nella coda</translation>
+        <translation>Sposta in alto nella coda</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation>Sposta coda in giù</translation>
+        <translation>Sposta in giù nella coda</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation>Sposta coda in giù</translation>
+        <translation>Sposta in giù nella coda</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
@@ -531,46 +531,46 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Stato conenssione: sotto firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Stato connessione: connesso</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Limite alternativo velocità: OFF</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Icona velocità download</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Stato connessione</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Limite alternativo velocità: ON</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Icona velocità upload</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Stato connessione: disconnesso</translation>
     </message>
 </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>Opzioni</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation>Scaricamenti</translation>
+        <translation>Download</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -618,7 +618,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Aggiungi automaticamente questi server traccia ai nuovi scaricamenti:</translation>
+        <translation>Aggiungi automaticamente questi server traccia ai nuovi download:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -658,7 +658,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Copia i file .torrent per gli scaricamenti completati in:</translation>
+        <translation>Copia i file .torrent per i download completati in:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -876,7 +876,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Numero massimo di scaricamenti attivi:</translation>
+        <translation>Numero massimo download attivi:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
@@ -1096,7 +1096,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Strict super seeding:</source>
-        <translation>Super seeding rigoroso:</translation>
+        <translation type="vanished">Super seeding rigoroso:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1308,31 +1308,31 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Risolvi nazioni peer:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>ban per:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Usa affinità segmento (richiede libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Stop timeout tracker:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Ban client dopo fallimenti consecutivi:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation>Abilita flag cookie sicuro (richiede HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>Durata lease UPNP [0: lease permanente]:</translation>
     </message>
 </context>
 <context>
@@ -1411,7 +1411,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Nazione/regione</translation>
     </message>
 </context>
 <context>
@@ -1677,7 +1677,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>Scaricamenti da sempre:</translation>
+        <translation>Download in generale:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -1796,27 +1796,27 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Upload in stallo (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Download in stallo (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Download in stallo (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>In stallo (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Upload in stallo (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>In stallo (%1)</translation>
     </message>
 </context>
 <context>
@@ -2804,11 +2804,12 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Software usato</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Il database gratuito da IP a Country Lite di DB-IP viene usato per risolvere i paesi dei peer. 
+Il database è concesso in licenza con la licenza internazionale Creative Commons Attribution 4.0.</translation>
     </message>
 </context>
 <context>

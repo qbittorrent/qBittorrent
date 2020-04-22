@@ -1095,10 +1095,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation type="unfinished" />
     </message>
