@@ -43,7 +43,7 @@ class SpeedLimitDialog : public QDialog
 public:
     explicit SpeedLimitDialog(QWidget *parent);
     ~SpeedLimitDialog();
-    static long askSpeedLimit(QWidget *parent, bool *ok, const QString &title, long defaultVal, long maxVal = 10240000);
+    static long askSpeedLimit(QWidget *parent, bool *ok, const QString &title, long defaultVal, long maxVal = 102400000);
 
 private slots:
     void updateSpinValue(int val);

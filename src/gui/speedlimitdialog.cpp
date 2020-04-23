@@ -102,5 +102,6 @@ void SpeedLimitDialog::setupDialog(long maxSlider, long val)
 
     m_ui->bandwidthSlider->setMaximum(maxSlider);
     m_ui->bandwidthSlider->setValue(val);
+    m_ui->spinBandwidth->setMaximum(maxSlider);
     updateSpinValue(val);
 }
