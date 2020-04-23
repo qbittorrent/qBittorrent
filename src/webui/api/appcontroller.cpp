@@ -483,7 +483,7 @@ void AppController::setPreferencesAction()
     if (hasKey("ip_filter_trackers"))
         session->setTrackerFilteringEnabled(it.value().toBool());
     if (hasKey("banned_IPs"))
-        session->setBannedIPs(it.value().toString().split('\n'));
+        session->setBannedIPs(it.value().toString().split('\n', QString::SkipEmptyParts));
 
     // Speed
     // Global Rate Limits
