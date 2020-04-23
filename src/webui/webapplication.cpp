@@ -473,8 +473,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         header(QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), m_contentSecurityPolicy);
 
     if (m_useCustomHTTPHeaders) {
-        for (const CustomHTTPHeader &i : asConst(m_customHTTPHeaders))
-            header(i.name, i.value);
+        for (const CustomHTTPHeader &customHeader : asConst(m_customHTTPHeaders))
+            header(customHeader.name, customHeader.value);
     }
 
     return response();
