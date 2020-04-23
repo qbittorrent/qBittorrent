@@ -1693,7 +1693,10 @@ void Session::processShareLimits()
 {
     qDebug("Processing share limits...");
 
-    for (TorrentHandleImpl *const torrent : asConst(m_torrents)) {
+    // We shouldn't iterate over `m_torrents` in the loop below
+    // since `deleteTorrent()` modifies it indirectly
+    const QHash<InfoHash, TorrentHandleImpl *> torrents {m_torrents};
+    for (TorrentHandleImpl *const torrent : torrents) {
         if (torrent->isSeed() && !torrent->isForced()) {
             if (torrent->ratioLimit() != TorrentHandle::NO_RATIO_LIMIT) {
                 const qreal ratio = torrent->realRatio();
