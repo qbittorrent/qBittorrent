@@ -3221,6 +3221,28 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="groupWebUIAddCustomHTTPHeaders">
+                 <property name="title">
+                  <string>Add custom HTTP headers</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                  <item>
+                   <widget class="QPlainTextEdit" name="textWebUICustomHTTPHeaders">
+                    <property name="lineWrapMode">
+                     <enum>QPlainTextEdit::NoWrap</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Header: value pairs, one per line</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
                   <string>Upda&amp;te my dynamic domain name</string>

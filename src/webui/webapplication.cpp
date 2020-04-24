@@ -347,6 +347,27 @@ void WebApplication::configure()
             : QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';"))
         + (m_isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
         + (m_isHttpsEnabled ? QLatin1String(" upgrade-insecure-requests;") : QLatin1String(""));
+
+    m_useCustomHTTPHeaders = pref->isWebUICustomHTTPHeadersEnabled();
+    m_customHTTPHeaders.clear();
+    if (m_useCustomHTTPHeaders) {
+        const QString customHeaders = pref->getWebUICustomHTTPHeaders().trimmed();
+        const QVector<QStringRef> customHeaderLines = customHeaders.splitRef('\n', QString::SkipEmptyParts);
+        m_customHTTPHeaders.reserve(customHeaderLines.size());
+
+        for (const QStringRef &line : customHeaderLines) {
+            const int idx = line.indexOf(':');
+            if (idx < 0) {
+                // require separator `:` to be present even if `value` field can be empty
+                LogMsg(tr("Missing ':' separator in WebUI custom HTTP header: \"%1\"").arg(line.toString()), Log::WARNING);
+                continue;
+            }
+
+            const QString header = line.left(idx).trimmed().toString();
+            const QString value = line.mid(idx + 1).trimmed().toString();
+            m_customHTTPHeaders.push_back({header, value});
+        }
+    }
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -450,6 +471,11 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     if (!m_contentSecurityPolicy.isEmpty())
         header(QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), m_contentSecurityPolicy);
+
+    if (m_useCustomHTTPHeaders) {
+        for (const CustomHTTPHeader &customHeader : asConst(m_customHTTPHeaders))
+            header(customHeader.name, customHeader.value);
+    }
 
     return response();
 }
