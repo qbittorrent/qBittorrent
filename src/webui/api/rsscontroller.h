@@ -44,9 +44,11 @@ private slots:
     void removeItemAction();
     void moveItemAction();
     void itemsAction();
+    void markAsReadAction();
     void refreshItemAction();
     void setRuleAction();
     void renameRuleAction();
     void removeRuleAction();
     void rulesAction();
+    void matchingArticlesAction();
 };
