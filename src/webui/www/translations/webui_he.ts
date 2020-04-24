@@ -1094,10 +1094,6 @@
         <translation>מידע: הסיסמה נשמרת באופן בלתי מוצפן</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">זריעה קפדנית־על</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>אלגוריתם מצב משולב μTP-TCP:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>משך חכירת UPnP [0: חכירה קבועה]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

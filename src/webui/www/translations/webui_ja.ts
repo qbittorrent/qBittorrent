@@ -1094,10 +1094,6 @@
         <translation>情報: パスワードは暗号化されずに保存されます</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">正確なスーパーシード</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP 混在状態のアルゴリズム:</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

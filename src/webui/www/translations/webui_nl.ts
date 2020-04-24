@@ -1094,10 +1094,6 @@
         <translation>Info: het wachtwoord wordt onversleuteld opgeslagen</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Strikt super-seeden:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>µTP-TCP gemengde modus algoritme</translation>
     </message>
@@ -1295,7 +1291,7 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>Interval voor opslaan van hervattingsdata:</translation>
+        <translation>Interval voor opslaan van hervattingsgegevens:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>UPnP-leaseduur [0: permanente lease]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2153,7 +2157,7 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>Hervattingsdata controleren</translation>
+        <translation>Hervattingsgegevens controleren</translation>
     </message>
     <message>
         <source>Stalled</source>

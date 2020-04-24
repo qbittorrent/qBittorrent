@@ -1094,10 +1094,6 @@
         <translation>Informação: A senha é salva sem criptografia</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Super seeding severo:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritmo de modo misto μTP-TCP:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>Duração da concessão UPnP [0: Concessão permanente]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

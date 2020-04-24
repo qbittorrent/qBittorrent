@@ -635,10 +635,6 @@ Hata: %2</translation>
         <translation>Kişi anamakine adlarını çöz</translation>
     </message>
     <message>
-        <source>Strict super seeding</source>
-        <translation type="vanished">Değişmez süper gönderim</translation>
-    </message>
-    <message>
         <location filename="../gui/advancedsettings.cpp" line="534"/>
         <source>Network Interface (requires restart)</source>
         <translation>Ağ Arayüzü (yeniden başlatma gerektirir)</translation>
@@ -759,7 +755,7 @@ Hata: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="540"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>İzleyicilere bildirmek için IP Adresi (yeniden başlatma gerektirir)</translation>
+        <translation>İzleyicilere bildirilecek IP Adresi (yeniden başlatma gerektirir)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="566"/>
@@ -1345,207 +1341,207 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
         <translation>PeX desteğini değiştirmek için yeniden başlatma gerekir</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2647"/>
+        <location filename="../base/bittorrent/session.cpp" line="2650"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Sistem ağ durumu %1 olarak değişti</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2647"/>
+        <location filename="../base/bittorrent/session.cpp" line="2650"/>
         <source>ONLINE</source>
         <translation>ÇEVRİMİÇİ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2647"/>
+        <location filename="../base/bittorrent/session.cpp" line="2650"/>
         <source>OFFLINE</source>
         <translation>ÇEVRİMDIŞI</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2660"/>
+        <location filename="../base/bittorrent/session.cpp" line="2663"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>%1 ağ yapılandırması değişti, oturum bağlaması yenileniyor</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1183"/>
-        <location filename="../base/bittorrent/session.cpp" line="3015"/>
+        <location filename="../base/bittorrent/session.cpp" line="3018"/>
         <source>Encryption support [%1]</source>
         <translation>Şifreleme desteği [%1]</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1184"/>
-        <location filename="../base/bittorrent/session.cpp" line="3016"/>
+        <location filename="../base/bittorrent/session.cpp" line="3019"/>
         <source>FORCED</source>
         <translation>ZORLANDI</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3126"/>
+        <location filename="../base/bittorrent/session.cpp" line="3129"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
         <translation>%1 geçerli bir IP adresi değil ve yasaklanan adresler listesi uygulanırken reddedildi.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1182"/>
-        <location filename="../base/bittorrent/session.cpp" line="3476"/>
+        <location filename="../base/bittorrent/session.cpp" line="3479"/>
         <source>Anonymous mode [%1]</source>
         <translation>İsimsiz kipi [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1714"/>
+        <location filename="../base/bittorrent/session.cpp" line="1717"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed torrent and its files.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla orana ulaştı. Torrent ve dosyaları kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1723"/>
+        <location filename="../base/bittorrent/session.cpp" line="1726"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Enabled super seeding for it.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla orana ulaştı. Bunun için süper gönderim etkinleştirildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1745"/>
+        <location filename="../base/bittorrent/session.cpp" line="1748"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed torrent and its files.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla gönderim süresine ulaştı. Torrent ve dosyaları kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1754"/>
+        <location filename="../base/bittorrent/session.cpp" line="1757"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Enabled super seeding for it.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla gönderim süresine ulaştı. Bunun için süper gönderim etkinleştirildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2566"/>
+        <location filename="../base/bittorrent/session.cpp" line="2569"/>
         <source>Error: Aborted saving resume data for %1 outstanding torrents.</source>
         <translation>Hata: %1 bekleyen torrent için devam etme verilerini kaydetme iptal edildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2676"/>
+        <location filename="../base/bittorrent/session.cpp" line="2679"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.158.1 isn&apos;t valid.</comment>
         <translation>Yapılandırılan ağ arayüzü adresi %1 geçerli değil.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2714"/>
-        <location filename="../base/bittorrent/session.cpp" line="2746"/>
+        <location filename="../base/bittorrent/session.cpp" line="2717"/>
+        <location filename="../base/bittorrent/session.cpp" line="2749"/>
         <source>Can&apos;t find the configured address &apos;%1&apos; to listen on</source>
         <comment>Can&apos;t find the configured address &apos;192.168.1.3&apos; to listen on</comment>
         <translation>Dinlemek için yapılandırılan &apos;%1&apos; adresi bulunamıyor</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3919"/>
-        <location filename="../base/bittorrent/session.cpp" line="4525"/>
+        <location filename="../base/bittorrent/session.cpp" line="3922"/>
+        <location filename="../base/bittorrent/session.cpp" line="4528"/>
         <source>Couldn&apos;t save torrent metadata file &apos;%1&apos;. Reason: %2</source>
         <translation>&apos;%1&apos; torrent üstveri dosyası kaydedilemedi. Sebep: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3966"/>
+        <location filename="../base/bittorrent/session.cpp" line="3969"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation>&apos;%1&apos; torrent dosyası çözülemiyor.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4113"/>
+        <location filename="../base/bittorrent/session.cpp" line="4116"/>
         <source>Cannot write to torrent resume folder: &quot;%1&quot;</source>
         <translation>Torrent devam klasörüne yazamıyor: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4118"/>
+        <location filename="../base/bittorrent/session.cpp" line="4121"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation>Torrent devam klasörünü oluşturamıyor: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4180"/>
+        <location filename="../base/bittorrent/session.cpp" line="4183"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation>&apos;%1&apos; dosyasının tekrarlayan indirmesi &apos;%2&apos; torrent&apos;i içine gömüldü</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4283"/>
+        <location filename="../base/bittorrent/session.cpp" line="4286"/>
         <source>Queue positions were corrected in %1 resume files</source>
         <translation>Kuyruk konumları %1 devam eden dosya olarak düzeltildi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4553"/>
+        <location filename="../base/bittorrent/session.cpp" line="4556"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: %2.</source>
         <translation>Torrent&apos;te hata oldu. Torrent: &quot;%1&quot;. Hata: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4591"/>
-        <location filename="../base/bittorrent/session.cpp" line="4628"/>
+        <location filename="../base/bittorrent/session.cpp" line="4594"/>
+        <location filename="../base/bittorrent/session.cpp" line="4631"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; dosyası aktarım listesinden kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4606"/>
+        <location filename="../base/bittorrent/session.cpp" line="4609"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; dosyası aktarım listesinden ve sabit diskten kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4623"/>
+        <location filename="../base/bittorrent/session.cpp" line="4626"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; dosyası aktarım listesinden kaldırıldı ancak dosyalar silinemedi. Hata: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4658"/>
+        <location filename="../base/bittorrent/session.cpp" line="4661"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
         <translation>Dosya hata uyarısı. Torrent: &quot;%1&quot;. Dosya: &quot;%2&quot;. Sebep: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4716"/>
+        <location filename="../base/bittorrent/session.cpp" line="4719"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because uTP is disabled.</comment>
         <translation>engellendi çünkü %1 etkisizleştirildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4719"/>
+        <location filename="../base/bittorrent/session.cpp" line="4722"/>
         <source>because %1 is disabled.</source>
         <comment>this peer was blocked because TCP is disabled.</comment>
         <translation>engellendi çünkü %1 etkisizleştirildi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4747"/>
+        <location filename="../base/bittorrent/session.cpp" line="4750"/>
         <source>URL seed name lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>URL gönderim adı araması başarısız oldu. Torrent: &quot;%1&quot;, URL: &quot;%2&quot;, Hata: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4752"/>
+        <location filename="../base/bittorrent/session.cpp" line="4755"/>
         <source>Received error message from a URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>URL gönderiminden hata iletisi alındı. Torrent: &quot;%1&quot;, URL: &quot;%2&quot;, İleti: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4808"/>
+        <location filename="../base/bittorrent/session.cpp" line="4811"/>
         <source>Successfully listening on IP: %1, port: %2/%3</source>
         <comment>e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881</comment>
         <translation>Başarılı olarak dinlenen IP: %1, bağlantı noktası: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4871"/>
+        <location filename="../base/bittorrent/session.cpp" line="4874"/>
         <source>Failed to listen on IP: %1, port: %2/%3. Reason: %4</source>
         <comment>e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use</comment>
         <translation>Dinleme başarısız olan IP: %1, bağlantı noktası: %2/%3. Sebep: %4</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4885"/>
+        <location filename="../base/bittorrent/session.cpp" line="4888"/>
         <source>Detected external IP: %1</source>
         <comment>e.g. Detected external IP: 1.1.1.1</comment>
         <translation>Algılanan dış IP: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4964"/>
+        <location filename="../base/bittorrent/session.cpp" line="4967"/>
         <source>Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2</source>
         <translation>Hata: İç uyarı kuyruğu doldu ve uyarılar düşürüldü, performansın düştüğünü görebilirsiniz. Bırakılan uyarı türleri: %1. İleti: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5015"/>
+        <location filename="../base/bittorrent/session.cpp" line="5018"/>
         <source>SOCKS5 proxy error. Message: %1</source>
         <translation>SOCKS5 proksi hatası. İleti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2034"/>
+        <location filename="../base/bittorrent/session.cpp" line="2037"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>&apos;%1&apos; indiriliyor, lütfen bekleyin...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2727"/>
+        <location filename="../base/bittorrent/session.cpp" line="2730"/>
         <source>The network interface defined is invalid: %1</source>
         <translation>Tanımlanan ağ arayüzü geçersiz: %1</translation>
     </message>
@@ -1573,8 +1569,8 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
         <location filename="../base/bittorrent/session.cpp" line="1181"/>
         <location filename="../base/bittorrent/session.cpp" line="1182"/>
         <location filename="../base/bittorrent/session.cpp" line="1183"/>
-        <location filename="../base/bittorrent/session.cpp" line="3016"/>
-        <location filename="../base/bittorrent/session.cpp" line="3476"/>
+        <location filename="../base/bittorrent/session.cpp" line="3019"/>
+        <location filename="../base/bittorrent/session.cpp" line="3479"/>
         <source>ON</source>
         <translation>AÇIK</translation>
     </message>
@@ -1586,8 +1582,8 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
         <location filename="../base/bittorrent/session.cpp" line="1181"/>
         <location filename="../base/bittorrent/session.cpp" line="1182"/>
         <location filename="../base/bittorrent/session.cpp" line="1184"/>
-        <location filename="../base/bittorrent/session.cpp" line="3016"/>
-        <location filename="../base/bittorrent/session.cpp" line="3476"/>
+        <location filename="../base/bittorrent/session.cpp" line="3019"/>
+        <location filename="../base/bittorrent/session.cpp" line="3479"/>
         <source>OFF</source>
         <translation>KAPALI</translation>
     </message>
@@ -1614,119 +1610,119 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
         <translation>Dinlemeye çalışılan: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1710"/>
+        <location filename="../base/bittorrent/session.cpp" line="1713"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla orana ulaştı. Kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1719"/>
+        <location filename="../base/bittorrent/session.cpp" line="1722"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla orana ulaştı. Duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1741"/>
+        <location filename="../base/bittorrent/session.cpp" line="1744"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla gönderim süresine ulaştı. Kaldırıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1750"/>
+        <location filename="../base/bittorrent/session.cpp" line="1753"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation>&apos;%1&apos;, ayarladığınız en fazla gönderim süresine ulaştı. Duraklatıldı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3866"/>
+        <location filename="../base/bittorrent/session.cpp" line="3869"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>İzleyici &apos;%1&apos;, &apos;%2&apos; torrent&apos;ine eklendi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3878"/>
+        <location filename="../base/bittorrent/session.cpp" line="3881"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation>İzleyici &apos;%1&apos;, &apos;%2&apos; torrent&apos;inden silindi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3895"/>
+        <location filename="../base/bittorrent/session.cpp" line="3898"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation>&apos;%1&apos; URL gönderimi &apos;%2&apos; torrent&apos;ine eklendi</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3902"/>
+        <location filename="../base/bittorrent/session.cpp" line="3905"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation>&apos;%1&apos; URL gönderimi &apos;%2&apos; torrent&apos;inden kaldırıldı</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4978"/>
+        <location filename="../base/bittorrent/session.cpp" line="4981"/>
         <source>New path doesn&apos;t match a target path.</source>
         <translation>Yeni yol hedef yolla eşleşmiyor.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4226"/>
+        <location filename="../base/bittorrent/session.cpp" line="4229"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
         <translation>&apos;%1&apos; torrent dosyası devam ettirilemiyor.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4302"/>
+        <location filename="../base/bittorrent/session.cpp" line="4305"/>
         <source>Couldn&apos;t load torrents queue from &apos;%1&apos;. Error: %2</source>
         <translation>&apos;%1&apos; adresinden torrent&apos;ler kuyruğu okunamadı. Hata: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4350"/>
+        <location filename="../base/bittorrent/session.cpp" line="4353"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Verilen IP süzgeci başarılı olarak ayrıştırıldı: %1 kural uygulandı.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4360"/>
+        <location filename="../base/bittorrent/session.cpp" line="4363"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Hata: Verilen IP süzgecini ayrıştırma başarısız.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4510"/>
+        <location filename="../base/bittorrent/session.cpp" line="4513"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
         <translation>&apos;%1&apos; geri yüklendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4570"/>
+        <location filename="../base/bittorrent/session.cpp" line="4573"/>
         <source>Couldn&apos;t add torrent. Reason: %1</source>
         <translation>Torrent eklenemedi. Sebep: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4533"/>
+        <location filename="../base/bittorrent/session.cpp" line="4536"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; dosyası indirme listesine eklendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4684"/>
+        <location filename="../base/bittorrent/session.cpp" line="4687"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation>UPnP/NAT-PMP: Bağlantı noktası eşleme başarısız, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4690"/>
+        <location filename="../base/bittorrent/session.cpp" line="4693"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation>UPnP/NAT-PMP: Bağlantı noktası eşleme başarılı, ileti: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4704"/>
+        <location filename="../base/bittorrent/session.cpp" line="4707"/>
         <source>due to IP filter.</source>
         <comment>this peer was blocked due to ip filter.</comment>
         <translation>IP süzgecinden dolayı engellendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4707"/>
+        <location filename="../base/bittorrent/session.cpp" line="4710"/>
         <source>due to port filter.</source>
         <comment>this peer was blocked due to port filter.</comment>
         <translation>bağlantı noktası süzgecinden dolayı engellendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4710"/>
+        <location filename="../base/bittorrent/session.cpp" line="4713"/>
         <source>due to i2p mixed mode restrictions.</source>
         <comment>this peer was blocked due to i2p mixed mode restrictions.</comment>
         <translation>i2p karışık kip kısıtlamalarından dolayı engellendi.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4713"/>
+        <location filename="../base/bittorrent/session.cpp" line="4716"/>
         <source>because it has a low port.</source>
         <comment>this peer was blocked because it has a low port.</comment>
         <translation>engellendi çünkü düşük bir bağlantı noktasına sahip.</translation>
@@ -1735,65 +1731,10 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <source>create new torrent file failed</source>
-        <translation type="vanished">yeni torrent dosyası oluşturma başarısız oldu</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="189"/>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="197"/>
         <source>Create new torrent file failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BitTorrent::TorrentHandle</name>
-    <message>
-        <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
-        <translation type="vanished">&quot;%1&quot; kişisini &quot;%2&quot; torrent&apos;ine ekleme başarısız. Sebep: %3</translation>
-    </message>
-    <message>
-        <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
-        <translation type="vanished">Kişi &quot;%1&quot;, &quot;%2&quot; torrent&apos;ine eklendi</translation>
-    </message>
-    <message>
-        <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
-        <translation type="vanished">Önce ilk ve son parçayı indir: %1, torrent: &apos;%2&apos;</translation>
-    </message>
-    <message>
-        <source>On</source>
-        <translation type="vanished">Açık</translation>
-    </message>
-    <message>
-        <source>Off</source>
-        <translation type="vanished">Kapalı</translation>
-    </message>
-    <message>
-        <source>Could not move torrent: %1. Reason: %2</source>
-        <translation type="vanished">Torrent taşınamadı: %1. Sebep: %2</translation>
-    </message>
-    <message>
-        <source>Successfully moved torrent: %1. New path: %2</source>
-        <translation type="vanished">Torrent başarılı olarak taşındı: &apos;%1&apos;. Yeni yolu: %2</translation>
-    </message>
-    <message>
-        <source>Save resume data failed. Torrent: &quot;%1&quot;, error: &quot;%2&quot;</source>
-        <translation type="vanished">Devam etme verilerini kaydetme başarısız oldu. Torrent: &quot;%1&quot;, hata: &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="vanished">&apos;%1&apos; torrent&apos;i için dosya boyutu uyuşmuyor, duraklatılıyor.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Hızlı devam etme verisi &apos;%1&apos; torrent&apos;i için reddedildi. Sebep: &apos;%2&apos;. Tekrar denetleniyor...</translation>
-    </message>
-    <message>
-        <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
-        <translation type="vanished">Dosya yeniden adlandırma başarısız oldu. Torrent: &quot;%1&quot;, dosya: &quot;%2&quot;, sebep: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>Performance alert: </source>
-        <translation type="vanished">Performans uyarısı:</translation>
+        <translation>Yeni torrent dosyası oluşturma başarısız oldu. Sebep: %1</translation>
     </message>
 </context>
 <context>
@@ -1801,62 +1742,62 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="508"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
-        <translation type="unfinished">&quot;%1&quot; kişisini &quot;%2&quot; torrent&apos;ine ekleme başarısız. Sebep: %3</translation>
+        <translation>&quot;%1&quot; kişisini &quot;%2&quot; torrent&apos;ine ekleme başarısız. Sebep: %3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="513"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
-        <translation type="unfinished">Kişi &quot;%1&quot;, &quot;%2&quot; torrent&apos;ine eklendi</translation>
+        <translation>Kişi &quot;%1&quot;, &quot;%2&quot; torrent&apos;ine eklendi</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1415"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
-        <translation type="unfinished">Önce ilk ve son parçayı indir: %1, torrent: &apos;%2&apos;</translation>
+        <translation>Önce ilk ve son parçayı indir: %1, torrent: &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1416"/>
         <source>On</source>
-        <translation type="unfinished">Açık</translation>
+        <translation>Açık</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1416"/>
         <source>Off</source>
-        <translation type="unfinished">Kapalı</translation>
+        <translation>Kapalı</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1478"/>
         <source>Could not move torrent: %1. Reason: %2</source>
-        <translation type="unfinished">Torrent taşınamadı: %1. Sebep: %2</translation>
+        <translation>Torrent taşınamadı: %1. Sebep: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1480"/>
         <source>Successfully moved torrent: %1. New path: %2</source>
-        <translation type="unfinished">Torrent başarılı olarak taşındı: &apos;%1&apos;. Yeni yolu: %2</translation>
+        <translation>Torrent başarılı olarak taşındı: &apos;%1&apos;. Yeni yolu: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1665"/>
         <source>Save resume data failed. Torrent: &quot;%1&quot;, error: &quot;%2&quot;</source>
-        <translation type="unfinished">Devam etme verilerini kaydetme başarısız oldu. Torrent: &quot;%1&quot;, hata: &quot;%2&quot;</translation>
+        <translation>Devam etme verilerini kaydetme başarısız oldu. Torrent: &quot;%1&quot;, hata: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1678"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;, pausing it.</source>
-        <translation type="unfinished">&apos;%1&apos; torrent&apos;i için dosya boyutu uyuşmuyor, duraklatılıyor.</translation>
+        <translation>&apos;%1&apos; torrent&apos;i için dosya boyutu uyuşmuyor, duraklatılıyor.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1681"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="unfinished">Hızlı devam etme verisi &apos;%1&apos; torrent&apos;i için reddedildi. Sebep: &apos;%2&apos;. Tekrar denetleniyor...</translation>
+        <translation>Hızlı devam verisi &apos;%1&apos; torrent&apos;i için reddedildi. Sebep: &apos;%2&apos;. Tekrar denetleniyor...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1734"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
-        <translation type="unfinished">Dosya yeniden adlandırma başarısız oldu. Torrent: &quot;%1&quot;, dosya: &quot;%2&quot;, sebep: &quot;%3&quot;</translation>
+        <translation>Dosya yeniden adlandırma başarısız oldu. Torrent: &quot;%1&quot;, dosya: &quot;%2&quot;, sebep: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrenthandleimpl.cpp" line="1798"/>
         <source>Performance alert: </source>
-        <translation type="unfinished">Performans uyarısı:</translation>
+        <translation>Performans uyarısı:</translation>
     </message>
 </context>
 <context>
@@ -2196,24 +2137,14 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
         <translation>Engellenen IP&apos;ler</translation>
     </message>
     <message>
-        <source>%1 was blocked %2</source>
-        <comment>0.0.0.0 was blocked due to reason</comment>
-        <translation type="vanished">%1, %2</translation>
-    </message>
-    <message>
-        <source>%1 was banned</source>
-        <comment>0.0.0.0 was banned</comment>
-        <translation type="vanished">%1 yasaklandı</translation>
-    </message>
-    <message>
         <location filename="../gui/executionlogwidget.cpp" line="93"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopyala</translation>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="97"/>
         <source>Clear</source>
-        <translation type="unfinished">Temizle</translation>
+        <translation>Temizle</translation>
     </message>
 </context>
 <context>
@@ -2428,29 +2359,18 @@ Desteklenen biçimler: S01E01, 1x1, 2017.01.01 ve 01.01.2017 (Tarih biçimlerini
     </message>
 </context>
 <context>
-    <name>LogListWidget</name>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopyala</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Temizle</translation>
-    </message>
-</context>
-<context>
     <name>LogPeerModel</name>
     <message>
         <location filename="../gui/log/logmodel.cpp" line="183"/>
         <source>%1 was blocked due to %2</source>
         <comment>0.0.0.0 was blocked due to reason</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1, %2</translation>
     </message>
     <message>
         <location filename="../gui/log/logmodel.cpp" line="184"/>
         <source>%1 was banned</source>
         <comment>0.0.0.0 was banned</comment>
-        <translation type="unfinished">%1 yasaklandı</translation>
+        <translation>%1 yasaklandı</translation>
     </message>
 </context>
 <context>
@@ -4932,7 +4852,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>IP alt ağ beyaz listesi...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3226"/>
+        <location filename="../gui/optionsdialog.ui" line="3248"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>Değişken etki alanı adımı &amp;güncelle</translation>
     </message>
@@ -4960,14 +4880,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <location filename="../gui/optionsdialog.ui" line="469"/>
         <source>Normal</source>
         <translation>Normal</translation>
-    </message>
-    <message>
-        <source>Monochrome (Dark theme)</source>
-        <translation type="vanished">Siyah beyaz (Koyu tema)</translation>
-    </message>
-    <message>
-        <source>Monochrome (Light theme)</source>
-        <translation type="vanished">Siyah beyaz (Açık tema)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="505"/>
@@ -5205,12 +5117,12 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <location filename="../gui/optionsdialog.ui" line="474"/>
         <source>Monochrome (for dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Siyah beyaz (koyu tema için)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="479"/>
         <source>Monochrome (for light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Siyah beyaz (açık tema için)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="544"/>
@@ -5345,7 +5257,7 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
         <location filename="../gui/optionsdialog.ui" line="1260"/>
         <location filename="../gui/optionsdialog.ui" line="1714"/>
         <location filename="../gui/optionsdialog.ui" line="2984"/>
-        <location filename="../gui/optionsdialog.ui" line="3284"/>
+        <location filename="../gui/optionsdialog.ui" line="3306"/>
         <source>Username:</source>
         <translation>Kullanıcı adı:</translation>
     </message>
@@ -5353,7 +5265,7 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
         <location filename="../gui/optionsdialog.ui" line="1270"/>
         <location filename="../gui/optionsdialog.ui" line="1724"/>
         <location filename="../gui/optionsdialog.ui" line="2994"/>
-        <location filename="../gui/optionsdialog.ui" line="3298"/>
+        <location filename="../gui/optionsdialog.ui" line="3320"/>
         <source>Password:</source>
         <translation>Parola:</translation>
     </message>
@@ -5380,7 +5292,7 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
     <message>
         <location filename="../gui/optionsdialog.ui" line="1408"/>
         <source>Port used for incoming connections:</source>
-        <translation>Gelen bağlantılar için kullanılan b.noktası:</translation>
+        <translation>Gelen bağlantılar için kullanılan bağlantı noktası:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1428"/>
@@ -5765,17 +5677,27 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
         <translation>Anamakine üstbilgi doğrulamasını etkinleştir</translation>
     </message>
     <message>
+        <location filename="../gui/optionsdialog.ui" line="3226"/>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/optionsdialog.ui" line="3238"/>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="3260"/>
         <source>Service:</source>
         <translation>Hizmet:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3261"/>
+        <location filename="../gui/optionsdialog.ui" line="3283"/>
         <source>Register</source>
         <translation>Kaydol</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3270"/>
+        <location filename="../gui/optionsdialog.ui" line="3292"/>
         <source>Domain name:</source>
         <translation>Etki alanı adı:</translation>
     </message>
@@ -5890,51 +5812,51 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
         <translation>Özel anahtar seç</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1602"/>
+        <location filename="../gui/optionsdialog.cpp" line="1610"/>
         <source>Select folder to monitor</source>
         <translation>İzlemek için bir klasör seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1609"/>
+        <location filename="../gui/optionsdialog.cpp" line="1617"/>
         <source>Folder is already being monitored:</source>
         <translation>Klasör zaten izleniyor:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1612"/>
+        <location filename="../gui/optionsdialog.cpp" line="1620"/>
         <source>Folder does not exist:</source>
         <translation>Klasör mevcut değil:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1615"/>
+        <location filename="../gui/optionsdialog.cpp" line="1623"/>
         <source>Folder is not readable:</source>
         <translation>Klasör okunabilir değil:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1626"/>
+        <location filename="../gui/optionsdialog.cpp" line="1634"/>
         <source>Adding entry failed</source>
         <translation>Giriş ekleme başarısız oldu</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1694"/>
-        <location filename="../gui/optionsdialog.cpp" line="1718"/>
+        <location filename="../gui/optionsdialog.cpp" line="1702"/>
+        <location filename="../gui/optionsdialog.cpp" line="1726"/>
         <source>Invalid path</source>
         <translation>Geçersiz yol</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1790"/>
+        <location filename="../gui/optionsdialog.cpp" line="1798"/>
         <source>Location Error</source>
         <translation>Konum Hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1790"/>
+        <location filename="../gui/optionsdialog.cpp" line="1798"/>
         <source>The alternative Web UI files location cannot be blank.</source>
         <translation>Alternatif Web Arayüzü dosyaları konumu boş olamaz.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="534"/>
-        <location filename="../gui/optionsdialog.cpp" line="537"/>
-        <location filename="../gui/optionsdialog.cpp" line="1654"/>
-        <location filename="../gui/optionsdialog.cpp" line="1656"/>
+        <location filename="../gui/optionsdialog.cpp" line="536"/>
+        <location filename="../gui/optionsdialog.cpp" line="539"/>
+        <location filename="../gui/optionsdialog.cpp" line="1662"/>
+        <location filename="../gui/optionsdialog.cpp" line="1664"/>
         <source>Choose export directory</source>
         <translation>Dışa aktarma dizini seçin</translation>
     </message>
@@ -5944,55 +5866,55 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
         <translation>%G: Etiketler (virgülle ayırarak)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="531"/>
-        <location filename="../gui/optionsdialog.cpp" line="544"/>
-        <location filename="../gui/optionsdialog.cpp" line="547"/>
+        <location filename="../gui/optionsdialog.cpp" line="533"/>
+        <location filename="../gui/optionsdialog.cpp" line="546"/>
+        <location filename="../gui/optionsdialog.cpp" line="549"/>
         <source>Choose a save directory</source>
         <translation>Bir kaydetme dizini seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="540"/>
+        <location filename="../gui/optionsdialog.cpp" line="542"/>
         <source>Choose an IP filter file</source>
         <translation>Bir IP süzgeci dosyası seçin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="541"/>
+        <location filename="../gui/optionsdialog.cpp" line="543"/>
         <source>All supported filters</source>
         <translation>Tüm desteklenen süzgeçler</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1758"/>
+        <location filename="../gui/optionsdialog.cpp" line="1766"/>
         <source>Parsing error</source>
         <translation>Ayrıştırma hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1758"/>
+        <location filename="../gui/optionsdialog.cpp" line="1766"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Verilen IP süzgecini ayrıştırma başarısız</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1760"/>
+        <location filename="../gui/optionsdialog.cpp" line="1768"/>
         <source>Successfully refreshed</source>
         <translation>Başarılı olarak yenilendi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1760"/>
+        <location filename="../gui/optionsdialog.cpp" line="1768"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Verilen IP süzgeci başarılı olarak ayrıştırıldı: %1 kural uygulandı.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1724"/>
+        <location filename="../gui/optionsdialog.cpp" line="1732"/>
         <source>Invalid key</source>
         <translation>Geçersiz anahtar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1724"/>
+        <location filename="../gui/optionsdialog.cpp" line="1732"/>
         <source>This is not a valid SSL key.</source>
         <translation>Bu geçerli bir SSL anahtarı değil.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1700"/>
+        <location filename="../gui/optionsdialog.cpp" line="1708"/>
         <source>Invalid certificate</source>
         <translation>Geçersiz sertifika</translation>
     </message>
@@ -6002,33 +5924,33 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
         <translation>Tercihler</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1700"/>
+        <location filename="../gui/optionsdialog.cpp" line="1708"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Geçerli bir SSL sertifikası değil.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1768"/>
+        <location filename="../gui/optionsdialog.cpp" line="1776"/>
         <source>Time Error</source>
         <translation>Zaman Hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1768"/>
+        <location filename="../gui/optionsdialog.cpp" line="1776"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Başlangıç zamanı ve bitiş zamanı aynı olamaz.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1777"/>
-        <location filename="../gui/optionsdialog.cpp" line="1781"/>
+        <location filename="../gui/optionsdialog.cpp" line="1785"/>
+        <location filename="../gui/optionsdialog.cpp" line="1789"/>
         <source>Length Error</source>
         <translation>Uzunluk Hatası</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1777"/>
+        <location filename="../gui/optionsdialog.cpp" line="1785"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Web Arayüzü kullanıcı adı en az 3 karakter uzunluğunda olmak zorundadır.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1781"/>
+        <location filename="../gui/optionsdialog.cpp" line="1789"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Web Arayüzü parolası en az 6 karakter uzunluğunda olmak zorundadır.</translation>
     </message>
@@ -7561,7 +7483,7 @@ Başka bir bildiri yayınlanmayacaktır.</translation>
         <location filename="../base/bittorrent/private/resumedatasavingmanager.cpp" line="63"/>
         <location filename="../base/bittorrent/private/resumedatasavingmanager.cpp" line="70"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; konumuna veriler kaydedilemedi. Hata: %2</translation>
     </message>
 </context>
 <context>
@@ -10092,27 +10014,32 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <translation>Seçilen yerel dil (%1) için Web Arayüzü çevirisi yüklenemedi.</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="385"/>
+        <location filename="../webui/webapplication.cpp" line="362"/>
+        <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/webapplication.cpp" line="406"/>
         <source>Exceeded the maximum allowed file size (%1)!</source>
         <translation>En fazla izin verilen dosya boyutu (%1) aşıldı!</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="587"/>
+        <location filename="../webui/webapplication.cpp" line="613"/>
         <source>WebUI: Origin header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Origin header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Web Arayüzü: Başlangıç üstbilgisi ve Hedef başlangıcı uyuşmuyor! Kaynak IP: &apos;%1&apos;. Başlangıç üstbilgisi: &apos;%2&apos;. Hedef başlangıcı: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="596"/>
+        <location filename="../webui/webapplication.cpp" line="622"/>
         <source>WebUI: Referer header &amp; Target origin mismatch! Source IP: &apos;%1&apos;. Referer header: &apos;%2&apos;. Target origin: &apos;%3&apos;</source>
         <translation>Web Arayüzü: Gönderen üstbilgisi ve Hedef başlangıcı uyuşmuyor! Kaynak IP: &apos;%1&apos;. Gönderen üstbilgisi: &apos;%2&apos;. Hedef başlangıcı: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="613"/>
+        <location filename="../webui/webapplication.cpp" line="639"/>
         <source>WebUI: Invalid Host header, port mismatch. Request source IP: &apos;%1&apos;. Server port: &apos;%2&apos;. Received Host header: &apos;%3&apos;</source>
-        <translation>Web Arayüzü: Geçersiz Anamakine üstbilgisi, bağlantı noktası uyuşmuyor. İstek kaynak IP: &apos;%1&apos;. Sunucu b.noktası: &apos;%2&apos;. Alınan Anamakine üstbilgisi: &apos;%3&apos;</translation>
+        <translation>Web Arayüzü: Geçersiz Anamakine üstbilgisi, bağlantı noktası uyuşmuyor. İstek kaynak IP: &apos;%1&apos;. Sunucu bağlantı noktası: &apos;%2&apos;. Alınan Anamakine üstbilgisi: &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../webui/webapplication.cpp" line="633"/>
+        <location filename="../webui/webapplication.cpp" line="659"/>
         <source>WebUI: Invalid Host header. Request source IP: &apos;%1&apos;. Received Host header: &apos;%2&apos;</source>
         <translation>Web Arayüzü: Geçersiz Anamakine üstbilgisi. İstek kaynak IP: &apos;%1&apos;. Alınan Anamakine üstbilgisi: &apos;%2&apos;</translation>
     </message>

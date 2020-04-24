@@ -705,7 +705,7 @@
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation>Gelen bağlantılar için kullanılan b.noktası:</translation>
+        <translation>Gelen bağlantılar için kullanılan bağlantı noktası:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
@@ -1094,10 +1094,6 @@
         <translation>Bilgi: Parola şifrelenmeden kaydedilir</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Değişmez süper gönderim:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP karışık kip algoritması:</translation>
     </message>
@@ -1199,7 +1195,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>İzleyicilere bildirmek için IP Adresi (yeniden başlatma gerektirir):</translation>
+        <translation>İzleyicilere bildirilecek IP Adresi (yeniden başlatma gerektirir):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>UPnP kiralama süresi [0: Kalıcı kiralama]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

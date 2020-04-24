@@ -1094,10 +1094,6 @@
         <translation>Info: Lösenordet sparas okrypterat</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Strikt superdistribuering:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>µTP-TCP blandad lägesalgoritm:</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

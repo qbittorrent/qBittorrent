@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Stav pripojenia: Filtrované firewallom</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Stav pripojenia: Pripojené</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatívne limity rýchlosti: Vypnuté</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Ikona rýchlosti sťahovania</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Stav pripojenia</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatívne limity rýchlosti: Zapnuté</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Ikona rýchlosti odosielania</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Stav pripojenia: Odpojené</translation>
     </message>
 </context>
 <context>
@@ -1094,10 +1094,6 @@
         <translation>Info: Heslo sa ukladá nezašifrované</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Striktné super seedovanie:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP mixed mode algoritmus:</translation>
     </message>
@@ -1307,30 +1303,38 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Zisťovať krajiny pôvodu peerov:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>ban pre:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Použite rozšírenia o príbuznej časti (vyžaduje libtorrent&gt; = 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Stop časový limit trackeru:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Banovať klienta po následných zlyhaniach:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation>Povoliť príznak zabezpečenie súborov cookie (vyžaduje HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Trvanie UPnP prenájmu [0: trvalý prenájom]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1410,7 +1414,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Krajina/Oblasť</translation>
     </message>
 </context>
 <context>
@@ -1795,27 +1799,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Pozastavené Nahrávanie (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Pozastavené Sťahovanie (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Pozastavené Sťahovanie (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Pozastavené (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Pozastavené Nahrávanie (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Pozastavené (%1)</translation>
     </message>
 </context>
 <context>
@@ -2803,11 +2807,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Použitý software</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na riešenie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
     </message>
 </context>
 <context>

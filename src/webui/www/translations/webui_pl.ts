@@ -1094,10 +1094,6 @@
         <translation>Informacja: hasło jest zapisywane bez szyfrowania</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Ścisły super-seeding:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algorytm trybu mieszanego μTP-TCP</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>Okres dzierżawy UPnP [0: dzierżawa stała]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

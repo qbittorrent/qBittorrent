@@ -1094,10 +1094,6 @@
         <translation>Informacija: Slaptažodis yra išsaugomas nešifruotai</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Griežtas super skleidimas:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP maišytos veiksenos algoritmas:</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
