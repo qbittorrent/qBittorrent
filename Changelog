@@ -1,3 +1,10 @@
+Sat Apr 25 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.5
+    - BUGFIX: Fix crash when torrent is deleted on limit reached (glassez)
+    - BUGFIX: Register datatype properly (Chocobo1)
+    - WEBUI: Add ability to send custom HTTP headers (Chocobo1)
+    - WEBUI: Expand RSS related API (Sepro)
+    - WINDOWS: Installer: Update german translation (schnurlos)
+
 Wed Apr 22 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.2.4
     - BUGFIX: Fix sub-sorting of Transfer list (glassez)
     - BUGFIX: Fix wrong logic that disables "prevent sleeping" timer (Chocobo1)
