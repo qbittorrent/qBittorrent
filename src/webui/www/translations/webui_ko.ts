@@ -1095,10 +1095,6 @@
         <translation>정보: 암호를 평문으로 저장했습니다</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">엄격한 초도 배포:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP 혼합 모드 알고리즘:</translation>
     </message>
@@ -1334,6 +1330,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>UPnP 임대 기간 [0: 영구 임대]</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

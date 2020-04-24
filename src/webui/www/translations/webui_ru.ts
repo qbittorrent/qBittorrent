@@ -1094,10 +1094,6 @@
         <translation>Примечание: Пароль будет сохранён в нешифрованном виде</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Традиционный суперсид:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Алгоритм смешанного режима μTP-TCP:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>Срок аренды UPnP [0: постоянный]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

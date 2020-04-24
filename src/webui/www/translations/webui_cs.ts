@@ -1094,10 +1094,6 @@
         <translation>Info: Heslo je uloženo nešifrované</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Striktní super seeding:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP mixed mode algoritmus:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>Trvání UPnP pronájmu [0: trvalý pronájem]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

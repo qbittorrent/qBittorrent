@@ -1094,10 +1094,6 @@
         <translation>Infó: A jelszó titkosítás nélkül kerül elmentésre</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Szigorú szuper seed:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP kevert-mód algoritmus:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>UPnP bérlés időtartama [0: Állandó bérlés]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

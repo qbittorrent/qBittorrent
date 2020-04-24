@@ -1095,10 +1095,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Info: la password è salvata non criptata</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Super seeding rigoroso:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritmo modo misto μTP-TC:</translation>
     </message>
@@ -1333,6 +1329,14 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>Durata lease UPNP [0: lease permanente]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

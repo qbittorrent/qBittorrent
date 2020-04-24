@@ -1094,10 +1094,6 @@
         <translation>Info: Das Passwort wird unverschlüsselt gespeichert!</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Striktes Super-Seeding:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Regel f. uTP-TCP im gemischten Modus:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>UPnP-Mietdauer [0: Permanent]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

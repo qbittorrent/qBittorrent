@@ -346,11 +346,11 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>¡Es necesario JavaScript! Debes habilitar JavaScript para que la Web UI funcione correctamente.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>El nombre no puede estar vacío</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
@@ -534,7 +534,7 @@
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Estado de la conexión: Conectado</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
@@ -1091,7 +1091,7 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Información: La contraseña se guarda sin cifrar</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1115,7 +1115,7 @@
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>Preferir TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
@@ -1123,7 +1123,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Anti-leech</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
@@ -1147,7 +1147,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Cualquier interfaz</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1167,11 +1167,11 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Pausar torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>Eliminar el torrent y sus archivos</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
@@ -1203,7 +1203,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Permitir el cifrado</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1243,7 +1243,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Proporcional a los pares (ahoga el TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1251,7 +1251,7 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Avanzado</translation>
     </message>
     <message>
         <source>min</source>
@@ -1263,7 +1263,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Límite de siembra</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1307,7 +1307,7 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>vetar por:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
@@ -1319,7 +1319,7 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Vetar el cliente después de fracasos consecutivos:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
@@ -1327,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1390,7 +1398,7 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>Vetar al par de forma permanente</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -1402,11 +1410,11 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>Añadir un nuevo par...</translation>
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>País/Región</translation>
     </message>
 </context>
 <context>
@@ -1432,7 +1440,7 @@
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>No descargar</translation>
     </message>
 </context>
 <context>
@@ -1603,7 +1611,7 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioridad</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -1611,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Renombrar...</translation>
     </message>
 </context>
 <context>
@@ -2046,7 +2054,7 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Restante</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2054,11 +2062,11 @@
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Nivel</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioridad de descarga</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2066,11 +2074,11 @@
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progreso</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Tamaño</translation>
     </message>
 </context>
 <context>
@@ -2168,7 +2176,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Etiquetas</translation>
     </message>
 </context>
 <context>
@@ -2317,7 +2325,7 @@
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Añadir etiquetas</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2325,7 +2333,7 @@
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Enlace magnético</translation>
     </message>
     <message>
         <source>Hash</source>
@@ -2333,23 +2341,23 @@
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Eliminar todo</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nombre</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copiar</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Cola</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Añadir...</translation>
     </message>
 </context>
 <context>
@@ -2651,22 +2659,22 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Sí</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>No</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Añadir pares</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
@@ -2674,7 +2682,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2685,7 +2693,7 @@
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Nueva etiqueta</translation>
     </message>
     <message>
         <source>Add tag...</source>
@@ -2693,15 +2701,15 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Eliminar torrents</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Etiqueta:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Pausar torrents</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -2717,14 +2725,14 @@
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Eliminar etiqueta</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Todo</translation>
     </message>
     <message>
         <source>Untagged</source>
@@ -2739,19 +2747,19 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Acerca de</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Foro:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Mantenedor actual</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -2759,11 +2767,11 @@
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Grecia</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Agradecimientos especiales</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
@@ -2771,11 +2779,11 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Nombre:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Acerca de qBittorrent</translation>
     </message>
     <message>
         <source>License</source>
@@ -2783,7 +2791,7 @@
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Traductores</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
@@ -2791,7 +2799,7 @@
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Nacionalidad:</translation>
     </message>
     <message>
         <source>Author</source>
@@ -2799,7 +2807,7 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Software utilizado</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -2825,7 +2833,7 @@
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copiar</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2833,7 +2841,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nombre</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -2845,18 +2853,18 @@
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>Enlace de descarga</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Restante</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nuevo nombre:</translation>
     </message>
 </context>
 </TS>

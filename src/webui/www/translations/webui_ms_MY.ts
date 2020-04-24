@@ -1094,10 +1094,6 @@
         <translation>Maklumat: Kata laluan disimpan tanpa tersulit</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Super penyemaian ketat:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritma mod bercampur μTP-TCP:</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

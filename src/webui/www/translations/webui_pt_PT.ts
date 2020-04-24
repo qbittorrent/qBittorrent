@@ -1094,10 +1094,6 @@
         <translation>Informação: A palavra-passe é guardada sem encriptação</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="vanished">Restringir super semear:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritmo do modo de mistura uTP-TCP:</translation>
     </message>
@@ -1332,6 +1328,14 @@
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation>Duração da concessão [0: Concessão permanente]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

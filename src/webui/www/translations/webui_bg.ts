@@ -1329,6 +1329,14 @@
         <source>UPnP lease duration [0: Permanent lease]:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
