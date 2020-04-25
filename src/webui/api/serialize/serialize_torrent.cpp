@@ -30,6 +30,7 @@
 
 #include <QDateTime>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/utils/fs.h"
 
@@ -85,7 +86,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     QVariantMap ret = {
         {KEY_TORRENT_HASH, QString(torrent.hash())},
         {KEY_TORRENT_NAME, torrent.name()},
-        {KEY_TORRENT_MAGNET_URI, torrent.toMagnetUri()},
+        {KEY_TORRENT_MAGNET_URI, torrent.createMagnetURI()},
         {KEY_TORRENT_SIZE, torrent.wantedSize()},
         {KEY_TORRENT_PROGRESS, torrent.progress()},
         {KEY_TORRENT_DLSPEED, torrent.downloadPayloadRate()},

@@ -41,7 +41,7 @@ namespace Http
     class IRequestHandler;
     class Connection;
 
-    class Server : public QTcpServer
+    class Server final : public QTcpServer
     {
         Q_OBJECT
         Q_DISABLE_COPY(Server)

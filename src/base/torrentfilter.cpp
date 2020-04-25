@@ -28,6 +28,7 @@
 
 #include "torrentfilter.h"
 
+#include "bittorrent/infohash.h"
 #include "bittorrent/torrenthandle.h"
 
 const QString TorrentFilter::AnyCategory;

@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus: firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus: verbonden</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatieve snelheidsbegrenzingen: uit</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Pictogram downloadsnelheid</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatieve snelheidsbegrenzingen: aan</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Pictogram uploadsnelheid</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Verbindingsstatus: niet verbonden</translation>
     </message>
 </context>
 <context>
@@ -1094,10 +1094,6 @@
         <translation>Info: het wachtwoord wordt onversleuteld opgeslagen</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Strikt super-seeden:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>µTP-TCP gemengde modus algoritme</translation>
     </message>
@@ -1295,7 +1291,7 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>Interval voor opslaan van hervattingsdata:</translation>
+        <translation>Interval voor opslaan van hervattingsgegevens:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>UPnP-leaseduur [0: permanente lease]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2153,7 +2157,7 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>Hervattingsdata controleren</translation>
+        <translation>Hervattingsgegevens controleren</translation>
     </message>
     <message>
         <source>Stalled</source>

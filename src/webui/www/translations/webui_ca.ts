@@ -531,35 +531,35 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Estat de la connexió: blocat pel tallafoc</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Estat de la connexió: connectat</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Límits de velocitat alternatius: desactivats</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Icona de la velocitat de baixada</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Estat de la connexió</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Límits de velocitat alternatius: activats</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Icona de la velocitat de pujada</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Estat de la connexió: desconnectat</translation>
     </message>
 </context>
 <context>
@@ -1095,10 +1095,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Informació: la contrasenya es desa sense encriptar.</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Supersembra estricta:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algorisme de mode mesclat uTP-TCP:</translation>
     </message>
@@ -1332,6 +1328,14 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Durada de la cessió d'UPnP [0: cessió permanent]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

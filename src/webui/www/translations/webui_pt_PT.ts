@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Estado da ligação: Com firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Estado da ligação: Ligado</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Limites alternativos de velocidade: Desligados</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Ícone da velocidade de download</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Estado da ligação</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Limites alternativos de velocidade: Ligados</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Ícone da velocidade de upload</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Estado da ligação: Desligado</translation>
     </message>
 </context>
 <context>
@@ -1094,10 +1094,6 @@
         <translation>Informação: A palavra-passe é guardada sem encriptação</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Restringir super semear:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritmo do modo de mistura uTP-TCP:</translation>
     </message>
@@ -1307,30 +1303,38 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Resolver fontes dos países:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>banir por:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Utilizar a afinidade da extensão da peça (requer o libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Parar o tempo da sessão do tracker:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Banir cliente depois de várias falhas consecutivas:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation>Ativar cookie bandeira segura (requer HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Duração da concessão [0: Concessão permanente]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1410,7 +1414,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>País/Região</translation>
     </message>
 </context>
 <context>
@@ -1795,27 +1799,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Upload parado (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Download parado (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Download parado (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Parado (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Upload parado (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Parado (%1)</translation>
     </message>
 </context>
 <context>
@@ -2157,7 +2161,7 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Em espera</translation>
+        <translation>Parado</translation>
     </message>
 </context>
 <context>
@@ -2803,11 +2807,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Software utilizado</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>A base de dados gratuita de IPs para Country Lite da DB-IP é utilizada para resolver os países das fontes. A base de dados está licenciada sob a licença internacional Creative Commons Attribution 4.0</translation>
     </message>
 </context>
 <context>

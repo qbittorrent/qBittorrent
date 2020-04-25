@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>连接状态：有防火墙</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>连接状态：连接正常</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>备用速度限制：关闭</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>下载速度图标</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>连接状态</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>备用速度限制：开启</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>上传速度图标</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>连接状态：断开连接</translation>
     </message>
 </context>
 <context>
@@ -1094,10 +1094,6 @@
         <translation>提示：密码未加密</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>严格超级做种:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP 混合模式策略:</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>UPnP 租期 [0：永久 ]：</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

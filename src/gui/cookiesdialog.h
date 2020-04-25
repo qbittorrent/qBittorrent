@@ -38,7 +38,7 @@ namespace Ui
     class CookiesDialog;
 }
 
-class CookiesDialog : public QDialog
+class CookiesDialog final : public QDialog
 {
     Q_OBJECT
 

@@ -61,6 +61,7 @@
 #endif // Q_OS_MACOS
 #endif
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/exceptions.h"
@@ -133,6 +134,7 @@ Application::Application(int &argc, char **argv)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
+    qRegisterMetaType<Log::Peer>("Log::Peer");
 
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");

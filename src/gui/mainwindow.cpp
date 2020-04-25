@@ -118,8 +118,10 @@ namespace
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
 
-    const int TIME_TRAY_BALLOON = 5000;
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
+#if !defined(Q_OS_MACOS)
+    const int TIME_TRAY_BALLOON = 5000;
+#endif
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -489,7 +491,7 @@ int MainWindow::executionLogMsgTypes() const
 
 void MainWindow::setExecutionLogMsgTypes(const int value)
 {
-    m_executionLog->showMsgTypes(static_cast<Log::MsgTypes>(value));
+    m_executionLog->setMessageTypes(static_cast<Log::MsgTypes>(value));
     settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
 }
 
@@ -1872,7 +1874,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 {
     if (checked) {
         Q_ASSERT(!m_executionLog);
-        m_executionLog = new ExecutionLogWidget(m_tabs, static_cast<Log::MsgType>(executionLogMsgTypes()));
+        m_executionLog = new ExecutionLogWidget(static_cast<Log::MsgType>(executionLogMsgTypes()), m_tabs);
 #ifdef Q_OS_MACOS
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else

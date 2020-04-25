@@ -42,7 +42,7 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class TagFilterModel : public QAbstractListModel
+class TagFilterModel final : public QAbstractListModel
 {
     Q_OBJECT
 

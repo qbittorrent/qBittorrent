@@ -43,7 +43,7 @@ namespace BitTorrent
     class TorrentHandle;
 }
 
-class TransferListWidget : public QTreeView
+class TransferListWidget final : public QTreeView
 {
     Q_OBJECT
 

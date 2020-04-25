@@ -36,7 +36,7 @@ class QNetworkAccessManager;
 class QNetworkDiskCache;
 class QNetworkReply;
 
-class HtmlBrowser : public QTextBrowser
+class HtmlBrowser final : public QTextBrowser
 {
     Q_OBJECT
 
@@ -44,7 +44,7 @@ public:
     explicit HtmlBrowser(QWidget* parent = nullptr);
     ~HtmlBrowser();
 
-    virtual QVariant loadResource(int type, const QUrl &name) override;
+    QVariant loadResource(int type, const QUrl &name) override;
 
 protected:
     QNetworkAccessManager *m_netManager;

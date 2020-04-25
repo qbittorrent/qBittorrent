@@ -652,7 +652,7 @@ void TransferListWidget::copySelectedMagnetURIs() const
 {
     QStringList magnetUris;
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
-        magnetUris << torrent->toMagnetUri();
+        magnetUris << torrent->createMagnetURI();
 
     qApp->clipboard()->setText(magnetUris.join('\n'));
 }

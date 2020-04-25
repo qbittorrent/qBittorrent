@@ -28,6 +28,7 @@
 
 #include "fs.h"
 
+#include <cerrno>
 #include <cstring>
 
 #if defined(Q_OS_WIN)

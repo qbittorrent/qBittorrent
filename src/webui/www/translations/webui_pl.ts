@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Status połączenia: za zaporą</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Status połączenia: połączony</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatywne limity prędkości: wyłączone</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Ikona prędkości pobierania</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Status połączenia</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatywne limity prędkości: włączone</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Ikona prędkości wysyłania</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Status połączenia: rozłączony</translation>
     </message>
 </context>
 <context>
@@ -1094,10 +1094,6 @@
         <translation>Informacja: hasło jest zapisywane bez szyfrowania</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Ścisły super-seeding:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algorytm trybu mieszanego μTP-TCP</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Okres dzierżawy UPnP [0: dzierżawa stała]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

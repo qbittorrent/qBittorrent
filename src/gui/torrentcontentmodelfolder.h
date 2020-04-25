@@ -36,7 +36,7 @@ namespace BitTorrent
     enum class DownloadPriority;
 }
 
-class TorrentContentModelFolder : public TorrentContentModelItem
+class TorrentContentModelFolder final : public TorrentContentModelItem
 {
 public:
     // Folder constructor

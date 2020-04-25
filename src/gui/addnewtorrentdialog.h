@@ -57,7 +57,7 @@ class PropListDelegate;
 class TorrentContentFilterModel;
 class TorrentFileGuard;
 
-class AddNewTorrentDialog : public QDialog
+class AddNewTorrentDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY(AddNewTorrentDialog)

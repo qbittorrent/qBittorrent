@@ -22,7 +22,9 @@ HEADERS += \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/lineedit.h \
-    $$PWD/loglistwidget.h \
+    $$PWD/log/logfiltermodel.h \
+    $$PWD/log/loglistview.h \
+    $$PWD/log/logmodel.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
     $$PWD/previewlistdelegate.h \
@@ -86,7 +88,9 @@ SOURCES += \
     $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
-    $$PWD/loglistwidget.cpp \
+    $$PWD/log/logfiltermodel.cpp \
+    $$PWD/log/loglistview.cpp \
+    $$PWD/log/logmodel.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
     $$PWD/previewlistdelegate.cpp \

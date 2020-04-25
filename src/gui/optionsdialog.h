@@ -56,7 +56,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog : public QDialog
+class OptionsDialog final : public QDialog
 {
     Q_OBJECT
     using ThisType = OptionsDialog;
@@ -82,7 +82,7 @@ class OptionsDialog : public QDialog
 public:
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
-    ~OptionsDialog();
+    ~OptionsDialog() override;
 
 public slots:
     void showConnectionTab();

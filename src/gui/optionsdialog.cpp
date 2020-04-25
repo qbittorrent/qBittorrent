@@ -150,7 +150,7 @@ namespace
     }
 }
 
-class WheelEventEater : public QObject
+class WheelEventEater final : public QObject
 {
 public:
     using QObject::QObject;
@@ -503,6 +503,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSPasswordTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupWebUIAddCustomHTTPHeaders, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUICustomHTTPHeaders, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
 #endif // DISABLE_WEBUI
 
     // RSS tab
@@ -862,6 +864,9 @@ void OptionsDialog::saveOptions()
         // Alternative UI
         pref->setAltWebUiEnabled(m_ui->groupAltWebUI->isChecked());
         pref->setWebUiRootFolder(m_ui->textWebUIRootFolder->selectedPath());
+        // Custom HTTP headers
+        pref->setWebUICustomHTTPHeadersEnabled(m_ui->groupWebUIAddCustomHTTPHeaders->isChecked());
+        pref->setWebUICustomHTTPHeaders(m_ui->textWebUICustomHTTPHeaders->toPlainText());
     }
     // End Web UI
     // End preferences
@@ -882,7 +887,6 @@ Net::ProxyType OptionsDialog::getProxyType() const
     switch (m_ui->comboProxyType->currentIndex()) {
     case 1:
         return Net::ProxyType::SOCKS4;
-        break;
     case 2:
         if (isProxyAuthEnabled())
             return Net::ProxyType::SOCKS5_PW;
@@ -1243,6 +1247,9 @@ void OptionsDialog::loadOptions()
 
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUiEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUiRootFolder());
+    // Custom HTTP headers
+    m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
+    m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());
     // End Web UI preferences
 }
 
@@ -1443,28 +1450,27 @@ void OptionsDialog::toggleComboRatioLimitAct()
     m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
-void OptionsDialog::enableProxy(int index)
+void OptionsDialog::enableProxy(const int index)
 {
-    if (index) {
+    if (index >= 1) { // Any proxy type is used
         //enable
         m_ui->lblProxyIP->setEnabled(true);
         m_ui->textProxyIP->setEnabled(true);
         m_ui->lblProxyPort->setEnabled(true);
         m_ui->spinProxyPort->setEnabled(true);
         m_ui->checkProxyPeerConnecs->setEnabled(true);
-        if (index > 1) {
+        if (index >= 2) { // SOCKS5 or HTTP
             m_ui->checkProxyAuth->setEnabled(true);
             m_ui->isProxyOnlyForTorrents->setEnabled(true);
         }
         else {
             m_ui->checkProxyAuth->setEnabled(false);
-            m_ui->checkProxyAuth->setChecked(false);
             m_ui->isProxyOnlyForTorrents->setEnabled(false);
             m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
     }
-    else {
-        //disable
+    else { // No proxy
+        // disable
         m_ui->lblProxyIP->setEnabled(false);
         m_ui->textProxyIP->setEnabled(false);
         m_ui->lblProxyPort->setEnabled(false);
@@ -1472,7 +1478,6 @@ void OptionsDialog::enableProxy(int index)
         m_ui->checkProxyPeerConnecs->setEnabled(false);
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
-        m_ui->checkProxyAuth->setChecked(false);
     }
 }
 

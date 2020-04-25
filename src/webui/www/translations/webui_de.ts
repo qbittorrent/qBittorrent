@@ -530,35 +530,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Verbindungs-Status: hinter einer Firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Verbindungs-Status: Verbunden</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternative Geschwindigkeitsbegrenzung: Aus</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Symbol für DL-Geschwindigkeit</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Verbindungs-Status</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternative Geschwindigkeitsbegrenzung: Ein</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>Symbol für UL-Geschwindigkeit</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Verbindungs-Status: Nicht verbunden</translation>
     </message>
 </context>
 <context>
@@ -1094,10 +1094,6 @@
         <translation>Info: Das Passwort wird unverschlüsselt gespeichert!</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Striktes Super-Seeding:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Regel f. uTP-TCP im gemischten Modus:</translation>
     </message>
@@ -1331,6 +1327,14 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>UPnP-Mietdauer [0: Permanent]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>

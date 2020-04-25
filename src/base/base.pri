@@ -21,6 +21,7 @@ HEADERS += \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/torrentcreatorthread.h \
     $$PWD/bittorrent/torrenthandle.h \
+    $$PWD/bittorrent/torrenthandleimpl.h \
     $$PWD/bittorrent/torrentinfo.h \
     $$PWD/bittorrent/tracker.h \
     $$PWD/bittorrent/trackerentry.h \
@@ -99,6 +100,7 @@ SOURCES += \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/torrentcreatorthread.cpp \
     $$PWD/bittorrent/torrenthandle.cpp \
+    $$PWD/bittorrent/torrenthandleimpl.cpp \
     $$PWD/bittorrent/torrentinfo.cpp \
     $$PWD/bittorrent/tracker.cpp \
     $$PWD/bittorrent/trackerentry.cpp \

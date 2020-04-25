@@ -48,7 +48,7 @@ namespace BitTorrent
         QStringList urlSeeds;
     };
 
-    class TorrentCreatorThread : public QThread
+    class TorrentCreatorThread final : public QThread
     {
         Q_OBJECT
 

@@ -37,7 +37,9 @@
 #include <QTextStream>
 #include <QToolTip>
 
+#include "base/indexrange.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/utils/misc.h"
 
 namespace

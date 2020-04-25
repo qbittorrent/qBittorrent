@@ -165,7 +165,7 @@ void AppController::preferencesAction()
     data["ip_filter_enabled"] = session->isIPFilteringEnabled();
     data["ip_filter_path"] = Utils::Fs::toNativePath(session->IPFilterFile());
     data["ip_filter_trackers"] = session->isTrackerFilteringEnabled();
-    data["banned_IPs"] = session->bannedIPs().join("\n");
+    data["banned_IPs"] = session->bannedIPs().join('\n');
 
     // Speed
     // Global Rate Limits
@@ -231,7 +231,7 @@ void AppController::preferencesAction()
     QStringList authSubnetWhitelistStringList;
     for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
-    data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join("\n");
+    data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join('\n');
     data["web_ui_max_auth_fail_count"] = pref->getWebUIMaxAuthFailCount();
     data["web_ui_ban_duration"] = static_cast<int>(pref->getWebUIBanDuration().count());
     data["web_ui_session_timeout"] = pref->getWebUISessionTimeout();
@@ -243,6 +243,9 @@ void AppController::preferencesAction()
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
     data["web_ui_secure_cookie_enabled"] = pref->isWebUiSecureCookieEnabled();
     data["web_ui_host_header_validation_enabled"] = pref->isWebUIHostHeaderValidationEnabled();
+    // Custom HTTP headers
+    data["web_ui_use_custom_http_headers_enabled"] = pref->isWebUICustomHTTPHeadersEnabled();
+    data["web_ui_custom_http_headers"] = pref->getWebUICustomHTTPHeaders();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
     data["dyndns_service"] = pref->getDynDNSService();
@@ -255,6 +258,8 @@ void AppController::preferencesAction()
     data["rss_max_articles_per_feed"] = RSS::Session::instance()->maxArticlesPerFeed();
     data["rss_processing_enabled"] = RSS::Session::instance()->isProcessingEnabled();
     data["rss_auto_downloading_enabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
+    data["rss_download_repack_proper_episodes"] = RSS::AutoDownloader::instance()->downloadRepacks();
+    data["rss_smart_episode_filters"] = RSS::AutoDownloader::instance()->smartEpisodeFilters().join('\n');
 
     // Advanced settings
     // qBitorrent preferences
@@ -309,8 +314,6 @@ void AppController::preferencesAction()
     data["upload_slots_behavior"] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
     data["upload_choking_algorithm"] = static_cast<int>(session->seedChokingAlgorithm());
-    // Super seeding
-    data["enable_super_seeding"] = session->isSuperSeedingEnabled();
     // Announce
     data["announce_to_all_trackers"] = session->announceToAllTrackers();
     data["announce_to_all_tiers"] = session->announceToAllTiers();
@@ -482,7 +485,7 @@ void AppController::setPreferencesAction()
     if (hasKey("ip_filter_trackers"))
         session->setTrackerFilteringEnabled(it.value().toBool());
     if (hasKey("banned_IPs"))
-        session->setBannedIPs(it.value().toString().split('\n'));
+        session->setBannedIPs(it.value().toString().split('\n', QString::SkipEmptyParts));
 
     // Speed
     // Global Rate Limits
@@ -625,6 +628,11 @@ void AppController::setPreferencesAction()
         pref->setWebUiSecureCookieEnabled(it.value().toBool());
     if (hasKey("web_ui_host_header_validation_enabled"))
         pref->setWebUIHostHeaderValidationEnabled(it.value().toBool());
+    // Custom HTTP headers
+    if (hasKey("web_ui_use_custom_http_headers_enabled"))
+        pref->setWebUICustomHTTPHeadersEnabled(it.value().toBool());
+    if (hasKey("web_ui_custom_http_headers"))
+        pref->setWebUICustomHTTPHeaders(it.value().toString());
     // Update my dynamic domain name
     if (hasKey("dyndns_enabled"))
         pref->setDynDNSEnabled(it.value().toBool());
@@ -645,6 +653,10 @@ void AppController::setPreferencesAction()
         RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
     if (hasKey("rss_auto_downloading_enabled"))
         RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
+    if (hasKey("rss_download_repack_proper_episodes"))
+        RSS::AutoDownloader::instance()->setDownloadRepacks(it.value().toBool());
+    if (hasKey("rss_smart_episode_filters"))
+        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(it.value().toString().split('\n'));
 
     // Advanced settings
     // qBittorrent preferences
@@ -739,9 +751,6 @@ void AppController::setPreferencesAction()
     // Seed choking algorithm
     if (hasKey("upload_choking_algorithm"))
         session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(it.value().toInt()));
-    // Super seeding
-    if (hasKey("enable_super_seeding"))
-        session->setSuperSeedingEnabled(it.value().toBool());
     // Announce
     if (hasKey("announce_to_all_trackers"))
         session->setAnnounceToAllTrackers(it.value().toBool());

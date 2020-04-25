@@ -61,7 +61,7 @@ private:
              m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxUPnPLeaseDuration,
              m_spinBoxListRefresh, m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
              m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxStopTrackerTimeout, m_spinBoxSavePathHistoryLength;
-    QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts, m_checkBoxSuperSeeding,
+    QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts,
               m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
               m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
               m_checkBoxMultiConnectionsPerIp, m_checkBoxPieceExtentAffinity, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
