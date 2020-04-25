@@ -188,12 +188,12 @@ install:
         cp "version" $HOME/travis/brew
         cd "$HOME/travis/brew"
         wget https://builds.shiki.hu/travis/brew/libtorrent-rasterbar.rb
-        wget https://builds.shiki.hu/travis/brew/6e4eb13f70df35e8fc7ff41883fef3e5c7b535dd55c78cd2ce1eae3fb4288e21--libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz
+        wget https://builds.shiki.hu/travis/brew/f01f8d840b6eaf05df8df811815128ae6e7227977b1cba4825f0a1fb73a4d9f0--libtorrent-rasterbar-1.2.6.high_sierra.bottle.tar.gz
       fi
       # Copy custom libtorrent bottle to homebrew's download cache so it can find and install it
       # Also install our custom libtorrent formula by passing the local path to it
       # These 2 files are restored from Travis' cache.
-      cp "$HOME/travis/brew/6e4eb13f70df35e8fc7ff41883fef3e5c7b535dd55c78cd2ce1eae3fb4288e21--libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
+      cp "$HOME/travis/brew/f01f8d840b6eaf05df8df811815128ae6e7227977b1cba4825f0a1fb73a4d9f0--libtorrent-rasterbar-1.2.6.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
       brew uninstall libtorrent-rasterbar
       brew install "$HOME/travis/brew/libtorrent-rasterbar.rb"
 
@@ -201,7 +201,7 @@ install:
       # The part before the "--" characters is a sha256 hash of the string
       # of the URL homebrew itself would use to download the bottle.
       # In this case the URL is the following:
-      # http://127.0.0.1/libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz
+      # http://127.0.0.1/libtorrent-rasterbar-1.2.6.high_sierra.bottle.tar.gz
     fi
 
 script:
