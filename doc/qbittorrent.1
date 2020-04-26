@@ -130,9 +130,8 @@ If a configuration with the given \f[I]NAME\f[R] does not exist yet, it
 is created with default settings.
 If it already exists, it is loaded as a normal configuration would be.
 .PP
-If both \f[B]\f[CB]--configuration\f[B]\f[R] and
-\f[B]\f[CB]--profile\f[B]\f[R] are specified, only
-\f[B]\f[CB]--profile\f[B]\f[R] takes effect.
+See the documentation for the \f[B]\f[CB]--profile\f[B]\f[R] option to
+know what happens if both options are supplied at the same time.
 .RE
 .TP
 \f[B]\f[CB]--no-splash\f[B]\f[R]
@@ -198,8 +197,11 @@ save paths) might represent paths which are not be present on the target
 machine, and thus may need to be adjusted after migrating.
 .PP
 If both \f[B]\f[CB]--configuration\f[B]\f[R] and
-\f[B]\f[CB]--profile\f[B]\f[R] are specified, only
-\f[B]\f[CB]--profile\f[B]\f[R] takes effect.
+\f[B]\f[CB]--profile\f[B]\f[R] are specified, the configuration files
+will be stored under a directory named according to the naming rules
+described for \f[B]\f[CB]--configuration\f[B]\f[R], and this directory
+will in turn be nested under the \f[I]PATH\f[R] supplied to
+\f[B]\f[CB]--profile\f[B]\f[R].
 .RE
 .TP
 \f[B]\f[CB]--relative-fastresume\f[B]\f[R]
