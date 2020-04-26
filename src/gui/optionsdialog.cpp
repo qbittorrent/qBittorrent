@@ -211,7 +211,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
         tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!") +
         QLatin1String("</p><p>") +
-        tr("When these options are enabled, qBittorent will <strong>delete</strong> .torrent files "
+        tr("When these options are enabled, qBittorrent will <strong>delete</strong> .torrent files "
         "after they were successfully (the first option) or not (the second option) added to its "
         "download queue. This will be applied <strong>not only</strong> to the files opened via "
         "&ldquo;Add torrent&rdquo; menu action but to those opened via <strong>file type association</strong> as well") +
