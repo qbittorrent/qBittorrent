@@ -320,10 +320,11 @@ void TorrentsController::propertiesAction()
     requireParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QJsonObject dataDict;
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
+
+    QJsonObject dataDict;
 
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->seedingTime();
@@ -422,11 +423,11 @@ void TorrentsController::webseedsAction()
     requireParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QJsonArray webSeedList;
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    QJsonArray webSeedList;
     for (const QUrl &webseed : asConst(torrent->urlSeeds())) {
         webSeedList.append(QJsonObject {
             {KEY_WEBSEED_URL, webseed.toString()}
@@ -451,11 +452,11 @@ void TorrentsController::filesAction()
     requireParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QJsonArray fileList;
     const BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    QJsonArray fileList;
     if (torrent->hasMetadata()) {
         const QVector<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
         const QVector<qreal> fp = torrent->filesProgress();
@@ -494,11 +495,11 @@ void TorrentsController::pieceHashesAction()
     requireParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QJsonArray pieceHashes;
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    QJsonArray pieceHashes;
     const QVector<QByteArray> hashes = torrent->info().pieceHashes();
     for (const QByteArray &hash : hashes)
         pieceHashes.append(QString(hash.toHex()));
@@ -516,11 +517,11 @@ void TorrentsController::pieceStatesAction()
     requireParams({"hash"});
 
     const QString hash {params()["hash"]};
-    QJsonArray pieceStates;
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    QJsonArray pieceStates;
     const QBitArray states = torrent->pieces();
     for (int i = 0; i < states.size(); ++i)
         pieceStates.append(static_cast<int>(states[i]) * 2);
@@ -609,7 +610,6 @@ void TorrentsController::addTrackersAction()
     requireParams({"hash", "urls"});
 
     const QString hash = params()["hash"];
-
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
@@ -669,11 +669,11 @@ void TorrentsController::removeTrackersAction()
     requireParams({"hash", "urls"});
 
     const QString hash = params()["hash"];
-    const QStringList urls = params()["urls"].split('|');
-
     BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
+
+    const QStringList urls = params()["urls"].split('|');
 
     const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
     QVector<BitTorrent::TrackerEntry> remainingTrackers;
