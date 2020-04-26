@@ -96,7 +96,7 @@ Similarly to **`--configuration`**, this option can be used to run multiple sepa
     If a special directory literally named **`profile`** exists in the _same directory as the qBittorrent executable_, executing qBittorrent with no **`--profile=`** option is the same as executing qBittorrent from the qBittorrent executable directory with the options **`--profile=profile --relative-fastresume`**.
 This special case is known as the "portable mode" in qBittorrent.
 Note that if this special directory is present in the qBittorrent executable directory, but a non-empty **`--profile=`** is specified, the command line option will take precedence and **`--relative-fastresume`** will not be implied.
-Specifying a non-empty **`--profile=`** together with **`--relative-fastresume`** explicitly is functionally equivalent to the "portable mode", but under a profile diretory of choice, other than the special directory described above.
+Specifying a non-empty **`--profile=`** together with **`--relative-fastresume`** explicitly is functionally equivalent to the "portable mode", but under a profile directory of choice, other than the special directory described above.
 
     If _PATH_ does not exist, it is created, with configuration files initialized with default settings inside it that a new instance of qBittorrent then loads.
 If it exists, the configurations are loaded from there.
@@ -192,7 +192,7 @@ The configuration files are stored in the default directories of the specificati
 
 However, qBittorrent will not use custom XDG paths set via the **\$XDG\_CONFIG\_HOME** environment variables and the like; it will always use the default ones.
 
-The **`--configuration`** and **`profile`** options will instruct qBittorrent to instead create/use configuration files in different places.
+The **`--configuration`** and **`--profile`** options will instruct qBittorrent to create/use configuration files in different locations, instead of the default ones.
 Refer to the documentation of each of these options to learn more.
 
 ## Files used by qBittorrent
