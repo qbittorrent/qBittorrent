@@ -2124,7 +2124,7 @@ QVector<qreal> TorrentHandleImpl::availableFileFractions() const
 
     const QVector<int> piecesAvailability = pieceAvailability();
     // libtorrent returns empty array for seeding only torrents
-    if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1.);
+    if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1);
 
     QVector<qreal> res;
     res.reserve(filesCount);
