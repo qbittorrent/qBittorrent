@@ -56,9 +56,11 @@ addons:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
       - sourceline: 'ppa:qbittorrent-team/qbt-libtorrent-travisci'
+      - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+        key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
-      - [autoconf, automake, colormake]
+      - [autoconf, automake, cmake, colormake]
       - [libboost-dev, libboost-system-dev]
       - libssl-dev
       - [qtbase5-dev, libqt5svg5-dev, qttools5-dev]
