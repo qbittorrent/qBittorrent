@@ -4,7 +4,7 @@ os:
   - linux
   - osx
 
-dist: xenial
+dist: bionic
 
 env:
   matrix:
@@ -56,16 +56,13 @@ addons:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
       - sourceline: 'ppa:qbittorrent-team/qbt-libtorrent-travisci'
-      - sourceline: 'ppa:beineri/opt-qt59-xenial'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
       - [autoconf, automake, colormake]
       - [libboost-dev, libboost-system-dev]
       - libssl-dev
-      - [qt59base, qt59svg, qt59tools]
+      - [qtbase5-dev, libqt5svg5-dev, qttools5-dev]
       - zlib1g-dev
-      # required for Qt 5.9 from 'beineri' PPA
-      - libgl1-mesa-dev
 
 before_install:
   # only allow specific build for coverity scan, others will stop
@@ -83,10 +80,6 @@ before_install:
       # setup virtual display for after_success target
       if [ "$gui" = "true" ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
 
-      # Qt 5.9
-      PATH=/opt/qt59/bin:${PATH}
-      qmake_conf="$qmake_conf PKG_CONFIG_PATH=/opt/qt59/lib/pkgconfig:$PKG_CONFIG_PATH"
-      cmake_conf="$cmake_conf PKG_CONFIG_PATH=/opt/qt59/lib/pkgconfig:$PKG_CONFIG_PATH"
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
