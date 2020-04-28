@@ -123,11 +123,11 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->checkBoxRememberLastSavePath->setChecked(rememberLastSavePath);
 
     if (m_torrentParams.createSubfolder == TriStateBool::True)
-        m_ui->createSubfolderCheckBox->setChecked(true);
+        m_ui->keepTopLevelFolderCheckBox->setChecked(true);
     else if (m_torrentParams.createSubfolder == TriStateBool::False)
-        m_ui->createSubfolderCheckBox->setChecked(false);
+        m_ui->keepTopLevelFolderCheckBox->setChecked(false);
     else
-        m_ui->createSubfolderCheckBox->setChecked(session->isCreateTorrentSubfolder());
+        m_ui->keepTopLevelFolderCheckBox->setChecked(session->isKeepTorrentTopLevelFolder());
 
     m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
@@ -553,7 +553,7 @@ void AddNewTorrentDialog::accept()
         m_torrentParams.filePriorities = m_contentModel->model()->getFilePriorities();
 
     m_torrentParams.addPaused = TriStateBool(!m_ui->startTorrentCheckBox->isChecked());
-    m_torrentParams.createSubfolder = TriStateBool(m_ui->createSubfolderCheckBox->isChecked());
+    m_torrentParams.createSubfolder = TriStateBool(m_ui->keepTopLevelFolderCheckBox->isChecked());
 
     m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
     m_torrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();

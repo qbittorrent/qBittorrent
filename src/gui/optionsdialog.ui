@@ -769,9 +769,9 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkCreateSubfolder">
+                <widget class="QCheckBox" name="checkKeepTopLevelFolder">
                  <property name="text">
-                  <string>Create subfolder for torrents with multiple files</string>
+                  <string>Keep top-level folder</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>

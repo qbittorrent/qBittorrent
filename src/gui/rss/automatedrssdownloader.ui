@@ -325,7 +325,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <widget class="QLabel" name="lblCreateSubfolder">
+             <widget class="QLabel" name="lblKeepTopLevelFolder">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -333,7 +333,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Create Subfolder:</string>
+               <string>Keep top-level folder:</string>
               </property>
              </widget>
             </item>
