@@ -141,6 +141,7 @@ private:
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
+    QVector<BitTorrent::TorrentHandle *> getVisibleTorrents() const;
 
     // supposed to be used with qss only
     QColor unknownStateForeground() const;

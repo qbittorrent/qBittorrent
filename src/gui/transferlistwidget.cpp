@@ -501,6 +501,17 @@ QVector<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() c
     return torrents;
 }
 
+QVector<BitTorrent::TorrentHandle *> TransferListWidget::getVisibleTorrents() const
+{
+    const int visibleTorrentsCount = m_sortFilterModel->rowCount();
+
+    QVector<BitTorrent::TorrentHandle *> torrents;
+    torrents.reserve(visibleTorrentsCount);
+    for (int i = 0; i < visibleTorrentsCount; ++i)
+        torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
+    return torrents;
+}
+
 void TransferListWidget::setSelectedTorrentsLocation()
 {
     const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
@@ -547,11 +558,8 @@ void TransferListWidget::forceStartSelectedTorrents()
 
 void TransferListWidget::startVisibleTorrents()
 {
-    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i) {
-        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
-        if (torrent)
-            torrent->resume();
-    }
+    for (BitTorrent::TorrentHandle *const torrent : asConst(getVisibleTorrents()))
+        torrent->resume();
 }
 
 void TransferListWidget::pauseSelectedTorrents()
@@ -562,11 +570,8 @@ void TransferListWidget::pauseSelectedTorrents()
 
 void TransferListWidget::pauseVisibleTorrents()
 {
-    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i) {
-        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
-        if (torrent)
-            torrent->pause();
-    }
+    for (BitTorrent::TorrentHandle *const torrent : asConst(getVisibleTorrents()))
+        torrent->pause();
 }
 
 void TransferListWidget::softDeleteSelectedTorrents()
@@ -589,9 +594,11 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
     if (Preferences::instance()->confirmTorrentDeletion()) {
         auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), deleteLocalFiles);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [this, dialog]()
         {
-            removeTorrents(torrents, dialog->isDeleteFileSelected());
+            // Some torrents might be removed when waiting for user input, so refetch the torrent list
+            // NOTE: this will only work when dialog is modal
+            removeTorrents(getSelectedTorrents(), dialog->isDeleteFileSelected());
         });
         dialog->open();
     }
@@ -602,18 +609,17 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
 
 void TransferListWidget::deleteVisibleTorrents()
 {
-    if (m_sortFilterModel->rowCount() <= 0) return;
-
-    QVector<BitTorrent::TorrentHandle *> torrents;
-    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i)
-        torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
+    const QVector<BitTorrent::TorrentHandle *> torrents = getVisibleTorrents();
+    if (torrents.empty()) return;
 
     if (Preferences::instance()->confirmTorrentDeletion()) {
         auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), false);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [this, dialog]()
         {
-            removeTorrents(torrents, dialog->isDeleteFileSelected());
+            // Some torrents might be removed when waiting for user input, so refetch the torrent list
+            // NOTE: this will only work when dialog is modal
+            removeTorrents(getVisibleTorrents(), dialog->isDeleteFileSelected());
         });
         dialog->open();
     }
