@@ -57,8 +57,8 @@ public:
     }
 
 private:
-    const IndexType m_first;
-    const IndexType m_last;
+    IndexType m_first;
+    IndexType m_last;
 };
 
 template <typename T>
