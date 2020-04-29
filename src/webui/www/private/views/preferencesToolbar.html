@@ -5,6 +5,7 @@
         <li id="PrefConnectionLink"><a>QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefSpeedLink"><a>QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefBittorrentLink"><a>QBT_TR(BitTorrent)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefRSSLink"><a>QBT_TR(RSS)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefWebUILink"><a>QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefAdvancedLink"><a>QBT_TR(Advanced)QBT_TR[CONTEXT=OptionsDialog]</a></li>
     </ul>
@@ -33,6 +34,10 @@
         $('PrefBittorrentLink').addEvent('click', function(e) {
             $$('.PrefTab').addClass('invisible');
             $('BittorrentTab').removeClass('invisible');
+        });
+        $('PrefRSSLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('RSSTab').removeClass('invisible');
         });
         $('PrefWebUILink').addEvent('click', function(e) {
             $$('.PrefTab').addClass('invisible');
