@@ -43,8 +43,6 @@
 #include "apierror.h"
 #include "isessionmanager.h"
 
-class SearchPluginManager;
-
 using SearchHandlerPtr = QSharedPointer<SearchHandler>;
 using SearchHandlerDict = QMap<int, SearchHandlerPtr>;
 
@@ -58,6 +56,32 @@ namespace
         auto activeSearches = session->getData<QSet<int>>(ACTIVE_SEARCHES);
         if (activeSearches.remove(id))
             session->setData(ACTIVE_SEARCHES, QVariant::fromValue(activeSearches));
+    }
+
+    /**
+    * Returns the search categories in JSON format.
+    *
+    * The return value is an array of dictionaries.
+    * The dictionary keys are:
+    *   - "id"
+    *   - "name"
+    */
+    QJsonArray getPluginCategories(QStringList categories)
+    {
+        QJsonArray categoriesInfo {QJsonObject {
+            {QLatin1String("id"), "all"},
+            {QLatin1String("name"), SearchPluginManager::categoryFullName("all")}
+        }};
+
+        categories.sort(Qt::CaseInsensitive);
+        for (const QString &category : categories) {
+            categoriesInfo << QJsonObject {
+                {QLatin1String("id"), category},
+                {QLatin1String("name"), SearchPluginManager::categoryFullName(category)}
+            };
+        }
+
+        return categoriesInfo;
     }
 }
 
@@ -199,19 +223,6 @@ void SearchController::deleteAction()
     session->setData(SEARCH_HANDLERS, QVariant::fromValue(searchHandlers));
 
     removeActiveSearch(session, id);
-}
-
-void SearchController::categoriesAction()
-{
-    QStringList categories;
-    const QString name = params()["pluginName"].trimmed();
-
-    categories << SearchPluginManager::categoryFullName("all");
-    for (const QString &category : asConst(SearchPluginManager::instance()->getPluginCategories(name)))
-        categories << SearchPluginManager::categoryFullName(category);
-
-    const QJsonArray result = QJsonArray::fromStringList(categories);
-    setResult(result);
 }
 
 void SearchController::pluginsAction()
@@ -363,7 +374,7 @@ QJsonArray SearchController::getPluginsInfo(const QStringList &plugins) const
             {"version", QString(pluginInfo->version)},
             {"fullName", pluginInfo->fullName},
             {"url", pluginInfo->url},
-            {"supportedCategories", QJsonArray::fromStringList(pluginInfo->supportedCategories)},
+            {"supportedCategories", getPluginCategories(pluginInfo->supportedCategories)},
             {"enabled", pluginInfo->enabled}
         };
     }
