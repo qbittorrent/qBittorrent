@@ -47,6 +47,10 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 
+#if ((LIBTORRENT_VERSION_NUM >= 10206) && !defined(Q_OS_WIN))
+#define HAS_HTTPS_TRACKER_VALIDATION
+#endif
+
 class QFile;
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
@@ -401,6 +405,8 @@ namespace BitTorrent
         void setUtpMixedMode(MixedModeAlgorithm mode);
         bool multiConnectionsPerIpEnabled() const;
         void setMultiConnectionsPerIpEnabled(bool enabled);
+        bool validateHTTPSTrackerCertificate() const;
+        void setValidateHTTPSTrackerCertificate(bool enabled);
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
         QStringList bannedIPs() const;
@@ -665,6 +671,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isUTPRateLimited;
         CachedSettingValue<MixedModeAlgorithm> m_utpMixedMode;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
+        CachedSettingValue<bool> m_validateHTTPSTrackerCertificate;
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;

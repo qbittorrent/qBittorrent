@@ -486,6 +486,7 @@ Session::Session(QObject *parent)
     , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::TCP
         , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
+    , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY("ValidateHTTPSTrackerCertificate"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
@@ -1486,6 +1487,10 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     }
 
     settingsPack.set_bool(lt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
+
+#ifdef HAS_HTTPS_TRACKER_VALIDATION
+    settingsPack.set_bool(lt::settings_pack::validate_https_trackers, validateHTTPSTrackerCertificate());
+#endif
 
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
@@ -3768,6 +3773,19 @@ void Session::setMultiConnectionsPerIpEnabled(const bool enabled)
     if (enabled == m_multiConnectionsPerIpEnabled) return;
 
     m_multiConnectionsPerIpEnabled = enabled;
+    configureDeferred();
+}
+
+bool Session::validateHTTPSTrackerCertificate() const
+{
+    return m_validateHTTPSTrackerCertificate;
+}
+
+void Session::setValidateHTTPSTrackerCertificate(const bool enabled)
+{
+    if (enabled == m_validateHTTPSTrackerCertificate) return;
+
+    m_validateHTTPSTrackerCertificate = enabled;
     configureDeferred();
 }
 
