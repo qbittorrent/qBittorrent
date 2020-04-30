@@ -52,11 +52,11 @@
 #include "base/net/geoipmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/preferences.h"
+#include "gui/uithememanager.h"
 #include "peerlistdelegate.h"
 #include "peerlistsortmodel.h"
 #include "peersadditiondialog.h"
 #include "propertieswidget.h"
-#include "uithememanager.h"
 
 struct PeerEndpoint
 {

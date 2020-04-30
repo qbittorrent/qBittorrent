@@ -36,8 +36,8 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "gui/uithememanager.h"
 #include "ui_trackersadditiondialog.h"
-#include "uithememanager.h"
 
 TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
     : QDialog(parent)

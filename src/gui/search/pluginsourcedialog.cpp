@@ -28,8 +28,8 @@
 
 #include "pluginsourcedialog.h"
 
+#include "gui/utils.h"
 #include "ui_pluginsourcedialog.h"
-#include "utils.h"
 
 PluginSourceDialog::PluginSourceDialog(QWidget *parent)
     : QDialog(parent)

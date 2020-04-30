@@ -49,10 +49,10 @@
 #include "base/rss/rss_session.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "autoexpandabledialog.h"
+#include "gui/autoexpandabledialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #include "ui_automatedrssdownloader.h"
-#include "uithememanager.h"
-#include "utils.h"
 
 const QString EXT_JSON {QStringLiteral(".json")};
 const QString EXT_LEGACY {QStringLiteral(".rssrules")};

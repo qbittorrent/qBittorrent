@@ -47,13 +47,13 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/settingvalue.h"
 #include "base/utils/misc.h"
-#include "addnewtorrentdialog.h"
-#include "lineedit.h"
+#include "gui/addnewtorrentdialog.h"
+#include "gui/lineedit.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
-#include "uithememanager.h"
-#include "utils.h"
 
 SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)

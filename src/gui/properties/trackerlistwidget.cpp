@@ -49,10 +49,10 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/preferences.h"
-#include "autoexpandabledialog.h"
+#include "gui/autoexpandabledialog.h"
+#include "gui/uithememanager.h"
 #include "propertieswidget.h"
 #include "trackersadditiondialog.h"
-#include "uithememanager.h"
 
 #define NB_STICKY_ITEM 3
 

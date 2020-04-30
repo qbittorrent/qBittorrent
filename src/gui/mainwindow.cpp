@@ -51,7 +51,7 @@
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
-#include "notifications.h"
+#include "qtnotify/notifications.h"
 #endif
 
 #include "base/bittorrent/session.h"
@@ -77,16 +77,17 @@
 #include "hidabletabwidget.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
-#include "peerlistwidget.h"
-#include "powermanagement.h"
-#include "propertieswidget.h"
+#include "powermanagement/powermanagement.h"
+#include "properties/peerlistwidget.h"
+#include "properties/propertieswidget.h"
+#include "properties/trackerlistwidget.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
 #include "statsdialog.h"
 #include "statusbar.h"
 #include "torrentcreatordialog.h"
-#include "trackerlistwidget.h"
+
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"

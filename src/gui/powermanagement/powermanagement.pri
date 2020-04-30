@@ -1,5 +1,3 @@
-INCLUDEPATH += $$PWD
-
 HEADERS += $$PWD/powermanagement.h
 SOURCES += $$PWD/powermanagement.cpp
 

@@ -141,7 +141,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
   <customwidget>
    <class>LineEdit</class>
    <extends>QLineEdit</extends>
-   <header>lineedit.h</header>
+   <header>gui/lineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

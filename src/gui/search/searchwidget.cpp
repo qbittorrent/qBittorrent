@@ -46,11 +46,11 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
-#include "mainwindow.h"
+#include "gui/mainwindow.h"
+#include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
 #include "searchjobwidget.h"
 #include "ui_searchwidget.h"
-#include "uithememanager.h"
 
 #define SEARCHHISTORY_MAXSIZE 50
 #define URL_COLUMN 5

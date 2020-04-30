@@ -1,5 +1,3 @@
-INCLUDEPATH += $$PWD
-
 FORMS += \
     $$PWD/peersadditiondialog.ui \
     $$PWD/propertieswidget.ui \
