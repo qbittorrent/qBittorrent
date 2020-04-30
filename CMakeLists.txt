@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
 
@@ -13,6 +13,12 @@ read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_B
 # message(STATUS "Project version is: ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD} (${VER_STATUS})")
 
 project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
+
+# check for invalid compiler version/CXX standard as early as possible
+include(FunctionQbtCXXCompilerAndModeCheck)
+qbt_minimum_cxx_mode_check(14)
+message(STATUS "Building in C++${CMAKE_CXX_STANDARD} mode.\n"
+            "Make sure libtorrent was built with the same C++ mode for ABI compatibility.")
 
 set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
 

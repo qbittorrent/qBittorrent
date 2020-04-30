@@ -24,11 +24,6 @@ macro(qbt_set_compiler_options)
             #"-Wno-error=sign-conversion -Wno-error=float-equal"
         )
 
-        # GCC 4.8 has problems with std::array and its initialization
-        if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.9)
-            list(APPEND _GCC_COMMON_CXX_FLAGS "-Wno-error=missing-field-initializers")
-        endif()
-
         include(CheckCXXCompilerFlag)
         # check for -pedantic
         check_cxx_compiler_flag(-pedantic _PEDANTIC_IS_SUPPORTED)
