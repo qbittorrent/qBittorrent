@@ -47,5 +47,5 @@ public:
     APIErrorType type() const;
 
 private:
-    const APIErrorType m_type;
+    APIErrorType m_type;
 };

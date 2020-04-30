@@ -2133,9 +2133,9 @@ QVector<qreal> TorrentHandleImpl::availableFileFractions() const
         const TorrentInfo::PieceRange filePieces = info.filePieces(i);
 
         int availablePieces = 0;
-        for (int piece = filePieces.first(); piece <= filePieces.last(); ++piece) {
+        for (const int piece : filePieces)
             availablePieces += (piecesAvailability[piece] > 0) ? 1 : 0;
-        }
+
         res.push_back(static_cast<qreal>(availablePieces) / filePieces.size());
     }
     return res;
