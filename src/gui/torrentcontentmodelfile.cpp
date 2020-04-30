@@ -73,7 +73,7 @@ void TorrentContentModelFile::setProgress(qreal progress)
     Q_ASSERT(m_progress <= 1.);
 }
 
-void TorrentContentModelFile::setAvailability(qreal availability)
+void TorrentContentModelFile::setAvailability(const qreal availability)
 {
     m_availability = availability;
     Q_ASSERT(m_availability <= 1.);

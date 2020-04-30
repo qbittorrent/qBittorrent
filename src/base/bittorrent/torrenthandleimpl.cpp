@@ -2120,11 +2120,11 @@ void TorrentHandleImpl::prioritizeFiles(const QVector<DownloadPriority> &priorit
 QVector<qreal> TorrentHandleImpl::availableFileFractions() const
 {
     const int filesCount = this->filesCount();
-    if (filesCount < 0) return {};
+    if (filesCount <= 0) return {};
 
     const QVector<int> piecesAvailability = pieceAvailability();
     // libtorrent returns empty array for seeding only torrents
-    if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1.);
+    if (piecesAvailability.empty()) return QVector<qreal>(filesCount, -1);
 
     QVector<qreal> res;
     res.reserve(filesCount);
@@ -2136,7 +2136,10 @@ QVector<qreal> TorrentHandleImpl::availableFileFractions() const
         for (const int piece : filePieces)
             availablePieces += (piecesAvailability[piece] > 0) ? 1 : 0;
 
-        res.push_back(static_cast<qreal>(availablePieces) / filePieces.size());
+        const qreal availability = filePieces.isEmpty()
+            ? 1  // the file has no pieces, so it is available by default
+            : static_cast<qreal>(availablePieces) / filePieces.size();
+        res.push_back(availability);
     }
     return res;
 }

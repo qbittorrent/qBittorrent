@@ -233,7 +233,7 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
     if (m_filesIndex.size() != fa.size()) return;
 
     emit layoutAboutToBeChanged();
-    for (int i = 0; i < fa.size(); ++i)
+    for (int i = 0; i < m_filesIndex.size(); ++i)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
