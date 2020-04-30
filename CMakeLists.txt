@@ -57,6 +57,8 @@ optional_compile_definitions(COUNTRIES_RESOLUTION FEATURE DESCRIPTION "Enable re
     DEFAULT ON DISABLED DISABLE_COUNTRIES_RESOLUTION)
 optional_compile_definitions(STACKTRACE FEATURE DESCRIPTION "Enable stacktraces"
     DEFAULT ON ENABLED STACKTRACE)
+optional_compile_definitions(GUI FEATURE DESCRIPTION "Build GUI application"
+    DEFAULT ON DISABLED DISABLE_GUI)
 optional_compile_definitions(WEBUI FEATURE DESCRIPTION "Enables built-in HTTP server for headless use"
     DEFAULT ON DISABLED DISABLE_WEBUI)
 

@@ -63,7 +63,7 @@ if (STACKTRACE)
         target_sources(qBittorrent PRIVATE stacktrace.h)
     else()
         target_sources(qBittorrent PRIVATE stacktrace_win.h)
-        if (Qt5Widgets_FOUND)
+        if (NOT DISABLE_GUI)
             target_sources(qBittorrent PRIVATE stacktracedialog.cpp stacktracedialog.h)
         endif()
 
@@ -85,7 +85,7 @@ if (STACKTRACE)
     endif()
 endif()
 
-if (Qt5Widgets_FOUND)
+if (NOT DISABLE_GUI)
     target_link_libraries(qBittorrent PRIVATE qbt_gui)
     set_target_properties(qBittorrent
         PROPERTIES
@@ -156,7 +156,7 @@ install(TARGETS qBittorrent
     COMPONENT runtime
 )
 
-if (Qt5Widgets_FOUND AND APPLE)
+if (NOT DISABLE_GUI AND APPLE)
     find_package(Qt5Svg REQUIRED)
     include(bundle)
 endif()

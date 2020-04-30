@@ -94,7 +94,7 @@ before_install:
   - |
     if [ "$gui" = "false" ]; then
       qmake_conf="$qmake_conf --disable-gui"
-      cmake_conf="$cmake_conf -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Widgets=ON"
+      cmake_conf="$cmake_conf -DGUI=OFF"
     fi
 
   # print settings

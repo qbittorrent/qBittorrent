@@ -12,18 +12,12 @@ if (Boost_VERSION VERSION_LESS 106000)
 endif()
 
 find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
-find_package(Qt5Widgets ${requiredQtVersion})
-if (Qt5Widgets_FOUND)
+if (NOT DISABLE_GUI)
+    find_package(Qt5Widgets ${requiredQtVersion} REQUIRED)
     find_package(Qt5DBus ${requiredQtVersion})
 else()
     add_definitions(-DDISABLE_GUI)
 endif()
-
-set_package_properties(Qt5Widgets PROPERTIES
-    DESCRIPTION "Set of components for creating classic desktop-style UIs for the Qt5 framework"
-    PURPOSE "Enables qBittorrent GUI. Unneeded for headless configuration."
-    TYPE OPTIONAL
-)
 
 set_package_properties(Qt5DBus PROPERTIES
     DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
@@ -60,7 +54,7 @@ configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 add_subdirectory(app)
 add_subdirectory(base)
 
-if (Qt5Widgets_FOUND)
+if (NOT DISABLE_GUI)
     add_subdirectory(gui)
 endif ()
 
