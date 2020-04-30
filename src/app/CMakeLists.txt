@@ -1,27 +1,24 @@
 add_executable(qBittorrent
-# headers
-application.h
-applicationinstancemanager.h
-cmdoptions.h
-filelogger.h
-qtlocalpeer/qtlocalpeer.h
-upgrade.h
+    # headers
+    application.h
+    applicationinstancemanager.h
+    cmdoptions.h
+    filelogger.h
+    qtlocalpeer/qtlocalpeer.h
+    upgrade.h
 
-# sources
-application.cpp
-applicationinstancemanager.cpp
-cmdoptions.cpp
-filelogger.cpp
-main.cpp
-qtlocalpeer/qtlocalpeer.cpp
-upgrade.cpp
+    # sources
+    application.cpp
+    applicationinstancemanager.cpp
+    cmdoptions.cpp
+    filelogger.cpp
+    main.cpp
+    qtlocalpeer/qtlocalpeer.cpp
+    upgrade.cpp
 )
 
 target_include_directories(qBittorrent PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-target_link_libraries(qBittorrent
-    PRIVATE
-        qbt_base
-)
+target_link_libraries(qBittorrent PRIVATE qbt_base)
 
 set_target_properties(qBittorrent
     PROPERTIES
@@ -42,8 +39,8 @@ if (NOT DISABLE_WEBUI)
 endif()
 
 set(QBT_APP_RESOURCES
-../icons/icons.qrc
-../searchengine/searchengine.qrc
+    ../icons/icons.qrc
+    ../searchengine/searchengine.qrc
 )
 
 # With AUTORCC rcc is ran by cmake before language files are generated,
@@ -53,49 +50,53 @@ qt5_add_resources(QBT_APP_RESOURCE_SOURCE ${QBT_APP_RESOURCES})
 if (WIN32)
     if (MINGW)
         target_sources(qBittorrent PRIVATE ../qbittorrent_mingw.rc)
-    else (MINGW)
+    else()
         target_sources(qBittorrent PRIVATE ../qbittorrent.rc)
-    endif (MINGW)
+    endif()
+
     target_sources(qBittorrent PRIVATE ../qbittorrent.exe.manifest)
-endif (WIN32)
+endif()
 
 if (STACKTRACE)
     if (UNIX)
         target_sources(qBittorrent PRIVATE stacktrace.h)
-    else (UNIX)
+    else()
         target_sources(qBittorrent PRIVATE stacktrace_win.h)
         if (Qt5Widgets_FOUND)
             target_sources(qBittorrent PRIVATE stacktracedialog.cpp stacktracedialog.h)
-        endif (Qt5Widgets_FOUND)
+        endif()
+
         if (MSVC)
             if (NOT "${WINXXBITS}" STREQUAL "Win64")
                 # i686 arch requires frame pointer preservation
                 add_compile_options(-Oy-)
-            endif (NOT "${WINXXBITS}" STREQUAL "Win64")
+            endif()
+
             add_compile_options(-Zi)
             target_link_libraries(qBittorrent PUBLIC dbghelp -DEBUG)
-        else (MSVC)
+        else()
             if (NOT "${WINXXBITS}" STREQUAL "Win64")
                 add_compile_options(-fno-omit-frame-pointer)
-            endif (NOT "${WINXXBITS}" STREQUAL "Win64")
+            endif()
+
             target_link_libraries(qBittorrent PUBLIC dbghelp -Wl,--export-all-symbols)
-        endif (MSVC)
-    endif (UNIX)
-endif (STACKTRACE)
+        endif()
+    endif()
+endif()
 
 if (Qt5Widgets_FOUND)
-    target_link_libraries(qBittorrent PRIVATE qbt_searchengine qbt_gui)
+    target_link_libraries(qBittorrent PRIVATE qbt_gui)
     set_target_properties(qBittorrent
         PROPERTIES
             OUTPUT_NAME qbittorrent
             WIN32_EXECUTABLE True
     )
-else(Qt5Widgets_FOUND)
+else()
     set_target_properties(qBittorrent
         PROPERTIES
             OUTPUT_NAME qbittorrent-nox
     )
-endif (Qt5Widgets_FOUND)
+endif()
 
 if (NOT DISABLE_WEBUI)
     target_link_libraries(qBittorrent PRIVATE qbt_webui)
@@ -127,9 +128,8 @@ if (APPLE)
         ${QT_TR_DIR}/qt_zh_CN.qm
     )
     list(APPEND QBT_APP_RESOURCE_SOURCE ${QT_TRANSLATIONS})
-    set_source_files_properties(${QT_TRANSLATIONS}
-        PROPERTIES MACOSX_PACKAGE_LOCATION translations)
-endif (APPLE)
+    set_source_files_properties(${QT_TRANSLATIONS} PROPERTIES MACOSX_PACKAGE_LOCATION translations)
+endif()
 
 target_sources(qBittorrent PRIVATE ${QBT_QM_FILES} ${QBT_APP_RESOURCE_SOURCE})
 
@@ -138,7 +138,7 @@ get_target_property(QBT_EXECUTABLE_NAME qBittorrent OUTPUT_NAME)
 if (APPLE)
     set(qbt_BUNDLE_NAME ${QBT_EXECUTABLE_NAME})
 
-# substitute @EXECUTABLE@ in dist/mac/Info.plist
+    # substitute @EXECUTABLE@ in dist/mac/Info.plist
     set(EXECUTABLE ${qbt_BUNDLE_NAME})
     configure_file(${qBittorrent_SOURCE_DIR}/dist/mac/Info.plist ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist @ONLY)
 
@@ -146,15 +146,16 @@ if (APPLE)
         MACOSX_BUNDLE_BUNDLE_NAME "${qbt_BUNDLE_NAME}"
         MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist
     )
-endif (APPLE)
+endif()
 
 # installation
 install(TARGETS qBittorrent
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     BUNDLE  DESTINATION .
-    COMPONENT runtime)
+    COMPONENT runtime
+)
 
 if (Qt5Widgets_FOUND AND APPLE)
     find_package(Qt5Svg REQUIRED)
     include(bundle)
-endif (Qt5Widgets_FOUND AND APPLE)
+endif()

@@ -37,7 +37,7 @@ if (APPLE)
     # Workaround CMake bug (autogen does not pass required parameters to moc)
     # Relevant issue: https://gitlab.kitware.com/cmake/cmake/issues/18041
     list(APPEND CMAKE_AUTOMOC_MOC_OPTIONS -DQ_OS_MACOS -DQ_OS_DARWIN)
-endif ()
+endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 

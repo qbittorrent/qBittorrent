@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
 
-if(POLICY CMP0074)
+if (POLICY CMP0074)
     cmake_policy(SET CMP0074 NEW)
 endif()
 
@@ -45,9 +45,9 @@ set(requiredQtVersion 5.9.0)
 set(requiredOpensslVersion 1.0)
 set(requiredLibtorrentVersion 1.1.10)
 
-if(WIN32)
+if (WIN32)
     include(winconf)
-endif(WIN32)
+endif()
 
 
 # we need options here, at the top level, because they are used not only in "src" subdir, but in the "dist" dir too

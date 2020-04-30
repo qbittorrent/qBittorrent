@@ -38,6 +38,7 @@
 #include <shlobj.h>
 #endif
 
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
 #include <QLocale>
@@ -46,12 +47,6 @@
 #include <QSize>
 #include <QTime>
 #include <QVariant>
-
-#ifndef DISABLE_GUI
-#include <QApplication>
-#else
-#include <QCoreApplication>
-#endif
 
 #ifdef Q_OS_WIN
 #include <QRegularExpression>
