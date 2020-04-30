@@ -25,6 +25,7 @@ set_target_properties(qBittorrent
         AUTOUIC True
         AUTORCC True
         MACOSX_BUNDLE True
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )
 
 # translations
