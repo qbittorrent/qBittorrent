@@ -267,8 +267,8 @@ namespace BitTorrent
         void setPeXEnabled(bool enabled);
         bool isAddTorrentPaused() const;
         void setAddTorrentPaused(bool value);
-        bool isCreateTorrentSubfolder() const;
-        void setCreateTorrentSubfolder(bool value);
+        bool isKeepTorrentTopLevelFolder() const;
+        void setKeepTorrentTopLevelFolder(bool value);
         bool isTrackerEnabled() const;
         void setTrackerEnabled(bool enabled);
         bool isAppendExtensionEnabled() const;
@@ -677,7 +677,7 @@ namespace BitTorrent
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentPaused;
-        CachedSettingValue<bool> m_isCreateTorrentSubfolder;
+        CachedSettingValue<bool> m_isKeepTorrentTopLevelFolder;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<uint> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;

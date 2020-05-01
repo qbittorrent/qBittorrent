@@ -492,7 +492,7 @@ Session::Session(QObject *parent)
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY("GlobalMaxSeedingMinutes"), -1, lowerLimited(-1))
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
-    , m_isCreateTorrentSubfolder(BITTORRENT_SESSION_KEY("CreateTorrentSubfolder"), true)
+    , m_isKeepTorrentTopLevelFolder(BITTORRENT_SESSION_KEY("CreateTorrentSubfolder"), true)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY("RefreshInterval"), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY("Preallocation"), false)
@@ -4392,14 +4392,14 @@ std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time)
     return alerts;
 }
 
-bool Session::isCreateTorrentSubfolder() const
+bool Session::isKeepTorrentTopLevelFolder() const
 {
-    return m_isCreateTorrentSubfolder;
+    return m_isKeepTorrentTopLevelFolder;
 }
 
-void Session::setCreateTorrentSubfolder(const bool value)
+void Session::setKeepTorrentTopLevelFolder(const bool value)
 {
-    m_isCreateTorrentSubfolder = value;
+    m_isKeepTorrentTopLevelFolder = value;
 }
 
 // Read alerts sent by the BitTorrent session
