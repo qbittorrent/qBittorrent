@@ -1,12 +1,12 @@
-# Sets cache variable QBT_ADDITONAL_FLAGS and QBT_ADDITONAL_CXX_FLAGS to list of additional
-# compiler flags for C and C++ (QBT_ADDITONAL_FLAGS) and for C++ only (QBT_ADDITONAL_CXX_FLAGS)
+# Sets cache variable QBT_ADDITIONAL_FLAGS and QBT_ADDITONAL_CXX_FLAGS to list of additional
+# compiler flags for C and C++ (QBT_ADDITIONAL_FLAGS) and for C++ only (QBT_ADDITONAL_CXX_FLAGS)
 # and appends them to CMAKE_XXX_FLAGS variables.
 
 # It could use add_compile_options(), but then it is needed to use generator expressions,
 # and most interesting of them are not compatible with Visual Studio :(
 
 macro(qbt_set_compiler_options)
-# if (NOT QBT_ADDITONAL_FLAGS)
+# if (NOT QBT_ADDITIONAL_FLAGS)
     if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         #-Wshadow -Wconversion ?
         set(_GCC_COMMON_C_AND_CXX_FLAGS "-Wall -Wextra"
@@ -59,11 +59,11 @@ macro(qbt_set_compiler_options)
     endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-        set(QBT_ADDITONAL_FLAGS "/wd4251 /wd4275 /wd4290  /W4" CACHE STRING "Additional qBittorent compile flags")
+        set(QBT_ADDITIONAL_FLAGS "/wd4251 /wd4275 /wd4290 /W4" CACHE STRING "Additional qBittorent compile flags")
     endif ()
 
-    string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITONAL_FLAGS}")
-    string(APPEND CMAKE_CXX_FLAGS " ${QBT_ADDITONAL_FLAGS}")
+    string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITIONAL_FLAGS}")
+    string(APPEND CMAKE_CXX_FLAGS " ${QBT_ADDITIONAL_FLAGS}")
 
-# endif (NOT QBT_ADDITONAL_FLAGS)
+# endif (NOT QBT_ADDITIONAL_FLAGS)
 endmacro(qbt_set_compiler_options)
