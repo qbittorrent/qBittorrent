@@ -7,7 +7,7 @@ if (POLICY CMP0074)
 endif()
 
 # TODO: fix the macOS bundle stuff
-if(POLICY CMP0080)
+if (POLICY CMP0080)
     cmake_policy(SET CMP0080 OLD)
 endif()
 
