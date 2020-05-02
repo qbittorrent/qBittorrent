@@ -1,9 +1,5 @@
 INCLUDEPATH += $$PWD
 
-include(powermanagement/powermanagement.pri)
-include(properties/properties.pri)
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
-
 HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/addnewtorrentdialog.h \
@@ -27,10 +23,25 @@ HEADERS += \
     $$PWD/log/logmodel.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
+    $$PWD/powermanagement/powermanagement.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
     $$PWD/private/fspathedit_p.h \
     $$PWD/private/tristatewidget.h \
+    $$PWD/properties/downloadedpiecesbar.h \
+    $$PWD/properties/peerlistdelegate.h \
+    $$PWD/properties/peerlistsortmodel.h \
+    $$PWD/properties/peerlistwidget.h \
+    $$PWD/properties/peersadditiondialog.h \
+    $$PWD/properties/pieceavailabilitybar.h \
+    $$PWD/properties/piecesbar.h \
+    $$PWD/properties/propertieswidget.h \
+    $$PWD/properties/proplistdelegate.h \
+    $$PWD/properties/proptabbar.h \
+    $$PWD/properties/speedplotview.h \
+    $$PWD/properties/speedwidget.h \
+    $$PWD/properties/trackerlistwidget.h \
+    $$PWD/properties/trackersadditiondialog.h \
     $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
@@ -93,10 +104,25 @@ SOURCES += \
     $$PWD/log/logmodel.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
+    $$PWD/powermanagement/powermanagement.cpp \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/private/fspathedit_p.cpp \
     $$PWD/private/tristatewidget.cpp \
+    $$PWD/properties/downloadedpiecesbar.cpp \
+    $$PWD/properties/peerlistdelegate.cpp \
+    $$PWD/properties/peerlistsortmodel.cpp \
+    $$PWD/properties/peerlistwidget.cpp \
+    $$PWD/properties/peersadditiondialog.cpp \
+    $$PWD/properties/pieceavailabilitybar.cpp \
+    $$PWD/properties/piecesbar.cpp \
+    $$PWD/properties/propertieswidget.cpp \
+    $$PWD/properties/proplistdelegate.cpp \
+    $$PWD/properties/proptabbar.cpp \
+    $$PWD/properties/speedplotview.cpp \
+    $$PWD/properties/speedwidget.cpp \
+    $$PWD/properties/trackerlistwidget.cpp \
+    $$PWD/properties/trackersadditiondialog.cpp \
     $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
@@ -141,6 +167,16 @@ win32|macx {
     SOURCES += $$PWD/programupdater.cpp
 }
 
+unix:!macx:dbus {
+    HEADERS += \
+        $$PWD/powermanagement/powermanagement_x11.h \
+        $$PWD/qtnotify/notifications.h
+        
+    SOURCES += \
+        $$PWD/powermanagement/powermanagement_x11.cpp \
+        $$PWD/qtnotify/notifications.cpp
+}
+
 macx {
     HEADERS += $$PWD/macutilities.h
     OBJECTIVE_SOURCES += $$PWD/macutilities.mm
@@ -159,6 +195,9 @@ FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/optionsdialog.ui \
     $$PWD/previewselectdialog.ui \
+    $$PWD/properties/peersadditiondialog.ui \
+    $$PWD/properties/propertieswidget.ui \
+    $$PWD/properties/trackersadditiondialog.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/rss/rsswidget.ui \
     $$PWD/search/pluginselectdialog.ui \
