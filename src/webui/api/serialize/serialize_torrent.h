@@ -61,6 +61,7 @@ const char KEY_TORRENT_SAVE_PATH[] = "save_path";
 const char KEY_TORRENT_ADDED_ON[] = "added_on";
 const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";
 const char KEY_TORRENT_TRACKER[] = "tracker";
+const char KEY_TORRENT_TRACKERS_COUNT[] = "trackers_count";
 const char KEY_TORRENT_DL_LIMIT[] = "dl_limit";
 const char KEY_TORRENT_UP_LIMIT[] = "up_limit";
 const char KEY_TORRENT_AMOUNT_DOWNLOADED[] = "downloaded";
