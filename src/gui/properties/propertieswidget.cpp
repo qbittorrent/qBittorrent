@@ -68,7 +68,7 @@
 #include "ui_propertieswidget.h"
 
 #ifdef Q_OS_MACOS
-#include "macutilities.h"
+#include "gui/macutilities.h"
 #endif
 
 PropertiesWidget::PropertiesWidget(QWidget *parent)
