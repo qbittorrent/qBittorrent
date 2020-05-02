@@ -51,7 +51,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
-#include "proplistdelegate.h"
+#include "properties/proplistdelegate.h"
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodel.h"

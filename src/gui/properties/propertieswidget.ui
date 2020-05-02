@@ -1111,7 +1111,7 @@
   <customwidget>
    <class>TorrentContentTreeView</class>
    <extends>QTreeView</extends>
-   <header location="global">torrentcontenttreeview.h</header>
+   <header location="global">gui/torrentcontenttreeview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

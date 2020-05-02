@@ -454,7 +454,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
   <customwidget>
    <class>FileSystemPathLineEdit</class>
    <extends>QWidget</extends>
-   <header>fspathedit.h</header>
+   <header>gui/fspathedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

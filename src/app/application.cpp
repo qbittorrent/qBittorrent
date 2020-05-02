@@ -85,11 +85,11 @@
 #include "filelogger.h"
 
 #ifndef DISABLE_GUI
-#include "addnewtorrentdialog.h"
+#include "gui/addnewtorrentdialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
-#include "mainwindow.h"
-#include "shutdownconfirmdialog.h"
+#include "gui/mainwindow.h"
+#include "gui/shutdownconfirmdialog.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI

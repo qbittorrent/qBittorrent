@@ -38,7 +38,7 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
-#include "uithememanager.h"
+#include "gui/uithememanager.h"
 
 FeedListWidget::FeedListWidget(QWidget *parent)
     : QTreeWidget(parent)

@@ -42,12 +42,12 @@
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/fs.h"
-#include "autoexpandabledialog.h"
+#include "gui/autoexpandabledialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #include "pluginsourcedialog.h"
 #include "searchwidget.h"
 #include "ui_pluginselectdialog.h"
-#include "uithememanager.h"
-#include "utils.h"
 
 enum PluginColumns
 {

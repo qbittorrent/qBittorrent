@@ -37,8 +37,8 @@
 #include <QStyle>
 #include <QStyledItemDelegate>
 
+#include "gui/uithememanager.h"
 #include "logmodel.h"
-#include "uithememanager.h"
 
 namespace
 {

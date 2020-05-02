@@ -47,13 +47,13 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
-#include "addnewtorrentdialog.h"
+#include "gui/addnewtorrentdialog.h"
+#include "gui/autoexpandabledialog.h"
+#include "gui/uithememanager.h"
 #include "articlelistwidget.h"
-#include "autoexpandabledialog.h"
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
-#include "uithememanager.h"
 
 RSSWidget::RSSWidget(QWidget *parent)
     : QWidget(parent)
