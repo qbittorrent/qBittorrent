@@ -461,6 +461,17 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         if (index.column() == TR_NAME)
             return getIconByState(torrent->state());
         break;
+    case Qt::ToolTipRole:
+        switch (index.column()) {
+        case TR_NAME:
+        case TR_STATUS:
+        case TR_CATEGORY:
+        case TR_TAGS:
+        case TR_TRACKER:
+        case TR_SAVE_PATH:
+            return displayValue(torrent, index.column());
+        }
+        break;
     case Qt::TextAlignmentRole:
         switch (index.column()) {
         case TR_AMOUNT_DOWNLOADED:
