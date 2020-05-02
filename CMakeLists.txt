@@ -6,6 +6,11 @@ if(POLICY CMP0074)
     cmake_policy(SET CMP0074 NEW)
 endif()
 
+# TODO: fix the macOS bundle stuff
+if(POLICY CMP0080)
+    cmake_policy(SET CMP0080 OLD)
+endif()
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(FunctionReadVersion)
 
