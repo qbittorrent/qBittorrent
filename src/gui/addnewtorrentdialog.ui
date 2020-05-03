@@ -435,12 +435,12 @@
   <customwidget>
    <class>TorrentContentTreeView</class>
    <extends>QTreeView</extends>
-   <header>torrentcontenttreeview.h</header>
+   <header>gui/torrentcontenttreeview.h</header>
   </customwidget>
   <customwidget>
    <class>FileSystemPathComboEdit</class>
    <extends>QWidget</extends>
-   <header>fspathedit.h</header>
+   <header>gui/fspathedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -3388,7 +3388,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <customwidget>
    <class>FileSystemPathLineEdit</class>
    <extends>QWidget</extends>
-   <header>fspathedit.h</header>
+   <header>gui/fspathedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
