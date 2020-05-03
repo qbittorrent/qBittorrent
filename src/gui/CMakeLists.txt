@@ -1,7 +1,4 @@
-set(CMAKE_AUTORCC True)
-set(CMAKE_AUTOUIC True)
-
-add_library(qbt_gui STATIC
+add_library(qbt_gui
     # headers
     aboutdialog.h
     addnewtorrentdialog.h
@@ -80,7 +77,7 @@ add_library(qbt_gui STATIC
     uithememanager.h
     updownratiodialog.h
     utils.h
-    
+
     # sources
     aboutdialog.cpp
     addnewtorrentdialog.cpp
@@ -180,6 +177,7 @@ add_library(qbt_gui STATIC
     rss/rsswidget.ui
     search/pluginselectdialog.ui
     search/pluginsourcedialog.ui
+    search/searchjobwidget.ui
     search/searchwidget.ui
     shutdownconfirmdialog.ui
     speedlimitdialog.ui
@@ -188,48 +186,32 @@ add_library(qbt_gui STATIC
     torrentcreatordialog.ui
     trackerentriesdialog.ui
     updownratiodialog.ui
-
-    # resources
-    about.qrc
 )
 
-if (WIN32 OR APPLE)
-    target_sources(qbt_gui PRIVATE programupdater.h programupdater.cpp)
-endif()
-
-if (UNIX AND Qt5DBus_FOUND)
-    target_link_libraries(qbt_gui PRIVATE Qt5::DBus)
-
-    target_sources(qbt_gui PRIVATE
-        qtnotify/notifications.h
-        qtnotify/notifications.cpp
-    )
-
-    find_package(X11)
-    if (X11_FOUND)
-        target_sources(qbt_gui PRIVATE
+target_sources(qbt_gui
+    INTERFACE
+        about.qrc
+    PRIVATE
+        $<$<BOOL:${DBUS}>:
+            qtnotify/notifications.h
+            qtnotify/notifications.cpp
             powermanagement/powermanagement_x11.h
-            powermanagement/powermanagement_x11.cpp
-        )
-    endif()
-endif()
-
-target_include_directories(qbt_gui PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+            powermanagement/powermanagement_x11.cpp>
+        $<$<PLATFORM_ID:Windows,Darwin>:
+            programupdater.h
+            programupdater.cpp>
+        $<$<PLATFORM_ID:Darwin>:
+            macutilities.h
+            macutilities.mm>
+)
 
 target_link_libraries(qbt_gui
     PRIVATE
         qbt_base
+        $<$<PLATFORM_ID:Windows>:Qt5::WinExtras>
+        $<$<PLATFORM_ID:Windows>:PowrProf>
+        $<$<PLATFORM_ID:Darwin>:Qt5::MacExtras>
+        $<$<PLATFORM_ID:Darwin>:objc>
     PUBLIC
         Qt5::Gui Qt5::Widgets
 )
-
-if (APPLE)
-    target_sources(qbt_gui PRIVATE macutilities.h macutilities.mm)
-    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS MacExtras)
-    target_link_libraries(qbt_gui PRIVATE Qt5::MacExtras objc)
-endif()
-
-if (WIN32)
-    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS WinExtras)
-    target_link_libraries(qbt_gui PRIVATE Qt5::WinExtras PowrProf)
-endif()

@@ -1,6 +1,4 @@
-find_package(ZLIB 1.2.5.2 REQUIRED)
-
-add_library(qbt_base STATIC
+add_library(qbt_base
     # headers
     algorithm.h
     asyncfilestorage.h
@@ -159,21 +157,28 @@ add_library(qbt_base STATIC
     utils/string.cpp
 )
 
-target_link_libraries(qbt_base
-    PRIVATE
-        ZLIB::ZLIB
+target_compile_definitions(qbt_base
     PUBLIC
-        LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Xml
+        $<$<NOT:$<BOOL:${GUI}>>:DISABLE_GUI>
+        $<$<NOT:$<BOOL:${WEBUI}>>:DISABLE_WEBUI>
 )
 
-if (Qt5DBus_FOUND)
-    target_link_libraries(qbt_base PRIVATE Qt5::DBus)
-endif()
-
-if (APPLE)
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
     find_library(IOKit_LIBRARY IOKit)
     find_library(Carbon_LIBRARY Carbon)
     find_library(AppKit_LIBRARY AppKit)
-    target_link_libraries(qbt_base PRIVATE ${Carbon_LIBRARY} ${IOKit_LIBRARY} ${AppKit_LIBRARY})
 endif()
+
+target_link_libraries(qbt_base
+    PRIVATE
+        ZLIB::ZLIB
+        qbt_version_definitions
+        $<$<PLATFORM_ID:Windows>:Iphlpapi>
+        $<$<PLATFORM_ID:Darwin>:${AppKit_LIBRARY}>
+        $<$<PLATFORM_ID:Darwin>:${Carbon_LIBRARY}>
+        $<$<PLATFORM_ID:Darwin>:${IOKit_LIBRARY}>
+    PUBLIC
+        LibtorrentRasterbar::torrent-rasterbar
+        Qt5::Core Qt5::Network Qt5::Xml $<$<BOOL:${DBUS}>:Qt5::DBus>
+        qbt_common_cfg
+)
