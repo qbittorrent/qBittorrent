@@ -243,9 +243,10 @@ namespace
                         processMap(prevData[i.key()].toMap(), i.value().toMap(), map);
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
-                        if (!map.isEmpty())
+                        if (!map.isEmpty()) {
                             // changed list item found - append its changes to syncData
                             syncData[i.key()] = map;
+                        }
                     }
                     break;
                 case QVariant::StringList:
@@ -259,9 +260,10 @@ namespace
                         processList(prevData[i.key()].toList(), i.value().toList(), list, removedList);
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
-                        if (!list.isEmpty() || !removedList.isEmpty())
+                        if (!list.isEmpty() || !removedList.isEmpty()) {
                             // changed list item found - append entire list to syncData
                             syncData[i.key()] = i.value();
+                        }
                     }
                     break;
                 default:
@@ -459,9 +461,8 @@ void SyncController::maindataAction()
             }
         }
 
-        for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers())) {
+        for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
             trackers[tracker.url()] << torrentHash;
-        }
 
         torrents[torrentHash] = map;
     }

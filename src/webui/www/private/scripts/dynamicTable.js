@@ -1198,7 +1198,7 @@ window.qBittorrent.DynamicTable = (function() {
             };
         },
 
-        applyFilter: function(row, filterName, categoryHash, tagHash, filterTerms) {
+        applyFilter: function(row, filterName, categoryHash, tagHash, trackerHash, filterTerms) {
             const state = row['full_data'].state;
             const name = row['full_data'].name.toLowerCase();
             let inactive = false;
@@ -1291,6 +1291,21 @@ window.qBittorrent.DynamicTable = (function() {
                 }
             }
 
+            const trackerHashInt = Number.parseInt(trackerHash, 10);
+            switch (trackerHashInt) {
+                case TRACKERS_ALL:
+                    break; // do nothing
+                case TRACKERS_TRACKERLESS:
+                    if (row['full_data'].trackers_count !== 0)
+                        return false;
+                    break;
+                default:
+                    const tracker = trackerList.get(trackerHashInt)
+                    if (tracker && !tracker.torrents.includes(row['full_data'].rowId))
+                        return false
+                    break;
+            }
+
             if ((filterTerms !== undefined) && (filterTerms !== null)
                 && (filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(name, filterTerms))
                 return false;
@@ -1298,21 +1313,21 @@ window.qBittorrent.DynamicTable = (function() {
             return true;
         },
 
-        getFilteredTorrentsNumber: function(filterName, categoryHash, tagHash) {
+        getFilteredTorrentsNumber: function(filterName, categoryHash, tagHash, trackerHash) {
             let cnt = 0;
             const rows = this.rows.getValues();
 
             for (let i = 0; i < rows.length; ++i)
-                if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, null)) ++cnt;
+                if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null)) ++cnt;
             return cnt;
         },
 
-        getFilteredTorrentsHashes: function(filterName, categoryHash, tagHash) {
+        getFilteredTorrentsHashes: function(filterName, categoryHash, tagHash, trackerHash) {
             const rowsHashes = [];
             const rows = this.rows.getValues();
 
             for (let i = 0; i < rows.length; ++i)
-                if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, null))
+                if (this.applyFilter(rows[i], filterName, categoryHash, tagHash, trackerHash, null))
                     rowsHashes.push(rows[i]['rowId']);
 
             return rowsHashes;
@@ -1326,7 +1341,7 @@ window.qBittorrent.DynamicTable = (function() {
             const filterTerms = (filterText.length > 0) ? filterText.split(" ") : null;
 
             for (let i = 0; i < rows.length; ++i) {
-                if (this.applyFilter(rows[i], selected_filter, selected_category, selectedTag, filterTerms)) {
+                if (this.applyFilter(rows[i], selected_filter, selected_category, selectedTag, selectedTracker, filterTerms)) {
                     filteredRows.push(rows[i]);
                     filteredRows[rows[i].rowId] = rows[i];
                 }
