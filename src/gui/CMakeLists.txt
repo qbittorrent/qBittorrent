@@ -192,7 +192,7 @@ add_library(qbt_gui STATIC
     torrentcreatordialog.ui
     trackerentriesdialog.ui
     updownratiodialog.ui
-    
+
     # resources
     about.qrc
 )
@@ -203,12 +203,12 @@ endif()
 
 if (UNIX AND Qt5DBus_FOUND)
     target_link_libraries(qbt_gui PRIVATE Qt5::DBus)
-    
+
     target_sources(qbt_gui PRIVATE
         qtnotify/notifications.h
         qtnotify/notifications.cpp
     )
-   
+
     find_package(X11)
     if (X11_FOUND)
         target_sources(qbt_gui PRIVATE
@@ -217,6 +217,8 @@ if (UNIX AND Qt5DBus_FOUND)
         )
     endif()
 endif()
+
+target_include_directories(qbt_gui PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(qbt_gui
     PRIVATE
