@@ -34,7 +34,7 @@ include(QbtTranslations)
 file(GLOB QBT_TS_FILES ../lang/*.ts)
 qbt_add_translations(qBittorrent QRC_FILE "../lang/lang.qrc" TS_FILES ${QBT_TS_FILES})
 
-if (NOT DISABLE_WEBUI)
+if (WEBUI)
     file(GLOB QBT_WEBUI_TS_FILES ../webui/www/translations/*.ts)
     qbt_add_translations(qBittorrent QRC_FILE "../webui/www/translations/webui_translations.qrc" TS_FILES ${QBT_WEBUI_TS_FILES})
 endif()
@@ -63,7 +63,7 @@ if (STACKTRACE)
         target_sources(qBittorrent PRIVATE stacktrace.h)
     else()
         target_sources(qBittorrent PRIVATE stacktrace_win.h)
-        if (NOT DISABLE_GUI)
+        if (GUI)
             target_sources(qBittorrent PRIVATE stacktracedialog.cpp stacktracedialog.h)
         endif()
 
@@ -85,7 +85,7 @@ if (STACKTRACE)
     endif()
 endif()
 
-if (NOT DISABLE_GUI)
+if (GUI)
     target_link_libraries(qBittorrent PRIVATE qbt_gui)
     set_target_properties(qBittorrent
         PROPERTIES
@@ -99,7 +99,7 @@ else()
     )
 endif()
 
-if (NOT DISABLE_WEBUI)
+if (WEBUI)
     target_link_libraries(qBittorrent PRIVATE qbt_webui)
 endif()
 
@@ -156,7 +156,7 @@ install(TARGETS qBittorrent
     COMPONENT runtime
 )
 
-if (NOT DISABLE_GUI AND APPLE)
+if (GUI AND APPLE)
     find_package(Qt5Svg REQUIRED)
     include(bundle)
 endif()

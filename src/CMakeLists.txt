@@ -12,11 +12,9 @@ if (Boost_VERSION VERSION_LESS 106000)
 endif()
 
 find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
-if (NOT DISABLE_GUI)
+if (GUI)
     find_package(Qt5Widgets ${requiredQtVersion} REQUIRED)
     find_package(Qt5DBus ${requiredQtVersion})
-else()
-    add_definitions(-DDISABLE_GUI)
 endif()
 
 set_package_properties(Qt5DBus PROPERTIES
@@ -54,10 +52,10 @@ configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 add_subdirectory(app)
 add_subdirectory(base)
 
-if (NOT DISABLE_GUI)
+if (GUI)
     add_subdirectory(gui)
 endif ()
 
-if (NOT DISABLE_WEBUI)
+if (WEBUI)
     add_subdirectory(webui)
 endif()
