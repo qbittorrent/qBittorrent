@@ -33,7 +33,7 @@
 #include "base/global.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
-#include "uithememanager.h"
+#include "gui/uithememanager.h"
 
 ArticleListWidget::ArticleListWidget(QWidget *parent)
     : QListWidget(parent)

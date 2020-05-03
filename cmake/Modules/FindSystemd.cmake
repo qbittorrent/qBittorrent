@@ -8,7 +8,7 @@ find_package(PkgConfig QUIET REQUIRED)
 
 if (NOT SYSTEMD_FOUND)
     pkg_check_modules(SYSTEMD "systemd")
-endif(NOT SYSTEMD_FOUND)
+endif()
 
 if (SYSTEMD_FOUND AND "${SYSTEMD_SERVICES_INSTALL_DIR}" STREQUAL "")
     execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE}
@@ -23,4 +23,4 @@ endif()
 
 if (SYSTEMD_FOUND)
     message(STATUS "systemd services install dir: ${SYSTEMD_SERVICES_INSTALL_DIR}")
-endif(SYSTEMD_FOUND)
+endif()

@@ -1,71 +1,51 @@
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
-
-message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
-
-if (POLICY CMP0074)
-    cmake_policy(SET CMP0074 NEW)
-endif()
-
-# TODO: fix the macOS bundle stuff
-if (POLICY CMP0080)
-    cmake_policy(SET CMP0080 OLD)
-endif()
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default to NEW
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
-include(FunctionReadVersion)
 
-read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_BUGFIX VER_BUILD VER_STATUS)
-# message(STATUS "Project version is: ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD} (${VER_STATUS})")
+project(qBittorrent
+    VERSION 4.3.0.0
+    DESCRIPTION "The qBittorrent BitTorrent client"
+    HOMEPAGE_URL "https://www.qbittorrent.org/"
+    LANGUAGES CXX
+)
 
-project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
-
-# check for invalid compiler version/CXX standard as early as possible
-include(FunctionQbtCXXCompilerAndModeCheck)
-qbt_minimum_cxx_mode_check(14)
-message(STATUS "Building in C++${CMAKE_CXX_STANDARD} mode.\n"
-            "Make sure libtorrent was built with the same C++ mode for ABI compatibility.")
-
-set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
-
-if (NOT VER_BUILD EQUAL 0)
-    set(PROJECT_VERSION "${PROJECT_VERSION}.${VER_BUILD}")
-endif()
-
-set(PROJECT_VERSION "${PROJECT_VERSION}${VER_STATUS}")
-
-add_definitions(-DQBT_VERSION_MAJOR=${VER_MAJOR})
-add_definitions(-DQBT_VERSION_MINOR=${VER_MINOR})
-add_definitions(-DQBT_VERSION_BUGFIX=${VER_BUGFIX})
-add_definitions(-DQBT_VERSION_BUILD=${VER_BUILD})
-
-add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
-add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
-
-include(GNUInstallDirs)
-include(FeatureSummary)
-
+# use CONFIG mode first in find_package
+set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 # version requirements
 set(requiredBoostVersion 1.40)
 set(requiredQtVersion 5.9.0)
-set(requiredOpensslVersion 1.0)
-set(requiredLibtorrentVersion 1.2)
+set(requiredOpenSSLVersion 1.0)
+set(requiredLibtorrentVersion 1.2.0)
+set(requiredZlibVersion 1.2.5.2)
 
-if (WIN32)
-    include(winconf)
+# features (some are platform-specific)
+include(FeatureSummary)
+include(FeatureOptionsSetup)
+feature_option(STACKTRACE "Enable stacktraces" ON)
+feature_option(GUI "Build GUI application" ON)
+feature_option(WEBUI "Enables built-in HTTP server for headless use" ON)
+feature_option(VERBOSE_CONFIGURE "Show information about PACKAGES_FOUND and PACKAGES_NOT_FOUND in the configure output (only useful for debugging the CMake build scripts)" OFF)
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    feature_option_dependent(DBUS
+        "Enables support for notifications and power-management features on Linux via D-Bus"
+        ON "GUI" OFF
+    )
+    feature_option_dependent(SYSTEMD
+        "Install systemd service file to a directory manually overridable with Systemd_SERVICES_INSTALL_DIR"
+        OFF "NOT GUI" OFF
+    )
+elseif (MSVC)
+    feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" OFF)
 endif()
 
+set(QBT_VER_STATUS "alpha1" CACHE STRING "Project status version. Should be empty for release builds.")
 
-# we need options here, at the top level, because they are used not only in "src" subdir, but in the "dist" dir too
-include(CompileFeature)
-
-optional_compile_definitions(STACKTRACE FEATURE DESCRIPTION "Enable stacktraces"
-    DEFAULT ON ENABLED STACKTRACE)
-optional_compile_definitions(GUI FEATURE DESCRIPTION "Build GUI application"
-    DEFAULT ON DISABLED DISABLE_GUI)
-optional_compile_definitions(WEBUI FEATURE DESCRIPTION "Enables built-in HTTP server for headless use"
-    DEFAULT ON DISABLED DISABLE_WEBUI)
-
+include(GNUInstallDirs)
 add_subdirectory(src)
 add_subdirectory(dist)
 
-feature_summary(DESCRIPTION "\nConfiguration results:" WHAT ALL)
+if (VERBOSE_CONFIGURE)
+    feature_summary(WHAT ALL)
+else()
+    feature_summary(WHAT ENABLED_FEATURES DISABLED_FEATURES)
+endif()
