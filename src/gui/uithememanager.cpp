@@ -32,12 +32,20 @@
 #include <QApplication>
 #include <QFile>
 #include <QIcon>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QPalette>
 #include <QResource>
 
 #include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+
+namespace
+{
+    const QString CONFIG_FILE_NAME = QStringLiteral(":uitheme/config.json");
+}
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
 
@@ -56,9 +64,15 @@ void UIThemeManager::initInstance()
 UIThemeManager::UIThemeManager()
 {
     const Preferences *const pref = Preferences::instance();
-    if (pref->useCustomUITheme()
-        && !QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
-        LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
+    if (pref->useCustomUITheme()) {
+        if (!QResource::registerResource(pref->customUIThemePath(), "/uitheme")) {
+            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
+        }
+        else {
+            loadColorsFromJSONConfig();
+            applyPalette();
+        }
+    }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_useSystemTheme = pref->useSystemIconTheme();
@@ -122,6 +136,11 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
     return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
 }
 
+QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) const
+{
+    return m_colors.value(id, defaultColor);
+}
+
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -139,4 +158,81 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
     }
 #endif
     return IconProvider::instance()->getIconPath(iconId);
+}
+
+void UIThemeManager::loadColorsFromJSONConfig()
+{
+    QFile configFile(CONFIG_FILE_NAME);
+    if (!configFile.open(QIODevice::ReadOnly)) {
+        LogMsg(tr("Failed to open \"%1\". Reason: %2").arg(CONFIG_FILE_NAME, configFile.errorString()), Log::WARNING);
+        return;
+    }
+
+    QJsonParseError jsonError;
+    const QJsonDocument configJsonDoc = QJsonDocument::fromJson(configFile.readAll(), &jsonError);
+    if (jsonError.error != QJsonParseError::NoError) {
+        LogMsg(tr("\"%1\" has invalid format. Reason: %2").arg(CONFIG_FILE_NAME, jsonError.errorString()), Log::WARNING);
+        return;
+    }
+    if (!configJsonDoc.isObject()) {
+        LogMsg(tr("\"%1\" has invalid format. Reason: %2").arg(CONFIG_FILE_NAME, tr("Root JSON value is not an object")), Log::WARNING);
+        return;
+    }
+
+    const QJsonObject colors = configJsonDoc.object().value("colors").toObject();
+    for (auto color = colors.constBegin(); color != colors.constEnd(); ++color) {
+        const QColor providedColor(color.value().toString());
+        if (!providedColor.isValid()) {
+            LogMsg(tr("Invalid color for ID \"%1\" is provided by theme").arg(color.key()), Log::WARNING);
+            continue;
+        }
+        m_colors.insert(color.key(), providedColor);
+    }
+}
+
+void UIThemeManager::applyPalette() const
+{
+    struct ColorDescriptor
+    {
+        QString id;
+        QPalette::ColorRole colorRole;
+        QPalette::ColorGroup colorGroup;
+    };
+
+    const ColorDescriptor paletteColorDescriptors[] =
+    {
+        {QLatin1String("Palette.Window"), QPalette::Window, QPalette::Normal},
+        {QLatin1String("Palette.WindowText"), QPalette::WindowText, QPalette::Normal},
+        {QLatin1String("Palette.Base"), QPalette::Base, QPalette::Normal},
+        {QLatin1String("Palette.AlternateBase"), QPalette::AlternateBase, QPalette::Normal},
+        {QLatin1String("Palette.Text"), QPalette::Text, QPalette::Normal},
+        {QLatin1String("Palette.ToolTipBase"), QPalette::ToolTipBase, QPalette::Normal},
+        {QLatin1String("Palette.ToolTipText"), QPalette::ToolTipText, QPalette::Normal},
+        {QLatin1String("Palette.BrightText"), QPalette::BrightText, QPalette::Normal},
+        {QLatin1String("Palette.Highlight"), QPalette::Highlight, QPalette::Normal},
+        {QLatin1String("Palette.HighlightedText"), QPalette::HighlightedText, QPalette::Normal},
+        {QLatin1String("Palette.Button"), QPalette::Button, QPalette::Normal},
+        {QLatin1String("Palette.ButtonText"), QPalette::ButtonText, QPalette::Normal},
+        {QLatin1String("Palette.Link"), QPalette::Link, QPalette::Normal},
+        {QLatin1String("Palette.LinkVisited"), QPalette::LinkVisited, QPalette::Normal},
+        {QLatin1String("Palette.Light"), QPalette::Light, QPalette::Normal},
+        {QLatin1String("Palette.Midlight"), QPalette::Midlight, QPalette::Normal},
+        {QLatin1String("Palette.Mid"), QPalette::Mid, QPalette::Normal},
+        {QLatin1String("Palette.Dark"), QPalette::Dark, QPalette::Normal},
+        {QLatin1String("Palette.Shadow"), QPalette::Shadow, QPalette::Normal},
+        {QLatin1String("Palette.WindowTextDisabled"), QPalette::WindowText, QPalette::Disabled},
+        {QLatin1String("Palette.TextDisabled"), QPalette::Text, QPalette::Disabled},
+        {QLatin1String("Palette.ToolTipTextDisabled"), QPalette::ToolTipText, QPalette::Disabled},
+        {QLatin1String("Palette.BrightTextDisabled"), QPalette::BrightText, QPalette::Disabled},
+        {QLatin1String("Palette.HighlightedTextDisabled"), QPalette::HighlightedText, QPalette::Disabled},
+        {QLatin1String("Palette.ButtonTextDisabled"), QPalette::ButtonText, QPalette::Disabled}
+    };
+
+    QPalette palette = qApp->palette();
+    for (const ColorDescriptor &colorDescriptor : paletteColorDescriptors) {
+        const QColor defaultColor = palette.color(colorDescriptor.colorGroup, colorDescriptor.colorRole);
+        const QColor newColor = getColor(colorDescriptor.id, defaultColor);
+        palette.setColor(colorDescriptor.colorGroup, colorDescriptor.colorRole, newColor);
+    }
+    qApp->setPalette(palette);
 }
