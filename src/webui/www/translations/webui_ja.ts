@@ -805,13 +805,13 @@
     </message>
     <message>
         <source>From:</source>
-        <extracomment>from (time1 to time2)</extracomment>
-        <translation>開始:</translation>
+        <extracomment>from (sender to receiver)</extracomment>
+        <translation>送信のメール:</translation>
     </message>
     <message>
         <source>To:</source>
-        <extracomment>time1 to time2</extracomment>
-        <translation>終了:</translation>
+        <extracomment>(from sender) to (receiver)</extracomment>
+        <translation>受信者のメール:</translation>
     </message>
     <message>
         <source>When:</source>
