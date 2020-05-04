@@ -851,14 +851,20 @@ TorrentState TorrentHandleImpl::state() const
 
 void TorrentHandleImpl::updateState()
 {
-    if (hasError()) {
-        m_state = TorrentState::Error;
-    }
-    else if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
+    if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
         m_state = TorrentState::CheckingResumeData;
+    }
+    else if (m_nativeStatus.state == lt::torrent_status::checking_files) {
+        m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
+    }
+    else if (m_nativeStatus.state == lt::torrent_status::allocating) {
+        m_state = TorrentState::Allocating;
     }
     else if (isMoveInProgress()) {
         m_state = TorrentState::Moving;
+    }
+    else if (hasError()) {
+        m_state = TorrentState::Error;
     }
     else if (hasMissingFiles()) {
         m_state = TorrentState::MissingFiles;
@@ -877,12 +883,6 @@ void TorrentHandleImpl::updateState()
                 m_state = TorrentState::ForcedUploading;
             else
                 m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
-            break;
-        case lt::torrent_status::allocating:
-            m_state = TorrentState::Allocating;
-            break;
-        case lt::torrent_status::checking_files:
-            m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
             break;
         case lt::torrent_status::downloading_metadata:
             m_state = TorrentState::DownloadingMetadata;
