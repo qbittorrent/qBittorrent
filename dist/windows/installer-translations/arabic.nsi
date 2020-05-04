@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_ARABIC} "Disable Windows path length limit (260
 LangString inst_firewallinfo ${LANG_ARABIC} "جاري اضافة القاعدة للجدار الناري"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_ARABIC} "البرنامج يعمل. يرجى اغلاقه قبل البدء في التنصيب"
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_ARABIC} "يوجد نسخة سابقة من البرنامج. سيتم إزالتها دون حذف إعدادات المستخدم"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_ARABIC} "جاري ازالة النسخة السابقة من البرنامج"

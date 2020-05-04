@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_DUTCH} "De Windows-begrenzing voor padlengte ui
 LangString inst_firewallinfo ${LANG_DUTCH} "Uitzondering aan Windows Firewall toevoegen"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit de toepassing voordat u deze update installeert."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_DUTCH} "Er werd een eerdere installatie gedetecteerd. Deze wordt verwijderd zonder de gebruikersinstellingen te verwijderen."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_DUTCH} "Vorige versie verwijderen."

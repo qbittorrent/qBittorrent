@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_SIMPCHINESE} "Disable Windows path length limit
 LangString inst_firewallinfo ${LANG_SIMPCHINESE} "正在添加Windows防火墙规则"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_SIMPCHINESE} "qBittorrent 正在运行。 安装前请关闭应用程序。"
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_SIMPCHINESE} "检测到以前的安装。 它将被卸载但不删除用户设置。"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_SIMPCHINESE} "卸载以前的版本。"

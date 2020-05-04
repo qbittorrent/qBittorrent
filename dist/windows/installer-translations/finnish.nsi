@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_FINNISH} "Disable Windows path length limit (26
 LangString inst_firewallinfo ${LANG_FINNISH} "Lisätään sääntö Windowsin Palomuuriin"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_FINNISH} "qBittorrent on käynnissä. Sulje ohjelma ennen asennusta."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_FINNISH} "Aiempi asennus löydettiin. Se poistetaan poistamatta käyttäjän asetuksia."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_FINNISH} "Poistetaan aiempi asennus."

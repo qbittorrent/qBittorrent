@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_GREEK} "Disable Windows path length limit (260 
 LangString inst_firewallinfo ${LANG_GREEK} "Προστίθεται κανόνας εξαίρεσης στο Τείχος Προστασίας των Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_GREEK} "Το qBittorrent βρίσκεται σε εκτέλεση. Παρακαλούμε κλείστε την εφαρμογή πριν την εγκατάσταση."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_GREEK} "Ανιχνεύθηκε προηγούμενη εγκατάσταση. Θα απεγκατασταθεί χωρίς να διαγραφούν οι ρυθμίσεις του χρήστη."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_GREEK} "Γίνεται απεγκατάσταση της προηγούμενης έκδοσης."

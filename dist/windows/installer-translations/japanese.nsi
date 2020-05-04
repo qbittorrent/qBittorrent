@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_JAPANESE} "Windows のパスの文字長制限�
 LangString inst_firewallinfo ${LANG_JAPANESE} "Windows ファイアウォールのルールを追加"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_JAPANESE} "qBittorrent は実行中です。インストールの前にアプリケーションを終了してください。"
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_JAPANESE} "以前のインストールが検出されました。ユーザー設定を削除せずにアンインストールします。"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_JAPANESE} "以前のバージョンをアンインストールしています。"
