@@ -55,7 +55,6 @@ private slots:
     void statusAction();
     void resultsAction();
     void deleteAction();
-    void categoriesAction();
     void pluginsAction();
     void installPluginAction();
     void uninstallPluginAction();

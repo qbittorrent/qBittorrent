@@ -339,8 +339,6 @@
                 const plugins = $('pluginsSelect').getProperty('value');
 
                 if (!pattern || !category || !plugins) return;
-                if (category === "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]")
-                    category = "all";
 
                 resetFilters();
 
@@ -466,36 +464,43 @@
             const populateCategorySelect = function(categories) {
                 const categoryHtml = [];
                 categories.each(function(category) {
-                    categoryHtml.push("<option>" + category + "</option>");
+                    const option = new Element("option");
+                    option.set("value", category.id);
+                    option.set("html", category.name);
+                    categoryHtml.push(option.outerHTML);
                 });
 
                 // first category is "All Categories"
-                if (categoryHtml.length > 1)
+                if (categoryHtml.length > 1) {
                     // add separator
-                    categoryHtml.splice(1, 0, "<option disabled>──────────</option>");
+                    const option = new Element("option");
+                    option.set("disabled", true);
+                    option.set("html", "──────────");
+                    categoryHtml.splice(1, 0, option.outerHTML);
+                }
 
                 $('categorySelect').set('html', categoryHtml.join(""));
             };
 
             const selectedPlugin = $('pluginsSelect').get("value");
+
             if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
-                const url = new URI('api/v2/search/categories');
-                url.setData('name', selectedPlugin);
-                new Request.JSON({
-                    url: url,
-                    noCache: true,
-                    method: 'get',
-                    onSuccess: function(response) {
-                        populateCategorySelect(response);
-                    }
-                }).send();
+                const uniqueCategories = {};
+                for (const plugin of searchPlugins) {
+                    if ((selectedPlugin === "enabled") && !plugin.enabled) continue
+                    for (const category of plugin.supportedCategories) {
+                        if (uniqueCategories[category.id] === undefined) {
+                            uniqueCategories[category.id] = category;
+                        }
+                     }
+                }
+                // we must sort the ids to maintain consistent order.
+                const categories = Object.keys(uniqueCategories).sort().map(id => uniqueCategories[id]);
+                populateCategorySelect(categories);
             }
             else {
-                let plugins = ["QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]"];
                 const plugin = getPlugin(selectedPlugin);
-                if (plugin !== null)
-                    plugins = plugins.concat(plugin.supportedCategories);
-
+                const plugins = (plugin === null) ? [] : plugin.supportedCategories
                 populateCategorySelect(plugins);
             }
 
