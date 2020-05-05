@@ -23,6 +23,9 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QStackedWidget" name="stackedProperties">
      <property name="currentIndex">

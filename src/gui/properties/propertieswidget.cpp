@@ -75,6 +75,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::PropertiesWidget())
     , m_torrent(nullptr)
+    , m_handleWidth(-1)
 {
     m_ui->setupUi(this);
     setAutoFillBackground(true);
@@ -143,7 +144,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_ui->vBoxLayoutPeerPage->addWidget(m_peerList);
     // Tab bar
     m_tabBar = new PropTabBar(nullptr);
-    m_tabBar->setContentsMargins(0, 5, 0, 0);
+    m_tabBar->setContentsMargins(0, 5, 0, 5);
     m_ui->verticalLayout->addLayout(m_tabBar);
     connect(m_tabBar, &PropTabBar::tabChanged, m_ui->stackedProperties, &QStackedWidget::setCurrentIndex);
     connect(m_tabBar, &PropTabBar::tabChanged, this, &PropertiesWidget::saveSettings);
@@ -191,7 +192,7 @@ void PropertiesWidget::showPiecesDownloaded(bool show)
         m_ui->lineBelowBars->setVisible(show);
 }
 
-void PropertiesWidget::setVisibility(bool visible)
+void PropertiesWidget::setVisibility(const bool visible)
 {
     if (!visible && (m_state == VISIBLE)) {
         const int tabBarHeight = m_tabBar->geometry().height(); // take height before hiding
@@ -200,6 +201,8 @@ void PropertiesWidget::setVisibility(bool visible)
         m_slideSizes = hSplitter->sizes();
         hSplitter->handle(1)->setVisible(false);
         hSplitter->handle(1)->setDisabled(true);
+        m_handleWidth = hSplitter->handleWidth();
+        hSplitter->setHandleWidth(0);
         const QList<int> sizes {(hSplitter->geometry().height() - tabBarHeight), tabBarHeight};
         hSplitter->setSizes(sizes);
         setMaximumSize(maximumSize().width(), tabBarHeight);
@@ -210,6 +213,8 @@ void PropertiesWidget::setVisibility(bool visible)
     if (visible && (m_state == REDUCED)) {
         m_ui->stackedProperties->setVisible(true);
         auto *hSplitter = static_cast<QSplitter *>(parentWidget());
+        if (m_handleWidth != -1)
+            hSplitter->setHandleWidth(m_handleWidth);
         hSplitter->handle(1)->setDisabled(false);
         hSplitter->handle(1)->setVisible(true);
         hSplitter->setSizes(m_slideSizes);
