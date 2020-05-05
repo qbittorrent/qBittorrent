@@ -81,7 +81,7 @@ namespace
 
             const QPen originalPen = painter->pen();
             QPen coloredPen = originalPen;
-            coloredPen.setColor(Qt::darkGray);
+            coloredPen.setColor(index.data(BaseLogModel::TimeForegroundRole).value<QColor>());
             painter->setPen(coloredPen);
             const QString time = index.data(BaseLogModel::TimeRole).toString();
             style->drawItemText(painter, textRect, option.displayAlignment, option.palette, (option.state & QStyle::State_Enabled), time);
@@ -92,7 +92,7 @@ namespace
             style->drawItemText(painter, textRect.adjusted(separatorCoordinateX, 0, 0, 0), option.displayAlignment, option.palette
                                 , (option.state & QStyle::State_Enabled), SEPARATOR);
 
-            coloredPen.setColor(index.data(BaseLogModel::ForegroundRole).value<QColor>());
+            coloredPen.setColor(index.data(BaseLogModel::MessageForegroundRole).value<QColor>());
             painter->setPen(coloredPen);
             const int messageCoordinateX = separatorCoordinateX + horizontalAdvance(fontMetrics, SEPARATOR);
             style->drawItemText(painter, textRect.adjusted(messageCoordinateX, 0, 0, 0), option.displayAlignment, option.palette
