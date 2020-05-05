@@ -29,9 +29,10 @@
 
 #pragma once
 
+#include <QColor>
+#include <QHash>
 #include <QObject>
-
-class QString;
+#include <QString>
 
 class UIThemeManager : public QObject
 {
@@ -49,11 +50,16 @@ public:
     QIcon getIcon(const QString &iconId, const QString &fallback) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
 
+    QColor getColor(const QString &id, const QColor &defaultColor) const;
+
 private:
     UIThemeManager(); // singleton class
     QString getIconPath(const QString &iconId) const;
+    void loadColorsFromJSONConfig();
+    void applyPalette() const;
 
     static UIThemeManager *m_instance;
+    QHash<QString, QColor> m_colors;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemTheme;
 #endif
