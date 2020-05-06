@@ -32,6 +32,8 @@
 #include <boost/circular_buffer.hpp>
 
 #include <QAbstractListModel>
+#include <QColor>
+#include <QHash>
 
 #include "base/logger.h"
 
@@ -44,7 +46,8 @@ public:
     {
         TimeRole = Qt::UserRole,
         MessageRole,
-        ForegroundRole,
+        TimeForegroundRole,
+        MessageForegroundRole,
         TypeRole
     };
 
@@ -77,6 +80,7 @@ protected:
 
 private:
     boost::circular_buffer_space_optimized<Message> m_messages;
+    const QColor m_timeForeground;
 };
 
 class LogMessageModel : public BaseLogModel
@@ -89,6 +93,9 @@ public:
 
 private slots:
     void handleNewMessage(const Log::Msg &message);
+
+private:
+    const QHash<int, QColor> m_foregroundForMessageTypes;
 };
 
 class LogPeerModel : public BaseLogModel
@@ -101,4 +108,7 @@ public:
 
 private slots:
     void handleNewMessage(const Log::Peer &peer);
+
+private:
+    const QColor m_bannedPeerForeground;
 };
