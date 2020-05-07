@@ -101,6 +101,14 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
         return lessThan_impl(left.sibling(left.row(), column), right.sibling(right.row(), column));
     };
 
+    const auto hashLessThan = [this, &left, &right]() -> bool
+    {
+        const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+        const QString hashL = model->torrentHandle(left)->hash();
+        const QString hashR = model->torrentHandle(right)->hash();
+        return hashL < hashR;
+    };
+
     const int sortColumn = left.column();
     const QVariant leftValue = left.data(TransferListModel::UnderlyingDataRole);
     const QVariant rightValue = right.data(TransferListModel::UnderlyingDataRole);
@@ -139,8 +147,9 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             else if (dateR.isValid()) {
                 return false;
             }
+
+            return hashLessThan();
         }
-        break;
 
     case TransferListModel::TR_QUEUE_POSITION: {
             // QVariant has comparators for all basic types
@@ -167,8 +176,9 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             else if (dateR.isValid()) {
                 return true;
             }
+
+            return hashLessThan();
         }
-        break;
 
     case TransferListModel::TR_SEEDS:
     case TransferListModel::TR_PEERS: {
@@ -245,12 +255,6 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
 
         return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
     }
-
-    // Finally, sort by hash
-    const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
-    const QString hashL = model->torrentHandle(left)->hash();
-    const QString hashR = model->torrentHandle(right)->hash();
-    return hashL < hashR;
 }
 
 bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
