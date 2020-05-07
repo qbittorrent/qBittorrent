@@ -46,7 +46,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
-#include "private/ltunderlyingtype.h"
+#include "ltunderlyingtype.h"
 
 namespace
 {

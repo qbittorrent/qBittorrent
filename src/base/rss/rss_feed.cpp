@@ -40,14 +40,14 @@
 #include <QJsonValue>
 #include <QUrl>
 
-#include "../asyncfilestorage.h"
-#include "../global.h"
-#include "../logger.h"
-#include "../net/downloadmanager.h"
-#include "../profile.h"
-#include "../utils/fs.h"
-#include "private/rss_parser.h"
+#include "base/asyncfilestorage.h"
+#include "base/global.h"
+#include "base/logger.h"
+#include "base/net/downloadmanager.h"
+#include "base/profile.h"
+#include "base/utils/fs.h"
 #include "rss_article.h"
+#include "rss_parser.h"
 #include "rss_session.h"
 
 const QString KEY_UID(QStringLiteral("uid"));

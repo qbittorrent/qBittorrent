@@ -2,30 +2,35 @@ find_package(ZLIB 1.2.5.2 REQUIRED)
 
 add_library(qbt_base STATIC
     # headers
+    algorithm.h
+    asyncfilestorage.h
     bittorrent/addtorrentparams.h
+    bittorrent/bandwidthscheduler.h
     bittorrent/cachestatus.h
     bittorrent/downloadpriority.h
+    bittorrent/filterparserthread.h
     bittorrent/infohash.h
+    bittorrent/ltunderlyingtype.h
     bittorrent/magneturi.h
+    bittorrent/nativesessionextension.h
+    bittorrent/nativetorrentextension.h
     bittorrent/peeraddress.h
     bittorrent/peerinfo.h
-    bittorrent/private/bandwidthscheduler.h
-    bittorrent/private/filterparserthread.h
-    bittorrent/private/ltunderlyingtype.h
-    bittorrent/private/nativesessionextension.h
-    bittorrent/private/nativetorrentextension.h
-    bittorrent/private/portforwarderimpl.h
-    bittorrent/private/resumedatasavingmanager.h
-    bittorrent/private/speedmonitor.h
-    bittorrent/private/statistics.h
+    bittorrent/portforwarderimpl.h
+    bittorrent/resumedatasavingmanager.h
     bittorrent/session.h
     bittorrent/sessionstatus.h
+    bittorrent/speedmonitor.h
+    bittorrent/statistics.h
     bittorrent/torrentcreatorthread.h
     bittorrent/torrenthandle.h
     bittorrent/torrenthandleimpl.h
     bittorrent/torrentinfo.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
+    exceptions.h
+    filesystemwatcher.h
+    global.h
     http/connection.h
     http/httperror.h
     http/irequesthandler.h
@@ -34,27 +39,39 @@ add_library(qbt_base STATIC
     http/responsegenerator.h
     http/server.h
     http/types.h
+    iconprovider.h
+    indexrange.h
+    logger.h
     net/dnsupdater.h
+    net/downloadhandlerimpl.h
     net/downloadmanager.h
+    net/geoipdatabase.h
     net/geoipmanager.h
     net/portforwarder.h
-    net/private/downloadhandlerimpl.h
-    net/private/geoipdatabase.h
     net/proxyconfigurationmanager.h
     net/reverseresolution.h
     net/smtp.h
-    private/profile_p.h
-    rss/private/rss_parser.h
+    preferences.h
+    profile.h
+    profile_p.h
     rss/rss_article.h
     rss/rss_autodownloader.h
     rss/rss_autodownloadrule.h
     rss/rss_feed.h
     rss/rss_folder.h
     rss/rss_item.h
+    rss/rss_parser.h
     rss/rss_session.h
+    scanfoldersmodel.h
     search/searchdownloadhandler.h
     search/searchhandler.h
     search/searchpluginmanager.h
+    settingsstorage.h
+    torrentfileguard.h
+    torrentfilter.h
+    tristatebool.h
+    types.h
+    unicodestrings.h
     utils/bytearray.h
     utils/foreignapps.h
     utils/fs.h
@@ -66,72 +83,67 @@ add_library(qbt_base STATIC
     utils/random.h
     utils/string.h
     utils/version.h
-    algorithm.h
-    asyncfilestorage.h
-    exceptions.h
-    filesystemwatcher.h
-    global.h
-    iconprovider.h
-    indexrange.h
-    logger.h
-    preferences.h
-    profile.h
-    scanfoldersmodel.h
-    settingsstorage.h
-    torrentfileguard.h
-    torrentfilter.h
-    tristatebool.h
-    types.h
-    unicodestrings.h
 
     # sources
+    asyncfilestorage.cpp
+    bittorrent/bandwidthscheduler.cpp
     bittorrent/downloadpriority.cpp
+    bittorrent/filterparserthread.cpp
     bittorrent/infohash.cpp
     bittorrent/magneturi.cpp
+    bittorrent/nativesessionextension.cpp
+    bittorrent/nativetorrentextension.cpp
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
-    bittorrent/private/bandwidthscheduler.cpp
-    bittorrent/private/filterparserthread.cpp
-    bittorrent/private/nativesessionextension.cpp
-    bittorrent/private/nativetorrentextension.cpp
-    bittorrent/private/portforwarderimpl.cpp
-    bittorrent/private/resumedatasavingmanager.cpp
-    bittorrent/private/speedmonitor.cpp
-    bittorrent/private/statistics.cpp
+    bittorrent/portforwarderimpl.cpp
+    bittorrent/resumedatasavingmanager.cpp
     bittorrent/session.cpp
+    bittorrent/speedmonitor.cpp
+    bittorrent/statistics.cpp
     bittorrent/torrentcreatorthread.cpp
     bittorrent/torrenthandle.cpp
     bittorrent/torrenthandleimpl.cpp
     bittorrent/torrentinfo.cpp
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
+    exceptions.cpp
+    filesystemwatcher.cpp
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
     http/responsebuilder.cpp
     http/responsegenerator.cpp
     http/server.cpp
+    iconprovider.cpp
+    logger.cpp
     net/dnsupdater.cpp
+    net/downloadhandlerimpl.cpp
     net/downloadmanager.cpp
+    net/geoipdatabase.cpp
     net/geoipmanager.cpp
     net/portforwarder.cpp
-    net/private/downloadhandlerimpl.cpp
-    net/private/geoipdatabase.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
     net/smtp.cpp
-    private/profile_p.cpp
-    rss/private/rss_parser.cpp
+    preferences.cpp
+    profile.cpp
+    profile_p.cpp
     rss/rss_article.cpp
     rss/rss_autodownloader.cpp
     rss/rss_autodownloadrule.cpp
     rss/rss_feed.cpp
     rss/rss_folder.cpp
     rss/rss_item.cpp
+    rss/rss_parser.cpp
     rss/rss_session.cpp
+    scanfoldersmodel.cpp
     search/searchdownloadhandler.cpp
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
+    settingsstorage.cpp
+    torrentfileguard.cpp
+    torrentfilter.cpp
+    tristatebool.cpp
     utils/bytearray.cpp
     utils/foreignapps.cpp
     utils/fs.cpp
@@ -142,18 +154,6 @@ add_library(qbt_base STATIC
     utils/password.cpp
     utils/random.cpp
     utils/string.cpp
-    asyncfilestorage.cpp
-    exceptions.cpp
-    filesystemwatcher.cpp
-    iconprovider.cpp
-    logger.cpp
-    preferences.cpp
-    profile.cpp
-    scanfoldersmodel.cpp
-    settingsstorage.cpp
-    torrentfileguard.cpp
-    torrentfilter.cpp
-    tristatebool.cpp
 )
 
 target_link_libraries(qbt_base

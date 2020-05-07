@@ -15,6 +15,7 @@ HEADERS += \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
+    $$PWD/fspathedit_p.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/lineedit.h \
@@ -26,8 +27,6 @@ HEADERS += \
     $$PWD/powermanagement/powermanagement.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
-    $$PWD/private/fspathedit_p.h \
-    $$PWD/private/tristatewidget.h \
     $$PWD/properties/downloadedpiecesbar.h \
     $$PWD/properties/peerlistdelegate.h \
     $$PWD/properties/peerlistsortmodel.h \
@@ -77,6 +76,7 @@ HEADERS += \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
     $$PWD/tristateaction.h \
+    $$PWD/tristatewidget.h \
     $$PWD/uithememanager.h \
     $$PWD/updownratiodialog.h \
     $$PWD/utils.h
@@ -96,6 +96,7 @@ SOURCES += \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
+    $$PWD/fspathedit_p.cpp \
     $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
@@ -107,8 +108,6 @@ SOURCES += \
     $$PWD/powermanagement/powermanagement.cpp \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
-    $$PWD/private/fspathedit_p.cpp \
-    $$PWD/private/tristatewidget.cpp \
     $$PWD/properties/downloadedpiecesbar.cpp \
     $$PWD/properties/peerlistdelegate.cpp \
     $$PWD/properties/peerlistsortmodel.cpp \
@@ -158,6 +157,7 @@ SOURCES += \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
     $$PWD/tristateaction.cpp \
+    $$PWD/tristatewidget.cpp \
     $$PWD/uithememanager.cpp \
     $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
