@@ -32,6 +32,7 @@
 
 #include <QAbstractListModel>
 #include <QColor>
+#include <QHash>
 #include <QList>
 
 #include "base/bittorrent/torrenthandle.h"
@@ -101,9 +102,6 @@ public:
 
     BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
 
-    void setStateForeground(BitTorrent::TorrentState state, const QColor& color);
-    QColor stateForeground(BitTorrent::TorrentState state) const;
-
 private slots:
     void addTorrent(BitTorrent::TorrentHandle *const torrent);
     void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
@@ -119,7 +117,7 @@ private:
     QHash<BitTorrent::TorrentHandle *, int> m_torrentMap;  // maps torrent handle to row number
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
-    QHash<BitTorrent::TorrentState, QColor> m_stateForegroundColors;
+    const QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
 
     enum class HideZeroValuesMode
     {
