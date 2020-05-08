@@ -254,6 +254,8 @@ namespace BitTorrent
         void saveResumeData();
         void handleStorageMoved(const QString &newPath, const QString &errorMessage);
 
+        QString actualStorageLocation() const;
+
     private:
         typedef std::function<void ()> EventTrigger;
 
@@ -286,7 +288,6 @@ namespace BitTorrent
 
         void resume_impl(bool forced);
         bool isMoveInProgress() const;
-        QString actualStorageLocation() const;
         bool isAutoManaged() const;
         void setAutoManaged(bool enable);
 
