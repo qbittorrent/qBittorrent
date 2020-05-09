@@ -335,25 +335,34 @@ void WebApplication::configure()
     m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
-    m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
     m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
 
-    m_contentSecurityPolicy =
+    m_prebuiltHeaders.clear();
+    m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block")});
+    m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_CONTENT_TYPE_OPTIONS), QLatin1String("nosniff")});
+
+    if (!m_isAltUIUsed)
+        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin")});
+
+    const bool isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    if (isClickjackingProtectionEnabled)
+        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN")});
+
+    const QString contentSecurityPolicy =
         (m_isAltUIUsed
             ? QLatin1String("")
             : QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';"))
-        + (m_isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
+        + (isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
         + (m_isHttpsEnabled ? QLatin1String(" upgrade-insecure-requests;") : QLatin1String(""));
+    if (!contentSecurityPolicy.isEmpty())
+        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), contentSecurityPolicy});
 
-    m_useCustomHTTPHeaders = pref->isWebUICustomHTTPHeadersEnabled();
-    m_customHTTPHeaders.clear();
-    if (m_useCustomHTTPHeaders) {
+    if (pref->isWebUICustomHTTPHeadersEnabled()) {
         const QString customHeaders = pref->getWebUICustomHTTPHeaders().trimmed();
         const QVector<QStringRef> customHeaderLines = customHeaders.splitRef('\n', QString::SkipEmptyParts);
-        m_customHTTPHeaders.reserve(customHeaderLines.size());
 
         for (const QStringRef &line : customHeaderLines) {
             const int idx = line.indexOf(':');
@@ -365,7 +374,7 @@ void WebApplication::configure()
 
             const QString header = line.left(idx).trimmed().toString();
             const QString value = line.mid(idx + 1).trimmed().toString();
-            m_customHTTPHeaders.push_back({header, value});
+            m_prebuiltHeaders.push_back({header, value});
         }
     }
 }
@@ -460,22 +469,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             print(error.message(), Http::CONTENT_TYPE_TXT);
     }
 
-    header(QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block"));
-    header(QLatin1String(Http::HEADER_X_CONTENT_TYPE_OPTIONS), QLatin1String("nosniff"));
-
-    if (m_isClickjackingProtectionEnabled)
-        header(QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN"));
-
-    if (!m_isAltUIUsed)
-        header(QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin"));
-
-    if (!m_contentSecurityPolicy.isEmpty())
-        header(QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), m_contentSecurityPolicy);
-
-    if (m_useCustomHTTPHeaders) {
-        for (const CustomHTTPHeader &customHeader : asConst(m_customHTTPHeaders))
-            header(customHeader.name, customHeader.value);
-    }
+    for (const CustomHTTPHeader &prebuiltHeader : asConst(m_prebuiltHeaders))
+        header(prebuiltHeader.name, prebuiltHeader.value);
 
     return response();
 }
