@@ -660,29 +660,6 @@ QStringList TorrentHandleImpl::absoluteFilePaths() const
     return res;
 }
 
-QStringList TorrentHandleImpl::absoluteFilePathsUnwanted() const
-{
-    if (!hasMetadata()) return {};
-
-    const QDir saveDir(savePath(true));
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    const std::vector<LTDownloadPriority> fp = m_nativeHandle.file_priorities();
-#else
-    const std::vector<LTDownloadPriority> fp = m_nativeHandle.get_file_priorities();
-#endif
-
-    QStringList res;
-    for (int i = 0; i < static_cast<int>(fp.size()); ++i) {
-        if (fp[i] == LTDownloadPriority {0}) {
-            const QString path = Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
-            if (path.contains(".unwanted"))
-                res << path;
-        }
-    }
-
-    return res;
-}
-
 QVector<DownloadPriority> TorrentHandleImpl::filePriorities() const
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)

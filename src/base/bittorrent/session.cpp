@@ -115,6 +115,7 @@ namespace
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
     using LTAlertCategory = int;
+    using LTDownloadPriority = int;
     using LTPeerClass = int;
     using LTQueuePosition = int;
     using LTSessionFlags = int;
@@ -122,6 +123,7 @@ namespace
     using LTString = std::string;
 #else
     using LTAlertCategory = lt::alert_category_t;
+    using LTDownloadPriority = lt::download_priority_t;
     using LTPeerClass = lt::peer_class_t;
     using LTQueuePosition = lt::queue_position_t;
     using LTSessionFlags = lt::session_flags_t;
@@ -416,6 +418,34 @@ namespace
         return {};
     }
 #endif
+
+    QStringList getUnwantedFilePaths(const lt::torrent_handle &torrentHandle)
+    {
+        const TorrentInfo torrentInfo {torrentHandle.torrent_file()};
+        if (!torrentInfo.isValid())
+            return {};
+
+        const QString savePath = QString::fromStdString(
+                    torrentHandle.status(lt::torrent_handle::query_save_path).save_path);
+        const QDir saveDir {savePath};
+    #if (LIBTORRENT_VERSION_NUM < 10200)
+        const std::vector<LTDownloadPriority> fp = torrentHandle.file_priorities();
+    #else
+        const std::vector<LTDownloadPriority> fp = torrentHandle.get_file_priorities();
+    #endif
+
+        QStringList res;
+        for (int i = 0; i < static_cast<int>(fp.size()); ++i) {
+            if (fp[i] == LTDownloadPriority {0}) {
+                const QString path = Utils::Fs::expandPathAbs(
+                            saveDir.absoluteFilePath(torrentInfo.filePath(i)));
+                if (path.contains(".unwanted"))
+                    res << path;
+            }
+        }
+
+        return res;
+    }
 }
 
 // Session
@@ -1845,32 +1875,21 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
 
     // Remove it from session
     if (deleteOption == Torrent) {
-        m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteOption};
-        QStringList unwantedFiles;
-        if (torrent->hasMetadata())
-            unwantedFiles = torrent->absoluteFilePathsUnwanted();
+        m_removingTorrents[torrent->hash()] = {torrent->name(), getUnwantedFilePaths(torrent->nativeHandle()), deleteOption};
         m_nativeSession->remove_torrent(torrent->nativeHandle(), lt::session::delete_partfile);
-        // Remove unwanted and incomplete files
-        for (const QString &unwantedFile : asConst(unwantedFiles)) {
-            qDebug("Removing unwanted file: %s", qUtf8Printable(unwantedFile));
-            Utils::Fs::forceRemove(unwantedFile);
-            const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
-            qDebug("Attempt to remove parent folder (if empty): %s", qUtf8Printable(parentFolder));
-            QDir().rmdir(parentFolder);
-        }
     }
     else {
         const QString rootPath = torrent->rootPath(true);
         if (!rootPath.isEmpty()) {
             // torrent with root folder
-            m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteOption};
+            m_removingTorrents[torrent->hash()] = {torrent->name(), {rootPath}, deleteOption};
         }
         else if (torrent->useTempPath()) {
             // torrent without root folder still has it in its temporary save path
-            m_removingTorrents[torrent->hash()] = {torrent->name(), torrent->savePath(true), deleteOption};
+            m_removingTorrents[torrent->hash()] = {torrent->name(), {torrent->actualStorageLocation()}, deleteOption};
         }
         else {
-            m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteOption};
+            m_removingTorrents[torrent->hash()] = {torrent->name(), {}, deleteOption};
         }
         m_nativeSession->remove_torrent(torrent->nativeHandle(), lt::session::delete_files);
     }
@@ -4608,6 +4627,15 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
     const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
     if (removingTorrentDataIter != m_removingTorrents.end()) {
         if (removingTorrentDataIter->deleteOption == Torrent) {
+            // Remove unwanted and incomplete files
+            for (const QString &unwantedFile : asConst(removingTorrentDataIter->pathsToRemove)) {
+                qDebug("Removing unwanted file: %s", qUtf8Printable(unwantedFile));
+                Utils::Fs::forceRemove(unwantedFile);
+                const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
+                qDebug("Attempt to remove parent folder (if empty): %s", qUtf8Printable(parentFolder));
+                QDir().rmdir(parentFolder);
+            }
+
             LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
             m_removingTorrents.erase(removingTorrentDataIter);
         }
@@ -4622,7 +4650,8 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
     if (removingTorrentDataIter == m_removingTorrents.end())
         return;
 
-    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->savePathToRemove);
+    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() == 1);
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
     LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
     m_removingTorrents.erase(removingTorrentDataIter);
 }
@@ -4637,7 +4666,8 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->savePathToRemove);
+    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() == 1);
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")

@@ -537,7 +537,7 @@ namespace BitTorrent
         struct RemovingTorrentData
         {
             QString name;
-            QString savePathToRemove;
+            QStringList pathsToRemove;
             DeleteOption deleteOption;
         };
 
