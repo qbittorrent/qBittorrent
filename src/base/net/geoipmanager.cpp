@@ -40,7 +40,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
 #include "downloadmanager.h"
-#include "private/geoipdatabase.h"
+#include "geoipdatabase.h"
 
 static const QString DATABASE_URL = QStringLiteral("https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz");
 static const char GEODB_FOLDER[] = "GeoDB";

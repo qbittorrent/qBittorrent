@@ -17,6 +17,7 @@ add_library(qbt_gui STATIC
     downloadfromurldialog.h
     executionlogwidget.h
     fspathedit.h
+    fspathedit_p.h
     hidabletabwidget.h
     ipsubnetwhitelistoptionsdialog.h
     lineedit.h
@@ -28,8 +29,6 @@ add_library(qbt_gui STATIC
     powermanagement/powermanagement.h
     previewlistdelegate.h
     previewselectdialog.h
-    private/fspathedit_p.h
-    private/tristatewidget.h
     properties/downloadedpiecesbar.h
     properties/peerlistdelegate.h
     properties/peerlistsortmodel.h
@@ -79,10 +78,11 @@ add_library(qbt_gui STATIC
     transferlistsortmodel.h
     transferlistwidget.h
     tristateaction.h
+    tristatewidget.h
     uithememanager.h
     updownratiodialog.h
     utils.h
-
+    
     # sources
     aboutdialog.cpp
     addnewtorrentdialog.cpp
@@ -98,6 +98,7 @@ add_library(qbt_gui STATIC
     downloadfromurldialog.cpp
     executionlogwidget.cpp
     fspathedit.cpp
+    fspathedit_p.cpp
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp
@@ -109,8 +110,6 @@ add_library(qbt_gui STATIC
     powermanagement/powermanagement.cpp
     previewlistdelegate.cpp
     previewselectdialog.cpp
-    private/fspathedit_p.cpp
-    private/tristatewidget.cpp
     properties/downloadedpiecesbar.cpp
     properties/peerlistdelegate.cpp
     properties/peerlistsortmodel.cpp
@@ -160,6 +159,7 @@ add_library(qbt_gui STATIC
     transferlistsortmodel.cpp
     transferlistwidget.cpp
     tristateaction.cpp
+    tristatewidget.cpp
     uithememanager.cpp
     updownratiodialog.cpp
     utils.cpp

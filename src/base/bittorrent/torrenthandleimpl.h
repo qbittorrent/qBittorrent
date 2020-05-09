@@ -43,8 +43,8 @@
 #include <QString>
 #include <QVector>
 
-#include "private/speedmonitor.h"
 #include "infohash.h"
+#include "speedmonitor.h"
 #include "torrenthandle.h"
 #include "torrentinfo.h"
 

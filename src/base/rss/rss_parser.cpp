@@ -40,7 +40,7 @@
 #include <QXmlStreamEntityResolver>
 #include <QXmlStreamReader>
 
-#include "../rss_article.h"
+#include "rss_article.h"
 
 namespace
 {

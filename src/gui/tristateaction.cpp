@@ -31,7 +31,7 @@
 #include <QString>
 #include <QWidget>
 
-#include "private/tristatewidget.h"
+#include "tristatewidget.h"
 
 TriStateAction::TriStateAction(const QString &text, QWidget *parent)
     : QWidgetAction {parent}

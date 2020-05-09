@@ -44,7 +44,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "private/downloadhandlerimpl.h"
+#include "downloadhandlerimpl.h"
 #include "proxyconfigurationmanager.h"
 
 namespace
