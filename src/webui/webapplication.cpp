@@ -46,6 +46,7 @@
 #include "base/http/httperror.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/types.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"

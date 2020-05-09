@@ -57,7 +57,7 @@ namespace
         return in;
     }
 
-    bool parseHeaderLine(const QString &line, QStringMap &out)
+    bool parseHeaderLine(const QString &line, HeaderMap &out)
     {
         // [rfc7230] 3.2. Header Fields
         const int i = line.indexOf(':');
@@ -287,7 +287,7 @@ bool RequestParser::parseFormData(const QByteArray &data)
     const QString headers = QString::fromLatin1(list[0]);
     const QByteArray payload = viewWithoutEndingWith(list[1], CRLF);
 
-    QStringMap headersMap;
+    HeaderMap headersMap;
     const QVector<QStringRef> headerLines = headers.splitRef(CRLF, QString::SkipEmptyParts);
     for (const auto &line : headerLines) {
         if (line.trimmed().startsWith(HEADER_CONTENT_DISPOSITION, Qt::CaseInsensitive)) {
