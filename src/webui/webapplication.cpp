@@ -400,7 +400,7 @@ void WebApplication::sendFile(const QString &path)
     const auto it = m_translatedFiles.constFind(path);
     if ((it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified)) {
         print(it->data, it->mimeType);
-        header(Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType));
+        header({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
         return;
     }
 
@@ -432,7 +432,7 @@ void WebApplication::sendFile(const QString &path)
     }
 
     print(data, mimeType.name());
-    header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
+    header({Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name())});
 }
 
 Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
@@ -469,8 +469,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             print(error.message(), Http::CONTENT_TYPE_TXT);
     }
 
-    for (const CustomHTTPHeader &prebuiltHeader : asConst(m_prebuiltHeaders))
-        header(prebuiltHeader.name, prebuiltHeader.value);
+    for (const Http::Header &prebuiltHeader : asConst(m_prebuiltHeaders))
+        header(prebuiltHeader);
 
     return response();
 }
@@ -562,7 +562,7 @@ void WebApplication::sessionStart()
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
         cookieRawForm.append("; SameSite=Strict");
-    header(Http::HEADER_SET_COOKIE, cookieRawForm);
+    header({Http::HEADER_SET_COOKIE, cookieRawForm});
 }
 
 void WebApplication::sessionEnd()
@@ -576,7 +576,7 @@ void WebApplication::sessionEnd()
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
 
-    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+    header({Http::HEADER_SET_COOKIE, cookie.toRawForm()});
 }
 
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const

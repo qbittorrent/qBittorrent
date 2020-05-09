@@ -156,12 +156,5 @@ private:
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
 
-    // Custom HTTP headers
-    struct CustomHTTPHeader
-    {
-        QString name;
-        QString value;
-    };
-
-    QVector<CustomHTTPHeader> m_prebuiltHeaders;
+    QVector<Http::Header> m_prebuiltHeaders;
 };

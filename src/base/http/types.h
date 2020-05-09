@@ -92,6 +92,12 @@ namespace Http
         QByteArray data;
     };
 
+    struct Header
+    {
+        QString name;
+        QString value;
+    };
+
     struct Request
     {
         QString version;
