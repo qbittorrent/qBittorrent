@@ -131,9 +131,10 @@ bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &s
     if (m_isNameFilterEnabled && !m_searchTerm.isEmpty()) {
         const QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent)).toString();
         for (const QString &word : asConst(m_searchTermWords)) {
-            if (!name.contains(word, Qt::CaseInsensitive))
-                return false;
-            if (word.startsWith(QLatin1Char('-'))
+            if (word.startsWith(QLatin1Char('-')))
+                if (name.contains(word.substr(1), Qt::CaseInsensitive))
+                    return false;
+            else if (!name.contains(word, Qt::CaseInsensitive))
                 return false;
         }
     }
