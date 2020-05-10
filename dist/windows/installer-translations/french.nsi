@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_FRENCH} "Disable Windows path length limit (260
 LangString inst_firewallinfo ${LANG_FRENCH} "Ajout règle Pare-Feu Windows"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_FRENCH} "qBittorrent est en cours d'exécution. Veuillez fermer l'application avant l'installation."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_FRENCH} "Une installation précédente a été détectée. Elle sera désinstallée sans supprimer les réglages utilisateur."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_FRENCH} "Désinstallation de la version précédente."

@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_RUSSIAN} "Снять ограничение Win
 LangString inst_firewallinfo ${LANG_RUSSIAN} "Добавление в список исключений брандмауэра"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_RUSSIAN} "qBittorrent запущен. Пожалуйста, закройте qBittorrent и перезапустите программу установки."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_RUSSIAN} "Обнаружена предыдущая установка. Она будет деинсталлирована без удаления пользовательских настроек."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_RUSSIAN} "Деинсталлируется старая версия."

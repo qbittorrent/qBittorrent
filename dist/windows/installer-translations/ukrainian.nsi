@@ -20,7 +20,7 @@ LangString inst_pathlimit ${LANG_UKRAINIAN} "Disable Windows path length limit (
 LangString inst_firewallinfo ${LANG_UKRAINIAN} "Додаємо правило до брандмауера"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_UKRAINIAN} "qBittorrent вже виконується. Будь ласка, закрийте застосунок перед запуском інсталятору."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_UKRAINIAN} "Виявлено попередню інсталяцію. Її буде видалено за виключенням користувацьких налаштувань."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_UKRAINIAN} "Видалення попередньої версії."
