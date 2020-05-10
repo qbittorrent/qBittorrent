@@ -133,6 +133,8 @@ bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &s
         for (const QString &word : asConst(m_searchTermWords)) {
             if (!name.contains(word, Qt::CaseInsensitive))
                 return false;
+            if (word.startsWith(QLatin1Char('-'))
+                return false;
         }
     }
 
