@@ -48,7 +48,6 @@ public:
 private:
     bool updateImage(QImage &image) override;
     QString simpleToolTipText() const override;
-    bool isFileNameCorrectionNeeded() const override;
 
     // last used int vector, uses to better resize redraw
     // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster

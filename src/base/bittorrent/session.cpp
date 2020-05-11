@@ -420,34 +420,6 @@ namespace
         return {};
     }
 #endif
-
-    QStringList getUnwantedFilePaths(const lt::torrent_handle &torrentHandle)
-    {
-        const TorrentInfo torrentInfo {torrentHandle.torrent_file()};
-        if (!torrentInfo.isValid())
-            return {};
-
-        const QString savePath = QString::fromStdString(
-                    torrentHandle.status(lt::torrent_handle::query_save_path).save_path);
-        const QDir saveDir {savePath};
-    #if (LIBTORRENT_VERSION_NUM < 10200)
-        const std::vector<LTDownloadPriority> fp = torrentHandle.file_priorities();
-    #else
-        const std::vector<LTDownloadPriority> fp = torrentHandle.get_file_priorities();
-    #endif
-
-        QStringList res;
-        for (int i = 0; i < static_cast<int>(fp.size()); ++i) {
-            if (fp[i] == LTDownloadPriority {0}) {
-                const QString path = Utils::Fs::expandPathAbs(
-                            saveDir.absoluteFilePath(torrentInfo.filePath(i)));
-                if (path.contains(".unwanted"))
-                    res << path;
-            }
-        }
-
-        return res;
-    }
 }
 
 // Session
@@ -1877,6 +1849,8 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
 
     // Remove it from session
     if (deleteOption == Torrent) {
+        m_removingTorrents[torrent->hash()] = {torrent->name(), "", deleteOption};
+
         const lt::torrent_handle nativeHandle {torrent->nativeHandle()};
         const auto iter = std::find_if(m_moveStorageQueue.begin(), m_moveStorageQueue.end()
                                  , [&nativeHandle](const MoveStorageJob &job)
@@ -1892,26 +1866,19 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
             nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
 #endif
             nativeHandle.pause();
-            m_removingTorrents[torrent->hash()] = {torrent->name(), {}, deleteOption};
         }
         else {
-            m_removingTorrents[torrent->hash()] = {torrent->name(), getUnwantedFilePaths(nativeHandle), deleteOption};
             m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
         }
     }
     else {
-        const QString rootPath = torrent->rootPath(true);
-        if (!rootPath.isEmpty()) {
-            // torrent with root folder
-            m_removingTorrents[torrent->hash()] = {torrent->name(), {rootPath}, deleteOption};
-        }
-        else if (torrent->useTempPath()) {
+        QString rootPath = torrent->rootPath(true);
+        if (!rootPath.isEmpty() && torrent->useTempPath()) {
             // torrent without root folder still has it in its temporary save path
-            m_removingTorrents[torrent->hash()] = {torrent->name(), {torrent->actualStorageLocation()}, deleteOption};
+            rootPath = torrent->actualStorageLocation();
         }
-        else {
-            m_removingTorrents[torrent->hash()] = {torrent->name(), {}, deleteOption};
-        }
+
+        m_removingTorrents[torrent->hash()] = {torrent->name(), rootPath, deleteOption};
 
         if (m_moveStorageQueue.size() > 1) {
             // Delete "move storage job" for the deleted torrent
@@ -4147,11 +4114,9 @@ void Session::handleMoveTorrentStorageJobFinished(const QString &errorMessage)
         else {
             // Last job is completed for torrent that being removing, so actually remove it
             const lt::torrent_handle nativeHandle {finishedJob.torrentHandle};
-            RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hash()];
-            if (removingTorrentData.deleteOption == Torrent) {
-                removingTorrentData.pathsToRemove = getUnwantedFilePaths(nativeHandle);
+            const RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hash()];
+            if (removingTorrentData.deleteOption == Torrent)
                 m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
-            }
         }
     }
 }
@@ -4662,15 +4627,6 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
     const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
     if (removingTorrentDataIter != m_removingTorrents.end()) {
         if (removingTorrentDataIter->deleteOption == Torrent) {
-            // Remove unwanted and incomplete files
-            for (const QString &unwantedFile : asConst(removingTorrentDataIter->pathsToRemove)) {
-                qDebug("Removing unwanted file: %s", qUtf8Printable(unwantedFile));
-                Utils::Fs::forceRemove(unwantedFile);
-                const QString parentFolder = Utils::Fs::branchPath(unwantedFile);
-                qDebug("Attempt to remove parent folder (if empty): %s", qUtf8Printable(parentFolder));
-                QDir().rmdir(parentFolder);
-            }
-
             LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
             m_removingTorrents.erase(removingTorrentDataIter);
         }
@@ -4685,9 +4641,7 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
     if (removingTorrentDataIter == m_removingTorrents.end())
         return;
 
-    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() <= 1);
-    if (!removingTorrentDataIter->pathsToRemove.isEmpty())
-        Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
     LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
     m_removingTorrents.erase(removingTorrentDataIter);
 }
@@ -4702,9 +4656,7 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() <= 1);
-    if (!removingTorrentDataIter->pathsToRemove.isEmpty())
-        Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
+    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
