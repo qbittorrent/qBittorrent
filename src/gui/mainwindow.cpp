@@ -1539,13 +1539,14 @@ void MainWindow::reloadSessionStats()
                 "qBittorrent"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;%1"
+                "<img src='%3' height='14'/>&nbsp;%1"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;%2"
+                "<img src='%4' height='14'/>&nbsp;%2"
                 "</div>")
             .arg(tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true))
+                 , UIThemeManager::instance()->getIconPath("download"), UIThemeManager::instance()->getIconPath("seeding"));
 #else
         // OSes such as Windows do not support html here
         const QString toolTip = QString::fromLatin1("%1\n%2").arg(

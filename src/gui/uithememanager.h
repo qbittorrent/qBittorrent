@@ -46,6 +46,7 @@ public:
 
     void applyStyleSheet() const;
 
+    QString getIconPath(const QString &iconId) const;
     QIcon getIcon(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
@@ -54,7 +55,6 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    QString getIconPath(const QString &iconId) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
 

@@ -113,7 +113,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
     if (m_useSystemTheme) {
         QIcon icon = QIcon::fromTheme(iconId);
         if (icon.name() != iconId)
-            icon = QIcon::fromTheme(fallback, QIcon(IconProvider::instance()->getIconPath(iconId)));
+            icon = QIcon::fromTheme(fallback, getIconPath(iconId)));
         return icon;
     }
 #else
@@ -126,6 +126,9 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
         return *iter;
 
     const QIcon icon {IconProvider::instance()->getIconPath(iconId)};
+    if (icon.isNull()) {
+        LogMsg(tr("Invalid Icon for id \"%1\"").arg(iconId), Log::CRITICAL);
+    }
     iconCache[iconId] = icon;
     return icon;
 }
@@ -143,21 +146,14 @@ QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) c
 
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    if (m_useSystemTheme) {
-        QString path = Utils::Fs::tempPath() + iconId + ".png";
-        if (!QFile::exists(path)) {
-            const QIcon icon = QIcon::fromTheme(iconId);
-            if (!icon.isNull())
-                icon.pixmap(32).save(path);
-            else
-                path = IconProvider::instance()->getIconPath(iconId);
-        }
+    // there are a few icons not available in svg
+    static const QString ICONS_DIR = QStringLiteral(":icons/gui/");
+    const QString pathSvg = ICONS_DIR + iconId + QStringLiteral(".svg");
+    if (QFile::exists(pathSvg))
+        return pathSvg;
 
-        return path;
-    }
-#endif
-    return IconProvider::instance()->getIconPath(iconId);
+    const QString pathPng = ICONS_DIR + iconId + QStringLiteral(".png");
+    return pathPng;
 }
 
 void UIThemeManager::loadColorsFromJSONConfig()
