@@ -322,6 +322,9 @@
         <file>gui/stalledDL.svg</file>
         <file>gui/stalledUP.svg</file>
         <file>gui/task-attention.svg</file>
+        <file>gui/task-complete.svg</file>
+        <file>gui/task-ongoing.svg</file>
+        <file>gui/task-reject.svg</file>
         <file>gui/text-plain.svg</file>
         <file>gui/uploading.svg</file>
         <file>gui/user-group-delete.svg</file>

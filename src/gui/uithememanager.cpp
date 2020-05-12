@@ -126,10 +126,8 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
     if (iter != iconCache.end())
         return *iter;
 
-    const QIcon icon {IconProvider::instance()->getIconPath(iconId)};
-    if (icon.isNull()) {
-        LogMsg(tr("Invalid Icon for id \"%1\"").arg(iconId), Log::CRITICAL);
-    }
+    const QIcon icon {getIconPath(iconId)};
+    Q_ASSERT(QFile::exists(getIconPath(iconId)));
     iconCache[iconId] = icon;
     return icon;
 }
