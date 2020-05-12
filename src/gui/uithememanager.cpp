@@ -110,24 +110,25 @@ QIcon UIThemeManager::getIcon(const QString &iconId) const
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
 {
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    if (m_useSystemTheme) {
-        QIcon icon = QIcon::fromTheme(iconId);
-        if (icon.name() != iconId)
-            icon = QIcon::fromTheme(fallback, getIconPath(iconId)));
-        return icon;
-    }
-#else
-    Q_UNUSED(fallback)
-#endif
     // cache to avoid rescaling svg icons
     static QHash<QString, QIcon> iconCache;
     const auto iter = iconCache.find(iconId);
     if (iter != iconCache.end())
         return *iter;
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    if (m_useSystemTheme) {
+        QIcon icon = QIcon::fromTheme(iconId);
+        if (icon.name() != iconId)
+            icon = QIcon::fromTheme(fallback, QIcon(getIconPath(iconId)));
+        iconCache[iconId] = icon;
+        return icon;
+    }
+#else
+    Q_UNUSED(fallback)
+#endif
+
     const QIcon icon {getIconPath(iconId)};
-    Q_ASSERT(QFile::exists(getIconPath(iconId)));
     iconCache[iconId] = icon;
     return icon;
 }
@@ -151,6 +152,7 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
         return pathSvg;
 
     const QString pathPng = ICONS_DIR + iconId + QStringLiteral(".png");
+    Q_ASSERT(QFile::exists(pathPng));
     return pathPng;
 }
 
