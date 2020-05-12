@@ -44,6 +44,7 @@
 
 namespace
 {
+    const QString ICONS_DIR = QStringLiteral(":icons/gui/");
     const QString CONFIG_FILE_NAME = QStringLiteral(":uitheme/config.json");
 }
 
@@ -147,7 +148,6 @@ QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) c
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
     // there are a few icons not available in svg
-    static const QString ICONS_DIR = QStringLiteral(":icons/gui/");
     const QString pathSvg = ICONS_DIR + iconId + QStringLiteral(".svg");
     if (QFile::exists(pathSvg))
         return pathSvg;
