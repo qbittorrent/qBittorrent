@@ -31,6 +31,13 @@
     <ul class="filterList" id="tagFilterList">
     </ul>
 </div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('tracker');">
+        <img src="images/qbt-theme/go-down.svg">QBT_TR(Trackers)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="trackerFilterList">
+    </ul>
+</div>
 
 <script>
     'use strict';
@@ -43,7 +50,8 @@
         const exports = function() {
             return {
                 categoriesFilterContextMenu: categoriesFilterContextMenu,
-                tagsFilterContextMenu: tagsFilterContextMenu
+                tagsFilterContextMenu: tagsFilterContextMenu,
+                trackersFilterContextMenu: trackersFilterContextMenu
             };
         };
 
@@ -114,6 +122,29 @@
             }
         });
 
+        const trackersFilterContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+            targets: '.trackersFilterContextMenuTarget',
+            menu: 'trackersFilterMenu',
+            actions: {
+                resumeTorrentsByTracker: function(element, ref) {
+                    resumeTorrentsByTrackerFN(element.id);
+                },
+                pauseTorrentsByTracker: function(element, ref) {
+                    pauseTorrentsByTrackerFN(element.id);
+                },
+                deleteTorrentsByTracker: function(element, ref) {
+                    deleteTorrentsByTrackerFN(element.id);
+                }
+            },
+            offsets: {
+                x: -15,
+                y: 2
+            },
+            onShow: function() {
+                this.options.element.firstChild.click();
+            }
+        });
+
         if (LocalPreferences.get('filter_status_collapsed') === "true")
             toggleFilterDisplay('status');
 
@@ -122,6 +153,9 @@
 
         if (LocalPreferences.get('filter_tag_collapsed') === "true")
             toggleFilterDisplay('tag');
+
+        if (LocalPreferences.get('filter_tracker_collapsed') === "true")
+            toggleFilterDisplay('tracker');
 
         return exports();
     })();

@@ -39,6 +39,7 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
@@ -242,9 +243,27 @@ namespace
                         processMap(prevData[i.key()].toMap(), i.value().toMap(), map);
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
-                        if (!map.isEmpty())
+                        if (!map.isEmpty()) {
                             // changed list item found - append its changes to syncData
                             syncData[i.key()] = map;
+                        }
+                    }
+                    break;
+                case QVariant::StringList:
+                    if (!prevData.contains(i.key())) {
+                        // new list item found - append it to syncData
+                        syncData[i.key()] = i.value();
+                    }
+                    else {
+                        QVariantList list;
+                        QVariantList removedList;
+                        processList(prevData[i.key()].toList(), i.value().toList(), list, removedList);
+                        // existing list item found - remove it from prevData
+                        prevData.remove(i.key());
+                        if (!list.isEmpty() || !removedList.isEmpty()) {
+                            // changed list item found - append entire list to syncData
+                            syncData[i.key()] = i.value();
+                        }
                     }
                     break;
                 default:
@@ -354,6 +373,8 @@ SyncController::~SyncController()
 //  - "torrents_removed": a list of hashes of removed torrents
 //  - "categories": map of categories info
 //  - "categories_removed": list of removed categories
+//  - "trackers": dictionary contains information about trackers
+//  - "trackers_removed": a list of removed trackers
 //  - "server_state": map contains information about the state of the server
 // The keys of the 'torrents' dictionary are hashes of torrents.
 // Each value of the 'torrents' dictionary contains map. The map can contain following keys:
@@ -414,6 +435,7 @@ void SyncController::maindataAction()
     QVariantMap lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncMainDataLastAcceptedResponse")).toMap();
 
     QVariantHash torrents;
+    QHash<QString, QStringList> trackers;
     for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents())) {
         const BitTorrent::InfoHash torrentHash = torrent->hash();
 
@@ -439,6 +461,9 @@ void SyncController::maindataAction()
             }
         }
 
+        for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
+            trackers[tracker.url()] << torrentHash;
+
         torrents[torrentHash] = map;
     }
     data["torrents"] = torrents;
@@ -458,6 +483,12 @@ void SyncController::maindataAction()
     for (const QString &tag : asConst(session->tags()))
         tags << tag;
     data["tags"] = tags;
+
+    QVariantHash trackersHash;
+    for (auto i = trackers.constBegin(); i != trackers.constEnd(); ++i) {
+        trackersHash[i.key()] = i.value();
+    }
+    data["trackers"] = trackersHash;
 
     QVariantMap serverState = getTransferInfo();
     serverState[KEY_TRANSFER_FREESPACEONDISK] = getFreeDiskSpace();

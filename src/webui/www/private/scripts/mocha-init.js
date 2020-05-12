@@ -80,6 +80,9 @@ let deleteUnusedTagsFN = function() {};
 let startTorrentsByTagFN = function() {};
 let pauseTorrentsByTagFN = function() {};
 let deleteTorrentsByTagFN = function() {};
+let resumeTorrentsByTrackerFN = function() {};
+let pauseTorrentsByTrackerFN = function() {};
+let deleteTorrentsByTrackerFN = function() {};
 let copyNameFN = function() {};
 let copyMagnetLinkFN = function() {};
 let copyHashFN = function() {};
@@ -609,7 +612,7 @@ const initializeWindows = function() {
     deleteUnusedCategoriesFN = function() {
         const categories = [];
         for (const hash in category_list) {
-            if (torrentsTable.getFilteredTorrentsNumber('all', hash, TAGS_ALL) === 0)
+            if (torrentsTable.getFilteredTorrentsNumber('all', hash, TAGS_ALL, TRACKERS_ALL) === 0)
                 categories.push(category_list[hash].name);
         }
         new Request({
@@ -623,7 +626,7 @@ const initializeWindows = function() {
     };
 
     startTorrentsByCategoryFN = function(categoryHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/resume',
@@ -637,7 +640,7 @@ const initializeWindows = function() {
     };
 
     pauseTorrentsByCategoryFN = function(categoryHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/pause',
@@ -651,7 +654,7 @@ const initializeWindows = function() {
     };
 
     deleteTorrentsByCategoryFN = function(categoryHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -750,7 +753,7 @@ const initializeWindows = function() {
     deleteUnusedTagsFN = function() {
         const tags = [];
         for (const hash in tagList) {
-            if (torrentsTable.getFilteredTorrentsNumber('all', CATEGORIES_ALL, hash) === 0)
+            if (torrentsTable.getFilteredTorrentsNumber('all', CATEGORIES_ALL, hash, TRACKERS_ALL) === 0)
                 tags.push(tagList[hash].name);
         }
         new Request({
@@ -764,7 +767,7 @@ const initializeWindows = function() {
     };
 
     startTorrentsByTagFN = function(tagHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/resume',
@@ -778,7 +781,7 @@ const initializeWindows = function() {
     };
 
     pauseTorrentsByTagFN = function(tagHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
                 url: 'api/v2/torrents/pause',
@@ -792,7 +795,7 @@ const initializeWindows = function() {
     };
 
     deleteTorrentsByTagFN = function(tagHash) {
-        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash);
+        const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
@@ -807,6 +810,95 @@ const initializeWindows = function() {
                 height: 140
             });
             updateMainData();
+        }
+    };
+
+    resumeTorrentsByTrackerFN = function(trackerHash) {
+        const trackerHashInt = Number.parseInt(trackerHash, 10);
+        let hashes = [];
+        switch (trackerHashInt) {
+            case TRACKERS_ALL:
+                hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
+                break;
+            case TRACKERS_TRACKERLESS:
+                hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
+                break;
+            default:
+                hashes = trackerList.get(trackerHashInt).torrents
+                break;
+        }
+
+        if (hashes.length > 0) {
+            new Request({
+                url: 'api/v2/torrents/resume',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|")
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
+    pauseTorrentsByTrackerFN = function(trackerHash) {
+        const trackerHashInt = Number.parseInt(trackerHash, 10);
+        let hashes = [];
+        switch (trackerHashInt) {
+            case TRACKERS_ALL:
+                hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
+                break;
+            case TRACKERS_TRACKERLESS:
+                hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
+                break;
+            default:
+                hashes = trackerList.get(trackerHashInt).torrents
+                break;
+        }
+
+        if (hashes.length) {
+            new Request({
+                url: 'api/v2/torrents/pause',
+                method: 'post',
+                data: {
+                    hashes: hashes.join("|")
+                }
+            }).send();
+            updateMainData();
+        }
+    };
+
+    deleteTorrentsByTrackerFN = function(trackerHash) {
+        const trackerHashInt = Number.parseInt(trackerHash, 10);
+        let hashes = [];
+        switch (trackerHashInt) {
+            case TRACKERS_ALL:
+                hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_ALL);
+                break;
+            case TRACKERS_TRACKERLESS:
+                hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
+                break;
+            default:
+                hashes = trackerList.get(trackerHashInt).torrents
+                break;
+        }
+
+        if (hashes.length) {
+            new MochaUI.Window({
+                id: 'confirmDeletionPage',
+                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
+                loadMethod: 'iframe',
+                contentURL: 'confirmdeletion.html?hashes=' + hashes.join("|"),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                padding: 10,
+                width: 424,
+                height: 140,
+                onCloseComplete: function() {
+                    updateMainData();
+                    setTrackerFilter(TRACKERS_ALL);
+                }
+            });
         }
     };
 
