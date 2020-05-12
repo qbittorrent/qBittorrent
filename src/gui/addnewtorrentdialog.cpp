@@ -300,6 +300,7 @@ bool AddNewTorrentDialog::loadTorrentImpl()
     m_ui->labelHashData->setText(m_hash);
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
+    m_ui->keepTopLevelFolderCheckBox->setEnabled(m_torrentInfo.hasRootFolder());
     return true;
 }
 
@@ -610,6 +611,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
     // Update UI
     setupTreeview();
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
+    m_ui->keepTopLevelFolderCheckBox->setEnabled(m_torrentInfo.hasRootFolder());
 }
 
 void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText)
