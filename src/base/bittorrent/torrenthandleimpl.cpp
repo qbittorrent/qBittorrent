@@ -660,29 +660,6 @@ QStringList TorrentHandleImpl::absoluteFilePaths() const
     return res;
 }
 
-QStringList TorrentHandleImpl::absoluteFilePathsUnwanted() const
-{
-    if (!hasMetadata()) return {};
-
-    const QDir saveDir(savePath(true));
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    const std::vector<LTDownloadPriority> fp = m_nativeHandle.file_priorities();
-#else
-    const std::vector<LTDownloadPriority> fp = m_nativeHandle.get_file_priorities();
-#endif
-
-    QStringList res;
-    for (int i = 0; i < static_cast<int>(fp.size()); ++i) {
-        if (fp[i] == LTDownloadPriority {0}) {
-            const QString path = Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
-            if (path.contains(".unwanted"))
-                res << path;
-        }
-    }
-
-    return res;
-}
-
 QVector<DownloadPriority> TorrentHandleImpl::filePriorities() const
 {
 #if (LIBTORRENT_VERSION_NUM < 10200)
@@ -851,14 +828,20 @@ TorrentState TorrentHandleImpl::state() const
 
 void TorrentHandleImpl::updateState()
 {
-    if (hasError()) {
-        m_state = TorrentState::Error;
-    }
-    else if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
+    if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
         m_state = TorrentState::CheckingResumeData;
+    }
+    else if (m_nativeStatus.state == lt::torrent_status::checking_files) {
+        m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
+    }
+    else if (m_nativeStatus.state == lt::torrent_status::allocating) {
+        m_state = TorrentState::Allocating;
     }
     else if (isMoveInProgress()) {
         m_state = TorrentState::Moving;
+    }
+    else if (hasError()) {
+        m_state = TorrentState::Error;
     }
     else if (hasMissingFiles()) {
         m_state = TorrentState::MissingFiles;
@@ -877,12 +860,6 @@ void TorrentHandleImpl::updateState()
                 m_state = TorrentState::ForcedUploading;
             else
                 m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
-            break;
-        case lt::torrent_status::allocating:
-            m_state = TorrentState::Allocating;
-            break;
-        case lt::torrent_status::checking_files:
-            m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
             break;
         case lt::torrent_status::downloading_metadata:
             m_state = TorrentState::DownloadingMetadata;

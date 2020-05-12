@@ -192,7 +192,6 @@ namespace BitTorrent
         virtual QString fileName(int index) const = 0;
         virtual qlonglong fileSize(int index) const = 0;
         virtual QStringList absoluteFilePaths() const = 0;
-        virtual QStringList absoluteFilePathsUnwanted() const = 0;
         virtual QVector<DownloadPriority> filePriorities() const = 0;
 
         virtual TorrentInfo info() const = 0;

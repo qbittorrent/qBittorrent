@@ -148,7 +148,6 @@ namespace BitTorrent
         QString fileName(int index) const override;
         qlonglong fileSize(int index) const override;
         QStringList absoluteFilePaths() const override;
-        QStringList absoluteFilePathsUnwanted() const override;
         QVector<DownloadPriority> filePriorities() const override;
 
         TorrentInfo info() const override;
@@ -254,6 +253,8 @@ namespace BitTorrent
         void saveResumeData();
         void handleStorageMoved(const QString &newPath, const QString &errorMessage);
 
+        QString actualStorageLocation() const;
+
     private:
         typedef std::function<void ()> EventTrigger;
 
@@ -286,7 +287,6 @@ namespace BitTorrent
 
         void resume_impl(bool forced);
         bool isMoveInProgress() const;
-        QString actualStorageLocation() const;
         bool isAutoManaged() const;
         void setAutoManaged(bool enable);
 

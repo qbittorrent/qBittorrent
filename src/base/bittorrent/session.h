@@ -34,6 +34,7 @@
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
+#include <libtorrent/torrent_handle.hpp>
 
 #include <QHash>
 #include <QPointer>
@@ -528,7 +529,7 @@ namespace BitTorrent
     private:
         struct MoveStorageJob
         {
-            TorrentHandleImpl *torrent;
+            lt::torrent_handle torrentHandle;
             QString path;
             MoveStorageMode mode;
         };
@@ -536,7 +537,7 @@ namespace BitTorrent
         struct RemovingTorrentData
         {
             QString name;
-            QString savePathToRemove;
+            QStringList pathsToRemove;
             DeleteOption deleteOption;
         };
 
