@@ -14,10 +14,6 @@
             new Keyboard({
                 defaultEventType: 'keydown',
                 events: {
-                    'Enter': function(event) {
-                        $('addTrackersButton').click();
-                        event.preventDefault();
-                    },
                     'Escape': function(event) {
                         window.parent.closeWindows();
                         event.preventDefault();
