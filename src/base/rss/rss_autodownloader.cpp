@@ -200,7 +200,9 @@ bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleN
     if (!hasRule(ruleName)) return false;
     if (hasRule(newRuleName)) return false;
 
-    m_rules.insert(newRuleName, m_rules.take(ruleName));
+    AutoDownloadRule rule = m_rules.take(ruleName);
+    rule.setName(newRuleName);
+    m_rules.insert(newRuleName, rule);
     m_dirty = true;
     store();
     emit ruleRenamed(newRuleName, ruleName);
