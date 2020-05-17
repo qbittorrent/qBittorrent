@@ -30,6 +30,7 @@
 
 #include <QHash>
 #include <QObject>
+#include <QSet>
 #include <QVariant>
 #include <QVector>
 
@@ -39,6 +40,12 @@ struct ISessionManager;
 
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
+
+enum class ExecutionContext
+{
+    Unsafe = 0,
+    Safe = 1
+};
 
 class APIController : public QObject
 {
@@ -53,7 +60,7 @@ class APIController : public QObject
 public:
     explicit APIController(ISessionManager *sessionManager, QObject *parent = nullptr);
 
-    QVariant run(const QString &action, const StringMap &params, const DataMap &data = {});
+    QVariant run(const QString &action, const StringMap &params, const DataMap &data, ExecutionContext context);
 
     ISessionManager *sessionManager() const;
 
@@ -67,6 +74,9 @@ protected:
     void setResult(const QJsonObject &result);
 
 private:
+    virtual bool isActionSafe(const QString &actionName) const = 0;
+    virtual bool isActionUnsafe(const QString &actionName) const = 0;
+
     ISessionManager *m_sessionManager;
     StringMap m_params;
     DataMap m_data;

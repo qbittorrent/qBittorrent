@@ -30,13 +30,22 @@
 
 #include "apicontroller.h"
 
-class RSSController : public APIController
+class RSSController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(RSSController)
 
 public:
     using APIController::APIController;
+
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
 
 private slots:
     void addFolderAction();
@@ -51,4 +60,22 @@ private slots:
     void removeRuleAction();
     void rulesAction();
     void matchingArticlesAction();
+
+private:
+    const QSet<QString> m_safeActions {
+        "items",
+        "rules",
+        "matchingArticles"
+    };
+    const QSet<QString> m_unsafeActions {
+        "addFolder",
+        "addFeed",
+        "removeItem",
+        "moveItem",
+        "markAsRead",
+        "refreshItem",
+        "setRule",
+        "renameRule",
+        "removeRule"
+    };
 };

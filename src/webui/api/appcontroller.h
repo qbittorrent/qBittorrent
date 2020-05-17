@@ -32,13 +32,22 @@
 
 #include "apicontroller.h"
 
-class AppController : public APIController
+class AppController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(AppController)
 
 public:
     using APIController::APIController;
+
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
 
 private slots:
     void webapiVersionAction();
@@ -48,7 +57,22 @@ private slots:
     void preferencesAction();
     void setPreferencesAction();
     void defaultSavePathAction();
-    
+
     void networkInterfaceListAction();
     void networkInterfaceAddressListAction();
+
+private:
+    const QSet<QString> m_safeActions {
+        "webapiVersion",
+        "version",
+        "buildInfo",
+        "preferences",
+        "defaultSavePath",
+        "networkInterfaceList",
+        "networkInterfaceAddressList"
+    };
+    const QSet<QString> m_unsafeActions {
+        "shutdown",
+        "setPreferences"
+    };
 };

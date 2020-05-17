@@ -38,13 +38,22 @@ class QThread;
 
 class FreeDiskSpaceChecker;
 
-class SyncController : public APIController
+class SyncController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(SyncController)
 
 public:
     using APIController::APIController;
+
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
 
     explicit SyncController(ISessionManager *sessionManager, QObject *parent = nullptr);
     ~SyncController() override;
@@ -55,6 +64,12 @@ private slots:
     void freeDiskSpaceSizeUpdated(qint64 freeSpaceSize);
 
 private:
+    const QSet<QString> m_safeActions {
+        "maindata",
+        "torrentPeers"
+    };
+    const QSet<QString> m_unsafeActions;
+
     qint64 getFreeDiskSpace();
     void invokeChecker() const;
 

@@ -39,6 +39,7 @@ namespace Http
     const char METHOD_GET[] = "GET";
     const char METHOD_POST[] = "POST";
 
+    const char HEADER_ALLOW[] = "allow";
     const char HEADER_CACHE_CONTROL[] = "cache-control";
     const char HEADER_CONNECTION[] = "connection";
     const char HEADER_CONTENT_DISPOSITION[] = "content-disposition";

@@ -35,7 +35,7 @@
 
 class QString;
 
-class AuthController : public APIController
+class AuthController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(AuthController)
@@ -43,11 +43,26 @@ class AuthController : public APIController
 public:
     using APIController::APIController;
 
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
+
 private slots:
     void loginAction();
     void logoutAction() const;
 
 private:
+    const QSet<QString> m_safeActions;
+    const QSet<QString> m_unsafeActions {
+        "login",
+        "logout"
+    };
+
     bool isBanned() const;
     int failedAttemptsCount() const;
     void increaseFailedAttempts();

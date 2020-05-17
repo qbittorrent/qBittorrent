@@ -30,13 +30,22 @@
 
 #include "apicontroller.h"
 
-class TransferController : public APIController
+class TransferController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(TransferController)
 
 public:
     using APIController::APIController;
+
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
 
 private slots:
     void infoAction();
@@ -47,4 +56,18 @@ private slots:
     void setUploadLimitAction();
     void setDownloadLimitAction();
     void banPeersAction();
+
+private:
+    const QSet<QString> m_safeActions {
+        "info",
+        "speedLimitsMode",
+        "uploadLimit",
+        "downloadLimit"
+    };
+    const QSet<QString> m_unsafeActions {
+        "toggleSpeedLimitsMode",
+        "setUploadLimit",
+        "setDownloadLimit",
+        "banPeers"
+    };
 };

@@ -265,8 +265,11 @@ void WebApplication::doProcessRequest()
     for (const Http::UploadedFile &torrent : request().files)
         data[torrent.filename] = torrent.data;
 
+    const ExecutionContext context = ((request().method == Http::METHOD_GET)
+                                    ? ExecutionContext::Safe : ExecutionContext::Unsafe);
+
     try {
-        const QVariant result = controller->run(action, m_params, data);
+        const QVariant result = controller->run(action, m_params, data, context);
         switch (result.userType()) {
         case QMetaType::QJsonDocument:
             print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
@@ -290,6 +293,10 @@ void WebApplication::doProcessRequest()
             throw ConflictHTTPError(error.message());
         case APIErrorType::NotFound:
             throw NotFoundHTTPError(error.message());
+        case APIErrorType::MethodNotAllowed:
+            setHeader({Http::HEADER_ALLOW, ((context == ExecutionContext::Safe)
+                    ? QLatin1String("POST") : QLatin1String("GET"))});
+            throw MethodNotAllowedHTTPError(error.message());
         default:
             Q_ASSERT(false);
         }

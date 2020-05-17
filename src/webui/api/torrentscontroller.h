@@ -30,13 +30,22 @@
 
 #include "apicontroller.h"
 
-class TorrentsController : public APIController
+class TorrentsController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(TorrentsController)
 
 public:
     using APIController::APIController;
+
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
 
 private slots:
     void infoAction();
@@ -84,4 +93,55 @@ private slots:
     void toggleSequentialDownloadAction();
     void toggleFirstLastPiecePrioAction();
     void renameFileAction();
+
+private:
+    const QSet<QString> m_safeActions {
+        "info",
+        "properties",
+        "trackers",
+        "webseeds",
+        "files",
+        "pieceHashes",
+        "pieceStates",
+        "categories",
+        "tags",
+        "uploadLimit",
+        "downloadLimit"
+    };
+    const QSet<QString> m_unsafeActions {
+        "resume",
+        "pause",
+        "recheck",
+        "reannounce",
+        "rename",
+        "setCategory",
+        "createCategory",
+        "editCategory",
+        "removeCategories",
+        "addTags",
+        "removeTags",
+        "createTags",
+        "deleteTags",
+        "add",
+        "delete",
+        "addTrackers",
+        "editTracker",
+        "removeTrackers",
+        "addPeers",
+        "filePrio",
+        "setUploadLimit",
+        "setDownloadLimit",
+        "setShareLimits",
+        "increasePrio",
+        "decreasePrio",
+        "topPrio",
+        "bottomPrio",
+        "setLocation",
+        "setAutoManagement",
+        "setSuperSeeding",
+        "setForceStart",
+        "toggleSequentialDownload",
+        "toggleFirstLastPiecePrio",
+        "renameFile"
+    };
 };

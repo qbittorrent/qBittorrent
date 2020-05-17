@@ -41,8 +41,16 @@ APIController::APIController(ISessionManager *sessionManager, QObject *parent)
 {
 }
 
-QVariant APIController::run(const QString &action, const StringMap &params, const DataMap &data)
+QVariant APIController::run(const QString &action, const StringMap &params, const DataMap &data, ExecutionContext context)
 {
+    const bool isSafe = isActionSafe(action);
+    const bool isUnsafe = isActionUnsafe(action);
+    if ((isSafe && (context == ExecutionContext::Unsafe)) || (isUnsafe && (context == ExecutionContext::Safe)))
+        throw APIError(APIErrorType::MethodNotAllowed);
+    // require a mapping to safe/unsafe
+    if (!isSafe && !isUnsafe)
+        throw APIError(APIErrorType::NotFound);
+
     m_result.clear(); // clear result
     m_params = params;
     m_data = data;
