@@ -35,7 +35,7 @@ MochaUI.extend({
             let maximum = 500;
             new Request({
                 url: 'api/v2/transfer/uploadLimit',
-                method: 'post',
+                method: 'get',
                 data: {},
                 onSuccess: function(data) {
                     if (data) {
@@ -85,7 +85,7 @@ MochaUI.extend({
                         new Request.JSON({
                             url: 'api/v2/torrents/uploadLimit',
                             noCache : true,
-                            method: 'post',
+                            method: 'get',
                             data: {
                                 hashes: hashes.join('|')
                             },
@@ -137,7 +137,7 @@ MochaUI.extend({
             let maximum = 500;
             new Request({
                 url: 'api/v2/transfer/downloadLimit',
-                method: 'post',
+                method: 'get',
                 data: {},
                 onSuccess: function(data) {
                     if (data) {
@@ -187,7 +187,7 @@ MochaUI.extend({
                         new Request.JSON({
                             url: 'api/v2/torrents/downloadLimit',
                             noCache : true,
-                            method: 'post',
+                            method: 'get',
                             data: {
                                 hashes: hashes.join('|')
                             },
