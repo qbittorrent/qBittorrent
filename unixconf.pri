@@ -90,9 +90,9 @@ nogui:systemd {
     statusIcon192.files = $$DIST_PATH/menuicons/192x192/status/qbittorrent-tray.png
     statusIcon192.path = $$DATADIR/icons/hicolor/192x192/status/
 
-    statusIconScalable.files = $$PWD/src/icons/skin/qbittorrent-tray.svg \
-                               $$PWD/src/icons/skin/qbittorrent-tray-dark.svg \
-                               $$PWD/src/icons/skin/qbittorrent-tray-light.svg
+    statusIconScalable.files = $$PWD/src/icons/qbittorrent-tray.svg \
+                               $$PWD/src/icons/qbittorrent-tray-dark.svg \
+                               $$PWD/src/icons/qbittorrent-tray-light.svg
     statusIconScalable.path = $$DATADIR/icons/hicolor/scalable/status/
 
     INSTALLS += \

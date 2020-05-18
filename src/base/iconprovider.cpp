@@ -58,11 +58,11 @@ IconProvider *IconProvider::instance()
 QString IconProvider::getIconPath(const QString &iconId) const
 {
     // there are a few icons not available in svg
-    const QString pathSvg = ":/icons/qbt-theme/" + iconId + ".svg";
+    const QString pathSvg = ":/icons/" + iconId + ".svg";
     if (QFileInfo::exists(pathSvg))
         return pathSvg;
 
-    const QString pathPng = ":/icons/qbt-theme/" + iconId + ".png";
+    const QString pathPng = ":/icons/" + iconId + ".png";
     return pathPng;
 }
 

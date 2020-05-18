@@ -353,7 +353,7 @@ void sigAbnormalHandler(int signum)
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splashImg(":/icons/skin/splash.png");
+    QPixmap splashImg(":/icons/splash.png");
     QPainter painter(&splashImg);
     const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
