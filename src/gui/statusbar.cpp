@@ -40,6 +40,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/utils/misc.h"
 #include "speedlimitdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 StatusBar::StatusBar(QWidget *parent)
@@ -62,14 +63,14 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setFlat(true);
     m_connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
-    m_connecStatusLblIcon->setIcon(QIcon(":/icons/firewalled.svg"));
+    m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
     m_connecStatusLblIcon->setToolTip(
         QString::fromLatin1("<b>%1</b><br><i>%2</i>").arg(tr("Connection status:")
             , tr("No direct connections. This may indicate network configuration problems.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(QIcon(":/icons/downloading_small.svg"));
+    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("downloading_small")));
     connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capDownloadSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -78,7 +79,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(QIcon(":/icons/seeding.svg"));
+    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("seeding")));
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capUploadSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
@@ -173,17 +174,17 @@ void StatusBar::updateConnectionStatus()
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
     if (!BitTorrent::Session::instance()->isListening()) {
-        m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/disconnected.svg")));
+        m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("disconnected")));
         m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
     else {
         if (sessionStatus.hasIncomingConnections) {
             // Connection OK
-            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/connected.svg")));
+            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("connected")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
         }
         else {
-            m_connecStatusLblIcon->setIcon(QIcon(QLatin1String(":/icons/firewalled.svg")));
+            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
         }
     }
@@ -230,12 +231,12 @@ void StatusBar::refresh()
 void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative) {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow.svg"));
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("slow")));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
     else {
-        m_altSpeedsBtn->setIcon(QIcon(":/icons/slow_off.svg"));
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
     }

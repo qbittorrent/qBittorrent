@@ -85,7 +85,7 @@ void FeedListWidget::handleFeedStateChanged(RSS::Feed *feed)
 
     QIcon icon;
     if (feed->isLoading())
-        icon = QIcon(QStringLiteral(":/icons/loading.png"));
+        icon = UIThemeManager::instance()->getIcon(QStringLiteral("loading"));
     else if (feed->hasError())
         icon = UIThemeManager::instance()->getIcon(QStringLiteral("unavailable"));
     else if (!feed->iconPath().isEmpty())
@@ -235,7 +235,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     QIcon icon;
     if (auto feed = qobject_cast<RSS::Feed *>(rssItem)) {
         if (feed->isLoading())
-            icon = QIcon(QStringLiteral(":/icons/loading.png"));
+            icon = UIThemeManager::instance()->getIcon(QLatin1String("loading"));
         else if (feed->hasError())
             icon = UIThemeManager::instance()->getIcon(QStringLiteral("unavailable"));
         else if (!feed->iconPath().isEmpty())
