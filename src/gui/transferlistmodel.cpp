@@ -727,55 +727,55 @@ QColor getDefaultColorByState(const BitTorrent::TorrentState state)
 
 QIcon getPausedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/paused.svg");
+    static QIcon cached = QIcon(":/icons/paused.svg");
     return cached;
 }
 
 QIcon getQueuedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/queued.svg");
+    static QIcon cached = QIcon(":/icons/queued.svg");
     return cached;
 }
 
 QIcon getDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/downloading.svg");
+    static QIcon cached = QIcon(":/icons/downloading.svg");
     return cached;
 }
 
 QIcon getStalledDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledDL.svg");
+    static QIcon cached = QIcon(":/icons/stalledDL.svg");
     return cached;
 }
 
 QIcon getUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/uploading.svg");
+    static QIcon cached = QIcon(":/icons/uploading.svg");
     return cached;
 }
 
 QIcon getStalledUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledUP.svg");
+    static QIcon cached = QIcon(":/icons/stalledUP.svg");
     return cached;
 }
 
 QIcon getCompletedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/completed.svg");
+    static QIcon cached = QIcon(":/icons/completed.svg");
     return cached;
 }
 
 QIcon getCheckingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/checking.svg");
+    static QIcon cached = QIcon(":/icons/checking.svg");
     return cached;
 }
 
 QIcon getErrorIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/error.svg");
+    static QIcon cached = QIcon(":/icons/error.svg");
     return cached;
 }
 

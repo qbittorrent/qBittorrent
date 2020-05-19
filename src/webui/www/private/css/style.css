@@ -237,7 +237,7 @@ a.propButton img {
 }
 
 .contextMenu li a.arrow-right, .contextMenu li a:hover.arrow-right {
-    background-image: url(../images/skin/arrow-right.gif);
+    background-image: url(../images/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right center;
 }
@@ -290,7 +290,7 @@ a.propButton img {
     width: 420px;
     font-size: 1px;
     line-height: 1px;
-    background: #f2f2f2 url(../images/skin/slider-area.gif) repeat-x;
+    background: #f2f2f2 url(../images/slider-area.gif) repeat-x;
     border: 1px solid #a3a3a3;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
@@ -307,7 +307,7 @@ a.propButton img {
     width: 19px;
     font-size: 1px;
     line-height: 1px;
-    background: url(../images/skin/knob.gif) no-repeat;
+    background: url(../images/knob.gif) no-repeat;
     cursor: pointer;
     overflow: hidden;
     z-index: 2;
@@ -331,7 +331,7 @@ a.propButton img {
 }
 
 #mochaToolbar .divider {
-    background-image: url(../images/skin/toolbox-divider.gif);
+    background-image: url(../images/toolbox-divider.gif);
     background-repeat: no-repeat;
     background-position: left center;
     padding-left: 14px;
@@ -357,7 +357,7 @@ a.propButton img {
 #torrentsFilterInput {
     width: 160px;
     padding-left: 2em;
-    background-image: url("../images/qbt-theme/edit-find.svg");
+    background-image: url("../images/edit-find.svg");
     background-repeat: no-repeat;
     background-size: 1.5em;
     background-position: left;
@@ -371,7 +371,7 @@ a.propButton img {
 #torrentFilesFilterInput {
     width: 160px;
     padding-left: 2em;
-    background-image: url("../images/qbt-theme/edit-find.svg");
+    background-image: url("../images/edit-find.svg");
     background-repeat: no-repeat;
     background-size: 1.5em;
     background-position: left;
@@ -569,7 +569,7 @@ td.generalLabel {
 
 td.statusBarSeparator {
     width: 22px;
-    background-image: url('../images/skin/toolbox-divider.gif');
+    background-image: url('../images/toolbox-divider.gif');
     background-repeat: no-repeat;
     background-position: center 1px;
     background-size: 2px 18px;

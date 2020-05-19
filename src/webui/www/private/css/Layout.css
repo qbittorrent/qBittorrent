@@ -43,13 +43,13 @@ body {
     position: relative;
     height: 45px;
     overflow: hidden;
-    background: #718BA6 url(../images/skin/bg-header.gif) repeat-x;
+    background: #718BA6 url(../images/bg-header.gif) repeat-x;
 }
 
 #desktopTitlebar {
     padding: 7px 8px 6px 8px;
     height: 32px;
-    background: url(../images/skin/logo.gif) no-repeat;
+    background: url(../images/logo.gif) no-repeat;
     background-position: left 0;
 }
 
@@ -141,14 +141,14 @@ body {
 }
 
 #desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
-    background-image: url(../images/skin/arrow-right.gif);
+    background-image: url(../images/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right 7px;
 }
 
 #desktopNavbar li ul {
     border: 1px solid #3f3f3f;
-    background: #fff url(../images/skin/bg-dropdown.gif) repeat-y;
+    background: #fff url(../images/bg-dropdown.gif) repeat-y;
     position: absolute;
     left: -999em;
     z-index: 8000;
@@ -290,7 +290,7 @@ li.divider {
 
 .panel-header {
     position: relative;
-    background: #f1f1f1 url(../images/skin/bg-panel-header.gif) repeat-x;
+    background: #f1f1f1 url(../images/bg-panel-header.gif) repeat-x;
     height: 30px;
     overflow: hidden;
     border-bottom: 1px solid #d3d3d3;
@@ -301,7 +301,7 @@ li.divider {
 }
 
 .panel-headerContent.tabs {
-    background: url(../images/skin/tabs.gif) repeat-x;
+    background: url(../images/tabs.gif) repeat-x;
     background-position: left -68px;
 }
 
@@ -316,11 +316,11 @@ li.divider {
 }
 
 .panel-collapse {
-    background: url(../images/skin/collapse.svg) left top no-repeat;
+    background: url(../images/collapse.svg) left top no-repeat;
 }
 
 .panel-expand {
-    background: url(../images/skin/collapse.svg) left top no-repeat;
+    background: url(../images/collapse.svg) left top no-repeat;
     transform: rotate(180deg);
 }
 
@@ -336,7 +336,7 @@ li.divider {
     line-height: 1px;
     font-size: 1px;
     overflow: hidden;
-    background: #eee url(../images/skin/bg-handle-horizontal.gif) repeat-x;
+    background: #eee url(../images/bg-handle-horizontal.gif) repeat-x;
 }
 
 .horizontalHandle.detached .handleIcon {
@@ -349,7 +349,7 @@ li.divider {
     line-height: 1px;
     font-size: 1px;
     overflow: hidden;
-    background: url(../images/skin/handle-icon-horizontal.gif) center center no-repeat;
+    background: url(../images/handle-icon-horizontal.gif) center center no-repeat;
 }
 
 .columnHandle {
@@ -357,7 +357,7 @@ li.divider {
     float: left;
     width: 4px;
     overflow: hidden;
-    background: #c3c3c3 url(../images/skin/handle-icon.gif) center center no-repeat;
+    background: #c3c3c3 url(../images/handle-icon.gif) center center no-repeat;
     border: 1px solid #909090;
     border-top: 0;
     border-bottom: 0;
@@ -378,7 +378,7 @@ li.divider {
 }
 
 div.toolbox.divider {  /* Have to specify div here for IE6's sake */
-    background: url(../images/skin/toolbox-divider.gif) repeat-y;
+    background: url(../images/toolbox-divider.gif) repeat-y;
     padding-left: 8px;
 }
 
@@ -413,13 +413,13 @@ div.toolbox.divider {  /* Have to specify div here for IE6's sake */
 #spinnerWrapper {
     width: 16px;
     height: 16px;
-    background: url(../images/skin/spinner-placeholder.gif) no-repeat;
+    background: url(../images/spinner-placeholder.gif) no-repeat;
     margin: 4px 5px 0 5px;
 }
 
 #spinner {
     display: none;
-    background: url(../images/skin/spinner.gif) no-repeat;
+    background: url(../images/spinner.gif) no-repeat;
     width: 16px;
     height: 16px;
 }

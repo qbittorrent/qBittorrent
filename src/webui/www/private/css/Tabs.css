@@ -19,7 +19,7 @@ Required by:
 
 .toolbarTabs {
     padding: 0 5px 2px 2px;
-    background: url(../images/skin/tabs.gif) repeat-x;
+    background: url(../images/tabs.gif) repeat-x;
     background-position: left -70px;
     overflow: visible;
 }
@@ -38,12 +38,12 @@ Required by:
     float: left;
     margin: 0 0 5px 0;
     cursor: pointer;
-    background: url(../images/skin/tabs.gif) repeat-x;
+    background: url(../images/tabs.gif) repeat-x;
     background-position: left -35px;
 }
 
 .tab-menu li.selected {
-    background: url(../images/skin/tabs.gif) repeat-x;
+    background: url(../images/tabs.gif) repeat-x;
     background-position: left 0;
 }
 
@@ -54,13 +54,13 @@ Required by:
     text-align: center;
     font-weight: normal;
     color: #181818;
-    background: url(../images/skin/tabs.gif) repeat-x;
+    background: url(../images/tabs.gif) repeat-x;
     background-position: right -35px;
 }
 
 .tab-menu li.selected a {
     color: #181818;
     font-weight: bold;
-    background: url(../images/skin/tabs.gif) repeat-x;
+    background: url(../images/tabs.gif) repeat-x;
     background-position: right 0;
 }

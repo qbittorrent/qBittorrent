@@ -152,10 +152,10 @@ MainWindow::MainWindow(QWidget *parent)
 #ifndef Q_OS_MACOS
 #ifdef Q_OS_UNIX
     const QIcon appLogo = Preferences::instance()->useSystemIconTheme()
-        ? QIcon::fromTheme("qbittorrent", QIcon(":/icons/skin/qbittorrent-tray.svg"))
-        : QIcon(":/icons/skin/qbittorrent-tray.svg");
+        ? QIcon::fromTheme("qbittorrent", QIcon(":/icons/qbittorrent-tray.svg"))
+        : QIcon(":/icons/qbittorrent-tray.svg");
 #else
-    const QIcon appLogo(":/icons/skin/qbittorrent-tray.svg");
+    const QIcon appLogo(":/icons/qbittorrent-tray.svg");
 #endif // Q_OS_UNIX
     setWindowIcon(appLogo);
 #endif // Q_OS_MACOS
@@ -1539,10 +1539,10 @@ void MainWindow::reloadSessionStats()
                 "qBittorrent"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;%1"
+                "<img src=':/icons/downloading_small.svg' height='14'/>&nbsp;%1"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;%2"
+                "<img src=':/icons/seeding.svg' height='14'/>&nbsp;%2"
                 "</div>")
             .arg(tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
                  , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
@@ -1984,18 +1984,18 @@ QIcon MainWindow::getSystrayIcon() const
 #else
     switch (style) {
     case TrayIcon::NORMAL:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
+        return QIcon(QLatin1String(":/icons/qbittorrent-tray.svg"));
     case TrayIcon::MONO_DARK:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-dark.svg"));
+        return QIcon(QLatin1String(":/icons/qbittorrent-tray-dark.svg"));
     case TrayIcon::MONO_LIGHT:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-light.svg"));
+        return QIcon(QLatin1String(":/icons/qbittorrent-tray-light.svg"));
     default:
         break;
     }
 #endif
 
     // As a failsafe in case the enum is invalid
-    return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
+    return QIcon(QLatin1String(":/icons/qbittorrent-tray.svg"));
 }
 #endif // Q_OS_MACOS
 

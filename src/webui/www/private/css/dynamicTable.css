@@ -78,14 +78,14 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable th.sorted {
-    background-image: url(../images/qbt-theme/go-up.svg);
+    background-image: url(../images/go-up.svg);
     background-position: right;
     background-repeat: no-repeat;
     background-size: 15px;
 }
 
 .dynamicTable th.sorted.reverse {
-    background-image: url(../images/qbt-theme/go-down.svg);
+    background-image: url(../images/go-down.svg);
 }
 
 .dynamicTable td img.flags {

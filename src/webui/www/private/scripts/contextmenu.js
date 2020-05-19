@@ -430,10 +430,10 @@ window.qBittorrent.ContextMenu = (function() {
             const categoryList = $('contextCategoryList');
             categoryList.empty();
             categoryList.appendChild(new Element('li', {
-                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/qbt-theme/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentNewCategoryFN();"><img src="images/list-add.svg" alt="QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
             categoryList.appendChild(new Element('li', {
-                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/qbt-theme/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
+                html: '<a href="javascript:torrentSetCategoryFN(0);"><img src="images/edit-clear.svg" alt="QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]"/> QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]</a>'
             }));
 
             const sortedCategories = [];
@@ -446,7 +446,7 @@ window.qBittorrent.ContextMenu = (function() {
             Object.each(sortedCategories, function(categoryName) {
                 const categoryHash = genHash(categoryName);
                 const el = new Element('li', {
-                    html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="images/qbt-theme/inode-directory.svg"/> ' + window.qBittorrent.Misc.escapeHtml(categoryName) + '</a>'
+                    html: '<a href="javascript:torrentSetCategoryFN(\'' + categoryHash + '\');"><img src="images/inode-directory.svg"/> ' + window.qBittorrent.Misc.escapeHtml(categoryName) + '</a>'
                 });
                 if (first) {
                     el.addClass('separator');
@@ -463,13 +463,13 @@ window.qBittorrent.ContextMenu = (function() {
 
             contextTagList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentAddTagsFN();">'
-                    + '<img src="images/qbt-theme/list-add.svg" alt="QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                    + '<img src="images/list-add.svg" alt="QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]"/>'
                     + ' QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]'
                     + '</a>'
             }));
             contextTagList.appendChild(new Element('li', {
                 html: '<a href="javascript:torrentRemoveAllTagsFN();">'
-                    + '<img src="images/qbt-theme/edit-clear.svg" alt="QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]"/>'
+                    + '<img src="images/edit-clear.svg" alt="QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]"/>'
                     + ' QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]'
                     + '</a>'
             }));
