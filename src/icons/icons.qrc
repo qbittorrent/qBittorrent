@@ -1,14 +1,8 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>3-state-checkbox.gif</file>
         <file>application-exit.svg</file>
         <file>application-rss+xml.svg</file>
         <file>application-x-mswinurl.svg</file>
-        <file>arrow-right.gif</file>
-        <file>bg-dropdown.gif</file>
-        <file>bg-handle-horizontal.gif</file>
-        <file>bg-header.gif</file>
-        <file>bg-panel-header.gif</file>
         <file>checked.svg</file>
         <file>checking.svg</file>
         <file>collapse.svg</file>
@@ -19,7 +13,6 @@
         <file>dialog-information.svg</file>
         <file>dialog-warning.svg</file>
         <file>disconnected.svg</file>
-        <file>dock-tabs.gif</file>
         <file>document-edit-verify.svg</file>
         <file>document-edit.svg</file>
         <file>document-encrypt.svg</file>
@@ -306,23 +299,16 @@
         <file>go-down.svg</file>
         <file>go-top.svg</file>
         <file>go-up.svg</file>
-        <file>handle-icon-horizontal.gif</file>
-        <file>handle-icon.gif</file>
         <file>help-about.svg</file>
         <file>help-contents.svg</file>
         <file>inode-directory.svg</file>
         <file>insert-link.svg</file>
-        <file>knob.gif</file>
         <file>kt-magnet.svg</file>
         <file>kt-set-max-download-speed.svg</file>
         <file>kt-set-max-upload-speed.svg</file>
-        <file>L.gif</file>
         <file>list-add.svg</file>
         <file>list-remove.svg</file>
         <file>loading.png</file>
-        <file>logo-blank.gif</file>
-        <file>logo.gif</file>
-        <file>logo2.gif</file>
         <file>mail-folder-inbox.svg</file>
         <file>mail-mark-read.svg</file>
         <file>mascot.png</file>
@@ -353,28 +339,21 @@
         <file>security-low.svg</file>
         <file>seeding.svg</file>
         <file>services.svg</file>
-        <file>slider-area.gif</file>
         <file>slow.svg</file>
         <file>slow_off.svg</file>
-        <file>spacer.gif</file>
         <file>speedometer.svg</file>
         <file>sphere.png</file>
         <file>sphere2.png</file>
-        <file>spinner-placeholder.gif</file>
-        <file>spinner.gif</file>
         <file>splash.png</file>
         <file>stalledDL.svg</file>
         <file>stalledUP.svg</file>
         <file>system-log-out.svg</file>
         <file>tab-close.svg</file>
-        <file>tabs.gif</file>
         <file>task-attention.svg</file>
         <file>task-complete.svg</file>
         <file>task-ongoing.svg</file>
         <file>task-reject.svg</file>
         <file>text-plain.svg</file>
-        <file>toolbox-divider.gif</file>
-        <file>toolbox-divider2.gif</file>
         <file>tools-report-bug.svg</file>
         <file>unavailable.svg</file>
         <file>uploading.svg</file>

@@ -78,14 +78,14 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable th.sorted {
-    background-image: url(../images/go-up.svg);
+    background-image: url(../icons/go-up.svg);
     background-position: right;
     background-repeat: no-repeat;
     background-size: 15px;
 }
 
 .dynamicTable th.sorted.reverse {
-    background-image: url(../images/go-down.svg);
+    background-image: url(../icons/go-down.svg);
 }
 
 .dynamicTable td img.flags {

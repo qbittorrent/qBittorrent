@@ -64,7 +64,7 @@
 
 constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 
-const QString PATH_PREFIX_IMAGES {QStringLiteral("/images/")};
+const QString PATH_PREFIX_ICONS {QStringLiteral("/icons/")};
 const QString WWW_FOLDER {QStringLiteral(":/www")};
 const QString PUBLIC_FOLDER {QStringLiteral("/public")};
 const QString PRIVATE_FOLDER {QStringLiteral("/private")};
@@ -145,8 +145,8 @@ void WebApplication::sendWebUIFile()
         throw InternalServerErrorHTTPError();
 
     if (!m_isAltUIUsed) {
-        if (request().path.startsWith(PATH_PREFIX_IMAGES)) {
-            const QString imageFilename {request().path.mid(PATH_PREFIX_IMAGES.size())};
+        if (request().path.startsWith(PATH_PREFIX_ICONS)) {
+            const QString imageFilename {request().path.mid(PATH_PREFIX_ICONS.size())};
             sendFile(QLatin1String(":/icons/") + imageFilename);
             return;
         }

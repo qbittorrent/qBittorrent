@@ -314,7 +314,7 @@ window.qBittorrent.DynamicTable = (function() {
             });
 
             const createLi = function(columnName, text) {
-                const html = '<a href="#' + columnName + '" ><img src="images/checked.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + '</a>';
+                const html = '<a href="#' + columnName + '" ><img src="icons/checked.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + '</a>';
                 return new Element('li', {
                     html: html
                 });
@@ -897,7 +897,7 @@ window.qBittorrent.DynamicTable = (function() {
                         break; // do nothing
                 }
 
-                const img_path = 'images/' + state + '.svg';
+                const img_path = 'icons/' + state + '.svg';
 
                 if (td.getChildren('img').length > 0) {
                     const img = td.getChildren('img')[0];
@@ -1419,7 +1419,7 @@ window.qBittorrent.DynamicTable = (function() {
                     return;
                 }
 
-                const img_path = 'images/flags/' + country_code + '.svg';
+                const img_path = 'icons/flags/' + country_code + '.svg';
 
                 if (td.getChildren('img').length > 0) {
                     const img = td.getChildren('img')[0];
@@ -1760,7 +1760,7 @@ window.qBittorrent.DynamicTable = (function() {
                 }
                 else {
                     const treeImg = new Element('img', {
-                        src: 'images/L.gif',
+                        src: '../images/L.gif',
                         styles: {
                             'margin-bottom': -2
                         }
@@ -1785,7 +1785,7 @@ window.qBittorrent.DynamicTable = (function() {
                     }
                     else {
                         const collapseIcon = new Element('img', {
-                            src: 'images/go-down.svg',
+                            src: 'icons/go-down.svg',
                             styles: {
                                 'margin-left': (node.depth * 20)
                             },
@@ -1799,7 +1799,7 @@ window.qBittorrent.DynamicTable = (function() {
                             id: fileNameId
                         });
                         const dirImg = new Element('img', {
-                            src: 'images/inode-directory.svg',
+                            src: 'icons/inode-directory.svg',
                             styles: {
                                 'width': 15,
                                 'padding-right': 5,
