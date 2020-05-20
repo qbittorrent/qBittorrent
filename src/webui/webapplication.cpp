@@ -466,8 +466,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
     catch (const HTTPError &error) {
         status(error.statusCode(), error.statusText());
-        if (!error.message().isEmpty())
-            print(error.message(), Http::CONTENT_TYPE_TXT);
+        print((!error.message().isEmpty() ? error.message() : error.statusText()), Http::CONTENT_TYPE_TXT);
     }
 
     for (const Http::Header &prebuiltHeader : asConst(m_prebuiltHeaders))
