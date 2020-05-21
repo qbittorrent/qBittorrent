@@ -357,7 +357,7 @@ a.propButton img {
 #torrentsFilterInput {
     width: 160px;
     padding-left: 2em;
-    background-image: url("../images/edit-find.svg");
+    background-image: url("../icons/edit-find.svg");
     background-repeat: no-repeat;
     background-size: 1.5em;
     background-position: left;
@@ -371,7 +371,7 @@ a.propButton img {
 #torrentFilesFilterInput {
     width: 160px;
     padding-left: 2em;
-    background-image: url("../images/edit-find.svg");
+    background-image: url("../icons/edit-find.svg");
     background-repeat: no-repeat;
     background-size: 1.5em;
     background-position: left;

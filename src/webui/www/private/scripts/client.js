@@ -386,7 +386,7 @@ window.addEvent('load', function() {
 
         const create_link = function(hash, text, count) {
             const html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">'
-                + '<img src="images/inode-directory.svg"/>'
+                + '<img src="icons/inode-directory.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
                 id: hash,
@@ -443,7 +443,7 @@ window.addEvent('load', function() {
 
         const createLink = function(hash, text, count) {
             const html = '<a href="#" onclick="setTagFilter(' + hash + ');return false;">'
-                + '<img src="images/inode-directory.svg"/>'
+                + '<img src="icons/inode-directory.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
                 id: hash,
@@ -497,7 +497,7 @@ window.addEvent('load', function() {
 
         const createLink = function(hash, text, count) {
             const html = '<a href="#" onclick="setTrackerFilter(' + hash + ');return false;">'
-                + '<img src="images/network-server.svg"/>'
+                + '<img src="icons/network-server.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(text.replace("%1", count)) + '</a>';
             const el = new Element('li', {
                 id: hash,
@@ -737,17 +737,17 @@ window.addEvent('load', function() {
 
         switch (serverState.connection_status) {
         case 'connected': {
-                $('connectionStatus').src = 'images/connected.svg';
+                $('connectionStatus').src = 'icons/connected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
             }
             break;
         case 'firewalled': {
-                $('connectionStatus').src = 'images/firewalled.svg';
+                $('connectionStatus').src = 'icons/firewalled.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
             }
             break;
         default: {
-                $('connectionStatus').src = 'images/disconnected.svg';
+                $('connectionStatus').src = 'icons/disconnected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
             }
             break;
@@ -785,11 +785,11 @@ window.addEvent('load', function() {
 
     const updateAltSpeedIcon = function(enabled) {
         if (enabled) {
-            $('alternativeSpeedLimits').src = 'images/slow.svg';
+            $('alternativeSpeedLimits').src = 'icons/slow.svg';
             $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
         }
         else {
-            $('alternativeSpeedLimits').src = 'images/slow_off.svg';
+            $('alternativeSpeedLimits').src = 'icons/slow_off.svg';
             $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
         }
     };

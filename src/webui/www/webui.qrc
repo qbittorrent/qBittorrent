@@ -13,6 +13,24 @@
         <file>private/download.html</file>
         <file>private/downloadlimit.html</file>
         <file>private/edittracker.html</file>
+        <file>private/images/3-state-checkbox.gif</file>
+        <file>private/images/arrow-right.gif</file>
+        <file>private/images/bg-dropdown.gif</file>
+        <file>private/images/bg-handle-horizontal.gif</file>
+        <file>private/images/bg-header.gif</file>
+        <file>private/images/bg-panel-header.gif</file>
+        <file>private/images/handle-icon-horizontal.gif</file>
+        <file>private/images/handle-icon.gif</file>
+        <file>private/images/knob.gif</file>
+        <file>private/images/L.gif</file>
+        <file>private/images/logo.gif</file>
+        <file>private/images/logo2.gif</file>
+        <file>private/images/slider-area.gif</file>
+        <file>private/images/spacer.gif</file>
+        <file>private/images/spinner-placeholder.gif</file>
+        <file>private/images/spinner.gif</file>
+        <file>private/images/tabs.gif</file>
+        <file>private/images/toolbox-divider.gif</file>
         <file>private/index.html</file>
         <file>private/newcategory.html</file>
         <file>private/newtag.html</file>
