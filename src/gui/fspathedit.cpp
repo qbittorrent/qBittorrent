@@ -29,6 +29,7 @@
 #include "fspathedit.h"
 
 #include <memory>
+#include <stdexcept>
 
 #include <QAction>
 #include <QApplication>
