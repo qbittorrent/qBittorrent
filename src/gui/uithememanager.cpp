@@ -76,6 +76,9 @@ void UIThemeManager::initInstance()
 
 UIThemeManager::UIThemeManager()
     : m_useCustomTheme(Preferences::instance()->useCustomUITheme())
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    , m_useSystemTheme(Preferences::instance()->useSystemIconTheme())
+#endif
 {
     const Preferences *const pref = Preferences::instance();
     if (m_useCustomTheme) {
@@ -87,10 +90,6 @@ UIThemeManager::UIThemeManager()
             applyPalette();
         }
     }
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    m_useSystemTheme = pref->useSystemIconTheme();
-#endif
 }
 
 UIThemeManager *UIThemeManager::instance()
