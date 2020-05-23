@@ -28,6 +28,8 @@
 
 #include "speedplotview.h"
 
+#include <cmath>
+
 #include <QLocale>
 #include <QPainter>
 #include <QPen>
@@ -130,6 +132,7 @@ void SpeedPlotView::Averager::push(const PointData &pointData)
     // Using int32 for accumulator we get overflow when transfer speed reaches 2^31/144 ~~ 14.2 MBytes/s.
     // With quint64 this speed limit is 2^64/144 ~~ 114 PBytes/s.
     // This speed is inaccessible to an ordinary user.
+    const quint64 extremeValue = 4 * std::pow(1024ull, 4); /// 4 TebiBytes
     m_accumulator.x += pointData.x;
     for (int id = UP; id < NB_GRAPHS; ++id)
         m_accumulator.y[id] += pointData.y[id];
@@ -137,8 +140,14 @@ void SpeedPlotView::Averager::push(const PointData &pointData)
     if (m_counter != 0)
         return; // still accumulating
     // it is time final averaging calculations
-    for (int id = UP; id < NB_GRAPHS; ++id)
+    for (int id = UP; id < NB_GRAPHS; ++id) {
         m_accumulator.y[id] /= m_divider;
+        if (m_accumulator.y[id] >= extremeValue) {
+            m_accumulator = {};
+            return;
+        }
+    }
+
     m_accumulator.x /= m_divider;
     // now flush out averaged data
     m_sink.push_back(m_accumulator);
