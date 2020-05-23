@@ -140,7 +140,15 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
 {
     if (countryIsoCode.isEmpty()) return {};
-    return QIcon(":/icons/flags/" + countryIsoCode.toLower() + ".svg");
+
+    const QString key = countryIsoCode.toLower();
+    const auto iter = m_flagCache.find(key);
+    if (iter != m_flagCache.end())
+        return *iter;
+
+    const QIcon icon {QLatin1String(":/icons/flags/") + key + QLatin1String(".svg")};
+    m_flagCache[key] = icon;
+    return icon;
 }
 
 QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) const
