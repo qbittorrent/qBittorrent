@@ -85,13 +85,13 @@ void FeedListWidget::handleFeedStateChanged(RSS::Feed *feed)
 
     QIcon icon;
     if (feed->isLoading())
-        icon = UIThemeManager::instance()->getIcon(QStringLiteral("loading"));
+        icon = UIThemeManager::instance()->getIcon(QLatin1String("loading"));
     else if (feed->hasError())
-        icon = UIThemeManager::instance()->getIcon(QStringLiteral("unavailable"));
+        icon = UIThemeManager::instance()->getIcon(QLatin1String("unavailable"));
     else if (!feed->iconPath().isEmpty())
         icon = QIcon(feed->iconPath());
     else
-        icon = UIThemeManager::instance()->getIcon(QStringLiteral("application-rss+xml"));
+        icon = UIThemeManager::instance()->getIcon(QLatin1String("application-rss+xml"));
     item->setData(0, Qt::DecorationRole, icon);
 }
 
@@ -237,14 +237,14 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
         if (feed->isLoading())
             icon = UIThemeManager::instance()->getIcon(QLatin1String("loading"));
         else if (feed->hasError())
-            icon = UIThemeManager::instance()->getIcon(QStringLiteral("unavailable"));
+            icon = UIThemeManager::instance()->getIcon(QLatin1String("unavailable"));
         else if (!feed->iconPath().isEmpty())
             icon = QIcon(feed->iconPath());
         else
-            icon = UIThemeManager::instance()->getIcon(QStringLiteral("application-rss+xml"));
+            icon = UIThemeManager::instance()->getIcon(QLatin1String("application-rss+xml"));
     }
     else {
-        icon = UIThemeManager::instance()->getIcon("inode-directory");
+        icon = UIThemeManager::instance()->getIcon(QLatin1String("inode-directory"));
     }
     item->setData(0, Qt::DecorationRole, icon);
 
