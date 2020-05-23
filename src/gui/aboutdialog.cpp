@@ -33,6 +33,7 @@
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "ui_aboutdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
 AboutDialog::AboutDialog(QWidget *parent)
@@ -45,7 +46,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     // Title
     m_ui->labelName->setText(QString::fromLatin1("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
 
-    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbittorrent-tray.svg", this, 32));
+    m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("qbittorrent-tray")), this, 32));
 
     // About
     const QString aboutText = QString(

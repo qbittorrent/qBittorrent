@@ -202,8 +202,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.svg", this, 16));
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.svg", this, 16));
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")), this, 16));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow")), this, 16));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -1691,7 +1691,7 @@ QString OptionsDialog::webUiPassword() const
 void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/security-low.svg", this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
 
     if (path.isEmpty())
         return;
@@ -1709,13 +1709,13 @@ void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError s
         return;
     }
 
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/security-high.svg", this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/security-low.svg", this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
 
     if (path.isEmpty())
         return;
@@ -1733,7 +1733,7 @@ void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError sh
         return;
     }
 
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/security-high.svg", this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
 }
 
 void OptionsDialog::showConnectionTab()
