@@ -13,17 +13,16 @@ LIBS += $$quote(-LC:/qBittorrent/openssl/lib)
 # Adapt the lib names/versions accordingly
 # If you want to use Boost auto-linking then disable
 # BOOST_ALL_NO_LIB below and omit Boost libraries here
+LIBS += libcrypto.lib libssl.lib libtorrent.lib zlib.lib
 CONFIG(debug, debug|release) {
-    LIBS += libtorrentd.lib \
-            libboost_system-vc140-mt-sgd-1_64.lib
+    LIBS += boost_system-vc140-mt-d.lib
 }
 else {
-    LIBS += libtorrent.lib \
-            libboost_system-vc140-mt-s-1_64.lib
+    LIBS += boost_system-vc140-mt.lib
 }
-LIBS += libeay32.lib ssleay32.lib
-LIBS += zlib.lib
+
 # ...or if you use MinGW
+#LIBS += libcrypto libssl libz
 #CONFIG(debug, debug|release) {
 #    LIBS += libtorrent-rasterbar \
 #            libboost_system-mt
@@ -32,8 +31,6 @@ LIBS += zlib.lib
 #    LIBS += libtorrent-rasterbar \
 #            libboost_system-mt
 #}
-#LIBS += libcrypto libssl
-#LIBS += libz
 
 # Disable to use Boost auto-linking
 DEFINES += BOOST_ALL_NO_LIB
