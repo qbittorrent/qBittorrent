@@ -31,6 +31,7 @@
 
 #include <QColor>
 #include <QHash>
+#include <QIcon>
 #include <QObject>
 #include <QString>
 
@@ -60,8 +61,9 @@ private:
 
     static UIThemeManager *m_instance;
     QHash<QString, QColor> m_colors;
+    mutable QHash<QString, QIcon> m_iconCache;
     const bool m_useCustomTheme;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    bool m_useSystemTheme;
+    const bool m_useSystemTheme;
 #endif
 };

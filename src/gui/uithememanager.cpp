@@ -31,7 +31,6 @@
 
 #include <QApplication>
 #include <QFile>
-#include <QIcon>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPalette>
@@ -77,6 +76,9 @@ void UIThemeManager::initInstance()
 
 UIThemeManager::UIThemeManager()
     : m_useCustomTheme(Preferences::instance()->useCustomUITheme())
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    , m_useSystemTheme(Preferences::instance()->useSystemIconTheme())
+#endif
 {
     const Preferences *const pref = Preferences::instance();
     if (m_useCustomTheme) {
@@ -88,10 +90,6 @@ UIThemeManager::UIThemeManager()
             applyPalette();
         }
     }
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    m_useSystemTheme = pref->useSystemIconTheme();
-#endif
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -127,14 +125,15 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
         return icon;
     }
 #endif
-    // cache to avoid rescaling svg icons
-    static QHash<QString, QIcon> iconCache;
-    const auto iter = iconCache.find(iconId);
-    if (iter != iconCache.end())
+
+    // Cache to avoid rescaling svg icons
+    // And don't cache system icons because users might change them at run time
+    const auto iter = m_iconCache.find(iconId);
+    if (iter != m_iconCache.end())
         return *iter;
 
     const QIcon icon {getIconPathFromResources(iconId, fallback)};
-    iconCache[iconId] = icon;
+    m_iconCache[iconId] = icon;
     return icon;
 }
 
@@ -153,7 +152,7 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme) {
-        QString path = Utils::Fs::tempPath() + iconId + ".png";
+        QString path = Utils::Fs::tempPath() + iconId + QLatin1String(".png");
         if (!QFile::exists(path)) {
             const QIcon icon = QIcon::fromTheme(iconId);
             if (!icon.isNull())
