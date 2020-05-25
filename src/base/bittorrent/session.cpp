@@ -94,6 +94,7 @@
 #include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "bandwidthscheduler.h"
+#include "common.h"
 #include "customstorage.h"
 #include "filterparserthread.h"
 #include "ltunderlyingtype.h"

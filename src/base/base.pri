@@ -1,9 +1,10 @@
 HEADERS += \
     $$PWD/algorithm.h \
     $$PWD/asyncfilestorage.h \
-    $$PWD/bittorrent/addtorrentparams.h  \
+    $$PWD/bittorrent/addtorrentparams.h \
     $$PWD/bittorrent/bandwidthscheduler.h \
     $$PWD/bittorrent/cachestatus.h \
+    $$PWD/bittorrent/common.h \
     $$PWD/bittorrent/customstorage.h \
     $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/filterparserthread.h \

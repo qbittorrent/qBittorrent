@@ -34,8 +34,7 @@
 #include <QDir>
 
 #include "base/utils/fs.h"
-
-extern const QString QB_EXT {QStringLiteral(".!qB")};
+#include "common.h"
 
 lt::storage_interface *customStorageConstructor(const lt::storage_params &params, lt::file_pool &pool)
 {
