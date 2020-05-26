@@ -38,7 +38,7 @@
             const decodedName = decodeURIComponent(name);
             $('rename').value = decodedName;
             $('rename').focus();
-            $('rename').setSelectionRange(0, decodedName.indexOf('.'));
+            $('rename').setSelectionRange(0, decodedName.lastIndexOf('.'));
 
             $('renameButton').addEvent('click', function(e) {
                 new Event(e).stop();
