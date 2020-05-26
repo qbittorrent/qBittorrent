@@ -382,6 +382,12 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
     return makeInterval(beginIdx, endIdx);
 }
 
+BitTorrent::PieceFileInfo TorrentInfo::mapFile(const int fileIndex, const qlonglong offset, const int size) const
+{
+    lt::peer_request info = m_nativeInfo->map_file(LTFileIndex {fileIndex}, offset, size);
+    return {info.piece, info.start, info.length};
+}
+
 void TorrentInfo::renameFile(const int index, const QString &newPath)
 {
     if (!isValid()) return;

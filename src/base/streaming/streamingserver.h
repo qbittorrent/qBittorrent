@@ -9,12 +9,12 @@
 #include "../indexrange.h"
 #include "../http/types.h"
 
-class HttpSocket : public QTcpSocket
+class HttpSocket : public QObject
 {
     Q_OBJECT
 
 public:
-    HttpSocket(QObject *parent = nullptr);
+    HttpSocket(QAbstractSocket *socket);
 
     void sendStatus(const Http::ResponseStatus &status);
     void sendHeaders(const Http::HeaderMap &headers);
@@ -22,6 +22,8 @@ public:
 
     Http::Request request() const;
     qint64 inactivityTime() const;
+
+    void close();
 
 signals:
     void readyRequest();
@@ -33,6 +35,7 @@ private:
     QElapsedTimer m_idleTimer;
     QByteArray m_receivedData;
     Http::Request m_request;
+    QAbstractSocket *m_socket;
     bool isServing;
 };
 
@@ -41,6 +44,7 @@ class StreamingServer : public QTcpServer
 public:
     using QTcpServer::QTcpServer;
 
+    void start();
 private:
     virtual void doRequest(HttpSocket *socket) = 0;
 

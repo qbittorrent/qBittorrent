@@ -33,7 +33,28 @@
 
 namespace BitTorrent
 {
-    uint qHash(const TorrentState key, const uint seed)
+    PieceRequest::PieceRequest(int index, QObject *parent)
+        : QObject(parent)
+        , m_index(index)
+    {
+    }
+
+    int PieceRequest::index() const
+    {
+        return m_index;
+    }
+
+    void PieceRequest::notifyCompleteAndDie(const QByteArray &data)
+    {
+        emit complete(data);
+    }
+
+    void PieceRequest::notifyErrorAndDie(const QString &message)
+    {
+        emit error(message);
+    }
+
+    uint qHash(const BitTorrent::TorrentState key, const uint seed)
     {
         return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
     }

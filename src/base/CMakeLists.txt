@@ -70,6 +70,7 @@ add_library(qbt_base STATIC
     settingsstorage.h
     streaming/streamingmanager.h
     streaming/streamingserver.h
+    streaming/streamfile.h
     torrentfileguard.h
     torrentfilter.h
     tristatebool.h
@@ -147,6 +148,7 @@ add_library(qbt_base STATIC
     settingsstorage.cpp
     streaming/streamingmanager.cpp
     streaming/streamingserver.cpp
+    streaming/streamfile.cpp
     torrentfileguard.cpp
     torrentfilter.cpp
     tristatebool.cpp

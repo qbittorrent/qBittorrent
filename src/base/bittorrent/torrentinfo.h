@@ -47,6 +47,13 @@ namespace BitTorrent
     class InfoHash;
     class TrackerEntry;
 
+    struct PieceFileInfo 
+    {
+        int index;
+        int start;
+        int length;
+    };
+
     class TorrentInfo
     {
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
@@ -91,6 +98,7 @@ namespace BitTorrent
         // the given file extends (maybe partially).
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
+        PieceFileInfo mapFile(int fileIndex, qlonglong offset, int size) const;
 
         void renameFile(int index, const QString &newPath);
 
