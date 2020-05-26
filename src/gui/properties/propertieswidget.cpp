@@ -623,7 +623,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         subMenu->addAction(m_ui->actionMaximum);
     }
 
-    if (selectedRows.size() == 1)   {
+    if (selectedRows.size() == 1 && m_propListModel->itemType(selectedRows[0]) == TorrentContentModelItem::FileType)   {
         menu->addSeparator();
 
         const QModelIndex index = selectedRows[0];
