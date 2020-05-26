@@ -36,6 +36,7 @@
 #include <QStandardItemModel>
 #include <QTableView>
 
+#include "base/bittorrent/common.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"

@@ -7,6 +7,8 @@ add_library(qbt_base STATIC
     bittorrent/addtorrentparams.h
     bittorrent/bandwidthscheduler.h
     bittorrent/cachestatus.h
+    bittorrent/common.h
+    bittorrent/customstorage.h
     bittorrent/downloadpriority.h
     bittorrent/filterparserthread.h
     bittorrent/infohash.h
@@ -87,6 +89,7 @@ add_library(qbt_base STATIC
     # sources
     asyncfilestorage.cpp
     bittorrent/bandwidthscheduler.cpp
+    bittorrent/customstorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filterparserthread.cpp
     bittorrent/infohash.cpp

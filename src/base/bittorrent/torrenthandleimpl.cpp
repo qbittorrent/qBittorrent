@@ -65,12 +65,15 @@
 #include "base/tristatebool.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
+#include "common.h"
 #include "downloadpriority.h"
 #include "ltunderlyingtype.h"
 #include "peeraddress.h"
 #include "peerinfo.h"
 #include "session.h"
 #include "trackerentry.h"
+
+const QString QB_EXT {QStringLiteral(".!qB")};
 
 using namespace BitTorrent;
 

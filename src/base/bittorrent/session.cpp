@@ -94,6 +94,8 @@
 #include "base/utils/net.h"
 #include "base/utils/random.h"
 #include "bandwidthscheduler.h"
+#include "common.h"
+#include "customstorage.h"
 #include "filterparserthread.h"
 #include "ltunderlyingtype.h"
 #include "magneturi.h"
@@ -2456,6 +2458,8 @@ bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magne
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
+    p.storage = customStorageConstructor;
+
     m_addingTorrents.insert(hash, params);
     // Adding torrent to BitTorrent session
     m_nativeSession->async_add_torrent(p);
@@ -2528,21 +2532,23 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     const QString savePath = Utils::Fs::tempPath() + static_cast<QString>(hash);
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
-    // Forced start
 #if (LIBTORRENT_VERSION_NUM < 10200)
+    // Forced start
     p.flags &= ~lt::add_torrent_params::flag_paused;
     p.flags &= ~lt::add_torrent_params::flag_auto_managed;
-#else
-    p.flags &= ~lt::torrent_flags::paused;
-    p.flags &= ~lt::torrent_flags::auto_managed;
-#endif
 
     // Solution to avoid accidental file writes
-#if (LIBTORRENT_VERSION_NUM < 10200)
     p.flags |= lt::add_torrent_params::flag_upload_mode;
 #else
+    // Forced start
+    p.flags &= ~lt::torrent_flags::paused;
+    p.flags &= ~lt::torrent_flags::auto_managed;
+
+    // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
-#endif
+
+    p.storage = customStorageConstructor;
+#endif    
 
     // Adding torrent to BitTorrent session
     lt::error_code ec;

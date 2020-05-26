@@ -40,8 +40,6 @@ class QDateTime;
 class QStringList;
 class QUrl;
 
-extern const QString QB_EXT;
-
 namespace BitTorrent
 {
     enum class DownloadPriority;

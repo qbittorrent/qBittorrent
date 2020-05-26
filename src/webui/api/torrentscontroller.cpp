@@ -39,6 +39,7 @@
 #include <QRegularExpression>
 #include <QUrl>
 
+#include "base/bittorrent/common.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peeraddress.h"
