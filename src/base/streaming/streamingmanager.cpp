@@ -112,7 +112,8 @@ void StreamingManager::doRequest(HttpSocket *socket)
             doHead(socket);
         else if (request.method == Http::HEADER_REQUEST_METHOD_GET)
             doGet(socket);
-        throw MethodNotAllowedHTTPError();
+        else
+            throw MethodNotAllowedHTTPError();
     }
     catch (const HTTPError &error)
     {
@@ -170,7 +171,7 @@ void StreamingManager::doGet(HttpSocket *socket)
     {
         socket->send(data);
         if (isLastBlock)
-            socket->close();
+            qDebug("reached at end"), socket->close();
     });
 
     connect(readRequest, &ReadRequest::error, socket, [this, socket, range](const QString &message)
@@ -183,6 +184,7 @@ void StreamingManager::doGet(HttpSocket *socket)
 
     connect(socket, &QObject::destroyed, readRequest, [readRequest] ()
     {
+        qDebug("deleting request");
         readRequest->deleteLater();
     });
 }

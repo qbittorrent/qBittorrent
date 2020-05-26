@@ -230,7 +230,7 @@ namespace BitTorrent
         QString createMagnetURI() const override;
 
         virtual bool havePiece(int index) const override;
-        virtual const PieceRequest *setPieceDeadline(int index, int deadline) override;
+        virtual const PieceRequest *setPieceDeadline(int index, int deadline, bool readWhenAvailable) override;
         virtual const PieceRequest *readPiece(int index) override;
 
         bool needSaveResumeData() const;

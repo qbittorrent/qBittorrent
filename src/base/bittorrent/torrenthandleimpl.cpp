@@ -1610,6 +1610,7 @@ void TorrentHandleImpl::handlePerformanceAlert(const lt::performance_alert *p) c
 
 void TorrentHandleImpl::handleReadPieceAlert(const lt::read_piece_alert *p) 
 {
+    qDebug() << "read" << p->piece;
     const auto requestIter
         = std::find_if(m_pieceRequests.begin(), m_pieceRequests.end(), [p](const PieceRequest * request)
     {
@@ -1617,6 +1618,7 @@ void TorrentHandleImpl::handleReadPieceAlert(const lt::read_piece_alert *p)
     });
 
     if (requestIter == m_pieceRequests.end()) {
+        qDebug() << "can't find request for piece" << p->piece;
         return;
     }
 
@@ -1865,16 +1867,20 @@ bool TorrentHandleImpl::havePiece(const int index) const
     return m_nativeHandle.have_piece(LTPieceIndex {index});
 }
 
-const PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const int deadline)
+const PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const int deadline, const bool readWhenAvailable)
 {
-    m_nativeHandle.set_piece_deadline(LTPieceIndex {index}, deadline, lt::torrent_handle::alert_when_available);
+    m_nativeHandle.set_piece_deadline(LTPieceIndex {index}, deadline,
+    readWhenAvailable ? lt::torrent_handle::alert_when_available : lt::deadline_flags_t {});
 
-    PieceRequest *request = new PieceRequest(index, this);
-    m_pieceRequests.push_back(request);
-    connect(request, &QObject::destroyed, this, [this, request] ()
-    {
-        m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
-    });
+    PieceRequest *request = nullptr;
+    if (readWhenAvailable) {
+        request = new PieceRequest(index, this);
+        m_pieceRequests.push_back(request);
+        connect(request, &QObject::destroyed, this, [this, request] ()
+        {
+            m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
+        });
+    }
 
     return request;
 }

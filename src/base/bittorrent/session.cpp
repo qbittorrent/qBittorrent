@@ -4283,6 +4283,7 @@ void Session::handleAlert(const lt::alert *a)
         case lt::fastresume_rejected_alert::alert_type:
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
+        case lt::read_piece_alert::alert_type:
             dispatchTorrentAlert(a);
             break;
         case lt::state_update_alert::alert_type:
@@ -4369,6 +4370,7 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
         handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
         break;
     case lt::read_piece_alert::alert_type:
+        qDebug("Read piece alert");
         handleReadPieceAlert(static_cast<const lt::read_piece_alert*>(a));
         break;
     }

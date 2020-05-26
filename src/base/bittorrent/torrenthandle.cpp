@@ -47,11 +47,13 @@ namespace BitTorrent
     void PieceRequest::notifyCompleteAndDie(const QByteArray &data)
     {
         emit complete(data);
+        deleteLater();
     }
 
     void PieceRequest::notifyErrorAndDie(const QString &message)
     {
         emit error(message);
+        deleteLater();
     }
 
     uint qHash(const BitTorrent::TorrentState key, const uint seed)

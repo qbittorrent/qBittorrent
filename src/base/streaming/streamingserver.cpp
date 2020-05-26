@@ -128,7 +128,7 @@ void StreamingServer::incomingConnection(qintptr socketDescriptor)
     connect(httpSocket, &HttpSocket::readyRequest, this, [this, httpSocket]() {
         doRequest(httpSocket);
     });
-    
+
     connect(socket, &QAbstractSocket::disconnected, this, [httpSocket]() {
         httpSocket->deleteLater();
     });

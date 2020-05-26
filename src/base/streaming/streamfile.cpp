@@ -92,12 +92,13 @@ void StreamFile::doRead(ReadRequest *request)
 
     const BitTorrent::PieceFileInfo pieceInfo
         = m_torrentHandle->info().mapFile(m_index, request->currentPosition(), std::min<quint64>(request->leftSize(), m_pieceLength));
+    qDebug() << "mappedto " << pieceInfo.index << request->leftSize();
     const BitTorrent::PieceRequest *pieceRequest = m_torrentHandle->havePiece(pieceInfo.index)
-                                             ? m_torrentHandle->readPiece(pieceInfo.index)
-                                             : m_torrentHandle->setPieceDeadline(pieceInfo.index, DEADLINE_TIME);
+                                                   ? m_torrentHandle->readPiece(pieceInfo.index)
+                                                   : m_torrentHandle->setPieceDeadline(pieceInfo.index, DEADLINE_TIME, true);
 
     for (int i = 1; i <= ADVANCE_PIECES && pieceInfo.index + i < m_lastPiece; i++)
-        m_torrentHandle->setPieceDeadline(pieceInfo.index + i, DEADLINE_TIME * 2); // prepare for next read
+        m_torrentHandle->setPieceDeadline(pieceInfo.index + i, DEADLINE_TIME * 2, false); // prepare for next read
 
     connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
             , [this, request, pieceInfo] (const QByteArray &data)

@@ -317,7 +317,7 @@ namespace BitTorrent
         bool isResumed() const;
         qlonglong remainingSize() const;
         virtual bool havePiece(int index) const = 0;
-        virtual const PieceRequest *setPieceDeadline(int index, int deadline) = 0; // reads piece when available
+        virtual const PieceRequest *setPieceDeadline(int index, int deadline, bool readWhenAvailable) = 0; // reads piece when available
         virtual const PieceRequest *readPiece(int index) = 0;
 
         void toggleSequentialDownload();
