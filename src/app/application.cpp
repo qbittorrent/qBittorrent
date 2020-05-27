@@ -61,6 +61,7 @@
 #endif // Q_OS_MACOS
 #endif
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/exceptions.h"
@@ -84,11 +85,11 @@
 #include "filelogger.h"
 
 #ifndef DISABLE_GUI
-#include "addnewtorrentdialog.h"
+#include "gui/addnewtorrentdialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
-#include "mainwindow.h"
-#include "shutdownconfirmdialog.h"
+#include "gui/mainwindow.h"
+#include "gui/shutdownconfirmdialog.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -133,6 +134,7 @@ Application::Application(int &argc, char **argv)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
+    qRegisterMetaType<Log::Peer>("Log::Peer");
 
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");
@@ -149,8 +151,12 @@ Application::Application(int &argc, char **argv)
     const QString profileDir = portableModeEnabled
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
-    const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString() + '@' + profileDir
-            + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName));
+#ifdef Q_OS_WIN
+    const QString instanceId = (profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName))).toLower();
+#else
+    const QString instanceId = profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName));
+#endif
+    const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString() + '@' + instanceId;
     m_instanceManager = new ApplicationInstanceManager {appId, this};
 
     Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
@@ -587,7 +593,7 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_WEBUI
     Preferences *const pref = Preferences::instance();
     // Display some information to the user
-    const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
+    const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
         + tr("To control qBittorrent, access the Web UI at %1")
             .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
     printf("%s", qUtf8Printable(mesg));

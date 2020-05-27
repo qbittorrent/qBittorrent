@@ -123,6 +123,7 @@ private:
     PieceAvailabilityBar *m_piecesAvailability;
     PropTabBar *m_tabBar;
     LineEdit *m_contentFilterLine;
+    int m_handleWidth;
 };
 
 #endif // PROPERTIESWIDGET_H

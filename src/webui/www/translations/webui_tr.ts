@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrent'leri URL'lerinden ya da Magnet bağlantılarından indir</translation>
+        <translation>Torrent'leri URL'lerinden ya da Magnet bağlantılarından indirin</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Ad boş olamaz</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Ad değişmedi</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Adı güncelleme başarısız</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,43 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Tarayıcınız bu özelliği desteklemiyor</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Bu özelliği kullanmak için Web Arayüzü'ne HTTPS üzerinden erişilmesi gerekir</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Bağlantı durumu: Güvenlik Duvarlı</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Bağlantı durumu: Bağlandı</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Alternatif hız sınırları: Kapalı</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>İndirme hızı simgesi</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Bağlantı durumu</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Alternatif hız sınırları: Açık</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Gönderme hızı simgesi</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Bağlantı durumu: Bağlantı Kesildi</translation>
     </message>
 </context>
 <context>
@@ -673,7 +705,7 @@
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation>Gelen bağlantılar için kullanılan b.noktası:</translation>
+        <translation>Gelen bağlantılar için kullanılan bağlantı noktası:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
@@ -947,7 +979,7 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation>Siteler Arası İstek Sahteciliği (CSRF) korumasını etkinleştir</translation>
+        <translation>Siteler Arası İstek Sahtekarlığı (CSRF) korumasını etkinleştir</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -995,7 +1027,7 @@
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation>Etkilenmiş torrent'lerin yerini değiştir</translation>
+        <translation>Etkilenen torrent'lerin yerini değiştir</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -1035,11 +1067,11 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Etkilenmiş torrent'leri Elle Kipine değiştir</translation>
+        <translation>Etkilenen torrent'leri Elle Kipine değiştir</translation>
     </message>
     <message>
         <source>Files location:</source>
-        <translation>Dosyalar konumu:</translation>
+        <translation>Dosyaların konumu:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1060,10 +1092,6 @@
     <message>
         <source>Info: The password is saved unencrypted</source>
         <translation>Bilgi: Parola şifrelenmeden kaydedilir</translation>
-    </message>
-    <message>
-        <source>Strict super seeding:</source>
-        <translation>Değişmez süper gönderim:</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1104,10 +1132,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Oran şu değere ulaştığında</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>san</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1167,11 +1191,11 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Giden b.noktaları (En az) [0: Etkisizleştirildi]:</translation>
+        <translation>Giden bağlantı noktaları (En az) [0: Etkisizleştirildi]</translation>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>İzleyicilere bildirmek için IP Adresi (yeniden başlatma gerektirir):</translation>
+        <translation>İzleyicilere bildirilecek IP Adresi (yeniden başlatma gerektirir):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1199,7 +1223,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Giden b.noktaları (En fazla) [0: Etkisizleştirildi]:</translation>
+        <translation>Giden bağlantı noktaları (En fazla) [0: Etkisizleştirildi]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1224,10 +1248,6 @@
     <message>
         <source>Fixed slots</source>
         <translation>Sabit yuvalar</translation>
-    </message>
-    <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>Kişi ülkelerini çöz (GeoIP):</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1282,8 +1302,40 @@
         <translation>Oturum zaman aşımı:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>IPv6 adresinde dinle (yeniden başlatma gerektirir):</translation>
+        <source>Resolve peer countries:</source>
+        <translation>Kişi ülkelerini çöz:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>yasaklama süresi:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>Parça kapsam benzeşimi kullan (libtorrent &gt;= 1.2.2 gerektirir):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation>İzleyiciyi durdurma zaman aşımı:</translation>
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Art arda şu kadar hatadan sonra istemciyi yasakla:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Tanımlama bilgisi Güvenli işaretini etkinleştir (HTTPS gerektirir)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>UPnP kiralama süresi [0: Kalıcı kiralama]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>Dosyalar</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Ülke</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Kişiyi kalıcı olarak yasakla</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Yeni bir kişi ekle...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>Ülke/Bölge</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Yeniden adlandır...</translation>
     </message>
 </context>
 <context>
@@ -1691,7 +1743,7 @@
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Devam edildi (0)</translation>
+        <translation>Devam Edildi (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
@@ -1703,11 +1755,11 @@
     </message>
     <message>
         <source>Inactive (0)</source>
-        <translation>Etkin değil (0)</translation>
+        <translation>Etkin Değil (0)</translation>
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation>Hata oldu (0)</translation>
+        <translation>Hata Oldu (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -1731,7 +1783,7 @@
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Devam edildi (%1)</translation>
+        <translation>Devam Edildi (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -1739,11 +1791,35 @@
     </message>
     <message>
         <source>Inactive (%1)</source>
-        <translation>Etkin değil (%1)</translation>
+        <translation>Etkin Değil (%1)</translation>
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation>Hata oldu (%1)</translation>
+        <translation>Hata Oldu (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Durdurulan Gönderme (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Durdurulan İndirme (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Durdurulan İndirme (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Durduruldu (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Durdurulan Gönderme (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Durduruldu (%1)</translation>
     </message>
 </context>
 <context>
@@ -2053,7 +2129,7 @@
     </message>
     <message>
         <source>Errored</source>
-        <translation>Hata oldu</translation>
+        <translation>Hata Oldu</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2085,7 +2161,7 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Askıda</translation>
+        <translation>Durduruldu</translation>
     </message>
 </context>
 <context>
@@ -2322,7 +2398,7 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Aynı zamanda sabit diskteki dosyaları sil</translation>
+        <translation>Aynı zamanda sabit diskteki dosyaları da sil</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
@@ -2490,7 +2566,7 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation>Sadece etkinleştirilmişler</translation>
+        <translation>Sadece etkinleştirilenler</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Evet</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Hayır</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>qBittorrent Hakkında</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Kütüphaneler</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Lisans</translation>
     </message>
@@ -2733,6 +2805,14 @@
         <source>Author</source>
         <translation>Hazırlayan</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Kullanılan Yazılımlar</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>DB-IP tarafından sunulan ücretsiz IP to Country Lite veritabanı kişilerin ülkelerinin çözülmesi için kullanılır. Veritabanı Creative Commons Attribution 4.0 Uluslararası Lisansı altında lisanslanmıştır</translation>
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Tüm IPv6 adresleri</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Tüm IPv4 adresleri</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2860,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Yeniden adlandır</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Yeni adı:</translation>
     </message>
 </context>
 </TS>

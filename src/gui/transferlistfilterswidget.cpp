@@ -38,6 +38,7 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/trackerentry.h"
@@ -73,7 +74,7 @@ namespace
         return scheme;
     }
 
-    class ArrowCheckBox : public QCheckBox
+    class ArrowCheckBox final : public QCheckBox
     {
     public:
         using QCheckBox::QCheckBox;
@@ -164,40 +165,40 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     // Add status filters
     auto *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, tr("All (0)", "this is for the status filter"));
-    all->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterall.svg"));
+    all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filterall")));
     auto *downloading = new QListWidgetItem(this);
     downloading->setData(Qt::DisplayRole, tr("Downloading (0)"));
-    downloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/downloading.svg"));
+    downloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("downloading")));
     auto *seeding = new QListWidgetItem(this);
     seeding->setData(Qt::DisplayRole, tr("Seeding (0)"));
-    seeding->setData(Qt::DecorationRole, QIcon(":/icons/skin/uploading.svg"));
+    seeding->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("uploading")));
     auto *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, tr("Completed (0)"));
-    completed->setData(Qt::DecorationRole, QIcon(":/icons/skin/completed.svg"));
+    completed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("completed")));
     auto *resumed = new QListWidgetItem(this);
     resumed->setData(Qt::DisplayRole, tr("Resumed (0)"));
-    resumed->setData(Qt::DecorationRole, QIcon(":/icons/skin/resumed.svg"));
+    resumed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("resumed")));
     auto *paused = new QListWidgetItem(this);
     paused->setData(Qt::DisplayRole, tr("Paused (0)"));
-    paused->setData(Qt::DecorationRole, QIcon(":/icons/skin/paused.svg"));
+    paused->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("paused")));
     auto *active = new QListWidgetItem(this);
     active->setData(Qt::DisplayRole, tr("Active (0)"));
-    active->setData(Qt::DecorationRole, QIcon(":/icons/skin/filteractive.svg"));
+    active->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filteractive")));
     auto *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, tr("Inactive (0)"));
-    inactive->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterinactive.svg"));
+    inactive->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filterinactive")));
     auto *stalled = new QListWidgetItem(this);
     stalled->setData(Qt::DisplayRole, tr("Stalled (0)"));
-    stalled->setData(Qt::DecorationRole, QIcon(":/icons/skin/filterstalled.svg"));
+    stalled->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filterstalled")));
     auto *stalledUploading = new QListWidgetItem(this);
     stalledUploading->setData(Qt::DisplayRole, tr("Stalled Uploading (0)"));
-    stalledUploading->setData(Qt::DecorationRole, QIcon(":/icons/skin/stalledUP.svg"));
+    stalledUploading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("stalledUP")));
     auto *stalledDownloading = new QListWidgetItem(this);
     stalledDownloading->setData(Qt::DisplayRole, tr("Stalled Downloading (0)"));
-    stalledDownloading->setData(Qt::DecorationRole, QIcon(":/icons/skin/stalledDL.svg"));
+    stalledDownloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("stalledDL")));
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
-    errored->setData(Qt::DecorationRole, QIcon(":/icons/skin/error.svg"));
+    errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("error")));
 
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
@@ -223,7 +224,7 @@ void StatusFilterWidget::updateTorrentNumbers()
     int nbStalledDownloading = 0;
     int nbErrored = 0;
 
-    const QHash<BitTorrent::InfoHash, BitTorrent::TorrentHandle *> torrents = BitTorrent::Session::instance()->torrents();
+    const QVector<BitTorrent::TorrentHandle *> torrents = BitTorrent::Session::instance()->torrents();
     for (const BitTorrent::TorrentHandle *torrent : torrents) {
         if (torrent->isDownloading())
             ++nbDownloading;
@@ -327,7 +328,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
 
         const QString scheme = getScheme(tracker);
-        downloadFavicon(QString("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
+        downloadFavicon(QString::fromLatin1("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
     }
     if (!trackerItem) return;
 
@@ -340,7 +341,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
         return;
     }
 
-    trackerItem->setText(QString("%1 (%2)").arg(host).arg(tmp.size()));
+    trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
     if (exists) {
         if (currentRow() == rowFromTracker(host))
             applyFilter(currentRow());
@@ -384,7 +385,7 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
             return;
         }
         if (trackerItem)
-            trackerItem->setText(QString("%1 (%2)").arg(host).arg(tmp.size()));
+            trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
     }
     else {
         row = 1;

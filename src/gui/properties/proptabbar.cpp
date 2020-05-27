@@ -34,7 +34,7 @@
 #include <QSpacerItem>
 
 #include "base/global.h"
-#include "uithememanager.h"
+#include "gui/uithememanager.h"
 
 PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)

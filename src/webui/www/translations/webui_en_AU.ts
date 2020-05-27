@@ -532,6 +532,38 @@
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1066,10 +1098,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation type="unfinished" />
     </message>
@@ -1107,10 +1135,6 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>sec</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1230,10 +1254,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Advanced</source>
         <translation type="unfinished" />
     </message>
@@ -1286,7 +1306,39 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
+        <source>Resolve peer countries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1349,10 +1401,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Country</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation type="unfinished" />
     </message>
@@ -1366,6 +1414,10 @@
     </message>
     <message>
         <source>Add a new peer...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Country/Region</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1747,6 +1799,30 @@
     </message>
     <message>
         <source>Errored (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2734,10 +2810,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>License</source>
         <translation type="unfinished" />
     </message>
@@ -2755,6 +2827,14 @@
     </message>
     <message>
         <source>Author</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Software Used</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation type="unfinished" />
     </message>
 </context>

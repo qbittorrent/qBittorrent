@@ -56,7 +56,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog : public QDialog
+class OptionsDialog final : public QDialog
 {
     Q_OBJECT
     using ThisType = OptionsDialog;
@@ -82,7 +82,7 @@ class OptionsDialog : public QDialog
 public:
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
-    ~OptionsDialog();
+    ~OptionsDialog() override;
 
 public slots:
     void showConnectionTab();
@@ -117,7 +117,6 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
-    static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
 #ifndef Q_OS_MACOS

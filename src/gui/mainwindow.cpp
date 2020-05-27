@@ -28,6 +28,8 @@
 
 #include "mainwindow.h"
 
+#include <chrono>
+
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
@@ -49,7 +51,7 @@
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
-#include "notifications.h"
+#include "qtnotify/notifications.h"
 #endif
 
 #include "base/bittorrent/session.h"
@@ -75,16 +77,17 @@
 #include "hidabletabwidget.h"
 #include "lineedit.h"
 #include "optionsdialog.h"
-#include "peerlistwidget.h"
-#include "powermanagement.h"
-#include "propertieswidget.h"
+#include "powermanagement/powermanagement.h"
+#include "properties/peerlistwidget.h"
+#include "properties/propertieswidget.h"
+#include "properties/trackerlistwidget.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
 #include "statsdialog.h"
 #include "statusbar.h"
 #include "torrentcreatordialog.h"
-#include "trackerlistwidget.h"
+
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"
@@ -98,9 +101,6 @@
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
 #endif
-
-#define TIME_TRAY_BALLOON 5000
-#define PREVENT_SUSPEND_INTERVAL 60000
 
 namespace
 {
@@ -118,6 +118,11 @@ namespace
 
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
+
+    const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
+#if !defined(Q_OS_MACOS)
+    const int TIME_TRAY_BALLOON = 5000;
+#endif
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -145,13 +150,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MACOS
-#ifdef Q_OS_UNIX
-    const QIcon appLogo = Preferences::instance()->useSystemIconTheme()
-        ? QIcon::fromTheme("qbittorrent", QIcon(":/icons/skin/qbittorrent-tray.svg"))
-        : QIcon(":/icons/skin/qbittorrent-tray.svg");
-#else
-    const QIcon appLogo(":/icons/skin/qbittorrent-tray.svg");
-#endif // Q_OS_UNIX
+    const QIcon appLogo(UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent"), QLatin1String("qbittorrent-tray")));
     setWindowIcon(appLogo);
 #endif // Q_OS_MACOS
 
@@ -487,7 +486,7 @@ int MainWindow::executionLogMsgTypes() const
 
 void MainWindow::setExecutionLogMsgTypes(const int value)
 {
-    m_executionLog->showMsgTypes(static_cast<Log::MsgTypes>(value));
+    m_executionLog->setMessageTypes(static_cast<Log::MsgTypes>(value));
     settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
 }
 
@@ -776,8 +775,9 @@ void MainWindow::cleanup()
     if (m_systrayCreator)
         m_systrayCreator->stop();
 #endif
-    if (m_preventTimer)
-        m_preventTimer->stop();
+
+    m_preventTimer->stop();
+
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_programUpdateTimer->stop();
 #endif
@@ -1401,7 +1401,7 @@ void MainWindow::showStatusBar(bool show)
     }
 }
 
-void MainWindow::loadPreferences(bool configureSession)
+void MainWindow::loadPreferences(const bool configureSession)
 {
     Logger::instance()->addMessage(tr("Options were saved successfully."));
     const Preferences *const pref = Preferences::instance();
@@ -1451,8 +1451,11 @@ void MainWindow::loadPreferences(bool configureSession)
 
     showStatusBar(pref->isStatusbarDisplayed());
 
-    if ((pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) && !m_preventTimer->isActive()) {
-        m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+    if (pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding()) {
+        if (!m_preventTimer->isActive()) {
+            updatePowerManagementState();
+            m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
+        }
     }
     else {
         m_preventTimer->stop();
@@ -1525,21 +1528,23 @@ void MainWindow::reloadSessionStats()
 #else
     if (m_systrayIcon) {
 #ifdef Q_OS_UNIX
-        const QString toolTip = QString(QLatin1String(
+        const QString toolTip = QString::fromLatin1(
                 "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>"
                 "qBittorrent"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/download.svg' height='14'/>&nbsp;%1"
+                "<img src='%1' height='14'/>&nbsp;%2"
                 "</div>"
                 "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src=':/icons/skin/seeding.svg' height='14'/>&nbsp;%2"
-                "</div>"))
-            .arg(tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+                "<img src='%3' height='14'/>&nbsp;%4"
+                "</div>")
+            .arg(UIThemeManager::instance()->getIconPath("downloading_small")
+                 , tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+                 , UIThemeManager::instance()->getIconPath("seeding")
                  , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #else
         // OSes such as Windows do not support html here
-        const QString toolTip = QString("%1\n%2").arg(
+        const QString toolTip = QString::fromLatin1("%1\n%2").arg(
             tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
             , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
 #endif // Q_OS_UNIX
@@ -1818,7 +1823,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
         answer = QMessageBox::question(this, tr("qBittorrent Update Available")
             , tr("A new version is available.") + "<br/>"
                 + tr("Do you want to download %1?").arg(newVersion) + "<br/><br/>"
-                + QString("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))
+                + QString::fromLatin1("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))
             , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (answer == QMessageBox::Yes) {
             // The user want to update, let's download the update
@@ -1866,7 +1871,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 {
     if (checked) {
         Q_ASSERT(!m_executionLog);
-        m_executionLog = new ExecutionLogWidget(m_tabs, static_cast<Log::MsgType>(executionLogMsgTypes()));
+        m_executionLog = new ExecutionLogWidget(static_cast<Log::MsgType>(executionLogMsgTypes()), m_tabs);
 #ifdef Q_OS_MACOS
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else
@@ -1975,18 +1980,18 @@ QIcon MainWindow::getSystrayIcon() const
 #else
     switch (style) {
     case TrayIcon::NORMAL:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
+        return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray"));
     case TrayIcon::MONO_DARK:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-dark.svg"));
+        return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray-dark"));
     case TrayIcon::MONO_LIGHT:
-        return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray-light.svg"));
+        return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray-light"));
     default:
         break;
     }
 #endif
 
     // As a failsafe in case the enum is invalid
-    return QIcon(QLatin1String(":/icons/skin/qbittorrent-tray.svg"));
+    return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray"));
 }
 #endif // Q_OS_MACOS
 

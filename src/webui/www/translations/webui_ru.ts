@@ -338,7 +338,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Зарегистрируйтесь, чтобы обрабатывать магнет-ссылки</translation>
+        <translation>Зарегистрировать обработчик магнет-ссылок…</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Имя не может быть пустым</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Имя остаётся без изменений</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Не удалось обновить имя</translation>
     </message>
 </context>
 <context>
@@ -474,7 +474,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation>Поисковый движок</translation>
+        <translation>Поисковик</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -522,11 +522,43 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Ваш браузер не поддерживает эту функцию</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Для использования этой функции Веб-интерфейс должен быть доступен по протоколу HTTPS.</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Состояние связи: закрыто брандмауэром</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Состояние связи: подключено</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Особые ограничения скорости: откл.</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>Значок скорости загрузки</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Состояние связи</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Особые ограничения скорости: вкл.</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Значок скорости отдачи</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Состояние связи: отключено</translation>
     </message>
 </context>
 <context>
@@ -1062,10 +1094,6 @@
         <translation>Примечание: Пароль будет сохранён в нешифрованном виде</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Традиционный суперсид:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Алгоритм смешанного режима μTP-TCP:</translation>
     </message>
@@ -1104,10 +1132,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>По достижению рейтинга раздачи</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>с</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1226,10 +1250,6 @@
         <translation>Фиксированные слоты</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>Определять страну пира по GeoIP:</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Дополнительно</translation>
     </message>
@@ -1282,8 +1302,40 @@
         <translation>Перерыв в сеансе:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Слушать адрес IPv6 (требуется перезапуск):</translation>
+        <source>Resolve peer countries:</source>
+        <translation>Определять страну пира:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>заблокировать на:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>Использовать группировку родственных частей (требуется libtorrent &gt;= 1.2.2):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation>Тайм-аут остановки трекера:</translation>
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Блокировать клиента после серии сбоев:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Включить защиту куки (требуется HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Срок аренды UPnP [0: постоянный]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>Файлы</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Страна</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Запретить пира навсегда</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Добавить нового пира…</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>Страна/регион</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Переименовать…</translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1796,30 @@
     <message>
         <source>Errored (%1)</source>
         <translation>С ошибкой (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Отдача простаивает (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Загрузка простаивает (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Загрузка простаивает (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Простаивают (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Отдача простаивает (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Простаивают (%1)</translation>
     </message>
 </context>
 <context>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Да</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Нет</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>О qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Библиотеки</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Лицензия</translation>
     </message>
@@ -2731,7 +2803,15 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>Автор</translation>
+        <translation>Авторы</translation>
+    </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Использованное ПО</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>Для определения стран пиров используется открытая легковесная база данных DB-IP, которая выпущена под лицензией Creative Commons Attribution 4.0 International License</translation>
     </message>
 </context>
 <context>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Все адреса IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Все адреса IPv4</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2860,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Переименование</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Новое имя:</translation>
     </message>
 </context>
 </TS>

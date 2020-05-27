@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Namnet kan inte vara tomt</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Namnet är oförändrat</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att uppdatera namnet</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,43 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Din webbläsare stöder inte den här funktionen</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>För att använda den här funktionen måste WebUI nås via HTTPS</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Anslutningsstatus: Bakom brandvägg</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Anslutningsstatus: Ansluten</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Alternativa hastighetsgränser: Av</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>Ikon för hämtningshastighet</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Anslutningsstatus</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Alternativa hastighetsgränser: På</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Ikon för sändningshastighet</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Anslutningsstatus: Frånkopplad</translation>
     </message>
 </context>
 <context>
@@ -983,7 +1015,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation>Börja inte hämtning automatiskt</translation>
+        <translation>Starta inte hämtningen automatiskt</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1062,10 +1094,6 @@
         <translation>Info: Lösenordet sparas okrypterat</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Strikt superdistribuering:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>µTP-TCP blandad lägesalgoritm:</translation>
     </message>
@@ -1104,10 +1132,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>När förhållandet når</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>sek</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1226,10 +1250,6 @@
         <translation>Fasta platser</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>Slå upp nodernas länder (GeoIP)</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Avancerat</translation>
     </message>
@@ -1239,7 +1259,7 @@
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Ladda upp strypningsalgoritm:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1282,8 +1302,40 @@
         <translation>Sessionen löpte ut:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Lyssna på IPv6-adress (kräver omstart):</translation>
+        <source>Resolve peer countries:</source>
+        <translation>Slå upp nodernas länder:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>förbud för:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>Använd delutsträckningsaffinitet (kräver libtorrent &gt;= 1.2.2):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Förbud mot klient efter påföljande misslyckanden:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Aktivera säker flagga för kakor (kräver HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>Filer</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Land</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Förbjud noden permanent</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Lägg till en ny nod...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>Land/Region</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Byter namn...</translation>
     </message>
 </context>
 <context>
@@ -1745,6 +1797,30 @@
         <source>Errored (%1)</source>
         <translation>Fallerande (%1)</translation>
     </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Avstannade sändningar (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Avstannade hämtningar (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Avstannade hämtningar (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Avstannade (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Avstannade sändningar (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Avstannade (%1)</translation>
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -1799,7 +1875,7 @@
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Slutfört om</translation>
+        <translation>Slutförd om</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ja</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nej</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>Om qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Bibliotek</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licens</translation>
     </message>
@@ -2733,6 +2805,14 @@
         <source>Author</source>
         <translation>Upphovsmän</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Mjukvara som används</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>Den fria databasen IP to Country Lite av DB-IP används för att slå upp nodernas länder. Databasen är licensierad enligt Creative Commons Attribution 4.0 International License</translation>
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Alla IPv6-adresser</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Alla IPv4-adresser</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2860,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Byter namn</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nytt namn:</translation>
     </message>
 </context>
 </TS>

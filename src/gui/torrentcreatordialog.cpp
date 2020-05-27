@@ -215,7 +215,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
         BitTorrent::Session::instance()->addTorrent(info, params);
     }
     QMessageBox::information(this, tr("Torrent creator")
-        , QString("%1\n%2").arg(tr("Torrent created:"), Utils::Fs::toNativePath(path)));
+        , QString::fromLatin1("%1\n%2").arg(tr("Torrent created:"), Utils::Fs::toNativePath(path)));
     setInteractionEnabled(true);
 }
 

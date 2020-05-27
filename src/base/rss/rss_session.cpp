@@ -296,7 +296,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             const QJsonObject valObj {val.toObject()};
             if (valObj.contains("url")) {
                 if (!valObj["url"].isString()) {
-                    LogMsg(QString("Couldn't load RSS Feed '%1'. URL is required.")
+                    LogMsg(tr("Couldn't load RSS Feed '%1'. URL is required.")
                            .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
                     continue;
                 }
@@ -305,13 +305,13 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
                 if (valObj.contains("uid")) {
                     uid = QUuid {valObj["uid"].toString()};
                     if (uid.isNull()) {
-                        LogMsg(QString("Couldn't load RSS Feed '%1'. UID is invalid.")
+                        LogMsg(tr("Couldn't load RSS Feed '%1'. UID is invalid.")
                                .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
                         continue;
                     }
 
                     if (m_feedsByUID.contains(uid)) {
-                        LogMsg(QString("Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.")
+                        LogMsg(tr("Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.")
                                .arg(uid.toString()), Log::WARNING);
                         continue;
                     }
@@ -329,8 +329,8 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             }
         }
         else {
-            LogMsg(QString("Couldn't load RSS Item '%1'. Invalid data format.")
-                   .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+            LogMsg(tr("Couldn't load RSS Item '%1'. Invalid data format.")
+                   .arg(QString::fromLatin1("%1\\%2").arg(folder->path(), key)), Log::WARNING);
         }
     }
 

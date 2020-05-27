@@ -30,7 +30,7 @@
 
 #include <QVariant>
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/common.h"
 #include "base/global.h"
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent)

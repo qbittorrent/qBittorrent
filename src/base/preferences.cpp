@@ -38,6 +38,7 @@
 #include <shlobj.h>
 #endif
 
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
 #include <QLocale>
@@ -46,12 +47,6 @@
 #include <QSize>
 #include <QTime>
 #include <QVariant>
-
-#ifndef DISABLE_GUI
-#include <QApplication>
-#else
-#include <QCoreApplication>
-#endif
 
 #ifdef Q_OS_WIN
 #include <QRegularExpression>
@@ -741,6 +736,26 @@ QString Preferences::getWebUiRootFolder() const
 void Preferences::setWebUiRootFolder(const QString &path)
 {
     setValue("Preferences/WebUI/RootFolder", path);
+}
+
+bool Preferences::isWebUICustomHTTPHeadersEnabled() const
+{
+    return value("Preferences/WebUI/CustomHTTPHeadersEnabled", false).toBool();
+}
+
+void Preferences::setWebUICustomHTTPHeadersEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/CustomHTTPHeadersEnabled", enabled);
+}
+
+QString Preferences::getWebUICustomHTTPHeaders() const
+{
+    return value("Preferences/WebUI/CustomHTTPHeaders").toString();
+}
+
+void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
+{
+    setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
 }
 
 bool Preferences::isDynDNSEnabled() const

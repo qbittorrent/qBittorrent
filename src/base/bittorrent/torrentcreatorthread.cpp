@@ -41,10 +41,12 @@
 #include <QFileInfo>
 #include <QHash>
 
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/string.h"
-#include "private/ltunderlyingtype.h"
+#include "ltunderlyingtype.h"
 
 namespace
 {
@@ -162,7 +164,7 @@ void TorrentCreatorThread::run()
         lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
             , [this, &newTorrent](const LTPieceIndex n)
         {
-            sendProgressSignal(LTUnderlyingType<LTPieceIndex> {n}, newTorrent.num_pieces());
+            sendProgressSignal(static_cast<LTUnderlyingType<LTPieceIndex>>(n), newTorrent.num_pieces());
         });
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
@@ -182,19 +184,19 @@ void TorrentCreatorThread::run()
         if (isInterruptionRequested()) return;
 
         // create the torrent
-        std::ofstream outfile(
-#ifdef _MSC_VER
-            Utils::Fs::toNativePath(m_params.savePath).toStdWString().c_str()
-#else
-            Utils::Fs::toNativePath(m_params.savePath).toUtf8().constData()
-#endif
-            , (std::ios_base::out | std::ios_base::binary | std::ios_base::trunc));
-        if (outfile.fail())
-            throw std::runtime_error(tr("create new torrent file failed").toStdString());
+        QFile outfile {m_params.savePath};
+        if (!outfile.open(QIODevice::WriteOnly)) {
+            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
+                .arg(outfile.errorString())};
+        }
 
         if (isInterruptionRequested()) return;
 
-        lt::bencode(std::ostream_iterator<char>(outfile), entry);
+        lt::bencode(Utils::IO::FileDeviceOutputIterator {outfile}, entry);
+        if (outfile.error() != QFileDevice::NoError) {
+            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
+                .arg(outfile.errorString())};
+        }
         outfile.close();
 
         emit updateProgress(100);

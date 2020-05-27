@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>O nome não pode estar vazio</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>O nome está inalterado</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Falha ao atualizar o nome</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,43 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Seu navegador não suporta este recurso</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Para usar este recurso, a Interface Web precisa ser acessada via HTTPS</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Status da conexão: Protegida por firewall</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Status da conexão: Conectado</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Limites alternativos de velocidade: Desligado</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>Ícone de velocidade de download</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Status da conexão</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Limites alternativos de velocidade: Ligado</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Ícone de velocidade de upload</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Status da conexão: Desconectado</translation>
     </message>
 </context>
 <context>
@@ -1062,10 +1094,6 @@
         <translation>Informação: A senha é salva sem criptografia</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Super seeding severo:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritmo de modo misto μTP-TCP:</translation>
     </message>
@@ -1104,10 +1132,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Quando a taxa atingir</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>seg</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1226,10 +1250,6 @@
         <translation>Slots fixos</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>Determinar países dos pares (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Avançado</translation>
     </message>
@@ -1282,8 +1302,40 @@
         <translation>Tempo limite da sessão:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Escutar endereço IPv6 (necessário reiniciar):</translation>
+        <source>Resolve peer countries:</source>
+        <translation>Determinar países dos pares:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>banir para:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>Usar afinidade de extensão do pedaço (necessário libtorrent &gt;=1.2.2):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation>Tempo limite para parar rastreador:</translation>
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Banir cliente após falhas consecutivas:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Habilitar flag Seguro do cookie (necessário HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Duração da concessão UPnP [0: Concessão permanente]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>Arquivos</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>País</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Banir peer permanentemente</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Adicionar um novo peer...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>País/Região</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Renomear...</translation>
     </message>
 </context>
 <context>
@@ -1744,6 +1796,30 @@
     <message>
         <source>Errored (%1)</source>
         <translation>Com erro (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Upload estacionado (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Download estacionado (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Download estacionado (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Estacionado (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Upload estacionado (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Estacionado (%1)</translation>
     </message>
 </context>
 <context>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Sim</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Não</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>Sobre o qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Bibliotecas</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licença</translation>
     </message>
@@ -2733,6 +2805,14 @@
         <source>Author</source>
         <translation>Autor</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Software usado</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>O banco de dados gratuito IP to Country Lite da DB-IP é usado para resolver os países de pares. O banco de dados está licenciado sob a Licença Internacional Creative Commons Attribution 4.0</translation>
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Todos os endereços IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Todos os endereços IPv4</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2860,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Renomeando</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Novo nome:</translation>
     </message>
 </context>
 </TS>

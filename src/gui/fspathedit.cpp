@@ -29,6 +29,7 @@
 #include "fspathedit.h"
 
 #include <memory>
+#include <stdexcept>
 
 #include <QAction>
 #include <QApplication>
@@ -39,7 +40,7 @@
 #include <QToolButton>
 
 #include "base/utils/fs.h"
-#include "private/fspathedit_p.h"
+#include "fspathedit_p.h"
 
 namespace
 {

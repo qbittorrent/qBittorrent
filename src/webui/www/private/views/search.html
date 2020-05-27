@@ -1,9 +1,9 @@
-<style type="text/css">
+<style>
     #searchPattern {
-        width: 500px;
+        width: 300px;
         line-height: 2em;
         padding: 1px 5px 1px 2em;
-        background-image: url("images/qbt-theme/edit-find.svg");
+        background-image: url("icons/edit-find.svg");
         background-repeat: no-repeat;
         background-size: 1.5em;
         background-position: left;
@@ -49,6 +49,29 @@
         float: right;
     }
 
+    #searchResultsGranularFilters {
+        display: none;
+    }
+
+    #searchResultsGranularFiltersWarning {
+        vertical-align: bottom;
+        margin-left: 10px;
+    }
+
+    @media (min-width: 1060px) {
+        #searchResultsGranularFilters {
+            display: inline-block;
+        }
+
+        #searchResultsGranularFiltersWarning {
+            display: none;
+        }
+
+        #searchPattern {
+            width: 500px;
+        }
+    }
+
 </style>
 
 <div id="searchResults">
@@ -86,33 +109,37 @@
                 <option value="everywhere">QBT_TR(Everywhere)QBT_TR[CONTEXT=SearchEngineWidget]</option>
             </select>
 
-            <span style="margin-left: 15px;">QBT_TR(Seeds:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
-            <input type="number" min="0" max="1000" id="searchMinSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
-            <span>to</span>
-            <input type="number" min="0" max="1000" id="searchMaxSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
+            <img id="searchResultsGranularFiltersWarning" src="icons/dialog-warning.svg" title="QBT_TR(Increase window width to display additional filters)QBT_TR[CONTEXT=SearchEngineWidget]" alt="QBT_TR(Warning)QBT_TR[CONTEXT=SearchEngineWidget]" width="24" height="24">
 
-            <span style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
-            <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMinSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
-            <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
-                <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
-                <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
-            </select>
-            <span>to</span>
-            <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMaxSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
-            <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
-                <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
-                <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
-                <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
-            </select>
+            <div id="searchResultsGranularFilters">
+                <span style="margin-left: 15px;">QBT_TR(Seeds:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <input type="number" min="0" max="1000" id="searchMinSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
+                <span>to</span>
+                <input type="number" min="0" max="1000" id="searchMaxSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
+
+                <span style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMinSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
+                <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
+                    <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
+                    <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
+                </select>
+                <span>to</span>
+                <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMaxSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
+                <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
+                    <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
+                    <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -140,14 +167,14 @@
 </div>
 
 <ul id="searchResultsTableMenu" class="contextMenu">
-    <li><a href="#Download"><img src="images/qbt-theme/download.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-    <li class="separator"><a href="#OpenDescriptionUrl"><img src="images/qbt-theme/application-x-mswinurl.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li><a href="#Download"><img src="icons/download.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li class="separator"><a href="#OpenDescriptionUrl"><img src="icons/application-x-mswinurl.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
     <li>
-        <a href="#" class="arrow-right"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]</a>
+        <a href="#" class="arrow-right"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]</a>
         <ul>
-            <li><a href="#" id="copySearchTorrentName" class="copySearchDataToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-            <li><a href="#" id="copySearchTorrentDownloadLink" class="copySearchDataToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-            <li><a href="#" id="copySearchTorrentDescriptionUrl" class="copySearchDataToClipboard"><img src="images/qbt-theme/edit-copy.svg" alt="QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentName" class="copySearchDataToClipboard"><img src="icons/edit-copy.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDownloadLink" class="copySearchDataToClipboard"><img src="icons/edit-copy.svg" alt="QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDescriptionUrl" class="copySearchDataToClipboard"><img src="icons/edit-copy.svg" alt="QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
         </ul>
     </li>
 </ul>
@@ -312,8 +339,6 @@
                 const plugins = $('pluginsSelect').getProperty('value');
 
                 if (!pattern || !category || !plugins) return;
-                if (category === "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]")
-                    category = "all";
 
                 resetFilters();
 
@@ -439,36 +464,43 @@
             const populateCategorySelect = function(categories) {
                 const categoryHtml = [];
                 categories.each(function(category) {
-                    categoryHtml.push("<option>" + category + "</option>");
+                    const option = new Element("option");
+                    option.set("value", category.id);
+                    option.set("html", category.name);
+                    categoryHtml.push(option.outerHTML);
                 });
 
                 // first category is "All Categories"
-                if (categoryHtml.length > 1)
+                if (categoryHtml.length > 1) {
                     // add separator
-                    categoryHtml.splice(1, 0, "<option disabled>──────────</option>");
+                    const option = new Element("option");
+                    option.set("disabled", true);
+                    option.set("html", "──────────");
+                    categoryHtml.splice(1, 0, option.outerHTML);
+                }
 
                 $('categorySelect').set('html', categoryHtml.join(""));
             };
 
             const selectedPlugin = $('pluginsSelect').get("value");
+
             if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
-                const url = new URI('api/v2/search/categories');
-                url.setData('name', selectedPlugin);
-                new Request.JSON({
-                    url: url,
-                    noCache: true,
-                    method: 'get',
-                    onSuccess: function(response) {
-                        populateCategorySelect(response);
-                    }
-                }).send();
+                const uniqueCategories = {};
+                for (const plugin of searchPlugins) {
+                    if ((selectedPlugin === "enabled") && !plugin.enabled) continue
+                    for (const category of plugin.supportedCategories) {
+                        if (uniqueCategories[category.id] === undefined) {
+                            uniqueCategories[category.id] = category;
+                        }
+                     }
+                }
+                // we must sort the ids to maintain consistent order.
+                const categories = Object.keys(uniqueCategories).sort().map(id => uniqueCategories[id]);
+                populateCategorySelect(categories);
             }
             else {
-                let plugins = ["QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]"];
                 const plugin = getPlugin(selectedPlugin);
-                if (plugin !== null)
-                    plugins = plugins.concat(plugin.supportedCategories);
-
+                const plugins = (plugin === null) ? [] : plugin.supportedCategories
                 populateCategorySelect(plugins);
             }
 

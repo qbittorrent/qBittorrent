@@ -43,9 +43,10 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "uithememanager.h"
 
 static QIcon getIconByState(BitTorrent::TorrentState state);
-static QColor getColorByState(BitTorrent::TorrentState state);
+static QColor getDefaultColorByState(BitTorrent::TorrentState state);
 
 static QIcon getPausedIcon();
 static QIcon getQueuedIcon();
@@ -58,6 +59,48 @@ static QIcon getCheckingIcon();
 static QIcon getErrorIcon();
 
 static bool isDarkTheme();
+
+namespace
+{
+    QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
+    {
+        struct TorrentStateColorDescriptor
+        {
+            const BitTorrent::TorrentState state;
+            const QString id;
+        };
+
+        const TorrentStateColorDescriptor colorDescriptors[] =
+        {
+            {BitTorrent::TorrentState::Downloading, QLatin1String("TransferList.Downloading")},
+            {BitTorrent::TorrentState::StalledDownloading, QLatin1String("TransferList.StalledDownloading")},
+            {BitTorrent::TorrentState::DownloadingMetadata, QLatin1String("TransferList.DownloadingMetadata")},
+            {BitTorrent::TorrentState::ForcedDownloading, QLatin1String("TransferList.ForcedDownloading")},
+            {BitTorrent::TorrentState::Allocating, QLatin1String("TransferList.Allocating")},
+            {BitTorrent::TorrentState::Uploading, QLatin1String("TransferList.Uploading")},
+            {BitTorrent::TorrentState::StalledUploading, QLatin1String("TransferList.StalledUploading")},
+            {BitTorrent::TorrentState::ForcedUploading, QLatin1String("TransferList.ForcedUploading")},
+            {BitTorrent::TorrentState::QueuedDownloading, QLatin1String("TransferList.QueuedDownloading")},
+            {BitTorrent::TorrentState::QueuedUploading, QLatin1String("TransferList.QueuedUploading")},
+            {BitTorrent::TorrentState::CheckingDownloading, QLatin1String("TransferList.CheckingDownloading")},
+            {BitTorrent::TorrentState::CheckingUploading, QLatin1String("TransferList.CheckingUploading")},
+            {BitTorrent::TorrentState::CheckingResumeData, QLatin1String("TransferList.CheckingResumeData")},
+            {BitTorrent::TorrentState::PausedDownloading, QLatin1String("TransferList.PausedDownloading")},
+            {BitTorrent::TorrentState::PausedUploading, QLatin1String("TransferList.PausedUploading")},
+            {BitTorrent::TorrentState::Moving, QLatin1String("TransferList.Moving")},
+            {BitTorrent::TorrentState::MissingFiles, QLatin1String("TransferList.MissingFiles")},
+            {BitTorrent::TorrentState::Error, QLatin1String("TransferList.Error")}
+        };
+
+        QHash<BitTorrent::TorrentState, QColor> colors;
+        for (const TorrentStateColorDescriptor &colorDescriptor : colorDescriptors) {
+            const QColor themeColor = UIThemeManager::instance()->getColor(colorDescriptor.id, QColor());
+            if (themeColor.isValid())
+                colors.insert(colorDescriptor.state, themeColor);
+        }
+        return colors;
+    }
+}
 
 // TransferListModel
 
@@ -83,27 +126,7 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
       }
-    , m_stateForegroundColors {
-        {BitTorrent::TorrentState::Unknown, getColorByState(BitTorrent::TorrentState::Unknown)},
-        {BitTorrent::TorrentState::ForcedDownloading, getColorByState(BitTorrent::TorrentState::ForcedDownloading)},
-        {BitTorrent::TorrentState::Downloading, getColorByState(BitTorrent::TorrentState::Downloading)},
-        {BitTorrent::TorrentState::DownloadingMetadata, getColorByState(BitTorrent::TorrentState::DownloadingMetadata)},
-        {BitTorrent::TorrentState::Allocating, getColorByState(BitTorrent::TorrentState::Allocating)},
-        {BitTorrent::TorrentState::StalledDownloading, getColorByState(BitTorrent::TorrentState::StalledDownloading)},
-        {BitTorrent::TorrentState::ForcedUploading, getColorByState(BitTorrent::TorrentState::ForcedUploading)},
-        {BitTorrent::TorrentState::Uploading, getColorByState(BitTorrent::TorrentState::Uploading)},
-        {BitTorrent::TorrentState::StalledUploading, getColorByState(BitTorrent::TorrentState::StalledUploading)},
-        {BitTorrent::TorrentState::CheckingResumeData, getColorByState(BitTorrent::TorrentState::CheckingResumeData)},
-        {BitTorrent::TorrentState::QueuedDownloading, getColorByState(BitTorrent::TorrentState::QueuedDownloading)},
-        {BitTorrent::TorrentState::QueuedUploading, getColorByState(BitTorrent::TorrentState::QueuedUploading)},
-        {BitTorrent::TorrentState::CheckingUploading, getColorByState(BitTorrent::TorrentState::CheckingUploading)},
-        {BitTorrent::TorrentState::CheckingDownloading, getColorByState(BitTorrent::TorrentState::CheckingDownloading)},
-        {BitTorrent::TorrentState::PausedDownloading, getColorByState(BitTorrent::TorrentState::PausedDownloading)},
-        {BitTorrent::TorrentState::PausedUploading, getColorByState(BitTorrent::TorrentState::PausedUploading)},
-        {BitTorrent::TorrentState::Moving, getColorByState(BitTorrent::TorrentState::Moving)},
-        {BitTorrent::TorrentState::MissingFiles, getColorByState(BitTorrent::TorrentState::MissingFiles)},
-        {BitTorrent::TorrentState::Error, getColorByState(BitTorrent::TorrentState::Error)}
-    }
+    , m_stateThemeColors {torrentStateColorsFromUITheme()}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
@@ -292,7 +315,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     {
         progress *= 100;
         return (static_cast<int>(progress) == 100)
-                ? QString {QLatin1String {"100%"}}
+                ? QString::fromLatin1("100%")
                 : Utils::String::fromDouble(progress, 1) + '%';
     };
 
@@ -359,7 +382,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
-        return torrent->lastSeenComplete().toString();
+        return torrent->lastSeenComplete().toLocalTime().toString(Qt::DefaultLocaleShortDate);
     case TR_LAST_ACTIVITY:
         return lastActivityString((torrent->isPaused() || torrent->isChecking()) ? -1 : torrent->timeSinceActivity());
     case TR_AVAILABILITY:
@@ -450,7 +473,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 
     switch (role) {
     case Qt::ForegroundRole:
-        return stateForeground(torrent->state());
+        return m_stateThemeColors.value(torrent->state(), getDefaultColorByState(torrent->state()));
     case Qt::DisplayRole:
         return displayValue(torrent, index.column());
     case UnderlyingDataRole:
@@ -460,6 +483,17 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case Qt::DecorationRole:
         if (index.column() == TR_NAME)
             return getIconByState(torrent->state());
+        break;
+    case Qt::ToolTipRole:
+        switch (index.column()) {
+        case TR_NAME:
+        case TR_STATUS:
+        case TR_CATEGORY:
+        case TR_TAGS:
+        case TR_TRACKER:
+        case TR_SAVE_PATH:
+            return displayValue(torrent, index.column());
+        }
         break;
     case Qt::TextAlignmentRole:
         switch (index.column()) {
@@ -598,16 +632,6 @@ void TransferListModel::configure()
     }
 }
 
-void TransferListModel::setStateForeground(const BitTorrent::TorrentState state, const QColor &color)
-{
-    m_stateForegroundColors[state] = color;
-}
-
-QColor TransferListModel::stateForeground(const BitTorrent::TorrentState state) const
-{
-    return m_stateForegroundColors[state];
-}
-
 // Static functions
 
 QIcon getIconByState(const BitTorrent::TorrentState state)
@@ -647,7 +671,7 @@ QIcon getIconByState(const BitTorrent::TorrentState state)
     }
 }
 
-QColor getColorByState(const BitTorrent::TorrentState state)
+QColor getDefaultColorByState(const BitTorrent::TorrentState state)
 {
     // Color names taken from http://cloford.com/resources/colours/500col.htm
     bool dark = isDarkTheme();
@@ -703,55 +727,55 @@ QColor getColorByState(const BitTorrent::TorrentState state)
 
 QIcon getPausedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/paused.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("paused"));
     return cached;
 }
 
 QIcon getQueuedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/queued.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("queued"));
     return cached;
 }
 
 QIcon getDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/downloading.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("downloading"));
     return cached;
 }
 
 QIcon getStalledDownloadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledDL.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("stalledDL"));
     return cached;
 }
 
 QIcon getUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/uploading.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("uploading"));
     return cached;
 }
 
 QIcon getStalledUploadingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/stalledUP.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("stalledUP"));
     return cached;
 }
 
 QIcon getCompletedIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/completed.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("completed"));
     return cached;
 }
 
 QIcon getCheckingIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/checking.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("checking"));
     return cached;
 }
 
 QIcon getErrorIcon()
 {
-    static QIcon cached = QIcon(":/icons/skin/error.svg");
+    static QIcon cached = UIThemeManager::instance()->getIcon(QLatin1String("error"));
     return cached;
 }
 

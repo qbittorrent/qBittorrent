@@ -323,7 +323,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
             }
         }
         else { // Single number
-            const QString expStr {QString("\\b(?:s0?%1[ -_\\.]?e0?%2|%1x0?%2)(?:\\D|\\b)").arg(season, episode)};
+            const QString expStr {QString::fromLatin1("\\b(?:s0?%1[ -_\\.]?e0?%2|%1x0?%2)(?:\\D|\\b)").arg(season, episode)};
             if (cachedRegex(expStr).match(articleTitle).hasMatch())
                 return true;
         }
@@ -354,7 +354,7 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
         if (!isRepack && !isProper)
             return false;
 
-        const QString fullEpisodeStr = QString("%1%2%3").arg(episodeStr,
+        const QString fullEpisodeStr = QString::fromLatin1("%1%2%3").arg(episodeStr,
                                                              isRepack ? "-REPACK" : "",
                                                              isProper ? "-PROPER" : "");
         const bool previouslyMatchedFull = m_dataPtr->previouslyMatchedEpisodes.contains(fullEpisodeStr);
@@ -366,8 +366,8 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
         // If this is a REPACK and PROPER download, add the individual entries to the list
         // so we don't download those
         if (isRepack && isProper) {
-            m_dataPtr->lastComputedEpisodes.append(QString("%1-REPACK").arg(episodeStr));
-            m_dataPtr->lastComputedEpisodes.append(QString("%1-PROPER").arg(episodeStr));
+            m_dataPtr->lastComputedEpisodes.append(episodeStr + QLatin1String("-REPACK"));
+            m_dataPtr->lastComputedEpisodes.append(episodeStr + QLatin1String("-PROPER"));
         }
     }
 

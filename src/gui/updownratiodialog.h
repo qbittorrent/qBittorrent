@@ -36,7 +36,7 @@ namespace Ui
     class UpDownRatioDialog;
 }
 
-class UpDownRatioDialog : public QDialog
+class UpDownRatioDialog final : public QDialog
 {
     Q_OBJECT
 

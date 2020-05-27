@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Pavadinimas negali būti tuščias</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Pavadinimas nekeistas</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Nepavyko atnaujinti pavadinimo</translation>
     </message>
 </context>
 <context>
@@ -522,10 +522,42 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Jūsų naršyklė nepalaiko šios ypatybės</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1059,23 +1091,19 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Strict super seeding:</source>
-        <translation type="unfinished" />
+        <translation>Informacija: Slaptažodis yra išsaugomas nešifruotai</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>μTP-TCP maišytos veiksenos algoritmas:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Pagrįsta išsiuntimo greičiu</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: Žymės (atskirtos kableliais)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
@@ -1095,18 +1123,14 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Anti-siuntėjų</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation>Įjungti OS podėlį:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>sec</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1115,7 +1139,7 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Leisti kelis sujungimus iš to paties IP adreso:</translation>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1143,11 +1167,11 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Pristabdyti torentą</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>Šalinti torentą ir jo failus</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
@@ -1159,7 +1183,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>libtorrent sekcija</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes:</source>
@@ -1179,7 +1203,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Leisti šifravimą</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1226,10 +1250,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Išplėstinės</translation>
     </message>
@@ -1259,7 +1279,7 @@
     </message>
     <message>
         <source>Network Interface (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Tinklo sąsaja (būtina paleisti iš naujo):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1282,7 +1302,39 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
+        <source>Resolve peer countries:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1345,10 +1397,6 @@
         <translation>Failai</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Šalis</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation type="unfinished" />
     </message>
@@ -1358,10 +1406,14 @@
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>Kopijuoti IP:prievadą</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Country/Region</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1559,15 +1611,15 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Svarba</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Filtruoti failus...</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Pervardinti...</translation>
     </message>
 </context>
 <context>
@@ -1745,6 +1797,30 @@
         <source>Errored (%1)</source>
         <translation>Klaida (%1)</translation>
     </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -1895,7 +1971,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Prieinamumas</translation>
     </message>
 </context>
 <context>
@@ -1994,15 +2070,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Pavadinimas</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Eiga</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Dydis</translation>
     </message>
 </context>
 <context>
@@ -2100,7 +2176,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Žymės</translation>
     </message>
 </context>
 <context>
@@ -2245,23 +2321,23 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>Kableliais atskirtos žymės:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Pridėti žymes</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Žymės</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet nuoroda</translation>
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>Maiša</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2269,7 +2345,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Pavadinimas</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -2277,7 +2353,7 @@
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Eilė</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Taip</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ne</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>Apie qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Bibliotekos</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licencija</translation>
     </message>
@@ -2732,6 +2804,14 @@
     <message>
         <source>Author</source>
         <translation>Autorius</translation>
+    </message>
+    <message>
+        <source>Software Used</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2784,7 +2864,7 @@
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Naujas pavadinimas:</translation>
     </message>
 </context>
 </TS>

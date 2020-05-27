@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>
+    qbittorrent-new-light
+  </title>
+  <defs>
+    <linearGradient x1="34.012%" y1="0%" x2="76.373%" y2="76.805%" id="a">
+      <stop stop-color="#72B4F5" offset="0%"/>
+      <stop stop-color="#356EBF" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <circle stroke="#DAEFFF" stroke-width="32" fill="url(#a)" cx="512" cy="512" r="496"/>
+    <text font-size="632" font-family="Open Sans" fill="#FFF">
+      <tspan x="501.203" y="676.172">b</tspan>
+    </text>
+    <text font-size="632" font-family="Open Sans" fill="#C8E8FF">
+      <tspan x="135.203" y="676.172">q</tspan>
+    </text>
+  </g>
+</svg>

@@ -124,7 +124,7 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     case Qt::DecorationRole:
         return UIThemeManager::instance()->getIcon("inode-directory");
     case Qt::DisplayRole:
-        return QString(QLatin1String("%1 (%2)"))
+        return QString::fromLatin1("%1 (%2)")
                .arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
     case Qt::UserRole:
         return item.torrentsCount();
@@ -319,7 +319,7 @@ QVector<TagModelItem *> TagFilterModel::findItems(const QSet<QString> &tags)
         if (item)
             items.push_back(item);
         else
-            qWarning() << QString("Requested tag '%1' missing from the model.").arg(tag);
+            qWarning() << QString::fromLatin1("Requested tag '%1' missing from the model.").arg(tag);
     }
     return items;
 }

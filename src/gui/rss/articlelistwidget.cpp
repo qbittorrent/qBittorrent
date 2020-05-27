@@ -33,6 +33,7 @@
 #include "base/global.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
+#include "uithememanager.h"
 
 ArticleListWidget::ArticleListWidget(QWidget *parent)
     : QListWidget(parent)
@@ -98,7 +99,7 @@ void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
     if (!item) return;
 
     item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
-    item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
+    item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
 
     checkInvariant();
 }
@@ -123,11 +124,11 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
     item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
     if (article->isRead()) {
         item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
-        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
+        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
     }
     else {
         item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Active, QPalette::Link));
-        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere2.png"));
+        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
     }
 
     return item;

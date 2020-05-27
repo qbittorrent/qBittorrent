@@ -33,7 +33,7 @@
 
 class QStringList;
 
-class TransferListSortModel : public QSortFilterProxyModel
+class TransferListSortModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(TransferListSortModel)

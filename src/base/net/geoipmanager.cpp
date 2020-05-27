@@ -40,7 +40,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
 #include "downloadmanager.h"
-#include "private/geoipdatabase.h"
+#include "geoipdatabase.h"
 
 static const QString DATABASE_URL = QStringLiteral("https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz");
 static const char GEODB_FOLDER[] = "GeoDB";
@@ -88,7 +88,7 @@ void GeoIPManager::loadDatabase()
     m_geoIPDatabase = nullptr;
 
     const QString filepath = Utils::Fs::expandPathAbs(
-        QString("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEODB_FOLDER, GEODB_FILENAME));
+        QString::fromLatin1("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEODB_FOLDER, GEODB_FILENAME));
 
     QString error;
     m_geoIPDatabase = GeoIPDatabase::load(filepath, error);
@@ -442,7 +442,7 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
                         specialFolderLocation(SpecialFolder::Data) + GEODB_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
-            QFile targetFile(QString("%1/%2").arg(targetPath, GEODB_FILENAME));
+            QFile targetFile(QString::fromLatin1("%1/%2").arg(targetPath, GEODB_FILENAME));
             if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(data) == -1))
                 LogMsg(tr("Couldn't save downloaded IP geolocation database file."), Log::WARNING);
             else

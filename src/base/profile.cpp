@@ -29,7 +29,7 @@
 
 #include "profile.h"
 
-#include "private/profile_p.h"
+#include "profile_p.h"
 
 Profile *Profile::m_instance = nullptr;
 

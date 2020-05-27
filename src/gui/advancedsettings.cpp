@@ -103,15 +103,20 @@ enum AdvSettingsRows
     SOCKET_BACKLOG_SIZE,
     OUTGOING_PORT_MIN,
     OUTGOING_PORT_MAX,
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    UPNP_LEASE_DURATION,
+#endif
     UTP_MIX_MODE,
     MULTI_CONNECTIONS_PER_IP,
+#ifdef HAS_HTTPS_TRACKER_VALIDATION
+    VALIDATE_HTTPS_TRACKER_CERTIFICATE,
+#endif
     // embedded tracker
     TRACKER_STATUS,
     TRACKER_PORT,
     // seeding
     CHOKING_ALGORITHM,
     SEED_CHOKING_ALGORITHM,
-    SUPER_SEEDING,
     // tracker
     ANNOUNCE_ALL_TRACKERS,
     ANNOUNCE_ALL_TIERS,
@@ -205,10 +210,18 @@ void AdvancedSettings::saveAdvancedSettings()
     // Outgoing ports
     session->setOutgoingPortsMin(m_spinBoxOutgoingPortsMin.value());
     session->setOutgoingPortsMax(m_spinBoxOutgoingPortsMax.value());
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    // UPnP lease duration
+    session->setUPnPLeaseDuration(m_spinBoxUPnPLeaseDuration.value());
+#endif
     // uTP-TCP mixed mode
     session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(m_comboBoxUtpMixedMode.currentIndex()));
     // multiple connections per IP
     session->setMultiConnectionsPerIpEnabled(m_checkBoxMultiConnectionsPerIp.isChecked());
+#ifdef HAS_HTTPS_TRACKER_VALIDATION
+    // Validate HTTPS tracker certificate
+    session->setValidateHTTPSTrackerCertificate(m_checkBoxValidateHTTPSTrackerCertificate.isChecked());
+#endif
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(m_checkBoxRecheckCompleted.isChecked());
     // Transfer list refresh interval
@@ -216,8 +229,6 @@ void AdvancedSettings::saveAdvancedSettings()
     // Peer resolution
     pref->resolvePeerCountries(m_checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(m_checkBoxResolveHosts.isChecked());
-    // Super seeding
-    session->setSuperSeedingEnabled(m_checkBoxSuperSeeding.isChecked());
     // Network interface
     if (m_comboBoxInterface.currentIndex() == 0) {
         // All interfaces (default)
@@ -333,7 +344,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelQbtLink->setOpenExternalLinks(true);
-    addRow(QBITTORRENT_HEADER, QString("<b>%1</b>").arg(tr("qBittorrent Section")), labelQbtLink);
+    addRow(QBITTORRENT_HEADER, QString::fromLatin1("<b>%1</b>").arg(tr("qBittorrent Section")), labelQbtLink);
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     auto *labelLibtorrentLink = new QLabel(
@@ -341,7 +352,7 @@ void AdvancedSettings::loadAdvancedSettings()
                  , tr("Open documentation"))
         , this);
     labelLibtorrentLink->setOpenExternalLinks(true);
-    addRow(LIBTORRENT_HEADER, QString("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
+    addRow(LIBTORRENT_HEADER, QString::fromLatin1("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
 #if defined(Q_OS_WIN)
@@ -476,6 +487,15 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxOutgoingPortsMax.setMaximum(65535);
     m_spinBoxOutgoingPortsMax.setValue(session->outgoingPortsMax());
     addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &m_spinBoxOutgoingPortsMax);
+#if (LIBTORRENT_VERSION_NUM >= 10206)
+    // UPnP lease duration
+    m_spinBoxUPnPLeaseDuration.setMinimum(0);
+    m_spinBoxUPnPLeaseDuration.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxUPnPLeaseDuration.setValue(session->UPnPLeaseDuration());
+    m_spinBoxUPnPLeaseDuration.setSuffix(tr(" s", " seconds"));
+    addRow(UPNP_LEASE_DURATION, (tr("UPnP lease duration [0: Permanent lease]") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration", "(?)"))
+        , &m_spinBoxUPnPLeaseDuration);
+#endif
     // uTP-TCP mixed mode
     m_comboBoxUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
     m_comboBoxUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
@@ -485,6 +505,13 @@ void AdvancedSettings::loadAdvancedSettings()
     // multiple connections per IP
     m_checkBoxMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
     addRow(MULTI_CONNECTIONS_PER_IP, tr("Allow multiple connections from the same IP address"), &m_checkBoxMultiConnectionsPerIp);
+#ifdef HAS_HTTPS_TRACKER_VALIDATION
+    // Validate HTTPS tracker certificate
+    m_checkBoxValidateHTTPSTrackerCertificate.setChecked(session->validateHTTPSTrackerCertificate());
+    addRow(VALIDATE_HTTPS_TRACKER_CERTIFICATE, (tr("Validate HTTPS tracker certificates")
+            + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#validate_https_trackers", "(?)"))
+            , &m_checkBoxValidateHTTPSTrackerCertificate);
+#endif
     // Recheck completed torrents
     m_checkBoxRecheckCompleted.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
@@ -500,10 +527,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Resolve peer hosts
     m_checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &m_checkBoxResolveHosts);
-    // Super seeding
-    m_checkBoxSuperSeeding.setChecked(session->isSuperSeedingEnabled());
-    addRow(SUPER_SEEDING, (tr("Strict super seeding") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#strict_super_seeding", "(?)"))
-            , &m_checkBoxSuperSeeding);
     // Network interface
     m_comboBoxInterface.addItem(tr("Any interface", "i.e. Any network interface"));
     const QString currentInterface = session->networkInterface();
@@ -522,10 +545,10 @@ void AdvancedSettings::loadAdvancedSettings()
         m_comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
         m_comboBoxInterface.setCurrentIndex(i);
     }
-    addRow(NETWORK_IFACE, tr("Network Interface (requires restart)"), &m_comboBoxInterface);
+    addRow(NETWORK_IFACE, tr("Network Interface"), &m_comboBoxInterface);
     // Network interface address
     updateInterfaceAddressCombo();
-    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to (requires restart)"), &m_comboBoxInterfaceAddress);
+    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to"), &m_comboBoxInterfaceAddress);
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);

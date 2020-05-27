@@ -28,6 +28,8 @@
 
 #include "peerinfo.h"
 
+#include <libtorrent/version.hpp>
+
 #include <QBitArray>
 
 #include "base/bittorrent/torrenthandle.h"

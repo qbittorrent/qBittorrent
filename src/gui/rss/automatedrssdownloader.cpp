@@ -49,18 +49,18 @@
 #include "base/rss/rss_session.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "autoexpandabledialog.h"
+#include "gui/autoexpandabledialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #include "ui_automatedrssdownloader.h"
-#include "uithememanager.h"
-#include "utils.h"
 
 const QString EXT_JSON {QStringLiteral(".json")};
 const QString EXT_LEGACY {QStringLiteral(".rssrules")};
 
 AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     : QDialog(parent)
-    , m_formatFilterJSON(QString("%1 (*%2)").arg(tr("Rules"), EXT_JSON))
-    , m_formatFilterLegacy(QString("%1 (*%2)").arg(tr("Rules (legacy)"), EXT_LEGACY))
+    , m_formatFilterJSON(QString::fromLatin1("%1 (*%2)").arg(tr("Rules"), EXT_JSON))
+    , m_formatFilterLegacy(QString::fromLatin1("%1 (*%2)").arg(tr("Rules (legacy)"), EXT_LEGACY))
     , m_ui(new Ui::AutomatedRssDownloader)
     , m_currentRuleItem(nullptr)
 {
@@ -413,7 +413,7 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
     QString selectedFilter {m_formatFilterJSON};
     QString path = QFileDialog::getSaveFileName(
                 this, tr("Export RSS rules"), QDir::homePath()
-                , QString("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter);
+                , QString::fromLatin1("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter);
     if (path.isEmpty()) return;
 
     const RSS::AutoDownloader::RulesFileFormat format {
@@ -445,7 +445,7 @@ void AutomatedRssDownloader::on_importBtn_clicked()
     QString selectedFilter {m_formatFilterJSON};
     QString path = QFileDialog::getOpenFileName(
                 this, tr("Import RSS rules"), QDir::homePath()
-                , QString("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter);
+                , QString::fromLatin1("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter);
     if (path.isEmpty() || !QFile::exists(path))
         return;
 

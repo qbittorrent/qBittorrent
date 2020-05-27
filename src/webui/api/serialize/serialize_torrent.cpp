@@ -30,7 +30,9 @@
 
 #include <QDateTime>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/trackerentry.h"
 #include "base/utils/fs.h"
 
 namespace
@@ -85,7 +87,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     QVariantMap ret = {
         {KEY_TORRENT_HASH, QString(torrent.hash())},
         {KEY_TORRENT_NAME, torrent.name()},
-        {KEY_TORRENT_MAGNET_URI, torrent.toMagnetUri()},
+        {KEY_TORRENT_MAGNET_URI, torrent.createMagnetURI()},
         {KEY_TORRENT_SIZE, torrent.wantedSize()},
         {KEY_TORRENT_PROGRESS, torrent.progress()},
         {KEY_TORRENT_DLSPEED, torrent.downloadPayloadRate()},
@@ -109,6 +111,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_ADDED_ON, torrent.addedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
+        {KEY_TORRENT_TRACKERS_COUNT, torrent.trackers().size()},
         {KEY_TORRENT_DL_LIMIT, torrent.downloadLimit()},
         {KEY_TORRENT_UP_LIMIT, torrent.uploadLimit()},
         {KEY_TORRENT_AMOUNT_DOWNLOADED, torrent.totalDownload()},

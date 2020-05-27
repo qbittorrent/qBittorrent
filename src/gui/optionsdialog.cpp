@@ -81,9 +81,76 @@ namespace
             ret.append(locale.toString(date.addDays(i), "dddd"));
         return ret;
     }
+
+    QString languageToLocalizedString(const QLocale &locale)
+    {
+        switch (locale.language()) {
+        case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
+        case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
+        case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
+        case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
+        case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
+        case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
+        case QLocale::Chinese:
+            switch (locale.country()) {
+            case QLocale::China: return QString::fromUtf8(C_LOCALE_CHINESE_SIMPLIFIED);
+            case QLocale::HongKong: return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
+            default: return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
+            }
+        case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
+        case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
+        case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
+        case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
+        case QLocale::English:
+            switch (locale.country()) {
+            case QLocale::Australia: return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
+            case QLocale::UnitedKingdom: return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
+            default: return QString::fromUtf8(C_LOCALE_ENGLISH);
+            }
+        case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
+        case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
+        case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
+        case QLocale::Georgian: return QString::fromUtf8(C_LOCALE_GEORGIAN);
+        case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
+        case QLocale::Greek: return QString::fromUtf8(C_LOCALE_GREEK);
+        case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
+        case QLocale::Hindi: return QString::fromUtf8(C_LOCALE_HINDI);
+        case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
+        case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
+        case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
+        case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
+        case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
+        case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
+        case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
+        case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
+        case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
+        case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
+        case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
+        case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
+        case QLocale::Portuguese:
+            if (locale.country() == QLocale::Brazil)
+                return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
+            return QString::fromUtf8(C_LOCALE_PORTUGUESE);
+        case QLocale::Romanian: return QString::fromUtf8(C_LOCALE_ROMANIAN);
+        case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
+        case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
+        case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
+        case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
+        case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
+        case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
+        case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
+        case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
+        case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
+        case QLocale::Vietnamese: return QString::fromUtf8(C_LOCALE_VIETNAMESE);
+        default:
+            const QString lang = QLocale::languageToString(locale.language());
+            qWarning() << "Unrecognized language name: " << lang;
+            return lang;
+        }
+    }
 }
 
-class WheelEventEater : public QObject
+class WheelEventEater final : public QObject
 {
 public:
     using QObject::QObject;
@@ -135,8 +202,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow_off.svg", this, 16));
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(":/icons/slow.svg", this, 16));
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")), this, 16));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow")), this, 16));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -144,7 +211,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
         tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!") +
         QLatin1String("</p><p>") +
-        tr("When these options are enabled, qBittorent will <strong>delete</strong> .torrent files "
+        tr("When these options are enabled, qBittorrent will <strong>delete</strong> .torrent files "
         "after they were successfully (the first option) or not (the second option) added to its "
         "download queue. This will be applied <strong>not only</strong> to the files opened via "
         "&ldquo;Add torrent&rdquo; menu action but to those opened via <strong>file type association</strong> as well") +
@@ -284,7 +351,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkAdditionDialog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAdditionDialogFront, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkCreateSubfolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkKeepTopLevelFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteCancelledTorrentBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkExportDir, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -436,6 +503,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSPasswordTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupWebUIAddCustomHTTPHeaders, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUICustomHTTPHeaders, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
 #endif // DISABLE_WEBUI
 
     // RSS tab
@@ -664,7 +733,7 @@ void OptionsDialog::saveOptions()
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
-    session->setCreateTorrentSubfolder(m_ui->checkCreateSubfolder->isChecked());
+    session->setKeepTorrentTopLevelFolder(m_ui->checkKeepTopLevelFolder->isChecked());
     ScanFoldersModel::instance()->removeFromFSWatcher(m_removedScanDirs);
     ScanFoldersModel::instance()->addToFSWatcher(m_addedScanDirs);
     ScanFoldersModel::instance()->makePersistent();
@@ -795,6 +864,9 @@ void OptionsDialog::saveOptions()
         // Alternative UI
         pref->setAltWebUiEnabled(m_ui->groupAltWebUI->isChecked());
         pref->setWebUiRootFolder(m_ui->textWebUIRootFolder->selectedPath());
+        // Custom HTTP headers
+        pref->setWebUICustomHTTPHeadersEnabled(m_ui->groupWebUIAddCustomHTTPHeaders->isChecked());
+        pref->setWebUICustomHTTPHeaders(m_ui->textWebUICustomHTTPHeaders->toPlainText());
     }
     // End Web UI
     // End preferences
@@ -815,7 +887,6 @@ Net::ProxyType OptionsDialog::getProxyType() const
     switch (m_ui->comboProxyType->currentIndex()) {
     case 1:
         return Net::ProxyType::SOCKS4;
-        break;
     case 2:
         if (isProxyAuthEnabled())
             return Net::ProxyType::SOCKS5_PW;
@@ -906,7 +977,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
     m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
     m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
-    m_ui->checkCreateSubfolder->setChecked(session->isCreateTorrentSubfolder());
+    m_ui->checkKeepTopLevelFolder->setChecked(session->isKeepTorrentTopLevelFolder());
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
@@ -1176,6 +1247,9 @@ void OptionsDialog::loadOptions()
 
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUiEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUiRootFolder());
+    // Custom HTTP headers
+    m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
+    m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());
     // End Web UI preferences
 }
 
@@ -1376,28 +1450,27 @@ void OptionsDialog::toggleComboRatioLimitAct()
     m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
-void OptionsDialog::enableProxy(int index)
+void OptionsDialog::enableProxy(const int index)
 {
-    if (index) {
+    if (index >= 1) { // Any proxy type is used
         //enable
         m_ui->lblProxyIP->setEnabled(true);
         m_ui->textProxyIP->setEnabled(true);
         m_ui->lblProxyPort->setEnabled(true);
         m_ui->spinProxyPort->setEnabled(true);
         m_ui->checkProxyPeerConnecs->setEnabled(true);
-        if (index > 1) {
+        if (index >= 2) { // SOCKS5 or HTTP
             m_ui->checkProxyAuth->setEnabled(true);
             m_ui->isProxyOnlyForTorrents->setEnabled(true);
         }
         else {
             m_ui->checkProxyAuth->setEnabled(false);
-            m_ui->checkProxyAuth->setChecked(false);
             m_ui->isProxyOnlyForTorrents->setEnabled(false);
             m_ui->isProxyOnlyForTorrents->setChecked(true);
         }
     }
-    else {
-        //disable
+    else { // No proxy
+        // disable
         m_ui->lblProxyIP->setEnabled(false);
         m_ui->textProxyIP->setEnabled(false);
         m_ui->lblProxyPort->setEnabled(false);
@@ -1405,7 +1478,6 @@ void OptionsDialog::enableProxy(int index)
         m_ui->checkProxyPeerConnecs->setEnabled(false);
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
-        m_ui->checkProxyAuth->setChecked(false);
     }
 }
 
@@ -1559,7 +1631,7 @@ void OptionsDialog::on_addScanFolderButton_clicked()
         }
 
         if (!error.isEmpty())
-            QMessageBox::critical(this, tr("Adding entry failed"), QString("%1\n%2").arg(error, dir));
+            QMessageBox::critical(this, tr("Adding entry failed"), QString::fromLatin1("%1\n%2").arg(error, dir));
     }
 }
 
@@ -1619,7 +1691,7 @@ QString OptionsDialog::webUiPassword() const
 void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
 
     if (path.isEmpty())
         return;
@@ -1637,13 +1709,13 @@ void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError s
         return;
     }
 
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-low.svg", this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
 
     if (path.isEmpty())
         return;
@@ -1661,7 +1733,7 @@ void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError sh
         return;
     }
 
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(":/icons/qbt-theme/security-high.svg", this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
 }
 
 void OptionsDialog::showConnectionTab()
@@ -1696,81 +1768,6 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
-}
-
-QString OptionsDialog::languageToLocalizedString(const QLocale &locale)
-{
-    switch (locale.language()) {
-    case QLocale::English: {
-        if (locale.country() == QLocale::Australia)
-            return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
-        if (locale.country() == QLocale::UnitedKingdom)
-            return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
-        return QString::fromUtf8(C_LOCALE_ENGLISH);
-    }
-    case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
-    case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
-    case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
-    case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
-    case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
-    case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
-    case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
-    case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
-    case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
-    case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
-    case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
-    case QLocale::Portuguese: {
-        if (locale.country() == QLocale::Brazil)
-            return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
-        return QString::fromUtf8(C_LOCALE_PORTUGUESE);
-    }
-    case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
-    case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
-    case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
-    case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
-    case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
-    case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
-    case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
-    case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
-    case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
-    case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
-    case QLocale::Romanian: return QString::fromUtf8(C_LOCALE_ROMANIAN);
-    case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
-    case QLocale::Greek: return QString::fromUtf8(C_LOCALE_GREEK);
-    case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
-    case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
-    case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
-    case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
-    case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
-    case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
-    case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
-    case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
-    case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
-    case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
-    case QLocale::Hindi: return QString::fromUtf8(C_LOCALE_HINDI);
-    case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
-    case QLocale::Georgian: return QString::fromUtf8(C_LOCALE_GEORGIAN);
-    case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
-    case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
-    case QLocale::Vietnamese: return QString::fromUtf8(C_LOCALE_VIETNAMESE);
-    case QLocale::Chinese: {
-        switch (locale.country()) {
-        case QLocale::China:
-            return QString::fromUtf8(C_LOCALE_CHINESE_SIMPLIFIED);
-        case QLocale::HongKong:
-            return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
-        default:
-            return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
-        }
-    }
-    case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
-    default: {
-        // Fallback to English
-        const QString engLang = QLocale::languageToString(locale.language());
-        qWarning() << "Unrecognized language name: " << engLang;
-        return engLang;
-    }
-    }
 }
 
 bool OptionsDialog::schedTimesOk()

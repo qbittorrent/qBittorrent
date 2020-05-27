@@ -45,9 +45,10 @@ namespace Ui
 }
 class PreviewListDelegate;
 
-class PreviewSelectDialog : public QDialog
+class PreviewSelectDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PreviewSelectDialog)
 
 public:
     enum PreviewColumn

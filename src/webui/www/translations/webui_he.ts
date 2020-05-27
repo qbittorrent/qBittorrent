@@ -12,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation>מדור:</translation>
+        <translation>קטגוריה:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -46,15 +46,15 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation>הוסף מדור...</translation>
+        <translation>הוסף קטגוריה…</translation>
     </message>
     <message>
         <source>Remove category</source>
-        <translation>הסר מדור</translation>
+        <translation>הסר קטגוריה</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>הסר מדורים שאינם בשימוש</translation>
+        <translation>הסר קטגוריות שאינן בשימוש</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -74,7 +74,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>ערוך קטגוריה...</translation>
+        <translation>ערוך קטגוריה…</translation>
     </message>
 </context>
 <context>
@@ -97,11 +97,11 @@
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלת קצב חלופי של העלאה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלת קצב חלופי של העלאה חייבת להיות גדולה מן 0 או מושבתת.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלת קצב חלופי של הורדה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלת קצב חלופי של הורדה חייבת להיות גדולה מן 0 או מושבתת.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -157,7 +157,7 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>לא ניתן היה להיכנס, qBittorrent כנראה בלתי נגיש.</translation>
+        <translation>לא היה ניתן להיכנס, qBittorrent כנראה בלתי נגיש.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -231,7 +231,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>אחר...</translation>
+        <translation>אחר…</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>שם אינו יכול להיות ריק</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>השם נותר ללא שינוי</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>נכשל בעדכון שם</translation>
     </message>
 </context>
 <context>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Options...</source>
-        <translation>אפשרויות...</translation>
+        <translation>אפשרויות…</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -433,7 +433,7 @@
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>הוסף קובץ טורנט...</translation>
+        <translation>הוסף קובץ טורנט…</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -441,7 +441,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>הוסף קישור טורנט...</translation>
+        <translation>הוסף קישור טורנט…</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>מגבלות מהירות חלופיות</translation>
+        <translation>מגבלות מהירות חלופית</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -478,7 +478,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>סנן רשימת טורנטים...</translation>
+        <translation>סנן רשימת טורנטים…</translation>
     </message>
     <message>
         <source>Search</source>
@@ -522,11 +522,43 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>הדפדפן שלך אינו תומך במאפיין זה</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>כדי להשתמש להינגשבמאפיין זה, WebUI צריך להיות בגישה על HTTPS</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>מעמד חיבור: מאוחרי חומת אש</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>מעמד חיבור: מחובר</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>מגבלות מהירות חלופית: כבוי</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>צלמית מהירות הורדה</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>מעמד חיבור</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>מגבלות מהירות חלופית: פועל</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>צלמית מהירות העלאה</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>מעמד חיבור: מנותק</translation>
     </message>
 </context>
 <context>
@@ -749,7 +781,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>כתובות IP שהוחרמו באופן ידני...</translation>
+        <translation>כתובות IP שהוחרמו באופן ידני…</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -891,7 +923,7 @@
     </message>
     <message>
         <source>%L: Category</source>
-        <translation>%L: מדור</translation>
+        <translation>%L: קטגוריה</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1062,10 +1094,6 @@
         <translation>מידע: הסיסמה נשמרת באופן בלתי מוצפן</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>זריעה קפדנית־על</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>אלגוריתם מצב משולב μTP-TCP:</translation>
     </message>
@@ -1104,10 +1132,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>כאשר יחס מגיע אל</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>שניות</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1226,10 +1250,6 @@
         <translation>חריצים מקובעים</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>פתור מדינות עמיתים (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>מתקדם</translation>
     </message>
@@ -1282,8 +1302,40 @@
         <translation>פסק זמן של שיח:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>האזן על כתובת IPv6 (דורש הפעלה מחדש):</translation>
+        <source>Resolve peer countries:</source>
+        <translation>פתור מדינות עמיתים:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>החרם למשך:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>השתמש במידת קירבה של חתיכות (דורש libtorrent &gt;= 1.2.2):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation>עצור פסק זמן של גששים:</translation>
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>החרם לקוח לאחר כישלונות רצופים:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>אפשר דגל של עוגייה מאובטחת (דורש HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>משך חכירת UPnP [0: חכירה קבועה]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>קבצים</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>מדינה</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>החרם עמית לצמיתות</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>הוסף עמית חדש…</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>מדינה/אזור</translation>
     </message>
 </context>
 <context>
@@ -1563,11 +1615,11 @@
     </message>
     <message>
         <source>Filter files...</source>
-        <translation>סנן קבצים...</translation>
+        <translation>סנן קבצים…</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>שנה שם…</translation>
     </message>
 </context>
 <context>
@@ -1745,6 +1797,30 @@
         <source>Errored (%1)</source>
         <translation>נתקל בשגיאה (%1)</translation>
     </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>העלאה ממתינה (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>הורדה ממתינה (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>הורדה ממתינה (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>ממתין (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>העלאה ממתינה (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>ממתין (%1)</translation>
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -1803,7 +1879,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>מדור</translation>
+        <translation>קטגוריה</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -1926,7 +2002,7 @@
     </message>
     <message>
         <source>Updating...</source>
-        <translation>מעדכן...</translation>
+        <translation>מעדכן…</translation>
     </message>
     <message>
         <source>Working</source>
@@ -1958,11 +2034,11 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>הוסף גשש חדש...</translation>
+        <translation>הוסף גשש חדש…</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>ערוך כתובת גשש...</translation>
+        <translation>ערוך כתובת גשש…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2096,7 +2172,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>מדורים</translation>
+        <translation>קטגוריות</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2139,15 +2215,15 @@
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>הגבל יחס שיתוף...</translation>
+        <translation>הגבל יחס שיתוף…</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation>הגבל קצב העלאה...</translation>
+        <translation>הגבל קצב העלאה…</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation>הגבל קצב הורדה...</translation>
+        <translation>הגבל קצב הורדה…</translation>
     </message>
     <message>
         <source>Move up</source>
@@ -2171,7 +2247,7 @@
     </message>
     <message>
         <source>Set location...</source>
-        <translation>הגדר מיקום...</translation>
+        <translation>הגדר מיקום…</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -2183,12 +2259,12 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>מדור</translation>
+        <translation>קטגוריה</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation>חדש...</translation>
+        <translation>חדש…</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -2205,7 +2281,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation>שנה שם...</translation>
+        <translation>שנה שם…</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -2466,7 +2542,7 @@
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>מתקעי חיפוש...</translation>
+        <translation>מתקעי חיפוש…</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>כן</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>לא</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>אודות qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>סיפריות</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>רישיון</translation>
     </message>
@@ -2733,6 +2805,14 @@
         <source>Author</source>
         <translation>מחבר</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation>תוכנות בשימוש</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>מסד־הנתונים החינמי IP to Country Lite מאת DB-IP משמש עבור פתירת מדינות של עמיתים. מסד־הנתונים ברישיון תחת הרישיון הבינלאומי Creative Commons Attribution 4.0</translation>
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>כל כתובות IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>כל כתובות IPv4</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2860,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>שינוי שם</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>שם חדש:</translation>
     </message>
 </context>
 </TS>

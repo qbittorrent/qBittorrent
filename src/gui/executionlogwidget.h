@@ -30,33 +30,33 @@
 #define EXECUTIONLOGWIDGET_H
 
 #include <QWidget>
-#include "base/logger.h"
 
-class LogListWidget;
+#include "base/logger.h"
 
 namespace Ui
 {
     class ExecutionLogWidget;
 }
 
+class BaseLogModel;
+class LogFilterModel;
+class LogListView;
+
 class ExecutionLogWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &types);
-    void showMsgTypes(const Log::MsgTypes &types);
+    ExecutionLogWidget(Log::MsgTypes types, QWidget *parent);
     ~ExecutionLogWidget();
-
-private slots:
-    void addLogMessage(const Log::Msg &msg);
-    void addPeerMessage(const Log::Peer &peer);
+    
+    void setMessageTypes(Log::MsgTypes types);
 
 private:
-    Ui::ExecutionLogWidget *m_ui;
+    void displayContextMenu(const QPoint &pos, const LogListView *view, const BaseLogModel *model) const;
 
-    LogListWidget *m_msgList;
-    LogListWidget *m_peerList;
+    Ui::ExecutionLogWidget *m_ui;
+    LogFilterModel *m_messageFilterModel;
 };
 
 #endif // EXECUTIONLOGWIDGET_H

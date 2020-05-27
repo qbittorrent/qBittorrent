@@ -39,8 +39,8 @@ public:
     QString statusText() const;
 
 private:
-    const int m_statusCode;
-    const QString m_statusText;
+    int m_statusCode;
+    QString m_statusText;
 };
 
 class BadRequestHTTPError : public HTTPError

@@ -35,9 +35,9 @@ void ResponseBuilder::status(const uint code, const QString &text)
     m_response.status = {code, text};
 }
 
-void ResponseBuilder::header(const QString &name, const QString &value)
+void ResponseBuilder::setHeader(const Header &header)
 {
-    m_response.headers[name] = value;
+    m_response.headers[header.name] = header.value;
 }
 
 void ResponseBuilder::print(const QString &text, const QString &type)

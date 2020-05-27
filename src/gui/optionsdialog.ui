@@ -446,7 +446,7 @@
                   <item>
                    <widget class="QCheckBox" name="checkCloseToSystray">
                     <property name="toolTip">
-                      <string>The systray icon will still be visible when closing the main window</string>
+                     <string>The systray icon will still be visible when closing the main window</string>
                     </property>
                     <property name="text">
                      <string extracomment="The systray icon will still be visible when closing the main window">Close qBittorrent to notification area</string>
@@ -471,12 +471,12 @@
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (Dark theme)</string>
+                        <string>Monochrome (for dark theme)</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (Light theme)</string>
+                        <string>Monochrome (for light theme)</string>
                        </property>
                       </item>
                      </widget>
@@ -769,9 +769,9 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkCreateSubfolder">
+                <widget class="QCheckBox" name="checkKeepTopLevelFolder">
                  <property name="text">
-                  <string>Create subfolder for torrents with multiple files</string>
+                  <string>Keep top-level folder</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
@@ -3221,6 +3221,28 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="groupWebUIAddCustomHTTPHeaders">
+                 <property name="title">
+                  <string>Add custom HTTP headers</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_8">
+                  <item>
+                   <widget class="QPlainTextEdit" name="textWebUICustomHTTPHeaders">
+                    <property name="lineWrapMode">
+                     <enum>QPlainTextEdit::NoWrap</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Header: value pairs, one per line</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
                   <string>Upda&amp;te my dynamic domain name</string>
@@ -3366,7 +3388,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <customwidget>
    <class>FileSystemPathLineEdit</class>
    <extends>QWidget</extends>
-   <header>fspathedit.h</header>
+   <header>gui/fspathedit.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

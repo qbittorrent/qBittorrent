@@ -83,7 +83,7 @@ namespace
         QString envVarName() const
         {
             return QLatin1String("QBT_")
-                   + QString(QLatin1String(m_name)).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
+                   + QString::fromLatin1(m_name).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
         }
 
     public:
@@ -364,7 +364,7 @@ QStringList QBtCommandLineParameters::paramList() const
     // torrent paths or URLs.
 
     if (!savePath.isEmpty())
-        result.append(QString("@savePath=%1").arg(savePath));
+        result.append(QLatin1String("@savePath=") + savePath);
 
     if (addPaused == TriStateBool::True) {
         result.append(QLatin1String("@addPaused=1"));
@@ -377,7 +377,7 @@ QStringList QBtCommandLineParameters::paramList() const
         result.append(QLatin1String("@skipChecking"));
 
     if (!category.isEmpty())
-        result.append(QString("@category=%1").arg(category));
+        result.append(QLatin1String("@category=") + category);
 
     if (sequential)
         result.append(QLatin1String("@sequential"));

@@ -37,7 +37,7 @@ namespace Http
     {
     public:
         void status(uint code = 200, const QString &text = QLatin1String("OK"));
-        void header(const QString &name, const QString &value);
+        void setHeader(const Header &header);
         void print(const QString &text, const QString &type = CONTENT_TYPE_HTML);
         void print(const QByteArray &data, const QString &type = CONTENT_TYPE_HTML);
         void clear();

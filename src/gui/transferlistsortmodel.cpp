@@ -31,6 +31,7 @@
 #include <QDateTime>
 #include <QStringList>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
 #include "base/types.h"
@@ -96,7 +97,15 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
 
     const auto invokeLessThanForColumn = [this, &left, &right](const int column) -> bool
     {
-        return lessThan_impl(left.sibling(left.row(), column), right.sibling(left.row(), column));
+        return lessThan_impl(left.sibling(left.row(), column), right.sibling(right.row(), column));
+    };
+
+    const auto hashLessThan = [this, &left, &right]() -> bool
+    {
+        const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
+        const QString hashL = model->torrentHandle(left)->hash();
+        const QString hashR = model->torrentHandle(right)->hash();
+        return hashL < hashR;
     };
 
     const int sortColumn = left.column();
@@ -137,8 +146,9 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             else if (dateR.isValid()) {
                 return false;
             }
+
+            return hashLessThan();
         }
-        break;
 
     case TransferListModel::TR_QUEUE_POSITION: {
             // QVariant has comparators for all basic types
@@ -165,8 +175,9 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             else if (dateR.isValid()) {
                 return true;
             }
+
+            return hashLessThan();
         }
-        break;
 
     case TransferListModel::TR_SEEDS:
     case TransferListModel::TR_PEERS: {
@@ -236,19 +247,11 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
         if (rightValue < 0) return true;
 
         return (leftValue < rightValue);
-
-    default:
-        if (leftValue != rightValue)
-            return QSortFilterProxyModel::lessThan(left, right);
-
-        return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
     }
 
-    // Finally, sort by hash
-    const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
-    const QString hashL = model->torrentHandle(left)->hash();
-    const QString hashR = model->torrentHandle(right)->hash();
-    return hashL < hashR;
+    return (leftValue != rightValue)
+        ? QSortFilterProxyModel::lessThan(left, right)
+        : invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
 }
 
 bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const

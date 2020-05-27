@@ -3,15 +3,15 @@
         <legend>QBT_TR(When adding a torrent)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
             <input type="checkbox" id="createsubfolder_checkbox" />
-            <label for="createsubfolder_checkbox">QBT_TR(Create subfolder for torrents with multiple files)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="createsubfolder_checkbox">QBT_TR(Keep top-level folder)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
             <input type="checkbox" id="dontstartdownloads_checkbox" />
-            <label for="dontstartauto_checkbox">QBT_TR(Do not start the download automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="dontstartdownloads_checkbox">QBT_TR(Do not start the download automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox" />
-            <label for="deletetorrentafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -134,7 +134,7 @@
                                 <option value="other">QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>
                             </select>
                             <input id="new_watch_folder_other_txt" type="text" value="QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]" hidden />
-                            <img src="images/qbt-theme/list-add.svg" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="qBittorrent.Preferences.addWatchFolder();" />
+                            <img src="icons/list-add.svg" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="qBittorrent.Preferences.addWatchFolder();" />
                         </div>
                     </td>
                 </tr>
@@ -382,7 +382,7 @@
         <table>
             <tr>
                 <td rowspan="2">
-                    <img src="images/slow_off.svg" style="height: 1em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                    <img src="icons/slow_off.svg" style="height: 1em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                 </td>
                 <td><label for="up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td><input type="number" id="up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -400,7 +400,7 @@
         <table>
             <tr>
                 <td rowspan="2">
-                    <img src="images/slow.svg" style="height: 1em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                    <img src="icons/slow.svg" style="height: 1em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                 </td>
                 <td><label for="alt_up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td><input type="number" id="alt_up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -787,6 +787,14 @@
                 </table>
             </fieldset>
         </fieldset>
+
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="webUIUseCustomHTTPHeadersCheckbox" onclick="qBittorrent.Preferences.updateWebUICustomHTTPHeadersSettings();" />
+                <label for="webUIUseCustomHTTPHeadersCheckbox">QBT_TR(Add custom HTTP headers)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" style="width: 90%;"></textarea>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -834,7 +842,7 @@
         <table>
             <tr>
                 <td>
-                    <label for="networkInterface">QBT_TR(Network Interface (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="networkInterface">QBT_TR(Network Interface:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <select id="networkInterface" style="width: 15em;">
@@ -843,7 +851,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="optionalIPAddressToBind">QBT_TR(Optional IP Address to bind to (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="optionalIPAddressToBind">QBT_TR(Optional IP Address to bind to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <select id="optionalIPAddressToBind" style="width: 15em;">
@@ -1001,6 +1009,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="UPnPLeaseDuration">QBT_TR(UPnP lease duration [0: Permanent lease]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="UPnPLeaseDuration" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="utpTCPMixedModeAlgorithm">QBT_TR(μTP-TCP mixed mode algorithm:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1016,6 +1032,14 @@
                 </td>
                 <td>
                     <input type="checkbox" id="allowMultipleConnectionsFromTheSameIPAddress" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="validateHTTPSTrackerCertificate">QBT_TR(Validate HTTPS tracker certificate:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#validate_https_trackers" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="validateHTTPSTrackerCertificate" />
                 </td>
             </tr>
             <tr>
@@ -1055,14 +1079,6 @@
                         <option value="1">QBT_TR(Fastest upload)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="2">QBT_TR(Anti-leech)QBT_TR[CONTEXT=OptionsDialog]</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="strictSuperSeeding">QBT_TR(Strict super seeding:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#strict_super_seeding" target="_blank">(?)</a></label>
-                </td>
-                <td>
-                    <input type="checkbox" id="strictSuperSeeding" />
                 </td>
             </tr>
             <tr>
@@ -1139,6 +1155,7 @@
                 updateBypasssAuthSettings: updateBypasssAuthSettings,
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
+                updateWebUICustomHTTPHeadersSettings: updateWebUICustomHTTPHeadersSettings,
                 updateDynDnsSettings: updateDynDnsSettings,
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
@@ -1292,26 +1309,19 @@
             $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
             $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
             $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-            $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
+            const isPeerProxyAuthenticatable = ($('peer_proxy_type_select').getProperty('value') === "socks5" || $('peer_proxy_type_select').getProperty('value') === "http");
+            $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyAuthenticatable);
 
-            if (isPeerProxyTypeSelected) {
-                const isPeerProxyTypeSocks5 = $('peer_proxy_type_select').getProperty('value') == "socks5";
-                $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSocks5);
+            if ($('peer_proxy_type_select').getProperty('value') === "socks4")
+                $('proxy_only_for_torrents_checkbox').setProperty('checked', true);
 
-                if (!isPeerProxyTypeSocks5) {
-                    $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSocks5);
-                    updatePeerProxyAuthSettings();
-                }
-            }
-            else {
-                $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
-                $('peer_proxy_auth_checkbox').setProperty('checked', isPeerProxyTypeSelected);
-                updatePeerProxyAuthSettings();
-            }
+            $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyAuthenticatable);
+
+            updatePeerProxyAuthSettings();
         };
 
         const updatePeerProxyAuthSettings = function() {
-            const isPeerProxyAuthEnabled = $('peer_proxy_auth_checkbox').getProperty('checked');
+            const isPeerProxyAuthEnabled = (!$('peer_proxy_auth_checkbox').getProperty('disabled') && $('peer_proxy_auth_checkbox').getProperty('checked'));
             $('peer_proxy_username_text').setProperty('disabled', !isPeerProxyAuthEnabled);
             $('peer_proxy_password_text').setProperty('disabled', !isPeerProxyAuthEnabled);
         };
@@ -1386,6 +1396,11 @@
         const updateHostHeaderValidationSettings = function() {
             const isHostHeaderValidationEnabled = $('host_header_validation_checkbox').getProperty('checked');
             $('webui_domain_textarea').setProperty('disabled', !isHostHeaderValidationEnabled);
+        };
+
+        const updateWebUICustomHTTPHeadersSettings = function() {
+            const isEnabled = $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked');
+            $('webUICustomHTTPHeadersTextarea').setProperty('disabled', !isEnabled);
         };
 
         const updateDynDnsSettings = function() {
@@ -1744,6 +1759,11 @@
                         $('host_header_validation_checkbox').setProperty('checked', pref.web_ui_host_header_validation_enabled);
                         updateHostHeaderValidationSettings();
 
+                        // Custom HTTP headers
+                        $('webUIUseCustomHTTPHeadersCheckbox').setProperty('checked', pref.web_ui_use_custom_http_headers_enabled);
+                        $('webUICustomHTTPHeadersTextarea').setProperty('value', pref.web_ui_custom_http_headers);
+                        updateWebUICustomHTTPHeadersSettings();
+
                         // Update my dynamic domain name
                         $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
                         $('dyndns_select').setProperty('value', pref.dyndns_service);
@@ -1775,13 +1795,14 @@
                         $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
                         $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
+                        $('UPnPLeaseDuration').setProperty('value', pref.upnp_lease_duration);
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
+                        $('validateHTTPSTrackerCertificate').setProperty('checked', pref.validate_https_tracker_certificate);
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
                         $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
                         $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
-                        $('strictSuperSeeding').setProperty('checked', pref.enable_super_seeding);
                         $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
                         $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
                         $('announceIP').setProperty('value', pref.announce_ip);
@@ -2107,10 +2128,15 @@
             settings.set('alternative_webui_enabled', alternative_webui_enabled);
             settings.set('alternative_webui_path', webui_files_location_textarea);
 
+            // Security
             settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_csrf_protection_enabled', $('csrf_protection_checkbox').getProperty('checked'));
             settings.set('web_ui_secure_cookie_enabled', $('secureCookieCheckbox').getProperty('checked'));
             settings.set('web_ui_host_header_validation_enabled', $('host_header_validation_checkbox').getProperty('checked'));
+
+            // Custom HTTP headers
+            settings.set('web_ui_use_custom_http_headers_enabled', $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked'));
+            settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
 
             // Update my dynamic domain name
             settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
@@ -2143,13 +2169,14 @@
             settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
             settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
+            settings.set('upnp_lease_duration', $('UPnPLeaseDuration').getProperty('value'));
             settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
+            settings.set('validate_https_tracker_certificate', $('validateHTTPSTrackerCertificate').getProperty('checked'));
             settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
             settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
             settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
             settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));
-            settings.set('enable_super_seeding', $('strictSuperSeeding').getProperty('checked'));
             settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
             settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
             settings.set('announce_ip', $('announceIP').getProperty('value'));

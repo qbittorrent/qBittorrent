@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Naam mag niet leeg zijn</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Naam is niet gewijzigd</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>De naam is niet bijgewerkt</translation>
     </message>
 </context>
 <context>
@@ -522,11 +522,43 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Uw browser ondersteunt deze functie niet</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Om deze functie te gebruiken, moet de WebUI toegankelijk zijn via https.</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Verbindingsstatus: firewall</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Verbindingsstatus: verbonden</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Alternatieve snelheidsbegrenzingen: uit</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>Pictogram downloadsnelheid</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Verbindingsstatus</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Alternatieve snelheidsbegrenzingen: aan</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Pictogram uploadsnelheid</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Verbindingsstatus: niet verbonden</translation>
     </message>
 </context>
 <context>
@@ -601,7 +633,7 @@
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>HTTPS in plaats van HTTP gebruiken</translation>
+        <translation>Https in plaats van http gebruiken</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
@@ -725,7 +757,7 @@
     </message>
     <message>
         <source>HTTP</source>
-        <translation>HTTP</translation>
+        <translation>Http</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -1062,10 +1094,6 @@
         <translation>Info: het wachtwoord wordt onversleuteld opgeslagen</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Strikt super-seeden:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>µTP-TCP gemengde modus algoritme</translation>
     </message>
@@ -1104,10 +1132,6 @@
     <message>
         <source>When ratio reaches</source>
         <translation>Wanneer verhouding bereikt wordt van</translation>
-    </message>
-    <message>
-        <source>sec</source>
-        <translation>s</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1226,10 +1250,6 @@
         <translation>Vaste slots</translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>Landen van peers oplossen (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Geavanceerd</translation>
     </message>
@@ -1271,7 +1291,7 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>Interval voor opslaan van hervattingsdata:</translation>
+        <translation>Interval voor opslaan van hervattingsgegevens:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1282,8 +1302,40 @@
         <translation>Sessie-timeout:</translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Luisteren op IPv6-adres (opnieuw starten vereist):</translation>
+        <source>Resolve peer countries:</source>
+        <translation>Landen van peers oplossen:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>verbannen voor:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>Affiniteit voor deeltjes in de buurt gebruiken (vereist libtorrent &gt;= 1.2.2):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation>Timeout voor stoppen van tracker:</translation>
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Cliënt verbannen na opeenvolgende fouten:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Secure-flag van cookie inschakelen (vereist https)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>UPnP-leaseduur [0: permanente lease]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>Bestanden</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Land</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Peer permanent verbannen</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Nieuwe peer toevoegen...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>Land/regio</translation>
     </message>
 </context>
 <context>
@@ -1407,7 +1459,7 @@
     </message>
     <message>
         <source>HTTP Sources</source>
-        <translation>HTTP-bronnen</translation>
+        <translation>Http-bronnen</translation>
     </message>
     <message>
         <source>Content</source>
@@ -1567,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Naam wijzigen...</translation>
     </message>
 </context>
 <context>
@@ -1675,7 +1727,7 @@
     <message>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation>Alles (0)</translation>
+        <translation>Alle (0)</translation>
     </message>
     <message>
         <source>Downloading (0)</source>
@@ -1711,7 +1763,7 @@
     </message>
     <message>
         <source>All (%1)</source>
-        <translation>Alles (%1)</translation>
+        <translation>Alle (%1)</translation>
     </message>
     <message>
         <source>Downloading (%1)</source>
@@ -1744,6 +1796,30 @@
     <message>
         <source>Errored (%1)</source>
         <translation>Met fouten (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Onderbroken uploaden (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Onderbroken downloaden (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Onderbroken downloaden (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Onderbroken (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Onderbroken uploaden (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Onderbroken (%1)</translation>
     </message>
 </context>
 <context>
@@ -2081,11 +2157,11 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>Hervattingsdata controleren</translation>
+        <translation>Hervattingsgegevens controleren</translation>
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Wachten</translation>
+        <translation>Onderbroken</translation>
     </message>
 </context>
 <context>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ja</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nee</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>Over qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Bibliotheken</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licentie</translation>
     </message>
@@ -2733,6 +2805,14 @@
         <source>Author</source>
         <translation>Auteur</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Gebruikte software</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>De gratis IP to Country Lite database van DB-IP wordt gebruikt voor het oplossen van de landen van peers. De database is gelicenseerd onder de Creative Commons Attribution 4.0 International License.</translation>
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Alle IPv6-adressen</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Alle IPv4-adressen</translation>
     </message>
 </context>
 <context>
@@ -2780,11 +2860,11 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Naam wijzigen</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nieuwe naam:</translation>
     </message>
 </context>
 </TS>

@@ -47,6 +47,7 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "infohash.h"
 #include "trackerentry.h"
@@ -166,12 +167,12 @@ void TorrentInfo::saveToFile(const QString &path) const
 #endif
     const lt::entry torrentEntry = torrentCreator.generate();
 
-    QByteArray out;
-    out.reserve(1024 * 1024);  // most torrent file sizes are under 1 MB
-    lt::bencode(std::back_inserter(out), torrentEntry);
+    QFile torrentFile {path};
+    if (!torrentFile.open(QIODevice::WriteOnly))
+        throw RuntimeError {torrentFile.errorString()};
 
-    QFile torrentFile{path};
-    if (!torrentFile.open(QIODevice::WriteOnly) || (torrentFile.write(out) != out.size()))
+    lt::bencode(Utils::IO::FileDeviceOutputIterator {torrentFile}, torrentEntry);
+    if (torrentFile.error() != QFileDevice::NoError)
         throw RuntimeError {torrentFile.errorString()};
 }
 

@@ -185,7 +185,7 @@ void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 // Updates shipped plugin
 void SearchPluginManager::updatePlugin(const QString &name)
 {
-    installPlugin(QString("%1%2.py").arg(m_updateUrl, name));
+    installPlugin(QString::fromLatin1("%1%2.py").arg(m_updateUrl, name));
 }
 
 // Install or update plugin from file or url
@@ -283,12 +283,12 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
 void SearchPluginManager::updateIconPath(PluginInfo *const plugin)
 {
     if (!plugin) return;
-    QString iconPath = QString("%1/%2.png").arg(pluginsLocation(), plugin->name);
+    QString iconPath = QString::fromLatin1("%1/%2.png").arg(pluginsLocation(), plugin->name);
     if (QFile::exists(iconPath)) {
         plugin->iconPath = iconPath;
     }
     else {
-        iconPath = QString("%1/%2.ico").arg(pluginsLocation(), plugin->name);
+        iconPath = QString::fromLatin1("%1/%2.ico").arg(pluginsLocation(), plugin->name);
         if (QFile::exists(iconPath))
             plugin->iconPath = iconPath;
     }
@@ -338,7 +338,7 @@ QString SearchPluginManager::pluginFullName(const QString &pluginName)
 
 QString SearchPluginManager::pluginsLocation()
 {
-    return QString("%1/engines").arg(engineLocation());
+    return QString::fromLatin1("%1/engines").arg(engineLocation());
 }
 
 QString SearchPluginManager::engineLocation()
@@ -526,7 +526,7 @@ bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const Plugin
 
 QString SearchPluginManager::pluginPath(const QString &name)
 {
-    return QString("%1/%2.py").arg(pluginsLocation(), name);
+    return QString::fromLatin1("%1/%2.py").arg(pluginsLocation(), name);
 }
 
 PluginVersion SearchPluginManager::getPluginVersion(const QString &filePath)

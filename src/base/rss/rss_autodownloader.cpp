@@ -100,7 +100,7 @@ QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
 QString computeSmartFilterRegex(const QStringList &filters)
 {
-    return QString("(?:_|\\b)(?:%1)(?:_|\\b)").arg(filters.join(QString(")|(?:")));
+    return QString::fromLatin1("(?:_|\\b)(?:%1)(?:_|\\b)").arg(filters.join(QString(")|(?:")));
 }
 
 AutoDownloader::AutoDownloader()
@@ -200,7 +200,9 @@ bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleN
     if (!hasRule(ruleName)) return false;
     if (hasRule(newRuleName)) return false;
 
-    m_rules.insert(newRuleName, m_rules.take(ruleName));
+    AutoDownloadRule rule = m_rules.take(ruleName);
+    rule.setName(newRuleName);
+    m_rules.insert(newRuleName, rule);
     m_dirty = true;
     store();
     emit ruleRenamed(newRuleName, ruleName);

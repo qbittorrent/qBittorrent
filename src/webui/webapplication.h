@@ -43,14 +43,14 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 4, 1};
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 6, 0};
 
 class APIController;
 class WebApplication;
 
 constexpr char C_SID[] = "SID"; // name of session id cookie
 
-class WebSession : public ISession
+class WebSession final : public ISession
 {
 public:
     explicit WebSession(const QString &sid);
@@ -69,7 +69,7 @@ private:
     QVariantHash m_data;
 };
 
-class WebApplication
+class WebApplication final
         : public QObject, public Http::IRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {
@@ -126,7 +126,7 @@ private:
     QHash<QString, QString> m_params;
     const QString m_cacheID;
 
-    const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
+    const QRegularExpression m_apiPathPattern {QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
@@ -151,10 +151,10 @@ private:
 
     // security related
     QStringList m_domainList;
-    bool m_isClickjackingProtectionEnabled;
     bool m_isCSRFProtectionEnabled;
     bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
-    QString m_contentSecurityPolicy;
+
+    QVector<Http::Header> m_prebuiltHeaders;
 };

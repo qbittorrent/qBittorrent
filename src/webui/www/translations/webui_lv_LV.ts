@@ -89,19 +89,19 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Globālajam augšupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Galvenajam atļautajam kopējam augšupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Globālajam lejupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Galvenajam atļautajam kopējam lejupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam. </translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatīvajam augšupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Alternatīvajam atļautajam kopējam augšupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>Alternatīvajam lejupielādes ātruma limitam ir jābūt lielākam par 0 vai arī atslēgtam. </translation>
+        <translation>Alternatīvajam atļautajam kopējam lejupielādes ātrumam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -157,7 +157,7 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Neizdevās ielogoties, qBittorrent droši vien nav sasniedzams.</translation>
+        <translation>Neizdevās pierakstīties, qBittorrent droši vien nav sasniedzams.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation>Ielogoties</translation>
+        <translation>Pierakstīties</translation>
     </message>
     <message>
         <source>Original authors</source>
@@ -294,7 +294,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Globālajam augšupielādes slotu skaita limitam ir jābūt lielākam par 0 vai arī atslēgtam.</translation>
+        <translation>Atļautajam kopējam augšupielādes slotu skaitam ir jābūt lielākam par 0 vai arī nekādam.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -338,7 +338,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Ieslēgt magnētsaišu atbalstu...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -350,15 +350,15 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Nosaukumu nevar atstāt tukšu</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Nosaukums palika nemainīts</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Neizdevās nosaukuma maiņa</translation>
     </message>
 </context>
 <context>
@@ -453,11 +453,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Globālais augšupielādes ātruma limits</translation>
+        <translation>Atļautais kopējais augšupielādes ātrums</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Globālais lejupielādes ātruma limits</translation>
+        <translation>Atļautais kopējais lejupielādes ātrums</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Alternatīvie ātruma limiti</translation>
+        <translation>Alternatīvie atļautie ātrumi</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -490,43 +490,75 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot augstāk sarakstā</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot augstāk sarakstā</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot saraksta apakšā</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot saraksta apakšā</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot saraksta augšā</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot zemāk sarakstā</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot zemāk sarakstā</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot saraksta augšā</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Jūsu interneta pārlūks neatbalsta šo iespēju</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Lai izmantotu šo iespēju, WebUI ir jāatver caur HTTPS</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Savienojuma statuss: Aiz ugunsmūra</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Savienojuma statuss: Savienots</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Alternatīvie ielādes ātrumi: Nē</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>Lejupielādes ātruma ikona</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Savienojuma statuss</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Alternatīvie ielādes ātrumi: Jā</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Augšupielādes ātruma ikona</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Savienojuma statuss: Nav savienots</translation>
     </message>
 </context>
 <context>
@@ -561,7 +593,7 @@
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation>Interfeisa valoda: </translation>
+        <translation>Saskarnes valoda: </translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -577,7 +609,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Uzstādīt Alternatīvo ielādes ātruma ierobežojumu pielietošanu</translation>
+        <translation>Uzstādīt laiku Alternatīvo atļauto ātrumu pielietošanai</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -689,19 +721,19 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Maksimālais savienojumu skaits katram torrentam:</translation>
+        <translation>Atļautais savienojumu skaits katram torrentam:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Kopējais maksimālais savienojumu skaits:</translation>
+        <translation>Atļautais kopējais savienojumu skaits:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maksimālais augšupielādes slotu skaits katram torrentam:</translation>
+        <translation>Atļautais augšupielādes slotu skaits katram torrentam:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Kopējais maksimālais augšupielādes slotu skaits:</translation>
+        <translation>Atļautais kopējais augšupielādes slotu skaits:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -757,7 +789,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation>Globālā ielādes ātruma ierobežojumi</translation>
+        <translation>Galvenie atļautie kopējie ātrumi</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -769,7 +801,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>Alternatīvie ātruma ierobežojumi</translation>
+        <translation>Alternatīvie atļautie kopējie ātrumi</translation>
     </message>
     <message>
         <source>From:</source>
@@ -843,15 +875,15 @@
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Maksimālais aktīvo lejupielāžu skaits:</translation>
+        <translation>Atļautais aktīvo lejupielāžu skaits:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>Maksimālais aktīvo augšupielāžu skaits:</translation>
+        <translation>Atļautais aktīvo augšupielāžu skaits:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Maksimālais kopējais aktīvo torrentu skaits:</translation>
+        <translation>Atļautais kopējais aktīvo torrentu skaits:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
@@ -927,11 +959,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web interfeisa lietotājvārdam jāsatur vismaz 3 rakstzīmes.</translation>
+        <translation>Tālvadības paneļa lietotājvārdam jāsatur vismaz 3 rakstzīmes.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web interfeisa parolei jāsatur vismaz 6 rakstzīmes.</translation>
+        <translation>Tālvadības paneļa parolei jāsatur vismaz 6 rakstzīmes.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -971,7 +1003,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation>Lietot citu Tālvadības paneļa interfeisu</translation>
+        <translation>Lietot citu Tālvadības paneļa saskarni</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -979,7 +1011,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>Interfeisa failu atrašanās vieta nevar tikt atstāta tukša.</translation>
+        <translation>Saskarnes failu atrašanās vieta nevar tikt atstāta tukša.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1015,7 +1047,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished" />
+        <translation>Ieslēgt Hosta header apstiprināšanu</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1062,10 +1094,6 @@
         <translation>Brīdinājums: Šī parole netiek glabāta šifrētā veidā</translation>
     </message>
     <message>
-        <source>Strict super seeding:</source>
-        <translation>Piespiedu super-augšupielādēšana:</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation type="unfinished" />
     </message>
@@ -1083,7 +1111,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Ieslēgt torrentu super-augšupielādi</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1106,10 +1134,6 @@
         <translation>Kad reitings sasniedz</translation>
     </message>
     <message>
-        <source>sec</source>
-        <translation>sek</translation>
-    </message>
-    <message>
         <source>When seeding time reaches</source>
         <translation>Kad augšupielādes laiks sasniedz</translation>
     </message>
@@ -1127,7 +1151,7 @@
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>Vienmēr atjaunināt datus ar visiem trakeriem visās grupās</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
@@ -1226,10 +1250,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP):</source>
-        <translation>Rādīt koplietotāju valstis (GeoIP):</translation>
-    </message>
-    <message>
         <source>Advanced</source>
         <translation>Papildus</translation>
     </message>
@@ -1243,7 +1263,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Augšupielādes ierobežojumi</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1275,15 +1295,47 @@
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>Vienmēr atjaunināt datus ar visiem trakeriem grupā</translation>
     </message>
     <message>
         <source>Session timeout:</source>
+        <translation>Sesijas noildze:</translation>
+    </message>
+    <message>
+        <source>Resolve peer countries:</source>
+        <translation>Rādīt koplietotāju valstis:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>liegt piekļuvi uz:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart):</source>
-        <translation>Klausīties IPv6 adresē (nepieciešams restarts)</translation>
+        <source>Stop tracker timeout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Liegt piekļuvi pēc atkārtotiem mēģinājumiem:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Ieslēgt sīkdatņu Secure Flag (nepieciešams HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1345,10 +1397,6 @@
         <translation>Faili</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Valsts</translation>
-    </message>
-    <message>
         <source>Ban peer permanently</source>
         <translation>Nobloķēt koplietotāju</translation>
     </message>
@@ -1363,6 +1411,10 @@
     <message>
         <source>Add a new peer...</source>
         <translation>Pievienot jaunu koplietotāju...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>Valsts/Apgabals</translation>
     </message>
 </context>
 <context>
@@ -1431,7 +1483,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation>ETA:</translation>
+        <translation>Aptuvenais ielādes laiks:</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1451,15 +1503,15 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Koplietotāji:</translation>
+        <translation>Ņēmēji:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation>Lejupielādes limits:</translation>
+        <translation>Lejupielādes robeža:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation>Augšupielādes limits:</translation>
+        <translation>Augšupielādes robeža:</translation>
     </message>
     <message>
         <source>Wasted:</source>
@@ -1537,7 +1589,7 @@
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation>%1 (%2 maks.)</translation>
+        <translation>%1 (%2 atļauti)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
@@ -1551,11 +1603,11 @@
     </message>
     <message>
         <source>Download limit:</source>
-        <translation>Lejupielādes limits:</translation>
+        <translation>Lejupielādes robeža:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation>Augšupielādes limits:</translation>
+        <translation>Augšupielādes robeža:</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1567,7 +1619,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvēt...</translation>
     </message>
 </context>
 <context>
@@ -1745,6 +1797,30 @@
         <source>Errored (%1)</source>
         <translation>Kļūdaini (%1)</translation>
     </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Apstājušās Augšupielādes (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Apstājušās Lejupielādes (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Apstājušās Lejupielādes (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Apstājušies (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Apstājušās Augšupielādes (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Apstājušies (%1)</translation>
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -1779,7 +1855,7 @@
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Koplietotāji</translation>
+        <translation>Ņēmēji</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -1799,7 +1875,7 @@
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>ETA</translation>
+        <translation>Apt. Ielādes laiks</translation>
     </message>
     <message>
         <source>Category</source>
@@ -1826,12 +1902,12 @@
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Lejupielādes limits</translation>
+        <translation>Lejupielādes robeža</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Augšupielādes limits</translation>
+        <translation>Augšupielādes robeža</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -1876,7 +1952,7 @@
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Reitinga limits</translation>
+        <translation>Reitinga robeža</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -1986,7 +2062,7 @@
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Grupa</translation>
     </message>
     <message>
         <source>Download Priority</source>
@@ -2029,7 +2105,7 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation>Apturēti</translation>
+        <translation>Apturēts</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2277,7 +2353,7 @@
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Rinda</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -2292,7 +2368,7 @@
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation>Lietot globālos uzstādījumus</translation>
+        <translation>Lietot galvenos uzstādījumus</translation>
     </message>
     <message>
         <source>Set no share limit</source>
@@ -2583,11 +2659,11 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Jā</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nē</translation>
     </message>
 </context>
 <context>
@@ -2710,10 +2786,6 @@
         <translation>Par qBittorrent</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation>Bibliotēkas</translation>
-    </message>
-    <message>
         <source>License</source>
         <translation>Licence</translation>
     </message>
@@ -2733,6 +2805,14 @@
         <source>Author</source>
         <translation>Autori</translation>
     </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Programmatūra</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>Bezmaksas "Valsts pēc IP" kompaktā datubāze (IP to Country Lite) no DB-IP tiek izmantota, lai pēc IP adresēm noteiktu un parādītu jums koplietotāju valstis. Datubāze ir licencēta zem Attiecinājums 4.0 Starptautisks (CC BY 4.0)</translation>
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -2742,11 +2822,11 @@
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Visas IPv6 adreses</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Visas IPv4 adreses</translation>
     </message>
 </context>
 <context>
@@ -2761,11 +2841,11 @@
     </message>
     <message>
         <source>Name</source>
-        <translation>Nosaukums</translation>
+        <translation>Nosaukumu</translation>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation>Apraksta lapas adrese</translation>
+        <translation>Apraksta lapas adresi</translation>
     </message>
     <message>
         <source>Open description page</source>
@@ -2773,18 +2853,18 @@
     </message>
     <message>
         <source>Download link</source>
-        <translation>Lejupielādes links</translation>
+        <translation>Lejupielādes adresi</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvēšana</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Jaunais nosaukums:</translation>
     </message>
 </context>
 </TS>

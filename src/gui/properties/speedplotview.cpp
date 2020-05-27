@@ -339,7 +339,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     }
 
     // Set antialiasing for graphs
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+    painter.setRenderHints(QPainter::Antialiasing);
 
     // draw graphs
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline

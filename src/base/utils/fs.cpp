@@ -28,6 +28,7 @@
 
 #include "fs.h"
 
+#include <cerrno>
 #include <cstring>
 
 #if defined(Q_OS_WIN)
@@ -57,7 +58,7 @@
 #include <QStorageInfo>
 #include <QRegularExpression>
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/common.h"
 #include "base/global.h"
 
 QString Utils::Fs::toNativePath(const QString &path)

@@ -36,7 +36,7 @@ namespace BitTorrent
     enum class DownloadPriority;
 }
 
-class TorrentContentModelFile : public TorrentContentModelItem
+class TorrentContentModelFile final : public TorrentContentModelItem
 {
 public:
     TorrentContentModelFile(const QString &fileName, qulonglong fileSize,

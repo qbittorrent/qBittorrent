@@ -240,197 +240,6 @@ TransferListModel *TransferListWidget::getSourceModel() const
     return m_listModel;
 }
 
-QColor TransferListWidget::unknownStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::Unknown);
-}
-
-QColor TransferListWidget::forcedDownloadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::ForcedDownloading);
-}
-
-QColor TransferListWidget::downloadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::Downloading);
-}
-
-QColor TransferListWidget::downloadingMetadataStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::DownloadingMetadata);
-}
-
-QColor TransferListWidget::allocatingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::Allocating);
-}
-
-QColor TransferListWidget::stalledDownloadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::StalledDownloading);
-}
-
-QColor TransferListWidget::forcedUploadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::ForcedUploading);
-}
-
-QColor TransferListWidget::uploadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::Uploading);
-}
-
-QColor TransferListWidget::stalledUploadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::StalledUploading);
-}
-
-QColor TransferListWidget::checkingResumeDataStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::CheckingResumeData);
-}
-
-QColor TransferListWidget::queuedDownloadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::QueuedDownloading);
-}
-
-QColor TransferListWidget::queuedUploadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::QueuedUploading);
-}
-
-QColor TransferListWidget::checkingUploadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::CheckingUploading);
-}
-
-QColor TransferListWidget::checkingDownloadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::CheckingDownloading);
-}
-
-QColor TransferListWidget::pausedDownloadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::PausedDownloading);
-}
-
-QColor TransferListWidget::pausedUploadingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::PausedUploading);
-}
-
-QColor TransferListWidget::movingStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::Moving);
-}
-
-QColor TransferListWidget::missingFilesStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::MissingFiles);
-}
-
-QColor TransferListWidget::errorStateForeground() const
-{
-    return m_listModel->stateForeground(BitTorrent::TorrentState::Error);
-}
-
-void TransferListWidget::setUnknownStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::Unknown, color);
-}
-
-void TransferListWidget::setForcedDownloadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::ForcedDownloading, color);
-}
-
-void TransferListWidget::setDownloadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::Downloading, color);
-}
-
-void TransferListWidget::setDownloadingMetadataStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::DownloadingMetadata, color);
-}
-
-void TransferListWidget::setAllocatingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::Allocating, color);
-}
-
-void TransferListWidget::setStalledDownloadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::StalledDownloading, color);
-}
-
-void TransferListWidget::setForcedUploadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::ForcedUploading, color);
-}
-
-void TransferListWidget::setUploadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::Uploading, color);
-}
-
-void TransferListWidget::setStalledUploadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::StalledUploading, color);
-}
-
-void TransferListWidget::setCheckingResumeDataStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::CheckingResumeData, color);
-}
-
-void TransferListWidget::setQueuedDownloadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::QueuedDownloading, color);
-}
-
-void TransferListWidget::setQueuedUploadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::QueuedUploading, color);
-}
-
-void TransferListWidget::setCheckingUploadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::CheckingUploading, color);
-}
-
-void TransferListWidget::setCheckingDownloadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::CheckingDownloading, color);
-}
-
-void TransferListWidget::setPausedDownloadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::PausedDownloading, color);
-}
-
-void TransferListWidget::setPausedUploadingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::PausedUploading, color);
-}
-
-void TransferListWidget::setMovingStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::Moving, color);
-}
-
-void TransferListWidget::setMissingFilesStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::MissingFiles, color);
-}
-
-void TransferListWidget::setErrorStateForeground(const QColor &color)
-{
-    m_listModel->setStateForeground(BitTorrent::TorrentState::Error, color);
-}
-
-
 void TransferListWidget::previewFile(const QString &filePath)
 {
     Utils::Gui::openPath(filePath);
@@ -501,6 +310,17 @@ QVector<BitTorrent::TorrentHandle *> TransferListWidget::getSelectedTorrents() c
     return torrents;
 }
 
+QVector<BitTorrent::TorrentHandle *> TransferListWidget::getVisibleTorrents() const
+{
+    const int visibleTorrentsCount = m_sortFilterModel->rowCount();
+
+    QVector<BitTorrent::TorrentHandle *> torrents;
+    torrents.reserve(visibleTorrentsCount);
+    for (int i = 0; i < visibleTorrentsCount; ++i)
+        torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
+    return torrents;
+}
+
 void TransferListWidget::setSelectedTorrentsLocation()
 {
     const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
@@ -547,11 +367,8 @@ void TransferListWidget::forceStartSelectedTorrents()
 
 void TransferListWidget::startVisibleTorrents()
 {
-    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i) {
-        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
-        if (torrent)
-            torrent->resume();
-    }
+    for (BitTorrent::TorrentHandle *const torrent : asConst(getVisibleTorrents()))
+        torrent->resume();
 }
 
 void TransferListWidget::pauseSelectedTorrents()
@@ -562,11 +379,8 @@ void TransferListWidget::pauseSelectedTorrents()
 
 void TransferListWidget::pauseVisibleTorrents()
 {
-    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i) {
-        BitTorrent::TorrentHandle *const torrent = m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
-        if (torrent)
-            torrent->pause();
-    }
+    for (BitTorrent::TorrentHandle *const torrent : asConst(getVisibleTorrents()))
+        torrent->pause();
 }
 
 void TransferListWidget::softDeleteSelectedTorrents()
@@ -589,9 +403,11 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
     if (Preferences::instance()->confirmTorrentDeletion()) {
         auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), deleteLocalFiles);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [this, dialog]()
         {
-            removeTorrents(torrents, dialog->isDeleteFileSelected());
+            // Some torrents might be removed when waiting for user input, so refetch the torrent list
+            // NOTE: this will only work when dialog is modal
+            removeTorrents(getSelectedTorrents(), dialog->isDeleteFileSelected());
         });
         dialog->open();
     }
@@ -602,18 +418,17 @@ void TransferListWidget::deleteSelectedTorrents(const bool deleteLocalFiles)
 
 void TransferListWidget::deleteVisibleTorrents()
 {
-    if (m_sortFilterModel->rowCount() <= 0) return;
-
-    QVector<BitTorrent::TorrentHandle *> torrents;
-    for (int i = 0; i < m_sortFilterModel->rowCount(); ++i)
-        torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
+    const QVector<BitTorrent::TorrentHandle *> torrents = getVisibleTorrents();
+    if (torrents.empty()) return;
 
     if (Preferences::instance()->confirmTorrentDeletion()) {
         auto *dialog = new DeletionConfirmationDialog(this, torrents.size(), torrents[0]->name(), false);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dialog, &DeletionConfirmationDialog::accepted, this, [dialog, torrents]()
+        connect(dialog, &DeletionConfirmationDialog::accepted, this, [this, dialog]()
         {
-            removeTorrents(torrents, dialog->isDeleteFileSelected());
+            // Some torrents might be removed when waiting for user input, so refetch the torrent list
+            // NOTE: this will only work when dialog is modal
+            removeTorrents(getVisibleTorrents(), dialog->isDeleteFileSelected());
         });
         dialog->open();
     }
@@ -652,7 +467,7 @@ void TransferListWidget::copySelectedMagnetURIs() const
 {
     QStringList magnetUris;
     for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
-        magnetUris << torrent->toMagnetUri();
+        magnetUris << torrent->createMagnetURI();
 
     qApp->clipboard()->setText(magnetUris.join('\n'));
 }
@@ -1050,7 +865,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     auto *actionPreviewFile = new QAction(UIThemeManager::instance()->getIcon("view-preview"), tr("Preview file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
-    auto *actionSetMaxRatio = new QAction(QIcon(QLatin1String(":/icons/skin/ratio.svg")), tr("Limit share ratio..."), listMenu);
+    auto *actionSetMaxRatio = new QAction(UIThemeManager::instance()->getIcon(QLatin1String("ratio")), tr("Limit share ratio..."), listMenu);
     connect(actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
     auto *actionSetUploadLimit = new QAction(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), listMenu);
     connect(actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
