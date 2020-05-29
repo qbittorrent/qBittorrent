@@ -1,26 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="480" width="640" viewBox="0 0 640 480">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icon-css-ve" viewBox="0 0 640 480">
   <defs>
     <g id="d" transform="translate(0 -36)">
       <g id="c">
         <g id="b">
-          <path d="M0-5L-1.545-.245l2.853.927z" id="a" fill="#fff"/>
-          <use xlink:href="#a" transform="scale(-1 1)" width="180" height="120"/>
+          <path id="a" fill="#fff" d="M0-5L-1.5-.2l2.8.9z"/>
+          <use width="180" height="120" transform="scale(-1 1)" xlink:href="#a"/>
         </g>
-        <use xlink:href="#b" transform="rotate(72)" width="180" height="120"/>
+        <use width="180" height="120" transform="rotate(72)" xlink:href="#b"/>
       </g>
-      <use xlink:href="#b" transform="rotate(-72)" width="180" height="120"/>
-      <use xlink:href="#c" transform="rotate(144)" width="180" height="120"/>
+      <use width="180" height="120" transform="rotate(-72)" xlink:href="#b"/>
+      <use width="180" height="120" transform="rotate(144)" xlink:href="#c"/>
     </g>
   </defs>
-  <path d="M0 0h640v480H0z" fill="#cf142b"/>
-  <path d="M0 0h640v320H0z" fill="#00247d"/>
-  <path d="M0 0h640v160H0z" fill="#fc0"/>
+  <path fill="#cf142b" d="M0 0h640v480H0z"/>
+  <path fill="#00247d" d="M0 0h640v320H0z"/>
+  <path fill="#fc0" d="M0 0h640v160H0z"/>
   <g id="f" transform="matrix(4 0 0 4 320 336)">
     <g id="e">
-      <use height="120" width="180" transform="rotate(10)" xlink:href="#d"/>
-      <use height="120" width="180" transform="rotate(30)" xlink:href="#d"/>
+      <use width="180" height="120" transform="rotate(10)" xlink:href="#d"/>
+      <use width="180" height="120" transform="rotate(30)" xlink:href="#d"/>
     </g>
-    <use height="120" width="180" transform="rotate(40)" xlink:href="#e"/>
+    <use width="180" height="120" transform="rotate(40)" xlink:href="#e"/>
   </g>
-  <use height="120" width="180" transform="rotate(-80 320 336)" xlink:href="#f"/>
+  <use width="180" height="120" transform="rotate(-80 320 336)" xlink:href="#f"/>
 </svg>

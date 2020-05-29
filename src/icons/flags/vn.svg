@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" viewBox="0 0 640 480">
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-vn" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
-      <path fill-opacity=".67" d="M-85.334 0h682.67v512h-682.67z"/>
+    <clipPath id="vn-a">
+      <path fill-opacity=".7" d="M-85.3 0h682.6v512H-85.3z"/>
     </clipPath>
   </defs>
-  <g fill-rule="evenodd" clip-path="url(#a)" transform="translate(80.001) scale(.9375)">
+  <g fill-rule="evenodd" clip-path="url(#vn-a)" transform="translate(80) scale(.9375)">
     <path fill="#ec0015" d="M-128 0h768v512h-768z"/>
-    <path d="M349.59 381.05l-89.576-66.893-89.137 67.55 33.152-109.77-88.973-67.784 110.08-.945 34.142-109.44 34.873 109.19 110.08.144-88.517 68.423 33.884 109.53z" fill="#ff0"/>
+    <path fill="#ff0" d="M349.6 381L260 314.3l-89 67.3L204 272l-89-67.7 110.1-1 34.2-109.4L294 203l110.1.1-88.5 68.4 33.9 109.6z"/>
   </g>
 </svg>

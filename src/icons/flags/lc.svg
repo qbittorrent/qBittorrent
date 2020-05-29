@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" viewBox="0 0 640 480">
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-lc" viewBox="0 0 640 480">
   <g fill-rule="evenodd">
     <path fill="#65cfff" d="M0 0h640v480H0z"/>
-    <path d="M318.9 41.991l162.66 395.3-322.6.91L318.9 41.991z" fill="#fff"/>
-    <path d="M319.09 96.516l140.67 339.99-278.99.78 138.32-340.77z"/>
-    <path d="M318.9 240.1l162.66 197.64-322.6.46L318.9 240.1z" fill="#ffce00"/>
+    <path fill="#fff" d="M318.9 42l162.7 395.3-322.6.9L318.9 42z"/>
+    <path d="M319 96.5l140.8 340-279 .8L319 96.5z"/>
+    <path fill="#ffce00" d="M318.9 240.1l162.7 197.6-322.6.5 159.9-198.1z"/>
   </g>
 </svg>
