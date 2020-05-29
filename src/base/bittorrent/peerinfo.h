@@ -102,6 +102,10 @@ namespace BitTorrent
         qreal m_relevance = 0;
         QString m_flags;
         QString m_flagsDescription;
+
+#ifndef DISABLE_COUNTRIES_RESOLUTION
+        mutable QString m_country;
+#endif
     };
 }
 

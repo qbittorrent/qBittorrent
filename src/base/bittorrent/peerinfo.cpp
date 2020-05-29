@@ -64,7 +64,9 @@ bool PeerInfo::fromLSD() const
 #ifndef DISABLE_COUNTRIES_RESOLUTION
 QString PeerInfo::country() const
 {
-    return Net::GeoIPManager::instance()->lookup(address().ip);
+    if (m_country.isEmpty())
+        m_country = Net::GeoIPManager::instance()->lookup(address().ip);
+    return m_country;
 }
 #endif
 
