@@ -4685,8 +4685,9 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
     if (removingTorrentDataIter == m_removingTorrents.end())
         return;
 
-    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() == 1);
-    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
+    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() <= 1);
+    if (!removingTorrentDataIter->pathsToRemove.isEmpty())
+        Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
     LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
     m_removingTorrents.erase(removingTorrentDataIter);
 }
@@ -4701,8 +4702,9 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
     // libtorrent won't delete the directory if it contains files not listed in the torrent,
     // so we remove the directory ourselves
-    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() == 1);
-    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
+    Q_ASSERT(removingTorrentDataIter->pathsToRemove.count() <= 1);
+    if (!removingTorrentDataIter->pathsToRemove.isEmpty())
+        Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathsToRemove.first());
 
     if (p->error) {
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
