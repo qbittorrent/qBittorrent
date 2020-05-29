@@ -35,7 +35,7 @@ void ReadRequest::feed(const QByteArray &data)
 {
     Q_ASSERT(data.size() <= m_leftSize);
 
-    const bool isLastBlock = (m_leftSize - data.size()) == 0;
+    const bool isLastBlock = (data.size() - m_leftSize) == 0;
     emit readyRead(data, isLastBlock);
     m_currentPosition += data.size();
     m_leftSize -= data.size();
@@ -92,7 +92,7 @@ void StreamFile::doRead(ReadRequest *request)
 
     const BitTorrent::PieceFileInfo pieceInfo
         = m_torrentHandle->info().mapFile(m_index, request->currentPosition(), std::min<quint64>(request->leftSize(), m_pieceLength));
-    qDebug() << "mappedto " << pieceInfo.index << request->leftSize();
+    qDebug() << "mappedto " << pieceInfo.index << request->currentPosition() << request->leftSize();
     const BitTorrent::PieceRequest *pieceRequest = m_torrentHandle->havePiece(pieceInfo.index)
                                                    ? m_torrentHandle->readPiece(pieceInfo.index)
                                                    : m_torrentHandle->setPieceDeadline(pieceInfo.index, DEADLINE_TIME, true);
@@ -103,7 +103,7 @@ void StreamFile::doRead(ReadRequest *request)
     connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
             , [this, request, pieceInfo] (const QByteArray &data)
     {
-        qDebug() << "done request" << data.size() << pieceInfo.start << pieceInfo.length << pieceInfo.index;
+        qDebug() << "done request" << pieceInfo.index << pieceInfo.start << data.size() << pieceInfo.length;
         request->feed(data.mid(pieceInfo.start, pieceInfo.length));
         doRead(request);
     });
