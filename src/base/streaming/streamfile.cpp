@@ -100,13 +100,14 @@ void StreamFile::doRead(ReadRequest *request)
     for (int i = 1; i <= ADVANCE_PIECES && pieceInfo.index + i < m_lastPiece; i++)
         m_torrentHandle->setPieceDeadline(pieceInfo.index + i, DEADLINE_TIME * 2, false); // prepare for next read
 
-    connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
+    auto cnt = connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
             , [this, request, pieceInfo] (const QByteArray &data)
     {
         qDebug() << "done request" << pieceInfo.index << pieceInfo.start << data.size() << pieceInfo.length;
         request->feed(data.mid(pieceInfo.start, pieceInfo.length));
-        doRead(request);
+        QMetaObject::invokeMethod(this, [this, request] () { doRead(request); });
     });
+    Q_ASSERT(cnt);
 
     connect(pieceRequest, &BitTorrent::PieceRequest::error, request, &ReadRequest::notifyErrorAndDie);
 }

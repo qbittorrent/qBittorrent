@@ -2,6 +2,7 @@
 
 #include "base/http/httperror.h"
 #include "base/logger.h"
+#include "base/bittorrent/session.h"
 #include "streamfile.h"
 
 namespace
@@ -54,7 +55,7 @@ namespace
 
         qint64 size() const
         {
-            return lastBytePos - firstBytePos;
+            return lastBytePos - firstBytePos + 1;
         }
     };
 } // namespace
@@ -88,7 +89,13 @@ void StreamingManager::addFile(int fileIndex, BitTorrent::TorrentHandle *torrent
 {
     Q_ASSERT(!isStreaming(fileIndex, torrentHandle));
 
-    m_files.push_back(new StreamFile(fileIndex, torrentHandle));
+    StreamFile *file = new StreamFile(fileIndex, torrentHandle, this);
+    m_files.push_back(file);
+    // connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved, file, [this, torrentHandle, file](BitTorrent::TorrentHandle *handle) 
+    // {
+    //     if (handle == torrentHandle)
+    //         m_files.remove(m_files.indexOf(file));
+    // });
 }
 
 QString StreamingManager::url(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const
@@ -133,7 +140,7 @@ void StreamingManager::doHead(HttpSocket *socket)
     if (!file)
         throw NotFoundHTTPError();
 
-    socket->sendStatus({200, "OK"});
+    socket->sendStatus({206, "Partial Content"});
     socket->sendHeaders({{"accept-ranges", "bytes"},
                             {"connection", "close"},
                             {"content-length", QString::number(file->size())},

@@ -118,6 +118,7 @@ void HttpSocket::close()
 
 void StreamingServer::incomingConnection(qintptr socketDescriptor)
 {
+    qDebug() << "adding " << socketDescriptor;
     QTcpSocket *socket = new QTcpSocket(this);
     if (!socket->setSocketDescriptor(socketDescriptor)) {
         delete socket;
@@ -129,7 +130,8 @@ void StreamingServer::incomingConnection(qintptr socketDescriptor)
         doRequest(httpSocket);
     });
 
-    connect(socket, &QAbstractSocket::disconnected, this, [httpSocket]() {
+    connect(socket, &QAbstractSocket::disconnected, this, [httpSocket, socketDescriptor]() {
+        qDebug() << "removing " << socketDescriptor;
         httpSocket->deleteLater();
     });
 }
