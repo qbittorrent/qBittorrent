@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" viewBox="0 0 640 480">
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-pa" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
-      <path fill-opacity=".67" d="M0 0h640v480H0z"/>
+    <clipPath id="pa-a">
+      <path fill-opacity=".7" d="M0 0h640v480H0z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)">
+  <g clip-path="url(#pa-a)">
     <path fill="#fff" d="M0 0h640v480H0z"/>
-    <path fill-rule="evenodd" fill="#fff" d="M92.462 0h477.19v480H92.462z"/>
-    <path fill-rule="evenodd" fill="#db0000" d="M323.07 3.655h358v221.68h-358z"/>
-    <path fill-rule="evenodd" fill="#0000ab" d="M3.227 225.33h319.87v254.66H3.227zM214.8 177.65l-41.959-29.326-41.754 29.614 15.529-48.124-41.677-29.716 51.562-.414 15.993-47.978 16.335 47.867 51.562.063-41.463 29.996 15.872 48.017z"/>
-    <path d="M516.85 413.89l-42.354-27.744-42.146 28.017 15.675-45.529-42.069-28.114 52.047-.392 16.143-45.391 16.489 45.286 52.047.06-41.853 28.379 16.021 45.428z" fill-rule="evenodd" fill="#d80000"/>
+    <path fill="#fff" fill-rule="evenodd" d="M92.5 0h477.2v480H92.4z"/>
+    <path fill="#db0000" fill-rule="evenodd" d="M323 3.6h358v221.7H323z"/>
+    <path fill="#0000ab" fill-rule="evenodd" d="M3.2 225.3h319.9V480H3.2zm211.6-47.6l-42-29.4-41.7 29.6 15.5-48L105 100l51.6-.4 16-48 16.3 47.9h51.6l-41.5 30 15.9 48z"/>
+    <path fill="#d80000" fill-rule="evenodd" d="M516.9 413.9l-42.4-27.7-42.1 28 15.6-45.6-42-28 52-.5 16.2-45.4 16.4 45.3h52l-41.8 28.5 16 45.4z"/>
   </g>
 </svg>
