@@ -62,6 +62,7 @@ private:
     static UIThemeManager *m_instance;
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;
+    mutable QHash<QString, QIcon> m_flagCache;
     const bool m_useCustomTheme;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     const bool m_useSystemTheme;
