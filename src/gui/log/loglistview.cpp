@@ -70,13 +70,16 @@ namespace
             painter->save();
             QStyledItemDelegate::paint(painter, option, index); // paints background, focus rect and selection rect
 
-            const QStyle *style = option.widget ? option.widget->style() : QApplication::style();;
+            const QStyle *style = option.widget ? option.widget->style() : QApplication::style();
             const QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &option, option.widget)
                                    .adjusted(1, 0, 0, 0); // shift 1 to avoid text being too close to focus rect
 
+            // for unknown reasons (fixme) painter won't accept some font properties
+            // until they are set explicitly, and we have to manually set some font properties
             QFont font = option.font;
-            if (option.font.pointSize() > 0)
-                font.setPointSize(option.font.pointSize()); // somehow this needs to be set directly otherwise painter will use default font
+            font.setFamily(option.font.family());
+            if (option.font.pointSizeF() > 0) // for better scaling we use floating point version
+                font.setPointSizeF(option.font.pointSizeF());
             painter->setFont(font);
 
             const QPen originalPen = painter->pen();
