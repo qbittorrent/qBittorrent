@@ -1,5 +1,5 @@
 [Unit]
-Description=qBittorrenti-nox service for user %I
+Description=qBittorrent-nox service for user %I
 Documentation=man:qbittorrent-nox(1)
 Wants=network-online.target
 After=network-online.target nss-lookup.target
