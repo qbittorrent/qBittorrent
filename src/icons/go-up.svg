@@ -1,6 +1,65 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000">
-  <path fill="#FFF" d="M1800 1162.5c0 6.3 0 6.3 0 0 0 12.5-6.3 18.8-12.5 31.3 6.3-6.3 12.5-18.8 12.5-31.3"/>
-  <path fill="#733737" d="M1650 1062.5s6.3 0 0 0c6.3 0 0 0 0 0z"/>
-  <path fill="#FFF" d="M1656.3 1062.5s-6.3 0 0 0c-6.3 0 0 0 0 0"/>
-  <path fill="#375273" d="M348.9 1347.9c-23.1 0-28.6-13.4-12.3-29.7l634.9-636.3c16.3-16.4 43-16.3 59.3.1l632.7 636.2c16.3 16.4 10.7 29.8-12.4 29.8H348.9z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="go-up.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="10.727273"
+     inkscape:cx="-14.02966"
+     inkscape:cy="11"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs3051">
+    <style
+       type="text/css"
+       id="current-color-scheme">
+     .ColorScheme-Text {
+       color:#f2f2f2;
+     }
+     </style>
+  </defs>
+  <path
+     style="color:#f2f2f2;fill:#4285f4;fill-opacity:1;stroke:none;stroke-width:1.87082899"
+     d="m 30,22.802249 c 1.22e-4,0.82226 -0.258842,1.644361 -0.77707,2.265801 -1.036192,1.24292 -2.741462,1.24248 -3.778232,-6e-4 h -1.23e-4 L 15.998915,13.736985 6.5561251,25.06401 C 5.52002,26.30695 3.8148375,26.30665 2.778225,25.06355 c -3.5e-5,-4e-5 -5.25e-5,-6e-5 -1.05e-4,-1.4e-4 -5.25e-5,-4e-5 -7e-5,-6e-5 -1.225e-4,-1.2e-4 -1.03719,-1.243181 -1.037295,-3.289561 -5.25e-4,-4.532562 L 14.10888,6.9381206 c 0.518018,-0.6212603 1.206345,-0.9382584 1.888933,-0.9381204 0.682062,1.42e-4 1.37046,0.3170801 1.88874,0.9384604 h 1.22e-4 L 29.2223,20.535748 c 0.518368,0.6218 0.777595,1.444201 0.7777,2.266501 z"
+     class="ColorScheme-Text"
+     id="path4"
+     inkscape:connector-curvature="0" />
 </svg>

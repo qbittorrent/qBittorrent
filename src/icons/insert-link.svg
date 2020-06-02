@@ -1,5 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#375273" d="M28.5 20.1c0 1.1-.4 2.1-1.2 2.8l-2.1 2c-.8.8-1.7 1.2-2.8 1.2-1.1 0-2.1-.4-2.8-1.2L16.7 22c-.8-.8-1.2-1.7-1.2-2.8 0-1.1.4-2.1 1.2-2.9L15.5 15c-.8.8-1.8 1.2-2.9 1.2-1.1 0-2.1-.4-2.8-1.2l-2.9-2.9c-.8-.8-1.2-1.7-1.2-2.8 0-1.1.4-2.1 1.2-2.8l2.1-2c.8-.8 1.7-1.2 2.8-1.2 1.1 0 2.1.4 2.8 1.2l2.9 2.9c.8.8 1.2 1.7 1.2 2.8 0 1.1-.4 2.1-1.2 2.9l1.2 1.2c.8-.8 1.8-1.2 2.9-1.2 1.1 0 2.1.4 2.8 1.2l2.9 2.9c.8.8 1.2 1.8 1.2 2.9zM16 10.2c0-.4-.1-.7-.4-.9l-2.9-2.9c-.2-.3-.6-.4-.9-.4-.4 0-.7.1-.9.4l-2.1 2c-.3.3-.4.6-.4 1s.1.7.4.9l2.9 2.9c.3.3.6.4.9.4.4 0 .7-.1 1-.4l-.3-.3-.3-.3c-.1-.1-.1-.1-.2-.3-.1-.1-.1-.2-.2-.4v-.4c0-.4.1-.7.4-.9.3-.3.6-.4.9-.4h.4c.1 0 .2.1.4.2.1.1.2.2.3.2l.3.3.3.3c.2-.2.4-.6.4-1zm9.8 9.9c0-.4-.1-.7-.4-.9l-2.9-2.9c-.3-.3-.6-.4-.9-.4-.4 0-.7.1-1 .4l.3.3.3.3c.1.1.1.1.2.3.1.1.1.2.2.4s0 .2 0 .4c0 .4-.1.7-.4.9s-.6.4-.9.4h-.4c-.1 0-.2-.1-.4-.2-.1-.1-.2-.2-.3-.2l-.3-.3-.3-.3c-.3.3-.5.6-.5 1s.1.7.4.9l2.9 2.9c.3.3.6.4.9.4.4 0 .7-.1.9-.4l2.1-2c.4-.4.5-.7.5-1z"/>
-  <path fill="#427337" d="M9.2 29.2c-.4 0-.7-.2-1-.4-.2-.2-.4-.6-.4-1v-3.5H4.4c-.4 0-.7-.2-1-.4-.2-.2-.4-.6-.4-.9v-1.9c0-.4.2-.7.4-1 .2-.2.6-.4 1-.4h3.4v-3.5c0-.4.2-.7.4-1 .2-.2.6-.4 1-.4h1.9c.4 0 .7.2 1 .4.2.2.4.6.4 1v3.5h3.4c.3 0 .7.1.9.3.4.2.6.6.6 1v2c0 .4-.2.7-.4 1-.2.2-.6.4-1 .4h-3.6v3.5c0 .4-.2.7-.4 1-.2.2-.6.4-1 .4H9.2z"/>
-  <path fill="#FFF" d="M11.1 15.5c.2 0 .5.1.6.2.1.1.2.4.2.6v4h4c.2 0 .5.1.6.2.2.1.4.4.4.6V23c0 .2-.1.5-.2.6-.1.1-.4.2-.6.2H12v4c0 .2-.1.5-.2.6-.1.1-.4.2-.6.2h-2c-.2 0-.5-.1-.6-.2-.1-.1-.2-.4-.2-.6v-4h-4c-.2 0-.5-.1-.6-.2-.1-.1-.2-.4-.2-.6v-1.9c0-.2.1-.5.2-.6.1-.1.4-.2.6-.2h4v-4c0-.2.1-.5.2-.6.1-.1.4-.2.6-.2h1.9m0-1H9.2c-.5 0-1 .2-1.3.5-.3.3-.5.8-.5 1.3v3h-3c-.5 0-1 .2-1.3.5-.3.3-.5.8-.5 1.3V23c0 .5.2 1 .5 1.3.3.3.8.5 1.3.5h3v3c0 .5.2 1 .5 1.3.3.3.8.5 1.3.5h1.9c.5 0 1-.2 1.3-.5.3-.3.5-.8.5-1.3v-3H16c.5 0 1-.2 1.3-.5.3-.3.5-.8.5-1.3v-1.9c0-.6-.3-1.1-.8-1.4-.3-.3-.8-.4-1.2-.4h-3v-3c0-.5-.2-1-.5-1.3-.3-.3-.8-.5-1.2-.5z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="insert-link.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   width="32"
+   height="32">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="7.375"
+     inkscape:cx="-9.1186436"
+     inkscape:cy="13.423729"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="M 10.750001,6 C 5.9025,6 2,10.46 2,16 c 0,5.539999 3.9025,10 8.750001,10 h 3.5 v -4 h -3.5 c -2.9085011,0 -5.2500011,-2.676 -5.2500011,-6 0,-3.324001 2.3415001,-6 5.2500011,-6 h 3.5 V 6 Z m 7,0 v 4 H 21.25 c 2.9085,0 5.250002,2.675999 5.250002,6 0,3.324 -2.341502,6 -5.250002,6 h -3.499999 v 4 H 21.25 C 26.0975,26 30,21.539999 30,16 30,10.46 26.0975,6 21.25,6 Z m -7,8 v 4 H 21.25 v -4 z"
+     id="path2"
+     inkscape:connector-curvature="0"
+     style="fill:#4285f4;fill-opacity:1;stroke-width:2.49519944"
+     sodipodi:nodetypes="sssccsssccsccsssccssscccccc" />
 </svg>
