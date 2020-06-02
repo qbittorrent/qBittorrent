@@ -568,12 +568,12 @@ void TrackerListWidget::showTrackerListMenu(const QPoint &)
     }
 
     if (!torrent->isPaused()) {
-        const QAction *reannounceSelAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
+        const QAction *reannounceSelAct = menu->addAction(UIThemeManager::instance()->getIcon("reannounce"), tr("Force reannounce to selected trackers"));
         connect(reannounceSelAct, &QAction::triggered, this, &TrackerListWidget::reannounceSelected);
 
         menu->addSeparator();
 
-        const QAction *reannounceAllAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
+        const QAction *reannounceAllAct = menu->addAction(UIThemeManager::instance()->getIcon("reannounce"), tr("Force reannounce to all trackers"));
         connect(reannounceAllAct, &QAction::triggered, this, [this]()
         {
             BitTorrent::TorrentHandle *h = m_properties->getCurrentTorrent();

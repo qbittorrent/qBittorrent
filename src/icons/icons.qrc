@@ -13,7 +13,6 @@
         <file>dialog-information.svg</file>
         <file>dialog-warning.svg</file>
         <file>disconnected.svg</file>
-        <file>document-edit-verify.svg</file>
         <file>document-edit.svg</file>
         <file>document-encrypt.svg</file>
         <file>document-import.svg</file>
@@ -22,7 +21,6 @@
         <file>document-save.svg</file>
         <file>download.svg</file>
         <file>downloading.svg</file>
-        <file>downloading_small.svg</file>
         <file>edit-clear-history.svg</file>
         <file>edit-clear.svg</file>
         <file>edit-copy.svg</file>
@@ -293,8 +291,6 @@
         <file>folder-download.svg</file>
         <file>folder-new.svg</file>
         <file>folder-remote.svg</file>
-        <file>gear.svg</file>
-        <file>gear32.svg</file>
         <file>go-bottom.svg</file>
         <file>go-down.svg</file>
         <file>go-top.svg</file>
@@ -332,6 +328,7 @@
         <file>qbittorrent_file.ico</file>
         <file>queued.svg</file>
         <file>ratio.svg</file>
+        <file>reannounce.svg</file>
         <file>resumed.svg</file>
         <file>rss-config.svg</file>
         <file>security-high.svg</file>
@@ -348,6 +345,7 @@
         <file>stalledUP.svg</file>
         <file>system-log-out.svg</file>
         <file>tab-close.svg</file>
+        <file>tags.svg</file>
         <file>task-attention.svg</file>
         <file>task-complete.svg</file>
         <file>task-ongoing.svg</file>
