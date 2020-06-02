@@ -109,11 +109,13 @@ Display program version and exit.
 .TP
 \f[B]\f[CB]--configuration=\f[B]\f[R]\f[I]NAME\f[R]
 Use a different configuration with name \f[I]NAME\f[R].
-This enables running multiple separate instances of qBittorrent at the
-same time without conflict (provided they don\[cq]t listen on the same
-ports for WebUI access, incoming connections, etc; in this case, the
-additional instances will either fail to start or be functionally
-unusable).
+This makes it possible to save and use different configurations for
+different scenarios.
+It can also be leveraged to run multiple separate instances of
+qBittorrent at the same time without conflict (provided they don\[cq]t
+listen on the same ports for WebUI access, incoming connections, etc; if
+this is not guaranteed, then, as expected, the additional instances will
+either fail to start or be functionally unusable).
 .RS
 .PP
 Configuration and data files will be stored under a configuration
@@ -139,8 +141,9 @@ Do not display the splash screen on startup.
 .TP
 \f[B]\f[CB]--profile=\f[B]\f[R]\f[I]PATH\f[R]
 Store configuration \f[I]FILES\f[R] in \f[I]PATH\f[R].
-Similarly to \f[B]\f[CB]--configuration\f[B]\f[R], this option can be
-used to run multiple separate instances of qBittorrent at the same time
+Similarly to \f[B]\f[CB]--configuration\f[B]\f[R], this option makes it
+possible to save and use different configurations, and can be leveraged
+to run multiple separate instances of qBittorrent at the same time
 without conflitcts (the same caveats about listening port conflicts and
 other potential unavoidable conflicts apply).
 .RS

@@ -71,7 +71,7 @@ qBittorrent can be cleanly terminated by fully closing the GUI (including the sy
 `--configuration=`_NAME_
 
 :    Use a different configuration with name _NAME_.
-This enables running multiple separate instances of qBittorrent at the same time without conflict (provided they don't listen on the same ports for WebUI access, incoming connections, etc; in this case, the additional instances will either fail to start or be functionally unusable).
+This makes it possible to save and use different configurations for different scenarios. It can also be leveraged to run multiple separate instances of qBittorrent at the same time without conflict (provided they don't listen on the same ports for WebUI access, incoming connections, etc; if this is not guaranteed, then, as expected, the additional instances will either fail to start or be functionally unusable).
 
     Configuration and data files will be stored under a configuration hierarchy similar to the default one (see the _FILES_ section for more information) but with a final directory named **qBittorrent\__NAME_** instead of **qBittorrent**.
 
@@ -89,7 +89,7 @@ This enables running multiple separate instances of qBittorrent at the same time
 `--profile=`_PATH_
 
 :    Store configuration _FILES_ in _PATH_.
-Similarly to **`--configuration`**, this option can be used to run multiple separate instances of qBittorrent at the same time without conflitcts (the same caveats about listening port conflicts and other potential unavoidable conflicts apply).
+Similarly to **`--configuration`**, this option makes it possible to save and use different configurations, and can be leveraged to run multiple separate instances of qBittorrent at the same time without conflitcts (the same caveats about listening port conflicts and other potential unavoidable conflicts apply).
 
     The difference is that configuration files are all stored together under the specified configuration _PATH_, instead of scattered under a separate directory hierarchy in the system's configuration directories (see the _FILES_ section for more information).
 
