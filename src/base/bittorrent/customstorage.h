@@ -30,7 +30,7 @@
 
 #include <libtorrent/version.hpp>
 
-#if (LIBTORRENT_VERSION_NUM >= 10200)
+#if (LIBTORRENT_VERSION_NUM >= 10200) && (LIBTORRENT_VERSION_NUM < 20000)
 #include <libtorrent/aux_/vector.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/storage.hpp>

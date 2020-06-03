@@ -28,7 +28,7 @@
 
 #include "customstorage.h"
 
-#if (LIBTORRENT_VERSION_NUM >= 10200)
+#if (LIBTORRENT_VERSION_NUM >= 10200) && (LIBTORRENT_VERSION_NUM < 20000)
 #include <libtorrent/download_priority.hpp>
 
 #include <QDir>

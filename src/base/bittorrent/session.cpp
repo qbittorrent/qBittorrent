@@ -2113,7 +2113,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
 bool Session::addTorrent_impl(CreateTorrentParams params, const MagnetUri &magnetUri,
                               TorrentInfo torrentInfo, const QByteArray &fastresumeData)
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
+#if (LIBTORRENT_VERSION_NUM < 10200) || (LIBTORRENT_VERSION_NUM >= 20000)
     params.savePath = normalizeSavePath(params.savePath, "");
 
     if (!params.category.isEmpty()) {
@@ -2532,7 +2532,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     const QString savePath = Utils::Fs::tempPath() + static_cast<QString>(hash);
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
-#if (LIBTORRENT_VERSION_NUM < 10200)
+#if (LIBTORRENT_VERSION_NUM < 10200) || (LIBTORRENT_VERSION_NUM >= 20000)
     // Forced start
     p.flags &= ~lt::add_torrent_params::flag_paused;
     p.flags &= ~lt::add_torrent_params::flag_auto_managed;
@@ -2548,7 +2548,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     p.flags |= lt::torrent_flags::upload_mode;
 
     p.storage = customStorageConstructor;
-#endif    
+#endif
 
     // Adding torrent to BitTorrent session
     lt::error_code ec;
