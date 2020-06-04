@@ -1204,7 +1204,14 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
         // Shift + scroll = horizontal scroll
         event->accept();
 
-        QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+        QWheelEvent scrollHEvent(event->position(), event->globalPosition()
+            , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
+            , event->modifiers(), event->phase(), event->inverted(), event->source());
+#else
+        QWheelEvent scrollHEvent(event->pos(), event->globalPos()
+            , event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+#endif
         QTreeView::wheelEvent(&scrollHEvent);
         return;
     }
