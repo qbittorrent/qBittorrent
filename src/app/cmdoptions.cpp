@@ -565,7 +565,6 @@ QString makeUsage(const QString &prgName)
            << QLatin1String("QBT_NO_SPLASH=1 ") << prgName << '\n'
            << wrapText(QObject::tr("Command line parameters take precedence over environment variables"), 0) << '\n';
 
-    stream << flush;
     return text;
 }
 
