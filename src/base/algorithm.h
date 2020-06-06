@@ -54,7 +54,7 @@ namespace Algorithm
     {
         auto it = dict.begin();
         while (it != dict.end())
-            it = (p(it.key(), it.value()) ? dict.erase(it) : (it + 1));
+            it = (p(it.key(), it.value()) ? dict.erase(it) : ++it);
     }
 
     // To be used with set types, such as QSet, std::set
@@ -64,6 +64,6 @@ namespace Algorithm
     {
         auto it = set.begin();
         while (it != set.end())
-            it = (p(*it) ? set.erase(it) : (it + 1));
+            it = (p(*it) ? set.erase(it) : ++it);
     }
 }

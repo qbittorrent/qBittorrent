@@ -387,7 +387,16 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     // enable command injection via torrent name and other arguments
     // (especially when some automated download mechanism has been setup).
     // See: https://github.com/qbittorrent/qBittorrent/issues/10925
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+    QStringList args = QProcess::splitCommand(program);
+    if (args.isEmpty())
+        return;
+
+    const QString command = args.takeFirst();
+    QProcess::startDetached(command, args);
+#else
     QProcess::startDetached(program);
+#endif
 #endif
 }
 

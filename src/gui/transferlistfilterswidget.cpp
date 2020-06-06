@@ -599,18 +599,15 @@ int TrackerFiltersList::rowFromTracker(const QString &tracker) const
 
 QString TrackerFiltersList::getHost(const QString &tracker) const
 {
-    QUrl url(tracker);
-    QString longHost = url.host();
-    QString tld = url.topLevelDomain();
-    // We get empty tld when it is invalid or an IPv4/IPv6 address,
-    // so just return the full host
-    if (tld.isEmpty())
-        return longHost;
     // We want the domain + tld. Subdomains should be disregarded
-    int index = longHost.lastIndexOf('.', -(tld.size() + 1));
-    if (index == -1)
-        return longHost;
-    return longHost.mid(index + 1);
+    const QUrl url {tracker};
+    const QString host {url.host()};
+
+    // host is in IP format
+    if (!QHostAddress(host).isNull())
+        return host;
+
+    return host.section('.', -2, -1);
 }
 
 QStringList TrackerFiltersList::getHashes(const int row) const
