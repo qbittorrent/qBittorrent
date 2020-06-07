@@ -970,7 +970,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
                     allSameSuperSeeding = false;
             }
         }
-        if (!torrent->isForced())
+        if (!torrent->isForced() && BitTorrent::Session::instance()->isQueueingSystemEnabled())
             needsForce = true;
         else
             needsStart = true;
