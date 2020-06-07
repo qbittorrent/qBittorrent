@@ -28,30 +28,32 @@
 
 #include "misc.h"
 
-#include <boost/version.hpp>
-#include <libtorrent/version.hpp>
-
 #ifdef Q_OS_WIN
 #include <windows.h>
+#include <powrprof.h>
 #include <Shlobj.h>
 #else
 #include <sys/types.h>
 #include <unistd.h>
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <Carbon/Carbon.h>
 #include <CoreServices/CoreServices.h>
 #endif
 
+#include <boost/version.hpp>
+#include <libtorrent/version.hpp>
+#include <openssl/crypto.h>
 #include <openssl/opensslv.h>
+#include <zlib.h>
 
 #include <QCoreApplication>
 #include <QRegularExpression>
 #include <QSet>
 #include <QSysInfo>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #endif
 
@@ -81,13 +83,13 @@ namespace
         if (sizeInBytes < 0) return false;
 
         int i = 0;
-        auto rawVal = static_cast<qreal>(sizeInBytes);
+        val = static_cast<qreal>(sizeInBytes);
 
-        while ((rawVal >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
-            rawVal /= 1024.;
+        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
+            val /= 1024.;
             ++i;
         }
-        val = rawVal;
+
         unit = static_cast<Utils::Misc::SizeUnit>(i);
         return true;
     }
@@ -117,20 +119,15 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    using PSETSUSPENDSTATE = BOOLEAN (WINAPI *)(BOOLEAN, BOOLEAN, BOOLEAN);
-    const auto setSuspendState = Utils::Misc::loadWinAPI<PSETSUSPENDSTATE>("PowrProf.dll", "SetSuspendState");
-
     if (action == ShutdownDialogAction::Suspend) {
-        if (setSuspendState)
-            setSuspendState(false, false, false);
+        ::SetSuspendState(false, false, false);
     }
     else if (action == ShutdownDialogAction::Hibernate) {
-        if (setSuspendState)
-            setSuspendState(true, false, false);
+        ::SetSuspendState(true, false, false);
     }
     else {
         const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
-        std::unique_ptr<wchar_t[]> msgWchar(new wchar_t[msg.length() + 1] {});
+        auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
         msg.toWCharArray(msgWchar.get());
         ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, true, false);
     }
@@ -139,7 +136,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     tkp.Privileges[0].Attributes = 0;
     AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
 
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     AEEventID EventToSend;
     if (action != ShutdownDialogAction::Shutdown)
         EventToSend = kAESleep;
@@ -251,13 +248,20 @@ QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
            + unitString(unit, isSpeed);
 }
 
-int Utils::Misc::friendlyUnitPrecision(SizeUnit unit)
+int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
 {
     // friendlyUnit's number of digits after the decimal point
-    if (unit == SizeUnit::Byte) return 0;
-    if (unit <= SizeUnit::MebiByte) return 1;
-    if (unit == SizeUnit::GibiByte) return 2;
-    return 3;
+    switch (unit) {
+    case SizeUnit::Byte:
+        return 0;
+    case SizeUnit::KibiByte:
+    case SizeUnit::MebiByte:
+        return 1;
+    case SizeUnit::GibiByte:
+        return 2;
+    default:
+        return 3;
+    }
 }
 
 qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
@@ -316,11 +320,11 @@ bool Utils::Misc::isPreviewable(const QString &extension)
     return multimediaExtensions.contains(extension.toUpper());
 }
 
-// Take a number of seconds and return an user-friendly
-// time duration like "1d 2h 10m".
-QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
+QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
 {
-    if ((seconds < 0) || (seconds >= MAX_ETA))
+    if (seconds < 0)
+        return QString::fromUtf8(C_INFINITY);
+    if ((maxCap >= 0) && (seconds >= maxCap))
         return QString::fromUtf8(C_INFINITY);
 
     if (seconds == 0)
@@ -329,21 +333,25 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds)
     if (seconds < 60)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
 
-    qlonglong minutes = seconds / 60;
+    qlonglong minutes = (seconds / 60);
     if (minutes < 60)
         return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
 
-    qlonglong hours = minutes / 60;
-    minutes -= hours * 60;
-    if (hours < 24)
+    qlonglong hours = (minutes / 60);
+    if (hours < 24) {
+        minutes -= (hours * 60);
         return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
+    }
 
-    qlonglong days = hours / 24;
-    hours -= days * 24;
-    if (days < 100)
+    qlonglong days = (hours / 24);
+    if (days < 365) {
+        hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
+    }
 
-    return QString::fromUtf8(C_INFINITY);
+    qlonglong years = (days / 365);
+    days -= (years * 365);
+    return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2years 10days").arg(QString::number(years), QString::number(days));
 }
 
 QString Utils::Misc::getUserIDString()
@@ -359,30 +367,6 @@ QString Utils::Misc::getUserIDString()
     uid = QString::number(getuid());
 #endif
     return uid;
-}
-
-QStringList Utils::Misc::toStringList(const QList<bool> &l)
-{
-    QStringList ret;
-    for (const bool b : l)
-        ret << (b ? "1" : "0");
-    return ret;
-}
-
-QList<int> Utils::Misc::intListfromStringList(const QStringList &l)
-{
-    QList<int> ret;
-    for (const QString &s : l)
-        ret << s.toInt();
-    return ret;
-}
-
-QList<bool> Utils::Misc::boolListfromStringList(const QStringList &l)
-{
-    QList<bool> ret;
-    for (const QString &s : l)
-        ret << (s == "1");
-    return ret;
 }
 
 QString Utils::Misc::parseHtmlLinks(const QString &rawText)
@@ -462,23 +446,38 @@ QString Utils::Misc::boostVersionString()
 {
     // static initialization for usage in signal handler
     static const QString ver = QString("%1.%2.%3")
-                               .arg(BOOST_VERSION / 100000)
-                               .arg((BOOST_VERSION / 100) % 1000)
-                               .arg(BOOST_VERSION % 100);
+        .arg(QString::number(BOOST_VERSION / 100000)
+            , QString::number((BOOST_VERSION / 100) % 1000)
+            , QString::number(BOOST_VERSION % 100));
     return ver;
 }
 
 QString Utils::Misc::libtorrentVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString ver = LIBTORRENT_VERSION;
-    return ver;
+#if (LIBTORRENT_VERSION_NUM < 10200)
+    static const auto version {QString::fromLatin1(libtorrent::version())};
+#else
+    static const auto version {QString::fromLatin1(lt::version())};
+#endif
+    return version;
 }
 
 QString Utils::Misc::opensslVersionString()
 {
-    const QString version {OPENSSL_VERSION_TEXT};
-    return version.split(' ', QString::SkipEmptyParts)[1];
+#if (OPENSSL_VERSION_NUMBER >= 0x1010000f)
+    static const auto version {QString::fromLatin1(OpenSSL_version(OPENSSL_VERSION))};
+#else
+    static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
+#endif
+    return version.splitRef(' ', QString::SkipEmptyParts)[1].toString();
+}
+
+QString Utils::Misc::zlibVersionString()
+{
+    // static initialization for usage in signal handler
+    static const auto version {QString::fromLatin1(zlibVersion())};
+    return version;
 }
 
 #ifdef Q_OS_WIN

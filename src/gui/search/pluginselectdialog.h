@@ -48,7 +48,7 @@ namespace Ui
     class PluginSelectDialog;
 }
 
-class PluginSelectDialog : public QDialog
+class PluginSelectDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY(PluginSelectDialog)
@@ -57,7 +57,7 @@ public:
     explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
     ~PluginSelectDialog() override;
 
-    QList<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
+    QVector<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
     QTreeWidgetItem *findItemWithID(const QString &id);
 
 protected:
@@ -71,7 +71,7 @@ private slots:
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
     void setRowColor(int row, const QString &color);
-    void displayContextMenu(const QPoint &pos);
+    void displayContextMenu(const QPoint &);
     void enableSelection(bool enable);
     void askForLocalPlugin();
     void askForPluginUrl();

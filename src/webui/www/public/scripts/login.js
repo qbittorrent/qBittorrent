@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function submitLoginForm() {
-    var errorMsgElement = document.getElementById('error_msg');
+    const errorMsgElement = document.getElementById('error_msg');
 
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('POST', 'api/v2/auth/login', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=utf-8');
     xhr.addEventListener('readystatechange', function() {
@@ -57,9 +57,9 @@ function submitLoginForm() {
             : 'QBT_TR(Unable to log in, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]';
     });
 
-    var usernameElement = document.getElementById('username');
-    var passwordElement = document.getElementById('password');
-    var queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value);
+    const usernameElement = document.getElementById('username');
+    const passwordElement = document.getElementById('password');
+    const queryString = "username=" + encodeURIComponent(usernameElement.value) + "&password=" + encodeURIComponent(passwordElement.value);
     xhr.send(queryString);
 
     // clear the field

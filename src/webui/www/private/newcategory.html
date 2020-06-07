@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <script src="scripts/misc.js?locale=${LANG}&v=${VERSION}"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
         'use strict';
 
@@ -30,18 +30,18 @@
         }).activate();
 
         window.addEvent('domready', function() {
-            var uriAction = safeTrim(new URI().getData('action'));
-            var uriHashes = safeTrim(new URI().getData('hashes'));
-            var uriCategoryName = safeTrim(new URI().getData('categoryName'));
-            var uriSavePath = safeTrim(new URI().getData('savePath'));
+            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData('action'));
+            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData('hashes'));
+            const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData('categoryName'));
+            const uriSavePath = window.qBittorrent.Misc.safeTrim(new URI().getData('savePath'));
 
             if (uriAction === "edit") {
                 if (!uriCategoryName)
                     return false;
 
                 $('categoryName').set('disabled', true);
-                $('categoryName').set('value', escapeHtml(uriCategoryName));
-                $('savePath').set('value', escapeHtml(uriSavePath));
+                $('categoryName').set('value', window.qBittorrent.Misc.escapeHtml(uriCategoryName));
+                $('savePath').set('value', window.qBittorrent.Misc.escapeHtml(uriSavePath));
                 $('savePath').focus();
             }
             else {
@@ -51,10 +51,10 @@
             $('categoryNameButton').addEvent('click', function(e) {
                 new Event(e).stop();
 
-                var savePath = $('savePath').value.trim();
-                var categoryName = $('categoryName').value.trim();
+                const savePath = $('savePath').value.trim();
+                const categoryName = $('categoryName').value.trim();
 
-                var verifyCategoryName = function(name) {
+                const verifyCategoryName = function(name) {
                     if ((name === null) || (name === ""))
                         return false;
                     if (name.match("^([^\\\\\\/]|[^\\\\\\/]([^\\\\\\/]|\\/(?=[^\\/]))*[^\\\\\\/])$") === null) {
@@ -89,8 +89,8 @@
                                     }
                                 }).send();
                             },
-                            onError: function() {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer] " + escapeHtml(categoryName));
+                            onFailure: function() {
+                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=HttpServer] " + window.qBittorrent.Misc.escapeHtml(categoryName));
                             }
                         }).send();
                         break;

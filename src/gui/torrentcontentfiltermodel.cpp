@@ -44,11 +44,6 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     setSortCaseSensitivity(Qt::CaseInsensitive);
 }
 
-TorrentContentFilterModel::~TorrentContentFilterModel()
-{
-    delete m_model;
-}
-
 TorrentContentModel *TorrentContentFilterModel::model() const
 {
      return m_model;
@@ -112,7 +107,7 @@ void TorrentContentFilterModel::selectAll()
     for (int i = 0; i < rowCount(); ++i)
         setData(index(i, 0), Qt::Checked, Qt::CheckStateRole);
 
-    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentFilterModel::selectNone()
@@ -120,7 +115,7 @@ void TorrentContentFilterModel::selectNone()
     for (int i = 0; i < rowCount(); ++i)
         setData(index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
 
-    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const

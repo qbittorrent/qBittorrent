@@ -30,7 +30,7 @@
 
 #include <QTreeView>
 
-class CategoryFilterWidget : public QTreeView
+class CategoryFilterWidget final : public QTreeView
 {
     Q_OBJECT
     Q_DISABLE_COPY(CategoryFilterWidget)
@@ -48,7 +48,7 @@ signals:
 
 private slots:
     void onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous);
-    void showMenu(QPoint);
+    void showMenu(const QPoint &);
     void callUpdateGeometry();
     void addCategory();
     void addSubcategory();

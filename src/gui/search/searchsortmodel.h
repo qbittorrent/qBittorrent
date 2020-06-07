@@ -31,9 +31,8 @@
 
 #include <QSortFilterProxyModel>
 #include <QStringList>
-#include "base/utils/string.h"
 
-class SearchSortModel : public QSortFilterProxyModel
+class SearchSortModel final : public QSortFilterProxyModel
 {
     using base = QSortFilterProxyModel;
 

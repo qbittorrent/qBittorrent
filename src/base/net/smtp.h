@@ -36,7 +36,6 @@
 #include <QAbstractSocket>
 #include <QByteArray>
 #include <QHash>
-#include <QMetaType>
 #include <QObject>
 #include <QString>
 

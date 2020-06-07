@@ -1,0 +1,112 @@
+<div id="torrentsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+    <table class="dynamicTable unselectable" style="position:relative;">
+        <thead>
+            <tr class="dynamicTableHeader"></tr>
+        </thead>
+    </table>
+</div>
+
+<div id="torrentsTableDiv" class="dynamicTableDiv">
+    <table class="dynamicTable unselectable">
+        <thead>
+            <tr class="dynamicTableHeader"></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.TransferList = (function() {
+        const exports = function() {
+            return {
+                contextMenu: contextMenu,
+            };
+        };
+
+        //create a context menu
+        const contextMenu = new window.qBittorrent.ContextMenu.TorrentsTableContextMenu({
+            targets: '.torrentsTableContextMenuTarget',
+            menu: 'torrentsTableMenu',
+            actions: {
+                start: function(element, ref) {
+                    startFN();
+                },
+                pause: function(element, ref) {
+                    pauseFN();
+                },
+                forceStart: function(element, ref) {
+                    setForceStartFN();
+                },
+
+                delete: function(element, ref) {
+                    deleteFN();
+                },
+
+                setLocation: function(element, ref) {
+                    setLocationFN();
+                },
+
+                rename: function(element, ref) {
+                    renameFN();
+                },
+                queueTop: function(element, ref) {
+                    setQueuePositionFN('topPrio');
+                },
+                queueUp: function(element, ref) {
+                    setQueuePositionFN('increasePrio');
+                },
+                queueDown: function(element, ref) {
+                    setQueuePositionFN('decreasePrio');
+                },
+                queueBottom: function(element, ref) {
+                    setQueuePositionFN('bottomPrio');
+                },
+
+                downloadLimit: function(element, ref) {
+                    downloadLimitFN();
+                },
+                uploadLimit: function(element, ref) {
+                    uploadLimitFN();
+                },
+                shareRatio: function(element, ref) {
+                    shareRatioFN();
+                },
+
+                sequentialDownload: function(element, ref) {
+                    toggleSequentialDownloadFN();
+                },
+                firstLastPiecePrio: function(element, ref) {
+                    toggleFirstLastPiecePrioFN();
+                },
+
+                autoTorrentManagement: function(element, ref) {
+                    autoTorrentManagementFN();
+                },
+                forceRecheck: function(element, ref) {
+                    recheckFN();
+                },
+                forceReannounce: function(element, ref) {
+                    reannounceFN();
+                },
+
+                superSeeding: function(element, ref) {
+                    setSuperSeedingFN(!ref.getItemChecked('superSeeding'));
+                }
+            },
+            offsets: {
+                x: -15,
+                y: 2
+            }
+        });
+
+        torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', contextMenu);
+
+        return exports();
+    })();
+</script>

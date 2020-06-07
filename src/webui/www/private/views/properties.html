@@ -1,0 +1,163 @@
+<div id="prop_general" class="propertiesTabContent">
+    <fieldset>
+        <legend><b>QBT_TR(Transfer)QBT_TR[CONTEXT=PropertiesWidget]</b></legend>
+        <table style="width: 100%">
+            <tr>
+                <td class="generalLabel">QBT_TR(Time Active:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="time_elapsed"></td>
+                <td class="generalLabel">QBT_TR(ETA:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="eta"></td>
+                <td class="generalLabel">QBT_TR(Connections:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="nb_connections"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Downloaded:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="total_downloaded"></td>
+                <td class="generalLabel">QBT_TR(Uploaded:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="total_uploaded"></td>
+                <td class="generalLabel">QBT_TR(Seeds:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="seeds"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Download Speed:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="dl_speed"></td>
+                <td class="generalLabel">QBT_TR(Upload Speed:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="up_speed"></td>
+                <td class="generalLabel">QBT_TR(Peers:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="peers"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Download Limit:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="dl_limit"></td>
+                <td class="generalLabel">QBT_TR(Upload Limit:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="up_limit"></td>
+                <td class="generalLabel">QBT_TR(Wasted:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="total_wasted"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Share Ratio:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="share_ratio"></td>
+                <td class="generalLabel">QBT_TR(Reannounce In:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="reannounce"></td>
+                <td class="generalLabel">QBT_TR(Last Seen Complete:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="last_seen"></td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend><b>QBT_TR(Information)QBT_TR[CONTEXT=PropertiesWidget]</b></legend>
+        <table style="width: 100%">
+            <tr>
+                <td class="generalLabel">QBT_TR(Total Size:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="total_size"></td>
+                <td class="generalLabel">QBT_TR(Pieces:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="pieces"></td>
+                <td class="generalLabel">QBT_TR(Created By:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="created_by"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Added On:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="addition_date"></td>
+                <td class="generalLabel">QBT_TR(Completed On:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="completion_date"></td>
+                <td class="generalLabel">QBT_TR(Created On:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td id="creation_date"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Torrent Hash:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td colspan="5" id="torrent_hash"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Save Path:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td colspan="5" id="save_path"></td>
+            </tr>
+            <tr>
+                <td class="generalLabel">QBT_TR(Comment:)QBT_TR[CONTEXT=PropertiesWidget]</td>
+                <td colspan="5" style="white-space: pre-wrap;" id="comment"></td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+
+<div id="prop_trackers" class="propertiesTabContent invisible unselectable">
+    <div id="trackers">
+        <div id="torrentTrackersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentTrackersTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="prop_peers" class="propertiesTabContent invisible unselectable">
+    <div>
+        <div id="torrentPeersTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentPeersTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="prop_webseeds" class="propertiesTabContent invisible unselectable">
+    <div id="webseeds">
+        <table class="dynamicTable" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]</th>
+                </tr>
+            </thead>
+            <tbody id="webseedsTable"></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="prop_files" class="propertiesTabContent invisible unselectable">
+    <div id="torrentFiles">
+        <div id="torrentFilesTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentFilesTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    'use strict';
+
+    (function() {
+        const selectedTab = $(LocalPreferences.get('selected_tab', 'PropGeneralLink'));
+        if (selectedTab)
+            selectedTab.click();
+    })();
+</script>

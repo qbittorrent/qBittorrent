@@ -40,9 +40,9 @@ if (Qt5Widgets_FOUND)
             COMPONENT data)
 
     install(FILES
-            ${qBittorrent_SOURCE_DIR}/src/icons/skin/qbittorrent-tray.svg
-            ${qBittorrent_SOURCE_DIR}/src/icons/skin/qbittorrent-tray-dark.svg
-            ${qBittorrent_SOURCE_DIR}/src/icons/skin/qbittorrent-tray-light.svg
+            ${qBittorrent_SOURCE_DIR}/src/icons/qbittorrent-tray.svg
+            ${qBittorrent_SOURCE_DIR}/src/icons/qbittorrent-tray-dark.svg
+            ${qBittorrent_SOURCE_DIR}/src/icons/qbittorrent-tray-light.svg
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/status
         COMPONENT data)
 endif()

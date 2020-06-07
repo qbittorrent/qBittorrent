@@ -29,12 +29,12 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include <QButtonGroup>
 #include <QDialog>
 
 class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
+
 class AdvancedSettings;
 
 // actions on double-click on torrents
@@ -42,6 +42,7 @@ enum DoubleClickAction
 {
     TOGGLE_PAUSE,
     OPEN_DEST,
+    PREVIEW_FILE,
     NO_ACTION
 };
 
@@ -55,7 +56,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog : public QDialog
+class OptionsDialog final : public QDialog
 {
     Q_OBJECT
     using ThisType = OptionsDialog;
@@ -81,13 +82,12 @@ class OptionsDialog : public QDialog
 public:
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
-    ~OptionsDialog();
+    ~OptionsDialog() override;
 
 public slots:
     void showConnectionTab();
 
 private slots:
-    void enableForceProxy(bool enable);
     void enableProxy(int index);
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e) override;
@@ -117,10 +117,9 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
-    static QString languageToLocalizedString(const QLocale &locale);
     // General options
     QString getLocale() const;
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     bool systrayIntegration() const;
     bool minimizeToTray() const;
     bool closeToTray() const;

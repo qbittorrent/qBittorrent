@@ -30,15 +30,16 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QDateTime>
 #include <QList>
-#include <QNetworkCookie>
-#include <QSize>
-#include <QStringList>
-#include <QTime>
-#include <QVariant>
 
 #include "base/utils/net.h"
+
+class QDateTime;
+class QNetworkCookie;
+class QSize;
+class QStringList;
+class QTime;
+class QVariant;
 
 enum SchedulerDays
 {
@@ -74,8 +75,6 @@ namespace DNS
     };
 }
 
-class SettingsStorage;
-
 class Preferences : public QObject
 {
     Q_OBJECT
@@ -99,6 +98,10 @@ public:
     // General options
     QString getLocale() const;
     void setLocale(const QString &locale);
+    bool useCustomUITheme() const;
+    void setUseCustomUITheme(bool use);
+    QString customUIThemePath() const;
+    void setCustomUIThemePath(const QString &path);
     bool deleteTorrentFilesAsDefault() const;
     void setDeleteTorrentFilesAsDefault(bool del);
     bool confirmOnExit() const;
@@ -177,18 +180,26 @@ public:
     void setWebUiLocalAuthEnabled(bool enabled);
     bool isWebUiAuthSubnetWhitelistEnabled() const;
     void setWebUiAuthSubnetWhitelistEnabled(bool enabled);
-    QList<Utils::Net::Subnet> getWebUiAuthSubnetWhitelist() const;
+    QVector<Utils::Net::Subnet> getWebUiAuthSubnetWhitelist() const;
     void setWebUiAuthSubnetWhitelist(QStringList subnets);
     QString getWebUiUsername() const;
     void setWebUiUsername(const QString &username);
     QByteArray getWebUIPassword() const;
     void setWebUIPassword(const QByteArray &password);
+    int getWebUIMaxAuthFailCount() const;
+    void setWebUIMaxAuthFailCount(int count);
+    std::chrono::seconds getWebUIBanDuration() const;
+    void setWebUIBanDuration(std::chrono::seconds duration);
+    int getWebUISessionTimeout() const;
+    void setWebUISessionTimeout(int timeout);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;
     void setWebUiClickjackingProtectionEnabled(bool enabled);
     bool isWebUiCSRFProtectionEnabled() const;
     void setWebUiCSRFProtectionEnabled(bool enabled);
+    bool isWebUiSecureCookieEnabled () const;
+    void setWebUiSecureCookieEnabled(bool enabled);
     bool isWebUIHostHeaderValidationEnabled() const;
     void setWebUIHostHeaderValidationEnabled(bool enabled);
 
@@ -203,6 +214,12 @@ public:
     void setAltWebUiEnabled(bool enabled);
     QString getWebUiRootFolder() const;
     void setWebUiRootFolder(const QString &path);
+
+    // WebUI custom HTTP headers
+    bool isWebUICustomHTTPHeadersEnabled() const;
+    void setWebUICustomHTTPHeadersEnabled(bool enabled);
+    QString getWebUICustomHTTPHeaders() const;
+    void setWebUICustomHTTPHeaders(const QString &headers);
 
     // Dynamic DNS
     bool isDynDNSEnabled() const;
@@ -225,6 +242,10 @@ public:
     void setAutoRunEnabled(bool enabled);
     QString getAutoRunProgram() const;
     void setAutoRunProgram(const QString &program);
+#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    bool isAutoRunConsoleEnabled() const;
+    void setAutoRunConsoleEnabled(bool enabled);
+#endif
     bool shutdownWhenDownloadsComplete() const;
     void setShutdownWhenDownloadsComplete(bool shutdown);
     bool suspendWhenDownloadsComplete() const;
@@ -241,7 +262,7 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool useSystemIconTheme() const;
     void useSystemIconTheme(bool enabled);
 #endif
@@ -255,7 +276,7 @@ public:
     static void setTorrentFileAssoc(bool set);
     static void setMagnetLinkAssoc(bool set);
 #endif
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     static bool isTorrentFileAssocSet();
     static bool isMagnetLinkAssocSet();
     static void setTorrentFileAssoc();
@@ -263,7 +284,7 @@ public:
 #endif
     int getTrackerPort() const;
     void setTrackerPort(int port);
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);
 #endif
@@ -273,7 +294,7 @@ public:
     void setConfirmTorrentRecheck(bool enabled);
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     bool systrayIntegration() const;
     void setSystrayIntegration(bool enabled);
     bool minimizeToTrayNotified() const;
@@ -286,7 +307,7 @@ public:
     void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

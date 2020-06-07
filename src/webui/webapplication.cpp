@@ -29,10 +29,6 @@
 #include "webapplication.h"
 
 #include <algorithm>
-#include <functional>
-#include <queue>
-#include <stdexcept>
-#include <vector>
 
 #include <QDateTime>
 #include <QDebug>
@@ -41,14 +37,16 @@
 #include <QJsonDocument>
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QNetworkCookie>
 #include <QRegExp>
 #include <QUrl>
 
+#include "base/algorithm.h"
 #include "base/global.h"
 #include "base/http/httperror.h"
-#include "base/iconprovider.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/types.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -66,7 +64,7 @@
 
 constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 
-const QString PATH_PREFIX_IMAGES {QStringLiteral("/images/")};
+const QString PATH_PREFIX_ICONS {QStringLiteral("/icons/")};
 const QString WWW_FOLDER {QStringLiteral(":/www")};
 const QString PUBLIC_FOLDER {QStringLiteral("/public")};
 const QString PRIVATE_FOLDER {QStringLiteral("/private")};
@@ -91,7 +89,7 @@ namespace
         return ret;
     }
 
-    inline QUrl urlFromHostHeader(const QString &hostHeader)
+    QUrl urlFromHostHeader(const QString &hostHeader)
     {
         if (!hostHeader.contains(QLatin1String("://")))
             return {QLatin1String("http://") + hostHeader};
@@ -117,6 +115,7 @@ namespace
 
 WebApplication::WebApplication(QObject *parent)
     : QObject(parent)
+    , m_cacheID {QString::number(Utils::Random::rand(), 36)}
 {
     registerAPIController(QLatin1String("app"), new AppController(this, this));
     registerAPIController(QLatin1String("auth"), new AuthController(this, this));
@@ -146,8 +145,8 @@ void WebApplication::sendWebUIFile()
         throw InternalServerErrorHTTPError();
 
     if (!m_isAltUIUsed) {
-        if (request().path.startsWith(PATH_PREFIX_IMAGES)) {
-            const QString imageFilename {request().path.mid(PATH_PREFIX_IMAGES.size())};
+        if (request().path.startsWith(PATH_PREFIX_ICONS)) {
+            const QString imageFilename {request().path.mid(PATH_PREFIX_ICONS.size())};
             sendFile(QLatin1String(":/icons/") + imageFilename);
             return;
         }
@@ -156,9 +155,7 @@ void WebApplication::sendWebUIFile()
     const QString path {
         (request().path != QLatin1String("/")
                 ? request().path
-                : (session()
-                   ? QLatin1String("/index.html")
-                   : QLatin1String("/login.html")))
+                : QLatin1String("/index.html"))
     };
 
     QString localPath {
@@ -195,7 +192,7 @@ void WebApplication::sendWebUIFile()
     sendFile(localPath);
 }
 
-void WebApplication::translateDocument(QString &data)
+void WebApplication::translateDocument(QString &data) const
 {
     const QRegularExpression regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]");
 
@@ -227,7 +224,7 @@ void WebApplication::translateDocument(QString &data)
         }
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
-        data.replace(QLatin1String("${VERSION}"), QBT_VERSION);
+        data.replace(QLatin1String("${CACHEID}"), m_cacheID);
     }
 }
 
@@ -271,12 +268,10 @@ void WebApplication::doProcessRequest()
     try {
         const QVariant result = controller->run(action, m_params, data);
         switch (result.userType()) {
-        case QMetaType::QString:
-            print(result.toString(), Http::CONTENT_TYPE_TXT);
-            break;
         case QMetaType::QJsonDocument:
             print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
             break;
+        case QMetaType::QString:
         default:
             print(result.toString(), Http::CONTENT_TYPE_TXT);
             break;
@@ -336,21 +331,53 @@ void WebApplication::configure()
     m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+    m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
-    m_isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
+    m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
 
-    m_contentSecurityPolicy =
+    m_prebuiltHeaders.clear();
+    m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block")});
+    m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_CONTENT_TYPE_OPTIONS), QLatin1String("nosniff")});
+
+    if (!m_isAltUIUsed)
+        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin")});
+
+    const bool isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
+    if (isClickjackingProtectionEnabled)
+        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN")});
+
+    const QString contentSecurityPolicy =
         (m_isAltUIUsed
             ? QLatin1String("")
             : QLatin1String("default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; object-src 'none'; form-action 'self';"))
-        + (m_isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
+        + (isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
         + (m_isHttpsEnabled ? QLatin1String(" upgrade-insecure-requests;") : QLatin1String(""));
+    if (!contentSecurityPolicy.isEmpty())
+        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), contentSecurityPolicy});
+
+    if (pref->isWebUICustomHTTPHeadersEnabled()) {
+        const QString customHeaders = pref->getWebUICustomHTTPHeaders().trimmed();
+        const QVector<QStringRef> customHeaderLines = customHeaders.splitRef('\n', QString::SkipEmptyParts);
+
+        for (const QStringRef &line : customHeaderLines) {
+            const int idx = line.indexOf(':');
+            if (idx < 0) {
+                // require separator `:` to be present even if `value` field can be empty
+                LogMsg(tr("Missing ':' separator in WebUI custom HTTP header: \"%1\"").arg(line.toString()), Log::WARNING);
+                continue;
+            }
+
+            const QString header = line.left(idx).trimmed().toString();
+            const QString value = line.mid(idx + 1).trimmed().toString();
+            m_prebuiltHeaders.push_back({header, value});
+        }
+    }
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -371,11 +398,10 @@ void WebApplication::sendFile(const QString &path)
     const QDateTime lastModified {QFileInfo(path).lastModified()};
 
     // find translated file in cache
-    auto it = m_translatedFiles.constFind(path);
-    if ((it != m_translatedFiles.constEnd()) && (lastModified <= (*it).lastModified)) {
-        const QString mimeName {QMimeDatabase().mimeTypeForFileNameAndData(path, (*it).data).name()};
-        print((*it).data, mimeName);
-        header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeName));
+    const auto it = m_translatedFiles.constFind(path);
+    if ((it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified)) {
+        print(it->data, it->mimeType);
+        setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
         return;
     }
 
@@ -403,11 +429,11 @@ void WebApplication::sendFile(const QString &path)
         translateDocument(dataStr);
         data = dataStr.toUtf8();
 
-        m_translatedFiles[path] = {data, lastModified}; // caching translated file
+        m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
     print(data, mimeType.name());
-    header(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
+    setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name())});
 }
 
 Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
@@ -416,20 +442,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     m_request = request;
     m_env = env;
     m_params.clear();
+
     if (m_request.method == Http::METHOD_GET) {
-        // Parse GET parameters
-        using namespace Utils::ByteArray;
-        for (const QByteArray &param : asConst(splitToViews(m_request.query, "&"))) {
-            const int sepPos = param.indexOf('=');
-            if (sepPos <= 0) continue; // ignores params without name
-
-            const QByteArray nameComponent = midView(param, 0, sepPos);
-            const QByteArray valueComponent = midView(param, (sepPos + 1));
-
-            const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent));
-            const QString paramValue = QString::fromUtf8(QByteArray::fromPercentEncoding(valueComponent));
-            m_params[paramName] = paramValue;
-        }
+        for (auto iter = m_request.query.cbegin(); iter != m_request.query.cend(); ++iter)
+            m_params[iter.key()] = QString::fromUtf8(iter.value());
     }
     else {
         m_params = m_request.posts;
@@ -450,21 +466,11 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
     catch (const HTTPError &error) {
         status(error.statusCode(), error.statusText());
-        if (!error.message().isEmpty())
-            print(error.message(), Http::CONTENT_TYPE_TXT);
+        print((!error.message().isEmpty() ? error.message() : error.statusText()), Http::CONTENT_TYPE_TXT);
     }
 
-    header(QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block"));
-    header(QLatin1String(Http::HEADER_X_CONTENT_TYPE_OPTIONS), QLatin1String("nosniff"));
-
-    if (m_isClickjackingProtectionEnabled)
-        header(QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN"));
-
-    if (!m_isAltUIUsed)
-        header(QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin"));
-
-    if (!m_contentSecurityPolicy.isEmpty())
-        header(QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), m_contentSecurityPolicy);
+    for (const Http::Header &prebuiltHeader : asConst(m_prebuiltHeaders))
+        setHeader(prebuiltHeader);
 
     return response();
 }
@@ -485,8 +491,7 @@ void WebApplication::sessionInitialize()
     if (!sessionId.isEmpty()) {
         m_currentSession = m_sessions.value(sessionId);
         if (m_currentSession) {
-            const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-            if ((now - m_currentSession->m_timestamp) > INACTIVE_TIME) {
+            if (m_currentSession->hasExpired(m_sessionTimeout)) {
                 // session is outdated - removing it
                 delete m_sessions.take(sessionId);
                 m_currentSession = nullptr;
@@ -537,23 +542,27 @@ void WebApplication::sessionStart()
     Q_ASSERT(!m_currentSession);
 
     // remove outdated sessions
-    const qint64 now = QDateTime::currentMSecsSinceEpoch() / 1000;
-    const QMap<QString, WebSession *> sessionsCopy {m_sessions};
-    for (const auto session : sessionsCopy) {
-        if ((now - session->timestamp()) > INACTIVE_TIME)
-            delete m_sessions.take(session->id());
-    }
+    Algorithm::removeIf(m_sessions, [this](const QString &, const WebSession *session)
+    {
+        if (session->hasExpired(m_sessionTimeout)) {
+            delete session;
+            return true;
+        }
+
+        return false;
+    });
 
     m_currentSession = new WebSession(generateSid());
     m_sessions[m_currentSession->id()] = m_currentSession;
 
     QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
     cookie.setHttpOnly(true);
+    cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
     cookie.setPath(QLatin1String("/"));
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
         cookieRawForm.append("; SameSite=Strict");
-    header(Http::HEADER_SET_COOKIE, cookieRawForm);
+    setHeader({Http::HEADER_SET_COOKIE, cookieRawForm});
 }
 
 void WebApplication::sessionEnd()
@@ -567,7 +576,7 @@ void WebApplication::sessionEnd()
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
 
-    header(Http::HEADER_SET_COOKIE, cookie.toRawForm());
+    setHeader({Http::HEADER_SET_COOKIE, cookie.toRawForm()});
 }
 
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
@@ -661,9 +670,16 @@ QString WebSession::id() const
     return m_sid;
 }
 
-qint64 WebSession::timestamp() const
+bool WebSession::hasExpired(const qint64 seconds) const
 {
-    return m_timestamp;
+    if (seconds <= 0)
+        return false;
+    return m_timer.hasExpired(seconds * 1000);
+}
+
+void WebSession::updateTimestamp()
+{
+    m_timer.start();
 }
 
 QVariant WebSession::getData(const QString &id) const
@@ -674,9 +690,4 @@ QVariant WebSession::getData(const QString &id) const
 void WebSession::setData(const QString &id, const QVariant &data)
 {
     m_data[id] = data;
-}
-
-void WebSession::updateTimestamp()
-{
-    m_timestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
 }

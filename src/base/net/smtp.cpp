@@ -33,10 +33,12 @@
 #include "smtp.h"
 
 #include <QCryptographicHash>
+#include <QDateTime>
 #include <QDebug>
 #include <QHostInfo>
 #include <QStringList>
 #include <QTextCodec>
+
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
 #else
@@ -111,8 +113,12 @@ Smtp::Smtp(QObject *parent)
 
     connect(m_socket, &QIODevice::readyRead, this, &Smtp::readyRead);
     connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
-    connect(m_socket, static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+    connect(m_socket, &QAbstractSocket::errorOccurred, this, &Smtp::error);
+#else
+    connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QAbstractSocket::error)
             , this, &Smtp::error);
+#endif
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()

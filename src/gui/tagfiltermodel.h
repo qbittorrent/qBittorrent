@@ -30,18 +30,19 @@
 #define TAGFILTERMODEL_H
 
 #include <QAbstractListModel>
-#include <QModelIndex>
 #include <QSet>
 #include <QVector>
+
+class QModelIndex;
+
+class TagModelItem;
 
 namespace BitTorrent
 {
     class TorrentHandle;
 }
 
-class TagModelItem;
-
-class TagFilterModel : public QAbstractListModel
+class TagFilterModel final : public QAbstractListModel
 {
     Q_OBJECT
 

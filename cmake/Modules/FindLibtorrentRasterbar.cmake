@@ -38,8 +38,9 @@ else()
         # libtorrent is very picky about those. Let's take a set of defaults and
         # hope that they apply. If not, you the user are on your own.
         set(LibtorrentRasterbar_DEFINITIONS
+            -DTORRENT_USE_LIBCRYPTO
+            # TODO: remove the following define as it is not used since OpenSSL >= 1.1
             -DTORRENT_USE_OPENSSL
-            -DTORRENT_DISABLE_GEO_IP
             -DBOOST_ASIO_ENABLE_CANCELIO
             -DUNICODE -D_UNICODE -D_FILE_OFFSET_BITS=64)
     endif()
@@ -47,7 +48,7 @@ else()
     if(NOT LibtorrentRasterbar_USE_STATIC_LIBS)
         list(APPEND LibtorrentRasterbar_DEFINITIONS
             -DTORRENT_LINKING_SHARED
-            -DBOOST_SYSTEM_DYN_LINK -DBOOST_CHRONO_DYN_LINK)
+            -DBOOST_SYSTEM_DYN_LINK)
     endif()
 endif()
 

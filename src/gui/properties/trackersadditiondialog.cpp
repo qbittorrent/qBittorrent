@@ -36,9 +36,7 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
-#include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "guiiconprovider.h"
+#include "gui/uithememanager.h"
 #include "ui_trackersadditiondialog.h"
 
 TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
@@ -48,7 +46,7 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
 {
     m_ui->setupUi(this);
     // Icons
-    m_ui->uTorrentListButton->setIcon(GuiIconProvider::instance()->getIcon("download"));
+    m_ui->uTorrentListButton->setIcon(UIThemeManager::instance()->getIcon("download"));
 }
 
 TrackersAdditionDialog::~TrackersAdditionDialog()
@@ -58,11 +56,13 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 
 QStringList TrackersAdditionDialog::newTrackers() const
 {
+    const QString plainText = m_ui->textEditTrackersList->toPlainText();
+
     QStringList cleanTrackers;
-    for (QString url : asConst(m_ui->textEditTrackersList->toPlainText().split('\n'))) {
+    for (QStringRef url : asConst(plainText.splitRef('\n'))) {
         url = url.trimmed();
         if (!url.isEmpty())
-            cleanTrackers << url;
+            cleanTrackers << url.toString();
     }
     return cleanTrackers;
 }
@@ -89,12 +89,11 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         return;
     }
 
-    // Load from torrent handle
-    QList<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
-    // Load from current user list
-    const QStringList tmp = m_ui->textEditTrackersList->toPlainText().split('\n');
-    for (const QString &userURL : tmp) {
-        BitTorrent::TrackerEntry userTracker(userURL);
+    const QStringList trackersFromUser = m_ui->textEditTrackersList->toPlainText().split('\n');
+    QVector<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
+    existingTrackers.reserve(trackersFromUser.size());
+    for (const QString &userURL : trackersFromUser) {
+        const BitTorrent::TrackerEntry userTracker(userURL);
         if (!existingTrackers.contains(userTracker))
             existingTrackers << userTracker;
     }

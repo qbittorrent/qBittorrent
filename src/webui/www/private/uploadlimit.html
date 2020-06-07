@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
     <script src="scripts/lib/mocha-0.9.6-yc.js"></script>
-    <script src="scripts/speedslider.js?v=${VERSION}"></script>
+    <script src="scripts/speedslider.js?v=${CACHEID}"></script>
 </head>
 
 <body>
@@ -24,9 +24,9 @@
         <script>
             'use strict';
 
-            var hashes = new URI().getData('hashes').split('|');
-            var setUpLimit = function() {
-                var limit = $("uplimitUpdatevalue").value.toInt() * 1024;
+            const hashes = new URI().getData('hashes').split('|');
+            const setUpLimit = function() {
+                const limit = $("uplimitUpdatevalue").value.toInt() * 1024;
                 if (hashes[0] == "global") {
                     new Request({
                         url: 'api/v2/transfer/setUploadLimit',

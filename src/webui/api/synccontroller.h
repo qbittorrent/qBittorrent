@@ -56,6 +56,7 @@ private slots:
 
 private:
     qint64 getFreeDiskSpace();
+    void invokeChecker() const;
 
     qint64 m_freeDiskSpace = 0;
     FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;

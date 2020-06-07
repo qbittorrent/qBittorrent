@@ -28,15 +28,12 @@
 
 #include "searchlistdelegate.h"
 
-#include <QCoreApplication>
 #include <QModelIndex>
 #include <QPainter>
-#include <QProgressBar>
 #include <QStyleOptionViewItem>
 
 #include "base/utils/misc.h"
 #include "searchsortmodel.h"
-
 
 SearchListDelegate::SearchListDelegate(QObject *parent)
     : QItemDelegate(parent)

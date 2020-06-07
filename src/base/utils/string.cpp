@@ -35,7 +35,7 @@
 #include <QLocale>
 #include <QRegExp>
 #include <QtGlobal>
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <QThreadStorage>
 #endif
 
@@ -96,18 +96,29 @@ namespace
                 }
                 else if (leftChar.isDigit() && rightChar.isDigit()) {
                     // Both are digits, compare the numbers
-                    const auto consumeNumber = [](const QString &str, int &pos) -> int
+
+                    const auto numberView = [](const QString &str, int &pos) -> QStringRef
                     {
                         const int start = pos;
                         while ((pos < str.size()) && str[pos].isDigit())
                             ++pos;
-                        return str.midRef(start, (pos - start)).toInt();
+                        return str.midRef(start, (pos - start));
                     };
 
-                    const int numL = consumeNumber(left, posL);
-                    const int numR = consumeNumber(right, posR);
-                    if (numL != numR)
-                        return (numL - numR);
+                    const QStringRef numViewL = numberView(left, posL);
+                    const QStringRef numViewR = numberView(right, posR);
+
+                    if (numViewL.length() != numViewR.length())
+                        return (numViewL.length() - numViewR.length());
+
+                    // both string/view has the same length
+                    for (int i = 0; i < numViewL.length(); ++i) {
+                        const QChar numL = numViewL[i];
+                        const QChar numR = numViewR[i];
+
+                        if (numL != numR)
+                            return (numL.unicode() - numR.unicode());
+                    }
 
                     // String + digits do match and we haven't hit the end of both strings
                     // then continue to consume the remainings
@@ -128,7 +139,7 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
     // provide a single `NaturalCompare` instance for easy use
     // https://doc.qt.io/qt-5/threads-reentrancy.html
     if (caseSensitivity == Qt::CaseSensitive) {
-#ifdef Q_OS_MAC  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+#ifdef Q_OS_MACOS  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
         static QThreadStorage<NaturalCompare> nCmp;
         if (!nCmp.hasLocalData())
             nCmp.setLocalData(NaturalCompare(Qt::CaseSensitive));
@@ -139,7 +150,7 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
 #endif
     }
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     static QThreadStorage<NaturalCompare> nCmp;
     if (!nCmp.hasLocalData())
         nCmp.setLocalData(NaturalCompare(Qt::CaseInsensitive));
@@ -186,4 +197,15 @@ TriStateBool Utils::String::parseTriStateBool(const QString &string)
     if (string.compare("false", Qt::CaseInsensitive) == 0)
         return TriStateBool::False;
     return TriStateBool::Undefined;
+}
+
+QString Utils::String::join(const QVector<QStringRef> &strings, const QString &separator)
+{
+    if (strings.empty())
+        return {};
+
+    QString ret = strings[0].toString();
+    for (int i = 1; i < strings.count(); ++i)
+        ret += (separator + strings[i]);
+    return ret;
 }

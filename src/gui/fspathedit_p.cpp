@@ -29,8 +29,11 @@
 #include "fspathedit_p.h"
 
 #include <QCompleter>
+#include <QContextMenuEvent>
 #include <QDir>
 #include <QFileInfo>
+#include <QFileSystemModel>
+#include <QMenu>
 #include <QStringList>
 #include <QStyle>
 
@@ -256,10 +259,8 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
         FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
         QValidator::State lastState = validator->lastValidationState();
         if (lastTestResult == FileSystemPathValidator::TestResult::OK) {
-            if (m_warningAction) {
-                delete m_warningAction;
-                m_warningAction = nullptr;
-            }
+            delete m_warningAction;
+            m_warningAction = nullptr;
         }
         else {
             if (!m_warningAction) {
@@ -281,13 +282,14 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 void Private::FileLineEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = createStandardContextMenu();
-    menu->addSeparator();
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
     if (m_browseAction) {
         menu->addSeparator();
         menu->addAction(m_browseAction);
     }
-    menu->exec(event->globalPos());
-    delete menu;
+
+    menu->popup(event->globalPos());
 }
 
 void Private::FileLineEdit::showCompletionPopup()

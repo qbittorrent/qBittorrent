@@ -52,6 +52,9 @@ public:
         Paused,
         Active,
         Inactive,
+        Stalled,
+        StalledUploading,
+        StalledDownloading,
         Errored
     };
 
@@ -67,6 +70,9 @@ public:
     static const TorrentFilter ResumedTorrent;
     static const TorrentFilter ActiveTorrent;
     static const TorrentFilter InactiveTorrent;
+    static const TorrentFilter StalledTorrent;
+    static const TorrentFilter StalledUploadingTorrent;
+    static const TorrentFilter StalledDownloadingTorrent;
     static const TorrentFilter ErroredTorrent;
 
     TorrentFilter();

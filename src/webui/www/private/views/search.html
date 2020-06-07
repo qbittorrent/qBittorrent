@@ -1,0 +1,740 @@
+<style>
+    #searchPattern {
+        width: 300px;
+        line-height: 2em;
+        padding: 1px 5px 1px 2em;
+        background-image: url("icons/edit-find.svg");
+        background-repeat: no-repeat;
+        background-size: 1.5em;
+        background-position: left;
+    }
+
+    #categorySelect {
+        width: 150px;
+    }
+
+    #pluginsSelect {
+        width: 150px;
+    }
+
+    #startSearchButton {
+        width: 90px;
+    }
+
+    #searchResultsNoPlugins {
+        height: calc(100% - 110px);
+    }
+
+    #searchResultsNoPlugins table {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
+    #searchResultsFilters {
+        height: 30px;
+        overflow: auto;
+    }
+
+    #searchInNameFilter {
+        width: 150px;
+        margin-right: 20px;
+    }
+
+    #searchMinSeedsFilter, #searchMaxSeedsFilter, #searchMinSizeFilter, #searchMaxSizeFilter {
+        width: 4em;
+    }
+
+    #manageSearchPlugins {
+        float: right;
+    }
+
+    #searchResultsGranularFilters {
+        display: none;
+    }
+
+    #searchResultsGranularFiltersWarning {
+        vertical-align: bottom;
+        margin-left: 10px;
+    }
+
+    @media (min-width: 1060px) {
+        #searchResultsGranularFilters {
+            display: inline-block;
+        }
+
+        #searchResultsGranularFiltersWarning {
+            display: none;
+        }
+
+        #searchPattern {
+            width: 500px;
+        }
+    }
+
+</style>
+
+<div id="searchResults">
+    <div style="overflow: hidden; height: 70px;">
+        <div style="margin: 20px 0; height: 30px;">
+            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
+            <select id="categorySelect" class="searchInputField" onchange="qBittorrent.Search.categorySelected()"></select>
+            <select id="pluginsSelect" class="searchInputField" onchange="qBittorrent.Search.pluginSelected()"></select>
+            <button id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        </div>
+    </div>
+
+    <div id="searchResultsNoPlugins">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        There aren't any search plugins installed.<br/>Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span></span>
+    </div>
+
+    <div id="searchResultsFilters">
+        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
+
+        <span>QBT_TR(Results (showing)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsVisible" class="numSearchResults">0</span> QBT_TR(out of)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsTotal" class="numSearchResults">0</span>):</span>
+
+        <div style="display: inline-block; float: right;">
+            <label for="searchInTorrentName" style="margin-left: 15px;">QBT_TR(Search in:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <select id="searchInTorrentName" onchange="qBittorrent.Search.searchInTorrentName()">
+                <option value="names">QBT_TR(Torrent names only)QBT_TR[CONTEXT=SearchEngineWidget]</option>
+                <option value="everywhere">QBT_TR(Everywhere)QBT_TR[CONTEXT=SearchEngineWidget]</option>
+            </select>
+
+            <img id="searchResultsGranularFiltersWarning" src="icons/dialog-warning.svg" title="QBT_TR(Increase window width to display additional filters)QBT_TR[CONTEXT=SearchEngineWidget]" alt="QBT_TR(Warning)QBT_TR[CONTEXT=SearchEngineWidget]" width="24" height="24">
+
+            <div id="searchResultsGranularFilters">
+                <span style="margin-left: 15px;">QBT_TR(Seeds:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <input type="number" min="0" max="1000" id="searchMinSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
+                <span>to</span>
+                <input type="number" min="0" max="1000" id="searchMaxSeedsFilter" value="0" onchange="qBittorrent.Search.searchSeedsFilterChanged()">
+
+                <span style="margin-left: 15px;">QBT_TR(Size:)QBT_TR[CONTEXT=SearchEngineWidget]</span>
+                <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMinSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
+                <select id="searchMinSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
+                    <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
+                    <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
+                </select>
+                <span>to</span>
+                <input type="number" min="0" max="1000" step=".01" value="0.00" id="searchMaxSizeFilter" onchange="qBittorrent.Search.searchSizeFilterChanged()">
+                <select id="searchMaxSizePrefix" onchange="qBittorrent.Search.searchSizeFilterPrefixChanged()">
+                    <option value="0">QBT_TR(B)QBT_TR[CONTEXT=misc]</option>
+                    <option value="1">QBT_TR(KiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="2" selected>QBT_TR(MiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="3">QBT_TR(GiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="4">QBT_TR(TiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="5">QBT_TR(PiB)QBT_TR[CONTEXT=misc]</option>
+                    <option value="6">QBT_TR(EiB)QBT_TR[CONTEXT=misc]</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="searchResultsTableContainer">
+        <div id="searchResultsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable unselectable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="searchResultsTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable unselectable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="height: 30px; padding-top: 10px;">
+        <button id="manageSearchPlugins" onclick="qBittorrent.Search.manageSearchPlugins()">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+    </div>
+</div>
+
+<ul id="searchResultsTableMenu" class="contextMenu">
+    <li><a href="#Download"><img src="icons/download.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li class="separator"><a href="#OpenDescriptionUrl"><img src="icons/application-x-mswinurl.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li>
+        <a href="#" class="arrow-right"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]"/> QBT_TR(Copy)QBT_TR[CONTEXT=SearchJobWidget]</a>
+        <ul>
+            <li><a href="#" id="copySearchTorrentName" class="copySearchDataToClipboard"><img src="icons/edit-copy.svg" alt="QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Name)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDownloadLink" class="copySearchDataToClipboard"><img src="icons/edit-copy.svg" alt="QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Download link)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+            <li><a href="#" id="copySearchTorrentDescriptionUrl" class="copySearchDataToClipboard"><img src="icons/edit-copy.svg" alt="QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]"/>  QBT_TR(Description page URL)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.Search = (function() {
+        const exports = function() {
+            return {
+                startStopSearch: startStopSearch,
+                manageSearchPlugins: manageSearchPlugins,
+                searchPlugins: searchPlugins,
+                searchText: searchText,
+                searchSeedsFilter: searchSeedsFilter,
+                searchSizeFilter: searchSizeFilter,
+                init: init,
+                getPlugin: getPlugin,
+                searchInTorrentName: searchInTorrentName,
+                categorySelected: categorySelected,
+                pluginSelected: pluginSelected,
+                searchSeedsFilterChanged: searchSeedsFilterChanged,
+                searchSizeFilterChanged: searchSizeFilterChanged,
+                searchSizeFilterPrefixChanged: searchSizeFilterPrefixChanged
+            };
+        };
+
+        let searchResultsTable;
+        let loadSearchResultsTimer;
+        let loadSearchPluginsTimer;
+        let searchResultsRowId = 0;
+        let searchRunning = false;
+        let requestCount = 0;
+        const searchPlugins = [];
+        let prevSearchPluginsResponse;
+        const searchText = {
+            pattern: "",
+            filterPattern: ""
+        };
+        const searchSeedsFilter = {
+            min: 0,
+            max: 0
+        };
+        const searchSizeFilter = {
+            min: 0.00,
+            minUnit: 2, // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
+            max: 0.00,
+            maxUnit: 3
+        };
+        let prevNameFilterValue;
+        let selectedCategory = "QBT_TR(All categories)QBT_TR[CONTEXT=SearchEngineWidget]";
+        let selectedPlugin = "all";
+        let prevSelectedPlugin;
+        let activeSearchId = null;
+
+        const init = function() {
+            // load "Search in" preference from local storage
+            $('searchInTorrentName').set('value', (LocalPreferences.get('search_in_filter') === "names") ? "names" : "everywhere");
+            const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+                targets: '.searchTableRow',
+                menu: 'searchResultsTableMenu',
+                actions: {
+                    Download: downloadSearchTorrent,
+                    OpenDescriptionUrl: openSearchTorrentDescriptionUrl
+                },
+                offsets: {
+                    x: -15,
+                    y: -53
+                }
+            });
+            searchResultsTable = new window.qBittorrent.DynamicTable.SearchResultsTable();
+            searchResultsTable.setup('searchResultsTableDiv', 'searchResultsTableFixedHeaderDiv', searchResultsTableContextMenu);
+            getPlugins();
+
+            let searchInNameFilterTimer = null;
+            // listen for changes to searchInNameFilter
+            $('searchInNameFilter').addEvent('input', function() {
+                const value = $('searchInNameFilter').get("value");
+                if (value !== prevNameFilterValue) {
+                    prevNameFilterValue = value;
+                    clearTimeout(searchInNameFilterTimer);
+                    searchInNameFilterTimer = setTimeout(function() {
+                        searchText.filterPattern = value;
+                        searchFilterChanged();
+                    }, 400);
+                }
+            });
+
+            new Keyboard({
+                defaultEventType: 'keydown',
+                events: {
+                    'Enter': function(e) {
+                        // accept enter key as a click
+                        new Event(e).stop();
+
+                        const elem = e.event.srcElement;
+                        if (elem.className.contains("searchInputField")) {
+                            $('startSearchButton').click();
+                            return;
+                        }
+
+                        switch (elem.id) {
+                            case "manageSearchPlugins":
+                                manageSearchPlugins();
+                                break;
+                        }
+                    }
+                }
+            }).activate();
+        };
+
+        const startSearch = function(pattern, category, plugins) {
+            clearTimeout(loadSearchResultsTimer);
+            searchResultsTable.clear();
+            $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
+            $('numSearchResultsTotal').set('html', searchResultsTable.getRowIds().length);
+            searchResultsRowId = 0;
+            requestCount = 0;
+
+            const url = new URI('api/v2/search/start');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: {
+                    pattern: pattern,
+                    category: category,
+                    plugins: plugins
+                },
+                onSuccess: function(response) {
+                    $('startSearchButton').set('text', 'QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]');
+                    searchRunning = true;
+                    activeSearchId = response.id;
+                    updateSearchResultsData();
+                }
+            }).send();
+        };
+
+        const stopSearch = function() {
+            const url = new URI('api/v2/search/stop');
+            new Request({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: {
+                    id: activeSearchId
+                },
+                onSuccess: function(response) {
+                    resetSearchState();
+                }
+            }).send();
+        };
+
+        const startStopSearch = function() {
+            if (!searchRunning || !activeSearchId) {
+                const pattern = $('searchPattern').getProperty('value').trim();
+                let category = $('categorySelect').getProperty('value');
+                const plugins = $('pluginsSelect').getProperty('value');
+
+                if (!pattern || !category || !plugins) return;
+
+                resetFilters();
+
+                searchText.pattern = pattern;
+                startSearch(pattern, category, plugins);
+            }
+            else {
+                stopSearch();
+            }
+        };
+
+        const openSearchTorrentDescriptionUrl = function() {
+            searchResultsTable.selectedRowsIds().each(function(rowId) {
+                window.open(searchResultsTable.rows.get(rowId).full_data.descrLink, "_blank");
+            });
+        };
+
+        const copySearchTorrentName = function() {
+            const names = [];
+            searchResultsTable.selectedRowsIds().each(function(rowId) {
+                names.push(searchResultsTable.rows.get(rowId).full_data.fileName);
+            });
+            return names.join("\n");
+        };
+
+        const copySearchTorrentDownloadLink = function() {
+            const urls = [];
+            searchResultsTable.selectedRowsIds().each(function(rowId) {
+                urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
+            });
+            return urls.join("\n");
+        };
+
+        const copySearchTorrentDescriptionUrl = function() {
+            const urls = [];
+            searchResultsTable.selectedRowsIds().each(function(rowId) {
+                urls.push(searchResultsTable.rows.get(rowId).full_data.descrLink);
+            });
+            return urls.join("\n");
+        };
+
+        const downloadSearchTorrent = function() {
+            const urls = [];
+            searchResultsTable.selectedRowsIds().each(function(rowId) {
+                urls.push(encodeURIComponent(searchResultsTable.rows.get(rowId).full_data.fileUrl));
+            });
+
+            // only proceed if at least 1 row was selected
+            if (!urls.length) return;
+
+            showDownloadPage(urls);
+        };
+
+        const manageSearchPlugins = function() {
+            const id = 'searchPlugins';
+            if (!$(id))
+                new MochaUI.Window({
+                    id: id,
+                    title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
+                    loadMethod: 'xhr',
+                    contentURL: 'views/searchplugins.html',
+                    scrollbars: false,
+                    maximizable: false,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: loadWindowWidth(id, 600),
+                    height: loadWindowHeight(id, 360),
+                    onResize: function() {
+                        saveWindowSize(id);
+                    },
+                    onBeforeBuild: function() {
+                        loadSearchPlugins();
+                    },
+                    onClose: function() {
+                        clearTimeout(loadSearchPluginsTimer);
+                    }
+                });
+        };
+
+        const loadSearchPlugins = function() {
+            getPlugins();
+            loadSearchPluginsTimer = loadSearchPlugins.delay(2000);
+        };
+
+        const categorySelected = function() {
+            selectedCategory = $("categorySelect").get("value");
+        };
+
+        const pluginSelected = function() {
+            selectedPlugin = $("pluginsSelect").get("value");
+
+            if (selectedPlugin !== prevSelectedPlugin) {
+                prevSelectedPlugin = selectedPlugin;
+                getSearchCategories();
+            }
+        };
+
+        const reselectCategory = function() {
+            for (let i = 0; i < $("categorySelect").options.length; ++i)
+                if ($("categorySelect").options[i].get("value") === selectedCategory)
+                    $("categorySelect").options[i].selected = true;
+
+            categorySelected();
+        };
+
+        const reselectPlugin = function() {
+            for (let i = 0; i < $("pluginsSelect").options.length; ++i)
+                if ($("pluginsSelect").options[i].get("value") === selectedPlugin)
+                    $("pluginsSelect").options[i].selected = true;
+
+            pluginSelected();
+        };
+
+        const resetSearchState = function() {
+            clearTimeout(loadSearchResultsTimer);
+            $('startSearchButton').set('text', 'QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]');
+            searchResultsRowId = 0;
+            searchRunning = false;
+            activeSearchId = null;
+        };
+
+        const getSearchCategories = function() {
+            const populateCategorySelect = function(categories) {
+                const categoryHtml = [];
+                categories.each(function(category) {
+                    const option = new Element("option");
+                    option.set("value", category.id);
+                    option.set("html", category.name);
+                    categoryHtml.push(option.outerHTML);
+                });
+
+                // first category is "All Categories"
+                if (categoryHtml.length > 1) {
+                    // add separator
+                    const option = new Element("option");
+                    option.set("disabled", true);
+                    option.set("html", "──────────");
+                    categoryHtml.splice(1, 0, option.outerHTML);
+                }
+
+                $('categorySelect').set('html', categoryHtml.join(""));
+            };
+
+            const selectedPlugin = $('pluginsSelect').get("value");
+
+            if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
+                const uniqueCategories = {};
+                for (const plugin of searchPlugins) {
+                    if ((selectedPlugin === "enabled") && !plugin.enabled) continue
+                    for (const category of plugin.supportedCategories) {
+                        if (uniqueCategories[category.id] === undefined) {
+                            uniqueCategories[category.id] = category;
+                        }
+                     }
+                }
+                // we must sort the ids to maintain consistent order.
+                const categories = Object.keys(uniqueCategories).sort().map(id => uniqueCategories[id]);
+                populateCategorySelect(categories);
+            }
+            else {
+                const plugin = getPlugin(selectedPlugin);
+                const plugins = (plugin === null) ? [] : plugin.supportedCategories
+                populateCategorySelect(plugins);
+            }
+
+            reselectCategory();
+        };
+
+        const getPlugins = function() {
+            new Request.JSON({
+                url: new URI('api/v2/search/plugins'),
+                noCache: true,
+                method: 'get',
+                onSuccess: function(response) {
+                    if (response !== prevSearchPluginsResponse) {
+                        prevSearchPluginsResponse = response;
+                        searchPlugins.length = 0;
+                        response.forEach(function(plugin) {
+                            searchPlugins.push(plugin);
+                        });
+
+                        const pluginsHtml = [];
+                        pluginsHtml.push('<option value="enabled">QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
+                        pluginsHtml.push('<option value="all">QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]</option>');
+
+                        const searchPluginsEmpty = (searchPlugins.length === 0);
+                        if (searchPluginsEmpty) {
+                            $('searchResultsNoPlugins').style.display = "block";
+                            $('searchResultsFilters').style.display = "none";
+                            $('searchResultsTableContainer').style.display = "none";
+                        }
+                        else {
+                            $('searchResultsNoPlugins').style.display = "none";
+                            $('searchResultsFilters').style.display = "block";
+                            $('searchResultsTableContainer').style.display = "block";
+
+                            // sort plugins alphabetically
+                            const allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
+                                const a = pluginA.fullName.toLowerCase();
+                                const b = pluginB.fullName.toLowerCase();
+                                if (a < b) return -1;
+                                if (a > b) return 1;
+                                return 0;
+                            });
+
+                            allPlugins.each(function(plugin) {
+                                if (plugin.enabled === true)
+                                    pluginsHtml.push("<option value='" + window.qBittorrent.Misc.escapeHtml(plugin.name) + "'>" + window.qBittorrent.Misc.escapeHtml(plugin.fullName) + "</option>");
+                            });
+
+                            if (pluginsHtml.length > 2)
+                                pluginsHtml.splice(2, 0, "<option disabled>──────────</option>");
+                        }
+
+                        $('pluginsSelect').set('html', pluginsHtml.join(""));
+
+                        $('searchPattern').setProperty('disabled', searchPluginsEmpty);
+                        $('categorySelect').setProperty('disabled', searchPluginsEmpty);
+                        $('pluginsSelect').setProperty('disabled', searchPluginsEmpty);
+                        $('startSearchButton').setProperty('disabled', searchPluginsEmpty);
+
+                        if (window.qBittorrent.SearchPlugins !== undefined)
+                            window.qBittorrent.SearchPlugins.updateTable();
+
+                        reselectPlugin();
+                    }
+                }
+            }).send();
+        };
+
+        const getPlugin = function(name) {
+            for (let i = 0; i < searchPlugins.length; ++i)
+                if (searchPlugins[i].name === name)
+                    return searchPlugins[i];
+
+            return null;
+        };
+
+        const searchInTorrentName = function() {
+            if ($('searchInTorrentName').get('value') === "names")
+                LocalPreferences.set('search_in_filter', "names");
+            else
+                LocalPreferences.set('search_in_filter', "everywhere");
+
+            searchFilterChanged();
+        };
+
+        const resetFilters = function() {
+            // reset filters
+            $('searchMinSeedsFilter').set('value', '0');
+            $('searchMaxSeedsFilter').set('value', '0');
+            $('searchMinSizeFilter').set('value', '0.00');
+            $('searchMinSizePrefix').set('value', '2'); // MiB
+            $('searchMaxSizeFilter').set('value', '0.00');
+            $('searchMaxSizePrefix').set('value', '3'); // GiB
+        };
+
+        const searchSeedsFilterChanged = function() {
+            searchSeedsFilter.min = $('searchMinSeedsFilter').get('value');
+            searchSeedsFilter.max = $('searchMaxSeedsFilter').get('value');
+
+            searchFilterChanged();
+        };
+
+        const searchSizeFilterChanged = function() {
+            searchSizeFilter.min = $('searchMinSizeFilter').get('value');
+            searchSizeFilter.minUnit = $('searchMinSizePrefix').get('value');
+            searchSizeFilter.max = $('searchMaxSizeFilter').get('value');
+            searchSizeFilter.maxUnit = $('searchMaxSizePrefix').get('value');
+
+            searchFilterChanged();
+        };
+
+        const searchSizeFilterPrefixChanged = function() {
+            if (($('searchMinSizeFilter').get('value') != 0) || ($('searchMaxSizeFilter').get('value') != 0))
+                searchSizeFilterChanged();
+        };
+
+        const searchFilterChanged = function() {
+            searchResultsTable.updateTable();
+            $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
+        };
+
+        const setupSearchTableEvents = function(enable) {
+            if (enable)
+                $$(".searchTableRow").each(function(target) {
+                    target.addEventListener('dblclick', downloadSearchTorrent, false);
+                });
+            else
+                $$(".searchTableRow").each(function(target) {
+                    target.removeEventListener('dblclick', downloadSearchTorrent, false);
+                });
+        };
+
+        const loadSearchResultsData = function() {
+            const maxResults = 500;
+            const url = new URI('api/v2/search/results');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: {
+                    id: activeSearchId,
+                    limit: maxResults,
+                    offset: searchResultsRowId
+                },
+                onFailure: function(response) {
+                    if (response.status === 400) {
+                        // bad params. search id is invalid
+                        resetSearchState();
+                    }
+                    else {
+                        clearTimeout(loadSearchResultsTimer);
+                        loadSearchResultsTimer = loadSearchResultsData.delay(3000);
+                    }
+                },
+                onSuccess: function(response) {
+                    $('error_div').set('html', '');
+
+                    // check if user stopped the search prior to receiving the response
+                    if (!searchRunning) {
+                        clearTimeout(loadSearchResultsTimer);
+                        searchResultsRowId = 0;
+                        return;
+                    }
+
+                    if (response) {
+                        setupSearchTableEvents(false);
+
+                        if (response.results) {
+                            const results = response.results;
+                            for (let i = 0; i < results.length; ++i) {
+                                const result = results[i];
+                                const row = {
+                                    rowId: searchResultsRowId,
+                                    descrLink: result.descrLink,
+                                    fileName: result.fileName,
+                                    fileSize: result.fileSize,
+                                    fileUrl: result.fileUrl,
+                                    nbLeechers: result.nbLeechers,
+                                    nbSeeders: result.nbSeeders,
+                                    siteUrl: result.siteUrl,
+                                };
+
+                                searchResultsTable.updateRowData(row);
+                                ++searchResultsRowId;
+                            }
+
+                            $('numSearchResultsVisible').set('html', searchResultsTable.getFilteredAndSortedRows().length);
+                            $('numSearchResultsTotal').set('html', searchResultsTable.getRowIds().length);
+                        }
+
+                        searchResultsTable.updateTable();
+                        searchResultsTable.altRow();
+
+                        if ((response.status === "Stopped") && (searchResultsRowId >= response.total)) {
+                            resetSearchState();
+                            return;
+                        }
+
+                        setupSearchTableEvents(true);
+                    }
+
+                    let timeout = 1000;
+                    if (requestCount > 30)
+                        timeout = 3000;
+                    else if (requestCount > 10)
+                        timeout = 2000;
+
+                    clearTimeout(loadSearchResultsTimer);
+                    loadSearchResultsTimer = loadSearchResultsData.delay(timeout);
+                    ++requestCount;
+                }
+            }).send();
+        };
+
+        const updateSearchResultsData = function() {
+            clearTimeout(loadSearchResultsTimer);
+            loadSearchResultsTimer = loadSearchResultsData.delay(500);
+        };
+
+        new ClipboardJS('.copySearchDataToClipboard', {
+            text: function(trigger) {
+                switch (trigger.id) {
+                    case "copySearchTorrentName":
+                        return copySearchTorrentName();
+                    case "copySearchTorrentDownloadLink":
+                        return copySearchTorrentDownloadLink();
+                    case "copySearchTorrentDescriptionUrl":
+                        return copySearchTorrentDescriptionUrl();
+                    default:
+                        return "";
+                }
+            }
+        });
+
+        return exports();
+    })();
+</script>

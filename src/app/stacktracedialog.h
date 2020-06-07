@@ -31,62 +31,22 @@
 #define STACKTRACEDIALOG_H
 
 #include <QDialog>
-#include <QString>
 
-#include "base/utils/misc.h"
-#include "ui_stacktracedialog.h"
+namespace Ui
+{
+    class StacktraceDialog;
+}
 
 class StacktraceDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(StacktraceDialog)
 
 public:
-    StacktraceDialog(QWidget *parent = nullptr)
-        : QDialog(parent)
-        , m_ui(new Ui::StacktraceDialog)
-    {
-        m_ui->setupUi(this);
-    }
+    explicit StacktraceDialog(QWidget *parent = nullptr);
+    ~StacktraceDialog() override;
 
-    ~StacktraceDialog()
-    {
-        delete m_ui;
-    }
-
-    void setStacktraceString(const QString &sigName, const QString &trace)
-    {
-        // try to call Qt function as less as possible
-        const QString htmlStr = QString(
-            "<p align=center><b><font size=7 color=red>"
-            "qBittorrent has crashed"
-            "</font></b></p>"
-            "<font size=4><p>"
-            "Please file a bug report at "
-            "<a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a> "
-            "and provide the following information:"
-            "</p></font>"
-            "<br/><hr><br/>"
-            "<p align=center><font size=4>"
-            "qBittorrent version: " QBT_VERSION " (%1-bit)<br/>"
-            "Libtorrent version: %2<br/>"
-            "Qt version: " QT_VERSION_STR "<br/>"
-            "Boost version: %3<br/>"
-            "OpenSSL version: %4<br/>"
-            "OS version: %5<br/><br/>"
-            "Caught signal: %6"
-            "</font></p>"
-            "<pre><code>%7</code></pre>"
-            "<br/><hr><br/><br/>")
-                .arg(QString::number(QT_POINTER_SIZE * 8)
-                     , Utils::Misc::libtorrentVersionString()
-                     , Utils::Misc::boostVersionString()
-                     , Utils::Misc::opensslVersionString()
-                     , Utils::Misc::osName()
-                     , sigName
-                     , trace);
-
-        m_ui->errorText->setHtml(htmlStr);
-    }
+    void setStacktraceString(const QString &sigName, const QString &trace);
 
 private:
     Ui::StacktraceDialog *m_ui;

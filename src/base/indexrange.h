@@ -38,7 +38,8 @@ class IndexInterval
 public:
     using IndexType = Index;
 
-    IndexInterval(IndexType first, IndexType last)  // add constexpr when using C++17
+    // TODO: add constexpr when using C++17
+    IndexInterval(const IndexType first, const IndexType last)
         : m_first {first}
         , m_last {last}
     {
@@ -56,12 +57,12 @@ public:
     }
 
 private:
-    const IndexType m_first;
-    const IndexType m_last;
+    IndexType m_first;
+    IndexType m_last;
 };
 
 template <typename T>
-constexpr IndexInterval<T> makeInterval(T first, T last)
+constexpr IndexInterval<T> makeInterval(const T first, const T last)
 {
     return {first, last};
 }
@@ -74,13 +75,55 @@ public:
     using IndexType = Index;
     using IndexDiffType = IndexDiff;
 
+    class Iterator
+    {
+    public:
+        explicit constexpr Iterator(const IndexType index)
+            : m_index {index}
+        {
+        }
+
+        constexpr Iterator(const Iterator &) = default;
+
+        constexpr IndexType operator*() const
+        {
+            return m_index;
+        }
+
+        constexpr Iterator &operator++()
+        {
+            ++m_index;
+            return *this;
+        }
+
+        constexpr Iterator operator++(int)
+        {
+            const Iterator iter {*this};
+            ++(*this);
+            return iter;
+        }
+
+        constexpr bool operator==(const Iterator &other) const
+        {
+            return (*(*this) == *other);
+        }
+
+        constexpr bool operator!=(const Iterator &other) const
+        {
+            return !(*this == other);
+        }
+
+    private:
+        IndexType m_index;
+    };
+
     constexpr IndexRange()
         : m_first {0}
         , m_size {0}
     {
     }
 
-    constexpr IndexRange(IndexType first, IndexDiffType size)
+    constexpr IndexRange(const IndexType first, const IndexDiffType size)
         : m_first {first}
         , m_size {size}
     {
@@ -92,14 +135,14 @@ public:
     {
     }
 
-    constexpr IndexType begin() const
+    constexpr Iterator begin() const
     {
-        return m_first;
+        return Iterator {m_first};
     }
 
-    constexpr IndexType end() const
+    constexpr Iterator end() const
     {
-        return (m_first + m_size);
+        return Iterator {m_first + m_size};
     }
 
     constexpr IndexDiffType size() const

@@ -57,22 +57,16 @@ struct ScanFoldersModel::PathData
 
 ScanFoldersModel *ScanFoldersModel::m_instance = nullptr;
 
-bool ScanFoldersModel::initInstance(QObject *parent)
+void ScanFoldersModel::initInstance()
 {
-    if (!m_instance) {
-        m_instance = new ScanFoldersModel(parent);
-        return true;
-    }
-
-    return false;
+    if (!m_instance)
+        m_instance = new ScanFoldersModel;
 }
 
 void ScanFoldersModel::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 ScanFoldersModel *ScanFoldersModel::instance()
@@ -329,9 +323,9 @@ void ScanFoldersModel::makePersistent()
 
     for (const PathData *pathData : asConst(m_pathList)) {
         if (pathData->downloadType == CUSTOM_LOCATION)
-            dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), Utils::Fs::fromNativePath(pathData->downloadPath));
+            dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), Utils::Fs::toUniformPath(pathData->downloadPath));
         else
-            dirs.insert(Utils::Fs::fromNativePath(pathData->watchPath), pathData->downloadType);
+            dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), pathData->downloadType);
     }
 
     Preferences::instance()->setScanDirs(dirs);
@@ -341,7 +335,7 @@ void ScanFoldersModel::configure()
 {
     const QVariantHash dirs = Preferences::instance()->getScanDirs();
 
-    for (QVariantHash::const_iterator i = dirs.begin(), e = dirs.end(); i != e; ++i) {
+    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i) {
         if (i.value().type() == QVariant::Int)
             addPath(i.key(), static_cast<PathType>(i.value().toInt()), QString());
         else
@@ -355,12 +349,16 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
         qDebug("File %s added", qUtf8Printable(file));
 
         BitTorrent::AddTorrentParams params;
-        if (downloadInWatchFolder(file))
+        if (downloadInWatchFolder(file)) {
             params.savePath = QFileInfo(file).dir().path();
-        else if (!downloadInDefaultFolder(file))
+            params.useAutoTMM = TriStateBool::False;
+        }
+        else if (!downloadInDefaultFolder(file)) {
             params.savePath = downloadPathTorrentFolder(file);
+            params.useAutoTMM = TriStateBool::False;
+        }
 
-        if (file.endsWith(".magnet")) {
+        if (file.endsWith(".magnet", Qt::CaseInsensitive)) {
             QFile f(file);
             if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
                 QTextStream str(&f);

@@ -33,6 +33,10 @@
 
 #include <algorithm>
 
+#ifdef DISABLE_GUI
+#include <cstdio>
+#endif
+
 #ifdef Q_OS_WIN
 #include <memory>
 #include <Windows.h>
@@ -47,22 +51,17 @@
 
 #ifndef DISABLE_GUI
 #include <QMessageBox>
+#include <QPixmapCache>
 #ifdef Q_OS_WIN
 #include <QSessionManager>
 #include <QSharedMemory>
 #endif // Q_OS_WIN
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <QFileOpenEvent>
-#endif // Q_OS_MAC
-#include "addnewtorrentdialog.h"
-#include "gui/guiiconprovider.h"
-#include "gui/utils.h"
-#include "mainwindow.h"
-#include "shutdownconfirmdialog.h"
-#else // DISABLE_GUI
-#include <cstdio>
-#endif // DISABLE_GUI
+#endif // Q_OS_MACOS
+#endif
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/exceptions.h"
@@ -82,7 +81,16 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "applicationinstancemanager.h"
 #include "filelogger.h"
+
+#ifndef DISABLE_GUI
+#include "gui/addnewtorrentdialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
+#include "gui/mainwindow.h"
+#include "gui/shutdownconfirmdialog.h"
+#endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
@@ -113,56 +121,74 @@ namespace
     const int MIN_FILELOG_SIZE = 1024; // 1KiB
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
     const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
+
+#if !defined(DISABLE_GUI)
+    const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
+#endif
 }
 
-Application::Application(const QString &id, int &argc, char **argv)
-    : BaseApplication(id, argc, argv)
+Application::Application(int &argc, char **argv)
+    : BaseApplication(argc, argv)
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
-#ifndef DISABLE_WEBUI
-    , m_webui(nullptr)
-#endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
+    qRegisterMetaType<Log::Peer>("Log::Peer");
 
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");
-    validateCommandLineParameters();
+#if !defined(DISABLE_GUI)
+    setDesktopFileName("org.qbittorrent.qBittorrent");
+    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
+    setQuitOnLastWindowClosed(false);
+    QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
+#endif
 
-    const QString profileDir = m_commandLineArgs.portableMode
+    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty()
+            && QDir(QCoreApplication::applicationDirPath()).exists(DEFAULT_PORTABLE_MODE_PROFILE_DIR);
+
+    const QString profileDir = portableModeEnabled
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
+#ifdef Q_OS_WIN
+    const QString instanceId = (profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName))).toLower();
+#else
+    const QString instanceId = profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName));
+#endif
+    const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString() + '@' + instanceId;
+    m_instanceManager = new ApplicationInstanceManager {appId, this};
 
-    Profile::initialize(profileDir, m_commandLineArgs.configurationName,
-                        m_commandLineArgs.relativeFastresumePaths || m_commandLineArgs.portableMode);
+    Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
+                        (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
 
     Logger::initInstance();
     SettingsStorage::initInstance();
     Preferences::initInstance();
 
+    initializeTranslation();
+
     if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
 
-    initializeTranslation();
-
-#if !defined(DISABLE_GUI)
-    setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
-    setQuitOnLastWindowClosed(false);
-    setDesktopFileName("org.qbittorrent.qBittorrent");
-#endif
-
+    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
+    connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     connect(this, &QGuiApplication::commitDataRequest, this, &Application::shutdownCleanup, Qt::DirectConnection);
 #endif
-
-    connect(this, &Application::messageReceived, this, &Application::processMessage);
-    connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
 
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
+    if (portableModeEnabled) {
+        Logger::instance()->addMessage(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir));
+        if (m_commandLineArgs.relativeFastresumePaths)
+            Logger::instance()->addMessage(tr("Redundant command line flag detected: \"%1\". Portable mode implies relative fastresume.").arg("--relative-fastresume"), Log::WARNING); // to avoid translating the `--relative-fastresume` string
+    }
+    else {
+        Logger::instance()->addMessage(tr("Using config directory: %1").arg(Profile::instance()->location(SpecialFolder::Config)));
+    }
 }
 
 Application::~Application()
@@ -201,7 +227,7 @@ void Application::setFileLoggerEnabled(const bool value)
 QString Application::fileLoggerPath() const
 {
     return settings()->loadValue(KEY_FILELOGGER_PATH,
-            QVariant(specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER)).toString();
+            {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER}).toString();
 }
 
 void Application::setFileLoggerPath(const QString &path)
@@ -288,7 +314,7 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     program.replace("%N", torrent->name());
     program.replace("%L", torrent->category());
 
-    QStringList tags = torrent->tags().toList();
+    QStringList tags = torrent->tags().values();
     std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
     program.replace("%G", tags.join(','));
 
@@ -316,24 +342,61 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
 
 #if defined(Q_OS_WIN)
-    std::unique_ptr<wchar_t[]> programWchar(new wchar_t[program.length() + 1] {});
+    auto programWchar = std::make_unique<wchar_t[]>(program.length() + 1);
     program.toWCharArray(programWchar.get());
 
     // Need to split arguments manually because QProcess::startDetached(QString)
     // will strip off empty parameters.
     // E.g. `python.exe "1" "" "3"` will become `python.exe "1" "3"`
     int argCount = 0;
-    LPWSTR *args = ::CommandLineToArgvW(programWchar.get(), &argCount);
+    std::unique_ptr<LPWSTR[], decltype(&::LocalFree)> args {::CommandLineToArgvW(programWchar.get(), &argCount), ::LocalFree};
 
     QStringList argList;
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
 
-    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
-
-    ::LocalFree(args);
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QProcess proc;
+    proc.setProgram(QString::fromWCharArray(args[0]));
+    proc.setArguments(argList);
+    proc.setCreateProcessArgumentsModifier([](QProcess::CreateProcessArguments *args)
+    {
+        if (Preferences::instance()->isAutoRunConsoleEnabled()) {
+            args->flags |= CREATE_NEW_CONSOLE;
+            args->flags &= ~(CREATE_NO_WINDOW | DETACHED_PROCESS);
+        }
+        else {
+            args->flags |= CREATE_NO_WINDOW;
+            args->flags &= ~(CREATE_NEW_CONSOLE | DETACHED_PROCESS);
+        }
+        args->inheritHandles = false;
+        args->startupInfo->dwFlags &= ~STARTF_USESTDHANDLES;
+        ::CloseHandle(args->startupInfo->hStdInput);
+        ::CloseHandle(args->startupInfo->hStdOutput);
+        ::CloseHandle(args->startupInfo->hStdError);
+        args->startupInfo->hStdInput = nullptr;
+        args->startupInfo->hStdOutput = nullptr;
+        args->startupInfo->hStdError = nullptr;
+    });
+    proc.startDetached();
 #else
-    QProcess::startDetached(QLatin1String("/bin/sh"), {QLatin1String("-c"), program});
+    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
+#endif // QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+#else // Q_OS_WIN
+    // Cannot give users shell environment by default, as doing so could
+    // enable command injection via torrent name and other arguments
+    // (especially when some automated download mechanism has been setup).
+    // See: https://github.com/qbittorrent/qBittorrent/issues/10925
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+    QStringList args = QProcess::splitCommand(program);
+    if (args.isEmpty())
+        return;
+
+    const QString command = args.takeFirst();
+    QProcess::startDetached(command, args);
+#else
+    QProcess::startDetached(program);
+#endif
 #endif
 }
 
@@ -417,7 +480,7 @@ void Application::allTorrentsFinished()
 
 bool Application::sendParams(const QStringList &params)
 {
-    return sendMessage(params.join(PARAMS_SEPARATOR));
+    return m_instanceManager->sendMessage(params.join(PARAMS_SEPARATOR));
 }
 
 // As program parameters, we can get paths or urls.
@@ -496,11 +559,7 @@ int Application::exec(const QStringList &params)
 {
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
-#ifdef DISABLE_GUI
     IconProvider::initInstance();
-#else
-    GuiIconProvider::initInstance();
-#endif
 
     try {
         BitTorrent::Session::initInstance();
@@ -510,7 +569,7 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_COUNTRIES_RESOLUTION
         Net::GeoIPManager::initInstance();
 #endif
-        ScanFoldersModel::initInstance(this);
+        ScanFoldersModel::initInstance();
 
 #ifndef DISABLE_WEBUI
         m_webui = new WebUI;
@@ -543,7 +602,7 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_WEBUI
     Preferences *const pref = Preferences::instance();
     // Display some information to the user
-    const QString mesg = QString("\n******** %1 ********\n").arg(tr("Information"))
+    const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
         + tr("To control qBittorrent, access the Web UI at %1")
             .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
     printf("%s", qUtf8Printable(mesg));
@@ -556,7 +615,9 @@ int Application::exec(const QStringList &params)
     }
 #endif // DISABLE_WEBUI
 #else
+    UIThemeManager::initInstance();
     m_window = new MainWindow;
+    UIThemeManager::instance()->applyStyleSheet();
 #endif // DISABLE_GUI
 
     m_running = true;
@@ -572,35 +633,13 @@ int Application::exec(const QStringList &params)
     return BaseApplication::exec();
 }
 
-#ifndef DISABLE_GUI
-#ifdef Q_OS_WIN
 bool Application::isRunning()
 {
-    const bool running = BaseApplication::isRunning();
-    QSharedMemory *sharedMem = new QSharedMemory(id() + QLatin1String("-shared-memory-key"), this);
-    if (!running) {
-        // First instance creates shared memory and store PID
-        if (sharedMem->create(sizeof(DWORD)) && sharedMem->lock()) {
-            *(static_cast<DWORD*>(sharedMem->data())) = ::GetCurrentProcessId();
-            sharedMem->unlock();
-        }
-    }
-    else {
-        // Later instances attach to shared memory and retrieve PID
-        if (sharedMem->attach() && sharedMem->lock()) {
-            ::AllowSetForegroundWindow(*(static_cast<DWORD*>(sharedMem->data())));
-            sharedMem->unlock();
-        }
-    }
-
-    if (!sharedMem->isAttached())
-        qWarning() << "Failed to initialize shared memory: " << sharedMem->errorString();
-
-    return running;
+    return !m_instanceManager->isFirstInstance();
 }
-#endif // Q_OS_WIN
 
-#ifdef Q_OS_MAC
+#ifndef DISABLE_GUI
+#ifdef Q_OS_MACOS
 bool Application::event(QEvent *ev)
 {
     if (ev->type() == QEvent::FileOpen) {
@@ -619,7 +658,7 @@ bool Application::event(QEvent *ev)
         return BaseApplication::event(ev);
     }
 }
-#endif // Q_OS_MAC
+#endif // Q_OS_MACOS
 #endif // DISABLE_GUI
 
 void Application::initializeTranslation()
@@ -697,11 +736,8 @@ void Application::cleanup()
         m_window->hide();
 
 #ifdef Q_OS_WIN
-        typedef BOOL (WINAPI *PSHUTDOWNBRCREATE)(HWND, LPCWSTR);
-        const auto shutdownBRCreate = Utils::Misc::loadWinAPI<PSHUTDOWNBRCREATE>("User32.dll", "ShutdownBlockReasonCreate");
-        // Only available on Vista+
-        if (shutdownBRCreate)
-            shutdownBRCreate((HWND)m_window->effectiveWinId(), tr("Saving torrent progress...").toStdWString().c_str());
+        ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId())
+            , tr("Saving torrent progress...").toStdWString().c_str());
 #endif // Q_OS_WIN
 
         // Do manual cleanup in MainWindow to force widgets
@@ -740,27 +776,17 @@ void Application::cleanup()
 #ifndef DISABLE_GUI
     if (m_window) {
 #ifdef Q_OS_WIN
-        typedef BOOL (WINAPI *PSHUTDOWNBRDESTROY)(HWND);
-        const auto shutdownBRDestroy = Utils::Misc::loadWinAPI<PSHUTDOWNBRDESTROY>("User32.dll", "ShutdownBlockReasonDestroy");
-        // Only available on Vista+
-        if (shutdownBRDestroy)
-            shutdownBRDestroy((HWND)m_window->effectiveWinId());
+        ::ShutdownBlockReasonDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
 #endif // Q_OS_WIN
         delete m_window;
+        UIThemeManager::freeInstance();
     }
 #endif // DISABLE_GUI
+
+    Profile::freeInstance();
 
     if (m_shutdownAct != ShutdownDialogAction::Exit) {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }
-}
-
-void Application::validateCommandLineParameters()
-{
-    if (m_commandLineArgs.portableMode && !m_commandLineArgs.profileDir.isEmpty())
-        throw CommandLineParameterError(tr("Portable mode and explicit profile directory options are mutually exclusive"));
-
-    if (m_commandLineArgs.portableMode && m_commandLineArgs.relativeFastresumePaths)
-        Logger::instance()->addMessage(tr("Portable mode implies relative fastresume"), Log::WARNING);
 }

@@ -31,14 +31,15 @@
 
 #include <QDialog>
 #include <QLineEdit>
-#include <QString>
+
+class QString;
 
 namespace Ui
 {
     class AutoExpandableDialog;
 }
 
-class AutoExpandableDialog : public QDialog
+class AutoExpandableDialog final : public QDialog
 {
     Q_OBJECT
 

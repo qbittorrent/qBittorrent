@@ -1,15 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="480" width="640" viewBox="0 0 640 480">
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-ag" viewBox="0 0 640 480">
   <defs>
-    <clipPath id="a">
-      <path fill-opacity=".67" d="M-79.698 0h682.67v512h-682.67z"/>
+    <clipPath id="ag-a">
+      <path fill-opacity=".7" d="M-79.7 0H603v512H-79.7z"/>
     </clipPath>
   </defs>
-  <g clip-path="url(#a)" fill-rule="evenodd" transform="translate(74.717) scale(.9375)">
-    <path fill="#fff" d="M-120 0h763.27v511.49H-120z"/>
-    <path d="M-118.31.617h760.88v216.09h-760.88z"/>
-    <path fill="#0061ff" d="M21.3 203.23h505.01v113.82H21.3z"/>
-    <path d="M642.75 1.753v510.25H262.03L642.75 1.753z" fill="#e20000"/>
-    <path d="M-118.69 1.753v510.25h380.72L-118.69 1.753z" fill="#e20000"/>
-    <path d="M440.37 203.34l-76.31-19.363L428.98 135l-79.726 11.39 41.003-69.475-70.616 41.003 12.53-80.867-47.837 63.783L264.97 26.8l-21.64 76.31-47.837-64.92 13.667 83.145-70.615-43.282 41.003 69.476-77.45-12.53 63.783 47.838-79.727 20.5h354.22z" fill="#ffd600"/>
+  <g fill-rule="evenodd" clip-path="url(#ag-a)" transform="translate(74.7) scale(.9375)">
+    <path fill="#fff" d="M-120 0h763.3v511.5H-120z"/>
+    <path d="M-118.3.6h760.9v216.1h-761z"/>
+    <path fill="#0061ff" d="M21.3 203.2h505V317h-505z"/>
+    <path fill="#e20000" d="M642.8 1.8V512H262L642.8 1.7zm-761.5 0V512H262L-118.7 1.7z"/>
+    <path fill="#ffd600" d="M440.4 203.3L364 184l64.9-49-79.7 11.4 41-69.5-70.7 41L332.3 37l-47.9 63.8-19.3-74-21.7 76.3-47.8-65 13.7 83.2L138.5 78l41 69.5-77.4-12.5 63.8 47.8L86 203.3h354.3z"/>
   </g>
 </svg>

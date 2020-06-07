@@ -30,13 +30,13 @@
 
 #include <QDataStream>
 #include <QDebug>
-#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QSaveFile>
 #include <QThread>
 #include <QTimer>
+#include <QUrl>
 #include <QVariant>
 #include <QVector>
 
@@ -100,7 +100,7 @@ QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
 QString computeSmartFilterRegex(const QStringList &filters)
 {
-    return QString("(?:_|\\b)(?:%1)(?:_|\\b)").arg(filters.join(QString(")|(?:")));
+    return QString::fromLatin1("(?:_|\\b)(?:%1)(?:_|\\b)").arg(filters.join(QString(")|(?:")));
 }
 
 AutoDownloader::AutoDownloader()
@@ -200,7 +200,9 @@ bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleN
     if (!hasRule(ruleName)) return false;
     if (hasRule(newRuleName)) return false;
 
-    m_rules.insert(newRuleName, m_rules.take(ruleName));
+    AutoDownloadRule rule = m_rules.take(ruleName);
+    rule.setName(newRuleName);
+    m_rules.insert(newRuleName, rule);
     m_dirty = true;
     store();
     emit ruleRenamed(newRuleName, ruleName);
@@ -385,6 +387,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         params.savePath = rule.savePath();
         params.category = rule.assignedCategory();
         params.addPaused = rule.addPaused();
+        params.createSubfolder = rule.createSubfolder();
         if (!rule.savePath().isEmpty())
             params.useAutoTMM = TriStateBool::False;
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
@@ -434,7 +437,7 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const SettingsPtr settings = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss"));
+    const SettingsPtr settings = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss"));
     const QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
     for (const QVariant &ruleVar : rules) {
         const auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());

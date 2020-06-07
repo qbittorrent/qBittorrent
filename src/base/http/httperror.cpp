@@ -28,7 +28,7 @@
 
 #include "httperror.h"
 
-HTTPError::HTTPError(int statusCode, const QString &statusText, const QString &message)
+HTTPError::HTTPError(const int statusCode, const QString &statusText, const QString &message)
     : RuntimeError {message}
     , m_statusCode {statusCode}
     , m_statusText {statusText}
@@ -50,8 +50,8 @@ BadRequestHTTPError::BadRequestHTTPError(const QString &message)
 {
 }
 
-ConflictHTTPError::ConflictHTTPError(const QString &message)
-    : HTTPError(409, QLatin1String("Conflict"), message)
+UnauthorizedHTTPError::UnauthorizedHTTPError(const QString &message)
+    : HTTPError(401, QLatin1String("Unauthorized"), message)
 {
 }
 
@@ -65,13 +65,18 @@ NotFoundHTTPError::NotFoundHTTPError(const QString &message)
 {
 }
 
-UnsupportedMediaTypeHTTPError::UnsupportedMediaTypeHTTPError(const QString &message)
-    : HTTPError(415, QLatin1String("Unsupported Media Type"), message)
+MethodNotAllowedHTTPError::MethodNotAllowedHTTPError(const QString &message)
+    : HTTPError(405, QLatin1String("Method Not Allowed"), message)
 {
 }
 
-UnauthorizedHTTPError::UnauthorizedHTTPError(const QString &message)
-    : HTTPError(401, QLatin1String("Unauthorized"), message)
+ConflictHTTPError::ConflictHTTPError(const QString &message)
+    : HTTPError(409, QLatin1String("Conflict"), message)
+{
+}
+
+UnsupportedMediaTypeHTTPError::UnsupportedMediaTypeHTTPError(const QString &message)
+    : HTTPError(415, QLatin1String("Unsupported Media Type"), message)
 {
 }
 

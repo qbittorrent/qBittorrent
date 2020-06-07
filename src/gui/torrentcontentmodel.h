@@ -30,17 +30,22 @@
 #define TORRENTCONTENTMODEL_H
 
 #include <QAbstractItemModel>
-#include <QModelIndex>
-#include <QVariant>
 #include <QVector>
 
-#include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
 class QFileIconProvider;
+class QModelIndex;
+class QVariant;
+
 class TorrentContentModelFile;
 
-class TorrentContentModel : public QAbstractItemModel
+namespace BitTorrent
+{
+    class TorrentInfo;
+}
+
+class TorrentContentModel final : public QAbstractItemModel
 {
     Q_OBJECT
     Q_DISABLE_COPY(TorrentContentModel)

@@ -31,11 +31,12 @@
 
 #include <QBitArray>
 #include <QVector>
-#include <QWidget>
 
 #include "piecesbar.h"
 
-class DownloadedPiecesBar : public PiecesBar
+class QWidget;
+
+class DownloadedPiecesBar final : public PiecesBar
 {
     using base = PiecesBar;
     Q_OBJECT

@@ -1,6 +1,15 @@
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
 message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
+
+if (POLICY CMP0074)
+    cmake_policy(SET CMP0074 NEW)
+endif()
+
+# TODO: fix the macOS bundle stuff
+if (POLICY CMP0080)
+    cmake_policy(SET CMP0080 OLD)
+endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(FunctionReadVersion)
@@ -9,6 +18,12 @@ read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_B
 # message(STATUS "Project version is: ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD} (${VER_STATUS})")
 
 project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
+
+# check for invalid compiler version/CXX standard as early as possible
+include(FunctionQbtCXXCompilerAndModeCheck)
+qbt_minimum_cxx_mode_check(14)
+message(STATUS "Building in C++${CMAKE_CXX_STANDARD} mode.\n"
+            "Make sure libtorrent was built with the same C++ mode for ABI compatibility.")
 
 set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
 
@@ -30,14 +45,14 @@ include(GNUInstallDirs)
 include(FeatureSummary)
 
 # version requirements
-set(requiredBoostVersion 1.35)
+set(requiredBoostVersion 1.40)
 set(requiredQtVersion 5.9.0)
 set(requiredOpensslVersion 1.0)
 set(requiredLibtorrentVersion 1.1.10)
 
-if(WIN32)
+if (WIN32)
     include(winconf)
-endif(WIN32)
+endif()
 
 
 # we need options here, at the top level, because they are used not only in "src" subdir, but in the "dist" dir too
@@ -47,6 +62,8 @@ optional_compile_definitions(COUNTRIES_RESOLUTION FEATURE DESCRIPTION "Enable re
     DEFAULT ON DISABLED DISABLE_COUNTRIES_RESOLUTION)
 optional_compile_definitions(STACKTRACE FEATURE DESCRIPTION "Enable stacktraces"
     DEFAULT ON ENABLED STACKTRACE)
+optional_compile_definitions(GUI FEATURE DESCRIPTION "Build GUI application"
+    DEFAULT ON DISABLED DISABLE_GUI)
 optional_compile_definitions(WEBUI FEATURE DESCRIPTION "Enables built-in HTTP server for headless use"
     DEFAULT ON DISABLED DISABLE_WEBUI)
 

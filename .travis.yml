@@ -4,24 +4,28 @@ os:
   - linux
   - osx
 
-dist: xenial
+dist: bionic
 
 env:
   matrix:
+    - libt_branch=RC_1_2 gui=true build_system=qmake
+    - libt_branch=RC_1_2 gui=false build_system=qmake
+    - libt_branch=RC_1_2 gui=true build_system=cmake
+    - libt_branch=RC_1_2 gui=false build_system=cmake
     - libt_branch=RC_1_1 gui=true build_system=qmake
     - libt_branch=RC_1_1 gui=false build_system=qmake
     - libt_branch=RC_1_1 gui=true build_system=cmake
     - libt_branch=RC_1_1 gui=false build_system=cmake
-    - libt_branch=RC_1_2 gui=true build_system=qmake
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
 
 matrix:
   allow_failures:
+    - env: libt_branch=RC_1_2 gui=true build_system=cmake
+    - env: libt_branch=RC_1_2 gui=false build_system=cmake
     - env: libt_branch=RC_1_1 gui=true build_system=cmake
     - env: libt_branch=RC_1_1 gui=false build_system=cmake
-    - env: libt_branch=RC_1_2 gui=true build_system=qmake
 
 branches:
   except:
@@ -45,37 +49,26 @@ addons:
       name: "qbittorrent/qBittorrent"
       description: "Build submitted via Travis CI"
     build_command_prepend: "./bootstrap.sh && ./configure $qmake_conf"
-    build_command: make
+    build_command: "make -j2"
     branch_pattern: $coverity_branch
     notification_email: sledgehammer999@qbittorrent.org
   apt:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
-      - sourceline: 'ppa:qbittorrent-team/qbittorrent-stable'
-      - sourceline: 'ppa:beineri/opt-qt59-xenial'
+      - sourceline: 'ppa:qbittorrent-team/qbt-libtorrent-travisci'
+      - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+        key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
-      - [autoconf, automake, colormake]
+      - [autoconf, automake, cmake, colormake]
       - [libboost-dev, libboost-system-dev]
       - libssl-dev
-      - libtorrent-rasterbar-dev
-      - [qt59base, qt59svg, qt59tools]
+      - [qtbase5-dev, libqt5svg5-dev, qttools5-dev]
       - zlib1g-dev
-      # required for Qt 5.9 from 'beineri' PPA
-      - libgl1-mesa-dev
-  homebrew:
-    update: true
-    packages:
-      - [ccache, colormake]
-      - boost
-      - libtorrent-rasterbar
-      - openssl
-      - qt
-      - zlib
 
 before_install:
   # only allow specific build for coverity scan, others will stop
-  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$libt_branch" = "RC_1_1" -a "$gui" = "true" -a "$build_system" = "qmake" ]; then exit ; fi
+  - if [ "$TRAVIS_BRANCH" = "$coverity_branch" ] && ! [ "$TRAVIS_OS_NAME" = "linux" -a "$libt_branch" = "RC_1_2" -a "$gui" = "true" -a "$build_system" = "qmake" ]; then exit ; fi
 
   - shopt -s expand_aliases
   - alias make="colormake -j2" # Using nprocs/2 sometimes may fail (gcc is killed by system)
@@ -88,15 +81,14 @@ before_install:
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # setup virtual display for after_success target
       if [ "$gui" = "true" ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
-      
-      # Qt 5.9
-      PATH=/opt/qt59/bin:${PATH}
-      qmake_conf="$qmake_conf PKG_CONFIG_PATH=/opt/qt59/lib/pkgconfig:$PKG_CONFIG_PATH"
-      cmake_conf="$cmake_conf PKG_CONFIG_PATH=/opt/qt59/lib/pkgconfig:$PKG_CONFIG_PATH"
+      # CMake from Kitware is installed in /usr/bin
+      # TravisCI installs its own cmake to another location which ovverides other installations
+      # if they don't call the new binary directly
+      alias cmake="/usr/bin/cmake"
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      CXXFLAGS="$CXXFLAGS -Wno-unused-local-typedefs -Wno-inconsistent-missing-override"
+      CXXFLAGS="$CXXFLAGS -Wno-unused-local-typedefs"
 
       openssl_root_path="/usr/local/opt/openssl"
       qmake_conf="$qmake_conf PKG_CONFIG_PATH=$openssl_root_path/lib/pkgconfig:$PKG_CONFIG_PATH"
@@ -105,7 +97,7 @@ before_install:
   - |
     if [ "$gui" = "false" ]; then
       qmake_conf="$qmake_conf --disable-gui"
-      cmake_conf="$cmake_conf -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Widgets=ON"
+      cmake_conf="$cmake_conf -DGUI=OFF"
     fi
 
   # print settings
@@ -121,8 +113,9 @@ install:
       # dependencies
       PATH="/usr/local/opt/ccache/libexec:$PATH"
 
-      brew outdated cmake || brew upgrade cmake
-      brew outdated pkg-config || brew upgrade pkg-config
+      brew update > /dev/null
+      brew upgrade cmake
+      brew install ccache colormake boost openssl qt zlib
       brew link --force qt zlib
 
       if [ "$build_system" = "cmake" ]; then
@@ -137,7 +130,7 @@ install:
       ccache -V && ccache --show-stats && ccache --zero-stats
     fi
   - |
-    if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
       wget https://builds.shiki.hu/travis/deb/version
       if ! cmp --quiet "version" "$HOME/travis/deb/version" ; then
         echo "Cached files are different from server. Downloading new ones."
@@ -146,11 +139,42 @@ install:
         mkdir "$HOME/travis/deb"
         cp "version" $HOME/travis/deb
         cd "$HOME/travis/deb"
-        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb
-        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb
+        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar-dev_1.1.x_amd64.deb
+        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar9_1.1.x_amd64.deb
       fi
-      
-      sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.2.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar10_1.2.x_amd64.deb"
+
+      sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.1.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar9_1.1.x_amd64.deb"
+    fi
+  - |
+    if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      # Will install latest 1.2.x daily build from the PPA
+      sudo apt-get -y install libtorrent-rasterbar-dev
+    fi
+  - |
+    if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      wget https://builds.shiki.hu/travis/brew/1_1/version
+      if ! cmp --quiet "version" "$HOME/travis/brew/1_1/version" ; then
+        echo "Cached files are different from server. Downloading new ones."
+        # First delete old files
+        rm -r "$HOME/travis/brew/1_1"
+        mkdir "$HOME/travis/brew/1_1"
+        cp "version" $HOME/travis/brew/1_1
+        cd "$HOME/travis/brew/1_1"
+        wget https://builds.shiki.hu/travis/brew/1_1/libtorrent-rasterbar.rb
+        wget https://builds.shiki.hu/travis/brew/1_1/bd36a4b440aa138a88e375c1a3b672f1a1bc6606e7866fc3415b6b98fa49e771--libtorrent-rasterbar-1.1.13.high_sierra.bottle.tar.gz
+      fi
+      # Copy custom libtorrent bottle to homebrew's download cache so it can find and install it
+      # Also install our custom libtorrent formula by passing the local path to it
+      # These 2 files are restored from Travis' cache.
+      cp "$HOME/travis/brew/1_1/bd36a4b440aa138a88e375c1a3b672f1a1bc6606e7866fc3415b6b98fa49e771--libtorrent-rasterbar-1.1.13.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
+      brew uninstall libtorrent-rasterbar
+      brew install "$HOME/travis/brew/1_1/libtorrent-rasterbar.rb"
+
+      # NOTE about the bottle name
+      # The part before the "--" characters is a sha256 hash of the string
+      # of the URL homebrew itself would use to download the bottle.
+      # In this case the URL is the following:
+      # http://127.0.0.1/libtorrent-rasterbar-1.1.13.high_sierra.bottle.tar.gz
     fi
   - |
     if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
@@ -163,20 +187,20 @@ install:
         cp "version" $HOME/travis/brew
         cd "$HOME/travis/brew"
         wget https://builds.shiki.hu/travis/brew/libtorrent-rasterbar.rb
-        wget https://builds.shiki.hu/travis/brew/6e4eb13f70df35e8fc7ff41883fef3e5c7b535dd55c78cd2ce1eae3fb4288e21--libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz
+        wget https://builds.shiki.hu/travis/brew/f01f8d840b6eaf05df8df811815128ae6e7227977b1cba4825f0a1fb73a4d9f0--libtorrent-rasterbar-1.2.6.high_sierra.bottle.tar.gz
       fi
       # Copy custom libtorrent bottle to homebrew's download cache so it can find and install it
       # Also install our custom libtorrent formula by passing the local path to it
       # These 2 files are restored from Travis' cache.
-      cp "$HOME/travis/brew/6e4eb13f70df35e8fc7ff41883fef3e5c7b535dd55c78cd2ce1eae3fb4288e21--libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
+      cp "$HOME/travis/brew/f01f8d840b6eaf05df8df811815128ae6e7227977b1cba4825f0a1fb73a4d9f0--libtorrent-rasterbar-1.2.6.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
       brew uninstall libtorrent-rasterbar
       brew install "$HOME/travis/brew/libtorrent-rasterbar.rb"
-      
+
       # NOTE about the bottle name
       # The part before the "--" characters is a sha256 hash of the string
       # of the URL homebrew itself would use to download the bottle.
       # In this case the URL is the following:
-      # http://127.0.0.1/libtorrent-rasterbar-1.2.0.high_sierra.bottle.tar.gz
+      # http://127.0.0.1/libtorrent-rasterbar-1.2.6.high_sierra.bottle.tar.gz
     fi
 
 script:
@@ -184,6 +208,8 @@ script:
   - |
     cd "$TRAVIS_BUILD_DIR"
     if [ "$build_system" = "qmake" ]; then
+      # scan only as lupdate is prone to hang
+      lupdate -extensions c,cpp,h,hpp,ui ./
       ./bootstrap.sh
       ./configure $qmake_conf CXXFLAGS="$CXXFLAGS"
     else

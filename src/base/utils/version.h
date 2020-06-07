@@ -168,12 +168,12 @@ namespace Utils
         {
             if ((static_cast<std::size_t>(versionParts.size()) > N)
                 || (static_cast<std::size_t>(versionParts.size()) < Mandatory))
-                throw std::runtime_error ("Incorrect number of version components");
+                throw std::runtime_error("Incorrect number of version components");
 
             bool ok = false;
             ComponentsArray res {{}};
             for (std::size_t i = 0; i < static_cast<std::size_t>(versionParts.size()); ++i) {
-                res[i] = static_cast<T>(versionParts[i].toInt(&ok));
+                res[i] = static_cast<T>(versionParts[static_cast<typename StringsList::size_type>(i)].toInt(&ok));
                 if (!ok)
                     throw std::runtime_error("Can not parse version component");
             }

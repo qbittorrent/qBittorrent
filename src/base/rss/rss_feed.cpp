@@ -33,7 +33,6 @@
 #include <algorithm>
 #include <vector>
 
-#include <QDebug>
 #include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -41,14 +40,14 @@
 #include <QJsonValue>
 #include <QUrl>
 
-#include "../asyncfilestorage.h"
-#include "../global.h"
-#include "../logger.h"
-#include "../net/downloadmanager.h"
-#include "../profile.h"
-#include "../utils/fs.h"
-#include "private/rss_parser.h"
+#include "base/asyncfilestorage.h"
+#include "base/global.h"
+#include "base/logger.h"
+#include "base/net/downloadmanager.h"
+#include "base/profile.h"
+#include "base/utils/fs.h"
 #include "rss_article.h"
+#include "rss_parser.h"
 #include "rss_session.h"
 
 const QString KEY_UID(QStringLiteral("uid"));
@@ -125,11 +124,13 @@ void Feed::markAsRead()
 
 void Feed::refresh()
 {
-    if (isLoading()) return;
+    if (m_downloadHandler)
+        m_downloadHandler->cancel();
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    Net::DownloadManager::instance()->download(m_url, this, &Feed::handleDownloadFinished);
+    m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
+    connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
     m_isLoading = true;
     emit stateChanged(this);
@@ -180,7 +181,7 @@ void Feed::handleMaxArticlesPerFeedChanged(const int n)
 void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success) {
-        m_iconPath = Utils::Fs::fromNativePath(result.filePath);
+        m_iconPath = Utils::Fs::toUniformPath(result.filePath);
         emit iconLoaded(this);
     }
 }
@@ -192,8 +193,11 @@ bool Feed::hasError() const
 
 void Feed::handleDownloadFinished(const Net::DownloadResult &result)
 {
+    m_downloadHandler = nullptr; // will be deleted by DownloadManager later
+
     if (result.status == Net::DownloadStatus::Success) {
-        qDebug() << "Successfully downloaded RSS feed at" << result.url;
+        LogMsg(tr("RSS feed at '%1' is successfully downloaded. Starting to parse it.")
+                .arg(result.url));
         // Parse the download RSS
         m_parser->parse(result.data);
     }
@@ -297,7 +301,7 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    const SettingsPtr qBTRSSFeeds = Profile::instance().applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
+    const SettingsPtr qBTRSSFeeds = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
     const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
 
     for (const QVariant &var : asConst(allOldItems.value(m_url).toList())) {
@@ -396,7 +400,7 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    const auto iconUrl = QString("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    const auto iconUrl = QString::fromLatin1("%1://%2/favicon.ico").arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true)
                 , this, &Feed::handleIconDownloadFinished);
@@ -411,24 +415,10 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     QVector<QVariantHash> newArticles;
     newArticles.reserve(loadedArticles.size());
     for (QVariantHash article : loadedArticles) {
-        QVariant &torrentURL = article[Article::KeyTorrentURL];
-        if (torrentURL.toString().isEmpty())
-            torrentURL = article[Article::KeyLink];
-
-        // If item does not have an ID, fall back to some other identifier.
-        QVariant &localId = article[Article::KeyId];
-        if (localId.toString().isEmpty())
-            localId = article.value(Article::KeyTorrentURL);
-        if (localId.toString().isEmpty())
-            localId = article.value(Article::KeyTitle);
-
-        if (localId.toString().isEmpty())
-            continue;
-
         // If article has no publication date we use feed update time as a fallback.
         // To prevent processing of "out-of-limit" articles we must not assign dates
         // that are earlier than the dates of existing articles.
-        const Article *existingArticle = articleByGUID(localId.toString());
+        const Article *existingArticle = articleByGUID(article[Article::KeyId].toString());
         if (existingArticle) {
             dummyPubDate = existingArticle->date().addMSecs(-1);
             continue;

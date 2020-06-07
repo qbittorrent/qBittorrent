@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDialog]</title>
-    <link rel="stylesheet" href="css/style.css?v=${VERSION}" type="text/css" />
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
     <script src="scripts/lib/mootools-1.2-more.js"></script>
     <script>
@@ -14,10 +14,6 @@
             new Keyboard({
                 defaultEventType: 'keydown',
                 events: {
-                    'Enter': function(event) {
-                        $('addTrackersButton').click();
-                        event.preventDefault();
-                    },
                     'Escape': function(event) {
                         window.parent.closeWindows();
                         event.preventDefault();
@@ -32,7 +28,7 @@
             $('trackersUrls').focus();
             $('addTrackersButton').addEvent('click', function(e) {
                 new Event(e).stop();
-                var hash = new URI().getData('hash');
+                const hash = new URI().getData('hash');
                 new Request({
                     url: 'api/v2/torrents/addTrackers',
                     method: 'post',

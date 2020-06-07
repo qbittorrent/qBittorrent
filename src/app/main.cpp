@@ -33,6 +33,9 @@
 #include <cstdlib>
 #include <memory>
 
+#if defined(Q_OS_UNIX)
+#include <sys/resource.h>
+#endif
 #if !defined Q_OS_WIN && !defined Q_OS_HAIKU
 #include <unistd.h>
 #elif defined Q_OS_WIN && defined DISABLE_GUI
@@ -75,7 +78,6 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/utils/misc.h"
 #include "application.h"
 #include "cmdoptions.h"
 #include "upgrade.h"
@@ -116,19 +118,34 @@ void displayBadArgMessage(const QString &message);
 void showSplashScreen();
 #endif  // DISABLE_GUI
 
+#if defined(Q_OS_UNIX)
+void adjustFileDescriptorLimit();
+#endif
+
 // Main
 int main(int argc, char *argv[])
 {
+#if defined(Q_OS_UNIX)
+    adjustFileDescriptorLimit();
+#endif
+
     // We must save it here because QApplication constructor may change it
     bool isOneArg = (argc == 2);
 
+#if !defined(DISABLE_GUI) && (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    // Attribute Qt::AA_EnableHighDpiScaling must be set before QCoreApplication is created
+    if (qgetenv("QT_ENABLE_HIGHDPI_SCALING").isEmpty() && qgetenv("QT_AUTO_SCREEN_SCALE_FACTOR").isEmpty())
+        Application::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+    // HighDPI scale factor policy must be set before QGuiApplication is created
+    if (qgetenv("QT_SCALE_FACTOR_ROUNDING_POLICY").isEmpty())
+        Application::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+#endif
+
     try {
         // Create Application
-        const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString();
-        std::unique_ptr<Application> app(new Application(appId, argc, argv));
+        auto app = std::make_unique<Application>(argc, argv);
 
         const QBtCommandLineParameters params = app->commandLineArgs();
-
         if (!params.unknownParameter.isEmpty()) {
             throw CommandLineParameterError(QObject::tr("%1 is an unknown command line parameter.",
                                                         "--random-parameter is an unknown command line parameter.")
@@ -157,22 +174,25 @@ int main(int argc, char *argv[])
         if (!qputenv("QBITTORRENT", QBT_VERSION))
             fprintf(stderr, "Couldn't set environment variable...\n");
 
+        const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
+        if (firstTimeUser) {
 #ifndef DISABLE_GUI
-        if (!userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (!userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 
 #elif defined(Q_OS_WIN)
-        if (_isatty(_fileno(stdin))
-            && _isatty(_fileno(stdout))
-            && !userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (_isatty(_fileno(stdin))
+                && _isatty(_fileno(stdout))
+                && !userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 #else
-        if (!params.shouldDaemonize
-            && isatty(fileno(stdin))
-            && isatty(fileno(stdout))
-            && !userAgreesWithLegalNotice())
-            return EXIT_SUCCESS;
+            if (!params.shouldDaemonize
+                && isatty(fileno(stdin))
+                && isatty(fileno(stdout))
+                && !userAgreesWithLegalNotice())
+                return EXIT_SUCCESS;
 #endif
+        }
 
         // Check if qBittorrent is already running for this user
         if (app->isRunning()) {
@@ -210,7 +230,7 @@ int main(int argc, char *argv[])
 #endif
 #endif // Q_OS_WIN
 
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
         // Since Apple made difficult for users to set PATH, we set here for convenience.
         // Users are supposed to install Homebrew Python for search function.
         // For more info see issue #5571.
@@ -222,21 +242,29 @@ int main(int argc, char *argv[])
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
+        if (!firstTimeUser) {
+            handleChangedDefaults(DefaultPreferencesMode::Legacy);
+
 #ifndef DISABLE_GUI
-        if (!upgrade()) return EXIT_FAILURE;
+            if (!upgrade()) return EXIT_FAILURE;
 #elif defined(Q_OS_WIN)
-        if (!upgrade(_isatty(_fileno(stdin))
-                     && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
+            if (!upgrade(_isatty(_fileno(stdin))
+                         && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
 #else
-        if (!upgrade(!params.shouldDaemonize
-                     && isatty(fileno(stdin))
-                     && isatty(fileno(stdout)))) return EXIT_FAILURE;
+            if (!upgrade(!params.shouldDaemonize
+                         && isatty(fileno(stdin))
+                         && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
+        }
+        else {
+            handleChangedDefaults(DefaultPreferencesMode::Current);
+        }
+
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize) {
             app.reset(); // Destroy current application
             if (daemon(1, 0) == 0) {
-                app.reset(new Application(appId, argc, argv));
+                app = std::make_unique<Application>(argc, argv);
                 if (app->isRunning()) {
                     // Another instance had time to start.
                     return EXIT_FAILURE;
@@ -261,7 +289,7 @@ int main(int argc, char *argv[])
 
         return app->exec(params.paramList());
     }
-    catch (CommandLineParameterError &er) {
+    catch (const CommandLineParameterError &er) {
         displayBadArgMessage(er.messageForUser());
         return EXIT_FAILURE;
     }
@@ -325,12 +353,16 @@ void sigAbnormalHandler(int signum)
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splashImg(":/icons/skin/splash.png");
+    QPixmap splashImg(":/icons/splash.png");
     QPainter painter(&splashImg);
     const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+    painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
+#else
     painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
+#endif
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
     QTimer::singleShot(1500, splash, &QObject::deleteLater);
@@ -363,11 +395,10 @@ void displayBadArgMessage(const QString &message)
 bool userAgreesWithLegalNotice()
 {
     Preferences *const pref = Preferences::instance();
-    if (pref->getAcceptedLegal()) // Already accepted once
-        return true;
+    Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI
-    const QString eula = QString("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
+    const QString eula = QString::fromLatin1("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
         + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
         + QObject::tr("No further notices will be issued.") + "\n\n"
         + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
@@ -397,3 +428,16 @@ bool userAgreesWithLegalNotice()
 
     return false;
 }
+
+#if defined(Q_OS_UNIX)
+void adjustFileDescriptorLimit()
+{
+    rlimit limit {};
+
+    if (getrlimit(RLIMIT_NOFILE, &limit) != 0)
+        return;
+
+    limit.rlim_cur = limit.rlim_max;
+    setrlimit(RLIMIT_NOFILE, &limit);
+}
+#endif

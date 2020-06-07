@@ -34,7 +34,7 @@
 #include <QSpacerItem>
 
 #include "base/global.h"
-#include "guiiconprovider.h"
+#include "gui/uithememanager.h"
 
 PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)
@@ -45,8 +45,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup = new QButtonGroup(this);
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
-#ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("document-properties"),
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon("document-properties"),
 #endif
             tr("General"), parent);
     mainInfosButton->setShortcut(Qt::ALT + Qt::Key_G);
@@ -54,8 +54,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(mainInfosButton, MainTab);
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
-#ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("network-server"),
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("Trackers"), parent);
     trackersButton->setShortcut(Qt::ALT + Qt::Key_C);
@@ -63,8 +63,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(trackersButton, TrackersTab);
     // Peers tab
     QPushButton *peersButton = new QPushButton(
-#ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("edit-find-user"),
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon("edit-find-user"),
 #endif
             tr("Peers"), parent);
     peersButton->setShortcut(Qt::ALT + Qt::Key_R);
@@ -72,8 +72,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(peersButton, PeersTab);
     // URL seeds tab
     QPushButton *URLSeedsButton = new QPushButton(
-#ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("network-server"),
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("HTTP Sources"), parent);
     URLSeedsButton->setShortcut(Qt::ALT + Qt::Key_B);
@@ -81,8 +81,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(URLSeedsButton, URLSeedsTab);
     // Files tab
     QPushButton *filesButton = new QPushButton(
-#ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("inode-directory"),
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon("inode-directory"),
 #endif
             tr("Content"), parent);
     filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
@@ -92,24 +92,24 @@ PropTabBar::PropTabBar(QWidget *parent)
     addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
     // Speed tab
     QPushButton *speedButton = new QPushButton(
-#ifndef Q_OS_MAC
-            GuiIconProvider::instance()->getIcon("office-chart-line"),
+#ifndef Q_OS_MACOS
+            UIThemeManager::instance()->getIcon("office-chart-line"),
 #endif
             tr("Speed"), parent);
     speedButton->setShortcut(Qt::ALT + Qt::Key_D);
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
     // SIGNAL/SLOT
-    connect(m_btnGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+    connect(m_btnGroup, &QButtonGroup::idClicked
             , this, &PropTabBar::setCurrentIndex);
+#else
+    connect(m_btnGroup, qOverload<int>(&QButtonGroup::buttonClicked)
+            , this, &PropTabBar::setCurrentIndex);
+#endif
     // Disable buttons focus
     for (QAbstractButton *btn : asConst(m_btnGroup->buttons()))
         btn->setFocusPolicy(Qt::NoFocus);
-}
-
-PropTabBar::~PropTabBar()
-{
-    delete m_btnGroup;
 }
 
 int PropTabBar::currentIndex() const

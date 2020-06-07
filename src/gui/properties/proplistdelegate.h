@@ -35,6 +35,7 @@ class QAbstractItemModel;
 class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
+
 class PropertiesWidget;
 
 // Defines for properties list columns
@@ -48,7 +49,7 @@ enum PropColumn
     AVAILABILITY
 };
 
-class PropListDelegate : public QItemDelegate
+class PropListDelegate final : public QItemDelegate
 {
     Q_OBJECT
 

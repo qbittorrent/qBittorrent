@@ -1,0 +1,239 @@
+<style>
+    #searchPluginsContainer {
+        height: calc(100% - 20px);
+        margin: 10px;
+        overflow: auto;
+    }
+
+    #searchPluginsContainer button {
+        padding: 2px;
+    }
+
+    #searchPluginsContainer span {
+        display: block;
+        margin-top: 10px;
+    }
+
+    #searchPluginsTable {
+        width: 100%;
+        height: calc(100% - 150px);
+        -moz-height: calc(100% - 150px);
+        -webkit-height: calc(100% - 150px);
+    }
+
+    #searchPluginsTable .dynamicTable {
+        width: 100%;
+    }
+
+    #searchPluginsTableDiv {
+        height: calc(100% - 26px);
+        -moz-height: calc(100% - 26px);
+        -webkit-height: calc(100% - 26px);
+    }
+
+    #dynamicTableFixedHeaderDiv {
+        height: 26px;
+    }
+
+    #searchPlugins_content {
+        height: 100%;
+    }
+
+</style>
+
+<div id="searchPluginsContainer">
+    <h2>QBT_TR(Installed search plugins:)QBT_TR[CONTEXT=PluginSelectDlg]</h2>
+
+    <div id="searchPluginsTable">
+        <div id="searchPluginsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable unselectable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader" id="searchPluginsTableFixedHeaderRow"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="searchPluginsTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable unselectable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <span>QBT_TR(Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.)QBT_TR[CONTEXT=PluginSelectDlg]</span>
+    <span style="font-style: italic;">QBT_TR(You can get new search engine plugins here:)QBT_TR[CONTEXT=PluginSelectDlg] <a href="http://plugins.qbittorrent.org" target="_blank">http://plugins.qbittorrent.org</a></span>
+    <div style="width: 100%; margin-top: 10px;">
+        <button style="width: 33%; line-height: 1.4em;" onclick="qBittorrent.SearchPlugins.installPlugin();">QBT_TR(Install new plugin)QBT_TR[CONTEXT=PluginSelectDlg]</button>
+        <button style="width: 33%; line-height: 1.4em;" onclick="qBittorrent.SearchPlugins.checkForUpdates();">QBT_TR(Check for updates)QBT_TR[CONTEXT=PluginSelectDlg]</button>
+        <button style="width: 32%; line-height: 1.4em;" onclick="qBittorrent.SearchPlugins.closeSearchWindow('searchPlugins');">QBT_TR(Close)QBT_TR[CONTEXT=PluginSelectDlg]</button>
+    </div>
+</div>
+
+<ul id="searchPluginsTableMenu" class="contextMenu">
+    <li><a href="#Enabled"><img src="icons/checked.svg" alt="QBT_TR(Enabled)QBT_TR[CONTEXT=PluginSelectDlg]"/> QBT_TR(Enabled)QBT_TR[CONTEXT=PluginSelectDlg]</a></li>
+    <li class="separator"><a href="#Uninstall"><img src="icons/list-remove.svg" alt="QBT_TR(Uninstall)QBT_TR[CONTEXT=PluginSelectDlg]"/> QBT_TR(Uninstall)QBT_TR[CONTEXT=PluginSelectDlg]</a></li>
+</ul>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.SearchPlugins = (function() {
+        const exports = function() {
+            return {
+                closeSearchWindow: closeSearchWindow,
+                installPlugin: installPlugin,
+                checkForUpdates: checkForUpdates,
+                updateTable: updateTable
+            };
+        };
+
+        let searchPluginsTable;
+        let searchPluginsTableContextMenu;
+        let prevOffsetLeft;
+        let prevOffsetTop;
+
+        const initSearchPlugins = function() {
+            searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
+            searchPluginsTableContextMenu = new window.qBittorrent.ContextMenu.SearchPluginsTableContextMenu({
+                targets: '.searchPluginsTableRow',
+                menu: 'searchPluginsTableMenu',
+                actions: {
+                    Enabled: enablePlugin,
+                    Uninstall: uninstallPlugin
+                },
+                offsets: calculateContextMenuOffsets()
+            });
+            searchPluginsTable.setup('searchPluginsTableDiv', 'searchPluginsTableFixedHeaderDiv', searchPluginsTableContextMenu);
+            updateTable();
+        };
+
+        const closeSearchWindow = function(id) {
+            window.parent.MochaUI.closeWindow(window.parent.$(id));
+        };
+
+        const installPlugin = function(path) {
+            new MochaUI.Window({
+                id: 'installSearchPlugin',
+                title: "QBT_TR(Install plugin)QBT_TR[CONTEXT=PluginSourceDlg]",
+                loadMethod: 'xhr',
+                contentURL: 'views/installsearchplugin.html',
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 500,
+                height: 120
+            });
+        };
+
+        const uninstallPlugin = function() {
+            const plugins = searchPluginsTable.selectedRowsIds().join('|');
+            const url = new URI('api/v2/search/uninstallPlugin');
+            new Request({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: {
+                    names: plugins,
+                }
+            }).send();
+        };
+
+        const enablePlugin = function() {
+            const plugins = searchPluginsTable.selectedRowsIds();
+            let enable = true;
+            if (plugins && plugins.length)
+                enable = !window.qBittorrent.Search.getPlugin(plugins[0]).enabled;
+
+            const url = new URI('api/v2/search/enablePlugin');
+            new Request({
+                url: url,
+                noCache: true,
+                method: 'post',
+                data: {
+                    names: plugins.join('|'),
+                    enable: enable
+                }
+            }).send();
+        };
+
+        const checkForUpdates = function() {
+            const url = new URI('api/v2/search/updatePlugins');
+            new Request({
+                url: url,
+                noCache: true,
+                method: 'post'
+            }).send();
+        };
+
+        const calculateContextMenuOffsets = function() {
+            prevOffsetLeft = document.getElementById("searchPlugins").getBoundingClientRect().left;
+            prevOffsetTop = document.getElementById("searchPlugins").getBoundingClientRect().top;
+
+            return {
+                x: -(prevOffsetLeft + 20),
+                y: -(prevOffsetTop + 2)
+            };
+        };
+
+        const updateSearchPluginsTableContextMenuOffset = function() {
+            // only re-calculate if window has moved
+            if ((prevOffsetLeft !== document.getElementById("searchPlugins").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("searchPlugins").getBoundingClientRect().top))
+                searchPluginsTableContextMenu.options.offsets = calculateContextMenuOffsets();
+        };
+
+        const setupSearchPluginTableEvents = function(enable) {
+            if (enable)
+                $$(".searchPluginsTableRow").each(function(target) {
+                    target.addEventListener('dblclick', enablePlugin, false);
+                    target.addEventListener('contextmenu', updateSearchPluginsTableContextMenuOffset, true);
+                });
+            else
+                $$(".searchPluginsTableRow").each(function(target) {
+                    target.removeEventListener('dblclick', enablePlugin, false);
+                    target.removeEventListener('contextmenu', updateSearchPluginsTableContextMenuOffset, true);
+                });
+        };
+
+        const updateTable = function() {
+            // clear event listeners
+            setupSearchPluginTableEvents(false);
+
+            const oldPlugins = Object.keys(searchPluginsTable.rows);
+            // remove old rows from the table
+            for (let i = 0; i < oldPlugins.length; ++i) {
+                let found = false;
+                for (let j = 0; j < window.qBittorrent.Search.searchPlugins.length; ++j) {
+                    if (window.qBittorrent.Search.searchPlugins[j].name === oldPlugins[i]) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    searchPluginsTable.removeRow(oldPlugins[i]);
+            }
+
+            for (let i = 0; i < window.qBittorrent.Search.searchPlugins.length; ++i) {
+                window.qBittorrent.Search.searchPlugins[i].rowId = window.qBittorrent.Search.searchPlugins[i].name;
+                searchPluginsTable.updateRowData(window.qBittorrent.Search.searchPlugins[i]);
+            }
+
+            searchPluginsTable.updateTable();
+            searchPluginsTable.altRow();
+
+            // add event listeners
+            setupSearchPluginTableEvents(true);
+        };
+
+        initSearchPlugins();
+
+        return exports();
+    })();
+</script>

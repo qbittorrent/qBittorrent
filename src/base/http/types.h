@@ -34,8 +34,6 @@
 #include <QString>
 #include <QVector>
 
-#include "base/types.h"
-
 namespace Http
 {
     const char METHOD_GET[] = "GET";
@@ -92,14 +90,22 @@ namespace Http
         QByteArray data;
     };
 
+    struct Header
+    {
+        QString name;
+        QString value;
+    };
+
+    using HeaderMap = QMap<QString, QString>;  // <Header name, Header value>
+
     struct Request
     {
         QString version;
         QString method;
         QString path;
-        QByteArray query;
-        QStringMap headers;
-        QStringMap posts;
+        HeaderMap headers;
+        QHash<QString, QByteArray> query;
+        QHash<QString, QString> posts;
         QVector<UploadedFile> files;
     };
 
@@ -107,17 +113,18 @@ namespace Http
     {
         uint code;
         QString text;
-
-        ResponseStatus(uint code = 200, const QString &text = "OK"): code(code), text(text) {}
     };
 
     struct Response
     {
         ResponseStatus status;
-        QStringMap headers;
+        HeaderMap headers;
         QByteArray content;
 
-        Response(uint code = 200, const QString &text = "OK"): status(code, text) {}
+        Response(uint code = 200, const QString &text = "OK")
+            : status {code, text}
+        {
+        }
     };
 }
 

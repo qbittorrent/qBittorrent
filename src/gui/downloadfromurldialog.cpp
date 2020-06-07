@@ -47,7 +47,6 @@ namespace
             || str.startsWith("https://", Qt::CaseInsensitive)
             || str.startsWith("ftp://", Qt::CaseInsensitive)
             || str.startsWith("magnet:", Qt::CaseInsensitive)
-            || str.startsWith("bc://bt/", Qt::CaseInsensitive)
             || ((str.size() == 40) && !str.contains(QRegularExpression("[^0-9A-Fa-f]")))
             || ((str.size() == 32) && !str.contains(QRegularExpression("[^2-7A-Za-z]"))));
     }
@@ -68,17 +67,19 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->textUrls->setWordWrapMode(QTextOption::NoWrap);
 
     // Paste clipboard if there is an URL in it
-    const QStringList clipboardList = qApp->clipboard()->text().split('\n');
+    const QString clipboardText = qApp->clipboard()->text();
+    const QVector<QStringRef> clipboardList = clipboardText.splitRef('\n');
 
     QSet<QString> uniqueURLs;
-    for (QString str : clipboardList) {
-        str = str.trimmed();
-        if (str.isEmpty()) continue;
+    for (QStringRef strRef : clipboardList) {
+        strRef = strRef.trimmed();
+        if (strRef.isEmpty()) continue;
 
+        const QString str = strRef.toString();
         if (isDownloadable(str))
             uniqueURLs << str;
     }
-    m_ui->textUrls->setText(uniqueURLs.toList().join('\n'));
+    m_ui->textUrls->setText(uniqueURLs.values().join('\n'));
 
     Utils::Gui::resize(this);
     show();
@@ -91,14 +92,15 @@ DownloadFromURLDialog::~DownloadFromURLDialog()
 
 void DownloadFromURLDialog::downloadButtonClicked()
 {
-    const QStringList urls = m_ui->textUrls->toPlainText().split('\n');
+    const QString plainText = m_ui->textUrls->toPlainText();
+    const QVector<QStringRef> urls = plainText.splitRef('\n');
 
     QSet<QString> uniqueURLs;
-    for (QString url : urls) {
+    for (QStringRef url : urls) {
         url = url.trimmed();
         if (url.isEmpty()) continue;
 
-        uniqueURLs << url;
+        uniqueURLs << url.toString();
     }
 
     if (uniqueURLs.isEmpty()) {
@@ -106,6 +108,6 @@ void DownloadFromURLDialog::downloadButtonClicked()
         return;
     }
 
-    emit urlsReadyToBeDownloaded(uniqueURLs.toList());
+    emit urlsReadyToBeDownloaded(uniqueURLs.values());
     accept();
 }

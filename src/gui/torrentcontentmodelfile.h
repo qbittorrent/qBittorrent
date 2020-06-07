@@ -29,10 +29,14 @@
 #ifndef TORRENTCONTENTMODELFILE_H
 #define TORRENTCONTENTMODELFILE_H
 
-#include "base/bittorrent/downloadpriority.h"
 #include "torrentcontentmodelitem.h"
 
-class TorrentContentModelFile : public TorrentContentModelItem
+namespace BitTorrent
+{
+    enum class DownloadPriority;
+}
+
+class TorrentContentModelFile final : public TorrentContentModelItem
 {
 public:
     TorrentContentModelFile(const QString &fileName, qulonglong fileSize,

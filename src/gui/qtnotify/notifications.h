@@ -39,7 +39,7 @@ public Q_SLOTS: // METHODS
     inline QDBusPendingReply<> CloseNotification(uint id)
     {
         QList<QVariant> argumentList;
-        argumentList << qVariantFromValue(id);
+        argumentList << QVariant::fromValue(id);
         return asyncCallWithArgumentList(QLatin1String("CloseNotification"), argumentList);
     }
 
@@ -69,7 +69,7 @@ public Q_SLOTS: // METHODS
     inline QDBusPendingReply<uint> Notify(const QString &app_name, uint id, const QString &icon, const QString &summary, const QString &body, const QStringList &actions, const QVariantMap &hints, int timeout)
     {
         QList<QVariant> argumentList;
-        argumentList << qVariantFromValue(app_name) << qVariantFromValue(id) << qVariantFromValue(icon) << qVariantFromValue(summary) << qVariantFromValue(body) << qVariantFromValue(actions) << qVariantFromValue(hints) << qVariantFromValue(timeout);
+        argumentList << QVariant::fromValue(app_name) << QVariant::fromValue(id) << QVariant::fromValue(icon) << QVariant::fromValue(summary) << QVariant::fromValue(body) << QVariant::fromValue(actions) << QVariant::fromValue(hints) << QVariant::fromValue(timeout);
         return asyncCallWithArgumentList(QLatin1String("Notify"), argumentList);
     }
 

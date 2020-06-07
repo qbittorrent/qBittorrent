@@ -36,9 +36,10 @@ class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
 class QTreeView;
+
 class PropertiesWidget;
 
-class ScanFoldersDelegate : public QItemDelegate
+class ScanFoldersDelegate final : public QItemDelegate
 {
     Q_OBJECT
 

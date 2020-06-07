@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation>O aplikaci</translation>
+        <translation type="vanished">O aplikaci</translation>
     </message>
 </context>
 <context>
@@ -293,17 +293,12 @@
         <translation>Klient qBittorrent není dostupný</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent byl ukončen.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation>Celkový počet nahrávacích slotů musí být větší než 0 nebo být vypnutý.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Neplatný název kategorie:
-Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
+        <translation>Neplatný název kategorie:\nProsím nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -335,7 +330,35 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent byl ukončen</translation>
+    </message>
+    <message>
+        <source>Open documentation</source>
+        <translation>Otevřít dokumentaci</translation>
+    </message>
+    <message>
+        <source>Register to handle magnet links...</source>
+        <translation>Register to handle magnet links...</translation>
+    </message>
+    <message>
+        <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
+        <translation>Nelze přidat peery. Ujistěte se, že dodržujete formát IP:port.</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
+        <translation>Je vyžadován JavaScript! Musíte povolit JavaScript aby Web UI pracovalo správně</translation>
+    </message>
+    <message>
+        <source>Name cannot be empty</source>
+        <translation>Jméno nemůže být prázdné</translation>
+    </message>
+    <message>
+        <source>Name is unchanged</source>
+        <translation>Jméno nezměněno</translation>
+    </message>
+    <message>
+        <source>Failed to update name</source>
+        <translation>Chybná aktualizace názvu</translation>
     </message>
 </context>
 <context>
@@ -367,22 +390,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     <message>
         <source>Resume</source>
         <translation>Obnovit</translation>
-    </message>
-    <message>
-        <source>Minimum Priority</source>
-        <translation>Minimální priorita</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation>Top priorita</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation>Snížit prioritu</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation>Zvýšit prioritu</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -481,6 +488,78 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <source>Transfers</source>
         <translation>Přenosy</translation>
     </message>
+    <message>
+        <source>Move up in the queue</source>
+        <translation>Přesunout výše ve frontě</translation>
+    </message>
+    <message>
+        <source>Move Up Queue</source>
+        <translation>Přesunout frontu výše</translation>
+    </message>
+    <message>
+        <source>Bottom of Queue</source>
+        <translation>Konec fronty</translation>
+    </message>
+    <message>
+        <source>Move to the bottom of the queue</source>
+        <translation>Přesunout na konec fronty</translation>
+    </message>
+    <message>
+        <source>Top of Queue</source>
+        <translation>Začátek fronty</translation>
+    </message>
+    <message>
+        <source>Move Down Queue</source>
+        <translation>Přesunout frontu níže</translation>
+    </message>
+    <message>
+        <source>Move down in the queue</source>
+        <translation>Přesunout níže ve frontě</translation>
+    </message>
+    <message>
+        <source>Move to the top of the queue</source>
+        <translation>Přesunout na začátek fronty</translation>
+    </message>
+    <message>
+        <source>Your browser does not support this feature</source>
+        <translation>Tvůj prohlížeč nepodporuje tuto funkci</translation>
+    </message>
+    <message>
+        <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
+        <translation>Aby bylo možné tuto funkci používat, musí být k rozhraní WebUI přistupováno přes HTTPS</translation>
+    </message>
+    <message>
+        <source>Connection status: Firewalled</source>
+        <translation>Stav připojení: Filtrováno firewallem</translation>
+    </message>
+    <message>
+        <source>Connection status: Connected</source>
+        <translation>Stav připojení: Spojeno</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: Off</source>
+        <translation>Alternativní limity rychlosti: Vypnuto</translation>
+    </message>
+    <message>
+        <source>Download speed icon</source>
+        <translation>Ikona rychlosti stahování</translation>
+    </message>
+    <message>
+        <source>Connection status</source>
+        <translation>Stav připojení</translation>
+    </message>
+    <message>
+        <source>Alternative speed limits: On</source>
+        <translation>Alternativní limity rychlosti: Zapnuto</translation>
+    </message>
+    <message>
+        <source>Upload speed icon</source>
+        <translation>Ikona rychlosti odesílání</translation>
+    </message>
+    <message>
+        <source>Connection status: Disconnected</source>
+        <translation>Stav připojení: Odpojeno</translation>
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -537,10 +616,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Řazení torrentů do fronty</translation>
     </message>
     <message>
-        <source>Seed torrents until their seeding time reaches</source>
-        <translation>Odesílat torrenty dokud není dosaženo jejich časového limitu</translation>
-    </message>
-    <message>
         <source>Automatically add these trackers to new downloads:</source>
         <translation>Automaticky přidat tyto trackery k novým stahováním:</translation>
     </message>
@@ -570,7 +645,7 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation>Aktualizovat můj dynamické doménový název (DDNS)</translation>
+        <translation>Aktualizovat můj dynamický doménový název (DDNS)</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -697,10 +772,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Použít proxy pro připojení k protějškům</translation>
     </message>
     <message>
-        <source>Disable connections not supported by proxies</source>
-        <translation>Zakázat připojení nepodporovaná připojením proxy</translation>
-    </message>
-    <message>
         <source>Use proxy only for torrents</source>
         <translation>Použít proxy pouze pro torrenty</translation>
     </message>
@@ -791,10 +862,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Režim šifrování:</translation>
     </message>
     <message>
-        <source>Prefer encryption</source>
-        <translation>Upřednostnit šifrování</translation>
-    </message>
-    <message>
         <source>Require encryption</source>
         <translation>Vyžadovat šifrování</translation>
     </message>
@@ -823,24 +890,8 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Nezapočítávat pomalé torrenty do těchto limitů</translation>
     </message>
     <message>
-        <source>Share Ratio Limiting</source>
-        <translation>Omezení ratia</translation>
-    </message>
-    <message>
-        <source>Seed torrents until their ratio reaches</source>
-        <translation>Sdílet torrenty dokud ratio nedosáhne</translation>
-    </message>
-    <message>
         <source>then</source>
         <translation>potom</translation>
-    </message>
-    <message>
-        <source>Pause them</source>
-        <translation>Pozastavit je</translation>
-    </message>
-    <message>
-        <source>Remove them</source>
-        <translation>Odstranit je</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -873,10 +924,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     <message>
         <source>%L: Category</source>
         <translation>%L: Kategorie</translation>
-    </message>
-    <message>
-        <source>%G: Tags (seperated by comma)</source>
-        <translation>%G: Štítky (oddělené čárkou)</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -1042,6 +1089,254 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <source>When adding a torrent</source>
         <translation>Při přidání torrentu</translation>
     </message>
+    <message>
+        <source>Info: The password is saved unencrypted</source>
+        <translation>Info: Heslo je uloženo nešifrované</translation>
+    </message>
+    <message>
+        <source>μTP-TCP mixed mode algorithm:</source>
+        <translation>μTP-TCP mixed mode algoritmus:</translation>
+    </message>
+    <message>
+        <source>Upload rate based</source>
+        <translation>Dle rychlosti uploadu</translation>
+    </message>
+    <message>
+        <source>%G: Tags (separated by comma)</source>
+        <translation>%G: Štítky (oddělené čárkou)</translation>
+    </message>
+    <message>
+        <source>Socket backlog size:</source>
+        <translation>Socket backlog size:</translation>
+    </message>
+    <message>
+        <source>Enable super seeding for torrent</source>
+        <translation>Zapnout super seeding pro torrent</translation>
+    </message>
+    <message>
+        <source>Prefer TCP</source>
+        <translation>Upřednostnit TCP</translation>
+    </message>
+    <message>
+        <source>Outstanding memory when checking torrents:</source>
+        <translation>Zbývající paměť při kontrole torrentů:</translation>
+    </message>
+    <message>
+        <source>Anti-leech</source>
+        <translation>Priorita pro začínající a končící leechery</translation>
+    </message>
+    <message>
+        <source>Enable OS cache:</source>
+        <translation>Zapnout vyrovnávací paměť systému:</translation>
+    </message>
+    <message>
+        <source>When ratio reaches</source>
+        <translation>Když je dosaženo ratio</translation>
+    </message>
+    <message>
+        <source>When seeding time reaches</source>
+        <translation>Když je dosažena doba odesílání</translation>
+    </message>
+    <message>
+        <source>Allow multiple connections from the same IP address:</source>
+        <translation>Povolit více spojení ze stejné IP adresy:</translation>
+    </message>
+    <message>
+        <source>File pool size:</source>
+        <translation>Velikost souborového zásobníku:</translation>
+    </message>
+    <message>
+        <source>Any interface</source>
+        <translation>Jakékoli rozhraní</translation>
+    </message>
+    <message>
+        <source>Always announce to all tiers:</source>
+        <translation>Vždy oznamovat všem třídám:</translation>
+    </message>
+    <message>
+        <source>Embedded tracker port:</source>
+        <translation>Port vestavěného trackeru:</translation>
+    </message>
+    <message>
+        <source>Optional IP Address to bind to (requires restart):</source>
+        <translation>Volitelná přidružená  IP adresa (vyžaduje restart):</translation>
+    </message>
+    <message>
+        <source>Fastest upload</source>
+        <translation>Nejrychlejší upload</translation>
+    </message>
+    <message>
+        <source>Pause torrent</source>
+        <translation>Pozastavit torrent</translation>
+    </message>
+    <message>
+        <source>Remove torrent and its files</source>
+        <translation>Odstranit torrent a jeho soubory</translation>
+    </message>
+    <message>
+        <source>qBittorrent Section</source>
+        <translation>Sekce qBittorrentu</translation>
+    </message>
+    <message>
+        <source>Send buffer watermark factor:</source>
+        <translation>Odeslat buffer watermark faktor:</translation>
+    </message>
+    <message>
+        <source>libtorrent Section</source>
+        <translation>Sekce libtorrentu</translation>
+    </message>
+    <message>
+        <source>Coalesce reads &amp; writes:</source>
+        <translation>Sloučení čtecích &amp; zapisovacích operací</translation>
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: Disabled]:</source>
+        <translation>Odchozí porty (Min) [0: Vypnuto]</translation>
+    </message>
+    <message>
+        <source>IP Address to report to trackers (requires restart):</source>
+        <translation>IP adresa hlášená trackerům (vyžaduje restart):</translation>
+    </message>
+    <message>
+        <source>Recheck torrents on completion:</source>
+        <translation>Při dokončení překontrolovat torrenty:</translation>
+    </message>
+    <message>
+        <source>Allow encryption</source>
+        <translation>Povolit šifrování</translation>
+    </message>
+    <message>
+        <source>Send upload piece suggestions:</source>
+        <translation>Doporučení pro odeslání částí uploadu:</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation>Disková cache:</translation>
+    </message>
+    <message>
+        <source>Enable embedded tracker:</source>
+        <translation>Zapnout vestavěný tracker:</translation>
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation>Odstranit torrent</translation>
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: Disabled]:</source>
+        <translation>Odchozí porty (Max) [0: Vypnuto]</translation>
+    </message>
+    <message>
+        <source>Asynchronous I/O threads:</source>
+        <translation>Asynchronní I/O vlákna:</translation>
+    </message>
+    <message>
+        <source>s</source>
+        <translation>s</translation>
+    </message>
+    <message>
+        <source>Send buffer watermark:</source>
+        <translation>Odeslat watermark bufferu:</translation>
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation>Interval vypršení diskové cache:</translation>
+    </message>
+    <message>
+        <source>Peer proportional (throttles TCP)</source>
+        <translation>Peer proportional (omezit TCP)</translation>
+    </message>
+    <message>
+        <source>Fixed slots</source>
+        <translation>Pevné sloty</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Pokročilé</translation>
+    </message>
+    <message>
+        <source>min</source>
+        <translation>min</translation>
+    </message>
+    <message>
+        <source>Upload choking algorithm:</source>
+        <translation>Škrtící algoritmus pro upload</translation>
+    </message>
+    <message>
+        <source>Seeding Limits</source>
+        <translation>Limity sdílení</translation>
+    </message>
+    <message>
+        <source>KiB</source>
+        <translation>KiB</translation>
+    </message>
+    <message>
+        <source>Round-robin</source>
+        <translation>Poměrné rozdělení</translation>
+    </message>
+    <message>
+        <source>Upload slots behavior:</source>
+        <translation>Chování upload slotů:</translation>
+    </message>
+    <message>
+        <source>Network Interface (requires restart):</source>
+        <translation>Síťové rozhraní (vyžaduje restart):</translation>
+    </message>
+    <message>
+        <source>MiB</source>
+        <translation>MiB</translation>
+    </message>
+    <message>
+        <source>Send buffer low watermark:</source>
+        <translation>Odeslat buffer-low watermark:</translation>
+    </message>
+    <message>
+        <source>Save resume data interval:</source>
+        <translation>Interval uložení dat obnovení:</translation>
+    </message>
+    <message>
+        <source>Always announce to all trackers in a tier:</source>
+        <translation>Vždy oznamovat všem trackerům ve třídě:</translation>
+    </message>
+    <message>
+        <source>Session timeout:</source>
+        <translation>Časový limit relace:</translation>
+    </message>
+    <message>
+        <source>Resolve peer countries:</source>
+        <translation>Zjišťovat země původu peerů:</translation>
+    </message>
+    <message>
+        <source>ban for:</source>
+        <translation>ban pro:</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
+        <translation>Použijte rozšíření o příbuzné části (vyžaduje libtorrent&gt; = 1.2.2):</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout:</source>
+        <translation>Stop časový limit  trackeru:</translation>
+    </message>
+    <message>
+        <source>Ban client after consecutive failures:</source>
+        <translation>Banovat klienta po sousledných selháních:</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS)</source>
+        <translation>Povolit příznak zabezpečení souborů cookie (vyžaduje HTTPS)</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: Permanent lease]:</source>
+        <translation>Trvání UPnP pronájmu [0: trvalý pronájem]:</translation>
+    </message>
+    <message>
+        <source>Header: value pairs, one per line</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add custom HTTP headers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1102,8 +1397,24 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Soubory</translation>
     </message>
     <message>
-        <source>Country</source>
-        <translation>Země</translation>
+        <source>Ban peer permanently</source>
+        <translation>Natrvalo zakázat protějšek</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to permanently ban the selected peers?</source>
+        <translation>Opravdu chcete natrvalo zakázat označené protějšky?</translation>
+    </message>
+    <message>
+        <source>Copy IP:port</source>
+        <translation>Kopírovat IP:port</translation>
+    </message>
+    <message>
+        <source>Add a new peer...</source>
+        <translation>Přidat nový protějšek...</translation>
+    </message>
+    <message>
+        <source>Country/Region</source>
+        <translation>Země/Oblast</translation>
     </message>
 </context>
 <context>
@@ -1122,6 +1433,14 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Maximální</translation>
+    </message>
+    <message>
+        <source>Mixed</source>
+        <translation>Mix</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation>Nestahovat</translation>
     </message>
 </context>
 <context>
@@ -1289,6 +1608,18 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     <message>
         <source>Upload limit:</source>
         <translation>Omezení odesílání:</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation>Priorita</translation>
+    </message>
+    <message>
+        <source>Filter files...</source>
+        <translation>Filtrovat soubory...</translation>
+    </message>
+    <message>
+        <source>Rename...</source>
+        <translation>Přejmenovat...</translation>
     </message>
 </context>
 <context>
@@ -1466,34 +1797,34 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <source>Errored (%1)</source>
         <translation>S chybou (%1)</translation>
     </message>
+    <message>
+        <source>Stalled Uploading (%1)</source>
+        <translation>Pozastavené Nahrávaní (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (%1)</source>
+        <translation>Pozastavené Stahování (%1)</translation>
+    </message>
+    <message>
+        <source>Stalled Downloading (0)</source>
+        <translation>Pozastavené Stahování (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (0)</source>
+        <translation>Pozastaveno (0)</translation>
+    </message>
+    <message>
+        <source>Stalled Uploading (0)</source>
+        <translation>Pozastavené Nahrávaní (0)</translation>
+    </message>
+    <message>
+        <source>Stalled (%1)</source>
+        <translation>Pozastaveno (%1)</translation>
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation>Název</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation>Velikost</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation>Průběh</translation>
-    </message>
-    <message>
-        <source>Download Priority</source>
-        <translation>Priorita stahování</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <translation>Zbývající</translation>
-    </message>
-    <message>
-        <source>Availability</source>
-        <translation>Dostupnost</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -1638,6 +1969,10 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <comment>i.e. Size including unwanted data</comment>
         <translation>Celková velikost</translation>
     </message>
+    <message>
+        <source>Availability</source>
+        <translation>Dostupnost</translation>
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -1682,10 +2017,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Dosud nekontaktován</translation>
     </message>
     <message>
-        <source>#</source>
-        <translation>#</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>není k dispozici</translation>
     </message>
@@ -1720,6 +2051,34 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     <message>
         <source>Remove tracker</source>
         <translation>Odstranit tracker</translation>
+    </message>
+    <message>
+        <source>Remaining</source>
+        <translation>Zbývající</translation>
+    </message>
+    <message>
+        <source>Availability</source>
+        <translation>Dostupnost</translation>
+    </message>
+    <message>
+        <source>Tier</source>
+        <translation>Tier</translation>
+    </message>
+    <message>
+        <source>Download Priority</source>
+        <translation>Priorita stahování</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>Průběh</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>Velikost</translation>
     </message>
 </context>
 <context>
@@ -1815,6 +2174,10 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <source>Categories</source>
         <translation>Kategorie</translation>
     </message>
+    <message>
+        <source>Tags</source>
+        <translation>Štítky</translation>
+    </message>
 </context>
 <context>
     <name>TransferListWidget</name>
@@ -1887,14 +2250,6 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Nastavit umístění...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation>Kopírovat název</translation>
-    </message>
-    <message>
-        <source>Copy hash</source>
-        <translation>Zkopírovat hash</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation>Stáhnout nejdříve první a poslední část</translation>
     </message>
@@ -1917,16 +2272,8 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Resetovat</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation>Priorita</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Vynutit překontrolování</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation>Kopírovat Magnet link</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -1972,6 +2319,46 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <source>Save path</source>
         <translation>Cesta pro uložení</translation>
     </message>
+    <message>
+        <source>Comma-separated tags:</source>
+        <translation>Čárkou oddelěné štítky:</translation>
+    </message>
+    <message>
+        <source>Add Tags</source>
+        <translation>Přidat Štítek</translation>
+    </message>
+    <message>
+        <source>Tags</source>
+        <translation>Štítky</translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation>Magnet link</translation>
+    </message>
+    <message>
+        <source>Hash</source>
+        <translation>Hash</translation>
+    </message>
+    <message>
+        <source>Remove All</source>
+        <translation>Odstranit vše</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Kopírovat</translation>
+    </message>
+    <message>
+        <source>Queue</source>
+        <translation>Úloha</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation>Přidat...</translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2002,23 +2389,7 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
 </context>
 <context>
     <name>about</name>
-    <message>
-        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Pokročilý BitTorrent klient naprogramován v jazyce C++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
-    </message>
-    <message>
-        <source>Home Page:</source>
-        <translation>Domovská stránka:</translation>
-    </message>
-    <message>
-        <source>Forum:</source>
-        <translation>Fórum:</translation>
-    </message>
-    <message>
-        <source>Bug Tracker:</source>
-        <translation>Sledování chyb:</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
@@ -2182,20 +2553,8 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
         <translation>Hledat v:</translation>
     </message>
     <message>
-        <source>Copy description page URL</source>
-        <translation>Kopírovat URL stránky s popisem</translation>
-    </message>
-    <message>
-        <source>Go to description page</source>
-        <translation>Přejít na stránku s popisem</translation>
-    </message>
-    <message>
         <source>Results (showing</source>
         <translation>Výsledky (zobrazuji</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation>Stáhnout</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2297,6 +2656,215 @@ Nepoužívejte žádné speciální znaky ani diakritiku v názvu kategorie.</tr
     <message>
         <source>Version</source>
         <translation>Verze</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Ano</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Ne</translation>
+    </message>
+</context>
+<context>
+    <name>PeersAdditionDialog</name>
+    <message>
+        <source>Cancel</source>
+        <translation>Zrušit</translation>
+    </message>
+    <message>
+        <source>Add Peers</source>
+        <translation>Přidání protějšků</translation>
+    </message>
+    <message>
+        <source>List of peers to add (one IP per line):</source>
+        <translation>Seznam protějšků pro přidání (jedna IP na řádek):</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Format: IPv4:port / [IPv6]:port</source>
+        <translation>Formát: IPv4:port / [IPv6]:port</translation>
+    </message>
+</context>
+<context>
+    <name>TagFilterWidget</name>
+    <message>
+        <source>New Tag</source>
+        <translation>Nový štítek</translation>
+    </message>
+    <message>
+        <source>Add tag...</source>
+        <translation>Přidat štítek...</translation>
+    </message>
+    <message>
+        <source>Delete torrents</source>
+        <translation>Smazat torrenty</translation>
+    </message>
+    <message>
+        <source>Tag:</source>
+        <translation>Štítek:</translation>
+    </message>
+    <message>
+        <source>Pause torrents</source>
+        <translation>Pozastavení torrentů</translation>
+    </message>
+    <message>
+        <source>Resume torrents</source>
+        <translation>Pokračování torrentů</translation>
+    </message>
+    <message>
+        <source>Remove unused tags</source>
+        <translation>Odebrat nepoužité štítky</translation>
+    </message>
+    <message>
+        <source>Invalid tag name</source>
+        <translation>Neplatný název štítku</translation>
+    </message>
+    <message>
+        <source>Remove tag</source>
+        <translation>Odebrat štítek</translation>
+    </message>
+</context>
+<context>
+    <name>TagFilterModel</name>
+    <message>
+        <source>All</source>
+        <translation>Vše</translation>
+    </message>
+    <message>
+        <source>Untagged</source>
+        <translation>Neoznačeno</translation>
+    </message>
+</context>
+<context>
+    <name>AboutDialog</name>
+    <message>
+        <source>Bug Tracker:</source>
+        <translation>Sledování chyb:</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>O</translation>
+    </message>
+    <message>
+        <source>Forum:</source>
+        <translation>Forum:</translation>
+    </message>
+    <message>
+        <source>E-mail:</source>
+        <translation>E-mail:</translation>
+    </message>
+    <message>
+        <source>Current maintainer</source>
+        <translation>Aktuální správce</translation>
+    </message>
+    <message>
+        <source>Home Page:</source>
+        <translation>Domovská stránka:</translation>
+    </message>
+    <message>
+        <source>Greece</source>
+        <translation>Řecko</translation>
+    </message>
+    <message>
+        <source>Special Thanks</source>
+        <translation>Zvláštní poděkování</translation>
+    </message>
+    <message>
+        <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
+        <translation>Pokročilý BitTorrent klient naprogramovaný v jazyce C ++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Jméno:</translation>
+    </message>
+    <message>
+        <source>About qBittorrent</source>
+        <translation>O qBittorrentu</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation>Licence</translation>
+    </message>
+    <message>
+        <source>Translators</source>
+        <translation>Překladatelé</translation>
+    </message>
+    <message>
+        <source>qBittorrent was built with the following libraries:</source>
+        <translation>qBittorrent byl vytvořen s následujícími knihovnami:</translation>
+    </message>
+    <message>
+        <source>Nationality:</source>
+        <translation>Národnost:</translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation>Autor</translation>
+    </message>
+    <message>
+        <source>Software Used</source>
+        <translation>Použitý software</translation>
+    </message>
+    <message>
+        <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
+        <translation>Bezplatná databáze IP to Country Lite od DB-IP se používá k řešení zemí peerů. Databáze je licencována podle mezinárodní licence Creative Commons Attribution 4.0</translation>
+    </message>
+</context>
+<context>
+    <name>OptionDialog</name>
+    <message>
+        <source>All addresses</source>
+        <translation>Všechny adresy</translation>
+    </message>
+    <message>
+        <source>All IPv6 addresses</source>
+        <translation>Všechny IPv6 adresy</translation>
+    </message>
+    <message>
+        <source>All IPv4 addresses</source>
+        <translation>Všechny IPv4 adresy</translation>
+    </message>
+</context>
+<context>
+    <name>SearchJobWidget</name>
+    <message>
+        <source>Copy</source>
+        <translation>Kopírovat</translation>
+    </message>
+    <message>
+        <source>Download</source>
+        <translation>Stáhnout</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <source>Description page URL</source>
+        <translation>URL stránky s popisem</translation>
+    </message>
+    <message>
+        <source>Open description page</source>
+        <translation>Otevřít stránku s popisem</translation>
+    </message>
+    <message>
+        <source>Download link</source>
+        <translation>Download link</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentContentTreeView</name>
+    <message>
+        <source>Renaming</source>
+        <translation>Přejmenovávám</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation>Nové jméno:</translation>
     </message>
 </context>
 </TS>

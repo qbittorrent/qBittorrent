@@ -30,7 +30,6 @@
 #define PROGRAMUPDATER_H
 
 #include <QObject>
-#include <QUrl>
 
 namespace Net
 {

@@ -41,13 +41,12 @@ namespace RSS
     class Item;
 }
 
-class FeedListWidget : public QTreeWidget
+class FeedListWidget final : public QTreeWidget
 {
     Q_OBJECT
 
 public:
     explicit FeedListWidget(QWidget *parent);
-    ~FeedListWidget();
 
     QTreeWidgetItem *stickyUnreadItem() const;
     QList<QTreeWidgetItem *> getAllOpenedFolders(QTreeWidgetItem *parent = nullptr) const;
@@ -66,8 +65,8 @@ private slots:
     void handleItemAboutToBeRemoved(RSS::Item *rssItem);
 
 private:
-    void dragMoveEvent(QDragMoveEvent *event);
-    void dropEvent(QDropEvent *event);
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
     QTreeWidgetItem *createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem = nullptr);
     void fill(QTreeWidgetItem *parent, RSS::Folder *rssParent);
 

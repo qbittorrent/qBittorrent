@@ -32,51 +32,14 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   File "qbittorrent.exe"
   File "qbittorrent.pdb"
   File "qt.conf"
-  File /oname=translations\qt_ar.qm "translations\qt_ar.qm"
-  File /oname=translations\qt_bg.qm "translations\qt_bg.qm"
-  File /oname=translations\qt_ca.qm "translations\qt_ca.qm"
-  File /oname=translations\qt_cs.qm "translations\qt_cs.qm"
-  File /oname=translations\qt_da.qm "translations\qt_da.qm"
-  File /oname=translations\qt_de.qm "translations\qt_de.qm"
-  File /oname=translations\qt_es.qm "translations\qt_es.qm"
-  File /oname=translations\qt_eu.qm "translations\qt_eu.qm"
+  File /r "qtbase_*.qm"  ; omit translations folder path to preserve folder structure
   File /oname=translations\qt_fa.qm "translations\qt_fa.qm"
-  File /oname=translations\qt_fi.qm "translations\qt_fi.qm"
-  File /oname=translations\qt_fr.qm "translations\qt_fr.qm"
   File /oname=translations\qt_gl.qm "translations\qt_gl.qm"
-  File /oname=translations\qt_he.qm "translations\qt_he.qm"
-  File /oname=translations\qt_hu.qm "translations\qt_hu.qm"
-  File /oname=translations\qt_it.qm "translations\qt_it.qm"
-  File /oname=translations\qt_ja.qm "translations\qt_ja.qm"
-  File /oname=translations\qt_ko.qm "translations\qt_ko.qm"
   File /oname=translations\qt_lt.qm "translations\qt_lt.qm"
-  File /oname=translations\qt_nl.qm "translations\qt_nl.qm"
-  File /oname=translations\qt_pl.qm "translations\qt_pl.qm"
   File /oname=translations\qt_pt.qm "translations\qt_pt.qm"
-  File /oname=translations\qt_pt_BR.qm "translations\qt_pt_BR.qm"
-  File /oname=translations\qt_ru.qm "translations\qt_ru.qm"
-  File /oname=translations\qt_sk.qm "translations\qt_sk.qm"
   File /oname=translations\qt_sl.qm "translations\qt_sl.qm"
   File /oname=translations\qt_sv.qm "translations\qt_sv.qm"
-  File /oname=translations\qt_tr.qm "translations\qt_tr.qm"
-  File /oname=translations\qt_uk.qm "translations\qt_uk.qm"
   File /oname=translations\qt_zh_CN.qm "translations\qt_zh_CN.qm"
-  File /oname=translations\qt_zh_TW.qm "translations\qt_zh_TW.qm"
-  File /oname=translations\qtbase_ca.qm "translations\qtbase_ca.qm"
-  File /oname=translations\qtbase_cs.qm "translations\qtbase_cs.qm"
-  File /oname=translations\qtbase_de.qm "translations\qtbase_de.qm"
-  File /oname=translations\qtbase_fi.qm "translations\qtbase_fi.qm"
-  File /oname=translations\qtbase_fr.qm "translations\qtbase_fr.qm"
-  File /oname=translations\qtbase_he.qm "translations\qtbase_he.qm"
-  File /oname=translations\qtbase_hu.qm "translations\qtbase_hu.qm"
-  File /oname=translations\qtbase_it.qm "translations\qtbase_it.qm"
-  File /oname=translations\qtbase_ja.qm "translations\qtbase_ja.qm"
-  File /oname=translations\qtbase_ko.qm "translations\qtbase_ko.qm"
-  File /oname=translations\qtbase_lv.qm "translations\qtbase_lv.qm"
-  File /oname=translations\qtbase_pl.qm "translations\qtbase_pl.qm"
-  File /oname=translations\qtbase_ru.qm "translations\qtbase_ru.qm"
-  File /oname=translations\qtbase_sk.qm "translations\qtbase_sk.qm"
-  File /oname=translations\qtbase_uk.qm "translations\qtbase_uk.qm"
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
@@ -118,6 +81,18 @@ Section $(inst_startmenu) ;"Create Start Menu Shortcut"
   CreateShortCut "$SMPROGRAMS\qBittorrent\Uninstall.lnk" "$INSTDIR\uninst.exe"
 
 SectionEnd
+
+Section /o $(inst_startup) ;"Start qBittorrent on Windows start up"
+
+  !insertmacro UAC_AsUser_Call Function inst_startup_user ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR}
+
+SectionEnd
+
+Function inst_startup_user
+
+  WriteRegStr HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "qBittorrent" "$INSTDIR\qbittorrent.exe"
+
+FunctionEnd
 
 Section $(inst_torrent) ;"Open .torrent files with qBittorrent"
 
@@ -192,12 +167,23 @@ Section $(inst_firewall)
 
 SectionEnd
 
+Section $(inst_pathlimit) ;"Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+
+  WriteRegDWORD HKLM "SYSTEM\CurrentControlSet\Control\FileSystem" "LongPathsEnabled" 1
+
+SectionEnd
+
 ;--------------------------------
 
 Function .onInit
 
   !insertmacro Init "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
+
+  ${IfNot} ${AtLeastWin7}
+    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win7)
+    Abort
+  ${EndIf}
 
   !ifdef APP64BIT
     ${IfNot} ${RunningX64}

@@ -28,15 +28,22 @@
 
 #include "programupdater.h"
 
+#if defined(Q_OS_WIN)
+#include <Windows.h>
+#include <versionhelpers.h>  // must follow after Windows.h
+#endif
+
 #include <QDebug>
 #include <QDesktopServices>
 #include <QRegularExpression>
 #include <QStringList>
-#include <QSysInfo>
 #include <QXmlStreamReader>
 
+#if defined(Q_OS_WIN)
+#include <QSysInfo>
+#endif
+
 #include "base/net/downloadmanager.h"
-#include "base/utils/fs.h"
 
 namespace
 {
@@ -71,10 +78,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     const QString OS_TYPE {"Mac OS X"};
 #elif defined(Q_OS_WIN)
-    const QString OS_TYPE {((QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7)
+    const QString OS_TYPE {(::IsWindows7OrGreater()
             && QSysInfo::currentCpuArchitecture().endsWith("64"))
         ? "Windows x64" : "Windows"};
 #endif
@@ -132,10 +139,10 @@ bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
 {
     const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
     if (regVerMatch.hasMatch()) {
-        QString localVersion = regVerMatch.captured(1);
-        qDebug() << Q_FUNC_INFO << "local version:" << localVersion << "/" << QBT_VERSION;
-        QStringList remoteParts = remoteVersion.split('.');
-        QStringList localParts = localVersion.split('.');
+        const QString localVersion = regVerMatch.captured(1);
+        const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
+        const QVector<QStringRef> localParts = localVersion.splitRef('.');
+
         for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i) {
             if (remoteParts[i].toInt() > localParts[i].toInt())
                 return true;

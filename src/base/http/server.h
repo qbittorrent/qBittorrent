@@ -31,6 +31,7 @@
 #ifndef HTTP_SERVER_H
 #define HTTP_SERVER_H
 
+#include <QSet>
 #include <QSslCertificate>
 #include <QSslKey>
 #include <QTcpServer>
@@ -40,7 +41,7 @@ namespace Http
     class IRequestHandler;
     class Connection;
 
-    class Server : public QTcpServer
+    class Server final : public QTcpServer
     {
         Q_OBJECT
         Q_DISABLE_COPY(Server)
@@ -55,10 +56,11 @@ namespace Http
         void dropTimedOutConnection();
 
     private:
-        void incomingConnection(qintptr socketDescriptor);
+        void incomingConnection(qintptr socketDescriptor) override;
+        void removeConnection(Connection *connection);
 
         IRequestHandler *m_requestHandler;
-        QList<Connection *> m_connections;  // for tracking persistent connections
+        QSet<Connection *> m_connections;  // for tracking persistent connections
 
         bool m_https;
         QList<QSslCertificate> m_certificates;

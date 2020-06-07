@@ -29,6 +29,7 @@
 #include "searchsortmodel.h"
 
 #include "base/global.h"
+#include "base/utils/string.h"
 
 SearchSortModel::SearchSortModel(QObject *parent)
     : base(parent)
@@ -42,7 +43,7 @@ SearchSortModel::SearchSortModel(QObject *parent)
 {
 }
 
-void SearchSortModel::enableNameFilter(bool enabled)
+void SearchSortModel::enableNameFilter(const bool enabled)
 {
     m_isNameFilterEnabled = enabled;
 }
@@ -50,7 +51,7 @@ void SearchSortModel::enableNameFilter(bool enabled)
 void SearchSortModel::setNameFilter(const QString &searchTerm)
 {
     m_searchTerm = searchTerm;
-    if (searchTerm.length() > 2
+    if ((searchTerm.length() > 2)
         && searchTerm.startsWith(QLatin1Char('"')) && searchTerm.endsWith(QLatin1Char('"'))) {
         m_searchTermWords = QStringList(m_searchTerm.mid(1, m_searchTerm.length() - 2));
     }
@@ -59,19 +60,19 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
     }
 }
 
-void SearchSortModel::setSizeFilter(qint64 minSize, qint64 maxSize)
+void SearchSortModel::setSizeFilter(const qint64 minSize, const qint64 maxSize)
 {
     m_minSize = std::max(static_cast<qint64>(0), minSize);
     m_maxSize = std::max(static_cast<qint64>(-1), maxSize);
 }
 
-void SearchSortModel::setSeedsFilter(int minSeeds, int maxSeeds)
+void SearchSortModel::setSeedsFilter(const int minSeeds, const int maxSeeds)
 {
     m_minSeeds = std::max(0, minSeeds);
     m_maxSeeds = std::max(-1, maxSeeds);
 }
 
-void SearchSortModel::setLeechesFilter(int minLeeches, int maxLeeches)
+void SearchSortModel::setLeechesFilter(const int minLeeches, const int maxLeeches)
 {
     m_minLeeches = std::max(0, minLeeches);
     m_maxLeeches = std::max(-1, maxLeeches);
@@ -116,48 +117,44 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
             const QString strR = right.data().toString();
             const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
             return (result < 0);
-    }
+        }
         break;
     default:
         return base::lessThan(left, right);
     };
 }
 
-bool SearchSortModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
 {
     const QAbstractItemModel *const sourceModel = this->sourceModel();
+
     if (m_isNameFilterEnabled && !m_searchTerm.isEmpty()) {
-        QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent)).toString();
+        const QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent)).toString();
         for (const QString &word : asConst(m_searchTermWords)) {
-            int i = name.indexOf(word, 0, Qt::CaseInsensitive);
-            if (i == -1) {
+            if (!name.contains(word, Qt::CaseInsensitive))
                 return false;
-            }
         }
     }
 
     if ((m_minSize > 0) || (m_maxSize >= 0)) {
-        qlonglong size = sourceModel->data(sourceModel->index(sourceRow, SIZE, sourceParent)).toLongLong();
+        const qlonglong size = sourceModel->data(sourceModel->index(sourceRow, SIZE, sourceParent)).toLongLong();
         if (((m_minSize > 0) && (size < m_minSize))
-            || ((m_maxSize > 0) && (size > m_maxSize))) {
+            || ((m_maxSize > 0) && (size > m_maxSize)))
             return false;
-        }
     }
 
     if ((m_minSeeds > 0) || (m_maxSeeds >= 0)) {
-        int seeds = sourceModel->data(sourceModel->index(sourceRow, SEEDS, sourceParent)).toInt();
+        const int seeds = sourceModel->data(sourceModel->index(sourceRow, SEEDS, sourceParent)).toInt();
         if (((m_minSeeds > 0) && (seeds < m_minSeeds))
-            || ((m_maxSeeds > 0) && (seeds > m_maxSeeds))) {
+            || ((m_maxSeeds > 0) && (seeds > m_maxSeeds)))
             return false;
-        }
     }
 
     if ((m_minLeeches > 0) || (m_maxLeeches >= 0)) {
-        int leeches = sourceModel->data(sourceModel->index(sourceRow, LEECHES, sourceParent)).toInt();
+        const int leeches = sourceModel->data(sourceModel->index(sourceRow, LEECHES, sourceParent)).toInt();
         if (((m_minLeeches > 0) && (leeches < m_minLeeches))
-            || ((m_maxLeeches > 0) && (leeches > m_maxLeeches))) {
+            || ((m_maxLeeches > 0) && (leeches > m_maxLeeches)))
             return false;
-        }
     }
 
     return base::filterAcceptsRow(sourceRow, sourceParent);

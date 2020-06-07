@@ -28,10 +28,12 @@
 
 #pragma once
 
+#include <QDeadlineTimer>
 #include <QHash>
-#include <QString>
 
 #include "apicontroller.h"
+
+class QString;
 
 class AuthController : public APIController
 {
@@ -43,7 +45,7 @@ public:
 
 private slots:
     void loginAction();
-    void logoutAction();
+    void logoutAction() const;
 
 private:
     bool isBanned() const;
@@ -53,7 +55,7 @@ private:
     struct FailedLogin
     {
         int failedAttemptsCount = 0;
-        qint64 bannedAt = 0;
+        QDeadlineTimer banTimer {-1};
     };
     mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };

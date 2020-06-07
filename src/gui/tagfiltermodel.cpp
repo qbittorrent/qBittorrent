@@ -34,7 +34,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
 #include "base/global.h"
-#include "guiiconprovider.h"
+#include "uithememanager.h"
 
 namespace
 {
@@ -122,9 +122,9 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case Qt::DecorationRole:
-        return GuiIconProvider::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon("inode-directory");
     case Qt::DisplayRole:
-        return QString(QLatin1String("%1 (%2)"))
+        return QString::fromLatin1("%1 (%2)")
                .arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
     case Qt::UserRole:
         return item.torrentsCount();
@@ -216,15 +216,15 @@ void TagFilterModel::torrentTagAdded(BitTorrent::TorrentHandle *const torrent, c
 
 void TagFilterModel::torrentTagRemoved(BitTorrent::TorrentHandle *const torrent, const QString &tag)
 {
-    Q_ASSERT(torrent->tags().count() >= 0);
-    if (torrent->tags().count() == 0)
+    if (torrent->tags().empty())
         untaggedItem()->increaseTorrentsCount();
 
     const int row = findRow(tag);
-    Q_ASSERT(isValidRow(row));
-    TagModelItem &item = m_tagItems[row];
+    if (row < 0)
+        return;
 
-    item.decreaseTorrentsCount();
+    m_tagItems[row].decreaseTorrentsCount();
+
     const QModelIndex i = index(row, 0, QModelIndex());
     emit dataChanged(i, i);
 }
@@ -319,7 +319,7 @@ QVector<TagModelItem *> TagFilterModel::findItems(const QSet<QString> &tags)
         if (item)
             items.push_back(item);
         else
-            qWarning() << QString("Requested tag '%1' missing from the model.").arg(tag);
+            qWarning() << QString::fromLatin1("Requested tag '%1' missing from the model.").arg(tag);
     }
     return items;
 }

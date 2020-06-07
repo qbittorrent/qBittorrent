@@ -41,25 +41,24 @@
 #endif
 
 #include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/torrenthandle.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "propertieswidget.h"
-#include "torrentcontentmodelitem.h"
 
 namespace
 {
-
     QPalette progressBarDisabledPalette()
     {
-        auto getPalette = []() {
-                              QProgressBar bar;
-                              bar.setEnabled(false);
-                              QStyleOptionProgressBar opt;
-                              opt.initFrom(&bar);
-                              return opt.palette;
-                          };
-        static QPalette palette = getPalette();
+        static const QPalette palette = []()
+        {
+            QProgressBar bar;
+            bar.setEnabled(false);
+            QStyleOptionProgressBar opt;
+            opt.initFrom(&bar);
+            return opt.palette;
+        }();
         return palette;
     }
 }
@@ -73,6 +72,7 @@ PropListDelegate::PropListDelegate(PropertiesWidget *properties)
 void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     painter->save();
+
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     QItemDelegate::drawBackground(painter, opt, index);
 
@@ -81,15 +81,16 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     case REMAINING:
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
+
     case PROGRESS: {
-            if (index.data().toDouble() < 0)
+            const qreal progress = (index.data().toReal() * 100);
+            if (progress < 0)
                 break;
 
             QStyleOptionProgressBar newopt;
-            qreal progress = index.data().toDouble() * 100.;
             newopt.rect = opt.rect;
-            newopt.text = ((progress == 100.0) ? QString("100%") : Utils::String::fromDouble(progress, 1) + '%');
-            newopt.progress = int(progress);
+            newopt.text = (progress == 100) ? QString("100%") : (Utils::String::fromDouble(progress, 1) + '%');
+            newopt.progress = static_cast<int>(progress);
             newopt.maximum = 100;
             newopt.minimum = 0;
             newopt.textVisible = true;
@@ -101,14 +102,15 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
                 newopt.state |= QStyle::State_Enabled;
             }
 
-#if !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-#else
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
             // XXX: To avoid having the progress text on the right of the bar
             QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+#else
+            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
 #endif
         }
         break;
+
     case PRIORITY: {
             QString text = "";
             switch (static_cast<BitTorrent::DownloadPriority>(index.data().toInt())) {
@@ -131,23 +133,26 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
             QItemDelegate::drawDisplay(painter, opt, option.rect, text);
         }
         break;
+
     case AVAILABILITY: {
-            const qreal availability = index.data().toDouble();
+            const qreal availability = index.data().toReal();
             if (availability < 0) {
                 QItemDelegate::drawDisplay(painter, opt, option.rect, tr("N/A"));
             }
             else {
                 const QString value = (availability >= 1.0)
                                         ? QLatin1String("100")
-                                        : Utils::String::fromDouble(availability * 100., 1);
-                QItemDelegate::drawDisplay(painter, opt, option.rect, value + C_THIN_SPACE + QLatin1Char('%'));
+                                        : Utils::String::fromDouble(availability * 100, 1);
+                QItemDelegate::drawDisplay(painter, opt, option.rect, (value + C_THIN_SPACE + QLatin1Char('%')));
             }
         }
         break;
+
     default:
         QItemDelegate::paint(painter, option, index);
         break;
     }
+
     painter->restore();
 }
 
@@ -176,7 +181,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     if (index.column() != PRIORITY) return nullptr;
 
     if (m_properties) {
-        BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+        const BitTorrent::TorrentHandle *torrent = m_properties->getCurrentTorrent();
         if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
             return nullptr;
     }
@@ -195,9 +200,8 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
 
 void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    auto *combobox = static_cast<QComboBox *>(editor);
-    int value = combobox->currentIndex();
-    qDebug("PropListDelegate: setModelData(%d)", value);
+    const auto *combobox = static_cast<QComboBox *>(editor);
+    const int value = combobox->currentIndex();
 
     BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal; // NORMAL
     switch (value) {
@@ -218,6 +222,5 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
 
 void PropListDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
-    qDebug("UpdateEditor Geometry called");
     editor->setGeometry(option.rect);
 }

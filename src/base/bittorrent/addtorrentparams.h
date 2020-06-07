@@ -33,10 +33,11 @@
 #include <QVector>
 
 #include "../tristatebool.h"
-#include "downloadpriority.h"
 
 namespace BitTorrent
 {
+    enum class DownloadPriority;
+
     struct AddTorrentParams
     {
         QString name;

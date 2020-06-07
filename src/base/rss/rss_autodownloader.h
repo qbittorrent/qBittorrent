@@ -40,6 +40,7 @@
 
 class QThread;
 class QTimer;
+
 class Application;
 class AsyncFileStorage;
 struct ProcessingJob;

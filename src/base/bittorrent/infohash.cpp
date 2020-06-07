@@ -38,7 +38,7 @@ InfoHash::InfoHash()
 {
 }
 
-InfoHash::InfoHash(const libtorrent::sha1_hash &nativeHash)
+InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
     : m_valid(true)
     , m_nativeHash(nativeHash)
 {
@@ -66,7 +66,7 @@ bool InfoHash::isValid() const
     return m_valid;
 }
 
-InfoHash::operator libtorrent::sha1_hash() const
+InfoHash::operator lt::sha1_hash() const
 {
     return m_nativeHash;
 }
@@ -78,8 +78,8 @@ InfoHash::operator QString() const
 
 bool BitTorrent::operator==(const InfoHash &left, const InfoHash &right)
 {
-    return (static_cast<libtorrent::sha1_hash>(left)
-            == static_cast<libtorrent::sha1_hash>(right));
+    return (static_cast<lt::sha1_hash>(left)
+            == static_cast<lt::sha1_hash>(right));
 }
 
 bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
@@ -89,5 +89,9 @@ bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
 
 uint BitTorrent::qHash(const InfoHash &key, const uint seed)
 {
+#if (LIBTORRENT_VERSION_NUM < 10200)
     return ::qHash(static_cast<QString>(key), seed);
+#else
+    return ::qHash((std::hash<lt::sha1_hash> {})(key), seed);
+#endif
 }

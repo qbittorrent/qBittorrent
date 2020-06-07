@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -27,16 +27,15 @@
  * exception statement from your version.
  */
 
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#pragma once
 
 #include <QPointer>
 #include <QStringList>
 #include <QTranslator>
 
 #ifndef DISABLE_GUI
-#include "qtsingleapplication.h"
-typedef QtSingleApplication BaseApplication;
+#include <QApplication>
+using BaseApplication = QApplication;
 class MainWindow;
 
 #ifdef Q_OS_WIN
@@ -44,8 +43,8 @@ class QSessionManager;
 #endif // Q_OS_WIN
 
 #else
-#include "qtsinglecoreapplication.h"
-typedef QtSingleCoreApplication BaseApplication;
+#include <QCoreApplication>
+using BaseApplication = QCoreApplication;
 #endif // DISABLE_GUI
 
 #include "base/types.h"
@@ -55,6 +54,7 @@ typedef QtSingleCoreApplication BaseApplication;
 class WebUI;
 #endif
 
+class ApplicationInstanceManager;
 class FileLogger;
 
 namespace BitTorrent
@@ -68,18 +68,16 @@ namespace RSS
     class AutoDownloader;
 }
 
-class Application : public BaseApplication
+class Application final : public BaseApplication
 {
     Q_OBJECT
     Q_DISABLE_COPY(Application)
 
 public:
-    Application(const QString &id, int &argc, char **argv);
+    Application(int &argc, char **argv);
     ~Application() override;
 
-#if (defined(Q_OS_WIN) && !defined(DISABLE_GUI))
     bool isRunning();
-#endif
     int exec(const QStringList &params);
     bool sendParams(const QStringList &params);
 
@@ -107,7 +105,7 @@ public:
 
 protected:
 #ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
 #endif
@@ -122,6 +120,7 @@ private slots:
 #endif
 
 private:
+    ApplicationInstanceManager *m_instanceManager = nullptr;
     bool m_running;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
@@ -131,7 +130,7 @@ private:
 #endif
 
 #ifndef DISABLE_WEBUI
-    WebUI *m_webui;
+    WebUI *m_webui = nullptr;
 #endif
 
     // FileLog
@@ -145,7 +144,4 @@ private:
     void processParams(const QStringList &params);
     void runExternalProgram(const BitTorrent::TorrentHandle *torrent) const;
     void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
-    void validateCommandLineParameters();
 };
-
-#endif // APPLICATION_H

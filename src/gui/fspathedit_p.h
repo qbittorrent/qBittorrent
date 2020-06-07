@@ -29,24 +29,23 @@
 #ifndef QBT_GUI_FSPATHEDIT_P_H
 #define QBT_GUI_FSPATHEDIT_P_H
 
-#include <QAction>
 #include <QComboBox>
-#include <QCompleter>
-#include <QContextMenuEvent>
 #include <QFileIconProvider>
-#include <QFileSystemModel>
-#include <QKeyEvent>
 #include <QLineEdit>
-#include <QMenu>
-#include <QStringRef>
 #include <QValidator>
 #include <QVector>
 
+class QAction;
+class QCompleter;
+class QContextMenuEvent;
+class QFileSystemModel;
+class QKeyEvent;
 class QStringList;
+class QStringRef;
 
 namespace Private
 {
-    class FileSystemPathValidator : public QValidator
+    class FileSystemPathValidator final : public QValidator
     {
         Q_OBJECT
 
@@ -112,7 +111,7 @@ namespace Private
         virtual QWidget *widget() = 0;
     };
 
-    class FileLineEdit : public QLineEdit, public FileEditorWithCompletion
+    class FileLineEdit final : public QLineEdit, public FileEditorWithCompletion
     {
         Q_OBJECT
         Q_DISABLE_COPY(FileLineEdit)
@@ -142,7 +141,7 @@ namespace Private
         QAction *m_warningAction;
     };
 
-    class FileComboEdit : public QComboBox, public FileEditorWithCompletion
+    class FileComboEdit final : public QComboBox, public FileEditorWithCompletion
     {
         Q_OBJECT
 
