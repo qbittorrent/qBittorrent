@@ -53,12 +53,12 @@ lt::feature_flags_t NativeSessionExtension::implemented_features()
     return alert_feature;
 }
 
-std::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, void *)
+std::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, ClientData)
 {
     return std::make_shared<NativeTorrentExtension>(torrentHandle);
 }
 #else
-boost::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, void *)
+boost::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, ClientData)
 {
     return boost::make_shared<NativeTorrentExtension>(torrentHandle);
 }
