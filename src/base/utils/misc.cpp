@@ -61,6 +61,13 @@
 #include "base/unicodestrings.h"
 #include "base/utils/string.h"
 
+#ifdef Byte
+// Unfortunately ZLib can define "Byte" macro (aka "z_Byte") that conflicts
+// with qBittorrent names (e.g. "SizeUnit::Byte" becomes "SizeUnit::z_Byte").
+// We can safely undef it in this file.
+#undef Byte
+#endif
+
 namespace
 {
     const struct { const char *source; const char *comment; } units[] = {

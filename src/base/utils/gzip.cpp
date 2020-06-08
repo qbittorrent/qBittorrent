@@ -36,6 +36,9 @@
 #ifndef ZLIB_CONST
 #define ZLIB_CONST  // make z_stream.next_in const
 #endif
+#ifndef Z_SOLO
+#define Z_SOLO  // prevent unnecessary function name aliases (e.g. "compress")
+#endif
 #include <zlib.h>
 
 QByteArray Utils::Gzip::compress(const QByteArray &data, const int level, bool *ok)

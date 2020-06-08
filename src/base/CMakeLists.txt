@@ -1,4 +1,7 @@
-find_package(ZLIB 1.2.5.2 REQUIRED)
+find_package(Qt5Zlib ${requiredQtVersion})
+if (NOT Qt5Zlib_FOUND)
+    find_package(ZLIB 1.2.5.2 REQUIRED)
+endif()
 
 add_library(qbt_base STATIC
     # headers
@@ -160,12 +163,16 @@ add_library(qbt_base STATIC
 )
 
 target_link_libraries(qbt_base
-    PRIVATE
-        ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt5::Core Qt5::Network Qt5::Xml
 )
+
+if (Qt5Zlib_FOUND)
+    target_link_libraries(qbt_base PRIVATE Qt5::Zlib)
+else()
+    target_link_libraries(qbt_base PRIVATE ZLIB::ZLIB)
+endif()
 
 if (Qt5DBus_FOUND)
     target_link_libraries(qbt_base PRIVATE Qt5::DBus)
