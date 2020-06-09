@@ -595,6 +595,54 @@
     </fieldset>
 </div>
 
+<div id="RSSTab" class="PrefTab invisible">
+    <fieldset class="settings">
+        <legend>QBT_TR(RSS Reader)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="checkbox" id="enable_fetching_rss_feeds_checkbox" />
+            <label for="enable_fetching_rss_feeds_checkbox">QBT_TR(Enable fetching RSS feeds)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <label for="feed_refresh_interval">QBT_TR(Feeds refresh interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="feed_refresh_interval" style="width: 4em;" />&nbsp;&nbsp;QBT_TR( min)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="maximum_article_number">QBT_TR(Maximum number of articles per feed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="maximum_article_number" style="width: 4em;" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>QBT_TR(RSS Torrent Auto Downloader)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="checkbox" id="enable_auto_downloading_rss_torrents_checkbox" />
+            <label for="enable_auto_downloading_rss_torrents_checkbox">QBT_TR(Enable auto downloading of RSS torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <button style="margin: 0 1em; width: calc(100% - 2.2em)" onclick="window.qBittorrent.Rss.openRssDownloader();">QBT_TR(Edit auto downloading rules...)QBT_TR[CONTEXT=OptionsDialog]</button>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>QBT_TR(RSS Smart Episode Filter)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="checkbox" id="downlock_repack_proper_episodes" />
+
+            <label for="downlock_repack_proper_episodes">QBT_TR(Download REPACK/PROPER episodes)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <label for="rss_filter_textarea">QBT_TR(Filters:)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+        <textarea id="rss_filter_textarea" rows="6" cols="70"></textarea>
+    </fieldset>
+</div>
+
 <div id="WebUITab" class="PrefTab invisible">
     <fieldset class="settings">
         <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
@@ -1723,6 +1771,14 @@
                         $('add_trackers_textarea').setProperty('value', pref.add_trackers);
                         updateAddTrackersEnabled();
 
+                        // RSS Tab
+                        $('enable_fetching_rss_feeds_checkbox').setProperty('checked', pref.rss_processing_enabled);
+                        $('feed_refresh_interval').setProperty('value', pref.rss_refresh_interval);
+                        $('maximum_article_number').setProperty('value', pref.rss_max_articles_per_feed);
+                        $('enable_auto_downloading_rss_torrents_checkbox').setProperty('checked', pref.rss_auto_downloading_enabled);
+                        $('downlock_repack_proper_episodes').setProperty('checked', pref.rss_download_repack_proper_episodes);
+                        $('rss_filter_textarea').setProperty('value', pref.rss_smart_episode_filters);
+
                         // Web UI tab
                         // Language
                         $('locale_select').setProperty('value', pref.locale);
@@ -2076,6 +2132,14 @@
             // Add trackers
             settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
             settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
+
+            // RSS Tab
+            settings.set('rss_processing_enabled', $('enable_fetching_rss_feeds_checkbox').getProperty('checked'));
+            settings.set('rss_refresh_interval', $('feed_refresh_interval').getProperty('value'));
+            settings.set('rss_max_articles_per_feed', $('maximum_article_number').getProperty('value'));
+            settings.set('rss_auto_downloading_enabled', $('enable_auto_downloading_rss_torrents_checkbox').getProperty('checked'));
+            settings.set('rss_download_repack_proper_episodes', $('downlock_repack_proper_episodes').getProperty('checked'));
+            settings.set('rss_smart_episode_filters', $('rss_filter_textarea').getProperty('value'));
 
             // Web UI tab
             // Language
