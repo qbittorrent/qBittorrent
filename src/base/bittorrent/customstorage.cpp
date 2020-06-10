@@ -49,7 +49,33 @@ CustomStorage::CustomStorage(const lt::storage_params &params, lt::file_pool &fi
 
 bool CustomStorage::verify_resume_data(const lt::add_torrent_params &rd, const lt::aux::vector<std::string, lt::file_index_t> &links, lt::storage_error &ec)
 {
-    const QDir saveDir {m_savePath};
+    handleCompleteFiles(m_savePath);
+    return lt::default_storage::verify_resume_data(rd, links, ec);
+}
+
+void CustomStorage::set_file_priority(lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities, lt::storage_error &ec)
+{
+    m_filePriorities = priorities;
+    lt::default_storage::set_file_priority(priorities, ec);
+}
+
+lt::status_t CustomStorage::move_storage(const std::string &savePath, lt::move_flags_t flags, lt::storage_error &ec)
+{
+    const QString newSavePath {Utils::Fs::expandPathAbs(QString::fromStdString(savePath))};
+
+    if (flags == lt::move_flags_t::dont_replace)
+        handleCompleteFiles(newSavePath);
+
+    const lt::status_t ret = lt::default_storage::move_storage(savePath, flags, ec);
+    if (ret != lt::status_t::fatal_disk_error)
+        m_savePath = newSavePath;
+
+    return ret;
+}
+
+void CustomStorage::handleCompleteFiles(const QString &savePath)
+{
+    const QDir saveDir {savePath};
 
     const lt::file_storage &fileStorage = files();
     for (const lt::file_index_t fileIndex : fileStorage.file_range()) {
@@ -65,29 +91,12 @@ bool CustomStorage::verify_resume_data(const lt::add_torrent_params &rd, const l
             const QString completeFilePath = filePath.left(filePath.size() - QB_EXT.size());
             QFile completeFile {saveDir.absoluteFilePath(completeFilePath)};
             if (completeFile.exists()) {
-                QFile currentFile {saveDir.absoluteFilePath(filePath)};
-                if (currentFile.exists())
-                    currentFile.remove();
-                completeFile.rename(currentFile.fileName());
+                QFile incompleteFile {saveDir.absoluteFilePath(filePath)};
+                if (incompleteFile.exists())
+                    incompleteFile.remove();
+                completeFile.rename(incompleteFile.fileName());
             }
         }
     }
-
-    return lt::default_storage::verify_resume_data(rd, links, ec);
-}
-
-void CustomStorage::set_file_priority(lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities, lt::storage_error &ec)
-{
-    m_filePriorities = priorities;
-    lt::default_storage::set_file_priority(priorities, ec);
-}
-
-lt::status_t CustomStorage::move_storage(const std::string &savePath, lt::move_flags_t flags, lt::storage_error &ec)
-{
-    const lt::status_t ret = lt::default_storage::move_storage(savePath, flags, ec);
-    if (ret != lt::status_t::fatal_disk_error)
-        m_savePath = Utils::Fs::expandPathAbs(QString::fromStdString(savePath));
-
-    return ret;
 }
 #endif
