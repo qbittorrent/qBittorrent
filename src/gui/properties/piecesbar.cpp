@@ -276,12 +276,8 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
             DetailedTooltipRenderer renderer(stream, tooltipTitle);
 
-            const bool isFileNameCorrectionNeeded = this->isFileNameCorrectionNeeded();
             for (int f : files) {
-                QString filePath {m_torrent->info().filePath(f)};
-                if (isFileNameCorrectionNeeded)
-                    filePath.replace(QLatin1String("/.unwanted"), QString());
-
+                const QString filePath {m_torrent->info().filePath(f)};
                 renderer(Utils::Misc::friendlyUnit(m_torrent->info().fileSize(f)), filePath);
             }
             stream << "</body></html>";
@@ -332,9 +328,4 @@ void PiecesBar::updatePieceColors()
         float ratio = (i / 255.0);
         m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), m_pieceColor.rgb(), ratio);
     }
-}
-
-bool PiecesBar::isFileNameCorrectionNeeded() const
-{
-    return false;
 }

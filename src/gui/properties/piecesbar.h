@@ -83,9 +83,6 @@ private:
 
     virtual QString simpleToolTipText() const = 0;
 
-    /// whether to perform removing of ".unwanted" directory from paths
-    virtual bool isFileNameCorrectionNeeded() const;
-
     // draw new image to replace the actual image
     // returns true if image was successfully updated
     virtual bool updateImage(QImage &image) = 0;

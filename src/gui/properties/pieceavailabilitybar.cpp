@@ -161,8 +161,3 @@ QString PieceAvailabilityBar::simpleToolTipText() const
     return tr("White: Unavailable pieces") + '\n'
            + tr("Blue: Available pieces") + '\n';
 }
-
-bool PieceAvailabilityBar::isFileNameCorrectionNeeded() const
-{
-    return true;
-}

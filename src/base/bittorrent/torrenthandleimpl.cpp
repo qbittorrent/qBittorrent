@@ -203,6 +203,28 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
         if (filesCount() == 1)
             m_hasRootFolder = false;
     }
+
+    // TODO: Remove the following upgrade code in v.4.4
+    // == BEGIN UPGRADE CODE ==
+    const QString spath = actualStorageLocation();
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString filepath = filePath(i);
+        // Move "unwanted" files back to their original folder
+        const QString parentRelPath = Utils::Fs::branchPath(filepath);
+        if (QDir(parentRelPath).dirName() == ".unwanted") {
+            const QString oldName = Utils::Fs::fileName(filepath);
+            const QString newRelPath = Utils::Fs::branchPath(parentRelPath);
+            if (newRelPath.isEmpty())
+                renameFile(i, oldName);
+            else
+                renameFile(i, QDir(newRelPath).filePath(oldName));
+
+            // Remove .unwanted directory if empty
+            qDebug() << "Attempting to remove \".unwanted\" folder at " << QDir(spath + '/' + newRelPath).absoluteFilePath(".unwanted");
+            QDir(spath + '/' + newRelPath).rmdir(".unwanted");
+        }
+    }
+    // == END UPGRADE CODE ==
 }
 
 TorrentHandleImpl::~TorrentHandleImpl() {}
@@ -2048,61 +2070,6 @@ void TorrentHandleImpl::prioritizeFiles(const QVector<DownloadPriority> &priorit
 
     qDebug() << Q_FUNC_INFO << "Changing files priorities...";
     m_nativeHandle.prioritize_files(toLTDownloadPriorities(priorities));
-
-    qDebug() << Q_FUNC_INFO << "Moving unwanted files to .unwanted folder and conversely...";
-    const QString spath = savePath(true);
-    for (int i = 0; i < priorities.size(); ++i) {
-        const QString filepath = filePath(i);
-        // Move unwanted files to a .unwanted subfolder
-        if (priorities[i] == DownloadPriority::Ignored) {
-            const QString oldAbsPath = QDir(spath).absoluteFilePath(filepath);
-            const QString parentAbsPath = Utils::Fs::branchPath(oldAbsPath);
-            // Make sure the file does not already exists
-            if (QDir(parentAbsPath).dirName() != ".unwanted") {
-                const QString unwantedAbsPath = parentAbsPath + "/.unwanted";
-                const QString newAbsPath = unwantedAbsPath + '/' + Utils::Fs::fileName(filepath);
-                qDebug() << "Unwanted path is" << unwantedAbsPath;
-                if (QFile::exists(newAbsPath)) {
-                    qWarning() << "File" << newAbsPath << "already exists at destination.";
-                    continue;
-                }
-
-                const bool created = QDir().mkpath(unwantedAbsPath);
-                qDebug() << "unwanted folder was created:" << created;
-#ifdef Q_OS_WIN
-                if (created) {
-                    // Hide the folder on Windows
-                    qDebug() << "Hiding folder (Windows)";
-                    std::wstring winPath = Utils::Fs::toNativePath(unwantedAbsPath).toStdWString();
-                    DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-                    bool ret = ::SetFileAttributesW(winPath.c_str(), dwAttrs | FILE_ATTRIBUTE_HIDDEN);
-                    Q_ASSERT(ret != 0); Q_UNUSED(ret);
-                }
-#endif
-                QString parentPath = Utils::Fs::branchPath(filepath);
-                if (!parentPath.isEmpty() && !parentPath.endsWith('/'))
-                    parentPath += '/';
-                renameFile(i, parentPath + ".unwanted/" + Utils::Fs::fileName(filepath));
-            }
-        }
-
-        // Move wanted files back to their original folder
-        if (priorities[i] > DownloadPriority::Ignored) {
-            const QString parentRelPath = Utils::Fs::branchPath(filepath);
-            if (QDir(parentRelPath).dirName() == ".unwanted") {
-                const QString oldName = Utils::Fs::fileName(filepath);
-                const QString newRelPath = Utils::Fs::branchPath(parentRelPath);
-                if (newRelPath.isEmpty())
-                    renameFile(i, oldName);
-                else
-                    renameFile(i, QDir(newRelPath).filePath(oldName));
-
-                // Remove .unwanted directory if empty
-                qDebug() << "Attempting to remove .unwanted folder at " << QDir(spath + '/' + newRelPath).absoluteFilePath(".unwanted");
-                QDir(spath + '/' + newRelPath).rmdir(".unwanted");
-            }
-        }
-    }
 
     // Restore first/last piece first option if necessary
     if (firstLastPieceFirst)
