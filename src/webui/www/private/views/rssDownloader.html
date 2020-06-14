@@ -31,6 +31,7 @@
     .fullWidth {
         width: 100%;
         max-width: none;
+        box-sizing: border-box;
     }
 
     .noWrap {
@@ -78,6 +79,50 @@
     #lastMatchDiv {
         float: right;
     }
+    
+    #ruleSettings {
+        padding: 4px 10px 4px 10px
+    }
+
+    #topMenuBar {
+        height: 26px;
+    }
+
+    #rulesTableDesc {
+        vertical-align: middle;
+    }
+
+    .imageButton {
+        height: 22px;
+        width: 24px;
+        margin: 1px 2px 1px 2px;
+        border: 1px solid;
+        border-radius: 2px;
+        background-color: #efefef;
+        border-color: #767676;
+        background-position: center center;
+        vertical-align: middle;
+    }
+
+    .imageButton:hover {
+        background-color: #e5e5e5;
+        border-color: #4f4f4f;
+    }
+
+    .imageButton:active {
+        background-color: #f5f5f5;
+        border-color: #8d8d8d;
+    }
+
+    #newRuleButton {
+        float: right;
+        background-image: url('icons/document-new.svg');
+    }
+
+    #deleteRuleButton {
+        float: right;
+        background-image: url('icons/list-remove.svg');
+    }
 </style>
 
 <div id="RssDownloader" class="RssDownloader">
@@ -85,7 +130,11 @@
         QBT_TR(Auto downloading of RSS torrents is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=AutomatedRssDownloader]
     </div>
     <div id="leftRssDownloaderColumn">
-        <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
+        <div id="topMenuBar">
+            <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
+            <button id="newRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
+            <button id="deleteRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
+        </div>
         <div id="rulesTable">
             <div id="rulesSelectionCheckBoxList">
                 <div id="rssDownloaderRuleFixedHeaderDiv" class="dynamicTableFixedHeaderDiv invisible">
@@ -281,7 +330,9 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                 saveSettings: saveSettings,
                 rssDownloaderRulesTable: rssDownloaderRulesTable,
                 rssDownloaderFeedSelectionTable: rssDownloaderFeedSelectionTable,
-                setElementTitles: setElementTitles
+                setElementTitles: setElementTitles,
+                addRule: addRule,
+                removeSelectedRule: removeSelectedRule
             };
         };
 
@@ -335,10 +386,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                 menu: 'rssDownloaderRuleMenu',
                 actions: {
                     addRule: addRule,
-                    deleteRule: (el) => {
-                        removeRule(rssDownloaderRulesTable.selectedRows
-                            .map((sRow) => rssDownloaderRulesTable.rows[sRow].full_data.name));
-                    },
+                    deleteRule: removeSelectedRule,
                     renameRule: (el) => {
                         renameRule(rssDownloaderRulesTable.rows[rssDownloaderRulesTable.selectedRows[0]].full_data.name);
                     },
@@ -478,7 +526,14 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
             });
         };
 
-        const removeRule = (rules) => {
+        const removeSelectedRule = () => {
+            if (rssDownloaderRulesTable.selectedRows.length === 0)
+                return;
+            removeRules(rssDownloaderRulesTable.selectedRows.map((sRow) =>
+                rssDownloaderRulesTable.rows[sRow].full_data.name));
+        };
+
+        const removeRules = (rules) => {
             new MochaUI.Window({
                 id: 'removeRulePage',
                 title: 'QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]',
