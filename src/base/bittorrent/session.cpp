@@ -1782,6 +1782,7 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
                         , MagnetUri(), TorrentInfo::load(result.data));
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
+        emit downloadFromUrlFinished(result.url);
         addTorrent_impl(CreateTorrentParams(m_downloadedTorrents.take(result.url)), MagnetUri(result.magnet));
         break;
     default:
