@@ -401,8 +401,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         }
         else {
             // waiting for torrent file downloading
-            // normalize URL string via QUrl since DownloadManager do it
-            m_waitingJobs.insert(QUrl(torrentURL).toString(), job);
+            m_waitingJobs.insert(torrentURL, job);
         }
 
         return;
