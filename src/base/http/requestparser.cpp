@@ -202,7 +202,7 @@ bool RequestParser::parseRequestLine(const QString &line)
             const QByteArray valueComponent = midView(param, (eqCharPos + 1));
             const QString paramName = QString::fromUtf8(QByteArray::fromPercentEncoding(nameComponent).replace('+', ' '));
             const QByteArray paramValue = valueComponent.isNull()
-                ? ""
+                ? QByteArray("")
                 : QByteArray::fromPercentEncoding(valueComponent).replace('+', ' ');
 
             m_request.query[paramName] = paramValue;
