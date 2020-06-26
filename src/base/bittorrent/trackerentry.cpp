@@ -30,8 +30,6 @@
 
 #include <algorithm>
 
-#include <libtorrent/version.hpp>
-
 #include <QString>
 #include <QUrl>
 
@@ -59,13 +57,6 @@ int TrackerEntry::tier() const
 
 TrackerEntry::Status TrackerEntry::status() const
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    if (nativeEntry().fails > 0)
-        return NotWorking;
-
-    if (nativeEntry().updating)
-        return Updating;
-#else
     const auto &endpoints = nativeEntry().endpoints;
 
     const bool allFailed = !endpoints.empty() && std::all_of(endpoints.begin(), endpoints.end()
@@ -83,7 +74,6 @@ TrackerEntry::Status TrackerEntry::status() const
     });
     if (isUpdating)
         return Updating;
-#endif
 
     if (!nativeEntry().verified)
         return NotContacted;
@@ -98,38 +88,26 @@ void TrackerEntry::setTier(const int value)
 
 int TrackerEntry::numSeeds() const
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    return nativeEntry().scrape_complete;
-#else
     int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
         value = std::max(value, endpoint.scrape_complete);
     return value;
-#endif
 }
 
 int TrackerEntry::numLeeches() const
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    return nativeEntry().scrape_incomplete;
-#else
     int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
         value = std::max(value, endpoint.scrape_incomplete);
     return value;
-#endif
 }
 
 int TrackerEntry::numDownloaded() const
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    return nativeEntry().scrape_downloaded;
-#else
     int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
         value = std::max(value, endpoint.scrape_downloaded);
     return value;
-#endif
 }
 
 const lt::announce_entry &TrackerEntry::nativeEntry() const

@@ -89,9 +89,5 @@ bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
 
 uint BitTorrent::qHash(const InfoHash &key, const uint seed)
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    return ::qHash(static_cast<QString>(key), seed);
-#else
     return ::qHash((std::hash<lt::sha1_hash> {})(key), seed);
-#endif
 }

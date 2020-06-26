@@ -178,7 +178,7 @@ AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
 LIBS="$BOOST_SYSTEM_LIB $LIBS"
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.1.10],
+                  [libtorrent-rasterbar >= 1.2],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 

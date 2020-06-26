@@ -28,7 +28,6 @@
 
 #include "customstorage.h"
 
-#if (LIBTORRENT_VERSION_NUM >= 10200)
 #include <libtorrent/download_priority.hpp>
 
 #include <QDir>
@@ -99,4 +98,3 @@ void CustomStorage::handleCompleteFiles(const QString &savePath)
         }
     }
 }
-#endif

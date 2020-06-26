@@ -12,10 +12,6 @@ env:
     - libt_branch=RC_1_2 gui=false build_system=qmake
     - libt_branch=RC_1_2 gui=true build_system=cmake
     - libt_branch=RC_1_2 gui=false build_system=cmake
-    - libt_branch=RC_1_1 gui=true build_system=qmake
-    - libt_branch=RC_1_1 gui=false build_system=qmake
-    - libt_branch=RC_1_1 gui=true build_system=cmake
-    - libt_branch=RC_1_1 gui=false build_system=cmake
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
@@ -24,8 +20,6 @@ matrix:
   allow_failures:
     - env: libt_branch=RC_1_2 gui=true build_system=cmake
     - env: libt_branch=RC_1_2 gui=false build_system=cmake
-    - env: libt_branch=RC_1_1 gui=true build_system=cmake
-    - env: libt_branch=RC_1_1 gui=false build_system=cmake
 
 branches:
   except:
@@ -130,51 +124,9 @@ install:
       ccache -V && ccache --show-stats && ccache --zero-stats
     fi
   - |
-    if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      wget https://builds.shiki.hu/travis/deb/version
-      if ! cmp --quiet "version" "$HOME/travis/deb/version" ; then
-        echo "Cached files are different from server. Downloading new ones."
-        # First delete old files
-        rm -r "$HOME/travis/deb"
-        mkdir "$HOME/travis/deb"
-        cp "version" $HOME/travis/deb
-        cd "$HOME/travis/deb"
-        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar-dev_1.1.x_amd64.deb
-        wget https://builds.shiki.hu/travis/deb/libtorrent-rasterbar9_1.1.x_amd64.deb
-      fi
-
-      sudo dpkg -i "$HOME/travis/deb/libtorrent-rasterbar-dev_1.1.x_amd64.deb" "$HOME/travis/deb/libtorrent-rasterbar9_1.1.x_amd64.deb"
-    fi
-  - |
     if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
       # Will install latest 1.2.x daily build from the PPA
       sudo apt-get -y install libtorrent-rasterbar-dev
-    fi
-  - |
-    if [ "$libt_branch" = "RC_1_1" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      wget https://builds.shiki.hu/travis/brew/1_1/version
-      if ! cmp --quiet "version" "$HOME/travis/brew/1_1/version" ; then
-        echo "Cached files are different from server. Downloading new ones."
-        # First delete old files
-        rm -r "$HOME/travis/brew/1_1"
-        mkdir "$HOME/travis/brew/1_1"
-        cp "version" $HOME/travis/brew/1_1
-        cd "$HOME/travis/brew/1_1"
-        wget https://builds.shiki.hu/travis/brew/1_1/libtorrent-rasterbar.rb
-        wget https://builds.shiki.hu/travis/brew/1_1/bd36a4b440aa138a88e375c1a3b672f1a1bc6606e7866fc3415b6b98fa49e771--libtorrent-rasterbar-1.1.13.high_sierra.bottle.tar.gz
-      fi
-      # Copy custom libtorrent bottle to homebrew's download cache so it can find and install it
-      # Also install our custom libtorrent formula by passing the local path to it
-      # These 2 files are restored from Travis' cache.
-      cp "$HOME/travis/brew/1_1/bd36a4b440aa138a88e375c1a3b672f1a1bc6606e7866fc3415b6b98fa49e771--libtorrent-rasterbar-1.1.13.high_sierra.bottle.tar.gz" "$(brew --cache)/downloads"
-      brew uninstall libtorrent-rasterbar
-      brew install "$HOME/travis/brew/1_1/libtorrent-rasterbar.rb"
-
-      # NOTE about the bottle name
-      # The part before the "--" characters is a sha256 hash of the string
-      # of the URL homebrew itself would use to download the bottle.
-      # In this case the URL is the following:
-      # http://127.0.0.1/libtorrent-rasterbar-1.1.13.high_sierra.bottle.tar.gz
     fi
   - |
     if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then

@@ -28,9 +28,6 @@
 
 #pragma once
 
-#include <libtorrent/version.hpp>
-
-#if (LIBTORRENT_VERSION_NUM >= 10200)
 #include <libtorrent/aux_/vector.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/storage.hpp>
@@ -54,4 +51,3 @@ private:
     lt::aux::vector<lt::download_priority_t, lt::file_index_t> m_filePriorities;
     QString m_savePath;
 };
-#endif

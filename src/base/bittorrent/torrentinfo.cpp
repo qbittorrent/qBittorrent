@@ -28,10 +28,6 @@
 
 #include "torrentinfo.h"
 
-#if (LIBTORRENT_VERSION_NUM < 10200)
-#include <boost/optional.hpp>
-#endif
-
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/error_code.hpp>
@@ -52,26 +48,11 @@
 #include "infohash.h"
 #include "trackerentry.h"
 
-namespace
-{
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    using LTPieceIndex = int;
-    using LTFileIndex = int;
-#else
-    using LTPieceIndex = lt::piece_index_t;
-    using LTFileIndex = lt::file_index_t;
-#endif
-}
-
 using namespace BitTorrent;
 
-TorrentInfo::TorrentInfo(NativeConstPtr nativeInfo)
+TorrentInfo::TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo)
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    m_nativeInfo = boost::const_pointer_cast<lt::torrent_info>(nativeInfo);
-#else
     m_nativeInfo = std::const_pointer_cast<lt::torrent_info>(nativeInfo);
-#endif
 }
 
 TorrentInfo::TorrentInfo(const TorrentInfo &other)
@@ -93,21 +74,15 @@ TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
     const int tokenLimit = 10000000;
 
     lt::error_code ec;
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    lt::bdecode_node node;
-    bdecode(data.constData(), (data.constData() + data.size()), node, ec
-        , nullptr, depthLimit, tokenLimit);
-#else
     const lt::bdecode_node node = lt::bdecode(data, ec
         , nullptr, depthLimit, tokenLimit);
-#endif
     if (ec) {
         if (error)
             *error = QString::fromStdString(ec.message());
         return TorrentInfo();
     }
 
-    TorrentInfo info {NativePtr(new lt::torrent_info(node, ec))};
+    TorrentInfo info {std::shared_ptr<lt::torrent_info>(new lt::torrent_info(node, ec))};
     if (ec) {
         if (error)
             *error = QString::fromStdString(ec.message());
@@ -160,11 +135,7 @@ void TorrentInfo::saveToFile(const QString &path) const
     if (!isValid())
         throw RuntimeError {tr("Invalid metadata.")};
 
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    const lt::create_torrent torrentCreator = lt::create_torrent(*(nativeInfo()), true);
-#else
     const lt::create_torrent torrentCreator = lt::create_torrent(*(nativeInfo()));
-#endif
     const lt::entry torrentEntry = torrentCreator.generate();
 
     QFile torrentFile {path};
@@ -197,13 +168,8 @@ QDateTime TorrentInfo::creationDate() const
 {
     if (!isValid()) return {};
 
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    const boost::optional<time_t> date = m_nativeInfo->creation_date();
-    return (date ? QDateTime::fromSecsSinceEpoch(*date) : QDateTime());
-#else
     const std::time_t date = m_nativeInfo->creation_date();
     return ((date != 0) ? QDateTime::fromSecsSinceEpoch(date) : QDateTime());
-#endif
 }
 
 QString TorrentInfo::creator() const
@@ -245,7 +211,7 @@ int TorrentInfo::pieceLength() const
 int TorrentInfo::pieceLength(const int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->piece_size(LTPieceIndex {index});
+    return m_nativeInfo->piece_size(lt::piece_index_t {index});
 }
 
 int TorrentInfo::piecesCount() const
@@ -258,7 +224,7 @@ QString TorrentInfo::filePath(const int index) const
 {
     if (!isValid()) return {};
     return Utils::Fs::toUniformPath(
-                QString::fromStdString(m_nativeInfo->files().file_path(LTFileIndex {index})));
+                QString::fromStdString(m_nativeInfo->files().file_path(lt::file_index_t {index})));
 }
 
 QStringList TorrentInfo::filePaths() const
@@ -279,19 +245,19 @@ QString TorrentInfo::origFilePath(const int index) const
 {
     if (!isValid()) return {};
     return Utils::Fs::toUniformPath(
-                QString::fromStdString(m_nativeInfo->orig_files().file_path(LTFileIndex {index})));
+                QString::fromStdString(m_nativeInfo->orig_files().file_path(lt::file_index_t {index})));
 }
 
 qlonglong TorrentInfo::fileSize(const int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->files().file_size(LTFileIndex {index});
+    return m_nativeInfo->files().file_size(lt::file_index_t {index});
 }
 
 qlonglong TorrentInfo::fileOffset(const int index) const
 {
     if (!isValid()) return -1;
-    return m_nativeInfo->files().file_offset(LTFileIndex {index});
+    return m_nativeInfo->files().file_offset(lt::file_index_t {index});
 }
 
 QVector<TrackerEntry> TorrentInfo::trackers() const
@@ -350,8 +316,8 @@ QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
         return {};
 
     const std::vector<lt::file_slice> files(
-                nativeInfo()->map_block(LTPieceIndex {pieceIndex}, 0
-                                        , nativeInfo()->piece_size(LTPieceIndex {pieceIndex})));
+                nativeInfo()->map_block(lt::piece_index_t {pieceIndex}, 0
+                                        , nativeInfo()->piece_size(lt::piece_index_t {pieceIndex})));
     QVector<int> res;
     res.reserve(int(files.size()));
     std::transform(files.begin(), files.end(), std::back_inserter(res),
@@ -370,7 +336,7 @@ QVector<QByteArray> TorrentInfo::pieceHashes() const
     hashes.reserve(count);
 
     for (int i = 0; i < count; ++i)
-        hashes += {m_nativeInfo->hash_for_piece_ptr(LTPieceIndex {i}), InfoHash::length()};
+        hashes += {m_nativeInfo->hash_for_piece_ptr(lt::piece_index_t {i}), InfoHash::length()};
 
     return hashes;
 }
@@ -399,8 +365,8 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
     }
 
     const lt::file_storage &files = nativeInfo()->files();
-    const auto fileSize = files.file_size(LTFileIndex {fileIndex});
-    const auto fileOffset = files.file_offset(LTFileIndex {fileIndex});
+    const auto fileSize = files.file_size(lt::file_index_t {fileIndex});
+    const auto fileOffset = files.file_offset(lt::file_index_t {fileIndex});
 
     const int beginIdx = (fileOffset / pieceLength());
     const int endIdx = ((fileOffset + fileSize - 1) / pieceLength());
@@ -413,7 +379,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
 void TorrentInfo::renameFile(const int index, const QString &newPath)
 {
     if (!isValid()) return;
-    nativeInfo()->rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(newPath).toStdString());
+    nativeInfo()->rename_file(lt::file_index_t {index}, Utils::Fs::toNativePath(newPath).toStdString());
 }
 
 int BitTorrent::TorrentInfo::fileIndex(const QString &fileName) const
@@ -464,14 +430,14 @@ void TorrentInfo::stripRootFolder()
     if (files.name() != newName) {
         files.set_name(newName);
         for (int i = 0; i < files.num_files(); ++i)
-            files.rename_file(LTFileIndex {i}, files.file_path(LTFileIndex {i}));
+            files.rename_file(lt::file_index_t {i}, files.file_path(lt::file_index_t {i}));
     }
 
     files.set_name("");
     m_nativeInfo->remap_files(files);
 }
 
-TorrentInfo::NativePtr TorrentInfo::nativeInfo() const
+std::shared_ptr<lt::torrent_info> TorrentInfo::nativeInfo() const
 {
     return m_nativeInfo;
 }

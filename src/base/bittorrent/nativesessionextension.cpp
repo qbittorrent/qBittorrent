@@ -37,17 +37,12 @@ namespace
     void handleFastresumeRejectedAlert(const lt::fastresume_rejected_alert *alert)
     {
         if (alert->error.value() == lt::errors::mismatching_file_size) {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-            alert->handle.auto_managed(false);
-#else
             alert->handle.unset_flags(lt::torrent_flags::auto_managed);
-#endif
             alert->handle.pause();
         }
     }
 }
 
-#if (LIBTORRENT_VERSION_NUM >= 10200)
 lt::feature_flags_t NativeSessionExtension::implemented_features()
 {
     return alert_feature;
@@ -57,12 +52,6 @@ std::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt
 {
     return std::make_shared<NativeTorrentExtension>(torrentHandle);
 }
-#else
-boost::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, ClientData)
-{
-    return boost::make_shared<NativeTorrentExtension>(torrentHandle);
-}
-#endif
 
 void NativeSessionExtension::on_alert(const lt::alert *alert)
 {

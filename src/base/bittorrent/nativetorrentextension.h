@@ -30,7 +30,6 @@
 
 #include <libtorrent/extensions.hpp>
 #include <libtorrent/torrent_handle.hpp>
-#include <libtorrent/version.hpp>
 
 class NativeTorrentExtension final : public lt::torrent_plugin
 {
@@ -38,11 +37,7 @@ public:
     explicit NativeTorrentExtension(const lt::torrent_handle &torrentHandle);
 
 private:
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    void on_state(int state) override;
-#else
     void on_state(lt::torrent_status::state_t state) override;
-#endif
     bool on_pause() override;
 
     lt::torrent_handle m_torrentHandle;

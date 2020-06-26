@@ -35,6 +35,7 @@
 
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QHash>
 #include <QPointer>
@@ -600,9 +601,7 @@ namespace BitTorrent
         void handleListenFailedAlert(const lt::listen_failed_alert *p);
         void handleExternalIPAlert(const lt::external_ip_alert *p);
         void handleSessionStatsAlert(const lt::session_stats_alert *p);
-#if (LIBTORRENT_VERSION_NUM >= 10200)
         void handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const;
-#endif
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
 #if (LIBTORRENT_VERSION_NUM >= 10204)
