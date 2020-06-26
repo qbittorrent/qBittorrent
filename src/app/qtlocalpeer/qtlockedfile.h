@@ -103,8 +103,8 @@ namespace QtLP_Private
         Qt::HANDLE getMutexHandle(int idx, bool doCreate);
         bool waitMutex(Qt::HANDLE mutex, bool doBlock);
 
-        Qt::HANDLE wmutex;
-        Qt::HANDLE rmutex;
+        Qt::HANDLE wmutex = nullptr;
+        Qt::HANDLE rmutex = nullptr;
         QVector<Qt::HANDLE> rmutexes;
         QString mutexname;
 #endif
