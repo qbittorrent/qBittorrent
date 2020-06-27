@@ -82,7 +82,7 @@ void PortForwarderImpl::deletePort(const quint16 port)
 {
     if (m_mappedPorts.contains(port)) {
         if (isEnabled()) {
-            for (const LTPortMapping &portMapping : m_mappedPorts[port])
+            for (const lt::port_mapping_t &portMapping : m_mappedPorts[port])
             m_provider->delete_port_mapping(portMapping);
         }
         m_mappedPorts.remove(port);

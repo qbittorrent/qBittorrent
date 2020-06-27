@@ -28,7 +28,6 @@
 
 #include "customstorage.h"
 
-#if (LIBTORRENT_VERSION_NUM >= 10200)
 #include <libtorrent/download_priority.hpp>
 
 #include <QDir>
@@ -43,8 +42,8 @@ lt::storage_interface *customStorageConstructor(const lt::storage_params &params
 
 CustomStorage::CustomStorage(const lt::storage_params &params, lt::file_pool &filePool)
     : lt::default_storage {params, filePool}
+    , m_savePath {Utils::Fs::expandPathAbs(QString::fromStdString(params.path))}
 {
-    m_savePath = Utils::Fs::expandPathAbs(QString::fromStdString(params.path));
 }
 
 bool CustomStorage::verify_resume_data(const lt::add_torrent_params &rd, const lt::aux::vector<std::string, lt::file_index_t> &links, lt::storage_error &ec)
@@ -99,4 +98,3 @@ void CustomStorage::handleCompleteFiles(const QString &savePath)
         }
     }
 }
-#endif

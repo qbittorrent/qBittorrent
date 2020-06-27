@@ -48,7 +48,7 @@ include(FeatureSummary)
 set(requiredBoostVersion 1.40)
 set(requiredQtVersion 5.9.0)
 set(requiredOpensslVersion 1.0)
-set(requiredLibtorrentVersion 1.1.10)
+set(requiredLibtorrentVersion 1.2)
 
 if (WIN32)
     include(winconf)

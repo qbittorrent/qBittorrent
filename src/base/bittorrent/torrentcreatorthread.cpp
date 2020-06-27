@@ -34,7 +34,6 @@
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/torrent_info.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QDirIterator>
 #include <QFile>
@@ -50,14 +49,6 @@
 
 namespace
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    using LTCreateFlags = int;
-    using LTPieceIndex = int;
-#else
-    using LTCreateFlags = lt::create_flags_t;
-    using LTPieceIndex = lt::piece_index_t;
-#endif
-
     // do not include files and folders whose
     // name starts with a .
     bool fileFilter(const std::string &f)
@@ -141,7 +132,7 @@ void TorrentCreatorThread::run()
         if (isInterruptionRequested()) return;
 
         lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
-            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {}));
+            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : lt::create_flags_t {}));
 
         // Add url seeds
         for (QString seed : asConst(m_params.urlSeeds)) {
@@ -162,9 +153,9 @@ void TorrentCreatorThread::run()
 
         // calculate the hash for all pieces
         lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
-            , [this, &newTorrent](const LTPieceIndex n)
+            , [this, &newTorrent](const lt::piece_index_t n)
         {
-            sendProgressSignal(static_cast<LTUnderlyingType<LTPieceIndex>>(n), newTorrent.num_pieces());
+            sendProgressSignal(static_cast<LTUnderlyingType<lt::piece_index_t>>(n), newTorrent.num_pieces());
         });
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
@@ -216,5 +207,5 @@ int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const i
     lt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
 
     return lt::create_torrent(fs, pieceSize, paddedFileSizeLimit
-        , (isAlignmentOptimized ? lt::create_torrent::optimize_alignment : LTCreateFlags {})).num_pieces();
+        , (isAlignmentOptimized ? lt::create_torrent::optimize_alignment : lt::create_flags_t {})).num_pieces();
 }

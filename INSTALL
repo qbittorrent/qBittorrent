@@ -5,7 +5,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - Boost >= 1.40
 
-  - libtorrent-rasterbar >= 1.1.10 (by Arvid Norberg)
+  - libtorrent-rasterbar >= 1.2 (by Arvid Norberg)
       * https://www.libtorrent.org/
       * Be careful: another library (the one used by rTorrent) uses a similar name
 
