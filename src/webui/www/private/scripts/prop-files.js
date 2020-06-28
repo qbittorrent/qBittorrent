@@ -528,7 +528,6 @@ window.qBittorrent.PropFiles = (function() {
                 const row = torrentFilesTable.rows[rowId];
                 if (!row) return;
                 const node = torrentFilesTable.getNode(rowId);
-                if (node.isFolder) return;
 
                 const name = row.full_data.name;
                 const fileId = row.full_data.fileId;
@@ -571,12 +570,7 @@ window.qBittorrent.PropFiles = (function() {
             else
                 this.showItem('FilePrio');
 
-            const rowId = torrentFilesTable.selectedRowsIds()[0];
-            const node = torrentFilesTable.getNode(rowId);
-            if (node.isFolder)
-                this.hideItem('Rename');
-            else
-                this.showItem('Rename');
+            this.showItem('Rename');
         }
     });
 
