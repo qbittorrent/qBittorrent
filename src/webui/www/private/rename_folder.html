@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/filesystem.js?v=${CACHEID}"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': function(event) {
+                    $('renameButton').click();
+                    event.preventDefault();
+                },
+                'Escape': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': function(event) {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        window.addEvent('domready', function() {
+            const hash = new URI().getData('hash');
+            const oldPath = new URI().getData('oldPath');
+            const name = new URI().getData('name');
+            if (!hash || !oldPath || !name) return;
+
+            const decodedName = decodeURIComponent(name);
+            $('rename').value = decodedName;
+            $('rename').focus();
+            $('rename').setSelectionRange(0, decodedName.lastIndexOf('.'));
+
+            $('renameButton').addEvent('click', function(e) {
+                new Event(e).stop();
+                
+                const newName = $('rename').value.trim();
+                if (newName === '') {
+                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    return;
+                }
+
+                if (newName === name) {
+                    alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    return;
+                }
+
+                if (newName.indexOf(window.qBittorrent.Filesystem.PathSeparator) >= 0) {
+                    alert('QBT_TR(Name cannot have path separators)QBT_TR[CONTEXT=HttpServer]');
+                    return;
+                }
+
+                const newPath = oldPath.substr(0, oldPath.lastIndexOf(name)) + newName;
+
+                $('renameButton').disabled = true;
+
+                new Request({
+                    url: 'api/v2/torrents/renameFolder',
+                    method: 'post',
+                    data: {
+                        hash: hash,
+                        oldPath: oldPath,
+                        newPath: newPath
+                    },
+                    onSuccess: function() {
+                        window.parent.closeWindows();
+                    },
+                    onFailure: function() {
+                        alert('QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]');
+                        $('renameButton').disabled = false;
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p style="font-weight: bold;">QBT_TR(New name:)QBT_TR[CONTEXT=TorrentContentTreeView]</p>
+        <input type="text" id="rename" maxlength="100" style="width: 220px;" />
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="renameButton" />
+        </div>
+    </div>
+</body>
+
+</html>

@@ -531,12 +531,15 @@ window.qBittorrent.PropFiles = (function() {
 
                 const name = row.full_data.name;
                 const fileId = row.full_data.fileId;
+                const path = window.qBittorrent.Filesystem.folderName(getFolderPath(node));
 
                 new MochaUI.Window({
                     id: 'renamePage',
                     title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
                     loadMethod: 'iframe',
-                    contentURL: 'rename_file.html?hash=' + hash + '&id=' + fileId + '&name=' + encodeURIComponent(name),
+                    contentURL: node.isFolder
+                        ? `rename_folder.html?hash=${hash}&oldPath=${encodeURIComponent(path)}&name=${encodeURIComponent(name)}`
+                        : `rename_file.html?hash=${hash}&id=${fileId}&name=${encodeURIComponent(name)}`,
                     scrollbars: false,
                     resizable: false,
                     maximizable: false,
@@ -573,6 +576,25 @@ window.qBittorrent.PropFiles = (function() {
             this.showItem('Rename');
         }
     });
+
+    /**
+     * Returns a node's folder path
+     * @param {*} node 
+     * @returns {string}
+     */
+    const getFolderPath = function(node) {
+        let path = '';
+
+        if (node.root.name) {
+            path += getFolderPath(node.root);
+        }
+        
+        if (node.isFolder) {
+            path += node.name + window.qBittorrent.Filesystem.PathSeparator;
+        }
+        
+        return path;
+    };
 
     torrentFilesTable.setup('torrentFilesTableDiv', 'torrentFilesTableFixedHeaderDiv', torrentFilesContextMenu);
     // inject checkbox into table header
