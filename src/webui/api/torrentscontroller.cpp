@@ -1197,3 +1197,33 @@ void TorrentsController::renameFileAction()
 
     torrent->renameFile(fileIndex, newFilePath);
 }
+
+void TorrentsController::renameFolderAction()
+{
+    requireParams({"hash", "oldPath", "newPath"});
+
+    const QString hash = params()["hash"];
+    BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    QString oldPath = params()["oldPath"].trimmed();
+    QString newPath = params()["newPath"].trimmed();
+
+    if (oldPath.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Old path cannot be empty"));
+    if (newPath.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("New path cannot be empty"));
+
+    if(!oldPath.endsWith('/'))
+        oldPath = oldPath.append('/');
+    if(!newPath.endsWith('/'))
+        newPath = newPath.append('/');
+
+    if (!Utils::Fs::isValidFileSystemName(oldPath, true))
+        throw APIError(APIErrorType::Conflict, tr("Old path is not valid"));
+    if (!Utils::Fs::isValidFileSystemName(newPath, true))
+        throw APIError(APIErrorType::Conflict, tr("New path is not valid"));
+    
+    torrent->renameFolder(oldPath, newPath);
+}
