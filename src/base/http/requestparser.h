@@ -42,7 +42,8 @@ namespace Http
         {
             OK,
             Incomplete,
-            BadRequest
+            BadRequest,
+            NotImplemented
         };
 
         struct ParseResult

@@ -133,7 +133,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
     }
 
     qWarning() << Q_FUNC_INFO << "unsupported request method: " << m_request.method;
-    return {ParseStatus::BadRequest, Request(), 0};  // TODO: SHOULD respond "501 Not Implemented"
+    return {ParseStatus::NotImplemented, Request(), 0};
 }
 
 bool RequestParser::parseStartLines(const QString &data)

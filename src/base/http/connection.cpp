@@ -90,6 +90,14 @@ void Connection::read()
             }
             return;
 
+        case RequestParser::ParseStatus::NotImplemented: {
+                Response resp(501, "Not Implemented");
+                resp.headers[HEADER_CONNECTION] = "keep-alive";
+
+                sendResponse(resp);
+            }
+            return;
+
         case RequestParser::ParseStatus::OK: {
                 const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
