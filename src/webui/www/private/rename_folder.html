@@ -39,7 +39,7 @@
             const decodedName = decodeURIComponent(name);
             $('rename').value = decodedName;
             $('rename').focus();
-            $('rename').setSelectionRange(0, decodedName.lastIndexOf('.'));
+            $('rename').setSelectionRange(0, decodedName.length);
 
             $('renameButton').addEvent('click', function(e) {
                 new Event(e).stop();
@@ -47,16 +47,19 @@
                 const newName = $('rename').value.trim();
                 if (newName === '') {
                     alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    $('rename').focus();
                     return;
                 }
 
                 if (newName === name) {
                     alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    $('rename').focus();
                     return;
                 }
 
                 if (newName.indexOf(window.qBittorrent.Filesystem.PathSeparator) >= 0) {
                     alert('QBT_TR(Name cannot have path separators)QBT_TR[CONTEXT=HttpServer]');
+                    $('rename').focus();
                     return;
                 }
 
@@ -77,6 +80,7 @@
                     },
                     onFailure: function() {
                         alert('QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]');
+                        $('rename').focus();
                         $('renameButton').disabled = false;
                     }
                 }).send();
