@@ -1215,11 +1215,6 @@ void TorrentsController::renameFolderAction()
     if (newPath.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("New path cannot be empty"));
 
-    if(!oldPath.endsWith('/'))
-        oldPath = oldPath.append('/');
-    if(!newPath.endsWith('/'))
-        newPath = newPath.append('/');
-
     if (!Utils::Fs::isValidFileSystemName(oldPath, true))
         throw APIError(APIErrorType::Conflict, tr("Old path is not valid"));
     if (!Utils::Fs::isValidFileSystemName(newPath, true))

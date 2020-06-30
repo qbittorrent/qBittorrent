@@ -151,7 +151,6 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
     }
     else {
         // renaming a folder
-
         const QString oldName = modelIndex.data().toString();
         if (newName == oldName)
             return;  // Name did not change
@@ -163,46 +162,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentHandle *torre
         const QString oldPath {parentPath + oldName + '/'};
         const QString newPath {parentPath + newName + '/'};
 
-        // Check for overwriting
-#if defined(Q_OS_WIN)
-        const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
-#else
-        const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
-#endif
-
-        for (int i = 0; i < torrent->filesCount(); ++i) {
-            const QString currentPath = torrent->filePath(i);
-
-            if (currentPath.startsWith(oldPath))
-                continue;
-
-            if (currentPath.startsWith(newPath, caseSensitivity)) {
-                RaisedMessageBox::warning(this, tr("The folder could not be renamed"),
-                                          tr("This name is already in use. Please use a different name."),
-                                          QMessageBox::Ok);
-                return;
-            }
-        }
-
-        // Replace path in all files
-        bool needForceRecheck = false;
-
-        for (int i = 0; i < torrent->filesCount(); ++i) {
-            const QString currentPath = torrent->filePath(i);
-
-            if (currentPath.startsWith(oldPath)) {
-                const QString path {newPath + currentPath.mid(oldPath.length())};
-
-                if (!needForceRecheck && QFile::exists(path))
-                    needForceRecheck = true;
-
-                torrent->renameFile(i, path);
-            }
-        }
-
-        // Force recheck
-        if (needForceRecheck)
-            torrent->forceRecheck();
+        torrent->renameFolder(oldPath, newPath);
 
         model->setData(modelIndex, newName);
     }
@@ -266,7 +226,6 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
     }
     else {
         // renaming a folder
-
         const QString oldName = modelIndex.data().toString();
         if (newName == oldName)
             return;  // Name did not change
@@ -278,36 +237,7 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::TorrentInfo &torrent
         const QString oldPath {parentPath + oldName + '/'};
         const QString newPath {parentPath + newName + '/'};
 
-        // Check for overwriting
-#if defined(Q_OS_WIN)
-        const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
-#else
-        const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
-#endif
-
-        for (int i = 0; i < torrent.filesCount(); ++i) {
-            const QString currentPath = torrent.filePath(i);
-
-            if (currentPath.startsWith(oldPath))
-                continue;
-
-            if (currentPath.startsWith(newPath, caseSensitivity)) {
-                RaisedMessageBox::warning(this, tr("The folder could not be renamed"),
-                                          tr("This name is already in use. Please use a different name."),
-                                          QMessageBox::Ok);
-                return;
-            }
-        }
-
-        // Replace path in all files
-        for (int i = 0; i < torrent.filesCount(); ++i) {
-            const QString currentPath = torrent.filePath(i);
-
-            if (currentPath.startsWith(oldPath)) {
-                const QString path {newPath + currentPath.mid(oldPath.length())};
-                torrent.renameFile(i, path);
-            }
-        }
+        torrent.renameFolder(oldPath, newPath);
 
         model->setData(modelIndex, newName);
     }

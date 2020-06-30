@@ -416,6 +416,41 @@ void TorrentInfo::renameFile(const int index, const QString &newPath)
     nativeInfo()->rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(newPath).toStdString());
 }
 
+void TorrentInfo::renameFolder(const QString &oldPath, const QString &newPath)
+{
+    if (!isValid()) return;
+    const QString sanatizedOldPath = oldPath + (oldPath.endsWith("/") ? "" : "/");
+    const QString sanatizedNewPath = newPath + (newPath.endsWith("/") ? "" : "/");
+
+    // Check for overwriting
+#if defined(Q_OS_WIN)
+    const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+    const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString currentPath = filePath(i);
+
+        if (currentPath.startsWith(sanatizedOldPath))
+            continue;
+
+        if (currentPath.startsWith(sanatizedNewPath, caseSensitivity)) {
+            qDebug() << tr("The folder could not be renamed.").arg(name(), "This name is already in use.");
+            return;
+        }
+    }
+
+    // Replace path in all files
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString currentPath = filePath(i);
+
+        if (currentPath.startsWith(sanatizedOldPath)) {
+            const QString path {sanatizedNewPath + currentPath.mid(sanatizedOldPath.length())};
+            renameFile(i, path);
+        }
+    }
+}
+
 int BitTorrent::TorrentInfo::fileIndex(const QString &fileName) const
 {
     // the check whether the object is valid is not needed here

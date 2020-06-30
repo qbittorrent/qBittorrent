@@ -1467,6 +1467,10 @@ void TorrentHandleImpl::renameFile(const int index, const QString &name)
 
 void TorrentHandleImpl::renameFolder(const QString &oldPath, const QString &newPath)
 {
+    if (!isValid()) return;
+    const QString sanatizedOldPath = oldPath + (oldPath.endsWith("/") ? "" : "/");
+    const QString sanatizedNewPath = newPath + (newPath.endsWith("/") ? "" : "/");
+
     // Check for overwriting
 #if defined(Q_OS_WIN)
     const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
@@ -1476,10 +1480,10 @@ void TorrentHandleImpl::renameFolder(const QString &oldPath, const QString &newP
     for (int i = 0; i < filesCount(); ++i) {
         const QString currentPath = filePath(i);
 
-        if (currentPath.startsWith(oldPath))
+        if (currentPath.startsWith(sanatizedOldPath))
             continue;
 
-        if (currentPath.startsWith(newPath, caseSensitivity)) {
+        if (currentPath.startsWith(sanatizedNewPath, caseSensitivity)) {
             LogMsg(tr("The folder could not be renamed.").arg(name(), "This name is already in use."), Log::CRITICAL);
             return;
         }
@@ -1489,8 +1493,8 @@ void TorrentHandleImpl::renameFolder(const QString &oldPath, const QString &newP
     for (int i = 0; i < filesCount(); ++i) {
         const QString currentPath = filePath(i);
 
-        if (currentPath.startsWith(oldPath)) {
-            const QString path {newPath + currentPath.mid(oldPath.length())};
+        if (currentPath.startsWith(sanatizedOldPath)) {
+            const QString path {sanatizedNewPath + currentPath.mid(sanatizedOldPath.length())};
             renameFile(i, path);
         }
     }
