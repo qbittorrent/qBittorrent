@@ -1465,6 +1465,37 @@ void TorrentHandleImpl::renameFile(const int index, const QString &name)
     m_nativeHandle.rename_file(LTFileIndex {index}, Utils::Fs::toNativePath(name).toStdString());
 }
 
+void TorrentHandleImpl::renameFolder(const QString &oldPath, const QString &newPath)
+{
+    // Check for overwriting
+#if defined(Q_OS_WIN)
+    const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+    const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString currentPath = filePath(i);
+
+        if (currentPath.startsWith(oldPath))
+            continue;
+
+        if (currentPath.startsWith(newPath, caseSensitivity)) {
+            LogMsg(tr("The folder could not be renamed.").arg(name(), "This name is already in use."), Log::CRITICAL);
+            return;
+        }
+    }
+
+    // Replace path in all files
+    for (int i = 0; i < filesCount(); ++i) {
+        const QString currentPath = filePath(i);
+
+        if (currentPath.startsWith(oldPath)) {
+            const QString path {newPath + currentPath.mid(oldPath.length())};
+            renameFile(i, path);
+        }
+    }
+}
+
 void TorrentHandleImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
 {
     updateStatus(nativeStatus);

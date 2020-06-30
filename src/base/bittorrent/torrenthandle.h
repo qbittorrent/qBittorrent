@@ -276,6 +276,7 @@ namespace BitTorrent
         virtual void forceDHTAnnounce() = 0;
         virtual void forceRecheck() = 0;
         virtual void renameFile(int index, const QString &name) = 0;
+        virtual void renameFolder(const QString &oldPath, const QString &newPath) = 0;
         virtual void prioritizeFiles(const QVector<DownloadPriority> &priorities) = 0;
         virtual void setRatioLimit(qreal limit) = 0;
         virtual void setSeedingTimeLimit(int limit) = 0;
