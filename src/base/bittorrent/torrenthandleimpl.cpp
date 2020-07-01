@@ -1459,9 +1459,9 @@ void TorrentHandleImpl::handleTorrentFinishedAlert(const lt::torrent_finished_al
     Q_UNUSED(p);
     qDebug("Got a torrent finished alert for \"%s\"", qUtf8Printable(name()));
     qDebug("Torrent has seed status: %s", m_hasSeedStatus ? "yes" : "no");
-    m_hasMissingFiles = false;
     if (m_hasSeedStatus) return;
 
+    m_hasMissingFiles = false;
     updateStatus();
     m_hasSeedStatus = true;
 
