@@ -417,6 +417,7 @@ namespace BitTorrent
         OSMemoryPriority getOSMemoryPriority() const;
         void setOSMemoryPriority(OSMemoryPriority priority);
 #endif
+        QString externalIp() const;
 
         void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
@@ -761,6 +762,7 @@ namespace BitTorrent
         QNetworkConfigurationManager *m_networkManager = nullptr;
 
         QList<MoveStorageJob> m_moveStorageQueue;
+        QString m_externalIp;
 
         static Session *m_instance;
     };

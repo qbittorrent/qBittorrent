@@ -434,6 +434,10 @@ td.speedLabel {
     min-width: 18em;
 }
 
+#myPublicIp {
+    white-space: nowrap;
+}
+
 #freeSpaceOnDisk {
     white-space: nowrap;
 }

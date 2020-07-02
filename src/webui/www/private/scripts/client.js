@@ -761,6 +761,8 @@ window.addEvent('load', function() {
             break;
         }
 
+        $('myPublicIp').set('html', serverState.my_public_ip);
+
         if (queueing_enabled != serverState.queueing) {
             queueing_enabled = serverState.queueing;
             torrentsTable.columns['priority'].force_hide = !queueing_enabled;

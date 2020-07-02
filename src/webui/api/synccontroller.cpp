@@ -85,6 +85,7 @@ namespace
     const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
     const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
     const char KEY_TRANSFER_FREESPACEONDISK[] = "free_space_on_disk";
+    const char KEY_TRANSFER_MYPUBLICIP[] = "my_public_ip";
     const char KEY_TRANSFER_UPDATA[] = "up_info_data";
     const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
     const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
@@ -153,6 +154,7 @@ namespace
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? "connected" : "firewalled")
             : "disconnected";
+        map[KEY_TRANSFER_MYPUBLICIP] = session->externalIp();
 
         return map;
     }

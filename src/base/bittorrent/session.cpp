@@ -4598,6 +4598,7 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
     lt::error_code ec;
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
         .arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+    m_externalIp = QString(p->external_address.to_string(ec).c_str());
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
@@ -4712,6 +4713,10 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
+}
+
+QString Session::externalIp() const {
+    return m_externalIp;
 }
 
 #if (LIBTORRENT_VERSION_NUM >= 10204)
