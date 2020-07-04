@@ -70,7 +70,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 #endif
 
     painter->save();
-    style->drawControl(QStyle::CE_ProgressBar, &newopt, painter, option.widget);
+    style->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
     painter->restore();
 }
 
