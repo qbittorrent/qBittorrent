@@ -431,7 +431,7 @@ void TorrentInfo::renameFolder(const QString &oldPath, const QString &newPath)
     for (int i = 0; i < filesCount(); ++i) {
         const QString currentPath = filePath(i);
 
-        if (currentPath.startsWith(sanatizedOldPath))
+        if (currentPath.startsWith(sanatizedOldPath, caseSensitivity))
             continue;
 
         if (currentPath.startsWith(sanatizedNewPath, caseSensitivity)) {
@@ -444,7 +444,7 @@ void TorrentInfo::renameFolder(const QString &oldPath, const QString &newPath)
     for (int i = 0; i < filesCount(); ++i) {
         const QString currentPath = filePath(i);
 
-        if (currentPath.startsWith(sanatizedOldPath)) {
+        if (currentPath.startsWith(sanatizedOldPath, caseSensitivity)) {
             const QString path {sanatizedNewPath + currentPath.mid(sanatizedOldPath.length())};
             renameFile(i, path);
         }

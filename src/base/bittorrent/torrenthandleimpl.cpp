@@ -1480,7 +1480,7 @@ void TorrentHandleImpl::renameFolder(const QString &oldPath, const QString &newP
     for (int i = 0; i < filesCount(); ++i) {
         const QString currentPath = filePath(i);
 
-        if (currentPath.startsWith(sanatizedOldPath))
+        if (currentPath.startsWith(sanatizedOldPath, caseSensitivity))
             continue;
 
         if (currentPath.startsWith(sanatizedNewPath, caseSensitivity)) {
@@ -1490,14 +1490,23 @@ void TorrentHandleImpl::renameFolder(const QString &oldPath, const QString &newP
     }
 
     // Replace path in all files
+    bool needForceRecheck = false;
     for (int i = 0; i < filesCount(); ++i) {
         const QString currentPath = filePath(i);
 
-        if (currentPath.startsWith(sanatizedOldPath)) {
+        if (currentPath.startsWith(sanatizedOldPath, caseSensitivity)) {
             const QString path {sanatizedNewPath + currentPath.mid(sanatizedOldPath.length())};
+
+            if (!needForceRecheck && QFile::exists(path))
+                needForceRecheck = true;
+
             renameFile(i, path);
         }
     }
+
+    // Force recheck
+    if (needForceRecheck)
+        m_nativeHandle.force_recheck();
 }
 
 void TorrentHandleImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
