@@ -2,7 +2,6 @@
 
 #ifndef QBT_USE_GUI
 #define DISABLE_GUI
-#define DISABLE_COUNTRIES_RESOLUTION
 #endif
 
 #cmakedefine QBT_USE_WEBUI

@@ -59,14 +59,12 @@ bool PeerInfo::fromLSD() const
     return static_cast<bool>(m_nativeInfo.source & lt::peer_info::lsd);
 }
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
 QString PeerInfo::country() const
 {
     if (m_country.isEmpty())
         m_country = Net::GeoIPManager::instance()->lookup(address().ip);
     return m_country;
 }
-#endif
 
 bool PeerInfo::isInteresting() const
 {

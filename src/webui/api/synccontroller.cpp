@@ -522,11 +522,7 @@ void SyncController::torrentPeersAction()
 
     const QVector<BitTorrent::PeerInfo> peersList = torrent->peers();
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
-#else
-    bool resolvePeerCountries = false;
-#endif
 
     data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
 
@@ -549,12 +545,10 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n')}
         };
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
         if (resolvePeerCountries) {
             peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
-#endif
 
         peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
     }
