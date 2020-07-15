@@ -3805,6 +3805,7 @@ bool Session::addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString
     Q_ASSERT(torrent);
 
     const lt::torrent_handle torrentHandle = torrent->nativeHandle();
+    const QString currentLocation = torrent->actualStorageLocation();
 
     if (m_moveStorageQueue.size() > 1) {
         const auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
@@ -3816,22 +3817,30 @@ bool Session::addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString
         if (iter != m_moveStorageQueue.end()) {
             // remove existing inactive job
             m_moveStorageQueue.erase(iter);
+            LogMsg(tr("Cancelled moving \"%1\" from \"%2\" to \"%3\".").arg(torrent->name(), currentLocation, iter->path));
         }
     }
 
-    QString currentLocation = torrent->actualStorageLocation();
     if (!m_moveStorageQueue.isEmpty() && (m_moveStorageQueue.first().torrentHandle == torrentHandle)) {
-        // if there is active job for this torrent consider its target path as current location
-        // of this torrent to prevent creating meaningless job that will do nothing
-        currentLocation = m_moveStorageQueue.first().path;
+        // if there is active job for this torrent prevent creating meaningless
+        // job that will move torrent to the same location as current one
+        if (QDir {m_moveStorageQueue.first().path} == QDir {newPath}) {
+            LogMsg(tr("Couldn't enqueue move of \"%1\" to \"%2\". Torrent is currently moving to the same destination location.")
+                   .arg(torrent->name(), newPath));
+            return false;
+        }
     }
-
-    if (QDir {currentLocation} == QDir {newPath})
-        return false;
+    else {
+        if (QDir {currentLocation} == QDir {newPath}) {
+            LogMsg(tr("Couldn't enqueue move of \"%1\" from \"%2\" to \"%3\". Both paths point to the same location.")
+                   .arg(torrent->name(), currentLocation, newPath));
+            return false;
+        }
+    }
 
     const MoveStorageJob moveStorageJob {torrentHandle, newPath, mode};
     m_moveStorageQueue << moveStorageJob;
-    qDebug("Move storage from \"%s\" to \"%s\" is enqueued.", qUtf8Printable(currentLocation), qUtf8Printable(newPath));
+    LogMsg(tr("Enqueued to move \"%1\" from \"%2\" to \"%3\".").arg(torrent->name(), currentLocation, newPath));
 
     if (m_moveStorageQueue.size() == 1)
         moveTorrentStorage(moveStorageJob);
@@ -3841,31 +3850,34 @@ bool Session::addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString
 
 void Session::moveTorrentStorage(const MoveStorageJob &job) const
 {
-    qDebug("Moving torrent storage to \"%s\"...", qUtf8Printable(job.path));
+    const InfoHash infoHash = job.torrentHandle.info_hash();
+    const TorrentHandleImpl *torrent = m_torrents.value(infoHash);
+    const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
+    LogMsg(tr("Moving \"%1\" to \"%2\"...").arg(torrentName, job.path));
 
     job.torrentHandle.move_storage(job.path.toUtf8().constData()
                             , ((job.mode == MoveStorageMode::Overwrite)
                             ? lt::move_flags_t::always_replace_files : lt::move_flags_t::dont_replace));
 }
 
-void Session::handleMoveTorrentStorageJobFinished(const QString &errorMessage)
+void Session::handleMoveTorrentStorageJobFinished()
 {
     const MoveStorageJob finishedJob = m_moveStorageQueue.takeFirst();
-    if (!m_moveStorageQueue.isEmpty())
-        moveTorrentStorage(m_moveStorageQueue.first());
 
     const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
                                    , [&finishedJob](const MoveStorageJob &job)
     {
         return job.torrentHandle == finishedJob.torrentHandle;
     });
-    if (iter == m_moveStorageQueue.cend()) {
-        TorrentHandleImpl *torrent = m_torrents.value(finishedJob.torrentHandle.info_hash());
-        if (torrent) {
-            // There is no more job for this torrent
-            torrent->handleStorageMoved(finishedJob.path, errorMessage);
-        }
-        else {
+
+    const bool torrentHasOutstandingJob = (iter != m_moveStorageQueue.cend());
+
+    TorrentHandleImpl *torrent = m_torrents.value(finishedJob.torrentHandle.info_hash());
+    if (torrent)
+        torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
+
+    if (!torrentHasOutstandingJob) {
+        if (!torrent) {
             // Last job is completed for torrent that being removing, so actually remove it
             const lt::torrent_handle nativeHandle {finishedJob.torrentHandle};
             const RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hash()];
@@ -3873,6 +3885,9 @@ void Session::handleMoveTorrentStorageJobFinished(const QString &errorMessage)
                 m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
         }
     }
+
+    if (!m_moveStorageQueue.isEmpty())
+        moveTorrentStorage(m_moveStorageQueue.first());
 }
 
 void Session::handleTorrentTrackerWarning(TorrentHandleImpl *const torrent, const QString &trackerUrl)
@@ -4684,15 +4699,29 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const QString newPath {p->storage_path()};
     Q_ASSERT(newPath == currentJob.path);
 
+    const InfoHash infoHash = currentJob.torrentHandle.info_hash();
+    const TorrentHandleImpl *torrent = m_torrents.value(infoHash);
+    const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
+    LogMsg(tr("\"%1\" is successfully moved to \"%2\".").arg(torrentName, newPath));
+
     handleMoveTorrentStorageJobFinished();
 }
 
 void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
-    Q_ASSERT(m_moveStorageQueue.first().torrentHandle == p->handle);
 
-    handleMoveTorrentStorageJobFinished(QString::fromStdString(p->message()));
+    const MoveStorageJob &currentJob = m_moveStorageQueue.first();
+    Q_ASSERT(currentJob.torrentHandle == p->handle);
+
+    const InfoHash infoHash = currentJob.torrentHandle.info_hash();
+    const TorrentHandleImpl *torrent = m_torrents.value(infoHash);
+    const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
+    const QString currentLocation = QString::fromStdString(p->handle.status(lt::torrent_handle::query_save_path).save_path);
+    LogMsg(tr("Failed to move \"%1\" from \"%2\" to \"%3\". Reason: %4.")
+           .arg(torrentName, currentLocation, currentJob.path, QString::fromStdString(p->message())), Log::CRITICAL);
+
+    handleMoveTorrentStorageJobFinished();
 }
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)

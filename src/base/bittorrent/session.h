@@ -617,7 +617,7 @@ namespace BitTorrent
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
-        void handleMoveTorrentStorageJobFinished(const QString &errorMessage = {});
+        void handleMoveTorrentStorageJobFinished();
 
         // BitTorrent
         lt::session *m_nativeSession = nullptr;

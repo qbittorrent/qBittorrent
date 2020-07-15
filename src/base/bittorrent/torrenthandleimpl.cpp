@@ -1237,11 +1237,13 @@ void TorrentHandleImpl::move_impl(QString path, const MoveStorageMode mode)
     if (path == savePath()) return;
     path = Utils::Fs::toNativePath(path);
 
-    if (!useTempPath())
+    if (!useTempPath()) {
         moveStorage(path, mode);
-
-    m_savePath = path;
-    m_session->handleTorrentSavePathChanged(this);
+    }
+    else {
+        m_savePath = path;
+        m_session->handleTorrentSavePathChanged(this);
+    }
 }
 
 void TorrentHandleImpl::forceReannounce(int index)
@@ -1373,16 +1375,17 @@ void TorrentHandleImpl::handleStateUpdate(const lt::torrent_status &nativeStatus
     updateStatus(nativeStatus);
 }
 
-void TorrentHandleImpl::handleStorageMoved(const QString &newPath, const QString &errorMessage)
+void TorrentHandleImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
 {
-    m_storageIsMoving = false;
-
-    if (!errorMessage.isEmpty())
-        LogMsg(tr("Could not move torrent: %1. Reason: %2").arg(name(), errorMessage), Log::CRITICAL);
-    else
-        LogMsg(tr("Successfully moved torrent: %1. New path: %2").arg(name(), newPath));
+    m_storageIsMoving = hasOutstandingJob;
 
     updateStatus();
+    const QString newPath = QString::fromStdString(m_nativeStatus.save_path);
+    if (!useTempPath() && (newPath != m_savePath)) {
+        m_savePath = newPath;
+        m_session->handleTorrentSavePathChanged(this);
+    }
+
     saveResumeData();
 
     while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())

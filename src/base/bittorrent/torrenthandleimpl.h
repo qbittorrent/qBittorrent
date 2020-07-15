@@ -252,7 +252,7 @@ namespace BitTorrent
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
         void saveResumeData();
-        void handleStorageMoved(const QString &newPath, const QString &errorMessage);
+        void handleMoveStorageJobFinished(bool hasOutstandingJob);
 
         QString actualStorageLocation() const;
 
