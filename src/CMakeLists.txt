@@ -7,7 +7,7 @@ find_package(Boost ${requiredBoostVersion} REQUIRED)
 find_package(LibtorrentRasterbar ${requiredLibtorrentVersion} REQUIRED)
 find_package(OpenSSL ${requiredOpensslVersion} REQUIRED)
 
-if (Boost_VERSION VERSION_LESS 106000)
+if (Boost_VERSION_STRING VERSION_LESS 1.60.0)
     add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
 endif()
 
