@@ -59,7 +59,7 @@ macro(qbt_set_compiler_options)
     endif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-        set(QBT_ADDITIONAL_FLAGS "/wd4251 /wd4275 /wd4290 /W4" CACHE STRING "Additional qBittorent compile flags")
+        set(QBT_ADDITIONAL_FLAGS "/wd4251 /wd4275 /wd4290" CACHE STRING "Additional qBittorent compile flags")
     endif ()
 
     string(APPEND CMAKE_C_FLAGS " ${QBT_ADDITIONAL_FLAGS}")
