@@ -30,7 +30,6 @@ add_library(qbt_gui STATIC
     previewlistdelegate.h
     previewselectdialog.h
     properties/downloadedpiecesbar.h
-    properties/peerlistdelegate.h
     properties/peerlistsortmodel.h
     properties/peerlistwidget.h
     properties/peersadditiondialog.h
@@ -111,7 +110,6 @@ add_library(qbt_gui STATIC
     previewlistdelegate.cpp
     previewselectdialog.cpp
     properties/downloadedpiecesbar.cpp
-    properties/peerlistdelegate.cpp
     properties/peerlistsortmodel.cpp
     properties/peerlistwidget.cpp
     properties/peersadditiondialog.cpp

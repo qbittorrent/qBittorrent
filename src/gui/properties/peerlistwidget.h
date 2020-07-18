@@ -58,6 +58,26 @@ class PeerListWidget final : public QTreeView
     Q_OBJECT
 
 public:
+    enum PeerListColumns
+    {
+        COUNTRY,
+        IP,
+        PORT,
+        CONNECTION,
+        FLAGS,
+        CLIENT,
+        PROGRESS,
+        DOWN_SPEED,
+        UP_SPEED,
+        TOT_DOWN,
+        TOT_UP,
+        RELEVANCE,
+        DOWNLOADING_PIECE,
+        IP_HIDDEN,
+
+        COL_COUNT
+    };
+
     explicit PeerListWidget(PropertiesWidget *parent);
     ~PeerListWidget() override;
 
