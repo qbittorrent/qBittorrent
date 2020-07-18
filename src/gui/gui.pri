@@ -51,7 +51,6 @@ HEADERS += \
     $$PWD/search/pluginselectdialog.h \
     $$PWD/search/pluginsourcedialog.h \
     $$PWD/search/searchjobwidget.h \
-    $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/search/searchwidget.h \
     $$PWD/shutdownconfirmdialog.h \
@@ -132,7 +131,6 @@ SOURCES += \
     $$PWD/search/pluginselectdialog.cpp \
     $$PWD/search/pluginsourcedialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
-    $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/shutdownconfirmdialog.cpp \

@@ -49,6 +49,11 @@ public:
         NB_SEARCH_COLUMNS
     };
 
+    enum SearchDataRole
+    {
+        UnderlyingDataRole = Qt::UserRole
+    };
+
     explicit SearchSortModel(QObject *parent = nullptr);
 
     void enableNameFilter(bool enabled);

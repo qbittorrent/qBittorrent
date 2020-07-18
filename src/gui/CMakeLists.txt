@@ -53,7 +53,6 @@ add_library(qbt_gui STATIC
     search/pluginselectdialog.h
     search/pluginsourcedialog.h
     search/searchjobwidget.h
-    search/searchlistdelegate.h
     search/searchsortmodel.h
     search/searchwidget.h
     shutdownconfirmdialog.h
@@ -134,7 +133,6 @@ add_library(qbt_gui STATIC
     search/pluginselectdialog.cpp
     search/pluginsourcedialog.cpp
     search/searchjobwidget.cpp
-    search/searchlistdelegate.cpp
     search/searchsortmodel.cpp
     search/searchwidget.cpp
     shutdownconfirmdialog.cpp
