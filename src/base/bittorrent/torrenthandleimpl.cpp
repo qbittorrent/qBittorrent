@@ -1864,12 +1864,12 @@ QString TorrentHandleImpl::createMagnetURI() const
 
 bool TorrentHandleImpl::havePiece(const int index) const 
 {
-    return m_nativeHandle.have_piece(LTPieceIndex {index});
+    return m_nativeHandle.have_piece(lt::piece_index_t {index});
 }
 
 const PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const int deadline, const bool readWhenAvailable)
 {
-    m_nativeHandle.set_piece_deadline(LTPieceIndex {index}, deadline,
+    m_nativeHandle.set_piece_deadline(lt::piece_index_t {index}, deadline,
     readWhenAvailable ? lt::torrent_handle::alert_when_available : lt::deadline_flags_t {});
 
     PieceRequest *request = nullptr;

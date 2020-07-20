@@ -384,7 +384,7 @@ TorrentInfo::PieceRange TorrentInfo::filePieces(const int fileIndex) const
 
 BitTorrent::PieceFileInfo TorrentInfo::mapFile(const int fileIndex, const qlonglong offset, const int size) const
 {
-    lt::peer_request info = m_nativeInfo->map_file(LTFileIndex {fileIndex}, offset, size);
+    lt::peer_request info = m_nativeInfo->map_file(lt::file_index_t {fileIndex}, offset, size);
     return {info.piece, info.start, info.length};
 }
 
