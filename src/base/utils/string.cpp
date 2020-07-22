@@ -35,11 +35,13 @@
 #include <QLocale>
 #include <QRegExp>
 #include <QtGlobal>
-#ifdef Q_OS_MACOS
+
+#if defined(Q_OS_MACOS) || defined(__MINGW32__)
+#define QBT_USES_QTHREADSTORAGE
 #include <QThreadStorage>
 #endif
 
-#include "../tristatebool.h"
+#include "base/tristatebool.h"
 
 namespace
 {
@@ -139,7 +141,7 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
     // provide a single `NaturalCompare` instance for easy use
     // https://doc.qt.io/qt-5/threads-reentrancy.html
     if (caseSensitivity == Qt::CaseSensitive) {
-#ifdef Q_OS_MACOS  // workaround for Apple xcode: https://stackoverflow.com/a/29929949
+#ifdef QBT_USES_QTHREADSTORAGE
         static QThreadStorage<NaturalCompare> nCmp;
         if (!nCmp.hasLocalData())
             nCmp.setLocalData(NaturalCompare(Qt::CaseSensitive));
@@ -150,7 +152,7 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
 #endif
     }
 
-#ifdef Q_OS_MACOS
+#ifdef QBT_USES_QTHREADSTORAGE
     static QThreadStorage<NaturalCompare> nCmp;
     if (!nCmp.hasLocalData())
         nCmp.setLocalData(NaturalCompare(Qt::CaseInsensitive));
