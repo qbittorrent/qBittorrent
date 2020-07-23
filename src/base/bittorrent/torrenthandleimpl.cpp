@@ -1359,8 +1359,10 @@ void TorrentHandleImpl::resume_impl(bool forced)
 
 void TorrentHandleImpl::moveStorage(const QString &newPath, const MoveStorageMode mode)
 {
-    if (m_session->addMoveTorrentStorageJob(this, newPath, mode))
+    if (m_session->addMoveTorrentStorageJob(this, newPath, mode)) {
         m_storageIsMoving = true;
+        updateStatus();
+    }
 }
 
 void TorrentHandleImpl::renameFile(const int index, const QString &name)
