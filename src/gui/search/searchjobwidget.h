@@ -40,7 +40,6 @@ class QStandardItemModel;
 
 class LineEdit;
 class SearchHandler;
-class SearchListDelegate;
 class SearchSortModel;
 struct SearchResult;
 
@@ -124,7 +123,6 @@ private:
     SearchHandler *m_searchHandler;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
-    SearchListDelegate *m_searchDelegate;
     LineEdit *m_lineEditSearchResultsFilter;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;

@@ -41,6 +41,8 @@ SearchSortModel::SearchSortModel(QObject *parent)
     , m_minSize(0)
     , m_maxSize(-1)
 {
+    setSortRole(UnderlyingDataRole);
+    setFilterRole(UnderlyingDataRole);
 }
 
 void SearchSortModel::enableNameFilter(const bool enabled)
@@ -129,7 +131,7 @@ bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &s
     const QAbstractItemModel *const sourceModel = this->sourceModel();
 
     if (m_isNameFilterEnabled && !m_searchTerm.isEmpty()) {
-        const QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent)).toString();
+        const QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent), UnderlyingDataRole).toString();
         for (const QString &word : asConst(m_searchTermWords)) {
             if (!name.contains(word, Qt::CaseInsensitive))
                 return false;
@@ -137,21 +139,21 @@ bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &s
     }
 
     if ((m_minSize > 0) || (m_maxSize >= 0)) {
-        const qlonglong size = sourceModel->data(sourceModel->index(sourceRow, SIZE, sourceParent)).toLongLong();
+        const qlonglong size = sourceModel->data(sourceModel->index(sourceRow, SIZE, sourceParent), UnderlyingDataRole).toLongLong();
         if (((m_minSize > 0) && (size < m_minSize))
             || ((m_maxSize > 0) && (size > m_maxSize)))
             return false;
     }
 
     if ((m_minSeeds > 0) || (m_maxSeeds >= 0)) {
-        const int seeds = sourceModel->data(sourceModel->index(sourceRow, SEEDS, sourceParent)).toInt();
+        const int seeds = sourceModel->data(sourceModel->index(sourceRow, SEEDS, sourceParent), UnderlyingDataRole).toInt();
         if (((m_minSeeds > 0) && (seeds < m_minSeeds))
             || ((m_maxSeeds > 0) && (seeds > m_maxSeeds)))
             return false;
     }
 
     if ((m_minLeeches > 0) || (m_maxLeeches >= 0)) {
-        const int leeches = sourceModel->data(sourceModel->index(sourceRow, LEECHES, sourceParent)).toInt();
+        const int leeches = sourceModel->data(sourceModel->index(sourceRow, LEECHES, sourceParent), UnderlyingDataRole).toInt();
         if (((m_minLeeches > 0) && (leeches < m_minLeeches))
             || ((m_maxLeeches > 0) && (leeches > m_maxLeeches)))
             return false;
