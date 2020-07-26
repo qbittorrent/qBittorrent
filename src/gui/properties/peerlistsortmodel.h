@@ -37,6 +37,11 @@ class PeerListSortModel final : public QSortFilterProxyModel
     Q_DISABLE_COPY(PeerListSortModel)
 
 public:
+    enum
+    {
+        UnderlyingDataRole = Qt::UserRole
+    };
+
     explicit PeerListSortModel(QObject *parent = nullptr);
 
 private:

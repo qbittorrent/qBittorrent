@@ -28,7 +28,6 @@ HEADERS += \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
     $$PWD/properties/downloadedpiecesbar.h \
-    $$PWD/properties/peerlistdelegate.h \
     $$PWD/properties/peerlistsortmodel.h \
     $$PWD/properties/peerlistwidget.h \
     $$PWD/properties/peersadditiondialog.h \
@@ -109,7 +108,6 @@ SOURCES += \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/properties/downloadedpiecesbar.cpp \
-    $$PWD/properties/peerlistdelegate.cpp \
     $$PWD/properties/peerlistsortmodel.cpp \
     $$PWD/properties/peerlistwidget.cpp \
     $$PWD/properties/peersadditiondialog.cpp \
