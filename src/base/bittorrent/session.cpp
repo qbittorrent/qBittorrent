@@ -4699,9 +4699,12 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     Q_ASSERT(newPath == currentJob.path);
 
     const InfoHash infoHash = currentJob.torrentHandle.info_hash();
-    const TorrentHandleImpl *torrent = m_torrents.value(infoHash);
+    TorrentHandleImpl *torrent = m_torrents.value(infoHash);
     const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
     LogMsg(tr("\"%1\" is successfully moved to \"%2\".").arg(torrentName, newPath));
+
+    if (torrent)
+        emit torrentStorageMoveFinished(torrent, newPath);
 
     handleMoveTorrentStorageJobFinished();
 }
@@ -4714,11 +4717,15 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     Q_ASSERT(currentJob.torrentHandle == p->handle);
 
     const InfoHash infoHash = currentJob.torrentHandle.info_hash();
-    const TorrentHandleImpl *torrent = m_torrents.value(infoHash);
+    TorrentHandleImpl *torrent = m_torrents.value(infoHash);
     const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
     const QString currentLocation = QString::fromStdString(p->handle.status(lt::torrent_handle::query_save_path).save_path);
+    const QString errorMessage = QString::fromStdString(p->message());
     LogMsg(tr("Failed to move \"%1\" from \"%2\" to \"%3\". Reason: %4.")
-           .arg(torrentName, currentLocation, currentJob.path, QString::fromStdString(p->message())), Log::CRITICAL);
+           .arg(torrentName, currentLocation, currentJob.path, errorMessage), Log::CRITICAL);
+
+    if (torrent)
+        emit torrentStorageMoveFailed(torrent, currentJob.path, errorMessage);
 
     handleMoveTorrentStorageJobFinished();
 }

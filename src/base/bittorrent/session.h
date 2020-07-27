@@ -502,6 +502,8 @@ namespace BitTorrent
         void torrentResumed(BitTorrent::TorrentHandle *const torrent);
         void torrentSavePathChanged(BitTorrent::TorrentHandle *const torrent);
         void torrentSavingModeChanged(BitTorrent::TorrentHandle *const torrent);
+        void torrentStorageMoveFailed(BitTorrent::TorrentHandle *const torrent, const QString &targetPath, const QString &error);
+        void torrentStorageMoveFinished(BitTorrent::TorrentHandle *const torrent, const QString &newPath);
         void torrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
         void torrentTagAdded(TorrentHandle *const torrent, const QString &tag);
         void torrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
