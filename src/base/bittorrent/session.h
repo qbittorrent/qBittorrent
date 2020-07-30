@@ -518,7 +518,7 @@ namespace BitTorrent
     private slots:
         void configureDeferred();
         void readAlerts();
-        void refresh();
+        void enqueueRefresh();
         void processShareLimits();
         void generateResumeData(bool final = false);
         void handleIPFilterParsed(int ruleCount);
@@ -729,7 +729,7 @@ namespace BitTorrent
         QString m_resumeFolderPath;
         QFile *m_resumeFolderLock = nullptr;
 
-        QTimer *m_refreshTimer = nullptr;
+        bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
         Statistics *m_statistics = nullptr;

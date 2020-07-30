@@ -516,7 +516,6 @@ Session::Session(QObject *parent)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
     , m_resumeFolderLock {new QFile {this}}
-    , m_refreshTimer {new QTimer {this}}
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
     , m_statistics {new Statistics {this}}
@@ -552,10 +551,7 @@ Session::Session(QObject *parent)
 
     m_tags = List::toSet(m_storedTags.value());
 
-    m_refreshTimer->setInterval(refreshInterval());
-    connect(m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
-    m_refreshTimer->start();
-
+    enqueueRefresh();
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
 
@@ -669,7 +665,6 @@ uint Session::refreshInterval() const
 void Session::setRefreshInterval(const uint value)
 {
     if (value != refreshInterval()) {
-        m_refreshTimer->setInterval(value);
         m_refreshInterval = value;
     }
 }
@@ -4141,10 +4136,17 @@ quint64 Session::getAlltimeUL() const
     return m_statistics->getAlltimeUL();
 }
 
-void Session::refresh()
+void Session::enqueueRefresh()
 {
-    m_nativeSession->post_torrent_updates();
-    m_nativeSession->post_session_stats();
+    Q_ASSERT(!m_refreshEnqueued);
+
+    QTimer::singleShot(refreshInterval(), this, [this] ()
+    {
+        m_nativeSession->post_torrent_updates();
+        m_nativeSession->post_session_stats();
+    });
+
+    m_refreshEnqueued = true;
 }
 
 void Session::handleIPFilterParsed(const int ruleCount)
@@ -4680,6 +4682,11 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
 
     emit statsUpdated();
+
+    if (m_refreshEnqueued)
+        m_refreshEnqueued = false;
+    else
+        enqueueRefresh();
 }
 
 void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
@@ -4747,6 +4754,11 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
+
+    if (m_refreshEnqueued)
+        m_refreshEnqueued = false;
+    else
+        enqueueRefresh();
 }
 
 #if (LIBTORRENT_VERSION_NUM >= 10204)
