@@ -69,7 +69,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
     loadSettings();
-    m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
     header()->setStretchLastSection(false);
 
     // Set Search results list model
@@ -93,9 +93,11 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     m_ui->resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
     m_ui->resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
 
+    m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
     m_ui->resultsBrowser->setRootIsDecorated(false);
     m_ui->resultsBrowser->setAllColumnsShowFocus(true);
     m_ui->resultsBrowser->setSortingEnabled(true);
+    m_ui->resultsBrowser->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
