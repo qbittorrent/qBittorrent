@@ -1593,6 +1593,8 @@ int OptionsDialog::getActionOnDblClOnTorrentDl() const
 {
     if (m_ui->actionTorrentDlOnDblClBox->currentIndex() < 1)
         return 0;
+    if (m_ui->actionTorrentDlOnDblClBox->currentIndex() == 2) // this checkbox is missing DoubleClickAction::PREVIEW_FILE
+        return static_cast<int>(DoubleClickAction::NO_ACTION);
     return m_ui->actionTorrentDlOnDblClBox->currentIndex();
 }
 
