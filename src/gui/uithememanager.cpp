@@ -88,6 +88,7 @@ UIThemeManager::UIThemeManager()
         else {
             loadColorsFromJSONConfig();
             applyPalette();
+            applyStyleSheet();
         }
     }
 }
@@ -99,11 +100,6 @@ UIThemeManager *UIThemeManager::instance()
 
 void UIThemeManager::applyStyleSheet() const
 {
-    if (!m_useCustomTheme) {
-        qApp->setStyleSheet({});
-        return;
-    }
-
     QFile qssFile(":uitheme/stylesheet.qss");
     if (!qssFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qApp->setStyleSheet({});

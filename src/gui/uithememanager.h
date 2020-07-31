@@ -45,8 +45,6 @@ public:
     static void freeInstance();
     static UIThemeManager *instance();
 
-    void applyStyleSheet() const;
-
     QString getIconPath(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
@@ -58,6 +56,7 @@ private:
     QString getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
+    void applyStyleSheet() const;
 
     static UIThemeManager *m_instance;
     QHash<QString, QColor> m_colors;

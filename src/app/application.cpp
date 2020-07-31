@@ -615,7 +615,6 @@ int Application::exec(const QStringList &params)
 #else
     UIThemeManager::initInstance();
     m_window = new MainWindow;
-    UIThemeManager::instance()->applyStyleSheet();
 #endif // DISABLE_GUI
 
     m_running = true;
