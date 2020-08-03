@@ -73,13 +73,19 @@ namespace
         const TorrentStateColorDescriptor colorDescriptors[] =
         {
             {BitTorrent::TorrentState::Downloading, QLatin1String("TransferList.Downloading")},
+            {BitTorrent::TorrentState::DownloadingNoWorkingTracker, QLatin1String("TransferList.Downloading")},
             {BitTorrent::TorrentState::StalledDownloading, QLatin1String("TransferList.StalledDownloading")},
+            {BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker, QLatin1String("TransferList.StalledDownloading")},
             {BitTorrent::TorrentState::DownloadingMetadata, QLatin1String("TransferList.DownloadingMetadata")},
             {BitTorrent::TorrentState::ForcedDownloading, QLatin1String("TransferList.ForcedDownloading")},
+            {BitTorrent::TorrentState::ForcedDownloadingNoWorkingTracker, QLatin1String("TransferList.ForcedDownloading")},
             {BitTorrent::TorrentState::Allocating, QLatin1String("TransferList.Allocating")},
             {BitTorrent::TorrentState::Uploading, QLatin1String("TransferList.Uploading")},
+            {BitTorrent::TorrentState::UploadingNoWorkingTracker, QLatin1String("TransferList.Uploading")},
             {BitTorrent::TorrentState::StalledUploading, QLatin1String("TransferList.StalledUploading")},
+            {BitTorrent::TorrentState::StalledUploadingNoWorkingTracker, QLatin1String("TransferList.StalledUploading")},
             {BitTorrent::TorrentState::ForcedUploading, QLatin1String("TransferList.ForcedUploading")},
+            {BitTorrent::TorrentState::ForcedUploadingNoWorkingTracker, QLatin1String("TransferList.ForcedUploading")},
             {BitTorrent::TorrentState::QueuedDownloading, QLatin1String("TransferList.QueuedDownloading")},
             {BitTorrent::TorrentState::QueuedUploading, QLatin1String("TransferList.QueuedUploading")},
             {BitTorrent::TorrentState::CheckingDownloading, QLatin1String("TransferList.CheckingDownloading")},
@@ -108,13 +114,19 @@ TransferListModel::TransferListModel(QObject *parent)
     : QAbstractListModel {parent}
     , m_statusStrings {
           {BitTorrent::TorrentState::Downloading, tr("Downloading")},
+          {BitTorrent::TorrentState::DownloadingNoWorkingTracker, tr("Downloading")},
           {BitTorrent::TorrentState::StalledDownloading, tr("Stalled", "Torrent is waiting for download to begin")},
+          {BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker, tr("Stalled", "Torrent is waiting for download to begin")},
           {BitTorrent::TorrentState::DownloadingMetadata, tr("Downloading metadata", "Used when loading a magnet link")},
           {BitTorrent::TorrentState::ForcedDownloading, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
+          {BitTorrent::TorrentState::ForcedDownloadingNoWorkingTracker, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
           {BitTorrent::TorrentState::Allocating, tr("Allocating", "qBittorrent is allocating the files on disk")},
           {BitTorrent::TorrentState::Uploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
+          {BitTorrent::TorrentState::UploadingNoWorkingTracker, tr("Seeding", "Torrent is complete and in upload-only mode")},
           {BitTorrent::TorrentState::StalledUploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
+          {BitTorrent::TorrentState::StalledUploadingNoWorkingTracker, tr("Seeding", "Torrent is complete and in upload-only mode")},
           {BitTorrent::TorrentState::ForcedUploading, tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
+          {BitTorrent::TorrentState::ForcedUploadingNoWorkingTracker, tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
           {BitTorrent::TorrentState::QueuedDownloading, tr("Queued", "Torrent is queued")},
           {BitTorrent::TorrentState::QueuedUploading, tr("Queued", "Torrent is queued")},
           {BitTorrent::TorrentState::CheckingDownloading, tr("Checking", "Torrent local data is being checked")},
@@ -638,16 +650,22 @@ QIcon getIconByState(const BitTorrent::TorrentState state)
 {
     switch (state) {
     case BitTorrent::TorrentState::Downloading:
+    case BitTorrent::TorrentState::DownloadingNoWorkingTracker:
     case BitTorrent::TorrentState::ForcedDownloading:
+    case BitTorrent::TorrentState::ForcedDownloadingNoWorkingTracker:
     case BitTorrent::TorrentState::DownloadingMetadata:
         return getDownloadingIcon();
     case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
+    case BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker:
         return getStalledDownloadingIcon();
     case BitTorrent::TorrentState::StalledUploading:
+    case BitTorrent::TorrentState::StalledUploadingNoWorkingTracker:
         return getStalledUploadingIcon();
     case BitTorrent::TorrentState::Uploading:
+    case BitTorrent::TorrentState::UploadingNoWorkingTracker:
     case BitTorrent::TorrentState::ForcedUploading:
+    case BitTorrent::TorrentState::ForcedUploadingNoWorkingTracker:
         return getUploadingIcon();
     case BitTorrent::TorrentState::PausedDownloading:
         return getPausedIcon();
@@ -717,6 +735,13 @@ QColor getDefaultColorByState(const BitTorrent::TorrentState state)
             return {0, 128, 128}; // Teal
         else
             return {0, 205, 205}; // Cyan 3
+    case BitTorrent::TorrentState::DownloadingNoWorkingTracker:
+    case BitTorrent::TorrentState::ForcedDownloadingNoWorkingTracker:
+    case BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker:
+    case BitTorrent::TorrentState::UploadingNoWorkingTracker:
+    case BitTorrent::TorrentState::ForcedUploadingNoWorkingTracker:
+    case BitTorrent::TorrentState::StalledUploadingNoWorkingTracker:
+        return {255, 140, 0}; // Orange
     case BitTorrent::TorrentState::Unknown:
         return {255, 0, 0}; // red
     default:

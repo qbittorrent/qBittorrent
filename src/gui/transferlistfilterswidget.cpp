@@ -240,9 +240,11 @@ void StatusFilterWidget::updateTorrentNumbers()
             ++nbActive;
         if (torrent->isInactive())
             ++nbInactive;
-        if (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
+        if ((torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
+            || (torrent->state() ==  BitTorrent::TorrentState::StalledUploadingNoWorkingTracker))
             ++nbStalledUploading;
-        if (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading)
+        if ((torrent->state() ==  BitTorrent::TorrentState::StalledDownloading)
+            || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker))
             ++nbStalledDownloading;
         if (torrent->isErrored())
             ++nbErrored;
