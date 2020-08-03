@@ -590,7 +590,9 @@ namespace BitTorrent
         void handleStateUpdateAlert(const lt::state_update_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
+#if (LIBTORRENT_VERSION_NUM < 10208)
         void handleReadPieceAlert(const lt::read_piece_alert *p) const;
+#endif
         void handleTorrentRemovedAlert(const lt::torrent_removed_alert *p);
         void handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p);
         void handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p);
