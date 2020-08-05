@@ -182,7 +182,7 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
     connect(session, &Session::torrentCategoryChanged, this, &CategoryFilterModel::torrentCategoryChanged);
     connect(session, &Session::subcategoriesSupportChanged, this, &CategoryFilterModel::subcategoriesSupportChanged);
-    connect(session, &Session::torrentAdded, this, &CategoryFilterModel::torrentAdded);
+    connect(session, &Session::torrentLoaded, this, &CategoryFilterModel::torrentAdded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &CategoryFilterModel::torrentAboutToBeRemoved);
 
     populate();
