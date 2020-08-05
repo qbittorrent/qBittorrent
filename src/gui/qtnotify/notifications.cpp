@@ -23,4 +23,3 @@ OrgFreedesktopNotificationsInterface::OrgFreedesktopNotificationsInterface(const
 OrgFreedesktopNotificationsInterface::~OrgFreedesktopNotificationsInterface()
 {
 }
-
