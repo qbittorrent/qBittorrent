@@ -68,12 +68,6 @@
 #include <QTimer>
 #include <QUuid>
 
-#ifdef Q_OS_WIN
-// TODO: Remove together with fixBrokenSavePath()
-#define NEED_TO_FIX_BROKEN_PATH
-#include <QSaveFile>
-#endif
-
 #include "base/algorithm.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -129,70 +123,18 @@ namespace
         return true;
     }
 
-#ifdef NEED_TO_FIX_BROKEN_PATH
-    // TODO: Remove this after 4.2.5 && if at least one month has passed from v4.2.3
-    // Check the commit that introduced this function and identify all other pieces of code that
-    // need removal alongside this one.
-    void fixBrokenSavePath(QByteArray &data, lt::bdecode_node &root)
-    {
-        const QString path = fromLTString(root.dict_find_string_value("save_path"));
-        const int index = path.indexOf(QLatin1String("//"));
-        if (index < 1)
-            return;
-        const QString goodPath = path.mid(index).replace('/', '\\');
-        lt::entry entry {root};
-        entry["save_path"] = goodPath.toStdString();
-
-        const auto rawView = root.dict_find_string_value("info-hash");
-        const QByteArray rawHashView = QByteArray::fromRawData(rawView.data(), rawView.length());
-        const QString hexHash = QString::fromLatin1(rawHashView.toHex());
-
-        data.clear();
-        lt::bencode(std::back_inserter(data), entry);
-
-        const QString filename = QString("%1.fastresume").arg(hexHash);
-        const QDir resumeDataDir {Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER)};
-        const QString filepath = resumeDataDir.absoluteFilePath(filename);
-
-        QSaveFile file {filepath};
-        if (file.open(QIODevice::WriteOnly)) {
-            file.write(data);
-            if (!file.commit()) {
-                Logger::instance()->addMessage(QString("Couldn't save data in '%1'. Error: %2")
-                                               .arg(filepath, file.errorString()), Log::WARNING);
-            }
-        }
-
-        lt::error_code ec;
-        root = lt::bdecode(data, ec);
-    }
-#endif
-
-#ifdef NEED_TO_FIX_BROKEN_PATH
-    // TODO: Remove together with fixBrokenSavePath()
-    bool loadTorrentResumeData(QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
-#else
-    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, int &queuePos, MagnetUri &magnetUri)
-#endif
+    bool loadTorrentResumeData(const QByteArray &data, CreateTorrentParams &torrentParams, MagnetUri &magnetUri)
     {
         lt::error_code ec;
-#if defined(NEED_TO_FIX_BROKEN_PATH)
-        // TODO: Remove together with fixBrokenSavePath()
-        lt::bdecode_node root = lt::bdecode(data, ec);
-#else
         const lt::bdecode_node root = lt::bdecode(data, ec);
-#endif
         if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
-
-#ifdef NEED_TO_FIX_BROKEN_PATH
-        fixBrokenSavePath(data, root);
-#endif
 
         torrentParams = CreateTorrentParams();
 
         torrentParams.restored = true;
         torrentParams.skipChecking = false;
         torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
+        torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
         torrentParams.savePath = Profile::instance()->fromPortablePath(
             Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
         torrentParams.disableTempPath = root.dict_find_int_value("qBt-tempPathDisabled");
@@ -213,14 +155,6 @@ namespace
         else
             torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
 
-        // **************************************************************************************
-        // Workaround to convert legacy label to category
-        // TODO: Should be removed in future
-        torrentParams.category = fromLTString(root.dict_find_string_value("qBt-label"));
-        if (torrentParams.category.isEmpty())
-        // **************************************************************************************
-            torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
-
         const lt::bdecode_node tagsNode = root.dict_find("qBt-tags");
         if (tagsNode.type() == lt::bdecode_node::list_t) {
             for (int i = 0; i < tagsNode.list_size(); ++i) {
@@ -234,7 +168,6 @@ namespace
         if (addedTimeNode.type() == lt::bdecode_node::int_t)
             torrentParams.addedTime = QDateTime::fromSecsSinceEpoch(addedTimeNode.int_value());
 
-        queuePos = root.dict_find_int_value("qBt-queuePosition");
         magnetUri = MagnetUri(fromLTString(root.dict_find_string_value("qBt-magnetUri")));
 
         return true;
@@ -4041,59 +3974,6 @@ void Session::startUpTorrents()
 
     if (isQueueingSystemEnabled()) {
         QFile queueFile {resumeDataDir.absoluteFilePath(QLatin1String {"queue"})};
-
-        // TODO: The following code is deprecated in 4.1.5. Remove after several releases in 4.2.x.
-        // === BEGIN DEPRECATED CODE === //
-        if (!queueFile.exists()) {
-            // Resume downloads in a legacy manner
-            QMap<int, TorrentResumeData> queuedResumeData;
-            int nextQueuePosition = 1;
-            int numOfRemappedFiles = 0;
-            for (const QString &fastresumeName : asConst(fastresumes)) {
-                const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
-                if (!rxMatch.hasMatch()) continue;
-
-                QString hash = rxMatch.captured(1);
-                QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
-                QByteArray data;
-                CreateTorrentParams torrentParams;
-                MagnetUri magnetUri;
-                int queuePosition;
-                if (readFile(fastresumePath, data) && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
-                    if (queuePosition <= nextQueuePosition) {
-                        startupTorrent({ hash, magnetUri, torrentParams, data });
-
-                        if (queuePosition == nextQueuePosition) {
-                            ++nextQueuePosition;
-                            while (queuedResumeData.contains(nextQueuePosition)) {
-                                startupTorrent(queuedResumeData.take(nextQueuePosition));
-                                ++nextQueuePosition;
-                            }
-                        }
-                    }
-                    else {
-                        int q = queuePosition;
-                        for (; queuedResumeData.contains(q); ++q) {}
-                        if (q != queuePosition)
-                            ++numOfRemappedFiles;
-                        queuedResumeData[q] = {hash, magnetUri, torrentParams, data};
-                    }
-                }
-            }
-
-            if (numOfRemappedFiles > 0) {
-                LogMsg(tr("Queue positions were corrected in %1 resume files").arg(numOfRemappedFiles)
-                    , Log::CRITICAL);
-            }
-
-            // starting up downloading torrents (queue position > 0)
-            for (const TorrentResumeData &torrentResumeData : asConst(queuedResumeData))
-                startupTorrent(torrentResumeData);
-
-            return;
-        }
-        // === END DEPRECATED CODE === //
-
         QStringList queue;
         if (queueFile.open(QFile::ReadOnly)) {
             QByteArray line;
@@ -4118,9 +3998,8 @@ void Session::startUpTorrents()
         QByteArray data;
         CreateTorrentParams torrentParams;
         MagnetUri magnetUri;
-        int queuePosition;
         if (readFile(fastresumePath, data)
-            && loadTorrentResumeData(data, torrentParams, queuePosition, magnetUri)) {
+            && loadTorrentResumeData(data, torrentParams, magnetUri)) {
             startupTorrent({hash, magnetUri, torrentParams, data});
         }
     }
