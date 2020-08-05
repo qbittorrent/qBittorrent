@@ -1,10 +1,10 @@
-﻿All new code **must** follow the following coding guidelines.  
-If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes.  
+All new code **must** follow the following coding guidelines.
+If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes.
 For programming languages other than C++ (e.g. JavaScript) used in this repository and submodules, unless otherwise specified, coding guidelines listed here applies as much as possible.
 
-**Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style.  
-**Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder.  
-**Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.  
+**Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style.
+**Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder.
+**Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.
 
 ### Table Of Contents
 
@@ -152,7 +152,7 @@ while (p) {
 
 #### f. Acceptable conditions to omit braces ####
 When the conditional statement in `if`/`else` has only one line and its body occupy only one line,
-this also applies to loops statements.  
+this also applies to loops statements.
 Notice that for a series of `if - else` branches, if one branch needs braces then all branches must add braces.
 ```c++
 if (a < b)  // conditional statement
@@ -266,8 +266,8 @@ The headers should be placed in the following group order:
   6. Qt headers
   7. qBittorrent's own headers, starting from the *base* headers.
 
-The headers should be ordered alphabetically within each group.  
-If there are conditionals for the same header group, then put them at the bottom of the respective group.  
+The headers should be ordered alphabetically within each group.
+If there are conditionals for the same header group, then put them at the bottom of the respective group.
 If there are conditionals that contain headers from several different header groups, then put them above the "qBittorrent's own headers" group.
 
 One exception is the header containing the library version (for example, QtGlobal), this particular header isn't constrained by the aforementioned order.
@@ -350,14 +350,14 @@ a += "b"
 
 * **auto** keyword
 
-We allow the use of the **auto** keyword only where it is strictly necessary 
+We allow the use of the **auto** keyword only where it is strictly necessary
 (for example, to declare a lambda object, etc.), or where it **enhances** the readability of the code.
-Declarations for which one can gather enough information about the object interface (type) from its name 
-or the usage pattern (an iterator or a loop variable are good examples of clear patterns) 
+Declarations for which one can gather enough information about the object interface (type) from its name
+or the usage pattern (an iterator or a loop variable are good examples of clear patterns)
 or the right part of the expression nicely fit here.<br/>
 <br/>
-When weighing whether to use an auto-typed variable please think about potential reviewers of your code, 
-who will read it as a plain diff (on github.com, for instance). Please make sure that such reviewers can 
+When weighing whether to use an auto-typed variable please think about potential reviewers of your code,
+who will read it as a plain diff (on github.com, for instance). Please make sure that such reviewers can
 understand the code completely and without excessive effort.<br/>
 <br/>
 Some valid use cases:
@@ -425,5 +425,5 @@ i++, j--;  // No
 8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)
 
 ### 11. Not covered above ###
-If something isn't covered above, just follow the same style the file you are editing has.  
+If something isn't covered above, just follow the same style the file you are editing has.
 *This guide is not exhaustive and the style for a particular piece of code not specified here will be determined by project members on code review.*
