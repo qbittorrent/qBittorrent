@@ -1,4 +1,4 @@
-﻿;Nsis translations
+;Nsis translations
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Afrikaans"
