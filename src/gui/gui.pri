@@ -169,7 +169,7 @@ unix:!macx:dbus {
     HEADERS += \
         $$PWD/powermanagement/powermanagement_x11.h \
         $$PWD/qtnotify/notifications.h
-        
+
     SOURCES += \
         $$PWD/powermanagement/powermanagement_x11.cpp \
         $$PWD/qtnotify/notifications.cpp

@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
- 
+
 	grunt.initConfig({
 		svg2png: {
 			all: {
@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 					size: 256
 				},
 				files: [
-					{ 
+					{
 						src: ['icons/*.svg']
 					}
 				]
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-svg2png');
-	
+
 	grunt.registerTask('default', ['svg2png']);
 
 }

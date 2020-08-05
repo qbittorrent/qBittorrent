@@ -49,7 +49,7 @@ class ExecutionLogWidget : public QWidget
 public:
     ExecutionLogWidget(Log::MsgTypes types, QWidget *parent);
     ~ExecutionLogWidget();
-    
+
     void setMessageTypes(Log::MsgTypes types);
 
 private:
