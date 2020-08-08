@@ -1945,7 +1945,6 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.tags = addTorrentParams.tags;
-    loadTorrentParams.disableTempPath = addTorrentParams.disableTempPath;
     loadTorrentParams.sequential = addTorrentParams.sequential;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
@@ -3895,7 +3894,6 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
     torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
     torrentParams.savePath = Profile::instance()->fromPortablePath(
         Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
-    torrentParams.disableTempPath = root.dict_find_int_value("qBt-tempPathDisabled");
     torrentParams.sequential = root.dict_find_int_value("qBt-sequential");
     torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");

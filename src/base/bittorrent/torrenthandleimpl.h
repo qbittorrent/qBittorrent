@@ -62,7 +62,6 @@ namespace BitTorrent
         QString category;
         QSet<QString> tags;
         QString savePath;
-        bool disableTempPath = false;
         bool sequential = false;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
@@ -313,7 +312,6 @@ namespace BitTorrent
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         bool m_hasSeedStatus;
-        bool m_tempPathDisabled;
         bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
         bool m_hasRootFolder;

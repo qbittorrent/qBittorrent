@@ -124,7 +124,6 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_hasSeedStatus(params.hasSeedStatus)
-    , m_tempPathDisabled(params.disableTempPath)
     , m_hasRootFolder(params.hasRootFolder)
     , m_useAutoTMM(params.savePath.isEmpty())
     , m_ltAddTorrentParams(params.ltAddTorrentParams)
@@ -1518,7 +1517,6 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
-    resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
 
     m_session->handleTorrentResumeDataReady(this, resumeDataPtr);
@@ -1815,7 +1813,7 @@ bool TorrentHandleImpl::isMoveInProgress() const
 
 bool TorrentHandleImpl::useTempPath() const
 {
-    return !m_tempPathDisabled && m_session->isTempPathEnabled() && !(isSeed() || m_hasSeedStatus);
+    return m_session->isTempPathEnabled() && !(isSeed() || m_hasSeedStatus);
 }
 
 void TorrentHandleImpl::updateStatus()
