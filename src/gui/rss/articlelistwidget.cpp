@@ -123,11 +123,15 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
     item->setData(Qt::DisplayRole, article->title());
     item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
     if (article->isRead()) {
-        item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
+        const QColor defaultColor {palette().color(QPalette::Inactive, QPalette::WindowText)};
+        const QBrush foregroundBrush {UIThemeManager::instance()->getColor("RSS.ReadArticle", defaultColor)};
+        item->setData(Qt::ForegroundRole, foregroundBrush);
         item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
     }
     else {
-        item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Active, QPalette::Link));
+        const QColor defaultColor {palette().color(QPalette::Active, QPalette::Link)};
+        const QBrush foregroundBrush {UIThemeManager::instance()->getColor("RSS.UnreadArticle", defaultColor)};
+        item->setData(Qt::ForegroundRole, foregroundBrush);
         item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
     }
 
