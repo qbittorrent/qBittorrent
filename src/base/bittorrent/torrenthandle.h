@@ -54,14 +54,20 @@ namespace BitTorrent
         Unknown = -1,
 
         ForcedDownloading,
+        ForcedDownloadingNoWorkingTracker,
         Downloading,
+        DownloadingNoWorkingTracker,
         DownloadingMetadata,
         Allocating,
         StalledDownloading,
+        StalledDownloadingNoWorkingTracker,
 
         ForcedUploading,
+        ForcedUploadingNoWorkingTracker,
         Uploading,
+        UploadingNoWorkingTracker,
         StalledUploading,
+        StalledUploadingNoWorkingTracker,
 
         CheckingResumeData,
         QueuedDownloading,

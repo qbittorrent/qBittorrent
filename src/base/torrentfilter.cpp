@@ -175,11 +175,15 @@ bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) c
         return torrent->isInactive();
     case Stalled:
         return (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
-                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledUploadingNoWorkingTracker)
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading)
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker);
     case StalledUploading:
-        return torrent->state() ==  BitTorrent::TorrentState::StalledUploading;
+        return (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledUploadingNoWorkingTracker);
     case StalledDownloading:
-        return torrent->state() ==  BitTorrent::TorrentState::StalledDownloading;
+        return (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading)
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker);
     case Errored:
         return torrent->isErrored();
     default: // All

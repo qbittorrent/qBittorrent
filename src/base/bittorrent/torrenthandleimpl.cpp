@@ -162,6 +162,7 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     , m_tempPathDisabled(params.disableTempPath)
     , m_hasRootFolder(params.hasRootFolder)
     , m_useAutoTMM(params.savePath.isEmpty())
+    , m_hasWorkingTracker(hasWorkingTracker())
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
@@ -378,6 +379,21 @@ QVector<TrackerEntry> TorrentHandleImpl::trackers() const
     return entries;
 }
 
+bool TorrentHandleImpl::hasWorkingTracker() const
+{
+    const QVector<TrackerEntry> trackerList = trackers();
+
+    if (trackerList.empty())
+        return true;
+
+    for (const auto &tracker : trackerList) {
+         if (tracker.status() != TrackerEntry::NotWorking)
+             return true;
+    }
+
+    return false;
+}
+
 QHash<QString, TrackerInfo> TorrentHandleImpl::trackerInfos() const
 {
     return m_trackerInfos;
@@ -396,11 +412,14 @@ void TorrentHandleImpl::addTrackers(const QVector<TrackerEntry> &trackers)
         if (!currentTrackers.contains(tracker)) {
             m_nativeHandle.add_tracker(tracker.nativeEntry());
             newTrackers << tracker;
+            m_hasWorkingTracker = hasWorkingTracker();
         }
     }
 
-    if (!newTrackers.isEmpty())
+    if (!newTrackers.isEmpty()) {
+        m_hasWorkingTracker = hasWorkingTracker();
         m_session->handleTorrentTrackersAdded(this, newTrackers);
+    }
 }
 
 void TorrentHandleImpl::replaceTrackers(const QVector<TrackerEntry> &trackers)
@@ -438,6 +457,8 @@ void TorrentHandleImpl::replaceTrackers(const QVector<TrackerEntry> &trackers)
         if (isPrivate())
             clearPeers();
     }
+
+    m_hasWorkingTracker = hasWorkingTracker();
 }
 
 QVector<QUrl> TorrentHandleImpl::urlSeeds() const
@@ -707,43 +728,57 @@ bool TorrentHandleImpl::isChecking() const
 bool TorrentHandleImpl::isDownloading() const
 {
     return m_state == TorrentState::Downloading
+            || m_state == TorrentState::DownloadingNoWorkingTracker
             || m_state == TorrentState::DownloadingMetadata
             || m_state == TorrentState::StalledDownloading
+            || m_state == TorrentState::StalledDownloadingNoWorkingTracker
             || m_state == TorrentState::CheckingDownloading
             || m_state == TorrentState::PausedDownloading
             || m_state == TorrentState::QueuedDownloading
-            || m_state == TorrentState::ForcedDownloading;
+            || m_state == TorrentState::ForcedDownloading
+            || m_state == TorrentState::ForcedDownloadingNoWorkingTracker;
 }
 
 bool TorrentHandleImpl::isUploading() const
 {
     return m_state == TorrentState::Uploading
+            || m_state == TorrentState::UploadingNoWorkingTracker
             || m_state == TorrentState::StalledUploading
+            || m_state == TorrentState::StalledUploadingNoWorkingTracker
             || m_state == TorrentState::CheckingUploading
             || m_state == TorrentState::QueuedUploading
-            || m_state == TorrentState::ForcedUploading;
+            || m_state == TorrentState::ForcedUploading
+            || m_state == TorrentState::ForcedUploadingNoWorkingTracker;
 }
 
 bool TorrentHandleImpl::isCompleted() const
 {
     return m_state == TorrentState::Uploading
+            || m_state == TorrentState::UploadingNoWorkingTracker
             || m_state == TorrentState::StalledUploading
+            || m_state == TorrentState::StalledUploadingNoWorkingTracker
             || m_state == TorrentState::CheckingUploading
             || m_state == TorrentState::PausedUploading
             || m_state == TorrentState::QueuedUploading
-            || m_state == TorrentState::ForcedUploading;
+            || m_state == TorrentState::ForcedUploading
+            || m_state == TorrentState::ForcedUploadingNoWorkingTracker;
 }
 
 bool TorrentHandleImpl::isActive() const
 {
-    if (m_state == TorrentState::StalledDownloading)
+    if ((m_state == TorrentState::StalledDownloading)
+        || (m_state == TorrentState::StalledDownloadingNoWorkingTracker))
         return (uploadPayloadRate() > 0);
 
     return m_state == TorrentState::DownloadingMetadata
             || m_state == TorrentState::Downloading
+            || m_state == TorrentState::DownloadingNoWorkingTracker
             || m_state == TorrentState::ForcedDownloading
+            || m_state == TorrentState::ForcedDownloadingNoWorkingTracker
             || m_state == TorrentState::Uploading
+            || m_state == TorrentState::UploadingNoWorkingTracker
             || m_state == TorrentState::ForcedUploading
+            || m_state == TorrentState::ForcedUploadingNoWorkingTracker
             || m_state == TorrentState::Moving;
 }
 
@@ -836,7 +871,13 @@ void TorrentHandleImpl::updateState()
         switch (m_nativeStatus.state) {
         case lt::torrent_status::finished:
         case lt::torrent_status::seeding:
-            if (isForced())
+            if (isPrivate() && !m_hasWorkingTracker) {
+                if (isForced())
+                    m_state = TorrentState::ForcedUploadingNoWorkingTracker;
+                else
+                    m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::UploadingNoWorkingTracker : TorrentState::StalledUploadingNoWorkingTracker;
+            }
+            else if (isForced())
                 m_state = TorrentState::ForcedUploading;
             else
                 m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
@@ -845,7 +886,13 @@ void TorrentHandleImpl::updateState()
             m_state = TorrentState::DownloadingMetadata;
             break;
         case lt::torrent_status::downloading:
-            if (isForced())
+            if (isPrivate() && !m_hasWorkingTracker) {
+                if (isForced())
+                    m_state = TorrentState::ForcedDownloadingNoWorkingTracker;
+                else
+                    m_state = m_nativeStatus.download_payload_rate > 0 ? TorrentState::DownloadingNoWorkingTracker : TorrentState::StalledDownloadingNoWorkingTracker;
+            }
+            else if (isForced())
                 m_state = TorrentState::ForcedDownloading;
             else
                 m_state = m_nativeStatus.download_payload_rate > 0 ? TorrentState::Downloading : TorrentState::StalledDownloading;
@@ -1400,6 +1447,7 @@ void TorrentHandleImpl::handleTrackerReplyAlert(const lt::tracker_reply_alert *p
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
     m_trackerInfos[trackerUrl] = {{}, p->num_peers};
+    m_hasWorkingTracker = hasWorkingTracker();
 
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }
@@ -1430,8 +1478,10 @@ void TorrentHandleImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p
     {
         return (entry.url() == trackerUrl);
     });
-    if ((iter != trackerList.cend()) && (iter->status() == TrackerEntry::NotWorking))
+    if ((iter != trackerList.cend()) && (iter->status() == TrackerEntry::NotWorking)) {
         m_session->handleTorrentTrackerError(this, trackerUrl);
+        m_hasWorkingTracker = hasWorkingTracker();
+    }
 }
 
 void TorrentHandleImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)

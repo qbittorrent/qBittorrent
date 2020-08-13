@@ -172,6 +172,7 @@ namespace BitTorrent
         bool hasFilteredPieces() const override;
         int queuePosition() const override;
         QVector<TrackerEntry> trackers() const override;
+        bool hasWorkingTracker() const;
         QHash<QString, TrackerInfo> trackerInfos() const override;
         QVector<QUrl> urlSeeds() const override;
         QString error() const override;
@@ -327,6 +328,7 @@ namespace BitTorrent
         bool m_hasRootFolder;
         bool m_needsToSetFirstLastPiecePriority = false;
         bool m_useAutoTMM;
+        bool m_hasWorkingTracker;
 
         bool m_unchecked = false;
     };

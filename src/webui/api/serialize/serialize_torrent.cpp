@@ -45,20 +45,24 @@ namespace
         case BitTorrent::TorrentState::MissingFiles:
             return QLatin1String("missingFiles");
         case BitTorrent::TorrentState::Uploading:
+        case BitTorrent::TorrentState::UploadingNoWorkingTracker:
             return QLatin1String("uploading");
         case BitTorrent::TorrentState::PausedUploading:
             return QLatin1String("pausedUP");
         case BitTorrent::TorrentState::QueuedUploading:
             return QLatin1String("queuedUP");
         case BitTorrent::TorrentState::StalledUploading:
+        case BitTorrent::TorrentState::StalledUploadingNoWorkingTracker:
             return QLatin1String("stalledUP");
         case BitTorrent::TorrentState::CheckingUploading:
             return QLatin1String("checkingUP");
         case BitTorrent::TorrentState::ForcedUploading:
+        case BitTorrent::TorrentState::ForcedUploadingNoWorkingTracker:
             return QLatin1String("forcedUP");
         case BitTorrent::TorrentState::Allocating:
             return QLatin1String("allocating");
         case BitTorrent::TorrentState::Downloading:
+        case BitTorrent::TorrentState::DownloadingNoWorkingTracker:
             return QLatin1String("downloading");
         case BitTorrent::TorrentState::DownloadingMetadata:
             return QLatin1String("metaDL");
@@ -67,10 +71,12 @@ namespace
         case BitTorrent::TorrentState::QueuedDownloading:
             return QLatin1String("queuedDL");
         case BitTorrent::TorrentState::StalledDownloading:
+        case BitTorrent::TorrentState::StalledDownloadingNoWorkingTracker:
             return QLatin1String("stalledDL");
         case BitTorrent::TorrentState::CheckingDownloading:
             return QLatin1String("checkingDL");
         case BitTorrent::TorrentState::ForcedDownloading:
+        case BitTorrent::TorrentState::ForcedDownloadingNoWorkingTracker:
             return QLatin1String("forcedDL");
         case BitTorrent::TorrentState::CheckingResumeData:
             return QLatin1String("checkingResumeData");
