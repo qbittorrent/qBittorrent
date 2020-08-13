@@ -137,7 +137,7 @@ TransferListModel::TransferListModel(QObject *parent)
         addTorrent(torrent);
 
     // Listen for torrent changes
-    connect(Session::instance(), &Session::torrentAdded, this, &TransferListModel::addTorrent);
+    connect(Session::instance(), &Session::torrentLoaded, this, &TransferListModel::addTorrent);
     connect(Session::instance(), &Session::torrentAboutToBeRemoved, this, &TransferListModel::handleTorrentAboutToBeRemoved);
     connect(Session::instance(), &Session::torrentsUpdated, this, &TransferListModel::handleTorrentsUpdated);
 

@@ -57,7 +57,6 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/tristatebool.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "common.h"
@@ -111,44 +110,10 @@ namespace
     }
 }
 
-// CreateTorrentParams
-
-CreateTorrentParams::CreateTorrentParams(const AddTorrentParams &params)
-    : name(params.name)
-    , category(params.category)
-    , tags(params.tags)
-    , savePath(params.savePath)
-    , uploadLimit(params.uploadLimit)
-    , downloadLimit(params.downloadLimit)
-    , disableTempPath(params.disableTempPath)
-    , sequential(params.sequential)
-    , firstLastPiecePriority(params.firstLastPiecePriority)
-    , hasSeedStatus(params.skipChecking) // do not react on 'torrent_finished_alert' when skipping
-    , skipChecking(params.skipChecking)
-    , hasRootFolder(params.createSubfolder == TriStateBool::Undefined
-                    ? Session::instance()->isKeepTorrentTopLevelFolder()
-                    : params.createSubfolder == TriStateBool::True)
-    , forced(params.addForced == TriStateBool::True)
-    , paused(params.addPaused == TriStateBool::Undefined
-                ? Session::instance()->isAddTorrentPaused()
-                : params.addPaused == TriStateBool::True)
-    , filePriorities(params.filePriorities)
-    , ratioLimit(params.ignoreShareLimits ? TorrentHandleImpl::NO_RATIO_LIMIT : TorrentHandleImpl::USE_GLOBAL_RATIO)
-    , seedingTimeLimit(params.ignoreShareLimits ? TorrentHandleImpl::NO_SEEDING_TIME_LIMIT : TorrentHandleImpl::USE_GLOBAL_SEEDING_TIME)
-{
-    bool useAutoTMM = (params.useAutoTMM == TriStateBool::Undefined
-                       ? !Session::instance()->isAutoTMMDisabledByDefault()
-                       : params.useAutoTMM == TriStateBool::True);
-    if (useAutoTMM)
-        savePath = "";
-    else if (savePath.trimmed().isEmpty())
-        savePath = Session::instance()->defaultSavePath();
-}
-
 // TorrentHandleImpl
 
 TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
-                                     const CreateTorrentParams &params)
+                                     const LoadTorrentParams &params)
     : QObject(session)
     , m_session(session)
     , m_nativeHandle(nativeHandle)
@@ -159,9 +124,9 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_hasSeedStatus(params.hasSeedStatus)
-    , m_tempPathDisabled(params.disableTempPath)
     , m_hasRootFolder(params.hasRootFolder)
     , m_useAutoTMM(params.savePath.isEmpty())
+    , m_ltAddTorrentParams(params.ltAddTorrentParams)
 {
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
@@ -1505,18 +1470,36 @@ void TorrentHandleImpl::handleTorrentResumedAlert(const lt::torrent_resumed_aler
 
 void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
-    const bool useDummyResumeData = !p;
-    auto resumeDataPtr = std::make_shared<lt::entry>(useDummyResumeData
-        ? lt::entry {}
-        : lt::write_resume_data(p->params));
-    lt::entry &resumeData = *resumeDataPtr;
+    if (p && !m_hasMissingFiles) {
+        // Update recent resume data
+        m_ltAddTorrentParams = p->params;
+    }
 
     updateStatus();
 
+    m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
+    m_ltAddTorrentParams.save_path = Profile::instance()->toPortablePath(
+                QString::fromStdString(m_ltAddTorrentParams.save_path)).toStdString();
+    if (!m_hasMissingFiles) {
+        m_ltAddTorrentParams.flags = m_nativeStatus.flags;
+        if (m_nativeStatus.flags & lt::torrent_flags::stop_when_ready) {
+            // We need to redefine these values when torrent starting/rechecking
+            // in "paused" state since native values can be logically wrong
+            // (torrent can be not paused and auto_managed when it is checking).
+            m_ltAddTorrentParams.flags |= lt::torrent_flags::paused;
+            m_ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
+            m_ltAddTorrentParams.flags &= ~lt::torrent_flags::stop_when_ready;
+        }
+    }
+
+    auto resumeDataPtr = std::make_shared<lt::entry>(lt::write_resume_data(m_ltAddTorrentParams));
+    lt::entry &resumeData = *resumeDataPtr;
+
+    // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
+    // === BEGIN DEPRECATED CODE === //
+    const bool useDummyResumeData = !p;
     if (useDummyResumeData) {
         resumeData["qBt-magnetUri"] = createMagnetURI().toStdString();
-        resumeData["paused"] = isPaused();
-        resumeData["auto_managed"] = isAutoManaged();
         // Both firstLastPiecePriority and sequential need to be stored in the
         // resume data if there is no metadata, otherwise they won't be
         // restored if qBittorrent quits before the metadata are retrieved:
@@ -1525,10 +1508,8 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
 
         resumeData["qBt-addedTime"] = addedTime().toSecsSinceEpoch();
     }
-    else {
-        const auto savePath = resumeData.find_key("save_path")->string();
-        resumeData["save_path"] = Profile::instance()->toPortablePath(QString::fromStdString(savePath)).toStdString();
-    }
+    // === END DEPRECATED CODE === //
+
     resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Profile::instance()->toPortablePath(m_savePath).toStdString();
     resumeData["qBt-ratioLimit"] = static_cast<int>(m_ratioLimit * 1000);
     resumeData["qBt-seedingTimeLimit"] = m_seedingTimeLimit;
@@ -1536,33 +1517,19 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
-    resumeData["qBt-tempPathDisabled"] = m_tempPathDisabled;
-    resumeData["qBt-queuePosition"] = (static_cast<int>(nativeHandle().queue_position()) + 1); // qBt starts queue at 1
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
-
-    if (m_nativeStatus.flags & lt::torrent_flags::stop_when_ready) {
-        // We need to redefine these values when torrent starting/rechecking
-        // in "paused" state since native values can be logically wrong
-        // (torrent can be not paused and auto_managed when it is checking).
-        resumeData["paused"] = true;
-        resumeData["auto_managed"] = false;
-    }
 
     m_session->handleTorrentResumeDataReady(this, resumeDataPtr);
 }
 
 void TorrentHandleImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p)
 {
-    // if torrent has no metadata we should save dummy fastresume data
-    // containing Magnet URI and qBittorrent own resume data only
-    if (p->error.value() == lt::errors::no_metadata) {
-        handleSaveResumeDataAlert(nullptr);
-    }
-    else {
-        LogMsg(tr("Save resume data failed. Torrent: \"%1\", error: \"%2\"")
-            .arg(name(), QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
-        m_session->handleTorrentResumeDataFailed(this);
-    }
+    Q_UNUSED(p);
+
+    // if torrent has no metadata libtorrent doesn't generate "fastresume" data
+    // so we should save dummy "fastresume" data containing the values used to
+    // load torrent and qBittorrent own resume data
+    handleSaveResumeDataAlert(nullptr);
 }
 
 void TorrentHandleImpl::handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p)
@@ -1846,7 +1813,7 @@ bool TorrentHandleImpl::isMoveInProgress() const
 
 bool TorrentHandleImpl::useTempPath() const
 {
-    return !m_tempPathDisabled && m_session->isTempPathEnabled() && !(isSeed() || m_hasSeedStatus);
+    return m_session->isTempPathEnabled() && !(isSeed() || m_hasSeedStatus);
 }
 
 void TorrentHandleImpl::updateStatus()

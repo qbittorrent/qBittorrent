@@ -98,7 +98,7 @@ TagFilterModel::TagFilterModel(QObject *parent)
     connect(session, &Session::tagRemoved, this, &TagFilterModel::tagRemoved);
     connect(session, &Session::torrentTagAdded, this, &TagFilterModel::torrentTagAdded);
     connect(session, &Session::torrentTagRemoved, this, &TagFilterModel::torrentTagRemoved);
-    connect(session, &Session::torrentAdded, this, &TagFilterModel::torrentAdded);
+    connect(session, &Session::torrentLoaded, this, &TagFilterModel::torrentAdded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &TagFilterModel::torrentAboutToBeRemoved);
     populate();
 }

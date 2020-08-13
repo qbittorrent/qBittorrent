@@ -120,7 +120,7 @@ BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transfer
     connect(this, &BaseFilterWidget::customContextMenuRequested, this, &BaseFilterWidget::showMenu);
     connect(this, &BaseFilterWidget::currentRowChanged, this, &BaseFilterWidget::applyFilter);
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentLoaded
             , this, &BaseFilterWidget::handleNewTorrent);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved
             , this, &BaseFilterWidget::torrentAboutToBeDeleted);
@@ -155,7 +155,7 @@ void BaseFilterWidget::toggleFilter(bool checked)
 StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *transferList)
     : BaseFilterWidget(parent, transferList)
 {
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentLoaded
             , this, &StatusFilterWidget::updateTorrentNumbers);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
             , this, &StatusFilterWidget::updateTorrentNumbers);

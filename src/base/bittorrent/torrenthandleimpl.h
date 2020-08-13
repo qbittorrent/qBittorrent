@@ -31,6 +31,7 @@
 
 #include <functional>
 
+#include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
@@ -53,35 +54,25 @@ namespace BitTorrent
     class Session;
     struct AddTorrentParams;
 
-    struct CreateTorrentParams
+    struct LoadTorrentParams
     {
-        CreateTorrentParams() = default;
-        explicit CreateTorrentParams(const AddTorrentParams &params);
+        lt::add_torrent_params ltAddTorrentParams {};
 
-        // for both new and restored torrents
         QString name;
         QString category;
         QSet<QString> tags;
         QString savePath;
-        int uploadLimit = -1;
-        int downloadLimit = -1;
-        bool disableTempPath = false;
         bool sequential = false;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
-        bool skipChecking = false;
         bool hasRootFolder = true;
         bool forced = false;
         bool paused = false;
-        bool restored = false;  // is existing torrent job?
 
-        // for new torrents
-        QVector<DownloadPriority> filePriorities;
-        QDateTime addedTime;
-
-        // for restored torrents
         qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
         int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
+
+        bool restored = false;  // is existing torrent job?
     };
 
     enum class MoveStorageMode
@@ -97,7 +88,7 @@ namespace BitTorrent
 
     public:
         TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
-                          const CreateTorrentParams &params);
+                          const LoadTorrentParams &params);
         ~TorrentHandleImpl() override;
 
         bool isValid() const;
@@ -321,7 +312,6 @@ namespace BitTorrent
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         bool m_hasSeedStatus;
-        bool m_tempPathDisabled;
         bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
@@ -329,5 +319,7 @@ namespace BitTorrent
         bool m_useAutoTMM;
 
         bool m_unchecked = false;
+
+        lt::add_torrent_params m_ltAddTorrentParams;
     };
 }
