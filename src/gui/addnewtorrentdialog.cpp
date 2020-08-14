@@ -591,20 +591,20 @@ void AddNewTorrentDialog::reject()
     QDialog::reject();
 }
 
-void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &info)
+void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata)
 {
-    if (info.hash() != m_hash) return;
+    if (metadata.hash() != m_magnetURI.hash()) return;
 
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
 
-    if (!info.isValid()) {
+    if (!metadata.isValid()) {
         RaisedMessageBox::critical(this, tr("I/O Error"), ("Invalid metadata."));
         setMetadataProgressIndicator(false, tr("Invalid metadata"));
         return;
     }
 
     // Good to go
-    m_torrentInfo = info;
+    m_torrentInfo = metadata;
     m_hasMetadata = true;
     setMetadataProgressIndicator(true, tr("Parsing metadata..."));
 
