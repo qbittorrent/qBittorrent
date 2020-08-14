@@ -98,7 +98,9 @@ void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
     auto item = mapRSSArticle(rssArticle);
     if (!item) return;
 
-    item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
+    const QColor defaultColor {palette().color(QPalette::Inactive, QPalette::WindowText)};
+    const QBrush foregroundBrush {UIThemeManager::instance()->getColor("RSS.ReadArticle", defaultColor)};
+    item->setData(Qt::ForegroundRole, foregroundBrush);
     item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
 
     checkInvariant();
