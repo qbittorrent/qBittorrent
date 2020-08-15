@@ -47,8 +47,6 @@ public:
 
     void setProgress(const QBitArray &pieces, const QBitArray &downloadedPieces);
 
-    void setColors(const QColor &background, const QColor &border, const QColor &complete, const QColor &incomplete);
-
     // PiecesBar interface
     void clear() override;
 

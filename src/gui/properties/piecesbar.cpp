@@ -112,9 +112,6 @@ namespace
 PiecesBar::PiecesBar(QWidget *parent)
     : QWidget {parent}
     , m_torrent {nullptr}
-    , m_borderColor {palette().color(QPalette::Dark)}
-    , m_bgColor {Qt::white}
-    , m_pieceColor {Qt::blue}
     , m_hovered {false}
 {
     updatePieceColors();
@@ -132,16 +129,6 @@ void PiecesBar::clear()
 {
     m_image = QImage();
     update();
-}
-
-void PiecesBar::setColors(const QColor &background, const QColor &border, const QColor &complete)
-{
-    m_bgColor = background;
-    m_borderColor = border;
-    m_pieceColor = complete;
-
-    updatePieceColors();
-    requestImageUpdate();
 }
 
 bool PiecesBar::event(QEvent *e)
@@ -181,7 +168,7 @@ void PiecesBar::paintEvent(QPaintEvent *)
     QPainter painter(this);
     QRect imageRect(borderWidth, borderWidth, width() - 2 * borderWidth, height() - 2 * borderWidth);
     if (m_image.isNull()) {
-        painter.setBrush(Qt::white);
+        painter.setBrush(backgroundColor());
         painter.drawRect(imageRect);
     }
     else {
@@ -199,7 +186,7 @@ void PiecesBar::paintEvent(QPaintEvent *)
 
     QPainterPath border;
     border.addRect(0, 0, width(), height());
-    painter.setPen(m_borderColor);
+    painter.setPen(borderColor());
     painter.drawPath(border);
 }
 
@@ -211,17 +198,22 @@ void PiecesBar::requestImageUpdate()
 
 QColor PiecesBar::backgroundColor() const
 {
-    return m_bgColor;
+    return palette().color(QPalette::Base);
 }
 
 QColor PiecesBar::borderColor() const
 {
-    return m_borderColor;
+    return palette().color(QPalette::Dark);
 }
 
 QColor PiecesBar::pieceColor() const
 {
-    return m_pieceColor;
+    return palette().color(QPalette::Highlight);
+}
+
+QColor PiecesBar::colorBoxBorderColor() const
+{
+    return palette().color(QPalette::ToolTipText);
 }
 
 const QVector<QRgb> &PiecesBar::pieceColors() const
@@ -326,6 +318,6 @@ void PiecesBar::updatePieceColors()
     m_pieceColors = QVector<QRgb>(256);
     for (int i = 0; i < 256; ++i) {
         float ratio = (i / 255.0);
-        m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), m_pieceColor.rgb(), ratio);
+        m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), pieceColor().rgb(), ratio);
     }
 }

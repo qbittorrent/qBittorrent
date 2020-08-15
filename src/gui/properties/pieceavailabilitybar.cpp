@@ -127,7 +127,7 @@ bool PieceAvailabilityBar::updateImage(QImage &image)
     }
 
     if (m_pieces.empty()) {
-        image2.fill(Qt::white);
+        image2.fill(backgroundColor());
         image = image2;
         return true;
     }
@@ -158,6 +158,10 @@ void PieceAvailabilityBar::clear()
 
 QString PieceAvailabilityBar::simpleToolTipText() const
 {
-    return tr("White: Unavailable pieces") + '\n'
-           + tr("Blue: Available pieces") + '\n';
+    const QString borderColor = colorBoxBorderColor().name();
+    const QString rowHTML = QString::fromLatin1("<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>");
+    return QLatin1String("<table cellspacing=4>")
+           + rowHTML.arg(backgroundColor().name(), borderColor, tr("Unavailable pieces"))
+           + rowHTML.arg(pieceColor().name(), borderColor, tr("Available pieces"))
+           + QLatin1String("</table>");
 }

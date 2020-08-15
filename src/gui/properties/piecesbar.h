@@ -51,7 +51,6 @@ public:
     explicit PiecesBar(QWidget *parent = nullptr);
 
     void setTorrent(const BitTorrent::TorrentHandle *torrent);
-    void setColors(const QColor &background, const QColor &border, const QColor &complete);
 
     virtual void clear();
 
@@ -70,6 +69,7 @@ protected:
     QColor backgroundColor() const;
     QColor borderColor() const;
     QColor pieceColor() const;
+    QColor colorBoxBorderColor() const;
     const QVector<QRgb> &pieceColors() const;
 
     // mix two colors by light model, ratio <0, 1>
@@ -90,13 +90,6 @@ private:
 
     const BitTorrent::TorrentHandle *m_torrent;
     QImage m_image;
-    // I used values, because it should be possible to change colors at run time
-    // border color
-    QColor m_borderColor;
-    // background color
-    QColor m_bgColor;
-    // complete piece color
-    QColor m_pieceColor;
     // buffered 256 levels gradient from bg_color to piece_color
     QVector<QRgb> m_pieceColors;
     bool m_hovered;
