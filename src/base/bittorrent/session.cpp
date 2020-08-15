@@ -375,6 +375,9 @@ Session::Session(QObject *parent)
     , m_isDisableAutoTMMWhenDefaultSavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/DefaultSavePathChanged"), true)
     , m_isDisableAutoTMMWhenCategorySavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategorySavePathChanged"), true)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
+    , m_peerTurnover(BITTORRENT_SESSION_KEY("PeerTurnover"), 4)
+    , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY("PeerTurnoverCutOff"), 90)
+    , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY("PeerTurnoverInterval"), 300)
     , m_bannedIPs("State/BannedIPs"
                   , QStringList()
                   , [](const QStringList &value)
@@ -1207,6 +1210,10 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
 
     settingsPack.set_bool(lt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
+
+    settingsPack.set_int(lt::settings_pack::peer_turnover, peerTurnover());
+    settingsPack.set_int(lt::settings_pack::peer_turnover_cutoff, peerTurnoverCutoff());
+    settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
@@ -2932,6 +2939,48 @@ void Session::setAnnounceToAllTiers(const bool val)
         m_announceToAllTiers = val;
         configureDeferred();
     }
+}
+
+int Session::peerTurnover() const
+{
+    return m_peerTurnover;
+}
+
+void Session::setPeerTurnover(const int val)
+{
+    if (val == m_peerTurnover)
+        return;
+
+    m_peerTurnover = val;
+    configureDeferred();
+}
+
+int Session::peerTurnoverCutoff() const
+{
+    return m_peerTurnoverCutoff;
+}
+
+void Session::setPeerTurnoverCutoff(const int val)
+{
+    if (val == m_peerTurnoverCutoff)
+        return;
+
+    m_peerTurnoverCutoff = val;
+    configureDeferred();
+}
+
+int Session::peerTurnoverInterval() const
+{
+    return m_peerTurnoverInterval;
+}
+
+void Session::setPeerTurnoverInterval(const int val)
+{
+    if (val == m_peerTurnoverInterval)
+        return;
+    
+    m_peerTurnoverInterval = val;
+    configureDeferred();
 }
 
 int Session::asyncIOThreads() const

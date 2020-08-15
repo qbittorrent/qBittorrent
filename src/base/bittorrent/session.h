@@ -334,6 +334,12 @@ namespace BitTorrent
         void setAnnounceToAllTrackers(bool val);
         bool announceToAllTiers() const;
         void setAnnounceToAllTiers(bool val);
+        int peerTurnover() const;
+        void setPeerTurnover(int num);
+        int peerTurnoverCutoff() const;
+        void setPeerTurnoverCutoff(int num);
+        int peerTurnoverInterval() const;
+        void setPeerTurnoverInterval(int num);
         int asyncIOThreads() const;
         void setAsyncIOThreads(int num);
         int filePoolSize() const;
@@ -717,6 +723,9 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isDisableAutoTMMWhenDefaultSavePathChanged;
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategorySavePathChanged;
         CachedSettingValue<bool> m_isTrackerEnabled;
+        CachedSettingValue<int> m_peerTurnover;
+        CachedSettingValue<int> m_peerTurnoverCutoff;
+        CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<QStringList> m_bannedIPs;
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
