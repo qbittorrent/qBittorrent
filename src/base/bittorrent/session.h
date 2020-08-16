@@ -54,6 +54,8 @@
 #define HAS_HTTPS_TRACKER_VALIDATION
 #endif
 
+constexpr std::chrono::milliseconds STATS_UPDATE_INTERVAL {1000};
+
 class QFile;
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
@@ -534,7 +536,6 @@ namespace BitTorrent
     private slots:
         void configureDeferred();
         void readAlerts();
-        void enqueueRefresh();
         void processShareLimits();
         void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
@@ -749,7 +750,6 @@ namespace BitTorrent
         QString m_resumeFolderPath;
         QFile *m_resumeFolderLock = nullptr;
 
-        bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
         Statistics *m_statistics = nullptr;

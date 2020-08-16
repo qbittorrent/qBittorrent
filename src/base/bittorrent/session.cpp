@@ -483,7 +483,6 @@ Session::Session(QObject *parent)
 
     m_tags = List::toSet(m_storedTags.value());
 
-    enqueueRefresh();
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
 
@@ -523,6 +522,12 @@ Session::Session(QObject *parent)
     new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
+
+    QTimer::singleShot(1000, this, [this]()
+    {
+        m_nativeSession->post_torrent_updates();
+        m_nativeSession->post_session_stats();
+    });
 }
 
 bool Session::isDHTEnabled() const
@@ -4406,19 +4411,6 @@ quint64 Session::getAlltimeUL() const
     return m_statistics->getAlltimeUL();
 }
 
-void Session::enqueueRefresh()
-{
-    Q_ASSERT(!m_refreshEnqueued);
-
-    QTimer::singleShot(refreshInterval(), this, [this] ()
-    {
-        m_nativeSession->post_torrent_updates();
-        m_nativeSession->post_session_stats();
-    });
-
-    m_refreshEnqueued = true;
-}
-
 void Session::handleIPFilterParsed(const int ruleCount)
 {
     if (m_filterParser)
@@ -4905,10 +4897,10 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
     emit statsUpdated();
 
-    if (m_refreshEnqueued)
-        m_refreshEnqueued = false;
-    else
-        enqueueRefresh();
+    QTimer::singleShot(STATS_UPDATE_INTERVAL, this, [this]()
+    {
+        m_nativeSession->post_session_stats();
+    });
 }
 
 void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
@@ -4978,10 +4970,10 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
 
-    if (m_refreshEnqueued)
-        m_refreshEnqueued = false;
-    else
-        enqueueRefresh();
+    QTimer::singleShot(refreshInterval(), this, [this]()
+    {
+        m_nativeSession->post_torrent_updates();
+    });
 }
 
 void Session::handleSocks5Alert(const lt::socks5_alert *p) const
