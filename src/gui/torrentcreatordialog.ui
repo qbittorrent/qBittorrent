@@ -18,332 +18,369 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Select file/folder to share</string>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Path:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="textInputPath">
-          <property name="acceptDrops">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>[Drag and drop area]</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="addFileButton">
-          <property name="text">
-           <string>Select file</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="addFolderButton">
-          <property name="text">
-           <string>Select folder</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Settings</string>
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QHBoxLayout" name="pieceSizeLayout">
-        <item>
-         <widget class="QLabel" name="txtPieceSize">
-          <property name="text">
-           <string>Piece size:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboPieceSize">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <property name="minimumContentsLength">
-           <number>7</number>
-          </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>574</width>
+        <height>649</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Select file/folder to share</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <property name="text">
-            <string>Auto</string>
-           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Path:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="textInputPath">
+              <property name="acceptDrops">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <property name="text">
-            <string>16 KiB</string>
-           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>[Drag and drop area]</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="addFileButton">
+              <property name="text">
+               <string>Select file</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="addFolderButton">
+              <property name="text">
+               <string>Select folder</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>Settings</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QHBoxLayout" name="pieceSizeLayout">
+            <item>
+             <widget class="QLabel" name="txtPieceSize">
+              <property name="text">
+               <string>Piece size:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboPieceSize">
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <property name="minimumContentsLength">
+               <number>7</number>
+              </property>
+              <item>
+               <property name="text">
+                <string>Auto</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>16 KiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>32 KiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>64 KiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>128 KiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>256 KiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>512 KiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>1 MiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>2 MiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>4 MiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>8 MiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>16 MiB</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>32 MiB</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="buttonCalcTotalPieces">
+              <property name="text">
+               <string>Calculate number of pieces:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelTotalPieces">
+              <property name="text">
+               <string notr="true">0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="spacer1">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
           <item>
-           <property name="text">
-            <string>32 KiB</string>
-           </property>
+           <widget class="QCheckBox" name="checkPrivate">
+            <property name="text">
+             <string>Private torrent (Won't distribute on DHT network)</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <property name="text">
-            <string>64 KiB</string>
-           </property>
+           <widget class="QCheckBox" name="checkStartSeeding">
+            <property name="text">
+             <string>Start seeding immediately</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item>
-           <property name="text">
-            <string>128 KiB</string>
-           </property>
+           <widget class="QCheckBox" name="checkIgnoreShareLimits">
+            <property name="text">
+             <string>Ignore share ratio limits for this torrent</string>
+            </property>
+           </widget>
           </item>
           <item>
-           <property name="text">
-            <string>256 KiB</string>
-           </property>
+           <widget class="QGroupBox" name="checkOptimizeAlignment">
+            <property name="title">
+             <string>Optimize alignment</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
+               <item>
+                <widget class="QLabel" name="lblPaddedFileSizeLimit">
+                 <property name="text">
+                  <string>Align to piece boundary for files larger than:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinPaddedFileSizeLimit">
+                 <property name="specialValueText">
+                  <string>Disabled</string>
+                 </property>
+                 <property name="suffix">
+                  <string> KiB</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>2147483647</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>512 KiB</string>
-           </property>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Fields</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="1">
+           <widget class="QTextEdit" name="trackersList">
+            <property name="toolTip">
+             <string>You can separate tracker tiers / groups with an empty line.</string>
+            </property>
+            <property name="acceptRichText">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>1 MiB</string>
-           </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="urlSeeds_lbl">
+            <property name="text">
+             <string>Web seed URLs:</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>2 MiB</string>
-           </property>
+          <item row="1" column="1">
+           <widget class="QTextEdit" name="URLSeedsList">
+            <property name="acceptRichText">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>4 MiB</string>
-           </property>
+          <item row="2" column="1">
+           <widget class="QTextEdit" name="txtComment">
+            <property name="acceptRichText">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>8 MiB</string>
-           </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_announce_url">
+            <property name="text">
+             <string>Tracker URLs:</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>16 MiB</string>
-           </property>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lbl_comment">
+            <property name="text">
+             <string>Comments:</string>
+            </property>
+           </widget>
           </item>
-          <item>
-           <property name="text">
-            <string>32 MiB</string>
-           </property>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelSource">
+            <property name="text">
+             <string>Source:</string>
+            </property>
+           </widget>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="buttonCalcTotalPieces">
-          <property name="text">
-           <string>Calculate number of pieces:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="labelTotalPieces">
-          <property name="text">
-           <string notr="true">0</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="spacer1">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkPrivate">
-        <property name="text">
-         <string>Private torrent (Won't distribute on DHT network)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkStartSeeding">
-        <property name="text">
-         <string>Start seeding immediately</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="checkIgnoreShareLimits">
-        <property name="text">
-         <string>Ignore share ratio limits for this torrent</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="checkOptimizeAlignment">
-        <property name="title">
-         <string>Optimize alignment</string>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="lblPaddedFileSizeLimit">
-             <property name="text">
-              <string>Align to piece boundary for files larger than:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinPaddedFileSizeLimit">
-             <property name="specialValueText">
-              <string>Disabled</string>
-             </property>
-             <property name="suffix">
-              <string> KiB</string>
-             </property>
-             <property name="minimum">
-              <number>-1</number>
-             </property>
-             <property name="maximum">
-              <number>2147483647</number>
-             </property>
-             <property name="value">
-              <number>-1</number>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Fields</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="1">
-       <widget class="QTextEdit" name="trackersList">
-        <property name="toolTip">
-         <string>You can separate tracker tiers / groups with an empty line.</string>
-        </property>
-        <property name="acceptRichText">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="urlSeeds_lbl">
-        <property name="text">
-         <string>Web seed URLs:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QTextEdit" name="URLSeedsList">
-        <property name="acceptRichText">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QTextEdit" name="txtComment">
-        <property name="acceptRichText">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="lbl_announce_url">
-        <property name="text">
-         <string>Tracker URLs:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="lbl_comment">
-        <property name="text">
-         <string>Comments:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelSource">
-        <property name="text">
-         <string>Source:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="lineEditSource"/>
-      </item>
-     </layout>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="lineEditSource"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
