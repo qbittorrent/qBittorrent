@@ -2597,6 +2597,16 @@ void Session::configureListeningInterface()
     configureDeferred();
 }
 
+int Session::downloadRate() const
+{
+    return m_downloadRate;
+}
+
+int Session::uploadRate() const
+{
+    return m_uploadRate;
+}
+
 int Session::globalDownloadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
@@ -4956,6 +4966,9 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
     QVector<TorrentHandle *> updatedTorrents;
     updatedTorrents.reserve(p->status.size());
 
+    m_downloadRate = 0;
+    m_uploadRate = 0;
+
     for (const lt::torrent_status &status : p->status)
     {
         TorrentHandleImpl *const torrent = m_torrents.value(status.info_hash);
@@ -4965,8 +4978,12 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
         torrent->handleStateUpdate(status);
         updatedTorrents.push_back(torrent);
+
+        m_downloadRate += torrent->downloadPayloadRate();
+        m_uploadRate += torrent->uploadPayloadRate();
     }
 
+    emit speedRatesUpdated();
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
 

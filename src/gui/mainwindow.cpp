@@ -348,7 +348,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Configure BT session according to options
     loadPreferences(false);
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &MainWindow::reloadSessionStats);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedRatesUpdated, this, &MainWindow::reloadSessionSpeeds);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, this, &MainWindow::reloadTorrentStats);
 
     // Accept drag 'n drops
@@ -1644,16 +1644,17 @@ void MainWindow::loadPreferences(const bool configureSession)
     qDebug("GUI settings loaded");
 }
 
-void MainWindow::reloadSessionStats()
+void MainWindow::reloadSessionSpeeds()
 {
-    const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
+    const int downloadRate = BitTorrent::Session::instance()->downloadRate();
+    const int uploadRate = BitTorrent::Session::instance()->uploadRate();
 
     // update global information
 #ifdef Q_OS_MACOS
-    if (status.payloadDownloadRate > 0)
+    if (downloadRate > 0)
     {
         QtMac::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
+            .arg(Utils::Misc::friendlyUnit(downloadRate)));
     }
     else if (!QtMac::badgeLabelText().isEmpty())
     {
@@ -1663,8 +1664,8 @@ void MainWindow::reloadSessionStats()
     if (m_systrayIcon)
     {
         const QString toolTip = QString::fromLatin1("%1\n%2").arg(
-            tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-            , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+            tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(downloadRate, true))
+            , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(uploadRate, true)));
         m_systrayIcon->setToolTip(toolTip); // tray icon
     }
 #endif  // Q_OS_MACOS
@@ -1672,8 +1673,8 @@ void MainWindow::reloadSessionStats()
     if (m_displaySpeedInTitle)
     {
         setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
-                , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
+            .arg(Utils::Misc::friendlyUnit(downloadRate, true)
+                , Utils::Misc::friendlyUnit(uploadRate, true)
                 , QBT_VERSION));
     }
 }
@@ -1861,7 +1862,7 @@ void MainWindow::on_actionSpeedInTitleBar_triggered()
     m_displaySpeedInTitle = static_cast<QAction * >(sender())->isChecked();
     Preferences::instance()->showSpeedInTitleBar(m_displaySpeedInTitle);
     if (m_displaySpeedInTitle)
-        reloadSessionStats();
+        reloadSessionSpeeds();
     else
         setWindowTitle("qBittorrent " QBT_VERSION);
 }

@@ -147,7 +147,9 @@ StatusBar::StatusBar(QWidget *parent)
     // Is DHT enabled
     m_DHTLbl->setVisible(session->isDHTEnabled());
     refresh();
+    updateSpeedLabels();
     connect(session, &BitTorrent::Session::statsUpdated, this, &StatusBar::refresh);
+    connect(session, &BitTorrent::Session::speedRatesUpdated, this, &StatusBar::updateSpeedLabels);
 }
 
 StatusBar::~StatusBar()
@@ -210,16 +212,17 @@ void StatusBar::updateDHTNodesNumber()
 
 void StatusBar::updateSpeedLabels()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
+    const BitTorrent::Session *session = BitTorrent::Session::instance();
+    const BitTorrent::SessionStatus &sessionStatus = session->status();
 
-    QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
+    QString dlSpeedLbl = Utils::Misc::friendlyUnit(session->downloadRate(), true);
     const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
     if (dlSpeedLimit > 0)
         dlSpeedLbl += " [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + ']';
     dlSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
     m_dlSpeedLbl->setText(dlSpeedLbl);
 
-    QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
+    QString upSpeedLbl = Utils::Misc::friendlyUnit(session->uploadRate(), true);
     const int upSpeedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
     if (upSpeedLimit > 0)
         upSpeedLbl += " [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + ']';
@@ -231,7 +234,6 @@ void StatusBar::refresh()
 {
     updateConnectionStatus();
     updateDHTNodesNumber();
-    updateSpeedLabels();
 }
 
 void StatusBar::updateAltSpeedsBtn(bool alternative)
@@ -249,6 +251,7 @@ void StatusBar::updateAltSpeedsBtn(bool alternative)
         m_altSpeedsBtn->setDown(false);
     }
     refresh();
+    updateSpeedLabels();
 }
 
 void StatusBar::capDownloadSpeed()
@@ -263,6 +266,7 @@ void StatusBar::capDownloadSpeed()
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
         session->setDownloadSpeedLimit(newLimit);
         refresh();
+        updateSpeedLabels();
     }
 }
 
@@ -278,5 +282,6 @@ void StatusBar::capUploadSpeed()
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
         session->setUploadSpeedLimit(newLimit);
         refresh();
+        updateSpeedLabels();
     }
 }

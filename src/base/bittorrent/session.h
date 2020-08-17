@@ -288,6 +288,8 @@ namespace BitTorrent
         QString finishedTorrentExportDirectory() const;
         void setFinishedTorrentExportDirectory(QString path);
 
+        int downloadRate() const;
+        int uploadRate() const;
         int globalDownloadSpeedLimit() const;
         void setGlobalDownloadSpeedLimit(int limit);
         int globalUploadSpeedLimit() const;
@@ -494,6 +496,7 @@ namespace BitTorrent
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
 
     signals:
+        void speedRatesUpdated();
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
@@ -746,6 +749,8 @@ namespace BitTorrent
 
         int m_numResumeData = 0;
         int m_extraLimit = 0;
+        int m_downloadRate = 0;
+        int m_uploadRate = 0;
         QVector<TrackerEntry> m_additionalTrackerList;
         QString m_resumeFolderPath;
         QFile *m_resumeFolderLock = nullptr;
