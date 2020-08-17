@@ -335,7 +335,13 @@ void TrackersFilterWidget::handleTrackerEntriesUpdated(const BitTorrent::Torrent
                 errored.remove(trackerEntry.url);
             }
 
-            if (trackerEntry.message.isEmpty())
+            if (std::all_of(trackerEntry.stats.cbegin(), trackerEntry.stats.cend(), [](const auto &endpoint) {
+                  return std::all_of(endpoint.cbegin(), endpoint.cend(),
+                                     [](const BitTorrent::TrackerEntry::EndpointStats &protocolStats) {
+                                       return protocolStats.status != BitTorrent::TrackerEntry::Working ||
+                                              protocolStats.message.isEmpty();
+                                     });
+                }))
             {
                 if (warningHashesIt != m_warnings.end())
                 {

@@ -59,6 +59,7 @@ namespace BitTorrent
             int numLeeches = -1;
             int numDownloaded = -1;
             QString message {};
+            QString name {};
         };
 
         QString url {};
@@ -67,9 +68,6 @@ namespace BitTorrent
 
         // TODO: Use QHash<TrackerEntry::Endpoint, QHash<int, EndpointStats>> once Qt5 is dropped.
         QMap<Endpoint, QHash<int, EndpointStats>> stats {};
-
-        // Deprecated fields
-        QString message {};
     };
 
     QVector<TrackerEntry> parseTrackerEntries(QStringView str);
