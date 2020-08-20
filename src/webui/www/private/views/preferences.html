@@ -565,8 +565,8 @@
             </tr>
             <tr>
                 <td>
-                    <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
+                    <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="max_seeding_time_value" style="width: 4em;" />QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
@@ -1738,15 +1738,9 @@
 
                         // Share Limiting
                         $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
-                        if (pref.max_ratio_enabled)
-                            $('max_ratio_value').setProperty('value', pref.max_ratio);
-                        else
-                            $('max_ratio_value').setProperty('value', 1);
+                        $('max_ratio_value').setProperty('value', (pref.max_ratio_enabled ? pref.max_ratio : 1));
                         $('max_seeding_time_checkbox').setProperty('checked', pref.max_seeding_time_enabled);
-                        if (pref.max_seeding_time_enabled)
-                            $('max_seeding_time_value').setProperty('value', pref.max_seeding_time.toInt());
-                        else
-                            $('max_seeding_time_value').setProperty('value', 1440);
+                        $('max_seeding_time_value').setProperty('value', (pref.max_seeding_time_enabled ? pref.max_seeding_time.toInt() : 1440));
                         let maxRatioAct = 0;
                         switch (pref.max_ratio_act.toInt()) {
                             case 0: // Pause
@@ -2107,20 +2101,19 @@
             // Share Ratio Limiting
             let max_ratio = -1;
             if ($('max_ratio_checkbox').getProperty('checked')) {
-                max_ratio = $('max_ratio_value').getProperty('value');
-                if (isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
+                max_ratio = $('max_ratio_value').getProperty('value').toFloat();
+                if (isNaN(max_ratio) || (max_ratio < 0) || (max_ratio > 9998)) {
                     alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
             settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
             settings.set('max_ratio', max_ratio);
-            settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
 
             let max_seeding_time = -1;
             if ($('max_seeding_time_checkbox').getProperty('checked')) {
                 max_seeding_time = $('max_seeding_time_value').getProperty('value').toInt();
-                if (isNaN(max_seeding_time) || max_seeding_time < 0 || max_seeding_time > 525600) {
+                if (isNaN(max_seeding_time) || (max_seeding_time < 0) || (max_seeding_time > 525600)) {
                     alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
