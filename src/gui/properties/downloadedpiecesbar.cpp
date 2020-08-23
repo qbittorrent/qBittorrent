@@ -120,7 +120,7 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
     }
 
     if (m_pieces.isEmpty()) {
-        image2.fill(Qt::white);
+        image2.fill(backgroundColor());
         image = image2;
         return true;
     }
@@ -157,12 +157,6 @@ void DownloadedPiecesBar::setProgress(const QBitArray &pieces, const QBitArray &
     requestImageUpdate();
 }
 
-void DownloadedPiecesBar::setColors(const QColor &background, const QColor &border, const QColor &complete, const QColor &incomplete)
-{
-    m_dlPieceColor = incomplete;
-    base::setColors(background, border, complete);
-}
-
 void DownloadedPiecesBar::clear()
 {
     m_pieces.clear();
@@ -172,7 +166,11 @@ void DownloadedPiecesBar::clear()
 
 QString DownloadedPiecesBar::simpleToolTipText() const
 {
-    return tr("White: Missing pieces") + '\n'
-           + tr("Green: Partial pieces") + '\n'
-           + tr("Blue: Completed pieces") + '\n';
+    const QString borderColor = colorBoxBorderColor().name();
+    const QString rowHTML = QString::fromLatin1("<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>");
+    return QLatin1String("<table cellspacing=4>")
+           + rowHTML.arg(backgroundColor().name(), borderColor, tr("Missing pieces"))
+           + rowHTML.arg(m_dlPieceColor.name(), borderColor, tr("Partial pieces"))
+           + rowHTML.arg(pieceColor().name(), borderColor, tr("Completed pieces"))
+           + QLatin1String("</table>");
 }
