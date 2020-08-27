@@ -264,10 +264,10 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
 {
     if (!isValid()) return {};
 
-    const std::vector<lt::announce_entry> trackers = m_nativeInfo->trackers();
+    const std::vector<lt::announce_entry> &trackers = m_nativeInfo->trackers();
 
     QVector<TrackerEntry> ret;
-    ret.reserve(trackers.size());
+    ret.reserve(int(trackers.size()));
 
     for (const lt::announce_entry &tracker : trackers)
         ret.append(tracker);
@@ -281,7 +281,7 @@ QVector<QUrl> TorrentInfo::urlSeeds() const
     const std::vector<lt::web_seed_entry> &nativeWebSeeds = m_nativeInfo->web_seeds();
 
     QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(nativeWebSeeds.size());
+    urlSeeds.reserve(int(nativeWebSeeds.size()));
 
     for (const lt::web_seed_entry &webSeed : nativeWebSeeds) {
         if (webSeed.type == lt::web_seed_entry::url_seed)

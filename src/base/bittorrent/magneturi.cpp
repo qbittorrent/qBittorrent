@@ -76,13 +76,13 @@ MagnetUri::MagnetUri(const QString &source)
     m_hash = m_addTorrentParams.info_hash;
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
-    m_trackers.reserve(m_addTorrentParams.trackers.size());
+    m_trackers.reserve(int(m_addTorrentParams.trackers.size()));
     for (const std::string &tracker : m_addTorrentParams.trackers)
-        m_trackers.append(lt::announce_entry {tracker});
+        m_trackers.append(tracker);
 
-    m_urlSeeds.reserve(m_addTorrentParams.url_seeds.size());
+    m_urlSeeds.reserve(int(m_addTorrentParams.url_seeds.size()));
     for (const std::string &urlSeed : m_addTorrentParams.url_seeds)
-        m_urlSeeds.append(QUrl(QString::fromStdString(urlSeed)));
+        m_urlSeeds.append(QString::fromStdString(urlSeed));
 }
 
 bool MagnetUri::isValid() const

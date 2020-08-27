@@ -49,6 +49,7 @@ namespace BitTorrent
         };
 
         TrackerEntry() = default;
+        TrackerEntry(const std::string &url);
         TrackerEntry(const QString &url);
         TrackerEntry(const lt::announce_entry &nativeEntry);
         TrackerEntry(const TrackerEntry &other) = default;

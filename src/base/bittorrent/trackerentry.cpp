@@ -36,7 +36,12 @@
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
-    : m_nativeEntry(url.toStdString())
+    : TrackerEntry(url.toStdString())
+{
+}
+
+TrackerEntry::TrackerEntry(const std::string &url)
+    : m_nativeEntry(url)
 {
 }
 

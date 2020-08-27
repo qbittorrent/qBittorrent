@@ -332,10 +332,10 @@ void TorrentHandleImpl::setAutoManaged(const bool enable)
 
 QVector<TrackerEntry> TorrentHandleImpl::trackers() const
 {
-    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
+    const std::vector<lt::announce_entry> &nativeTrackers = m_nativeHandle.trackers();
 
     QVector<TrackerEntry> entries;
-    entries.reserve(nativeTrackers.size());
+    entries.reserve(int(nativeTrackers.size()));
 
     for (const lt::announce_entry &tracker : nativeTrackers)
         entries << tracker;
@@ -410,10 +410,9 @@ QVector<QUrl> TorrentHandleImpl::urlSeeds() const
     const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
 
     QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(currentSeeds.size());
-
+    urlSeeds.reserve(int(currentSeeds.size()));
     for (const std::string &urlSeed : currentSeeds)
-        urlSeeds.append(QUrl(urlSeed.c_str()));
+        urlSeeds.append(QString::fromStdString(urlSeed));
 
     return urlSeeds;
 }
@@ -1043,7 +1042,7 @@ QVector<PeerInfo> TorrentHandleImpl::peers() const
     m_nativeHandle.get_peer_info(nativePeers);
 
     QVector<PeerInfo> peers;
-    peers.reserve(nativePeers.size());
+    peers.reserve(int(nativePeers.size()));
     for (const lt::peer_info &peer : nativePeers)
         peers << PeerInfo(this, peer);
     return peers;
