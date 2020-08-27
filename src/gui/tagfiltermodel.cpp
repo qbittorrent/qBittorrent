@@ -317,7 +317,7 @@ TagModelItem *TagFilterModel::findItem(const QString &tag)
 QVector<TagModelItem *> TagFilterModel::findItems(const TagSet &tags)
 {
     QVector<TagModelItem *> items;
-    items.reserve(tags.size());
+    items.reserve(tags.count());
     for (const QString &tag : tags)
     {
         TagModelItem *item = findItem(tag);
