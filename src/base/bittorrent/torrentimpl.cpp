@@ -111,8 +111,8 @@ namespace
         QString firstTrackerMessage;
         QString firstErrorMessage;
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        const int numEndpoints = nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
-        trackerEntry.endpoints.reserve(numEndpoints);
+        const size_t numEndpoints = nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
+        trackerEntry.endpoints.reserve(static_cast<decltype(trackerEntry.endpoints)::size_type>(numEndpoints));
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
@@ -472,7 +472,7 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
 
     QVector<TrackerEntry> entries;
-    entries.reserve(nativeTrackers.size());
+    entries.reserve(static_cast<decltype(entries)::size_type>(nativeTrackers.size()));
 
     for (const lt::announce_entry &tracker : nativeTrackers)
     {
@@ -559,10 +559,10 @@ QVector<QUrl> TorrentImpl::urlSeeds() const
     const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
 
     QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(currentSeeds.size());
+    urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(currentSeeds.size()));
 
     for (const std::string &urlSeed : currentSeeds)
-        urlSeeds.append(QUrl(urlSeed.c_str()));
+        urlSeeds.append(QString::fromStdString(urlSeed));
 
     return urlSeeds;
 }
@@ -1222,9 +1222,11 @@ QVector<PeerInfo> TorrentImpl::peers() const
     m_nativeHandle.get_peer_info(nativePeers);
 
     QVector<PeerInfo> peers;
-    peers.reserve(nativePeers.size());
+    peers.reserve(static_cast<decltype(peers)::size_type>(nativePeers.size()));
+
     for (const lt::peer_info &peer : nativePeers)
         peers << PeerInfo(this, peer);
+
     return peers;
 }
 

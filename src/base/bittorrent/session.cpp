@@ -4984,7 +4984,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
     QVector<Torrent *> updatedTorrents;
-    updatedTorrents.reserve(p->status.size());
+    updatedTorrents.reserve(static_cast<decltype(updatedTorrents)::size_type>(p->status.size()));
 
     for (const lt::torrent_status &status : p->status)
     {
