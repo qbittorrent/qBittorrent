@@ -545,8 +545,9 @@ void PropertiesWidget::openFolder(const QModelIndex &index, const bool containin
     // FOLDER
     if (m_propListModel->itemType(index) == TorrentContentModelItem::FolderType) {
         // Generate relative path to selected folder
-        QStringList pathItems {index.data().toString()};
-        QModelIndex parent = m_propListModel->parent(index);
+        const QModelIndex nameIndex {index.sibling(index.row(), TorrentContentModelItem::COL_NAME)};
+        QStringList pathItems {nameIndex.data().toString()};
+        QModelIndex parent = m_propListModel->parent(nameIndex);
         while (parent.isValid()) {
             pathItems.prepend(parent.data().toString());
             parent = m_propListModel->parent(parent);
