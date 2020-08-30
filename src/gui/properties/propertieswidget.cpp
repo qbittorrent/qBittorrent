@@ -517,7 +517,7 @@ void PropertiesWidget::loadUrlSeeds()
     }
 }
 
-void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index)
+void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) const
 {
     if (!index.isValid() || !m_torrent || !m_torrent->hasMetadata()) return;
 
@@ -527,7 +527,7 @@ void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index)
         openFolder(index, false);
 }
 
-void PropertiesWidget::openFile(const QModelIndex &index)
+void PropertiesWidget::openFile(const QModelIndex &index) const
 {
     int i = m_propListModel->getFileIndex(index);
     const QDir saveDir(m_torrent->savePath(true));
@@ -539,27 +539,28 @@ void PropertiesWidget::openFile(const QModelIndex &index)
     Utils::Gui::openPath(filePath);
 }
 
-void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolder)
+void PropertiesWidget::openFolder(const QModelIndex &index, const bool containingFolder) const
 {
     QString absolutePath;
     // FOLDER
     if (m_propListModel->itemType(index) == TorrentContentModelItem::FolderType) {
         // Generate relative path to selected folder
-        QStringList pathItems;
-        pathItems << index.data().toString();
-        QModelIndex parent = m_propListModel->parent(index);
+        const QModelIndex nameIndex {index.sibling(index.row(), TorrentContentModelItem::COL_NAME)};
+        QStringList pathItems {nameIndex.data().toString()};
+        QModelIndex parent = m_propListModel->parent(nameIndex);
         while (parent.isValid()) {
             pathItems.prepend(parent.data().toString());
             parent = m_propListModel->parent(parent);
         }
         if (pathItems.isEmpty())
             return;
+
         const QDir saveDir(m_torrent->savePath(true));
         const QString relativePath = pathItems.join('/');
         absolutePath = Utils::Fs::expandPath(saveDir.absoluteFilePath(relativePath));
     }
     else {
-        int i = m_propListModel->getFileIndex(index);
+        const int i = m_propListModel->getFileIndex(index);
         const QDir saveDir(m_torrent->savePath(true));
         const QString relativePath = m_torrent->filePath(i);
         absolutePath = Utils::Fs::expandPath(saveDir.absoluteFilePath(relativePath));
@@ -569,7 +570,7 @@ void PropertiesWidget::openFolder(const QModelIndex &index, bool containingFolde
     m_torrent->flushCache();
 #ifdef Q_OS_MACOS
     Q_UNUSED(containingFolder);
-    MacUtils::openFiles(QSet<QString>{absolutePath});
+    MacUtils::openFiles(QSet<QString> {absolutePath});
 #else
     if (containingFolder)
         Utils::Gui::openFolderSelect(absolutePath);
