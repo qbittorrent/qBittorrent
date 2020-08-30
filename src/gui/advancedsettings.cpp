@@ -122,6 +122,9 @@ enum AdvSettingsRows
     ANNOUNCE_ALL_TIERS,
     ANNOUNCE_IP,
     STOP_TRACKER_TIMEOUT,
+    PEER_TURNOVER,
+    PEER_TURNOVER_CUTOFF,
+    PEER_TURNOVER_INTERVAL,
 
     ROW_COUNT
 };
@@ -274,6 +277,10 @@ void AdvancedSettings::saveAdvancedSettings()
 
     session->setAnnounceToAllTrackers(m_checkBoxAnnounceAllTrackers.isChecked());
     session->setAnnounceToAllTiers(m_checkBoxAnnounceAllTiers.isChecked());
+
+    session->setPeerTurnover(m_spinBoxPeerTurnover.value());
+    session->setPeerTurnoverCutoff(m_spinBoxPeerTurnoverCutoff.value());
+    session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
 }
 
 void AdvancedSettings::updateCacheSpinSuffix(int value)
@@ -609,6 +616,25 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce to all tiers
     m_checkBoxAnnounceAllTiers.setChecked(session->announceToAllTiers());
     addRow(ANNOUNCE_ALL_TIERS, tr("Always announce to all tiers"), &m_checkBoxAnnounceAllTiers);
+
+    m_spinBoxPeerTurnover.setMinimum(0);
+    m_spinBoxPeerTurnover.setMaximum(100);
+    m_spinBoxPeerTurnover.setValue(session->peerTurnover());
+    m_spinBoxPeerTurnover.setSuffix(" %");
+    addRow(PEER_TURNOVER, (tr("Peer turnover disconnect percentage") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#peer_turnover", "(?)"))
+            , &m_spinBoxPeerTurnover);
+    m_spinBoxPeerTurnoverCutoff.setMinimum(0);
+    m_spinBoxPeerTurnoverCutoff.setMaximum(100);
+    m_spinBoxPeerTurnoverCutoff.setSuffix(" %");
+    m_spinBoxPeerTurnoverCutoff.setValue(session->peerTurnoverCutoff());
+    addRow(PEER_TURNOVER_CUTOFF, (tr("Peer turnover threshold percentage") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#peer_turnover", "(?)"))
+            , &m_spinBoxPeerTurnoverCutoff);
+    m_spinBoxPeerTurnoverInterval.setMinimum(30);
+    m_spinBoxPeerTurnoverInterval.setMaximum(3600);
+    m_spinBoxPeerTurnoverInterval.setSuffix(tr(" s", " seconds"));
+    m_spinBoxPeerTurnoverInterval.setValue(session->peerTurnoverInterval());
+    addRow(PEER_TURNOVER_INTERVAL, (tr("Peer turnover disconnect interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#peer_turnover", "(?)"))
+            , &m_spinBoxPeerTurnoverInterval);
 }
 
 template <typename T>

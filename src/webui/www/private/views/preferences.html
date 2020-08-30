@@ -1161,6 +1161,30 @@
                     <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
                 </td>
              </tr>
+             <tr>
+                <td>
+                    <label for="peerTurnover">QBT_TR(Peer turnover disconnect percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerTurnover" style="width: 15em;" />&nbsp;&nbsp;%
+                </td>
+             </tr>
+             <tr>
+                <td>
+                    <label for="peerTurnoverCutoff">QBT_TR(Peer turnover threshold percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerTurnoverCutoff" style="width: 15em;" />&nbsp;&nbsp;%
+                </td>
+             </tr>
+             <tr>
+                <td>
+                    <label for="peerTurnoverInterval">QBT_TR(Peer turnover disconnect interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerTurnoverInterval" style="width: 15em;" />&nbsp;&nbsp;s
+                </td>
+             </tr>
         </table>
     </fieldset>
 </div>
@@ -1857,6 +1881,9 @@
                         $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
                         $('announceIP').setProperty('value', pref.announce_ip);
                         $('stopTrackerTimeout').setProperty('value', pref.stop_tracker_timeout);
+                        $('peerTurnover').setProperty('value', pref.peer_turnover);
+                        $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
+                        $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
                     }
                 }
             }).send();
@@ -2238,6 +2265,9 @@
             settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
             settings.set('announce_ip', $('announceIP').getProperty('value'));
             settings.set('stop_tracker_timeout', $('stopTrackerTimeout').getProperty('value'));
+            settings.set('peer_turnover', $('peerTurnover').getProperty('value'));
+            settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
+            settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);
