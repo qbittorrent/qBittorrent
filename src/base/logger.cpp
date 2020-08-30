@@ -32,15 +32,14 @@
 
 #include <QDateTime>
 
+#include "base/containercompat.h"
+
 namespace
 {
     template <typename T>
     QVector<T> loadFromBuffer(const boost::circular_buffer_space_optimized<T> &src, const int offset = 0)
     {
-        QVector<T> ret;
-        ret.reserve(int(src.size()) - offset);
-        std::copy((src.begin() + offset), src.end(), std::back_inserter(ret));
-        return ret;
+        return Vector<T>((src.begin() + offset), src.end());
     }
 }
 

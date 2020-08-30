@@ -69,6 +69,7 @@
 #include <QUuid>
 
 #include "base/algorithm.h"
+#include "base/containercompat.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -424,7 +425,8 @@ Session::Session(QObject *parent)
         m_storedCategories = map_cast(m_categories);
     }
 
-    m_tags = List::toSet(m_storedTags.value());
+    const QStringList &m_storedTagsValue = m_storedTags.value();
+    m_tags = Set<QString>(m_storedTagsValue.cbegin(), m_storedTagsValue.cend());
 
     enqueueRefresh();
     updateSeedingLimitTimer();
@@ -4049,8 +4051,11 @@ void Session::startUpTorrents()
                 .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
         }
 
-        if (!queue.empty())
-            fastresumes = queue + List::toSet(fastresumes).subtract(List::toSet(queue)).values();
+        if (!queue.empty()) {
+            fastresumes = queue +
+                          Set<QString>(fastresumes.cbegin(), fastresumes.cend())
+                          .subtract(Set<QString>(queue.cbegin(), queue.cend())).values();
+        }
     }
 
     int resumedTorrentsCount = 0;

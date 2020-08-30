@@ -53,6 +53,7 @@
 #include <QStringList>
 #include <QUrl>
 
+#include "base/containercompat.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -333,14 +334,7 @@ void TorrentHandleImpl::setAutoManaged(const bool enable)
 QVector<TrackerEntry> TorrentHandleImpl::trackers() const
 {
     const std::vector<lt::announce_entry> &nativeTrackers = m_nativeHandle.trackers();
-
-    QVector<TrackerEntry> entries;
-    entries.reserve(int(nativeTrackers.size()));
-
-    for (const lt::announce_entry &tracker : nativeTrackers)
-        entries << tracker;
-
-    return entries;
+    return Vector<TrackerEntry>(nativeTrackers.cbegin(), nativeTrackers.cend());
 }
 
 QHash<QString, TrackerInfo> TorrentHandleImpl::trackerInfos() const
@@ -1076,7 +1070,7 @@ QVector<int> TorrentHandleImpl::pieceAvailability() const
     std::vector<int> avail;
     m_nativeHandle.piece_availability(avail);
 
-    return Vector::fromStdVector(avail);
+    return Vector<int>(avail.cbegin(), avail.cend());
 }
 
 qreal TorrentHandleImpl::distributedCopies() const

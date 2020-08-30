@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/containercompat.h"
 #include "base/global.h"
 #include "base/types.h"
 #include "base/utils/string.h"
@@ -76,7 +77,7 @@ void TransferListSortModel::disableTagFilter()
 
 void TransferListSortModel::setTrackerFilter(const QStringList &hashes)
 {
-    if (m_filter.setHashSet(List::toSet(hashes)))
+    if (m_filter.setHashSet(Set<QString>(hashes.cbegin(), hashes.cend())))
         invalidateFilter();
 }
 

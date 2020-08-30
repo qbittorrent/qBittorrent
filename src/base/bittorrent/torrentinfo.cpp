@@ -40,6 +40,7 @@
 #include <QStringList>
 #include <QUrl>
 
+#include "base/containercompat.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
@@ -265,13 +266,7 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
     if (!isValid()) return {};
 
     const std::vector<lt::announce_entry> &trackers = m_nativeInfo->trackers();
-
-    QVector<TrackerEntry> ret;
-    ret.reserve(int(trackers.size()));
-
-    for (const lt::announce_entry &tracker : trackers)
-        ret.append(tracker);
-    return ret;
+    return Vector<TrackerEntry>(trackers.cbegin(), trackers.cend());
 }
 
 QVector<QUrl> TorrentInfo::urlSeeds() const

@@ -48,6 +48,7 @@
 #include "base/bittorrent/torrenthandle.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/containercompat.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -247,7 +248,8 @@ void TorrentsController::infoAction()
     const bool reverse {parseBool(params()["reverse"], false)};
     int limit {params()["limit"].toInt()};
     int offset {params()["offset"].toInt()};
-    const QStringSet hashSet {List::toSet(params()["hashes"].split('|', QString::SkipEmptyParts))};
+    const QStringList hashList = params()["hashes"].split('|', QString::SkipEmptyParts);
+    const Set<QString> hashSet(hashList.cbegin(), hashList.cend());
 
     QVariantList torrentList;
     TorrentFilter torrentFilter(filter, (hashSet.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
