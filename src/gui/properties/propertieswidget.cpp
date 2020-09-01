@@ -108,7 +108,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->filesList, &QAbstractItemView::clicked
             , m_ui->filesList, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
     connect(m_ui->filesList, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFilesListMenu);
-    connect(m_ui->filesList, &QAbstractItemView::doubleClicked, this, &PropertiesWidget::openDoubleClickedFile);
+    connect(m_ui->filesList, &QAbstractItemView::doubleClicked, this, &PropertiesWidget::openItem);
     connect(m_ui->filesList->header(), &QHeaderView::sectionMoved, this, &PropertiesWidget::saveSettings);
     connect(m_ui->filesList->header(), &QHeaderView::sectionResized, this, &PropertiesWidget::saveSettings);
     connect(m_ui->filesList->header(), &QHeaderView::sortIndicatorChanged, this, &PropertiesWidget::saveSettings);
@@ -517,65 +517,41 @@ void PropertiesWidget::loadUrlSeeds()
     }
 }
 
-void PropertiesWidget::openDoubleClickedFile(const QModelIndex &index) const
+QString PropertiesWidget::getFullPath(const QModelIndex &index) const
 {
-    if (!index.isValid() || !m_torrent || !m_torrent->hasMetadata()) return;
-
-    if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType)
-        openFile(index);
-    else
-        openFolder(index, false);
-}
-
-void PropertiesWidget::openFile(const QModelIndex &index) const
-{
-    int i = m_propListModel->getFileIndex(index);
-    const QDir saveDir(m_torrent->savePath(true));
-    const QString filename = m_torrent->filePath(i);
-    const QString filePath = Utils::Fs::expandPath(saveDir.absoluteFilePath(filename));
-    qDebug("Trying to open file at %s", qUtf8Printable(filePath));
-    // Flush data
-    m_torrent->flushCache();
-    Utils::Gui::openPath(filePath);
-}
-
-void PropertiesWidget::openFolder(const QModelIndex &index, const bool containingFolder) const
-{
-    QString absolutePath;
-    // FOLDER
-    if (m_propListModel->itemType(index) == TorrentContentModelItem::FolderType) {
-        // Generate relative path to selected folder
-        const QModelIndex nameIndex {index.sibling(index.row(), TorrentContentModelItem::COL_NAME)};
-        QStringList pathItems {nameIndex.data().toString()};
-        QModelIndex parent = m_propListModel->parent(nameIndex);
-        while (parent.isValid()) {
-            pathItems.prepend(parent.data().toString());
-            parent = m_propListModel->parent(parent);
-        }
-        if (pathItems.isEmpty())
-            return;
-
-        const QDir saveDir(m_torrent->savePath(true));
-        const QString relativePath = pathItems.join('/');
-        absolutePath = Utils::Fs::expandPath(saveDir.absoluteFilePath(relativePath));
-    }
-    else {
-        const int i = m_propListModel->getFileIndex(index);
-        const QDir saveDir(m_torrent->savePath(true));
-        const QString relativePath = m_torrent->filePath(i);
-        absolutePath = Utils::Fs::expandPath(saveDir.absoluteFilePath(relativePath));
+    if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType) {
+        const int fileIdx = m_propListModel->getFileIndex(index);
+        const QString filename {m_torrent->filePath(fileIdx)};
+        const QDir saveDir {m_torrent->savePath(true)};
+        const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(filename))};
+        return fullPath;
     }
 
-    // Flush data
-    m_torrent->flushCache();
+    // folder type
+    const QModelIndex nameIndex {index.sibling(index.row(), TorrentContentModelItem::COL_NAME)};
+    QString folderPath {nameIndex.data().toString()};
+    for (QModelIndex modelIdx = m_propListModel->parent(nameIndex); modelIdx.isValid(); modelIdx = modelIdx.parent())
+        folderPath.prepend(modelIdx.data().toString() + '/');
+
+    const QDir saveDir {m_torrent->savePath(true)};
+    const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(folderPath))};
+    return fullPath;
+}
+
+void PropertiesWidget::openItem(const QModelIndex &index) const
+{
+    m_torrent->flushCache();  // Flush data
+    Utils::Gui::openPath(getFullPath(index));
+}
+
+void PropertiesWidget::openParentFolder(const QModelIndex &index) const
+{
+    const QString path = getFullPath(index);
+    m_torrent->flushCache();  // Flush data
 #ifdef Q_OS_MACOS
-    Q_UNUSED(containingFolder);
-    MacUtils::openFiles(QSet<QString> {absolutePath});
+    MacUtils::openFiles({path});
 #else
-    if (containingFolder)
-        Utils::Gui::openFolderSelect(absolutePath);
-    else
-        Utils::Gui::openPath(absolutePath);
+    Utils::Gui::openFolderSelect(path);
 #endif
 }
 
@@ -593,10 +569,10 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         const QModelIndex index = selectedRows[0];
 
         const QAction *actOpen = menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open"));
-        connect(actOpen, &QAction::triggered, this, [this, index]() { openDoubleClickedFile(index); });
+        connect(actOpen, &QAction::triggered, this, [this, index]() { openItem(index); });
 
         const QAction *actOpenContainingFolder = menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openFolder(index, true); });
+        connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openParentFolder(index); });
 
         const QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
         connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(m_torrent); });
@@ -688,7 +664,7 @@ void PropertiesWidget::openSelectedFile()
     const QModelIndexList selectedIndexes = m_ui->filesList->selectionModel()->selectedRows(0);
     if (selectedIndexes.size() != 1)
         return;
-    openDoubleClickedFile(selectedIndexes.first());
+    openItem(selectedIndexes.first());
 }
 
 void PropertiesWidget::configure()

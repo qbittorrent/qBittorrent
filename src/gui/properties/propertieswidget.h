@@ -82,7 +82,7 @@ public slots:
     void readSettings();
     void saveSettings();
     void reloadPreferences();
-    void openDoubleClickedFile(const QModelIndex &index) const;
+    void openItem(const QModelIndex &index) const;
     void loadTrackers(BitTorrent::TorrentHandle *const torrent);
 
 protected slots:
@@ -107,8 +107,8 @@ private slots:
 private:
     QPushButton *getButtonFromIndex(int index);
     void applyPriorities();
-    void openFile(const QModelIndex &index) const;
-    void openFolder(const QModelIndex &index, bool containingFolder) const;
+    void openParentFolder(const QModelIndex &index) const;
+    QString getFullPath(const QModelIndex &index) const;
 
     Ui::PropertiesWidget *m_ui;
     BitTorrent::TorrentHandle *m_torrent;
