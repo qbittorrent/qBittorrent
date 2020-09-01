@@ -26,6 +26,7 @@ add_library(qbt_base STATIC
     bittorrent/torrenthandle.h
     bittorrent/torrenthandleimpl.h
     bittorrent/torrentinfo.h
+    bittorrent/torrentloaderthread.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
     exceptions.h
@@ -105,6 +106,7 @@ add_library(qbt_base STATIC
     bittorrent/torrenthandle.cpp
     bittorrent/torrenthandleimpl.cpp
     bittorrent/torrentinfo.cpp
+    bittorrent/torrentloaderthread.cpp
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
     exceptions.cpp

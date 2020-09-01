@@ -322,3 +322,5 @@ namespace BitTorrent
         lt::add_torrent_params m_ltAddTorrentParams;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::LoadTorrentParams);

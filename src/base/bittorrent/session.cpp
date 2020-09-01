@@ -96,6 +96,7 @@
 #include "resumedatasavingmanager.h"
 #include "statistics.h"
 #include "torrenthandleimpl.h"
+#include "torrentloaderthread.h"
 #include "tracker.h"
 #include "trackerentry.h"
 
@@ -107,12 +108,6 @@ using namespace BitTorrent;
 
 namespace
 {
-    template <typename LTStr>
-    QString fromLTString(const LTStr &str)
-    {
-        return QString::fromUtf8(str.data(), static_cast<int>(str.size()));
-    }
-
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
         try {
@@ -509,6 +504,16 @@ Session::Session(QObject *parent)
     new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
+
+    m_torrentLoaderThread = new TorrentLoaderThread(m_resumeFolderPath,
+                                                    isQueueingSystemEnabled(),
+                                                    isTempPathEnabled(),
+                                                    tempPath(),
+                                                    this);
+    connect(m_torrentLoaderThread, &TorrentLoaderThread::loadTorrent,
+            this, &Session::loadTorrent, Qt::QueuedConnection);
+    connect(m_torrentLoaderThread, &TorrentLoaderThread::finished,
+            m_torrentLoaderThread, &QObject::deleteLater);
 }
 
 bool Session::isDHTEnabled() const
@@ -2082,9 +2087,6 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     p.upload_limit = addTorrentParams.uploadLimit;
     p.download_limit = addTorrentParams.downloadLimit;
 
-    // Preallocation mode
-    p.storage_mode = isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse;
-
     if (addTorrentParams.sequential)
         p.flags |= lt::torrent_flags::sequential_download;
     else
@@ -2113,6 +2115,9 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
 bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
+
+    // Preallocation mode
+    p.storage_mode = isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse;
 
     p.storage = customStorageConstructor;
     // Limits
@@ -2254,6 +2259,12 @@ void Session::generateResumeData(const bool final)
 // Called on exit
 void Session::saveResumeData()
 {
+    // Finish loading if still going
+    if (m_torrentLoaderThread) {
+        m_torrentLoaderThread->quit();
+        m_torrentLoaderThread->wait();
+    }
+
     // Pause session
     m_nativeSession->pause();
 
@@ -4008,166 +4019,10 @@ const CacheStatus &Session::cacheStatus() const
     return m_cacheStatus;
 }
 
-bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata, LoadTorrentParams &torrentParams)
-{
-    torrentParams = {};
-
-    lt::error_code ec;
-    const lt::bdecode_node root = lt::bdecode(data, ec);
-    if (ec || (root.type() != lt::bdecode_node::dict_t)) return false;
-
-    torrentParams.restored = true;
-    torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
-    torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
-    torrentParams.savePath = Profile::instance()->fromPortablePath(
-        Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
-    torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
-    torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
-    torrentParams.hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
-    torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
-
-    const lt::string_view ratioLimitString = root.dict_find_string_value("qBt-ratioLimit");
-    if (ratioLimitString.empty())
-        torrentParams.ratioLimit = root.dict_find_int_value("qBt-ratioLimit", TorrentHandle::USE_GLOBAL_RATIO * 1000) / 1000.0;
-    else
-        torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
-
-    const lt::bdecode_node tagsNode = root.dict_find("qBt-tags");
-    if (tagsNode.type() == lt::bdecode_node::list_t) {
-        for (int i = 0; i < tagsNode.list_size(); ++i) {
-            const QString tag = fromLTString(tagsNode.list_string_value_at(i));
-            if (Session::isValidTag(tag))
-                torrentParams.tags << tag;
-        }
-    }
-
-    // NOTE: Do we really need the following block in case of existing (restored) torrent?
-    torrentParams.savePath = normalizePath(torrentParams.savePath);
-    if (!torrentParams.category.isEmpty()) {
-        if (!m_categories.contains(torrentParams.category) && !addCategory(torrentParams.category))
-            torrentParams.category = "";
-    }
-
-    lt::add_torrent_params &p = torrentParams.ltAddTorrentParams;
-
-    p = lt::read_resume_data(root, ec);
-    p.save_path = Profile::instance()->fromPortablePath(fromLTString(p.save_path)).toStdString();
-    if (metadata.isValid())
-        p.ti = metadata.nativeInfo();
-
-    const bool hasMetadata = (p.ti && p.ti->is_valid());
-    if (!hasMetadata && !root.dict_find("info-hash")) {
-        // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
-        // === BEGIN DEPRECATED CODE === //
-        // Try to load from legacy data used in older versions for torrents w/o metadata
-        const lt::bdecode_node magnetURINode = root.dict_find("qBt-magnetUri");
-        if (magnetURINode.type() == lt::bdecode_node::string_t) {
-            lt::parse_magnet_uri(magnetURINode.string_value(), p, ec);
-
-            if (isTempPathEnabled()) {
-                p.save_path = Utils::Fs::toNativePath(tempPath()).toStdString();
-            }
-            else {
-                // If empty then Automatic mode, otherwise Manual mode
-                const QString savePath = torrentParams.savePath.isEmpty() ? categorySavePath(torrentParams.category) : torrentParams.savePath;
-                p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-            }
-
-            // Preallocation mode
-            p.storage_mode = (isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse);
-
-            const lt::bdecode_node addedTimeNode = root.dict_find("qBt-addedTime");
-            if (addedTimeNode.type() == lt::bdecode_node::int_t)
-                p.added_time = addedTimeNode.int_value();
-
-            const lt::bdecode_node sequentialNode = root.dict_find("qBt-sequential");
-            if (sequentialNode.type() == lt::bdecode_node::int_t) {
-                if (static_cast<bool>(sequentialNode.int_value()))
-                    p.flags |= lt::torrent_flags::sequential_download;
-                else
-                    p.flags &= ~lt::torrent_flags::sequential_download;
-            }
-
-            if (torrentParams.name.isEmpty() && !p.name.empty())
-                torrentParams.name = QString::fromStdString(p.name);
-        }
-        // === END DEPRECATED CODE === //
-        else {
-            return false;
-        }
-    }
-
-    return true;
-}
-
 // Will resume torrents in backup directory
 void Session::startUpTorrents()
 {
-    const QDir resumeDataDir {m_resumeFolderPath};
-    QStringList fastresumes = resumeDataDir.entryList(
-                QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
-
-    const auto readFile = [](const QString &path, QByteArray &buf) -> bool
-    {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly)) {
-            LogMsg(tr("Cannot read file %1: %2").arg(path, file.errorString()), Log::WARNING);
-            return false;
-        }
-
-        buf = file.readAll();
-        return true;
-    };
-
-    qDebug("Starting up torrents...");
-    qDebug("Queue size: %d", fastresumes.size());
-
-    const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
-
-    if (isQueueingSystemEnabled()) {
-        QFile queueFile {resumeDataDir.absoluteFilePath(QLatin1String {"queue"})};
-        QStringList queue;
-        if (queueFile.open(QFile::ReadOnly)) {
-            QByteArray line;
-            while (!(line = queueFile.readLine()).isEmpty())
-                queue.append(QString::fromLatin1(line.trimmed()) + QLatin1String {".fastresume"});
-        }
-        else {
-            LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
-                .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
-        }
-
-        if (!queue.empty())
-            fastresumes = queue + List::toSet(fastresumes).subtract(List::toSet(queue)).values();
-    }
-
-    int resumedTorrentsCount = 0;
-    for (const QString &fastresumeName : asConst(fastresumes)) {
-        const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
-        if (!rxMatch.hasMatch()) continue;
-
-        const QString hash = rxMatch.captured(1);
-        const QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
-        QByteArray data;
-        LoadTorrentParams torrentParams;
-        const QString torrentFilePath = resumeDataDir.filePath(QString::fromLatin1("%1.torrent").arg(hash));
-        TorrentInfo metadata = TorrentInfo::loadFromFile(torrentFilePath);
-        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, metadata, torrentParams)) {
-            qDebug() << "Starting up torrent" << hash << "...";
-            if (!loadTorrent(torrentParams))
-                LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                           .arg(hash), Log::CRITICAL);
-
-            // process add torrent messages before message queue overflow
-            if ((resumedTorrentsCount % 100) == 0) readAlerts();
-
-            ++resumedTorrentsCount;
-        }
-        else {
-            LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                       .arg(hash), Log::CRITICAL);
-        }
-    }
+    m_torrentLoaderThread->start();
 }
 
 quint64 Session::getAlltimeDL() const

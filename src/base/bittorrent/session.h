@@ -48,6 +48,7 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "sessionstatus.h"
+#include "torrenthandleimpl.h"
 #include "torrentinfo.h"
 
 #if ((LIBTORRENT_VERSION_NUM >= 10206) && !defined(Q_OS_WIN))
@@ -101,9 +102,9 @@ namespace BitTorrent
     class MagnetUri;
     class TorrentHandle;
     class TorrentHandleImpl;
+    class TorrentLoaderThread;
     class Tracker;
     class TrackerEntry;
-    struct LoadTorrentParams;
 
     enum class MoveStorageMode;
 
@@ -537,6 +538,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void handleDownloadFinished(const Net::DownloadResult &result);
+        bool loadTorrent(LoadTorrentParams params);
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);
@@ -589,8 +591,6 @@ namespace BitTorrent
         void applyOSMemoryPriority() const;
 #endif
 
-        bool loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata, LoadTorrentParams &torrentParams);
-        bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const AddTorrentParams &addTorrentParams, const MagnetUri &magnetUri, TorrentInfo torrentInfo = TorrentInfo());
         bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
@@ -762,6 +762,7 @@ namespace BitTorrent
         QPointer<Tracker> m_tracker;
         // fastresume data writing thread
         QThread *m_ioThread = nullptr;
+        QPointer<TorrentLoaderThread> m_torrentLoaderThread;
         ResumeDataSavingManager *m_resumeDataSavingManager = nullptr;
 
         QSet<InfoHash> m_loadedMetadata;

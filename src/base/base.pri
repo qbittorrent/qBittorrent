@@ -25,6 +25,7 @@ HEADERS += \
     $$PWD/bittorrent/torrenthandle.h \
     $$PWD/bittorrent/torrenthandleimpl.h \
     $$PWD/bittorrent/torrentinfo.h \
+    $$PWD/bittorrent/torrentloaderthread.h \
     $$PWD/bittorrent/tracker.h \
     $$PWD/bittorrent/trackerentry.h \
     $$PWD/exceptions.h \
@@ -105,6 +106,7 @@ SOURCES += \
     $$PWD/bittorrent/torrenthandle.cpp \
     $$PWD/bittorrent/torrenthandleimpl.cpp \
     $$PWD/bittorrent/torrentinfo.cpp \
+    $$PWD/bittorrent/torrentloaderthread.cpp \
     $$PWD/bittorrent/tracker.cpp \
     $$PWD/bittorrent/trackerentry.cpp \
     $$PWD/exceptions.cpp \
