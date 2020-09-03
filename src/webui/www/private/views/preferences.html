@@ -1155,6 +1155,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="maxConcurrentHTTPAnnounces">QBT_TR(Max concurrent HTTP announces (requires libtorrent >= 1.2.7):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="maxConcurrentHTTPAnnounces" style="width: 15em;" />
+                </td>
+             </tr>
+            <tr>
+                <td>
                     <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1880,6 +1888,7 @@
                         $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
                         $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
                         $('announceIP').setProperty('value', pref.announce_ip);
+                        $('maxConcurrentHTTPAnnounces').setProperty('value', pref.max_concurrent_http_announces);
                         $('stopTrackerTimeout').setProperty('value', pref.stop_tracker_timeout);
                         $('peerTurnover').setProperty('value', pref.peer_turnover);
                         $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
@@ -2264,6 +2273,7 @@
             settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
             settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
             settings.set('announce_ip', $('announceIP').getProperty('value'));
+            settings.set('max_concurrent_http_announces', $('maxConcurrentHTTPAnnounces').getProperty('value'));
             settings.set('stop_tracker_timeout', $('stopTrackerTimeout').getProperty('value'));
             settings.set('peer_turnover', $('peerTurnover').getProperty('value'));
             settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
