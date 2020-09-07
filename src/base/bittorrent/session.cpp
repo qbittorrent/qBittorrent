@@ -200,6 +200,30 @@ namespace
         return expanded;
     }
 
+    QString toString(const lt::socket_type_t socketType)
+    {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        return QString::fromLatin1(lt::socket_type_name(socketType));
+#else
+        switch (socketType)
+        {
+        case lt::socket_type_t::i2p:
+            return QLatin1String("I2P");
+        case lt::socket_type_t::socks5:
+            return QLatin1String("SOCKS5");
+        case lt::socket_type_t::tcp:
+            return QLatin1String("TCP");
+        case lt::socket_type_t::tcp_ssl:
+            return QLatin1String("TCP_SSL");
+        case lt::socket_type_t::udp:
+            return QLatin1String("UDP");
+        case lt::socket_type_t::utp_ssl:
+            return QLatin1String("UTP_SSL");
+        }
+        return QLatin1String("INVALID");
+#endif
+    }
+
     template <typename T>
     struct LowerLimited
     {
@@ -2978,7 +3002,7 @@ void Session::setPeerTurnoverInterval(const int val)
 {
     if (val == m_peerTurnoverInterval)
         return;
-    
+
     m_peerTurnoverInterval = val;
     configureDeferred();
 }
@@ -4505,29 +4529,7 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 {
-    QString proto = "INVALID";
-    switch (p->socket_type)
-    {
-    case lt::socket_type_t::udp:
-        proto = "UDP";
-        break;
-    case lt::socket_type_t::tcp:
-        proto = "TCP";
-        break;
-    case lt::socket_type_t::tcp_ssl:
-        proto = "TCP_SSL";
-        break;
-    case lt::socket_type_t::i2p:
-        proto = "I2P";
-        break;
-    case lt::socket_type_t::socks5:
-        proto = "SOCKS5";
-        break;
-    case lt::socket_type_t::utp_ssl:
-        proto = "UTP_SSL";
-        break;
-    }
-
+    const QString proto {toString(p->socket_type)};
     lt::error_code ec;
     LogMsg(tr("Successfully listening on IP: %1, port: %2/%3"
               , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
@@ -4540,29 +4542,7 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 {
-    QString proto = "INVALID";
-    switch (p->socket_type)
-    {
-    case lt::socket_type_t::udp:
-        proto = "UDP";
-        break;
-    case lt::socket_type_t::tcp:
-        proto = "TCP";
-        break;
-    case lt::socket_type_t::tcp_ssl:
-        proto = "TCP_SSL";
-        break;
-    case lt::socket_type_t::i2p:
-        proto = "I2P";
-        break;
-    case lt::socket_type_t::socks5:
-        proto = "SOCKS5";
-        break;
-    case lt::socket_type_t::utp_ssl:
-        proto = "UTP_SSL";
-        break;
-    }
-
+    const QString proto {toString(p->socket_type)};
     lt::error_code ec;
     LogMsg(tr("Failed to listen on IP: %1, port: %2/%3. Reason: %4"
               , "e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use")
