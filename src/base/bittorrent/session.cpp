@@ -1065,7 +1065,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.value())) {
         lt::error_code ec;
-        const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
+        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (!ec)
             filter.add_rule(addr, addr, lt::ip_filter::blocked);
@@ -1442,7 +1442,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
 void Session::configurePeerClasses()
 {
     lt::ip_filter f;
-    // address_v4::from_string("255.255.255.255") crashes on some people's systems
+    // lt::make_address("255.255.255.255") crashes on some people's systems
     // so instead we use address_v4::broadcast()
     // Proactively do the same for 0.0.0.0 and address_v4::any()
     f.add_rule(lt::address_v4::any()
@@ -1454,29 +1454,29 @@ void Session::configurePeerClasses()
     // Affects Windows XP
     try {
         f.add_rule(lt::address_v6::any()
-                   , lt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                   , lt::make_address("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::global_peer_class_id));
     }
     catch (const std::exception &) {}
 
     if (ignoreLimitsOnLAN()) {
         // local networks
-        f.add_rule(lt::address_v4::from_string("10.0.0.0")
-                   , lt::address_v4::from_string("10.255.255.255")
+        f.add_rule(lt::make_address("10.0.0.0")
+                   , lt::make_address("10.255.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
-        f.add_rule(lt::address_v4::from_string("172.16.0.0")
-                   , lt::address_v4::from_string("172.31.255.255")
+        f.add_rule(lt::make_address("172.16.0.0")
+                   , lt::make_address("172.31.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
-        f.add_rule(lt::address_v4::from_string("192.168.0.0")
-                   , lt::address_v4::from_string("192.168.255.255")
+        f.add_rule(lt::make_address("192.168.0.0")
+                   , lt::make_address("192.168.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
         // link local
-        f.add_rule(lt::address_v4::from_string("169.254.0.0")
-                   , lt::address_v4::from_string("169.254.255.255")
+        f.add_rule(lt::make_address("169.254.0.0")
+                   , lt::make_address("169.254.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
         // loopback
-        f.add_rule(lt::address_v4::from_string("127.0.0.0")
-                   , lt::address_v4::from_string("127.255.255.255")
+        f.add_rule(lt::make_address("127.0.0.0")
+                   , lt::make_address("127.255.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
 
         // IPv6 may not be available on OS and the parsing
@@ -1484,12 +1484,12 @@ void Session::configurePeerClasses()
         // Affects Windows XP
         try {
             // link local
-            f.add_rule(lt::address_v6::from_string("fe80::")
-                       , lt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+            f.add_rule(lt::make_address("fe80::")
+                       , lt::make_address("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                        , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
             // unique local addresses
-            f.add_rule(lt::address_v6::from_string("fc00::")
-                       , lt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+            f.add_rule(lt::make_address("fc00::")
+                       , lt::make_address("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                        , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
             // loopback
             f.add_rule(lt::address_v6::loopback()
@@ -1675,7 +1675,7 @@ void Session::banIP(const QString &ip)
     if (!bannedIPs.contains(ip)) {
         lt::ip_filter filter = m_nativeSession->get_ip_filter();
         lt::error_code ec;
-        const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
+        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec) return;
         filter.add_rule(addr, addr, lt::ip_filter::blocked);
