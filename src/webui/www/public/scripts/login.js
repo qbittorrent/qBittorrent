@@ -42,7 +42,7 @@ function submitLoginForm() {
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'api/v2/auth/login', true);
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=utf-8');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState === 4) { // DONE state
             if ((xhr.status === 200) && (xhr.responseText === "Ok."))
