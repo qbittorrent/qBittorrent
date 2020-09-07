@@ -1974,7 +1974,6 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.tags = addTorrentParams.tags;
-    loadTorrentParams.sequential = addTorrentParams.sequential;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.hasRootFolder = ((addTorrentParams.createSubfolder == TriStateBool::Undefined)
@@ -2078,6 +2077,11 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
 
     // Preallocation mode
     p.storage_mode = isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse;
+
+    if (addTorrentParams.sequential)
+        p.flags |= lt::torrent_flags::sequential_download;
+    else
+        p.flags &= ~lt::torrent_flags::sequential_download;
 
     // Seeding mode
     // Skip checking and directly start seeding
@@ -3983,7 +3987,6 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
     torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
     torrentParams.savePath = Profile::instance()->fromPortablePath(
         Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
-    torrentParams.sequential = root.dict_find_int_value("qBt-sequential");
     torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
     torrentParams.hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
@@ -4043,9 +4046,16 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
             if (addedTimeNode.type() == lt::bdecode_node::int_t)
                 p.added_time = addedTimeNode.int_value();
 
+            const lt::bdecode_node sequentialNode = root.dict_find("qBt-sequential");
+            if (sequentialNode.type() == lt::bdecode_node::int_t) {
+                if (static_cast<bool>(sequentialNode.int_value()))
+                    p.flags |= lt::torrent_flags::sequential_download;
+                else
+                    p.flags &= ~lt::torrent_flags::sequential_download;
+            }
+
             if (torrentParams.name.isEmpty() && !p.name.empty())
                 torrentParams.name = QString::fromStdString(p.name);
-
         }
         // === END DEPRECATED CODE === //
         else {

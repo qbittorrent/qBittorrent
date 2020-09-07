@@ -62,7 +62,6 @@ namespace BitTorrent
         QString category;
         QSet<QString> tags;
         QString savePath;
-        bool sequential = false;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
         bool hasRootFolder = true;
@@ -281,7 +280,7 @@ namespace BitTorrent
         void move_impl(QString path, MoveStorageMode mode);
         void moveStorage(const QString &newPath, MoveStorageMode mode);
         void manageIncompleteFiles();
-        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
+        void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         Session *const m_session;
         lt::torrent_handle m_nativeHandle;
@@ -315,7 +314,7 @@ namespace BitTorrent
         bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
-        bool m_needsToSetFirstLastPiecePriority = false;
+        bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
 
         bool m_unchecked = false;

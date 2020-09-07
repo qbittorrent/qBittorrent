@@ -126,6 +126,7 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     , m_hasSeedStatus(params.hasSeedStatus)
     , m_hasRootFolder(params.hasRootFolder)
     , m_useAutoTMM(params.savePath.isEmpty())
+    , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
     , m_ltAddTorrentParams(params.ltAddTorrentParams)
 {
     if (m_useAutoTMM)
@@ -134,22 +135,13 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     updateStatus();
     m_hash = InfoHash(m_nativeStatus.info_hash);
 
-    // NB: the following two if statements are present because we don't want
-    // to set either sequential download or first/last piece priority to false
-    // if their respective flags in data are false when a torrent is being
-    // resumed. This is because, in that circumstance, this constructor is
-    // called with those flags set to false, even if the torrent was set to
-    // download sequentially or have first/last piece priority enabled when
-    // its resume data was saved. These two settings are restored later. But
-    // if we set them to false now, both will erroneously not be restored.
-    if (!params.restored || params.sequential)
-        setSequentialDownload(params.sequential);
-    if (!params.restored || params.firstLastPiecePriority)
-        setFirstLastPiecePriority(params.firstLastPiecePriority);
+    if (hasMetadata()) {
+        applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
 
-    if (!params.restored && hasMetadata()) {
-        if (filesCount() == 1)
-            m_hasRootFolder = false;
+        if (!params.restored) {
+            if (filesCount() == 1)
+                m_hasRootFolder = false;
+        }
     }
 
     // TODO: Remove the following upgrade code in v.4.4
@@ -749,21 +741,7 @@ bool TorrentHandleImpl::isSequentialDownload() const
 
 bool TorrentHandleImpl::hasFirstLastPiecePriority() const
 {
-    if (!hasMetadata())
-        return m_needsToSetFirstLastPiecePriority;
-
-    const std::vector<lt::download_priority_t> filePriorities = nativeHandle().get_file_priorities();
-    for (int i = 0; i < static_cast<int>(filePriorities.size()); ++i) {
-        if (filePriorities[i] <= lt::download_priority_t {0})
-            continue;
-
-        const TorrentInfo::PieceRange extremities = info().filePieces(i);
-        const lt::download_priority_t firstPiecePrio = nativeHandle().piece_priority(lt::piece_index_t {extremities.first()});
-        const lt::download_priority_t lastPiecePrio = nativeHandle().piece_priority(lt::piece_index_t {extremities.last()});
-        return ((firstPiecePrio == lt::download_priority_t {7}) && (lastPiecePrio == lt::download_priority_t {7}));
-    }
-
-    return false;
+    return m_hasFirstLastPiecePriority;
 }
 
 TorrentState TorrentHandleImpl::state() const
@@ -1245,17 +1223,24 @@ void TorrentHandleImpl::setSequentialDownload(const bool enable)
 
 void TorrentHandleImpl::setFirstLastPiecePriority(const bool enabled)
 {
-    setFirstLastPiecePriorityImpl(enabled);
+    if (m_hasFirstLastPiecePriority == enabled)
+        return;
+
+    m_hasFirstLastPiecePriority = enabled;
+    if (hasMetadata())
+        applyFirstLastPiecePriority(enabled);
+
+    LogMsg(tr("Download first and last piece first: %1, torrent: '%2'")
+        .arg((enabled ? tr("On") : tr("Off")), name()));
+
+    saveResumeData();
 }
 
-void TorrentHandleImpl::setFirstLastPiecePriorityImpl(const bool enabled, const QVector<DownloadPriority> &updatedFilePrio)
+void TorrentHandleImpl::applyFirstLastPiecePriority(const bool enabled, const QVector<DownloadPriority> &updatedFilePrio)
 {
-    // Download first and last pieces first for every file in the torrent
+    Q_ASSERT(hasMetadata());
 
-    if (!hasMetadata()) {
-        m_needsToSetFirstLastPiecePriority = enabled;
-        return;
-    }
+    // Download first and last pieces first for every file in the torrent
 
     const std::vector<lt::download_priority_t> filePriorities = !updatedFilePrio.isEmpty() ? toLTDownloadPriorities(updatedFilePrio)
                                                                            : nativeHandle().get_file_priorities();
@@ -1281,11 +1266,6 @@ void TorrentHandleImpl::setFirstLastPiecePriorityImpl(const bool enabled, const 
     }
 
     m_nativeHandle.prioritize_pieces(piecePriorities);
-
-    LogMsg(tr("Download first and last piece first: %1, torrent: '%2'")
-        .arg((enabled ? tr("On") : tr("Off")), name()));
-
-    saveResumeData();
 }
 
 void TorrentHandleImpl::pause()
@@ -1500,10 +1480,9 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     const bool useDummyResumeData = !p;
     if (useDummyResumeData) {
         resumeData["qBt-magnetUri"] = createMagnetURI().toStdString();
-        // Both firstLastPiecePriority and sequential need to be stored in the
+        // sequentialDownload needs to be stored in the
         // resume data if there is no metadata, otherwise they won't be
         // restored if qBittorrent quits before the metadata are retrieved:
-        resumeData["qBt-firstLastPiecePriority"] = hasFirstLastPiecePriority();
         resumeData["qBt-sequential"] = isSequentialDownload();
 
         resumeData["qBt-addedTime"] = addedTime().toSecsSinceEpoch();
@@ -1518,6 +1497,7 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
     resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
+    resumeData["qBt-firstLastPiecePriority"] = m_hasFirstLastPiecePriority;
 
     m_session->handleTorrentResumeDataReady(this, resumeDataPtr);
 }
@@ -1649,12 +1629,10 @@ void TorrentHandleImpl::handleMetadataReceivedAlert(const lt::metadata_received_
         m_session->handleTorrentPaused(this);
     }
 
-    // If first/last piece priority was specified when adding this torrent, we can set it
-    // now that we have metadata:
-    if (m_needsToSetFirstLastPiecePriority) {
-        setFirstLastPiecePriority(true);
-        m_needsToSetFirstLastPiecePriority = false;
-    }
+    // If first/last piece priority was specified when adding this torrent,
+    // we should apply it now that we have metadata:
+    if (m_hasFirstLastPiecePriority)
+        applyFirstLastPiecePriority(true);
 }
 
 void TorrentHandleImpl::handlePerformanceAlert(const lt::performance_alert *p) const
@@ -1898,9 +1876,6 @@ void TorrentHandleImpl::prioritizeFiles(const QVector<DownloadPriority> &priorit
     if (!hasMetadata()) return;
     if (priorities.size() != filesCount()) return;
 
-    // Save first/last piece first option state
-    const bool firstLastPieceFirst = hasFirstLastPiecePriority();
-
     // Reset 'm_hasSeedStatus' if needed in order to react again to
     // 'torrent_finished_alert' and eg show tray notifications
     const QVector<qreal> progress = filesProgress();
@@ -1918,8 +1893,8 @@ void TorrentHandleImpl::prioritizeFiles(const QVector<DownloadPriority> &priorit
     m_nativeHandle.prioritize_files(toLTDownloadPriorities(priorities));
 
     // Restore first/last piece first option if necessary
-    if (firstLastPieceFirst)
-        setFirstLastPiecePriorityImpl(true, priorities);
+    if (m_hasFirstLastPiecePriority)
+        applyFirstLastPiecePriority(true, priorities);
 }
 
 QVector<qreal> TorrentHandleImpl::availableFileFractions() const
