@@ -33,6 +33,7 @@
 #include <QDir>
 #include <QFile>
 #include <QHostAddress>
+#include <QLocale>
 
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -124,8 +125,8 @@ void GeoIPManager::manageDatabaseUpdate()
 
 void GeoIPManager::downloadDatabaseFile()
 {
-    const QDate curDate = QDateTime::currentDateTimeUtc().date();
-    const QString curUrl = DATABASE_URL.arg(curDate.toString("yyyy-MM"));
+    const QDateTime curDatetime = QDateTime::currentDateTimeUtc();
+    const QString curUrl = DATABASE_URL.arg(QLocale::c().toString(curDatetime, "yyyy-MM"));
     DownloadManager::instance()->download({curUrl}, this, &GeoIPManager::downloadFinished);
 }
 
