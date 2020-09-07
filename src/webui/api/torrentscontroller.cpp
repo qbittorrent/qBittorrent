@@ -601,9 +601,9 @@ void TorrentsController::addAction()
     }
 
     if (partialSuccess)
-        setResult("Ok.");
+        setResult(QLatin1String("Ok."));
     else
-        setResult("Fails.");
+        setResult(QLatin1String("Fails."));
 }
 
 void TorrentsController::addTrackersAction()
