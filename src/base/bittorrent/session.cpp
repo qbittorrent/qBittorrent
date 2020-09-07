@@ -224,6 +224,17 @@ namespace
 #endif
     }
 
+    QString toString(const lt::address &address)
+    {
+        try {
+            return QString::fromLatin1(address.to_string().c_str());
+        }
+        catch (const std::exception &) {
+            // suppress conversion error
+        }
+        return {};
+    }
+
     template <typename T>
     struct LowerLimited
     {
@@ -4472,8 +4483,6 @@ void Session::handlePortmapAlert(const lt::portmap_alert *p)
 
 void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 {
-    lt::error_code ec;
-    const std::string ip = p->endpoint.address().to_string(ec);
     QString reason;
     switch (p->reason) {
     case lt::peer_blocked_alert::ip_filter:
@@ -4496,17 +4505,16 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         break;
     }
 
-    if (!ec)
-        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
+    const QString ip {toString(p->endpoint.address())};
+    if (!ip.isEmpty())
+        Logger::instance()->addPeer(ip, true, reason);
 }
 
 void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
-    lt::error_code ec;
-    const std::string ip = p->endpoint.address().to_string(ec);
-
-    if (!ec)
-        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), false);
+    const QString ip {toString(p->endpoint.address())};
+    if (!ip.isEmpty())
+        Logger::instance()->addPeer(ip, false);
 }
 
 void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
@@ -4530,10 +4538,9 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 {
     const QString proto {toString(p->socket_type)};
-    lt::error_code ec;
     LogMsg(tr("Successfully listening on IP: %1, port: %2/%3"
               , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
-            .arg(p->address.to_string(ec).c_str(), proto, QString::number(p->port)), Log::INFO);
+            .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
     for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
@@ -4543,18 +4550,16 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 {
     const QString proto {toString(p->socket_type)};
-    lt::error_code ec;
     LogMsg(tr("Failed to listen on IP: %1, port: %2/%3. Reason: %4"
               , "e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use")
-        .arg(p->address.to_string(ec).c_str(), proto, QString::number(p->port)
+        .arg(toString(p->address), proto, QString::number(p->port)
             , QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
-    lt::error_code ec;
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
-        .arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+        .arg(toString(p->external_address)), Log::INFO);
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
