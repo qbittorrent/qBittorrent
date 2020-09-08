@@ -200,6 +200,41 @@ namespace
         return expanded;
     }
 
+    QString toString(const lt::socket_type_t socketType)
+    {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        return QString::fromLatin1(lt::socket_type_name(socketType));
+#else
+        switch (socketType)
+        {
+        case lt::socket_type_t::i2p:
+            return QLatin1String("I2P");
+        case lt::socket_type_t::socks5:
+            return QLatin1String("SOCKS5");
+        case lt::socket_type_t::tcp:
+            return QLatin1String("TCP");
+        case lt::socket_type_t::tcp_ssl:
+            return QLatin1String("TCP_SSL");
+        case lt::socket_type_t::udp:
+            return QLatin1String("UDP");
+        case lt::socket_type_t::utp_ssl:
+            return QLatin1String("UTP_SSL");
+        }
+        return QLatin1String("INVALID");
+#endif
+    }
+
+    QString toString(const lt::address &address)
+    {
+        try {
+            return QString::fromLatin1(address.to_string().c_str());
+        }
+        catch (const std::exception &) {
+            // suppress conversion error
+        }
+        return {};
+    }
+
     template <typename T>
     struct LowerLimited
     {
@@ -1041,7 +1076,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.value())) {
         lt::error_code ec;
-        const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
+        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (!ec)
             filter.add_rule(addr, addr, lt::ip_filter::blocked);
@@ -1418,7 +1453,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
 void Session::configurePeerClasses()
 {
     lt::ip_filter f;
-    // address_v4::from_string("255.255.255.255") crashes on some people's systems
+    // lt::make_address("255.255.255.255") crashes on some people's systems
     // so instead we use address_v4::broadcast()
     // Proactively do the same for 0.0.0.0 and address_v4::any()
     f.add_rule(lt::address_v4::any()
@@ -1430,29 +1465,29 @@ void Session::configurePeerClasses()
     // Affects Windows XP
     try {
         f.add_rule(lt::address_v6::any()
-                   , lt::address_v6::from_string("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+                   , lt::make_address("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::global_peer_class_id));
     }
     catch (const std::exception &) {}
 
     if (ignoreLimitsOnLAN()) {
         // local networks
-        f.add_rule(lt::address_v4::from_string("10.0.0.0")
-                   , lt::address_v4::from_string("10.255.255.255")
+        f.add_rule(lt::make_address("10.0.0.0")
+                   , lt::make_address("10.255.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
-        f.add_rule(lt::address_v4::from_string("172.16.0.0")
-                   , lt::address_v4::from_string("172.31.255.255")
+        f.add_rule(lt::make_address("172.16.0.0")
+                   , lt::make_address("172.31.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
-        f.add_rule(lt::address_v4::from_string("192.168.0.0")
-                   , lt::address_v4::from_string("192.168.255.255")
+        f.add_rule(lt::make_address("192.168.0.0")
+                   , lt::make_address("192.168.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
         // link local
-        f.add_rule(lt::address_v4::from_string("169.254.0.0")
-                   , lt::address_v4::from_string("169.254.255.255")
+        f.add_rule(lt::make_address("169.254.0.0")
+                   , lt::make_address("169.254.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
         // loopback
-        f.add_rule(lt::address_v4::from_string("127.0.0.0")
-                   , lt::address_v4::from_string("127.255.255.255")
+        f.add_rule(lt::make_address("127.0.0.0")
+                   , lt::make_address("127.255.255.255")
                    , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
 
         // IPv6 may not be available on OS and the parsing
@@ -1460,12 +1495,12 @@ void Session::configurePeerClasses()
         // Affects Windows XP
         try {
             // link local
-            f.add_rule(lt::address_v6::from_string("fe80::")
-                       , lt::address_v6::from_string("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+            f.add_rule(lt::make_address("fe80::")
+                       , lt::make_address("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                        , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
             // unique local addresses
-            f.add_rule(lt::address_v6::from_string("fc00::")
-                       , lt::address_v6::from_string("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
+            f.add_rule(lt::make_address("fc00::")
+                       , lt::make_address("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
                        , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
             // loopback
             f.add_rule(lt::address_v6::loopback()
@@ -1651,7 +1686,7 @@ void Session::banIP(const QString &ip)
     if (!bannedIPs.contains(ip)) {
         lt::ip_filter filter = m_nativeSession->get_ip_filter();
         lt::error_code ec;
-        const lt::address addr = lt::address::from_string(ip.toLatin1().constData(), ec);
+        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec) return;
         filter.add_rule(addr, addr, lt::ip_filter::blocked);
@@ -2978,7 +3013,7 @@ void Session::setPeerTurnoverInterval(const int val)
 {
     if (val == m_peerTurnoverInterval)
         return;
-    
+
     m_peerTurnoverInterval = val;
     configureDeferred();
 }
@@ -4448,8 +4483,6 @@ void Session::handlePortmapAlert(const lt::portmap_alert *p)
 
 void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 {
-    lt::error_code ec;
-    const std::string ip = p->endpoint.address().to_string(ec);
     QString reason;
     switch (p->reason) {
     case lt::peer_blocked_alert::ip_filter:
@@ -4472,17 +4505,16 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         break;
     }
 
-    if (!ec)
-        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), true, reason);
+    const QString ip {toString(p->endpoint.address())};
+    if (!ip.isEmpty())
+        Logger::instance()->addPeer(ip, true, reason);
 }
 
 void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
-    lt::error_code ec;
-    const std::string ip = p->endpoint.address().to_string(ec);
-
-    if (!ec)
-        Logger::instance()->addPeer(QString::fromLatin1(ip.c_str()), false);
+    const QString ip {toString(p->endpoint.address())};
+    if (!ip.isEmpty())
+        Logger::instance()->addPeer(ip, false);
 }
 
 void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
@@ -4505,33 +4537,10 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 {
-    QString proto = "INVALID";
-    switch (p->socket_type)
-    {
-    case lt::socket_type_t::udp:
-        proto = "UDP";
-        break;
-    case lt::socket_type_t::tcp:
-        proto = "TCP";
-        break;
-    case lt::socket_type_t::tcp_ssl:
-        proto = "TCP_SSL";
-        break;
-    case lt::socket_type_t::i2p:
-        proto = "I2P";
-        break;
-    case lt::socket_type_t::socks5:
-        proto = "SOCKS5";
-        break;
-    case lt::socket_type_t::utp_ssl:
-        proto = "UTP_SSL";
-        break;
-    }
-
-    lt::error_code ec;
+    const QString proto {toString(p->socket_type)};
     LogMsg(tr("Successfully listening on IP: %1, port: %2/%3"
               , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
-            .arg(p->address.to_string(ec).c_str(), proto, QString::number(p->port)), Log::INFO);
+            .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
     for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
@@ -4540,41 +4549,17 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 {
-    QString proto = "INVALID";
-    switch (p->socket_type)
-    {
-    case lt::socket_type_t::udp:
-        proto = "UDP";
-        break;
-    case lt::socket_type_t::tcp:
-        proto = "TCP";
-        break;
-    case lt::socket_type_t::tcp_ssl:
-        proto = "TCP_SSL";
-        break;
-    case lt::socket_type_t::i2p:
-        proto = "I2P";
-        break;
-    case lt::socket_type_t::socks5:
-        proto = "SOCKS5";
-        break;
-    case lt::socket_type_t::utp_ssl:
-        proto = "UTP_SSL";
-        break;
-    }
-
-    lt::error_code ec;
+    const QString proto {toString(p->socket_type)};
     LogMsg(tr("Failed to listen on IP: %1, port: %2/%3. Reason: %4"
               , "e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use")
-        .arg(p->address.to_string(ec).c_str(), proto, QString::number(p->port)
+        .arg(toString(p->address), proto, QString::number(p->port)
             , QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
-    lt::error_code ec;
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
-        .arg(p->external_address.to_string(ec).c_str()), Log::INFO);
+        .arg(toString(p->external_address)), Log::INFO);
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
