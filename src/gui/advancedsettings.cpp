@@ -87,11 +87,15 @@ enum AdvSettingsRows
     ASYNC_IO_THREADS,
     FILE_POOL_SIZE,
     CHECKING_MEM_USAGE,
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // cache
     DISK_CACHE,
     DISK_CACHE_TTL,
+#endif
     OS_CACHE,
+#if (LIBTORRENT_VERSION_NUM < 20000)
     COALESCE_RW,
+#endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
     PIECE_EXTENT_AFFINITY,
 #endif
@@ -147,8 +151,6 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Signals
-    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateCacheSpinSuffix);
     connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &AdvancedSettings::updateInterfaceAddressCombo);
     connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
@@ -192,13 +194,17 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
     session->setCheckingMemUsage(m_spinBoxCheckingMemUsage.value());
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Disk write cache
     session->setDiskCacheSize(m_spinBoxCache.value());
     session->setDiskCacheTTL(m_spinBoxCacheTTL.value());
+#endif
     // Enable OS cache
     session->setUseOSCache(m_checkBoxOsCache.isChecked());
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Coalesce reads & writes
     session->setCoalesceReadWriteEnabled(m_checkBoxCoalesceRW.isChecked());
+#endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
     // Piece extent affinity
     session->setPieceExtentAffinity(m_checkBoxPieceExtentAffinity.isChecked());
@@ -290,6 +296,7 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
 }
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
 void AdvancedSettings::updateCacheSpinSuffix(int value)
 {
     if (value == 0)
@@ -299,6 +306,7 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
     else
         m_spinBoxCache.setSuffix(tr(" MiB"));
 }
+#endif
 
 void AdvancedSettings::updateSaveResumeDataIntervalSuffix(const int value)
 {
@@ -422,7 +430,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxCheckingMemUsage.setSuffix(tr(" MiB"));
     addRow(CHECKING_MEM_USAGE, (tr("Outstanding memory when checking torrents") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#checking_mem_usage", "(?)"))
             , &m_spinBoxCheckingMemUsage);
-
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Disk write cache
     m_spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
@@ -434,6 +442,8 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     m_spinBoxCache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(m_spinBoxCache.value());
+    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
+            , this, &AdvancedSettings::updateCacheSpinSuffix);
     addRow(DISK_CACHE, (tr("Disk cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_size", "(?)"))
             , &m_spinBoxCache);
     // Disk cache expiry
@@ -443,14 +453,17 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxCacheTTL.setSuffix(tr(" s", " seconds"));
     addRow(DISK_CACHE_TTL, (tr("Disk cache expiry interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_expiry", "(?)"))
             , &m_spinBoxCacheTTL);
+#endif
     // Enable OS cache
     m_checkBoxOsCache.setChecked(session->useOSCache());
     addRow(OS_CACHE, (tr("Enable OS cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", "(?)"))
             , &m_checkBoxOsCache);
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Coalesce reads & writes
     m_checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
     addRow(COALESCE_RW, (tr("Coalesce reads & writes") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#coalesce_reads", "(?)"))
             , &m_checkBoxCoalesceRW);
+#endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
     // Piece extent affinity
     m_checkBoxPieceExtentAffinity.setChecked(session->usePieceExtentAffinity());
