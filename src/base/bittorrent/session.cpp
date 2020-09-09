@@ -1043,7 +1043,7 @@ void Session::initializeNativeSession()
 #endif
 
     loadLTSettings(pack);
-    m_nativeSession = new lt::session {pack, lt::session_flags_t {0}};
+    m_nativeSession = new lt::session {lt::session_params {pack, {}}};
 
     LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
     LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
