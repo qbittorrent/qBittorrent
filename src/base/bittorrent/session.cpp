@@ -353,6 +353,7 @@ Session::Session(QObject *parent)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY("IgnoreLimitsOnLAN"), false)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
+    , m_maxConcurrentHTTPAnnounces(BITTORRENT_SESSION_KEY("MaxConcurrentHTTPAnnounces"), 50)
 #if (LIBTORRENT_VERSION_NUM >= 10206)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 5)
 #else
@@ -1314,6 +1315,10 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
     settingsPack.set_str(lt::settings_pack::announce_ip, announceIP().toStdString());
+#if (LIBTORRENT_VERSION_NUM >= 10207)
+    // Max concurrent HTTP announces
+    settingsPack.set_int(lt::settings_pack::max_concurrent_http_announces, maxConcurrentHTTPAnnounces());
+#endif
     // Stop tracker timeout
     settingsPack.set_int(lt::settings_pack::stop_tracker_timeout, stopTrackerTimeout());
     // * Max connections limit
@@ -3410,6 +3415,20 @@ void Session::setAnnounceIP(const QString &ip)
         m_announceIP = ip;
         configureDeferred();
     }
+}
+
+int Session::maxConcurrentHTTPAnnounces() const
+{
+    return m_maxConcurrentHTTPAnnounces;
+}
+
+void Session::setMaxConcurrentHTTPAnnounces(const int value)
+{
+    if (value == m_maxConcurrentHTTPAnnounces)
+        return;
+
+    m_maxConcurrentHTTPAnnounces = value;
+    configureDeferred();
 }
 
 int Session::stopTrackerTimeout() const
