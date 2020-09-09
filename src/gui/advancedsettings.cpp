@@ -151,11 +151,6 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setAlternatingRowColors(true);
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
-    // Signals
-    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
-            , this, &AdvancedSettings::updateInterfaceAddressCombo);
-    connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -503,6 +498,8 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSaveResumeDataInterval.setMinimum(0);
     m_spinBoxSaveResumeDataInterval.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxSaveResumeDataInterval.setValue(session->saveResumeDataInterval());
+    connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
+        , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     updateSaveResumeDataIntervalSuffix(m_spinBoxSaveResumeDataInterval.value());
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &m_spinBoxSaveResumeDataInterval);
     // Outgoing port Min
@@ -573,6 +570,8 @@ void AdvancedSettings::loadAdvancedSettings()
         m_comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
         m_comboBoxInterface.setCurrentIndex(i);
     }
+    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
+        , this, &AdvancedSettings::updateInterfaceAddressCombo);
     addRow(NETWORK_IFACE, tr("Network Interface"), &m_comboBoxInterface);
     // Network interface address
     updateInterfaceAddressCombo();
