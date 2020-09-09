@@ -49,92 +49,93 @@ namespace
     {
          return QStringLiteral("<a href=\"%1\">%2</a>").arg(url, linkLabel);
     }
-}
 
-enum AdvSettingsCols
-{
-    PROPERTY,
-    VALUE,
-    COL_COUNT
-};
-enum AdvSettingsRows
-{
-    // qBittorrent section
-    QBITTORRENT_HEADER,
+    enum AdvSettingsCols
+    {
+        PROPERTY,
+        VALUE,
+        COL_COUNT
+    };
+
+    enum AdvSettingsRows
+    {
+        // qBittorrent section
+        QBITTORRENT_HEADER,
 #if defined(Q_OS_WIN)
-    OS_MEMORY_PRIORITY,
+        OS_MEMORY_PRIORITY,
 #endif
-    // network interface
-    NETWORK_IFACE,
-    //Optional network address
-    NETWORK_IFACE_ADDRESS,
-    // behavior
-    SAVE_RESUME_DATA_INTERVAL,
-    CONFIRM_RECHECK_TORRENT,
-    RECHECK_COMPLETED,
-    // UI related
-    LIST_REFRESH,
-    RESOLVE_HOSTS,
-    RESOLVE_COUNTRIES,
-    PROGRAM_NOTIFICATIONS,
-    TORRENT_ADDED_NOTIFICATIONS,
-    CONFIRM_REMOVE_ALL_TAGS,
-    DOWNLOAD_TRACKER_FAVICON,
-    SAVE_PATH_HISTORY_LENGTH,
-    ENABLE_SPEED_WIDGET,
-    // libtorrent section
-    LIBTORRENT_HEADER,
-    ASYNC_IO_THREADS,
-    FILE_POOL_SIZE,
-    CHECKING_MEM_USAGE,
+        // network interface
+        NETWORK_IFACE,
+        //Optional network address
+        NETWORK_IFACE_ADDRESS,
+        // behavior
+        SAVE_RESUME_DATA_INTERVAL,
+        CONFIRM_RECHECK_TORRENT,
+        RECHECK_COMPLETED,
+        // UI related
+        LIST_REFRESH,
+        RESOLVE_HOSTS,
+        RESOLVE_COUNTRIES,
+        PROGRAM_NOTIFICATIONS,
+        TORRENT_ADDED_NOTIFICATIONS,
+        CONFIRM_REMOVE_ALL_TAGS,
+        DOWNLOAD_TRACKER_FAVICON,
+        SAVE_PATH_HISTORY_LENGTH,
+        ENABLE_SPEED_WIDGET,
+        // libtorrent section
+        LIBTORRENT_HEADER,
+        ASYNC_IO_THREADS,
+        FILE_POOL_SIZE,
+        CHECKING_MEM_USAGE,
 #if (LIBTORRENT_VERSION_NUM < 20000)
-    // cache
-    DISK_CACHE,
-    DISK_CACHE_TTL,
+        // cache
+        DISK_CACHE,
+        DISK_CACHE_TTL,
 #endif
-    OS_CACHE,
+        OS_CACHE,
 #if (LIBTORRENT_VERSION_NUM < 20000)
-    COALESCE_RW,
+        COALESCE_RW,
 #endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
-    PIECE_EXTENT_AFFINITY,
+        PIECE_EXTENT_AFFINITY,
 #endif
-    SUGGEST_MODE,
-    SEND_BUF_WATERMARK,
-    SEND_BUF_LOW_WATERMARK,
-    SEND_BUF_WATERMARK_FACTOR,
-    // networking & ports
-    SOCKET_BACKLOG_SIZE,
-    OUTGOING_PORT_MIN,
-    OUTGOING_PORT_MAX,
+        SUGGEST_MODE,
+        SEND_BUF_WATERMARK,
+        SEND_BUF_LOW_WATERMARK,
+        SEND_BUF_WATERMARK_FACTOR,
+        // networking & ports
+        SOCKET_BACKLOG_SIZE,
+        OUTGOING_PORT_MIN,
+        OUTGOING_PORT_MAX,
 #if (LIBTORRENT_VERSION_NUM >= 10206)
-    UPNP_LEASE_DURATION,
+        UPNP_LEASE_DURATION,
 #endif
-    UTP_MIX_MODE,
-    MULTI_CONNECTIONS_PER_IP,
+        UTP_MIX_MODE,
+        MULTI_CONNECTIONS_PER_IP,
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
-    VALIDATE_HTTPS_TRACKER_CERTIFICATE,
+        VALIDATE_HTTPS_TRACKER_CERTIFICATE,
 #endif
-    // embedded tracker
-    TRACKER_STATUS,
-    TRACKER_PORT,
-    // seeding
-    CHOKING_ALGORITHM,
-    SEED_CHOKING_ALGORITHM,
-    // tracker
-    ANNOUNCE_ALL_TRACKERS,
-    ANNOUNCE_ALL_TIERS,
-    ANNOUNCE_IP,
+        // embedded tracker
+        TRACKER_STATUS,
+        TRACKER_PORT,
+        // seeding
+        CHOKING_ALGORITHM,
+        SEED_CHOKING_ALGORITHM,
+        // tracker
+        ANNOUNCE_ALL_TRACKERS,
+        ANNOUNCE_ALL_TIERS,
+        ANNOUNCE_IP,
 #if (LIBTORRENT_VERSION_NUM >= 10207)
-    MAX_CONCURRENT_HTTP_ANNOUNCES,
+        MAX_CONCURRENT_HTTP_ANNOUNCES,
 #endif
-    STOP_TRACKER_TIMEOUT,
-    PEER_TURNOVER,
-    PEER_TURNOVER_CUTOFF,
-    PEER_TURNOVER_INTERVAL,
+        STOP_TRACKER_TIMEOUT,
+        PEER_TURNOVER,
+        PEER_TURNOVER_CUTOFF,
+        PEER_TURNOVER_INTERVAL,
 
-    ROW_COUNT
-};
+        ROW_COUNT
+    };
+}
 
 AdvancedSettings::AdvancedSettings(QWidget *parent)
     : QTableWidget(parent)
