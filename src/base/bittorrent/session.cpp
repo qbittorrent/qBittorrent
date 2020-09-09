@@ -4493,22 +4493,22 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
     QString reason;
     switch (p->reason) {
     case lt::peer_blocked_alert::ip_filter:
-        reason = tr("due to IP filter.", "this peer was blocked due to ip filter.");
+        reason = tr("IP filter", "this peer was blocked. Reason: IP filter.");
         break;
     case lt::peer_blocked_alert::port_filter:
-        reason = tr("due to port filter.", "this peer was blocked due to port filter.");
+        reason = tr("port filter", "this peer was blocked. Reason: port filter.");
         break;
     case lt::peer_blocked_alert::i2p_mixed:
-        reason = tr("due to i2p mixed mode restrictions.", "this peer was blocked due to i2p mixed mode restrictions.");
+        reason = tr("%1 mixed mode restrictions", "this peer was blocked. Reason: I2P mixed mode restrictions.").arg("I2P"); // don't translate I2P
         break;
     case lt::peer_blocked_alert::privileged_ports:
-        reason = tr("because it has a low port.", "this peer was blocked because it has a low port.");
+        reason = tr("use of privileged port", "this peer was blocked. Reason: use of privileged port.");
         break;
     case lt::peer_blocked_alert::utp_disabled:
-        reason = tr("because %1 is disabled.", "this peer was blocked because uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
+        reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
         break;
     case lt::peer_blocked_alert::tcp_disabled:
-        reason = tr("because %1 is disabled.", "this peer was blocked because TCP is disabled.").arg("TCP"); // don't translate TCP
+        reason = tr("%1 is disabled", "this peer was blocked. Reason: TCP is disabled.").arg("TCP"); // don't translate TCP
         break;
     }
 
