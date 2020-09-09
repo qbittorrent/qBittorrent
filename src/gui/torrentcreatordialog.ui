@@ -30,8 +30,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>574</width>
-        <height>649</height>
+        <width>560</width>
+        <height>668</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -120,6 +120,63 @@
           <string>Settings</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QWidget" name="widgetTorrentFormat" native="true">
+            <layout class="QHBoxLayout" name="layoutTorrentFormat">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="labelTorrentFormat">
+               <property name="text">
+                <string>Torrent format:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboTorrentFormat">
+               <item>
+                <property name="text">
+                 <string notr="true">V2</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Hybrid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">V1</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <layout class="QHBoxLayout" name="pieceSizeLayout">
             <item>
