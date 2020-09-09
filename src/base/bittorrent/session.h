@@ -758,12 +758,7 @@ namespace BitTorrent
         QThread *m_ioThread = nullptr;
         ResumeDataSavingManager *m_resumeDataSavingManager = nullptr;
 
-        struct LoadedMetadataHandle
-        {
-            lt::add_torrent_params ltAddTorrentParams {};
-            TorrentInfo metadata;
-        };
-        QHash<InfoHash, LoadedMetadataHandle> m_loadedMetadata;
+        QSet<InfoHash> m_loadedMetadata;
 
         QHash<InfoHash, TorrentHandleImpl *> m_torrents;
         QHash<InfoHash, LoadTorrentParams> m_loadingTorrents;
