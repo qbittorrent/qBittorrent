@@ -1043,7 +1043,7 @@ void Session::initializeNativeSession()
 #endif
 
     loadLTSettings(pack);
-    m_nativeSession = new lt::session {pack, lt::session_flags_t {0}};
+    m_nativeSession = new lt::session {lt::session_params {pack, {}}};
 
     LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
     LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
@@ -1257,18 +1257,21 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     settingsPack.set_int(lt::settings_pack::cache_size, cacheSize);
     settingsPack.set_int(lt::settings_pack::cache_expiry, diskCacheTTL());
-    qDebug() << "Using a disk cache size of" << cacheSize << "MiB";
+#endif
 
     lt::settings_pack::io_buffer_mode_t mode = useOSCache() ? lt::settings_pack::enable_os_cache
                                                               : lt::settings_pack::disable_os_cache;
     settingsPack.set_int(lt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(lt::settings_pack::disk_io_write_mode, mode);
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     settingsPack.set_bool(lt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
     settingsPack.set_bool(lt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
+#endif
 
 #if (LIBTORRENT_VERSION_NUM >= 10202)
     settingsPack.set_bool(lt::settings_pack::piece_extent_affinity, usePieceExtentAffinity());

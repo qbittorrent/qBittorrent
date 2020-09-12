@@ -29,6 +29,8 @@
 #ifndef ADVANCEDSETTINGS_H
 #define ADVANCEDSETTINGS_H
 
+#include <libtorrent/version.hpp>
+
 #include <QCheckBox>
 #include <QComboBox>
 #include <QLineEdit>
@@ -49,7 +51,9 @@ signals:
     void settingsChanged();
 
 private slots:
+#if (LIBTORRENT_VERSION_NUM < 20000)
     void updateCacheSpinSuffix(int value);
+#endif
     void updateSaveResumeDataIntervalSuffix(int value);
     void updateInterfaceAddressCombo();
 
@@ -57,17 +61,22 @@ private:
     void loadAdvancedSettings();
     template <typename T> void addRow(int row, const QString &text, T *widget);
 
-    QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage, m_spinBoxCache,
+    QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage,
              m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxUPnPLeaseDuration,
-             m_spinBoxListRefresh, m_spinBoxTrackerPort, m_spinBoxCacheTTL, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
+             m_spinBoxListRefresh, m_spinBoxTrackerPort, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
              m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxMaxConcurrentHTTPAnnounces, m_spinBoxStopTrackerTimeout,
              m_spinBoxSavePathHistoryLength, m_spinBoxPeerTurnover, m_spinBoxPeerTurnoverCutoff, m_spinBoxPeerTurnoverInterval;
     QCheckBox m_checkBoxOsCache, m_checkBoxRecheckCompleted, m_checkBoxResolveCountries, m_checkBoxResolveHosts,
               m_checkBoxProgramNotifications, m_checkBoxTorrentAddedNotifications, m_checkBoxTrackerFavicon, m_checkBoxTrackerStatus,
               m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
-              m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxPieceExtentAffinity, m_checkBoxSuggestMode, m_checkBoxCoalesceRW, m_checkBoxSpeedWidgetEnabled;
+              m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxPieceExtentAffinity, m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
     QLineEdit m_lineEditAnnounceIP;
+
+#if (LIBTORRENT_VERSION_NUM < 20000)
+    QSpinBox m_spinBoxCache, m_spinBoxCacheTTL;
+    QCheckBox m_checkBoxCoalesceRW;
+#endif
 
     // OS dependent settings
 #if defined(Q_OS_WIN)

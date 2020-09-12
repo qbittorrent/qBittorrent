@@ -49,88 +49,93 @@ namespace
     {
          return QStringLiteral("<a href=\"%1\">%2</a>").arg(url, linkLabel);
     }
-}
 
-enum AdvSettingsCols
-{
-    PROPERTY,
-    VALUE,
-    COL_COUNT
-};
-enum AdvSettingsRows
-{
-    // qBittorrent section
-    QBITTORRENT_HEADER,
+    enum AdvSettingsCols
+    {
+        PROPERTY,
+        VALUE,
+        COL_COUNT
+    };
+
+    enum AdvSettingsRows
+    {
+        // qBittorrent section
+        QBITTORRENT_HEADER,
 #if defined(Q_OS_WIN)
-    OS_MEMORY_PRIORITY,
+        OS_MEMORY_PRIORITY,
 #endif
-    // network interface
-    NETWORK_IFACE,
-    //Optional network address
-    NETWORK_IFACE_ADDRESS,
-    // behavior
-    SAVE_RESUME_DATA_INTERVAL,
-    CONFIRM_RECHECK_TORRENT,
-    RECHECK_COMPLETED,
-    // UI related
-    LIST_REFRESH,
-    RESOLVE_HOSTS,
-    RESOLVE_COUNTRIES,
-    PROGRAM_NOTIFICATIONS,
-    TORRENT_ADDED_NOTIFICATIONS,
-    CONFIRM_REMOVE_ALL_TAGS,
-    DOWNLOAD_TRACKER_FAVICON,
-    SAVE_PATH_HISTORY_LENGTH,
-    ENABLE_SPEED_WIDGET,
-    // libtorrent section
-    LIBTORRENT_HEADER,
-    ASYNC_IO_THREADS,
-    FILE_POOL_SIZE,
-    CHECKING_MEM_USAGE,
-    // cache
-    DISK_CACHE,
-    DISK_CACHE_TTL,
-    OS_CACHE,
-    COALESCE_RW,
+        // network interface
+        NETWORK_IFACE,
+        //Optional network address
+        NETWORK_IFACE_ADDRESS,
+        // behavior
+        SAVE_RESUME_DATA_INTERVAL,
+        CONFIRM_RECHECK_TORRENT,
+        RECHECK_COMPLETED,
+        // UI related
+        LIST_REFRESH,
+        RESOLVE_HOSTS,
+        RESOLVE_COUNTRIES,
+        PROGRAM_NOTIFICATIONS,
+        TORRENT_ADDED_NOTIFICATIONS,
+        CONFIRM_REMOVE_ALL_TAGS,
+        DOWNLOAD_TRACKER_FAVICON,
+        SAVE_PATH_HISTORY_LENGTH,
+        ENABLE_SPEED_WIDGET,
+        // libtorrent section
+        LIBTORRENT_HEADER,
+        ASYNC_IO_THREADS,
+        FILE_POOL_SIZE,
+        CHECKING_MEM_USAGE,
+#if (LIBTORRENT_VERSION_NUM < 20000)
+        // cache
+        DISK_CACHE,
+        DISK_CACHE_TTL,
+#endif
+        OS_CACHE,
+#if (LIBTORRENT_VERSION_NUM < 20000)
+        COALESCE_RW,
+#endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
-    PIECE_EXTENT_AFFINITY,
+        PIECE_EXTENT_AFFINITY,
 #endif
-    SUGGEST_MODE,
-    SEND_BUF_WATERMARK,
-    SEND_BUF_LOW_WATERMARK,
-    SEND_BUF_WATERMARK_FACTOR,
-    // networking & ports
-    SOCKET_BACKLOG_SIZE,
-    OUTGOING_PORT_MIN,
-    OUTGOING_PORT_MAX,
+        SUGGEST_MODE,
+        SEND_BUF_WATERMARK,
+        SEND_BUF_LOW_WATERMARK,
+        SEND_BUF_WATERMARK_FACTOR,
+        // networking & ports
+        SOCKET_BACKLOG_SIZE,
+        OUTGOING_PORT_MIN,
+        OUTGOING_PORT_MAX,
 #if (LIBTORRENT_VERSION_NUM >= 10206)
-    UPNP_LEASE_DURATION,
+        UPNP_LEASE_DURATION,
 #endif
-    UTP_MIX_MODE,
-    MULTI_CONNECTIONS_PER_IP,
+        UTP_MIX_MODE,
+        MULTI_CONNECTIONS_PER_IP,
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
-    VALIDATE_HTTPS_TRACKER_CERTIFICATE,
+        VALIDATE_HTTPS_TRACKER_CERTIFICATE,
 #endif
-    // embedded tracker
-    TRACKER_STATUS,
-    TRACKER_PORT,
-    // seeding
-    CHOKING_ALGORITHM,
-    SEED_CHOKING_ALGORITHM,
-    // tracker
-    ANNOUNCE_ALL_TRACKERS,
-    ANNOUNCE_ALL_TIERS,
-    ANNOUNCE_IP,
+        // embedded tracker
+        TRACKER_STATUS,
+        TRACKER_PORT,
+        // seeding
+        CHOKING_ALGORITHM,
+        SEED_CHOKING_ALGORITHM,
+        // tracker
+        ANNOUNCE_ALL_TRACKERS,
+        ANNOUNCE_ALL_TIERS,
+        ANNOUNCE_IP,
 #if (LIBTORRENT_VERSION_NUM >= 10207)
-    MAX_CONCURRENT_HTTP_ANNOUNCES,
+        MAX_CONCURRENT_HTTP_ANNOUNCES,
 #endif
-    STOP_TRACKER_TIMEOUT,
-    PEER_TURNOVER,
-    PEER_TURNOVER_CUTOFF,
-    PEER_TURNOVER_INTERVAL,
+        STOP_TRACKER_TIMEOUT,
+        PEER_TURNOVER,
+        PEER_TURNOVER_CUTOFF,
+        PEER_TURNOVER_INTERVAL,
 
-    ROW_COUNT
-};
+        ROW_COUNT
+    };
+}
 
 AdvancedSettings::AdvancedSettings(QWidget *parent)
     : QTableWidget(parent)
@@ -146,13 +151,6 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     setAlternatingRowColors(true);
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
-    // Signals
-    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateCacheSpinSuffix);
-    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
-            , this, &AdvancedSettings::updateInterfaceAddressCombo);
-    connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -192,13 +190,17 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
     session->setCheckingMemUsage(m_spinBoxCheckingMemUsage.value());
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Disk write cache
     session->setDiskCacheSize(m_spinBoxCache.value());
     session->setDiskCacheTTL(m_spinBoxCacheTTL.value());
+#endif
     // Enable OS cache
     session->setUseOSCache(m_checkBoxOsCache.isChecked());
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Coalesce reads & writes
     session->setCoalesceReadWriteEnabled(m_checkBoxCoalesceRW.isChecked());
+#endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
     // Piece extent affinity
     session->setPieceExtentAffinity(m_checkBoxPieceExtentAffinity.isChecked());
@@ -290,6 +292,7 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
 }
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
 void AdvancedSettings::updateCacheSpinSuffix(int value)
 {
     if (value == 0)
@@ -299,6 +302,7 @@ void AdvancedSettings::updateCacheSpinSuffix(int value)
     else
         m_spinBoxCache.setSuffix(tr(" MiB"));
 }
+#endif
 
 void AdvancedSettings::updateSaveResumeDataIntervalSuffix(const int value)
 {
@@ -422,7 +426,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxCheckingMemUsage.setSuffix(tr(" MiB"));
     addRow(CHECKING_MEM_USAGE, (tr("Outstanding memory when checking torrents") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#checking_mem_usage", "(?)"))
             , &m_spinBoxCheckingMemUsage);
-
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Disk write cache
     m_spinBoxCache.setMinimum(-1);
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes.
@@ -434,6 +438,8 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     m_spinBoxCache.setValue(session->diskCacheSize());
     updateCacheSpinSuffix(m_spinBoxCache.value());
+    connect(&m_spinBoxCache, qOverload<int>(&QSpinBox::valueChanged)
+            , this, &AdvancedSettings::updateCacheSpinSuffix);
     addRow(DISK_CACHE, (tr("Disk cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_size", "(?)"))
             , &m_spinBoxCache);
     // Disk cache expiry
@@ -443,14 +449,17 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxCacheTTL.setSuffix(tr(" s", " seconds"));
     addRow(DISK_CACHE_TTL, (tr("Disk cache expiry interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#cache_expiry", "(?)"))
             , &m_spinBoxCacheTTL);
+#endif
     // Enable OS cache
     m_checkBoxOsCache.setChecked(session->useOSCache());
     addRow(OS_CACHE, (tr("Enable OS cache") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", "(?)"))
             , &m_checkBoxOsCache);
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Coalesce reads & writes
     m_checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());
     addRow(COALESCE_RW, (tr("Coalesce reads & writes") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#coalesce_reads", "(?)"))
             , &m_checkBoxCoalesceRW);
+#endif
 #if (LIBTORRENT_VERSION_NUM >= 10202)
     // Piece extent affinity
     m_checkBoxPieceExtentAffinity.setChecked(session->usePieceExtentAffinity());
@@ -489,6 +498,8 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSaveResumeDataInterval.setMinimum(0);
     m_spinBoxSaveResumeDataInterval.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxSaveResumeDataInterval.setValue(session->saveResumeDataInterval());
+    connect(&m_spinBoxSaveResumeDataInterval, qOverload<int>(&QSpinBox::valueChanged)
+        , this, &AdvancedSettings::updateSaveResumeDataIntervalSuffix);
     updateSaveResumeDataIntervalSuffix(m_spinBoxSaveResumeDataInterval.value());
     addRow(SAVE_RESUME_DATA_INTERVAL, tr("Save resume data interval", "How often the fastresume file is saved."), &m_spinBoxSaveResumeDataInterval);
     // Outgoing port Min
@@ -559,6 +570,8 @@ void AdvancedSettings::loadAdvancedSettings()
         m_comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
         m_comboBoxInterface.setCurrentIndex(i);
     }
+    connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
+        , this, &AdvancedSettings::updateInterfaceAddressCombo);
     addRow(NETWORK_IFACE, tr("Network Interface"), &m_comboBoxInterface);
     // Network interface address
     updateInterfaceAddressCombo();
