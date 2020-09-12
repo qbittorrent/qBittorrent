@@ -5679,12 +5679,12 @@ Elle: Çeşitli torrent özellikleri (örn. kaydetme yolu) el ile atanmak zorund
     <message>
         <location filename="../gui/optionsdialog.ui" line="3226"/>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel HTTP bağlantıları ekle</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3238"/>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished"></translation>
+        <translation>Başlık: değer çiftleri, her satıra bir adet</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3260"/>
