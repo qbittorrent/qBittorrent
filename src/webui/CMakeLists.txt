@@ -2,6 +2,7 @@ add_library(qbt_webui STATIC
 # headers
 api/apicontroller.h
 api/apierror.h
+api/apitorrentcreatorthread.h
 api/appcontroller.h
 api/authcontroller.h
 api/freediskspacechecker.h
@@ -19,6 +20,7 @@ webui.h
 # sources
 api/apicontroller.cpp
 api/apierror.cpp
+api/apitorrentcreatorthread.cpp
 api/appcontroller.cpp
 api/authcontroller.cpp
 api/freediskspacechecker.cpp

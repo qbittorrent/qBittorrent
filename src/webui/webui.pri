@@ -1,6 +1,7 @@
 HEADERS += \
     $$PWD/api/apicontroller.h \
     $$PWD/api/apierror.h \
+    $$PWD/api/apitorrentcreatorthread.h \
     $$PWD/api/appcontroller.h \
     $$PWD/api/authcontroller.h \
     $$PWD/api/freediskspacechecker.h \
@@ -18,6 +19,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/api/apicontroller.cpp \
     $$PWD/api/apierror.cpp \
+    $$PWD/api/apitorrentcreatorthread.cpp \
     $$PWD/api/appcontroller.cpp \
     $$PWD/api/authcontroller.cpp \
     $$PWD/api/freediskspacechecker.cpp \

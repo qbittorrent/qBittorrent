@@ -29,6 +29,11 @@
 #pragma once
 
 #include "apicontroller.h"
+#include "apitorrentcreatorthread.h"
+
+struct ISessionManager;
+
+class QMutex;
 
 class TorrentsController : public APIController
 {
@@ -37,6 +42,9 @@ class TorrentsController : public APIController
 
 public:
     using APIController::APIController;
+
+    explicit TorrentsController(ISessionManager *sessionManager, QObject *parent = nullptr);
+    ~TorrentsController() override;
 
 private slots:
     void infoAction();
@@ -61,6 +69,9 @@ private slots:
     void createTagsAction();
     void deleteTagsAction();
     void tagsAction();
+    void createAction();
+    void creatorStatusAction();
+    void torrentCreationUpdated(int creatorId, const struct TorrentCreatorStatus &status);
     void addAction();
     void deleteAction();
     void addTrackersAction();
@@ -84,4 +95,9 @@ private slots:
     void toggleSequentialDownloadAction();
     void toggleFirstLastPiecePrioAction();
     void renameFileAction();
+
+private:
+    int m_torrentCreatorCount = 0;
+    QHash<int, struct TorrentCreatorStatus> m_torrentCreatorStatus;
+    mutable QMutex *m_torrentCreatorStatusMutex;
 };
