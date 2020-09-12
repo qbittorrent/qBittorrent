@@ -1042,6 +1042,11 @@ void Session::initializeNativeSession()
     pack.set_bool(lt::settings_pack::upnp_ignore_nonrouters, true);
 #endif
 
+#if (LIBTORRENT_VERSION_NUM > 20000)
+    // preserve the same behavior as in earlier libtorrent versions
+    pack.set_bool(lt::settings_pack::enable_set_file_valid_data, true);
+#endif
+
     loadLTSettings(pack);
     m_nativeSession = new lt::session {lt::session_params {pack, {}}};
 
