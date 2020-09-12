@@ -1540,27 +1540,9 @@ void MainWindow::reloadSessionStats()
     }
 #else
     if (m_systrayIcon) {
-#ifdef Q_OS_UNIX
-        const QString toolTip = QString::fromLatin1(
-                "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>"
-                "qBittorrent"
-                "</div>"
-                "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src='%1' height='14'/>&nbsp;%2"
-                "</div>"
-                "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src='%3' height='14'/>&nbsp;%4"
-                "</div>")
-            .arg(UIThemeManager::instance()->getIconPath("downloading_small")
-                 , tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-                 , UIThemeManager::instance()->getIconPath("seeding")
-                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
-#else
-        // OSes such as Windows do not support html here
         const QString toolTip = QString::fromLatin1("%1\n%2").arg(
             tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
             , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
-#endif // Q_OS_UNIX
         m_systrayIcon->setToolTip(toolTip); // tray icon
     }
 #endif  // Q_OS_MACOS
