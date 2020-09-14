@@ -202,26 +202,37 @@ namespace
 
     QString toString(const lt::socket_type_t socketType)
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
-        return QString::fromLatin1(lt::socket_type_name(socketType));
-#else
         switch (socketType)
         {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        case lt::socket_type_t::http:
+            return QLatin1String("HTTP");
+        case lt::socket_type_t::http_ssl:
+            return QLatin1String("HTTP_SSL");
+#endif
         case lt::socket_type_t::i2p:
             return QLatin1String("I2P");
         case lt::socket_type_t::socks5:
             return QLatin1String("SOCKS5");
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        case lt::socket_type_t::socks5_ssl:
+            return QLatin1String("SOCKS5_SSL");
+#endif
         case lt::socket_type_t::tcp:
             return QLatin1String("TCP");
         case lt::socket_type_t::tcp_ssl:
             return QLatin1String("TCP_SSL");
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        case lt::socket_type_t::utp:
+            return QLatin1String("UTP");
+#else
         case lt::socket_type_t::udp:
             return QLatin1String("UDP");
+#endif
         case lt::socket_type_t::utp_ssl:
             return QLatin1String("UTP_SSL");
         }
         return QLatin1String("INVALID");
-#endif
     }
 
     QString toString(const lt::address &address)
