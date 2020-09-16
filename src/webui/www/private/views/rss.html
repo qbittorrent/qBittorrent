@@ -67,11 +67,11 @@
         overflow: hidden;
         height: 30px;
     }
-    
+
     #rssContentView table {
         width: 100%;
     }
-    
+
 </style>
 
 <div id="rssView">
@@ -198,7 +198,7 @@
                     $('rssDetailsView').style.height = 'calc(100vh - ' + nonPageHeight + 'px)';
 
                     let nonTableHeight = nonPageHeight + $('rssFeedFixedHeaderDiv').getBoundingClientRect().height;
-                    
+
                     $('rssFeedTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
                     $('rssArticleTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
 
@@ -229,7 +229,7 @@
                             .filter((e) => e !== 0)
                             .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
                         // filter children
-                        let reducedDatapaths = selectedDatapaths.filter((path) => 
+                        let reducedDatapaths = selectedDatapaths.filter((path) =>
                             selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
                         );
                         removeItem(reducedDatapaths);
@@ -462,7 +462,7 @@
                                 recFlatten(current[child], child, depth + 1, currentFullName);
                             }
                         }
-                    }
+                    };
                     recFlatten(response);
 
                     // check if rows matche flattend response
@@ -792,7 +792,7 @@
             let selectedDatapaths = rssFeedTable.selectedRows
                             .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
             // filter children
-            let reducedDatapaths = selectedDatapaths.filter((path) => 
+            let reducedDatapaths = selectedDatapaths.filter((path) =>
                 selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
             );
             reducedDatapaths.each((path) => markItemAsRead(path));

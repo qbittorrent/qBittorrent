@@ -79,7 +79,7 @@
     #lastMatchDiv {
         float: right;
     }
-    
+
     #ruleSettings {
         padding: 4px 10px 4px 10px
     }
@@ -456,7 +456,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
             }).send();
             $('savetoDifferentDir').addEvent('click', () => {
                 $('saveToText').disabled = !$('savetoDifferentDir').checked;
-            })
+            });
             updateRulesList();
         };
 
@@ -757,7 +757,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                             ' ● QBT_TR(? to match any single character)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
                             ' ● QBT_TR(* to match zero or more of any characters)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
                             ' ● QBT_TR(Whitespaces count as AND operators (all words, any order))QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
-                            ' ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' + 
+                            ' ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' +
                             'QBT_TR(If word order is important use * instead of whitespace.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
             }
             let secondPart = 'QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]'
@@ -768,15 +768,15 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
 
             let episodeFilterTitle = 'QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' +
                                         'QBT_TR(Example: )QBT_TR[CONTEXT=AutomatedRssDownloader]' +
-                                        '1x2;8-15;5;30-;' + 
-                                        'QBT_TR( will match 2, 5, 8 through 15, 30 and onward episodes of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' + 
-                                        'QBT_TR(Episode filter rules: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' + 
-                                        ' ● QBT_TR(Season number is a mandatory non-zero value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' + 
-                                        ' ● QBT_TR(Episode number is a mandatory positive value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' + 
-                                        ' ● QBT_TR(Filter must end with semicolon)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' + 
-                                        ' ● QBT_TR(Three range types for episodes are supported: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n' + 
-                                        '    ● QBT_TR(Single number: <b>1x25;</b> matches episode 25 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' + 
-                                        '    ● QBT_TR(Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' + 
+                                        '1x2;8-15;5;30-;' +
+                                        'QBT_TR( will match 2, 5, 8 through 15, 30 and onward episodes of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' +
+                                        'QBT_TR(Episode filter rules: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n' +
+                                        ' ● QBT_TR(Season number is a mandatory non-zero value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
+                                        ' ● QBT_TR(Episode number is a mandatory positive value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
+                                        ' ● QBT_TR(Filter must end with semicolon)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
+                                        ' ● QBT_TR(Three range types for episodes are supported: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
+                                        '    ● QBT_TR(Single number: <b>1x25;</b> matches episode 25 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
+                                        '    ● QBT_TR(Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n' +
                                         '    ● QBT_TR(Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons)QBT_TR[CONTEXT=AutomatedRssDownloader]';
 
             episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, '').replace(/<\/b>/g, '');
