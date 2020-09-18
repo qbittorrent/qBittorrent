@@ -626,7 +626,7 @@ namespace BitTorrent
         void handleSocks5Alert(const lt::socks5_alert *p) const;
 #endif
 
-        void createTorrentHandle(const lt::torrent_handle &nativeHandle);
+        void createTorrentHandle(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 
         void saveResumeData();
         void saveTorrentsQueue();
