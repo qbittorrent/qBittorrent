@@ -95,8 +95,4 @@ macro(qbt_common_config)
         set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     endif()
 
-    if (CMAKE_GENERATOR MATCHES "Visual Studio")
-        target_compile_options(qbt_common_cfg INTERFACE /MP)
-    endif()
-
 endmacro(qbt_common_config)
