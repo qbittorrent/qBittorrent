@@ -37,18 +37,22 @@
 
 class QByteArray;
 
-class ResumeDataSavingManager : public QObject
+class ResumeDataManager final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(ResumeDataSavingManager)
+    Q_DISABLE_COPY(ResumeDataManager)
 
 public:
-    explicit ResumeDataSavingManager(const QString &resumeFolderPath);
+    explicit ResumeDataManager(const QString &resumeFolderPath);
 
 public slots:
+    void load(bool queued = false);
     void save(const QString &filename, const QByteArray &data) const;
     void save(const QString &filename, const std::shared_ptr<lt::entry> &data) const;
     void remove(const QString &filename) const;
+
+signals:
+    void loaded(const QString &hash, const QByteArray &rawResumeData, const QByteArray &rawMetadata);
 
 private:
     const QDir m_resumeDataDir;
