@@ -45,6 +45,7 @@ if (DBUS)
 endif()
 
 # automatically call Qt moc, rcc and uic as needed for all targets by default
+set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
