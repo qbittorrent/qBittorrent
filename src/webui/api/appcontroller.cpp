@@ -74,7 +74,7 @@ void AppController::buildInfoAction()
         {"qt", QT_VERSION_STR},
         {"libtorrent", Utils::Misc::libtorrentVersionString()},
         {"boost", Utils::Misc::boostVersionString()},
-        {"openssl", Utils::Misc::opensslVersionString()},
+        {"ssl", Utils::Misc::sslVersionString()},
         {"zlib", Utils::Misc::zlibVersionString()},
         {"bitness", (QT_POINTER_SIZE * 8)}
     };

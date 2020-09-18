@@ -74,7 +74,7 @@ void StacktraceDialog::setStacktraceString(const QString &sigName, const QString
             .arg(QString::number(QT_POINTER_SIZE * 8)
                  , Utils::Misc::libtorrentVersionString()
                  , Utils::Misc::boostVersionString()
-                 , Utils::Misc::opensslVersionString()
+                 , Utils::Misc::sslVersionString()
                  , Utils::Misc::zlibVersionString()
                  , Utils::Misc::osName()
                  , sigName

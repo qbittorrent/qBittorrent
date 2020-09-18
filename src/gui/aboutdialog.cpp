@@ -93,7 +93,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelQtVer->setText(QT_VERSION_STR);
     m_ui->labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
     m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
-    m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
+    m_ui->labelSslVer->setText(Utils::Misc::sslVersionString());
     m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
 
     const QString DBIPText = QString(
