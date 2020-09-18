@@ -93,7 +93,7 @@
 #include "magneturi.h"
 #include "nativesessionextension.h"
 #include "portforwarderimpl.h"
-#include "resumedatasavingmanager.h"
+#include "resumedatamanager.h"
 #include "statistics.h"
 #include "torrenthandleimpl.h"
 #include "tracker.h"
@@ -492,9 +492,9 @@ Session::Session(QObject *parent)
     connect(m_networkManager, &QNetworkConfigurationManager::configurationRemoved, this, &Session::networkConfigurationChange);
     connect(m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &Session::networkConfigurationChange);
 
-    m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
-    m_resumeDataSavingManager->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
+    m_resumeDataManager = new ResumeDataManager {m_resumeFolderPath};
+    m_resumeDataManager->moveToThread(m_ioThread);
+    connect(m_ioThread, &QThread::finished, m_resumeDataManager, &QObject::deleteLater);
     m_ioThread->start();
 
     // Regular saving of fastresume data
@@ -1791,14 +1791,14 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
     const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
     const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->hash());
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, [this, resumedataFile, metadataFile]()
+    QMetaObject::invokeMethod(m_resumeDataManager, [this, resumedataFile, metadataFile]()
     {
-        m_resumeDataSavingManager->remove(resumedataFile);
-        m_resumeDataSavingManager->remove(metadataFile);
+        m_resumeDataManager->remove(resumedataFile);
+        m_resumeDataManager->remove(metadataFile);
     });
 #else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, resumedataFile));
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, metadataFile));
+    QMetaObject::invokeMethod(m_resumeDataManager, "remove", Q_ARG(QString, resumedataFile));
+    QMetaObject::invokeMethod(m_resumeDataManager, "remove", Q_ARG(QString, metadataFile));
 #endif
 
     delete torrent;
@@ -2312,10 +2312,10 @@ void Session::saveTorrentsQueue()
 
     const QString filename = QLatin1String {"queue"};
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QMetaObject::invokeMethod(m_resumeDataSavingManager
-        , [this, data, filename]() { m_resumeDataSavingManager->save(filename, data); });
+    QMetaObject::invokeMethod(m_resumeDataManager
+        , [this, data, filename]() { m_resumeDataManager->save(filename, data); });
 #else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
+    QMetaObject::invokeMethod(m_resumeDataManager, "save"
                               , Q_ARG(QString, filename), Q_ARG(QByteArray, data));
 #endif
 }
@@ -2324,10 +2324,10 @@ void Session::removeTorrentsQueue()
 {
     const QString filename = QLatin1String {"queue"};
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QMetaObject::invokeMethod(m_resumeDataSavingManager
-        , [this, filename]() { m_resumeDataSavingManager->remove(filename); });
+    QMetaObject::invokeMethod(m_resumeDataManager
+        , [this, filename]() { m_resumeDataManager->remove(filename); });
 #else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, filename));
+    QMetaObject::invokeMethod(m_resumeDataManager, "remove", Q_ARG(QString, filename));
 #endif
 }
 
@@ -3796,10 +3796,10 @@ void Session::handleTorrentResumeDataReady(TorrentHandleImpl *const torrent, con
 
     const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QMetaObject::invokeMethod(m_resumeDataSavingManager
-        , [this, filename, data]() { m_resumeDataSavingManager->save(filename, data); });
+    QMetaObject::invokeMethod(m_resumeDataManager
+        , [this, filename, data]() { m_resumeDataManager->save(filename, data); });
 #else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
+    QMetaObject::invokeMethod(m_resumeDataManager, "save"
         , Q_ARG(QString, filename), Q_ARG(std::shared_ptr<lt::entry>, data));
 #endif
 }
@@ -4117,71 +4117,27 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
 // Will resume torrents in backup directory
 void Session::startUpTorrents()
 {
-    const QDir resumeDataDir {m_resumeFolderPath};
-    QStringList fastresumes = resumeDataDir.entryList(
-                QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
-
-    const auto readFile = [](const QString &path, QByteArray &buf) -> bool
+    connect(m_resumeDataManager, &ResumeDataManager::loaded, this
+            , [this](const QString &hash, const QByteArray &rawResumeData, const QByteArray &rawMetadata)
     {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly)) {
-            LogMsg(tr("Cannot read file %1: %2").arg(path, file.errorString()), Log::WARNING);
-            return false;
-        }
+        qDebug() << "Starting up torrent" << hash << "...";
 
-        buf = file.readAll();
-        return true;
-    };
-
-    qDebug("Starting up torrents...");
-    qDebug("Queue size: %d", fastresumes.size());
-
-    const QRegularExpression rx(QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$"));
-
-    if (isQueueingSystemEnabled()) {
-        QFile queueFile {resumeDataDir.absoluteFilePath(QLatin1String {"queue"})};
-        QStringList queue;
-        if (queueFile.open(QFile::ReadOnly)) {
-            QByteArray line;
-            while (!(line = queueFile.readLine()).isEmpty())
-                queue.append(QString::fromLatin1(line.trimmed()) + QLatin1String {".fastresume"});
-        }
-        else {
-            LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
-                .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
-        }
-
-        if (!queue.empty())
-            fastresumes = queue + List::toSet(fastresumes).subtract(List::toSet(queue)).values();
-    }
-
-    int resumedTorrentsCount = 0;
-    for (const QString &fastresumeName : asConst(fastresumes)) {
-        const QRegularExpressionMatch rxMatch = rx.match(fastresumeName);
-        if (!rxMatch.hasMatch()) continue;
-
-        const QString hash = rxMatch.captured(1);
-        const QString fastresumePath = resumeDataDir.absoluteFilePath(fastresumeName);
-        QByteArray data;
+        const TorrentInfo metadata = TorrentInfo::load(rawMetadata);
         LoadTorrentParams torrentParams;
-        const QString torrentFilePath = resumeDataDir.filePath(QString::fromLatin1("%1.torrent").arg(hash));
-        TorrentInfo metadata = TorrentInfo::loadFromFile(torrentFilePath);
-        if (readFile(fastresumePath, data) && loadTorrentResumeData(data, metadata, torrentParams)) {
-            qDebug() << "Starting up torrent" << hash << "...";
-            if (!loadTorrent(torrentParams))
-                LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                           .arg(hash), Log::CRITICAL);
-
-            // process add torrent messages before message queue overflow
-            if ((resumedTorrentsCount % 100) == 0) readAlerts();
-
-            ++resumedTorrentsCount;
-        }
-        else {
+        if (!loadTorrentResumeData(rawResumeData, metadata, torrentParams) || !loadTorrent(torrentParams)) {
             LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                       .arg(hash), Log::CRITICAL);
+                   .arg(hash), Log::CRITICAL);
         }
-    }
+    });
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_resumeDataManager, [this]()
+    {
+        m_resumeDataManager->load(isQueueingSystemEnabled());
+    });
+#else
+    QMetaObject::invokeMethod(m_resumeDataManager, "load", Q_ARG(bool, isQueueingSystemEnabled()));
+#endif
 }
 
 quint64 Session::getAlltimeDL() const

@@ -65,7 +65,7 @@ class QUrl;
 
 class BandwidthScheduler;
 class FilterParserThread;
-class ResumeDataSavingManager;
+class ResumeDataManager;
 class Statistics;
 
 // These values should remain unchanged when adding new items
@@ -762,7 +762,7 @@ namespace BitTorrent
         QPointer<Tracker> m_tracker;
         // fastresume data writing thread
         QThread *m_ioThread = nullptr;
-        ResumeDataSavingManager *m_resumeDataSavingManager = nullptr;
+        ResumeDataManager *m_resumeDataManager = nullptr;
 
         QSet<InfoHash> m_loadedMetadata;
 

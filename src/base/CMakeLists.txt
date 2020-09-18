@@ -18,7 +18,7 @@ add_library(qbt_base STATIC
     bittorrent/peeraddress.h
     bittorrent/peerinfo.h
     bittorrent/portforwarderimpl.h
-    bittorrent/resumedatasavingmanager.h
+    bittorrent/resumedatamanager.h
     bittorrent/session.h
     bittorrent/sessionstatus.h
     bittorrent/speedmonitor.h
@@ -98,7 +98,7 @@ add_library(qbt_base STATIC
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
     bittorrent/portforwarderimpl.cpp
-    bittorrent/resumedatasavingmanager.cpp
+    bittorrent/resumedatamanager.cpp
     bittorrent/session.cpp
     bittorrent/speedmonitor.cpp
     bittorrent/statistics.cpp
