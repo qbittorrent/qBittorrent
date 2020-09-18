@@ -4328,12 +4328,8 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
     }
 }
 
-void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
+void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
 {
-    Q_ASSERT(m_loadingTorrents.contains(nativeHandle.info_hash()));
-
-    const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hash());
-
     TorrentHandleImpl *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
     m_torrents.insert(torrent->hash(), torrent);
 
@@ -4395,13 +4391,23 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
 void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
 {
     if (p->error) {
-        qDebug("/!\\ Error: Failed to add torrent!");
-        QString msg = QString::fromStdString(p->message());
+        const QString msg = QString::fromStdString(p->message());
         LogMsg(tr("Couldn't load torrent. Reason: %1").arg(msg), Log::WARNING);
         emit loadTorrentFailed(msg);
+
+        const lt::add_torrent_params &params = p->params;
+        const bool hasMetadata = (params.ti && params.ti->is_valid());
+        const InfoHash hash = (hasMetadata ? params.ti->info_hash() : params.info_hash);
+        const auto loadingTorrentsIter = m_loadingTorrents.constFind(hash);
+        if (loadingTorrentsIter != m_loadingTorrents.cend())
+            m_loadingTorrents.erase(loadingTorrentsIter);
     }
-    else if (m_loadingTorrents.contains(p->handle.info_hash())) {
-        createTorrentHandle(p->handle);
+    else {
+        const auto loadingTorrentsIter = m_loadingTorrents.constFind(p->handle.info_hash());
+        if (loadingTorrentsIter != m_loadingTorrents.cend()) {
+            createTorrentHandle(p->handle, *loadingTorrentsIter);
+            m_loadingTorrents.erase(loadingTorrentsIter);
+        }
     }
 }
 
