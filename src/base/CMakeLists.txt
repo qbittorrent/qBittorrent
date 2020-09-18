@@ -1,5 +1,3 @@
-find_package(ZLIB 1.2.5.2 REQUIRED)
-
 add_library(qbt_base STATIC
     # headers
     algorithm.h
@@ -162,18 +160,35 @@ add_library(qbt_base STATIC
 target_link_libraries(qbt_base
     PRIVATE
         ZLIB::ZLIB
+        qbt_version_definitions
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt5::Core Qt5::Network Qt5::Xml
+        qbt_common_cfg
 )
 
-if (Qt5DBus_FOUND)
-    target_link_libraries(qbt_base PRIVATE Qt5::DBus)
-endif()
-
-if (APPLE)
+if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     find_library(IOKit_LIBRARY IOKit)
     find_library(Carbon_LIBRARY Carbon)
     find_library(AppKit_LIBRARY AppKit)
-    target_link_libraries(qbt_base PRIVATE ${Carbon_LIBRARY} ${IOKit_LIBRARY} ${AppKit_LIBRARY})
+
+    target_link_libraries(qbt_base PRIVATE
+        ${AppKit_LIBRARY}
+        ${Carbon_LIBRARY}
+        ${IOKit_LIBRARY}
+    )
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_link_libraries(qbt_base PRIVATE Iphlpapi)
+endif()
+
+if (NOT GUI)
+    target_compile_definitions(qbt_base PUBLIC DISABLE_GUI)
+endif()
+
+if (NOT WEBUI)
+    target_compile_definitions(qbt_base PUBLIC DISABLE_WEBUI)
+endif()
+
+if (DBUS)
+    target_link_libraries(qbt_base PUBLIC Qt5::DBus)
 endif()
