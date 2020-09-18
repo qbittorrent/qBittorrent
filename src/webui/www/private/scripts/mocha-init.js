@@ -824,7 +824,7 @@ const initializeWindows = function() {
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
             default:
-                hashes = trackerList.get(trackerHashInt).torrents
+                hashes = trackerList.get(trackerHashInt).torrents;
                 break;
         }
 
@@ -851,7 +851,7 @@ const initializeWindows = function() {
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
             default:
-                hashes = trackerList.get(trackerHashInt).torrents
+                hashes = trackerList.get(trackerHashInt).torrents;
                 break;
         }
 
