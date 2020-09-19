@@ -2020,7 +2020,7 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     TorrentHandleImpl *const torrent = m_torrents.value(hash);
     if (torrent) {  // a duplicate torrent is added
         if (torrent->isPrivate() || (hasMetadata && metadata.isPrivate()))
-            return false;
+            return true;
 
         // merge trackers and web seeds
         torrent->addTrackers(hasMetadata ? metadata.trackers() : magnetUri.trackers());
