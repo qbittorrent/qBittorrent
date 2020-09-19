@@ -32,7 +32,7 @@ else()
 endif()
 # force variable type so that it always shows up in ccmake/cmake-gui frontends
 set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
-find_package(Boost ${requiredBoostVersion} REQUIRED COMPONENTS system)
+find_package(Boost ${requiredBoostVersion} REQUIRED)
 find_package(OpenSSL ${requiredOpenSSLVersion} REQUIRED)
 find_package(ZLIB ${requiredZlibVersion} REQUIRED)
 find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
@@ -45,6 +45,7 @@ if (DBUS)
 endif()
 
 # automatically call Qt moc, rcc and uic as needed for all targets by default
+set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
