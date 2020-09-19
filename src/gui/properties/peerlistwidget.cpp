@@ -41,6 +41,7 @@
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
+#include <QVector>
 #include <QWheelEvent>
 
 #include "base/bittorrent/peeraddress.h"
@@ -291,15 +292,24 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
 void PeerListWidget::banSelectedPeers()
 {
-    // Confirm first
+    // Store selected rows first as selected peers may disconnect
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+
+    QVector<QString> selectedIPs;
+    selectedIPs.reserve(selectedIndexes.size());
+
+    for (const QModelIndex &index : selectedIndexes) {
+        const int row = m_proxyModel->mapToSource(index).row();
+        const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
+        selectedIPs += ip;
+    }
+
+    // Confirm before banning peer
     const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Ban peer permanently")
         , tr("Are you sure you want to permanently ban the selected peers?"));
     if (btn != QMessageBox::Yes) return;
 
-    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    for (const QModelIndex &index : selectedIndexes) {
-        const int row = m_proxyModel->mapToSource(index).row();
-        const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
+    for (const QString &ip : selectedIPs) {
         BitTorrent::Session::instance()->banIP(ip);
         LogMsg(tr("Peer \"%1\" is manually banned").arg(ip));
     }
