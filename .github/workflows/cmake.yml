@@ -46,7 +46,6 @@ jobs:
         Add-Content ${{ github.workspace }}/triplets_overlay/x64-windows-static-release.cmake `
           -Value "set(VCPKG_BUILD_TYPE release)"
 
-    # clear buildtrees after each package installation to reduce disk space requirements
     - name: install dependencies via vcpkg
       run: |
         $packages = `
@@ -66,12 +65,12 @@ jobs:
     - name: build qBittorrent
       run: |
         cmake -B build -G "Visual Studio 16 2019" `
-          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release `
           -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}/scripts/buildsystems/vcpkg.cmake `
           -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `
           -DVERBOSE_CONFIGURE=ON `
           --graphviz=build/target_graph.dot
-        cmake --build build --config RelWithDebInfo -- /p:UseMultiToolTask=true
+        cmake --build build --config Release -- /p:UseMultiToolTask=true
 
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2.1.3
