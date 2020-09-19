@@ -11,8 +11,6 @@ env:
   VCPKG_COMMIT: 13590753fec479c5b0a3d48dd553dde8d49615fc
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  UBUNTU_LIBTORRENT_VERSION: libtorrent-1.2.10
-
 
 jobs:
 
