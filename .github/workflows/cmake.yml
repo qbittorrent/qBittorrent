@@ -77,8 +77,4 @@ jobs:
       with:
         name: qBittorrent-CI-Windows_x64-static-release
         path: |
-          build/compile_commands.json
-          build/target_graph.dot
-          build/qbittorrent.exe
-          build/qbittorrent.pdb
-          dist/windows/qt.conf
+          qBittorrent\build\
