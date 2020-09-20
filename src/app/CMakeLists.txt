@@ -4,14 +4,22 @@
 # Based on https://gist.github.com/giraldeau/546ba5512a74dfe9d8ea0862d66db412
 file(GLOB QBT_TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
 set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/lang")
-qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES})
+if (Qt5_VERSION VERSION_LESS 5.12)
+    qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES})
+else()
+    qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
+endif()
 configure_file("${qBittorrent_SOURCE_DIR}/src/lang/lang.qrc" "${qBittorrent_BINARY_DIR}/src/lang/lang.qrc" COPYONLY)
 
 if (WEBUI)
     file(GLOB QBT_WEBUI_TS_FILES "${qBittorrent_SOURCE_DIR}/src/webui/www/translations/*.ts")
     set_source_files_properties(${QBT_WEBUI_TS_FILES}
         PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/webui/www/translations")
-    qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES})
+    if (Qt5_VERSION VERSION_LESS 5.12)
+        qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES})
+    else()
+        qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -silent)
+    endif()
     configure_file("${qBittorrent_SOURCE_DIR}/src/webui/www/translations/webui_translations.qrc"
         "${qBittorrent_BINARY_DIR}/src/webui/www/translations/webui_translations.qrc" COPYONLY)
 endif()
