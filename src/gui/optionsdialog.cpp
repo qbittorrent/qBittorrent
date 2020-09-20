@@ -503,6 +503,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->DNSPasswordTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupWebUIAddCustomCss, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUICustomCss, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->groupWebUIAddCustomHTTPHeaders, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUICustomHTTPHeaders, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
 #endif // DISABLE_WEBUI
@@ -864,6 +866,9 @@ void OptionsDialog::saveOptions()
         // Alternative UI
         pref->setAltWebUiEnabled(m_ui->groupAltWebUI->isChecked());
         pref->setWebUiRootFolder(m_ui->textWebUIRootFolder->selectedPath());
+        // Custom Css
+        pref->setWebUICustomCssEnabled(m_ui->groupWebUIAddCustomCss->isChecked());
+        pref->setWebUICustomCss(m_ui->textWebUICustomCss->toPlainText());
         // Custom HTTP headers
         pref->setWebUICustomHTTPHeadersEnabled(m_ui->groupWebUIAddCustomHTTPHeaders->isChecked());
         pref->setWebUICustomHTTPHeaders(m_ui->textWebUICustomHTTPHeaders->toPlainText());
@@ -1247,6 +1252,9 @@ void OptionsDialog::loadOptions()
 
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUiEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUiRootFolder());
+    // Custom Css
+    m_ui->groupWebUIAddCustomCss->setChecked(pref->isWebUICustomCssEnabled());
+    m_ui->textWebUICustomCss->setPlainText(pref->getWebUICustomCss());
     // Custom HTTP headers
     m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
     m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());

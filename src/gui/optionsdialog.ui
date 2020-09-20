@@ -3157,6 +3157,21 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="groupWebUIAddCustomCss">
+                 <property name="title">
+                  <string>Add custom css</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_36">
+                  <item>
+                   <widget class="QPlainTextEdit" name="textWebUICustomCss"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="groupBox_3">
                  <property name="title">
                   <string>Security</string>

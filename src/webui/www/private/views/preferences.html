@@ -804,6 +804,14 @@
         </fieldset>
 
         <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="webUICustomCssCheckbox" onclick="qBittorrent.Preferences.updateWebUICustomCssSettings();" />
+                <label for="webUICustomCssCheckbox">QBT_TR(Add custom css)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <textarea id="webUICustomCssTextarea" style="width: 90%;"></textarea>
+        </fieldset>
+
+        <fieldset class="settings">
             <legend>QBT_TR(Security)QBT_TR[CONTEXT=OptionsDialog]</legend>
             <div class="formRow">
                 <input type="checkbox" id="clickjacking_protection_checkbox" />
@@ -1234,6 +1242,7 @@
                 updateHttpsSettings: updateHttpsSettings,
                 updateBypasssAuthSettings: updateBypasssAuthSettings,
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
+                updateWebUICustomCssSettings: updateWebUICustomCssSettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
                 updateWebUICustomHTTPHeadersSettings: updateWebUICustomHTTPHeadersSettings,
                 updateDynDnsSettings: updateDynDnsSettings,
@@ -1471,6 +1480,11 @@
         const updateAlternativeWebUISettings = function() {
             const isUseAlternativeWebUIEnabled = $('use_alt_webui_checkbox').getProperty('checked');
             $('webui_files_location_textarea').setProperty('disabled', !isUseAlternativeWebUIEnabled);
+        };
+
+        const updateWebUICustomCssSettings = function() {
+            const isEnabled = $('webUICustomCssCheckbox').getProperty('checked');
+            $('webUICustomCssTextarea').setProperty('disabled', !isEnabled);
         };
 
         const updateHostHeaderValidationSettings = function() {
@@ -1833,6 +1847,11 @@
                         $('use_alt_webui_checkbox').setProperty('checked', pref.alternative_webui_enabled);
                         $('webui_files_location_textarea').setProperty('value', pref.alternative_webui_path);
                         updateAlternativeWebUISettings();
+
+                        // Custom Css
+                        $('webUICustomCssCheckbox').setProperty('checked', pref.web_ui_custom_css_enabled);
+                        $('webUICustomCssTextarea').setProperty('value', pref.web_ui_custom_css);
+                        updateWebUICustomCssSettings();
 
                         // Security
                         $('clickjacking_protection_checkbox').setProperty('checked', pref.web_ui_clickjacking_protection_enabled);
@@ -2220,6 +2239,10 @@
             }
             settings.set('alternative_webui_enabled', alternative_webui_enabled);
             settings.set('alternative_webui_path', webui_files_location_textarea);
+
+            // Custom Css
+            settings.set('web_ui_custom_css_enabled', $('webUICustomCssCheckbox').getProperty('checked'));
+            settings.set('web_ui_custom_css', $('webUICustomCssTextarea').getProperty('value'));
 
             // Security
             settings.set('web_ui_clickjacking_protection_enabled', $('clickjacking_protection_checkbox').getProperty('checked'));

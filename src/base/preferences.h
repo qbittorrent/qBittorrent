@@ -223,6 +223,12 @@ public:
     QString getWebUiRootFolder() const;
     void setWebUiRootFolder(const QString &path);
 
+    // WebUI custom stylesheet
+    bool isWebUICustomCssEnabled() const;
+    void setWebUICustomCssEnabled(bool enabled);
+    QString getWebUICustomCss() const;
+    void setWebUICustomCss(const QString &css);
+
     // WebUI custom HTTP headers
     bool isWebUICustomHTTPHeadersEnabled() const;
     void setWebUICustomHTTPHeadersEnabled(bool enabled);

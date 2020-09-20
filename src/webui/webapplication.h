@@ -132,6 +132,8 @@ private:
     QSet<QString> m_publicAPIs;
     bool m_isAltUIUsed = false;
     QString m_rootFolder;
+    bool m_isCustomCssEnabled = false;
+    QString m_customCss;
 
     struct TranslatedFile
     {

@@ -238,6 +238,9 @@ void AppController::preferencesAction()
     // Use alternative Web UI
     data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
     data["alternative_webui_path"] = pref->getWebUiRootFolder();
+    // Custom Css
+    data["web_ui_custom_css_enabled"] = pref->isWebUICustomCssEnabled();
+    data["web_ui_custom_css"] = pref->getWebUICustomCss();
     // Security
     data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
@@ -625,6 +628,11 @@ void AppController::setPreferencesAction()
         pref->setAltWebUiEnabled(it.value().toBool());
     if (hasKey("alternative_webui_path"))
         pref->setWebUiRootFolder(it.value().toString());
+    // Custom Css
+    if (hasKey("web_ui_custom_css_enabled"))
+        pref->setWebUICustomCssEnabled(it.value().toBool());
+    if (hasKey("web_ui_custom_css"))
+        pref->setWebUICustomCss(it.value().toString());
     // Security
     if (hasKey("web_ui_clickjacking_protection_enabled"))
         pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());

@@ -738,6 +738,26 @@ void Preferences::setWebUiRootFolder(const QString &path)
     setValue("Preferences/WebUI/RootFolder", path);
 }
 
+bool Preferences::isWebUICustomCssEnabled() const
+{
+    return value("Preferences/WebUI/CustomCssEnabled", false).toBool();
+}
+
+void Preferences::setWebUICustomCssEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/CustomCssEnabled", enabled);
+}
+
+QString Preferences::getWebUICustomCss() const
+{
+    return value("Preferences/WebUI/CustomCss").toString();
+}
+
+void Preferences::setWebUICustomCss(const QString &css)
+{
+    setValue("Preferences/WebUI/CustomCss", css);
+}
+
 bool Preferences::isWebUICustomHTTPHeadersEnabled() const
 {
     return value("Preferences/WebUI/CustomHTTPHeadersEnabled", false).toBool();

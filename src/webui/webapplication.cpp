@@ -225,6 +225,10 @@ void WebApplication::translateDocument(QString &data) const
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
         data.replace(QLatin1String("${CACHEID}"), m_cacheID);
+
+        QString customCss = m_isCustomCssEnabled ? m_customCss : "";
+        customCss.replace('<', "&lt;");
+        data.replace(QLatin1String("${CUSTOMCSS}"), customCss);
     }
 }
 
@@ -327,6 +331,14 @@ void WebApplication::configure()
             LogMsg(tr("Couldn't load Web UI translation for selected locale (%1).").arg(newLocale), Log::WARNING);
         }
     }
+
+    const bool newIsCustomCssEnabled = pref->isWebUICustomCssEnabled();
+    const QString newCustomCss = pref->getWebUICustomCss();
+    if (m_isCustomCssEnabled != newIsCustomCssEnabled || m_customCss != newCustomCss) {
+        m_translatedFiles.clear();
+    }
+    m_isCustomCssEnabled = newIsCustomCssEnabled;
+    m_customCss = newCustomCss;
 
     m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
