@@ -381,6 +381,7 @@ Session::Session(QObject *parent)
         , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY("ValidateHTTPSTrackerCertificate"), false)
+    , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY("BlockPeersOnPrivilegedPorts"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
@@ -1044,7 +1045,6 @@ void Session::initializeNativeSession()
     pack.set_int(lt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
     pack.set_int(lt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
     pack.set_int(lt::settings_pack::connection_speed, 20); // default is 10
-    pack.set_bool(lt::settings_pack::no_connect_privileged_ports, false);
     // libtorrent 1.1 enables UPnP & NAT-PMP by default
     // turn them off before `lt::session` ctor to avoid split second effects
     pack.set_bool(lt::settings_pack::enable_upnp, false);
@@ -1384,6 +1384,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
     settingsPack.set_bool(lt::settings_pack::validate_https_trackers, validateHTTPSTrackerCertificate());
 #endif
+
+    settingsPack.set_bool(lt::settings_pack::no_connect_privileged_ports, blockPeersOnPrivilegedPorts());
 
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
 
@@ -3528,6 +3530,19 @@ void Session::setValidateHTTPSTrackerCertificate(const bool enabled)
     if (enabled == m_validateHTTPSTrackerCertificate) return;
 
     m_validateHTTPSTrackerCertificate = enabled;
+    configureDeferred();
+}
+
+bool Session::blockPeersOnPrivilegedPorts() const
+{
+    return m_blockPeersOnPrivilegedPorts;
+}
+
+void Session::setBlockPeersOnPrivilegedPorts(const bool enabled)
+{
+    if (enabled == m_blockPeersOnPrivilegedPorts) return;
+
+    m_blockPeersOnPrivilegedPorts = enabled;
     configureDeferred();
 }
 

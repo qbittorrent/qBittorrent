@@ -115,6 +115,7 @@ namespace
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
 #endif
+        BLOCK_PEERS_ON_PRIVILEGED_PORTS,
         // embedded tracker
         TRACKER_STATUS,
         TRACKER_PORT,
@@ -230,6 +231,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Validate HTTPS tracker certificate
     session->setValidateHTTPSTrackerCertificate(m_checkBoxValidateHTTPSTrackerCertificate.isChecked());
 #endif
+    // Disallow connection to peers on privileged ports
+    session->setBlockPeersOnPrivilegedPorts(m_checkBoxBlockPeersOnPrivilegedPorts.isChecked());
     // Recheck torrents on completion
     pref->recheckTorrentsOnCompletion(m_checkBoxRecheckCompleted.isChecked());
     // Transfer list refresh interval
@@ -537,6 +540,9 @@ void AdvancedSettings::loadAdvancedSettings()
             + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#validate_https_trackers", "(?)"))
             , &m_checkBoxValidateHTTPSTrackerCertificate);
 #endif
+    // Disallow connection to peers on privileged ports
+    m_checkBoxBlockPeersOnPrivilegedPorts.setChecked(session->blockPeersOnPrivilegedPorts());
+    addRow(BLOCK_PEERS_ON_PRIVILEGED_PORTS, (tr("Disallow connection to peers on privileged ports") + ' ' + makeLink("https://libtorrent.org/single-page-ref.html#no_connect_privileged_ports", "(?)")), &m_checkBoxBlockPeersOnPrivilegedPorts);
     // Recheck completed torrents
     m_checkBoxRecheckCompleted.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
