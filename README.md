@@ -16,15 +16,16 @@ support as well as many features.
 The free [IP to Country Lite database](https://db-ip.com/db/download/ip-to-country-lite) by [DB-IP](https://db-ip.com/) is used for resolving the countries of peers. The database is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
 ### Installation:
-For installation, follow the instructions from INSTALL file, but simple:
 
-```
+Check the wiki page for more detailed instructions for more platforms, but for most UNIX-like systems, assuming all dependencies are installed, simply running:
+
+```sh
 ./configure
 make && make install
 qbittorrent
 ```
 
-will install and execute qBittorrent hopefully without any problem.
+will build, install and execute qBittorrent hopefully without any problem.
 
 ### Public key:
 Starting from v3.3.4 all source tarballs and binaries are signed.<br />
