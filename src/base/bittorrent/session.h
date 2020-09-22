@@ -429,7 +429,6 @@ namespace BitTorrent
         void setOSMemoryPriority(OSMemoryPriority priority);
 #endif
 
-        void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QVector<TorrentHandle *> torrents() const;
         bool hasActiveTorrents() const;
@@ -587,6 +586,7 @@ namespace BitTorrent
         void applyOSMemoryPriority() const;
 #endif
 
+        void startUpTorrents();
         bool loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata, LoadTorrentParams &torrentParams);
         bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
