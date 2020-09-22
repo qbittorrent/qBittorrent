@@ -67,12 +67,12 @@ namespace RSS
         static QString relativeName(const QString &path);
 
     signals:
-        void pathChanged(Item *item = nullptr);
-        void unreadCountChanged(Item *item = nullptr);
-        void aboutToBeDestroyed(Item *item = nullptr);
-        void newArticle(Article *article);
-        void articleRead(Article *article);
-        void articleAboutToBeRemoved(Article *article);
+        void pathChanged(RSS::Item *item = nullptr);
+        void unreadCountChanged(RSS::Item *item = nullptr);
+        void aboutToBeDestroyed(RSS::Item *item = nullptr);
+        void newArticle(RSS::Article *article);
+        void articleRead(RSS::Article *article);
+        void articleAboutToBeRemoved(RSS::Article *article);
 
     protected:
         explicit Item(const QString &path);

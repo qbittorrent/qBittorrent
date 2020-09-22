@@ -124,15 +124,15 @@ namespace RSS
     signals:
         void processingStateChanged(bool enabled);
         void maxArticlesPerFeedChanged(int n);
-        void itemAdded(Item *item);
-        void itemPathChanged(Item *item);
-        void itemAboutToBeRemoved(Item *item);
-        void feedIconLoaded(Feed *feed);
-        void feedStateChanged(Feed *feed);
+        void itemAdded(RSS::Item *item);
+        void itemPathChanged(RSS::Item *item);
+        void itemAboutToBeRemoved(RSS::Item *item);
+        void feedIconLoaded(RSS::Feed *feed);
+        void feedStateChanged(RSS::Feed *feed);
 
     private slots:
-        void handleItemAboutToBeDestroyed(Item *item);
-        void handleFeedTitleChanged(Feed *feed);
+        void handleItemAboutToBeDestroyed(RSS::Item *item);
+        void handleFeedTitleChanged(RSS::Feed *feed);
 
     private:
         QUuid generateUID() const;

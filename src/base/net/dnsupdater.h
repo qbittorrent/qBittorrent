@@ -56,9 +56,9 @@ namespace Net
 
     private slots:
         void checkPublicIP();
-        void ipRequestFinished(const DownloadResult &result);
+        void ipRequestFinished(const Net::DownloadResult &result);
         void updateDNSService();
-        void ipUpdateFinished(const DownloadResult &result);
+        void ipUpdateFinished(const Net::DownloadResult &result);
 
     private:
         enum State

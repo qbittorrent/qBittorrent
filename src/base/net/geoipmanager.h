@@ -57,7 +57,7 @@ namespace Net
 
     private slots:
         void configure();
-        void downloadFinished(const DownloadResult &result);
+        void downloadFinished(const Net::DownloadResult &result);
 
     private:
         GeoIPManager();

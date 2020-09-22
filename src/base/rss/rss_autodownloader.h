@@ -111,7 +111,7 @@ namespace RSS
         void process();
         void handleTorrentDownloadFinished(const QString &url);
         void handleTorrentDownloadFailed(const QString &url);
-        void handleNewArticle(const Article *article);
+        void handleNewArticle(const RSS::Article *article);
 
     private:
         void timerEvent(QTimerEvent *event) override;

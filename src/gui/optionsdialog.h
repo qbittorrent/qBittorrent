@@ -109,8 +109,8 @@ private slots:
     void on_removeScanFolderButton_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
-    void webUIHttpsCertChanged(const QString &path, ShowError showError);
-    void webUIHttpsKeyChanged(const QString &path, ShowError showError);
+    void webUIHttpsCertChanged(const QString &path, OptionsDialog::ShowError showError);
+    void webUIHttpsKeyChanged(const QString &path, OptionsDialog::ShowError showError);
 
 private:
     // Methods

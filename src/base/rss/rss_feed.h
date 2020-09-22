@@ -84,9 +84,9 @@ namespace RSS
         QJsonValue toJsonValue(bool withData = false) const override;
 
     signals:
-        void iconLoaded(Feed *feed = nullptr);
-        void titleChanged(Feed *feed = nullptr);
-        void stateChanged(Feed *feed = nullptr);
+        void iconLoaded(RSS::Feed *feed = nullptr);
+        void titleChanged(RSS::Feed *feed = nullptr);
+        void stateChanged(RSS::Feed *feed = nullptr);
 
     private slots:
         void handleSessionProcessingEnabledChanged(bool enabled);
@@ -94,7 +94,7 @@ namespace RSS
         void handleIconDownloadFinished(const Net::DownloadResult &result);
         void handleDownloadFinished(const Net::DownloadResult &result);
         void handleParsingFinished(const Private::ParsingResult &result);
-        void handleArticleRead(Article *article);
+        void handleArticleRead(RSS::Article *article);
 
     private:
         void timerEvent(QTimerEvent *event) override;

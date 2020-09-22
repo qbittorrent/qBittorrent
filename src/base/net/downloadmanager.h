@@ -107,7 +107,7 @@ namespace Net
         virtual void cancel() = 0;
 
     signals:
-        void finished(const DownloadResult &result);
+        void finished(const Net::DownloadResult &result);
     };
 
     class DownloadManager : public QObject

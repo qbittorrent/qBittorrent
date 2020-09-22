@@ -77,7 +77,7 @@ namespace RSS
         static bool articleDateRecentThan(const Article *article, const QDateTime &date);
 
     signals:
-        void read(Article *article = nullptr);
+        void read(RSS::Article *article = nullptr);
 
     private:
         Feed *m_feed = nullptr;
