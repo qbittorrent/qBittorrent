@@ -509,6 +509,8 @@ Session::Session(QObject *parent)
     new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
+
+    startUpTorrents();
 }
 
 bool Session::isDHTEnabled() const
