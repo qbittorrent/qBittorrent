@@ -516,8 +516,8 @@ namespace BitTorrent
         void torrentStorageMoveFailed(BitTorrent::TorrentHandle *const torrent, const QString &targetPath, const QString &error);
         void torrentStorageMoveFinished(BitTorrent::TorrentHandle *const torrent, const QString &newPath);
         void torrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
-        void torrentTagAdded(TorrentHandle *const torrent, const QString &tag);
-        void torrentTagRemoved(TorrentHandle *const torrent, const QString &tag);
+        void torrentTagAdded(BitTorrent::TorrentHandle *const torrent, const QString &tag);
+        void torrentTagRemoved(BitTorrent::TorrentHandle *const torrent, const QString &tag);
         void trackerError(BitTorrent::TorrentHandle *const torrent, const QString &tracker);
         void trackerlessStateChanged(BitTorrent::TorrentHandle *const torrent, bool trackerless);
         void trackersAdded(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
