@@ -160,7 +160,7 @@ namespace
                 return Utils::String::unquote(parts[1], QLatin1String("'\""));
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
-                                            .arg(fullParameter()).arg(QLatin1String("<value>")));
+                                            .arg(fullParameter(), QLatin1String("<value>")));
         }
 
         QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
@@ -206,7 +206,7 @@ namespace
             if (!ok)
                 throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                             "e.g. Parameter '--webui-port' must follow syntax '--webui-port=<value>'")
-                                                .arg(fullParameter()).arg(QLatin1String("<integer value>")));
+                                                .arg(fullParameter(), QLatin1String("<integer value>")));
             return res;
         }
 
@@ -274,8 +274,7 @@ namespace
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--add-paused' must follow syntax "
                                                         "'--add-paused=<true|false>'")
-                                            .arg(fullParameter())
-                                            .arg(QLatin1String("<true|false>")));
+                                            .arg(fullParameter(), QLatin1String("<true|false>")));
         }
 
         TriStateBool value(const QProcessEnvironment &env) const
