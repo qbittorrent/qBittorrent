@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Clear downloaded episodes)QBT_TR[CONTEXT=AutomatedRssDownloader]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script>
+        'use strict';
+
+        window.addEvent('domready', () => {
+            const rules = decodeURIComponent(new URI().getData('rules')).split('|');
+
+            $('cancelBtn').focus();
+            $('cancelBtn').addEvent('click', (e) => {
+                new Event(e).stop();
+                window.parent.MochaUI.closeWindow(window.parent.$('clearRulesPage'));
+            });
+            $('confirmBtn').addEvent('click', (e) => {
+                new Event(e).stop();
+                let completionCount = 0;
+                rules.forEach((rule) => {
+                    window.parent.qBittorrent.RssDownloader.modifyRuleState(rule, 'previouslyMatchedEpisodes', [], () => {
+                        ++completionCount;
+                        if (completionCount === rules.length) {
+                            window.parent.qBittorrent.RssDownloader.updateRulesList();
+                            window.parent.MochaUI.closeWindow(window.parent.$('clearRulesPage'));
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p>QBT_TR(Are you sure you want to clear the list of downloaded episodes for the selected rule?)QBT_TR[CONTEXT=AutomatedRssDownloader]</p>
+        <div style="text-align: right;">
+            <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" />
+            <input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" />
+        </div>
+    </div>
+</body>
+
+</html>

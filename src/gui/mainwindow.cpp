@@ -195,12 +195,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Creating Bittorrent session
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::fullDiskError, this, &MainWindow::fullDiskError);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::addTorrentFailed, this, &MainWindow::addTorrentFailed);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentNew,this, &MainWindow::torrentNew);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::loadTorrentFailed, this, &MainWindow::addTorrentFailed);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded,this, &MainWindow::torrentNew);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &MainWindow::finishedTorrent);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFailed, this, &MainWindow::handleDownloadFromUrlFailure);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::recursiveTorrentDownloadPossible, this, &MainWindow::askRecursiveTorrentDownloadConfirmation);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentStorageMoveFinished, this, &MainWindow::moveTorrentFinished);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentStorageMoveFailed, this, &MainWindow::moveTorrentFailed);
 
     qDebug("create tabWidget");
     m_tabs = new HidableTabWidget(this);
@@ -836,6 +838,16 @@ void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
     showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
 }
 
+void MainWindow::moveTorrentFinished(BitTorrent::TorrentHandle *const torrent, const QString &newPath) const
+{
+    showNotificationBaloon(tr("Torrent moving finished"), tr("'%1' has finished moving files to '%2'.").arg(torrent->name(), newPath));
+}
+
+void MainWindow::moveTorrentFailed(BitTorrent::TorrentHandle *const torrent, const QString &targetPath, const QString &error) const
+{
+    showNotificationBaloon(tr("Torrent moving failed"), tr("'%1' has failed moving files to '%2'. Reason: %3").arg(torrent->name(), targetPath, error));
+}
+
 // Notification when disk is full
 void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const
 {
@@ -871,6 +883,7 @@ void MainWindow::createKeyboardShortcuts()
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
+    m_ui->actionStatistics->setShortcut(Qt::CTRL + Qt::Key_I);
     m_ui->actionStart->setShortcut(Qt::CTRL + Qt::Key_S);
     m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_S);
     m_ui->actionPause->setShortcut(Qt::CTRL + Qt::Key_P);
@@ -1527,27 +1540,9 @@ void MainWindow::reloadSessionStats()
     }
 #else
     if (m_systrayIcon) {
-#ifdef Q_OS_UNIX
-        const QString toolTip = QString::fromLatin1(
-                "<div style='background-color: #678db2; color: #fff;height: 18px; font-weight: bold; margin-bottom: 5px;'>"
-                "qBittorrent"
-                "</div>"
-                "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src='%1' height='14'/>&nbsp;%2"
-                "</div>"
-                "<div style='vertical-align: baseline; height: 18px;'>"
-                "<img src='%3' height='14'/>&nbsp;%4"
-                "</div>")
-            .arg(UIThemeManager::instance()->getIconPath("downloading_small")
-                 , tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-                 , UIThemeManager::instance()->getIconPath("seeding")
-                 , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
-#else
-        // OSes such as Windows do not support html here
         const QString toolTip = QString::fromLatin1("%1\n%2").arg(
             tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
             , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
-#endif // Q_OS_UNIX
         m_systrayIcon->setToolTip(toolTip); // tray icon
     }
 #endif  // Q_OS_MACOS
@@ -1778,7 +1773,7 @@ void MainWindow::on_actionSearchWidget_triggered()
 
 #ifdef Q_OS_WIN
             const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Minimum requirement: 3.3.0.\nDo you want to install a newer version now?")
+                , tr("Your Python version (%1) is outdated. Minimum requirement: 3.5.0.\nDo you want to install a newer version now?")
                     .arg(pyInfo.version)
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
             if (buttonPressed == QMessageBox::Yes)
@@ -2016,9 +2011,9 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
 #ifdef QBT_APP_64BIT
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe";
+    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe";
 #else
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.1/python-3.8.1.exe";
+    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe";
 #endif
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)

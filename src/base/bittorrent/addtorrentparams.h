@@ -32,7 +32,8 @@
 #include <QString>
 #include <QVector>
 
-#include "../tristatebool.h"
+#include "base/tristatebool.h"
+#include "torrenthandle.h"
 
 namespace BitTorrent
 {
@@ -50,11 +51,12 @@ namespace BitTorrent
         TriStateBool addForced;
         TriStateBool addPaused;
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool ignoreShareLimits = false;
         bool skipChecking = false;
         TriStateBool createSubfolder;
         TriStateBool useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
+        int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
+        qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
     };
 }

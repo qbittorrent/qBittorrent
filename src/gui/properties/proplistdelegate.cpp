@@ -64,7 +64,7 @@ namespace
 }
 
 PropListDelegate::PropListDelegate(PropertiesWidget *properties)
-    : QItemDelegate(properties)
+    : QStyledItemDelegate(properties)
     , m_properties(properties)
 {
 }
@@ -73,13 +73,15 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
 {
     painter->save();
 
-    QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
-    QItemDelegate::drawBackground(painter, opt, index);
+    const QStyle *style = option.widget ? option.widget->style() : QApplication::style();
+    QStyleOptionViewItem opt = option;
+    QStyledItemDelegate::initStyleOption(&opt, index);
 
     switch (index.column()) {
     case PCSIZE:
     case REMAINING:
-        QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
+        opt.text = Utils::Misc::friendlyUnit(index.data().toLongLong());
+        style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
         break;
 
     case PROGRESS: {
@@ -130,26 +132,28 @@ void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
                 text = tr("Normal", "Normal (priority)");
                 break;
             }
-            QItemDelegate::drawDisplay(painter, opt, option.rect, text);
+            opt.text = text;
+            style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
         }
         break;
 
     case AVAILABILITY: {
             const qreal availability = index.data().toReal();
             if (availability < 0) {
-                QItemDelegate::drawDisplay(painter, opt, option.rect, tr("N/A"));
+                opt.text = tr("N/A");
             }
             else {
                 const QString value = (availability >= 1.0)
                                         ? QLatin1String("100")
                                         : Utils::String::fromDouble(availability * 100, 1);
-                QItemDelegate::drawDisplay(painter, opt, option.rect, (value + C_THIN_SPACE + QLatin1Char('%')));
+                opt.text = (value + C_THIN_SPACE + QLatin1Char('%'));
             }
+            style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
         }
         break;
 
     default:
-        QItemDelegate::paint(painter, option, index);
+        QStyledItemDelegate::paint(painter, option, index);
         break;
     }
 

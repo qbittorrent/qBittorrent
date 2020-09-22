@@ -28,7 +28,6 @@ HEADERS += \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
     $$PWD/properties/downloadedpiecesbar.h \
-    $$PWD/properties/peerlistdelegate.h \
     $$PWD/properties/peerlistsortmodel.h \
     $$PWD/properties/peerlistwidget.h \
     $$PWD/properties/peersadditiondialog.h \
@@ -51,7 +50,6 @@ HEADERS += \
     $$PWD/search/pluginselectdialog.h \
     $$PWD/search/pluginsourcedialog.h \
     $$PWD/search/searchjobwidget.h \
-    $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/search/searchwidget.h \
     $$PWD/shutdownconfirmdialog.h \
@@ -109,7 +107,6 @@ SOURCES += \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/properties/downloadedpiecesbar.cpp \
-    $$PWD/properties/peerlistdelegate.cpp \
     $$PWD/properties/peerlistsortmodel.cpp \
     $$PWD/properties/peerlistwidget.cpp \
     $$PWD/properties/peersadditiondialog.cpp \
@@ -132,7 +129,6 @@ SOURCES += \
     $$PWD/search/pluginselectdialog.cpp \
     $$PWD/search/pluginsourcedialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
-    $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/shutdownconfirmdialog.cpp \

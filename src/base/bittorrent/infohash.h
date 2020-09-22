@@ -30,7 +30,6 @@
 #define BITTORRENT_INFOHASH_H
 
 #include <libtorrent/sha1_hash.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QString>
 
@@ -46,11 +45,7 @@ namespace BitTorrent
 
         static constexpr int length()
         {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-            return lt::sha1_hash::size;
-#else
             return lt::sha1_hash::size();
-#endif
         }
 
         bool isValid() const;

@@ -63,7 +63,7 @@ namespace Http
 
     const char CONTENT_TYPE_HTML[] = "text/html";
     const char CONTENT_TYPE_CSS[] = "text/css";
-    const char CONTENT_TYPE_TXT[] = "text/plain";
+    const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
     const char CONTENT_TYPE_JS[] = "application/javascript";
     const char CONTENT_TYPE_JSON[] = "application/json";
     const char CONTENT_TYPE_GIF[] = "image/gif";

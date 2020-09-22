@@ -30,7 +30,7 @@
 #ifndef UTILS_STRING_H
 #define UTILS_STRING_H
 
-#include <QLatin1String>
+#include <QChar>
 #include <QVector>
 
 class QString;
@@ -54,13 +54,13 @@ namespace Utils
         QString wildcardToRegex(const QString &pattern);
 
         template <typename T>
-        T unquote(const T &str, const QString &quotes = QLatin1String("\""))
+        T unquote(const T &str, const QString &quotes = QChar('"'))
         {
             if (str.length() < 2) return str;
 
-            for (const auto &quote : quotes) {
+            for (const QChar quote : quotes) {
                 if (str.startsWith(quote) && str.endsWith(quote))
-                    return str.mid(1, str.length() - 2);
+                    return str.mid(1, (str.length() - 2));
             }
 
             return str;

@@ -455,11 +455,7 @@ QString Utils::Misc::boostVersionString()
 QString Utils::Misc::libtorrentVersionString()
 {
     // static initialization for usage in signal handler
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    static const auto version {QString::fromLatin1(libtorrent::version())};
-#else
     static const auto version {QString::fromLatin1(lt::version())};
-#endif
     return version;
 }
 

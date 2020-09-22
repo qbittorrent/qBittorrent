@@ -29,20 +29,21 @@
 #include "peerlistsortmodel.h"
 
 #include "base/utils/string.h"
-#include "peerlistdelegate.h"
+#include "peerlistwidget.h"
 
 PeerListSortModel::PeerListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
+    setSortRole(UnderlyingDataRole);
 }
 
 bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
     switch (sortColumn()) {
-    case PeerListDelegate::IP:
-    case PeerListDelegate::CLIENT: {
-            const QString strL = left.data().toString();
-            const QString strR = right.data().toString();
+    case PeerListWidget::IP:
+    case PeerListWidget::CLIENT: {
+            const QString strL = left.data(UnderlyingDataRole).toString();
+            const QString strR = right.data(UnderlyingDataRole).toString();
             const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
             return (result < 0);
         }

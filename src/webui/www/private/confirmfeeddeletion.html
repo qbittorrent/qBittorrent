@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script>
+        'use strict';
+
+        window.addEvent('domready', () => {
+            const paths = decodeURIComponent(new URI().getData('paths')).split('|');
+            $('cancelBtn').focus();
+            $('cancelBtn').addEvent('click', (e) => {
+                new Event(e).stop();
+                window.parent.closeWindows();
+            });
+            $('confirmBtn').addEvent('click', (e) => {
+                new Event(e).stop();
+                let completionCount = 0;
+                paths.forEach((path) => {
+                    new Request({
+                        url: 'api/v2/rss/removeItem',
+                        noCache: true,
+                        method: 'post',
+                        data: {
+                            path: path
+                        },
+                        onComplete: (response) => {
+                            ++completionCount;
+                            if (completionCount === paths.length) {
+                                window.parent.qBittorrent.Rss.updateRssFeedList();
+                                window.parent.closeWindows();
+                            }
+                        }
+                    }).send();
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p>QBT_TR(Are you sure you want to delete the selected RSS feeds?)QBT_TR[CONTEXT=RSSWidget]</p>
+        <div style="text-align: right;">
+            <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" />
+            <input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" />
+        </div>
+    </div>
+</body>
+
+</html>

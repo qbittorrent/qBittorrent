@@ -28,8 +28,6 @@
 
 #include "peerinfo.h"
 
-#include <libtorrent/version.hpp>
-
 #include <QBitArray>
 
 #include "base/bittorrent/torrenthandle.h"
@@ -61,14 +59,12 @@ bool PeerInfo::fromLSD() const
     return static_cast<bool>(m_nativeInfo.source & lt::peer_info::lsd);
 }
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
 QString PeerInfo::country() const
 {
     if (m_country.isEmpty())
         m_country = Net::GeoIPManager::instance()->lookup(address().ip);
     return m_country;
 }
-#endif
 
 bool PeerInfo::isInteresting() const
 {
@@ -211,15 +207,9 @@ qlonglong PeerInfo::totalDownload() const
 
 QBitArray PeerInfo::pieces() const
 {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-    using PieceIndex = int;
-#else
-    using PieceIndex = lt::piece_index_t;
-#endif
-
     QBitArray result(m_nativeInfo.pieces.size());
     for (int i = 0; i < result.size(); ++i) {
-        if (m_nativeInfo.pieces[PieceIndex {i}])
+        if (m_nativeInfo.pieces[lt::piece_index_t {i}])
             result.setBit(i, true);
     }
     return result;

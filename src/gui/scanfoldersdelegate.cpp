@@ -37,7 +37,7 @@
 #include "base/scanfoldersmodel.h"
 
 ScanFoldersDelegate::ScanFoldersDelegate(QObject *parent, QTreeView *foldersView)
-    : QItemDelegate(parent)
+    : QStyledItemDelegate(parent)
     , m_folderView(foldersView)
 {
 }

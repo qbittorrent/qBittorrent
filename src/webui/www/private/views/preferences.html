@@ -565,8 +565,8 @@
             </tr>
             <tr>
                 <td>
-                    <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
+                    <label for="max_seeding_time_checkbox">QBT_TR(When seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <input type="text" id="max_seeding_time_value" style="width: 4em;" />QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
@@ -592,6 +592,54 @@
             <label for="add_trackers_checkbox">QBT_TR(Automatically add these trackers to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
+    </fieldset>
+</div>
+
+<div id="RSSTab" class="PrefTab invisible">
+    <fieldset class="settings">
+        <legend>QBT_TR(RSS Reader)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="checkbox" id="enable_fetching_rss_feeds_checkbox" />
+            <label for="enable_fetching_rss_feeds_checkbox">QBT_TR(Enable fetching RSS feeds)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <label for="feed_refresh_interval">QBT_TR(Feeds refresh interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="feed_refresh_interval" style="width: 4em;" />&nbsp;&nbsp;QBT_TR( min)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="maximum_article_number">QBT_TR(Maximum number of articles per feed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="maximum_article_number" style="width: 4em;" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>QBT_TR(RSS Torrent Auto Downloader)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="checkbox" id="enable_auto_downloading_rss_torrents_checkbox" />
+            <label for="enable_auto_downloading_rss_torrents_checkbox">QBT_TR(Enable auto downloading of RSS torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <button style="margin: 0 1em; width: calc(100% - 2.2em)" onclick="window.qBittorrent.Rss.openRssDownloader();">QBT_TR(Edit auto downloading rules...)QBT_TR[CONTEXT=OptionsDialog]</button>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>QBT_TR(RSS Smart Episode Filter)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <input type="checkbox" id="downlock_repack_proper_episodes" />
+
+            <label for="downlock_repack_proper_episodes">QBT_TR(Download REPACK/PROPER episodes)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <label for="rss_filter_textarea">QBT_TR(Filters:)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+        <textarea id="rss_filter_textarea" rows="6" cols="70"></textarea>
     </fieldset>
 </div>
 
@@ -913,7 +961,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="diskCache">QBT_TR(Disk cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
+                    <label for="diskCache">QBT_TR(Disk cache (requires libtorrent < 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="diskCache" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
@@ -921,7 +969,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
+                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval (requires libtorrent < 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="diskCacheExpiryInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(s)QBT_TR[CONTEXT=OptionsDialog]
@@ -937,7 +985,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads & writes:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
+                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads & writes (requires libtorrent < 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="coalesceReadsAndWrites" />
@@ -1044,6 +1092,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="blockPeersOnPrivilegedPorts">QBT_TR(Disallow connection to peers on privileged ports:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://libtorrent.org/single-page-ref.html#no_connect_privileged_ports" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="blockPeersOnPrivilegedPorts" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="enableEmbeddedTracker">QBT_TR(Enable embedded tracker:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -1107,10 +1163,42 @@
             </tr>
             <tr>
                 <td>
+                    <label for="maxConcurrentHTTPAnnounces">QBT_TR(Max concurrent HTTP announces (requires libtorrent >= 1.2.7):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="maxConcurrentHTTPAnnounces" style="width: 15em;" />
+                </td>
+             </tr>
+            <tr>
+                <td>
                     <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
+                </td>
+             </tr>
+             <tr>
+                <td>
+                    <label for="peerTurnover">QBT_TR(Peer turnover disconnect percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerTurnover" style="width: 15em;" />&nbsp;&nbsp;%
+                </td>
+             </tr>
+             <tr>
+                <td>
+                    <label for="peerTurnoverCutoff">QBT_TR(Peer turnover threshold percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerTurnoverCutoff" style="width: 15em;" />&nbsp;&nbsp;%
+                </td>
+             </tr>
+             <tr>
+                <td>
+                    <label for="peerTurnoverInterval">QBT_TR(Peer turnover disconnect interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerTurnoverInterval" style="width: 15em;" />&nbsp;&nbsp;s
                 </td>
              </tr>
         </table>
@@ -1690,15 +1778,9 @@
 
                         // Share Limiting
                         $('max_ratio_checkbox').setProperty('checked', pref.max_ratio_enabled);
-                        if (pref.max_ratio_enabled)
-                            $('max_ratio_value').setProperty('value', pref.max_ratio);
-                        else
-                            $('max_ratio_value').setProperty('value', 1);
+                        $('max_ratio_value').setProperty('value', (pref.max_ratio_enabled ? pref.max_ratio : 1));
                         $('max_seeding_time_checkbox').setProperty('checked', pref.max_seeding_time_enabled);
-                        if (pref.max_seeding_time_enabled)
-                            $('max_seeding_time_value').setProperty('value', pref.max_seeding_time.toInt());
-                        else
-                            $('max_seeding_time_value').setProperty('value', 1440);
+                        $('max_seeding_time_value').setProperty('value', (pref.max_seeding_time_enabled ? pref.max_seeding_time.toInt() : 1440));
                         let maxRatioAct = 0;
                         switch (pref.max_ratio_act.toInt()) {
                             case 0: // Pause
@@ -1722,6 +1804,14 @@
                         $('add_trackers_checkbox').setProperty('checked', pref.add_trackers_enabled);
                         $('add_trackers_textarea').setProperty('value', pref.add_trackers);
                         updateAddTrackersEnabled();
+
+                        // RSS Tab
+                        $('enable_fetching_rss_feeds_checkbox').setProperty('checked', pref.rss_processing_enabled);
+                        $('feed_refresh_interval').setProperty('value', pref.rss_refresh_interval);
+                        $('maximum_article_number').setProperty('value', pref.rss_max_articles_per_feed);
+                        $('enable_auto_downloading_rss_torrents_checkbox').setProperty('checked', pref.rss_auto_downloading_enabled);
+                        $('downlock_repack_proper_episodes').setProperty('checked', pref.rss_download_repack_proper_episodes);
+                        $('rss_filter_textarea').setProperty('value', pref.rss_smart_episode_filters);
 
                         // Web UI tab
                         // Language
@@ -1799,6 +1889,7 @@
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
                         $('validateHTTPSTrackerCertificate').setProperty('checked', pref.validate_https_tracker_certificate);
+                        $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.no_connect_privileged_ports);
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
                         $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
@@ -1806,7 +1897,11 @@
                         $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
                         $('announceAllTiers').setProperty('checked', pref.announce_to_all_tiers);
                         $('announceIP').setProperty('value', pref.announce_ip);
+                        $('maxConcurrentHTTPAnnounces').setProperty('value', pref.max_concurrent_http_announces);
                         $('stopTrackerTimeout').setProperty('value', pref.stop_tracker_timeout);
+                        $('peerTurnover').setProperty('value', pref.peer_turnover);
+                        $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
+                        $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
                     }
                 }
             }).send();
@@ -2051,20 +2146,19 @@
             // Share Ratio Limiting
             let max_ratio = -1;
             if ($('max_ratio_checkbox').getProperty('checked')) {
-                max_ratio = $('max_ratio_value').getProperty('value');
-                if (isNaN(max_ratio) || max_ratio < 0 || max_ratio > 9998) {
+                max_ratio = $('max_ratio_value').getProperty('value').toFloat();
+                if (isNaN(max_ratio) || (max_ratio < 0) || (max_ratio > 9998)) {
                     alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
             settings.set('max_ratio_enabled', $('max_ratio_checkbox').getProperty('checked'));
             settings.set('max_ratio', max_ratio);
-            settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
 
             let max_seeding_time = -1;
             if ($('max_seeding_time_checkbox').getProperty('checked')) {
                 max_seeding_time = $('max_seeding_time_value').getProperty('value').toInt();
-                if (isNaN(max_seeding_time) || max_seeding_time < 0 || max_seeding_time > 525600) {
+                if (isNaN(max_seeding_time) || (max_seeding_time < 0) || (max_seeding_time > 525600)) {
                     alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2076,6 +2170,14 @@
             // Add trackers
             settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
             settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
+
+            // RSS Tab
+            settings.set('rss_processing_enabled', $('enable_fetching_rss_feeds_checkbox').getProperty('checked'));
+            settings.set('rss_refresh_interval', $('feed_refresh_interval').getProperty('value'));
+            settings.set('rss_max_articles_per_feed', $('maximum_article_number').getProperty('value'));
+            settings.set('rss_auto_downloading_enabled', $('enable_auto_downloading_rss_torrents_checkbox').getProperty('checked'));
+            settings.set('rss_download_repack_proper_episodes', $('downlock_repack_proper_episodes').getProperty('checked'));
+            settings.set('rss_smart_episode_filters', $('rss_filter_textarea').getProperty('value'));
 
             // Web UI tab
             // Language
@@ -2173,6 +2275,7 @@
             settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
             settings.set('validate_https_tracker_certificate', $('validateHTTPSTrackerCertificate').getProperty('checked'));
+            settings.set('block_peers_on_privileged_ports', $('blockPeersOnPrivilegedPorts').getProperty('checked'));
             settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
             settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
             settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
@@ -2180,7 +2283,11 @@
             settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));
             settings.set('announce_to_all_tiers', $('announceAllTiers').getProperty('checked'));
             settings.set('announce_ip', $('announceIP').getProperty('value'));
+            settings.set('max_concurrent_http_announces', $('maxConcurrentHTTPAnnounces').getProperty('value'));
             settings.set('stop_tracker_timeout', $('stopTrackerTimeout').getProperty('value'));
+            settings.set('peer_turnover', $('peerTurnover').getProperty('value'));
+            settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
+            settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);

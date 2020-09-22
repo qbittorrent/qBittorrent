@@ -28,9 +28,6 @@
 
 #pragma once
 
-#include <libtorrent/version.hpp>
-
-#if (LIBTORRENT_VERSION_NUM >= 10200)
 #include <libtorrent/aux_/vector.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/storage.hpp>
@@ -49,7 +46,8 @@ public:
     lt::status_t move_storage(const std::string &savePath, lt::move_flags_t flags, lt::storage_error &ec) override;
 
 private:
+    void handleCompleteFiles(const QString &savePath);
+
     lt::aux::vector<lt::download_priority_t, lt::file_index_t> m_filePriorities;
     QString m_savePath;
 };
-#endif

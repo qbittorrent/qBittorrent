@@ -566,9 +566,7 @@ int Application::exec(const QStringList &params)
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
-#ifndef DISABLE_COUNTRIES_RESOLUTION
         Net::GeoIPManager::initInstance();
-#endif
         ScanFoldersModel::initInstance();
 
 #ifndef DISABLE_WEBUI
@@ -617,7 +615,6 @@ int Application::exec(const QStringList &params)
 #else
     UIThemeManager::initInstance();
     m_window = new MainWindow;
-    UIThemeManager::instance()->applyStyleSheet();
 #endif // DISABLE_GUI
 
     m_running = true;
@@ -760,9 +757,7 @@ void Application::cleanup()
 
     ScanFoldersModel::freeInstance();
     BitTorrent::Session::freeInstance();
-#ifndef DISABLE_COUNTRIES_RESOLUTION
     Net::GeoIPManager::freeInstance();
-#endif
     Net::DownloadManager::freeInstance();
     Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();

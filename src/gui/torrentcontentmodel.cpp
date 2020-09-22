@@ -458,9 +458,6 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         pathFolders.removeLast();
 
         for (const QStringRef &pathPartRef : asConst(pathFolders)) {
-            if (pathPartRef == QLatin1String(".unwanted"))
-                continue;
-
             const QString pathPart = pathPartRef.toString();
             TorrentContentModelFolder *newParent = currentParent->childFolderWithName(pathPart);
             if (!newParent) {

@@ -33,11 +33,13 @@
 
 class NativeSessionExtension final : public lt::plugin
 {
-#if (LIBTORRENT_VERSION_NUM >= 10200)
-    lt::feature_flags_t implemented_features() override;
-    std::shared_ptr<lt::torrent_plugin> new_torrent(const lt::torrent_handle &torrentHandle, void *userData) override;
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    using ClientData = lt::client_data_t;
 #else
-    boost::shared_ptr<lt::torrent_plugin> new_torrent(const lt::torrent_handle &torrentHandle, void *userData) override;
+    using ClientData = void *;
 #endif
+
+    lt::feature_flags_t implemented_features() override;
+    std::shared_ptr<lt::torrent_plugin> new_torrent(const lt::torrent_handle &torrentHandle, ClientData) override;
     void on_alert(const lt::alert *alert) override;
 };

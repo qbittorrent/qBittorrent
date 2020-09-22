@@ -143,7 +143,7 @@ window.qBittorrent.PropPeers = (function() {
 
                 if (confirm('QBT_TR(Are you sure you want to permanently ban the selected peers?)QBT_TR[CONTEXT=PeerListWidget]')) {
                     new Request({
-                        url: 'api/v2/torrents/banPeers',
+                        url: 'api/v2/transfer/banPeers',
                         noCache: true,
                         method: 'post',
                         data: {

@@ -31,18 +31,11 @@
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
-#include <libtorrent/version.hpp>
+#include <libtorrent/portmap.hpp>
 
 #include <QHash>
 
 #include "base/net/portforwarder.h"
-
-#if (LIBTORRENT_VERSION_NUM < 10200)
-using LTPortMapping = int;
-#else
-#include <libtorrent/portmap.hpp>
-using LTPortMapping = lt::port_mapping_t;
-#endif
 
 class PortForwarderImpl final : public Net::PortForwarder
 {
@@ -65,5 +58,5 @@ private:
 
     bool m_active;
     lt::session *m_provider;
-    QHash<quint16, std::vector<LTPortMapping>> m_mappedPorts;
+    QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 };

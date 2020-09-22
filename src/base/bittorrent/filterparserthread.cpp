@@ -96,7 +96,7 @@ namespace
         if (parser.tryParse(data))
             address = lt::address_v4(parser.parsed());
         else
-            address = lt::address_v6::from_string(data, ec);
+            address = lt::make_address(data, ec);
 
         return !ec;
     }

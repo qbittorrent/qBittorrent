@@ -34,21 +34,13 @@ namespace
 {
     bool isPaused(const lt::torrent_status &torrentStatus)
     {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-        return (torrentStatus.paused && !torrentStatus.auto_managed);
-#else
         return ((torrentStatus.flags & lt::torrent_flags::paused)
                 && !(torrentStatus.flags & lt::torrent_flags::auto_managed));
-#endif
     }
 
     bool isAutoManaged(const lt::torrent_status &torrentStatus)
     {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-        return torrentStatus.auto_managed;
-#else
         return static_cast<bool>(torrentStatus.flags & lt::torrent_flags::auto_managed);
-#endif
     }
 }
 
@@ -58,35 +50,20 @@ NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrent
 }
 
 // This method is called when state of torrent is changed
-#if (LIBTORRENT_VERSION_NUM < 10200)
-void NativeTorrentExtension::on_state(const int state)
-#else
 void NativeTorrentExtension::on_state(const lt::torrent_status::state_t state)
-#endif
 {
     // When a torrent enters "checking files" state while paused, we temporarily resume it
     // (really we just allow libtorrent to resume it by enabling auto management for it).
     if (state == lt::torrent_status::checking_files) {
-        if (isPaused(m_torrentHandle.status({}))) {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-            m_torrentHandle.stop_when_ready(true);
-            m_torrentHandle.auto_managed(true);
-#else
+        if (isPaused(m_torrentHandle.status({})))
             m_torrentHandle.set_flags(lt::torrent_flags::stop_when_ready | lt::torrent_flags::auto_managed);
-#endif
-        }
     }
 }
 
 bool NativeTorrentExtension::on_pause()
 {
-    if (!isAutoManaged(m_torrentHandle.status({}))) {
-#if (LIBTORRENT_VERSION_NUM < 10200)
-        m_torrentHandle.stop_when_ready(false);
-#else
+    if (!isAutoManaged(m_torrentHandle.status({})))
         m_torrentHandle.unset_flags(lt::torrent_flags::stop_when_ready);
-#endif
-    }
 
     // return `false` to allow standard handler
     // and other extensions to be also invoked.

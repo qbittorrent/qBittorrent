@@ -175,12 +175,14 @@ void Utils::Gui::openPath(const QString &absolutePath)
 // (if possible) the item at the given path
 void Utils::Gui::openFolderSelect(const QString &absolutePath)
 {
-    const QString path = Utils::Fs::toUniformPath(absolutePath);
+    QString path {Utils::Fs::toUniformPath(absolutePath)};
+    const QFileInfo pathInfo {path};
     // If the item to select doesn't exist, try to open its parent
-    if (!QFileInfo::exists(path)) {
+    if (!pathInfo.exists(path)) {
         openPath(path.left(path.lastIndexOf('/')));
         return;
     }
+
 #ifdef Q_OS_WIN
     HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
     PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
@@ -200,6 +202,8 @@ void Utils::Gui::openFolderSelect(const QString &absolutePath)
     }
     else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
                  || (output == "nautilus-folder-handler.desktop")) {
+        if (pathInfo.isDir())
+            path = path.left(path.lastIndexOf('/'));
         proc.start("nautilus", {"--version"});
         proc.waitForFinished();
         const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
@@ -210,6 +214,8 @@ void Utils::Gui::openFolderSelect(const QString &absolutePath)
             proc.startDetached("nautilus", {"--no-desktop", Utils::Fs::toNativePath(path)});
     }
     else if (output == "nemo.desktop") {
+        if (pathInfo.isDir())
+            path = path.left(path.lastIndexOf('/'));
         proc.startDetached("nemo", {"--no-desktop", Utils::Fs::toNativePath(path)});
     }
     else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop")) {

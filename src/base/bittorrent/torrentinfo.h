@@ -30,7 +30,6 @@
 #define BITTORRENT_TORRENTINFO_H
 
 #include <libtorrent/torrent_info.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QCoreApplication>
 #include <QVector>
@@ -53,15 +52,7 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
     public:
-#if (LIBTORRENT_VERSION_NUM < 10200)
-        using NativeConstPtr = boost::shared_ptr<const lt::torrent_info>;
-        using NativePtr = boost::shared_ptr<lt::torrent_info>;
-#else
-        using NativeConstPtr = std::shared_ptr<const lt::torrent_info>;
-        using NativePtr = std::shared_ptr<lt::torrent_info>;
-#endif
-
-        explicit TorrentInfo(NativeConstPtr nativeInfo = {});
+        explicit TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo = {});
         TorrentInfo(const TorrentInfo &other);
 
         static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
@@ -107,12 +98,12 @@ namespace BitTorrent
         bool hasRootFolder() const;
         void stripRootFolder();
 
-        NativePtr nativeInfo() const;
+        std::shared_ptr<lt::torrent_info> nativeInfo() const;
 
     private:
         // returns file index or -1 if fileName is not found
         int fileIndex(const QString &fileName) const;
-        NativePtr m_nativeInfo;
+        std::shared_ptr<lt::torrent_info> m_nativeInfo;
     };
 }
 

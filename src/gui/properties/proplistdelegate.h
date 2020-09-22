@@ -29,7 +29,7 @@
 #ifndef PROPLISTDELEGATE_H
 #define PROPLISTDELEGATE_H
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 class QAbstractItemModel;
 class QModelIndex;
@@ -49,7 +49,7 @@ enum PropColumn
     AVAILABILITY
 };
 
-class PropListDelegate final : public QItemDelegate
+class PropListDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
 

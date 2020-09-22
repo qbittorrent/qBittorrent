@@ -57,6 +57,7 @@ include(../version.pri)
 # Qt defines
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QT_NO_CAST_TO_ASCII
+DEFINES += QT_NO_CAST_FROM_BYTEARRAY
 DEFINES += QT_USE_QSTRINGBUILDER
 DEFINES += QT_STRICT_ITERATORS
 
@@ -68,8 +69,8 @@ include(base/base.pri)
 !nowebui: include(webui/webui.pri)
 
 isEmpty(QMAKE_LRELEASE) {
-    win32: QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease.exe
-    else: QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+    win32: QMAKE_LRELEASE = $$[QT_HOST_BINS]/lrelease.exe
+    else: QMAKE_LRELEASE = $$[QT_HOST_BINS]/lrelease
     unix {
         equals(QT_MAJOR_VERSION, 5) {
             !exists($$QMAKE_LRELEASE): QMAKE_LRELEASE = lrelease-qt5

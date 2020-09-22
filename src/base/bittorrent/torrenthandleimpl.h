@@ -31,6 +31,7 @@
 
 #include <functional>
 
+#include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
@@ -53,35 +54,24 @@ namespace BitTorrent
     class Session;
     struct AddTorrentParams;
 
-    struct CreateTorrentParams
+    struct LoadTorrentParams
     {
-        CreateTorrentParams() = default;
-        explicit CreateTorrentParams(const AddTorrentParams &params);
+        lt::add_torrent_params ltAddTorrentParams {};
 
-        // for both new and restored torrents
         QString name;
         QString category;
         QSet<QString> tags;
         QString savePath;
-        int uploadLimit = -1;
-        int downloadLimit = -1;
-        bool disableTempPath = false;
-        bool sequential = false;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
-        bool skipChecking = false;
         bool hasRootFolder = true;
         bool forced = false;
         bool paused = false;
-        bool restored = false;  // is existing torrent job?
 
-        // for new torrents
-        QVector<DownloadPriority> filePriorities;
-        QDateTime addedTime;
-
-        // for restored torrents
         qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
         int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
+
+        bool restored = false;  // is existing torrent job?
     };
 
     enum class MoveStorageMode
@@ -97,7 +87,7 @@ namespace BitTorrent
 
     public:
         TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
-                          const CreateTorrentParams &params);
+                          const LoadTorrentParams &params);
         ~TorrentHandleImpl() override;
 
         bool isValid() const;
@@ -252,18 +242,12 @@ namespace BitTorrent
         void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
         void saveResumeData();
-        void handleStorageMoved(const QString &newPath, const QString &errorMessage);
+        void handleMoveStorageJobFinished(bool hasOutstandingJob);
 
         QString actualStorageLocation() const;
 
     private:
         typedef std::function<void ()> EventTrigger;
-
-#if (LIBTORRENT_VERSION_NUM < 10200)
-        using LTFileIndex = int;
-#else
-        using LTFileIndex = lt::file_index_t;
-#endif
 
         void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
@@ -296,7 +280,7 @@ namespace BitTorrent
         void move_impl(QString path, MoveStorageMode mode);
         void moveStorage(const QString &newPath, MoveStorageMode mode);
         void manageIncompleteFiles();
-        void setFirstLastPiecePriorityImpl(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
+        void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         Session *const m_session;
         lt::torrent_handle m_nativeHandle;
@@ -315,7 +299,7 @@ namespace BitTorrent
 
         // Until libtorrent provide an "old_name" field in `file_renamed_alert`
         // we will rely on this workaround to remove empty leftover folders
-        QHash<LTFileIndex, QVector<QString>> m_oldPath;
+        QHash<lt::file_index_t, QVector<QString>> m_oldPath;
 
         QHash<QString, TrackerInfo> m_trackerInfos;
 
@@ -327,13 +311,14 @@ namespace BitTorrent
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         bool m_hasSeedStatus;
-        bool m_tempPathDisabled;
         bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
-        bool m_needsToSetFirstLastPiecePriority = false;
+        bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
 
         bool m_unchecked = false;
+
+        lt::add_torrent_params m_ltAddTorrentParams;
     };
 }

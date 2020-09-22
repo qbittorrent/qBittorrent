@@ -51,7 +51,6 @@
 #include "gui/lineedit.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
-#include "searchlistdelegate.h"
 #include "searchsortmodel.h"
 #include "ui_searchjobwidget.h"
 
@@ -70,7 +69,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
     loadSettings();
-    m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
     header()->setStretchLastSection(false);
 
     // Set Search results list model
@@ -91,15 +90,14 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     m_proxyModel->setNameFilter(searchHandler->pattern());
     m_ui->resultsBrowser->setModel(m_proxyModel);
 
-    m_searchDelegate = new SearchListDelegate(this);
-    m_ui->resultsBrowser->setItemDelegate(m_searchDelegate);
-
     m_ui->resultsBrowser->hideColumn(SearchSortModel::DL_LINK); // Hide url column
     m_ui->resultsBrowser->hideColumn(SearchSortModel::DESC_LINK);
 
+    m_ui->resultsBrowser->setSelectionMode(QAbstractItemView::ExtendedSelection);
     m_ui->resultsBrowser->setRootIsDecorated(false);
     m_ui->resultsBrowser->setAllColumnsShowFocus(true);
     m_ui->resultsBrowser->setSortingEnabled(true);
+    m_ui->resultsBrowser->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
@@ -513,13 +511,25 @@ void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
         int row = m_searchListModel->rowCount();
         m_searchListModel->insertRow(row);
 
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::NAME), result.fileName); // Name
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::DL_LINK), result.fileUrl); // download URL
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::SIZE), result.fileSize); // Size
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::SEEDS), result.nbSeeders); // Seeders
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::LEECHES), result.nbLeechers); // Leechers
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::ENGINE_URL), result.siteUrl); // Search site URL
-        m_searchListModel->setData(m_searchListModel->index(row, SearchSortModel::DESC_LINK), result.descrLink); // Description Link
+        const auto setModelData = [this, row] (const int column, const QString &displayData
+                                               , const QVariant &underlyingData, const Qt::Alignment textAlignmentData = {})
+        {
+            const QMap<int, QVariant> data =
+            {
+                {Qt::DisplayRole, displayData},
+                {SearchSortModel::UnderlyingDataRole, underlyingData},
+                {Qt::TextAlignmentRole, QVariant {textAlignmentData}}
+            };
+            m_searchListModel->setItemData(m_searchListModel->index(row, column), data);
+        };
+
+        setModelData(SearchSortModel::NAME, result.fileName, result.fileName);
+        setModelData(SearchSortModel::DL_LINK, result.fileUrl, result.fileUrl);
+        setModelData(SearchSortModel::ENGINE_URL, result.siteUrl, result.siteUrl);
+        setModelData(SearchSortModel::DESC_LINK, result.descrLink, result.descrLink);
+        setModelData(SearchSortModel::SIZE, Utils::Misc::friendlyUnit(result.fileSize), result.fileSize, (Qt::AlignRight | Qt::AlignVCenter));
+        setModelData(SearchSortModel::SEEDS, QString::number(result.nbSeeders), result.nbSeeders, (Qt::AlignRight | Qt::AlignVCenter));
+        setModelData(SearchSortModel::LEECHES, QString::number(result.nbLeechers), result.nbLeechers, (Qt::AlignRight | Qt::AlignVCenter));
     }
 
     updateResultsCount();

@@ -172,7 +172,7 @@ void LogPeerModel::handleNewMessage(const Log::Peer &peer)
 {
     const QString time = QDateTime::fromMSecsSinceEpoch(peer.timestamp).toString(Qt::SystemLocaleShortDate);
     const QString message = peer.blocked
-            ? tr("%1 was blocked due to %2", "0.0.0.0 was blocked due to reason").arg(peer.ip, peer.reason)
+            ? tr("%1 was blocked. Reason: %2.", "0.0.0.0 was blocked. Reason: reason for blocking.").arg(peer.ip, peer.reason)
             : tr("%1 was banned", "0.0.0.0 was banned").arg(peer.ip);
 
     addNewMessage({time, message, m_bannedPeerForeground, Log::NORMAL});

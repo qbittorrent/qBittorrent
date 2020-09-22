@@ -302,6 +302,8 @@ void AppController::preferencesAction()
     data["enable_multi_connections_from_same_ip"] = session->multiConnectionsPerIpEnabled();
     // Validate HTTPS tracker certificate
     data["validate_https_tracker_certificate"] = session->validateHTTPSTrackerCertificate();
+    // Disallow connection to peers on privileged ports
+    data["block_peers_on_privileged_ports"] = session->blockPeersOnPrivilegedPorts();
     // Embedded tracker
     data["enable_embedded_tracker"] = session->isTrackerEnabled();
     data["embedded_tracker_port"] = pref->getTrackerPort();
@@ -313,8 +315,12 @@ void AppController::preferencesAction()
     data["announce_to_all_trackers"] = session->announceToAllTrackers();
     data["announce_to_all_tiers"] = session->announceToAllTiers();
     data["announce_ip"] = session->announceIP();
-    // Stop tracker timeout
+    data["max_concurrent_http_announces"] = session->maxConcurrentHTTPAnnounces();
     data["stop_tracker_timeout"] = session->stopTrackerTimeout();
+    // Peer Turnover
+    data["peer_turnover"] = session->peerTurnover();
+    data["peer_turnover_cutoff"] = session->peerTurnoverCutoff();
+    data["peer_turnover_interval"] = session->peerTurnoverInterval();
 
     setResult(data);
 }
@@ -733,6 +739,9 @@ void AppController::setPreferencesAction()
     // Validate HTTPS tracker certificate
     if (hasKey("validate_https_tracker_certificate"))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());
+    // Disallow connection to peers on privileged ports
+    if (hasKey("block_peers_on_privileged_ports"))
+        session->setBlockPeersOnPrivilegedPorts(it.value().toBool());
     // Embedded tracker
     if (hasKey("embedded_tracker_port"))
         pref->setTrackerPort(it.value().toInt());
@@ -753,9 +762,17 @@ void AppController::setPreferencesAction()
         const QHostAddress announceAddr {it.value().toString().trimmed()};
         session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
     }
-    // Stop tracker timeout
+    if (hasKey("max_concurrent_http_announces"))
+        session->setMaxConcurrentHTTPAnnounces(it.value().toInt());
     if (hasKey("stop_tracker_timeout"))
         session->setStopTrackerTimeout(it.value().toInt());
+    // Peer Turnover
+    if (hasKey("peer_turnover"))
+        session->setPeerTurnover(it.value().toInt());
+    if (hasKey("peer_turnover_cutoff"))
+        session->setPeerTurnoverCutoff(it.value().toInt());
+    if (hasKey("peer_turnover_interval"))
+        session->setPeerTurnoverInterval(it.value().toInt());
 
     // Save preferences
     pref->apply();

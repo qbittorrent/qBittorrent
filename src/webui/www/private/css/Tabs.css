@@ -34,7 +34,6 @@ Required by:
 }
 
 .tab-menu li {
-    display: block;
     float: left;
     margin: 0 0 5px 0;
     cursor: pointer;
