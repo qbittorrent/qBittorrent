@@ -528,6 +528,7 @@ namespace BitTorrent
     private slots:
         void configureDeferred();
         void readAlerts();
+        void handleNextAlert();
         void enqueueRefresh();
         void processShareLimits();
         void generateResumeData(bool final = false);
@@ -630,7 +631,7 @@ namespace BitTorrent
         void saveTorrentsQueue();
         void removeTorrentsQueue();
 
-        std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
+        std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero());
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
         void handleMoveTorrentStorageJobFinished();
@@ -747,6 +748,10 @@ namespace BitTorrent
         QVector<TrackerEntry> m_additionalTrackerList;
         QString m_resumeFolderPath;
         QFile *m_resumeFolderLock = nullptr;
+
+        bool m_hasPendingAlerts = false;
+        std::vector<lt::alert *> m_alerts;
+        std::vector<lt::alert *>::iterator m_nextAlert = m_alerts.end();
 
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;

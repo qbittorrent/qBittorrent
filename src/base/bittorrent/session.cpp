@@ -4153,13 +4153,16 @@ void Session::handleIPFilterError()
     emit IPFilterParsed(true, 0);
 }
 
-std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time) const
+std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time)
 {
     if (time > lt::time_duration::zero())
         m_nativeSession->wait_for_alert(time);
 
     std::vector<lt::alert *> alerts;
     m_nativeSession->pop_alerts(&alerts);
+
+    m_hasPendingAlerts = false;
+
     return alerts;
 }
 
@@ -4176,9 +4179,34 @@ void Session::setKeepTorrentTopLevelFolder(const bool value)
 // Read alerts sent by the BitTorrent session
 void Session::readAlerts()
 {
-    const std::vector<lt::alert *> alerts = getPendingAlerts();
-    for (const lt::alert *a : alerts)
-        handleAlert(a);
+    if (m_nextAlert == m_alerts.end()) {
+        m_alerts = getPendingAlerts();
+        m_nextAlert = m_alerts.begin();
+        handleNextAlert();
+    }
+    else {
+        m_hasPendingAlerts = true;
+    }
+}
+
+void Session::handleNextAlert()
+{
+    Q_ASSERT(m_nextAlert != m_alerts.end());
+
+    handleAlert(*(m_nextAlert++));
+
+    if ((m_nextAlert == m_alerts.end()) && m_hasPendingAlerts) {
+        m_alerts = getPendingAlerts();
+        m_nextAlert = m_alerts.begin();
+    }
+
+    if (m_nextAlert != m_alerts.end()) {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+        QMetaObject::invokeMethod(this, &Session::handleNextAlert, Qt::QueuedConnection);
+#else
+        QMetaObject::invokeMethod(this, "handleNextAlert", Qt::QueuedConnection);
+#endif
+    }
 }
 
 void Session::handleAlert(const lt::alert *a)
