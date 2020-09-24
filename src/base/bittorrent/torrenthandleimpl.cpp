@@ -125,8 +125,8 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_hasSeedStatus(params.hasSeedStatus)
     , m_hasRootFolder(params.hasRootFolder)
-    , m_useAutoTMM(params.savePath.isEmpty())
     , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
+    , m_useAutoTMM(params.savePath.isEmpty())
     , m_ltAddTorrentParams(params.ltAddTorrentParams)
 {
     if (m_useAutoTMM)
