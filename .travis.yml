@@ -108,8 +108,13 @@ install:
       PATH="/usr/local/opt/ccache/libexec:$PATH"
 
       brew update > /dev/null
+
+      brew unlink qt
+      brew install qt@5.15.1
+      brew link qt@5.15.1
+
       brew upgrade cmake
-      brew install ccache colormake boost openssl qt zlib
+      brew install ccache colormake boost openssl zlib
       brew link --force qt zlib
 
       if [ "$build_system" = "cmake" ]; then
