@@ -33,7 +33,7 @@
 
 namespace BitTorrent
 {
-    uint qHash(const BitTorrent::TorrentState key, const uint seed)
+    uint qHash(const TorrentState key, const uint seed)
     {
         return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
     }
