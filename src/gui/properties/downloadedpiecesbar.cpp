@@ -32,9 +32,18 @@
 
 #include <QDebug>
 
+namespace
+{
+    QColor dlPieceColor(const QColor &pieceColor)
+    {
+        const QColor green {Qt::green};
+        return QColor::fromHsl(green.hslHue(), pieceColor.hslSaturation(), pieceColor.lightness());
+    }
+}
+
 DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent)
     : base {parent}
-    , m_dlPieceColor {0, 0xd0, 0}
+    , m_dlPieceColor {dlPieceColor(pieceColor())}
 {
 }
 
