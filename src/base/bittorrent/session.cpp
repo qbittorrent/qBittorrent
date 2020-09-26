@@ -57,6 +57,7 @@
 
 #include <QDebug>
 #include <QDir>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
@@ -4193,11 +4194,15 @@ void Session::handleNextAlert()
 {
     Q_ASSERT(m_nextAlert != m_alerts.end());
 
-    handleAlert(*(m_nextAlert++));
+    QElapsedTimer timer;
+    timer.start();
+    while (m_nextAlert != m_alerts.end() && !timer.hasExpired(10)) {
+        handleAlert(*(m_nextAlert++));
 
-    if ((m_nextAlert == m_alerts.end()) && m_hasPendingAlerts) {
-        m_alerts = getPendingAlerts();
-        m_nextAlert = m_alerts.begin();
+        if ((m_nextAlert == m_alerts.end()) && m_hasPendingAlerts) {
+            m_alerts = getPendingAlerts();
+            m_nextAlert = m_alerts.begin();
+        }
     }
 
     if (m_nextAlert != m_alerts.end()) {
