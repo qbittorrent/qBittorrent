@@ -91,7 +91,7 @@ namespace
         out.reserve(priorities.size());
 
         std::transform(priorities.cbegin(), priorities.cend()
-                       , std::back_inserter(out), [](BitTorrent::DownloadPriority priority)
+                       , std::back_inserter(out), [](const DownloadPriority priority)
         {
             return static_cast<lt::download_priority_t>(
                         static_cast<LTUnderlyingType<lt::download_priority_t>>(priority));
