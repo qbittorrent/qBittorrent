@@ -143,6 +143,7 @@ jobs:
           -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}\scripts\buildsystems\vcpkg.cmake ^
           -DVCPKG_TARGET_TRIPLET=x64-windows-static-release ^
           -DVERBOSE_CONFIGURE=ON ^
+          -DMSVC_RUNTIME_DYNAMIC=OFF ^
           --graphviz=build\target_graph.dot
         cmake --build build
 
