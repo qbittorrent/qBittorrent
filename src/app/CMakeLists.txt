@@ -152,10 +152,11 @@ endif()
 if (GUI)
     target_link_libraries(qbt_app PRIVATE qbt_gui)
     if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
-        qt5_import_plugins(qbt_app
-            INCLUDE Qt5::QSvgIconPlugin
-            INCLUDE Qt5::QSvgPlugin
-        )
+        if (Qt5_VERSION VERSION_LESS 5.14)
+            set_property(TARGET qbt_app APPEND PROPERTY QT_PLUGINS Qt5::QSvgIconPlugin Qt5::QSvgPlugin)
+        else()
+            qt_import_plugins(qbt_app INCLUDE Qt5::QSvgIconPlugin Qt5::QSvgPlugin)
+        endif()
     endif()
 endif()
 
