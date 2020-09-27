@@ -35,7 +35,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         OFF "NOT GUI" OFF
     )
 elseif (MSVC)
-    feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" OFF)
+    feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
 endif()
 
 set(QBT_VER_STATUS "alpha1" CACHE STRING "Project status version. Should be empty for release builds.")
