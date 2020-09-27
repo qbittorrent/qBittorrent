@@ -117,6 +117,8 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
+    void initializeScheduler();
+
     // General options
     QString getLocale() const;
 #ifndef Q_OS_MACOS

@@ -41,6 +41,8 @@
 #include <QMessageBox>
 #include <QSystemTrayIcon>
 #include <QTranslator>
+#include <QListView>
+#include <QScrollArea>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -241,6 +243,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &OptionsDialog::applySettings);
     // Languages supported
     initializeLanguageCombo();
+
+    initializeScheduler();
 
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
@@ -576,6 +580,28 @@ void OptionsDialog::initializeLanguageCombo()
         }
         m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ languageName, localeStr);
         qDebug() << "Supported locale:" << localeStr;
+    }
+}
+
+void OptionsDialog::initializeScheduler()
+{
+    const QStringList daysOfWeek = translatedWeekdayNames();
+
+    for (const QString &day : daysOfWeek) {
+        auto *content = new QWidget(this);
+        auto *layout = new QVBoxLayout(content);
+
+        // TODO: TimeRange model view
+        auto *scheduleList = new QListView(content);
+
+        // TODO: bring up dialog box
+        auto *addButton = new QPushButton(tr("Add entry"), content);
+
+        layout->addWidget(scheduleList);
+        layout->addWidget(addButton);
+
+        content->setLayout(layout);
+        m_ui->tabSchedule->addTab(content, day);
     }
 }
 
