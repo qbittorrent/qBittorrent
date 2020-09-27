@@ -159,7 +159,7 @@ if (WEBUI)
     target_link_libraries(qbt_app PRIVATE qbt_webui)
 endif()
 
-if (GUI)
+if (GUI AND (Qt5_VERSION VERSION_GREATER_EQUAL 5.14.0))
     if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
         qt5_import_plugins(qbt_app
             INCLUDE Qt5::QSvgIconPlugin
