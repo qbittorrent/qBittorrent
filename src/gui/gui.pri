@@ -59,6 +59,7 @@ HEADERS += \
     $$PWD/tagfiltermodel.h \
     $$PWD/tagfilterproxymodel.h \
     $$PWD/tagfilterwidget.h \
+    $$PWD/timerangedialog.h \
     $$PWD/torrentcategorydialog.h \
     $$PWD/torrentcontentfiltermodel.h \
     $$PWD/torrentcontentmodel.h \
@@ -138,6 +139,7 @@ SOURCES += \
     $$PWD/tagfiltermodel.cpp \
     $$PWD/tagfilterproxymodel.cpp \
     $$PWD/tagfilterwidget.cpp \
+    $$PWD/timerangedialog.cpp \
     $$PWD/torrentcategorydialog.cpp \
     $$PWD/torrentcontentfiltermodel.cpp \
     $$PWD/torrentcontentmodel.cpp \
@@ -203,6 +205,7 @@ FORMS += \
     $$PWD/shutdownconfirmdialog.ui \
     $$PWD/speedlimitdialog.ui \
     $$PWD/statsdialog.ui \
+    $$PWD/timerangedialog.ui \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
     $$PWD/trackerentriesdialog.ui \

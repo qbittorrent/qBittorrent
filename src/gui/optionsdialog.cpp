@@ -63,6 +63,7 @@
 #include "advancedsettings.h"
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
+#include "timerangedialog.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
@@ -594,8 +595,17 @@ void OptionsDialog::initializeScheduler()
         // TODO: TimeRange model view
         auto *scheduleList = new QListView(content);
 
-        // TODO: bring up dialog box
         auto *addButton = new QPushButton(tr("Add entry"), content);
+        connect(addButton, &QPushButton::clicked, this, [addButton]()
+        {
+            auto *dialog = new TimeRangeDialog(
+                BitTorrent::Session::instance()->globalMaxRatio(),
+                BitTorrent::TorrentHandle::MAX_RATIO,
+                addButton);
+
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            dialog->open();
+        });
 
         layout->addWidget(scheduleList);
         layout->addWidget(addButton);

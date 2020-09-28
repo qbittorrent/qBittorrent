@@ -58,6 +58,7 @@ add_library(qbt_gui STATIC
     tagfiltermodel.h
     tagfilterproxymodel.h
     tagfilterwidget.h
+    timerangedialog.h
     torrentcategorydialog.h
     torrentcontentfiltermodel.h
     torrentcontentmodel.h
@@ -137,6 +138,7 @@ add_library(qbt_gui STATIC
     tagfiltermodel.cpp
     tagfilterproxymodel.cpp
     tagfilterwidget.cpp
+    timerangedialog.cpp
     torrentcategorydialog.cpp
     torrentcontentfiltermodel.cpp
     torrentcontentmodel.cpp
@@ -182,6 +184,7 @@ add_library(qbt_gui STATIC
     shutdownconfirmdialog.ui
     speedlimitdialog.ui
     statsdialog.ui
+    timerangedialog.ui
     torrentcategorydialog.ui
     torrentcreatordialog.ui
     trackerentriesdialog.ui
