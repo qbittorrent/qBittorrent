@@ -1,3 +1,5 @@
+#pragma once
+
 #include <QJsonObject>
 #include <QTime>
 
@@ -6,7 +8,8 @@ namespace Scheduler
     class TimeRange
     {
         TimeRange();
-        TimeRange(int startHours, int startMinutes, int endHours, int endMinutes, int downloadRate, int uploadRate);
+        TimeRange(int startHours, int startMinutes, int endHours,
+                  int endMinutes, int downloadRate, int uploadRate);
 
     public:
         QTime startTime() const;

@@ -2,7 +2,8 @@
 
 using namespace Scheduler;
 
-TimeRange::TimeRange(int startHours, int startMinutes, int endHours, int endMinutes, int downloadRate, int uploadRate)
+TimeRange::TimeRange(int startHours, int startMinutes, int endHours,
+                     int endMinutes, int downloadRate, int uploadRate)
 {
     setStartTime(startHours, startMinutes);
     setEndTime(endHours, endMinutes);
@@ -70,7 +71,7 @@ bool TimeRange::isValid() const
 {
     bool isEndMidnight = (m_endTime.hour() == 0 && m_endTime.minute() == 0);
     return (m_startTime.isValid() && m_endTime.isValid())
-        && (isEndMidnight || m_startTime < m_endTime);
+           && (isEndMidnight || m_startTime < m_endTime);
 }
 
 QJsonObject TimeRange::toJsonObject() const

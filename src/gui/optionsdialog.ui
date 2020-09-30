@@ -1954,7 +1954,11 @@
                 </widget>
                </item>
                <item row="3" column="0" colspan="4">
-                <widget class="QTabWidget" name="tabSchedule"/>
+                <widget class="QTabWidget" name="tabSchedule">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
                </item>
                <item row="0" column="2">
                 <widget class="QSpinBox" name="spinUploadLimitAlt">
