@@ -38,7 +38,12 @@ macro(qbt_common_config)
         cxx_variable_templates
     )
 
-    set(QBT_FULL_VERSION "${qBittorrent_VERSION}${QBT_VER_STATUS}")
+    set(QBT_PROJECT_VERSION "${qBittorrent_VERSION_MAJOR}.${qBittorrent_VERSION_MINOR}.${qBittorrent_VERSION_PATCH}")
+    if (NOT ${qBittorrent_VERSION_TWEAK} EQUAL 0)
+        set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}.${qBittorrent_VERSION_TWEAK}")
+    endif()
+
+    set(QBT_FULL_VERSION "${QBT_PROJECT_VERSION}${QBT_VER_STATUS}")
 
     target_compile_definitions(qbt_common_cfg INTERFACE
         QBT_VERSION="v${QBT_FULL_VERSION}"
