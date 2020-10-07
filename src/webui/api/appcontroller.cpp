@@ -254,7 +254,7 @@ void AppController::preferencesAction()
     data["dyndns_domain"] = pref->getDynDomainName();
 
     // RSS settings
-    data["rss_refresh_interval"] = static_cast<double>(RSS::Session::instance()->refreshInterval());
+    data["rss_refresh_interval"] = RSS::Session::instance()->refreshInterval();
     data["rss_max_articles_per_feed"] = RSS::Session::instance()->maxArticlesPerFeed();
     data["rss_processing_enabled"] = RSS::Session::instance()->isProcessingEnabled();
     data["rss_auto_downloading_enabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
@@ -654,7 +654,7 @@ void AppController::setPreferencesAction()
         pref->setDynDomainName(it.value().toString());
 
     if (hasKey("rss_refresh_interval"))
-        RSS::Session::instance()->setRefreshInterval(it.value().toUInt());
+        RSS::Session::instance()->setRefreshInterval(it.value().toInt());
     if (hasKey("rss_max_articles_per_feed"))
         RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
     if (hasKey("rss_processing_enabled"))

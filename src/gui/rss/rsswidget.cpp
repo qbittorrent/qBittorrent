@@ -521,7 +521,7 @@ void RSSWidget::restoreSlidersPosition()
         m_ui->splitterMain->restoreState(stateMain);
 }
 
-void RSSWidget::updateRefreshInterval(uint val)
+void RSSWidget::updateRefreshInterval(int val) const
 {
     RSS::Session::instance()->setRefreshInterval(val);
 }
