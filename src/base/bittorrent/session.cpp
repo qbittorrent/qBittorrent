@@ -498,7 +498,7 @@ Session::Session(QObject *parent)
 
     // Regular saving of fastresume data
     connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
-    const uint saveInterval = saveResumeDataInterval();
+    const int saveInterval = saveResumeDataInterval();
     if (saveInterval > 0) {
         m_resumeDataTimer->setInterval(saveInterval * 60 * 1000);
         m_resumeDataTimer->start();
@@ -581,12 +581,12 @@ void Session::setAppendExtensionEnabled(const bool enabled)
     }
 }
 
-uint Session::refreshInterval() const
+int Session::refreshInterval() const
 {
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(const uint value)
+void Session::setRefreshInterval(const int value)
 {
     if (value != refreshInterval()) {
         m_refreshInterval = value;
@@ -2619,12 +2619,12 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
     }
 }
 
-uint Session::saveResumeDataInterval() const
+int Session::saveResumeDataInterval() const
 {
     return m_saveResumeDataInterval;
 }
 
-void Session::setSaveResumeDataInterval(const uint value)
+void Session::setSaveResumeDataInterval(const int value)
 {
     if (value == m_saveResumeDataInterval)
         return;

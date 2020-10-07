@@ -268,7 +268,7 @@ void AppController::preferencesAction()
     // Current network interface address
     data["current_interface_address"] = BitTorrent::Session::instance()->networkInterfaceAddress();
     // Save resume data interval
-    data["save_resume_data_interval"] = static_cast<double>(session->saveResumeDataInterval());
+    data["save_resume_data_interval"] = session->saveResumeDataInterval();
     // Recheck completed torrents
     data["recheck_completed_torrents"] = pref->recheckTorrentsOnCompletion();
     // Resolve peer countries
