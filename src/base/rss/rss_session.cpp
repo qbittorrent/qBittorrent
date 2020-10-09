@@ -65,7 +65,7 @@ QPointer<Session> Session::m_instance = nullptr;
 Session::Session()
     : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
     , m_workingThread(new QThread(this))
-    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30).toUInt())
+    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30).toInt())
     , m_maxArticlesPerFeed(SettingsStorage::instance()->loadValue(SettingsKey_MaxArticlesPerFeed, 50).toInt())
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
@@ -475,12 +475,12 @@ Feed *Session::feedByURL(const QString &url) const
     return m_feedsByURL.value(url);
 }
 
-uint Session::refreshInterval() const
+int Session::refreshInterval() const
 {
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(const uint refreshInterval)
+void Session::setRefreshInterval(const int refreshInterval)
 {
     if (m_refreshInterval != refreshInterval) {
         SettingsStorage::instance()->storeValue(SettingsKey_RefreshInterval, refreshInterval);

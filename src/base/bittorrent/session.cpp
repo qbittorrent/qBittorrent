@@ -30,6 +30,7 @@
 #include "session.h"
 
 #include <algorithm>
+#include <cstdint>
 #include <queue>
 #include <string>
 #include <utility>
@@ -497,7 +498,7 @@ Session::Session(QObject *parent)
 
     // Regular saving of fastresume data
     connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
-    const uint saveInterval = saveResumeDataInterval();
+    const int saveInterval = saveResumeDataInterval();
     if (saveInterval > 0) {
         m_resumeDataTimer->setInterval(saveInterval * 60 * 1000);
         m_resumeDataTimer->start();
@@ -580,12 +581,12 @@ void Session::setAppendExtensionEnabled(const bool enabled)
     }
 }
 
-uint Session::refreshInterval() const
+int Session::refreshInterval() const
 {
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(const uint value)
+void Session::setRefreshInterval(const int value)
 {
     if (value != refreshInterval()) {
         m_refreshInterval = value;
@@ -1100,7 +1101,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
     }
 }
 
-void Session::adjustLimits(lt::settings_pack &settingsPack)
+void Session::adjustLimits(lt::settings_pack &settingsPack) const
 {
     // Internally increase the queue limits to ensure that the magnet is started
     const int maxDownloads = maxActiveDownloads();
@@ -2618,12 +2619,12 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
     }
 }
 
-uint Session::saveResumeDataInterval() const
+int Session::saveResumeDataInterval() const
 {
     return m_saveResumeDataInterval;
 }
 
-void Session::setSaveResumeDataInterval(const uint value)
+void Session::setSaveResumeDataInterval(const int value)
 {
     if (value == m_saveResumeDataInterval)
         return;
@@ -2667,10 +2668,10 @@ QString Session::networkInterface() const
     return m_networkInterface;
 }
 
-void Session::setNetworkInterface(const QString &iface)
+void Session::setNetworkInterface(const QString &interface)
 {
-    if (iface != networkInterface()) {
-        m_networkInterface = iface;
+    if (interface != networkInterface()) {
+        m_networkInterface = interface;
         configureListeningInterface();
     }
 }
@@ -3655,7 +3656,7 @@ void Session::handleTorrentTrackersRemoved(TorrentHandleImpl *const torrent, con
     for (const TrackerEntry &deletedTracker : deletedTrackers)
         LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
     emit trackersRemoved(torrent, deletedTrackers);
-    if (torrent->trackers().size() == 0)
+    if (torrent->trackers().empty())
         emit trackerlessStateChanged(torrent, true);
     emit trackersChanged(torrent);
 }
@@ -4334,7 +4335,7 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
 
     const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hash());
 
-    TorrentHandleImpl *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
+    auto *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
     m_torrents.insert(torrent->hash(), torrent);
 
     const bool hasMetadata = torrent->hasMetadata();
@@ -4603,16 +4604,16 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
     m_status.hasIncomingConnections = static_cast<bool>(stats[m_metricIndices.net.hasIncomingConnections]);
 
-    const auto ipOverheadDownload = stats[m_metricIndices.net.recvIPOverheadBytes];
-    const auto ipOverheadUpload = stats[m_metricIndices.net.sentIPOverheadBytes];
-    const auto totalDownload = stats[m_metricIndices.net.recvBytes] + ipOverheadDownload;
-    const auto totalUpload = stats[m_metricIndices.net.sentBytes] + ipOverheadUpload;
-    const auto totalPayloadDownload = stats[m_metricIndices.net.recvPayloadBytes];
-    const auto totalPayloadUpload = stats[m_metricIndices.net.sentPayloadBytes];
-    const auto trackerDownload = stats[m_metricIndices.net.recvTrackerBytes];
-    const auto trackerUpload = stats[m_metricIndices.net.sentTrackerBytes];
-    const auto dhtDownload = stats[m_metricIndices.dht.dhtBytesIn];
-    const auto dhtUpload = stats[m_metricIndices.dht.dhtBytesOut];
+    const int64_t ipOverheadDownload = stats[m_metricIndices.net.recvIPOverheadBytes];
+    const int64_t ipOverheadUpload = stats[m_metricIndices.net.sentIPOverheadBytes];
+    const int64_t totalDownload = stats[m_metricIndices.net.recvBytes] + ipOverheadDownload;
+    const int64_t totalUpload = stats[m_metricIndices.net.sentBytes] + ipOverheadUpload;
+    const int64_t totalPayloadDownload = stats[m_metricIndices.net.recvPayloadBytes];
+    const int64_t totalPayloadUpload = stats[m_metricIndices.net.sentPayloadBytes];
+    const int64_t trackerDownload = stats[m_metricIndices.net.recvTrackerBytes];
+    const int64_t trackerUpload = stats[m_metricIndices.net.sentTrackerBytes];
+    const int64_t dhtDownload = stats[m_metricIndices.dht.dhtBytesIn];
+    const int64_t dhtUpload = stats[m_metricIndices.dht.dhtBytesOut];
 
     auto calcRate = [interval](const quint64 previous, const quint64 current)
     {
@@ -4648,13 +4649,13 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
 
-    const int numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
-    const int numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
+    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
+    const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
-    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max(numBlocksCacheHits + numBlocksRead, 1);
+    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>(numBlocksCacheHits + numBlocksRead, 1);
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
-    const quint64 totalJobs = stats[m_metricIndices.disk.writeJobs] + stats[m_metricIndices.disk.readJobs]
+    const int64_t totalJobs = stats[m_metricIndices.disk.writeJobs] + stats[m_metricIndices.disk.readJobs]
                   + stats[m_metricIndices.disk.hashJobs];
     m_cacheStatus.averageJobTime = (totalJobs > 0)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;

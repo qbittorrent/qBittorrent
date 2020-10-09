@@ -54,7 +54,7 @@ public:
 
 public slots:
     void deleteSelectedItems();
-    void updateRefreshInterval(uint val);
+    void updateRefreshInterval(int val) const;
 
 signals:
     void unreadCountUpdated(int count);
