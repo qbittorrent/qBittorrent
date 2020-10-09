@@ -1765,7 +1765,7 @@ window.qBittorrent.DynamicTable = (function() {
                 }
                 else {
                     const treeImg = new Element('img', {
-                        src: '../images/L.gif',
+                        src: 'images/L.gif',
                         styles: {
                             'margin-bottom': -2
                         }

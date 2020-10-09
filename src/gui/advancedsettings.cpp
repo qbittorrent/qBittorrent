@@ -578,10 +578,10 @@ void AdvancedSettings::loadAdvancedSettings()
     }
     connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
         , this, &AdvancedSettings::updateInterfaceAddressCombo);
-    addRow(NETWORK_IFACE, tr("Network Interface"), &m_comboBoxInterface);
+    addRow(NETWORK_IFACE, tr("Network interface"), &m_comboBoxInterface);
     // Network interface address
     updateInterfaceAddressCombo();
-    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP Address to bind to"), &m_comboBoxInterfaceAddress);
+    addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP address to bind to"), &m_comboBoxInterfaceAddress);
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);
