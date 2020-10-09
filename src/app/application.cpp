@@ -561,69 +561,73 @@ int Application::exec(const QStringList &params)
     Net::DownloadManager::initInstance();
     IconProvider::initInstance();
 
-    try {
-        BitTorrent::Session::initInstance();
+    BitTorrent::Session::initInstance();
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
+    {
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
-        Net::GeoIPManager::initInstance();
-        ScanFoldersModel::initInstance();
+        try {
+            Net::GeoIPManager::initInstance();
+            ScanFoldersModel::initInstance();
 
 #ifndef DISABLE_WEBUI
-        m_webui = new WebUI;
+            m_webui = new WebUI;
 #ifdef DISABLE_GUI
-        if (m_webui->isErrored())
-            return 1;
-        connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
+            if (m_webui->isErrored())
+                BaseApplication::exit(1);
+            connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
 #endif // DISABLE_GUI
 #endif // DISABLE_WEBUI
 
-        new RSS::Session; // create RSS::Session singleton
-        new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
-    }
-    catch (const RuntimeError &err) {
+            new RSS::Session; // create RSS::Session singleton
+            new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+        }
+        catch (const RuntimeError &err) {
 #ifdef DISABLE_GUI
-        fprintf(stderr, "%s", err.what());
+            fprintf(stderr, "%s", err.what());
 #else
-        QMessageBox msgBox;
-        msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText(tr("Application failed to start."));
-        msgBox.setInformativeText(err.message());
-        msgBox.show(); // Need to be shown or to moveToCenter does not work
-        msgBox.move(Utils::Gui::screenCenter(&msgBox));
-        msgBox.exec();
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.setText(tr("Application failed to start."));
+            msgBox.setInformativeText(err.message());
+            msgBox.show(); // Need to be shown or to moveToCenter does not work
+            msgBox.move(Utils::Gui::screenCenter(&msgBox));
+            msgBox.exec();
 #endif
-        return 1;
-    }
+            BaseApplication::exit(1);
+        }
 
 #ifdef DISABLE_GUI
 #ifndef DISABLE_WEBUI
-    Preferences *const pref = Preferences::instance();
-    // Display some information to the user
-    const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
-        + tr("To control qBittorrent, access the Web UI at %1")
-            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
-    printf("%s", qUtf8Printable(mesg));
+        Preferences *const pref = Preferences::instance();
+        // Display some information to the user
+        const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
+                + tr("To control qBittorrent, access the Web UI at %1")
+                .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
+        printf("%s", qUtf8Printable(mesg));
 
-    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
-        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
-            + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
-            + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
-        printf("%s", qUtf8Printable(warning));
-    }
+        if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
+            const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
+                    + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
+                    + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
+            printf("%s", qUtf8Printable(warning));
+        }
 #endif // DISABLE_WEBUI
 #else
-    UIThemeManager::initInstance();
-    m_window = new MainWindow;
+        UIThemeManager::initInstance();
+        m_window = new MainWindow;
 #endif // DISABLE_GUI
+
+        if (!m_paramsQueue.isEmpty()) {
+            processParams(m_paramsQueue);
+            m_paramsQueue.clear();
+        }
+    });
 
     m_running = true;
-
     m_paramsQueue = params + m_paramsQueue;
-    if (!m_paramsQueue.isEmpty()) {
-        processParams(m_paramsQueue);
-        m_paramsQueue.clear();
-    }
+
     return BaseApplication::exec();
 }
 

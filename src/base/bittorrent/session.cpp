@@ -4345,9 +4345,6 @@ TorrentHandleImpl *Session::createTorrentHandle(const lt::torrent_status &native
         && !m_seedingLimitTimer->isActive())
         m_seedingLimitTimer->start();
 
-    // Send torrent addition signal
-    emit torrentLoaded(torrent);
-
     // Torrent could have error just after adding to libtorrent
     if (torrent->hasError())
         LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: %2.").arg(torrent->name(), torrent->error()), Log::WARNING);

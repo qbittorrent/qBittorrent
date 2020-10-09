@@ -99,7 +99,7 @@ class TrackerFiltersList final : public BaseFilterWidget
     Q_DISABLE_COPY(TrackerFiltersList)
 
 public:
-    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
+    TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, bool downloadTrackerFavicon);
     ~TrackerFiltersList() override;
 
     // Redefine addItem() to make sure the list stays sorted
@@ -129,7 +129,7 @@ private:
     QStringList getHashes(int row) const;
     void downloadFavicon(const QString &url);
 
-    QHash<QString, QStringList> m_trackers;
+    QHash<QString, QSet<QString>> m_torrentsByTrackers;
     QHash<QString, QStringList> m_errors;
     QHash<QString, QStringList> m_warnings;
     QStringList m_iconPaths;

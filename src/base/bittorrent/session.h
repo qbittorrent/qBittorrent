@@ -509,7 +509,6 @@ namespace BitTorrent
         void torrentCategoryChanged(TorrentHandle *torrent, const QString &oldCategory);
         void torrentFinished(TorrentHandle *torrent);
         void torrentFinishedChecking(TorrentHandle *torrent);
-        void torrentLoaded(TorrentHandle *torrent);
         void torrentMetadataLoaded(TorrentHandle *torrent);
         void torrentPaused(TorrentHandle *torrent);
         void torrentResumed(TorrentHandle *torrent);
