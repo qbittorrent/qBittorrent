@@ -101,11 +101,12 @@ namespace
 
 // TorrentHandleImpl
 
-TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
+TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_status &nativeStatus,
                                      const LoadTorrentParams &params)
     : QObject(session)
     , m_session(session)
-    , m_nativeHandle(nativeHandle)
+    , m_hash(nativeStatus.info_hash)
+    , m_nativeHandle(nativeStatus.handle)
     , m_name(params.name)
     , m_savePath(Utils::Fs::toNativePath(params.savePath))
     , m_category(params.category)
@@ -121,8 +122,7 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
 
-    updateStatus();
-    m_hash = InfoHash(m_nativeStatus.info_hash);
+    updateStatus(nativeStatus);
 
     if (hasMetadata()) {
         applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);

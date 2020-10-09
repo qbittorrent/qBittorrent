@@ -53,6 +53,7 @@ public slots:
 
 signals:
     void loaded(const QString &hash, const QByteArray &rawResumeData, const QByteArray &rawMetadata);
+    void loadingDone();
 
 private:
     const QDir m_resumeDataDir;

@@ -104,6 +104,8 @@ void ResumeDataManager::load(bool queued)
                    .arg(hash), Log::CRITICAL);
         }
     }
+
+    emit loadingDone();
 }
 
 void ResumeDataManager::save(const QString &filename, const QByteArray &data) const

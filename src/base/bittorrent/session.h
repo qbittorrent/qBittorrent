@@ -498,6 +498,7 @@ namespace BitTorrent
         void loadTorrentFailed(const QString &error);
         void metadataLoaded(const TorrentInfo &info);
         void recursiveTorrentDownloadPossible(TorrentHandle *torrent);
+        void restored();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();
@@ -588,9 +589,9 @@ namespace BitTorrent
         void applyOSMemoryPriority() const;
 #endif
 
-        void startUpTorrents();
+        void restoreTorrents();
         bool loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata, LoadTorrentParams &torrentParams);
-        bool loadTorrent(LoadTorrentParams params);
+        void applyCommonParams(LoadTorrentParams &params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const AddTorrentParams &addTorrentParams, const MagnetUri &magnetUri, TorrentInfo torrentInfo = TorrentInfo());
         bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
@@ -626,7 +627,7 @@ namespace BitTorrent
         void handleSocks5Alert(const lt::socks5_alert *p) const;
 #endif
 
-        void createTorrentHandle(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentHandleImpl *createTorrentHandle(const lt::torrent_status &nativeStatus, const LoadTorrentParams &params);
 
         void saveResumeData();
         void saveTorrentsQueue();

@@ -510,7 +510,7 @@ Session::Session(QObject *parent)
 
     initMetrics();
 
-    startUpTorrents();
+    restoreTorrents();
 }
 
 bool Session::isDHTEnabled() const
@@ -1068,6 +1068,7 @@ void Session::initializeNativeSession()
     sessionParams.disk_io_constructor = customDiskIOConstructor;
 #endif
     m_nativeSession = new lt::session {sessionParams};
+    m_nativeSession->pause();
 
     LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
     LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
@@ -2118,11 +2119,15 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     else
         p.flags |= lt::torrent_flags::auto_managed;
 
-    return loadTorrent(loadTorrentParams);
+    applyCommonParams(loadTorrentParams);
+    m_loadingTorrents.insert(hash, loadTorrentParams);
+    // Adding torrent to libtorrent session
+    m_nativeSession->async_add_torrent(p);
+
+    return true;
 }
 
-// Add a torrent to the BitTorrent session
-bool Session::loadTorrent(LoadTorrentParams params)
+void Session::applyCommonParams(LoadTorrentParams &params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
@@ -2132,15 +2137,6 @@ bool Session::loadTorrent(LoadTorrentParams params)
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
-
-    const bool hasMetadata = (p.ti && p.ti->is_valid());
-    const InfoHash hash = (hasMetadata ? p.ti->info_hash() : p.info_hash);
-    m_loadingTorrents.insert(hash, params);
-
-    // Adding torrent to BitTorrent session
-    m_nativeSession->async_add_torrent(p);
-
-    return true;
 }
 
 bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const
@@ -4113,24 +4109,45 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
         }
     }
 
+    applyCommonParams(torrentParams);
+
     return true;
 }
 
 // Will resume torrents in backup directory
-void Session::startUpTorrents()
+void Session::restoreTorrents()
 {
     connect(m_resumeDataManager, &ResumeDataManager::loaded, this
             , [this](const QString &hash, const QByteArray &rawResumeData, const QByteArray &rawMetadata)
     {
-        qDebug() << "Starting up torrent" << hash << "...";
+        qDebug() << "Restoring torrent" << hash << "...";
 
         const TorrentInfo metadata = TorrentInfo::load(rawMetadata);
         LoadTorrentParams torrentParams;
-        if (!loadTorrentResumeData(rawResumeData, metadata, torrentParams) || !loadTorrent(torrentParams)) {
-            LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+        if (!loadTorrentResumeData(rawResumeData, metadata, torrentParams)) {
+            LogMsg(tr("Unable to restore torrent '%1'.", "e.g: Unable to restore torrent 'hash'.")
                    .arg(hash), Log::CRITICAL);
         }
+
+        // Adding torrent to libtorrent session
+        lt::error_code ec;
+        lt::torrent_handle handle = m_nativeSession->add_torrent(torrentParams.ltAddTorrentParams, ec);
+        if (ec) {
+            const QString msg = QString::fromStdString(ec.message());
+            LogMsg(tr("Unable to restore torrent '%1'. Reason: %2").arg(hash, msg), Log::CRITICAL);
+        }
+        else {
+            TorrentHandleImpl *torrent = createTorrentHandle(handle.status(), torrentParams);
+            LogMsg(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
+        }
     });
+
+    connect(m_resumeDataManager, &ResumeDataManager::loadingDone, this, [this]()
+    {
+        m_nativeSession->resume();
+        emit restored();
+    });
+
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataManager, [this]()
@@ -4319,44 +4336,10 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
     }
 }
 
-void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
+TorrentHandleImpl *Session::createTorrentHandle(const lt::torrent_status &nativeStatus, const LoadTorrentParams &params)
 {
-    TorrentHandleImpl *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
+    TorrentHandleImpl *const torrent = new TorrentHandleImpl {this, nativeStatus, params};
     m_torrents.insert(torrent->hash(), torrent);
-
-    const bool hasMetadata = torrent->hasMetadata();
-
-    if (params.restored) {
-        LogMsg(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
-    }
-    else {
-        // The following is useless for newly added magnet
-        if (hasMetadata) {
-            // Backup torrent file
-            const QDir resumeDataDir {m_resumeFolderPath};
-            const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->hash())};
-            try {
-                torrent->info().saveToFile(resumeDataDir.absoluteFilePath(torrentFileName));
-                // Copy the torrent file to the export folder
-                if (!torrentExportDirectory().isEmpty())
-                    exportTorrentFile(torrent);
-            }
-            catch (const RuntimeError &err) {
-                LogMsg(tr("Couldn't save torrent metadata file '%1'. Reason: %2")
-                       .arg(torrentFileName, err.message()), Log::CRITICAL);
-            }
-        }
-
-        if (isAddTrackersEnabled() && !torrent->isPrivate())
-            torrent->addTrackers(m_additionalTrackerList);
-
-        LogMsg(tr("'%1' added to download list.", "'torrent name' was added to download list.")
-            .arg(torrent->name()));
-
-        // In case of crash before the scheduled generation
-        // of the fastresumes.
-        torrent->saveResumeData();
-    }
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
         && !m_seedingLimitTimer->isActive())
@@ -4364,9 +4347,6 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle, const 
 
     // Send torrent addition signal
     emit torrentLoaded(torrent);
-    // Send new torrent signal
-    if (!params.restored)
-        emit torrentAdded(torrent);
 
     // Torrent could have error just after adding to libtorrent
     if (torrent->hasError())
@@ -4374,9 +4354,12 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle, const 
 
 #if (LIBTORRENT_VERSION_NUM < 10208)
     // Check if file(s) exist when using skip hash check
+    lt::torrent_handle nativeHandle = nativeStatus.handle;
     if (nativeHandle.flags() & lt::torrent_flags::seed_mode)
         nativeHandle.read_piece(lt::piece_index_t {0});
 #endif
+
+    return torrent;
 }
 
 void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
@@ -4396,8 +4379,39 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
     else {
         const auto loadingTorrentsIter = m_loadingTorrents.constFind(p->handle.info_hash());
         if (loadingTorrentsIter != m_loadingTorrents.cend()) {
-            createTorrentHandle(p->handle, *loadingTorrentsIter);
+            TorrentHandleImpl *torrent = createTorrentHandle(p->handle.status(), *loadingTorrentsIter);
             m_loadingTorrents.erase(loadingTorrentsIter);
+
+            const bool hasMetadata = torrent->hasMetadata();
+            // The following is useless for newly added magnet
+            if (hasMetadata) {
+                // Backup torrent file
+                const QDir resumeDataDir {m_resumeFolderPath};
+                const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->hash())};
+                try {
+                    torrent->info().saveToFile(resumeDataDir.absoluteFilePath(torrentFileName));
+                    // Copy the torrent file to the export folder
+                    if (!torrentExportDirectory().isEmpty())
+                        exportTorrentFile(torrent);
+                }
+                catch (const RuntimeError &err) {
+                    LogMsg(tr("Couldn't save torrent metadata file '%1'. Reason: %2")
+                           .arg(torrentFileName, err.message()), Log::CRITICAL);
+                }
+            }
+
+            if (isAddTrackersEnabled() && !torrent->isPrivate())
+                torrent->addTrackers(m_additionalTrackerList);
+
+            LogMsg(tr("'%1' added to download list.", "'torrent name' was added to download list.")
+                .arg(torrent->name()));
+
+            // In case of crash before the scheduled generation
+            // of the fastresumes.
+            torrent->saveResumeData();
+
+            // Send new torrent signal
+            emit torrentAdded(torrent);
         }
     }
 }
