@@ -28,7 +28,12 @@ void TimeRangeDialog::accept()
         QDialog::accept();
 }
 
-qreal TimeRangeDialog::ratio() const
+int TimeRangeDialog::downloadRatio() const
+{
+    return m_ui->ratioSpinBox->value();
+}
+
+int TimeRangeDialog::uploadRatio() const
 {
     return m_ui->ratioSpinBox->value();
 }

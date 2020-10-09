@@ -76,6 +76,7 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
+#include "base/scheduler/schedule.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
@@ -580,6 +581,7 @@ int Application::exec(const QStringList &params)
 
         new RSS::Session; // create RSS::Session singleton
         new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+        new Scheduler::Schedule;
     }
     catch (const RuntimeError &err) {
 #ifdef DISABLE_GUI

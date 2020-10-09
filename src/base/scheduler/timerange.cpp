@@ -2,13 +2,12 @@
 
 using namespace Scheduler;
 
-TimeRange::TimeRange(int startHours, int startMinutes, int endHours,
-                     int endMinutes, int downloadRate, int uploadRate)
+TimeRange::TimeRange(QTime startTime, QTime endTime, int downloadRate, int uploadRate)
+    : m_startTime(startTime)
+    , m_endTime(endTime)
+    , m_downloadRate(downloadRate)
+    , m_uploadRate(uploadRate)
 {
-    setStartTime(startHours, startMinutes);
-    setEndTime(endHours, endMinutes);
-    setDownloadRate(downloadRate);
-    setUploadRate(uploadRate);
 }
 
 QTime TimeRange::startTime() const
@@ -16,28 +15,9 @@ QTime TimeRange::startTime() const
     return m_startTime;
 }
 
-bool TimeRange::setStartTime(int hours, int minutes)
-{
-    return m_startTime.setHMS(hours, minutes, 0, 0);
-}
-
 QTime TimeRange::endTime() const
 {
     return m_endTime;
-}
-
-bool TimeRange::setEndTime(int hours, int minutes)
-{
-    if (hours == 0 && minutes < 1)
-        return false;
-
-    if (hours == 24) {
-        if (minutes != 0)
-            return false;
-        hours = 0;
-    }
-
-    return m_endTime.setHMS(hours, minutes, 0, 0);
 }
 
 int TimeRange::downloadRate() const
@@ -45,19 +25,9 @@ int TimeRange::downloadRate() const
     return m_downloadRate;
 }
 
-void TimeRange::setDownloadRate(int downloadRate)
-{
-    m_downloadRate = downloadRate < 0 ? -1 : downloadRate;
-}
-
 int TimeRange::uploadRate() const
 {
     return m_uploadRate;
-}
-
-void TimeRange::setUploadRate(int uploadRate)
-{
-    m_uploadRate = uploadRate < 0 ? -1 : uploadRate;
 }
 
 bool TimeRange::overlaps(const TimeRange &other) const
@@ -76,6 +46,7 @@ bool TimeRange::isValid() const
 
 QJsonObject TimeRange::toJsonObject() const
 {
+    // Hour times 100 for readability (2100 = 9pm, 100 = 1am, and so on)
     int endVal = m_endTime.hour() * 100 + m_endTime.minute();
     return {
         {"start", m_startTime.hour() * 100 + m_startTime.minute()},

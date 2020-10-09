@@ -31,6 +31,7 @@
 #include <cstdlib>
 #include <limits>
 
+#include <QAbstractItemModel>
 #include <QApplication>
 #include <QCloseEvent>
 #include <QDebug>
@@ -38,12 +39,19 @@
 #include <QDialogButtonBox>
 #include <QEvent>
 #include <QFileDialog>
+#include <QListView>
+#include <QMap>
 #include <QMessageBox>
+#include <QScrollArea>
+#include <QStandardItemModel>
 #include <QSystemTrayIcon>
 #include <QTranslator>
-#include <QListView>
-#include <QScrollArea>
+#include <qnamespace.h>
 
+#include "addnewtorrentdialog.h"
+#include "advancedsettings.h"
+#include "app/application.h"
+#include "banlistoptionsdialog.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
@@ -53,20 +61,18 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
+#include "base/scheduler/schedule.h"
+#include "base/scheduler/timerange.h"
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
-#include "addnewtorrentdialog.h"
-#include "advancedsettings.h"
-#include "app/application.h"
-#include "banlistoptionsdialog.h"
-#include "timerangedialog.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
+#include "timerangedialog.h"
 #include "ui_optionsdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -588,32 +594,70 @@ void OptionsDialog::initializeScheduler()
 {
     const QStringList daysOfWeek = translatedWeekdayNames();
 
-    for (const QString &day : daysOfWeek) {
-        auto *content = new QWidget(this);
-        auto *layout = new QVBoxLayout(content);
+    for (int i = 0; i < 7; i++)
+    {
+        const QString &day = daysOfWeek[i];
+
+        auto *widget = new QWidget(this);
+        auto *vLayout = new QVBoxLayout(widget);
 
         // TODO: TimeRange model view
-        auto *scheduleList = new QListView(content);
+        auto *scheduleTable = new QTableView(widget);
+        auto *scheduleModel = new QStandardItemModel();
+        scheduleTable->setModel(scheduleModel);
 
-        auto *addButton = new QPushButton(tr("Add entry"), content);
-        connect(addButton, &QPushButton::clicked, this, [addButton]()
-        {
+        scheduleModel->insertColumns(0, 4);
+        scheduleModel->setHeaderData(0, Qt::Horizontal, "From");
+        scheduleModel->setHeaderData(1, Qt::Horizontal, "To");
+        scheduleModel->setHeaderData(2, Qt::Horizontal, "Download");
+        scheduleModel->setHeaderData(3, Qt::Horizontal, "Upload");
+
+        auto timeRanges = Scheduler::Schedule::instance()->scheduleDays()[i]->timeRanges();
+        scheduleModel->insertRows(0, timeRanges.count());
+
+        for (int i = 0; i < timeRanges.count(); i++) {
+            auto timeRange = timeRanges[i];
+            scheduleModel->setData(scheduleModel->index(i, 0), timeRange.startTime());
+            scheduleModel->setData(scheduleModel->index(i, 1), timeRange.endTime());
+            scheduleModel->setData(scheduleModel->index(i, 2), timeRange.downloadRate());
+            scheduleModel->setData(scheduleModel->index(i, 3), timeRange.uploadRate());
+        }
+
+        scheduleTable->resizeColumnsToContents();
+
+        auto *addButton = new QPushButton(tr("Add entry"), widget);
+        connect(addButton, &QPushButton::clicked, addButton, [addButton, i]() {
             auto *dialog = new TimeRangeDialog(
                 BitTorrent::Session::instance()->globalMaxRatio(),
                 BitTorrent::TorrentHandle::MAX_RATIO,
                 addButton);
 
+            connect(dialog, &QDialog::accepted, addButton, [dialog, i]() {
+                auto *schedule = Scheduler::Schedule::instance();
+            
+                auto timeRange = Scheduler::TimeRange(
+                    dialog->timeFrom(),
+                    dialog->timeTo(),
+                    dialog->downloadRatio(),
+                    dialog->uploadRatio());
+
+                schedule->scheduleDays()[i]->addTimeRange(timeRange);
+            });
+
             dialog->setAttribute(Qt::WA_DeleteOnClose);
             dialog->open();
         });
 
-        layout->addWidget(scheduleList);
-        layout->addWidget(addButton);
+        vLayout->addWidget(scheduleTable);
+        vLayout->addWidget(addButton);
 
-        content->setLayout(layout);
-        m_ui->tabSchedule->addTab(content, day);
+        widget->setLayout(vLayout);
+        m_ui->tabSchedule->addTab(widget, day);
     }
 }
+
+// bool OptionsDialog::bringUpTimeRangeDialog(QPushButton* button) {
+// }
 
 // Main destructor
 OptionsDialog::~OptionsDialog()

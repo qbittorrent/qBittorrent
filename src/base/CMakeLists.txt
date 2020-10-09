@@ -63,6 +63,9 @@ add_library(qbt_base STATIC
     rss/rss_parser.h
     rss/rss_session.h
     scanfoldersmodel.h
+    scheduler/schedule.h
+    scheduler/scheduleday.h
+    scheduler/timerange.h
     search/searchdownloadhandler.h
     search/searchhandler.h
     search/searchpluginmanager.h
@@ -138,6 +141,9 @@ add_library(qbt_base STATIC
     rss/rss_parser.cpp
     rss/rss_session.cpp
     scanfoldersmodel.cpp
+    scheduler/schedule.cpp
+    scheduler/scheduleday.cpp
+    scheduler/timerange.cpp
     search/searchdownloadhandler.cpp
     search/searchhandler.cpp
     search/searchpluginmanager.cpp

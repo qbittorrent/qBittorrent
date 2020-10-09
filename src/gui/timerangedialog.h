@@ -14,11 +14,12 @@ class TimeRangeDialog final : public QDialog
 
 public:
     TimeRangeDialog(qreal initialRatioValue, qreal maxRatioValue, QWidget *parent = nullptr);
-    ~TimeRangeDialog();
+    ~TimeRangeDialog() override;
 
-    qreal ratio() const;
     QTime timeFrom() const;
     QTime timeTo() const;
+    int downloadRatio() const;
+    int uploadRatio() const;
 
 public slots:
     void accept() override;
