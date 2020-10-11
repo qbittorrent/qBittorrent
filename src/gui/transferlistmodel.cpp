@@ -239,19 +239,19 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
     {
-        return ((value <= 0) && hideValues)
+        return (hideValues && (value <= 0))
                 ? QString {} : Utils::String::fromDouble(value, 3);
     };
 
     const auto unitString = [hideValues](const qint64 value, const bool isSpeedUnit = false) -> QString
     {
-        return ((value == 0) && hideValues)
+        return (hideValues && (value == 0))
                 ? QString {} : Utils::Misc::friendlyUnit(value, isSpeedUnit);
     };
 
     const auto limitString = [hideValues](const qint64 value) -> QString
     {
-        if ((value == 0) && hideValues)
+        if (hideValues && (value == 0))
             return {};
 
         return (value > 0)
@@ -261,14 +261,14 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
 
     const auto amountString = [hideValues](const qint64 value, const qint64 total) -> QString
     {
-        return ((value == 0) && (total == 0) && hideValues)
+        return (hideValues && (value == 0) && (total == 0))
                 ? QString {}
                 : QString::number(value) + " (" + QString::number(total) + ')';
     };
 
     const auto ratioString = [hideValues](const qreal value) -> QString
     {
-        if ((value <= 0) && hideValues)
+        if (hideValues && (value <= 0))
             return {};
 
          return ((static_cast<int>(value) == -1) || (value > BitTorrent::TorrentHandle::MAX_RATIO))
