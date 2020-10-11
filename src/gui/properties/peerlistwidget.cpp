@@ -425,16 +425,21 @@ void PeerListWidget::updatePeer(const BitTorrent::TorrentHandle *torrent, const 
     }
 
     const int row = (*itemIter)->row();
+    const bool hideValues = Preferences::instance()->getHideZeroValues();
 
     setModelData(row, PeerListColumns::CONNECTION, peer.connectionType(), peer.connectionType());
     setModelData(row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
     const QString client = peer.client().toHtmlEscaped();
     setModelData(row, PeerListColumns::CLIENT, client, client);
     setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + '%'), peer.progress(), intDataTextAlignment);
-    setModelData(row, PeerListColumns::DOWN_SPEED, Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), 1), peer.payloadDownSpeed(), intDataTextAlignment);
-    setModelData(row, PeerListColumns::UP_SPEED, Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true), peer.payloadUpSpeed(), intDataTextAlignment);
-    setModelData(row, PeerListColumns::TOT_DOWN, Utils::Misc::friendlyUnit(peer.totalDownload()), peer.totalDownload(), intDataTextAlignment);
-    setModelData(row, PeerListColumns::TOT_UP, Utils::Misc::friendlyUnit(peer.totalUpload()), peer.totalUpload(), intDataTextAlignment);
+    const QString downSpeed = (hideValues && (peer.payloadDownSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
+    setModelData(row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);
+    const QString upSpeed = (hideValues && (peer.payloadUpSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true);
+    setModelData(row, PeerListColumns::UP_SPEED, upSpeed, peer.payloadUpSpeed(), intDataTextAlignment);
+    const QString totalDown = (hideValues && (peer.totalDownload() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.totalDownload());
+    setModelData(row, PeerListColumns::TOT_DOWN, totalDown, peer.totalDownload(), intDataTextAlignment);
+    const QString totalUp = (hideValues && (peer.totalUpload() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.totalUpload());
+    setModelData(row, PeerListColumns::TOT_UP, totalUp, peer.totalUpload(), intDataTextAlignment);
     setModelData(row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + '%'), peer.relevance(), intDataTextAlignment);
 
     const QStringList downloadingFiles {torrent->info().filesForPiece(peer.downloadingPieceIndex())};
