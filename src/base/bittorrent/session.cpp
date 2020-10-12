@@ -55,6 +55,7 @@
 #include <libtorrent/session_stats.hpp>
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QDebug>
 #include <QDir>
@@ -87,7 +88,7 @@
 #include "base/utils/random.h"
 #include "bandwidthscheduler.h"
 #include "common.h"
-#include "customstorage.h"
+#include "customstorageordisk.h"
 #include "filterparserthread.h"
 #include "ltunderlyingtype.h"
 #include "magneturi.h"
@@ -2110,7 +2111,9 @@ bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
+    #if LIBTORRENT_VERSION_NUM < 20000
     p.storage = customStorageConstructor;
+    #endif
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
@@ -2196,7 +2199,9 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
 
+    #if LIBTORRENT_VERSION_NUM < 20000
     p.storage = customStorageConstructor;
+    #endif
 
     // Adding torrent to BitTorrent session
     lt::error_code ec;

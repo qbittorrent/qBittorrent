@@ -5,7 +5,7 @@ HEADERS += \
     $$PWD/bittorrent/bandwidthscheduler.h \
     $$PWD/bittorrent/cachestatus.h \
     $$PWD/bittorrent/common.h \
-    $$PWD/bittorrent/customstorage.h \
+    $$PWD/bittorrent/customstorageordisk.h \
     $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
@@ -87,7 +87,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/bandwidthscheduler.cpp \
-    $$PWD/bittorrent/customstorage.cpp \
+    $$PWD/bittorrent/customstorageordisk.cpp \
     $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/filterparserthread.cpp \
     $$PWD/bittorrent/infohash.cpp \
