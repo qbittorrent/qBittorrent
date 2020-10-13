@@ -13,7 +13,7 @@ class TimeRangeDialog final : public QDialog
     Q_OBJECT
 
 public:
-    TimeRangeDialog(qreal initialRatioValue, qreal maxRatioValue, QWidget *parent = nullptr);
+    TimeRangeDialog(QWidget *parent, int initialRatioValue = 1000, int maxRatioValue = 10240000);
     ~TimeRangeDialog() override;
 
     QTime timeFrom() const;

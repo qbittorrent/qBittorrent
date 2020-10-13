@@ -20,6 +20,7 @@ namespace Scheduler
         void clearTimeRanges();
 
         QJsonArray toJsonArray() const;
+        static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray);
 
     signals:
         void dayUpdated();

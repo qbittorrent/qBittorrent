@@ -14,10 +14,12 @@ namespace Scheduler
         QTime endTime() const;
         int downloadRate() const;
         int uploadRate() const;
-        
+
         bool overlaps(const TimeRange &other) const;
         bool isValid() const;
+
         QJsonObject toJsonObject() const;
+        static TimeRange fromJsonObject(QJsonObject jsonObject);
 
     private:
         QTime m_startTime = QTime(0, 0);

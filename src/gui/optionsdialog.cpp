@@ -594,15 +594,13 @@ void OptionsDialog::initializeScheduler()
 {
     const QStringList daysOfWeek = translatedWeekdayNames();
 
-    for (int i = 0; i < 7; i++)
-    {
+    for (int i = 0; i < 7; i++) {
         const QString &day = daysOfWeek[i];
 
-        auto *widget = new QWidget(this);
-        auto *vLayout = new QVBoxLayout(widget);
+        auto *tabContent = new QWidget(this);
+        auto *vLayout = new QVBoxLayout(tabContent);
 
-        // TODO: TimeRange model view
-        auto *scheduleTable = new QTableView(widget);
+        auto *scheduleTable = new QTableView(tabContent);
         auto *scheduleModel = new QStandardItemModel();
         scheduleTable->setModel(scheduleModel);
 
@@ -625,12 +623,9 @@ void OptionsDialog::initializeScheduler()
 
         scheduleTable->resizeColumnsToContents();
 
-        auto *addButton = new QPushButton(tr("Add entry"), widget);
+        auto *addButton = new QPushButton(tr("Add entry"), tabContent);
         connect(addButton, &QPushButton::clicked, addButton, [addButton, i]() {
-            auto *dialog = new TimeRangeDialog(
-                BitTorrent::Session::instance()->globalMaxRatio(),
-                BitTorrent::TorrentHandle::MAX_RATIO,
-                addButton);
+            auto *dialog = new TimeRangeDialog(addButton);
 
             connect(dialog, &QDialog::accepted, addButton, [dialog, i]() {
                 auto *schedule = Scheduler::Schedule::instance();
@@ -651,13 +646,10 @@ void OptionsDialog::initializeScheduler()
         vLayout->addWidget(scheduleTable);
         vLayout->addWidget(addButton);
 
-        widget->setLayout(vLayout);
-        m_ui->tabSchedule->addTab(widget, day);
+        tabContent->setLayout(vLayout);
+        m_ui->tabSchedule->addTab(tabContent, day);
     }
 }
-
-// bool OptionsDialog::bringUpTimeRangeDialog(QPushButton* button) {
-// }
 
 // Main destructor
 OptionsDialog::~OptionsDialog()

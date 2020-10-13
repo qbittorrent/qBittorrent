@@ -6,15 +6,17 @@
 #include "ui_timerangedialog.h"
 #include "utils.h"
 
-TimeRangeDialog::TimeRangeDialog(qreal initialRatioValue, qreal maxRatioValue, QWidget *parent)
+TimeRangeDialog::TimeRangeDialog(QWidget *parent, int initialRatioValue, int maxRatioValue)
     : QDialog(parent)
     , m_ui(new Ui::TimeRangeDialog)
 {
     m_ui->setupUi(this);
 
-    m_ui->ratioSpinBox->setMinimum(-1);
-    m_ui->ratioSpinBox->setMaximum(maxRatioValue);
-    m_ui->ratioSpinBox->setValue(initialRatioValue);
+    m_ui->downloadSpinBox->setMaximum(maxRatioValue);
+    m_ui->downloadSpinBox->setValue(initialRatioValue);
+
+    m_ui->uploadSpinBox->setMaximum(maxRatioValue);
+    m_ui->uploadSpinBox->setValue(initialRatioValue);
 
     Utils::Gui::resize(this);
 }
@@ -30,12 +32,12 @@ void TimeRangeDialog::accept()
 
 int TimeRangeDialog::downloadRatio() const
 {
-    return m_ui->ratioSpinBox->value();
+    return m_ui->downloadSpinBox->value();
 }
 
 int TimeRangeDialog::uploadRatio() const
 {
-    return m_ui->ratioSpinBox->value();
+    return m_ui->uploadSpinBox->value();
 }
 
 QTime TimeRangeDialog::timeFrom() const

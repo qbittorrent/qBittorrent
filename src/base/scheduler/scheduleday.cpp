@@ -2,9 +2,11 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QJsonValue>
 #include <QVector>
 
 #include "base/global.h"
+#include "base/rss/rss_autodownloader.h"
 #include "timerange.h"
 
 using namespace Scheduler;
@@ -35,4 +37,19 @@ QJsonArray ScheduleDay::toJsonArray() const
         jsonArr << timeRange.toJsonObject();
 
     return jsonArr;
+}
+
+ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray)
+{
+    ScheduleDay *scheduleDay{};
+
+    for (QJsonValue day : jsonArray) {
+        if (!day.isObject())
+            throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
+
+        TimeRange timeRange = TimeRange::fromJsonObject(day.toObject());
+        scheduleDay->addTimeRange(timeRange);
+    }
+
+    return scheduleDay;
 }
