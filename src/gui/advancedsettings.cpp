@@ -85,6 +85,9 @@ namespace
         // libtorrent section
         LIBTORRENT_HEADER,
         ASYNC_IO_THREADS,
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        HASHING_THREADS,
+#endif
         FILE_POOL_SIZE,
         CHECKING_MEM_USAGE,
 #if (LIBTORRENT_VERSION_NUM < 20000)
@@ -187,6 +190,10 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    // Hashing threads
+    session->setHashingThreads(m_spinBoxHashingThreads.value());
+#endif
     // File pool size
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
@@ -409,6 +416,16 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxAsyncIOThreads.setValue(session->asyncIOThreads());
     addRow(ASYNC_IO_THREADS, (tr("Asynchronous I/O threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#aio_threads", "(?)"))
             , &m_spinBoxAsyncIOThreads);
+
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    // Hashing threads
+    m_spinBoxHashingThreads.setMinimum(1);
+    m_spinBoxHashingThreads.setMaximum(1024);
+    m_spinBoxHashingThreads.setValue(session->hashingThreads());
+    addRow(HASHING_THREADS, (tr("Hashing threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#hashing_threads", "(?)"))
+            , &m_spinBoxHashingThreads);
+#endif
+
     // File pool size
     m_spinBoxFilePoolSize.setMinimum(1);
     m_spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());

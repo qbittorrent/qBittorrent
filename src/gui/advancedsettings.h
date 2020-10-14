@@ -77,6 +77,8 @@ private:
 #if (LIBTORRENT_VERSION_NUM < 20000)
     QSpinBox m_spinBoxCache, m_spinBoxCacheTTL;
     QCheckBox m_checkBoxCoalesceRW;
+#else
+    QSpinBox m_spinBoxHashingThreads;
 #endif
 
     // OS dependent settings
