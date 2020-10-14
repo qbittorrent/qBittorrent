@@ -1813,7 +1813,12 @@ bool Session::cancelLoadMetadata(const InfoHash &hash)
     m_loadedMetadata.erase(loadedMetadataIter);
     --m_extraLimit;
     adjustLimits();
-    m_nativeSession->remove_torrent(m_nativeSession->find_torrent(hash), lt::session::delete_files);
+#if LIBTORRENT_VERSION_NUM < 20000
+    const lt::sha1_hash searchID = hash;
+#else
+    const lt::sha1_hash searchID = static_cast<lt::info_hash_t>(hash).get_best();
+#endif
+    m_nativeSession->remove_torrent(m_nativeSession->find_torrent(searchID), lt::session::delete_files);
     return true;
 }
 
@@ -1860,8 +1865,14 @@ void Session::decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
         torrentQueue.pop();
     }
 
-    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
-        torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
+    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i) {
+#if LIBTORRENT_VERSION_NUM < 20000
+        const lt::sha1_hash searchID = *i;
+#else
+        const lt::sha1_hash searchID = static_cast<lt::info_hash_t>(*i).get_best();
+#endif
+        torrentQueuePositionBottom(m_nativeSession->find_torrent(searchID));
+    }
 
     saveTorrentsQueue();
 }
@@ -1909,8 +1920,14 @@ void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
         torrentQueue.pop();
     }
 
-    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
-        torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
+    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i) {
+#if LIBTORRENT_VERSION_NUM < 20000
+        const lt::sha1_hash searchID = *i;
+#else
+        const lt::sha1_hash searchID = static_cast<lt::info_hash_t>(*i).get_best();
+#endif
+        torrentQueuePositionBottom(m_nativeSession->find_torrent(searchID));
+    }
 
     saveTorrentsQueue();
 }
@@ -1972,7 +1989,12 @@ bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &par
         m_loadedMetadata.erase(it);
         --m_extraLimit;
         adjustLimits();
-        m_nativeSession->remove_torrent(m_nativeSession->find_torrent(hash), lt::session::delete_files);
+#if LIBTORRENT_VERSION_NUM < 20000
+        const lt::sha1_hash searchID = hash;
+#else
+        const lt::sha1_hash searchID = static_cast<lt::info_hash_t>(hash).get_best();
+#endif
+        m_nativeSession->remove_torrent(m_nativeSession->find_torrent(searchID), lt::session::delete_files);
     }
 
     return addTorrent_impl(params, magnetUri);
@@ -2132,7 +2154,11 @@ bool Session::loadTorrent(LoadTorrentParams params)
     p.max_uploads = maxUploadsPerTorrent();
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
+#if LIBTORRENT_VERSION_NUM < 20000
     const InfoHash hash = (hasMetadata ? p.ti->info_hash() : p.info_hash);
+#else
+    const InfoHash hash = (hasMetadata ? p.ti->info_hashes() : p.info_hashes);
+#endif
     m_loadingTorrents.insert(hash, params);
 
     // Adding torrent to BitTorrent session
@@ -2222,7 +2248,11 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     if (ec) return false;
 
     // waiting for metadata...
+#if LIBTORRENT_VERSION_NUM < 20000
     m_loadedMetadata.insert(h.info_hash());
+#else
+    m_loadedMetadata.insert(h.info_hashes());
+#endif
     ++m_extraLimit;
     adjustLimits();
 
@@ -3864,7 +3894,11 @@ bool Session::addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString
 
 void Session::moveTorrentStorage(const MoveStorageJob &job) const
 {
+#if LIBTORRENT_VERSION_NUM < 20000
     const InfoHash infoHash = job.torrentHandle.info_hash();
+#else
+    const InfoHash infoHash = job.torrentHandle.info_hashes();
+#endif
     const TorrentHandleImpl *torrent = m_torrents.value(infoHash);
     const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
     LogMsg(tr("Moving \"%1\" to \"%2\"...").arg(torrentName, job.path));
@@ -3886,7 +3920,11 @@ void Session::handleMoveTorrentStorageJobFinished()
 
     const bool torrentHasOutstandingJob = (iter != m_moveStorageQueue.cend());
 
+#if LIBTORRENT_VERSION_NUM < 20000
     TorrentHandleImpl *torrent = m_torrents.value(finishedJob.torrentHandle.info_hash());
+#else
+    TorrentHandleImpl *torrent = m_torrents.value(finishedJob.torrentHandle.info_hashes());
+#endif
     if (torrent)
         torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
 
@@ -3894,7 +3932,11 @@ void Session::handleMoveTorrentStorageJobFinished()
         if (!torrent) {
             // Last job is completed for torrent that being removing, so actually remove it
             const lt::torrent_handle nativeHandle {finishedJob.torrentHandle};
+#if LIBTORRENT_VERSION_NUM < 20000
             const RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hash()];
+#else
+            const RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hashes()];
+#endif
             if (removingTorrentData.deleteOption == Torrent)
                 m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
         }
@@ -4348,7 +4390,11 @@ void Session::handleAlert(const lt::alert *a)
 
 void Session::dispatchTorrentAlert(const lt::alert *a)
 {
+#if (LIBTORRENT_VERSION_NUM < 20000)
     TorrentHandleImpl *const torrent = m_torrents.value(static_cast<const lt::torrent_alert*>(a)->handle.info_hash());
+#else
+    TorrentHandleImpl *const torrent = m_torrents.value(static_cast<const lt::torrent_alert*>(a)->handle.info_hashes());
+#endif
     if (torrent) {
         torrent->handleAlert(a);
         return;
@@ -4363,9 +4409,17 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
 
 void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
 {
+#if (LIBTORRENT_VERSION_NUM < 20000)
     Q_ASSERT(m_loadingTorrents.contains(nativeHandle.info_hash()));
+#else
+    Q_ASSERT(m_loadingTorrents.contains(nativeHandle.info_hashes()));
+#endif
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hash());
+#else
+    const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hashes());
+#endif
 
     auto *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
     m_torrents.insert(torrent->hash(), torrent);
@@ -4433,14 +4487,22 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
         LogMsg(tr("Couldn't load torrent. Reason: %1").arg(msg), Log::WARNING);
         emit loadTorrentFailed(msg);
     }
+#if (LIBTORRENT_VERSION_NUM < 20000)
     else if (m_loadingTorrents.contains(p->handle.info_hash())) {
+#else
+    else if (m_loadingTorrents.contains(p->handle.info_hashes())) {
+#endif
         createTorrentHandle(p->handle);
     }
 }
 
 void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 20000
     const InfoHash infoHash {p->info_hash};
+#else
+    const InfoHash infoHash {p->info_hashes};
+#endif
 
     const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
     if (removingTorrentDataIter != m_removingTorrents.end()) {
@@ -4453,7 +4515,11 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 
 void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 20000
     const InfoHash infoHash {p->info_hash};
+#else
+    const InfoHash infoHash {p->info_hashes};
+#endif
     const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
 
     if (removingTorrentDataIter == m_removingTorrents.end())
@@ -4466,7 +4532,11 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 
 void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 20000
     const InfoHash infoHash {p->info_hash};
+#else
+    const InfoHash infoHash {p->info_hashes};
+#endif
     const auto removingTorrentDataIter = m_removingTorrents.find(infoHash);
 
     if (removingTorrentDataIter == m_removingTorrents.end())
@@ -4489,7 +4559,11 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 20000
     const InfoHash hash {p->handle.info_hash()};
+#else
+    const InfoHash hash {p->handle.info_hashes()};
+#endif
     const auto loadedMetadataIter = m_loadedMetadata.find(hash);
 
     if (loadedMetadataIter != m_loadedMetadata.end()) {
@@ -4506,7 +4580,11 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 
 void Session::handleFileErrorAlert(const lt::file_error_alert *p)
 {
+#if LIBTORRENT_VERSION_NUM < 20000
     TorrentHandleImpl *const torrent = m_torrents.value(p->handle.info_hash());
+#else
+    TorrentHandleImpl *const torrent = m_torrents.value(p->handle.info_hashes());
+#endif
     if (!torrent)
         return;
 
@@ -4584,7 +4662,11 @@ void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 {
+#if (LIBTORRENT_VERSION_NUM < 20000)
     const TorrentHandleImpl *torrent = m_torrents.value(p->handle.info_hash());
+#else
+    const TorrentHandleImpl *torrent = m_torrents.value(p->handle.info_hashes());
+#endif
     if (!torrent)
         return;
 
@@ -4716,7 +4798,11 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const QString newPath {p->storage_path()};
     Q_ASSERT(newPath == currentJob.path);
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     const InfoHash infoHash = currentJob.torrentHandle.info_hash();
+#else
+    const InfoHash infoHash = currentJob.torrentHandle.info_hashes();
+#endif
     TorrentHandleImpl *torrent = m_torrents.value(infoHash);
     const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
     LogMsg(tr("\"%1\" is successfully moved to \"%2\".").arg(torrentName, newPath));
@@ -4734,7 +4820,11 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     const MoveStorageJob &currentJob = m_moveStorageQueue.first();
     Q_ASSERT(currentJob.torrentHandle == p->handle);
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     const InfoHash infoHash = currentJob.torrentHandle.info_hash();
+#else
+    const InfoHash infoHash = currentJob.torrentHandle.info_hashes();
+#endif
     TorrentHandleImpl *torrent = m_torrents.value(infoHash);
     const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
     const QString currentLocation = QString::fromStdString(p->handle.status(lt::torrent_handle::query_save_path).save_path);
@@ -4754,7 +4844,11 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
     updatedTorrents.reserve(p->status.size());
 
     for (const lt::torrent_status &status : p->status) {
+#if LIBTORRENT_VERSION_NUM < 20000
         TorrentHandleImpl *const torrent = m_torrents.value(status.info_hash);
+#else
+        TorrentHandleImpl *const torrent = m_torrents.value(status.info_hashes);
+#endif
 
         if (!torrent)
             continue;

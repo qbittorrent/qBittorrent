@@ -29,7 +29,13 @@
 #ifndef BITTORRENT_INFOHASH_H
 #define BITTORRENT_INFOHASH_H
 
+#include <libtorrent/version.hpp>
+
+#if LIBTORRENT_VERSION_NUM < 20000
 #include <libtorrent/sha1_hash.hpp>
+#else
+#include <libtorrent/info_hash.hpp>
+#endif
 
 #include <QString>
 
@@ -39,7 +45,11 @@ namespace BitTorrent
     {
     public:
         InfoHash();
+#if LIBTORRENT_VERSION_NUM < 20000
         InfoHash(const lt::sha1_hash &nativeHash);
+#else
+        InfoHash(const lt::info_hash_t &nativeHash);
+#endif
         InfoHash(const QString &hashString);
         InfoHash(const InfoHash &other) = default;
 
@@ -50,12 +60,20 @@ namespace BitTorrent
 
         bool isValid() const;
 
+#if LIBTORRENT_VERSION_NUM < 20000
         operator lt::sha1_hash() const;
+#else
+        operator lt::info_hash_t() const;
+#endif
         operator QString() const;
 
     private:
         bool m_valid;
+#if LIBTORRENT_VERSION_NUM < 20000
         lt::sha1_hash m_nativeHash;
+#else
+        lt::info_hash_t m_nativeHash;
+#endif
         QString m_hashString;
     };
 

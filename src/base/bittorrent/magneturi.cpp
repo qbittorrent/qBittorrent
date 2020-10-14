@@ -31,7 +31,12 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/magnet_uri.hpp>
+#include <libtorrent/version.hpp>
+#if LIBTORRENT_VERSION_NUM < 20000
 #include <libtorrent/sha1_hash.hpp>
+#else
+#include <libtorrent/info_hash.hpp>
+#endif
 
 #include <QRegularExpression>
 #include <QUrl>
@@ -42,11 +47,12 @@ namespace
 {
     bool isBitTorrentInfoHash(const QString &string)
     {
-        // There are 2 representations for BitTorrent info hash:
+        // There are 2 representations for BitTorrent V1 info hash:
         // 1. 40 chars hex-encoded string
         //      == 20 (SHA-1 length in bytes) * 2 (each byte maps to 2 hex characters)
         // 2. 32 chars Base32 encoded string
         //      == 20 (SHA-1 length in bytes) * 1.6 (the efficiency of Base32 encoding)
+        // TODO: Add support for BitTorrent V2 info hashes
         const int SHA1_HEX_SIZE = BitTorrent::InfoHash::length() * 2;
         const int SHA1_BASE32_SIZE = BitTorrent::InfoHash::length() * 1.6;
 
@@ -73,7 +79,11 @@ MagnetUri::MagnetUri(const QString &source)
     if (ec) return;
 
     m_valid = true;
+#if LIBTORRENT_VERSION_NUM < 20000
     m_hash = m_addTorrentParams.info_hash;
+#else
+    m_hash = m_addTorrentParams.info_hashes;
+#endif
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
     m_trackers.reserve(m_addTorrentParams.trackers.size());

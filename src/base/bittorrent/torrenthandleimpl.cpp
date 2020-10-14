@@ -122,7 +122,11 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
 
     updateStatus();
+#if LIBTORRENT_VERSION_NUM < 20000
     m_hash = InfoHash(m_nativeStatus.info_hash);
+#else
+    m_hash = InfoHash(m_nativeStatus.info_hashes);
+#endif
 
     if (hasMetadata()) {
         applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);

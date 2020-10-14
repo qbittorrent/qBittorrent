@@ -156,7 +156,11 @@ bool TorrentInfo::isValid() const
 InfoHash TorrentInfo::hash() const
 {
     if (!isValid()) return {};
+#if (LIBTORRENT_VERSION_NUM < 20000)
     return m_nativeInfo->info_hash();
+#else
+    return m_nativeInfo->info_hashes();
+#endif
 }
 
 QString TorrentInfo::name() const
