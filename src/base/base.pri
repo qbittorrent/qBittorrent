@@ -62,6 +62,9 @@ HEADERS += \
     $$PWD/rss/rss_parser.h \
     $$PWD/rss/rss_session.h \
     $$PWD/scanfoldersmodel.h \
+    $$PWD/scheduler/schedule.h \
+    $$PWD/scheduler/scheduleday.h \
+    $$PWD/scheduler/timerange.h \
     $$PWD/search/searchdownloadhandler.h \
     $$PWD/search/searchhandler.h \
     $$PWD/search/searchpluginmanager.h \
@@ -138,6 +141,9 @@ SOURCES += \
     $$PWD/rss/rss_parser.cpp \
     $$PWD/rss/rss_session.cpp \
     $$PWD/scanfoldersmodel.cpp \
+    $$PWD/scheduler/schedule.cpp \
+    $$PWD/scheduler/scheduleday.cpp \
+    $$PWD/scheduler/timerange.cpp \
     $$PWD/search/searchdownloadhandler.cpp \
     $$PWD/search/searchhandler.cpp \
     $$PWD/search/searchpluginmanager.cpp \

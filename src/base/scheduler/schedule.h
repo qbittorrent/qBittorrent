@@ -28,7 +28,7 @@ namespace Scheduler
     public:
         static Schedule *instance();
         QVector<ScheduleDay*> scheduleDays() const;
-        
+
     public slots:
         void saveSchedule();
 

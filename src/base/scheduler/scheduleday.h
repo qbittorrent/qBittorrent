@@ -1,21 +1,21 @@
 #pragma once
 
-#include <QVector>
 #include <QObject>
+#include <QVector>
 
 #include "timerange.h"
 
 namespace Scheduler
 {
-    class ScheduleDay : public QObject
+    class ScheduleDay final : public QObject
     {
         Q_OBJECT
-    
+
     public:
         ScheduleDay();
-        
+
         QVector<TimeRange> timeRanges() const;
-        
+
         void addTimeRange(const TimeRange &timeRange);
         void clearTimeRanges();
 

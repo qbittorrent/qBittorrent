@@ -5,7 +5,7 @@
 
 namespace Scheduler
 {
-    class TimeRange
+    class TimeRange final
     {
     public:
         TimeRange(QTime startTime, QTime endTime, int downloadRate, int uploadRate);

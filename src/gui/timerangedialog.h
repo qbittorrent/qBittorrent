@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QDialog>
 #include <QDateTime>
+#include <QDialog>
 
 namespace Ui
 {

@@ -34,14 +34,14 @@ QJsonArray ScheduleDay::toJsonArray() const
 {
     QJsonArray jsonArr;
     for (TimeRange timeRange : asConst(m_timeRanges))
-        jsonArr << timeRange.toJsonObject();
+        jsonArr.append(timeRange.toJsonObject());
 
     return jsonArr;
 }
 
 ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray)
 {
-    ScheduleDay *scheduleDay{};
+    ScheduleDay *scheduleDay = new ScheduleDay();
 
     for (QJsonValue day : jsonArray) {
         if (!day.isObject())
