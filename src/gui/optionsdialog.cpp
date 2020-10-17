@@ -592,51 +592,41 @@ void OptionsDialog::initializeLanguageCombo()
 
 void OptionsDialog::initializeScheduler()
 {
-    const QStringList daysOfWeek = translatedWeekdayNames();
-
     for (int i = 0; i < 7; i++) {
-        const QString &day = daysOfWeek[i];
-
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
-
         auto *scheduleTable = new QTableView(tabContent);
-        auto *scheduleModel = new QStandardItemModel();
+
+        auto *scheduleModel = new QStandardItemModel(0, ScheduleColumn::COL_COUNT, this);
+        scheduleModel->setHorizontalHeaderLabels({
+            tr("From", "i.e.: Beginning of time range"),
+            tr("To", "i.e.: End of time range"),
+            tr("Download", "i.e.: Download rate limit"),
+            tr("Upload", "i.e.: Upload rate limit")
+        });
+
         scheduleTable->setModel(scheduleModel);
 
-        scheduleModel->insertColumns(0, 4);
-        scheduleModel->setHeaderData(0, Qt::Horizontal, "From");
-        scheduleModel->setHeaderData(1, Qt::Horizontal, "To");
-        scheduleModel->setHeaderData(2, Qt::Horizontal, "Download");
-        scheduleModel->setHeaderData(3, Qt::Horizontal, "Upload");
+        scheduleTable->setSelectionMode(QAbstractItemView::SingleSelection);
+        scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+        scheduleTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        auto timeRanges = Scheduler::Schedule::instance()->scheduleDays()[i]->timeRanges();
-        scheduleModel->insertRows(0, timeRanges.count());
-
-        for (int i = 0; i < timeRanges.count(); i++) {
-            auto timeRange = timeRanges[i];
-            scheduleModel->setData(scheduleModel->index(i, 0), timeRange.startTime);
-            scheduleModel->setData(scheduleModel->index(i, 1), timeRange.endTime);
-            scheduleModel->setData(scheduleModel->index(i, 2), timeRange.downloadRate);
-            scheduleModel->setData(scheduleModel->index(i, 3), timeRange.uploadRate);
-        }
+        auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[i];
+        populateScheduleDayTable(scheduleModel, scheduleDay);
 
         scheduleTable->resizeColumnsToContents();
 
         auto *addButton = new QPushButton(tr("Add entry"), tabContent);
-        connect(addButton, &QPushButton::clicked, addButton, [addButton, i]() {
+        connect(addButton, &QPushButton::clicked, tabContent, [addButton, i]() {
             auto *dialog = new TimeRangeDialog(addButton);
-
-            connect(dialog, &QDialog::accepted, addButton, [dialog, i]() {
+            connect(dialog, &QDialog::accepted, dialog, [dialog, i]() {
                 auto *schedule = Scheduler::Schedule::instance();
-
-                auto timeRange = Scheduler::TimeRange();
-                timeRange.startTime = dialog->timeFrom();
-                timeRange.endTime = dialog->timeTo();
-                timeRange.downloadRate = dialog->downloadRatio();
-                timeRange.uploadRate = dialog->uploadRatio();
-
-                schedule->scheduleDays()[i]->addTimeRange(timeRange);
+                schedule->scheduleDays()[i]->addTimeRange({
+                    dialog->timeFrom(),
+                    dialog->timeTo(),
+                    dialog->downloadRatio(),
+                    dialog->uploadRatio()
+                });
             });
 
             dialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -645,9 +635,23 @@ void OptionsDialog::initializeScheduler()
 
         vLayout->addWidget(scheduleTable);
         vLayout->addWidget(addButton);
-
         tabContent->setLayout(vLayout);
-        m_ui->tabSchedule->addTab(tabContent, day);
+        m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[i]);
+    }
+}
+
+void OptionsDialog::populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay)
+{
+    auto timeRanges = scheduleDay->timeRanges();
+    int rowCount = timeRanges.count();
+    scheduleModel->setRowCount(rowCount);
+
+    for (int i = 0; i < rowCount; i++) {
+        auto timeRange = timeRanges[i];
+        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::FROM), timeRange.startTime);
+        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::TO), timeRange.endTime);
+        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::DOWNLOAD), timeRange.downloadRate);
+        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::UPLOAD), timeRange.uploadRate);
     }
 }
 

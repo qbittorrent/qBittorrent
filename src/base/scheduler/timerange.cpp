@@ -33,11 +33,10 @@ TimeRange TimeRange::fromJsonObject(QJsonObject jsonObject)
     int start = jsonObject["start"].toInt();
     int end = jsonObject["end"].toInt();
 
-    auto timeRange = TimeRange();
-    timeRange.startTime = QTime(start / 100, start % 100);
-    timeRange.endTime = QTime(end / 100, end % 100);
-    timeRange.downloadRate = jsonObject["dl"].toInt();
-    timeRange.uploadRate = jsonObject["ul"].toInt();
-
-    return timeRange;
+    return {
+        QTime(start / 100, start % 100),
+        QTime(end / 100, end % 100),
+        jsonObject["dl"].toInt(),
+        jsonObject["ul"].toInt()
+    };
 }

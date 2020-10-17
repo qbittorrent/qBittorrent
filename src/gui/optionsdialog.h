@@ -29,7 +29,9 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
+#include "base/scheduler/scheduleday.h"
 #include <QDialog>
+#include <QStandardItemModel>
 
 class QAbstractButton;
 class QCloseEvent;
@@ -80,6 +82,15 @@ class OptionsDialog final : public QDialog
     };
 
 public:
+    enum ScheduleColumn
+    {
+        FROM,
+        TO,
+        DOWNLOAD,
+        UPLOAD,
+        COL_COUNT
+    };
+
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog() override;
@@ -118,6 +129,7 @@ private:
     void loadOptions();
     void initializeLanguageCombo();
     void initializeScheduler();
+    static void populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay);
 
     // General options
     QString getLocale() const;
