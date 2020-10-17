@@ -5,26 +5,17 @@
 
 namespace Scheduler
 {
-    class TimeRange final
+    struct TimeRange
     {
-    public:
-        TimeRange(QTime startTime, QTime endTime, int downloadRate, int uploadRate);
-
-        QTime startTime() const;
-        QTime endTime() const;
-        int downloadRate() const;
-        int uploadRate() const;
+        QTime startTime = QTime(0, 0);
+        QTime endTime = QTime(0, 0);
+        int downloadRate = -1;
+        int uploadRate = -1;
 
         bool overlaps(const TimeRange &other) const;
         bool isValid() const;
 
         QJsonObject toJsonObject() const;
         static TimeRange fromJsonObject(QJsonObject jsonObject);
-
-    private:
-        QTime m_startTime = QTime(0, 0);
-        QTime m_endTime = QTime(0, 0);
-        int m_downloadRate = -1;
-        int m_uploadRate = -1;
     };
 }

@@ -615,10 +615,10 @@ void OptionsDialog::initializeScheduler()
 
         for (int i = 0; i < timeRanges.count(); i++) {
             auto timeRange = timeRanges[i];
-            scheduleModel->setData(scheduleModel->index(i, 0), timeRange.startTime());
-            scheduleModel->setData(scheduleModel->index(i, 1), timeRange.endTime());
-            scheduleModel->setData(scheduleModel->index(i, 2), timeRange.downloadRate());
-            scheduleModel->setData(scheduleModel->index(i, 3), timeRange.uploadRate());
+            scheduleModel->setData(scheduleModel->index(i, 0), timeRange.startTime);
+            scheduleModel->setData(scheduleModel->index(i, 1), timeRange.endTime);
+            scheduleModel->setData(scheduleModel->index(i, 2), timeRange.downloadRate);
+            scheduleModel->setData(scheduleModel->index(i, 3), timeRange.uploadRate);
         }
 
         scheduleTable->resizeColumnsToContents();
@@ -629,12 +629,12 @@ void OptionsDialog::initializeScheduler()
 
             connect(dialog, &QDialog::accepted, addButton, [dialog, i]() {
                 auto *schedule = Scheduler::Schedule::instance();
-            
-                auto timeRange = Scheduler::TimeRange(
-                    dialog->timeFrom(),
-                    dialog->timeTo(),
-                    dialog->downloadRatio(),
-                    dialog->uploadRatio());
+
+                auto timeRange = Scheduler::TimeRange();
+                timeRange.startTime = dialog->timeFrom();
+                timeRange.endTime = dialog->timeTo();
+                timeRange.downloadRate = dialog->downloadRatio();
+                timeRange.uploadRate = dialog->uploadRatio();
 
                 schedule->scheduleDays()[i]->addTimeRange(timeRange);
             });
