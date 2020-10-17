@@ -1061,7 +1061,11 @@ void Session::initializeNativeSession()
 #endif
 
     loadLTSettings(pack);
-    m_nativeSession = new lt::session {lt::session_params {pack, {}}};
+    lt::session_params sessionParams {pack, {}};
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    sessionParams.disk_io_constructor = customDiskIOConstructor;
+#endif
+    m_nativeSession = new lt::session {sessionParams};
 
     LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
     LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
@@ -2114,7 +2118,9 @@ bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     p.storage = customStorageConstructor;
+#endif
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
@@ -2200,7 +2206,9 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     p.storage = customStorageConstructor;
+#endif
 
     // Adding torrent to BitTorrent session
     lt::error_code ec;
