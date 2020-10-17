@@ -27,6 +27,93 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_2" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelLoading">
+            <property name="text">
+             <string>qBittorrent is being loaded. Please wait...</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="maximum">
+             <number>0</number>
+            </property>
+            <property name="value">
+             <number>-1</number>
+            </property>
+            <property name="textVisible">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -35,7 +122,7 @@
      <x>0</x>
      <y>0</y>
      <width>914</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit">
@@ -99,6 +186,9 @@
      <string>&amp;View</string>
     </property>
     <widget class="QMenu" name="menuLog">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>&amp;Log</string>
      </property>
@@ -163,6 +253,9 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Add Torrent File...</string>
    </property>
@@ -176,6 +269,9 @@
    </property>
   </action>
   <action name="actionOptions">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Options...</string>
    </property>
@@ -186,31 +282,49 @@
    </property>
   </action>
   <action name="actionStart">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Resume</string>
    </property>
   </action>
   <action name="actionPause">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Pause</string>
    </property>
   </action>
   <action name="actionStartAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>R&amp;esume All</string>
    </property>
   </action>
   <action name="actionPauseAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>P&amp;ause All</string>
    </property>
   </action>
   <action name="actionDelete">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Delete</string>
    </property>
   </action>
   <action name="actionDownloadFromURL">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Add Torrent &amp;Link...</string>
    </property>
@@ -219,16 +333,25 @@
    </property>
   </action>
   <action name="actionCreateTorrent">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Torrent &amp;Creator</string>
    </property>
   </action>
   <action name="actionSetUploadLimit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Set Upload Limit...</string>
    </property>
   </action>
   <action name="actionSetDownloadLimit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Set Download Limit...</string>
    </property>
@@ -239,16 +362,25 @@
    </property>
   </action>
   <action name="actionSetGlobalDownloadLimit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Set Global Download Limit...</string>
    </property>
   </action>
   <action name="actionSetGlobalUploadLimit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Set Global Upload Limit...</string>
    </property>
   </action>
   <action name="actionBottomQueuePos">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Bottom of Queue</string>
    </property>
@@ -260,6 +392,9 @@
    </property>
   </action>
   <action name="actionTopQueuePos">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Top of Queue</string>
    </property>
@@ -271,6 +406,9 @@
    </property>
   </action>
   <action name="actionDecreaseQueuePos">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Move Down Queue</string>
    </property>
@@ -282,6 +420,9 @@
    </property>
   </action>
   <action name="actionIncreaseQueuePos">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Move Up Queue</string>
    </property>
@@ -295,6 +436,9 @@
   <action name="actionUseAlternativeSpeedLimits">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Alternative Speed Limits</string>
@@ -318,6 +462,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Status &amp;Bar</string>
    </property>
@@ -337,6 +484,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;RSS Reader</string>
    </property>
@@ -344,6 +494,9 @@
   <action name="actionSearchWidget">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Search &amp;Engine</string>
@@ -419,6 +572,9 @@
    </property>
   </action>
   <action name="actionStatistics">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Statistics</string>
    </property>
@@ -432,6 +588,9 @@
    </property>
   </action>
   <action name="actionManageCookies">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Manage Cookies...</string>
    </property>
@@ -443,6 +602,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Show</string>
    </property>
@@ -450,6 +612,9 @@
   <action name="actionNormalMessages">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Normal Messages</string>
@@ -459,6 +624,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Information Messages</string>
    </property>
@@ -467,6 +635,9 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Warning Messages</string>
    </property>
@@ -474,6 +645,9 @@
   <action name="actionCriticalMessages">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Critical Messages</string>

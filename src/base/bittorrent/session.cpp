@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2020  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -1067,6 +1067,7 @@ void Session::initializeNativeSession()
 #if (LIBTORRENT_VERSION_NUM >= 20000)
     sessionParams.disk_io_constructor = customDiskIOConstructor;
 #endif
+//    m_nativeSession = new lt::session {sessionParams, lt::session::paused};
     m_nativeSession = new lt::session {sessionParams};
     m_nativeSession->pause();
 
@@ -4142,12 +4143,12 @@ void Session::restoreTorrents()
         }
     });
 
-    connect(m_resumeDataManager, &ResumeDataManager::loadingDone, this, [this]()
+    connect(m_resumeDataManager, &ResumeDataManager::loadingDone, this, [=]()
     {
         m_nativeSession->resume();
+
         emit restored();
     });
-
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataManager, [this]()

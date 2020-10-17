@@ -32,6 +32,7 @@
 #include <libtorrent/entry.hpp>
 
 #include <QByteArray>
+#include <QDebug>
 #include <QRegularExpression>
 #include <QSaveFile>
 #include <QSet>

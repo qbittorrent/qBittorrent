@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -26,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPointer>
@@ -75,6 +75,7 @@ namespace Ui
 class MainWindow final : public QMainWindow
 {
     Q_OBJECT
+    Q_DISABLE_COPY(MainWindow)
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -83,7 +84,9 @@ public:
     QWidget *currentTabWidget() const;
     TransferListWidget *transferListWidget() const;
     PropertiesWidget *propertiesWidget() const;
-    QMenu *trayIconMenu();
+    void createTrayIconMenu();
+
+    void populate();
 
     // ExecutionLog properties
     bool isExecutionLogEnabled() const;
@@ -110,7 +113,6 @@ private slots:
     void showFilterContextMenu(const QPoint &);
     void balloonClicked();
     void writeSettings();
-    void readSettings();
     void fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const;
     void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
@@ -129,7 +131,8 @@ private slots:
     void focusSearchFilter();
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::TorrentHandle *> &torrents);
-    void loadPreferences(bool configureSession = true);
+    void loadPreferences();
+    void configureSystray(bool tryAgain);
     void addTorrentFailed(const QString &error) const;
     void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
     void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
@@ -219,12 +222,12 @@ private:
     void createTorrentTriggered(const QString &path = {});
     void showStatusBar(bool show);
 
-    Ui::MainWindow *m_ui;
+    Ui::MainWindow *m_ui = nullptr;
 
-    QFileSystemWatcher *m_executableWatcher;
+    QFileSystemWatcher *m_executableWatcher = nullptr;
     // GUI related
     bool m_posInitialized;
-    QPointer<QTabWidget> m_tabs;
+    QTabWidget *m_tabs = nullptr;
     QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;
     QPointer<AboutDialog> m_aboutDlg;
@@ -235,32 +238,30 @@ private:
     QPointer<QSystemTrayIcon> m_systrayIcon;
     QPointer<QTimer> m_systrayCreator;
 #endif
-    QPointer<QMenu> m_trayIconMenu;
-    TransferListWidget *m_transferListWidget;
-    TransferListFiltersWidget *m_transferListFiltersWidget;
-    PropertiesWidget *m_propertiesWidget;
+    QMenu *m_trayIconMenu = nullptr;
+    TransferListWidget *m_transferListWidget = nullptr;
+    TransferListFiltersWidget *m_transferListFiltersWidget = nullptr;
+    PropertiesWidget *m_propertiesWidget = nullptr;
     bool m_displaySpeedInTitle;
     bool m_forceExit;
     bool m_uiLocked;
     bool m_unlockDlgShowing;
-    LineEdit *m_searchFilter;
-    QAction *m_searchFilterAction;
+    LineEdit *m_searchFilter = nullptr;
+    QAction *m_searchFilterAction = nullptr;
     // Widgets
-    QAction *m_queueSeparator;
-    QAction *m_queueSeparatorMenu;
-    QSplitter *m_splitter;
+    QAction *m_queueSeparator = nullptr;
+    QAction *m_queueSeparatorMenu = nullptr;
+    QSplitter *m_splitter = nullptr;
     QPointer<SearchWidget> m_searchWidget;
     QPointer<RSSWidget> m_rssWidget;
     QPointer<ExecutionLogWidget> m_executionLog;
     // Power Management
-    PowerManagement *m_pwr;
-    QTimer *m_preventTimer;
+    PowerManagement *m_pwr = nullptr;
+    QTimer *m_preventTimer = nullptr;
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    QTimer *m_programUpdateTimer;
+    QTimer *m_programUpdateTimer = nullptr;
     bool m_wasUpdateCheckEnabled;
 #endif
     bool m_hasPython;
-    QMenu *m_toolbarMenu;
+    QMenu *m_toolbarMenu = nullptr;
 };
-
-#endif // MAINWINDOW_H
