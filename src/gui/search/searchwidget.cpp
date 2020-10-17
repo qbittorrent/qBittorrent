@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
  * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -36,7 +37,10 @@
 #endif
 
 #include <QDebug>
+#include <QEvent>
 #include <QMessageBox>
+#include <QMouseEvent>
+#include <QObject>
 #include <QRegularExpression>
 #include <QShortcut>
 #include <QTextStream>
@@ -83,6 +87,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     , m_isNewQueryString(false)
 {
     m_ui->setupUi(this);
+    m_ui->tabWidget->tabBar()->installEventFilter(this);
 
     QString searchPatternHint;
     QTextStream stream(&searchPatternHint, QIODevice::WriteOnly);
@@ -139,6 +144,24 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
     const auto focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
     connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
+}
+
+bool SearchWidget::eventFilter(QObject *object, QEvent *event)
+{
+    if (object == m_ui->tabWidget->tabBar()) {
+        // Close tabs when middle-clicked
+        if (event->type() != QEvent::MouseButtonRelease)
+            return false;
+
+        const auto mouseEvent = static_cast<QMouseEvent *>(event);
+        const int tabIndex = m_ui->tabWidget->tabBar()->tabAt(mouseEvent->pos());
+        if ((mouseEvent->button() == Qt::MiddleButton) && (tabIndex >= 0)) {
+            closeTab(tabIndex);
+            return true;
+        }
+        return false;
+    }
+    return QWidget::eventFilter(object, event);
 }
 
 void SearchWidget::fillCatCombobox()
