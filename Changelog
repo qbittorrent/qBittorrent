@@ -6,7 +6,7 @@ Sun Oct 18 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.0
     - FEATURE: Many UI elements colors are themeable now (jagannatharjun)
     - FEATURE: Allow changing GUI icons from theme bundles (jagannatharjun)
     - FEATURE: Notify user when torrent moving finished (glassez)
-    - FEATURE: Shortcut CTRL + I opens Statistics window (LoopsGod
+    - FEATURE: Shortcut CTRL + I opens Statistics window (LoopsGod)
     - FEATURE: Add RSS functionality in Web UI (Sepro)
     - FEATURE: Drop ".unwanted folder" feature (glassez)
     - FEATURE: Expose libtorrent peer_turnover, max_concurrent_http_announces, no_connect_privileged_ports settings (Sophist, an0n666, NotTsunami)
