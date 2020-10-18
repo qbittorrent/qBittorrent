@@ -640,7 +640,7 @@ void OptionsDialog::initializeScheduler()
 
 void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay)
 {
-    auto *dialog = new TimeRangeDialog(this);
+    auto *dialog = new TimeRangeDialog(this, scheduleDay);
     connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]() {
         scheduleDay->addTimeRange({
             dialog->timeFrom(),

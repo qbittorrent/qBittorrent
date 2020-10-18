@@ -1,14 +1,16 @@
 #include "timerangedialog.h"
 
 #include <QMessageBox>
+#include <QPushButton>
 
 #include "base/bittorrent/session.h"
 #include "ui_timerangedialog.h"
 #include "utils.h"
 
-TimeRangeDialog::TimeRangeDialog(QWidget *parent, int initialRatioValue, int maxRatioValue)
+TimeRangeDialog::TimeRangeDialog(QWidget *parent, Scheduler::ScheduleDay *scheduleDay, int initialRatioValue, int maxRatioValue)
     : QDialog(parent)
     , m_ui(new Ui::TimeRangeDialog)
+    , m_scheduleDay(scheduleDay)
 {
     m_ui->setupUi(this);
 
@@ -18,7 +20,6 @@ TimeRangeDialog::TimeRangeDialog(QWidget *parent, int initialRatioValue, int max
     m_ui->uploadSpinBox->setMaximum(maxRatioValue);
     m_ui->uploadSpinBox->setValue(initialRatioValue);
 
-    auto asd = m_ui->timeEditFrom->timeSpec();
     m_ui->timeEditTo->setTime(QTime(23, 59, 59, 999));
 
     emit timesUpdated();
@@ -28,19 +29,21 @@ TimeRangeDialog::TimeRangeDialog(QWidget *parent, int initialRatioValue, int max
     Utils::Gui::resize(this);
 }
 
-void TimeRangeDialog::accept()
-{
-    if (timeFrom().secsTo(timeTo()) <= 0)
-        QMessageBox::critical(this, tr("Time range invalid"),
-                              tr("Please make sure the time range is valid"));
-    else
-        QDialog::accept();
-}
-
 void TimeRangeDialog::timesUpdated()
 {
     m_ui->labelTimeFrom->setText(timeFrom().toString("hh:mm:ss.zzz"));
     m_ui->labelTimeTo->setText(timeTo().toString("hh:mm:ss.zzz"));
+
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(isValid());
+}
+
+bool TimeRangeDialog::isValid() const
+{
+    bool timeRangesInvalid = timeFrom().secsTo(timeTo()) <= 0;
+    auto conflicts = m_scheduleDay->conflicts(
+        {timeFrom(), timeTo(), downloadRatio(), uploadRatio()});
+
+    return !(timeRangesInvalid || conflicts);
 }
 
 int TimeRangeDialog::downloadRatio() const
