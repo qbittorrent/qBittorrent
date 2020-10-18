@@ -43,7 +43,7 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, Torren
         m_name.chop(4);
 }
 
-TorrentContentModelFolder::TorrentContentModelFolder(const QVector<QVariant> &data)
+TorrentContentModelFolder::TorrentContentModelFolder(const QVector<QString> &data)
     : TorrentContentModelItem(nullptr)
 {
     Q_ASSERT(data.size() == NB_COL);

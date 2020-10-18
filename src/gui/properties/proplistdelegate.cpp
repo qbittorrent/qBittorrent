@@ -42,9 +42,7 @@
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/torrenthandle.h"
-#include "base/unicodestrings.h"
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
+#include "gui/torrentcontentmodel.h"
 #include "propertieswidget.h"
 
 namespace
@@ -71,91 +69,33 @@ PropListDelegate::PropListDelegate(PropertiesWidget *properties)
 
 void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    if (index.column() != PROGRESS)
+        return QStyledItemDelegate::paint(painter, option, index);
+
     painter->save();
 
-    const QStyle *style = option.widget ? option.widget->style() : QApplication::style();
-    QStyleOptionViewItem opt = option;
-    QStyledItemDelegate::initStyleOption(&opt, index);
-
-    switch (index.column()) {
-    case PCSIZE:
-    case REMAINING:
-        opt.text = Utils::Misc::friendlyUnit(index.data().toLongLong());
-        style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
-        break;
-
-    case PROGRESS: {
-            const qreal progress = (index.data().toReal() * 100);
-            if (progress < 0)
-                break;
-
-            QStyleOptionProgressBar newopt;
-            newopt.rect = opt.rect;
-            newopt.text = (progress == 100) ? QString("100%") : (Utils::String::fromDouble(progress, 1) + '%');
-            newopt.progress = static_cast<int>(progress);
-            newopt.maximum = 100;
-            newopt.minimum = 0;
-            newopt.textVisible = true;
-            if (index.sibling(index.row(), PRIORITY).data().toInt() == static_cast<int>(BitTorrent::DownloadPriority::Ignored)) {
-                newopt.state &= ~QStyle::State_Enabled;
-                newopt.palette = progressBarDisabledPalette();
-            }
-            else {
-                newopt.state |= QStyle::State_Enabled;
-            }
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-            // XXX: To avoid having the progress text on the right of the bar
-            QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
-#else
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-#endif
-        }
-        break;
-
-    case PRIORITY: {
-            QString text = "";
-            switch (static_cast<BitTorrent::DownloadPriority>(index.data().toInt())) {
-            case BitTorrent::DownloadPriority::Mixed:
-                text = tr("Mixed", "Mixed (priorities");
-                break;
-            case BitTorrent::DownloadPriority::Ignored:
-                text = tr("Not downloaded");
-                break;
-            case BitTorrent::DownloadPriority::High:
-                text = tr("High", "High (priority)");
-                break;
-            case BitTorrent::DownloadPriority::Maximum:
-                text = tr("Maximum", "Maximum (priority)");
-                break;
-            default:
-                text = tr("Normal", "Normal (priority)");
-                break;
-            }
-            opt.text = text;
-            style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
-        }
-        break;
-
-    case AVAILABILITY: {
-            const qreal availability = index.data().toReal();
-            if (availability < 0) {
-                opt.text = tr("N/A");
-            }
-            else {
-                const QString value = (availability >= 1.0)
-                                        ? QLatin1String("100")
-                                        : Utils::String::fromDouble(availability * 100, 1);
-                opt.text = (value + C_THIN_SPACE + QLatin1Char('%'));
-            }
-            style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
-        }
-        break;
-
-    default:
-        QStyledItemDelegate::paint(painter, option, index);
-        break;
+    QStyleOptionProgressBar newopt;
+    newopt.rect = option.rect;
+    newopt.text = index.data().toString();
+    newopt.progress = static_cast<int>(index.data(TorrentContentModel::UnderlyingDataRole).toReal());
+    newopt.maximum = 100;
+    newopt.minimum = 0;
+    newopt.textVisible = true;
+    const BitTorrent::DownloadPriority priority
+        = static_cast<BitTorrent::DownloadPriority>(index.sibling(index.row(), PRIORITY).data(TorrentContentModel::UnderlyingDataRole).toInt());
+    if (priority == BitTorrent::DownloadPriority::Ignored) {
+        newopt.state &= ~QStyle::State_Enabled;
+        newopt.palette = progressBarDisabledPalette();
     }
+    else {
+        newopt.state |= QStyle::State_Enabled;
+    }
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    // XXX: To avoid having the progress text on the right of the bar
+    QProxyStyle("fusion").drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
+#else
+    QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
+#endif
 
     painter->restore();
 }
@@ -164,7 +104,7 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
 {
     auto *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
-    switch (static_cast<BitTorrent::DownloadPriority>(index.data().toInt())) {
+    switch (static_cast<BitTorrent::DownloadPriority>(index.data(TorrentContentModel::UnderlyingDataRole).toInt())) {
     case BitTorrent::DownloadPriority::Ignored:
         combobox->setCurrentIndex(0);
         break;
@@ -190,7 +130,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
             return nullptr;
     }
 
-    if (index.data().toInt() == static_cast<int>(BitTorrent::DownloadPriority::Mixed))
+    if (index.data(TorrentContentModel::UnderlyingDataRole).toInt() == static_cast<int>(BitTorrent::DownloadPriority::Mixed))
         return nullptr;
 
     auto *editor = new QComboBox(parent);

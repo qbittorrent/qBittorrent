@@ -180,7 +180,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QVector<QVariant>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
+    , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 {
 #if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
@@ -340,15 +340,18 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
     }
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole)) {
-        if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == static_cast<int>(BitTorrent::DownloadPriority::Ignored))
+        if (item->priority() == BitTorrent::DownloadPriority::Ignored)
             return Qt::Unchecked;
-        if (item->data(TorrentContentModelItem::COL_PRIO).toInt() == static_cast<int>(BitTorrent::DownloadPriority::Mixed))
+        if (item->priority() == BitTorrent::DownloadPriority::Mixed)
             return Qt::PartiallyChecked;
         return Qt::Checked;
     }
 
     if (role == Qt::DisplayRole)
-        return item->data(index.column());
+        return item->displayData(index.column());
+
+    if (role == UnderlyingDataRole)
+        return item->underlyingData(index.column());
 
     return {};
 }
@@ -367,7 +370,7 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
 QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole))
-        return m_rootItem->data(section);
+        return m_rootItem->displayData(section);
 
     return {};
 }

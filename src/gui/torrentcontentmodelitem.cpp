@@ -30,6 +30,9 @@
 
 #include <QVariant>
 
+#include "base/unicodestrings.h"
+#include "base/utils/string.h"
+#include "base/utils/misc.h"
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
@@ -99,7 +102,51 @@ int TorrentContentModelItem::columnCount() const
     return NB_COL;
 }
 
-QVariant TorrentContentModelItem::data(int column) const
+QString TorrentContentModelItem::displayData(int column) const
+{
+    if (isRootItem())
+        return m_itemData.value(column);
+
+    switch (column) {
+    case COL_NAME:
+        return m_name;
+    case COL_PRIO: {
+            switch (m_priority) {
+            case BitTorrent::DownloadPriority::Mixed:
+                return tr("Mixed", "Mixed (priorities");
+            case BitTorrent::DownloadPriority::Ignored:
+                return tr("Not downloaded");
+            case BitTorrent::DownloadPriority::High:
+                return tr("High", "High (priority)");
+            case BitTorrent::DownloadPriority::Maximum:
+                return tr("Maximum", "Maximum (priority)");
+            default:
+                return tr("Normal", "Normal (priority)");
+            }
+        }
+    case COL_PROGRESS:
+        return (m_progress == 100) ? QString("100%") : (Utils::String::fromDouble(m_progress, 1) + '%');
+    case COL_SIZE:
+        return Utils::Misc::friendlyUnit(m_size);
+    case COL_REMAINING:
+        return Utils::Misc::friendlyUnit(remaining());
+    case COL_AVAILABILITY: {
+            const int avail = availability();
+            if (avail < 0)
+                return tr("N/A");
+
+            const QString value = (avail >= 1.0)
+                                  ? QLatin1String("100")
+                                  : Utils::String::fromDouble(avail * 100, 1);
+            return QString (value + C_THIN_SPACE + QLatin1Char('%'));
+        }
+    default:
+        Q_ASSERT(false);
+        return {};
+    }
+}
+
+QVariant TorrentContentModelItem::underlyingData(int column) const
 {
     if (isRootItem())
         return m_itemData.value(column);
