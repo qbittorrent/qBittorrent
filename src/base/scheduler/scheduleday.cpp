@@ -3,7 +3,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/rss/rss_autodownloader.h"
@@ -16,7 +15,7 @@ ScheduleDay::ScheduleDay(int dayOfWeek)
 {
 }
 
-QVector<TimeRange> ScheduleDay::timeRanges() const
+QList<TimeRange> ScheduleDay::timeRanges() const
 {
     return m_timeRanges;
 }
@@ -36,6 +35,23 @@ bool ScheduleDay::addTimeRange(const TimeRange &timeRange)
         return false;
 
     m_timeRanges.append(timeRange);
+    for (int i = 0; i < m_timeRanges.count(); i++) {
+        if (m_timeRanges[i].startTime > timeRange.startTime) {
+            m_timeRanges.move(m_timeRanges.count()-1, i);
+            break;
+        }
+    }
+
+    emit dayUpdated(m_dayOfWeek);
+    return true;
+}
+
+bool ScheduleDay::removeTimeRangeAt(const int index)
+{
+    if (index >= m_timeRanges.count())
+        return false;
+
+    m_timeRanges.removeAt(index);
     emit dayUpdated(m_dayOfWeek);
     return true;
 }
@@ -59,11 +75,11 @@ ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWe
 {
     ScheduleDay *scheduleDay = new ScheduleDay(dayOfWeek);
 
-    for (QJsonValue day : jsonArray) {
-        if (!day.isObject())
+    for (QJsonValue jObject : jsonArray) {
+        if (!jObject.isObject())
             throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
 
-        TimeRange timeRange = TimeRange::fromJsonObject(day.toObject());
+        TimeRange timeRange = TimeRange::fromJsonObject(jObject.toObject());
         scheduleDay->addTimeRange(timeRange);
     }
 

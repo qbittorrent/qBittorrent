@@ -125,14 +125,16 @@ private slots:
     void webUIHttpsCertChanged(const QString &path, ShowError showError);
     void webUIHttpsKeyChanged(const QString &path, ShowError showError);
     void on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay);
+    void on_scheduleDayRemove_clicked(int day);
 
 private:
+    static void populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay);
+
     // Methods
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
     void initializeScheduler();
-    static void populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay);
 
     // General options
     QString getLocale() const;

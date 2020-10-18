@@ -1,7 +1,7 @@
 #pragma once
 
+#include <QList>
 #include <QObject>
-#include <QVector>
 
 #include "timerange.h"
 
@@ -14,10 +14,11 @@ namespace Scheduler
     public:
         ScheduleDay(int dayOfWeek);
 
-        QVector<TimeRange> timeRanges() const;
+        QList<TimeRange> timeRanges() const;
 
         bool conflicts(const TimeRange &timeRange);
         bool addTimeRange(const TimeRange &timeRange);
+        bool removeTimeRangeAt(const int index);
         void clearTimeRanges();
 
         QJsonArray toJsonArray() const;
@@ -28,6 +29,6 @@ namespace Scheduler
 
     private:
         int m_dayOfWeek;
-        QVector<TimeRange> m_timeRanges;
+        QList<TimeRange> m_timeRanges;
     };
 }

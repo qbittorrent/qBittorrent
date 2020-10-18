@@ -62,6 +62,7 @@
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
 #include "base/scheduler/schedule.h"
+#include "base/scheduler/scheduleday.h"
 #include "base/scheduler/timerange.h"
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
@@ -597,7 +598,9 @@ void OptionsDialog::initializeScheduler()
     for (int i = 0; i < 7; i++) {
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
+
         auto *scheduleTable = new QTableView(tabContent);
+        auto *hLayout = new QHBoxLayout(tabContent);
 
         auto *scheduleModel = new QStandardItemModel(0, ScheduleColumn::COL_COUNT, this);
         scheduleModel->setHorizontalHeaderLabels({
@@ -610,28 +613,39 @@ void OptionsDialog::initializeScheduler()
         scheduleTable->setModel(scheduleModel);
         m_scheduleDayTables.insert(scheduleTable, scheduleModel);
 
-        scheduleTable->setSelectionMode(QAbstractItemView::SingleSelection);
+        scheduleTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
         auto *scheduleDay = schedule->scheduleDays()[i];
         populateScheduleDayTable(scheduleModel, scheduleDay);
-
         scheduleTable->resizeColumnsToContents();
 
         auto *addButton = new QPushButton(tr("Add entry"), tabContent);
-        connect(addButton, &QPushButton::clicked, this, [this, scheduleDay]() {
-            OptionsDialog::on_scheduleDayAdd_clicked(scheduleDay);
-        });
+        connect(addButton, &QPushButton::clicked, this,
+            [this, scheduleDay]() { OptionsDialog::on_scheduleDayAdd_clicked(scheduleDay); });
 
+        auto *removeButton = new QPushButton(tr("Remove entry"), tabContent);
+        removeButton->setEnabled(false);
+        connect(removeButton, &QPushButton::clicked, this,
+            [this, i]() { OptionsDialog::on_scheduleDayRemove_clicked(i); });
+
+        auto *selectionModel = scheduleTable->selectionModel();
+        connect(selectionModel, &QItemSelectionModel::selectionChanged, this,
+            [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
+
+        hLayout->addWidget(addButton);
+        hLayout->addWidget(removeButton);
         vLayout->addWidget(scheduleTable);
-        vLayout->addWidget(addButton);
+        vLayout->addLayout(hLayout);
+
         tabContent->setLayout(vLayout);
         m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[i]);
     }
 
-    const auto models = asConst(m_scheduleDayTables);
-    connect(schedule, &Scheduler::Schedule::updated, this, [models](int day){
+    const auto& models = asConst(m_scheduleDayTables);
+    connect(schedule, &Scheduler::Schedule::updated, this, [models](int day)
+    {
         auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[day];
         OptionsDialog::populateScheduleDayTable(models.values()[day], scheduleDay);
         models.keys()[day]->resizeColumnsToContents();
@@ -641,7 +655,8 @@ void OptionsDialog::initializeScheduler()
 void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay)
 {
     auto *dialog = new TimeRangeDialog(this, scheduleDay);
-    connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]() {
+    connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]()
+    {
         scheduleDay->addTimeRange({
             dialog->timeFrom(),
             dialog->timeTo(),
@@ -652,6 +667,24 @@ void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDa
 
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
+}
+
+void OptionsDialog::on_scheduleDayRemove_clicked(const int day)
+{
+    auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[day];
+    QTableView *table = m_scheduleDayTables.keys()[day];
+
+    auto *selectionModel = table->selectionModel();
+    auto selection = selectionModel->selectedRows();
+    if (selection.count() > 0) {
+        std::sort(selection.begin(), selection.end(),
+            [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
+
+        for (const auto &i : selection)
+            scheduleDay->removeTimeRangeAt(i.row());
+
+        selectionModel->clearSelection();
+    }
 }
 
 void OptionsDialog::populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay)
