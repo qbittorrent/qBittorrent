@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>337</width>
-    <height>156</height>
+    <height>181</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,21 +17,21 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="1">
-      <widget class="QLabel" name="label3">
+      <widget class="QLabel" name="label1">
        <property name="text">
         <string>Download</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
-      <widget class="QLabel" name="label4">
+      <widget class="QLabel" name="label2">
        <property name="text">
         <string>Upload</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label1">
+      <widget class="QLabel" name="label3">
        <property name="text">
         <string>Rate limit</string>
        </property>
@@ -70,7 +70,7 @@
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label2">
+      <widget class="QLabel" name="label4">
        <property name="text">
         <string>In between</string>
        </property>
@@ -116,6 +116,19 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label5">
+       <property name="text">
+        <string>Preview: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLabel" name="labelTimeFrom"/>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLabel" name="labelTimeTo"/>
      </item>
     </layout>
    </item>

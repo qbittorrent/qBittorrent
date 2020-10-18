@@ -33,7 +33,7 @@ TimeRange TimeRange::fromJsonObject(QJsonObject jsonObject)
 
     return {
         QTime(start / 100, start % 100),
-        QTime(end / 100, end % 100, 59),
+        QTime(end / 100, end % 100, 59, 999),
         jsonObject["dl"].toInt(),
         jsonObject["ul"].toInt()
     };

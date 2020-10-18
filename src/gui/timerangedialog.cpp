@@ -18,6 +18,13 @@ TimeRangeDialog::TimeRangeDialog(QWidget *parent, int initialRatioValue, int max
     m_ui->uploadSpinBox->setMaximum(maxRatioValue);
     m_ui->uploadSpinBox->setValue(initialRatioValue);
 
+    auto asd = m_ui->timeEditFrom->timeSpec();
+    m_ui->timeEditTo->setTime(QTime(23, 59, 59, 999));
+
+    emit timesUpdated();
+    connect(m_ui->timeEditFrom, &QTimeEdit::timeChanged, this, &TimeRangeDialog::timesUpdated);
+    connect(m_ui->timeEditTo, &QTimeEdit::timeChanged, this, &TimeRangeDialog::timesUpdated);
+
     Utils::Gui::resize(this);
 }
 
@@ -28,6 +35,12 @@ void TimeRangeDialog::accept()
                               tr("Please make sure the time range is valid"));
     else
         QDialog::accept();
+}
+
+void TimeRangeDialog::timesUpdated()
+{
+    m_ui->labelTimeFrom->setText(timeFrom().toString("hh:mm:ss.zzz"));
+    m_ui->labelTimeTo->setText(timeTo().toString("hh:mm:ss.zzz"));
 }
 
 int TimeRangeDialog::downloadRatio() const
