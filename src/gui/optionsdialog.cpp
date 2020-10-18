@@ -592,6 +592,8 @@ void OptionsDialog::initializeLanguageCombo()
 
 void OptionsDialog::initializeScheduler()
 {
+    auto *schedule = Scheduler::Schedule::instance();
+
     for (int i = 0; i < 7; i++) {
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
@@ -606,31 +608,20 @@ void OptionsDialog::initializeScheduler()
         });
 
         scheduleTable->setModel(scheduleModel);
+        m_scheduleDayTables.insert(scheduleTable, scheduleModel);
 
         scheduleTable->setSelectionMode(QAbstractItemView::SingleSelection);
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[i];
+        auto *scheduleDay = schedule->scheduleDays()[i];
         populateScheduleDayTable(scheduleModel, scheduleDay);
 
         scheduleTable->resizeColumnsToContents();
 
         auto *addButton = new QPushButton(tr("Add entry"), tabContent);
-        connect(addButton, &QPushButton::clicked, tabContent, [addButton, i]() {
-            auto *dialog = new TimeRangeDialog(addButton);
-            connect(dialog, &QDialog::accepted, dialog, [dialog, i]() {
-                auto *schedule = Scheduler::Schedule::instance();
-                schedule->scheduleDays()[i]->addTimeRange({
-                    dialog->timeFrom(),
-                    dialog->timeTo(),
-                    dialog->downloadRatio(),
-                    dialog->uploadRatio()
-                });
-            });
-
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
-            dialog->open();
+        connect(addButton, &QPushButton::clicked, this, [this, scheduleDay]() {
+            OptionsDialog::on_scheduleDayAdd_clicked(scheduleDay);
         });
 
         vLayout->addWidget(scheduleTable);
@@ -638,6 +629,29 @@ void OptionsDialog::initializeScheduler()
         tabContent->setLayout(vLayout);
         m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[i]);
     }
+
+    const auto models = asConst(m_scheduleDayTables);
+    connect(schedule, &Scheduler::Schedule::updated, this, [models](int day){
+        auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[day];
+        OptionsDialog::populateScheduleDayTable(models.values()[day], scheduleDay);
+        models.keys()[day]->resizeColumnsToContents();
+    });
+}
+
+void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay)
+{
+    auto *dialog = new TimeRangeDialog(this);
+    connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]() {
+        scheduleDay->addTimeRange({
+            dialog->timeFrom(),
+            dialog->timeTo(),
+            dialog->downloadRatio(),
+            dialog->uploadRatio()
+        });
+    });
+
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->open();
 }
 
 void OptionsDialog::populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay)

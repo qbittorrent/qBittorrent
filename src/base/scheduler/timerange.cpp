@@ -4,25 +4,23 @@ using namespace Scheduler;
 
 bool TimeRange::overlaps(const TimeRange &other) const
 {
-    bool startsInBetween = (other.startTime > startTime) && (other.startTime < endTime);
-    bool endsInBetween = (other.endTime > startTime) && (other.endTime < endTime);
-    return (startsInBetween || endsInBetween);
+    bool startTimeOverlaps = (other.startTime >= startTime) && (other.startTime <= endTime);
+    bool endTimeOverlaps = (other.endTime >= startTime) && (other.endTime <= endTime);
+    bool encompasses = (other.startTime <= startTime) && (other.endTime >= endTime);
+    return (startTimeOverlaps || endTimeOverlaps || encompasses);
 }
 
 bool TimeRange::isValid() const
 {
-    bool isEndMidnight = (endTime.hour() == 0 && endTime.minute() == 0);
-    return (startTime.isValid() && endTime.isValid())
-           && (isEndMidnight || startTime < endTime);
+    return startTime.isValid() && endTime.isValid() && (startTime < endTime);
 }
 
 QJsonObject TimeRange::toJsonObject() const
 {
-    // Hour times 100 for readability (2100 = 9pm, 100 = 1am, and so on)
-    int endVal = endTime.hour() * 100 + endTime.minute();
+    // Hour*100 for readability (2100 = 9pm, 100 = 1am, and so on)
     return {
         {"start", startTime.hour() * 100 + startTime.minute()},
-        {"end", (endVal == 0) ? 2400 : endVal},
+        {"end", endTime.hour() * 100 + endTime.minute()},
         {"dl", downloadRate},
         {"ul", uploadRate}
     };
@@ -35,7 +33,7 @@ TimeRange TimeRange::fromJsonObject(QJsonObject jsonObject)
 
     return {
         QTime(start / 100, start % 100),
-        QTime(end / 100, end % 100),
+        QTime(end / 100, end % 100, 59),
         jsonObject["dl"].toInt(),
         jsonObject["ul"].toInt()
     };

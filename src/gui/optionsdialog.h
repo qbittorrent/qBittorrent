@@ -31,7 +31,9 @@
 
 #include "base/scheduler/scheduleday.h"
 #include <QDialog>
+#include <QHash>
 #include <QStandardItemModel>
+#include <QTableView>
 
 class QAbstractButton;
 class QCloseEvent;
@@ -75,13 +77,6 @@ class OptionsDialog final : public QDialog
         TAB_ADVANCED
     };
 
-    enum class ShowError
-    {
-        NotShow,
-        Show
-    };
-
-public:
     enum ScheduleColumn
     {
         FROM,
@@ -91,6 +86,13 @@ public:
         COL_COUNT
     };
 
+    enum class ShowError
+    {
+        NotShow,
+        Show
+    };
+
+public:
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog() override;
@@ -122,6 +124,7 @@ private slots:
     void setLocale(const QString &localeStr);
     void webUIHttpsCertChanged(const QString &path, ShowError showError);
     void webUIHttpsKeyChanged(const QString &path, ShowError showError);
+    void on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay);
 
 private:
     // Methods
@@ -196,6 +199,7 @@ private:
     AdvancedSettings *m_advancedSettings;
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
+    QMap<QTableView*, QStandardItemModel*> m_scheduleDayTables;
 };
 
 #endif // OPTIONSDIALOG_H

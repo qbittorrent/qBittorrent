@@ -30,7 +30,10 @@ namespace Scheduler
         QVector<ScheduleDay*> scheduleDays() const;
 
     public slots:
-        void saveSchedule();
+        void updateSchedule(int day);
+
+    signals:
+        void updated(int day);
 
     private:
         static QPointer<Schedule> m_instance;
@@ -40,5 +43,6 @@ namespace Scheduler
         AsyncFileStorage *m_fileStorage;
 
         bool loadSchedule();
+        void saveSchedule();
     };
 }

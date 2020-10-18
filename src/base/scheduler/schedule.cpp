@@ -31,7 +31,7 @@ Schedule::Schedule()
 
     m_fileStorage = new AsyncFileStorage(
         Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
-    
+
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
     connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString) {
@@ -45,7 +45,7 @@ Schedule::Schedule()
     loadSchedule();
 
     for (int i = 0; i < 7; i++)
-        connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, &Schedule::saveSchedule);
+        connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, &Schedule::updateSchedule);
 
     if (!m_fileStorage)
         throw std::runtime_error("Directory for scheduler data is unavailable.");
@@ -69,12 +69,18 @@ QVector<ScheduleDay*> Schedule::scheduleDays() const
     return m_scheduleDays;
 }
 
+void Schedule::updateSchedule(int day)
+{
+    saveSchedule();
+    emit updated(day);
+}
+
 void Schedule::saveSchedule()
 {
     QJsonObject jsonObj;
     for (int i = 0; i < 7; i++)
         jsonObj.insert(DAYS[i], m_scheduleDays[i]->toJsonArray());
-    
+
     m_fileStorage->store(ScheduleFileName, QJsonDocument(jsonObj).toJson());
 }
 
@@ -95,13 +101,13 @@ bool Schedule::loadSchedule()
         const QJsonObject jsonObj = jsonDoc.object();
         for (int i = 0; i < 7; i++) {
             QJsonArray arr = jsonObj[DAYS[i]].toArray();
-            m_scheduleDays[i] = ScheduleDay::fromJsonArray(arr);
+            m_scheduleDays[i] = ScheduleDay::fromJsonArray(arr, i);
         }
         return true;
     }
-    
+
     LogMsg(tr("Couldn't read schedule from %1. Error: %2")
             .arg(file.fileName(), file.errorString()), Log::CRITICAL);
-    
+
     return false;
 }

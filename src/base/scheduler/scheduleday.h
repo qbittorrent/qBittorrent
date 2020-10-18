@@ -12,20 +12,22 @@ namespace Scheduler
         Q_OBJECT
 
     public:
-        ScheduleDay();
+        ScheduleDay(int dayOfWeek);
 
         QVector<TimeRange> timeRanges() const;
 
-        void addTimeRange(const TimeRange &timeRange);
+        bool conflicts(const TimeRange &timeRange);
+        bool addTimeRange(const TimeRange &timeRange);
         void clearTimeRanges();
 
         QJsonArray toJsonArray() const;
-        static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray);
+        static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek);
 
     signals:
-        void dayUpdated();
+        void dayUpdated(int dayOfWeek);
 
     private:
+        int m_dayOfWeek;
         QVector<TimeRange> m_timeRanges;
     };
 }

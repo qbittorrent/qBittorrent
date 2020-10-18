@@ -11,23 +11,39 @@
 
 using namespace Scheduler;
 
-ScheduleDay::ScheduleDay() = default;
+ScheduleDay::ScheduleDay(int dayOfWeek)
+    : m_dayOfWeek(dayOfWeek)
+{
+}
 
 QVector<TimeRange> ScheduleDay::timeRanges() const
 {
     return m_timeRanges;
 }
 
-void ScheduleDay::addTimeRange(const TimeRange &timeRange)
+bool ScheduleDay::conflicts(const TimeRange &timeRange)
 {
+    for (TimeRange tr : m_timeRanges) {
+        if (tr.overlaps(timeRange))
+            return true;
+    }
+    return false;
+}
+
+bool ScheduleDay::addTimeRange(const TimeRange &timeRange)
+{
+    if (conflicts(timeRange))
+        return false;
+
     m_timeRanges.append(timeRange);
-    emit dayUpdated();
+    emit dayUpdated(m_dayOfWeek);
+    return true;
 }
 
 void ScheduleDay::clearTimeRanges()
 {
     m_timeRanges.clear();
-    emit dayUpdated();
+    emit dayUpdated(m_dayOfWeek);
 }
 
 QJsonArray ScheduleDay::toJsonArray() const
@@ -39,9 +55,9 @@ QJsonArray ScheduleDay::toJsonArray() const
     return jsonArr;
 }
 
-ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray)
+ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek)
 {
-    ScheduleDay *scheduleDay = new ScheduleDay();
+    ScheduleDay *scheduleDay = new ScheduleDay(dayOfWeek);
 
     for (QJsonValue day : jsonArray) {
         if (!day.isObject())
