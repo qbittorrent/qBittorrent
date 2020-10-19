@@ -48,3 +48,5 @@ package-lock.json
 /dist/*
 .idea/*
 cmake-*
+
+/src/qbittorrent_plugin_import.cpp
