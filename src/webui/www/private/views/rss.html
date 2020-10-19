@@ -72,6 +72,11 @@
         width: 100%;
     }
 
+    #rssDescription {
+        width: 100%;
+        border: none;
+    }
+
 </style>
 
 <div id="rssView">
@@ -423,11 +428,15 @@
 
                     return torrentDate;
                 })());
-                // Strip script before interpreting html
-                let torrentDescription = document.createRange().createContextualFragment(
-                    '<div id="rssTorrentDetailsDescription">' + article.description.stripScripts() + '</div>');
-
+                // Place in iframe with sandbox atribute to prevent js execution
+                let torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $('rssDetailsView').append(torrentDescription);
+                document.getElementById('rssDescription').srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
+                
+                //calculate height to fill screen
+                document.getElementById('rssDescription').style.height =
+                    "calc(100% - " + document.getElementById('rssTorrentDetailsName').offsetHeight + "px - " + 
+                    document.getElementById('rssTorrentDetailsDate').offsetHeight + "px - 5px)";
             }
         };
 
