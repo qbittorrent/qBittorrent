@@ -7,6 +7,7 @@ src/debug
 CMakeLists.txt.user*
 qbittorrent.pro.user*
 conf.pri
+conf.pri.*
 Makefile*
 *.pyc
 *.log
@@ -43,3 +44,7 @@ build/
 # Web UI tools
 node_modules
 package-lock.json
+
+/dist/*
+.idea/*
+cmake-*
