@@ -11,7 +11,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="stalledUP.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    width="32"
    height="32">
   <metadata
@@ -38,19 +38,20 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="10.727273"
-     inkscape:cx="-23.771186"
+     inkscape:cx="5.5320871"
      inkscape:cy="11"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      inkscape:connector-curvature="0"
      d="M 14.672297,15.982037 4.0506032,25.53575 c -0.7341375,0.660327 -0.7341375,1.728087 0,2.381391 l 1.7650977,1.587614 c 0.7341375,0.660326 1.9212717,0.660326 2.647597,0 l 7.5288911,-6.771893 7.528912,6.771893 c 0.734138,0.660326 1.92127,0.660326 2.647596,0 l 1.780702,-1.580573 c 0.734135,-0.660345 0.734135,-1.728105 0,-2.381409 L 17.327704,15.989041 c -0.734138,-0.667348 -1.92125,-0.667348 -2.655407,-0.0074 z M 17.327704,2.4944177 27.949399,12.048148 c 0.734135,0.660326 0.734135,1.728086 0,2.38139 l -1.765078,1.587612 c -0.734157,0.660327 -1.921272,0.660327 -2.647619,0 L 16,9.2522651 8.47111,16.024173 c -0.7341374,0.660327 -1.9212716,0.660327 -2.6476183,0 L 4.0506032,14.43658 c -0.7341375,-0.660346 -0.7341375,-1.728106 0,-2.38141 L 14.672297,2.5014577 c 0.734157,-0.6673682 1.921269,-0.6673682 2.655407,-0.00742 z"
      id="path2-3"
-     style="fill:#f25022;fill-opacity:1;stroke-width:0.07407028" />
+     style="fill:#737373;fill-opacity:1;stroke-width:0.07407028" />
 </svg>
