@@ -16,16 +16,6 @@ env:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
 
-matrix:
-  allow_failures:
-    - env: libt_branch=RC_1_2 gui=true build_system=cmake
-    - env: libt_branch=RC_1_2 gui=false build_system=cmake
-
-branches:
-  except:
-    - search_encoding_windows
-    - v2_9_x
-
 notifications:
   email:
     on_success: change
