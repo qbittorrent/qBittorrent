@@ -13,7 +13,7 @@
    sodipodi:docname="completed.svg"
    width="32"
    height="32"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="10.727273"
@@ -47,10 +47,11 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      d="m 26.510256,4.4999998 c -0.516225,0 -0.957263,0.18055 -1.318369,0.5422058 L 12.495362,17.762183 6.808112,12.050651 C 6.4467808,11.689167 6.0057245,11.508445 5.4897433,11.508445 c -0.516225,0 -0.9533625,0.180742 -1.3146937,0.542206 L 1.5419871,14.684783 C 1.1806558,15.046248 0.9999996,15.483573 0.9999996,16 c 0,0.516197 0.1805625,0.953983 0.5419875,1.315217 l 7.0056186,7.012105 2.6330633,2.630472 C 11.541756,27.319277 11.979137,27.5 12.495362,27.5 c 0.515981,0 0.957019,-0.180933 1.31835,-0.542206 L 16.446775,24.327322 30.458012,10.306771 C 30.8191,9.9453073 31,9.5079815 31,8.9915548 31.000243,8.4753581 30.819062,8.0341415 30.458012,7.6726773 L 27.82495,5.0422056 C 27.463862,4.6807223 27.026237,4.4999998 26.510256,4.4999998 Z"
      id="path2"
      inkscape:connector-curvature="0"
-     style="fill:#4285f4;fill-opacity:1;stroke-width:1.89571881" />
+     style="fill:#0fbb58;fill-opacity:1;stroke-width:1.89571881" />
 </svg>

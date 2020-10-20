@@ -12,7 +12,7 @@
    version="1.1"
    id="svg11"
    sodipodi:docname="task-complete.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    style="enable-background:new">
   <metadata
      id="metadata17">
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview13"
      showgrid="false"
      inkscape:zoom="7.2407734"
@@ -47,7 +47,8 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg11" />
+     inkscape:current-layer="svg11"
+     inkscape:document-rotation="0" />
   <filter
      id="a"
      style="color-interpolation-filters:sRGB">
@@ -59,13 +60,13 @@
   <g
      id="g830"
      transform="matrix(2.1658858,0,0,2.2247078,-1.3799652,-2.1235712)"
-     style="fill:#4285f4;fill-opacity:1">
+     style="fill:#0fbb58;fill-opacity:1">
     <g
        id="g826"
-       style="fill:#4285f4;fill-opacity:1">
+       style="fill:#0fbb58;fill-opacity:1">
       <path
          inkscape:connector-curvature="0"
-         style="fill:#4285f4;fill-opacity:1;stroke-width:1.06297433"
+         style="fill:#0fbb58;fill-opacity:1;stroke-width:1.06297433"
          id="path5"
          d="M 7.9115011,1.8547628 C 6.6670451,1.8786761 5.4182798,2.2558976 4.3197348,3.0040583 1.3902779,4.9992231 0.68220434,8.9062759 2.7334264,11.75567 4.78467,14.605074 8.799658,15.293797 11.729125,13.298622 13.835786,11.863835 14.792847,9.4456988 14.403076,7.1320782 14.312259,6.5915017 14.139437,6.0883893 13.915259,5.6014393 L 8.0397765,12.131748 7.4038074,12.862813 6.6811255,12.187976 3.9059935,9.4886902 c -0.3481762,-0.3386141 -0.3481439,-0.9547692 0,-1.2934044 0.3481546,-0.3386351 0.9816244,-0.3386561 1.3297575,0 L 7.3170946,10.219755 12.889034,4.0180549 C 11.892941,2.9011892 10.567892,2.1912269 9.1491054,1.9478883 8.7411061,1.8779314 8.3263197,1.8467812 7.9115011,1.8547523 Z" />
     </g>
