@@ -42,7 +42,7 @@ namespace
 {
     bool isBitTorrentInfoHash(const QString &string)
     {
-        // There are 2 represenations for BitTorrent info hash:
+        // There are 2 representations for BitTorrent info hash:
         // 1. 40 chars hex-encoded string
         //      == 20 (SHA-1 length in bytes) * 2 (each byte maps to 2 hex characters)
         // 2. 32 chars Base32 encoded string
