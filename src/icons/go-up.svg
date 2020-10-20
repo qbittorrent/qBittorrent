@@ -11,7 +11,7 @@
    version="1.1"
    id="svg6"
    sodipodi:docname="go-up.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    width="32"
    height="32">
   <metadata
@@ -36,7 +36,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="10.727273"
@@ -45,7 +45,8 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg6" />
+     inkscape:current-layer="svg6"
+     inkscape:document-rotation="0" />
   <defs
      id="defs3051">
     <style
@@ -57,7 +58,7 @@
      </style>
   </defs>
   <path
-     style="color:#f2f2f2;fill:#4285f4;fill-opacity:1;stroke:none;stroke-width:1.87082899"
+     style="color:#f2f2f2;fill:#f9d54c;fill-opacity:1;stroke:none;stroke-width:1.87082899"
      d="m 30,22.802249 c 1.22e-4,0.82226 -0.258842,1.644361 -0.77707,2.265801 -1.036192,1.24292 -2.741462,1.24248 -3.778232,-6e-4 h -1.23e-4 L 15.998915,13.736985 6.5561251,25.06401 C 5.52002,26.30695 3.8148375,26.30665 2.778225,25.06355 c -3.5e-5,-4e-5 -5.25e-5,-6e-5 -1.05e-4,-1.4e-4 -5.25e-5,-4e-5 -7e-5,-6e-5 -1.225e-4,-1.2e-4 -1.03719,-1.243181 -1.037295,-3.289561 -5.25e-4,-4.532562 L 14.10888,6.9381206 c 0.518018,-0.6212603 1.206345,-0.9382584 1.888933,-0.9381204 0.682062,1.42e-4 1.37046,0.3170801 1.88874,0.9384604 h 1.22e-4 L 29.2223,20.535748 c 0.518368,0.6218 0.777595,1.444201 0.7777,2.266501 z"
      class="ColorScheme-Text"
      id="path4"

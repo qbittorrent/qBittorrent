@@ -13,7 +13,7 @@
    sodipodi:docname="ratio.svg"
    width="32"
    height="32"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="10.727273"
@@ -47,10 +47,11 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      d="m 16,2.0000002 c -7.7559998,0 -13.9999998,6.244 -13.9999998,13.9999998 0,7.756 6.244,14 13.9999998,14 7.756,0 14,-6.244 14,-14 C 30,8.2440002 23.756,2.0000002 16,2.0000002 Z m -5.46875,5.25 A 3.28125,3.28125 0 0 1 13.8125,10.53125 3.28125,3.28125 0 0 1 10.53125,13.8125 3.28125,3.28125 0 0 1 7.2500001,10.53125 3.28125,3.28125 0 0 1 10.53125,7.2500002 Z m 12.677247,0 L 24.75,8.7915035 8.7915042,24.75 7.2500001,23.208497 Z M 21.46875,18.1875 A 3.28125,3.28125 0 0 1 24.75,21.46875 3.28125,3.28125 0 0 1 21.46875,24.75 3.28125,3.28125 0 0 1 18.1875,21.46875 3.28125,3.28125 0 0 1 21.46875,18.1875 Z"
      id="path2"
      inkscape:connector-curvature="0"
-     style="fill:#f25022;stroke-width:1.75;fill-opacity:1" />
+     style="fill:#b767ff;stroke-width:1.75;fill-opacity:1" />
 </svg>

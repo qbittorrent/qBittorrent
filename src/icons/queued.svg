@@ -13,7 +13,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="queued.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="9.8333333"
@@ -47,10 +47,11 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      d="M 22.300267,20.365728 16.441453,15.927877 17.265698,8.6490682 15.259082,8.4463136 14.33652,16.967844 21.032311,22.039678 Z M 16,1.9999998 A 14,14 0 0 0 1.9999998,16.000001 C 1.9999998,23.7 8.2579984,30 16,30 A 14,14 0 0 0 30,16.000001 14,14 0 0 0 16,1.9999998 Z m 0,2.8000001 A 11.2,11.2 0 0 1 27.2,16.000001 11.2,11.2 0 0 1 16,27.2 11.2,11.2 0 0 1 4.7999999,16.000001 11.2,11.2 0 0 1 16,4.7999999 Z"
      id="path2"
-     style="fill:#f25022;fill-opacity:1;stroke-width:1.39997196"
+     style="fill:#f9d54c;fill-opacity:1;stroke-width:1.39997196"
      inkscape:connector-curvature="0" />
 </svg>
