@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default t
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
 project(qBittorrent
-    VERSION 4.3.0.0
+    VERSION 4.4.0.0
     DESCRIPTION "The qBittorrent BitTorrent client"
     HOMEPAGE_URL "https://www.qbittorrent.org/"
     LANGUAGES CXX
