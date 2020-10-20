@@ -26,7 +26,7 @@ Here is the following folowing color RGBA used for icon uniformity.
 |     Green(Light) |     6cc24aff     |
 |     Grey         |     737373ff     |
 |     Orange       |     f25022ff     |
-
+|     Purple       |     b767ffff     |
 
 ## Icon Optimization
 
