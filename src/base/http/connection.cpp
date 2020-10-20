@@ -66,7 +66,7 @@ void Connection::read()
         case RequestParser::ParseStatus::Incomplete: {
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
                 if (m_receivedData.size() > bufferLimit) {
-                    Logger::instance()->addMessage(tr("Http request size exceeds limiation, closing socket. Limit: %1, IP: %2")
+                    Logger::instance()->addMessage(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                     Response resp(413, "Payload Too Large");
