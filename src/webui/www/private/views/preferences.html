@@ -356,11 +356,11 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();" />
-            <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label>QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <div class="formRow">
-            <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="ipfilter_text_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();" />
+            <label for="ipfilter_text_checkbox">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="ipfilter_text" />
         </div>
         <div class="formRow">
@@ -1423,10 +1423,8 @@
         };
 
         const updateFilterSettings = function() {
-            const isIPFilterEnabled = $('ipfilter_enabled_checkbox').getProperty('checked');
+            const isIPFilterEnabled = $('ipfilter_text_checkbox').getProperty('checked');
             $('ipfilter_text').setProperty('disabled', !isIPFilterEnabled);
-            $('ipfilter_trackers_checkbox').setProperty('disabled', !isIPFilterEnabled);
-            $('banned_IPs_textarea').setProperty('disabled', !isIPFilterEnabled);
         };
 
         // Speed tab
@@ -1736,7 +1734,7 @@
                         $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
 
                         // IP Filtering
-                        $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
+                        $('ipfilter_text_checkbox').setProperty('checked', pref.ip_filter_enabled);
                         $('ipfilter_text').setProperty('value', pref.ip_filter_path);
                         $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
                         $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
@@ -2050,7 +2048,7 @@
             settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
 
             // IP Filtering
-            settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
+            settings.set('ip_filter_enabled', $('ipfilter_text_checkbox').getProperty('checked'));
             settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
             settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
             settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
