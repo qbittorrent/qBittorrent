@@ -38,11 +38,14 @@
 
 #include <QDebug>
 #include <QEvent>
+#include <QLabel>
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QObject>
+#include <QPushButton>
 #include <QRegularExpression>
 #include <QShortcut>
+#include <QTabBar>
 #include <QTextStream>
 #include <QVector>
 
@@ -148,18 +151,34 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 
 bool SearchWidget::eventFilter(QObject *object, QEvent *event)
 {
-    if (object == m_ui->tabWidget->tabBar()) {
-        // Close tabs when middle-clicked
-        if (event->type() != QEvent::MouseButtonRelease)
-            return false;
+    if (event->type() == QEvent::MouseButtonRelease) {
+        auto *tabBar = m_ui->tabWidget->tabBar();
+        const auto *mouseEvent = static_cast<QMouseEvent *>(event);
+        auto clickPosition = mouseEvent->pos();
+        bool hasSelectedText = false;
 
-        const auto mouseEvent = static_cast<QMouseEvent *>(event);
-        const int tabIndex = m_ui->tabWidget->tabBar()->tabAt(mouseEvent->pos());
-        if ((mouseEvent->button() == Qt::MiddleButton) && (tabIndex >= 0)) {
-            closeTab(tabIndex);
+        // Check if a label has been click, rather than the tab bar itself. If a label has been clicked, then adjust
+        // the coordinates of the click to be relative to the tab bar, and set the event object to the tab bar. This
+        // makes it as if the tab bar was clicked, rather than the label.
+        for (int i = 0; i < tabBar->count(); ++i) {
+            auto *tabLabel = static_cast<QLabel *>(tabBar->tabButton(i, QTabBar::RightSide)->layout()->itemAt(0)->widget());
+            if (object == tabLabel) {
+                clickPosition = tabLabel->mapTo(tabBar, clickPosition);
+                object = tabBar;
+                hasSelectedText = tabLabel->hasSelectedText();
+                break;
+            }
+        }
+        const int tabIndex = tabBar->tabAt(clickPosition);
+        if (object == tabBar && tabIndex >= 0) {
+            if (mouseEvent->button() == Qt::MiddleButton) {
+                // Close tabs when middle-clicked
+                closeTab(tabIndex);
+            } else if (!hasSelectedText) {
+                m_ui->tabWidget->setCurrentIndex(tabIndex);
+            }
             return true;
         }
-        return false;
     }
     return QWidget::eventFilter(object, event);
 }
@@ -327,7 +346,35 @@ void SearchWidget::on_searchButton_clicked()
 
     QString tabName = pattern;
     tabName.replace(QRegularExpression("&{1}"), "&&");
-    m_ui->tabWidget->addTab(newTab, tabName);
+    // Create a new tab with no title text. The title will be in a label so that its text can be selected
+    m_ui->tabWidget->addTab(newTab, "");
+    auto *tabLabel = new QLabel(tabName);
+    tabLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
+    tabLabel->installEventFilter(this);
+
+    auto *tabBar = m_ui->tabWidget->tabBar();
+    const int tabIndex = tabBar->count() - 1;
+    tabBar->setAccessibleTabName(tabIndex, tabName);
+
+    auto *tabContentLayout = new QHBoxLayout();
+    tabContentLayout->addWidget(tabLabel);
+    // Get the current [X] button, and put it on the right of the label in the tab
+    tabContentLayout->addWidget(tabBar->tabButton(tabIndex, QTabBar::RightSide));
+    tabContentLayout->setContentsMargins(0, 0, 0, 0);
+    auto *tabContent = new QWidget();
+    tabContent->setLayout(tabContentLayout);
+    tabBar->setTabButton(tabIndex, QTabBar::RightSide, tabContent);
+
+    // When the new tab button is set, the [X] button gets hidden and disconnected, so we unhide and enable it
+    auto *xButton = static_cast<QPushButton *>(tabBar->tabButton(tabIndex, QTabBar::RightSide)->layout()->itemAt(1)->widget());
+    xButton->show();
+    connect(xButton, &QPushButton::clicked, this, [this, tabBar, xButton]() {
+        for (int i = 0; i < tabBar->count(); ++i)
+            if (xButton == tabBar->tabButton(i, QTabBar::RightSide)->layout()->itemAt(1)->widget()) {
+                closeTab(i);
+                break;
+            }
+    });
     m_ui->tabWidget->setCurrentWidget(newTab);
 
     connect(newTab, &SearchJobWidget::statusChanged, this, [this, newTab]() { tabStatusChanged(newTab); });
