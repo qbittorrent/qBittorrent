@@ -1311,7 +1311,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     for (const QString &file : asConst(otherFiles)) {
         createTorrentTriggered(file);
 
-        // currently only hande the first entry
+        // currently only handle the first entry
         // this is a stub that can be expanded later to create many torrents at once
         break;
     }
