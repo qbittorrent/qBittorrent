@@ -1,27 +1,6 @@
 qBittorrent Enhanced Edition
 ------------------------------------------
-# Note
-### To user:
-
-Please do not use this modification bittorrent client for Private Trackers,
-
-unless qBittorrent Enhanced Edition is allowed on the Private Tracker(_Depend on which PT you're using._).
-
-Otherwise, you will get banned.
-
-You should ask a tracker operator to whitelist this client rather than ask a developer to change Client Peer ID or User Agent.
-
-### To tracker operators:
-
-qBittorrent Enhanced is based on qBittorrent, it's aimed at block a leeching clients automatically.
-
-These modifications won't take effect on private torrents.
-
-Also, qBittorrent Enhanced have a different ID announce to trackers.
-
-User agent: `qBittorrent Enhanced/LATEST_RELEASE_VERSION`, example: `qBittorrent Enhanced/4.3.0.10`
-
-PeerID: `-qB430[A-Z]-`, example: `-qB430A-`
+[Important Note for user and tracker operators](NOTE.md)
 ********************************
 # Features:
 1. Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader
