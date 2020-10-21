@@ -9,6 +9,7 @@ HEADERS += \
     $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
+    $$PWD/bittorrent/ltqhash.h \
     $$PWD/bittorrent/ltunderlyingtype.h \
     $$PWD/bittorrent/magneturi.h \
     $$PWD/bittorrent/nativesessionextension.h \

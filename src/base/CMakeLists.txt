@@ -10,6 +10,7 @@ add_library(qbt_base STATIC
     bittorrent/downloadpriority.h
     bittorrent/filterparserthread.h
     bittorrent/infohash.h
+    bittorrent/ltqhash.h
     bittorrent/ltunderlyingtype.h
     bittorrent/magneturi.h
     bittorrent/nativesessionextension.h
