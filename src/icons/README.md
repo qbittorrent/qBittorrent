@@ -21,11 +21,11 @@ Here is the following folowing color RGBA used for icon uniformity.
 |     Color        |     RGBA         |
 |:----------------:|:----------------:|
 |     Blue         |     4285f4ff     |
-|     Red          |     db3236ff     |
+|     Red          |     ff0000ff     |
 |     Green(Deep)  |     0fbb58ff     |
 |     Green(Light) |     6cc24aff     |
 |     Grey         |     737373ff     |
-|     Orange       |     f25022ff     |
+|     Orange       |     ff9642ff     |
 |     Purple       |     b767ffff     |
 |     Yellow       |     f9d54cff     |
 
