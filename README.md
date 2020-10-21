@@ -3,11 +3,19 @@ qBittorrent Enhanced Edition
 # Note
 ### To user:
 
-Please do not use this modification bittorrent client for Private Trackers, you will get banned.
+Please do not use this modification bittorrent client for Private Trackers,
 
-### To tracker operator:
+unless qBittorrent Enhanced Edition is allowed on the Private Tracker(_Depend on which PT you're using._).
+
+Otherwise, you will get banned.
+
+You should ask a tracker operator to whitelist this client rather than ask a developer to change Client Peer ID or User Agent.
+
+### To tracker operators:
 
 qBittorrent Enhanced is based on qBittorrent, it's aimed at block a leeching clients automatically.
+
+These modifications won't take effect on private torrents.
 
 Also, qBittorrent Enhanced have a different ID announce to trackers.
 
@@ -22,11 +30,11 @@ PeerID: `-qB430[A-Z]-`, example: `-qB430A-`
 
 3. Update MessageBox with changelog if NEW version is available
 
-4. _Auto Ban Unknown Peer from China_ Option(Default: OFF)
+4. _Auto Ban Unknown Peer from China_ Option (Default: OFF)
 
-5. Auto Update Public Trackers List(Default: OFF)
+5. Auto Update Public Trackers List (Default: OFF)
 
-6. Auto Ban BitTorrent Media Player Peer Option(Default: OFF)
+6. Auto Ban BitTorrent Media Player Peer Option (Default: OFF)
 ********************************
 ### Description:
 qBittorrent is a bittorrent client programmed in C++ / Qt that uses
