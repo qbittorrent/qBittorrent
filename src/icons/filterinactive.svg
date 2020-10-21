@@ -13,7 +13,7 @@
    sodipodi:docname="filterinactive.svg"
    width="32"
    height="32"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="10.727273"
@@ -47,10 +47,11 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      d="m 3.3112793,2.0000001 c -1.1395186,0 -1.7355676,1.341292 -0.9623082,2.1738137 L 12.634287,15.230864 c 0.296504,0.31974 0.458735,0.73683 0.458735,1.168937 v 12.731843 c 0,0.766285 0.934256,1.157365 1.486576,0.618649 l 3.58365,-4.070773 c 0.479651,-0.570373 0.745013,-0.853866 0.745013,-1.418447 v -7.857854 c 0,-0.432107 0.165116,-0.849162 0.458735,-1.168938 L 29.652313,4.1738138 C 30.422658,3.3441779 29.829558,2.0000001 28.690004,2.0000001 Z"
      id="path2"
      inkscape:connector-curvature="0"
-     style="fill:#ef505f;stroke-width:1.75795388" />
+     style="fill:#ff0000;stroke-width:1.75795388;fill-opacity:1" />
 </svg>

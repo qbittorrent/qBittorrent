@@ -11,7 +11,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="list-remove.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -36,19 +36,20 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="1.0169492"
+     inkscape:cx="-25.084746"
      inkscape:cy="28.857278"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      inkscape:connector-curvature="0"
-     style="fill:#db3236;fill-opacity:1;stroke:none;stroke-width:1.60272217"
+     style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.60272217"
      class="ColorScheme-Text"
      d="m 3.4999998,3.5 4.193705,22.777036 C 7.9290488,27.540194 9.078087,28.5 10.462469,28.5 h 11.07506 c 1.384383,0 2.53342,-0.959806 2.768766,-2.222964 L 28.5,3.5 Z m 3.306834,2.6315797 H 25.193164 L 21.537529,25.86842 h -11.07506 z m 10.5775482,2.3951483 -4.401904,4.183799 4.401904,4.1838 4.401905,-4.1838 z m -5.53753,9.446956 v 5.263159 h 5.53753 v -5.263159 z"
      id="path4" />

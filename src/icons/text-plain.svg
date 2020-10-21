@@ -11,7 +11,7 @@
    version="1.1"
    id="svg12"
    sodipodi:docname="text-plain.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    width="32"
    height="32">
   <metadata
@@ -36,7 +36,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview14"
      showgrid="false"
      inkscape:zoom="5.3636364"
@@ -45,7 +45,8 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg12" />
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0" />
   <defs
      id="defs3051">
     <style
@@ -67,18 +68,18 @@
      </style>
   </defs>
   <g
-     id="g821">
+     id="g839">
     <path
        inkscape:connector-curvature="0"
        id="path4"
        class="ColorScheme-Text"
        d="m 13.2,2 v 1.75 h 14.933333 v 17.5 H 20.666667 V 23 28.25 H 5.7333331 V 10.75 H 3.8666664 V 30 H 5.7333331 20.666667 22.533333 V 29.98285 L 22.547916,30 30,23.013671 V 23 20.539062 2 h -1.866667 z m 0,5.25 V 9 H 24.4 V 7.25 Z M 9.4666665,12.5 v 1.75 H 24.4 V 12.5 Z m 0,5.25 V 19.5 H 24.4 v -1.75 z m 0,5.25 v 1.75 H 16.933333 V 23 Z"
-       style="color:#f2f2f2;fill:#4285f4;fill-opacity:1;stroke:none;stroke-width:1.80739224" />
+       style="color:#f2f2f2;fill:#4285f4;fill-opacity:1;stroke:none;stroke-width:1.80739" />
     <path
        inkscape:connector-curvature="0"
        id="path10"
        class="ColorScheme-Text"
        d="M 1.9999997,2 5.7333331,7.25 9.4666665,2 Z"
-       style="color:#3daee9;fill:#f25022;fill-opacity:1;stroke:none;stroke-width:1.80739224" />
+       style="color:#3daee9;fill:#ff9642;fill-opacity:1;stroke:none;stroke-width:1.80739" />
   </g>
 </svg>

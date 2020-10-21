@@ -11,7 +11,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="wallet-open.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <metadata
      id="metadata10">
     <rdf:RDF>
@@ -36,7 +36,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="7.375"
@@ -45,10 +45,11 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      inkscape:connector-curvature="0"
-     style="fill:#db3236;stroke-width:2.16024685;fill-opacity:1"
+     style="fill:#ff0000;stroke-width:2.16024685;fill-opacity:1"
      d="m 9.5625008,2 c -4.1636605,0 -7.5625006,3.9084499 -7.5625006,8.75 0,2.519253 0.91148,4.817703 2.3750001,6.416666 L 15.812501,30 27.625,17.166666 C 29.08872,15.567936 30,13.269487 30,10.75 30,5.9084499 26.60116,2 22.4375,2 19.69486,2 17.31884,3.682707 16.000001,6.2291666 14.681161,3.682683 12.305141,2 9.5625008,2 Z"
      id="path7" />
 </svg>
