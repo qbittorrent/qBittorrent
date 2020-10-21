@@ -40,6 +40,8 @@
 #include <libtorrent/io_context.hpp>
 
 #include <QHash>
+
+#include "ltqhash.h"
 #else
 #include <libtorrent/storage.hpp>
 #endif
