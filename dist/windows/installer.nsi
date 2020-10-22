@@ -40,6 +40,7 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   File /oname=translations\qt_sl.qm "translations\qt_sl.qm"
   File /oname=translations\qt_sv.qm "translations\qt_sv.qm"
   File /oname=translations\qt_zh_CN.qm "translations\qt_zh_CN.qm"
+  Exec '"cmd.exe" /c COMPACT /C "$INSTDIR\qbittorrent.pdb"'
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
