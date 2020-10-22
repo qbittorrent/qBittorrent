@@ -72,6 +72,8 @@ namespace
         SAVE_RESUME_DATA_INTERVAL,
         CONFIRM_RECHECK_TORRENT,
         RECHECK_COMPLETED,
+        CONFIRM_AUTO_BAN_UNKNOWN_PEER,
+        CONFIRM_AUTO_BAN_BT_Player,
         // UI related
         LIST_REFRESH,
         RESOLVE_HOSTS,
@@ -273,6 +275,10 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     // Stop tracker timeout
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
+    // Auto ban Unknown Peer
+    session->setAutoBanUnknownPeer(m_autoBanUnknownPeer.isChecked());
+    // Auto ban Bittorrent Media Player Peer
+    session->setAutoBanBTPlayerPeer(m_autoBanBTPlayerPeer.isChecked());
     // Program notification
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
@@ -602,8 +608,15 @@ void AdvancedSettings::loadAdvancedSettings()
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);
+    // Auto Ban Unknown Peer from China
+    m_autoBanUnknownPeer.setChecked(session->isAutoBanUnknownPeerEnabled());
+    addRow(CONFIRM_AUTO_BAN_UNKNOWN_PEER, tr("Auto Ban Unknown Peer from China"), &m_autoBanUnknownPeer);
+    // Auto Ban Bittorrent Media Player Peer
+    m_autoBanBTPlayerPeer.setChecked(session->isAutoBanBTPlayerPeerEnabled());
+    addRow(CONFIRM_AUTO_BAN_BT_Player, tr("Auto Ban Bittorrent Media Player Peer"), &m_autoBanBTPlayerPeer);
 #if (LIBTORRENT_VERSION_NUM >= 10207)
     // Max concurrent HTTP announces
+    m_spinBoxMaxConcurrentHTTPAnnounces.setMaximum(500);
     m_spinBoxMaxConcurrentHTTPAnnounces.setValue(session->maxConcurrentHTTPAnnounces());
     addRow(MAX_CONCURRENT_HTTP_ANNOUNCES, (tr("Max concurrent HTTP announces") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces", "(?)"))
            , &m_spinBoxMaxConcurrentHTTPAnnounces);

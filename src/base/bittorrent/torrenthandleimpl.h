@@ -228,6 +228,7 @@ namespace BitTorrent
         void removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
         void clearPeers() override;
+        void enableIPFilter() const override;
 
         QString createMagnetURI() const override;
 

@@ -30,6 +30,7 @@
 #define BITTORRENT_PEERINFO_H
 
 #include <libtorrent/peer_info.hpp>
+#include <libtorrent/identify_client.hpp>
 
 #include <QCoreApplication>
 
@@ -78,7 +79,10 @@ namespace BitTorrent
         bool isPlaintextEncrypted() const;
 
         PeerAddress address() const;
+        int port() const;
         QString client() const;
+        QString peerId() const;
+        QString peerIdToClient() const;
         qreal progress() const;
         int payloadUpSpeed() const;
         int payloadDownSpeed() const;

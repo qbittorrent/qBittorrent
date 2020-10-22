@@ -45,6 +45,7 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
@@ -456,6 +457,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinSlowTorrentsInactivityTimer, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkAutoUpdateTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textCustomizeTrackersListUrl, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     const QString slowTorrentsExplanation = QLatin1String("<html><body><p>")
             + tr("A torrent will be considered slow if its download and upload rates stay below these values for \"Torrent inactivity timer\" seconds")
@@ -813,6 +816,8 @@ void OptionsDialog::saveOptions()
         EnableSuperSeeding
     };
     session->setMaxRatioAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
+    session->setAutoUpdateTrackersEnabled(m_ui->checkAutoUpdateTrackers->isChecked());
+    pref->setCustomizeTrackersListUrl(m_ui->textCustomizeTrackersListUrl->text());
     // End Bittorrent preferences
 
     // Misc preferences
@@ -1213,6 +1218,9 @@ void OptionsDialog::loadOptions()
         {EnableSuperSeeding, 3}
     };
     m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(session->maxRatioAction()));
+    m_ui->checkAutoUpdateTrackers->setChecked(session->isAutoUpdateTrackersEnabled());
+    m_ui->textCustomizeTrackersListUrl->setText(pref->customizeTrackersListUrl());
+    m_ui->textPublicTrackers->setPlainText(session->publicTrackers());
     // End Bittorrent preferences
 
     // Web UI preferences
@@ -1815,4 +1823,24 @@ void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
     dialog->open();
+}
+
+void OptionsDialog::on_fetchButton_clicked()
+{
+    Net::DownloadHandler *m_fetchHandler = Net::DownloadManager::instance()->download(Preferences::instance()->customizeTrackersListUrl());
+    connect(m_fetchHandler, &Net::DownloadHandler::finished, this, &OptionsDialog::handlePublicTrackersListChanged);
+}
+
+void OptionsDialog::handlePublicTrackersListChanged(const Net::DownloadResult &result)
+{
+    switch (result.status) {
+        case Net::DownloadStatus::Success:
+            BitTorrent::Session::instance()->setPublicTrackers(QString::fromUtf8(result.data.data()));
+            m_ui->textPublicTrackers->setPlainText(QString::fromUtf8(result.data.data()));
+            m_ui->fetchButton->setEnabled(false);
+            m_ui->fetchButton->setText("Fetched!");
+            break;
+        default:
+            m_ui->textPublicTrackers->setPlainText("Refetch failed. Reason: " + result.errorString);
+    }
 }

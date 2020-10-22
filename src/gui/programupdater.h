@@ -48,7 +48,7 @@ public:
     void updateProgram();
 
 signals:
-    void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
+    void updateCheckFinished(bool updateAvailable, QString content, QString nextUpdate, QString version, bool invokedByUser);
 
 private slots:
     void rssDownloadFinished(const Net::DownloadResult &result);

@@ -7,6 +7,8 @@
     <p>QBT_TR(Bug Tracker:)QBT_TR[CONTEXT=AboutDialog] <a target="_blank" href="http://bugs.qbittorrent.org"> http://bugs.qbittorrent.org</a></p>
     <p>QBT_TR(Forum:)QBT_TR[CONTEXT=AboutDialog] <a target="_blank" href="http://forum.qbittorrent.org"> http://forum.qbittorrent.org</a></p>
     <p>QBT_TR(IRC: #qbittorrent on Freenode)QBT_TR[CONTEXT=HttpServer]</p>
+    <p>QBT_TR(Enhanced Edition:)QBT_TR[CONTEXT=AboutDialog] <a target="_blank" href="https://github.com/c0re100/qBittorrent-Enhanced-Edition"> https://github.com/c0re100/qBittorrent-Enhanced-Edition</a></p>
+    <p>QBT_TR(Maintainer:)QBT_TR[CONTEXT=AboutDialog] <a target="_blank" href="https://t.me/loli_make_the_world_great_again"> Husky</a></p>
 </div>
 
 <div id="aboutAuthorContent" class="aboutTabContent invisible">
@@ -683,7 +685,7 @@
     'use strict';
 
     (function() {
-        $('qbittorrentVersion').innerText = ("qBittorrent " + qbtVersion()
+        $('qbittorrentVersion').innerText = ("qBittorrent Enhnaced Edition " + qbtVersion()
         + " QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]");
 
         new Request.JSON({
@@ -698,7 +700,7 @@
                 $('boostVersion').textContent = info.boost;
                 $('opensslVersion').textContent = info.openssl;
                 $('zlibVersion').textContent = info.zlib;
-                $('qbittorrentVersion').textContent += " (" + info.bitness + "-bit)";
+                $('qbittorrentVersion').textContent += " Enhanced Edition (" + info.bitness + "-bit)";
             }
         }).send();
     })();

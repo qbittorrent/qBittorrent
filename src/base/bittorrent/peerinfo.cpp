@@ -175,9 +175,24 @@ PeerAddress PeerInfo::address() const
     //    , m_nativeInfo.ip.port()};
 }
 
+int PeerInfo::port() const
+{
+    return m_nativeInfo.ip.port();
+}
+
 QString PeerInfo::client() const
 {
     return QString::fromStdString(m_nativeInfo.client);
+}
+
+QString PeerInfo::peerId() const
+{
+    return QString::fromStdString(m_nativeInfo.pid.to_string());
+}
+
+QString PeerInfo::peerIdToClient() const
+{
+    return QString::fromStdString(lt::identify_client(m_nativeInfo.pid));
 }
 
 qreal PeerInfo::progress() const

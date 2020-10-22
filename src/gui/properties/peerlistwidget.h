@@ -66,6 +66,7 @@ public:
         CONNECTION,
         FLAGS,
         CLIENT,
+        PEERID,
         PROGRESS,
         DOWN_SPEED,
         UP_SPEED,

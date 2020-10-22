@@ -47,7 +47,7 @@
 
 namespace
 {
-    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml")};
+    const QString RSS_URL {QStringLiteral("https://husky.moe/feedqBittorent.xml")};
 
     QString getStringValue(QXmlStreamReader &xml);
 }
@@ -63,7 +63,7 @@ void ProgramUpdater::checkForUpdates()
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
+                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent Enhanced/" QBT_VERSION_2 " ProgramUpdater")
                 , this, &ProgramUpdater::rssDownloadFinished);
 }
 
@@ -72,7 +72,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 
     if (result.status != Net::DownloadStatus::Success) {
         qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
-        emit updateCheckFinished(false, QString(), m_invokedByUser);
+        emit updateCheckFinished(false, QString(), QString(), QString(), m_invokedByUser);
         return;
     }
 
@@ -87,6 +87,8 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 #endif
 
     QString version;
+    QString content;
+    QString nextUpdate;
     QXmlStreamReader xml(result.data);
     bool inItem = false;
     QString updateLink;
@@ -104,6 +106,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                 type = getStringValue(xml);
             else if (inItem && xml.name() == "version")
                 version = getStringValue(xml);
+            else if (inItem && xml.name() == "content")
+                content = getStringValue(xml);
+            else if (inItem && xml.name() == "update")
+                nextUpdate = getStringValue(xml);
         }
         else if (xml.isEndElement()) {
             if (inItem && xml.name() == "item") {
@@ -121,11 +127,13 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                 updateLink.clear();
                 type.clear();
                 version.clear();
+                content.clear();
+                nextUpdate.clear();
             }
         }
     }
 
-    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
+    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, content, nextUpdate, m_invokedByUser);
 }
 
 void ProgramUpdater::updateProgram()

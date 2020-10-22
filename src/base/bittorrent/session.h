@@ -40,7 +40,9 @@
 
 #include <QHash>
 #include <QPointer>
+#include <QQueue>
 #include <QSet>
+#include <QTimer>
 #include <QVector>
 
 #include "base/settingvalue.h"
@@ -488,6 +490,36 @@ namespace BitTorrent
 
         bool addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString &newPath, MoveStorageMode mode);
 
+        // Auto ban Unknown Peer
+        bool isAutoBanUnknownPeerEnabled() const;
+        void setAutoBanUnknownPeer(bool value);
+
+        // Auto ban Bittorrent Media Player Peer
+        bool isAutoBanBTPlayerPeerEnabled() const;
+        void setAutoBanBTPlayerPeer(bool value);
+
+        // Trackers list
+        bool isAutoUpdateTrackersEnabled() const;
+        void setAutoUpdateTrackersEnabled(bool enabled);
+        QString publicTrackers() const;
+        void setPublicTrackers(const QString &trackers);
+        void updatePublicTracker();
+
+        // Enhanced Function
+        bool m_isActive = false;
+        QQueue<QString> q_bannedIPs;
+        QQueue<int64_t> q_unbanTime;
+        CachedSettingValue<QString> m_publicTrackers;
+        QTimer *m_unbanTimer;
+        QTimer *m_banTimer;
+        QTimer *m_updateTimer;
+
+        void autoBanBadClient();
+        bool checkAccessFlags(const QString &ip);
+        void insertQueue(QString ip);
+        void removeBlockedIP(const QString &ip);
+        void tempBlockIP(const QString &ip);
+
     signals:
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
@@ -528,6 +560,9 @@ namespace BitTorrent
         void trackerSuccess(TorrentHandle *torrent, const QString &tracker);
         void trackerWarning(TorrentHandle *torrent, const QString &tracker);
 
+    public slots:
+        void processUnbanRequest();
+
     private slots:
         void configureDeferred();
         void readAlerts();
@@ -541,6 +576,9 @@ namespace BitTorrent
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);
         void networkConfigurationChange(const QNetworkConfiguration &);
+
+        // Public Tracker handle slots
+        void handlePublicTrackerTxtDownloadFinished(const Net::DownloadResult &result);
 
     private:
         struct MoveStorageJob
@@ -631,6 +669,12 @@ namespace BitTorrent
         void saveResumeData();
         void saveTorrentsQueue();
         void removeTorrentsQueue();
+
+        // load offline downloader filter
+        int parseOfflineFilterFile(const QString &ipFilterFile, libtorrent::ip_filter &filter);
+        void loadOfflineFilter();
+
+        void populatePublicTrackers();
 
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
@@ -739,6 +783,9 @@ namespace BitTorrent
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
+        CachedSettingValue<bool> m_autoBanUnknownPeer;
+        CachedSettingValue<bool> m_autoBanBTPlayerPeer;
+        CachedSettingValue<bool> m_isAutoUpdateTrackersEnabled;
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor
@@ -748,6 +795,7 @@ namespace BitTorrent
         int m_numResumeData = 0;
         int m_extraLimit = 0;
         QVector<TrackerEntry> m_additionalTrackerList;
+        QVector<TrackerEntry> m_publicTrackerList;
         QString m_resumeFolderPath;
         QFile *m_resumeFolderLock = nullptr;
 

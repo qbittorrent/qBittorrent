@@ -593,6 +593,24 @@
         </legend>
         <textarea id="add_trackers_textarea" rows="5" cols="70"></textarea>
     </fieldset>
+
+    <fieldset class="settings">
+        <legend><input type="checkbox" id="auto_update_trackers_checkbox"/>
+            <label for="auto_update_trackers_checkbox">QBT_TR(Automatically update public trackers list:)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+        <table>
+            <tr>
+                <td>
+                    Customize Trackers List Url:
+                    <input type="text" id="customize_trackers_list_url" style="width: 40em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea id="public_trackers_textarea" rows="5" cols="70" readonly></textarea>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 </div>
 
 <div id="RSSTab" class="PrefTab invisible">
@@ -928,6 +946,22 @@
                 </td>
                 <td>
                     <input type="checkbox" id="resolvePeerCountries">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="autoBanUnknownPeer">QBT_TR(Auto Ban Unknown Client From China:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="autoBanUnknownPeer">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="autoBanBittorrentPlayer">QBT_TR(Auto Ban Bittorrent Media Player:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="autoBanBittorrentPlayer">
                 </td>
             </tr>
         </table>
@@ -1811,6 +1845,9 @@
                         // Add trackers
                         $('add_trackers_checkbox').setProperty('checked', pref.add_trackers_enabled);
                         $('add_trackers_textarea').setProperty('value', pref.add_trackers);
+                        $('auto_update_trackers_checkbox').setProperty('checked', pref.auto_update_trackers_enabled);
+                        $('public_trackers_textarea').setProperty('value', pref.public_trackers);
+                        $('customize_trackers_list_url').setProperty('value', pref.customize_trackers_list_url);
                         updateAddTrackersEnabled();
 
                         // RSS Tab
@@ -1877,6 +1914,8 @@
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
+                        $('autoBanUnknownPeer').setProperty('checked', pref.auto_ban_unknown_peer);
+                        $('autoBanBittorrentPlayer').setProperty('checked', pref.auto_ban_bt_player_peer);
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
                         $('hashingThreads').setProperty('value', pref.hashing_threads);
@@ -2179,6 +2218,8 @@
             // Add trackers
             settings.set('add_trackers_enabled', $('add_trackers_checkbox').getProperty('checked'));
             settings.set('add_trackers', $('add_trackers_textarea').getProperty('value'));
+            settings.set('auto_update_trackers_enabled', $('auto_update_trackers_checkbox').getProperty('checked'));
+            settings.set('customize_trackers_list_url', $('customize_trackers_list_url').getProperty('value'));
 
             // RSS Tab
             settings.set('rss_processing_enabled', $('enable_fetching_rss_feeds_checkbox').getProperty('checked'));
@@ -2263,6 +2304,8 @@
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
+            settings.set('auto_ban_unknown_peer', $('autoBanUnknownPeer').getProperty('checked'));
+            settings.set('auto_ban_bt_player_peer', $('autoBanBittorrentPlayer').getProperty('checked'));
 
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
