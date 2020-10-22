@@ -31,6 +31,8 @@
 
 #include <type_traits>
 
+#include <QHashFunctions>
+
 namespace BitTorrent
 {
     uint qHash(const TorrentState key, const uint seed)

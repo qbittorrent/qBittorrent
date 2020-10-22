@@ -29,6 +29,9 @@
 #include "serialize_torrent.h"
 
 #include <QDateTime>
+#include <QSet>
+#include <QVariantMap>
+#include <QVector>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"

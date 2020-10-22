@@ -47,8 +47,8 @@ class TrackerListWidget : public QTreeWidget
 public:
     enum TrackerListColumn
     {
-        COL_TIER,
         COL_URL,
+        COL_TIER,
         COL_STATUS,
         COL_PEERS,
         COL_SEEDS,

@@ -66,9 +66,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     // Load settings
     loadSettings();
     // Graphical settings
-    setRootIsDecorated(false);
     setAllColumnsShowFocus(true);
-    setItemsExpandable(false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     header()->setStretchLastSection(false); // Must be set after loadSettings() in order to work
     // Ensure that at least one column is visible at all times
@@ -91,13 +89,13 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TrackerListWidget::saveSettings);
 
     // Set DHT, PeX, LSD items
-    m_DHTItem = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
+    m_DHTItem = new QTreeWidgetItem({ "** [DHT] **", "", "", "0", "", "", "0" });
     insertTopLevelItem(0, m_DHTItem);
     setRowColor(0, QColor("grey"));
-    m_PEXItem = new QTreeWidgetItem({ "",  "** [PeX] **", "", "0", "", "", "0" });
+    m_PEXItem = new QTreeWidgetItem({ "** [PeX] **", "", "", "0", "", "", "0" });
     insertTopLevelItem(1, m_PEXItem);
     setRowColor(1, QColor("grey"));
-    m_LSDItem = new QTreeWidgetItem({ "",  "** [LSD] **", "", "0", "", "", "0" });
+    m_LSDItem = new QTreeWidgetItem({ "** [LSD] **", "", "", "0", "", "", "0" });
     insertTopLevelItem(2, m_LSDItem);
     setRowColor(2, QColor("grey"));
 
@@ -343,6 +341,31 @@ void TrackerListWidget::loadTrackers()
 
     loadStickyItems(torrent);
 
+    using TrackeStatus = BitTorrent::TrackerEntry::Status;
+    const auto toString = [](const TrackeStatus status)
+    {
+        switch (status) {
+        case TrackeStatus::Working:
+            return tr("Working");
+        case TrackeStatus::Updating:
+            return tr("Updating...");
+        case TrackeStatus::NotWorking:
+            return tr("Not working");
+        case TrackeStatus::NotContacted:
+            return tr("Not contacted yet");
+        }
+        return tr("Invalid status!");
+    };
+    const auto numberIf = [](const int val)
+    {
+        return (val > -1) ? QString::number(val) : tr("N/A");
+    };
+    const auto setAlignment = [](QTreeWidgetItem *item)
+    {
+        for (TrackerListColumn col : {COL_TIER, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_DOWNLOADED})
+            item->setTextAlignment(col, (Qt::AlignRight | Qt::AlignVCenter));
+    };
+
     // Load actual trackers information
     const QHash<QString, BitTorrent::TrackerInfo> trackerData = torrent->trackerInfos();
     QStringList oldTrackerURLs = m_trackerItems.keys();
@@ -361,46 +384,33 @@ void TrackerListWidget::loadTrackers()
             oldTrackerURLs.removeOne(trackerURL);
         }
 
-        item->setText(COL_TIER, QString::number(entry.tier()));
-
+        const TrackeStatus status = entry.status();
         const BitTorrent::TrackerInfo data = trackerData.value(trackerURL);
 
-        switch (entry.status()) {
-        case BitTorrent::TrackerEntry::Working:
-            item->setText(COL_STATUS, tr("Working"));
-            item->setText(COL_MSG, "");
-            break;
-        case BitTorrent::TrackerEntry::Updating:
-            item->setText(COL_STATUS, tr("Updating..."));
-            item->setText(COL_MSG, "");
-            break;
-        case BitTorrent::TrackerEntry::NotWorking:
-            item->setText(COL_STATUS, tr("Not working"));
-            item->setText(COL_MSG, data.lastMessage.trimmed());
-            break;
-        case BitTorrent::TrackerEntry::NotContacted:
-            item->setText(COL_STATUS, tr("Not contacted yet"));
-            item->setText(COL_MSG, "");
-            break;
-        }
-
+        item->setText(COL_TIER, QString::number(entry.tier()));
+        item->setText(COL_STATUS, toString(status));
+        item->setText(COL_MSG, entry.messages().join(" | "));
         item->setText(COL_PEERS, QString::number(data.numPeers));
-        item->setText(COL_SEEDS, ((entry.numSeeds() > -1)
-            ? QString::number(entry.numSeeds())
-            : tr("N/A")));
-        item->setText(COL_LEECHES, ((entry.numLeeches() > -1)
-            ? QString::number(entry.numLeeches())
-            : tr("N/A")));
-        item->setText(COL_DOWNLOADED, ((entry.numDownloaded() > -1)
-            ? QString::number(entry.numDownloaded())
-            : tr("N/A")));
+        item->setText(COL_SEEDS, numberIf(entry.numSeeds()));
+        item->setText(COL_LEECHES, numberIf(entry.numLeeches()));
+        item->setText(COL_DOWNLOADED, numberIf(entry.numDownloaded()));
+        setAlignment(item);
 
-        const Qt::Alignment alignment = (Qt::AlignRight | Qt::AlignVCenter);
-        item->setTextAlignment(COL_TIER, alignment);
-        item->setTextAlignment(COL_PEERS, alignment);
-        item->setTextAlignment(COL_SEEDS, alignment);
-        item->setTextAlignment(COL_LEECHES, alignment);
-        item->setTextAlignment(COL_DOWNLOADED, alignment);
+        int index = 0;
+        for (const auto &endpoint : entry.endpoints()) {
+            QTreeWidgetItem *child = index < item->childCount() ? item->child(index)
+                                                                : new QTreeWidgetItem(item);
+            child->setText(COL_URL, endpoint.name());
+            child->setText(COL_STATUS, toString(endpoint.status()));
+            child->setText(COL_SEEDS, numberIf(endpoint.numSeeds()));
+            child->setText(COL_LEECHES, numberIf(endpoint.numLeeches()));
+            child->setText(COL_DOWNLOADED, numberIf(endpoint.numDownloaded()));
+            child->setText(COL_MSG, endpoint.message());
+            setAlignment(child);
+            ++index;
+        }
+        for (; index < item->childCount(); ++index)
+            delete item->takeChild(index);
     }
 
     // Remove old trackers
@@ -598,8 +608,8 @@ void TrackerListWidget::saveSettings() const
 QStringList TrackerListWidget::headerLabels()
 {
     return {
-        tr("Tier")
-        , tr("URL")
+        tr("URL/Announce endpoint")
+        , tr("Tier")
         , tr("Status")
         , tr("Peers")
         , tr("Seeds")
