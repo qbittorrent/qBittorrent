@@ -1788,12 +1788,18 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
     }
 
     // Remove it from torrent resume directory
-    const QDir resumeDataDir(m_resumeFolderPath);
-    QStringList filters;
-    filters << QString::fromLatin1("%1.*").arg(torrent->hash());
-    const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
-    for (const QString &file : files)
-        Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
+    const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
+    const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->hash());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, [this, resumedataFile, metadataFile]()
+    {
+        m_resumeDataSavingManager->remove(resumedataFile);
+        m_resumeDataSavingManager->remove(metadataFile);
+    });
+#else
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, resumedataFile));
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, metadataFile));
+#endif
 
     delete torrent;
     return true;
