@@ -225,7 +225,6 @@ namespace
         status.flags = params.flags;
         status.active_duration = lt::seconds {params.active_time};
         status.finished_duration = lt::seconds {params.finished_time};
-        status.seeding_duration = lt::seconds {params.seeding_time};
         status.num_complete = params.num_complete;
         status.num_incomplete = params.num_incomplete;
         status.all_time_download = params.total_downloaded;
@@ -1020,11 +1019,6 @@ qlonglong TorrentImpl::finishedTime() const
     return lt::total_seconds(m_nativeStatus.finished_duration);
 }
 
-qlonglong TorrentImpl::seedingTime() const
-{
-    return lt::total_seconds(m_nativeStatus.seeding_duration);
-}
-
 qlonglong TorrentImpl::eta() const
 {
     if (isPaused()) return MAX_ETA;
@@ -1053,7 +1047,7 @@ qlonglong TorrentImpl::eta() const
 
         if (maxSeedingTimeValue >= 0)
         {
-            seedingTimeEta = (maxSeedingTimeValue * 60) - seedingTime();
+            seedingTimeEta = (maxSeedingTimeValue * 60) - finishedTime();
             if (seedingTimeEta < 0)
                 seedingTimeEta = 0;
         }
