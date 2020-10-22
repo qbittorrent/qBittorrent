@@ -1,3 +1,6 @@
+Thu Oct 22 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.0.1
+    - WINDOWS: NSIS: Update Dutch translation (bovirus)
+
 Sun Oct 18 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.0
     - FEATURE: Many UI elements colors are themeable now (jagannatharjun)
     - FEATURE: Allow changing GUI icons from theme bundles (jagannatharjun)
