@@ -58,6 +58,7 @@ const char KEY_TORRENT_TAGS[] = "tags";
 const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 const char KEY_TORRENT_FORCE_START[] = "force_start";
 const char KEY_TORRENT_SAVE_PATH[] = "save_path";
+const char KEY_TORRENT_CONTENT_PATH[] = "content_path";
 const char KEY_TORRENT_ADDED_ON[] = "added_on";
 const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";
 const char KEY_TORRENT_TRACKER[] = "tracker";
