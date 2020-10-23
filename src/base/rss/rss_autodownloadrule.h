@@ -29,12 +29,13 @@
 
 #pragma once
 
-#include <QDateTime>
 #include <QSharedDataPointer>
 #include <QVariant>
 
+class QDateTime;
 class QJsonObject;
 class QRegularExpression;
+
 class TriStateBool;
 
 namespace RSS
@@ -77,7 +78,9 @@ namespace RSS
         QString savePath() const;
         void setSavePath(const QString &savePath);
         TriStateBool addPaused() const;
-        void setAddPaused(const TriStateBool &addPaused);
+        void setAddPaused(TriStateBool addPaused);
+        TriStateBool createSubfolder() const;
+        void setCreateSubfolder(TriStateBool createSubfolder);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 

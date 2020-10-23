@@ -28,7 +28,6 @@
 
 #include "random.h"
 
-#include <limits>
 #include <random>
 
 #include <QtGlobal>
@@ -42,6 +41,8 @@
 #else  // Q_OS_WIN
 #include <cstdio>
 #endif
+
+#include <QString>
 
 #include "misc.h"
 

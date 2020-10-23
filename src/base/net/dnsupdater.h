@@ -38,6 +38,8 @@
 
 namespace Net
 {
+    struct DownloadResult;
+
     // Based on http://www.dyndns.com/developers/specs/
     class DNSUpdater : public QObject
     {
@@ -54,11 +56,9 @@ namespace Net
 
     private slots:
         void checkPublicIP();
-        void ipRequestFinished(const QString &url, const QByteArray &data);
-        void ipRequestFailed(const QString &url, const QString &error);
+        void ipRequestFinished(const DownloadResult &result);
         void updateDNSService();
-        void ipUpdateFinished(const QString &url, const QByteArray &data);
-        void ipUpdateFailed(const QString &url, const QString &error);
+        void ipUpdateFinished(const DownloadResult &result);
 
     private:
         enum State

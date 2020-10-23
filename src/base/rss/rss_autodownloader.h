@@ -40,6 +40,7 @@
 
 class QThread;
 class QTimer;
+
 class Application;
 class AsyncFileStorage;
 struct ProcessingJob;
@@ -85,6 +86,9 @@ namespace RSS
         void setSmartEpisodeFilters(const QStringList &filters);
         QRegularExpression smartEpisodeRegex() const;
 
+        bool downloadRepacks() const;
+        void setDownloadRepacks(bool downloadRepacks);
+
         bool hasRule(const QString &ruleName) const;
         AutoDownloadRule ruleByName(const QString &ruleName) const;
         QList<AutoDownloadRule> rules() const;
@@ -107,14 +111,14 @@ namespace RSS
         void process();
         void handleTorrentDownloadFinished(const QString &url);
         void handleTorrentDownloadFailed(const QString &url);
-        void handleNewArticle(Article *article);
+        void handleNewArticle(const Article *article);
 
     private:
         void timerEvent(QTimerEvent *event) override;
         void setRule_impl(const AutoDownloadRule &rule);
         void resetProcessingQueue();
         void startProcessing();
-        void addJobForArticle(Article *article);
+        void addJobForArticle(const Article *article);
         void processJob(const QSharedPointer<ProcessingJob> &job);
         void load();
         void loadRules(const QByteArray &data);

@@ -29,16 +29,17 @@
 #ifndef SCANFOLDERSDELEGATE_H
 #define SCANFOLDERSDELEGATE_H
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 class QAbstractItemModel;
 class QModelIndex;
 class QPainter;
 class QStyleOptionViewItem;
 class QTreeView;
+
 class PropertiesWidget;
 
-class ScanFoldersDelegate : public QItemDelegate
+class ScanFoldersDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
 

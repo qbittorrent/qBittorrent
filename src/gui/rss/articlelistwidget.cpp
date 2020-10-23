@@ -30,8 +30,10 @@
 
 #include <QListWidgetItem>
 
+#include "base/global.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
+#include "gui/uithememanager.h"
 
 ArticleListWidget::ArticleListWidget(QWidget *parent)
     : QListWidget(parent)
@@ -68,7 +70,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
         connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
         connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
-        foreach (auto article, rssItem->articles()) {
+        for (const auto article : asConst(rssItem->articles())) {
             if (!(m_unreadOnly && article->isRead())) {
                 auto item = createItem(article);
                 addItem(item);
@@ -96,8 +98,10 @@ void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
     auto item = mapRSSArticle(rssArticle);
     if (!item) return;
 
-    item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
-    item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
+    const QColor defaultColor {palette().color(QPalette::Inactive, QPalette::WindowText)};
+    const QBrush foregroundBrush {UIThemeManager::instance()->getColor("RSS.ReadArticle", defaultColor)};
+    item->setData(Qt::ForegroundRole, foregroundBrush);
+    item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
 
     checkInvariant();
 }
@@ -116,17 +120,21 @@ void ArticleListWidget::checkInvariant() const
 QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
 {
     Q_ASSERT(article);
-    QListWidgetItem *item = new QListWidgetItem;
+    auto *item = new QListWidgetItem;
 
     item->setData(Qt::DisplayRole, article->title());
     item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
     if (article->isRead()) {
-        item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Inactive, QPalette::WindowText));
-        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere.png"));
+        const QColor defaultColor {palette().color(QPalette::Inactive, QPalette::WindowText)};
+        const QBrush foregroundBrush {UIThemeManager::instance()->getColor("RSS.ReadArticle", defaultColor)};
+        item->setData(Qt::ForegroundRole, foregroundBrush);
+        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
     }
     else {
-        item->setData(Qt::ForegroundRole, QPalette().color(QPalette::Active, QPalette::Link));
-        item->setData(Qt::DecorationRole, QIcon(":/icons/sphere2.png"));
+        const QColor defaultColor {palette().color(QPalette::Active, QPalette::Link)};
+        const QBrush foregroundBrush {UIThemeManager::instance()->getColor("RSS.UnreadArticle", defaultColor)};
+        item->setData(Qt::ForegroundRole, foregroundBrush);
+        item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("sphere")));
     }
 
     return item;

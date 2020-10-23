@@ -28,12 +28,15 @@
 
 #include "rsscontroller.h"
 
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 
+#include "base/rss/rss_article.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_autodownloadrule.h"
+#include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "base/utils/string.h"
@@ -43,7 +46,7 @@ using Utils::String::parseBool;
 
 void RSSController::addFolderAction()
 {
-    checkParams({"path"});
+    requireParams({"path"});
 
     const QString path = params()["path"].trimmed();
     QString error;
@@ -53,7 +56,7 @@ void RSSController::addFolderAction()
 
 void RSSController::addFeedAction()
 {
-    checkParams({"url", "path"});
+    requireParams({"url", "path"});
 
     const QString url = params()["url"].trimmed();
     const QString path = params()["path"].trimmed();
@@ -64,7 +67,7 @@ void RSSController::addFeedAction()
 
 void RSSController::removeItemAction()
 {
-    checkParams({"path"});
+    requireParams({"path"});
 
     const QString path = params()["path"].trimmed();
     QString error;
@@ -74,7 +77,7 @@ void RSSController::removeItemAction()
 
 void RSSController::moveItemAction()
 {
-    checkParams({"itemPath", "destPath"});
+    requireParams({"itemPath", "destPath"});
 
     const QString itemPath = params()["itemPath"].trimmed();
     const QString destPath = params()["destPath"].trimmed();
@@ -91,9 +94,42 @@ void RSSController::itemsAction()
     setResult(jsonVal.toObject());
 }
 
+void RSSController::markAsReadAction()
+{
+    requireParams({"itemPath"});
+
+    const QString itemPath {params()["itemPath"]};
+    const QString articleId {params()["articleId"]};
+
+    RSS::Item *item = RSS::Session::instance()->itemByPath(itemPath);
+    if (!item) return;
+
+    if (!articleId.isNull()) {
+        RSS::Feed *feed = qobject_cast<RSS::Feed *>(item);
+        if (feed) {
+            RSS::Article *article = feed->articleByGUID(articleId);
+            if (article)
+                article->markAsRead();
+        }
+    }
+    else {
+        item->markAsRead();
+    }
+}
+
+void RSSController::refreshItemAction()
+{
+    requireParams({"itemPath"});
+
+    const QString itemPath {params()["itemPath"]};
+    RSS::Item *item = RSS::Session::instance()->itemByPath(itemPath);
+    if (item)
+        item->refresh();
+}
+
 void RSSController::setRuleAction()
 {
-    checkParams({"ruleName", "ruleDef"});
+    requireParams({"ruleName", "ruleDef"});
 
     const QString ruleName {params()["ruleName"].trimmed()};
     const QByteArray ruleDef {params()["ruleDef"].trimmed().toUtf8()};
@@ -104,7 +140,7 @@ void RSSController::setRuleAction()
 
 void RSSController::renameRuleAction()
 {
-    checkParams({"ruleName", "newRuleName"});
+    requireParams({"ruleName", "newRuleName"});
 
     const QString ruleName {params()["ruleName"].trimmed()};
     const QString newRuleName {params()["newRuleName"].trimmed()};
@@ -114,7 +150,7 @@ void RSSController::renameRuleAction()
 
 void RSSController::removeRuleAction()
 {
-    checkParams({"ruleName"});
+    requireParams({"ruleName"});
 
     const QString ruleName {params()["ruleName"].trimmed()};
     RSS::AutoDownloader::instance()->removeRule(ruleName);
@@ -126,6 +162,30 @@ void RSSController::rulesAction()
     QJsonObject jsonObj;
     for (const auto &rule : rules)
         jsonObj.insert(rule.name(), rule.toJsonObject());
+
+    setResult(jsonObj);
+}
+
+void RSSController::matchingArticlesAction()
+{
+    requireParams({"ruleName"});
+
+    const QString ruleName {params()["ruleName"]};
+    const RSS::AutoDownloadRule rule = RSS::AutoDownloader::instance()->ruleByName(ruleName);
+
+    QJsonObject jsonObj;
+    for (const QString &feedURL : rule.feedURLs()) {
+        const RSS::Feed *feed = RSS::Session::instance()->feedByURL(feedURL);
+        if (!feed) continue; // feed doesn't exist
+
+        QJsonArray matchingArticles;
+        for (const RSS::Article *article : feed->articles()) {
+            if (rule.matches(article->data()))
+                matchingArticles << article->title();
+        }
+        if (!matchingArticles.isEmpty())
+            jsonObj.insert(feed->name(), matchingArticles);
+    }
 
     setResult(jsonObj);
 }

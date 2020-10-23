@@ -28,10 +28,14 @@
 
 #include "macutilities.h"
 
-#include <QSet>
-#include <QtMac>
-#include <objc/message.h>
 #import <Cocoa/Cocoa.h>
+#include <objc/message.h>
+
+#include <QPixmap>
+#include <QSet>
+#include <QSize>
+#include <QString>
+#include <QtMac>
 
 namespace MacUtils
 {

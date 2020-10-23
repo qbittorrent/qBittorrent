@@ -28,15 +28,17 @@
 
 #pragma once
 
-#include <QMap>
+#include <QHash>
 #include <QObject>
-#include <QSet>
-#include <QString>
 #include <QVariant>
+#include <QVector>
+
+class QString;
 
 struct ISessionManager;
-using StringMap = QMap<QString, QString>;
-using DataMap = QMap<QString, QByteArray>;
+
+using DataMap = QHash<QString, QByteArray>;
+using StringMap = QHash<QString, QString>;
 
 class APIController : public QObject
 {
@@ -58,7 +60,7 @@ public:
 protected:
     const StringMap &params() const;
     const DataMap &data() const;
-    void checkParams(const QSet<QString> &requiredParams) const;
+    void requireParams(const QVector<QString> &requiredParams) const;
 
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);

@@ -34,8 +34,6 @@
 #include <QString>
 #include <QVector>
 
-#include "base/types.h"
-
 namespace Http
 {
     const char METHOD_GET[] = "GET";
@@ -52,6 +50,7 @@ namespace Http
     const char HEADER_HOST[] = "host";
     const char HEADER_ORIGIN[] = "origin";
     const char HEADER_REFERER[] = "referer";
+    const char HEADER_REFERRER_POLICY[] = "referrer-policy";
     const char HEADER_SET_COOKIE[] = "set-cookie";
     const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
     const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
@@ -65,7 +64,7 @@ namespace Http
 
     const char CONTENT_TYPE_HTML[] = "text/html";
     const char CONTENT_TYPE_CSS[] = "text/css";
-    const char CONTENT_TYPE_TXT[] = "text/plain";
+    const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
     const char CONTENT_TYPE_JS[] = "application/javascript";
     const char CONTENT_TYPE_JSON[] = "application/json";
     const char CONTENT_TYPE_GIF[] = "image/gif";
@@ -92,14 +91,22 @@ namespace Http
         QByteArray data;
     };
 
+    struct Header
+    {
+        QString name;
+        QString value;
+    };
+
+    using HeaderMap = QMap<QString, QString>;  // <Header name, Header value>
+
     struct Request
     {
         QString version;
         QString method;
         QString path;
-        QByteArray query;
-        QStringMap headers;
-        QStringMap posts;
+        HeaderMap headers;
+        QHash<QString, QByteArray> query;
+        QHash<QString, QString> posts;
         QVector<UploadedFile> files;
     };
 
@@ -107,17 +114,18 @@ namespace Http
     {
         uint code;
         QString text;
-
-        ResponseStatus(uint code = 200, const QString& text = "OK"): code(code), text(text) {}
     };
 
     struct Response
     {
         ResponseStatus status;
-        QStringMap headers;
+        HeaderMap headers;
         QByteArray content;
 
-        Response(uint code = 200, const QString& text = "OK"): status(code, text) {}
+        Response(uint code = 200, const QString &text = "OK")
+            : status {code, text}
+        {
+        }
     };
 }
 

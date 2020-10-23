@@ -34,13 +34,12 @@
 #include <QElapsedTimer>
 #include <QObject>
 
-#include "types.h"
-
 class QTcpSocket;
 
 namespace Http
 {
     class IRequestHandler;
+    struct Response;
 
     class Connection : public QObject
     {

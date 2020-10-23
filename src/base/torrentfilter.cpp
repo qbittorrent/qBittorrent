@@ -28,6 +28,7 @@
 
 #include "torrentfilter.h"
 
+#include "bittorrent/infohash.h"
 #include "bittorrent/torrenthandle.h"
 
 const QString TorrentFilter::AnyCategory;
@@ -41,10 +42,12 @@ const TorrentFilter TorrentFilter::PausedTorrent(TorrentFilter::Paused);
 const TorrentFilter TorrentFilter::ResumedTorrent(TorrentFilter::Resumed);
 const TorrentFilter TorrentFilter::ActiveTorrent(TorrentFilter::Active);
 const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
+const TorrentFilter TorrentFilter::StalledTorrent(TorrentFilter::Stalled);
+const TorrentFilter TorrentFilter::StalledUploadingTorrent(TorrentFilter::StalledUploading);
+const TorrentFilter TorrentFilter::StalledDownloadingTorrent(TorrentFilter::StalledDownloading);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
 using BitTorrent::TorrentHandle;
-using BitTorrent::TorrentState;
 
 TorrentFilter::TorrentFilter()
     : m_type(All)
@@ -96,6 +99,12 @@ bool TorrentFilter::setTypeByName(const QString &filter)
         type = Active;
     else if (filter == "inactive")
         type = Inactive;
+    else if (filter == "stalled")
+        type = Stalled;
+    else if (filter == "stalled_uploading")
+        type = StalledUploading;
+    else if (filter == "stalled_downloading")
+        type = StalledDownloading;
     else if (filter == "errored")
         type = Errored;
 
@@ -164,6 +173,13 @@ bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) c
         return torrent->isActive();
     case Inactive:
         return torrent->isInactive();
+    case Stalled:
+        return (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
+    case StalledUploading:
+        return torrent->state() ==  BitTorrent::TorrentState::StalledUploading;
+    case StalledDownloading:
+        return torrent->state() ==  BitTorrent::TorrentState::StalledDownloading;
     case Errored:
         return torrent->isErrored();
     default: // All
@@ -174,19 +190,22 @@ bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) c
 bool TorrentFilter::matchHash(const BitTorrent::TorrentHandle *const torrent) const
 {
     if (m_hashSet == AnyHash) return true;
-    else return m_hashSet.contains(torrent->hash());
+
+    return m_hashSet.contains(torrent->hash());
 }
 
 bool TorrentFilter::matchCategory(const BitTorrent::TorrentHandle *const torrent) const
 {
     if (m_category.isNull()) return true;
-    else return (torrent->belongsToCategory(m_category));
+
+    return (torrent->belongsToCategory(m_category));
 }
 
 bool TorrentFilter::matchTag(const BitTorrent::TorrentHandle *const torrent) const
 {
     // Empty tag is a special value to indicate we're filtering for untagged torrents.
     if (m_tag.isNull()) return true;
-    else if (m_tag.isEmpty()) return torrent->tags().isEmpty();
-    else return (torrent->hasTag(m_tag));
+    if (m_tag.isEmpty()) return torrent->tags().isEmpty();
+
+    return (torrent->hasTag(m_tag));
 }

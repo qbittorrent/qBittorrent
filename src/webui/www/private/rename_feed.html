@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': (event) => {
+                    $('renameButton').click();
+                    event.preventDefault();
+                },
+                'Escape': (event) => {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': (event) => {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+        window.addEvent('domready', () => {
+            const oldPath = decodeURIComponent(new URI().getData('oldPath'));
+
+            $('rename').value = oldPath;
+            $('rename').focus();
+            $('rename').setSelectionRange(0, oldPath.length);
+
+            $('renameButton').addEvent('click', (e) => {
+                new Event(e).stop();
+                // check field
+                const newPath = $('rename').value.trim();
+                if (newPath === '') {
+                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    return;
+                }
+
+                if (newPath === oldPath) {
+                    alert('QBT_TR(Name is unchanged)QBT_TR[CONTEXT=HttpServer]');
+                    return;
+                }
+
+                $('renameButton').disabled = true;
+
+                new Request({
+                    url: 'api/v2/rss/moveItem',
+                    noCache: true,
+                    method: 'post',
+                    data: {
+                        itemPath: oldPath,
+                        destPath: newPath
+                    },
+                    onSuccess: (response) => {
+                        window.parent.qBittorrent.Rss.updateRssFeedList();
+                        window.parent.closeWindows();
+                    },
+                    onFailure: (response) => {
+                        if (response.status === 409) {
+                            alert(response.responseText);
+                        }
+                        $('renameButton').disabled = false;
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p style="font-weight: bold;">QBT_TR(New feed name:)QBT_TR[CONTEXT=RSSWidget]</p>
+        <input type="text" id="rename" style="width: 320px;" />
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="renameButton" />
+        </div>
+    </div>
+</body>
+
+</html>

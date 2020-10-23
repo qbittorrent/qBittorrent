@@ -33,10 +33,13 @@
 #include <QDebug>
 #include <QHelpEvent>
 #include <QPainter>
+#include <QPainterPath>
 #include <QTextStream>
 #include <QToolTip>
 
+#include "base/indexrange.h"
 #include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/utils/misc.h"
 
 namespace
@@ -109,16 +112,13 @@ namespace
 PiecesBar::PiecesBar(QWidget *parent)
     : QWidget {parent}
     , m_torrent {nullptr}
-    , m_borderColor {palette().color(QPalette::Dark)}
-    , m_bgColor {Qt::white}
-    , m_pieceColor {Qt::blue}
     , m_hovered {false}
 {
     updatePieceColors();
     setMouseTracking(true);
 }
 
-void PiecesBar::setTorrent(BitTorrent::TorrentHandle *torrent)
+void PiecesBar::setTorrent(const BitTorrent::TorrentHandle *torrent)
 {
     m_torrent = torrent;
     if (!m_torrent)
@@ -131,25 +131,14 @@ void PiecesBar::clear()
     update();
 }
 
-void PiecesBar::setColors(const QColor &background, const QColor &border, const QColor &complete)
-{
-    m_bgColor = background;
-    m_borderColor = border;
-    m_pieceColor = complete;
-
-    updatePieceColors();
-    requestImageUpdate();
-}
-
 bool PiecesBar::event(QEvent *e)
 {
     if (e->type() == QEvent::ToolTip) {
         showToolTip(static_cast<QHelpEvent *>(e));
         return true;
     }
-    else {
-        return base::event(e);
-    }
+
+    return base::event(e);
 }
 
 void PiecesBar::enterEvent(QEvent *e)
@@ -179,7 +168,7 @@ void PiecesBar::paintEvent(QPaintEvent *)
     QPainter painter(this);
     QRect imageRect(borderWidth, borderWidth, width() - 2 * borderWidth, height() - 2 * borderWidth);
     if (m_image.isNull()) {
-        painter.setBrush(Qt::white);
+        painter.setBrush(backgroundColor());
         painter.drawRect(imageRect);
     }
     else {
@@ -197,7 +186,7 @@ void PiecesBar::paintEvent(QPaintEvent *)
 
     QPainterPath border;
     border.addRect(0, 0, width(), height());
-    painter.setPen(m_borderColor);
+    painter.setPen(borderColor());
     painter.drawPath(border);
 }
 
@@ -209,17 +198,22 @@ void PiecesBar::requestImageUpdate()
 
 QColor PiecesBar::backgroundColor() const
 {
-    return m_bgColor;
+    return palette().color(QPalette::Base);
 }
 
 QColor PiecesBar::borderColor() const
 {
-    return m_borderColor;
+    return palette().color(QPalette::Dark);
 }
 
 QColor PiecesBar::pieceColor() const
 {
-    return m_pieceColor;
+    return palette().color(QPalette::Highlight);
+}
+
+QColor PiecesBar::colorBoxBorderColor() const
+{
+    return palette().color(QPalette::ToolTipText);
 }
 
 const QVector<QRgb> &PiecesBar::pieceColors() const
@@ -259,7 +253,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
             stream << "<html><body>";
             PieceIndexToImagePos transform {m_torrent->info(), m_image};
             int pieceIndex = transform.pieceIndex(imagePos);
-            QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
+            const QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
 
             QString tooltipTitle;
             if (files.count() > 1) {
@@ -274,12 +268,8 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
             DetailedTooltipRenderer renderer(stream, tooltipTitle);
 
-            const bool isFileNameCorrectionNeeded = this->isFileNameCorrectionNeeded();
-            for (int f: files) {
-                QString filePath {m_torrent->info().filePath(f)};
-                if (isFileNameCorrectionNeeded)
-                    filePath.replace(QLatin1String("/.unwanted"), QString());
-
+            for (int f : files) {
+                const QString filePath {m_torrent->info().filePath(f)};
                 renderer(Utils::Misc::friendlyUnit(m_torrent->info().fileSize(f)), filePath);
             }
             stream << "</body></html>";
@@ -328,11 +318,6 @@ void PiecesBar::updatePieceColors()
     m_pieceColors = QVector<QRgb>(256);
     for (int i = 0; i < 256; ++i) {
         float ratio = (i / 255.0);
-        m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), m_pieceColor.rgb(), ratio);
+        m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), pieceColor().rgb(), ratio);
     }
-}
-
-bool PiecesBar::isFileNameCorrectionNeeded() const
-{
-    return false;
 }

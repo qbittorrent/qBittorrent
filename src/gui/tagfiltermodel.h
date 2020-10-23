@@ -30,32 +30,33 @@
 #define TAGFILTERMODEL_H
 
 #include <QAbstractListModel>
-#include <QModelIndex>
 #include <QSet>
 #include <QVector>
+
+class QModelIndex;
+
+class TagModelItem;
 
 namespace BitTorrent
 {
     class TorrentHandle;
 }
 
-class TagModelItem;
-
-class TagFilterModel : public QAbstractListModel
+class TagFilterModel final : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
     explicit TagFilterModel(QObject *parent = nullptr);
-    ~TagFilterModel();
+    ~TagFilterModel() override;
 
     static bool isSpecialItem(const QModelIndex &index);
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = {}) const override;
+    int rowCount(const QModelIndex &parent = {}) const override;
 
     QModelIndex index(const QString &tag) const;
     QString tag(const QModelIndex &index) const;

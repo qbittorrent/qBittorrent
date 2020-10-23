@@ -32,8 +32,9 @@
 #include <QProcess>
 #include <QTimer>
 
-#include "../utils/foreignapps.h"
-#include "../utils/fs.h"
+#include "base/global.h"
+#include "base/utils/foreignapps.h"
+#include "base/utils/fs.h"
 #include "searchpluginmanager.h"
 
 namespace
@@ -73,14 +74,9 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
     m_searchProcess->setArguments(params + m_pattern.split(' '));
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
-#else
-    connect(m_searchProcess, static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error)
-            , this, &SearchHandler::processFailed);
-#endif
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);
-    connect(m_searchProcess, static_cast<void (QProcess::*)(int)>(&QProcess::finished)
+    connect(m_searchProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
             , this, &SearchHandler::processFinished);
 
     m_searchTimeout->setSingleShot(true);
@@ -113,7 +109,7 @@ void SearchHandler::cancelSearch()
 // Slot called when QProcess is Finished
 // QProcess can be finished for 3 reasons:
 // Error | Stopped by user | Finished normally
-void SearchHandler::processFinished(int exitcode)
+void SearchHandler::processFinished(const int exitcode)
 {
     m_searchTimeout->stop();
 
@@ -131,21 +127,25 @@ void SearchHandler::processFinished(int exitcode)
 void SearchHandler::readSearchOutput()
 {
     QByteArray output = m_searchProcess->readAllStandardOutput();
-    output.replace("\r", "");
+    output.replace('\r', "");
+
     QList<QByteArray> lines = output.split('\n');
     if (!m_searchResultLineTruncated.isEmpty())
         lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
-    QList<SearchResult> searchResultList;
-    foreach (const QByteArray &line, lines) {
+    QVector<SearchResult> searchResultList;
+    searchResultList.reserve(lines.size());
+
+    for (const QByteArray &line : asConst(lines)) {
         SearchResult searchResult;
         if (parseSearchResult(QString::fromUtf8(line), searchResult))
             searchResultList << searchResult;
     }
 
     if (!searchResultList.isEmpty()) {
-        m_results.append(searchResultList);
+        for (const SearchResult &result : searchResultList)
+            m_results.append(result);
         emit newSearchResults(searchResultList);
     }
 }
@@ -161,24 +161,29 @@ void SearchHandler::processFailed()
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 bool SearchHandler::parseSearchResult(const QString &line, SearchResult &searchResult)
 {
-    const QStringList parts = line.split('|');
+    const QVector<QStringRef> parts = line.splitRef('|');
     const int nbFields = parts.size();
+
     if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
 
     searchResult = SearchResult();
-    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed(); // download URL
-    searchResult.fileName = parts.at(PL_NAME).trimmed(); // Name
+    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed().toString(); // download URL
+    searchResult.fileName = parts.at(PL_NAME).trimmed().toString(); // Name
     searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
+
     bool ok = false;
+
     searchResult.nbSeeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok); // Seeders
     if (!ok || (searchResult.nbSeeders < 0))
         searchResult.nbSeeders = -1;
+
     searchResult.nbLeechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok); // Leechers
     if (!ok || (searchResult.nbLeechers < 0))
         searchResult.nbLeechers = -1;
-    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed(); // Search site URL
+
+    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search site URL
     if (nbFields == NB_PLUGIN_COLUMNS)
-        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed(); // Description Link
+        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed().toString(); // Description Link
 
     return true;
 }

@@ -1,54 +1,51 @@
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
-
-message(WARNING "No official support for cmake build system. If it is broken, please submit patches!")
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default to NEW
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
-include(FunctionReadVersion)
 
-read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_BUGFIX VER_BUILD VER_STATUS)
-# message(STATUS "Project version is: ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD} (${VER_STATUS})")
+project(qBittorrent
+    VERSION 4.4.0.0
+    DESCRIPTION "The qBittorrent BitTorrent client"
+    HOMEPAGE_URL "https://www.qbittorrent.org/"
+    LANGUAGES CXX
+)
 
-project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
+# use CONFIG mode first in find_package
+set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
+# version requirements
+set(requiredBoostVersion 1.40)
+set(requiredQtVersion 5.9.0)
+set(requiredOpenSSLVersion 1.0)
+set(requiredLibtorrentVersion 1.2.0)
+set(requiredZlibVersion 1.2.5.2)
 
-set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
-
-if (NOT VER_BUILD EQUAL 0)
-    set(PROJECT_VERSION "${PROJECT_VERSION}.${VER_BUILD}")
+# features (some are platform-specific)
+include(FeatureSummary)
+include(FeatureOptionsSetup)
+feature_option(STACKTRACE "Enable stacktraces" ON)
+feature_option(GUI "Build GUI application" ON)
+feature_option(WEBUI "Enables built-in HTTP server for headless use" ON)
+feature_option(VERBOSE_CONFIGURE "Show information about PACKAGES_FOUND and PACKAGES_NOT_FOUND in the configure output (only useful for debugging the CMake build scripts)" OFF)
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    feature_option_dependent(DBUS
+        "Enables support for notifications and power-management features on Linux via D-Bus"
+        ON "GUI" OFF
+    )
+    feature_option_dependent(SYSTEMD
+        "Install systemd service file to a directory manually overridable with Systemd_SERVICES_INSTALL_DIR"
+        OFF "NOT GUI" OFF
+    )
+elseif (MSVC)
+    feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
 endif()
 
-set(PROJECT_VERSION "${PROJECT_VERSION}${VER_STATUS}")
-
-add_definitions(-DQBT_VERSION_MAJOR=${VER_MAJOR})
-add_definitions(-DQBT_VERSION_MINOR=${VER_MINOR})
-add_definitions(-DQBT_VERSION_BUGFIX=${VER_BUGFIX})
-add_definitions(-DQBT_VERSION_BUILD=${VER_BUILD})
-
-add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
-add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
+set(QBT_VER_STATUS "alpha1" CACHE STRING "Project status version. Should be empty for release builds.")
 
 include(GNUInstallDirs)
-include(FeatureSummary)
-
-# version requirements
-set(requiredBoostVersion 1.35)
-set(requiredQtVersion 5.5.1)
-
-if(WIN32)
-    include(winconf)
-endif(WIN32)
-
-
-# we need options here, at the top level, because they are used not only in "src" subdir, but in the "dist" dir too
-include(CompileFeature)
-
-optional_compile_definitions(COUNTRIES_RESOLUTION FEATURE DESCRIPTION "Enable resolving peers IP addresses to countries"
-    DEFAULT ON DISABLED DISABLE_COUNTRIES_RESOLUTION)
-optional_compile_definitions(STACKTRACE FEATURE DESCRIPTION "Enable stacktraces"
-    DEFAULT ON ENABLED STACKTRACE)
-optional_compile_definitions(WEBUI FEATURE DESCRIPTION "Enables built-in HTTP server for headless use"
-    DEFAULT ON DISABLED DISABLE_WEBUI)
-
 add_subdirectory(src)
 add_subdirectory(dist)
 
-feature_summary(DESCRIPTION "\nConfiguration results:" WHAT ALL)
+if (VERBOSE_CONFIGURE)
+    feature_summary(WHAT ALL)
+else()
+    feature_summary(WHAT ENABLED_FEATURES DISABLED_FEATURES)
+endif()

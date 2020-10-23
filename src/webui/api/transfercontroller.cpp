@@ -29,8 +29,13 @@
 #include "transfercontroller.h"
 
 #include <QJsonObject>
+#include <QVector>
 
+#include "base/bittorrent/peeraddress.h"
+#include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/global.h"
+#include "apierror.h"
 
 const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
 const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
@@ -85,7 +90,7 @@ void TransferController::downloadLimitAction()
 
 void TransferController::setUploadLimitAction()
 {
-    checkParams({"limit"});
+    requireParams({"limit"});
     qlonglong limit = params()["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
@@ -94,7 +99,7 @@ void TransferController::setUploadLimitAction()
 
 void TransferController::setDownloadLimitAction()
 {
-    checkParams({"limit"});
+    requireParams({"limit"});
     qlonglong limit = params()["limit"].toLongLong();
     if (limit == 0) limit = -1;
 
@@ -110,4 +115,16 @@ void TransferController::toggleSpeedLimitsModeAction()
 void TransferController::speedLimitsModeAction()
 {
     setResult(QString::number(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled()));
+}
+
+void TransferController::banPeersAction()
+{
+    requireParams({"peers"});
+
+    const QStringList peers = params()["peers"].split('|');
+    for (const QString &peer : peers) {
+        const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
+        if (!addr.ip.isNull())
+            BitTorrent::Session::instance()->banIP(addr.ip.toString());
+    }
 }

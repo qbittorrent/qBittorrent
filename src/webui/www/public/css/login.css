@@ -32,6 +32,10 @@ body {
     color: #f00;
 }
 
+#login {
+    float: right;
+}
+
 #logo img {
     height: 11em;
 }

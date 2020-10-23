@@ -33,7 +33,8 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"
-#include "guiiconprovider.h"
+#include "base/global.h"
+#include "uithememanager.h"
 
 class CategoryModelItem
 {
@@ -74,7 +75,7 @@ public:
         if (!m_parent || m_parent->name().isEmpty())
             return m_name;
 
-        return QString("%1/%2").arg(m_parent->fullName(), m_name);
+        return QString::fromLatin1("%1/%2").arg(m_parent->fullName(), m_name);
     }
 
     CategoryModelItem *parent() const
@@ -175,13 +176,13 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     , m_rootItem(new CategoryModelItem)
 {
     using namespace BitTorrent;
-    auto session = Session::instance();
+    const auto *session = Session::instance();
 
     connect(session, &Session::categoryAdded, this, &CategoryFilterModel::categoryAdded);
     connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
     connect(session, &Session::torrentCategoryChanged, this, &CategoryFilterModel::torrentCategoryChanged);
     connect(session, &Session::subcategoriesSupportChanged, this, &CategoryFilterModel::subcategoriesSupportChanged);
-    connect(session, &Session::torrentAdded, this, &CategoryFilterModel::torrentAdded);
+    connect(session, &Session::torrentLoaded, this, &CategoryFilterModel::torrentAdded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &CategoryFilterModel::torrentAboutToBeRemoved);
 
     populate();
@@ -206,12 +207,12 @@ int CategoryFilterModel::columnCount(const QModelIndex &) const
 
 QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid()) return QVariant();
+    if (!index.isValid()) return {};
 
-    auto item = static_cast<CategoryModelItem *>(index.internalPointer());
+    auto item = static_cast<const CategoryModelItem *>(index.internalPointer());
 
     if ((index.column() == 0) && (role == Qt::DecorationRole)) {
-        return GuiIconProvider::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon("inode-directory");
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole)) {
@@ -223,12 +224,12 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
         return item->torrentsCount();
     }
 
-    return QVariant();
+    return {};
 }
 
 Qt::ItemFlags CategoryFilterModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid()) return 0;
+    if (!index.isValid()) return Qt::NoItemFlags;
 
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
@@ -239,32 +240,32 @@ QVariant CategoryFilterModel::headerData(int section, Qt::Orientation orientatio
         if (section == 0)
             return tr("Categories");
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex CategoryFilterModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (column > 0)
-        return QModelIndex();
+        return {};
 
     if (parent.isValid() && (parent.column() != 0))
-        return QModelIndex();
+        return {};
 
     auto parentItem = parent.isValid() ? static_cast<CategoryModelItem *>(parent.internalPointer())
                                        : m_rootItem;
     if (row < parentItem->childCount())
         return createIndex(row, column, parentItem->childAt(row));
 
-    return QModelIndex();
+    return {};
 }
 
 QModelIndex CategoryFilterModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QModelIndex();
+        return {};
 
     auto item = static_cast<CategoryModelItem *>(index.internalPointer());
-    if (!item) return QModelIndex();
+    if (!item) return {};
 
     return this->index(item->parent());
 }
@@ -290,13 +291,13 @@ QModelIndex CategoryFilterModel::index(const QString &categoryName) const
 
 QString CategoryFilterModel::categoryName(const QModelIndex &index) const
 {
-    if (!index.isValid()) return QString();
+    if (!index.isValid()) return {};
     return static_cast<CategoryModelItem *>(index.internalPointer())->fullName();
 }
 
 QModelIndex CategoryFilterModel::index(CategoryModelItem *item) const
 {
-    if (!item || !item->parent()) return QModelIndex();
+    if (!item || !item->parent()) return {};
 
     return index(item->pos(), 0, index(item->parent()));
 }
@@ -383,8 +384,8 @@ void CategoryFilterModel::populate()
 {
     m_rootItem->clear();
 
-    auto session = BitTorrent::Session::instance();
-    auto torrents = session->torrents();
+    const auto *session = BitTorrent::Session::instance();
+    const auto torrents = session->torrents();
     m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 
     const QString UID_ALL;
@@ -407,12 +408,12 @@ void CategoryFilterModel::populate()
         const QString &category = i.key();
         if (m_isSubcategoriesEnabled) {
             CategoryModelItem *parent = m_rootItem;
-            foreach (const QString &subcat, session->expandCategory(category)) {
+            for (const QString &subcat : asConst(session->expandCategory(category))) {
                 const QString subcatName = shortName(subcat);
                 if (!parent->hasChild(subcatName)) {
                     new CategoryModelItem(
                                 parent, subcatName
-                                , std::count_if(torrents.begin(), torrents.end()
+                                , std::count_if(torrents.cbegin(), torrents.cend()
                                                 , [subcat](Torrent *torrent) { return torrent->category() == subcat; }));
                 }
                 parent = parent->child(subcatName);
@@ -436,7 +437,7 @@ CategoryModelItem *CategoryFilterModel::findItem(const QString &fullName) const
         return m_rootItem->child(fullName);
 
     CategoryModelItem *item = m_rootItem;
-    foreach (const QString &subcat, BitTorrent::Session::expandCategory(fullName)) {
+    for (const QString &subcat : asConst(BitTorrent::Session::expandCategory(fullName))) {
         const QString subcatName = shortName(subcat);
         if (!item->hasChild(subcatName)) return nullptr;
         item = item->child(subcatName);

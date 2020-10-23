@@ -35,13 +35,12 @@
 
 class TorrentContentModel;
 
-class TorrentContentFilterModel : public QSortFilterProxyModel
+class TorrentContentFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
     TorrentContentFilterModel(QObject *parent = nullptr);
-    virtual ~TorrentContentFilterModel();
 
     TorrentContentModel *model() const;
     TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
@@ -60,8 +59,9 @@ protected:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 
 private:
-    TorrentContentModel *m_model;
     bool hasFiltered(const QModelIndex &folder) const;
+
+    TorrentContentModel *m_model;
 };
 
 #endif // TORRENTCONTENTFILTERMODEL_H

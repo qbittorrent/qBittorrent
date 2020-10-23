@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>qBittorrent</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -21,6 +25,10 @@
 			<array>
 				<string>org.bittorrent.torrent</string>
 			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>org.bittorrent.torrent</string>
+			</array>
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
 		</dict>
@@ -28,6 +36,8 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>magnet</string>
@@ -45,21 +55,19 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.2.0</string>
-	<key>CFBundleSignature</key>
-	<string>qBit</string>
+	<string>4.4.0</string>
 	<key>CFBundleExecutable</key>
 	<string>@EXECUTABLE@</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.qbittorrent</string>
+	<string>org.qbittorrent.qBittorrent</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>${MACOSX_DEPLOYMENT_TARGET}.0</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>NSHighResolutionCapable</key>
-	<string>True</string>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2006-2018 The qBittorrent project</string>
+	<string>Copyright © 2006-2020 The qBittorrent project</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -76,17 +84,21 @@
 			<key>UTTypeIdentifier</key>
 			<string>org.bittorrent.torrent</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.bittorrent.org/beps/bep_0000.html</string>
+			<string>https://www.bittorrent.org/beps/bep_0000.html</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>com.apple.ostype</key>
-				<string>TORR</string>
+				<array>
+					<string>TORR</string>
+				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>torrent</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>application/x-bittorrent</string>
+				<array>
+					<string>application/x-bittorrent</string>
+				</array>
 			</dict>
 		</dict>
 	</array>

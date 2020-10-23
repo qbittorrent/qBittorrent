@@ -28,6 +28,9 @@
 
 #include "fspathedit.h"
 
+#include <memory>
+#include <stdexcept>
+
 #include <QAction>
 #include <QApplication>
 #include <QCoreApplication>
@@ -74,7 +77,7 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
     QString dialogCaptionOrDefault() const;
 
     FileSystemPathEdit *q_ptr;
-    QScopedPointer<Private::FileEditorWithCompletion> m_editor;
+    std::unique_ptr<Private::FileEditorWithCompletion> m_editor;
     QAction *m_browseAction;
     QToolButton *m_browseBtn;
     QString m_fileNameFilter;
@@ -184,7 +187,7 @@ FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor
     Q_D(FileSystemPathEdit);
     editor->widget()->setParent(this);
 
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(editor->widget());
     layout->addWidget(d->m_browseBtn);
@@ -192,11 +195,14 @@ FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor
     connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
 }
 
-FileSystemPathEdit::~FileSystemPathEdit() = default;
+FileSystemPathEdit::~FileSystemPathEdit()
+{
+    delete d_ptr;
+}
 
 QString FileSystemPathEdit::selectedPath() const
 {
-    return Utils::Fs::fromNativePath(editWidgetText());
+    return Utils::Fs::toUniformPath(editWidgetText());
 }
 
 void FileSystemPathEdit::setSelectedPath(const QString &val)
@@ -342,7 +348,7 @@ int FileSystemPathComboEdit::count() const
 
 QString FileSystemPathComboEdit::item(int index) const
 {
-    return Utils::Fs::fromNativePath(editWidget<WidgetType>()->itemText(index));
+    return Utils::Fs::toUniformPath(editWidget<WidgetType>()->itemText(index));
 }
 
 void FileSystemPathComboEdit::addItem(const QString &text)
@@ -350,7 +356,7 @@ void FileSystemPathComboEdit::addItem(const QString &text)
     editWidget<WidgetType>()->addItem(Utils::Fs::toNativePath(text));
 }
 
-void FileSystemPathComboEdit::insertItem(int index, const QString& text)
+void FileSystemPathComboEdit::insertItem(int index, const QString &text)
 {
     editWidget<WidgetType>()->insertItem(index, Utils::Fs::toNativePath(text));
 }

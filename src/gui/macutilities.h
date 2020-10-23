@@ -29,9 +29,13 @@
 #ifndef MACUTILITIES_H
 #define MACUTILITIES_H
 
-#include <QPixmap>
-#include <QSize>
 #include <objc/objc.h>
+
+#include <QSet>
+
+class QPixmap;
+class QSize;
+class QString;
 
 namespace MacUtils
 {

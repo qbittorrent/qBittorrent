@@ -1,10 +1,5 @@
 INCLUDEPATH += $$PWD
 
-include(lineedit/lineedit.pri)
-include(powermanagement/powermanagement.pri)
-include(properties/properties.pri)
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
-
 HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/addnewtorrentdialog.h \
@@ -21,14 +16,30 @@ HEADERS += \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
-    $$PWD/guiiconprovider.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
-    $$PWD/loglistwidget.h \
+    $$PWD/lineedit.h \
+    $$PWD/log/logfiltermodel.h \
+    $$PWD/log/loglistview.h \
+    $$PWD/log/logmodel.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
+    $$PWD/powermanagement/powermanagement.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/properties/downloadedpiecesbar.h \
+    $$PWD/properties/peerlistsortmodel.h \
+    $$PWD/properties/peerlistwidget.h \
+    $$PWD/properties/peersadditiondialog.h \
+    $$PWD/properties/pieceavailabilitybar.h \
+    $$PWD/properties/piecesbar.h \
+    $$PWD/properties/propertieswidget.h \
+    $$PWD/properties/proplistdelegate.h \
+    $$PWD/properties/proptabbar.h \
+    $$PWD/properties/speedplotview.h \
+    $$PWD/properties/speedwidget.h \
+    $$PWD/properties/trackerlistwidget.h \
+    $$PWD/properties/trackersadditiondialog.h \
     $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
@@ -39,7 +50,6 @@ HEADERS += \
     $$PWD/search/pluginselectdialog.h \
     $$PWD/search/pluginsourcedialog.h \
     $$PWD/search/searchjobwidget.h \
-    $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/search/searchwidget.h \
     $$PWD/shutdownconfirmdialog.h \
@@ -57,16 +67,20 @@ HEADERS += \
     $$PWD/torrentcontentmodelitem.h \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/torrentcreatordialog.h \
-    $$PWD/trackerlogindialog.h \
+    $$PWD/trackerentriesdialog.h \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
     $$PWD/transferlistmodel.h \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
+    $$PWD/tristateaction.h \
+    $$PWD/tristatewidget.h \
+    $$PWD/uithememanager.h \
     $$PWD/updownratiodialog.h \
     $$PWD/utils.h
 
 SOURCES += \
+    $$PWD/aboutdialog.cpp \
     $$PWD/addnewtorrentdialog.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/autoexpandabledialog.cpp \
@@ -76,16 +90,35 @@ SOURCES += \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
+    $$PWD/deletionconfirmationdialog.cpp \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
-    $$PWD/guiiconprovider.cpp \
+    $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
-    $$PWD/loglistwidget.cpp \
+    $$PWD/lineedit.cpp \
+    $$PWD/log/logfiltermodel.cpp \
+    $$PWD/log/loglistview.cpp \
+    $$PWD/log/logmodel.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
+    $$PWD/powermanagement/powermanagement.cpp \
+    $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/properties/downloadedpiecesbar.cpp \
+    $$PWD/properties/peerlistsortmodel.cpp \
+    $$PWD/properties/peerlistwidget.cpp \
+    $$PWD/properties/peersadditiondialog.cpp \
+    $$PWD/properties/pieceavailabilitybar.cpp \
+    $$PWD/properties/piecesbar.cpp \
+    $$PWD/properties/propertieswidget.cpp \
+    $$PWD/properties/proplistdelegate.cpp \
+    $$PWD/properties/proptabbar.cpp \
+    $$PWD/properties/speedplotview.cpp \
+    $$PWD/properties/speedwidget.cpp \
+    $$PWD/properties/trackerlistwidget.cpp \
+    $$PWD/properties/trackersadditiondialog.cpp \
     $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
@@ -96,7 +129,6 @@ SOURCES += \
     $$PWD/search/pluginselectdialog.cpp \
     $$PWD/search/pluginsourcedialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
-    $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/shutdownconfirmdialog.cpp \
@@ -114,18 +146,31 @@ SOURCES += \
     $$PWD/torrentcontentmodelitem.cpp \
     $$PWD/torrentcontenttreeview.cpp \
     $$PWD/torrentcreatordialog.cpp \
-    $$PWD/trackerlogindialog.cpp \
+    $$PWD/trackerentriesdialog.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
     $$PWD/transferlistmodel.cpp \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
+    $$PWD/tristateaction.cpp \
+    $$PWD/tristatewidget.cpp \
+    $$PWD/uithememanager.cpp \
     $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
     SOURCES += $$PWD/programupdater.cpp
+}
+
+unix:!macx:dbus {
+    HEADERS += \
+        $$PWD/powermanagement/powermanagement_x11.h \
+        $$PWD/qtnotify/notifications.h
+        
+    SOURCES += \
+        $$PWD/powermanagement/powermanagement_x11.cpp \
+        $$PWD/qtnotify/notifications.cpp
 }
 
 macx {
@@ -146,6 +191,9 @@ FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/optionsdialog.ui \
     $$PWD/previewselectdialog.ui \
+    $$PWD/properties/peersadditiondialog.ui \
+    $$PWD/properties/propertieswidget.ui \
+    $$PWD/properties/trackersadditiondialog.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/rss/rsswidget.ui \
     $$PWD/search/pluginselectdialog.ui \
@@ -157,7 +205,7 @@ FORMS += \
     $$PWD/statsdialog.ui \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
-    $$PWD/trackerlogindialog.ui \
+    $$PWD/trackerentriesdialog.ui \
     $$PWD/updownratiodialog.ui
 
 RESOURCES += $$PWD/about.qrc

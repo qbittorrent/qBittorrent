@@ -1,0 +1,162 @@
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('status');">
+        <img src="icons/go-down.svg">QBT_TR(Status)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="statusFilterList">
+        <li id="all_filter"><a href="#" onclick="setFilter('all');return false;"><img src="icons/filterall.svg" alt="All" />QBT_TR(All (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="downloading_filter"><a href="#" onclick="setFilter('downloading');return false;"><img src="icons/downloading.svg" alt="Downloading" />QBT_TR(Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="seeding_filter"><a href="#" onclick="setFilter('seeding');return false;"><img src="icons/uploading.svg" alt="Seeding" />QBT_TR(Seeding (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="completed_filter"><a href="#" onclick="setFilter('completed');return false;"><img src="icons/completed.svg" alt="Completed" />QBT_TR(Completed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="resumed_filter"><a href="#" onclick="setFilter('resumed');return false;"><img src="icons/resumed.svg" alt="Resumed" />QBT_TR(Resumed (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="paused_filter"><a href="#" onclick="setFilter('paused');return false;"><img src="icons/paused.svg" alt="Paused" />QBT_TR(Paused (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="active_filter"><a href="#" onclick="setFilter('active');return false;"><img src="icons/filteractive.svg" alt="Active" />QBT_TR(Active (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="inactive_filter"><a href="#" onclick="setFilter('inactive');return false;"><img src="icons/filterinactive.svg" alt="Inactive" />QBT_TR(Inactive (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="stalled_filter"><a href="#" onclick="setFilter('stalled');return false;"><img src="icons/filterstalled.svg" alt="Stalled" />QBT_TR(Stalled (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="stalled_uploading_filter"><a href="#" onclick="setFilter('stalled_uploading');return false;"><img src="icons/stalledUP.svg" alt="Stalled Uploading" />QBT_TR(Stalled Uploading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="stalled_downloading_filter"><a href="#" onclick="setFilter('stalled_downloading');return false;"><img src="icons/stalledDL.svg" alt="Stalled Downloading" />QBT_TR(Stalled Downloading (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+        <li id="errored_filter"><a href="#" onclick="setFilter('errored');return false;"><img src="icons/error.svg" alt="Errored" />QBT_TR(Errored (0))QBT_TR[CONTEXT=StatusFilterWidget]</a></li>
+    </ul>
+</div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('category');">
+        <img src="icons/go-down.svg">QBT_TR(Categories)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="categoryFilterList">
+    </ul>
+</div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('tag');">
+        <img src="icons/go-down.svg">QBT_TR(Tags)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="tagFilterList">
+    </ul>
+</div>
+<div class="filterWrapper">
+    <span class="filterTitle" onclick="toggleFilterDisplay('tracker');">
+        <img src="icons/go-down.svg">QBT_TR(Trackers)QBT_TR[CONTEXT=TransferListFiltersWidget]
+    </span>
+    <ul class="filterList" id="trackerFilterList">
+    </ul>
+</div>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.Filters = (function() {
+        const exports = function() {
+            return {
+                categoriesFilterContextMenu: categoriesFilterContextMenu,
+                tagsFilterContextMenu: tagsFilterContextMenu,
+                trackersFilterContextMenu: trackersFilterContextMenu
+            };
+        };
+
+        const categoriesFilterContextMenu = new window.qBittorrent.ContextMenu.CategoriesFilterContextMenu({
+            targets: '.categoriesFilterContextMenuTarget',
+            menu: 'categoriesFilterMenu',
+            actions: {
+                createCategory: function(element, ref) {
+                    createCategoryFN();
+                },
+                editCategory: function(element, ref) {
+                    editCategoryFN(element.id);
+                },
+                deleteCategory: function(element, ref) {
+                    removeCategoryFN(element.id);
+                },
+                deleteUnusedCategories: function(element, ref) {
+                    deleteUnusedCategoriesFN();
+                },
+                startTorrentsByCategory: function(element, ref) {
+                    startTorrentsByCategoryFN(element.id);
+                },
+                pauseTorrentsByCategory: function(element, ref) {
+                    pauseTorrentsByCategoryFN(element.id);
+                },
+                deleteTorrentsByCategory: function(element, ref) {
+                    deleteTorrentsByCategoryFN(element.id);
+                }
+            },
+            offsets: {
+                x: -15,
+                y: 2
+            },
+            onShow: function() {
+                this.options.element.firstChild.click();
+            }
+        });
+
+        const tagsFilterContextMenu = new window.qBittorrent.ContextMenu.TagsFilterContextMenu({
+            targets: '.tagsFilterContextMenuTarget',
+            menu: 'tagsFilterMenu',
+            actions: {
+                createTag: function(element, ref) {
+                    createTagFN();
+                },
+                deleteTag: function(element, ref) {
+                    removeTagFN(element.id);
+                },
+                deleteUnusedTags: function(element, ref) {
+                    deleteUnusedTagsFN();
+                },
+                startTorrentsByTag: function(element, ref) {
+                    startTorrentsByTagFN(element.id);
+                },
+                pauseTorrentsByTag: function(element, ref) {
+                    pauseTorrentsByTagFN(element.id);
+                },
+                deleteTorrentsByTag: function(element, ref) {
+                    deleteTorrentsByTagFN(element.id);
+                }
+            },
+            offsets: {
+                x: -15,
+                y: 2
+            },
+            onShow: function() {
+                this.options.element.firstChild.click();
+            }
+        });
+
+        const trackersFilterContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+            targets: '.trackersFilterContextMenuTarget',
+            menu: 'trackersFilterMenu',
+            actions: {
+                resumeTorrentsByTracker: function(element, ref) {
+                    resumeTorrentsByTrackerFN(element.id);
+                },
+                pauseTorrentsByTracker: function(element, ref) {
+                    pauseTorrentsByTrackerFN(element.id);
+                },
+                deleteTorrentsByTracker: function(element, ref) {
+                    deleteTorrentsByTrackerFN(element.id);
+                }
+            },
+            offsets: {
+                x: -15,
+                y: 2
+            },
+            onShow: function() {
+                this.options.element.firstChild.click();
+            }
+        });
+
+        if (LocalPreferences.get('filter_status_collapsed') === "true")
+            toggleFilterDisplay('status');
+
+        if (LocalPreferences.get('filter_category_collapsed') === "true")
+            toggleFilterDisplay('category');
+
+        if (LocalPreferences.get('filter_tag_collapsed') === "true")
+            toggleFilterDisplay('tag');
+
+        if (LocalPreferences.get('filter_tracker_collapsed') === "true")
+            toggleFilterDisplay('tracker');
+
+        return exports();
+    })();
+</script>

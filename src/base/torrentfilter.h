@@ -52,6 +52,9 @@ public:
         Paused,
         Active,
         Inactive,
+        Stalled,
+        StalledUploading,
+        StalledDownloading,
         Errored
     };
 
@@ -67,12 +70,15 @@ public:
     static const TorrentFilter ResumedTorrent;
     static const TorrentFilter ActiveTorrent;
     static const TorrentFilter InactiveTorrent;
+    static const TorrentFilter StalledTorrent;
+    static const TorrentFilter StalledUploadingTorrent;
+    static const TorrentFilter StalledDownloadingTorrent;
     static const TorrentFilter ErroredTorrent;
 
     TorrentFilter();
     // category & tags: pass empty string for uncategorized / untagged torrents.
     // Pass null string (QString()) to disable filtering (i.e. all torrents).
-    TorrentFilter(const Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
+    TorrentFilter(Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
     TorrentFilter(const QString &filter, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tags = AnyTag);
 
     bool setType(Type type);

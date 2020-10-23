@@ -29,11 +29,12 @@
 #pragma once
 
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <QHash>
-#include <QMap>
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
+#include <QTranslator>
 
 #include "api/isessionmanager.h"
 #include "base/http/irequesthandler.h"
@@ -42,38 +43,33 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 0, 2};
-constexpr int COMPAT_API_VERSION = 20;
-constexpr int COMPAT_API_VERSION_MIN = 18;
+constexpr Utils::Version<int, 3, 2> API_VERSION {2, 6, 0};
 
 class APIController;
 class WebApplication;
 
 constexpr char C_SID[] = "SID"; // name of session id cookie
-constexpr int INACTIVE_TIME = 900; // Session inactive time (in secs = 15 min.)
 
-class WebSession : public ISession
+class WebSession final : public ISession
 {
-    friend class WebApplication;
-
 public:
     explicit WebSession(const QString &sid);
 
     QString id() const override;
-    qint64 timestamp() const;
+
+    bool hasExpired(qint64 seconds) const;
+    void updateTimestamp();
 
     QVariant getData(const QString &id) const override;
     void setData(const QString &id, const QVariant &data) override;
 
 private:
-    void updateTimestamp();
-
     const QString m_sid;
-    qint64 m_timestamp;
+    QElapsedTimer m_timer;  // timestamp
     QVariantHash m_data;
 };
 
-class WebApplication
+class WebApplication final
         : public QObject, public Http::IRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {
@@ -109,6 +105,8 @@ private:
     void sendFile(const QString &path);
     void sendWebUIFile();
 
+    void translateDocument(QString &data) const;
+
     // Session management
     QString generateSid() const;
     void sessionInitialize();
@@ -119,16 +117,16 @@ private:
     bool validateHostHeader(const QStringList &domains) const;
 
     // Persistent data
-    QMap<QString, WebSession *> m_sessions;
+    QHash<QString, WebSession *> m_sessions;
 
     // Current data
     WebSession *m_currentSession = nullptr;
     Http::Request m_request;
     Http::Environment m_env;
-    QMap<QString, QString> m_params;
+    QHash<QString, QString> m_params;
+    const QString m_cacheID;
 
-    const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
-    const QRegularExpression m_apiLegacyPathPattern {QLatin1String("^/(?<action>((sync|command|query)/[A-Za-z_][A-Za-z_0-9]*|login|logout))(/(?<hash>[^/]+))?$")};
+    const QRegularExpression m_apiPathPattern {QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
@@ -138,18 +136,25 @@ private:
     struct TranslatedFile
     {
         QByteArray data;
+        QString mimeType;
         QDateTime lastModified;
     };
-    QMap<QString, TranslatedFile> m_translatedFiles;
+    QHash<QString, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
+    QTranslator m_translator;
+    bool m_translationFileLoaded = false;
 
     bool m_isLocalAuthEnabled;
     bool m_isAuthSubnetWhitelistEnabled;
-    QList<Utils::Net::Subnet> m_authSubnetWhitelist;
+    QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
+    int m_sessionTimeout;
 
     // security related
     QStringList m_domainList;
-    bool m_isClickjackingProtectionEnabled;
     bool m_isCSRFProtectionEnabled;
+    bool m_isSecureCookieEnabled;
+    bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
+
+    QVector<Http::Header> m_prebuiltHeaders;
 };

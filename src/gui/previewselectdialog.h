@@ -31,17 +31,24 @@
 
 #include <QDialog>
 
-#include "base/bittorrent/torrenthandle.h"
 #include "base/settingvalue.h"
-#include "ui_previewselectdialog.h"
 
 class QStandardItemModel;
 
+namespace BitTorrent
+{
+    class TorrentHandle;
+}
+namespace Ui
+{
+    class PreviewSelectDialog;
+}
 class PreviewListDelegate;
 
-class PreviewSelectDialog : public QDialog, private Ui::preview
+class PreviewSelectDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PreviewSelectDialog)
 
 public:
     enum PreviewColumn
@@ -54,25 +61,25 @@ public:
         NB_COLUMNS
     };
 
-    PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
+    PreviewSelectDialog(QWidget *parent, const BitTorrent::TorrentHandle *torrent);
     ~PreviewSelectDialog();
 
 signals:
     void readyToPreviewFile(QString) const;
 
-protected:
-    void showEvent(QShowEvent *event) override;
-
 private slots:
     void previewButtonClicked();
 
 private:
+    void showEvent(QShowEvent *event) override;
+
     void loadWindowState();
     void saveWindowState();
 
+    Ui::PreviewSelectDialog *m_ui;
     QStandardItemModel *m_previewListModel;
     PreviewListDelegate *m_listDelegate;
-    BitTorrent::TorrentHandle *const m_torrent;
+    const BitTorrent::TorrentHandle *m_torrent;
     bool m_headerStateInitialized = false;
 
     // Settings

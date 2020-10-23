@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+    <head>
+        <meta charset="UTF-8" />
+        <title>QBT_TR(Add Peers)QBT_TR[CONTEXT=PeersAdditionDialog]</title>
+        <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+        <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+        <script src="scripts/lib/mootools-1.2-more.js"></script>
+        <script>
+            'use strict';
+
+            new Keyboard({
+                defaultEventType: 'keydown',
+                events: {
+                    'Escape': function(event) {
+                        window.parent.closeWindows();
+                        event.preventDefault();
+                    },
+                    'Esc': function(event) {
+                        window.parent.closeWindows();
+                        event.preventDefault();
+                    }
+                }
+            }).activate();
+
+            window.addEvent('domready', function() {
+                const hash = new URI().getData('hash');
+                if (!hash)
+                    return false;
+
+                $('peers').focus();
+
+                $('addPeersOk').addEvent('click', function(e) {
+                    new Event(e).stop();
+
+                    const peers = $('peers').get('value').trim().split(/[\r\n]+/);
+                    if (peers.length === 0)
+                        return
+
+                    new Request({
+                        url: 'api/v2/torrents/addPeers',
+                        method: 'post',
+                        data: {
+                            hashes: hash,
+                            peers: peers.join('|')
+                        },
+                        onFailure: function() {
+                            alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
+                        },
+                        onSuccess: function() {
+                            window.parent.closeWindows();
+                        }
+                    }).send();
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div style="padding: 10px 10px 0px 10px;">
+            <p>QBT_TR(List of peers to add (one IP per line):)QBT_TR[CONTEXT=PeersAdditionDialog]</p>
+            <textarea id="peers" rows="10" style="width: 100%;" placeholder="QBT_TR(Format: IPv4:port / [IPv6]:port)QBT_TR[CONTEXT=PeersAdditionDialog]"></textarea>
+            <div style="margin-top: 10px; text-align: center;">
+                <button onclick="parent.closeWindows();">QBT_TR(Cancel)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
+                <button id="addPeersOk">QBT_TR(Ok)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
+            </div>
+        </div>
+    </body>
+</html>

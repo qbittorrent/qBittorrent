@@ -31,16 +31,15 @@
 #include "rss_session.h"
 
 #include <QDebug>
-#include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QSaveFile>
 #include <QString>
 #include <QThread>
-#include <QVariantHash>
 
 #include "../asyncfilestorage.h"
+#include "../global.h"
 #include "../logger.h"
 #include "../profile.h"
 #include "../settingsstorage.h"
@@ -66,7 +65,7 @@ QPointer<Session> Session::m_instance = nullptr;
 Session::Session()
     : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
     , m_workingThread(new QThread(this))
-    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30).toUInt())
+    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30).toInt())
     , m_maxArticlesPerFeed(SettingsStorage::instance()->loadValue(SettingsKey_MaxArticlesPerFeed, 50).toInt())
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
@@ -262,7 +261,7 @@ void Session::load()
     }
 
     QJsonParseError jsonError;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(itemsFile.readAll(), &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(itemsFile.readAll(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError) {
         Logger::instance()->addMessage(
                     QString("Couldn't parse RSS Session data from %1. Error: %2")
@@ -283,7 +282,7 @@ void Session::load()
 void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 {
     bool updated = false;
-    foreach (const QString &key, jsonObj.keys()) {
+    for (const QString &key : asConst(jsonObj.keys())) {
         const QJsonValue val {jsonObj[key]};
         if (val.isString()) {
             // previous format (reduced form) doesn't contain UID
@@ -297,7 +296,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             const QJsonObject valObj {val.toObject()};
             if (valObj.contains("url")) {
                 if (!valObj["url"].isString()) {
-                    LogMsg(QString("Couldn't load RSS Feed '%1'. URL is required.")
+                    LogMsg(tr("Couldn't load RSS Feed '%1'. URL is required.")
                            .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
                     continue;
                 }
@@ -306,13 +305,13 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
                 if (valObj.contains("uid")) {
                     uid = QUuid {valObj["uid"].toString()};
                     if (uid.isNull()) {
-                        LogMsg(QString("Couldn't load RSS Feed '%1'. UID is invalid.")
+                        LogMsg(tr("Couldn't load RSS Feed '%1'. UID is invalid.")
                                .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
                         continue;
                     }
 
                     if (m_feedsByUID.contains(uid)) {
-                        LogMsg(QString("Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.")
+                        LogMsg(tr("Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.")
                                .arg(uid.toString()), Log::WARNING);
                         continue;
                     }
@@ -330,8 +329,8 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
             }
         }
         else {
-            LogMsg(QString("Couldn't load RSS Item '%1'. Invalid data format.")
-                   .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+            LogMsg(tr("Couldn't load RSS Item '%1'. Invalid data format.")
+                   .arg(QString::fromLatin1("%1\\%2").arg(folder->path(), key)), Log::WARNING);
         }
     }
 
@@ -355,7 +354,7 @@ void Session::loadLegacy()
         const QString parentFolderPath = Item::parentPath(legacyPath);
         const QString feedUrl = Item::relativeName(legacyPath);
 
-        foreach (const QString &folderPath, Item::expandPath(parentFolderPath))
+        for (const QString &folderPath : asConst(Item::expandPath(parentFolderPath)))
             addFolder(folderPath);
 
         const QString feedPath = feedAliases[i].isEmpty()
@@ -476,12 +475,12 @@ Feed *Session::feedByURL(const QString &url) const
     return m_feedsByURL.value(url);
 }
 
-uint Session::refreshInterval() const
+int Session::refreshInterval() const
 {
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(uint refreshInterval)
+void Session::setRefreshInterval(const int refreshInterval)
 {
     if (m_refreshInterval != refreshInterval) {
         SettingsStorage::instance()->storeValue(SettingsKey_RefreshInterval, refreshInterval);
@@ -527,7 +526,7 @@ int Session::maxArticlesPerFeed() const
     return m_maxArticlesPerFeed;
 }
 
-void Session::setMaxArticlesPerFeed(int n)
+void Session::setMaxArticlesPerFeed(const int n)
 {
     if (m_maxArticlesPerFeed != n) {
         m_maxArticlesPerFeed = n;

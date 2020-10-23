@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
  * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -33,8 +34,8 @@
 #include <QPointer>
 #include <QWidget>
 
-class QShortcut;
-class QSignalMapper;
+class QEvent;
+class QObject;
 class QTabWidget;
 
 class MainWindow;
@@ -58,15 +59,12 @@ public:
 
 private slots:
     void on_searchButton_clicked();
-    void on_downloadButton_clicked();
-    void on_goToDescBtn_clicked();
-    void on_copyURLBtn_clicked();
     void on_pluginsButton_clicked();
 
 private:
+    bool eventFilter(QObject *object, QEvent *event) override;
     void tabChanged(int index);
     void closeTab(int index);
-    void resultsCountUpdated();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
@@ -74,18 +72,15 @@ private:
     void fillCatCombobox();
     void fillPluginComboBox();
     void selectActivePage();
-    void searchTextEdited(QString);
-    void updateButtons();
+    void searchTextEdited(const QString &);
 
     QString selectedCategory() const;
     QString selectedPlugin() const;
 
     Ui::SearchWidget *m_ui;
-    QSignalMapper *m_tabStatusChangedMapper;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
     MainWindow *m_mainWindow;
     bool m_isNewQueryString;
-    QShortcut *m_focusSearchHotkey;
 };

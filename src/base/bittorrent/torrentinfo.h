@@ -30,11 +30,8 @@
 #define BITTORRENT_TORRENTINFO_H
 
 #include <libtorrent/torrent_info.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QCoreApplication>
-#include <QList>
-#include <QtGlobal>
 #include <QVector>
 
 #include "base/indexrange.h"
@@ -55,19 +52,12 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
     public:
-#if LIBTORRENT_VERSION_NUM < 10100
-        typedef boost::intrusive_ptr<const libtorrent::torrent_info> NativeConstPtr;
-        typedef boost::intrusive_ptr<libtorrent::torrent_info> NativePtr;
-#else
-        typedef boost::shared_ptr<const libtorrent::torrent_info> NativeConstPtr;
-        typedef boost::shared_ptr<libtorrent::torrent_info> NativePtr;
-#endif
-
-        explicit TorrentInfo(NativeConstPtr nativeInfo = NativeConstPtr());
+        explicit TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo = {});
         TorrentInfo(const TorrentInfo &other);
 
         static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
         static TorrentInfo loadFromFile(const QString &path, QString *error = nullptr) noexcept;
+        void saveToFile(const QString &path) const;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 
@@ -89,8 +79,8 @@ namespace BitTorrent
         QString origFilePath(int index) const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
-        QList<TrackerEntry> trackers() const;
-        QList<QUrl> urlSeeds() const;
+        QVector<TrackerEntry> trackers() const;
+        QVector<QUrl> urlSeeds() const;
         QByteArray metadata() const;
         QStringList filesForPiece(int pieceIndex) const;
         QVector<int> fileIndicesForPiece(int pieceIndex) const;
@@ -102,18 +92,18 @@ namespace BitTorrent
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
 
-        void renameFile(uint index, const QString &newPath);
+        void renameFile(int index, const QString &newPath);
 
         QString rootFolder() const;
         bool hasRootFolder() const;
         void stripRootFolder();
 
-        NativePtr nativeInfo() const;
+        std::shared_ptr<lt::torrent_info> nativeInfo() const;
 
     private:
         // returns file index or -1 if fileName is not found
         int fileIndex(const QString &fileName) const;
-        NativePtr m_nativeInfo;
+        std::shared_ptr<lt::torrent_info> m_nativeInfo;
     };
 }
 

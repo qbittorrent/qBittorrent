@@ -30,6 +30,8 @@
 
 #include "rss_folder.h"
 
+#include <algorithm>
+
 #include <QJsonObject>
 #include <QJsonValue>
 
@@ -47,7 +49,7 @@ Folder::~Folder()
 {
     emit aboutToBeDestroyed(this);
 
-    foreach (auto item, items())
+    for (auto item : asConst(items()))
         delete item;
 }
 
@@ -55,7 +57,7 @@ QList<Article *> Folder::articles() const
 {
     QList<Article *> news;
 
-    foreach (Item *item, items()) {
+    for (Item *item : asConst(items())) {
         int n = news.size();
         news << item->articles();
         std::inplace_merge(news.begin(), news.begin() + n, news.end()
@@ -69,21 +71,22 @@ QList<Article *> Folder::articles() const
 
 int Folder::unreadCount() const
 {
-    int count = 0;
-    foreach (Item *item, items())
-        count += item->unreadCount();
-    return count;
+    const auto itemList = items();
+    return std::accumulate(itemList.cbegin(), itemList.cend(), 0, [](const int acc, const Item *item)
+    {
+        return (acc + item->unreadCount());
+    });
 }
 
 void Folder::markAsRead()
 {
-    foreach (Item *item, items())
+    for (Item *item : asConst(items()))
         item->markAsRead();
 }
 
 void Folder::refresh()
 {
-    foreach (Item *item, items())
+    for (Item *item : asConst(items()))
         item->refresh();
 }
 
@@ -95,7 +98,7 @@ QList<Item *> Folder::items() const
 QJsonValue Folder::toJsonValue(bool withData) const
 {
     QJsonObject jsonObj;
-    foreach (Item *item, items())
+    for (Item *item : asConst(items()))
         jsonObj.insert(item->name(), item->toJsonValue(withData));
 
     return jsonObj;
@@ -108,7 +111,7 @@ void Folder::handleItemUnreadCountChanged()
 
 void Folder::cleanup()
 {
-    foreach (Item *item, items())
+    for (Item *item : asConst(items()))
         item->cleanup();
 }
 
@@ -123,7 +126,7 @@ void Folder::addItem(Item *item)
     connect(item, &Item::articleAboutToBeRemoved, this, &Item::articleAboutToBeRemoved);
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
 
-    for (auto article: copyAsConst(item->articles()))
+    for (auto article : asConst(item->articles()))
         emit newArticle(article);
 
     if (item->unreadCount() > 0)
@@ -134,7 +137,7 @@ void Folder::removeItem(Item *item)
 {
     Q_ASSERT(m_items.contains(item));
 
-    for (auto article: copyAsConst(item->articles()))
+    for (auto article : asConst(item->articles()))
         emit articleAboutToBeRemoved(article);
 
     item->disconnect(this);

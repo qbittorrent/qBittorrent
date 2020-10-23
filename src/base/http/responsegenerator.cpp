@@ -31,6 +31,7 @@
 
 #include <QDateTime>
 
+#include "base/http/types.h"
 #include "base/utils/gzip.h"
 
 QByteArray Http::toByteArray(Response response)
@@ -53,7 +54,7 @@ QByteArray Http::toByteArray(Response response)
 
     // Header Fields
     for (auto i = response.headers.constBegin(); i != response.headers.constEnd(); ++i)
-        buf += QString("%1: %2").arg(i.key(), i.value()).toLatin1().append(CRLF);
+        buf += QString::fromLatin1("%1: %2").arg(i.key(), i.value()).toLatin1().append(CRLF);
 
     // the first empty line
     buf += CRLF;

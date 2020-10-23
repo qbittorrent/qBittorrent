@@ -32,6 +32,8 @@
 #include <QByteArray>
 #include <QList>
 #include <QObject>
+#include <QString>
+#include <QVector>
 
 class QProcess;
 class QTimer;
@@ -70,7 +72,7 @@ public:
 signals:
     void searchFinished(bool cancelled = false);
     void searchFailed();
-    void newSearchResults(const QList<SearchResult> &results);
+    void newSearchResults(const QVector<SearchResult> &results);
 
 private:
     void readSearchOutput();

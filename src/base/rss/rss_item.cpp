@@ -67,7 +67,7 @@ bool Item::isValidPath(const QString &path)
 {
     static const QRegularExpression re(
                 QString(R"(\A[^\%1]+(\%1[^\%1]+)*\z)").arg(Item::PathSeparator)
-                , QRegularExpression::DontCaptureOption | QRegularExpression::OptimizeOnFirstUsageOption);
+                , QRegularExpression::DontCaptureOption);
 
     if (path.isEmpty() || !re.match(path).hasMatch()) {
         qDebug() << "Incorrect RSS Item path:" << path;
@@ -81,8 +81,8 @@ QString Item::joinPath(const QString &path1, const QString &path2)
 {
     if (path1.isEmpty())
         return path2;
-    else
-        return path1 + Item::PathSeparator + path2;
+
+    return (path1 + Item::PathSeparator + path2);
 }
 
 QStringList Item::expandPath(const QString &path)

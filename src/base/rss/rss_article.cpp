@@ -30,7 +30,6 @@
 
 #include "rss_article.h"
 
-#include <stdexcept>
 #include <QJsonObject>
 #include <QVariant>
 
@@ -73,23 +72,6 @@ Article::Article(Feed *feed, const QVariantHash &varHash)
     , m_isRead(varHash.value(KeyIsRead, false).toBool())
     , m_data(varHash)
 {
-    if (!m_date.isValid())
-        throw std::runtime_error("Bad RSS Article data");
-
-    // If item does not have a guid, fall back to some other identifier
-    if (m_guid.isEmpty())
-        m_guid = varHash.value(KeyTorrentURL).toString();
-    if (m_guid.isEmpty())
-        m_guid = varHash.value(KeyTitle).toString();
-    if (m_guid.isEmpty())
-        throw std::runtime_error("Bad RSS Article data");
-
-    m_data[KeyId] = m_guid;
-
-    if (m_torrentURL.isEmpty()) {
-        m_torrentURL = m_link;
-        m_data[KeyTorrentURL] = m_torrentURL;
-    }
 }
 
 Article::Article(Feed *feed, const QJsonObject &jsonObj)
@@ -160,7 +142,7 @@ QJsonObject Article::toJsonObject() const
     return jsonObj;
 }
 
-bool Article::articleDateRecentThan(Article *article, const QDateTime &date)
+bool Article::articleDateRecentThan(const Article *article, const QDateTime &date)
 {
     return article->date() > date;
 }

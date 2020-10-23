@@ -28,84 +28,74 @@
 
 #include "executionlogwidget.h"
 
-#include <QColor>
 #include <QDateTime>
+#include <QMenu>
 #include <QPalette>
 
-#include "guiiconprovider.h"
-#include "loglistwidget.h"
+#include "log/logfiltermodel.h"
+#include "log/loglistview.h"
+#include "log/logmodel.h"
 #include "ui_executionlogwidget.h"
+#include "uithememanager.h"
 
-ExecutionLogWidget::ExecutionLogWidget(QWidget *parent, const Log::MsgTypes &types)
+ExecutionLogWidget::ExecutionLogWidget(const Log::MsgTypes types, QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::ExecutionLogWidget)
-    , m_msgList(new LogListWidget(MAX_LOG_MESSAGES, Log::MsgTypes(types)))
-    , m_peerList(new LogListWidget(MAX_LOG_MESSAGES))
+    , m_messageFilterModel(new LogFilterModel(types, this))
 {
     m_ui->setupUi(this);
 
-#ifndef Q_OS_MAC
-    m_ui->tabConsole->setTabIcon(0, GuiIconProvider::instance()->getIcon("view-calendar-journal"));
-    m_ui->tabConsole->setTabIcon(1, GuiIconProvider::instance()->getIcon("view-filter"));
-#endif
-    m_ui->tabGeneral->layout()->addWidget(m_msgList);
-    m_ui->tabBan->layout()->addWidget(m_peerList);
+    LogMessageModel *messageModel = new LogMessageModel(this);
+    m_messageFilterModel->setSourceModel(messageModel);
+    LogListView *messageView = new LogListView(this);
+    messageView->setModel(m_messageFilterModel);
+    messageView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(messageView, &LogListView::customContextMenuRequested, this, [this, messageView, messageModel](const QPoint &pos)
+    {
+        displayContextMenu(pos, messageView, messageModel);
+    });
 
-    const Logger *const logger = Logger::instance();
-    foreach (const Log::Msg &msg, logger->getMessages())
-        addLogMessage(msg);
-    foreach (const Log::Peer &peer, logger->getPeers())
-        addPeerMessage(peer);
-    connect(logger, &Logger::newLogMessage, this, &ExecutionLogWidget::addLogMessage);
-    connect(logger, &Logger::newLogPeer, this, &ExecutionLogWidget::addPeerMessage);
+    LogPeerModel *peerModel = new LogPeerModel(this);
+    LogListView *peerView = new LogListView(this);
+    peerView->setModel(peerModel);
+    peerView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(peerView, &LogListView::customContextMenuRequested, this, [this, peerView, peerModel](const QPoint &pos)
+    {
+        displayContextMenu(pos, peerView, peerModel);
+    });
+
+    m_ui->tabGeneral->layout()->addWidget(messageView);
+    m_ui->tabBan->layout()->addWidget(peerView);
+
+#ifndef Q_OS_MACOS
+    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon("view-calendar-journal"));
+    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon("view-filter"));
+#endif
 }
 
 ExecutionLogWidget::~ExecutionLogWidget()
 {
-    delete m_msgList;
-    delete m_peerList;
     delete m_ui;
 }
 
-void ExecutionLogWidget::showMsgTypes(const Log::MsgTypes &types)
+void ExecutionLogWidget::setMessageTypes(const Log::MsgTypes types)
 {
-    m_msgList->showMsgTypes(types);
+    m_messageFilterModel->setMessageTypes(types);
 }
 
-void ExecutionLogWidget::addLogMessage(const Log::Msg &msg)
+void ExecutionLogWidget::displayContextMenu(const QPoint &pos, const LogListView *view, const BaseLogModel *model) const
 {
-    QString text;
-    QDateTime time = QDateTime::fromMSecsSinceEpoch(msg.timestamp);
-    QColor color;
+    QMenu *menu = new QMenu;
+    menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    switch (msg.type) {
-    case Log::INFO:
-        color.setNamedColor("blue");
-        break;
-    case Log::WARNING:
-        color.setNamedColor("orange");
-        break;
-    case Log::CRITICAL:
-        color.setNamedColor("red");
-        break;
-    default:
-        color = QApplication::palette().color(QPalette::WindowText);
+    // only show copy action if any of the row is selected
+    if (view->currentIndex().isValid()) {
+        const QAction *copyAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
+        connect(copyAct, &QAction::triggered, view, &LogListView::copySelection);
     }
 
-    text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - <font color='" + color.name() + "'>" + msg.message + "</font>";
-    m_msgList->appendLine(text, msg.type);
-}
+    const QAction *clearAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear"));
+    connect(clearAct, &QAction::triggered, model, &BaseLogModel::reset);
 
-void ExecutionLogWidget::addPeerMessage(const Log::Peer &peer)
-{
-    QString text;
-    QDateTime time = QDateTime::fromMSecsSinceEpoch(peer.timestamp);
-
-    if (peer.blocked)
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - "
-            + tr("<font color='red'>%1</font> was blocked %2", "x.y.z.w was blocked").arg(peer.ip, peer.reason);
-    else
-        text = "<font color='grey'>" + time.toString(Qt::SystemLocaleShortDate) + "</font> - " + tr("<font color='red'>%1</font> was banned", "x.y.z.w was banned").arg(peer.ip);
-
-    m_peerList->appendLine(text, Log::NORMAL);
+    menu->popup(view->mapToGlobal(pos));
 }

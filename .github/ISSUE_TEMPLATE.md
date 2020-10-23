@@ -3,7 +3,7 @@
 ### qBittorrent version and Operating System
 (type here)
 
-### If on linux, libtorrent and Qt version
+### If on linux, libtorrent-rasterbar and Qt version
 (type here)
 
 ### What is the problem

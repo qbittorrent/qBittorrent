@@ -237,7 +237,7 @@ a.propButton img {
 }
 
 .contextMenu li a.arrow-right, .contextMenu li a:hover.arrow-right {
-    background-image: url(../images/skin/arrow-right.gif);
+    background-image: url(../images/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right center;
 }
@@ -256,6 +256,11 @@ a.propButton img {
     height: 16px;
     margin-bottom: -4px;
     -ms-interpolation-mode: bicubic;
+}
+
+.contextMenu li input[type=checkbox] {
+    position: relative;
+    top: 3px;
 }
 
 /* Sliders */
@@ -285,7 +290,7 @@ a.propButton img {
     width: 420px;
     font-size: 1px;
     line-height: 1px;
-    background: #f2f2f2 url(../images/skin/slider-area.gif) repeat-x;
+    background: #f2f2f2 url(../images/slider-area.gif) repeat-x;
     border: 1px solid #a3a3a3;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
@@ -302,7 +307,7 @@ a.propButton img {
     width: 19px;
     font-size: 1px;
     line-height: 1px;
-    background: url(../images/skin/knob.gif) no-repeat;
+    background: url(../images/knob.gif) no-repeat;
     cursor: pointer;
     overflow: hidden;
     z-index: 2;
@@ -320,10 +325,13 @@ a.propButton img {
 
 #mochaToolbar {
     margin-top: 5px;
+    position: relative;
+    height: 29px;
+    overflow-y: hidden;
 }
 
 #mochaToolbar .divider {
-    background-image: url(../images/skin/toolbox-divider.gif);
+    background-image: url(../images/toolbox-divider.gif);
     background-repeat: no-repeat;
     background-position: left center;
     padding-left: 14px;
@@ -334,6 +342,39 @@ a.propButton img {
     margin-left: -18px;
     margin-bottom: -3px;
     padding-right: 5px;
+}
+
+#mainWindowTabs {
+    float: right;
+    margin: 4px 5px 0 0;
+}
+
+#torrentsFilterToolbar {
+    float: right;
+    margin-right: 30px;
+}
+
+#torrentsFilterInput {
+    width: 160px;
+    padding-left: 2em;
+    background-image: url("../icons/edit-find.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position: left;
+}
+
+#torrentFilesFilterToolbar {
+    float: right;
+    margin-right: 30px;
+}
+
+#torrentFilesFilterInput {
+    width: 160px;
+    padding-left: 2em;
+    background-image: url("../icons/edit-find.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5em;
+    background-position: left;
 }
 
 /* Tri-state checkbox */
@@ -375,20 +416,8 @@ fieldset.settings label {
     padding: 2px;
 }
 
-fieldset.settings .leftLabelSmall {
-    width: 5em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
-}
-
-fieldset.settings .leftLabelLarge {
-    width: 14em;
-    float: left;
-    text-align: right;
-    margin-right: 0.5em;
-    display: block;
+fieldset.settings + div.formRow {
+    margin-top: 10px;
 }
 
 div.formRow {
@@ -400,6 +429,22 @@ div.formRow {
     font-weight: bold;
     text-transform: uppercase;
     padding-left: 5px;
+    padding-top: 5px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.filterTitle img {
+    width: 16px;
+    height: 16px;
+    margin-bottom: -3px;
+    padding: 0 5px;
+}
+
+.filterTitle img.rotate {
+    transform: rotate(270deg);
 }
 
 ul.filterList {
@@ -409,6 +454,10 @@ ul.filterList {
 
 ul.filterList a {
     display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: inherit;
 }
 
 ul.filterList li:hover {
@@ -426,19 +475,26 @@ td.generalLabel {
     vertical-align: top;
 }
 
-#filesTable {
+#torrentFilesTableDiv {
     line-height: 20px;
 }
 
-#trackersTable,
+#torrentTrackersTableDiv,
 #webseedsTable {
     line-height: 25px;
 }
 
-#addTrackersPlus {
-    width: 16px;
+.filesTableCollapseIcon {
+    width: 15px;
+    height: 15px;
     cursor: pointer;
     margin-bottom: -3px;
+    padding-right: 5px;
+}
+
+.filesTableCollapseIcon.rotate {
+    transform: rotate(270deg);
+    margin-bottom: -1px;
 }
 
 .unselectable {
@@ -513,7 +569,7 @@ td.generalLabel {
 
 td.statusBarSeparator {
     width: 22px;
-    background-image: url('../images/skin/toolbox-divider.gif');
+    background-image: url('../images/toolbox-divider.gif');
     background-repeat: no-repeat;
     background-position: center 1px;
     background-size: 2px 18px;
@@ -522,4 +578,62 @@ td.statusBarSeparator {
 /* Statistics window */
 .statisticsValue {
     text-align: right;
+}
+
+/* Search tab */
+
+#SearchPanel, #SearchPanel_wrapper, #SearchPanel_pad {
+    height: inherit;
+}
+
+#searchResults {
+    padding: 0 20px;
+    height: 100%;
+}
+
+#searchResultsTableContainer {
+    height: calc(100% - 140px);
+    -moz-height: calc(100% - 140px);
+    -webkit-height: calc(100% - 140px);
+    overflow: auto;
+}
+
+#searchResultsTableDiv {
+    height: calc(100% - 26px) !important;
+    -moz-height: calc(100% - 26px) !important;
+    -webkit-height: calc(100% - 26px) !important;
+}
+
+#searchResults .dynamicTable {
+    width: 100%;
+}
+
+#searchResults .numSearchResults {
+    font-style: italic;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.searchPluginsTableRow {
+    cursor: pointer;
+}
+
+#torrentFilesTableDiv .dynamicTable tr.nonAlt {
+    background-color: #fff;
+}
+
+#torrentFilesTableDiv .dynamicTable tr.nonAlt.selected {
+    background-color: #354158;
+    color: #fff;
+}
+
+#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
+    background-color: #ee6600;
+    color: #fff;
 }

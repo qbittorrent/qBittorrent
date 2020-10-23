@@ -28,7 +28,7 @@
 
 #include "torrentcontentmodelfile.h"
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/common.h"
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
@@ -52,9 +52,9 @@ int TorrentContentModelFile::fileIndex() const
     return m_fileIndex;
 }
 
-void TorrentContentModelFile::setPriority(int newPriority, bool updateParent)
+void TorrentContentModelFile::setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent)
 {
-    Q_ASSERT(newPriority != prio::MIXED);
+    Q_ASSERT(newPriority != BitTorrent::DownloadPriority::Mixed);
 
     if (m_priority == newPriority)
         return;
@@ -73,7 +73,7 @@ void TorrentContentModelFile::setProgress(qreal progress)
     Q_ASSERT(m_progress <= 1.);
 }
 
-void TorrentContentModelFile::setAvailability(qreal availability)
+void TorrentContentModelFile::setAvailability(const qreal availability)
 {
     m_availability = availability;
     Q_ASSERT(m_availability <= 1.);

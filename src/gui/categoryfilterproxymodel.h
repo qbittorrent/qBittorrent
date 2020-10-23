@@ -30,9 +30,10 @@
 #define CATEGORYFILTERPROXYMODEL_H
 
 #include <QSortFilterProxyModel>
-#include <QString>
 
-class CategoryFilterProxyModel : public QSortFilterProxyModel
+class QString;
+
+class CategoryFilterProxyModel final : public QSortFilterProxyModel
 {
 public:
     explicit CategoryFilterProxyModel(QObject *parent = nullptr);

@@ -29,8 +29,9 @@
 
 #include "rss_autodownloadrule.h"
 
+#include <algorithm>
+
 #include <QDebug>
-#include <QDir>
 #include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -61,16 +62,16 @@ namespace
         return TriStateBool::Undefined;
     }
 
-    QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
+    QJsonValue triStateBoolToJsonValue(const TriStateBool triStateBool)
     {
-        switch (static_cast<int>(triStateBool)) {
+        switch (static_cast<signed char>(triStateBool)) {
         case 0:  return false;
         case 1:  return true;
-        default: return QJsonValue();
+        default: return {};
         }
     }
 
-    TriStateBool addPausedLegacyToTriStateBool(int val)
+    TriStateBool addPausedLegacyToTriStateBool(const int val)
     {
         switch (val) {
         case 1:  return TriStateBool::True; // always
@@ -79,9 +80,9 @@ namespace
         }
     }
 
-    int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
+    int triStateBoolToAddPausedLegacy(const TriStateBool triStateBool)
     {
-        switch (static_cast<int>(triStateBool)) {
+        switch (static_cast<signed char>(triStateBool)) {
         case 0:  return 2; // never
         case 1:  return 1; // always
         default: return 0; // default
@@ -101,6 +102,7 @@ const QString Str_AssignedCategory(QStringLiteral("assignedCategory"));
 const QString Str_LastMatch(QStringLiteral("lastMatch"));
 const QString Str_IgnoreDays(QStringLiteral("ignoreDays"));
 const QString Str_AddPaused(QStringLiteral("addPaused"));
+const QString Str_CreateSubfolder(QStringLiteral("createSubfolder"));
 const QString Str_SmartFilter(QStringLiteral("smartFilter"));
 const QString Str_PreviouslyMatched(QStringLiteral("previouslyMatchedEpisodes"));
 
@@ -122,11 +124,12 @@ namespace RSS
         QString savePath;
         QString category;
         TriStateBool addPaused = TriStateBool::Undefined;
+        TriStateBool createSubfolder = TriStateBool::Undefined;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
 
-        mutable QString lastComputedEpisode;
+        mutable QStringList lastComputedEpisodes;
         mutable QHash<QString, QRegularExpression> cachedRegexes;
 
         bool operator==(const AutoDownloadRuleData &other) const
@@ -143,6 +146,7 @@ namespace RSS
                     && (savePath == other.savePath)
                     && (category == other.category)
                     && (addPaused == other.addPaused)
+                    && (createSubfolder == other.createSubfolder)
                     && (smartFilter == other.smartFilter);
         }
     };
@@ -157,17 +161,17 @@ QString computeEpisodeName(const QString &article)
 
     // See if we can extract an season/episode number or date from the title
     if (!match.hasMatch())
-        return QString();
+        return {};
 
     QStringList ret;
     for (int i = 1; i <= match.lastCapturedIndex(); ++i) {
-        QString cap = match.captured(i);
+        const QString cap = match.captured(i);
 
         if (cap.isEmpty())
             continue;
 
         bool isInt = false;
-        int x = cap.toInt(&isInt);
+        const int x = cap.toInt(&isInt);
 
         ret.append(isInt ? QString::number(x) : cap);
     }
@@ -187,7 +191,7 @@ AutoDownloadRule::AutoDownloadRule(const AutoDownloadRule &other)
 
 AutoDownloadRule::~AutoDownloadRule() {}
 
-QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, bool isRegex) const
+QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, const bool isRegex) const
 {
     // Use a cache of regexes so we don't have to continually recompile - big performance increase.
     // The cache is cleared whenever the regex/wildcard, must or must not contain fields or
@@ -214,7 +218,7 @@ bool AutoDownloadRule::matchesExpression(const QString &articleTitle, const QStr
     }
 
     if (m_dataPtr->useRegex) {
-        QRegularExpression reg(cachedRegex(expression));
+        const QRegularExpression reg(cachedRegex(expression));
         return reg.match(articleTitle).hasMatch();
     }
 
@@ -237,35 +241,31 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Accept if any complete expression matches.
-    for (const QString &expression : qAsConst(m_dataPtr->mustContain)) {
+    return std::any_of(m_dataPtr->mustContain.cbegin(), m_dataPtr->mustContain.cend(), [this, &articleTitle](const QString &expression)
+    {
         // A regex of the form "expr|" will always match, so do the same for wildcards
-        if (matchesExpression(articleTitle, expression))
-            return true;
-    }
-
-    return false;
+        return matchesExpression(articleTitle, expression);
+    });
 }
 
-bool AutoDownloadRule::matchesMustNotContainExpression(const QString& articleTitle) const
+bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTitle) const
 {
     if (m_dataPtr->mustNotContain.empty())
         return true;
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Reject if any complete expression matches.
-    for (const QString &expression : qAsConst(m_dataPtr->mustNotContain)) {
+    return std::none_of(m_dataPtr->mustNotContain.cbegin(), m_dataPtr->mustNotContain.cend(), [this, &articleTitle](const QString &expression)
+    {
         // A regex of the form "expr|" will always match, so do the same for wildcards
-        if (matchesExpression(articleTitle, expression))
-            return false;
-    }
-
-    return true;
+        return matchesExpression(articleTitle, expression);
+    });
 }
 
-bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitle) const
+bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitle) const
 {
     // Reset the lastComputedEpisode, we don't want to leak it between matches
-    m_dataPtr->lastComputedEpisode.clear();
+    m_dataPtr->lastComputedEpisodes.clear();
 
     if (m_dataPtr->episodeFilter.isEmpty())
         return true;
@@ -323,7 +323,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitl
             }
         }
         else { // Single number
-            const QString expStr {QString("\\b(?:s0?%1[ -_\\.]?e0?%2|%1x0?%2)(?:\\D|\\b)").arg(season, episode)};
+            const QString expStr {QString::fromLatin1("\\b(?:s0?%1[ -_\\.]?e0?%2|%1x0?%2)(?:\\D|\\b)").arg(season, episode)};
             if (cachedRegex(expStr).match(articleTitle).hasMatch())
                 return true;
         }
@@ -332,7 +332,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString& articleTitl
     return false;
 }
 
-bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString& articleTitle) const
+bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) const
 {
     if (!useSmartFilter())
         return true;
@@ -343,11 +343,35 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString& articleTitle) co
 
     // See if this episode has been downloaded before
     const bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
-    const bool isRepack = articleTitle.contains("REPACK", Qt::CaseInsensitive) || articleTitle.contains("PROPER", Qt::CaseInsensitive);
-    if (previouslyMatched && !isRepack)
-        return false;
+    if (previouslyMatched) {
+        if (!AutoDownloader::instance()->downloadRepacks())
+            return false;
 
-    m_dataPtr->lastComputedEpisode = episodeStr;
+        // Now see if we've downloaded this particular repack/proper combination
+        const bool isRepack = articleTitle.contains("REPACK", Qt::CaseInsensitive);
+        const bool isProper = articleTitle.contains("PROPER", Qt::CaseInsensitive);
+
+        if (!isRepack && !isProper)
+            return false;
+
+        const QString fullEpisodeStr = QString::fromLatin1("%1%2%3").arg(episodeStr,
+                                                             isRepack ? "-REPACK" : "",
+                                                             isProper ? "-PROPER" : "");
+        const bool previouslyMatchedFull = m_dataPtr->previouslyMatchedEpisodes.contains(fullEpisodeStr);
+        if (previouslyMatchedFull)
+            return false;
+
+        m_dataPtr->lastComputedEpisodes.append(fullEpisodeStr);
+
+        // If this is a REPACK and PROPER download, add the individual entries to the list
+        // so we don't download those
+        if (isRepack && isProper) {
+            m_dataPtr->lastComputedEpisodes.append(episodeStr + QLatin1String("-REPACK"));
+            m_dataPtr->lastComputedEpisodes.append(episodeStr + QLatin1String("-PROPER"));
+        }
+    }
+
+    m_dataPtr->lastComputedEpisodes.append(episodeStr);
     return true;
 }
 
@@ -379,10 +403,10 @@ bool AutoDownloadRule::accepts(const QVariantHash &articleData)
 
     setLastMatch(articleData[Article::KeyDate].toDateTime());
 
-    if (!m_dataPtr->lastComputedEpisode.isEmpty()) {
-        // TODO: probably need to add a marker for PROPER/REPACK to avoid duplicate downloads
-        m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisode);
-        m_dataPtr->lastComputedEpisode.clear();
+    // If there's a matched episode string, add that to the previously matched list
+    if (!m_dataPtr->lastComputedEpisodes.isEmpty()) {
+        m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisodes);
+        m_dataPtr->lastComputedEpisodes.clear();
     }
 
     return true;
@@ -418,6 +442,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
         , {Str_AddPaused, triStateBoolToJsonValue(addPaused())}
+        , {Str_CreateSubfolder, triStateBoolToJsonValue(createSubfolder())}
         , {Str_SmartFilter, useSmartFilter()}
         , {Str_PreviouslyMatched, QJsonArray::fromStringList(previouslyMatchedEpisodes())}};
 }
@@ -434,6 +459,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
     rule.setAddPaused(jsonValueToTriStateBool(jsonObj.value(Str_AddPaused)));
+    rule.setCreateSubfolder(jsonValueToTriStateBool(jsonObj.value(Str_CreateSubfolder)));
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
     rule.setUseSmartFilter(jsonObj.value(Str_SmartFilter).toBool(false));
@@ -442,7 +468,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     QStringList feedURLs;
     if (feedsVal.isString())
         feedURLs << feedsVal.toString();
-    else foreach (const QJsonValue &urlVal, feedsVal.toArray())
+    else for (const QJsonValue &urlVal : asConst(feedsVal.toArray()))
         feedURLs << urlVal.toString();
     rule.setFeedURLs(feedURLs);
 
@@ -452,7 +478,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
         previouslyMatched << previouslyMatchedVal.toString();
     }
     else {
-        foreach (const QJsonValue &val, previouslyMatchedVal.toArray())
+        for (const QJsonValue &val : asConst(previouslyMatchedVal.toArray()))
             previouslyMatched << val.toString();
     }
     rule.setPreviouslyMatchedEpisodes(previouslyMatched);
@@ -550,7 +576,7 @@ QString AutoDownloadRule::savePath() const
 
 void AutoDownloadRule::setSavePath(const QString &savePath)
 {
-    m_dataPtr->savePath = Utils::Fs::fromNativePath(savePath);
+    m_dataPtr->savePath = Utils::Fs::toUniformPath(savePath);
 }
 
 TriStateBool AutoDownloadRule::addPaused() const
@@ -558,9 +584,19 @@ TriStateBool AutoDownloadRule::addPaused() const
     return m_dataPtr->addPaused;
 }
 
-void AutoDownloadRule::setAddPaused(const TriStateBool &addPaused)
+void AutoDownloadRule::setAddPaused(const TriStateBool addPaused)
 {
     m_dataPtr->addPaused = addPaused;
+}
+
+TriStateBool AutoDownloadRule::createSubfolder() const
+{
+    return m_dataPtr->createSubfolder;
+}
+
+void AutoDownloadRule::setCreateSubfolder(const TriStateBool createSubfolder)
+{
+    m_dataPtr->createSubfolder = createSubfolder;
 }
 
 QString AutoDownloadRule::assignedCategory() const
@@ -578,7 +614,7 @@ bool AutoDownloadRule::isEnabled() const
     return m_dataPtr->enabled;
 }
 
-void AutoDownloadRule::setEnabled(bool enable)
+void AutoDownloadRule::setEnabled(const bool enable)
 {
     m_dataPtr->enabled = enable;
 }
@@ -593,7 +629,7 @@ void AutoDownloadRule::setLastMatch(const QDateTime &lastMatch)
     m_dataPtr->lastMatch = lastMatch;
 }
 
-void AutoDownloadRule::setIgnoreDays(int d)
+void AutoDownloadRule::setIgnoreDays(const int d)
 {
     m_dataPtr->ignoreDays = d;
 }
@@ -618,7 +654,7 @@ bool AutoDownloadRule::useSmartFilter() const
     return m_dataPtr->smartFilter;
 }
 
-void AutoDownloadRule::setUseSmartFilter(bool enabled)
+void AutoDownloadRule::setUseSmartFilter(const bool enabled)
 {
     m_dataPtr->smartFilter = enabled;
 }
@@ -628,7 +664,7 @@ bool AutoDownloadRule::useRegex() const
     return m_dataPtr->useRegex;
 }
 
-void AutoDownloadRule::setUseRegex(bool enabled)
+void AutoDownloadRule::setUseRegex(const bool enabled)
 {
     m_dataPtr->useRegex = enabled;
     m_dataPtr->cachedRegexes.clear();

@@ -30,7 +30,6 @@
 #ifndef NET_GEOIPMANAGER_H
 #define NET_GEOIPMANAGER_H
 
-#include <QCache>
 #include <QObject>
 
 class QHostAddress;
@@ -40,9 +39,12 @@ class GeoIPDatabase;
 
 namespace Net
 {
+    struct DownloadResult;
+
     class GeoIPManager : public QObject
     {
         Q_OBJECT
+        Q_DISABLE_COPY(GeoIPManager)
 
     public:
         static void initInstance();
@@ -55,12 +57,11 @@ namespace Net
 
     private slots:
         void configure();
-        void downloadFinished(const QString &url, QByteArray data);
-        void downloadFailed(const QString &url, const QString &reason);
+        void downloadFinished(const DownloadResult &result);
 
     private:
         GeoIPManager();
-        ~GeoIPManager();
+        ~GeoIPManager() override;
 
         void loadDatabase();
         void manageDatabaseUpdate();

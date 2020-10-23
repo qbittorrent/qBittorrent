@@ -42,28 +42,37 @@ class QProcessEnvironment;
 
 struct QBtCommandLineParameters
 {
-    bool showHelp, relativeFastresumePaths, portableMode, skipChecking, sequential, firstLastPiecePriority;
-#ifndef Q_OS_WIN
+    bool showHelp;
+    bool relativeFastresumePaths;
+    bool skipChecking;
+    bool sequential;
+    bool firstLastPiecePriority;
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     bool showVersion;
 #endif
 #ifndef DISABLE_GUI
     bool noSplash;
-#else
+#elif !defined(Q_OS_WIN)
     bool shouldDaemonize;
 #endif
     int webUiPort;
-    TriStateBool addPaused, skipDialog;
+    TriStateBool addPaused;
+    TriStateBool skipDialog;
     QStringList torrents;
-    QString profileDir, configurationName, savePath, category, unknownParameter;
+    QString profileDir;
+    QString configurationName;
+    QString savePath;
+    QString category;
+    QString unknownParameter;
 
-    QBtCommandLineParameters(const QProcessEnvironment&);
+    explicit QBtCommandLineParameters(const QProcessEnvironment &);
     QStringList paramList() const;
 };
 
 class CommandLineParameterError : public std::runtime_error
 {
 public:
-    CommandLineParameterError(const QString &messageForUser);
+    explicit CommandLineParameterError(const QString &messageForUser);
     const QString &messageForUser() const;
 
 private:

@@ -31,14 +31,15 @@
 
 #include <QDialog>
 #include <QLineEdit>
-#include <QString>
+
+class QString;
 
 namespace Ui
 {
     class AutoExpandableDialog;
 }
 
-class AutoExpandableDialog : public QDialog
+class AutoExpandableDialog final : public QDialog
 {
     Q_OBJECT
 
@@ -47,8 +48,8 @@ public:
     ~AutoExpandableDialog();
 
     static QString getText(QWidget *parent, const QString &title, const QString &label,
-                            QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = QString(),
-                            bool *ok = nullptr, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
+                           QLineEdit::EchoMode mode = QLineEdit::Normal, const QString &text = {},
+                            bool *ok = nullptr, bool excludeExtension = false, Qt::InputMethodHints inputMethodHints = Qt::ImhNone);
 
 protected:
     void showEvent(QShowEvent *e) override;

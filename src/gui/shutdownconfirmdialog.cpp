@@ -35,7 +35,6 @@
 #include <QStyle>
 
 #include "base/preferences.h"
-#include "base/utils/misc.h"
 #include "ui_shutdownconfirmdialog.h"
 #include "utils.h"
 
@@ -63,7 +62,7 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
 
     // Always on top
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
-    move(Utils::Misc::screenCenter(this));
+    move(Utils::Gui::screenCenter(this));
 
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, &QTimer::timeout, this, &ShutdownConfirmDialog::updateSeconds);

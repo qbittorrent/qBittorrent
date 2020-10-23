@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': (event) => {
+                    $('submitButton').click();
+                    event.preventDefault();
+                },
+                'Escape': (event) => {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                },
+                'Esc': (event) => {
+                    window.parent.closeWindows();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+        window.addEvent('domready', () => {
+            $('folderName').focus();
+            const path = decodeURIComponent(new URI().getData('path'));
+            $('submitButton').addEvent('click', (e) => {
+                new Event(e).stop();
+                // check field
+                const folderName = $('folderName').value.trim();
+                if (folderName === '') {
+                    alert('QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]');
+                    return;
+                }
+
+                $('submitButton').disabled = true;
+
+                new Request({
+                    url: 'api/v2/rss/addFolder',
+                    noCache: true,
+                    method: 'post',
+                    data: {
+                        path: path ? (path + '\\' + folderName) : folderName
+                    },
+                    onSuccess: (response) => {
+                        window.parent.qBittorrent.Rss.updateRssFeedList();
+                        window.parent.closeWindows();
+                    },
+                    onFailure: (response) => {
+                        if (response.status === 409)
+                            alert(response.responseText);
+                        $('submitButton').disabled = false;
+                    }
+                }).send();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p style="font-weight: bold;">QBT_TR(Folder name:)QBT_TR[CONTEXT=RSSWidget]</p>
+        <input type="text" id="folderName" style="width: 320px;" />
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" value="QBT_TR(OK)QBT_TR[CONTEXT=HttpServer]" id="submitButton" />
+        </div>
+    </div>
+</body>
+
+</html>

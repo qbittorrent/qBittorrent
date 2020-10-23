@@ -1,0 +1,51 @@
+<!-- preferences -->
+<div class="toolbarTabs">
+    <ul id="preferencesTabs" class="tab-menu">
+        <li id="PrefDownloadsLink" class="selected"><a>QBT_TR(Downloads)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefConnectionLink"><a>QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefSpeedLink"><a>QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefBittorrentLink"><a>QBT_TR(BitTorrent)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefRSSLink"><a>QBT_TR(RSS)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefWebUILink"><a>QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefAdvancedLink"><a>QBT_TR(Advanced)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+
+<script>
+    'use strict';
+
+    (function() {
+        // Tabs
+        MochaUI.initializeTabs('preferencesTabs');
+
+        $('PrefDownloadsLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('DownloadsTab').removeClass('invisible');
+        });
+        $('PrefConnectionLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('ConnectionTab').removeClass('invisible');
+        });
+        $('PrefSpeedLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('SpeedTab').removeClass('invisible');
+        });
+        $('PrefBittorrentLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('BittorrentTab').removeClass('invisible');
+        });
+        $('PrefRSSLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('RSSTab').removeClass('invisible');
+        });
+        $('PrefWebUILink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('WebUITab').removeClass('invisible');
+        });
+        $('PrefAdvancedLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('AdvancedTab').removeClass('invisible');
+        });
+    })();
+</script>

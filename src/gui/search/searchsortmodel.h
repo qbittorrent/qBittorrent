@@ -31,9 +31,8 @@
 
 #include <QSortFilterProxyModel>
 #include <QStringList>
-#include "base/utils/string.h"
 
-class SearchSortModel : public QSortFilterProxyModel
+class SearchSortModel final : public QSortFilterProxyModel
 {
     using base = QSortFilterProxyModel;
 
@@ -50,10 +49,15 @@ public:
         NB_SEARCH_COLUMNS
     };
 
+    enum SearchDataRole
+    {
+        UnderlyingDataRole = Qt::UserRole
+    };
+
     explicit SearchSortModel(QObject *parent = nullptr);
 
     void enableNameFilter(bool enabled);
-    void setNameFilter(const QString &searchTerm = QString());
+    void setNameFilter(const QString &searchTerm = {});
 
     //! \brief Sets parameters for filtering by size
     //! \param minSize minimal size in bytes

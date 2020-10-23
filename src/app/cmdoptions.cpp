@@ -37,12 +37,17 @@
 #include <QProcessEnvironment>
 #include <QTextStream>
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
 #include <QMessageBox>
 #endif
 
+#include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+
+#ifndef DISABLE_GUI
+#include "gui/utils.h"
+#endif
 
 namespace
 {
@@ -54,7 +59,7 @@ namespace
     class Option
     {
     protected:
-        constexpr Option(const char *name, char shortcut = 0)
+        explicit constexpr Option(const char *name, char shortcut = 0)
             : m_name {name}
             , m_shortcut {shortcut}
         {
@@ -78,7 +83,7 @@ namespace
         QString envVarName() const
         {
             return QLatin1String("QBT_")
-                   + QString(QLatin1String(m_name)).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
+                   + QString::fromLatin1(m_name).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
         }
 
     public:
@@ -88,8 +93,8 @@ namespace
 
             if ((USAGE_TEXT_COLUMN - usage.length() - 4) > 0)
                 return res + QString(USAGE_TEXT_COLUMN - usage.length() - 4, ' ');
-            else
-                return res;
+
+            return res;
         }
 
     private:
@@ -101,7 +106,7 @@ namespace
     class BoolOption : protected Option
     {
     public:
-        constexpr BoolOption(const char *name, char shortcut = 0)
+        explicit constexpr BoolOption(const char *name, char shortcut = 0)
             : Option {name, shortcut}
         {
         }
@@ -138,7 +143,7 @@ namespace
     struct StringOption : protected Option
     {
     public:
-        constexpr StringOption(const char *name)
+        explicit constexpr StringOption(const char *name)
             : Option {name, 0}
         {
         }
@@ -155,10 +160,10 @@ namespace
                 return Utils::String::unquote(parts[1], QLatin1String("'\""));
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
-                                            .arg(fullParameter()).arg(QLatin1String("<value>")));
+                                            .arg(fullParameter(), QLatin1String("<value>")));
         }
 
-        QString value(const QProcessEnvironment &env, const QString &defaultValue = QString()) const
+        QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
         {
             QString val = env.value(envVarName());
             return val.isEmpty() ? defaultValue : Utils::String::unquote(val, QLatin1String("'\""));
@@ -185,7 +190,7 @@ namespace
     class IntOption : protected StringOption
     {
     public:
-        constexpr IntOption(const char *name)
+        explicit constexpr IntOption(const char *name)
             : StringOption {name}
         {
         }
@@ -201,7 +206,7 @@ namespace
             if (!ok)
                 throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                             "e.g. Parameter '--webui-port' must follow syntax '--webui-port=<value>'")
-                                                .arg(fullParameter()).arg(QLatin1String("<integer value>")));
+                                                .arg(fullParameter(), QLatin1String("<integer value>")));
             return res;
         }
 
@@ -255,13 +260,13 @@ namespace
             if (parts.size() == 1) {
                 return TriStateBool(m_defaultValue);
             }
-            else if (parts.size() == 2) {
+            if (parts.size() == 2) {
                 QString val = parts[1];
 
                 if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
                     return TriStateBool::True;
                 }
-                else if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
+                if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
                     return TriStateBool::False;
                 }
             }
@@ -269,31 +274,29 @@ namespace
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--add-paused' must follow syntax "
                                                         "'--add-paused=<true|false>'")
-                                            .arg(fullParameter())
-                                            .arg(QLatin1String("<true|false>")));
+                                            .arg(fullParameter(), QLatin1String("<true|false>")));
         }
 
         TriStateBool value(const QProcessEnvironment &env) const
         {
-            QString val = env.value(envVarName(), "-1");
+            const QString val = env.value(envVarName(), "-1");
 
             if (val.isEmpty()) {
                 return TriStateBool(m_defaultValue);
             }
-            else if (val == QLatin1String("-1")) {
+            if (val == QLatin1String("-1")) {
                 return TriStateBool::Undefined;
             }
-            else if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
+            if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1"))) {
                 return TriStateBool::True;
             }
-            else if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
+            if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0"))) {
                 return TriStateBool::False;
             }
-            else {
-                qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
-                    .arg(QLatin1String("true|false"), envVarName(), val);
-                return TriStateBool::Undefined;
-            }
+
+            qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
+                .arg(QLatin1String("true|false"), envVarName(), val);
+            return TriStateBool::Undefined;
         }
 
         bool m_defaultValue;
@@ -304,40 +307,38 @@ namespace
         return o == s;
     }
 
-    constexpr const BoolOption SHOW_HELP_OPTION = {"help", 'h'};
-    constexpr const BoolOption SHOW_VERSION_OPTION = {"version", 'v'};
-#ifdef DISABLE_GUI
-    constexpr const BoolOption DAEMON_OPTION = {"daemon", 'd'};
+    constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
+    constexpr const BoolOption SHOW_VERSION_OPTION {"version", 'v'};
+#if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
+    constexpr const BoolOption DAEMON_OPTION {"daemon", 'd'};
 #else
-    constexpr const BoolOption NO_SPLASH_OPTION = {"no-splash"};
+    constexpr const BoolOption NO_SPLASH_OPTION {"no-splash"};
 #endif
-    constexpr const IntOption WEBUI_PORT_OPTION = {"webui-port"};
-    constexpr const StringOption PROFILE_OPTION = {"profile"};
-    constexpr const StringOption CONFIGURATION_OPTION = {"configuration"};
-    constexpr const BoolOption PORTABLE_OPTION = {"portable"};
-    constexpr const BoolOption RELATIVE_FASTRESUME = {"relative-fastresume"};
-    constexpr const StringOption SAVE_PATH_OPTION = {"save-path"};
-    constexpr const TriStateBoolOption PAUSED_OPTION = {"add-paused", true};
-    constexpr const BoolOption SKIP_HASH_CHECK_OPTION = {"skip-hash-check"};
-    constexpr const StringOption CATEGORY_OPTION = {"category"};
-    constexpr const BoolOption SEQUENTIAL_OPTION = {"sequential"};
-    constexpr const BoolOption FIRST_AND_LAST_OPTION = {"first-and-last"};
-    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION = {"skip-dialog", true};
+    constexpr const IntOption WEBUI_PORT_OPTION {"webui-port"};
+    constexpr const StringOption PROFILE_OPTION {"profile"};
+    constexpr const StringOption CONFIGURATION_OPTION {"configuration"};
+    constexpr const BoolOption RELATIVE_FASTRESUME {"relative-fastresume"};
+    constexpr const StringOption SAVE_PATH_OPTION {"save-path"};
+    constexpr const TriStateBoolOption PAUSED_OPTION {"add-paused", true};
+    constexpr const BoolOption SKIP_HASH_CHECK_OPTION {"skip-hash-check"};
+    constexpr const StringOption CATEGORY_OPTION {"category"};
+    constexpr const BoolOption SEQUENTIAL_OPTION {"sequential"};
+    constexpr const BoolOption FIRST_AND_LAST_OPTION {"first-and-last"};
+    constexpr const TriStateBoolOption SKIP_DIALOG_OPTION {"skip-dialog", true};
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
     : showHelp(false)
     , relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
-    , portableMode(PORTABLE_OPTION.value(env))
     , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
     , sequential(SEQUENTIAL_OPTION.value(env))
     , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     , showVersion(false)
 #endif
 #ifndef DISABLE_GUI
     , noSplash(NO_SPLASH_OPTION.value(env))
-#else
+#elif !defined(Q_OS_WIN)
     , shouldDaemonize(DAEMON_OPTION.value(env))
 #endif
     , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
@@ -362,7 +363,7 @@ QStringList QBtCommandLineParameters::paramList() const
     // torrent paths or URLs.
 
     if (!savePath.isEmpty())
-        result.append(QString("@savePath=%1").arg(savePath));
+        result.append(QLatin1String("@savePath=") + savePath);
 
     if (addPaused == TriStateBool::True) {
         result.append(QLatin1String("@addPaused=1"));
@@ -375,7 +376,7 @@ QStringList QBtCommandLineParameters::paramList() const
         result.append(QLatin1String("@skipChecking"));
 
     if (!category.isEmpty())
-        result.append(QString("@category=%1").arg(category));
+        result.append(QLatin1String("@category=") + category);
 
     if (sequential)
         result.append(QLatin1String("@sequential"));
@@ -407,7 +408,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             if (arg == SHOW_HELP_OPTION) {
                 result.showHelp = true;
             }
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
             else if (arg == SHOW_VERSION_OPTION) {
                 result.showVersion = true;
             }
@@ -422,7 +423,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             else if (arg == NO_SPLASH_OPTION) {
                 result.noSplash = true;
             }
-#else
+#elif !defined(Q_OS_WIN)
             else if (arg == DAEMON_OPTION) {
                 result.shouldDaemonize = true;
             }
@@ -432,9 +433,6 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             }
             else if (arg == RELATIVE_FASTRESUME) {
                 result.relativeFastresumePaths = true;
-            }
-            else if (arg == PORTABLE_OPTION) {
-                result.portableMode = true;
             }
             else if (arg == CONFIGURATION_OPTION) {
                 result.configurationName = CONFIGURATION_OPTION.value(arg);
@@ -486,7 +484,7 @@ CommandLineParameterError::CommandLineParameterError(const QString &messageForUs
 {
 }
 
-const QString& CommandLineParameterError::messageForUser() const
+const QString &CommandLineParameterError::messageForUser() const
 {
     return m_messageForUser;
 }
@@ -497,7 +495,7 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
     QStringList lines = {words.first()};
     int currentLineMaxLength = wrapAtColumn - initialIndentation;
 
-    foreach (const QString &word, words.mid(1)) {
+    for (const QString &word : asConst(words.mid(1))) {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength) {
             lines.last().append(' ' + word);
         }
@@ -520,7 +518,7 @@ QString makeUsage(const QString &prgName)
     stream << indentation << prgName << QLatin1String(" [options] [(<filename> | <url>)...]") << '\n';
 
     stream << QObject::tr("Options:") << '\n';
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     stream << SHOW_VERSION_OPTION.usage() << wrapText(QObject::tr("Display program version and exit")) << '\n';
 #endif
     stream << SHOW_HELP_OPTION.usage() << wrapText(QObject::tr("Display this help message and exit")) << '\n';
@@ -529,7 +527,7 @@ QString makeUsage(const QString &prgName)
            << '\n';
 #ifndef DISABLE_GUI
     stream << NO_SPLASH_OPTION.usage() << wrapText(QObject::tr("Disable splash screen")) << '\n';
-#else
+#elif !defined(Q_OS_WIN)
     stream << DAEMON_OPTION.usage() << wrapText(QObject::tr("Run in daemon-mode (background)")) << '\n';
 #endif
     //: Use appropriate short form or abbreviation of "directory"
@@ -540,9 +538,6 @@ QString makeUsage(const QString &prgName)
     stream << RELATIVE_FASTRESUME.usage()
            << wrapText(QObject::tr("Hack into libtorrent fastresume files and make file paths relative "
                                          "to the profile directory")) << '\n';
-    stream << PORTABLE_OPTION.usage()
-           << wrapText(QObject::tr("Shortcut for %1", "Shortcut for --profile=<exe dir>/profile --relative-fastresume")
-                       .arg(QLatin1String("--profile=<exe dir>/profile --relative-fastresume"))) << '\n';
     stream << Option::padUsageText(QObject::tr("files or URLs"))
            << wrapText(QObject::tr("Download the torrents passed by the user")) << '\n'
            << '\n';
@@ -569,18 +564,17 @@ QString makeUsage(const QString &prgName)
            << QLatin1String("QBT_NO_SPLASH=1 ") << prgName << '\n'
            << wrapText(QObject::tr("Command line parameters take precedence over environment variables"), 0) << '\n';
 
-    stream << flush;
     return text;
 }
 
 void displayUsage(const QString &prgName)
 {
-#ifndef Q_OS_WIN
-    printf("%s\n", qUtf8Printable(makeUsage(prgName)));
-#else
+#if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Information, QObject::tr("Help"), makeUsage(prgName), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
-    msgBox.move(Utils::Misc::screenCenter(&msgBox));
+    msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
+#else
+    printf("%s\n", qUtf8Printable(makeUsage(prgName)));
 #endif
 }

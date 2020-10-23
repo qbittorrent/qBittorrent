@@ -33,6 +33,7 @@
 #include <QFile>
 #include <QHash>
 
+#include "global.h"
 #include "logger.h"
 #include "profile.h"
 #include "utils/fs.h"
@@ -45,21 +46,21 @@ namespace
     class TransactionalSettings
     {
     public:
-        TransactionalSettings(const QString &name)
+        explicit TransactionalSettings(const QString &name)
             : m_name(name)
         {
         }
 
-        QVariantHash read();
-        bool write(const QVariantHash &data);
+        QVariantHash read() const;
+        bool write(const QVariantHash &data) const;
 
     private:
         // we return actual file names used by QSettings because
         // there is no other way to get that name except
         // actually create a QSettings object.
         // if serialization operation was not successful we return empty string
-        QString deserialize(const QString &name, QVariantHash &data);
-        QString serialize(const QString &name, const QVariantHash &data);
+        QString deserialize(const QString &name, QVariantHash &data) const;
+        QString serialize(const QString &name, const QVariantHash &data) const;
 
         const QString m_name;
     };
@@ -85,7 +86,6 @@ namespace
             {"BitTorrent/Session/BandwidthSchedulerEnabled", "Preferences/Scheduler/Enabled"},
             {"BitTorrent/Session/Port", "Preferences/Connection/PortRangeMin"},
             {"BitTorrent/Session/UseRandomPort", "Preferences/General/UseRandomPort"},
-            {"BitTorrent/Session/IPv6Enabled", "Preferences/Connection/InterfaceListenIPv6"},
             {"BitTorrent/Session/Interface", "Preferences/Connection/Interface"},
             {"BitTorrent/Session/InterfaceName", "Preferences/Connection/InterfaceName"},
             {"BitTorrent/Session/InterfaceAddress", "Preferences/Connection/InterfaceAddress"},
@@ -154,7 +154,6 @@ SettingsStorage *SettingsStorage::m_instance = nullptr;
 SettingsStorage::SettingsStorage()
     : m_data{TransactionalSettings(QLatin1String("qBittorrent")).read()}
     , m_dirty(false)
-    , m_lock(QReadWriteLock::Recursive)
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
@@ -185,33 +184,36 @@ SettingsStorage *SettingsStorage::instance()
 
 bool SettingsStorage::save()
 {
-    if (!m_dirty) return false; // Obtaining the lock is expensive, let's check early
-    QWriteLocker locker(&m_lock);
-    if (!m_dirty) return false; // something might have changed while we were getting the lock
+    if (!m_dirty) return true; // Obtaining the lock is expensive, let's check early
+    const QWriteLocker locker(&m_lock);  // to guard for `m_dirty`
+    if (!m_dirty) return true; // something might have changed while we were getting the lock
 
-    TransactionalSettings settings(QLatin1String("qBittorrent"));
-    if (settings.write(m_data)) {
-        m_dirty = false;
-        return true;
+    const TransactionalSettings settings(QLatin1String("qBittorrent"));
+    if (!settings.write(m_data)) {
+        m_timer.start();
+        return false;
     }
 
-    m_timer.start();
-    return false;
+    m_dirty = false;
+    return true;
 }
 
 QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultValue) const
 {
-    QReadLocker locker(&m_lock);
-    return m_data.value(mapKey(key), defaultValue);
+    const QString realKey = mapKey(key);
+    const QReadLocker locker(&m_lock);
+    return m_data.value(realKey, defaultValue);
 }
 
 void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 {
     const QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
-    if (m_data.value(realKey) != value) {
+    const QWriteLocker locker(&m_lock);
+
+    QVariant &currentValue = m_data[realKey];
+    if (currentValue != value) {
         m_dirty = true;
-        m_data.insert(realKey, value);
+        currentValue = value;
         m_timer.start();
     }
 }
@@ -219,15 +221,14 @@ void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 void SettingsStorage::removeValue(const QString &key)
 {
     const QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
-    if (m_data.contains(realKey)) {
+    const QWriteLocker locker(&m_lock);
+    if (m_data.remove(realKey) > 0) {
         m_dirty = true;
-        m_data.remove(realKey);
         m_timer.start();
     }
 }
 
-QVariantHash TransactionalSettings::read()
+QVariantHash TransactionalSettings::read() const
 {
     QVariantHash res;
 
@@ -255,7 +256,7 @@ QVariantHash TransactionalSettings::read()
     return res;
 }
 
-bool TransactionalSettings::write(const QVariantHash &data)
+bool TransactionalSettings::write(const QVariantHash &data) const
 {
     // QSettings deletes the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur
@@ -276,25 +277,25 @@ bool TransactionalSettings::write(const QVariantHash &data)
     return QFile::rename(newPath, finalPath);
 }
 
-QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data)
+QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data) const
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(name);
+    SettingsPtr settings = Profile::instance()->applicationSettings(name);
 
     if (settings->allKeys().isEmpty())
-        return QString();
+        return {};
 
     // Copy everything into memory. This means even keys inserted in the file manually
     // or that we don't touch directly in this code (eg disabled by ifdef). This ensures
     // that they will be copied over when save our settings to disk.
-    foreach (const QString &key, settings->allKeys())
+    for (const QString &key : asConst(settings->allKeys()))
         data.insert(key, settings->value(key));
 
     return settings->fileName();
 }
 
-QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data)
+QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data) const
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(name);
+    SettingsPtr settings = Profile::instance()->applicationSettings(name);
     for (auto i = data.begin(); i != data.end(); ++i)
         settings->setValue(i.key(), i.value());
 
@@ -313,5 +314,5 @@ QString TransactionalSettings::serialize(const QString &name, const QVariantHash
         Logger::instance()->addMessage(QObject::tr("An unknown error occurred while trying to write the configuration file."), Log::CRITICAL);
         break;
     }
-    return QString();
+    return {};
 }

@@ -36,23 +36,21 @@
 
 class QHeaderView;
 class QModelIndex;
-class QStandardItem;
 class QStandardItemModel;
-
-template <typename T> class CachedSettingValue;
 
 class LineEdit;
 class SearchHandler;
-class SearchListDelegate;
 class SearchSortModel;
 struct SearchResult;
+
+template <typename T> class CachedSettingValue;
 
 namespace Ui
 {
     class SearchJobWidget;
 }
 
-class SearchJobWidget : public QWidget
+class SearchJobWidget final : public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(SearchJobWidget)
@@ -83,13 +81,12 @@ public:
 
     void cancelSearch();
 
-    void downloadTorrents();
-    void openTorrentPages();
-    void copyTorrentURLs();
-
 signals:
     void resultsCountUpdated();
     void statusChanged();
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     void loadSettings();
@@ -97,11 +94,12 @@ private:
     void updateFilter();
     void filterSearchResults(const QString &name);
     void showFilterContextMenu(const QPoint &);
-    void displayToggleColumnsMenu(const QPoint&);
+    void contextMenuEvent(QContextMenuEvent *event) override;
+    void displayToggleColumnsMenu(const QPoint &);
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
     void searchFailed();
-    void appendSearchResults(const QList<SearchResult> &results);
+    void appendSearchResults(const QVector<SearchResult> &results);
     void updateResultsCount();
     void setStatus(Status value);
     void downloadTorrent(const QModelIndex &rowIndex);
@@ -111,6 +109,13 @@ private:
     QHeaderView *header() const;
     void setRowColor(int row, const QColor &color);
 
+    void downloadTorrents();
+    void openTorrentPages() const;
+    void copyTorrentURLs() const;
+    void copyTorrentDownloadLinks() const;
+    void copyTorrentNames() const;
+    void copyField(int column) const;
+
     static QString statusText(Status st);
     static CachedSettingValue<NameFilteringMode> &nameFilteringModeSetting();
 
@@ -118,7 +123,6 @@ private:
     SearchHandler *m_searchHandler;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
-    SearchListDelegate *m_searchDelegate;
     LineEdit *m_lineEditSearchResultsFilter;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;

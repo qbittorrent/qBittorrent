@@ -1,12 +1,7 @@
-find_package(Qt5Widgets ${requiredQtVersion}) # to conditionally install desktop-related files
-
-if (APPLE)
+if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     add_subdirectory(mac)
-else (APPLE)
-    if (UNIX)
-        add_subdirectory(unix)
-    endif (UNIX)
-    if (WIN32)
-        add_subdirectory(windows)
-    endif (WIN32)
-endif (APPLE)
+elseif (UNIX AND (NOT APPLE))
+    add_subdirectory(unix)
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_subdirectory(windows)
+endif()

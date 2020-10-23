@@ -67,7 +67,7 @@ void Connection::read()
         case RequestParser::ParseStatus::Incomplete: {
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
                 if (m_receivedData.size() > bufferLimit) {
-                    Logger::instance()->addMessage(tr("Http request size exceeds limiation, closing socket. Limit: %ld, IP: %s")
+                    Logger::instance()->addMessage(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                     Response resp(413, "Payload Too Large");
@@ -80,7 +80,7 @@ void Connection::read()
             return;
 
         case RequestParser::ParseStatus::BadRequest: {
-                Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %s")
+                Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                 Response resp(400, "Bad Request");
@@ -132,9 +132,9 @@ bool Connection::acceptsGzipEncoding(QString codings)
 {
     // [rfc7231] 5.3.4. Accept-Encoding
 
-    const auto isCodingAvailable = [](const QStringList &list, const QString &encoding) -> bool
+    const auto isCodingAvailable = [](const QVector<QStringRef> &list, const QString &encoding) -> bool
     {
-        foreach (const QString &str, list) {
+        for (const QStringRef &str : list) {
             if (!str.startsWith(encoding))
                 continue;
 
@@ -143,11 +143,11 @@ bool Connection::acceptsGzipEncoding(QString codings)
                 return true;
 
             // [rfc7231] 5.3.1. Quality Values
-            const QStringRef substr = str.midRef(encoding.size() + 3);  // ex. skip over "gzip;q="
+            const QStringRef substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
 
             bool ok = false;
             const double qvalue = substr.toDouble(&ok);
-            if (!ok || (qvalue <= 0.0))
+            if (!ok || (qvalue <= 0))
                 return false;
 
             return true;
@@ -155,7 +155,7 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return false;
     };
 
-    const QStringList list = codings.remove(' ').remove('\t').split(',', QString::SkipEmptyParts);
+    const QVector<QStringRef> list = codings.remove(' ').remove('\t').splitRef(',', QString::SkipEmptyParts);
     if (list.isEmpty())
         return false;
 

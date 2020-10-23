@@ -30,6 +30,7 @@
 #define BITTORRENT_INFOHASH_H
 
 #include <libtorrent/sha1_hash.hpp>
+
 #include <QString>
 
 namespace BitTorrent
@@ -38,23 +39,28 @@ namespace BitTorrent
     {
     public:
         InfoHash();
-        InfoHash(const libtorrent::sha1_hash &nativeHash);
+        InfoHash(const lt::sha1_hash &nativeHash);
         InfoHash(const QString &hashString);
-        InfoHash(const InfoHash &other);
+        InfoHash(const InfoHash &other) = default;
+
+        static constexpr int length()
+        {
+            return lt::sha1_hash::size();
+        }
 
         bool isValid() const;
 
-        operator libtorrent::sha1_hash() const;
+        operator lt::sha1_hash() const;
         operator QString() const;
-        bool operator==(const InfoHash &other) const;
-        bool operator!=(const InfoHash &other) const;
 
     private:
         bool m_valid;
-        libtorrent::sha1_hash m_nativeHash;
+        lt::sha1_hash m_nativeHash;
         QString m_hashString;
     };
 
+    bool operator==(const InfoHash &left, const InfoHash &right);
+    bool operator!=(const InfoHash &left, const InfoHash &right);
     uint qHash(const InfoHash &key, uint seed);
 }
 

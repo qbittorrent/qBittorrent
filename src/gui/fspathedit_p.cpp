@@ -29,8 +29,11 @@
 #include "fspathedit_p.h"
 
 #include <QCompleter>
+#include <QContextMenuEvent>
 #include <QDir>
 #include <QFileInfo>
+#include <QFileSystemModel>
+#include <QMenu>
 #include <QStringList>
 #include <QStyle>
 
@@ -251,16 +254,13 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
         showCompletionPopup();
     }
 
-    const FileSystemPathValidator *validator =
-        qobject_cast<const FileSystemPathValidator *>(this->validator());
+    auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
     if (validator) {
         FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
         QValidator::State lastState = validator->lastValidationState();
         if (lastTestResult == FileSystemPathValidator::TestResult::OK) {
-            if (m_warningAction) {
-                delete m_warningAction;
-                m_warningAction = nullptr;
-            }
+            delete m_warningAction;
+            m_warningAction = nullptr;
         }
         else {
             if (!m_warningAction) {
@@ -282,13 +282,14 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 void Private::FileLineEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = createStandardContextMenu();
-    menu->addSeparator();
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+
     if (m_browseAction) {
         menu->addSeparator();
         menu->addAction(m_browseAction);
     }
-    menu->exec(event->globalPos());
-    delete menu;
+
+    menu->popup(event->globalPos());
 }
 
 void Private::FileLineEdit::showCompletionPopup()
@@ -312,7 +313,7 @@ QString Private::FileLineEdit::warningText(FileSystemPathValidator::TestResult r
     case TestResult::CantWrite:
         return tr("Does not have write permission in '%1'");
     default:
-        return QString();
+        return {};
     }
 }
 

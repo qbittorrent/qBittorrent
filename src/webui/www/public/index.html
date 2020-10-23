@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</title>
+    <link rel="icon" type="image/png" href="images/qbittorrent32.png" />
+    <link rel="icon" type="image/svg+xml" href="icons/qbittorrent-tray.svg" />
+    <link rel="stylesheet" type="text/css" href="css/login.css?v=${CACHEID}" />
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="css/noscript.css?v=${CACHEID}" />
+    </noscript>
+    <script src="scripts/login.js?locale=${LANG}&v=${CACHEID}"></script>
+</head>
+
+<body>
+    <noscript id="noscript">
+        <h1>QBT_TR(JavaScript Required! You must enable JavaScript for the Web UI to work properly)QBT_TR[CONTEXT=HttpServer]</h1>
+    </noscript>
+    <div id="main">
+        <h1>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</h1>
+        <div id="logo" class="col">
+            <img src="icons/qbittorrent-tray.svg" alt="qBittorrent logo" />
+        </div>
+        <div id="formplace" class="col">
+            <form id="loginform" method="post" onsubmit="submitLoginForm();">
+                <div class="row">
+                    <label for="username">QBT_TR(Username)QBT_TR[CONTEXT=HttpServer]</label><br />
+                    <input type="text" id="username" name="username" autocomplete="username" /></div>
+                <div class="row">
+                    <label for="password">QBT_TR(Password)QBT_TR[CONTEXT=HttpServer]</label><br />
+                    <input type="password" id="password" name="password" autocomplete="current-password" /></div>
+                <div class="row">
+                    <input type="submit" id="login" value="QBT_TR(Login)QBT_TR[CONTEXT=HttpServer]" />
+                </div>
+            </form>
+        </div>
+        <div id="error_msg"></div>
+    </div>
+</body>
+
+</html>

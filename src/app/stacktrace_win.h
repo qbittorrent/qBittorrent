@@ -93,8 +93,8 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
     EnumModulesContext* context = (EnumModulesContext*)UserContext;
     mod.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
     if(SymGetModuleInfo64(context->hProcess, BaseOfDll, &mod)) {
-        QString moduleBase = QString("0x%1").arg(BaseOfDll, 16, 16, QLatin1Char('0'));
-        QString line = QString("%1 %2 Image: %3")
+        QString moduleBase = QString::fromLatin1("0x%1").arg(BaseOfDll, 16, 16, QLatin1Char('0'));
+        QString line = QString::fromLatin1("%1 %2 Image: %3")
                        .arg(mod.ModuleName, -25)
                        .arg(moduleBase, -13)
                        .arg(mod.LoadedImageName);
@@ -102,7 +102,7 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
 
         QString pdbName(mod.LoadedPdbName);
         if(!pdbName.isEmpty()) {
-            QString line2 = QString("%1 %2")
+            QString line2 = QString::fromLatin1("%1 %2")
                             .arg("", 35)
                             .arg(pdbName);
             context->stream << line2 << '\n';
@@ -165,7 +165,7 @@ QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
         }
 #endif
 #endif
-        return QString("%1 : %2").arg(path).arg(line.LineNumber);
+        return QString::fromLatin1("%1 : %2").arg(path).arg(line.LineNumber);
     }
 
     return QString();
@@ -296,7 +296,7 @@ const QString straceWin::getBacktrace()
                 sourceFile = getSourcePathAndLineNumber(hProcess, ihsf.InstructionOffset - 1);
             }
             else {
-                funcName = QString("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
+                funcName = QString::fromLatin1("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
             }
             SymSetContext(hProcess, &ihsf, NULL);
 #ifndef __MINGW32__
@@ -304,7 +304,7 @@ const QString straceWin::getBacktrace()
             SymEnumSymbols(hProcess, 0, NULL, EnumSymbolsCB, (PVOID)&params);
 #endif
 
-            QString insOffset = QString("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
+            QString insOffset = QString::fromLatin1("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
             QString formatLine = "#%1 %2 %3 %4";
 #ifndef __MINGW32__
             formatLine += "(%5)";
@@ -318,7 +318,7 @@ const QString straceWin::getBacktrace()
                                 .arg(params.join(", "));
 
             if (!sourceFile.isEmpty())
-                debugLine += QString("[ %1 ]").arg(sourceFile);
+                debugLine += QString::fromLatin1("[ %1 ]").arg(sourceFile);
 #else
                                 ;
 #endif
