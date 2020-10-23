@@ -275,8 +275,7 @@ void CustomStorage::handleCompleteFiles(const QString &savePath)
             QFile completeFile {saveDir.absoluteFilePath(completeFilePath)};
             if (completeFile.exists()) {
                 QFile incompleteFile {saveDir.absoluteFilePath(filePath)};
-                if (incompleteFile.exists())
-                    incompleteFile.remove();
+                incompleteFile.remove();
                 completeFile.rename(incompleteFile.fileName());
             }
         }
