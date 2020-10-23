@@ -1778,6 +1778,36 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupReverseProxy">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="title">
+               <string>Reverse Proxy Server</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_33">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QLabel" name="lblReverseProxyAddress">
+                   <property name="text">
+                    <string>Reverse Proxy Address:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textReverseProxyAddress">
+                   <property name="toolTip">
+                    <string>Specify reverse proxy IP in order to use forwarded client address (X-Forwarded-For attribute)</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupIPFilter">
               <property name="title">
                <string>IP Fi&amp;ltering</string>

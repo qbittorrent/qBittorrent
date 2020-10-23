@@ -355,6 +355,13 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Reverse Proxy Server)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow">
+            <label for="reverse_proxy_address_text" class="leftLabelLarge">QBT_TR(Reverse Proxy Address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="reverse_proxy_address_text" />
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();" />
             <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1840,6 +1847,7 @@
                         $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
                         $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
                         $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
+                        $('reverse_proxy_address_text').setProperty('value', pref.reverse_proxy_address);
                         updateBypasssAuthSettings();
                         $('webUIMaxAuthFailCountInput').setProperty('value', pref.web_ui_max_auth_fail_count.toInt());
                         $('webUIBanDurationInput').setProperty('value', pref.web_ui_ban_duration.toInt());
@@ -2228,6 +2236,7 @@
             settings.set('web_ui_max_auth_fail_count', $('webUIMaxAuthFailCountInput').getProperty('value'));
             settings.set('web_ui_ban_duration', $('webUIBanDurationInput').getProperty('value'));
             settings.set('web_ui_session_timeout', $('webUISessionTimeoutInput').getProperty('value'));
+            settings.set('reverse_proxy_address', $('reverse_proxy_address_text').getProperty('value'));
 
             // Use alternative Web UI
             const alternative_webui_enabled = $('use_alt_webui_checkbox').getProperty('checked');

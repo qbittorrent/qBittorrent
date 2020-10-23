@@ -198,6 +198,8 @@ public:
     void setWebUIMaxAuthFailCount(int count);
     std::chrono::seconds getWebUIBanDuration() const;
     void setWebUIBanDuration(std::chrono::seconds duration);
+    QString getReverseProxyAddress() const;
+    void setReverseProxyAddress(const QString &addr);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
 

@@ -234,6 +234,7 @@ void AppController::preferencesAction()
     data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join('\n');
     data["web_ui_max_auth_fail_count"] = pref->getWebUIMaxAuthFailCount();
     data["web_ui_ban_duration"] = static_cast<int>(pref->getWebUIBanDuration().count());
+    data["reverse_proxy_address"] = pref->getReverseProxyAddress();
     data["web_ui_session_timeout"] = pref->getWebUISessionTimeout();
     // Use alternative Web UI
     data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
@@ -624,6 +625,8 @@ void AppController::setPreferencesAction()
         pref->setWebUIMaxAuthFailCount(it.value().toInt());
     if (hasKey("web_ui_ban_duration"))
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
+    if (m.contains("reverse_proxy_address"))
+        pref->setReverseProxyAddress(m["reverse_proxy_address"].toString());
     if (hasKey("web_ui_session_timeout"))
         pref->setWebUISessionTimeout(it.value().toInt());
     // Use alternative Web UI

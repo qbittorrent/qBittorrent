@@ -658,6 +658,16 @@ void Preferences::setReverseProxyAddress(const QString &addr)
     setValue("Preferences/WebUI/ReverseProxyAddress", addr.trimmed());
 }
 
+QString Preferences::getReverseProxyAddress() const
+{
+    return value("Preferences/WebUI/ReverseProxyAddress", "").toString().trimmed();
+}
+
+void Preferences::setReverseProxyAddress(const QString &addr)
+{
+    setValue("Preferences/WebUI/ReverseProxyAddress", addr.trimmed());
+}
+
 bool Preferences::isWebUiClickjackingProtectionEnabled() const
 {
     return value("Preferences/WebUI/ClickjackingProtection", true).toBool();
