@@ -41,15 +41,15 @@
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
         lt::io_context &ioContext, const lt::settings_interface &settings, lt::counters &counters)
 {
-    return std::make_unique<customDiskIOThread>(lt::default_disk_io_constructor(ioContext, settings, counters));
+    return std::make_unique<CustomDiskIOThread>(lt::default_disk_io_constructor(ioContext, settings, counters));
 }
 
-customDiskIOThread::customDiskIOThread(std::unique_ptr<libtorrent::disk_interface> nativeDiskIOThread)
+CustomDiskIOThread::CustomDiskIOThread(std::unique_ptr<libtorrent::disk_interface> nativeDiskIOThread)
     : m_nativeDiskIO {std::move(nativeDiskIOThread)}
 {
 }
 
-lt::storage_holder customDiskIOThread::new_torrent(const lt::storage_params &storageParams, const std::shared_ptr<void> &torrent)
+lt::storage_holder CustomDiskIOThread::new_torrent(const lt::storage_params &storageParams, const std::shared_ptr<void> &torrent)
 {
     lt::storage_holder storageHolder = m_nativeDiskIO->new_torrent(storageParams, torrent);
 
@@ -62,40 +62,40 @@ lt::storage_holder customDiskIOThread::new_torrent(const lt::storage_params &sto
     return storageHolder;
 }
 
-void customDiskIOThread::remove_torrent(lt::storage_index_t storage)
+void CustomDiskIOThread::remove_torrent(lt::storage_index_t storage)
 {
     m_nativeDiskIO->remove_torrent(storage);
 }
 
-void customDiskIOThread::async_read(lt::storage_index_t storage, const lt::peer_request &peerRequest
+void CustomDiskIOThread::async_read(lt::storage_index_t storage, const lt::peer_request &peerRequest
                                     , std::function<void (lt::disk_buffer_holder, const lt::storage_error &)> handler
                                     , lt::disk_job_flags_t flags)
 {
     m_nativeDiskIO->async_read(storage, peerRequest, std::move(handler), flags);
 }
 
-bool customDiskIOThread::async_write(lt::storage_index_t storage, const lt::peer_request &peerRequest
+bool CustomDiskIOThread::async_write(lt::storage_index_t storage, const lt::peer_request &peerRequest
                                      , const char *buf, std::shared_ptr<lt::disk_observer> diskObserver
                                      , std::function<void (const lt::storage_error &)> handler, lt::disk_job_flags_t flags)
 {
     return m_nativeDiskIO->async_write(storage, peerRequest, buf, diskObserver, std::move(handler), flags);
 }
 
-void customDiskIOThread::async_hash(lt::storage_index_t storage, lt::piece_index_t piece
+void CustomDiskIOThread::async_hash(lt::storage_index_t storage, lt::piece_index_t piece
                                     , lt::span<lt::sha256_hash> hash, lt::disk_job_flags_t flags
                                     , std::function<void (lt::piece_index_t, const lt::sha1_hash &, const lt::storage_error &)> handler)
 {
     m_nativeDiskIO->async_hash(storage, piece, hash, flags, std::move(handler));
 }
 
-void customDiskIOThread::async_hash2(lt::storage_index_t storage, lt::piece_index_t piece
+void CustomDiskIOThread::async_hash2(lt::storage_index_t storage, lt::piece_index_t piece
                                      , int offset, lt::disk_job_flags_t flags
                                      , std::function<void (lt::piece_index_t, const lt::sha256_hash &, const lt::storage_error &)> handler)
 {
     m_nativeDiskIO->async_hash2(storage, piece, offset, flags, std::move(handler));
 }
 
-void customDiskIOThread::async_move_storage(lt::storage_index_t storage, std::string path, lt::move_flags_t flags
+void CustomDiskIOThread::async_move_storage(lt::storage_index_t storage, std::string path, lt::move_flags_t flags
                                             , std::function<void (lt::status_t, const std::string &, const lt::storage_error &)> handler)
 {
     const QString newSavePath {Utils::Fs::expandPathAbs(QString::fromStdString(path))};
@@ -113,12 +113,12 @@ void customDiskIOThread::async_move_storage(lt::storage_index_t storage, std::st
     });
 }
 
-void customDiskIOThread::async_release_files(lt::storage_index_t storage, std::function<void ()> handler)
+void CustomDiskIOThread::async_release_files(lt::storage_index_t storage, std::function<void ()> handler)
 {
     m_nativeDiskIO->async_release_files(storage, std::move(handler));
 }
 
-void customDiskIOThread::async_check_files(lt::storage_index_t storage, const lt::add_torrent_params *resume_data
+void CustomDiskIOThread::async_check_files(lt::storage_index_t storage, const lt::add_torrent_params *resume_data
                                            , lt::aux::vector<std::string, lt::file_index_t> links
                                            , std::function<void (lt::status_t, const lt::storage_error &)> handler)
 {
@@ -126,12 +126,12 @@ void customDiskIOThread::async_check_files(lt::storage_index_t storage, const lt
     m_nativeDiskIO->async_check_files(storage, resume_data, links, std::move(handler));
 }
 
-void customDiskIOThread::async_stop_torrent(lt::storage_index_t storage, std::function<void ()> handler)
+void CustomDiskIOThread::async_stop_torrent(lt::storage_index_t storage, std::function<void ()> handler)
 {
     m_nativeDiskIO->async_stop_torrent(storage, std::move(handler));
 }
 
-void customDiskIOThread::async_rename_file(lt::storage_index_t storage, lt::file_index_t index, std::string name
+void CustomDiskIOThread::async_rename_file(lt::storage_index_t storage, lt::file_index_t index, std::string name
                                            , std::function<void (const std::string &, lt::file_index_t, const lt::storage_error &)> handler)
 {
     m_nativeDiskIO->async_rename_file(storage, index, name
@@ -143,13 +143,13 @@ void customDiskIOThread::async_rename_file(lt::storage_index_t storage, lt::file
     });
 }
 
-void customDiskIOThread::async_delete_files(lt::storage_index_t storage, lt::remove_flags_t options
+void CustomDiskIOThread::async_delete_files(lt::storage_index_t storage, lt::remove_flags_t options
                                             , std::function<void (const lt::storage_error &)> handler)
 {
     m_nativeDiskIO->async_delete_files(storage, options, std::move(handler));
 }
 
-void customDiskIOThread::async_set_file_priority(lt::storage_index_t storage, lt::aux::vector<lt::download_priority_t, lt::file_index_t> priorities
+void CustomDiskIOThread::async_set_file_priority(lt::storage_index_t storage, lt::aux::vector<lt::download_priority_t, lt::file_index_t> priorities
                                                  , std::function<void (const lt::storage_error &, lt::aux::vector<lt::download_priority_t, lt::file_index_t>)> handler)
 {
     m_nativeDiskIO->async_set_file_priority(storage, priorities
@@ -160,38 +160,38 @@ void customDiskIOThread::async_set_file_priority(lt::storage_index_t storage, lt
     });
 }
 
-void customDiskIOThread::async_clear_piece(lt::storage_index_t storage, lt::piece_index_t index
+void CustomDiskIOThread::async_clear_piece(lt::storage_index_t storage, lt::piece_index_t index
                                            , std::function<void (lt::piece_index_t)> handler)
 {
     m_nativeDiskIO->async_clear_piece(storage, index, std::move(handler));
 }
 
-void customDiskIOThread::update_stats_counters(lt::counters &counters) const
+void CustomDiskIOThread::update_stats_counters(lt::counters &counters) const
 {
     m_nativeDiskIO->update_stats_counters(counters);
 }
 
-std::vector<lt::open_file_state> customDiskIOThread::get_status(lt::storage_index_t index) const
+std::vector<lt::open_file_state> CustomDiskIOThread::get_status(lt::storage_index_t index) const
 {
     return m_nativeDiskIO->get_status(index);
 }
 
-void customDiskIOThread::abort(bool wait)
+void CustomDiskIOThread::abort(bool wait)
 {
     m_nativeDiskIO->abort(wait);
 }
 
-void customDiskIOThread::submit_jobs()
+void CustomDiskIOThread::submit_jobs()
 {
     m_nativeDiskIO->submit_jobs();
 }
 
-void customDiskIOThread::settings_updated()
+void CustomDiskIOThread::settings_updated()
 {
     m_nativeDiskIO->settings_updated();
 }
 
-void customDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const QString &savePath)
+void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const QString &savePath)
 {
     const QDir saveDir {savePath};
     const StorageData storageData = m_storageData[storage];

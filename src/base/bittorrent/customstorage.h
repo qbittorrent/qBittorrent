@@ -50,10 +50,10 @@
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 
-class customDiskIOThread final : public lt::disk_interface
+class CustomDiskIOThread final : public lt::disk_interface
 {
 public:
-    explicit customDiskIOThread(std::unique_ptr<libtorrent::disk_interface> nativeDiskIOThread);
+    explicit CustomDiskIOThread(std::unique_ptr<libtorrent::disk_interface> nativeDiskIOThread);
 
     lt::storage_holder new_torrent(const lt::storage_params &storageParams, const std::shared_ptr<void> &torrent) override;
     void remove_torrent(lt::storage_index_t storageIndex) override;
