@@ -30,6 +30,9 @@
 
 #include <QVariant>
 
+#include "base/unicodestrings.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "torrentcontentmodelfolder.h"
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
@@ -99,7 +102,55 @@ int TorrentContentModelItem::columnCount() const
     return NB_COL;
 }
 
-QVariant TorrentContentModelItem::data(int column) const
+QString TorrentContentModelItem::displayData(const int column) const
+{
+    if (isRootItem())
+        return m_itemData.value(column);
+
+    switch (column) {
+    case COL_NAME:
+        return m_name;
+    case COL_PRIO: {
+            switch (m_priority) {
+            case BitTorrent::DownloadPriority::Mixed:
+                return tr("Mixed", "Mixed (priorities");
+            case BitTorrent::DownloadPriority::Ignored:
+                return tr("Not downloaded");
+            case BitTorrent::DownloadPriority::High:
+                return tr("High", "High (priority)");
+            case BitTorrent::DownloadPriority::Maximum:
+                return tr("Maximum", "Maximum (priority)");
+            default:
+                return tr("Normal", "Normal (priority)");
+            }
+        }
+    case COL_PROGRESS: {
+            const qreal progress = m_progress * 100;
+            return (static_cast<int>(progress) == 100)
+                   ? QString::fromLatin1("100%")
+                   : (Utils::String::fromDouble(progress, 1) + QLatin1Char('%'));
+        }
+    case COL_SIZE:
+        return Utils::Misc::friendlyUnit(m_size);
+    case COL_REMAINING:
+        return Utils::Misc::friendlyUnit(remaining());
+    case COL_AVAILABILITY: {
+            const int avail = availability();
+            if (avail < 0)
+                return tr("N/A");
+
+            const QString value = (avail >= 1.0)
+                                  ? QString::fromLatin1("100")
+                                  : Utils::String::fromDouble((avail * 100), 1);
+            return QString {value + C_THIN_SPACE + QLatin1Char('%')};
+        }
+    default:
+        Q_ASSERT(false);
+        return {};
+    }
+}
+
+QVariant TorrentContentModelItem::underlyingData(const int column) const
 {
     if (isRootItem())
         return m_itemData.value(column);
@@ -110,7 +161,7 @@ QVariant TorrentContentModelItem::data(int column) const
     case COL_PRIO:
         return static_cast<int>(m_priority);
     case COL_PROGRESS:
-        return progress();
+        return progress() * 100;
     case COL_SIZE:
         return m_size;
     case COL_REMAINING:
