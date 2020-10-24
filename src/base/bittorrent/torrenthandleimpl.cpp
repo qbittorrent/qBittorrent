@@ -61,6 +61,7 @@
 #include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
+#include "ltqhash.h"
 #include "ltunderlyingtype.h"
 #include "peeraddress.h"
 #include "peerinfo.h"
@@ -70,18 +71,6 @@
 const QString QB_EXT {QStringLiteral(".!qB")};
 
 using namespace BitTorrent;
-
-namespace libtorrent
-{
-    namespace aux
-    {
-        template <typename T, typename Tag>
-        uint qHash(const strong_typedef<T, Tag> &key, const uint seed)
-        {
-            return ::qHash((std::hash<strong_typedef<T, Tag>> {})(key), seed);
-        }
-    }
-}
 
 namespace
 {
