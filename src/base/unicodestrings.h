@@ -74,6 +74,7 @@ const char C_LOCALE_INDONESIAN[] = "Bahasa Indonesia";
 const char C_LOCALE_ITALIAN[] = "Italiano";
 const char C_LOCALE_JAPANESE[] = "日本語";
 const char C_LOCALE_KOREAN[] = "한글";
+const char C_LOCALE_LATGALIAN[] = "latgalīšu volūda";
 const char C_LOCALE_LATVIAN[] = "latviešu valoda";
 const char C_LOCALE_LITHUANIAN[] = "Lietuvių";
 const char C_LOCALE_MALAY[] = "بهاس ملايو";
