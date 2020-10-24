@@ -11,7 +11,7 @@
    version="1.1"
    id="svg4"
    sodipodi:docname="insert-link.svg"
-   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    width="32"
    height="32">
   <metadata
@@ -38,7 +38,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1366"
-     inkscape:window-height="703"
+     inkscape:window-height="702"
      id="namedview6"
      showgrid="false"
      inkscape:zoom="7.375"
@@ -47,11 +47,12 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg4"
+     inkscape:document-rotation="0" />
   <path
      d="M 10.750001,6 C 5.9025,6 2,10.46 2,16 c 0,5.539999 3.9025,10 8.750001,10 h 3.5 v -4 h -3.5 c -2.9085011,0 -5.2500011,-2.676 -5.2500011,-6 0,-3.324001 2.3415001,-6 5.2500011,-6 h 3.5 V 6 Z m 7,0 v 4 H 21.25 c 2.9085,0 5.250002,2.675999 5.250002,6 0,3.324 -2.341502,6 -5.250002,6 h -3.499999 v 4 H 21.25 C 26.0975,26 30,21.539999 30,16 30,10.46 26.0975,6 21.25,6 Z m -7,8 v 4 H 21.25 v -4 z"
      id="path2"
      inkscape:connector-curvature="0"
-     style="fill:#4285f4;fill-opacity:1;stroke-width:2.49519944"
+     style="fill:#ff9642;fill-opacity:1;stroke-width:2.49519944"
      sodipodi:nodetypes="sssccsssccsccsssccssscccccc" />
 </svg>
