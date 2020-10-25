@@ -1567,10 +1567,19 @@ void Session::enableBandwidthScheduler()
 {
     if (!m_bwScheduler) {
         m_bwScheduler = new BandwidthScheduler(this);
-        connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested
-                , this, &Session::setAltGlobalSpeedLimitEnabled);
+        connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested,
+            this, &Session::setGlobalSpeedLimits);
     }
     m_bwScheduler->start();
+}
+
+void Session::setGlobalSpeedLimits(const int downloadLimit, const int uploadLimit)
+{
+    setDownloadSpeedLimit(downloadLimit * 1024);
+    setUploadSpeedLimit(uploadLimit * 1024);
+
+    // Save new state to remember it on startup
+    applyBandwidthLimits();
 }
 
 void Session::populateAdditionalTrackers()

@@ -617,7 +617,7 @@ void OptionsDialog::initializeScheduler()
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        auto *scheduleDay = schedule->scheduleDays()[i];
+        auto *scheduleDay = schedule->scheduleDay(i);
         populateScheduleDayTable(scheduleModel, scheduleDay);
         scheduleTable->resizeColumnsToContents();
 
@@ -646,7 +646,7 @@ void OptionsDialog::initializeScheduler()
     const auto& models = asConst(m_scheduleDayTables);
     connect(schedule, &Scheduler::Schedule::updated, this, [models](int day)
     {
-        auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[day];
+        auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDay(day);
         OptionsDialog::populateScheduleDayTable(models.values()[day], scheduleDay);
         models.keys()[day]->resizeColumnsToContents();
     });
@@ -671,7 +671,7 @@ void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDa
 
 void OptionsDialog::on_scheduleDayRemove_clicked(const int day)
 {
-    auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDays()[day];
+    auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDay(day);
     QTableView *table = m_scheduleDayTables.keys()[day];
 
     auto *selectionModel = table->selectionModel();

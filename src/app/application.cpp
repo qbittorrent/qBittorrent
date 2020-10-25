@@ -563,6 +563,7 @@ int Application::exec(const QStringList &params)
     IconProvider::initInstance();
 
     try {
+        new Scheduler::Schedule;
         BitTorrent::Session::initInstance();
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
@@ -581,7 +582,6 @@ int Application::exec(const QStringList &params)
 
         new RSS::Session; // create RSS::Session singleton
         new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
-        new Scheduler::Schedule;
     }
     catch (const RuntimeError &err) {
 #ifdef DISABLE_GUI

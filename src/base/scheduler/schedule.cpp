@@ -64,9 +64,9 @@ Schedule *Schedule::instance()
     return m_instance;
 }
 
-QVector<ScheduleDay*> Schedule::scheduleDays() const
+ScheduleDay* Schedule::scheduleDay(const int day) const
 {
-    return m_scheduleDays;
+    return m_scheduleDays[day];
 }
 
 void Schedule::updateSchedule(int day)

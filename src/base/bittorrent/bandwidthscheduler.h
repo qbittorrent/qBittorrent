@@ -27,11 +27,12 @@
  * exception statement from your version.
  */
 
-#ifndef BANDWIDTHSCHEDULER_H
-#define BANDWIDTHSCHEDULER_H
+#pragma once
 
 #include <QObject>
 #include <QTimer>
+
+#include "base/scheduler/schedule.h"
 
 class BandwidthScheduler : public QObject
 {
@@ -43,12 +44,10 @@ public:
     void start();
 
 signals:
-    void bandwidthLimitRequested(bool alternative);
+    void bandwidthLimitRequested(int downloadLimit, int uploadLimit);
 
 private:
     void onTimeout();
 
     QTimer m_timer;
 };
-
-#endif // BANDWIDTHSCHEDULER_H

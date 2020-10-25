@@ -32,20 +32,28 @@
 #include <utility>
 
 #include <QDate>
-#include <QTime>
+#include <QDateTime>
 #include <QTimer>
 
 #include "base/preferences.h"
+#include "base/scheduler/schedule.h"
+
+using namespace Scheduler;
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QObject(parent)
 {
     connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::onTimeout);
+    connect(Schedule::instance(), &Schedule::updated, this, [this](int day)
+    {
+        if (day == QDate::currentDate().dayOfWeek() - 1)
+            onTimeout();
+    });
 }
 
 void BandwidthScheduler::start()
 {
-    emit bandwidthLimitRequested(false);
+    onTimeout();
 
     // Timeout regularly to accommodate for external system clock changes
     // eg from the user or from a timesync utility
@@ -54,5 +62,14 @@ void BandwidthScheduler::start()
 
 void BandwidthScheduler::onTimeout()
 {
-    emit bandwidthLimitRequested(false);
+    auto *schedule = Schedule::instance();
+
+    QDateTime now = QDateTime::currentDateTime();
+    ScheduleDay *day = schedule->scheduleDay(now.date().dayOfWeek()-1);
+    auto timeRanges = day->timeRanges();
+
+    for (TimeRange range : timeRanges) {
+        if (now.time() >= range.startTime && now.time() < range.endTime)
+            emit bandwidthLimitRequested(range.downloadRate, range.uploadRate);
+    }
 }

@@ -27,7 +27,7 @@ namespace Scheduler
 
     public:
         static Schedule *instance();
-        QVector<ScheduleDay*> scheduleDays() const;
+        ScheduleDay* scheduleDay(int day) const;
 
     public slots:
         void updateSchedule(int day);
