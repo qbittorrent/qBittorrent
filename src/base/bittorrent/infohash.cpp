@@ -38,25 +38,20 @@ InfoHash::InfoHash()
 {
 }
 
-#if LIBTORRENT_VERSION_NUM < 20000
-InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
+// Note: For libtorrent 2.0, lt::sha1_hash is implicitly convertible to lt::info_hash_t,
+// so this also works as InfoHash::InfoHash(const lt::sha1_hash &nativeHash).
+InfoHash::InfoHash(const NativeHash &nativeHash)
     : m_valid(true)
     , m_nativeHash(nativeHash)
 {
-    const QByteArray raw = QByteArray::fromRawData(nativeHash.data(), length());
+#if LIBTORRENT_VERSION_NUM < 20000
+    const auto data = nativeHash.data();
+#else
+    const auto data = nativeHash.v1.data();
+#endif
+    const QByteArray raw = QByteArray::fromRawData(data, length());
     m_hashString = QString::fromLatin1(raw.toHex());
 }
-#else
-// Note: sha1_hash is implicitly convertible to info_hash_t, so this also works as
-// InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
-InfoHash::InfoHash(const lt::info_hash_t &nativeHash)
-    : m_valid(true)
-    , m_nativeHash(nativeHash)
-{
-    const QByteArray rawV1 = QByteArray::fromRawData(nativeHash.v1.data(), length());
-    m_hashString = QString::fromLatin1(rawV1.toHex());
-}
-#endif
 
 InfoHash::InfoHash(const QString &hashString)
     : m_valid(false)
@@ -82,17 +77,10 @@ bool InfoHash::isValid() const
     return m_valid;
 }
 
-#if LIBTORRENT_VERSION_NUM < 20000
-InfoHash::operator lt::sha1_hash() const
+InfoHash::operator NativeHash() const
 {
     return m_nativeHash;
 }
-#else
-InfoHash::operator lt::info_hash_t() const
-{
-    return m_nativeHash;
-}
-#endif
 
 InfoHash::operator QString() const
 {
@@ -101,13 +89,8 @@ InfoHash::operator QString() const
 
 bool BitTorrent::operator==(const InfoHash &left, const InfoHash &right)
 {
-#if LIBTORRENT_VERSION_NUM < 20000
-    return (static_cast<lt::sha1_hash>(left)
-            == static_cast<lt::sha1_hash>(right));
-#else
-    return (static_cast<lt::info_hash_t>(left)
-            == static_cast<lt::info_hash_t>(right));
-#endif
+    return (static_cast<NativeHash>(left)
+            == static_cast<NativeHash>(right));
 }
 
 bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
@@ -157,9 +140,5 @@ namespace std {
 
 uint BitTorrent::qHash(const InfoHash &key, const uint seed)
 {
-#if LIBTORRENT_VERSION_NUM < 20000
-    return ::qHash((std::hash<lt::sha1_hash> {})(key), seed);
-#else
-    return ::qHash((std::hash<lt::info_hash_t> {})(key), seed);
-#endif
+    return ::qHash((std::hash<NativeHash> {})(key), seed);
 }

@@ -39,17 +39,19 @@
 
 #include <QString>
 
+#if LIBTORRENT_VERSION_NUM < 20000
+using NativeHash = lt::sha1_hash;
+#else
+using NativeHash = lt::info_hash_t;
+#endif
+
 namespace BitTorrent
 {
     class InfoHash
     {
     public:
         InfoHash();
-#if LIBTORRENT_VERSION_NUM < 20000
-        InfoHash(const lt::sha1_hash &nativeHash);
-#else
-        InfoHash(const lt::info_hash_t &nativeHash);
-#endif
+        InfoHash(const NativeHash &nativeHash);
         InfoHash(const QString &hashString);
         InfoHash(const InfoHash &other) = default;
 
@@ -60,20 +62,12 @@ namespace BitTorrent
 
         bool isValid() const;
 
-#if LIBTORRENT_VERSION_NUM < 20000
-        operator lt::sha1_hash() const;
-#else
-        operator lt::info_hash_t() const;
-#endif
+        operator NativeHash() const;
         operator QString() const;
 
     private:
         bool m_valid;
-#if LIBTORRENT_VERSION_NUM < 20000
-        lt::sha1_hash m_nativeHash;
-#else
-        lt::info_hash_t m_nativeHash;
-#endif
+        NativeHash m_nativeHash;
         QString m_hashString;
     };
 
