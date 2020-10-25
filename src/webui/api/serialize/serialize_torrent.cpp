@@ -108,6 +108,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},
+        {KEY_TORRENT_CONTENT_PATH, Utils::Fs::toNativePath(torrent.contentPath())},
         {KEY_TORRENT_ADDED_ON, torrent.addedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
