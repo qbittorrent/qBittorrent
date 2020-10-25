@@ -540,6 +540,9 @@ QString PropertiesWidget::getFullPath(const QModelIndex &index) const
 
 void PropertiesWidget::openItem(const QModelIndex &index) const
 {
+    if (!index.isValid())
+        return;
+
     m_torrent->flushCache();  // Flush data
     Utils::Gui::openPath(getFullPath(index));
 }
