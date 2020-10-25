@@ -55,9 +55,7 @@ void BandwidthScheduler::start()
 {
     onTimeout();
 
-    // Timeout regularly to accommodate for external system clock changes
-    // eg from the user or from a timesync utility
-    m_timer.start(30000);
+    m_timer.start(10000);
 }
 
 void BandwidthScheduler::onTimeout()
@@ -67,9 +65,15 @@ void BandwidthScheduler::onTimeout()
     QDateTime now = QDateTime::currentDateTime();
     ScheduleDay *day = schedule->scheduleDay(now.date().dayOfWeek()-1);
     auto timeRanges = day->timeRanges();
+    bool limitSet = false;
 
     for (TimeRange range : timeRanges) {
-        if (now.time() >= range.startTime && now.time() < range.endTime)
+        if (now.time() >= range.startTime && now.time() < range.endTime) {
             emit bandwidthLimitRequested(range.downloadRate, range.uploadRate);
+            limitSet = true;
+        }
     }
+
+    if (!limitSet)
+        emit bandwidthLimitRequested(0, 0);
 }
