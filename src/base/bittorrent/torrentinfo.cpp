@@ -31,6 +31,7 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/error_code.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QByteArray>
 #include <QDateTime>
@@ -294,7 +295,12 @@ QVector<QUrl> TorrentInfo::urlSeeds() const
 QByteArray TorrentInfo::metadata() const
 {
     if (!isValid()) return {};
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    const lt::span<const char> infoSection {m_nativeInfo->info_section()};
+    return {infoSection.data(), static_cast<int>(infoSection.size())};
+#else
     return {m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size()};
+#endif
 }
 
 QStringList TorrentInfo::filesForPiece(const int pieceIndex) const
