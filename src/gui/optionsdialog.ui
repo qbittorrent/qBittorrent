@@ -1356,7 +1356,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
               <item>
                <widget class="QLabel" name="label_24">
                 <property name="text">
-                 <string>Enabled protocol:</string>
+                 <string>Peer connection protocol:</string>
                 </property>
                </widget>
               </item>
