@@ -743,48 +743,61 @@ void TorrentHandleImpl::updateState()
     if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
         m_state = TorrentState::CheckingResumeData;
     }
-    else if (m_nativeStatus.state == lt::torrent_status::checking_files) {
-        m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
-    }
-    else if (m_nativeStatus.state == lt::torrent_status::allocating) {
-        m_state = TorrentState::Allocating;
-    }
-    else if (isMoveInProgress()) {
-        m_state = TorrentState::Moving;
-    }
-    else if (hasError()) {
-        m_state = TorrentState::Error;
-    }
-    else if (hasMissingFiles()) {
-        m_state = TorrentState::MissingFiles;
-    }
     else if (isPaused()) {
-        m_state = isSeed() ? TorrentState::PausedUploading : TorrentState::PausedDownloading;
-    }
-    else if (m_session->isQueueingSystemEnabled() && isQueued() && !isChecking()) {
-        m_state = isSeed() ? TorrentState::QueuedUploading : TorrentState::QueuedDownloading;
+        if (isMoveInProgress()) {
+            m_state = TorrentState::Moving;
+        }
+        else if (hasMissingFiles()) {
+            m_state = TorrentState::MissingFiles;
+        }
+        else if (hasError()) {
+            m_state = TorrentState::Error;
+        }
+        else {
+            m_state = isSeed() ? TorrentState::PausedUploading : TorrentState::PausedDownloading;
+        }
     }
     else {
-        switch (m_nativeStatus.state) {
-        case lt::torrent_status::finished:
-        case lt::torrent_status::seeding:
-            if (isForced())
-                m_state = TorrentState::ForcedUploading;
-            else
-                m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
-            break;
-        case lt::torrent_status::downloading_metadata:
-            m_state = TorrentState::DownloadingMetadata;
-            break;
-        case lt::torrent_status::downloading:
-            if (isForced())
-                m_state = TorrentState::ForcedDownloading;
-            else
-                m_state = m_nativeStatus.download_payload_rate > 0 ? TorrentState::Downloading : TorrentState::StalledDownloading;
-            break;
-        default:
-            qWarning("Unrecognized torrent status, should not happen!!! status was %d", m_nativeStatus.state);
-            m_state = TorrentState::Unknown;
+        if (m_nativeStatus.state == lt::torrent_status::checking_files) {
+            m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
+        }
+        else if (m_nativeStatus.state == lt::torrent_status::allocating) {
+            m_state = TorrentState::Allocating;
+        }
+        else if (isMoveInProgress()) {
+            m_state = TorrentState::Moving;
+        }
+        else if (hasMissingFiles()) {
+            m_state = TorrentState::MissingFiles;
+        }
+        else if (hasError()) {
+            m_state = TorrentState::Error;
+        }
+        else if (m_session->isQueueingSystemEnabled() && isQueued() && !isChecking()) {
+            m_state = isSeed() ? TorrentState::QueuedUploading : TorrentState::QueuedDownloading;
+        }
+        else {
+            switch (m_nativeStatus.state) {
+            case lt::torrent_status::finished:
+            case lt::torrent_status::seeding:
+                if (isForced())
+                    m_state = TorrentState::ForcedUploading;
+                else
+                    m_state = m_nativeStatus.upload_payload_rate > 0 ? TorrentState::Uploading : TorrentState::StalledUploading;
+                break;
+            case lt::torrent_status::downloading_metadata:
+                m_state = TorrentState::DownloadingMetadata;
+                break;
+            case lt::torrent_status::downloading:
+                if (isForced())
+                    m_state = TorrentState::ForcedDownloading;
+                else
+                    m_state = m_nativeStatus.download_payload_rate > 0 ? TorrentState::Downloading : TorrentState::StalledDownloading;
+                break;
+            default:
+                qWarning("Unrecognized torrent status, should not happen!!! status was %d", m_nativeStatus.state);
+                m_state = TorrentState::Unknown;
+            }
         }
     }
 }
