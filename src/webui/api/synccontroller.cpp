@@ -550,7 +550,7 @@ void SyncController::torrentPeersAction()
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
 
-        peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
+        peers[pi.address().toString()] = peer;
     }
     data["peers"] = peers;
 
