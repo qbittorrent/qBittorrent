@@ -1,0 +1,2 @@
+./src/webui/www/private/scripts/lib/mootools-1.2-core-yc.js
+./src/webui/www/private/scripts/lib/mootools-1.2-more.js
