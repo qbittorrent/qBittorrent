@@ -600,26 +600,22 @@ void OptionsDialog::initializeScheduler()
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
 
-        auto *scheduleTable = new QTableView(tabContent);
-        auto *hLayout = new QHBoxLayout(tabContent);
-
-        auto *scheduleModel = new QStandardItemModel(0, ScheduleColumn::COL_COUNT, this);
-        scheduleModel->setHorizontalHeaderLabels({
+        auto *scheduleTable = new QTableWidget(0, COL_COUNT, tabContent);
+        scheduleTable->setHorizontalHeaderLabels({
             tr("From", "i.e.: Beginning of time range"),
             tr("To", "i.e.: End of time range"),
             tr("Download", "i.e.: Download rate limit"),
             tr("Upload", "i.e.: Upload rate limit")
         });
 
-        scheduleTable->setModel(scheduleModel);
-        m_scheduleDayTables.append({scheduleTable, scheduleModel});
+        m_scheduleDayTables.append(scheduleTable);
 
         scheduleTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
         auto *scheduleDay = schedule->scheduleDay(i);
-        populateScheduleDayTable(scheduleModel, scheduleDay);
+        populateScheduleDayTable(scheduleTable, scheduleDay);
         scheduleTable->resizeColumnsToContents();
 
         auto *addButton = new QPushButton(tr("Add entry"), tabContent);
@@ -635,11 +631,10 @@ void OptionsDialog::initializeScheduler()
         connect(selectionModel, &QItemSelectionModel::selectionChanged, this,
             [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
 
-        if (i == today) {
-            selectionModel->select(scheduleModel->index(scheduleDay->getNowIndex(), 0),
-                QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-        }
+        if (i == today)
+            scheduleTable->selectRow(scheduleDay->getNowIndex());
 
+        auto *hLayout = new QHBoxLayout(tabContent);
         hLayout->addWidget(addButton);
         hLayout->addWidget(removeButton);
         vLayout->addWidget(scheduleTable);
@@ -653,8 +648,8 @@ void OptionsDialog::initializeScheduler()
     connect(schedule, &Scheduler::Schedule::updated, this, [tables](int day)
     {
         auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDay(day);
-        OptionsDialog::populateScheduleDayTable(tables[day].second, scheduleDay);
-        tables[day].first->resizeColumnsToContents();
+        OptionsDialog::populateScheduleDayTable(tables[day], scheduleDay);
+        tables[day]->resizeColumnsToContents();
     });
 
     m_ui->tabSchedule->setCurrentIndex(today);
@@ -679,7 +674,7 @@ void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDa
 
 void OptionsDialog::on_scheduleDayRemove_clicked(const int day)
 {
-    auto *selectionModel = m_scheduleDayTables[day].first->selectionModel();
+    auto *selectionModel = m_scheduleDayTables[day]->selectionModel();
     auto selection = selectionModel->selectedRows();
 
     if (selection.count() > 0) {
@@ -693,18 +688,24 @@ void OptionsDialog::on_scheduleDayRemove_clicked(const int day)
     }
 }
 
-void OptionsDialog::populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay)
+void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const Scheduler::ScheduleDay *scheduleDay)
 {
     auto timeRanges = scheduleDay->timeRanges();
     int rowCount = timeRanges.count();
-    scheduleModel->setRowCount(rowCount);
+    scheduleTable->setRowCount(rowCount);
+    scheduleTable->setAlternatingRowColors(true);
 
     for (int i = 0; i < rowCount; i++) {
-        auto timeRange = timeRanges[i];
-        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::FROM), timeRange.startTime);
-        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::TO), timeRange.endTime);
-        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::DOWNLOAD), timeRange.downloadRate);
-        scheduleModel->setData(scheduleModel->index(i, ScheduleColumn::UPLOAD), timeRange.uploadRate);
+        Scheduler::TimeRange timeRange = timeRanges[i];
+        auto *start = new QTableWidgetItem(timeRange.startTime.toString("hh:mm"));
+        auto *end = new QTableWidgetItem(timeRange.endTime.toString("hh:mm"));
+        auto *dl = new QTableWidgetItem(tr("%1 KiB/s").arg(timeRange.downloadRate));
+        auto *ul = new QTableWidgetItem(tr("%1 KiB/s").arg(timeRange.uploadRate));
+
+        scheduleTable->setItem(i, ScheduleColumn::FROM, start);
+        scheduleTable->setItem(i, ScheduleColumn::TO, end);
+        scheduleTable->setItem(i, ScheduleColumn::DOWNLOAD, dl);
+        scheduleTable->setItem(i, ScheduleColumn::UPLOAD, ul);
     }
 }
 

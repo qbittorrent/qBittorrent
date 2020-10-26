@@ -29,11 +29,12 @@
 #ifndef OPTIONSDIALOG_H
 #define OPTIONSDIALOG_H
 
-#include "base/scheduler/scheduleday.h"
 #include <QDialog>
 #include <QHash>
 #include <QStandardItemModel>
-#include <QTableView>
+#include <QTableWidget>
+
+#include "base/scheduler/scheduleday.h"
 
 class QAbstractButton;
 class QCloseEvent;
@@ -128,7 +129,7 @@ private slots:
     void on_scheduleDayRemove_clicked(int day);
 
 private:
-    static void populateScheduleDayTable(QStandardItemModel *scheduleModel, const Scheduler::ScheduleDay *scheduleDay);
+    static void populateScheduleDayTable(QTableWidget *scheduleTable, const Scheduler::ScheduleDay *scheduleDay);
 
     // Methods
     void saveOptions();
@@ -201,7 +202,7 @@ private:
     AdvancedSettings *m_advancedSettings;
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
-    QVector<QPair<QTableView*, QStandardItemModel*>> m_scheduleDayTables;
+    QVector<QTableWidget*> m_scheduleDayTables;
 };
 
 #endif // OPTIONSDIALOG_H
