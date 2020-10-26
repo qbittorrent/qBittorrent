@@ -201,7 +201,7 @@ private:
     AdvancedSettings *m_advancedSettings;
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
-    QMap<QTableView*, QStandardItemModel*> m_scheduleDayTables;
+    QVector<QPair<QTableView*, QStandardItemModel*>> m_scheduleDayTables;
 };
 
 #endif // OPTIONSDIALOG_H
