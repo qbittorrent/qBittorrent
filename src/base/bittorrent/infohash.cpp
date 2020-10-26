@@ -99,40 +99,15 @@ bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
 }
 
 #if LIBTORRENT_VERSION_NUM >= 20000
+// Note: This simplified hash operator ignores SHA-256 stored in lt::info_hash_t
 namespace std {
     template <>
     struct hash<lt::info_hash_t>
     {
         std::size_t operator()(lt::info_hash_t const& k) const
         {
-            if (k.has_v1() && !k.has_v2())
-            {
-                // This is taken verbatim from libtorrent/sha1_hash.hpp
-                std::size_t ret;
-                std::memcpy(&ret, k.v1.data(), sizeof(ret));
-                return ret;
-            }
-            if (!k.has_v1() && k.has_v2())
-            {
-                // Use prefix of the SHA-256 hash, since the whole hash is too long
-                std::size_t ret;
-                std::memcpy(&ret, k.v2.data(), sizeof(ret));
-                return ret;
-            }
-            if (k.has_v1() && k.has_v2())
-            {
-                // Copy prefixes of equal length from SHA-1 hash and SHA-256 hash
-                // and store them in two halves of the return value.
-                // This code assumes little-endian systems.
-                std::size_t sha1_prefix;
-                std::size_t sha256_prefix;
-                std::memcpy(&sha1_prefix, k.v1.data(), sizeof(std::size_t) / 2);
-                std::memcpy(&sha256_prefix, k.v2.data(), sizeof(std::size_t) / 2);
-                return sha1_prefix
-                       + (sha256_prefix << (sizeof(std::size_t) / 2));
-            }
-            // In this case both SHA-1 and SHA-256 hashes are zeroes
-            return 0;
+            std::hash<lt::sha1_hash> hash_fn;
+            return hash_fn(k.get_best());
         }
     };
 }
