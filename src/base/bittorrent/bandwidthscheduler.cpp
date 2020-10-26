@@ -54,26 +54,19 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
 void BandwidthScheduler::start()
 {
     onTimeout();
-
     m_timer.start(10000);
 }
 
 void BandwidthScheduler::onTimeout()
 {
-    auto *schedule = Schedule::instance();
+    auto *today = Schedule::instance()->today();
+    auto index = today->getNowIndex();
 
-    QDateTime now = QDateTime::currentDateTime();
-    ScheduleDay *day = schedule->scheduleDay(now.date().dayOfWeek()-1);
-    auto timeRanges = day->timeRanges();
-    bool limitSet = false;
-
-    for (TimeRange range : timeRanges) {
-        if (now.time() >= range.startTime && now.time() < range.endTime) {
-            emit bandwidthLimitRequested(range.downloadRate, range.uploadRate);
-            limitSet = true;
-        }
+    if (index > -1) {
+        auto timeRange = today->timeRanges()[index];
+        emit bandwidthLimitRequested(timeRange.downloadRate, timeRange.uploadRate);
+        return;
     }
 
-    if (!limitSet)
-        emit bandwidthLimitRequested(0, 0);
+    emit bandwidthLimitRequested(0, 0);
 }

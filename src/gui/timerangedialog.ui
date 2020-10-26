@@ -45,11 +45,8 @@
        <property name="suffix">
         <string> KiB/s</string>
        </property>
-       <property name="minimum">
-        <number>-1</number>
-       </property>
        <property name="maximum">
-        <number>65535</number>
+        <number>1000000</number>
        </property>
       </widget>
      </item>
@@ -61,11 +58,8 @@
        <property name="suffix">
         <string> KiB/s</string>
        </property>
-       <property name="minimum">
-        <number>-1</number>
-       </property>
        <property name="maximum">
-        <number>65535</number>
+        <number>1000000</number>
        </property>
       </widget>
      </item>

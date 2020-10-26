@@ -11,6 +11,7 @@
 #include "../logger.h"
 #include "../profile.h"
 #include "../utils/fs.h"
+#include "base/exceptions.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/scheduler/scheduleday.h"
@@ -24,11 +25,11 @@ using namespace Scheduler;
 QPointer<Schedule> Schedule::m_instance = nullptr;
 
 Schedule::Schedule()
-    : m_ioThread(new QThread(this))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
+    m_ioThread = new QThread(this);
     m_fileStorage = new AsyncFileStorage(
         Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
 
@@ -40,7 +41,6 @@ Schedule::Schedule()
     });
 
     m_ioThread->start();
-
     m_scheduleDays.resize(7);
     loadSchedule();
 
@@ -48,7 +48,7 @@ Schedule::Schedule()
         connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, &Schedule::updateSchedule);
 
     if (!m_fileStorage)
-        throw std::runtime_error("Directory for scheduler data is unavailable.");
+        throw RuntimeError("Directory for scheduler data is unavailable.");
 }
 
 Schedule::~Schedule()
@@ -67,6 +67,11 @@ Schedule *Schedule::instance()
 ScheduleDay* Schedule::scheduleDay(const int day) const
 {
     return m_scheduleDays[day];
+}
+
+ScheduleDay* Schedule::today() const
+{
+    return m_scheduleDays[QDate::currentDate().dayOfWeek() - 1];
 }
 
 void Schedule::updateSchedule(int day)

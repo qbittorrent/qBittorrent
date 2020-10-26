@@ -594,6 +594,7 @@ void OptionsDialog::initializeLanguageCombo()
 void OptionsDialog::initializeScheduler()
 {
     auto *schedule = Scheduler::Schedule::instance();
+    int today = QDate::currentDate().dayOfWeek() - 1;
 
     for (int i = 0; i < 7; i++) {
         auto *tabContent = new QWidget(this);
@@ -634,6 +635,11 @@ void OptionsDialog::initializeScheduler()
         connect(selectionModel, &QItemSelectionModel::selectionChanged, this,
             [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
 
+        if (i == today) {
+            selectionModel->select(scheduleModel->index(scheduleDay->getNowIndex(), 0),
+                QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
+        }
+
         hLayout->addWidget(addButton);
         hLayout->addWidget(removeButton);
         vLayout->addWidget(scheduleTable);
@@ -650,6 +656,8 @@ void OptionsDialog::initializeScheduler()
         OptionsDialog::populateScheduleDayTable(models.values()[day], scheduleDay);
         models.keys()[day]->resizeColumnsToContents();
     });
+
+    m_ui->tabSchedule->setCurrentIndex(today);
 }
 
 void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay)
@@ -671,17 +679,16 @@ void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDa
 
 void OptionsDialog::on_scheduleDayRemove_clicked(const int day)
 {
-    auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDay(day);
     QTableView *table = m_scheduleDayTables.keys()[day];
-
     auto *selectionModel = table->selectionModel();
     auto selection = selectionModel->selectedRows();
+
     if (selection.count() > 0) {
         std::sort(selection.begin(), selection.end(),
             [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
 
         for (const auto &i : selection)
-            scheduleDay->removeTimeRangeAt(i.row());
+            Scheduler::Schedule::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
 
         selectionModel->clearSelection();
     }

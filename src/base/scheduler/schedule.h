@@ -28,6 +28,7 @@ namespace Scheduler
     public:
         static Schedule *instance();
         ScheduleDay* scheduleDay(int day) const;
+        ScheduleDay* today() const;
 
     public slots:
         void updateSchedule(int day);
@@ -38,9 +39,9 @@ namespace Scheduler
     private:
         static QPointer<Schedule> m_instance;
 
-        QVector<ScheduleDay*> m_scheduleDays;
         QThread *m_ioThread;
         AsyncFileStorage *m_fileStorage;
+        QVector<ScheduleDay*> m_scheduleDays;
 
         bool loadSchedule();
         void saveSchedule();

@@ -15,11 +15,11 @@ namespace Scheduler
         ScheduleDay(int dayOfWeek);
 
         QList<TimeRange> timeRanges() const;
-
-        bool conflicts(const TimeRange &timeRange);
         bool addTimeRange(const TimeRange &timeRange);
         bool removeTimeRangeAt(const int index);
         void clearTimeRanges();
+        int getNowIndex();
+        bool conflicts(const TimeRange &timeRange);
 
         QJsonArray toJsonArray() const;
         static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek);
