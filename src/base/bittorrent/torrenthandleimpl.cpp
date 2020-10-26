@@ -1194,6 +1194,12 @@ void TorrentHandleImpl::forceRecheck()
 
     m_nativeHandle.force_recheck();
     m_unchecked = false;
+
+    if (isPaused()) {
+        // When "force recheck" is applied on paused torrent, we temporarily resume it
+        // (really we just allow libtorrent to resume it by enabling auto management for it).
+        m_nativeHandle.set_flags(lt::torrent_flags::stop_when_ready | lt::torrent_flags::auto_managed);
+    }
 }
 
 void TorrentHandleImpl::setSequentialDownload(const bool enable)
@@ -1449,17 +1455,6 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
     m_ltAddTorrentParams.save_path = Profile::instance()->toPortablePath(
                 QString::fromStdString(m_ltAddTorrentParams.save_path)).toStdString();
-    if (!m_hasMissingFiles) {
-        m_ltAddTorrentParams.flags = m_nativeStatus.flags;
-        if (m_nativeStatus.flags & lt::torrent_flags::stop_when_ready) {
-            // We need to redefine these values when torrent starting/rechecking
-            // in "paused" state since native values can be logically wrong
-            // (torrent can be not paused and auto_managed when it is checking).
-            m_ltAddTorrentParams.flags |= lt::torrent_flags::paused;
-            m_ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
-            m_ltAddTorrentParams.flags &= ~lt::torrent_flags::stop_when_ready;
-        }
-    }
 
     auto resumeDataPtr = std::make_shared<lt::entry>(lt::write_resume_data(m_ltAddTorrentParams));
     lt::entry &resumeData = *resumeDataPtr;
