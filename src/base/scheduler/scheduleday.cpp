@@ -53,6 +53,18 @@ void ScheduleDay::clearTimeRanges()
     emit dayUpdated(m_dayOfWeek);
 }
 
+void ScheduleDay::editDownloadRateAt(int index, int rate)
+{
+    m_timeRanges[index].setDownloadRate(rate);
+    emit dayUpdated(m_dayOfWeek);
+}
+
+void ScheduleDay::editUploadRateAt(int index, int rate)
+{
+    m_timeRanges[index].setUploadRate(rate);
+    emit dayUpdated(m_dayOfWeek);
+}
+
 int ScheduleDay::getNowIndex()
 {
     auto now = QDateTime::currentDateTime();

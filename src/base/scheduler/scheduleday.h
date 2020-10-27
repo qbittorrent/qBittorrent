@@ -18,6 +18,9 @@ namespace Scheduler
         bool addTimeRange(const TimeRange &timeRange);
         bool removeTimeRangeAt(const int index);
         void clearTimeRanges();
+        void editDownloadRateAt(int index, int rate);
+        void editUploadRateAt(int index, int rate);
+
         int getNowIndex();
         bool conflicts(const TimeRange &timeRange);
 

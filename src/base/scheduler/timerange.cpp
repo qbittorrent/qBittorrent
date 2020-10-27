@@ -2,6 +2,16 @@
 
 using namespace Scheduler;
 
+void TimeRange::setDownloadRate(int rate)
+{
+    downloadRate = rate;
+}
+
+void TimeRange::setUploadRate(int rate)
+{
+    uploadRate = rate;
+}
+
 bool TimeRange::overlaps(const TimeRange &other) const
 {
     bool startTimeOverlaps = (other.startTime >= startTime) && (other.startTime <= endTime);

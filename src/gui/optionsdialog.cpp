@@ -45,6 +45,7 @@
 #include <QScrollArea>
 #include <QStandardItemModel>
 #include <QSystemTrayIcon>
+#include <QTableWidget>
 #include <QTranslator>
 #include <qnamespace.h>
 
@@ -70,6 +71,7 @@
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
+#include "gui/ratelimitdelegate.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
@@ -612,9 +614,11 @@ void OptionsDialog::initializeScheduler()
 
         scheduleTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-        scheduleTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
 
         auto *scheduleDay = schedule->scheduleDay(i);
+        scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
+
         populateScheduleDayTable(scheduleTable, scheduleDay);
         scheduleTable->resizeColumnsToContents();
 
@@ -697,10 +701,20 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
     for (int i = 0; i < rowCount; i++) {
         Scheduler::TimeRange timeRange = timeRanges[i];
+
+        auto dlFormat = (timeRange.downloadRate == 0) ? tr("∞") : tr("%1 KiB/s");
+        auto ulFormat = (timeRange.uploadRate == 0) ? tr("∞") : tr("%1 KiB/s");
+
         auto *start = new QTableWidgetItem(timeRange.startTime.toString("hh:mm"));
         auto *end = new QTableWidgetItem(timeRange.endTime.toString("hh:mm"));
-        auto *dl = new QTableWidgetItem(tr("%1 KiB/s").arg(timeRange.downloadRate));
-        auto *ul = new QTableWidgetItem(tr("%1 KiB/s").arg(timeRange.uploadRate));
+        auto *dl = new QTableWidgetItem(dlFormat.arg(timeRange.downloadRate));
+        auto *ul = new QTableWidgetItem(ulFormat.arg(timeRange.uploadRate));
+
+        dl->setData(Qt::UserRole, timeRange.downloadRate);
+        ul->setData(Qt::UserRole, timeRange.uploadRate);
+
+        start->setFlags(start->flags() & ~Qt::ItemIsEditable);
+        end->setFlags(end->flags() & ~Qt::ItemIsEditable);
 
         scheduleTable->setItem(i, ScheduleColumn::FROM, start);
         scheduleTable->setItem(i, ScheduleColumn::TO, end);

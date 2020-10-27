@@ -41,6 +41,7 @@ HEADERS += \
     $$PWD/properties/trackerlistwidget.h \
     $$PWD/properties/trackersadditiondialog.h \
     $$PWD/raisedmessagebox.h \
+    $$PWD/ratelimitdelegate.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
     $$PWD/rss/feedlistwidget.h \
@@ -121,6 +122,7 @@ SOURCES += \
     $$PWD/properties/trackerlistwidget.cpp \
     $$PWD/properties/trackersadditiondialog.cpp \
     $$PWD/raisedmessagebox.cpp \
+    $$PWD/ratelimitdelegate.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
     $$PWD/rss/feedlistwidget.cpp \

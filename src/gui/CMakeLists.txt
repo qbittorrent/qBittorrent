@@ -40,6 +40,7 @@ add_library(qbt_gui STATIC
     properties/trackerlistwidget.h
     properties/trackersadditiondialog.h
     raisedmessagebox.h
+    ratelimitdelegate.h
     rss/articlelistwidget.h
     rss/automatedrssdownloader.h
     rss/feedlistwidget.h
@@ -120,6 +121,7 @@ add_library(qbt_gui STATIC
     properties/trackerlistwidget.cpp
     properties/trackersadditiondialog.cpp
     raisedmessagebox.cpp
+    ratelimitdelegate.cpp
     rss/articlelistwidget.cpp
     rss/automatedrssdownloader.cpp
     rss/feedlistwidget.cpp

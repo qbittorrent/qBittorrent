@@ -12,6 +12,9 @@ namespace Scheduler
         int downloadRate = -1;
         int uploadRate = -1;
 
+        void setDownloadRate(int rate);
+        void setUploadRate(int rate);
+
         bool overlaps(const TimeRange &other) const;
         bool isValid() const;
 

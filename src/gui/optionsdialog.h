@@ -78,15 +78,6 @@ class OptionsDialog final : public QDialog
         TAB_ADVANCED
     };
 
-    enum ScheduleColumn
-    {
-        FROM,
-        TO,
-        DOWNLOAD,
-        UPLOAD,
-        COL_COUNT
-    };
-
     enum class ShowError
     {
         NotShow,
@@ -97,6 +88,15 @@ public:
     // Constructor / Destructor
     OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog() override;
+
+    enum ScheduleColumn
+    {
+        FROM,
+        TO,
+        DOWNLOAD,
+        UPLOAD,
+        COL_COUNT
+    };
 
 public slots:
     void showConnectionTab();
