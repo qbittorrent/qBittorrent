@@ -98,22 +98,12 @@ bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
     return !(left == right);
 }
 
-#if LIBTORRENT_VERSION_NUM >= 20000
-// Note: This simplified hash operator ignores SHA-256 stored in lt::info_hash_t
-namespace std {
-    template <>
-    struct hash<lt::info_hash_t>
-    {
-        std::size_t operator()(lt::info_hash_t const& k) const
-        {
-            std::hash<lt::sha1_hash> hash_fn;
-            return hash_fn(k.get_best());
-        }
-    };
-}
-#endif
-
 uint BitTorrent::qHash(const InfoHash &key, const uint seed)
 {
-    return ::qHash((std::hash<NativeHash> {})(key), seed);
+#if LIBTORRENT_VERSION_NUM < 20000
+    const lt::sha1_hash id = key;
+#else
+    const lt::sha1_hash id = static_cast<lt::info_hash_t>(key).get_best();
+#endif
+    return ::qHash((std::hash<lt::sha1_hash> {})(id), seed);
 }
