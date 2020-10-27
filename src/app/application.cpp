@@ -564,14 +564,16 @@ int Application::exec(const QStringList &params)
     IconProvider::initInstance();
 
 #ifndef DISABLE_GUI
-        UIThemeManager::initInstance();
-        m_window = new MainWindow;
+    UIThemeManager::initInstance();
+    m_window = new MainWindow;
 #endif // DISABLE_GUI
 
     try {
-        BitTorrent::Session::initInstance();
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [=]()
+        auto sessionLoader = new BitTorrent::SessionLoader;
+        connect(sessionLoader, &BitTorrent::SessionLoader::done, this, [=]()
         {
+            sessionLoader->deleteLater();
+
             connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
             connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
@@ -616,6 +618,8 @@ int Application::exec(const QStringList &params)
                 m_paramsQueue.clear();
             }
         });
+
+        sessionLoader->start();
 
         Net::GeoIPManager::initInstance();
     }

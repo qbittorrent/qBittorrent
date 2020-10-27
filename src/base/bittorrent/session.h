@@ -202,13 +202,14 @@ namespace BitTorrent
         } disk;
     };
 
+    class SessionLoader;
+
     class Session : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Session)
 
     public:
-        static void initInstance();
         static void freeInstance();
         static Session *instance();
 
@@ -542,6 +543,8 @@ namespace BitTorrent
         void networkConfigurationChange(const QNetworkConfiguration &);
 
     private:
+        friend class SessionLoader;
+
         struct MoveStorageJob
         {
             lt::torrent_handle torrentHandle;
@@ -788,6 +791,20 @@ namespace BitTorrent
         QList<MoveStorageJob> m_moveStorageQueue;
 
         static Session *m_instance;
+    };
+
+    class SessionLoader final : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(SessionLoader)
+
+    public:
+        SessionLoader() = default;
+
+        void start();
+
+    signals:
+        void done();
     };
 }
 

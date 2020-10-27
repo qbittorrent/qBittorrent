@@ -961,12 +961,6 @@ Session::~Session()
     m_resumeFolderLock->remove();
 }
 
-void Session::initInstance()
-{
-    if (!m_instance)
-        m_instance = new Session;
-}
-
 void Session::freeInstance()
 {
     delete m_instance;
@@ -4757,3 +4751,25 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
     }
 }
 #endif
+
+void SessionLoader::start()
+{
+    Q_ASSERT(!Session::instance());
+
+    auto loaderThread = new QThread {this};
+    moveToThread(loaderThread);
+    loaderThread->start();
+
+    auto session = new Session;
+    session->moveToThread(loaderThread);
+    connect(session, &Session::restored, this, [=]()
+    {
+        session->moveToThread(qApp->thread());
+        moveToThread(qApp->thread());
+        loaderThread->quit();
+
+        Session::m_instance = session;
+
+        emit done();
+    });
+}
