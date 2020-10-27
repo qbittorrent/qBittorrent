@@ -47,7 +47,7 @@ InfoHash::InfoHash(const NativeHash &nativeHash)
 #if LIBTORRENT_VERSION_NUM < 20000
     const auto data = nativeHash.data();
 #else
-    const auto data = nativeHash.v1.data();
+    const auto data = nativeHash.get_best().data();
 #endif
     const QByteArray raw = QByteArray::fromRawData(data, length());
     m_hashString = QString::fromLatin1(raw.toHex());
