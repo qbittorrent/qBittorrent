@@ -351,6 +351,12 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
                 return Qt::PartiallyChecked;
             return Qt::Checked;
         }
+    case Qt::TextAlignmentRole:
+        if ((index.column() == TorrentContentModelItem::COL_SIZE)
+            || (index.column() == TorrentContentModelItem::COL_REMAINING))
+            return QVariant {Qt::AlignRight | Qt::AlignVCenter};
+        return {};
+
     case Qt::DisplayRole:
         return item->displayData(index.column());
 
@@ -375,10 +381,22 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
 
 QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if ((orientation == Qt::Horizontal) && (role == Qt::DisplayRole))
+    if (orientation != Qt::Horizontal)
+        return {};
+
+    switch (role) {
+    case Qt::DisplayRole:
         return m_rootItem->displayData(section);
 
-    return {};
+    case Qt::TextAlignmentRole:
+        if ((section == TorrentContentModelItem::COL_SIZE)
+            || (section == TorrentContentModelItem::COL_REMAINING))
+            return QVariant {Qt::AlignRight | Qt::AlignVCenter};
+        return {};
+
+    default:
+        return {};
+    }
 }
 
 QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex &parent) const
