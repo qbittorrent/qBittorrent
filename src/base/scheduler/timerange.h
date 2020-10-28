@@ -12,6 +12,8 @@ namespace Scheduler
         int downloadRate = -1;
         int uploadRate = -1;
 
+        void setStartTime(QTime time);
+        void setEndTime(QTime time);
         void setDownloadRate(int rate);
         void setUploadRate(int rate);
 

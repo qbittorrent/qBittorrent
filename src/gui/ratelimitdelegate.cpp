@@ -4,10 +4,13 @@
 #include <QFileDialog>
 #include <QSpinBox>
 #include <QTableWidget>
+#include <QTimeEdit>
 #include <qnamespace.h>
 
 #include "base/scheduler/schedule.h"
 #include "optionsdialog.h"
+
+using namespace Gui;
 
 RateLimitDelegate::RateLimitDelegate(Scheduler::ScheduleDay &scheduleDay, QObject *parent)
     : QStyledItemDelegate(parent)
@@ -15,37 +18,65 @@ RateLimitDelegate::RateLimitDelegate(Scheduler::ScheduleDay &scheduleDay, QObjec
 {
 }
 
-QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &) const
+QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
 {
-    auto *spinBox = new QSpinBox(parent);
-    spinBox->setSuffix(" KiB/s");
-    spinBox->setSpecialValueText("∞");
-    spinBox->setMaximum(1000000);
+    int col = index.column();
 
-    return spinBox;
+    if (col == ScheduleColumn::FROM || col == ScheduleColumn::TO) {
+        auto *timeEdit = new QTimeEdit(parent);
+        timeEdit->setDisplayFormat("hh:mm");
+        return timeEdit;
+    }
+
+    if (col == ScheduleColumn::DOWNLOAD || col == ScheduleColumn::UPLOAD) {
+        auto *spinBox = new QSpinBox(parent);
+        spinBox->setSuffix(" KiB/s");
+        spinBox->setSpecialValueText("∞");
+        spinBox->setMaximum(1000000);
+        return spinBox;
+    }
+
+    return nullptr;
 }
 
 void RateLimitDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    auto *spinBox = static_cast<QSpinBox*>(editor);
-    int userData = index.data(Qt::UserRole).toInt();
-    spinBox->setValue(userData);
+    int col = index.column();
+
+    if (col == ScheduleColumn::FROM || col == ScheduleColumn::TO) {
+        auto *timeEdit = static_cast<QTimeEdit*>(editor);
+        timeEdit->setTime(index.data(Qt::UserRole).toTime());
+    }
+    else if (col == ScheduleColumn::DOWNLOAD || col == ScheduleColumn::UPLOAD) {
+        auto *spinBox = static_cast<QSpinBox*>(editor);
+        spinBox->setValue(index.data(Qt::UserRole).toInt());
+    }
 }
 
 void RateLimitDelegate::setModelData(QWidget *editor, QAbstractItemModel *, const QModelIndex &index) const
 {
-    auto *spinBox = static_cast<QSpinBox*>(editor);
-    int value = spinBox->value();
-    int column = index.column();
+    int col = index.column();
+    int row = index.row();
 
-    if (column == 2)
-        m_scheduleDay.editDownloadRateAt(index.row(), value);
-    else if (column == 3)
-        m_scheduleDay.editUploadRateAt(index.row(), value);
+    if (col == FROM || col == TO) {
+        QTime time = static_cast<QTimeEdit*>(editor)->time();
+
+        if (col == FROM)
+            m_scheduleDay.editStartTimeAt(row, time);
+        else
+            m_scheduleDay.editEndTimeAt(row, time);
+    }
+    else if (col == DOWNLOAD || col == UPLOAD) {
+        int value = static_cast<QSpinBox*>(editor)->value();
+
+        if (col == DOWNLOAD)
+            m_scheduleDay.editDownloadRateAt(row, value);
+        else
+            m_scheduleDay.editUploadRateAt(row, value);
+    }
 }
 
 void RateLimitDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
-    qDebug("UpdateEditor Geometry called");
     editor->setGeometry(option.rect);
 }

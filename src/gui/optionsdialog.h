@@ -89,15 +89,6 @@ public:
     OptionsDialog(QWidget *parent = nullptr);
     ~OptionsDialog() override;
 
-    enum ScheduleColumn
-    {
-        FROM,
-        TO,
-        DOWNLOAD,
-        UPLOAD,
-        COL_COUNT
-    };
-
 public slots:
     void showConnectionTab();
 

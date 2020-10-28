@@ -602,7 +602,7 @@ void OptionsDialog::initializeScheduler()
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
 
-        auto *scheduleTable = new QTableWidget(0, COL_COUNT, tabContent);
+        auto *scheduleTable = new QTableWidget(0, Gui::ScheduleColumn::COL_COUNT, tabContent);
         scheduleTable->setHorizontalHeaderLabels({
             tr("From", "i.e.: Beginning of time range"),
             tr("To", "i.e.: End of time range"),
@@ -610,8 +610,7 @@ void OptionsDialog::initializeScheduler()
             tr("Upload", "i.e.: Upload rate limit")
         });
 
-        m_scheduleDayTables.append(scheduleTable);
-
+        scheduleTable->setAlternatingRowColors(true);
         scheduleTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
@@ -619,8 +618,8 @@ void OptionsDialog::initializeScheduler()
         auto *scheduleDay = schedule->scheduleDay(i);
         scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
 
+        m_scheduleDayTables.append(scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
-        scheduleTable->resizeColumnsToContents();
 
         auto *addButton = new QPushButton(tr("Add entry"), tabContent);
         connect(addButton, &QPushButton::clicked, this,
@@ -653,7 +652,6 @@ void OptionsDialog::initializeScheduler()
     {
         auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDay(day);
         OptionsDialog::populateScheduleDayTable(tables[day], scheduleDay);
-        tables[day]->resizeColumnsToContents();
     });
 
     m_ui->tabSchedule->setCurrentIndex(today);
@@ -697,7 +695,6 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
     auto timeRanges = scheduleDay->timeRanges();
     int rowCount = timeRanges.count();
     scheduleTable->setRowCount(rowCount);
-    scheduleTable->setAlternatingRowColors(true);
 
     for (int i = 0; i < rowCount; i++) {
         Scheduler::TimeRange timeRange = timeRanges[i];
@@ -710,17 +707,21 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
         auto *dl = new QTableWidgetItem(dlFormat.arg(timeRange.downloadRate));
         auto *ul = new QTableWidgetItem(ulFormat.arg(timeRange.uploadRate));
 
+        start->setData(Qt::UserRole, timeRange.startTime);
+        end->setData(Qt::UserRole, timeRange.endTime);
         dl->setData(Qt::UserRole, timeRange.downloadRate);
         ul->setData(Qt::UserRole, timeRange.uploadRate);
 
-        start->setFlags(start->flags() & ~Qt::ItemIsEditable);
-        end->setFlags(end->flags() & ~Qt::ItemIsEditable);
-
-        scheduleTable->setItem(i, ScheduleColumn::FROM, start);
-        scheduleTable->setItem(i, ScheduleColumn::TO, end);
-        scheduleTable->setItem(i, ScheduleColumn::DOWNLOAD, dl);
-        scheduleTable->setItem(i, ScheduleColumn::UPLOAD, ul);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::DOWNLOAD, dl);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::UPLOAD, ul);
     }
+
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::FROM, 76);
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::TO, 76);
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::DOWNLOAD, 112);
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::UPLOAD, 112);
 }
 
 // Main destructor

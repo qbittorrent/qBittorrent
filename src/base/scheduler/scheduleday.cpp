@@ -53,6 +53,23 @@ void ScheduleDay::clearTimeRanges()
     emit dayUpdated(m_dayOfWeek);
 }
 
+void ScheduleDay::editStartTimeAt(int index, const QTime time)
+{
+    if ((index == 0) || (index > 0 && time > m_timeRanges[index - 1].endTime)) {
+        m_timeRanges[index].setStartTime(time);
+        emit dayUpdated(m_dayOfWeek);
+    }
+}
+
+void ScheduleDay::editEndTimeAt(int index, const QTime time)
+{
+    int last = m_timeRanges.count() - 1;
+    if ((index == last) || (index < last && time < m_timeRanges[index + 1].startTime)) {
+        m_timeRanges[index].setEndTime(time);
+        emit dayUpdated(m_dayOfWeek);
+    }
+}
+
 void ScheduleDay::editDownloadRateAt(int index, int rate)
 {
     m_timeRanges[index].setDownloadRate(rate);

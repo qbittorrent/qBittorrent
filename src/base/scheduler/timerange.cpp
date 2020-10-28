@@ -2,6 +2,18 @@
 
 using namespace Scheduler;
 
+void TimeRange::setStartTime(const QTime time)
+{
+    if (time.isValid() && time < endTime)
+        startTime = time;
+}
+
+void TimeRange::setEndTime(const QTime time)
+{
+    if (time.isValid() && time > startTime)
+        endTime = time;
+}
+
 void TimeRange::setDownloadRate(int rate)
 {
     downloadRate = rate;
