@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,45 +26,26 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELFOLDER_H
-#define TORRENTCONTENTMODELFOLDER_H
+#pragma once
 
-#include "torrentcontentmodelitem.h"
+#include <QProgressBar>
+#include <QStyledItemDelegate>
 
-namespace BitTorrent
-{
-    enum class DownloadPriority;
-}
+class QStyleOptionProgressBar;
 
-class TorrentContentModelFolder final : public TorrentContentModelItem
+class ProgressBarDelegate : public QStyledItemDelegate
 {
 public:
-    // Folder constructor
-    TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
+    ProgressBarDelegate(int progressColumn, int dataRole, QObject *parent = nullptr);
 
-    // Invisible root item constructor
-    explicit TorrentContentModelFolder(const QVector<QString> &data);
-
-    ~TorrentContentModelFolder() override;
-
-    ItemType itemType() const override;
-
-    void increaseSize(qulonglong delta);
-    void recalculateProgress();
-    void recalculateAvailability();
-    void updatePriority();
-
-    void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
-
-    void deleteAllChildren();
-    const QVector<TorrentContentModelItem*> &children() const;
-    void appendChild(TorrentContentModelItem *item);
-    TorrentContentModelItem *child(int row) const;
-    TorrentContentModelFolder *childFolderWithName(const QString &name) const;
-    int childCount() const;
+protected:
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    virtual void initProgressStyleOption(QStyleOptionProgressBar &option, const QModelIndex &index) const;
 
 private:
-    QVector<TorrentContentModelItem*> m_childItems;
-};
+    const int m_progressColumn;
+    const int m_dataRole;
 
-#endif // TORRENTCONTENTMODELFOLDER_H
+    // for painting progressbar with stylesheet option, a dummy progress bar is required
+    QProgressBar m_dummyProgressBar;
+};
