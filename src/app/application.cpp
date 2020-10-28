@@ -557,29 +557,71 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
+    m_paramsQueue = params + m_paramsQueue;
+
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
     IconProvider::initInstance();
 
-    try {
-        BitTorrent::Session::initInstance();
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
+#ifndef DISABLE_GUI
+    UIThemeManager::initInstance();
+    m_window = new MainWindow;
+#endif // DISABLE_GUI
 
-        Net::GeoIPManager::initInstance();
-        ScanFoldersModel::initInstance();
+    try {
+        auto sessionLoader = new BitTorrent::SessionLoader;
+        connect(sessionLoader, &BitTorrent::SessionLoader::done, this, [=]()
+        {
+            sessionLoader->deleteLater();
+
+            connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
+            connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
+
+            ScanFoldersModel::initInstance();
+
+            new RSS::Session; // create RSS::Session singleton
+            new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
 
 #ifndef DISABLE_WEBUI
-        m_webui = new WebUI;
+            m_webui = new WebUI;
 #ifdef DISABLE_GUI
-        if (m_webui->isErrored())
-            return 1;
-        connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
+            if (m_webui->isErrored())
+                return 1;
+            connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
 #endif // DISABLE_GUI
 #endif // DISABLE_WEBUI
 
-        new RSS::Session; // create RSS::Session singleton
-        new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
+#ifdef DISABLE_GUI
+#ifndef DISABLE_WEBUI
+            Preferences *const pref = Preferences::instance();
+            // Display some information to the user
+            const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
+                    + tr("To control qBittorrent, access the Web UI at %1")
+                    .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
+            printf("%s", qUtf8Printable(mesg));
+
+            if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
+                const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
+                        + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
+                        + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
+                printf("%s", qUtf8Printable(warning));
+            }
+#endif // DISABLE_WEBUI
+#else // DISABLE_GUI
+            m_window->populate();
+#endif // DISABLE_GUI
+
+            m_running = true;
+
+            if (!m_paramsQueue.isEmpty()) {
+                processParams(m_paramsQueue);
+                m_paramsQueue.clear();
+            }
+        });
+
+        sessionLoader->start();
+
+        Net::GeoIPManager::initInstance();
     }
     catch (const RuntimeError &err) {
 #ifdef DISABLE_GUI
@@ -596,37 +638,6 @@ int Application::exec(const QStringList &params)
         return 1;
     }
 
-#ifdef DISABLE_GUI
-#ifndef DISABLE_WEBUI
-    Preferences *const pref = Preferences::instance();
-    // Display some information to the user
-    const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
-        + tr("To control qBittorrent, access the Web UI at %1")
-            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
-    printf("%s", qUtf8Printable(mesg));
-
-    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
-        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
-            + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
-            + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
-        printf("%s", qUtf8Printable(warning));
-    }
-#endif // DISABLE_WEBUI
-#else
-    UIThemeManager::initInstance();
-    m_window = new MainWindow;
-#endif // DISABLE_GUI
-
-    m_running = true;
-
-    // Now UI is ready to process signals from Session
-    BitTorrent::Session::instance()->startUpTorrents();
-
-    m_paramsQueue = params + m_paramsQueue;
-    if (!m_paramsQueue.isEmpty()) {
-        processParams(m_paramsQueue);
-        m_paramsQueue.clear();
-    }
     return BaseApplication::exec();
 }
 

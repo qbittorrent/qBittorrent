@@ -86,7 +86,7 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentHandleImpl)
 
     public:
-        TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
+        TorrentHandleImpl(Session *session, const lt::torrent_status &nativeStatus,
                           const LoadTorrentParams &params);
         ~TorrentHandleImpl() override;
 
@@ -283,13 +283,12 @@ namespace BitTorrent
         void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         Session *const m_session;
+        InfoHash m_hash;
         lt::torrent_handle m_nativeHandle;
         lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
-
-        InfoHash m_hash;
 
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete

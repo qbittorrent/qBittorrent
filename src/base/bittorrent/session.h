@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2020  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -65,7 +65,7 @@ class QUrl;
 
 class BandwidthScheduler;
 class FilterParserThread;
-class ResumeDataSavingManager;
+class ResumeDataManager;
 class Statistics;
 
 // These values should remain unchanged when adding new items
@@ -202,13 +202,14 @@ namespace BitTorrent
         } disk;
     };
 
+    class SessionLoader;
+
     class Session : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Session)
 
     public:
-        static void initInstance();
         static void freeInstance();
         static Session *instance();
 
@@ -431,7 +432,6 @@ namespace BitTorrent
         void setOSMemoryPriority(OSMemoryPriority priority);
 #endif
 
-        void startUpTorrents();
         TorrentHandle *findTorrent(const InfoHash &hash) const;
         QVector<TorrentHandle *> torrents() const;
         bool hasActiveTorrents() const;
@@ -499,6 +499,7 @@ namespace BitTorrent
         void loadTorrentFailed(const QString &error);
         void metadataLoaded(const TorrentInfo &info);
         void recursiveTorrentDownloadPossible(TorrentHandle *torrent);
+        void restored();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();
@@ -509,7 +510,6 @@ namespace BitTorrent
         void torrentCategoryChanged(TorrentHandle *torrent, const QString &oldCategory);
         void torrentFinished(TorrentHandle *torrent);
         void torrentFinishedChecking(TorrentHandle *torrent);
-        void torrentLoaded(TorrentHandle *torrent);
         void torrentMetadataLoaded(TorrentHandle *torrent);
         void torrentPaused(TorrentHandle *torrent);
         void torrentResumed(TorrentHandle *torrent);
@@ -543,6 +543,8 @@ namespace BitTorrent
         void networkConfigurationChange(const QNetworkConfiguration &);
 
     private:
+        friend class SessionLoader;
+
         struct MoveStorageJob
         {
             lt::torrent_handle torrentHandle;
@@ -589,8 +591,9 @@ namespace BitTorrent
         void applyOSMemoryPriority() const;
 #endif
 
+        void restoreTorrents();
         bool loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata, LoadTorrentParams &torrentParams);
-        bool loadTorrent(LoadTorrentParams params);
+        void applyCommonParams(LoadTorrentParams &params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const AddTorrentParams &addTorrentParams, const MagnetUri &magnetUri, TorrentInfo torrentInfo = TorrentInfo());
         bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
@@ -626,7 +629,7 @@ namespace BitTorrent
         void handleSocks5Alert(const lt::socks5_alert *p) const;
 #endif
 
-        void createTorrentHandle(const lt::torrent_handle &nativeHandle);
+        TorrentHandleImpl *createTorrentHandle(const lt::torrent_status &nativeStatus, const LoadTorrentParams &params);
 
         void saveResumeData();
         void saveTorrentsQueue();
@@ -762,7 +765,7 @@ namespace BitTorrent
         QPointer<Tracker> m_tracker;
         // fastresume data writing thread
         QThread *m_ioThread = nullptr;
-        ResumeDataSavingManager *m_resumeDataSavingManager = nullptr;
+        ResumeDataManager *m_resumeDataManager = nullptr;
 
         QSet<InfoHash> m_loadedMetadata;
 
@@ -788,6 +791,20 @@ namespace BitTorrent
         QList<MoveStorageJob> m_moveStorageQueue;
 
         static Session *m_instance;
+    };
+
+    class SessionLoader final : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(SessionLoader)
+
+    public:
+        SessionLoader() = default;
+
+        void start();
+
+    signals:
+        void done();
     };
 }
 
