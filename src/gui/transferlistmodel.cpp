@@ -166,7 +166,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
             case TR_QUEUE_POSITION: return QChar('#');
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
-            case TR_PROGRESS: return tr("Done", "% Done");
+            case TR_PROGRESS: return tr("Progress", "% Done");
             case TR_STATUS: return tr("Status", "Torrent status (e.g. downloading, seeding, paused)");
             case TR_SEEDS: return tr("Seeds", "i.e. full sources (often untranslated)");
             case TR_PEERS: return tr("Peers", "i.e. partial sources (often untranslated)");
