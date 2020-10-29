@@ -309,7 +309,7 @@ namespace BitTorrent
         bool useRandomPort() const;
         void setUseRandomPort(bool value);
         QString networkInterface() const;
-        void setNetworkInterface(const QString &interface);
+        void setNetworkInterface(const QString &iface);
         QString networkInterfaceName() const;
         void setNetworkInterfaceName(const QString &name);
         QString networkInterfaceAddress() const;
