@@ -2686,10 +2686,10 @@ QString Session::networkInterface() const
     return m_networkInterface;
 }
 
-void Session::setNetworkInterface(const QString &interface)
+void Session::setNetworkInterface(const QString &iface)
 {
-    if (interface != networkInterface()) {
-        m_networkInterface = interface;
+    if (iface != networkInterface()) {
+        m_networkInterface = iface;
         configureListeningInterface();
     }
 }
