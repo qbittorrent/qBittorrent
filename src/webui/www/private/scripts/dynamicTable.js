@@ -1304,6 +1304,10 @@ window.qBittorrent.DynamicTable = (function() {
                     if (row['full_data'].trackers_count !== 0)
                         return false;
                     break;
+                case TRACKERS_ERRORED:
+                    if (row['full_data'].tracker !== '')
+                        return false;
+                    break;
                 default:
                     const tracker = trackerList.get(trackerHashInt);
                     if (tracker && !tracker.torrents.includes(row['full_data'].rowId))
