@@ -698,12 +698,13 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
     for (int i = 0; i < rowCount; i++) {
         Scheduler::TimeRange timeRange = timeRanges[i];
+        const QLocale locale{Preferences::instance()->getLocale()};
 
         auto dlFormat = (timeRange.downloadRate == 0) ? tr("∞") : tr("%1 KiB/s");
         auto ulFormat = (timeRange.uploadRate == 0) ? tr("∞") : tr("%1 KiB/s");
 
-        auto *start = new QTableWidgetItem(timeRange.startTime.toString("hh:mm"));
-        auto *end = new QTableWidgetItem(timeRange.endTime.toString("hh:mm"));
+        auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
+        auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
         auto *dl = new QTableWidgetItem(dlFormat.arg(timeRange.downloadRate));
         auto *ul = new QTableWidgetItem(ulFormat.arg(timeRange.uploadRate));
 

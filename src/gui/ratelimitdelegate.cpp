@@ -7,6 +7,7 @@
 #include <QTimeEdit>
 #include <qnamespace.h>
 
+#include "base/preferences.h"
 #include "base/scheduler/schedule.h"
 #include "optionsdialog.h"
 
@@ -23,8 +24,9 @@ QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionView
     int col = index.column();
 
     if (col == ScheduleColumn::FROM || col == ScheduleColumn::TO) {
+        const QLocale locale{Preferences::instance()->getLocale()};
         auto *timeEdit = new QTimeEdit(parent);
-        timeEdit->setDisplayFormat("hh:mm");
+        timeEdit->setDisplayFormat(locale.timeFormat(QLocale::ShortFormat));
         return timeEdit;
     }
 
@@ -46,6 +48,23 @@ void RateLimitDelegate::setEditorData(QWidget *editor, const QModelIndex &index)
     if (col == ScheduleColumn::FROM || col == ScheduleColumn::TO) {
         auto *timeEdit = static_cast<QTimeEdit*>(editor);
         timeEdit->setTime(index.data(Qt::UserRole).toTime());
+
+        // auto timeRanges = m_scheduleDay.timeRanges();
+
+        // if (col == ScheduleColumn::FROM) {
+        //     if (row > 0) {
+        //         QTime a = timeRanges[row - 1].endTime;
+        //         timeEdit->setMinimumTime(a);
+        //     }
+        //     timeEdit->setMaximumTime(timeRanges[row].endTime);
+        // }
+        // else if (col == ScheduleColumn::TO) {
+        //     if (row < timeRanges.count() - 1) {
+        //         QTime a = timeRanges[row + 1].startTime;
+        //         timeEdit->setMaximumTime(a);
+        //     }
+        //     timeEdit->setMinimumTime(timeRanges[row].startTime);
+        // }
     }
     else if (col == ScheduleColumn::DOWNLOAD || col == ScheduleColumn::UPLOAD) {
         auto *spinBox = static_cast<QSpinBox*>(editor);

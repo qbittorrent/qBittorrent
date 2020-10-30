@@ -72,9 +72,6 @@
      </item>
      <item row="3" column="1">
       <widget class="QTimeEdit" name="timeEditFrom">
-       <property name="displayFormat">
-        <string notr="true">hh:mm</string>
-       </property>
        <property name="time">
         <time>
          <hour>0</hour>
@@ -86,9 +83,6 @@
      </item>
      <item row="3" column="2">
       <widget class="QTimeEdit" name="timeEditTo">
-       <property name="displayFormat">
-        <string notr="true">hh:mm</string>
-       </property>
        <property name="time">
         <time>
          <hour>23</hour>

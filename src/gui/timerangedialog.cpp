@@ -4,6 +4,7 @@
 #include <QPushButton>
 
 #include "base/bittorrent/session.h"
+#include "base/preferences.h"
 #include "ui_timerangedialog.h"
 #include "utils.h"
 
@@ -20,6 +21,10 @@ TimeRangeDialog::TimeRangeDialog(QWidget *parent, Scheduler::ScheduleDay *schedu
     m_ui->uploadSpinBox->setMaximum(maxRatioValue);
     m_ui->uploadSpinBox->setValue(initialRatioValue);
 
+    const QLocale locale{Preferences::instance()->getLocale()};
+    const QString timeFormat = locale.timeFormat(QLocale::ShortFormat);
+    m_ui->timeEditFrom->setDisplayFormat(timeFormat);
+    m_ui->timeEditTo->setDisplayFormat(timeFormat);
     m_ui->timeEditTo->setTime(QTime(23, 59, 59, 999));
 
     emit timesUpdated();
