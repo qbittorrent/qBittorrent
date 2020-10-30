@@ -30,11 +30,13 @@
 
 #include <chrono>
 
+#include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
+#include <QKeyEvent>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProcess>
@@ -128,6 +130,14 @@ namespace
     inline SettingsStorage *settings()
     {
         return SettingsStorage::instance();
+    }
+
+    bool isTorrentLink(const QString &str)
+    {
+        return str.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive)
+            || str.endsWith(QLatin1String(C_TORRENT_FILE_EXTENSION), Qt::CaseInsensitive)
+            || (!str.startsWith(QLatin1String("file:"), Qt::CaseInsensitive)
+                && Net::DownloadManager::hasSupportedScheme(str));
     }
 }
 
@@ -1134,6 +1144,34 @@ void MainWindow::showEvent(QShowEvent *e)
     }
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->matches(QKeySequence::Paste)) {
+        const QMimeData *mimeData {QGuiApplication::clipboard()->mimeData()};
+
+        if (mimeData->hasText()) {
+            const bool useTorrentAdditionDialog {AddNewTorrentDialog::isEnabled()};
+            const QStringList lines {mimeData->text().split('\n', QString::SkipEmptyParts)};
+
+            for (QString line : lines) {
+                line = line.trimmed();
+
+                if (!isTorrentLink(line))
+                    continue;
+
+                if (useTorrentAdditionDialog)
+                    AddNewTorrentDialog::show(line, this);
+                else
+                    BitTorrent::Session::instance()->addTorrent(line);
+            }
+
+            return;
+        }
+    }
+
+    QMainWindow::keyPressEvent(event);
+}
+
 // Called when we close the program
 void MainWindow::closeEvent(QCloseEvent *e)
 {
@@ -1288,10 +1326,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     // differentiate ".torrent" files/links & magnet links from others
     QStringList torrentFiles, otherFiles;
     for (const QString &file : asConst(files)) {
-        const bool isTorrentLink = (file.startsWith("magnet:", Qt::CaseInsensitive)
-            || file.endsWith(C_TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
-            || Net::DownloadManager::hasSupportedScheme(file));
-        if (isTorrentLink)
+        if (isTorrentLink(file))
             torrentFiles << file;
         else
             otherFiles << file;
