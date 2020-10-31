@@ -41,7 +41,7 @@ namespace Scheduler
 
         QThread *m_ioThread;
         AsyncFileStorage *m_fileStorage;
-        QVector<ScheduleDay*> m_scheduleDays;
+        QList<ScheduleDay*> m_scheduleDays;
 
         bool loadSchedule();
         void saveSchedule();

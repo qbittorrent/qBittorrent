@@ -16,7 +16,6 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/scheduler/scheduleday.h"
 
-const QString ConfFolderName = QStringLiteral("scheduler");
 const QString ScheduleFileName = QStringLiteral("schedule.json");
 const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
 
@@ -25,13 +24,16 @@ using namespace Scheduler;
 QPointer<Schedule> Schedule::m_instance = nullptr;
 
 Schedule::Schedule()
+    : m_ioThread(new QThread(this))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
-    m_ioThread = new QThread(this);
     m_fileStorage = new AsyncFileStorage(
-        Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
+        Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config)));
+
+    if (!m_fileStorage)
+        throw RuntimeError("Directory for scheduler data is unavailable.");
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
@@ -41,14 +43,14 @@ Schedule::Schedule()
     });
 
     m_ioThread->start();
-    m_scheduleDays.resize(7);
-    loadSchedule();
+
+    if (!loadSchedule()) {
+        for (int i = 0; i < 7; ++i)
+            m_scheduleDays.append(new ScheduleDay(i));
+    }
 
     for (int i = 0; i < 7; i++)
         connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, &Schedule::updateSchedule);
-
-    if (!m_fileStorage)
-        throw RuntimeError("Directory for scheduler data is unavailable.");
 }
 
 Schedule::~Schedule()
@@ -94,6 +96,9 @@ bool Schedule::loadSchedule()
     QFile file(m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName));
 
     if (file.open(QFile::ReadOnly)) {
+        if (file.size() == 0)
+            return false;
+
         QJsonParseError jsonError;
         const QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &jsonError);
 
