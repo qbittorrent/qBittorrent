@@ -40,7 +40,7 @@ class TorrentContentModelFolder;
 
 class TorrentContentModelItem
 {
-    Q_DECLARE_TR_FUNCTIONS(TorrentContentModelItem);
+    Q_DECLARE_TR_FUNCTIONS(TorrentContentModelItem)
 
 public:
     enum TreeItemColumns
