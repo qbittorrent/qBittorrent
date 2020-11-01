@@ -32,12 +32,6 @@
 
 namespace
 {
-    bool isPaused(const lt::torrent_status &torrentStatus)
-    {
-        return ((torrentStatus.flags & lt::torrent_flags::paused)
-                && !(torrentStatus.flags & lt::torrent_flags::auto_managed));
-    }
-
     bool isAutoManaged(const lt::torrent_status &torrentStatus)
     {
         return static_cast<bool>(torrentStatus.flags & lt::torrent_flags::auto_managed);
