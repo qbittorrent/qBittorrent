@@ -97,6 +97,23 @@ QString CategoryFilterWidget::currentCategory() const
     return getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current);
 }
 
+QString CategoryFilterWidget::currentCategoryFullText() const
+{
+    const QModelIndexList selectedRows = selectionModel()->selectedRows();
+    if (selectedRows.isEmpty())
+        return {};
+
+    const QModelIndex proxyIndex = selectedRows.first();
+    if (proxyIndex.row() == 0)
+        return {};
+
+    const CategoryFilterProxyModel *proxyModel = static_cast<const CategoryFilterProxyModel *>(model());
+    const QModelIndex current = proxyModel->mapToSource(proxyIndex);
+    return tr("%1 (%2)")
+           .arg(static_cast<CategoryFilterModel *>(proxyModel->sourceModel())->categoryName(current)
+                , current.data(Qt::UserRole).toString());
+}
+
 void CategoryFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     Q_UNUSED(previous);

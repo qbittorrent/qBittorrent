@@ -233,6 +233,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="showActiveFiltersLabel">
+                 <property name="text">
+                  <string>Show active filters in transfer list (if any)</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkAltRowColors">
                  <property name="text">
                   <string extracomment="In table elements, every other row will have a grey background.">Use alternating row colors</string>

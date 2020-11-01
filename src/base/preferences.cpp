@@ -171,6 +171,16 @@ void Preferences::setHideZeroValues(const bool b)
     setValue("Preferences/General/HideZeroValues", b);
 }
 
+bool Preferences::isActiveFiltersLabelVisible() const
+{
+    return value("Preferences/General/isActiveFiltersLabelVisible", true).toBool();
+}
+
+void Preferences::setActiveFiltersLableVisibility(const bool b)
+{
+    setValue("Preferences/General/isActiveFiltersLabelVisible", b);
+}
+
 int Preferences::getHideZeroComboValues() const
 {
     return value("Preferences/General/HideZeroComboValues", 0).toInt();

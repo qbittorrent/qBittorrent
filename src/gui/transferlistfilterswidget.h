@@ -36,6 +36,7 @@ class QCheckBox;
 class QResizeEvent;
 
 class TransferListWidget;
+class ActiveFiltersLabel;
 
 namespace BitTorrent
 {
@@ -58,6 +59,10 @@ public:
 
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
+    QListWidgetItem *currentFilter() const; // returns null for "all" filter
+
+signals:
+    void currentFilterChanged();
 
 public slots:
     void toggleFilter(bool checked);
@@ -147,6 +152,8 @@ class TransferListFiltersWidget : public QFrame
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     void setDownloadTrackerFavicon(bool value);
+    QWidget *activeFiltersLabel() const;
+    int activeFiltersCount() const;
 
 public slots:
     void addTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
@@ -160,6 +167,7 @@ signals:
     void trackerSuccess(const QString &hash, const QString &tracker);
     void trackerError(const QString &hash, const QString &tracker);
     void trackerWarning(const QString &hash, const QString &tracker);
+    void activeFiltersCountChanged(int count);
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);
@@ -173,6 +181,7 @@ private:
     TrackerFiltersList *m_trackerFilters;
     CategoryFilterWidget *m_categoryFilterWidget;
     TagFilterWidget *m_tagFilterWidget;
+    ActiveFiltersLabel *m_activeFiltersLabel;
 };
 
 #endif // TRANSFERLISTFILTERSWIDGET_H

@@ -95,6 +95,15 @@ QString TagFilterWidget::currentTag() const
     return getTagFilter(static_cast<TagFilterProxyModel *>(model()), current);
 }
 
+QString TagFilterWidget::currentTagText() const
+{
+    const auto selectedRows = selectionModel()->selectedRows();
+    if (selectedRows.isEmpty() || (selectedRows.first().row() == 0))
+        return {};;
+
+    return selectedRows.first().data().toString();
+}
+
 void TagFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     Q_UNUSED(previous);

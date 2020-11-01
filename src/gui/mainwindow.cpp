@@ -37,10 +37,14 @@
 #include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QKeyEvent>
+#include <QHBoxLayout>
+#include <QLabel>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QMouseEvent>
 #include <QProcess>
 #include <QPushButton>
+#include <QScrollBar>
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
@@ -139,6 +143,78 @@ namespace
             || (!str.startsWith(QLatin1String("file:"), Qt::CaseInsensitive)
                 && Net::DownloadManager::hasSupportedScheme(str));
     }
+
+    class TransferListOverlayWidget : public QFrame
+    {
+    public:
+        TransferListOverlayWidget(const int activeFiltersCount, QWidget *activeFiltersLabel, TransferListWidget *transferList)
+            : QFrame {transferList}
+            , m_transferList {transferList}
+        {
+            setObjectName("transferListOverlayWidget"); // for stylesheet
+            transferList->installEventFilter(this);
+            setFrameShape(QFrame::StyledPanel);
+            setBackgroundRole(QPalette::Button);
+            setForegroundRole(QPalette::ButtonText);
+            setAutoFillBackground(true);
+            updateGeometry();
+
+            QHBoxLayout *activeFiltersLayout {new QHBoxLayout(this)};
+            activeFiltersLayout->setSizeConstraint(QLayout::SetMinimumSize);
+            activeFiltersLayout->addWidget(new QLabel(tr("Active Filters:")));
+            activeFiltersLayout->addWidget(activeFiltersLabel, 1);
+
+            m_close = new QLabel(" 🗙 ", this);
+            m_close->installEventFilter(this);
+            activeFiltersLayout->addWidget(m_close);
+
+            setActiveFiltersCount(activeFiltersCount);
+            connect(Preferences::instance(), &Preferences::changed, this, &TransferListOverlayWidget::updateVisibility);
+        }
+
+        void setActiveFiltersCount(const int activeFiltersCount)
+        {
+            m_activeFiltersCount = activeFiltersCount;
+            updateVisibility();
+        }
+
+    private:
+        bool eventFilter(QObject *obj, QEvent *event)
+        {
+            if ((qobject_cast<TransferListWidget *>(obj) == m_transferList)
+                && ((event->type() == QEvent::Resize)
+                    || (event->type() == QEvent::WindowActivate)))
+                updateGeometry();
+
+            if ((qobject_cast<QLabel *>(obj) == m_close)
+                && ((event->type() == QEvent::MouseButtonPress)
+                    && (static_cast<QMouseEvent *>(event)->buttons() == Qt::LeftButton)))
+                Preferences::instance()->setActiveFiltersLableVisibility(!Preferences::instance()->isActiveFiltersLabelVisible());
+
+            return false;
+        }
+
+        void updateGeometry()
+        {
+            const QSize parentSize = m_transferList->size();
+            const int height = layout() ? layout()->minimumSize().height() : this->height();
+            const int scrollBarHeight
+            {
+                (m_transferList->horizontalScrollBar() && m_transferList->horizontalScrollBar()->isVisible())
+                ? m_transferList->horizontalScrollBar()->height() : 0
+            };
+            setGeometry(QRect(0, parentSize.height() - height - scrollBarHeight, parentSize.width(), height));
+        }
+
+        void updateVisibility()
+        {
+            setVisible((m_activeFiltersCount > 0) && Preferences::instance()->isActiveFiltersLabelVisible());
+        }
+
+        QLabel *m_close;
+        TransferListWidget *m_transferList;
+        int m_activeFiltersCount;
+    };
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -254,6 +330,15 @@ MainWindow::MainWindow(QWidget *parent)
         UIThemeManager::instance()->getIcon("folder-remote"),
 #endif
         tr("Transfers"));
+
+    const TransferListOverlayWidget *activeFiltersView
+    {
+        new TransferListOverlayWidget {m_transferListFiltersWidget->activeFiltersCount()
+                                       , m_transferListFiltersWidget->activeFiltersLabel()
+                                       , m_transferListWidget}
+    };
+    connect(m_transferListFiltersWidget, &TransferListFiltersWidget::activeFiltersCountChanged
+            , activeFiltersView, &TransferListOverlayWidget::setActiveFiltersCount);
 
     connect(m_searchFilter, &LineEdit::textChanged, m_transferListWidget, &TransferListWidget::applyNameFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::writeSettings);

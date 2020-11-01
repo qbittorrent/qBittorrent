@@ -29,11 +29,13 @@
 #include "transferlistfilterswidget.h"
 
 #include <QCheckBox>
+#include <QFontMetrics>
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QPainter>
 #include <QScrollArea>
+#include <QStylePainter>
 #include <QStyleOptionButton>
 #include <QUrl>
 #include <QVBoxLayout>
@@ -74,6 +76,15 @@ namespace
         return scheme;
     }
 
+    int horizontalAdvance(const QFontMetrics &fontMetrics, const QString &text)
+    {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+        return fontMetrics.horizontalAdvance(text);
+#else
+        return fontMetrics.width(text);
+#endif
+    }
+
     class ArrowCheckBox final : public QCheckBox
     {
     public:
@@ -98,6 +109,62 @@ namespace
         }
     };
 }
+
+struct FilterData
+{
+    QIcon icon;
+    QString text;
+};
+
+class ActiveFiltersLabel : public QWidget
+{
+public:
+    using QWidget::QWidget;
+
+    void setActiveFilters(const QVector<FilterData> &filters)
+    {
+        m_activeFilters = filters;
+        update();
+    };
+
+    QSize minimumSizeHint() const override
+    {
+        return QSize {0, Utils::Gui::smallIconSize(this).height()};
+    }
+
+    int heightForWidth(int) const override
+    {
+        return Utils::Gui::smallIconSize(this).height();
+    }
+
+    int activeFiltersCount() const
+    {
+        return m_activeFilters.size();
+    }
+
+private:
+    void paintEvent(QPaintEvent *) override
+    {
+        QStylePainter painter(this);
+
+        int i = 0;
+        int x = 0;
+        for (const FilterData &filter: m_activeFilters) {
+            if (i != 0) {
+                painter.drawItemText(QRect(x, 0, width() - x, height()), Qt::AlignVCenter, palette(), true, ", ");
+                x += horizontalAdvance(painter.fontMetrics(), ", ");
+            }
+            const QSize size = Utils::Gui::smallIconSize(this);
+            filter.icon.paint(&painter, QRect(QPoint(x, 0), size));
+            x += size.width() + horizontalAdvance(painter.fontMetrics(), " ");
+            painter.drawItemText(QRect(x, 0, width() - x, height()), Qt::AlignVCenter, palette(), true, filter.text);
+            x += horizontalAdvance(painter.fontMetrics(), filter.text);
+            i++;
+        }
+    }
+
+    QVector<FilterData> m_activeFilters;
+};
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
     : QListWidget(parent)
@@ -141,6 +208,11 @@ QSize BaseFilterWidget::minimumSizeHint() const
     QSize size = sizeHint();
     size.setWidth(6);
     return size;
+}
+
+QListWidgetItem *BaseFilterWidget::currentFilter() const
+{
+    return currentRow() != 0 ? item(currentRow()) : nullptr;
 }
 
 void BaseFilterWidget::toggleFilter(bool checked)
@@ -262,6 +334,8 @@ void StatusFilterWidget::updateTorrentNumbers()
     item(TorrentFilter::StalledUploading)->setData(Qt::DisplayRole, tr("Stalled Uploading (%1)").arg(nbStalledUploading));
     item(TorrentFilter::StalledDownloading)->setData(Qt::DisplayRole, tr("Stalled Downloading (%1)").arg(nbStalledDownloading));
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(nbErrored));
+
+    emit currentFilterChanged();
 }
 
 void StatusFilterWidget::showMenu(const QPoint &) {}
@@ -269,6 +343,7 @@ void StatusFilterWidget::showMenu(const QPoint &) {}
 void StatusFilterWidget::applyFilter(int row)
 {
     transferList->applyStatusFilter(row);
+    emit currentFilterChanged();
 }
 
 void StatusFilterWidget::handleNewTorrent(BitTorrent::TorrentHandle *const) {}
@@ -523,6 +598,8 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     else {
         trackerItem->setData(Qt::DecorationRole, QIcon(result.filePath));
         m_iconPaths.append(result.filePath);
+        if (trackerItem == currentFilter())
+            emit currentFilterChanged();
     }
 }
 
@@ -549,6 +626,7 @@ void TrackerFiltersList::applyFilter(const int row)
         transferList->applyTrackerFilterAll();
     else if (isVisible())
         transferList->applyTrackerFilter(getHashes(row));
+    emit currentFilterChanged();
 }
 
 void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
@@ -718,6 +796,46 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
             , m_trackerFilters, &TrackerFiltersList::trackerError);
     connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerWarning)
             , m_trackerFilters, &TrackerFiltersList::trackerWarning);
+
+    m_activeFiltersLabel = new ActiveFiltersLabel {this};
+
+    const auto updateActiveFilters = [this, statusFilters]()
+    {
+        QVector<FilterData> filters;
+
+        if (const QListWidgetItem *currentStatus = statusFilters->currentFilter())
+            filters.push_back({currentStatus->icon(), currentStatus->text()});
+
+        const QString currentCategory = m_categoryFilterWidget->currentCategoryFullText();
+        if (!currentCategory.isEmpty())
+            filters.push_back({UIThemeManager::instance()->getIcon("inode-directory"), currentCategory});
+
+        const QString currenTag = m_tagFilterWidget->currentTagText();
+        if (!currenTag.isEmpty())
+            filters.push_back({UIThemeManager::instance()->getIcon("inode-directory"), currenTag});
+
+        if (const QListWidgetItem *currentTracker = m_trackerFilters->currentFilter())
+            filters.push_back({currentTracker->icon(), currentTracker->text()});
+
+        m_activeFiltersLabel->setActiveFilters(filters);
+        emit activeFiltersCountChanged(filters.count());
+    };
+
+    connect(statusFilters, &BaseFilterWidget::currentFilterChanged, this, updateActiveFilters);
+    connect(m_categoryFilterWidget, &CategoryFilterWidget::categoryChanged, this, updateActiveFilters);
+    connect(m_tagFilterWidget, &TagFilterWidget::tagChanged, this, updateActiveFilters);
+    connect(m_trackerFilters, &BaseFilterWidget::currentFilterChanged, this, updateActiveFilters);
+    updateActiveFilters();
+}
+
+QWidget *TransferListFiltersWidget::activeFiltersLabel() const
+{
+    return m_activeFiltersLabel;
+}
+
+int TransferListFiltersWidget::activeFiltersCount() const
+{
+    return m_activeFiltersLabel->activeFiltersCount();
 }
 
 void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
