@@ -615,35 +615,32 @@ void OptionsDialog::initializeScheduler()
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
 
-        auto *scheduleDay = schedule->scheduleDay(i);
+        Scheduler::ScheduleDay *scheduleDay = schedule->scheduleDay(i);
         scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
 
         m_scheduleDayTables.append(scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
 
+        QItemSelectionModel *selectionModel = scheduleTable->selectionModel();
         auto *addButton = new QPushButton(tr("Add entry"), tabContent);
-        connect(addButton, &QPushButton::clicked, this,
-            [this, scheduleDay]() { OptionsDialog::on_scheduleDayAdd_clicked(scheduleDay); });
-
         auto *removeButton = new QPushButton(tr("Remove entry"), tabContent);
         removeButton->setEnabled(false);
-        connect(removeButton, &QPushButton::clicked, this,
-            [this, i]() { OptionsDialog::on_scheduleDayRemove_clicked(i); });
 
-        auto *selectionModel = scheduleTable->selectionModel();
+        connect(addButton, &QPushButton::clicked, this,
+            [this, scheduleDay]() { OptionsDialog::openTimeRangeDialog(scheduleDay); });
+        connect(removeButton, &QPushButton::clicked, this,
+            [this, i]() { OptionsDialog::removeSelectedTimeRanges(i); });
         connect(selectionModel, &QItemSelectionModel::selectionChanged, this,
             [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
 
         if (i == today)
             scheduleTable->selectRow(scheduleDay->getNowIndex());
 
-        auto *hLayout = new QHBoxLayout(tabContent);
+        auto *hLayout = new QHBoxLayout();
         hLayout->addWidget(addButton);
         hLayout->addWidget(removeButton);
         vLayout->addWidget(scheduleTable);
         vLayout->addLayout(hLayout);
-
-        tabContent->setLayout(vLayout);
         m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[i]);
     }
 
@@ -657,7 +654,7 @@ void OptionsDialog::initializeScheduler()
     m_ui->tabSchedule->setCurrentIndex(today);
 }
 
-void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay)
+void OptionsDialog::openTimeRangeDialog(Scheduler::ScheduleDay *scheduleDay)
 {
     auto *dialog = new TimeRangeDialog(this, scheduleDay);
     connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]()
@@ -674,16 +671,16 @@ void OptionsDialog::on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDa
     dialog->open();
 }
 
-void OptionsDialog::on_scheduleDayRemove_clicked(const int day)
+void OptionsDialog::removeSelectedTimeRanges(const int day)
 {
-    auto *selectionModel = m_scheduleDayTables[day]->selectionModel();
-    auto selection = selectionModel->selectedRows();
+    QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
+    QList<QModelIndex> selection = selectionModel->selectedRows();
 
     if (selection.count() > 0) {
         std::sort(selection.begin(), selection.end(),
             [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
 
-        for (const auto &i : selection)
+        for (const QModelIndex &i : selection)
             Scheduler::Schedule::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
 
         selectionModel->clearSelection();
@@ -696,17 +693,20 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
     int rowCount = timeRanges.count();
     scheduleTable->setRowCount(rowCount);
 
+    const QLocale locale{Preferences::instance()->getLocale()};
+
     for (int i = 0; i < rowCount; i++) {
         Scheduler::TimeRange timeRange = timeRanges[i];
-        const QLocale locale{Preferences::instance()->getLocale()};
 
-        auto dlFormat = (timeRange.downloadRate == 0) ? tr("∞") : tr("%1 KiB/s");
-        auto ulFormat = (timeRange.uploadRate == 0) ? tr("∞") : tr("%1 KiB/s");
+        QString dlText = (timeRange.downloadRate == 0) ? tr("∞")
+                       : tr("%1 KiB/s").arg(timeRange.downloadRate);
+        QString ulText = (timeRange.uploadRate == 0) ? tr("∞") 
+                       : tr("%1 KiB/s").arg(timeRange.uploadRate);
 
         auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
         auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
-        auto *dl = new QTableWidgetItem(dlFormat.arg(timeRange.downloadRate));
-        auto *ul = new QTableWidgetItem(ulFormat.arg(timeRange.uploadRate));
+        auto *dl = new QTableWidgetItem(dlText);
+        auto *ul = new QTableWidgetItem(ulText);
 
         start->setData(Qt::UserRole, timeRange.startTime);
         end->setData(Qt::UserRole, timeRange.endTime);
@@ -1519,10 +1519,6 @@ int OptionsDialog::getMaxUploadsPerTorrent() const
 void OptionsDialog::on_buttonBox_accepted()
 {
     if (m_applyButton->isEnabled()) {
-        if (!schedTimesOk()) {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-            return;
-        }
         if (!webUIAuthenticationOk()) {
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
@@ -1542,10 +1538,6 @@ void OptionsDialog::on_buttonBox_accepted()
 void OptionsDialog::applySettings(QAbstractButton *button)
 {
     if (button == m_applyButton) {
-        if (!schedTimesOk()) {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-            return;
-        }
         if (!webUIAuthenticationOk()) {
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
@@ -1904,11 +1896,6 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
         QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
-}
-
-bool OptionsDialog::schedTimesOk()
-{
-    return true;
 }
 
 bool OptionsDialog::webUIAuthenticationOk()

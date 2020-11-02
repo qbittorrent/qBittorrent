@@ -2,11 +2,9 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QJsonValue>
 
 #include "base/global.h"
 #include "base/rss/rss_autodownloader.h"
-#include "timerange.h"
 
 using namespace Scheduler;
 
@@ -26,9 +24,9 @@ bool ScheduleDay::addTimeRange(const TimeRange &timeRange)
         return false;
 
     m_timeRanges.append(timeRange);
-    for (int i = 0; i < m_timeRanges.count(); i++) {
+    for (int i = 0; i < m_timeRanges.count(); ++i) {
         if (m_timeRanges[i].startTime > timeRange.startTime) {
-            m_timeRanges.move(m_timeRanges.count()-1, i);
+            m_timeRanges.move(m_timeRanges.count() - 1, i);
             break;
         }
     }
@@ -55,7 +53,8 @@ void ScheduleDay::clearTimeRanges()
 
 void ScheduleDay::editStartTimeAt(int index, const QTime time)
 {
-    if ((index == 0) || (index > 0 && time > m_timeRanges[index - 1].endTime)) {
+    bool startTimeCanBeSet = index > 0 && time > m_timeRanges[index - 1].endTime;
+    if (index == 0 || startTimeCanBeSet) {
         m_timeRanges[index].setStartTime(time);
         emit dayUpdated(m_dayOfWeek);
     }
@@ -63,8 +62,9 @@ void ScheduleDay::editStartTimeAt(int index, const QTime time)
 
 void ScheduleDay::editEndTimeAt(int index, const QTime time)
 {
-    int last = m_timeRanges.count() - 1;
-    if ((index == last) || (index < last && time < m_timeRanges[index + 1].startTime)) {
+    int lastIndex = m_timeRanges.count() - 1;
+    bool endTimeCanBeSet = index < lastIndex && time < m_timeRanges[index + 1].startTime;
+    if (index == lastIndex || endTimeCanBeSet) {
         m_timeRanges[index].setEndTime(time);
         emit dayUpdated(m_dayOfWeek);
     }
@@ -84,9 +84,11 @@ void ScheduleDay::editUploadRateAt(int index, int rate)
 
 int ScheduleDay::getNowIndex()
 {
-    auto now = QDateTime::currentDateTime();
-    for (int i = 0; i < m_timeRanges.count(); i++) {
-        if (now.time() >= m_timeRanges[i].startTime && now.time() < m_timeRanges[i].endTime)
+    QDateTime now = QDateTime::currentDateTime();
+    for (int i = 0; i < m_timeRanges.count(); ++i) {
+        bool afterStart = now.time() >= m_timeRanges[i].startTime;
+        bool beforeEnd = now.time() < m_timeRanges[i].endTime;
+        if (afterStart && beforeEnd)
             return i;
     }
     return -1;

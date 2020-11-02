@@ -1,25 +1,23 @@
 #include "timerangedialog.h"
 
-#include <QMessageBox>
 #include <QPushButton>
 
-#include "base/bittorrent/session.h"
 #include "base/preferences.h"
 #include "ui_timerangedialog.h"
 #include "utils.h"
 
-TimeRangeDialog::TimeRangeDialog(QWidget *parent, Scheduler::ScheduleDay *scheduleDay, int initialRatioValue, int maxRatioValue)
+TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate, int maxRate)
     : QDialog(parent)
     , m_ui(new Ui::TimeRangeDialog)
     , m_scheduleDay(scheduleDay)
 {
     m_ui->setupUi(this);
 
-    m_ui->downloadSpinBox->setMaximum(maxRatioValue);
-    m_ui->downloadSpinBox->setValue(initialRatioValue);
+    m_ui->downloadSpinBox->setMaximum(maxRate);
+    m_ui->downloadSpinBox->setValue(initialRate);
 
-    m_ui->uploadSpinBox->setMaximum(maxRatioValue);
-    m_ui->uploadSpinBox->setValue(initialRatioValue);
+    m_ui->uploadSpinBox->setMaximum(maxRate);
+    m_ui->uploadSpinBox->setValue(initialRate);
 
     const QLocale locale{Preferences::instance()->getLocale()};
     const QString timeFormat = locale.timeFormat(QLocale::ShortFormat);
@@ -34,21 +32,23 @@ TimeRangeDialog::TimeRangeDialog(QWidget *parent, Scheduler::ScheduleDay *schedu
     Utils::Gui::resize(this);
 }
 
+TimeRangeDialog::~TimeRangeDialog()
+{
+    delete m_ui;
+}
+
 void TimeRangeDialog::timesUpdated()
 {
     m_ui->labelTimeFrom->setText(timeFrom().toString("hh:mm:ss.zzz"));
     m_ui->labelTimeTo->setText(timeTo().toString("hh:mm:ss.zzz"));
-
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(isValid());
 }
 
 bool TimeRangeDialog::isValid() const
 {
-    bool timeRangesInvalid = timeFrom().secsTo(timeTo()) <= 0;
-    auto conflicts = m_scheduleDay->conflicts(
-        {timeFrom(), timeTo(), downloadRatio(), uploadRatio()});
-
-    return !(timeRangesInvalid || conflicts);
+    bool timeRangesValid = timeFrom().secsTo(timeTo()) > 0;
+    TimeRange timeRange = {timeFrom(), timeTo(), downloadRatio(), uploadRatio()};
+    return timeRangesValid && !m_scheduleDay->conflicts(timeRange);
 }
 
 int TimeRangeDialog::downloadRatio() const
@@ -69,9 +69,4 @@ QTime TimeRangeDialog::timeFrom() const
 QTime TimeRangeDialog::timeTo() const
 {
     return m_ui->timeEditTo->time();
-}
-
-TimeRangeDialog::~TimeRangeDialog()
-{
-    delete m_ui;
 }

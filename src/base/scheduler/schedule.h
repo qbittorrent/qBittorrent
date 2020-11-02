@@ -1,17 +1,12 @@
 #pragma once
 
-#include <QJsonObject>
 #include <QObject>
-#include <QPointer>
-#include <QVector>
+#include <QThread>
 
-#include "base/global.h"
+#include "../asyncfilestorage.h"
 #include "scheduleday.h"
 
-class QThread;
-
 class Application;
-class AsyncFileStorage;
 
 namespace Scheduler
 {

@@ -116,8 +116,6 @@ private slots:
     void setLocale(const QString &localeStr);
     void webUIHttpsCertChanged(const QString &path, ShowError showError);
     void webUIHttpsKeyChanged(const QString &path, ShowError showError);
-    void on_scheduleDayAdd_clicked(Scheduler::ScheduleDay *scheduleDay);
-    void on_scheduleDayRemove_clicked(int day);
 
 private:
     static void populateScheduleDayTable(QTableWidget *scheduleTable, const Scheduler::ScheduleDay *scheduleDay);
@@ -152,6 +150,9 @@ private:
     // Connection options
     int getPort() const;
     bool isUPnPEnabled() const;
+    // Speed options
+    void openTimeRangeDialog(Scheduler::ScheduleDay *scheduleDay);
+    void removeSelectedTimeRanges(int day);
     // Bittorrent options
     int getMaxConnecs() const;
     int getMaxConnecsPerTorrent() const;
@@ -186,14 +187,12 @@ private:
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 
-    bool schedTimesOk();
-
     Ui::OptionsDialog *m_ui;
     QAbstractButton *m_applyButton;
     AdvancedSettings *m_advancedSettings;
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
-    QVector<QTableWidget*> m_scheduleDayTables;
+    QList<QTableWidget*> m_scheduleDayTables;
 };
 
 #endif // OPTIONSDIALOG_H

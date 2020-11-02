@@ -32,8 +32,6 @@
 #include <QObject>
 #include <QTimer>
 
-#include "base/scheduler/schedule.h"
-
 class BandwidthScheduler : public QObject
 {
     Q_OBJECT

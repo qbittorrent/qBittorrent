@@ -1,25 +1,19 @@
 #include "schedule.h"
 
-#include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QThread>
-#include <QVector>
 
-#include "../asyncfilestorage.h"
 #include "../logger.h"
 #include "../profile.h"
 #include "../utils/fs.h"
 #include "base/exceptions.h"
-#include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
-#include "base/scheduler/scheduleday.h"
+
+using namespace Scheduler;
 
 const QString ScheduleFileName = QStringLiteral("schedule.json");
 const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
-
-using namespace Scheduler;
 
 QPointer<Schedule> Schedule::m_instance = nullptr;
 
@@ -49,7 +43,7 @@ Schedule::Schedule()
             m_scheduleDays.append(new ScheduleDay(i));
     }
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 7; ++i)
         connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, &Schedule::updateSchedule);
 }
 
@@ -85,7 +79,7 @@ void Schedule::updateSchedule(int day)
 void Schedule::saveSchedule()
 {
     QJsonObject jsonObj;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 7; ++i)
         jsonObj.insert(DAYS[i], m_scheduleDays[i]->toJsonArray());
 
     m_fileStorage->store(ScheduleFileName, QJsonDocument(jsonObj).toJson());
@@ -109,7 +103,7 @@ bool Schedule::loadSchedule()
             throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
 
         const QJsonObject jsonObj = jsonDoc.object();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 7; ++i) {
             QJsonArray arr = jsonObj[DAYS[i]].toArray();
             m_scheduleDays[i] = ScheduleDay::fromJsonArray(arr, i);
         }

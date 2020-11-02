@@ -1,9 +1,10 @@
 #pragma once
 
-#include <QDateTime>
 #include <QDialog>
 
 #include "../base/scheduler/scheduleday.h"
+
+using namespace Scheduler;
 
 namespace Ui
 {
@@ -15,7 +16,7 @@ class TimeRangeDialog final : public QDialog
     Q_OBJECT
 
 public:
-    TimeRangeDialog(QWidget *parent, Scheduler::ScheduleDay *scheduleDay, int initialRatioValue = 100, int maxRatioValue = 10240000);
+    TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate = 100, int maxRate = 1000000);
     ~TimeRangeDialog() override;
 
     QTime timeFrom() const;
@@ -30,5 +31,5 @@ private:
     bool isValid() const;
 
     Ui::TimeRangeDialog *m_ui;
-    Scheduler::ScheduleDay *m_scheduleDay; 
+    ScheduleDay *m_scheduleDay;
 };

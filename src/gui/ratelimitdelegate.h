@@ -4,9 +4,7 @@
 
 #include "base/scheduler/scheduleday.h"
 
-class QAbstractItemModel;
-class QModelIndex;
-class QStyleOptionViewItem;
+using namespace Scheduler;
 
 namespace Gui
 {
@@ -25,7 +23,7 @@ class RateLimitDelegate final : public QStyledItemDelegate
     Q_OBJECT
 
 public:
-    RateLimitDelegate(Scheduler::ScheduleDay &scheduleDay, QObject *parent);
+    RateLimitDelegate(ScheduleDay &scheduleDay, QObject *parent);
 
 private:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
@@ -33,5 +31,5 @@ private:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
-    Scheduler::ScheduleDay &m_scheduleDay;
+    ScheduleDay &m_scheduleDay;
 };

@@ -29,13 +29,6 @@
 
 #include "bandwidthscheduler.h"
 
-#include <utility>
-
-#include <QDate>
-#include <QDateTime>
-#include <QTimer>
-
-#include "base/preferences.h"
 #include "base/scheduler/schedule.h"
 
 using namespace Scheduler;
@@ -59,8 +52,8 @@ void BandwidthScheduler::start()
 
 void BandwidthScheduler::onTimeout()
 {
-    auto *today = Schedule::instance()->today();
-    auto index = today->getNowIndex();
+    ScheduleDay *today = Schedule::instance()->today();
+    int index = today->getNowIndex();
 
     if (index > -1) {
         auto timeRange = today->timeRanges()[index];
