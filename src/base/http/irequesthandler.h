@@ -44,4 +44,3 @@ namespace Http
 }
 
 #endif // HTTP_IREQUESTHANDLER_H
-

@@ -1,12 +1,14 @@
-﻿All new code **must** follow the following coding guidelines.  
-If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes.  
+# Coding Guidelines
+
+All new code **must** follow the following coding guidelines. \
+If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes. \
 For programming languages other than C++ (e.g. JavaScript) used in this repository and submodules, unless otherwise specified, coding guidelines listed here applies as much as possible.
 
-**Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style.  
-**Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder.  
-**Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.  
+**Note 1:** I will not take your head if you forget and use another style. However, most probably the request will be delayed until you fix your coding style. \
+**Note 2:** You can use the `uncrustify` program/tool to clean up any source file. Use it with the `uncrustify.cfg` configuration file found in the root folder. \
+**Note 3:** There is also a style for QtCreator but it doesn't cover all cases. In QtCreator `Tools->Options...->C++->Code Style->Import...` and choose the `codingStyleQtCreator.xml` file found in the root folder.
 
-### Table Of Contents
+## Table Of Contents
 
 * [1. New lines &amp; curly braces](#1-new-lines--curly-braces)
   * [a. Function blocks, class/struct definitions, namespaces](#a-function-blocks-classstruct-definitions-namespaces)
@@ -29,11 +31,13 @@ For programming languages other than C++ (e.g. JavaScript) used in this reposito
 * [9. Misc](#9-misc)
 * [10. Git commit message](#10-git-commit-message)
 * [11. Not covered above](#11-not-covered-above)
+
 ---
 
-### 1. New lines & curly braces ###
+## 1. New lines & curly braces
 
-#### a. Function blocks, class/struct definitions, namespaces ####
+### a. Function blocks, class/struct definitions, namespaces
+
 ```c++
 int myFunction(int a)
 {
@@ -79,7 +83,8 @@ namespace Name
 }
 ```
 
-#### b. Other code blocks ####
+### b. Other code blocks
+
 ```c++
 if (condition) {
     // code
@@ -99,7 +104,8 @@ default:
 }
 ```
 
-#### c. Blocks in switch's case labels ####
+### c. Blocks in switch's case labels
+
 ```c++
 switch (var) {
 case 1: {
@@ -117,8 +123,10 @@ default:
 }
 ```
 
-#### d. If-else statements ####
+### d. If-else statements
+
 The `else if`/`else` must be on their own lines:
+
 ```c++
 if (condition) {
     // code
@@ -131,8 +139,10 @@ else {
 }
 ```
 
-#### e. Single statement if blocks ####
+### e. Single statement if blocks
+
 Most single statement if blocks should look like this:
+
 ```c++
 if (condition)
     a = a + b;
@@ -141,6 +151,7 @@ if (condition)
 One acceptable exception to this can be `return`, `break` or `continue` statements,
 provided that the test condition isn't very long and its body statement occupies only one line.
 However you can still choose to use the first rule.
+
 ```c++
 if (a > 0) return;
 
@@ -150,10 +161,12 @@ while (p) {
 }
 ```
 
-#### f. Acceptable conditions to omit braces ####
+### f. Acceptable conditions to omit braces
+
 When the conditional statement in `if`/`else` has only one line and its body occupy only one line,
-this also applies to loops statements.  
+this also applies to loops statements. \
 Notice that for a series of `if - else` branches, if one branch needs braces then all branches must add braces.
+
 ```c++
 if (a < b)  // conditional statement
     do(a);  // body
@@ -177,9 +190,11 @@ else {
 }
 ```
 
-#### g. Brace enclosed initializers ####
-Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions.<br/>
+### g. Brace enclosed initializers
+
+Unlike single-line functions, you must not insert spaces between the brackets and concluded expressions. \
 But you must insert a space between the variable name and initializer.
+
 ```c++
 Class obj {}; // empty
 Class obj {expr};
@@ -187,15 +202,18 @@ Class obj {expr1, /*...,*/ exprN};
 QVariantMap map {{"key1", 5}, {"key2", 10}};
 ```
 
-### 2. Indentation ###
+## 2. Indentation
+
 4 spaces.
 
-### 3. File encoding and line endings ###
+## 3. File encoding and line endings
 
 UTF-8 and Unix-like line ending (LF). Unless some platform specific files need other encodings/line endings.
 
-### 4. Initialization lists ###
+## 4. Initialization lists
+
 Initialization lists should be vertical. This will allow for more easily readable diffs. The initialization colon should be indented and in its own line along with first argument. The rest of the arguments should be indented too and have the comma prepended.
+
 ```c++
 myClass::myClass(int a, int b, int c, int d)
     : m_a(a)
@@ -207,8 +225,10 @@ myClass::myClass(int a, int b, int c, int d)
 }
 ```
 
-### 5. Enums ###
+## 5. Enums
+
 Enums should be vertical. This will allow for more easily readable diffs. The members should be indented.
+
 ```c++
 enum Days
 {
@@ -222,11 +242,14 @@ enum Days
 };
 ```
 
-### 6. Names ###
+## 6. Names
+
 All names should be camelCased.
 
-#### a. Type names and namespaces ####
+### a. Type names and namespaces
+
 Type names and namespaces start with Upper case letter (except POD types).
+
 ```c++
 class ClassName {};
 
@@ -241,14 +264,18 @@ namespace NamespaceName
 }
 ```
 
-#### b. Variable names ####
+### b. Variable names
+
 Variable names start with lower case letter.
+
 ```c++
 int myVar;
 ```
 
-#### c. Private member variable names ####
+### c. Private member variable names
+
 Private member variable names start with lower case letter and should have ```m_``` prefix.
+
 ```c++
 class MyClass
 {
@@ -256,23 +283,26 @@ class MyClass
 }
 ```
 
-### 7. Header inclusion order ###
-The headers should be placed in the following group order:
-  1. Module header (in .cpp)
-  2. C++ Standard Library headers
-  3. System headers
-  4. Boost library headers
-  5. Libtorrent headers
-  6. Qt headers
-  7. qBittorrent's own headers, starting from the *base* headers.
+## 7. Header inclusion order
 
-The headers should be ordered alphabetically within each group.  
-If there are conditionals for the same header group, then put them at the bottom of the respective group.  
+The headers should be placed in the following group order:
+
+1. Module header (in .cpp)
+2. C++ Standard Library headers
+3. System headers
+4. Boost library headers
+5. Libtorrent headers
+6. Qt headers
+7. qBittorrent's own headers, starting from the *base* headers.
+
+The headers should be ordered alphabetically within each group. \
+If there are conditionals for the same header group, then put them at the bottom of the respective group. \
 If there are conditionals that contain headers from several different header groups, then put them above the "qBittorrent's own headers" group.
 
 One exception is the header containing the library version (for example, QtGlobal), this particular header isn't constrained by the aforementioned order.
 
 Example:
+
 ```c++
 // file: examplewidget.cpp
 
@@ -322,8 +352,10 @@ Example:
 #include "ui_examplewidget.h"
 ```
 
-### 8. Include guard ###
+## 8. Include guard
+
 `#pragma once` should be used instead of "include guard" in new code:
+
 ```c++
 // examplewidget.h
 
@@ -338,75 +370,73 @@ class ExampleWidget : public QWidget
 
 ```
 
-### 9. Misc ###
+## 9. Misc
 
 * Line breaks for long lines with operation:
 
-```c++
-a += "b"
-  + "c"
-  + "d";
-```
+  ```c++
+  a += "b"
+    + "c"
+    + "d";
+  ```
 
 * **auto** keyword
 
-We allow the use of the **auto** keyword only where it is strictly necessary 
-(for example, to declare a lambda object, etc.), or where it **enhances** the readability of the code.
-Declarations for which one can gather enough information about the object interface (type) from its name 
-or the usage pattern (an iterator or a loop variable are good examples of clear patterns) 
-or the right part of the expression nicely fit here.<br/>
-<br/>
-When weighing whether to use an auto-typed variable please think about potential reviewers of your code, 
-who will read it as a plain diff (on github.com, for instance). Please make sure that such reviewers can 
-understand the code completely and without excessive effort.<br/>
-<br/>
-Some valid use cases:
-```c++
-template <typename List>
-void doSomethingWithList(const List &list)
-{
-    foreach (const auto &item, list) {
-        // we don't know item type here so we use 'auto' keyword
-        // do something with item
+  We allow the use of the **auto** keyword only where it is strictly necessary (for example, to declare a lambda object, etc.), or where it **enhances** the readability of the code. \
+  Declarations for which one can gather enough information about the object interface (type) from its name or the usage pattern (an iterator or a loop variable are good examples of clear patterns) or the right part of the expression nicely fit here.
+
+  When weighing whether to use an auto-typed variable please think about potential reviewers of your code, who will read it as a plain diff (on github.com, for instance). \
+  Please make sure that such reviewers can understand the code completely and without excessive effort.
+
+  Some valid use cases:
+
+  * Container iteration and casts:
+
+    ```c++
+    template <typename List>
+    void doSomethingWithList(const List &list)
+    {
+        foreach (const auto &item, list) {
+            // we don't know item type here so we use 'auto' keyword
+            // do something with item
+        }
     }
-}
 
-for (auto it = container.begin(), end = container.end(); it != end; ++it) {
-    // we don't need to know the exact iterator type,
-    // because all iterators have the same interface
-}
+    for (auto it = container.begin(), end = container.end(); it != end; ++it) {
+        // we don't need to know the exact iterator type,
+        // because all iterators have the same interface
+    }
 
-auto spinBox = static_cast<QSpinBox*>(sender());
-// we know the variable type based on the right-hand expression
-```
+    auto spinBox = static_cast<QSpinBox*>(sender());
+    // we know the variable type based on the right-hand expression
+    ```
 
-* Notice the spaces in the following specific situations:
-```c++
-// Before and after the assignment and other binary (and ternary) operators there should be a space
-// There should not be a space between increment/decrement and its operand
-a += 20;
-a = (b <= MAX_B ? b : MAX_B);
-++a;
---b;
+  * Notice the spaces in the following specific situations:
 
-for (int a = 0; a < b; ++b) {
-}
-
-// Range-based for loop, spaces before and after the colon
-for (auto i : container) {
-}
-
-// Derived class, spaces before and after the colon
-class Derived : public Base
-{
-};
-```
+    ```c++
+    // Before and after the assignment and other binary (and ternary) operators there should be a space
+    // There should not be a space between increment/decrement and its operand
+    a += 20;
+    a = (b <= MAX_B ? b : MAX_B);
+    ++a;
+    --b;
+    for (int a = 0; a < b; ++b) {
+    }
+    // Range-based for loop, spaces before and after the colon
+    for (auto i : container) {
+    }
+    // Derived class, spaces before and after the colon
+    class Derived : public Base
+    {
+    };
+    ```
 
 * Prefer pre-increment, pre-decrement operators
-```c++
-++i, --j;  // Yes
-i++, j--;  // No
-```
+
+  ```c++
+  ++i, --j;  // Yes
+  i++, j--;  // No
+  ```
 
 * private/public/protected must not be indented
 
@@ -414,7 +444,8 @@ i++, j--;  // No
 
 * Method definitions aren't allowed in header files
 
-### 10. Git commit message ###
+## 10. Git commit message
+
 1. Limit the subject line to 50 characters. Subject should contain only the very essence of the changes (you should avoid extra details and internals)
 2. Separate subject from body with a blank line
 3. Capitalize the subject line
@@ -424,6 +455,7 @@ i++, j--;  // No
 7. Use the body to explain what and why vs. how
 8. If commit fixes a reported issue, mention it in the message body (e.g. `Closes #4134.`)
 
-### 11. Not covered above ###
-If something isn't covered above, just follow the same style the file you are editing has.  
+## 11. Not covered above
+
+If something isn't covered above, just follow the same style the file you are editing has. \
 *This guide is not exhaustive and the style for a particular piece of code not specified here will be determined by project members on code review.*

@@ -8,7 +8,8 @@ TRANSLATORS:
    english message to help you with the translation.
 4. Edit only the part inside the quotation marks(""). Unless you know
    what you are doing.
-5. Save the files with utf8 encoding and BOM.
+5. Save the files with UTF-8 encoding, without BOM
+   (this should be the default in any modern text editor).
 6. Submit your changes: 1) as a pull request to the official git repo or
    2) open an issue to the bugtracker and attach them or 3) via email or
    4)the same way you provide the translations for qbt itself
