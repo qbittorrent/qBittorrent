@@ -533,7 +533,7 @@ namespace BitTorrent
         void readAlerts();
         void enqueueRefresh();
         void processShareLimits();
-        void generateResumeData(bool final = false);
+        void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void handleDownloadFinished(const Net::DownloadResult &result);

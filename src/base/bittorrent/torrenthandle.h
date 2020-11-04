@@ -49,6 +49,12 @@ namespace BitTorrent
     class TrackerEntry;
     struct PeerAddress;
 
+    enum class TorrentOperatingMode
+    {
+        AutoManaged = 0,
+        Forced = 1
+    };
+
     enum class TorrentState
     {
         Unknown = -1,
@@ -110,7 +116,6 @@ namespace BitTorrent
         virtual qlonglong totalSize() const = 0;
         virtual qlonglong wantedSize() const = 0;
         virtual qlonglong completedSize() const = 0;
-        virtual qlonglong incompletedSize() const = 0;
         virtual qlonglong pieceLength() const = 0;
         virtual qlonglong wastedSize() const = 0;
         virtual QString currentTracker() const = 0;
@@ -195,7 +200,6 @@ namespace BitTorrent
         virtual TorrentInfo info() const = 0;
         virtual bool isSeed() const = 0;
         virtual bool isPaused() const = 0;
-        virtual bool isResumed() const = 0;
         virtual bool isQueued() const = 0;
         virtual bool isForced() const = 0;
         virtual bool isChecking() const = 0;
@@ -267,7 +271,7 @@ namespace BitTorrent
         virtual void setSequentialDownload(bool enable) = 0;
         virtual void setFirstLastPiecePriority(bool enabled) = 0;
         virtual void pause() = 0;
-        virtual void resume(bool forced = false) = 0;
+        virtual void resume(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) = 0;
         virtual void move(QString path) = 0;
         virtual void forceReannounce(int index = -1) = 0;
         virtual void forceDHTAnnounce() = 0;
@@ -288,6 +292,9 @@ namespace BitTorrent
         virtual void clearPeers() = 0;
 
         virtual QString createMagnetURI() const = 0;
+
+        bool isResumed() const;
+        qlonglong remainingSize() const;
 
         void toggleSequentialDownload();
         void toggleFirstLastPiecePriority();

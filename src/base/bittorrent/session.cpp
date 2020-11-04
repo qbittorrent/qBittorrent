@@ -2253,15 +2253,13 @@ void Session::exportTorrentFile(const TorrentHandle *torrent, TorrentExportFolde
     }
 }
 
-void Session::generateResumeData(const bool final)
+void Session::generateResumeData()
 {
     for (TorrentHandleImpl *const torrent : asConst(m_torrents)) {
         if (!torrent->isValid()) continue;
 
-        if (!final && !torrent->needSaveResumeData()) continue;
-        if (torrent->isPaused()) continue;
-
-        torrent->saveResumeData();
+        if (torrent->needSaveResumeData())
+            torrent->saveResumeData();
     }
 }
 
@@ -2273,10 +2271,10 @@ void Session::saveResumeData()
 
     if (isQueueingSystemEnabled())
         saveTorrentsQueue();
-    generateResumeData(true);
+    generateResumeData();
 
     while (m_numResumeData > 0) {
-        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds(30));
+        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds {30});
         if (alerts.empty()) {
             LogMsg(tr("Error: Aborted saving resume data for %1 outstanding torrents.").arg(QString::number(m_numResumeData))
                 , Log::CRITICAL);
@@ -3736,8 +3734,7 @@ void Session::handleTorrentMetadataReceived(TorrentHandleImpl *const torrent)
 
 void Session::handleTorrentPaused(TorrentHandleImpl *const torrent)
 {
-    if (!torrent->hasError() && !torrent->hasMissingFiles())
-        torrent->saveResumeData();
+    torrent->saveResumeData();
     emit torrentPaused(torrent);
 }
 
@@ -4068,6 +4065,19 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
     p.save_path = Profile::instance()->fromPortablePath(fromLTString(p.save_path)).toStdString();
     if (metadata.isValid())
         p.ti = metadata.nativeInfo();
+
+    torrentParams.paused = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+    if (!torrentParams.paused) {
+        // If torrent has "stop_when_ready" flag set then it is actually "stopped"
+        // but temporarily "resumed" to perform some service jobs (e.g. checking)
+        torrentParams.paused = !!(p.flags & lt::torrent_flags::stop_when_ready);
+    }
+    else {
+        // Fix inconsistent state when "paused" torrent has "stop_when_ready" flag set
+        p.flags &= ~lt::torrent_flags::stop_when_ready;
+    }
+
+    torrentParams.forced = !(p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
     if (!hasMetadata && !root.dict_find("info-hash")) {
