@@ -851,7 +851,7 @@ qlonglong TorrentHandleImpl::eta() const
         qlonglong seedingTimeEta = MAX_ETA;
 
         if (maxSeedingTimeValue >= 0) {
-            seedingTimeEta = (maxSeedingTimeValue * 60) - seedingTime();
+            seedingTimeEta = (maxSeedingTimeValue * 60) - finishedTime();
             if (seedingTimeEta < 0)
                 seedingTimeEta = 0;
         }
