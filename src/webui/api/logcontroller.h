@@ -30,7 +30,7 @@
 
 #include "apicontroller.h"
 
-class LogController : public APIController
+class LogController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(LogController)
@@ -38,7 +38,23 @@ class LogController : public APIController
 public:
     using APIController::APIController;
 
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
+
 private slots:
     void mainAction();
     void peersAction();
+
+private:
+    const QSet<QString> m_safeActions {
+        "main",
+        "peers",
+    };
+    const QSet<QString> m_unsafeActions;
 };

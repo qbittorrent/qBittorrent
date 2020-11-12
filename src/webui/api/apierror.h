@@ -36,7 +36,8 @@ enum class APIErrorType
     BadData,
     NotFound,
     AccessDenied,
-    Conflict
+    Conflict,
+    MethodNotAllowed
 };
 
 class APIError : public RuntimeError

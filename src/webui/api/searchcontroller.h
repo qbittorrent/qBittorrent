@@ -41,13 +41,22 @@ class QStringList;
 struct ISession;
 struct SearchResult;
 
-class SearchController : public APIController
+class SearchController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(SearchController)
 
 public:
     using APIController::APIController;
+
+    bool isActionSafe(const QString &actionName) const override
+    {
+        return m_safeActions.contains(actionName);
+    }
+    bool isActionUnsafe(const QString &actionName) const override
+    {
+        return m_unsafeActions.contains(actionName);
+    }
 
 private slots:
     void startAction();
@@ -63,6 +72,21 @@ private slots:
 
 private:
     const int MAX_CONCURRENT_SEARCHES = 5;
+
+    const QSet<QString> m_safeActions {
+        "status",
+        "results",
+        "plugins"
+    };
+    const QSet<QString> m_unsafeActions {
+        "start",
+        "stop",
+        "delete",
+        "installPlugin",
+        "uninstallPlugin",
+        "enablePlugin",
+        "updatePlugins"
+    };
 
     void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
