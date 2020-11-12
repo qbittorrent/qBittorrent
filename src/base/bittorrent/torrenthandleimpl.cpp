@@ -722,9 +722,6 @@ void TorrentHandleImpl::updateState()
     if (m_nativeStatus.state == lt::torrent_status::checking_resume_data) {
         m_state = TorrentState::CheckingResumeData;
     }
-    else if (m_nativeStatus.state == lt::torrent_status::allocating) {
-        m_state = TorrentState::Allocating;
-    }
     else if (isMoveInProgress()) {
         m_state = TorrentState::Moving;
     }
