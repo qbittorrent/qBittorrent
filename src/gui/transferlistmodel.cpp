@@ -76,7 +76,6 @@ namespace
             {BitTorrent::TorrentState::StalledDownloading, QLatin1String("TransferList.StalledDownloading")},
             {BitTorrent::TorrentState::DownloadingMetadata, QLatin1String("TransferList.DownloadingMetadata")},
             {BitTorrent::TorrentState::ForcedDownloading, QLatin1String("TransferList.ForcedDownloading")},
-            {BitTorrent::TorrentState::Allocating, QLatin1String("TransferList.Allocating")},
             {BitTorrent::TorrentState::Uploading, QLatin1String("TransferList.Uploading")},
             {BitTorrent::TorrentState::StalledUploading, QLatin1String("TransferList.StalledUploading")},
             {BitTorrent::TorrentState::ForcedUploading, QLatin1String("TransferList.ForcedUploading")},
@@ -111,7 +110,6 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::StalledDownloading, tr("Stalled", "Torrent is waiting for download to begin")},
           {BitTorrent::TorrentState::DownloadingMetadata, tr("Downloading metadata", "Used when loading a magnet link")},
           {BitTorrent::TorrentState::ForcedDownloading, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
-          {BitTorrent::TorrentState::Allocating, tr("Allocating", "qBittorrent is allocating the files on disk")},
           {BitTorrent::TorrentState::Uploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
           {BitTorrent::TorrentState::StalledUploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
           {BitTorrent::TorrentState::ForcedUploading, tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
@@ -641,7 +639,6 @@ QIcon getIconByState(const BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::ForcedDownloading:
     case BitTorrent::TorrentState::DownloadingMetadata:
         return getDownloadingIcon();
-    case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
         return getStalledDownloadingIcon();
     case BitTorrent::TorrentState::StalledUploading:
@@ -684,7 +681,6 @@ QColor getDefaultColorByState(const BitTorrent::TorrentState state)
             return {34, 139, 34}; // Forest Green
         else
             return {50, 205, 50}; // Lime Green
-    case BitTorrent::TorrentState::Allocating:
     case BitTorrent::TorrentState::StalledDownloading:
     case BitTorrent::TorrentState::StalledUploading:
         if (!dark)

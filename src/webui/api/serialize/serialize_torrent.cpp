@@ -56,8 +56,6 @@ namespace
             return QLatin1String("checkingUP");
         case BitTorrent::TorrentState::ForcedUploading:
             return QLatin1String("forcedUP");
-        case BitTorrent::TorrentState::Allocating:
-            return QLatin1String("allocating");
         case BitTorrent::TorrentState::Downloading:
             return QLatin1String("downloading");
         case BitTorrent::TorrentState::DownloadingMetadata:

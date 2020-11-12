@@ -757,9 +757,6 @@ void TorrentHandleImpl::updateState()
     else if (m_nativeStatus.state == lt::torrent_status::checking_files) {
         m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
     }
-    else if (m_nativeStatus.state == lt::torrent_status::allocating) {
-        m_state = TorrentState::Allocating;
-    }
     else if (isMoveInProgress()) {
         m_state = TorrentState::Moving;
     }

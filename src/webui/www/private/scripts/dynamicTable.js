@@ -871,9 +871,6 @@ window.qBittorrent.DynamicTable = (function() {
                     case "metaDL":
                         state = "downloading";
                         break;
-                    case "allocating":
-                        state = "stalledDL";
-                        break;
                     case "forcedUP":
                         state = "uploading";
                         break;
@@ -938,9 +935,6 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "forcedDL":
                         status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "allocating":
-                        status = "QBT_TR(Allocating)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "uploading":
                     case "stalledUP":
