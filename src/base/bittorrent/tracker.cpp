@@ -93,8 +93,7 @@ namespace
     {
         // translate IP address to a sequence of bytes in big-endian order
         switch (addr.protocol()) {
-        case QAbstractSocket::IPv4Protocol:
-        case QAbstractSocket::AnyIPProtocol: {
+        case QAbstractSocket::IPv4Protocol: {
                 const quint32 ipv4 = addr.toIPv4Address();
                 QByteArray ret;
                 ret.append(static_cast<char>((ipv4 >> 24) & 0xFF))
@@ -112,6 +111,7 @@ namespace
                 return ret;
             }
 
+        case QAbstractSocket::AnyIPProtocol:
         case QAbstractSocket::UnknownNetworkLayerProtocol:
         default:
             return {};
@@ -149,7 +149,7 @@ using namespace BitTorrent;
 struct Tracker::TrackerAnnounceRequest
 {
     QHostAddress socketAddress;
-    QByteArray claimedAddress;  // self claimed by peer
+    QHostAddress claimedAddress;  // self claimed by peer
     InfoHash infoHash;
     QString event;
     Peer peer;
@@ -244,6 +244,9 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
             throw NotFoundHTTPError();
     }
     catch (const HTTPError &error) {
+        LogMsg(tr("Embedded Tracker: HTTP request error: %1 %2")
+                .arg(QString::number(error.statusCode()), error.statusText())
+            , Log::INFO);
         status(error.statusCode(), error.statusText());
         if (!error.message().isEmpty())
             print(error.message(), Http::CONTENT_TYPE_TXT);
@@ -263,6 +266,40 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
     return response();
 }
 
+// Make sure address protocol is known (either IPv4 or IPv6)
+// Enforce using IPv4 if address is an IPv4-mapped IPv6 address
+QHostAddress Tracker::sanitizeAddress(const QHostAddress &addr, const quint16 requestPort)
+{
+    switch (addr.protocol()) {
+    case QAbstractSocket::IPv4Protocol:
+        return QHostAddress(addr);
+    case QAbstractSocket::IPv6Protocol:
+    case QAbstractSocket::AnyIPProtocol: {
+            bool ok = false;
+            const qint32 decimalIPv4 = addr.toIPv4Address(&ok);
+            if (ok) {
+                auto temp = QHostAddress(decimalIPv4);
+                LogMsg(tr("Embedded Tracker: Announce request containing possibly IPv4-mapped IPv6 address %1."
+                          " Forcing use of equivalent plain IPv4 address %2.")
+                       .arg(addr.toString(), temp.toString())
+                       , Log::INFO);
+                return temp;
+            }
+            return QHostAddress(addr.toIPv6Address());
+        }
+        break;
+    case QAbstractSocket::UnknownNetworkLayerProtocol:
+    default: {
+            LogMsg(tr("Embedded Tracker: Unknown network layer protocol"
+                      " in request from peer: %1, request port: %2")
+                   .arg(addr.toString(), requestPort)
+                   , Log::WARNING);
+            throw TrackerError("Unknown network layer protocol");
+        break;
+        }
+    }
+}
+
 void Tracker::processAnnounceRequest()
 {
     const QHash<QString, QByteArray> &queryParams = m_request.query;
@@ -270,43 +307,43 @@ void Tracker::processAnnounceRequest()
 
     // ip address
     announceReq.socketAddress = m_env.clientAddress;
-    announceReq.claimedAddress = queryParams.value(ANNOUNCE_REQUEST_IP);
+    announceReq.claimedAddress = QHostAddress(QString::fromLatin1(queryParams.value(ANNOUNCE_REQUEST_IP)));
+    // request port
+    const quint16 requestPort =  m_env.clientPort;
 
-    // Enforce using IPv4 if address is indeed IPv4 or if it is an IPv4-mapped IPv6 address
-    bool ok = false;
-    const qint32 decimalIPv4 = announceReq.socketAddress.toIPv4Address(&ok);
-    if (ok)
-        announceReq.socketAddress = QHostAddress(decimalIPv4);
+    announceReq.socketAddress = sanitizeAddress(announceReq.socketAddress, requestPort);
+    if (!announceReq.claimedAddress.isNull())
+        announceReq.claimedAddress = sanitizeAddress(announceReq.claimedAddress, requestPort);
 
     // 1. info_hash
     const auto infoHashIter = queryParams.find(ANNOUNCE_REQUEST_INFO_HASH);
     if (infoHashIter == queryParams.end())
-        throw TrackerError("Missing \"info_hash\" parameter");
+        throw TrackerError(R"(Missing "info_hash" parameter)");
 
     const InfoHash infoHash(infoHashIter->toHex());
     if (!infoHash.isValid())
-        throw TrackerError("Invalid \"info_hash\" parameter");
+        throw TrackerError(R"(Invalid "info_hash" parameter)");
 
     announceReq.infoHash = infoHash;
 
     // 2. peer_id
     const auto peerIdIter = queryParams.find(ANNOUNCE_REQUEST_PEER_ID);
     if (peerIdIter == queryParams.end())
-        throw TrackerError("Missing \"peer_id\" parameter");
+        throw TrackerError(R"(Missing "peer_id" parameter)");
 
     if (peerIdIter->size() > PEER_ID_SIZE)
-        throw TrackerError("Invalid \"peer_id\" parameter");
+        throw TrackerError(R"(Invalid "peer_id" parameter)");
 
     announceReq.peer.peerId = *peerIdIter;
 
     // 3. port
     const auto portIter = queryParams.find(ANNOUNCE_REQUEST_PORT);
     if (portIter == queryParams.end())
-        throw TrackerError("Missing \"port\" parameter");
+        throw TrackerError(R"(Missing "port" parameter)");
 
-    const ushort portNum = portIter->toUShort();
+    const quint16 portNum = portIter->toUShort();
     if (portNum == 0)
-        throw TrackerError("Invalid \"port\" parameter");
+        throw TrackerError(R"(Invalid "port" parameter)");
 
     announceReq.peer.port = portNum;
 
@@ -315,7 +352,7 @@ void Tracker::processAnnounceRequest()
     if (numWantIter != queryParams.end()) {
         const int num = numWantIter->toInt();
         if (num < 0)
-            throw TrackerError("Invalid \"numwant\" parameter");
+            throw TrackerError(R"(Invalid "numwant" parameter)");
         announceReq.numwant = num;
     }
 
@@ -330,16 +367,16 @@ void Tracker::processAnnounceRequest()
     announceReq.compact = (queryParams.value(ANNOUNCE_REQUEST_COMPACT) != "0");
 
     // 8. cache `peers` field so we don't recompute when sending response
-    const QHostAddress claimedIPAddress {QString::fromLatin1(announceReq.claimedAddress)};
-    announceReq.peer.endpoint = toBigEndianByteArray(!claimedIPAddress.isNull() ? claimedIPAddress : announceReq.socketAddress)
+    announceReq.peer.endpoint = toBigEndianByteArray(announceReq.claimedAddress.isNull()
+        ? announceReq.socketAddress : announceReq.claimedAddress)
         .append(static_cast<char>((announceReq.peer.port >> 8) & 0xFF))
         .append(static_cast<char>(announceReq.peer.port & 0xFF))
         .toStdString();
 
     // 9. cache `address` field so we don't recompute when sending response
-    announceReq.peer.address = !announceReq.claimedAddress.isEmpty()
-        ? announceReq.claimedAddress.constData()
-        : announceReq.socketAddress.toString().toLatin1().constData(),
+    announceReq.peer.address = announceReq.claimedAddress.isNull()
+        ? announceReq.socketAddress.toString().toLatin1().constData()
+        : announceReq.claimedAddress.toString().toLatin1().constData();
 
     // 10. event
     announceReq.event = queryParams.value(ANNOUNCE_REQUEST_EVENT);
@@ -357,7 +394,7 @@ void Tracker::processAnnounceRequest()
         unregisterPeer(announceReq);
     }
     else {
-        throw TrackerError("Invalid \"event\" parameter");
+        throw TrackerError(R"(Invalid "event" parameter)");
     }
 
     prepareAnnounceResponse(announceReq);
