@@ -5,6 +5,7 @@
 
 #include "base/preferences.h"
 #include "base/scheduler/schedule.h"
+#include "base/unicodestrings.h"
 
 using namespace Gui;
 
@@ -29,7 +30,7 @@ QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionView
     if (col == DOWNLOAD || col == UPLOAD) {
         auto *spinBox = new QSpinBox(parent);
         spinBox->setSuffix(" KiB/s");
-        spinBox->setSpecialValueText("∞");
+        spinBox->setSpecialValueText(C_INFINITY);
         spinBox->setMaximum(1000000);
         return spinBox;
     }

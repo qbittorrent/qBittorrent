@@ -68,6 +68,7 @@
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
@@ -598,7 +599,7 @@ void OptionsDialog::initializeScheduler()
     auto *schedule = Scheduler::Schedule::instance();
     int today = QDate::currentDate().dayOfWeek() - 1;
 
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; ++i) {
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
 
@@ -695,13 +696,13 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
     const QLocale locale{Preferences::instance()->getLocale()};
 
-    for (int i = 0; i < rowCount; i++) {
+    for (int i = 0; i < rowCount; ++i) {
         Scheduler::TimeRange timeRange = timeRanges[i];
 
-        QString dlText = (timeRange.downloadRate == 0) ? tr("∞")
-                       : tr("%1 KiB/s").arg(timeRange.downloadRate);
-        QString ulText = (timeRange.uploadRate == 0) ? tr("∞") 
-                       : tr("%1 KiB/s").arg(timeRange.uploadRate);
+        QString dlText = (timeRange.downloadRate == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(timeRange.downloadRate * 1024, true);
+        QString ulText = (timeRange.uploadRate == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(timeRange.uploadRate * 1024, true);
 
         auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
         auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
@@ -1296,7 +1297,10 @@ void OptionsDialog::loadOptions()
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
     m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());
 
-    m_ui->checkScheduleEnable->setChecked(session->isBandwidthSchedulerEnabled());
+    bool schedulerEnabled = session->isBandwidthSchedulerEnabled();
+    m_ui->checkScheduleEnable->setChecked(schedulerEnabled);
+    m_ui->tabSchedule->setEnabled(schedulerEnabled);
+    m_ui->rateLimitBox->setDisabled(schedulerEnabled);
     // End Speed preferences
 
     // Bittorrent preferences
