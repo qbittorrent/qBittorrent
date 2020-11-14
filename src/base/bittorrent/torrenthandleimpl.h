@@ -220,10 +220,10 @@ namespace BitTorrent
         void setDownloadLimit(int limit) override;
         void setSuperSeeding(bool enable) override;
         void flushCache() const override;
-        void addTrackers(const QVector<TrackerEntry> &trackers) override;
+        int addTrackers(const QVector<TrackerEntry> &trackers) override;
         void replaceTrackers(const QVector<TrackerEntry> &trackers) override;
-        void addUrlSeeds(const QVector<QUrl> &urlSeeds) override;
-        void removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
+        int addUrlSeeds(const QVector<QUrl> &urlSeeds) override;
+        int removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
         void clearPeers() override;
 

@@ -287,9 +287,14 @@ bool AddNewTorrentDialog::loadTorrentImpl()
                 RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
-                torrent->addTrackers(m_torrentInfo.trackers());
-                torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                int newTrackersLen = torrent->addTrackers(m_torrentInfo.trackers());
+                int newUrlSeedsLen = torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
+                if (newTrackersLen > 0) {
+                    RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                }
+                else {
+                    RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. No new trackers were added.").arg(torrent->name()), QMessageBox::Ok);
+                }
             }
         }
         else {
@@ -323,9 +328,14 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
                 RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else {
-                torrent->addTrackers(magnetUri.trackers());
-                torrent->addUrlSeeds(magnetUri.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                int newTrackersLen = torrent->addTrackers(magnetUri.trackers());
+                int newUrlSeedsLen = torrent->addUrlSeeds(magnetUri.urlSeeds());
+                if (newTrackersLen > 0) {
+                    RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                }
+                else {
+                    RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. No new trackers were added.").arg(torrent->name()), QMessageBox::Ok);
+                }
             }
         }
         else {
