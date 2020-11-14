@@ -321,7 +321,7 @@ QHash<QString, TrackerInfo> TorrentHandleImpl::trackerInfos() const
     return m_trackerInfos;
 }
 
-void TorrentHandleImpl::addTrackers(const QVector<TrackerEntry> &trackers)
+int TorrentHandleImpl::addTrackers(const QVector<TrackerEntry> &trackers)
 {
     QSet<TrackerEntry> currentTrackers;
     for (const lt::announce_entry &entry : m_nativeHandle.trackers())
@@ -339,6 +339,8 @@ void TorrentHandleImpl::addTrackers(const QVector<TrackerEntry> &trackers)
 
     if (!newTrackers.isEmpty())
         m_session->handleTorrentTrackersAdded(this, newTrackers);
+
+    return newTrackers.count();
 }
 
 void TorrentHandleImpl::replaceTrackers(const QVector<TrackerEntry> &trackers)
@@ -391,7 +393,7 @@ QVector<QUrl> TorrentHandleImpl::urlSeeds() const
     return urlSeeds;
 }
 
-void TorrentHandleImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
+int TorrentHandleImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
 {
     const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
 
@@ -408,9 +410,11 @@ void TorrentHandleImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
 
     if (!addedUrlSeeds.isEmpty())
         m_session->handleTorrentUrlSeedsAdded(this, addedUrlSeeds);
+
+    return addedUrlSeeds.count();
 }
 
-void TorrentHandleImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
+int TorrentHandleImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 {
     const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
 
@@ -427,6 +431,8 @@ void TorrentHandleImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 
     if (!removedUrlSeeds.isEmpty())
         m_session->handleTorrentUrlSeedsRemoved(this, removedUrlSeeds);
+
+    return removedUrlSeeds.count();
 }
 
 void TorrentHandleImpl::clearPeers()
