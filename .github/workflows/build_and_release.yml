@@ -129,7 +129,7 @@ jobs:
           ./configure --prefix=/usr/local/ -optimize-size -silent --openssl-linked \
             -static -opensource -confirm-license -release -c++std c++14 -no-opengl \
             -no-dbus -no-widgets -no-gui -no-compile-examples -ltcg -make libs -no-pch \
-            -nomake tests -nomake examples -no-xcb -silent -no-feature-testlib -no-feature-sql
+            -nomake tests -nomake examples -no-xcb -silent -no-feature-testlib
           make -j$(nproc)
           make install
           [ -d /tmp/qttools ] || \
@@ -254,7 +254,7 @@ jobs:
           ./configure --prefix=/opt/qt/ -optimize-size -silent --openssl-linked \
             -static -opensource -confirm-license -release -c++std c++14 -no-opengl \
             -no-dbus -no-widgets -no-gui -no-compile-examples -ltcg -make libs -no-pch \
-            -nomake tests -nomake examples -no-xcb -no-feature-testlib -no-feature-sql \
+            -nomake tests -nomake examples -no-xcb -no-feature-testlib \
             -hostprefix /cross_root -device "${QT_DEVICE}" -device-option CROSS_COMPILE="${CROSS_HOST}-" \
             -sysroot "${CROSS_PREFIX}"
           make -j$(nproc)

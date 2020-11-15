@@ -35,7 +35,6 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
-#include "base/logger.h"
 #include "apierror.h"
 
 const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
@@ -128,26 +127,4 @@ void TransferController::banPeersAction()
         if (!addr.ip.isNull())
             BitTorrent::Session::instance()->banIP(addr.ip.toString());
     }
-}
-
-void TransferController::tempBlockPeerAction()
-{
-    requireParams({"ip"});
-    QString ip = params()["ip"];
-    const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(ip);
-    bool isBanned = BitTorrent::Session::instance()->checkAccessFlags(addr.ip.toString());
-
-    if (ip.isEmpty()) {
-        setResult(QLatin1String("IP field should not be empty."));
-        return;
-    }
-
-    if (isBanned) {
-        setResult(QLatin1String("The given IP address already exists."));
-        return;
-    }
-
-    BitTorrent::Session::instance()->tempBlockIP(ip);
-    Logger::instance()->addMessage(tr("Peer '%1' banned via Web API.").arg(ip));
-    setResult(QLatin1String("Done."));
 }

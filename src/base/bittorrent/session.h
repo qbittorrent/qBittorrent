@@ -40,9 +40,7 @@
 
 #include <QHash>
 #include <QPointer>
-#include <QQueue>
 #include <QSet>
-#include <QTimer>
 #include <QVector>
 
 #include "base/settingvalue.h"
@@ -506,19 +504,8 @@ namespace BitTorrent
         void updatePublicTracker();
 
         // Enhanced Function
-        bool m_isActive = false;
-        QQueue<QString> q_bannedIPs;
-        QQueue<int64_t> q_unbanTime;
         CachedSettingValue<QString> m_publicTrackers;
-        QTimer *m_unbanTimer;
-        QTimer *m_banTimer;
         QTimer *m_updateTimer;
-
-        void autoBanBadClient();
-        bool checkAccessFlags(const QString &ip);
-        void insertQueue(QString ip);
-        void removeBlockedIP(const QString &ip);
-        void tempBlockIP(const QString &ip);
 
     signals:
         void allTorrentsFinished();
@@ -559,9 +546,6 @@ namespace BitTorrent
         void trackersRemoved(TorrentHandle *torrent, const QVector<TrackerEntry> &trackers);
         void trackerSuccess(TorrentHandle *torrent, const QString &tracker);
         void trackerWarning(TorrentHandle *torrent, const QString &tracker);
-
-    public slots:
-        void processUnbanRequest();
 
     private slots:
         void configureDeferred();

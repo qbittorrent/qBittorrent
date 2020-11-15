@@ -8,6 +8,7 @@ macx: include(../macxconf.pri)
 unix:!macx: include(../unixconf.pri)
 
 QT += network xml
+QT += sql
 
 nogui {
     TARGET = qbittorrent-nox
