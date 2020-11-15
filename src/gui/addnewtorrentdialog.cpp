@@ -284,12 +284,21 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent) {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate()) {
-                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list.").arg(torrent->name()) + " " + tr("Trackers haven't been merged because it is a private torrent."), QMessageBox::Ok);
             }
             else {
-                torrent->addTrackers(m_torrentInfo.trackers());
-                torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                QStringList message;
+
+                int newTrackersLen = torrent->addTrackers(m_torrentInfo.trackers());
+                int newUrlSeedsLen = torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
+
+                if (newTrackersLen > 0)
+                    message << tr("%1 new tracker(s)").arg(newTrackersLen);
+
+                if (newUrlSeedsLen > 0)
+                    message << tr("%1 new url seed(s)").arg(newUrlSeedsLen);
+
+                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list").arg(torrent->name()) + (message.count() > 0 ? (tr(", %1 have been merged.").arg(message.join(tr(" and ")))): "."), QMessageBox::Ok);
             }
         }
         else {
@@ -320,12 +329,21 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent) {
             if (torrent->isPrivate()) {
-                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list.").arg(torrent->name() + " " + tr("Trackers haven't been merged because it is a private torrent.")), QMessageBox::Ok);
             }
             else {
-                torrent->addTrackers(magnetUri.trackers());
-                torrent->addUrlSeeds(magnetUri.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                QStringList message;
+
+                int newTrackersLen = torrent->addTrackers(magnetUri.trackers());
+                int newUrlSeedsLen = torrent->addUrlSeeds(magnetUri.urlSeeds());
+
+                if (newTrackersLen > 0)
+                    message << tr("%1 new tracker(s)").arg(newTrackersLen);
+
+                if (newUrlSeedsLen > 0)
+                    message << tr("%1 new url seed(s)").arg(newUrlSeedsLen);
+
+                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list").arg(torrent->name()) + (message.count() > 0 ? (tr(", %1 have been merged.").arg(message.join(tr(" and ")))): "."), QMessageBox::Ok);
             }
         }
         else {

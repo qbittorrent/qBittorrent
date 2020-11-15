@@ -283,10 +283,10 @@ namespace BitTorrent
         virtual void setDownloadLimit(int limit) = 0;
         virtual void setSuperSeeding(bool enable) = 0;
         virtual void flushCache() const = 0;
-        virtual void addTrackers(const QVector<TrackerEntry> &trackers) = 0;
+        virtual int addTrackers(const QVector<TrackerEntry> &trackers) = 0;
         virtual void replaceTrackers(const QVector<TrackerEntry> &trackers) = 0;
-        virtual void addUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
-        virtual void removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
+        virtual int addUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
+        virtual int removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
 
