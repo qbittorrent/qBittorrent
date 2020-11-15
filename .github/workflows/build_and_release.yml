@@ -239,7 +239,7 @@ jobs:
           ./Configure -static --cross-compile-prefix="${CROSS_HOST}-" --prefix="${CROSS_PREFIX}" "${OPENSSL_COMPILER}"
           make -j$(nproc)
           make install_sw
-          boost_latest_url="$(wget -qO- https://www.boost.org/users/download/ | grep -o 'http[^"]*.tar.bz2')"
+          boost_latest_url="$(wget -qO- https://www.boost.org/users/download/ | grep -o 'http[^"]*.tar.bz2' | head -1)"
           wget -qO- "${boost_latest_url}" | tar -jxf - --strip-components=1 -C /usr/src/boost
           cd /usr/src/boost
           ./bootstrap.sh
