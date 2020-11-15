@@ -35,7 +35,7 @@ set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
 find_package(Boost ${requiredBoostVersion} REQUIRED)
 find_package(OpenSSL ${requiredOpenSSLVersion} REQUIRED)
 find_package(ZLIB ${requiredZlibVersion} REQUIRED)
-find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
+find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools Sql)
 if (DBUS)
     find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS DBus)
     set_package_properties(Qt5DBus PROPERTIES

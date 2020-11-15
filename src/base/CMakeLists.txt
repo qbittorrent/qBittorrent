@@ -96,6 +96,9 @@ add_library(qbt_base STATIC
     bittorrent/nativetorrentextension.cpp
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
+    bittorrent/peer_blacklist.hpp
+    bittorrent/peer_filter_plugin.hpp
+    bittorrent/peer_logger.hpp
     bittorrent/portforwarderimpl.cpp
     bittorrent/resumedatasavingmanager.cpp
     bittorrent/session.cpp
@@ -164,7 +167,7 @@ target_link_libraries(qbt_base
         qbt_version_definitions
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Xml
+        Qt5::Core Qt5::Network Qt5::Xml Qt5::Sql
         qbt_common_cfg
 )
 
