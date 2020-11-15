@@ -49,7 +49,9 @@ jobs:
             libxcb-render-util0 \
             libxcb-xinerama0 \
             libxcb-xkb1 \
-            libxkbcommon-x11-0
+            libxkbcommon-x11-0 \
+            unixodbc-dev \
+            libpq-dev
           mkdir -p /tmp/libtorrent-rasterbar
           [ -f /tmp/libtorrent-rasterbar/.unpack_ok ] || \
               curl -ksSfL https://github.com/arvidn/libtorrent/archive/RC_1_2.tar.gz | \
