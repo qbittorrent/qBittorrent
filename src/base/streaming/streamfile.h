@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QQueue>
 
 namespace BitTorrent
 {
@@ -11,6 +12,7 @@ class ReadRequest : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(ReadRequest)
+    friend class StreamFile;
 
 public:
     ReadRequest(quint64 initialPosition, quint64 maxSize, QObject *parent = nullptr);
@@ -18,18 +20,21 @@ public:
     quint64 currentPosition() const;
     quint64 leftSize() const;
 
-    void feed(const QByteArray &data);
+    void notifyLastBlockReceived();
 
 public slots:
-    void notifyErrorAndDie(const QString &message);
+    void notifyError(const QString &message);
 
 signals:
     void readyRead(const QByteArray &data, bool isLastBlock);
     void error(const QString &message);
+    void servedLastBlock();
 
 private:
-    quint64 m_currentPosition;
-    quint64 m_leftSize;
+    void feed(const QByteArray &data);
+
+    quint64 m_currentPosition {};
+    quint64 m_leftSize {};
 };
 
 class StreamFile : public QObject

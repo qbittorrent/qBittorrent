@@ -35,13 +35,17 @@ void ReadRequest::feed(const QByteArray &data)
 {
     Q_ASSERT(data.size() <= m_leftSize);
 
-    const bool isLastBlock = (data.size() - m_leftSize) == 0;
-    emit readyRead(data, isLastBlock);
     m_currentPosition += data.size();
     m_leftSize -= data.size();
+    emit readyRead(data, (m_leftSize == 0));
 }
 
-void ReadRequest::notifyErrorAndDie(const QString &message)
+void ReadRequest::notifyLastBlockReceived()
+{
+    emit servedLastBlock();
+}
+
+void ReadRequest::notifyError(const QString &message)
 {
     emit error(message);
     deleteLater();
@@ -78,6 +82,10 @@ QString StreamFile::mimeType() const
 ReadRequest *StreamFile::read(const quint64 position, const quint64 size)
 {
     ReadRequest *request = new ReadRequest(position, size, this);
+    connect(request, &ReadRequest::servedLastBlock, this, [this, request]()
+    {
+        doRead(request);
+    });
     doRead(request);
     return request;
 }
@@ -102,13 +110,11 @@ void StreamFile::doRead(ReadRequest *request)
     auto cnt = connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
             , [this, request, pieceInfo] (const QByteArray &data)
     {
-        qDebug() << "done request" << pieceInfo.index << pieceInfo.start << data.size() << pieceInfo.length;
         request->feed(data.mid(pieceInfo.start, pieceInfo.length));
-        QMetaObject::invokeMethod(this, [this, request] () { doRead(request); });
     });
     Q_ASSERT(cnt);
 
-    connect(pieceRequest, &BitTorrent::PieceRequest::error, request, &ReadRequest::notifyErrorAndDie);
+    connect(pieceRequest, &BitTorrent::PieceRequest::error, request, &ReadRequest::notifyError);
 }
 
 bool StreamFile::isSameFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const

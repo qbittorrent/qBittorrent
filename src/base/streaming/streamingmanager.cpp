@@ -2,6 +2,7 @@
 
 #include <QDir>
 #include <QProcess>
+#include <QTimer>
 
 #include "base/http/httperror.h"
 #include "base/logger.h"
@@ -76,6 +77,16 @@ namespace
         };
         const QString vlc = tryVar("PROGRAMFILES");
         return vlc.isEmpty() ? tryVar("ProgramFiles(x86)") : vlc;
+    }
+
+    void waitForCompleteWrite(HttpSocket *socket, ReadRequest * req) {
+        if (socket->bytesToWrite() > 1024) {
+            QTimer::singleShot(10, req, [socket, req]() {
+                waitForCompleteWrite(socket, req);
+            });
+        } else {
+            req->notifyLastBlockReceived();
+        }
     }
 } // namespace
 
@@ -189,19 +200,21 @@ void StreamingManager::doGet(HttpSocket *socket)
 
     ReadRequest *readRequest {file->read(range.firstBytePos, range.size())};
     connect(readRequest, &ReadRequest::readyRead, socket
-            , [socket] (const QByteArray &data, const bool isLastBlock)
+            , [socket, readRequest] (const QByteArray &data, const bool isLastBlock)
     {
         socket->send(data);
         if (isLastBlock)
-            qDebug("reached at end"), socket->close();
+            socket->close();
+        waitForCompleteWrite(socket, readRequest);
     });
 
-    connect(readRequest, &ReadRequest::error, socket, [this, socket, range](const QString &message)
+    connect(readRequest, &ReadRequest::error, socket, [this, socket, range, readRequest](const QString &message)
     {
         LogMsg(tr("Failed to serve request in range [%1,%2]. Reason: %3")
                .arg(QString::number(range.firstBytePos), QString::number(range.lastBytePos), message), Log::CRITICAL);
 
         socket->close();
+        readRequest->deleteLater();
     });
 
     connect(socket, &QObject::destroyed, readRequest, [readRequest] ()

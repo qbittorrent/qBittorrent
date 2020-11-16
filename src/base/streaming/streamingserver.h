@@ -22,6 +22,7 @@ public:
 
     Http::Request request() const;
     qint64 inactivityTime() const;
+    quint64 bytesToWrite() const;
 
     void close();
 

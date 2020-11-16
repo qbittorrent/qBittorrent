@@ -111,6 +111,11 @@ qint64 HttpSocket::inactivityTime() const
     return m_idleTimer.elapsed();
 }
 
+quint64 HttpSocket::bytesToWrite() const
+{
+    return m_socket->bytesToWrite();
+}
+
 void HttpSocket::close()
 {
     m_socket->close();
