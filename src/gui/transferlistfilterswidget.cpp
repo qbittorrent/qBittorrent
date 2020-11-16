@@ -128,7 +128,8 @@ BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transfer
 
 QSize BaseFilterWidget::sizeHint() const
 {
-    return {
+    return
+    {
         // Width should be exactly the width of the content
         sizeHintForColumn(0),
         // Height should be exactly the height of the content
@@ -225,7 +226,8 @@ void StatusFilterWidget::updateTorrentNumbers()
     int nbErrored = 0;
 
     const QVector<BitTorrent::TorrentHandle *> torrents = BitTorrent::Session::instance()->torrents();
-    for (const BitTorrent::TorrentHandle *torrent : torrents) {
+    for (const BitTorrent::TorrentHandle *torrent : torrents)
+    {
         if (torrent->isDownloading())
             ++nbDownloading;
         if (torrent->isUploading())
@@ -311,19 +313,23 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     QString host = getHost(tracker);
     bool exists = m_trackers.contains(host);
 
-    if (exists) {
+    if (exists)
+    {
         tmp = m_trackers.value(host);
         if (tmp.contains(hash))
             return;
 
-        if (host != "") {
+        if (host != "")
+        {
             trackerItem = item(rowFromTracker(host));
         }
-        else {
+        else
+        {
             trackerItem = item(TRACKERLESS_ROW);
         }
     }
-    else {
+    else
+    {
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
 
@@ -334,7 +340,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 
     tmp.append(hash);
     m_trackers.insert(host, tmp);
-    if (host == "") {
+    if (host == "")
+    {
         trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
         if (currentRow() == TRACKERLESS_ROW)
             applyFilter(TRACKERLESS_ROW);
@@ -342,7 +349,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
 
     trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
-    if (exists) {
+    if (exists)
+    {
         if (currentRow() == rowFromTracker(host))
             applyFilter(currentRow());
         return;
@@ -350,8 +358,10 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
 
     Q_ASSERT(count() >= 4);
     int insPos = count();
-    for (int i = 4; i < count(); ++i) {
-        if (Utils::String::naturalLessThan<Qt::CaseSensitive>(host, item(i)->text())) {
+    for (int i = 4; i < count(); ++i)
+    {
+        if (Utils::String::naturalLessThan<Qt::CaseSensitive>(host, item(i)->text()))
+        {
             insPos = i;
             break;
         }
@@ -371,12 +381,14 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
         return;
     tmp.removeAll(hash);
 
-    if (!host.isEmpty()) {
+    if (!host.isEmpty())
+    {
         // Remove from 'Error' and 'Warning' view
         trackerSuccess(hash, tracker);
         row = rowFromTracker(host);
         trackerItem = item(row);
-        if (tmp.empty()) {
+        if (tmp.empty())
+        {
             if (currentRow() == row)
                 setCurrentRow(0, QItemSelectionModel::SelectCurrent);
             delete trackerItem;
@@ -387,7 +399,8 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
         if (trackerItem)
             trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
     }
-    else {
+    else
+    {
         row = 1;
         trackerItem = item(TRACKERLESS_ROW);
         trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
@@ -411,10 +424,13 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     if (value == m_downloadTrackerFavicon) return;
     m_downloadTrackerFavicon = value;
 
-    if (m_downloadTrackerFavicon) {
-        for (auto i = m_trackers.cbegin(); i != m_trackers.cend(); ++i) {
+    if (m_downloadTrackerFavicon)
+    {
+        for (auto i = m_trackers.cbegin(); i != m_trackers.cend(); ++i)
+        {
             const QString &tracker = i.key();
-            if (!tracker.isEmpty()) {
+            if (!tracker.isEmpty())
+            {
                 const QString scheme = getScheme(tracker);
                 downloadFavicon(QString("%1://%2/favicon.ico")
                                 .arg((scheme.startsWith("http") ? scheme : "http"), getHost(tracker)));
@@ -428,28 +444,34 @@ void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &trac
     QStringList errored = m_errors.value(hash);
     QStringList warned = m_warnings.value(hash);
 
-    if (errored.contains(tracker)) {
+    if (errored.contains(tracker))
+    {
         errored.removeAll(tracker);
-        if (errored.empty()) {
+        if (errored.empty())
+        {
             m_errors.remove(hash);
             item(ERROR_ROW)->setText(tr("Error (%1)").arg(m_errors.size()));
             if (currentRow() == ERROR_ROW)
                 applyFilter(ERROR_ROW);
         }
-        else {
+        else
+        {
             m_errors.insert(hash, errored);
         }
     }
 
-    if (warned.contains(tracker)) {
+    if (warned.contains(tracker))
+    {
         warned.removeAll(tracker);
-        if (warned.empty()) {
+        if (warned.empty())
+        {
             m_warnings.remove(hash);
             item(WARNING_ROW)->setText(tr("Warning (%1)").arg(m_warnings.size()));
             if (currentRow() == WARNING_ROW)
                 applyFilter(WARNING_ROW);
         }
-        else {
+        else
+        {
             m_warnings.insert(hash, warned);
         }
     }
@@ -495,7 +517,8 @@ void TrackerFiltersList::downloadFavicon(const QString &url)
 
 void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult &result)
 {
-    if (result.status != Net::DownloadStatus::Success) {
+    if (result.status != Net::DownloadStatus::Success)
+    {
         if (result.url.endsWith(".ico", Qt::CaseInsensitive))
             downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
         return;
@@ -503,7 +526,8 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
 
     const QString host = getHost(result.url);
 
-    if (!m_trackers.contains(host)) {
+    if (!m_trackers.contains(host))
+    {
         Utils::Fs::forceRemove(result.filePath);
         return;
     }
@@ -515,12 +539,14 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     //Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
-    if (invalid) {
+    if (invalid)
+    {
         if (result.url.endsWith(".ico", Qt::CaseInsensitive))
             downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
         Utils::Fs::forceRemove(result.filePath);
     }
-    else {
+    else
+    {
         trackerItem->setData(Qt::DecorationRole, QIcon(result.filePath));
         m_iconPaths.append(result.filePath);
     }
@@ -612,7 +638,8 @@ QString TrackerFiltersList::getHost(const QString &tracker) const
 
 QStringList TrackerFiltersList::getHashes(const int row) const
 {
-    switch (row) {
+    switch (row)
+    {
     case TRACKERLESS_ROW:
         return m_trackers.value("");
     case ERROR_ROW:

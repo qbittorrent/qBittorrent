@@ -59,13 +59,17 @@ void Connection::read()
     m_idleTimer.restart();
     m_receivedData.append(m_socket->readAll());
 
-    while (!m_receivedData.isEmpty()) {
+    while (!m_receivedData.isEmpty())
+    {
         const RequestParser::ParseResult result = RequestParser::parse(m_receivedData);
 
-        switch (result.status) {
-        case RequestParser::ParseStatus::Incomplete: {
+        switch (result.status)
+        {
+        case RequestParser::ParseStatus::Incomplete:
+        {
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
-                if (m_receivedData.size() > bufferLimit) {
+                if (m_receivedData.size() > bufferLimit)
+                {
                     Logger::instance()->addMessage(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
@@ -78,7 +82,8 @@ void Connection::read()
             }
             return;
 
-        case RequestParser::ParseStatus::BadRequest: {
+        case RequestParser::ParseStatus::BadRequest:
+        {
                 Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
@@ -90,7 +95,8 @@ void Connection::read()
             }
             return;
 
-        case RequestParser::ParseStatus::OK: {
+        case RequestParser::ParseStatus::OK:
+        {
                 const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
@@ -133,7 +139,8 @@ bool Connection::acceptsGzipEncoding(QString codings)
 
     const auto isCodingAvailable = [](const QVector<QStringRef> &list, const QString &encoding) -> bool
     {
-        for (const QStringRef &str : list) {
+        for (const QStringRef &str : list)
+        {
             if (!str.startsWith(encoding))
                 continue;
 

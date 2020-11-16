@@ -70,7 +70,8 @@ void ProgramUpdater::checkForUpdates()
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
 
-    if (result.status != Net::DownloadStatus::Success) {
+    if (result.status != Net::DownloadStatus::Success)
+    {
         qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
         emit updateCheckFinished(false, QString(), m_invokedByUser);
         return;
@@ -81,7 +82,8 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 #ifdef Q_OS_MACOS
     const QString OS_TYPE {"Mac OS X"};
 #elif defined(Q_OS_WIN)
-    const QString OS_TYPE {(::IsWindows7OrGreater()
+    const QString OS_TYPE
+    {(::IsWindows7OrGreater()
             && QSysInfo::currentCpuArchitecture().endsWith("64"))
         ? "Windows x64" : "Windows"};
 #endif
@@ -92,10 +94,12 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     QString updateLink;
     QString type;
 
-    while (!xml.atEnd()) {
+    while (!xml.atEnd())
+    {
         xml.readNext();
 
-        if (xml.isStartElement()) {
+        if (xml.isStartElement())
+        {
             if (xml.name() == "item")
                 inItem = true;
             else if (inItem && xml.name() == "link")
@@ -105,11 +109,15 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
             else if (inItem && xml.name() == "version")
                 version = getStringValue(xml);
         }
-        else if (xml.isEndElement()) {
-            if (inItem && xml.name() == "item") {
-                if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0) {
+        else if (xml.isEndElement())
+        {
+            if (inItem && xml.name() == "item")
+            {
+                if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0)
+                {
                     qDebug("The last update available is %s", qUtf8Printable(version));
-                    if (!version.isEmpty()) {
+                    if (!version.isEmpty())
+                    {
                         qDebug("Detected version is %s", qUtf8Printable(version));
                         if (isVersionMoreRecent(version))
                             m_updateUrl = updateLink;
@@ -138,12 +146,14 @@ void ProgramUpdater::updateProgram()
 bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
 {
     const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
-    if (regVerMatch.hasMatch()) {
+    if (regVerMatch.hasMatch())
+    {
         const QString localVersion = regVerMatch.captured(1);
         const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
         const QVector<QStringRef> localParts = localVersion.splitRef('.');
 
-        for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i) {
+        for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i)
+        {
             if (remoteParts[i].toInt() > localParts[i].toInt())
                 return true;
             if (remoteParts[i].toInt() < localParts[i].toInt())

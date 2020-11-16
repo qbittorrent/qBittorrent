@@ -122,7 +122,8 @@ void TransferController::banPeersAction()
     requireParams({"peers"});
 
     const QStringList peers = params()["peers"].split('|');
-    for (const QString &peer : peers) {
+    for (const QString &peer : peers)
+    {
         const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
         if (!addr.ip.isNull())
             BitTorrent::Session::instance()->banIP(addr.ip.toString());

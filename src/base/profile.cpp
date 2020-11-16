@@ -72,7 +72,8 @@ const Profile *Profile::instance()
 QString Profile::location(const SpecialFolder folder) const
 {
     QString result;
-    switch (folder) {
+    switch (folder)
+    {
     case SpecialFolder::Cache:
         result = m_profileImpl->cacheLocation();
         break;

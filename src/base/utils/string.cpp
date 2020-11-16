@@ -82,7 +82,8 @@ namespace
 
             int posL = 0;
             int posR = 0;
-            while (true) {
+            while (true)
+            {
                 if ((posL == left.size()) || (posR == right.size()))
                     return (left.size() - right.size());  // when a shorter string is another string's prefix, shorter string place before longer string
 
@@ -91,12 +92,14 @@ namespace
                 // Compare only non-digits.
                 // Numbers should be compared as a whole
                 // otherwise the string->int conversion can yield a wrong value
-                if ((leftChar == rightChar) && !leftChar.isDigit()) {
+                if ((leftChar == rightChar) && !leftChar.isDigit())
+                {
                     // compare next character
                     ++posL;
                     ++posR;
                 }
-                else if (leftChar.isDigit() && rightChar.isDigit()) {
+                else if (leftChar.isDigit() && rightChar.isDigit())
+                {
                     // Both are digits, compare the numbers
 
                     const auto numberView = [](const QString &str, int &pos) -> QStringRef
@@ -114,7 +117,8 @@ namespace
                         return (numViewL.length() - numViewR.length());
 
                     // both string/view has the same length
-                    for (int i = 0; i < numViewL.length(); ++i) {
+                    for (int i = 0; i < numViewL.length(); ++i)
+                    {
                         const QChar numL = numViewL[i];
                         const QChar numR = numViewR[i];
 
@@ -125,7 +129,8 @@ namespace
                     // String + digits do match and we haven't hit the end of both strings
                     // then continue to consume the remainings
                 }
-                else {
+                else
+                {
                     return (leftChar.unicode() - rightChar.unicode());
                 }
             }
@@ -140,7 +145,8 @@ int Utils::String::naturalCompare(const QString &left, const QString &right, con
 {
     // provide a single `NaturalCompare` instance for easy use
     // https://doc.qt.io/qt-5/threads-reentrancy.html
-    if (caseSensitivity == Qt::CaseSensitive) {
+    if (caseSensitivity == Qt::CaseSensitive)
+    {
 #ifdef QBT_USES_QTHREADSTORAGE
         static QThreadStorage<NaturalCompare> nCmp;
         if (!nCmp.hasLocalData())

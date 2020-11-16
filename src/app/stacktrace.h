@@ -22,7 +22,8 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
     // retrieve current stack addresses
     int addrlen = backtrace(addrlist.data(), addrlist.size());
 
-    if (addrlen == 0) {
+    if (addrlen == 0)
+    {
         fprintf(out, "  <empty, possibly corrupt>\n");
         return;
     }
@@ -38,27 +39,33 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
     int functionNamesFound = 0;
     // iterate over the returned symbol lines. skip the first, it is the
     // address of this function.
-    for (int i = 2; i < addrlen; i++) {
+    for (int i = 2; i < addrlen; i++)
+    {
         char *begin_name = 0, *begin_offset = 0, *end_offset = 0;
 
         // find parentheses and +address offset surrounding the mangled name:
         // ./module(function+0x15c) [0x8048a6d]
         // fprintf(out, "%s TT\n", symbollist[i]);
-        for (char *p = symbollist[i]; *p; ++p) {
-            if (*p == '(') {
+        for (char *p = symbollist[i]; *p; ++p)
+        {
+            if (*p == '(')
+            {
                 begin_name = p;
             }
-            else if (*p == '+') {
+            else if (*p == '+')
+            {
                 begin_offset = p;
             }
-            else if ((*p == ')') && begin_offset) {
+            else if ((*p == ')') && begin_offset)
+            {
                 end_offset = p;
                 break;
             }
         }
 
         if (begin_name && begin_offset && end_offset
-            && (begin_name < begin_offset)) {
+            && (begin_name < begin_offset))
+            {
             *begin_name++ = '\0';
             *begin_offset++ = '\0';
             *end_offset = '\0';
@@ -70,12 +77,14 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
             int status;
             char *ret = abi::__cxa_demangle(begin_name,
                                             funcname, &funcnamesize, &status);
-            if (status == 0) {
+            if (status == 0)
+            {
                 funcname = ret; // use possibly realloc()-ed string
                 fprintf(out, "  %s : %s+%s %s\n",
                         symbollist[i], funcname, begin_offset, ++end_offset);
             }
-            else {
+            else
+            {
                 // demangling failed. Output function name as a C function with
                 // no arguments.
                 fprintf(out, "  %s : %s()+%s %s\n",
@@ -83,17 +92,20 @@ static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames 
             }
             ++functionNamesFound;
         }
-        else {
+        else
+        {
             // couldn't parse the line? print the whole line.
             fprintf(out, "  %s\n", symbollist[i]);
         }
     }
 
-    if (!functionNamesFound) {
+    if (!functionNamesFound)
+    {
         fprintf(out, "There were no function names found in the stack trace\n."
             "Seems like debug symbols are not installed, and the stack trace is useless.\n");
     }
-    if (functionNamesFound < addrlen - 2) {
+    if (functionNamesFound < addrlen - 2)
+    {
         fprintf(out, "Consider installing debug symbols for packages containing files with empty"
             " function names (i.e. empty braces \"()\") to make your stack trace more useful\n");
     }

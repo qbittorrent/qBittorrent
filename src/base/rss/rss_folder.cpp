@@ -57,7 +57,8 @@ QList<Article *> Folder::articles() const
 {
     QList<Article *> news;
 
-    for (Item *item : asConst(items())) {
+    for (Item *item : asConst(items()))
+    {
         int n = news.size();
         news << item->articles();
         std::inplace_merge(news.begin(), news.begin() + n, news.end()

@@ -82,7 +82,8 @@ namespace
 
         const QJsonObject jsonObj {jsonDoc.object()};
         QVector<RSS::AutoDownloadRule> rules;
-        for (auto it = jsonObj.begin(); it != jsonObj.end(); ++it) {
+        for (auto it = jsonObj.begin(); it != jsonObj.end(); ++it)
+        {
             const QJsonValue jsonVal {it.value()};
             if (!jsonVal.isObject())
                 throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
@@ -177,7 +178,8 @@ QList<AutoDownloadRule> AutoDownloader::rules() const
 
 void AutoDownloader::insertRule(const AutoDownloadRule &rule)
 {
-    if (!hasRule(rule.name())) {
+    if (!hasRule(rule.name()))
+    {
         // Insert new rule
         setRule_impl(rule);
         m_dirty = true;
@@ -185,7 +187,8 @@ void AutoDownloader::insertRule(const AutoDownloadRule &rule)
         emit ruleAdded(rule.name());
         resetProcessingQueue();
     }
-    else if (ruleByName(rule.name()) != rule) {
+    else if (ruleByName(rule.name()) != rule)
+    {
         // Update existing rule
         setRule_impl(rule);
         m_dirty = true;
@@ -211,7 +214,8 @@ bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleN
 
 void AutoDownloader::removeRule(const QString &ruleName)
 {
-    if (m_rules.contains(ruleName)) {
+    if (m_rules.contains(ruleName))
+    {
         emit ruleAboutToBeRemoved(ruleName);
         m_rules.remove(ruleName);
         m_dirty = true;
@@ -221,7 +225,8 @@ void AutoDownloader::removeRule(const QString &ruleName)
 
 QByteArray AutoDownloader::exportRules(AutoDownloader::RulesFileFormat format) const
 {
-    switch (format) {
+    switch (format)
+    {
     case RulesFileFormat::Legacy:
         return exportRulesToLegacyFormat();
     default:
@@ -231,7 +236,8 @@ QByteArray AutoDownloader::exportRules(AutoDownloader::RulesFileFormat format) c
 
 void AutoDownloader::importRules(const QByteArray &data, const AutoDownloader::RulesFileFormat format)
 {
-    switch (format) {
+    switch (format)
+    {
     case RulesFileFormat::Legacy:
         importRulesFromLegacyFormat(data);
         break;
@@ -286,8 +292,10 @@ QStringList AutoDownloader::smartEpisodeFilters() const
 {
     const QVariant filtersSetting = SettingsStorage::instance()->loadValue(SettingsKey_SmartEpisodeFilter);
 
-    if (filtersSetting.isNull()) {
-        QStringList filters = {
+    if (filtersSetting.isNull())
+    {
+        QStringList filters =
+        {
             "s(\\d+)e(\\d+)",                       // Format 1: s01e01
             "(\\d+)x(\\d+)",                        // Format 2: 01x01
             "(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})", // Format 3: 2017.01.01
@@ -375,7 +383,8 @@ void AutoDownloader::addJobForArticle(const Article *article)
 
 void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 {
-    for (AutoDownloadRule &rule : m_rules) {
+    for (AutoDownloadRule &rule : m_rules)
+    {
         if (!rule.isEnabled()) continue;
         if (!rule.feedURLs().contains(job->feedURL)) continue;
         if (!rule.accepts(job->articleData)) continue;
@@ -393,13 +402,16 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
         BitTorrent::Session::instance()->addTorrent(torrentURL, params);
 
-        if (BitTorrent::MagnetUri(torrentURL).isValid()) {
-            if (Feed *feed = Session::instance()->feedByURL(job->feedURL)) {
+        if (BitTorrent::MagnetUri(torrentURL).isValid())
+        {
+            if (Feed *feed = Session::instance()->feedByURL(job->feedURL))
+            {
                 if (Article *article = feed->articleByGUID(job->articleData.value(Article::KeyId).toString()))
                     article->markAsRead();
             }
         }
-        else {
+        else
+        {
             // waiting for torrent file downloading
             m_waitingJobs.insert(torrentURL, job);
         }
@@ -423,12 +435,14 @@ void AutoDownloader::load()
 
 void AutoDownloader::loadRules(const QByteArray &data)
 {
-    try {
+    try
+    {
         const auto rules = rulesFromJSON(data);
         for (const auto &rule : rules)
             setRule_impl(rule);
     }
-    catch (const ParsingError &error) {
+    catch (const ParsingError &error)
+    {
         LogMsg(tr("Couldn't load RSS AutoDownloader rules. Reason: %1")
                .arg(error.message()), Log::CRITICAL);
     }
@@ -438,7 +452,8 @@ void AutoDownloader::loadRulesLegacy()
 {
     const SettingsPtr settings = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss"));
     const QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
-    for (const QVariant &ruleVar : rules) {
+    for (const QVariant &ruleVar : rules)
+    {
         const auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());
         if (!rule.name().isEmpty())
             insertRule(rule);
@@ -475,7 +490,8 @@ void AutoDownloader::resetProcessingQueue()
     m_processingQueue.clear();
     if (!m_processingEnabled) return;
 
-    for (Article *article : asConst(Session::instance()->rootFolder()->articles())) {
+    for (Article *article : asConst(Session::instance()->rootFolder()->articles()))
+    {
         if (!article->isRead() && !article->torrentUrl().isEmpty())
             addJobForArticle(article);
     }
@@ -489,13 +505,16 @@ void AutoDownloader::startProcessing()
 
 void AutoDownloader::setProcessingEnabled(const bool enabled)
 {
-    if (m_processingEnabled != enabled) {
+    if (m_processingEnabled != enabled)
+    {
         m_processingEnabled = enabled;
         SettingsStorage::instance()->storeValue(SettingsKey_ProcessingEnabled, m_processingEnabled);
-        if (m_processingEnabled) {
+        if (m_processingEnabled)
+        {
             startProcessing();
         }
-        else {
+        else
+        {
             m_processingQueue.clear();
             disconnect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
         }

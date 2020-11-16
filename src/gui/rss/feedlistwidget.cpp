@@ -97,7 +97,8 @@ void FeedListWidget::handleFeedStateChanged(RSS::Feed *feed)
 
 void FeedListWidget::handleFeedIconLoaded(RSS::Feed *feed)
 {
-    if (!feed->isLoading() && !feed->hasError()) {
+    if (!feed->isLoading() && !feed->hasError())
+    {
         QTreeWidgetItem *item = m_rssToTreeItemMapping.value(feed);
         Q_ASSERT(item);
 
@@ -107,10 +108,12 @@ void FeedListWidget::handleFeedIconLoaded(RSS::Feed *feed)
 
 void FeedListWidget::handleItemUnreadCountChanged(RSS::Item *rssItem)
 {
-    if (rssItem == RSS::Session::instance()->rootFolder()) {
+    if (rssItem == RSS::Session::instance()->rootFolder())
+    {
         m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
     }
-    else {
+    else
+    {
         QTreeWidgetItem *item = mapRSSItem(rssItem);
         Q_ASSERT(item);
         item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
@@ -151,9 +154,11 @@ QList<QTreeWidgetItem *> FeedListWidget::getAllOpenedFolders(QTreeWidgetItem *pa
 {
     QList<QTreeWidgetItem *> openedFolders;
     int nbChildren = (parent ? parent->childCount() : topLevelItemCount());
-    for (int i = 0; i < nbChildren; ++i) {
+    for (int i = 0; i < nbChildren; ++i)
+    {
         QTreeWidgetItem *item (parent ? parent->child(i) : topLevelItem(i));
-        if (isFolder(item) && item->isExpanded()) {
+        if (isFolder(item) && item->isExpanded())
+        {
             QList<QTreeWidgetItem *> openedSubfolders = getAllOpenedFolders(item);
             if (!openedSubfolders.empty())
                 openedFolders << openedSubfolders;
@@ -215,7 +220,8 @@ void FeedListWidget::dropEvent(QDropEvent *event)
                                : RSS::Session::instance()->rootFolder());
 
     // move as much items as possible
-    for (QTreeWidgetItem *srcItem : asConst(selectedItems())) {
+    for (QTreeWidgetItem *srcItem : asConst(selectedItems()))
+    {
         auto rssItem = getRSSItem(srcItem);
         RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(destFolder->path(), rssItem->name()));
     }
@@ -233,7 +239,8 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     m_rssToTreeItemMapping[rssItem] = item;
 
     QIcon icon;
-    if (auto feed = qobject_cast<RSS::Feed *>(rssItem)) {
+    if (auto feed = qobject_cast<RSS::Feed *>(rssItem))
+    {
         if (feed->isLoading())
             icon = UIThemeManager::instance()->getIcon(QLatin1String("loading"));
         else if (feed->hasError())
@@ -243,7 +250,8 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
         else
             icon = UIThemeManager::instance()->getIcon(QLatin1String("application-rss+xml"));
     }
-    else {
+    else
+    {
         icon = UIThemeManager::instance()->getIcon(QLatin1String("inode-directory"));
     }
     item->setData(0, Qt::DecorationRole, icon);
@@ -260,7 +268,8 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
 
 void FeedListWidget::fill(QTreeWidgetItem *parent, RSS::Folder *rssParent)
 {
-    for (const auto rssItem : asConst(rssParent->items())) {
+    for (const auto rssItem : asConst(rssParent->items()))
+    {
         QTreeWidgetItem *item = createItem(rssItem, parent);
         // Recursive call if this is a folder.
         if (auto folder = qobject_cast<RSS::Folder *>(rssItem))

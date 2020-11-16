@@ -53,7 +53,8 @@ namespace
     {
     public:
         PieceIndexToImagePos(const BitTorrent::TorrentInfo &torrentInfo, const QImage &image)
-            : m_bytesPerPixel {((image.width() > 0) && (torrentInfo.totalSize() >= image.width()))
+            : m_bytesPerPixel
+            {((image.width() > 0) && (torrentInfo.totalSize() >= image.width()))
                 ? torrentInfo.totalSize() / image.width() : -1}
             , m_torrentInfo {torrentInfo}
         {
@@ -133,7 +134,8 @@ void PiecesBar::clear()
 
 bool PiecesBar::event(QEvent *e)
 {
-    if (e->type() == QEvent::ToolTip) {
+    if (e->type() == QEvent::ToolTip)
+    {
         showToolTip(static_cast<QHelpEvent *>(e));
         return true;
     }
@@ -167,17 +169,20 @@ void PiecesBar::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     QRect imageRect(borderWidth, borderWidth, width() - 2 * borderWidth, height() - 2 * borderWidth);
-    if (m_image.isNull()) {
+    if (m_image.isNull())
+    {
         painter.setBrush(backgroundColor());
         painter.drawRect(imageRect);
     }
-    else {
+    else
+    {
         if (m_image.width() != imageRect.width())
             updateImage(m_image);
         painter.drawImage(imageRect, m_image);
     }
 
-    if (!m_highlitedRegion.isNull()) {
+    if (!m_highlitedRegion.isNull())
+    {
         QColor highlightColor {this->palette().color(QPalette::Active, QPalette::Highlight)};
         highlightColor.setAlphaF(0.35);
         QRect targetHighlightRect {m_highlitedRegion.adjusted(borderWidth, borderWidth, borderWidth, height() - 2 * borderWidth)};
@@ -247,19 +252,23 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
     QString toolTipText;
     QTextStream stream(&toolTipText, QIODevice::WriteOnly);
     const bool showDetailedInformation = QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier);
-    if (showDetailedInformation && m_torrent->hasMetadata()) {
+    if (showDetailedInformation && m_torrent->hasMetadata())
+    {
         const int imagePos = e->pos().x() - borderWidth;
-        if ((imagePos >=0) && (imagePos < m_image.width())) {
+        if ((imagePos >=0) && (imagePos < m_image.width()))
+        {
             stream << "<html><body>";
             PieceIndexToImagePos transform {m_torrent->info(), m_image};
             int pieceIndex = transform.pieceIndex(imagePos);
             const QVector<int> files {m_torrent->info().fileIndicesForPiece(pieceIndex)};
 
             QString tooltipTitle;
-            if (files.count() > 1) {
+            if (files.count() > 1)
+            {
                 tooltipTitle = tr("Files in this piece:");
             }
-            else {
+            else
+            {
                 if (m_torrent->info().fileSize(files.front()) == m_torrent->info().pieceLength(pieceIndex))
                     tooltipTitle = tr("File in this piece");
                 else
@@ -268,14 +277,16 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
             DetailedTooltipRenderer renderer(stream, tooltipTitle);
 
-            for (int f : files) {
+            for (int f : files)
+            {
                 const QString filePath {m_torrent->info().filePath(f)};
                 renderer(Utils::Misc::friendlyUnit(m_torrent->info().fileSize(f)), filePath);
             }
             stream << "</body></html>";
         }
     }
-    else {
+    else
+    {
         stream << simpleToolTipText();
         if (showDetailedInformation) // metadata are not available at this point
             stream << '\n' << tr("Wait until metadata become available to see detailed information");
@@ -297,17 +308,20 @@ void PiecesBar::highlightFile(int imagePos)
 
     int pieceIndex = transform.pieceIndex(imagePos);
     QVector<int> fileIndices {m_torrent->info().fileIndicesForPiece(pieceIndex)};
-    if (fileIndices.count() == 1) {
+    if (fileIndices.count() == 1)
+    {
         BitTorrent::TorrentInfo::PieceRange filePieces = m_torrent->info().filePieces(fileIndices.first());
 
         ImageRange imageRange = transform.imagePos(filePieces);
         QRect newHighlitedRegion {imageRange.first(), 0, imageRange.size(), m_image.height()};
-        if (newHighlitedRegion != m_highlitedRegion) {
+        if (newHighlitedRegion != m_highlitedRegion)
+        {
             m_highlitedRegion = newHighlitedRegion;
             update();
         }
     }
-    else if (!m_highlitedRegion.isEmpty()) {
+    else if (!m_highlitedRegion.isEmpty())
+    {
         m_highlitedRegion = QRect();
         update();
     }
@@ -316,7 +330,8 @@ void PiecesBar::highlightFile(int imagePos)
 void PiecesBar::updatePieceColors()
 {
     m_pieceColors = QVector<QRgb>(256);
-    for (int i = 0; i < 256; ++i) {
+    for (int i = 0; i < 256; ++i)
+    {
         float ratio = (i / 255.0);
         m_pieceColors[i] = mixTwoColors(backgroundColor().rgb(), pieceColor().rgb(), ratio);
     }

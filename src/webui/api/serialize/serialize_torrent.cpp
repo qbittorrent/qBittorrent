@@ -39,7 +39,8 @@ namespace
 {
     QString torrentStateToString(const BitTorrent::TorrentState state)
     {
-        switch (state) {
+        switch (state)
+        {
         case BitTorrent::TorrentState::Error:
             return QLatin1String("error");
         case BitTorrent::TorrentState::MissingFiles:
@@ -82,7 +83,8 @@ namespace
 
 QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
 {
-    QVariantMap ret = {
+    QVariantMap ret =
+    {
         {KEY_TORRENT_HASH, QString(torrent.hash())},
         {KEY_TORRENT_NAME, torrent.name()},
         {KEY_TORRENT_MAGNET_URI, torrent.createMagnetURI()},
@@ -134,10 +136,12 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     const qreal ratio = torrent.realRatio();
     ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
 
-    if (torrent.isPaused() || torrent.isChecking()) {
+    if (torrent.isPaused() || torrent.isChecking())
+    {
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = 0;
     }
-    else {
+    else
+    {
         const qint64 dt = (QDateTime::currentDateTime().toSecsSinceEpoch()
             - torrent.timeSinceActivity());
         ret[KEY_TORRENT_LAST_ACTIVITY_TIME] = dt;

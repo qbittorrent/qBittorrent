@@ -59,7 +59,8 @@ QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin
     // image.x(0) = pieces.x(0.0 >= x < 1.7)
     // image.x(1) = pieces.x(1.7 >= x < 3.4)
 
-    for (int x = 0; x < reqSize; ++x) {
+    for (int x = 0; x < reqSize; ++x)
+    {
         // R - real
         const float fromR = x * ratio;
         const float toR = (x + 1) * ratio;
@@ -80,15 +81,18 @@ QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin
         float value = 0;
 
         // case when calculated range is (15.2 >= x < 15.7)
-        if (x2 == toCMinusOne) {
+        if (x2 == toCMinusOne)
+        {
             if (vecin[x2])
                 value += ratio;
             ++x2;
         }
         // case when (15.2 >= x < 17.8)
-        else {
+        else
+        {
             // subcase (15.2 >= x < 16)
-            if (x2 != fromR) {
+            if (x2 != fromR)
+            {
                 if (vecin[x2])
                     value += 1.0 - (fromR - fromC);
                 ++x2;
@@ -100,7 +104,8 @@ QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin
                     value += 1.0;
 
             // subcase (17 >= x < 17.8)
-            if (x2 == toCMinusOne) {
+            if (x2 == toCMinusOne)
+            {
                 if (vecin[x2])
                     value += 1.0 - (toC - toR);
                 ++x2;
@@ -123,12 +128,14 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
 {
     //  qDebug() << "updateImage";
     QImage image2(width() - 2 * borderWidth, 1, QImage::Format_RGB888);
-    if (image2.isNull()) {
+    if (image2.isNull())
+    {
         qDebug() << "QImage image2() allocation failed, width():" << width();
         return false;
     }
 
-    if (m_pieces.isEmpty()) {
+    if (m_pieces.isEmpty())
+    {
         image2.fill(backgroundColor());
         image = image2;
         return true;
@@ -138,10 +145,12 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
     QVector<float> scaledPiecesDl = bitfieldToFloatVector(m_downloadedPieces, image2.width());
 
     // filling image
-    for (int x = 0; x < scaledPieces.size(); ++x) {
+    for (int x = 0; x < scaledPieces.size(); ++x)
+    {
         float piecesToValue = scaledPieces.at(x);
         float piecesToValueDl = scaledPiecesDl.at(x);
-        if (piecesToValueDl != 0) {
+        if (piecesToValueDl != 0)
+        {
             float fillRatio = piecesToValue + piecesToValueDl;
             float ratio = piecesToValueDl / fillRatio;
 
@@ -150,7 +159,8 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
 
             image2.setPixel(x, 0, mixedColor);
         }
-        else {
+        else
+        {
             image2.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
         }
     }

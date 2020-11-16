@@ -107,11 +107,14 @@ QString TorrentContentModelItem::displayData(const int column) const
     if (isRootItem())
         return m_itemData.value(column);
 
-    switch (column) {
+    switch (column)
+    {
     case COL_NAME:
         return m_name;
-    case COL_PRIO: {
-            switch (m_priority) {
+    case COL_PRIO:
+    {
+            switch (m_priority)
+            {
             case BitTorrent::DownloadPriority::Mixed:
                 return tr("Mixed", "Mixed (priorities");
             case BitTorrent::DownloadPriority::Ignored:
@@ -124,7 +127,8 @@ QString TorrentContentModelItem::displayData(const int column) const
                 return tr("Normal", "Normal (priority)");
             }
         }
-    case COL_PROGRESS: {
+    case COL_PROGRESS:
+    {
             const qreal progress = m_progress * 100;
             return (static_cast<int>(progress) == 100)
                    ? QString::fromLatin1("100%")
@@ -134,7 +138,8 @@ QString TorrentContentModelItem::displayData(const int column) const
         return Utils::Misc::friendlyUnit(m_size);
     case COL_REMAINING:
         return Utils::Misc::friendlyUnit(remaining());
-    case COL_AVAILABILITY: {
+    case COL_AVAILABILITY:
+    {
             const int avail = availability();
             if (avail < 0)
                 return tr("N/A");
@@ -155,7 +160,8 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
     if (isRootItem())
         return m_itemData.value(column);
 
-    switch (column) {
+    switch (column)
+    {
     case COL_NAME:
         return m_name;
     case COL_PRIO:

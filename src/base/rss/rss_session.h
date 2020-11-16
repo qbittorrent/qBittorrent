@@ -34,20 +34,26 @@
  * RSS Session configuration file format (JSON):
  *
  * =============== BEGIN ===============
- * {
- *     "folder1": {
- *         "subfolder1": {
- *             "Feed name 1 (Alias)": {
+ *
+ {
+ *     "folder1":
+ {
+ *         "subfolder1":
+ {
+ *             "Feed name 1 (Alias)":
+ {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url1"
  *             }
- *             "Feed name 2 (Alias)": {
+ *             "Feed name 2 (Alias)":
+ {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url2"
  *             }
  *         },
  *         "subfolder2": {},
- *         "Feed name 3 (Alias)": {
+ *         "Feed name 3 (Alias)":
+ {
  *             "uid": "feed unique identifier",
  *             "url": "http://some-feed-url3"
  *         }

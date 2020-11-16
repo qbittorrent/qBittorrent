@@ -54,10 +54,12 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
 {
     m_searchTerm = searchTerm;
     if ((searchTerm.length() > 2)
-        && searchTerm.startsWith(QLatin1Char('"')) && searchTerm.endsWith(QLatin1Char('"'))) {
+        && searchTerm.startsWith(QLatin1Char('"')) && searchTerm.endsWith(QLatin1Char('"')))
+        {
         m_searchTermWords = QStringList(m_searchTerm.mid(1, m_searchTerm.length() - 2));
     }
-    else {
+    else
+    {
         m_searchTermWords = searchTerm.split(QLatin1Char(' '), QString::SkipEmptyParts);
     }
 }
@@ -112,9 +114,11 @@ qint64 SearchSortModel::maxSize() const
 
 bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    switch (sortColumn()) {
+    switch (sortColumn())
+    {
     case NAME:
-    case ENGINE_URL: {
+    case ENGINE_URL:
+    {
             const QString strL = left.data().toString();
             const QString strR = right.data().toString();
             const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
@@ -130,29 +134,34 @@ bool SearchSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &s
 {
     const QAbstractItemModel *const sourceModel = this->sourceModel();
 
-    if (m_isNameFilterEnabled && !m_searchTerm.isEmpty()) {
+    if (m_isNameFilterEnabled && !m_searchTerm.isEmpty())
+    {
         const QString name = sourceModel->data(sourceModel->index(sourceRow, NAME, sourceParent), UnderlyingDataRole).toString();
-        for (const QString &word : asConst(m_searchTermWords)) {
+        for (const QString &word : asConst(m_searchTermWords))
+        {
             if (!name.contains(word, Qt::CaseInsensitive))
                 return false;
         }
     }
 
-    if ((m_minSize > 0) || (m_maxSize >= 0)) {
+    if ((m_minSize > 0) || (m_maxSize >= 0))
+    {
         const qlonglong size = sourceModel->data(sourceModel->index(sourceRow, SIZE, sourceParent), UnderlyingDataRole).toLongLong();
         if (((m_minSize > 0) && (size < m_minSize))
             || ((m_maxSize > 0) && (size > m_maxSize)))
             return false;
     }
 
-    if ((m_minSeeds > 0) || (m_maxSeeds >= 0)) {
+    if ((m_minSeeds > 0) || (m_maxSeeds >= 0))
+    {
         const int seeds = sourceModel->data(sourceModel->index(sourceRow, SEEDS, sourceParent), UnderlyingDataRole).toInt();
         if (((m_minSeeds > 0) && (seeds < m_minSeeds))
             || ((m_maxSeeds > 0) && (seeds > m_maxSeeds)))
             return false;
     }
 
-    if ((m_minLeeches > 0) || (m_maxLeeches >= 0)) {
+    if ((m_minLeeches > 0) || (m_maxLeeches >= 0))
+    {
         const int leeches = sourceModel->data(sourceModel->index(sourceRow, LEECHES, sourceParent), UnderlyingDataRole).toInt();
         if (((m_minLeeches > 0) && (leeches < m_minLeeches))
             || ((m_maxLeeches > 0) && (leeches > m_maxLeeches)))

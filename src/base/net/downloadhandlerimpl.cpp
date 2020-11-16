@@ -66,10 +66,12 @@ DownloadHandlerImpl::DownloadHandlerImpl(Net::DownloadManager *manager, const Ne
 
 void DownloadHandlerImpl::cancel()
 {
-    if (m_reply) {
+    if (m_reply)
+    {
         m_reply->abort();
     }
-    else {
+    else
+    {
         setError(errorCodeToString(QNetworkReply::OperationCanceledError));
         finish();
     }
@@ -103,7 +105,8 @@ void DownloadHandlerImpl::processFinishedDownload()
     qDebug("Download finished: %s", qUtf8Printable(url()));
 
     // Check if the request was successful
-    if (m_reply->error() != QNetworkReply::NoError) {
+    if (m_reply->error() != QNetworkReply::NoError)
+    {
         // Failure
         qDebug("Download failure (%s), reason: %s", qUtf8Printable(url()), qUtf8Printable(errorCodeToString(m_reply->error())));
         setError(errorCodeToString(m_reply->error()));
@@ -113,7 +116,8 @@ void DownloadHandlerImpl::processFinishedDownload()
 
     // Check if the server ask us to redirect somewhere else
     const QVariant redirection = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
-    if (redirection.isValid()) {
+    if (redirection.isValid())
+    {
         handleRedirection(redirection.toUrl());
         return;
     }
@@ -123,7 +127,8 @@ void DownloadHandlerImpl::processFinishedDownload()
                     ? Utils::Gzip::decompress(m_reply->readAll())
                     : m_reply->readAll();
 
-    if (m_downloadRequest.saveToFile()) {
+    if (m_downloadRequest.saveToFile())
+    {
         QString filePath;
         if (saveToFile(m_result.data, filePath))
             m_result.filePath = filePath;
@@ -136,13 +141,15 @@ void DownloadHandlerImpl::processFinishedDownload()
 
 void DownloadHandlerImpl::checkDownloadSize(const qint64 bytesReceived, const qint64 bytesTotal)
 {
-    if ((bytesTotal > 0) && (bytesTotal <= m_downloadRequest.limit())) {
+    if ((bytesTotal > 0) && (bytesTotal <= m_downloadRequest.limit()))
+    {
         // Total number of bytes is available
         disconnect(m_reply, &QNetworkReply::downloadProgress, this, &DownloadHandlerImpl::checkDownloadSize);
         return;
     }
 
-    if ((bytesTotal > m_downloadRequest.limit()) || (bytesReceived > m_downloadRequest.limit())) {
+    if ((bytesTotal > m_downloadRequest.limit()) || (bytesReceived > m_downloadRequest.limit()))
+    {
         m_reply->abort();
         setError(tr("The file size (%1) exceeds the download limit (%2)")
                  .arg(Utils::Misc::friendlyUnit(bytesTotal)
@@ -153,7 +160,8 @@ void DownloadHandlerImpl::checkDownloadSize(const qint64 bytesReceived, const qi
 
 void DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
 {
-    if (m_redirectionCount >= MAX_REDIRECTIONS) {
+    if (m_redirectionCount >= MAX_REDIRECTIONS)
+    {
         setError(tr("Exceeded max redirections (%1)").arg(MAX_REDIRECTIONS));
         finish();
         return;
@@ -165,7 +173,8 @@ void DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
     qDebug("Redirecting from %s to %s...", qUtf8Printable(m_reply->url().toString()), qUtf8Printable(newUrlString));
 
     // Redirect to magnet workaround
-    if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive)) {
+    if (newUrlString.startsWith("magnet:", Qt::CaseInsensitive))
+    {
         qDebug("Magnet redirect detected.");
         m_result.status = Net::DownloadStatus::RedirectedToMagnet;
         m_result.magnet = newUrlString;
@@ -199,7 +208,8 @@ void DownloadHandlerImpl::finish()
 
 QString DownloadHandlerImpl::errorCodeToString(const QNetworkReply::NetworkError status)
 {
-    switch (status) {
+    switch (status)
+    {
     case QNetworkReply::HostNotFoundError:
         return tr("The remote host name was not found (invalid hostname)");
     case QNetworkReply::OperationCanceledError:
