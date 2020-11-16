@@ -46,18 +46,16 @@ namespace BitTorrent
         return m_index;
     }
 
-    void PieceRequest::notifyCompleteAndDie(const QByteArray &data)
+    void PieceRequest::notifyComplete(const QByteArray &data)
     {
         qDebug() << "notifying complete" << data.size();
         emit complete(data);
-        deleteLater();
     }
 
-    void PieceRequest::notifyErrorAndDie(const QString &message)
+    void PieceRequest::notifyError(const QString &message)
     {
         qDebug() << "notifying error" << message;
         emit error(message);
-        deleteLater();
     }
 
     uint qHash(const BitTorrent::TorrentState key, const uint seed)

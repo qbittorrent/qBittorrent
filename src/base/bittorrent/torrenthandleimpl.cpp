@@ -1624,9 +1624,10 @@ void TorrentHandleImpl::handleReadPieceAlert(const lt::read_piece_alert *p)
 
     PieceRequest *request = *requestIter;
     if (p->error)
-        request->notifyErrorAndDie(QString::fromStdString(p->error.message()));
+        request->notifyError(QString::fromStdString(p->error.message()));
     else
-        request->notifyCompleteAndDie(QByteArray(p->buffer.get(), p->size));
+        request->notifyComplete(QByteArray(p->buffer.get(), p->size));
+    m_pieceRequests.erase(requestIter);
 }
 
 void TorrentHandleImpl::handleTempPathChanged()
@@ -1867,7 +1868,7 @@ bool TorrentHandleImpl::havePiece(const int index) const
     return m_nativeHandle.have_piece(lt::piece_index_t {index});
 }
 
-const PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const int deadline, const bool readWhenAvailable)
+PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const int deadline, const bool readWhenAvailable)
 {
     m_nativeHandle.set_piece_deadline(lt::piece_index_t {index}, deadline,
     readWhenAvailable ? lt::torrent_handle::alert_when_available : lt::deadline_flags_t {});
@@ -1878,14 +1879,16 @@ const PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const i
         m_pieceRequests.push_back(request);
         connect(request, &QObject::destroyed, this, [this, request] ()
         {
-            m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
+            const int index = m_pieceRequests.indexOf(request);
+            if (index != -1)
+                m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
         });
     }
 
     return request;
 }
 
-const PieceRequest *TorrentHandleImpl::readPiece(int index)
+PieceRequest *TorrentHandleImpl::readPiece(int index)
 {
     m_nativeHandle.read_piece(index);
 
@@ -1893,7 +1896,9 @@ const PieceRequest *TorrentHandleImpl::readPiece(int index)
     m_pieceRequests.push_back(request);
     connect(request, &QObject::destroyed, this, [this, request] () 
     {
-        m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
+        const int index = m_pieceRequests.indexOf(request);
+        if (index != -1)
+            m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
     });
     
     return request;

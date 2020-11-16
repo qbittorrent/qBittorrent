@@ -81,7 +81,7 @@ namespace
 
     void waitForCompleteWrite(HttpSocket *socket, ReadRequest * req) {
         if (socket->bytesToWrite() > 1024) {
-            QTimer::singleShot(10, req, [socket, req]() {
+            QTimer::singleShot(50, req, [socket, req]() {
                 waitForCompleteWrite(socket, req);
             });
         } else {
@@ -217,10 +217,10 @@ void StreamingManager::doGet(HttpSocket *socket)
         readRequest->deleteLater();
     });
 
-    connect(socket, &QObject::destroyed, readRequest, [readRequest] ()
+    connect(socket, &QObject::destroyed, readRequest, [readRequest, path = socket->request().path] ()
     {
-        qDebug("deleting request");
         readRequest->deleteLater();
+        LogMsg(tr("Closing streaming socket of file '%1'").arg(path));
     });
 }
 

@@ -101,8 +101,8 @@ namespace BitTorrent
 
         int index() const;
 
-        void notifyCompleteAndDie(const QByteArray &data);
-        void notifyErrorAndDie(const QString &message);
+        void notifyComplete(const QByteArray &data);
+        void notifyError(const QString &message);
 
     signals:
         void complete(const QByteArray &data);
@@ -317,8 +317,8 @@ namespace BitTorrent
         bool isResumed() const;
         qlonglong remainingSize() const;
         virtual bool havePiece(int index) const = 0;
-        virtual const PieceRequest *setPieceDeadline(int index, int deadline, bool readWhenAvailable) = 0; // reads piece when available
-        virtual const PieceRequest *readPiece(int index) = 0;
+        virtual PieceRequest *setPieceDeadline(int index, int deadline, bool readWhenAvailable) = 0; // reads piece when available
+        virtual PieceRequest *readPiece(int index) = 0;
 
         void toggleSequentialDownload();
         void toggleFirstLastPiecePriority();

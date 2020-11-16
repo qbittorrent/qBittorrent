@@ -48,7 +48,6 @@ void ReadRequest::notifyLastBlockReceived()
 void ReadRequest::notifyError(const QString &message)
 {
     emit error(message);
-    deleteLater();
 }
 
 StreamFile::StreamFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle, QObject *parent)
@@ -100,7 +99,7 @@ void StreamFile::doRead(ReadRequest *request)
     const BitTorrent::PieceFileInfo pieceInfo
         = m_torrentHandle->info().mapFile(m_index, request->currentPosition(), std::min<quint64>(request->leftSize(), m_pieceLength));
     qDebug() << "mappedto " << pieceInfo.index << request->currentPosition() << request->leftSize();
-    const BitTorrent::PieceRequest *pieceRequest = m_torrentHandle->havePiece(pieceInfo.index)
+    BitTorrent::PieceRequest *pieceRequest = m_torrentHandle->havePiece(pieceInfo.index)
                                                    ? m_torrentHandle->readPiece(pieceInfo.index)
                                                    : m_torrentHandle->setPieceDeadline(pieceInfo.index, DEADLINE_TIME, true);
 
@@ -108,13 +107,17 @@ void StreamFile::doRead(ReadRequest *request)
         m_torrentHandle->setPieceDeadline(pieceInfo.index + i, DEADLINE_TIME * (2 + i), false); // prepare for next read
 
     auto cnt = connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
-            , [this, request, pieceInfo] (const QByteArray &data)
+            , [this, request, pieceInfo, pieceRequest] (const QByteArray &data)
     {
         request->feed(data.mid(pieceInfo.start, pieceInfo.length));
+        pieceRequest->deleteLater();
     });
     Q_ASSERT(cnt);
 
-    connect(pieceRequest, &BitTorrent::PieceRequest::error, request, &ReadRequest::notifyError);
+    connect(pieceRequest, &BitTorrent::PieceRequest::error, request, [pieceRequest, request](const QString &error){
+        request->notifyError(error);
+        pieceRequest->deleteLater();
+    });
 }
 
 bool StreamFile::isSameFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const
