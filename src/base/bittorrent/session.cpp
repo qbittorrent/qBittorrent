@@ -433,10 +433,6 @@ Session::Session(QObject *parent)
     , m_tempPath(BITTORRENT_SESSION_KEY("TempPath"), defaultSavePath() + "temp/", normalizePath)
     , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY("SubcategoriesEnabled"), false)
     , m_isTempPathEnabled(BITTORRENT_SESSION_KEY("TempPathEnabled"), false)
-    , m_isAutoTMMDisabledByDefault(BITTORRENT_SESSION_KEY("DisableAutoTMMByDefault"), true)
-    , m_isDisableAutoTMMWhenCategoryChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategoryChanged"), false)
-    , m_isDisableAutoTMMWhenDefaultSavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/DefaultSavePathChanged"), true)
-    , m_isDisableAutoTMMWhenCategorySavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategorySavePathChanged"), true)
     , m_isTrackerEnabled(BITTORRENT_KEY("TrackerEnabled"), false)
     , m_peerTurnover(BITTORRENT_SESSION_KEY("PeerTurnover"), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY("PeerTurnoverCutOff"), 90)
@@ -749,18 +745,6 @@ bool Session::editCategory(const QString &name, const QString &savePath)
 
     m_categories[name] = savePath;
     m_storedCategories = map_cast(m_categories);
-    if (isDisableAutoTMMWhenCategorySavePathChanged())
-    {
-        for (TorrentHandleImpl *const torrent : asConst(m_torrents))
-            if (torrent->category() == name)
-                torrent->setAutoTMMEnabled(false);
-    }
-    else
-    {
-        for (TorrentHandleImpl *const torrent : asConst(m_torrents))
-            if (torrent->category() == name)
-                torrent->handleCategorySavePathChanged();
-    }
 
     return true;
 }
@@ -868,46 +852,6 @@ bool Session::removeTag(const QString &tag)
         return true;
     }
     return false;
-}
-
-bool Session::isAutoTMMDisabledByDefault() const
-{
-    return m_isAutoTMMDisabledByDefault;
-}
-
-void Session::setAutoTMMDisabledByDefault(const bool value)
-{
-    m_isAutoTMMDisabledByDefault = value;
-}
-
-bool Session::isDisableAutoTMMWhenCategoryChanged() const
-{
-    return m_isDisableAutoTMMWhenCategoryChanged;
-}
-
-void Session::setDisableAutoTMMWhenCategoryChanged(const bool value)
-{
-    m_isDisableAutoTMMWhenCategoryChanged = value;
-}
-
-bool Session::isDisableAutoTMMWhenDefaultSavePathChanged() const
-{
-    return m_isDisableAutoTMMWhenDefaultSavePathChanged;
-}
-
-void Session::setDisableAutoTMMWhenDefaultSavePathChanged(const bool value)
-{
-    m_isDisableAutoTMMWhenDefaultSavePathChanged = value;
-}
-
-bool Session::isDisableAutoTMMWhenCategorySavePathChanged() const
-{
-    return m_isDisableAutoTMMWhenCategorySavePathChanged;
-}
-
-void Session::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
-{
-    m_isDisableAutoTMMWhenCategorySavePathChanged = value;
 }
 
 bool Session::isAddTorrentPaused() const
@@ -2101,21 +2045,16 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
-    const bool useAutoTMM = ((addTorrentParams.useAutoTMM == TriStateBool::Undefined)
-                           ? !isAutoTMMDisabledByDefault()
-                           : (addTorrentParams.useAutoTMM == TriStateBool::True));
-    if (useAutoTMM)
-        loadTorrentParams.savePath = "";
-    else if (addTorrentParams.savePath.trimmed().isEmpty())
-        loadTorrentParams.savePath = defaultSavePath();
-    else
-        loadTorrentParams.savePath = normalizePath(addTorrentParams.savePath);
-
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
-            loadTorrentParams.category = "";
+        loadTorrentParams.category = "";
     else
         loadTorrentParams.category = addTorrentParams.category;
+
+    if (addTorrentParams.savePath.isEmpty())
+        loadTorrentParams.savePath = categorySavePath(loadTorrentParams.category);
+    else
+        loadTorrentParams.savePath = normalizePath(addTorrentParams.savePath);
 
     return loadTorrentParams;
 }
@@ -2146,8 +2085,7 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
-    // If empty then Automatic mode, otherwise Manual mode
-    QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
+    QString actualSavePath = loadTorrentParams.savePath;
     if (hasMetadata)
     {
         if (!loadTorrentParams.hasRootFolder)
@@ -2446,16 +2384,8 @@ void Session::removeTorrentsQueue()
 void Session::setDefaultSavePath(QString path)
 {
     path = normalizeSavePath(path);
-    if (path == m_defaultSavePath) return;
-
-    m_defaultSavePath = path;
-
-    if (isDisableAutoTMMWhenDefaultSavePathChanged())
-        for (TorrentHandleImpl *const torrent : asConst(m_torrents))
-            torrent->setAutoTMMEnabled(false);
-    else
-        for (TorrentHandleImpl *const torrent : asConst(m_torrents))
-            torrent->handleCategorySavePathChanged();
+    if (path != m_defaultSavePath)
+        m_defaultSavePath = path;
 }
 
 void Session::setTempPath(QString path)
@@ -3827,12 +3757,6 @@ void Session::handleTorrentTagRemoved(TorrentHandleImpl *const torrent, const QS
     emit torrentTagRemoved(torrent, tag);
 }
 
-void Session::handleTorrentSavingModeChanged(TorrentHandleImpl *const torrent)
-{
-    torrent->saveResumeData();
-    emit torrentSavingModeChanged(torrent);
-}
-
 void Session::handleTorrentTrackersAdded(TorrentHandleImpl *const torrent, const QVector<TrackerEntry> &newTrackers)
 {
     torrent->saveResumeData();
@@ -4243,8 +4167,10 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
         }
     }
 
+    torrentParams.savePath = torrentParams.savePath.isEmpty() ? categorySavePath(torrentParams.category)
+                                                              : normalizePath(torrentParams.savePath);
+
     // NOTE: Do we really need the following block in case of existing (restored) torrent?
-    torrentParams.savePath = normalizePath(torrentParams.savePath);
     if (!torrentParams.category.isEmpty())
     {
         if (!m_categories.contains(torrentParams.category) && !addCategory(torrentParams.category))
@@ -4284,16 +4210,7 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
         {
             lt::parse_magnet_uri(magnetURINode.string_value(), p, ec);
 
-            if (isTempPathEnabled())
-            {
-                p.save_path = Utils::Fs::toNativePath(tempPath()).toStdString();
-            }
-            else
-            {
-                // If empty then Automatic mode, otherwise Manual mode
-                const QString savePath = torrentParams.savePath.isEmpty() ? categorySavePath(torrentParams.category) : torrentParams.savePath;
-                p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-            }
+            p.save_path = Utils::Fs::toNativePath(isTempPathEnabled() ? tempPath() : torrentParams.savePath).toStdString();
 
             // Preallocation mode
             p.storage_mode = (isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse);

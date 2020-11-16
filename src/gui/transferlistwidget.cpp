@@ -734,12 +734,6 @@ void TransferListWidget::setSelectedFirstLastPiecePrio(const bool enabled) const
         torrent->setFirstLastPiecePriority(enabled);
 }
 
-void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled) const
-{
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
-        torrent->setAutoTMMEnabled(enabled);
-}
-
 void TransferListWidget::askNewCategoryForSelection()
 {
     const QString newCategoryName = TorrentCategoryDialog::createCategory(this);
@@ -932,9 +926,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);
     auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
     connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::setSelectedFirstLastPiecePrio);
-    auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
-    actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
-    connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     QAction *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
     // End of actions
@@ -947,8 +938,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
     bool sequentialDownloadMode = false, prioritizeFirstLast = false;
     bool oneHasMetadata = false, oneNotSeed = false;
     bool allSameCategory = true;
-    bool allSameAutoTMM = true;
-    bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
     QSet<QString> tagsInAny;
@@ -969,20 +958,13 @@ void TransferListWidget::displayListMenu(const QPoint &)
         tagsInAny.unite(torrent->tags());
 
         if (first)
-        {
-            firstAutoTMM = torrent->isAutoTMMEnabled();
             tagsInAll = torrent->tags();
-        }
         else
-        {
             tagsInAll.intersect(torrent->tags());
-        }
-
-        if (firstAutoTMM != torrent->isAutoTMMEnabled())
-            allSameAutoTMM = false;
 
         if (torrent->hasMetadata())
             oneHasMetadata = true;
+
         if (!torrent->isSeed())
         {
             oneNotSeed = true;
@@ -1035,8 +1017,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
         if (oneHasMetadata && oneNotSeed && !allSameSequentialDownloadMode
             && !allSamePrioFirstlast && !allSameSuperSeeding && !allSameCategory
-            && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM)
-            {
+            && needsStart && needsForce && needsPause && needsPreview)
+        {
             break;
         }
     }
@@ -1124,11 +1106,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
         tagsMenu->addAction(action);
     }
-
-    actionAutoTMM->setCheckState(allSameAutoTMM
-        ? (firstAutoTMM ? Qt::Checked : Qt::Unchecked)
-        : Qt::PartiallyChecked);
-    listMenu->addAction(actionAutoTMM);
 
     listMenu->addSeparator();
     if (oneNotSeed)

@@ -70,6 +70,7 @@ namespace
     const QString KEY_SAVEPATHHISTORY = QStringLiteral(SETTINGS_KEY("SavePathHistory"));
     const QString KEY_SAVEPATHHISTORYLENGTH = QStringLiteral(SETTINGS_KEY("SavePathHistoryLength"));
     const QString KEY_REMEMBERLASTSAVEPATH = QStringLiteral(SETTINGS_KEY("RememberLastSavePath"));
+    const QString KEY_AUTOSAVEPATHENABLED = QStringLiteral(SETTINGS_KEY("AutoSavePathEnabled"));
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -114,9 +115,10 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     else
         m_ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
 
-    m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
-    m_ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
-    m_ui->comboTTM->blockSignals(false);
+    const bool autoSavePathEnabled = settings()->loadValue(KEY_AUTOSAVEPATHENABLED, true).toBool();
+    m_ui->checkBoxAutoSavePath->setCheckState(autoSavePathEnabled ? Qt::Checked : Qt::Unchecked);
+    connect(m_ui->checkBoxAutoSavePath, &QCheckBox::stateChanged, this, &AddNewTorrentDialog::onAutoSavePathStateChanged);
+
     populateSavePathComboBox();
     connect(m_ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
 
@@ -307,7 +309,7 @@ bool AddNewTorrentDialog::loadTorrentImpl()
 
     m_ui->labelHashData->setText(infoHash);
     setupTreeview();
-    TMMChanged(m_ui->comboTTM->currentIndex());
+    setAutoSavePathEnabled(m_ui->checkBoxAutoSavePath->checkState() != Qt::Unchecked);
     m_ui->keepTopLevelFolderCheckBox->setEnabled(m_torrentInfo.hasRootFolder());
     return true;
 }
@@ -354,7 +356,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     setWindowTitle(torrentName.isEmpty() ? tr("Magnet link") : torrentName);
 
     setupTreeview();
-    TMMChanged(m_ui->comboTTM->currentIndex());
+    setAutoSavePathEnabled(m_ui->checkBoxAutoSavePath->checkState() != Qt::Unchecked);
 
     BitTorrent::Session::instance()->loadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
@@ -442,9 +444,9 @@ void AddNewTorrentDialog::categoryChanged(int index)
 {
     Q_UNUSED(index);
 
-    if (m_ui->comboTTM->currentIndex() == 1)
+    if (m_ui->checkBoxAutoSavePath->checkState() != Qt::Unchecked)
     {
-        QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
+        const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
         updateDiskSpaceLabel();
     }
@@ -461,6 +463,28 @@ void AddNewTorrentDialog::setSavePath(const QString &newPath)
     }
     m_ui->savePath->setCurrentIndex(existingIndex);
     onSavePathChanged(newPath);
+}
+
+void AddNewTorrentDialog::setAutoSavePathEnabled(const bool enabled)
+{
+    if (enabled)
+    {
+        m_ui->savePath->setEnabled(false);
+        m_ui->savePath->blockSignals(true);
+        m_ui->checkBoxRememberLastSavePath->setEnabled(false);
+        m_ui->savePath->clear();
+        const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
+        m_ui->savePath->addItem(savePath);
+        updateDiskSpaceLabel();
+    }
+    else
+    {
+        populateSavePathComboBox();
+        m_ui->savePath->setEnabled(true);
+        m_ui->savePath->blockSignals(false);
+        m_ui->checkBoxRememberLastSavePath->setEnabled(true);
+        m_ui->savePath->setCurrentIndex((m_oldIndex < m_ui->savePath->count()) ? m_oldIndex : (m_ui->savePath->count() - 1));
+    }
 }
 
 void AddNewTorrentDialog::saveTorrentFile()
@@ -585,15 +609,10 @@ void AddNewTorrentDialog::accept()
     m_torrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
 
     QString savePath = m_ui->savePath->selectedPath();
-    if (m_ui->comboTTM->currentIndex() != 1)
-    { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
-        m_torrentParams.useAutoTMM = TriStateBool::False;
+    if (m_ui->checkBoxAutoSavePath->checkState() == Qt::Unchecked)
+    {
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
-    }
-    else
-    {
-        m_torrentParams.useAutoTMM = TriStateBool::True;
     }
 
     setEnabled(!m_ui->checkBoxNeverShow->isChecked());
@@ -734,24 +753,10 @@ void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &resu
     }
 }
 
-void AddNewTorrentDialog::TMMChanged(int index)
+void AddNewTorrentDialog::onAutoSavePathStateChanged(const int state)
 {
-    if (index != 1)
-    { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
-        populateSavePathComboBox();
-        m_ui->groupBoxSavePath->setEnabled(true);
-        m_ui->savePath->blockSignals(false);
-        m_ui->savePath->setCurrentIndex(m_oldIndex < m_ui->savePath->count() ? m_oldIndex : m_ui->savePath->count() - 1);
-    }
-    else
-    {
-        m_ui->groupBoxSavePath->setEnabled(false);
-        m_ui->savePath->blockSignals(true);
-        m_ui->savePath->clear();
-        QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
-        m_ui->savePath->addItem(savePath);
-        updateDiskSpaceLabel();
-    }
+    setAutoSavePathEnabled(state != Qt::Unchecked);
+    settings()->storeValue(KEY_AUTOSAVEPATHENABLED, (state == Qt::Checked));
 }
 
 void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)

@@ -53,7 +53,6 @@ namespace BitTorrent
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
         TriStateBool createSubfolder;
-        TriStateBool useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
         int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;

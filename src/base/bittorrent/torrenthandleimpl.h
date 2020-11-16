@@ -111,8 +111,6 @@ namespace BitTorrent
 
         bool useTempPath() const override;
 
-        bool isAutoTMMEnabled() const override;
-        void setAutoTMMEnabled(bool enabled) override;
         QString category() const override;
         bool belongsToCategory(const QString &category) const override;
         bool setCategory(const QString &category) override;
@@ -237,7 +235,6 @@ namespace BitTorrent
         void handleAlert(const lt::alert *a);
         void handleStateUpdate(const lt::torrent_status &nativeStatus);
         void handleTempPathChanged();
-        void handleCategorySavePathChanged();
         void handleAppendExtensionToggled();
         void saveResumeData();
         void handleMoveStorageJobFinished(bool hasOutstandingJob);
@@ -313,7 +310,6 @@ namespace BitTorrent
         bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
         bool m_hasFirstLastPiecePriority = false;
-        bool m_useAutoTMM;
         bool m_isStopped;
 
         bool m_unchecked = false;

@@ -877,182 +877,6 @@
               </property>
               <layout class="QVBoxLayout" name="groupSavingManagementLayout">
                <item>
-                <layout class="QGridLayout" name="gridLayout_3">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_40">
-                   <property name="text">
-                    <string>Default Torrent Management Mode:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_70">
-                   <property name="spacing">
-                    <number>10</number>
-                   </property>
-                   <item>
-                    <widget class="QComboBox" name="comboSavingMode">
-                     <property name="toolTip">
-                      <string>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
-Manual: Various torrent properties (e.g. save path) must be assigned manually</string>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Manual</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Automatic</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_160">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="labelTorrentCategoryChanged">
-                   <property name="text">
-                    <string>When Torrent Category changed:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_14">
-                   <item>
-                    <widget class="QComboBox" name="comboTorrentCategoryChanged">
-                     <item>
-                      <property name="text">
-                       <string>Relocate torrent</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Switch torrent to Manual Mode</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_17">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="labelCategoryDefaultPathChanged">
-                   <property name="text">
-                    <string>When Default Save Path changed:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_15">
-                   <item>
-                    <widget class="QComboBox" name="comboCategoryDefaultPathChanged">
-                     <property name="currentIndex">
-                      <number>1</number>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Relocate affected torrents</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Switch affected torrents to Manual Mode</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_18">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="labelCategoryChanged">
-                   <property name="text">
-                    <string>When Category Save Path changed:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <layout class="QHBoxLayout" name="horizontalLayout_17">
-                   <item>
-                    <widget class="QComboBox" name="comboCategoryChanged">
-                     <property name="currentIndex">
-                      <number>1</number>
-                     </property>
-                     <item>
-                      <property name="text">
-                       <string>Relocate affected torrents</string>
-                      </property>
-                     </item>
-                     <item>
-                      <property name="text">
-                       <string>Switch affected torrents to Manual Mode</string>
-                      </property>
-                     </item>
-                    </widget>
-                   </item>
-                   <item>
-                    <spacer name="horizontalSpacer_19">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>40</width>
-                       <height>20</height>
-                      </size>
-                     </property>
-                    </spacer>
-                   </item>
-                  </layout>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkUseSubcategories">
-                 <property name="text">
-                  <string>Use Subcategories</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <layout class="QGridLayout" name="gridLayout_4">
                  <item row="1" column="1">
                   <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
@@ -1095,6 +919,13 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkUseSubcategories">
+                 <property name="text">
+                  <string>Use Subcategories</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>

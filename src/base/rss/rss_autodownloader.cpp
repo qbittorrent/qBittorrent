@@ -397,8 +397,6 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         params.category = rule.assignedCategory();
         params.addPaused = rule.addPaused();
         params.createSubfolder = rule.createSubfolder();
-        if (!rule.savePath().isEmpty())
-            params.useAutoTMM = TriStateBool::False;
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
         BitTorrent::Session::instance()->addTorrent(torrentURL, params);
 

@@ -347,10 +347,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Downloads tab
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboSavingMode, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textTempPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreallocateAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -740,10 +736,6 @@ void OptionsDialog::saveOptions()
     // Downloads preferences
     session->setDefaultSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
     session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
-    session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
-    session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
-    session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
-    session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
     session->setTempPathEnabled(m_ui->checkTempFolder->isChecked());
     session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->selectedPath()));
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
@@ -1007,10 +999,6 @@ void OptionsDialog::loadOptions()
 
     m_ui->textSavePath->setSelectedPath(session->defaultSavePath());
     m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
-    m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
-    m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
-    m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
-    m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
     m_ui->checkTempFolder->setChecked(session->isTempPathEnabled());
     m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
     m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());

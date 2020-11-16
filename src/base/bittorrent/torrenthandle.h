@@ -168,8 +168,6 @@ namespace BitTorrent
 
         virtual bool useTempPath() const = 0;
 
-        virtual bool isAutoTMMEnabled() const = 0;
-        virtual void setAutoTMMEnabled(bool enabled) = 0;
         virtual QString category() const = 0;
         virtual bool belongsToCategory(const QString &category) const = 0;
         virtual bool setCategory(const QString &category) = 0;

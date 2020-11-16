@@ -84,7 +84,7 @@ private slots:
     void onSavePathChanged(const QString &newPath);
     void updateMetadata(const BitTorrent::TorrentInfo &metadata);
     void handleDownloadFinished(const Net::DownloadResult &result);
-    void TMMChanged(int index);
+    void onAutoSavePathStateChanged(int state);
     void categoryChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
 
@@ -104,6 +104,7 @@ private:
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void setSavePath(const QString &newPath);
+    void setAutoSavePathEnabled(bool enabled);
     void saveTorrentFile();
 
     void showEvent(QShowEvent *event) override;

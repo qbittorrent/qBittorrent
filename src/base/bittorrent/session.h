@@ -238,26 +238,6 @@ namespace BitTorrent
         bool addTag(const QString &tag);
         bool removeTag(const QString &tag);
 
-        // Torrent Management Mode subsystem (TMM)
-        //
-        // Each torrent can be either in Manual mode or in Automatic mode
-        // In Manual Mode various torrent properties are set explicitly(eg save path)
-        // In Automatic Mode various torrent properties are set implicitly(eg save path)
-        //     based on the associated category.
-        // In Automatic Mode torrent save path can be changed in following cases:
-        //     1. Default save path changed
-        //     2. Torrent category save path changed
-        //     3. Torrent category changed
-        //     (unless otherwise is specified)
-        bool isAutoTMMDisabledByDefault() const;
-        void setAutoTMMDisabledByDefault(bool value);
-        bool isDisableAutoTMMWhenCategoryChanged() const;
-        void setDisableAutoTMMWhenCategoryChanged(bool value);
-        bool isDisableAutoTMMWhenDefaultSavePathChanged() const;
-        void setDisableAutoTMMWhenDefaultSavePathChanged(bool value);
-        bool isDisableAutoTMMWhenCategorySavePathChanged() const;
-        void setDisableAutoTMMWhenCategorySavePathChanged(bool value);
-
         qreal globalMaxRatio() const;
         void setGlobalMaxRatio(qreal ratio);
         int globalMaxSeedingMinutes() const;
@@ -470,7 +450,6 @@ namespace BitTorrent
         void handleTorrentCategoryChanged(TorrentHandleImpl *const torrent, const QString &oldCategory);
         void handleTorrentTagAdded(TorrentHandleImpl *const torrent, const QString &tag);
         void handleTorrentTagRemoved(TorrentHandleImpl *const torrent, const QString &tag);
-        void handleTorrentSavingModeChanged(TorrentHandleImpl *const torrent);
         void handleTorrentMetadataReceived(TorrentHandleImpl *const torrent);
         void handleTorrentPaused(TorrentHandleImpl *const torrent);
         void handleTorrentResumed(TorrentHandleImpl *const torrent);
@@ -514,7 +493,6 @@ namespace BitTorrent
         void torrentPaused(TorrentHandle *torrent);
         void torrentResumed(TorrentHandle *torrent);
         void torrentSavePathChanged(TorrentHandle *torrent);
-        void torrentSavingModeChanged(TorrentHandle *torrent);
         void torrentStorageMoveFailed(TorrentHandle *torrent, const QString &targetPath, const QString &error);
         void torrentStorageMoveFinished(TorrentHandle *torrent, const QString &newPath);
         void torrentsUpdated(const QVector<TorrentHandle *> &torrents);
@@ -727,10 +705,6 @@ namespace BitTorrent
         CachedSettingValue<QString> m_tempPath;
         CachedSettingValue<bool> m_isSubcategoriesEnabled;
         CachedSettingValue<bool> m_isTempPathEnabled;
-        CachedSettingValue<bool> m_isAutoTMMDisabledByDefault;
-        CachedSettingValue<bool> m_isDisableAutoTMMWhenCategoryChanged;
-        CachedSettingValue<bool> m_isDisableAutoTMMWhenDefaultSavePathChanged;
-        CachedSettingValue<bool> m_isDisableAutoTMMWhenCategorySavePathChanged;
         CachedSettingValue<bool> m_isTrackerEnabled;
         CachedSettingValue<int> m_peerTurnover;
         CachedSettingValue<int> m_peerTurnoverCutoff;
