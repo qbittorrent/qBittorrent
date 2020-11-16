@@ -91,7 +91,8 @@ void ShutdownConfirmDialog::updateSeconds()
 {
     --m_timeout;
     updateText();
-    if (m_timeout == 0) {
+    if (m_timeout == 0)
+    {
         m_timer.stop();
         accept();
     }
@@ -107,7 +108,8 @@ void ShutdownConfirmDialog::initText()
 {
     QPushButton *okButton = m_ui->buttonBox->button(QDialogButtonBox::Ok);
 
-    switch (m_action) {
+    switch (m_action)
+    {
     case ShutdownDialogAction::Exit:
         m_msg = tr("qBittorrent will now exit.");
         okButton->setText(tr("E&xit Now"));

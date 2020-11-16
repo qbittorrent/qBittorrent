@@ -58,7 +58,8 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
     // image.x(0) = pieces.x(0.0 >= x < 1.7)
     // image.x(1) = pieces.x(1.7 >= x < 3.4)
 
-    for (int x = 0; x < reqSize; ++x) {
+    for (int x = 0; x < reqSize; ++x)
+    {
         // R - real
         const float fromR = x * ratio;
         const float toR = (x + 1) * ratio;
@@ -79,15 +80,18 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
         float value = 0;
 
         // case when calculated range is (15.2 >= x < 15.7)
-        if (x2 == toCMinusOne) {
+        if (x2 == toCMinusOne)
+        {
             if (vecin[x2])
                 value += ratio * vecin[x2];
             ++x2;
         }
         // case when (15.2 >= x < 17.8)
-        else {
+        else
+        {
             // subcase (15.2 >= x < 16)
-            if (x2 != fromR) {
+            if (x2 != fromR)
+            {
                 if (vecin[x2])
                     value += (1.0 - (fromR - fromC)) * vecin[x2];
                 ++x2;
@@ -99,7 +103,8 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
                     value += vecin[x2];
 
             // subcase (17 >= x < 17.8)
-            if (x2 == toCMinusOne) {
+            if (x2 == toCMinusOne)
+            {
                 if (vecin[x2])
                     value += (1.0 - (toC - toR)) * vecin[x2];
                 ++x2;
@@ -121,12 +126,14 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
 bool PieceAvailabilityBar::updateImage(QImage &image)
 {
     QImage image2(width() - 2 * borderWidth, 1, QImage::Format_RGB888);
-    if (image2.isNull()) {
+    if (image2.isNull())
+    {
         qDebug() << "QImage image2() allocation failed, width():" << width();
         return false;
     }
 
-    if (m_pieces.empty()) {
+    if (m_pieces.empty())
+    {
         image2.fill(backgroundColor());
         image = image2;
         return true;
@@ -135,7 +142,8 @@ bool PieceAvailabilityBar::updateImage(QImage &image)
     QVector<float> scaledPieces = intToFloatVector(m_pieces, image2.width());
 
     // filling image
-    for (int x = 0; x < scaledPieces.size(); ++x) {
+    for (int x = 0; x < scaledPieces.size(); ++x)
+    {
         float piecesToValue = scaledPieces.at(x);
         image2.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
     }

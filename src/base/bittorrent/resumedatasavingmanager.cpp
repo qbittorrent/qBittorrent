@@ -48,7 +48,8 @@ void ResumeDataSavingManager::save(const QString &filename, const QByteArray &da
     const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
     QSaveFile file {filepath};
-    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit()) {
+    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit())
+    {
         LogMsg(tr("Couldn't save data to '%1'. Error: %2")
             .arg(filepath, file.errorString()), Log::CRITICAL);
     }
@@ -59,14 +60,16 @@ void ResumeDataSavingManager::save(const QString &filename, const std::shared_pt
     const QString filepath = m_resumeDataDir.absoluteFilePath(filename);
 
     QSaveFile file {filepath};
-    if (!file.open(QIODevice::WriteOnly)) {
+    if (!file.open(QIODevice::WriteOnly))
+    {
         LogMsg(tr("Couldn't save data to '%1'. Error: %2")
             .arg(filepath, file.errorString()), Log::CRITICAL);
         return;
     }
 
     lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, *data);
-    if ((file.error() != QFileDevice::NoError) || !file.commit()) {
+    if ((file.error() != QFileDevice::NoError) || !file.commit())
+    {
         LogMsg(tr("Couldn't save data to '%1'. Error: %2")
             .arg(filepath, file.errorString()), Log::CRITICAL);
     }

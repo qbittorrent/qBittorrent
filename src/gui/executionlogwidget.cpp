@@ -89,7 +89,8 @@ void ExecutionLogWidget::displayContextMenu(const QPoint &pos, const LogListView
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // only show copy action if any of the row is selected
-    if (view->currentIndex().isValid()) {
+    if (view->currentIndex().isValid())
+    {
         const QAction *copyAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
         connect(copyAct, &QAction::triggered, view, &LogListView::copySelection);
     }

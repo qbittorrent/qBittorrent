@@ -59,7 +59,8 @@ namespace
 #if (LIBTORRENT_VERSION_NUM >= 20000)
     lt::create_flags_t toNativeTorrentFormatFlag(const BitTorrent::TorrentFormat torrentFormat)
     {
-        switch (torrentFormat) {
+        switch (torrentFormat)
+        {
         case BitTorrent::TorrentFormat::V1:
             return lt::create_torrent::v1_only;
         case BitTorrent::TorrentFormat::Hybrid:
@@ -102,20 +103,24 @@ void TorrentCreatorThread::run()
 
     emit updateProgress(0);
 
-    try {
+    try
+    {
         const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + '/';
 
         // Adding files to the torrent
         lt::file_storage fs;
-        if (QFileInfo(m_params.inputPath).isFile()) {
+        if (QFileInfo(m_params.inputPath).isFile())
+        {
             lt::add_files(fs, Utils::Fs::toNativePath(m_params.inputPath).toStdString(), fileFilter);
         }
-        else {
+        else
+        {
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.inputPath};
 
             QDirIterator dirIter(m_params.inputPath, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
-            while (dirIter.hasNext()) {
+            while (dirIter.hasNext())
+            {
                 dirIter.next();
                 dirs += dirIter.filePath();
             }
@@ -124,11 +129,13 @@ void TorrentCreatorThread::run()
             QStringList fileNames;
             QHash<QString, qint64> fileSizeMap;
 
-            for (const auto &dir : asConst(dirs)) {
+            for (const auto &dir : asConst(dirs))
+            {
                 QStringList tmpNames;  // natural sort files within each dir
 
                 QDirIterator fileIter(dir, QDir::Files);
-                while (fileIter.hasNext()) {
+                while (fileIter.hasNext())
+                {
                     fileIter.next();
 
                     const QString relFilePath = fileIter.filePath().mid(parentPath.length());
@@ -154,14 +161,16 @@ void TorrentCreatorThread::run()
 #endif
 
         // Add url seeds
-        for (QString seed : asConst(m_params.urlSeeds)) {
+        for (QString seed : asConst(m_params.urlSeeds))
+        {
             seed = seed.trimmed();
             if (!seed.isEmpty())
                 newTorrent.add_url_seed(seed.toStdString());
         }
 
         int tier = 0;
-        for (const QString &tracker : asConst(m_params.trackers)) {
+        for (const QString &tracker : asConst(m_params.trackers))
+        {
             if (tracker.isEmpty())
                 ++tier;
             else
@@ -195,16 +204,20 @@ void TorrentCreatorThread::run()
 
         // create the torrent
         QFile outfile {m_params.savePath};
-        if (!outfile.open(QIODevice::WriteOnly)) {
-            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
+        if (!outfile.open(QIODevice::WriteOnly))
+        {
+            throw RuntimeError
+            {tr("Create new torrent file failed. Reason: %1")
                 .arg(outfile.errorString())};
         }
 
         if (isInterruptionRequested()) return;
 
         lt::bencode(Utils::IO::FileDeviceOutputIterator {outfile}, entry);
-        if (outfile.error() != QFileDevice::NoError) {
-            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
+        if (outfile.error() != QFileDevice::NoError)
+        {
+            throw RuntimeError
+            {tr("Create new torrent file failed. Reason: %1")
                 .arg(outfile.errorString())};
         }
         outfile.close();
@@ -212,7 +225,8 @@ void TorrentCreatorThread::run()
         emit updateProgress(100);
         emit creationSuccess(m_params.savePath, parentPath);
     }
-    catch (const std::exception &e) {
+    catch (const std::exception &e)
+    {
         emit creationFailure(e.what());
     }
 }

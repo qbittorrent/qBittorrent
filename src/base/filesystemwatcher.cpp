@@ -76,7 +76,8 @@ void FileSystemWatcher::addPath(const QString &path)
     if (!dir.exists()) return;
 
     // Check if the path points to a network file system or not
-    if (Utils::Fs::isNetworkFileSystem(path)) {
+    if (Utils::Fs::isNetworkFileSystem(path))
+    {
         // Network mode
         LogMsg(tr("Watching remote folder: \"%1\"").arg(Utils::Fs::toNativePath(path)));
         m_watchedFolders << dir;
@@ -94,7 +95,8 @@ void FileSystemWatcher::addPath(const QString &path)
 
 void FileSystemWatcher::removePath(const QString &path)
 {
-    if (m_watchedFolders.removeOne(path)) {
+    if (m_watchedFolders.removeOne(path))
+    {
         if (m_watchedFolders.isEmpty())
             m_watchTimer.stop();
         return;
@@ -125,12 +127,14 @@ void FileSystemWatcher::processPartialTorrents()
         if (!QFile::exists(torrentPath))
             return true;
 
-        if (BitTorrent::TorrentInfo::loadFromFile(torrentPath).isValid()) {
+        if (BitTorrent::TorrentInfo::loadFromFile(torrentPath).isValid())
+        {
             noLongerPartial << torrentPath;
             return true;
         }
 
-        if (value >= MAX_PARTIAL_RETRIES) {
+        if (value >= MAX_PARTIAL_RETRIES)
+        {
             QFile::rename(torrentPath, torrentPath + ".qbt_rejected");
             return true;
         }
@@ -140,11 +144,13 @@ void FileSystemWatcher::processPartialTorrents()
     });
 
     // Stop the partial timer if necessary
-    if (m_partialTorrents.empty()) {
+    if (m_partialTorrents.empty())
+    {
         m_partialTorrentTimer.stop();
         qDebug("No longer any partial torrent.");
     }
-    else {
+    else
+    {
         qDebug("Still %d partial torrents after delayed processing.", m_partialTorrents.count());
         m_partialTorrentTimer.start(WATCH_INTERVAL);
     }
@@ -158,7 +164,8 @@ void FileSystemWatcher::processTorrentsInDir(const QDir &dir)
 {
     QStringList torrents;
     const QStringList files = dir.entryList({"*.torrent", "*.magnet"}, QDir::Files);
-    for (const QString &file : files) {
+    for (const QString &file : files)
+    {
         const QString fileAbsPath = dir.absoluteFilePath(file);
         if (file.endsWith(".magnet", Qt::CaseInsensitive))
             torrents << fileAbsPath;

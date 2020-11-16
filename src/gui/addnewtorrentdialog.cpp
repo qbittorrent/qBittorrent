@@ -230,7 +230,8 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
 {
     auto *dlg = new AddNewTorrentDialog(inParams, parent);
 
-    if (Net::DownloadManager::hasSupportedScheme(source)) {
+    if (Net::DownloadManager::hasSupportedScheme(source))
+    {
         // Launch downloader
         Net::DownloadManager::instance()->download(
                     Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
@@ -262,7 +263,8 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
 
     QString error;
     m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(decodedPath, &error);
-    if (!m_torrentInfo.isValid()) {
+    if (!m_torrentInfo.isValid())
+    {
         RaisedMessageBox::critical(this, tr("Invalid torrent")
             , tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
                 .arg(Utils::Fs::toNativePath(decodedPath), error));
@@ -280,19 +282,24 @@ bool AddNewTorrentDialog::loadTorrentImpl()
     const BitTorrent::InfoHash infoHash = m_torrentInfo.hash();
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash)) {
+    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+    {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
-        if (torrent) {
-            if (torrent->isPrivate() || m_torrentInfo.isPrivate()) {
+        if (torrent)
+        {
+            if (torrent->isPrivate() || m_torrentInfo.isPrivate())
+            {
                 RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
-            else {
+            else
+            {
                 torrent->addTrackers(m_torrentInfo.trackers());
                 torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
                 RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
-        else {
+        else
+        {
             RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent is already queued for processing."), QMessageBox::Ok);
         }
         return false;
@@ -307,7 +314,8 @@ bool AddNewTorrentDialog::loadTorrentImpl()
 
 bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 {
-    if (!magnetUri.isValid()) {
+    if (!magnetUri.isValid())
+    {
         RaisedMessageBox::critical(this, tr("Invalid magnet link"), tr("This magnet link was not recognized"));
         return false;
     }
@@ -316,19 +324,24 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     const BitTorrent::InfoHash infoHash = magnetUri.hash();
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash)) {
+    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+    {
         BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
-        if (torrent) {
-            if (torrent->isPrivate()) {
+        if (torrent)
+        {
+            if (torrent->isPrivate())
+            {
                 RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
-            else {
+            else
+            {
                 torrent->addTrackers(magnetUri.trackers());
                 torrent->addUrlSeeds(magnetUri.urlSeeds());
                 RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
             }
         }
-        else {
+        else
+        {
             RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link is already queued for processing."), QMessageBox::Ok);
         }
         return false;
@@ -395,15 +408,18 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     // Determine torrent size
     qlonglong torrentSize = 0;
 
-    if (m_hasMetadata) {
-        if (m_contentModel) {
+    if (m_hasMetadata)
+    {
+        if (m_contentModel)
+        {
             const QVector<BitTorrent::DownloadPriority> priorities = m_contentModel->model()->getFilePriorities();
             Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
             for (int i = 0; i < priorities.size(); ++i)
                 if (priorities[i] > BitTorrent::DownloadPriority::Ignored)
                     torrentSize += m_torrentInfo.fileSize(i);
         }
-        else {
+        else
+        {
             torrentSize = m_torrentInfo.totalSize();
         }
     }
@@ -426,7 +442,8 @@ void AddNewTorrentDialog::categoryChanged(int index)
 {
     Q_UNUSED(index);
 
-    if (m_ui->comboTTM->currentIndex() == 1) {
+    if (m_ui->comboTTM->currentIndex() == 1)
+    {
         QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
         updateDiskSpaceLabel();
@@ -436,7 +453,8 @@ void AddNewTorrentDialog::categoryChanged(int index)
 void AddNewTorrentDialog::setSavePath(const QString &newPath)
 {
     int existingIndex = indexOfSavePath(newPath);
-    if (existingIndex < 0) {
+    if (existingIndex < 0)
+    {
         // New path, prepend to combo box
         m_ui->savePath->insertItem(0, newPath);
         existingIndex = 0;
@@ -461,10 +479,12 @@ void AddNewTorrentDialog::saveTorrentFile()
     if (!path.endsWith(torrentFileExtension, Qt::CaseInsensitive))
         path += torrentFileExtension;
 
-    try {
+    try
+    {
         m_torrentInfo.saveToFile(path);
     }
-    catch (const RuntimeError &err) {
+    catch (const RuntimeError &err)
+    {
         QMessageBox::critical(this, tr("I/O Error"), err.message());
     }
 }
@@ -494,7 +514,8 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 
     const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
     {
-        for (const QModelIndex &index : selectedRows) {
+        for (const QModelIndex &index : selectedRows)
+        {
             m_contentModel->setData(
                 m_contentModel->index(index.row(), PRIORITY, index.parent())
                 , static_cast<int>(prio));
@@ -504,7 +525,8 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (selectedRows.size() == 1) {
+    if (selectedRows.size() == 1)
+    {
         QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
         connect(actRename, &QAction::triggered, this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
 
@@ -563,12 +585,14 @@ void AddNewTorrentDialog::accept()
     m_torrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
 
     QString savePath = m_ui->savePath->selectedPath();
-    if (m_ui->comboTTM->currentIndex() != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
+    if (m_ui->comboTTM->currentIndex() != 1)
+    { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         m_torrentParams.useAutoTMM = TriStateBool::False;
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
     }
-    else {
+    else
+    {
         m_torrentParams.useAutoTMM = TriStateBool::True;
     }
 
@@ -586,7 +610,8 @@ void AddNewTorrentDialog::accept()
 
 void AddNewTorrentDialog::reject()
 {
-    if (!m_hasMetadata) {
+    if (!m_hasMetadata)
+    {
         setMetadataProgressIndicator(false);
         BitTorrent::Session::instance()->cancelLoadMetadata(m_magnetURI.hash());
     }
@@ -600,7 +625,8 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
 
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
 
-    if (!metadata.isValid()) {
+    if (!metadata.isValid())
+    {
         RaisedMessageBox::critical(this, tr("I/O Error"), ("Invalid metadata."));
         setMetadataProgressIndicator(false, tr("Invalid metadata"));
         return;
@@ -628,11 +654,13 @@ void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, co
 
 void AddNewTorrentDialog::setupTreeview()
 {
-    if (!m_hasMetadata) {
+    if (!m_hasMetadata)
+    {
         m_ui->labelCommentData->setText(tr("Not Available", "This comment is unavailable"));
         m_ui->labelDateData->setText(tr("Not Available", "This date is unavailable"));
     }
-    else {
+    else
+    {
         // Set dialog title
         setWindowTitle(m_torrentInfo.name());
 
@@ -662,7 +690,8 @@ void AddNewTorrentDialog::setupTreeview()
 
         // Expand single-item folders recursively
         QModelIndex currentIndex;
-        while (m_contentModel->rowCount(currentIndex) == 1) {
+        while (m_contentModel->rowCount(currentIndex) == 1)
+        {
             currentIndex = m_contentModel->index(0, 0, currentIndex);
             m_ui->contentTreeView->setExpanded(currentIndex, true);
         }
@@ -674,10 +703,12 @@ void AddNewTorrentDialog::setupTreeview()
 void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &result)
 {
     QString error;
-    switch (result.status) {
+    switch (result.status)
+    {
     case Net::DownloadStatus::Success:
         m_torrentInfo = BitTorrent::TorrentInfo::load(result.data, &error);
-        if (!m_torrentInfo.isValid()) {
+        if (!m_torrentInfo.isValid())
+        {
             RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load from URL: %1.\nError: %2")
                                        .arg(result.url, error));
             return;
@@ -705,13 +736,15 @@ void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &resu
 
 void AddNewTorrentDialog::TMMChanged(int index)
 {
-    if (index != 1) { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
+    if (index != 1)
+    { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
         populateSavePathComboBox();
         m_ui->groupBoxSavePath->setEnabled(true);
         m_ui->savePath->blockSignals(false);
         m_ui->savePath->setCurrentIndex(m_oldIndex < m_ui->savePath->count() ? m_oldIndex : m_ui->savePath->count() - 1);
     }
-    else {
+    else
+    {
         m_ui->groupBoxSavePath->setEnabled(false);
         m_ui->savePath->blockSignals(true);
         m_ui->savePath->clear();

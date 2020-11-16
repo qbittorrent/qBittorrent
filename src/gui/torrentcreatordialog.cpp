@@ -130,7 +130,8 @@ int TorrentCreatorDialog::getPieceSize() const
 #if (LIBTORRENT_VERSION_NUM >= 20000)
 BitTorrent::TorrentFormat TorrentCreatorDialog::getTorrentFormat() const
 {
-    switch (m_ui->comboTorrentFormat->currentIndex()) {
+    switch (m_ui->comboTorrentFormat->currentIndex())
+    {
     case 0:
         return BitTorrent::TorrentFormat::V2;
     case 1:
@@ -152,7 +153,8 @@ void TorrentCreatorDialog::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
 
-    if (event->mimeData()->hasUrls()) {
+    if (event->mimeData()->hasUrls())
+    {
         // only take the first one
         QUrl firstItem = event->mimeData()->urls().first();
         QString path = (firstItem.scheme().compare("file", Qt::CaseInsensitive) == 0)
@@ -174,7 +176,8 @@ void TorrentCreatorDialog::onCreateButtonClicked()
 
     // test if readable
     const QFileInfo fi(input);
-    if (!fi.isReadable()) {
+    if (!fi.isReadable())
+    {
         QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Path to file/folder is not readable."));
         return;
     }
@@ -195,7 +198,8 @@ void TorrentCreatorDialog::onCreateButtonClicked()
 
     const QStringList trackers = m_ui->trackersList->toPlainText().trimmed()
         .replace(QRegularExpression("\n\n[\n]+"), "\n\n").split('\n');
-    const BitTorrent::TorrentCreatorParams params {
+    const BitTorrent::TorrentCreatorParams params
+    {
         m_ui->checkPrivate->isChecked()
 #if (LIBTORRENT_VERSION_NUM >= 20000)
         , getTorrentFormat()
@@ -227,10 +231,12 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
 {
     // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
-    if (m_ui->checkStartSeeding->isChecked()) {
+    if (m_ui->checkStartSeeding->isChecked())
+    {
         // Create save path temp data
         const BitTorrent::TorrentInfo info = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
-        if (!info.isValid()) {
+        if (!info.isValid())
+        {
             QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
             return;
         }
@@ -238,7 +244,8 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
         BitTorrent::AddTorrentParams params;
         params.savePath = branchPath;
         params.skipChecking = true;
-        if (m_ui->checkIgnoreShareLimits->isChecked()) {
+        if (m_ui->checkIgnoreShareLimits->isChecked())
+        {
             params.ratioLimit = BitTorrent::TorrentHandle::NO_RATIO_LIMIT;
             params.seedingTimeLimit = BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT;
         }

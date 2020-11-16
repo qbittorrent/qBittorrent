@@ -36,7 +36,8 @@ SpeedMonitor::SpeedMonitor()
 
 void SpeedMonitor::addSample(const SpeedSample &sample)
 {
-    if (m_speedSamples.size() >= MAX_SAMPLES) {
+    if (m_speedSamples.size() >= MAX_SAMPLES)
+    {
         m_sum -= m_speedSamples.front();
     }
 

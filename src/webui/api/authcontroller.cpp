@@ -38,7 +38,8 @@
 
 void AuthController::loginAction()
 {
-    if (sessionManager()->session()) {
+    if (sessionManager()->session())
+    {
         setResult(QLatin1String("Ok."));
         return;
     }
@@ -47,7 +48,8 @@ void AuthController::loginAction()
     const QString usernameFromWeb {params()["username"]};
     const QString passwordFromWeb {params()["password"]};
 
-    if (isBanned()) {
+    if (isBanned())
+    {
         LogMsg(tr("WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2")
                 .arg(clientAddr, usernameFromWeb)
             , Log::WARNING);
@@ -62,14 +64,16 @@ void AuthController::loginAction()
     const bool usernameEqual = Utils::Password::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
     const bool passwordEqual = Utils::Password::PBKDF2::verify(secret, passwordFromWeb);
 
-    if (usernameEqual && passwordEqual) {
+    if (usernameEqual && passwordEqual)
+    {
         m_clientFailedLogins.remove(clientAddr);
 
         sessionManager()->sessionStart();
         setResult(QLatin1String("Ok."));
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
-    else {
+    else
+    {
         if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
             increaseFailedAttempts();
         setResult(QLatin1String("Fails."));
@@ -91,7 +95,8 @@ bool AuthController::isBanned() const
         return false;
 
     bool isBanned = (failedLoginIter->banTimer.remainingTime() >= 0);
-    if (isBanned && failedLoginIter->banTimer.hasExpired()) {
+    if (isBanned && failedLoginIter->banTimer.hasExpired())
+    {
         m_clientFailedLogins.erase(failedLoginIter);
         isBanned = false;
     }
@@ -111,7 +116,8 @@ void AuthController::increaseFailedAttempts()
     FailedLogin &failedLogin = m_clientFailedLogins[sessionManager()->clientId()];
     ++failedLogin.failedAttemptsCount;
 
-    if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount()) {
+    if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount())
+    {
         // Max number of failed attempts reached
         // Start ban period
         failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());

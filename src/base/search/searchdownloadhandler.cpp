@@ -42,7 +42,8 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QStri
     m_downloadProcess->setEnvironment(QProcess::systemEnvironment());
     connect(m_downloadProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
             , this, &SearchDownloadHandler::downloadProcessFinished);
-    const QStringList params {
+    const QStringList params
+    {
         Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2dl.py"),
         siteUrl,
         url
@@ -55,7 +56,8 @@ void SearchDownloadHandler::downloadProcessFinished(int exitcode)
 {
     QString path;
 
-    if ((exitcode == 0) && (m_downloadProcess->exitStatus() == QProcess::NormalExit)) {
+    if ((exitcode == 0) && (m_downloadProcess->exitStatus() == QProcess::NormalExit))
+    {
         const QString line = QString::fromUtf8(m_downloadProcess->readAllStandardOutput()).trimmed();
         const QVector<QStringRef> parts = line.splitRef(' ');
         if (parts.size() == 2)

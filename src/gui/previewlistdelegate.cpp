@@ -54,12 +54,14 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     QStyleOptionViewItem opt = QItemDelegate::setOptions(index, option);
     drawBackground(painter, opt, index);
 
-    switch (index.column()) {
+    switch (index.column())
+    {
     case PreviewSelectDialog::SIZE:
         QItemDelegate::drawDisplay(painter, opt, option.rect, Utils::Misc::friendlyUnit(index.data().toLongLong()));
         break;
 
-    case PreviewSelectDialog::PROGRESS: {
+    case PreviewSelectDialog::PROGRESS:
+    {
             const qreal progress = (index.data().toReal() * 100);
 
             QStyleOptionProgressBar newopt;

@@ -115,7 +115,8 @@ QValidator::State Private::FileSystemPathValidator::validate(QString &input, int
     // components.size() - 1 because when path ends with QDir::separator(), we will not see the last
     // character in the components array, yet everything past the one before the last delimiter
     // belongs to the last component
-    for (; (componentWithCursorIndex < components.size() - 1) && (pathLength < pos); ++componentWithCursorIndex) {
+    for (; (componentWithCursorIndex < components.size() - 1) && (pathLength < pos); ++componentWithCursorIndex)
+    {
         pathLength = components[componentWithCursorIndex].position() + components[componentWithCursorIndex].size();
     }
 
@@ -140,12 +141,14 @@ QValidator::State Private::FileSystemPathValidator::validate(const QString &path
     if (pathComponents.empty())
         return strict ? QValidator::Invalid : QValidator::Intermediate;
 
-    for (int i = firstComponentToTest; i < lastComponentToTest; ++i) {
+    for (int i = firstComponentToTest; i < lastComponentToTest; ++i)
+    {
         if (pathComponents[i].isEmpty()) continue;
 
         QStringRef componentPath(&path, 0, pathComponents[i].position() + pathComponents[i].size());
         m_lastTestResult = testPath(componentPath, false);
-        if (m_lastTestResult != TestResult::OK) {
+        if (m_lastTestResult != TestResult::OK)
+        {
             m_lastTestedPath = componentPath.toString();
             return strict ? QValidator::Invalid : QValidator::Intermediate;
         }
@@ -155,7 +158,8 @@ QValidator::State Private::FileSystemPathValidator::validate(const QString &path
     QStringRef componentPath(&path, 0, pathComponents[lastComponentToTest].position()
                                 + pathComponents[lastComponentToTest].size());
     m_lastTestResult = testPath(componentPath, finalPath);
-    if (m_lastTestResult != TestResult::OK) {
+    if (m_lastTestResult != TestResult::OK)
+    {
         m_lastTestedPath = componentPath.toString();
         return strict ? QValidator::Invalid : QValidator::Intermediate;
     }
@@ -172,7 +176,8 @@ Private::FileSystemPathValidator::testPath(const QStringRef &path, bool pathIsCo
     if ((!pathIsComplete || m_directoriesOnly) && !fi.isDir())
         return TestResult::NotADir;
 
-    if (pathIsComplete) {
+    if (pathIsComplete)
+    {
         if (!m_directoriesOnly && fi.isDir())
             return TestResult::NotAFile;
 
@@ -249,27 +254,33 @@ QWidget *Private::FileLineEdit::widget()
 void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 {
     QLineEdit::keyPressEvent(e);
-    if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL)) {
+    if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL))
+    {
         m_completerModel->setRootPath(QFileInfo(text()).absoluteDir().absolutePath());
         showCompletionPopup();
     }
 
     auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
-    if (validator) {
+    if (validator)
+    {
         FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
         QValidator::State lastState = validator->lastValidationState();
-        if (lastTestResult == FileSystemPathValidator::TestResult::OK) {
+        if (lastTestResult == FileSystemPathValidator::TestResult::OK)
+        {
             delete m_warningAction;
             m_warningAction = nullptr;
         }
-        else {
-            if (!m_warningAction) {
+        else
+        {
+            if (!m_warningAction)
+            {
                 m_warningAction = new QAction(this);
                 addAction(m_warningAction, QLineEdit::TrailingPosition);
             }
         }
 
-        if (m_warningAction) {
+        if (m_warningAction)
+        {
             if (lastState == QValidator::Invalid)
                 m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
             else if (lastState == QValidator::Intermediate)
@@ -284,7 +295,8 @@ void Private::FileLineEdit::contextMenuEvent(QContextMenuEvent *event)
     QMenu *menu = createStandardContextMenu();
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (m_browseAction) {
+    if (m_browseAction)
+    {
         menu->addSeparator();
         menu->addAction(m_browseAction);
     }
@@ -301,7 +313,8 @@ void Private::FileLineEdit::showCompletionPopup()
 QString Private::FileLineEdit::warningText(FileSystemPathValidator::TestResult r)
 {
     using TestResult = FileSystemPathValidator::TestResult;
-    switch (r) {
+    switch (r)
+    {
     case TestResult::DoesNotExist:
         return tr("'%1' does not exist");
     case TestResult::NotADir:

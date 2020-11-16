@@ -45,7 +45,8 @@ namespace
     QString getTagFilter(const TagFilterProxyModel *const model, const QModelIndex &index)
     {
         QString tagFilter; // Defaults to All
-        if (index.isValid()) {
+        if (index.isValid())
+        {
             if (index.row() == 1)
                 tagFilter = "";  // Untagged
             else if (index.row() > 1)
@@ -113,7 +114,8 @@ void TagFilterWidget::showMenu(QPoint)
     connect(addAct, &QAction::triggered, this, &TagFilterWidget::addTag);
 
     const auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
+    {
         const QAction *removeAct = menu->addAction(
             UIThemeManager::instance()->getIcon("list-remove")
             , tr("Remove tag"));
@@ -155,7 +157,8 @@ void TagFilterWidget::callUpdateGeometry()
 
 QSize TagFilterWidget::sizeHint() const
 {
-    return {
+    return
+    {
         // Width should be exactly the width of the content
         sizeHintForColumn(0),
         // Height should be exactly the height of the content
@@ -181,12 +184,15 @@ QString TagFilterWidget::askTagName()
     bool ok = false;
     QString tag = "";
     bool invalid = true;
-    while (invalid) {
+    while (invalid)
+    {
         invalid = false;
         tag = AutoExpandableDialog::getText(
             this, tr("New Tag"), tr("Tag:"), QLineEdit::Normal, tag, &ok).trimmed();
-        if (ok && !tag.isEmpty()) {
-            if (!BitTorrent::Session::isValidTag(tag)) {
+        if (ok && !tag.isEmpty())
+        {
+            if (!BitTorrent::Session::isValidTag(tag))
+            {
                 QMessageBox::warning(
                     this, tr("Invalid tag name")
                     , tr("Tag name '%1' is invalid").arg(tag));
@@ -212,7 +218,8 @@ void TagFilterWidget::addTag()
 void TagFilterWidget::removeTag()
 {
     const auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
+    {
         BitTorrent::Session::instance()->removeTag(
             static_cast<TagFilterProxyModel *>(model())->tag(selectedRows.first()));
         updateGeometry();

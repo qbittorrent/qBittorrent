@@ -81,11 +81,14 @@ UIThemeManager::UIThemeManager()
 #endif
 {
     const Preferences *const pref = Preferences::instance();
-    if (m_useCustomTheme) {
-        if (!QResource::registerResource(pref->customUIThemePath(), "/uitheme")) {
+    if (m_useCustomTheme)
+    {
+        if (!QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
+        {
             LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
         }
-        else {
+        else
+        {
             loadColorsFromJSONConfig();
             applyPalette();
             applyStyleSheet();
@@ -101,7 +104,8 @@ UIThemeManager *UIThemeManager::instance()
 void UIThemeManager::applyStyleSheet() const
 {
     QFile qssFile(":uitheme/stylesheet.qss");
-    if (!qssFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!qssFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
         qApp->setStyleSheet({});
         LogMsg(tr("Couldn't apply theme stylesheet. stylesheet.qss couldn't be opened. Reason: %1").arg(qssFile.errorString())
                , Log::WARNING);
@@ -114,7 +118,8 @@ void UIThemeManager::applyStyleSheet() const
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    if (m_useSystemTheme) {
+    if (m_useSystemTheme)
+    {
         QIcon icon = QIcon::fromTheme(iconId);
         if (icon.name() != iconId)
             icon = QIcon::fromTheme(fallback, QIcon(getIconPathFromResources(iconId, fallback)));
@@ -155,9 +160,11 @@ QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) c
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    if (m_useSystemTheme) {
+    if (m_useSystemTheme)
+    {
         QString path = Utils::Fs::tempPath() + iconId + QLatin1String(".png");
-        if (!QFile::exists(path)) {
+        if (!QFile::exists(path))
+        {
             const QIcon icon = QIcon::fromTheme(iconId);
             if (!icon.isNull())
                 icon.pixmap(32).save(path);
@@ -173,12 +180,14 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
 
 QString UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
 {
-    if (m_useCustomTheme) {
+    if (m_useCustomTheme)
+    {
         const QString customIcon = findIcon(iconId, THEME_ICONS_DIR);
         if (!customIcon.isEmpty())
             return customIcon;
 
-        if (!fallback.isEmpty()) {
+        if (!fallback.isEmpty())
+        {
             const QString fallbackIcon = findIcon(fallback, THEME_ICONS_DIR);
             if (!fallbackIcon.isEmpty())
                 return fallbackIcon;
@@ -191,26 +200,31 @@ QString UIThemeManager::getIconPathFromResources(const QString &iconId, const QS
 void UIThemeManager::loadColorsFromJSONConfig()
 {
     QFile configFile(CONFIG_FILE_NAME);
-    if (!configFile.open(QIODevice::ReadOnly)) {
+    if (!configFile.open(QIODevice::ReadOnly))
+    {
         LogMsg(tr("Failed to open \"%1\". Reason: %2").arg(CONFIG_FILE_NAME, configFile.errorString()), Log::WARNING);
         return;
     }
 
     QJsonParseError jsonError;
     const QJsonDocument configJsonDoc = QJsonDocument::fromJson(configFile.readAll(), &jsonError);
-    if (jsonError.error != QJsonParseError::NoError) {
+    if (jsonError.error != QJsonParseError::NoError)
+    {
         LogMsg(tr("\"%1\" has invalid format. Reason: %2").arg(CONFIG_FILE_NAME, jsonError.errorString()), Log::WARNING);
         return;
     }
-    if (!configJsonDoc.isObject()) {
+    if (!configJsonDoc.isObject())
+    {
         LogMsg(tr("\"%1\" has invalid format. Reason: %2").arg(CONFIG_FILE_NAME, tr("Root JSON value is not an object")), Log::WARNING);
         return;
     }
 
     const QJsonObject colors = configJsonDoc.object().value("colors").toObject();
-    for (auto color = colors.constBegin(); color != colors.constEnd(); ++color) {
+    for (auto color = colors.constBegin(); color != colors.constEnd(); ++color)
+    {
         const QColor providedColor(color.value().toString());
-        if (!providedColor.isValid()) {
+        if (!providedColor.isValid())
+        {
             LogMsg(tr("Invalid color for ID \"%1\" is provided by theme").arg(color.key()), Log::WARNING);
             continue;
         }
@@ -257,7 +271,8 @@ void UIThemeManager::applyPalette() const
     };
 
     QPalette palette = qApp->palette();
-    for (const ColorDescriptor &colorDescriptor : paletteColorDescriptors) {
+    for (const ColorDescriptor &colorDescriptor : paletteColorDescriptors)
+    {
         const QColor defaultColor = palette.color(colorDescriptor.colorGroup, colorDescriptor.colorRole);
         const QColor newColor = getColor(colorDescriptor.id, defaultColor);
         palette.setColor(colorDescriptor.colorGroup, colorDescriptor.colorRole, newColor);

@@ -39,7 +39,8 @@ namespace
 {
     void exportWebUIHttpsFiles()
     {
-        const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath) {
+        const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath)
+        {
             SettingsStorage *settingsStorage {SettingsStorage::instance()};
             const QByteArray oldData {settingsStorage->loadValue(oldKey).toByteArray()};
             const QString newData {settingsStorage->loadValue(newKey).toString()};
@@ -49,11 +50,13 @@ namespace
                 return;
 
             QFile file(savePath);
-            if (!file.open(QIODevice::WriteOnly)) {
+            if (!file.open(QIODevice::WriteOnly))
+            {
                 LogMsg(errorMsgFormat.arg(savePath, file.errorString()) , Log::WARNING);
                 return;
             }
-            if (file.write(oldData) != oldData.size()) {
+            if (file.write(oldData) != oldData.size())
+            {
                 file.close();
                 Utils::Fs::forceRemove(savePath);
                 LogMsg(errorMsgFormat.arg(savePath, QLatin1String("Write incomplete.")) , Log::WARNING);
@@ -92,12 +95,14 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
         QVariant current;
     };
 
-    const QVector<DefaultValue> changedDefaults {
+    const QVector<DefaultValue> changedDefaults
+    {
         {QLatin1String {"BitTorrent/Session/QueueingSystemEnabled"}, true, false}
     };
 
     SettingsStorage *settingsStorage {SettingsStorage::instance()};
-    for (auto it = changedDefaults.cbegin(); it != changedDefaults.cend(); ++it) {
+    for (auto it = changedDefaults.cbegin(); it != changedDefaults.cend(); ++it)
+    {
         if (settingsStorage->loadValue(it->name).isNull())
             settingsStorage->storeValue(it->name, (mode == DefaultPreferencesMode::Legacy ? it->legacy : it->current));
     }

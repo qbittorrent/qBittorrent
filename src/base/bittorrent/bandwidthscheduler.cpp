@@ -65,13 +65,16 @@ bool BandwidthScheduler::isTimeForAlternative() const
     const int day = QDate::currentDate().dayOfWeek();
     bool alternative = false;
 
-    if (start > end) {
+    if (start > end)
+    {
         std::swap(start, end);
         alternative = true;
     }
 
-    if ((start <= now) && (end >= now)) {
-        switch (schedulerDays) {
+    if ((start <= now) && (end >= now))
+    {
+        switch (schedulerDays)
+        {
         case EVERY_DAY:
             alternative = !alternative;
             break;
@@ -96,7 +99,8 @@ void BandwidthScheduler::onTimeout()
 {
     const bool alternative = isTimeForAlternative();
 
-    if (alternative != m_lastAlternative) {
+    if (alternative != m_lastAlternative)
+    {
         m_lastAlternative = alternative;
         emit bandwidthLimitRequested(alternative);
     }

@@ -173,17 +173,21 @@ void StatusBar::updateConnectionStatus()
 {
     const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
 
-    if (!BitTorrent::Session::instance()->isListening()) {
+    if (!BitTorrent::Session::instance()->isListening())
+    {
         m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("disconnected")));
         m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
     }
-    else {
-        if (sessionStatus.hasIncomingConnections) {
+    else
+    {
+        if (sessionStatus.hasIncomingConnections)
+        {
             // Connection OK
             m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("connected")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
         }
-        else {
+        else
+        {
             m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
             m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
         }
@@ -192,12 +196,14 @@ void StatusBar::updateConnectionStatus()
 
 void StatusBar::updateDHTNodesNumber()
 {
-    if (BitTorrent::Session::instance()->isDHTEnabled()) {
+    if (BitTorrent::Session::instance()->isDHTEnabled())
+    {
         m_DHTLbl->setVisible(true);
         m_DHTLbl->setText(tr("DHT: %1 nodes")
                           .arg(BitTorrent::Session::instance()->status().dhtNodes));
     }
-    else {
+    else
+    {
         m_DHTLbl->setVisible(false);
     }
 }
@@ -230,12 +236,14 @@ void StatusBar::refresh()
 
 void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
-    if (alternative) {
+    if (alternative)
+    {
         m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("slow")));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
-    else {
+    else
+    {
         m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
@@ -250,7 +258,8 @@ void StatusBar::capDownloadSpeed()
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
                 parentWidget(), &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
-    if (ok) {
+    if (ok)
+    {
         qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
         session->setDownloadSpeedLimit(newLimit);
         refresh();
@@ -264,7 +273,8 @@ void StatusBar::capUploadSpeed()
     bool ok = false;
     const long newLimit = SpeedLimitDialog::askSpeedLimit(
                 parentWidget(), &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
-    if (ok) {
+    if (ok)
+    {
         qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
         session->setUploadSpeedLimit(newLimit);
         refresh();

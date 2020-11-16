@@ -44,7 +44,8 @@ namespace
     QString getCategoryFilter(const CategoryFilterProxyModel *const model, const QModelIndex &index)
     {
         QString categoryFilter; // Defaults to All
-        if (index.isValid()) {
+        if (index.isValid())
+        {
             if (!index.parent().isValid() && (index.row() == 1))
                 categoryFilter = ""; // Uncategorized
             else if (index.parent().isValid() || (index.row() > 1))
@@ -115,8 +116,10 @@ void CategoryFilterWidget::showMenu(const QPoint &)
     connect(addAct, &QAction::triggered, this, &CategoryFilterWidget::addCategory);
 
     const auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
-        if (BitTorrent::Session::instance()->isSubcategoriesEnabled()) {
+    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first()))
+    {
+        if (BitTorrent::Session::instance()->isSubcategoriesEnabled())
+        {
             const QAction *addSubAct = menu->addAction(
                         UIThemeManager::instance()->getIcon("list-add")
                         , tr("Add subcategory..."));
@@ -175,7 +178,8 @@ QSize CategoryFilterWidget::sizeHint() const
     // otherwise widget will not correctly adjust the
     // size when subcategories are used.
     const QSize viewportSize {viewportSizeHint()};
-    return {
+    return
+    {
         viewportSize.width(),
         viewportSize.height() + static_cast<int>(0.5 * sizeHintForRow(0))
     };
@@ -194,7 +198,8 @@ void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, in
 
     // Expand all parents if the parent(s) of the node are not expanded.
     QModelIndex p = parent;
-    while (p.isValid()) {
+    while (p.isValid())
+    {
         if (!isExpanded(p))
             expand(p);
         p = model()->parent(p);
@@ -221,7 +226,8 @@ void CategoryFilterWidget::editCategory()
 void CategoryFilterWidget::removeCategory()
 {
     const auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first()))
+    {
         BitTorrent::Session::instance()->removeCategory(
                     static_cast<CategoryFilterProxyModel *>(model())->categoryName(selectedRows.first()));
         updateGeometry();
@@ -231,7 +237,8 @@ void CategoryFilterWidget::removeCategory()
 void CategoryFilterWidget::removeUnusedCategories()
 {
     auto session = BitTorrent::Session::instance();
-    for (const QString &category : asConst(session->categories().keys())) {
+    for (const QString &category : asConst(session->categories().keys()))
+    {
         if (model()->data(static_cast<CategoryFilterProxyModel *>(model())->index(category), Qt::UserRole) == 0)
             session->removeCategory(category);
     }

@@ -51,7 +51,8 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
     // This happens because icon from the 'name' column is no longer drawn.
 
     static int nameColHeight = -1;
-    if (nameColHeight == -1) {
+    if (nameColHeight == -1)
+    {
         const QModelIndex nameColumn = index.sibling(index.row(), TransferListModel::TR_NAME);
         nameColHeight = QStyledItemDelegate::sizeHint(option, nameColumn).height();
     }
