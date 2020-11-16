@@ -64,7 +64,8 @@ void ProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 
     QStyleOptionProgressBar newopt;
     newopt.initFrom(&m_dummyProgressBar);
-    newopt.rect = option.rect;
+    static_cast<QStyleOption &>(newopt) = static_cast<const QStyleOption &>(option);
+    newopt.palette = m_dummyProgressBar.palette();
     initProgressStyleOption(newopt, index);
 
     painter->save();
