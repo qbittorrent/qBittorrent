@@ -628,25 +628,11 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
 
         const QModelIndex index = selectedRows[0];
         const int fileIndex = m_propListModel->getFileIndex(index);
-        const bool isStreaming = StreamingManager::instance()->isStreaming(fileIndex, m_torrent);
 
-        QAction *actStreamFile = menu->addAction(tr("Stream File"));
-        QAction *actCopyUrl = menu->addAction(tr("Copy Stream Url"));
-
-        actStreamFile->setCheckable(true);
-        actStreamFile->setChecked(isStreaming);
-        actCopyUrl->setEnabled(isStreaming);
-
-        connect(actStreamFile, &QAction::toggled, this, [this, fileIndex, actCopyUrl] (bool checked) {
-            if (checked) {
-                StreamingManager::instance()->addFile(fileIndex, m_torrent);
-                actCopyUrl->setEnabled(true);
-            }
-        });
-        
-        connect(actCopyUrl, &QAction::triggered, this, [this, fileIndex] ()
+        QAction *playFile = menu->addAction(tr("Play"));
+        connect(playFile, &QAction::triggered, this, [this, fileIndex]() 
         {
-            QApplication::clipboard()->setText(StreamingManager::instance()->url(fileIndex, m_torrent));
+            StreamingManager::instance()->playFile(fileIndex, m_torrent);
         });
     }
 

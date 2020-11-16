@@ -86,7 +86,6 @@ void StreamFile::doRead(ReadRequest *request)
 {
     if (request->leftSize() == 0) {
         request->deleteLater();
-        qDebug("Completed Request");
         return;
     }
 
@@ -98,7 +97,7 @@ void StreamFile::doRead(ReadRequest *request)
                                                    : m_torrentHandle->setPieceDeadline(pieceInfo.index, DEADLINE_TIME, true);
 
     for (int i = 1; i <= ADVANCE_PIECES && pieceInfo.index + i < m_lastPiece; i++)
-        m_torrentHandle->setPieceDeadline(pieceInfo.index + i, DEADLINE_TIME * 2, false); // prepare for next read
+        m_torrentHandle->setPieceDeadline(pieceInfo.index + i, DEADLINE_TIME * (2 + i), false); // prepare for next read
 
     auto cnt = connect(pieceRequest, &BitTorrent::PieceRequest::complete, request
             , [this, request, pieceInfo] (const QByteArray &data)

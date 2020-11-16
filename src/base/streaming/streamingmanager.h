@@ -20,9 +20,7 @@ public:
     static void freeInstance();
     static StreamingManager *instance();
 
-    void addFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle);
-    QString url(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const;
-    bool isStreaming(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const;
+    void playFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle);
 
 private:
     StreamingManager(QObject *parent = nullptr);
@@ -33,6 +31,7 @@ private:
 
     StreamFile *findFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const;
     StreamFile *findFile(const QString &path) const;
+    QString url(const StreamFile *) const;
 
     static StreamingManager *m_instance;
     QVector<StreamFile *> m_files;

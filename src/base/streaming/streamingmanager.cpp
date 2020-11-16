@@ -1,5 +1,8 @@
 #include "streamingmanager.h"
 
+#include <QDir>
+#include <QProcess>
+
 #include "base/http/httperror.h"
 #include "base/logger.h"
 #include "base/bittorrent/session.h"
@@ -58,6 +61,22 @@ namespace
             return lastBytePos - firstBytePos + 1;
         }
     };
+
+    QString vlcPath() 
+    {
+        const auto tryVar = [](const char * var) 
+        {
+            const QString expandedEnv = qgetenv(var);
+            if (expandedEnv.isEmpty())
+                return QString {};
+            const QDir dir {expandedEnv};
+            if (!dir.exists() || !dir.exists("VideoLAN/VLC/vlc.exe"))
+                return QString {};
+            return dir.absoluteFilePath("VideoLAN/VLC/vlc.exe"); 
+        };
+        const QString vlc = tryVar("PROGRAMFILES");
+        return vlc.isEmpty() ? tryVar("ProgramFiles(x86)") : vlc;
+    }
 } // namespace
 
 StreamingManager *StreamingManager::m_instance = nullptr;
@@ -85,30 +104,26 @@ StreamingManager::StreamingManager(QObject *parent)
     start();
 }
 
-void StreamingManager::addFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle)
+void StreamingManager::playFile(int fileIndex, BitTorrent::TorrentHandle *torrentHandle)
 {
-    Q_ASSERT(!isStreaming(fileIndex, torrentHandle));
-
-    StreamFile *file = new StreamFile(fileIndex, torrentHandle, this);
-    m_files.push_back(file);
-    // connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved, file, [this, torrentHandle, file](BitTorrent::TorrentHandle *handle) 
-    // {
-    //     if (handle == torrentHandle)
-    //         m_files.remove(m_files.indexOf(file));
-    // });
+    StreamFile *file {findFile(fileIndex, torrentHandle)};
+    if (!file) {
+        file = new StreamFile(fileIndex, torrentHandle, this);
+        m_files.push_back(file);
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved, file, [this, torrentHandle, file](BitTorrent::TorrentHandle *handle) 
+        {
+            if (handle == torrentHandle)
+                m_files.remove(m_files.indexOf(file));
+        });
+    }
+    QProcess::startDetached(vlcPath(), {url(file)});
 }
 
-QString StreamingManager::url(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const
+QString StreamingManager::url(const StreamFile *file) const
 {
-    StreamFile *file = findFile(fileIndex, torrentHandle);
     if (!file)
         return {};
     return "http://localhost:" + QString::number(serverPort()) + '/' + file->name().toUtf8().toPercentEncoding();
-}
-
-bool StreamingManager::isStreaming(int fileIndex, BitTorrent::TorrentHandle *torrentHandle) const
-{
-    return findFile(fileIndex, torrentHandle) != nullptr;
 }
 
 void StreamingManager::doRequest(HttpSocket *socket)
