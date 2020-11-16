@@ -1607,6 +1607,29 @@ void TorrentHandleImpl::handlePerformanceAlert(const lt::performance_alert *p) c
            , Log::INFO);
 }
 
+
+void TorrentHandleImpl::handleReadPieceAlert(const lt::read_piece_alert *p) 
+{
+    qDebug() << "read" << p->piece;
+    const auto requestIter
+        = std::find_if(m_pieceRequests.begin(), m_pieceRequests.end(), [p](const PieceRequest * request)
+    {
+        return request->index() == p->piece;
+    });
+
+    if (requestIter == m_pieceRequests.end()) {
+        qDebug() << "can't find request for piece" << p->piece;
+        return;
+    }
+
+    PieceRequest *request = *requestIter;
+    if (p->error)
+        request->notifyError(QString::fromStdString(p->error.message()));
+    else
+        request->notifyComplete(QByteArray(p->buffer.get(), p->size));
+    m_pieceRequests.erase(requestIter);
+}
+
 void TorrentHandleImpl::handleTempPathChanged()
 {
     adjustActualSavePath();
@@ -1672,6 +1695,9 @@ void TorrentHandleImpl::handleAlert(const lt::alert *a)
         break;
     case lt::performance_alert::alert_type:
         handlePerformanceAlert(static_cast<const lt::performance_alert*>(a));
+        break;
+    case lt::read_piece_alert::alert_type:
+        handleReadPieceAlert(static_cast<const lt::read_piece_alert*>(a));
         break;
     }
 }
@@ -1835,6 +1861,47 @@ void TorrentHandleImpl::flushCache() const
 QString TorrentHandleImpl::createMagnetURI() const
 {
     return QString::fromStdString(lt::make_magnet_uri(m_nativeHandle));
+}
+
+bool TorrentHandleImpl::havePiece(const int index) const 
+{
+    return m_nativeHandle.have_piece(lt::piece_index_t {index});
+}
+
+PieceRequest *TorrentHandleImpl::setPieceDeadline(const int index, const int deadline, const bool readWhenAvailable)
+{
+    m_nativeHandle.set_piece_deadline(lt::piece_index_t {index}, deadline,
+    readWhenAvailable ? lt::torrent_handle::alert_when_available : lt::deadline_flags_t {});
+
+    PieceRequest *request = nullptr;
+    if (readWhenAvailable) {
+        request = new PieceRequest(index, this);
+        m_pieceRequests.push_back(request);
+        connect(request, &QObject::destroyed, this, [this, request] ()
+        {
+            const int index = m_pieceRequests.indexOf(request);
+            if (index != -1)
+                m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
+        });
+    }
+
+    return request;
+}
+
+PieceRequest *TorrentHandleImpl::readPiece(int index)
+{
+    m_nativeHandle.read_piece(index);
+
+    PieceRequest *request = new PieceRequest(index, this);
+    m_pieceRequests.push_back(request);
+    connect(request, &QObject::destroyed, this, [this, request] () 
+    {
+        const int index = m_pieceRequests.indexOf(request);
+        if (index != -1)
+            m_pieceRequests.removeAt(m_pieceRequests.indexOf(request));
+    });
+    
+    return request;
 }
 
 void TorrentHandleImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)

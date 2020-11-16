@@ -31,9 +31,34 @@
 
 #include <type_traits>
 
+const QString QB_EXT {QStringLiteral(".!qB")};
+#include <QDebug>
 namespace BitTorrent
 {
-    uint qHash(const TorrentState key, const uint seed)
+    PieceRequest::PieceRequest(int index, QObject *parent)
+        : QObject(parent)
+        , m_index(index)
+    {
+    }
+
+    int PieceRequest::index() const
+    {
+        return m_index;
+    }
+
+    void PieceRequest::notifyComplete(const QByteArray &data)
+    {
+        qDebug() << "notifying complete" << data.size();
+        emit complete(data);
+    }
+
+    void PieceRequest::notifyError(const QString &message)
+    {
+        qDebug() << "notifying error" << message;
+        emit error(message);
+    }
+
+    uint qHash(const BitTorrent::TorrentState key, const uint seed)
     {
         return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
     }

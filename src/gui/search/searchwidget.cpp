@@ -328,6 +328,7 @@ void SearchWidget::on_searchButton_clicked()
     QString tabName = pattern;
     tabName.replace(QRegularExpression("&{1}"), "&&");
     m_ui->tabWidget->addTab(newTab, tabName);
+    //m_ui->tabWidget->setTabsClosable(true);
     m_ui->tabWidget->setCurrentWidget(newTab);
 
     connect(newTab, &SearchJobWidget::statusChanged, this, [this, newTab]() { tabStatusChanged(newTab); });

@@ -78,6 +78,7 @@
 #include "base/scanfoldersmodel.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
+#include "base/streaming/streamingmanager.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -566,6 +567,7 @@ int Application::exec(const QStringList &params)
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
+        StreamingManager::initInstance();
         Net::GeoIPManager::initInstance();
         ScanFoldersModel::initInstance();
 
@@ -756,6 +758,7 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     ScanFoldersModel::freeInstance();
+    StreamingManager::freeInstance();
     BitTorrent::Session::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();

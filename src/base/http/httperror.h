@@ -90,3 +90,9 @@ class InternalServerErrorHTTPError : public HTTPError
 public:
     explicit InternalServerErrorHTTPError(const QString &message = {});
 };
+
+class InvalidRangeHTTPError : public HTTPError
+{
+public:
+    explicit InvalidRangeHTTPError(const QString &message = {});
+};
