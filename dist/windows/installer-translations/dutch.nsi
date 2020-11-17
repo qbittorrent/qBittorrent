@@ -52,7 +52,7 @@ LangString remove_firewallinfo ${LANG_DUTCH} "Uitzondering uit Windows Firewall 
 ;LangString remove_cache ${LANG_ENGLISH} "Remove torrents and cached data"
 LangString remove_cache ${LANG_DUTCH} "Torrents en cachegegevens verwijderen"
 ;LangString uninst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before uninstalling."
-LangString uninst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit qBittorrent voordat u het verwijdert."
+LangString uninst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit het af voordat u het verwijdert."
 ;LangString uninst_tor_warn ${LANG_ENGLISH} "Not removing .torrent association. It is associated with:"
 LangString uninst_tor_warn ${LANG_DUTCH} ".torrent-associatie wordt niet verwijderd. Ze is gekoppeld met:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
