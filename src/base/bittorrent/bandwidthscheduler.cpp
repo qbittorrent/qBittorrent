@@ -36,30 +36,16 @@ using namespace Scheduler;
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QObject(parent)
 {
-    connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::onTimeout);
+    connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::bandwidthLimitRequested);
     connect(Schedule::instance(), &Schedule::updated, this, [this](int day)
     {
         if (day == QDate::currentDate().dayOfWeek() - 1)
-            onTimeout();
+            emit bandwidthLimitRequested();
     });
 }
 
 void BandwidthScheduler::start()
 {
-    onTimeout();
+    emit bandwidthLimitRequested();
     m_timer.start(10000);
-}
-
-void BandwidthScheduler::onTimeout()
-{
-    ScheduleDay *today = Schedule::instance()->today();
-    int index = today->getNowIndex();
-
-    if (index > -1) {
-        auto timeRange = today->timeRanges()[index];
-        emit bandwidthLimitRequested(timeRange.downloadRate, timeRange.uploadRate);
-        return;
-    }
-
-    emit bandwidthLimitRequested(0, 0);
 }

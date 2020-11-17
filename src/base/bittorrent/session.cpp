@@ -68,6 +68,7 @@
 #include <QTimer>
 #include <QUuid>
 
+#include "bandwidthscheduler.h"
 #include "base/algorithm.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -75,6 +76,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/profile.h"
+#include "base/scheduler/schedule.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/tristatebool.h"
@@ -84,7 +86,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/random.h"
-#include "bandwidthscheduler.h"
 #include "common.h"
 #include "customstorage.h"
 #include "filterparserthread.h"
@@ -985,9 +986,9 @@ void Session::adjustLimits()
 
 void Session::applyBandwidthLimits()
 {
-        lt::settings_pack settingsPack = m_nativeSession->get_settings();
-        applyBandwidthLimits(settingsPack);
-        m_nativeSession->apply_settings(settingsPack);
+    lt::settings_pack settingsPack = m_nativeSession->get_settings();
+    applyBandwidthLimitsToSettingsPack(settingsPack);
+    m_nativeSession->apply_settings(settingsPack);
 }
 
 void Session::configure()
@@ -1112,11 +1113,10 @@ void Session::adjustLimits(lt::settings_pack &settingsPack)
                          , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
 }
 
-void Session::applyBandwidthLimits(lt::settings_pack &settingsPack) const
+void Session::applyBandwidthLimitsToSettingsPack(lt::settings_pack &settingsPack) const
 {
-    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
-    settingsPack.set_int(lt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
-    settingsPack.set_int(lt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
+    settingsPack.set_int(lt::settings_pack::download_rate_limit, downloadSpeedLimit());
+    settingsPack.set_int(lt::settings_pack::upload_rate_limit, uploadSpeedLimit());
 }
 
 void Session::initMetrics()
@@ -1204,7 +1204,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
 
     configureNetworkInterfaces(settingsPack);
-    applyBandwidthLimits(settingsPack);
+    applyBandwidthLimitsToSettingsPack(settingsPack);
 
     // The most secure, rc4 only so that all streams are encrypted
     settingsPack.set_int(lt::settings_pack::allowed_enc_level, lt::settings_pack::pe_rc4);
@@ -1568,18 +1568,9 @@ void Session::enableBandwidthScheduler()
     if (!m_bwScheduler) {
         m_bwScheduler = new BandwidthScheduler(this);
         connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested,
-            this, &Session::setGlobalSpeedLimits);
+            this, &Session::applyBandwidthLimits);
     }
     m_bwScheduler->start();
-}
-
-void Session::setGlobalSpeedLimits(const int downloadLimit, const int uploadLimit)
-{
-    setDownloadSpeedLimit(downloadLimit * 1024);
-    setUploadSpeedLimit(uploadLimit * 1024);
-
-    // Save new state to remember it on startup
-    applyBandwidthLimits();
 }
 
 void Session::populateAdditionalTrackers()
@@ -2567,9 +2558,16 @@ void Session::setAltGlobalUploadSpeedLimit(const int limit)
 
 int Session::downloadSpeedLimit() const
 {
-    return isAltGlobalSpeedLimitEnabled()
-            ? altGlobalDownloadSpeedLimit()
-            : globalDownloadSpeedLimit();
+    if (isAltGlobalSpeedLimitEnabled())
+        return altGlobalDownloadSpeedLimit();
+
+    if (m_isBandwidthSchedulerEnabled) {
+        Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
+        int index = today->getNowIndex();
+        return (index < 0) ? 0 : today->timeRanges()[index].downloadRate * 1024;
+    }
+
+    return globalDownloadSpeedLimit();
 }
 
 void Session::setDownloadSpeedLimit(const int limit)
@@ -2582,9 +2580,16 @@ void Session::setDownloadSpeedLimit(const int limit)
 
 int Session::uploadSpeedLimit() const
 {
-    return isAltGlobalSpeedLimitEnabled()
-            ? altGlobalUploadSpeedLimit()
-            : globalUploadSpeedLimit();
+    if (isAltGlobalSpeedLimitEnabled())
+        return altGlobalUploadSpeedLimit();
+
+    if (m_isBandwidthSchedulerEnabled) {
+        Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
+        int index = today->getNowIndex();
+        return (index < 0) ? 0 : today->timeRanges()[index].uploadRate * 1024;
+    }
+
+    return globalUploadSpeedLimit();
 }
 
 void Session::setUploadSpeedLimit(const int limit)

@@ -285,7 +285,6 @@ namespace BitTorrent
         QString finishedTorrentExportDirectory() const;
         void setFinishedTorrentExportDirectory(QString path);
 
-        void setGlobalSpeedLimits(int downloadLimit, int uploadLimit);
         int globalDownloadSpeedLimit() const;
         void setGlobalDownloadSpeedLimit(int limit);
         int globalUploadSpeedLimit() const;
@@ -572,7 +571,7 @@ namespace BitTorrent
         void configureNetworkInterfaces(lt::settings_pack &settingsPack);
         void configurePeerClasses();
         void adjustLimits(lt::settings_pack &settingsPack);
-        void applyBandwidthLimits(lt::settings_pack &settingsPack) const;
+        void applyBandwidthLimitsToSettingsPack(lt::settings_pack &settingsPack) const;
         void initMetrics();
         void adjustLimits();
         void applyBandwidthLimits();

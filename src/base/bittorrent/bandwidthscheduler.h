@@ -42,10 +42,8 @@ public:
     void start();
 
 signals:
-    void bandwidthLimitRequested(int downloadLimit, int uploadLimit);
+    void bandwidthLimitRequested();
 
 private:
-    void onTimeout();
-
     QTimer m_timer;
 };
