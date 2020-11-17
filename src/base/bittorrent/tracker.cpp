@@ -238,7 +238,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
         if (request.method != Http::HEADER_REQUEST_METHOD_GET)
             throw MethodNotAllowedHTTPError();
 
-        if (request.path.toLower().startsWith(ANNOUNCE_REQUEST_PATH))
+        if (request.path.startsWith(ANNOUNCE_REQUEST_PATH, Qt::CaseInsensitive))
             processAnnounceRequest();
         else
             throw NotFoundHTTPError();

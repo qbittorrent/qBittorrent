@@ -56,8 +56,6 @@ namespace
             return QLatin1String("checkingUP");
         case BitTorrent::TorrentState::ForcedUploading:
             return QLatin1String("forcedUP");
-        case BitTorrent::TorrentState::Allocating:
-            return QLatin1String("allocating");
         case BitTorrent::TorrentState::Downloading:
             return QLatin1String("downloading");
         case BitTorrent::TorrentState::DownloadingMetadata:
@@ -108,6 +106,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},
+        {KEY_TORRENT_CONTENT_PATH, Utils::Fs::toNativePath(torrent.contentPath())},
         {KEY_TORRENT_ADDED_ON, torrent.addedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
@@ -118,7 +117,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
         {KEY_TORRENT_AMOUNT_UPLOADED, torrent.totalUpload()},
         {KEY_TORRENT_AMOUNT_DOWNLOADED_SESSION, torrent.totalPayloadDownload()},
         {KEY_TORRENT_AMOUNT_UPLOADED_SESSION, torrent.totalPayloadUpload()},
-        {KEY_TORRENT_AMOUNT_LEFT, torrent.incompletedSize()},
+        {KEY_TORRENT_AMOUNT_LEFT, torrent.remainingSize()},
         {KEY_TORRENT_AMOUNT_COMPLETED, torrent.completedSize()},
         {KEY_TORRENT_MAX_RATIO, torrent.maxRatio()},
         {KEY_TORRENT_MAX_SEEDING_TIME, torrent.maxSeedingTime()},

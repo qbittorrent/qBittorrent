@@ -230,7 +230,7 @@
 
 <div id="ConnectionTab" class="PrefTab invisible">
     <div class="formRow">
-        <label>QBT_TR(Enabled protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <label>QBT_TR(Peer connection protocol:)QBT_TR[CONTEXT=OptionsDialog]</label>
         <select id="enable_protocol_combobox">
             <option value="0" selected>QBT_TR(TCP and μTP)QBT_TR[CONTEXT=OptionsDialog]</option>
             <option value="1">TCP</option>
@@ -356,11 +356,11 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="ipfilter_enabled_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();" />
-            <label for="ipfilter_enabled_checkbox">QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label>QBT_TR(IP Filtering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <div class="formRow">
-            <label for="ipfilter_text">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="ipfilter_text_checkbox" onclick="qBittorrent.Preferences.updateFilterSettings();" />
+            <label for="ipfilter_text_checkbox">QBT_TR(Filter path (.dat, .p2p, .p2b):)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="ipfilter_text" />
         </div>
         <div class="formRow">
@@ -668,6 +668,7 @@
             <option value="pl_PL">Polski</option>
             <option value="lv_LV">latviešu valoda</option>
             <option value="lt_LT">Lietuvių</option>
+            <option value="ltg">latgalīšu volūda</option>
             <option value="ms_MY">بهاس ملايو</option>
             <option value="cs_CZ">Čeština</option>
             <option value="sk_SK">Slovenčina</option>
@@ -890,7 +891,7 @@
         <table>
             <tr>
                 <td>
-                    <label for="networkInterface">QBT_TR(Network Interface:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="networkInterface">QBT_TR(Network interface:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <select id="networkInterface" style="width: 15em;">
@@ -899,7 +900,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="optionalIPAddressToBind">QBT_TR(Optional IP Address to bind to:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="optionalIPAddressToBind">QBT_TR(Optional IP address to bind to:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
                     <select id="optionalIPAddressToBind" style="width: 15em;">
@@ -941,6 +942,14 @@
                 </td>
                 <td>
                     <input type="text" id="asyncIOThreads" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="hashingThreads">QBT_TR(Hashing threads (requires libtorrent >= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#hashing_threads" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="hashingThreads" style="width: 15em;" />
                 </td>
             </tr>
             <tr>
@@ -1415,10 +1424,8 @@
         };
 
         const updateFilterSettings = function() {
-            const isIPFilterEnabled = $('ipfilter_enabled_checkbox').getProperty('checked');
+            const isIPFilterEnabled = $('ipfilter_text_checkbox').getProperty('checked');
             $('ipfilter_text').setProperty('disabled', !isIPFilterEnabled);
-            $('ipfilter_trackers_checkbox').setProperty('disabled', !isIPFilterEnabled);
-            $('banned_IPs_textarea').setProperty('disabled', !isIPFilterEnabled);
         };
 
         // Speed tab
@@ -1728,7 +1735,7 @@
                         $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
 
                         // IP Filtering
-                        $('ipfilter_enabled_checkbox').setProperty('checked', pref.ip_filter_enabled);
+                        $('ipfilter_text_checkbox').setProperty('checked', pref.ip_filter_enabled);
                         $('ipfilter_text').setProperty('value', pref.ip_filter_path);
                         $('ipfilter_trackers_checkbox').setProperty('checked', pref.ip_filter_trackers);
                         $('banned_IPs_textarea').setProperty('value', pref.banned_IPs);
@@ -1871,6 +1878,7 @@
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
+                        $('hashingThreads').setProperty('value', pref.hashing_threads);
                         $('filePoolSize').setProperty('value', pref.file_pool_size);
                         $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
                         $('diskCache').setProperty('value', pref.disk_cache);
@@ -1889,7 +1897,7 @@
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
                         $('validateHTTPSTrackerCertificate').setProperty('checked', pref.validate_https_tracker_certificate);
-                        $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.no_connect_privileged_ports);
+                        $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.block_peers_on_privileged_ports);
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
                         $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
@@ -2041,7 +2049,7 @@
             settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
 
             // IP Filtering
-            settings.set('ip_filter_enabled', $('ipfilter_enabled_checkbox').getProperty('checked'));
+            settings.set('ip_filter_enabled', $('ipfilter_text_checkbox').getProperty('checked'));
             settings.set('ip_filter_path', $('ipfilter_text').getProperty('value'));
             settings.set('ip_filter_trackers', $('ipfilter_trackers_checkbox').getProperty('checked'));
             settings.set('banned_IPs', $('banned_IPs_textarea').getProperty('value'));
@@ -2257,6 +2265,7 @@
 
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
+            settings.set('hashing_threads', $('hashingThreads').getProperty('value'));
             settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
             settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
             settings.set('disk_cache', $('diskCache').getProperty('value'));

@@ -76,9 +76,21 @@ QString Private::DefaultProfile::dataLocation() const
 #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
     return locationWithConfigurationName(QStandardPaths::AppLocalDataLocation);
 #else
-    // on Linux gods know why qBittorrent creates 'data' subdirectory in ~/.local/share/
-    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
+    // On Linux keep using the legacy directory ~/.local/share/data/ if it exists
+    const QString legacyDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
         + QLatin1String("/data/") + profileName() + QLatin1Char('/');
+
+    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
+        + QLatin1Char('/') + profileName() + QLatin1Char('/');
+
+    if (QDir(legacyDir).exists()) {
+        qWarning("The legacy data directory '%s' is used. It is recommended to move its content to '%s'",
+            qUtf8Printable(legacyDir), qUtf8Printable(dataDir));
+
+        return legacyDir;
+    }
+
+    return dataDir;
 #endif
 }
 

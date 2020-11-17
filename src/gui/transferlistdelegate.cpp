@@ -28,50 +28,13 @@
 
 #include "transferlistdelegate.h"
 
-#include <QApplication>
 #include <QModelIndex>
-#include <QPainter>
-#include <QStyleOptionViewItem>
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#include <QProxyStyle>
-#endif
-
-#include "base/utils/string.h"
 #include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
-    : QStyledItemDelegate {parent}
+    : ProgressBarDelegate {TransferListModel::TR_PROGRESS, TransferListModel::UnderlyingDataRole, parent}
 {
-}
-
-void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    if (index.column() != TransferListModel::TR_PROGRESS) {
-        QStyledItemDelegate::paint(painter, option, index);
-        return;
-    }
-
-    QStyleOptionProgressBar newopt;
-    newopt.rect = option.rect;
-    newopt.text = index.data().toString();
-    newopt.progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
-    newopt.maximum = 100;
-    newopt.minimum = 0;
-    newopt.state = option.state;
-    newopt.textVisible = true;
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    // XXX: To avoid having the progress text on the right of the bar
-    QProxyStyle fusionStyle {"fusion"};
-    QStyle *style = &fusionStyle;
-#else
-    QStyle *style = option.widget ? option.widget->style() : QApplication::style();
-#endif
-
-    painter->save();
-    style->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-    painter->restore();
 }
 
 QWidget *TransferListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const

@@ -30,6 +30,7 @@
 #include "session.h"
 
 #include <algorithm>
+#include <cstdint>
 #include <queue>
 #include <string>
 #include <utility>
@@ -329,7 +330,8 @@ Session::Session(QObject *parent)
     , m_IPFilterFile(BITTORRENT_SESSION_KEY("IPFilter"))
     , m_announceToAllTrackers(BITTORRENT_SESSION_KEY("AnnounceToAllTrackers"), false)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
-    , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 4)
+    , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 10)
+    , m_hashingThreads(BITTORRENT_SESSION_KEY("HashingThreadsCount"), 2)
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
 #if (LIBTORRENT_VERSION_NUM >= 10206)
@@ -498,7 +500,7 @@ Session::Session(QObject *parent)
 
     // Regular saving of fastresume data
     connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
-    const uint saveInterval = saveResumeDataInterval();
+    const int saveInterval = saveResumeDataInterval();
     if (saveInterval > 0) {
         m_resumeDataTimer->setInterval(saveInterval * 60 * 1000);
         m_resumeDataTimer->start();
@@ -581,12 +583,12 @@ void Session::setAppendExtensionEnabled(const bool enabled)
     }
 }
 
-uint Session::refreshInterval() const
+int Session::refreshInterval() const
 {
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(const uint value)
+void Session::setRefreshInterval(const int value)
 {
     if (value != refreshInterval()) {
         m_refreshInterval = value;
@@ -1060,7 +1062,11 @@ void Session::initializeNativeSession()
 #endif
 
     loadLTSettings(pack);
-    m_nativeSession = new lt::session {lt::session_params {pack, {}}};
+    lt::session_params sessionParams {pack, {}};
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    sessionParams.disk_io_constructor = customDiskIOConstructor;
+#endif
+    m_nativeSession = new lt::session {sessionParams};
 
     LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
     LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
@@ -1101,7 +1107,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
     }
 }
 
-void Session::adjustLimits(lt::settings_pack &settingsPack)
+void Session::adjustLimits(lt::settings_pack &settingsPack) const
 {
     // Internally increase the queue limits to ensure that the magnet is started
     const int maxDownloads = maxActiveDownloads();
@@ -1268,6 +1274,9 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
+#endif
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
@@ -1779,12 +1788,18 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
     }
 
     // Remove it from torrent resume directory
-    const QDir resumeDataDir(m_resumeFolderPath);
-    QStringList filters;
-    filters << QString::fromLatin1("%1.*").arg(torrent->hash());
-    const QStringList files = resumeDataDir.entryList(filters, QDir::Files, QDir::Unsorted);
-    for (const QString &file : files)
-        Utils::Fs::forceRemove(resumeDataDir.absoluteFilePath(file));
+    const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->hash());
+    const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->hash());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, [this, resumedataFile, metadataFile]()
+    {
+        m_resumeDataSavingManager->remove(resumedataFile);
+        m_resumeDataSavingManager->remove(metadataFile);
+    });
+#else
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, resumedataFile));
+    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, metadataFile));
+#endif
 
     delete torrent;
     return true;
@@ -2109,7 +2124,9 @@ bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     p.storage = customStorageConstructor;
+#endif
     // Limits
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
@@ -2195,7 +2212,9 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     p.storage = customStorageConstructor;
+#endif
 
     // Adding torrent to BitTorrent session
     lt::error_code ec;
@@ -2234,15 +2253,13 @@ void Session::exportTorrentFile(const TorrentHandle *torrent, TorrentExportFolde
     }
 }
 
-void Session::generateResumeData(const bool final)
+void Session::generateResumeData()
 {
     for (TorrentHandleImpl *const torrent : asConst(m_torrents)) {
         if (!torrent->isValid()) continue;
 
-        if (!final && !torrent->needSaveResumeData()) continue;
-        if (torrent->isPaused()) continue;
-
-        torrent->saveResumeData();
+        if (torrent->needSaveResumeData())
+            torrent->saveResumeData();
     }
 }
 
@@ -2254,10 +2271,10 @@ void Session::saveResumeData()
 
     if (isQueueingSystemEnabled())
         saveTorrentsQueue();
-    generateResumeData(true);
+    generateResumeData();
 
     while (m_numResumeData > 0) {
-        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds(30));
+        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds {30});
         if (alerts.empty()) {
             LogMsg(tr("Error: Aborted saving resume data for %1 outstanding torrents.").arg(QString::number(m_numResumeData))
                 , Log::CRITICAL);
@@ -2632,12 +2649,12 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
     }
 }
 
-uint Session::saveResumeDataInterval() const
+int Session::saveResumeDataInterval() const
 {
     return m_saveResumeDataInterval;
 }
 
-void Session::setSaveResumeDataInterval(const uint value)
+void Session::setSaveResumeDataInterval(const int value)
 {
     if (value == m_saveResumeDataInterval)
         return;
@@ -3040,6 +3057,20 @@ void Session::setAsyncIOThreads(const int num)
         return;
 
     m_asyncIOThreads = num;
+    configureDeferred();
+}
+
+int Session::hashingThreads() const
+{
+    return qBound(1, m_hashingThreads.value(), 1024);
+}
+
+void Session::setHashingThreads(const int num)
+{
+    if (num == m_hashingThreads)
+        return;
+
+    m_hashingThreads = num;
     configureDeferred();
 }
 
@@ -3669,7 +3700,7 @@ void Session::handleTorrentTrackersRemoved(TorrentHandleImpl *const torrent, con
     for (const TrackerEntry &deletedTracker : deletedTrackers)
         LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
     emit trackersRemoved(torrent, deletedTrackers);
-    if (torrent->trackers().size() == 0)
+    if (torrent->trackers().empty())
         emit trackerlessStateChanged(torrent, true);
     emit trackersChanged(torrent);
 }
@@ -3717,8 +3748,7 @@ void Session::handleTorrentMetadataReceived(TorrentHandleImpl *const torrent)
 
 void Session::handleTorrentPaused(TorrentHandleImpl *const torrent)
 {
-    if (!torrent->hasError() && !torrent->hasMissingFiles())
-        torrent->saveResumeData();
+    torrent->saveResumeData();
     emit torrentPaused(torrent);
 }
 
@@ -4050,6 +4080,19 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
     if (metadata.isValid())
         p.ti = metadata.nativeInfo();
 
+    torrentParams.paused = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+    if (!torrentParams.paused) {
+        // If torrent has "stop_when_ready" flag set then it is actually "stopped"
+        // but temporarily "resumed" to perform some service jobs (e.g. checking)
+        torrentParams.paused = !!(p.flags & lt::torrent_flags::stop_when_ready);
+    }
+    else {
+        // Fix inconsistent state when "paused" torrent has "stop_when_ready" flag set
+        p.flags &= ~lt::torrent_flags::stop_when_ready;
+    }
+
+    torrentParams.forced = !(p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+
     const bool hasMetadata = (p.ti && p.ti->is_valid());
     if (!hasMetadata && !root.dict_find("info-hash")) {
         // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
@@ -4348,7 +4391,7 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
 
     const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hash());
 
-    TorrentHandleImpl *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
+    auto *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
     m_torrents.insert(torrent->hash(), torrent);
 
     const bool hasMetadata = torrent->hasMetadata();
@@ -4617,16 +4660,16 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
     m_status.hasIncomingConnections = static_cast<bool>(stats[m_metricIndices.net.hasIncomingConnections]);
 
-    const auto ipOverheadDownload = stats[m_metricIndices.net.recvIPOverheadBytes];
-    const auto ipOverheadUpload = stats[m_metricIndices.net.sentIPOverheadBytes];
-    const auto totalDownload = stats[m_metricIndices.net.recvBytes] + ipOverheadDownload;
-    const auto totalUpload = stats[m_metricIndices.net.sentBytes] + ipOverheadUpload;
-    const auto totalPayloadDownload = stats[m_metricIndices.net.recvPayloadBytes];
-    const auto totalPayloadUpload = stats[m_metricIndices.net.sentPayloadBytes];
-    const auto trackerDownload = stats[m_metricIndices.net.recvTrackerBytes];
-    const auto trackerUpload = stats[m_metricIndices.net.sentTrackerBytes];
-    const auto dhtDownload = stats[m_metricIndices.dht.dhtBytesIn];
-    const auto dhtUpload = stats[m_metricIndices.dht.dhtBytesOut];
+    const int64_t ipOverheadDownload = stats[m_metricIndices.net.recvIPOverheadBytes];
+    const int64_t ipOverheadUpload = stats[m_metricIndices.net.sentIPOverheadBytes];
+    const int64_t totalDownload = stats[m_metricIndices.net.recvBytes] + ipOverheadDownload;
+    const int64_t totalUpload = stats[m_metricIndices.net.sentBytes] + ipOverheadUpload;
+    const int64_t totalPayloadDownload = stats[m_metricIndices.net.recvPayloadBytes];
+    const int64_t totalPayloadUpload = stats[m_metricIndices.net.sentPayloadBytes];
+    const int64_t trackerDownload = stats[m_metricIndices.net.recvTrackerBytes];
+    const int64_t trackerUpload = stats[m_metricIndices.net.sentTrackerBytes];
+    const int64_t dhtDownload = stats[m_metricIndices.dht.dhtBytesIn];
+    const int64_t dhtUpload = stats[m_metricIndices.dht.dhtBytesOut];
 
     auto calcRate = [interval](const quint64 previous, const quint64 current)
     {
@@ -4662,13 +4705,13 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
 
-    const int numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
-    const int numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
+    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
+    const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
-    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max(numBlocksCacheHits + numBlocksRead, 1);
+    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>(numBlocksCacheHits + numBlocksRead, 1);
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
-    const quint64 totalJobs = stats[m_metricIndices.disk.writeJobs] + stats[m_metricIndices.disk.readJobs]
+    const int64_t totalJobs = stats[m_metricIndices.disk.writeJobs] + stats[m_metricIndices.disk.readJobs]
                   + stats[m_metricIndices.disk.hashJobs];
     m_cacheStatus.averageJobTime = (totalJobs > 0)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
@@ -4731,7 +4774,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
-    QVector<BitTorrent::TorrentHandle *> updatedTorrents;
+    QVector<TorrentHandle *> updatedTorrents;
     updatedTorrents.reserve(p->status.size());
 
     for (const lt::torrent_status &status : p->status) {

@@ -30,14 +30,12 @@
 #ifndef TORRENTCREATORDIALOG_H
 #define TORRENTCREATORDIALOG_H
 
+#include <libtorrent/version.hpp>
+
 #include <QDialog>
 
+#include "base/bittorrent/torrentcreatorthread.h"
 #include "base/settingvalue.h"
-
-namespace BitTorrent
-{
-    class TorrentCreatorThread;
-}
 
 namespace Ui
 {
@@ -71,7 +69,11 @@ private:
     void setInteractionEnabled(bool enabled) const;
 
     int getPieceSize() const;
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    BitTorrent::TorrentFormat getTorrentFormat() const;
+#else
     int getPaddedFileSizeLimit() const;
+#endif
 
     Ui::TorrentCreatorDialog *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
@@ -82,8 +84,12 @@ private:
     CachedSettingValue<bool> m_storePrivateTorrent;
     CachedSettingValue<bool> m_storeStartSeeding;
     CachedSettingValue<bool> m_storeIgnoreRatio;
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    CachedSettingValue<int> m_storeTorrentFormat;
+#else
     CachedSettingValue<bool> m_storeOptimizeAlignment;
     CachedSettingValue<int> m_paddedFileSizeLimit;
+#endif
     CachedSettingValue<QString> m_storeLastAddPath;
     CachedSettingValue<QString> m_storeTrackerList;
     CachedSettingValue<QString> m_storeWebSeedList;

@@ -220,17 +220,9 @@ QString PeerInfo::connectionType() const
     if (m_nativeInfo.flags & lt::peer_info::utp_socket)
         return QString::fromUtf8(C_UTP);
 
-    QString connection;
-    switch (m_nativeInfo.connection_type) {
-    case lt::peer_info::http_seed:
-    case lt::peer_info::web_seed:
-        connection = "Web";
-        break;
-    default:
-        connection = "BT";
-    }
-
-    return connection;
+    return (m_nativeInfo.connection_type == lt::peer_info::standard_bittorrent)
+        ? QLatin1String {"BT"}
+        : QLatin1String {"Web"};
 }
 
 void PeerInfo::calcRelevance(const TorrentHandle *torrent)

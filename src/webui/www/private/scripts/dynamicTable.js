@@ -871,9 +871,6 @@ window.qBittorrent.DynamicTable = (function() {
                     case "metaDL":
                         state = "downloading";
                         break;
-                    case "allocating":
-                        state = "stalledDL";
-                        break;
                     case "forcedUP":
                         state = "uploading";
                         break;
@@ -938,9 +935,6 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "forcedDL":
                         status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "allocating":
-                        status = "QBT_TR(Allocating)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "uploading":
                     case "stalledUP":
@@ -1765,7 +1759,7 @@ window.qBittorrent.DynamicTable = (function() {
                 }
                 else {
                     const treeImg = new Element('img', {
-                        src: '../images/L.gif',
+                        src: 'images/L.gif',
                         styles: {
                             'margin-bottom': -2
                         }
@@ -2062,9 +2056,9 @@ window.qBittorrent.DynamicTable = (function() {
             }
             row['data'] = {};
             tds[0].style.overflow = 'visible';
-            let indentaion = row.full_data.indentaion;
-            tds[0].style.paddingLeft = (indentaion * 32 + 4) + 'px';
-            tds[1].style.paddingLeft = (indentaion * 32 + 4) + 'px';
+            let indentation = row.full_data.indentation;
+            tds[0].style.paddingLeft = (indentation * 32 + 4) + 'px';
+            tds[1].style.paddingLeft = (indentation * 32 + 4) + 'px';
         },
         updateIcons: function() {
             // state_icon

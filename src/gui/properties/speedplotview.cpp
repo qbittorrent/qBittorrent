@@ -271,7 +271,7 @@ quint64 SpeedPlotView::maxYValue()
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j <= m_viewablePointsCount); --i, ++j)
+        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j < m_viewablePointsCount); --i, ++j)
             if (queue[i].y[id] > maxYValue)
                 maxYValue = queue[i].y[id];
     }
@@ -345,7 +345,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
 
     const double yMultiplier = (niceScale.arg == 0.0) ? 0.0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
-    const double xTickSize = static_cast<double>(rect.width()) / m_viewablePointsCount;
+    const double xTickSize = static_cast<double>(rect.width()) / (m_viewablePointsCount - 1);
 
     boost::circular_buffer<PointData> &queue = getCurrentData();
 
@@ -354,7 +354,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
             continue;
 
         QVector<QPoint> points;
-        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j <= m_viewablePointsCount); --i, ++j) {
+        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j < m_viewablePointsCount); --i, ++j) {
 
             int newX = rect.right() - j * xTickSize;
             int newY = rect.bottom() - queue[i].y[id] * yMultiplier;

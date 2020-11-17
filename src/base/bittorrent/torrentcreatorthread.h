@@ -29,17 +29,32 @@
 #ifndef BITTORRENT_TORRENTCREATORTHREAD_H
 #define BITTORRENT_TORRENTCREATORTHREAD_H
 
+#include <libtorrent/version.hpp>
+
 #include <QStringList>
 #include <QThread>
 
 namespace BitTorrent
 {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    enum class TorrentFormat
+    {
+        V1,
+        V2,
+        Hybrid
+    };
+#endif
+
     struct TorrentCreatorParams
     {
         bool isPrivate;
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        TorrentFormat torrentFormat;
+#else
         bool isAlignmentOptimized;
-        int pieceSize;
         int paddedFileSizeLimit;
+#endif
+        int pieceSize;
         QString inputPath;
         QString savePath;
         QString comment;
@@ -58,8 +73,12 @@ namespace BitTorrent
 
         void create(const TorrentCreatorParams &params);
 
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        static int calculateTotalPieces(const QString &inputPath, const int pieceSize, const TorrentFormat torrentFormat);
+#else
         static int calculateTotalPieces(const QString &inputPath
             , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);
+#endif
 
     protected:
         void run() override;

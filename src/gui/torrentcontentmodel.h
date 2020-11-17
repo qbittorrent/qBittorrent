@@ -51,6 +51,11 @@ class TorrentContentModel final : public QAbstractItemModel
     Q_DISABLE_COPY(TorrentContentModel)
 
 public:
+    enum Roles
+    {
+        UnderlyingDataRole = Qt::UserRole
+    };
+
     TorrentContentModel(QObject *parent = nullptr);
     ~TorrentContentModel() override;
 

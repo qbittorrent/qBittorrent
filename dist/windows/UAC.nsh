@@ -22,7 +22,7 @@ Interactive User (MediumIL)        Admin user (HighIL)
 !ifndef UAC_HDR__INC
 !verbose push
 !verbose 3
-!ifndef UAC_VERBOSE  
+!ifndef UAC_VERBOSE
 	!define UAC_VERBOSE 3
 !endif
 !verbose ${UAC_VERBOSE}
@@ -195,7 +195,7 @@ _UAC_L_E_${__UAC_L}:
 !endif
 !insertmacro UAC_AsUser_Call Label _UAC_L_F_${__UAC_L} ${UAC_SYNCREGISTERS}|${UAC_SYNCOUTDIR}|${UAC_SYNCINSTDIR} #|${UAC_CLEARERRFLAG}
 !if "${workdir}" != ""
-	pop $outdir 
+	pop $outdir
 	SetOutPath $outdir
 !endif
 !macroend
@@ -265,7 +265,7 @@ pop $_LOGICLIB_TEMP
 !macroend
 !macro _UAC_AsUser_GenOp outvar op opparam1 opparam2
 !define _UAC_AUGOGR_ID _UAC_AUGOGR_OP${outvar}${op}${opparam1}${opparam2}
-!ifndef ${_UAC_AUGOGR_ID} ;Has this exact action been done before? 
+!ifndef ${_UAC_AUGOGR_ID} ;Has this exact action been done before?
 	!if ${outvar} == $0
 		!define ${_UAC_AUGOGR_ID} $1
 	!else
@@ -277,7 +277,7 @@ pop $_LOGICLIB_TEMP
 	!else
 		!define _UAC_AUGOGR_OPP1 ${opparam1}
 		!define _UAC_AUGOGR_OPP2 ${${_UAC_AUGOGR_ID}}
-	!endif	
+	!endif
 	goto ${_UAC_AUGOGR_ID}_C
 	${_UAC_AUGOGR_ID}_F:
 		${op} ${_UAC_AUGOGR_OPP1} ${_UAC_AUGOGR_OPP2}

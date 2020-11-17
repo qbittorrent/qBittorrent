@@ -585,6 +585,10 @@ void OptionsDialog::initializeLanguageCombo()
             // QLocale doesn't work with that locale. Esperanto isn't a "real" language.
             languageName = QString::fromUtf8(C_LOCALE_ESPERANTO);
         }
+        else if (localeStr.startsWith("ltg", Qt::CaseInsensitive)) {
+            // QLocale doesn't work with that locale.
+            languageName = QString::fromUtf8(C_LOCALE_LATGALIAN);
+        }
         else {
             QLocale locale(localeStr);
             languageName = languageToLocalizedString(locale);
@@ -1680,6 +1684,9 @@ void OptionsDialog::setLocale(const QString &localeStr)
     QString name;
     if (localeStr.startsWith("eo", Qt::CaseInsensitive)) {
         name = "eo";
+    }
+    else if (localeStr.startsWith("ltg", Qt::CaseInsensitive)) {
+        name = "ltg";
     }
     else {
         QLocale locale(localeStr);

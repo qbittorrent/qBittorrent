@@ -65,6 +65,11 @@ target_link_libraries(qbt_app PRIVATE
 )
 
 set_target_properties(qbt_app PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+if (GUI)
+    set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent)
+else()
+    set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent-nox)
+endif()
 
 # Additional platform specific configuration
 # -----------------------------------------------------------------------------
@@ -145,10 +150,14 @@ if (STACKTRACE)
 endif()
 
 if (GUI)
-    set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent)
     target_link_libraries(qbt_app PRIVATE qbt_gui)
-else()
-    set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent-nox)
+    if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
+        if (Qt5_VERSION VERSION_LESS 5.14)
+            set_property(TARGET qbt_app APPEND PROPERTY QT_PLUGINS Qt5::QSvgIconPlugin Qt5::QSvgPlugin)
+        else()
+            qt_import_plugins(qbt_app INCLUDE Qt5::QSvgIconPlugin Qt5::QSvgPlugin)
+        endif()
+    endif()
 endif()
 
 if (WEBUI)
@@ -157,15 +166,6 @@ if (WEBUI)
         ${qBittorrent_BINARY_DIR}/src/webui/www/translations/webui_translations.qrc # yes, it's supposed to be "*_BINARY_DIR"
     )
     target_link_libraries(qbt_app PRIVATE qbt_webui)
-endif()
-
-if (GUI)
-    if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
-        qt5_import_plugins(qbt_app
-            INCLUDE Qt5::QSvgIconPlugin
-            INCLUDE Qt5::QSvgPlugin
-        )
-    endif()
 endif()
 
 # Installation
