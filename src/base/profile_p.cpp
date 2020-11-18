@@ -83,7 +83,8 @@ QString Private::DefaultProfile::dataLocation() const
     const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
         + QLatin1Char('/') + profileName() + QLatin1Char('/');
 
-    if (QDir(legacyDir).exists()) {
+    if (QDir(legacyDir).exists())
+    {
         qWarning("The legacy data directory '%s' is used. It is recommended to move its content to '%s'",
             qUtf8Printable(legacyDir), qUtf8Printable(dataDir));
 
@@ -178,7 +179,8 @@ QString Private::Converter::toPortablePath(const QString &path) const
         return path;
 
 #ifdef Q_OS_WIN
-    if (QDir::isAbsolutePath(path)) {
+    if (QDir::isAbsolutePath(path))
+    {
         const QChar driveLeter = path[0].toUpper();
         const QChar baseDriveLetter = m_baseDir.path()[0].toUpper();
         const bool onSameDrive = (driveLeter.category() == QChar::Letter_Uppercase) && (driveLeter == baseDriveLetter);

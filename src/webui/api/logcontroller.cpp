@@ -73,14 +73,16 @@ void LogController::mainAction()
     Logger *const logger = Logger::instance();
     QJsonArray msgList;
 
-    for (const Log::Msg &msg : asConst(logger->getMessages(lastKnownId))) {
+    for (const Log::Msg &msg : asConst(logger->getMessages(lastKnownId)))
+    {
         if (!((msg.type == Log::NORMAL && isNormal)
               || (msg.type == Log::INFO && isInfo)
               || (msg.type == Log::WARNING && isWarning)
               || (msg.type == Log::CRITICAL && isCritical)))
             continue;
 
-        msgList.append(QJsonObject {
+        msgList.append(QJsonObject
+        {
             {KEY_LOG_ID, msg.id},
             {KEY_LOG_TIMESTAMP, msg.timestamp},
             {KEY_LOG_MSG_TYPE, msg.type},
@@ -113,8 +115,10 @@ void LogController::peersAction()
     Logger *const logger = Logger::instance();
     QJsonArray peerList;
 
-    for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId))) {
-        peerList.append(QJsonObject {
+    for (const Log::Peer &peer : asConst(logger->getPeers(lastKnownId)))
+    {
+        peerList.append(QJsonObject
+        {
             {KEY_LOG_ID, peer.id},
             {KEY_LOG_TIMESTAMP, peer.timestamp},
             {KEY_LOG_PEER_IP, peer.ip},

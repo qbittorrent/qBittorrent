@@ -63,7 +63,8 @@
 
 namespace
 {
-    const struct { const char *source; const char *comment; } units[] = {
+    const struct { const char *source; const char *comment; } units[] =
+    {
         QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
         QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
         QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
@@ -85,7 +86,8 @@ namespace
         int i = 0;
         val = static_cast<qreal>(sizeInBytes);
 
-        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
+        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
+        {
             val /= 1024.;
             ++i;
         }
@@ -119,13 +121,16 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    if (action == ShutdownDialogAction::Suspend) {
+    if (action == ShutdownDialogAction::Suspend)
+    {
         ::SetSuspendState(false, false, false);
     }
-    else if (action == ShutdownDialogAction::Hibernate) {
+    else if (action == ShutdownDialogAction::Hibernate)
+    {
         ::SetSuspendState(true, false, false);
     }
-    else {
+    else
+    {
         const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
         auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
         msg.toWCharArray(msgWchar.get());
@@ -171,11 +176,13 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 
 #elif (defined(Q_OS_UNIX) && defined(QT_DBUS_LIB))
     // Use dbus to power off / suspend the system
-    if (action != ShutdownDialogAction::Shutdown) {
+    if (action != ShutdownDialogAction::Shutdown)
+    {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
-        if (login1Iface.isValid()) {
+        if (login1Iface.isValid())
+        {
             if (action == ShutdownDialogAction::Suspend)
                 login1Iface.call("Suspend", false);
             else
@@ -185,7 +192,8 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
         // Else, other recent systems use UPower
         QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                    "org.freedesktop.UPower", QDBusConnection::systemBus());
-        if (upowerIface.isValid()) {
+        if (upowerIface.isValid())
+        {
             if (action == ShutdownDialogAction::Suspend)
                 upowerIface.call("Suspend");
             else
@@ -201,18 +209,21 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
         else
             halIface.call("Hibernate");
     }
-    else {
+    else
+    {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
-        if (login1Iface.isValid()) {
+        if (login1Iface.isValid())
+        {
             login1Iface.call("PowerOff", false);
             return;
         }
         // Else, other recent systems use ConsoleKit
         QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
                                        "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
-        if (consolekitIface.isValid()) {
+        if (consolekitIface.isValid())
+        {
             consolekitIface.call("Stop");
             return;
         }
@@ -251,7 +262,8 @@ QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
 int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
 {
     // friendlyUnit's number of digits after the decimal point
-    switch (unit) {
+    switch (unit)
+    {
     case SizeUnit::Byte:
         return 0;
     case SizeUnit::KibiByte:
@@ -273,7 +285,8 @@ qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
 
 bool Utils::Misc::isPreviewable(const QString &extension)
 {
-    static const QSet<QString> multimediaExtensions = {
+    static const QSet<QString> multimediaExtensions =
+    {
         "3GP",
         "AAC",
         "AC3",
@@ -338,13 +351,15 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
         return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
 
     qlonglong hours = (minutes / 60);
-    if (hours < 24) {
+    if (hours < 24)
+    {
         minutes -= (hours * 60);
         return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
     }
 
     qlonglong days = (hours / 24);
-    if (days < 365) {
+    if (days < 365)
+    {
         hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
     }
@@ -479,7 +494,8 @@ QString Utils::Misc::zlibVersionString()
 #ifdef Q_OS_WIN
 QString Utils::Misc::windowsSystemPath()
 {
-    static const QString path = []() -> QString {
+    static const QString path = []() -> QString
+    {
         WCHAR systemPath[MAX_PATH] = {0};
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
         return QString::fromWCharArray(systemPath);

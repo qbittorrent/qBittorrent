@@ -86,12 +86,14 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     // Fill list in
     const QVector<qreal> fp = torrent->filesProgress();
     int nbFiles = torrent->filesCount();
-    for (int i = 0; i < nbFiles; ++i) {
+    for (int i = 0; i < nbFiles; ++i)
+    {
         QString fileName = torrent->fileName(i);
         if (fileName.endsWith(QB_EXT))
             fileName.chop(4);
         QString extension = Utils::Fs::fileExtension(fileName).toUpper();
-        if (Utils::Misc::isPreviewable(extension)) {
+        if (Utils::Misc::isPreviewable(extension))
+        {
             int row = m_previewListModel->rowCount();
             m_previewListModel->insertRow(row);
             m_previewListModel->setData(m_previewListModel->index(row, NAME), fileName);
@@ -128,7 +130,8 @@ void PreviewSelectDialog::previewButtonClicked()
     // Only one file should be selected
     const QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
     // File
-    if (!QFile::exists(path)) {
+    if (!QFile::exists(path))
+    {
         const bool isSingleFile = (m_previewListModel->rowCount() == 1);
         QWidget *parent = isSingleFile ? this->parentWidget() : this;
         QMessageBox::critical(parent, tr("Preview impossible")
@@ -156,7 +159,8 @@ void PreviewSelectDialog::loadWindowState()
     Utils::Gui::resize(this, m_storeDialogSize);
 
     // Restore TreeView Header state
-    if (!m_storeTreeHeaderState.value().isEmpty()) {
+    if (!m_storeTreeHeaderState.value().isEmpty())
+    {
         m_headerStateInitialized = m_ui->previewList->header()->restoreState(m_storeTreeHeaderState);
     }
 }
@@ -164,14 +168,16 @@ void PreviewSelectDialog::loadWindowState()
 void PreviewSelectDialog::showEvent(QShowEvent *event)
 {
     // event originated from system
-    if (event->spontaneous()) {
+    if (event->spontaneous())
+    {
         QDialog::showEvent(event);
         return;
     }
 
     // Default size, have to be called after show(), because width is needed
     // Set Name column width to 60% of TreeView
-    if (!m_headerStateInitialized) {
+    if (!m_headerStateInitialized)
+    {
         const int nameSize = (m_ui->previewList->size().width() * 0.6);
         m_ui->previewList->header()->resizeSection(0, nameSize);
         m_headerStateInitialized = true;

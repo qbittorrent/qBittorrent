@@ -79,26 +79,30 @@ namespace
         if (value <= 12.0) return {12, SizeUnit::Byte};
 
         SizeUnit calculatedUnit = SizeUnit::Byte;
-        while (value > 1024) {
+        while (value > 1024)
+        {
             value /= 1024;
             calculatedUnit = static_cast<SizeUnit>(static_cast<int>(calculatedUnit) + 1);
         }
 
-        if (value > 100.0) {
+        if (value > 100.0)
+        {
             int roundedValue = static_cast<int>(value / 40) * 40;
             while (roundedValue < value)
                 roundedValue += 40;
             return {static_cast<double>(roundedValue), calculatedUnit};
         }
 
-        if (value > 10.0) {
+        if (value > 10.0)
+        {
             int roundedValue = static_cast<int>(value / 4) * 4;
             while (roundedValue < value)
                 roundedValue += 4;
             return {static_cast<double>(roundedValue), calculatedUnit};
         }
 
-        for (const auto &roundedValue : roundingTable) {
+        for (const auto &roundedValue : roundingTable)
+        {
             if (value <= roundedValue)
                 return {roundedValue, calculatedUnit};
         }
@@ -215,7 +219,8 @@ void SpeedPlotView::setPeriod(const TimePeriod period)
 {
     m_period = period;
 
-    switch (period) {
+    switch (period)
+    {
     case SpeedPlotView::MIN1:
         m_viewablePointsCount = MIN1_SEC;
         m_currentData = &m_data5Min;
@@ -266,7 +271,8 @@ quint64 SpeedPlotView::maxYValue()
     boost::circular_buffer<PointData> &queue = getCurrentData();
 
     quint64 maxYValue = 0;
-    for (int id = UP; id < NB_GRAPHS; ++id) {
+    for (int id = UP; id < NB_GRAPHS; ++id)
+    {
 
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
@@ -292,7 +298,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
-    const QVector<QString> speedLabels = {
+    const QVector<QString> speedLabels =
+    {
         formatLabel(niceScale.arg, niceScale.unit),
         formatLabel((0.75 * niceScale.arg), niceScale.unit),
         formatLabel((0.50 * niceScale.arg), niceScale.unit),
@@ -311,7 +318,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 #endif
 
     int i = 0;
-    for (const QString &label : speedLabels) {
+    for (const QString &label : speedLabels)
+    {
         QRectF labelRect(rect.topLeft() + QPointF(-yAxisWidth, (i++) * 0.25 * rect.height() - fontMetrics.height()),
                          QSizeF(2 * yAxisWidth, fontMetrics.height()));
         painter.drawText(labelRect, label, Qt::AlignRight | Qt::AlignTop);
@@ -333,7 +341,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.drawLine(fullRect.left(), rect.bottom(), rect.right(), rect.bottom());
 
     const int TIME_AXIS_DIVISIONS = 6;
-    for (int i = 0; i < TIME_AXIS_DIVISIONS; ++i) {
+    for (int i = 0; i < TIME_AXIS_DIVISIONS; ++i)
+    {
         const int x = rect.left() + (i * rect.width()) / TIME_AXIS_DIVISIONS;
         painter.drawLine(x, fullRect.top(), x, fullRect.bottom());
     }
@@ -349,12 +358,14 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     boost::circular_buffer<PointData> &queue = getCurrentData();
 
-    for (int id = UP; id < NB_GRAPHS; ++id) {
+    for (int id = UP; id < NB_GRAPHS; ++id)
+    {
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
         QVector<QPoint> points;
-        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j < m_viewablePointsCount); --i, ++j) {
+        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j < m_viewablePointsCount); --i, ++j)
+        {
 
             int newX = rect.right() - j * xTickSize;
             int newY = rect.bottom() - queue[i].y[id] * yMultiplier;
@@ -371,7 +382,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     double legendHeight = 0;
     int legendWidth = 0;
-    for (const auto &property : asConst(m_properties)) {
+    for (const auto &property : asConst(m_properties))
+    {
         if (!property.enable)
             continue;
 
@@ -391,7 +403,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.fillRect(legendBackgroundRect, legendBackgroundColor);
 
     i = 0;
-    for (const auto &property : asConst(m_properties)) {
+    for (const auto &property : asConst(m_properties))
+    {
         if (!property.enable)
             continue;
 

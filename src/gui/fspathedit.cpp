@@ -115,7 +115,8 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
     QString directory = q->currentDirectory().isEmpty() ? QDir::homePath() : q->currentDirectory();
 
     QString selectedPath;
-    switch (m_mode) {
+    switch (m_mode)
+    {
     case FileSystemPathEdit::Mode::FileOpen:
         selectedPath = QFileDialog::getOpenFileName(q, dialogCaptionOrDefault(), directory, filter);
         break;
@@ -139,7 +140,8 @@ QString FileSystemPathEdit::FileSystemPathEditPrivate::dialogCaptionOrDefault() 
     if (!m_dialogCaption.isEmpty())
         return m_dialogCaption;
 
-    switch (m_mode) {
+    switch (m_mode)
+    {
     case FileSystemPathEdit::Mode::FileOpen:
     case FileSystemPathEdit::Mode::FileSave:
         return defaultDialogCaptionForFile.tr();
@@ -155,7 +157,8 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
 {
     QStyle::StandardPixmap pixmap = QStyle::SP_DialogOpenButton;
     bool showDirsOnly = false;
-    switch (m_mode) {
+    switch (m_mode)
+    {
     case FileSystemPathEdit::Mode::FileOpen:
     case FileSystemPathEdit::Mode::FileSave:
 #ifdef Q_OS_WIN
@@ -229,17 +232,21 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
     // extract file masks
     const int openBracePos = val.indexOf(QLatin1Char('('), 0);
     const int closeBracePos = val.indexOf(QLatin1Char(')'), openBracePos + 1);
-    if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2)) {
+    if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2))
+    {
         QString filterString = val.mid(openBracePos + 1, closeBracePos - openBracePos - 1);
-        if (filterString == QLatin1String("*")) {        // no filters
+        if (filterString == QLatin1String("*"))
+        {        // no filters
             d->m_editor->setFilenameFilters({});
         }
-        else {
+        else
+        {
             QStringList filters = filterString.split(QLatin1Char(' '), QString::SkipEmptyParts);
             d->m_editor->setFilenameFilters(filters);
         }
     }
-    else {
+    else
+    {
         d->m_editor->setFilenameFilters({});
     }
 #endif
@@ -261,7 +268,8 @@ void FileSystemPathEdit::onPathEdited()
 {
     Q_D(FileSystemPathEdit);
     QString newPath = selectedPath();
-    if (newPath != d->m_lastSignaledPath) {
+    if (newPath != d->m_lastSignaledPath)
+    {
         emit selectedPathChanged(newPath);
         d->m_lastSignaledPath = newPath;
         d->m_editor->widget()->setToolTip(editWidgetText());

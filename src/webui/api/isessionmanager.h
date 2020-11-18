@@ -40,7 +40,8 @@ struct ISession
     virtual void setData(const QString &id, const QVariant &data) = 0;
 
     template <class T>
-    T getData(const QString &id) const {
+    T getData(const QString &id) const
+    {
         return this->getData(id).value<T>();
     }
 };

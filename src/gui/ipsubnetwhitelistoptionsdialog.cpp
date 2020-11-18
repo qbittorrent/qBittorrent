@@ -68,7 +68,8 @@ IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()
 
 void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
 {
-    if (m_modified) {
+    if (m_modified)
+    {
         // save to session
         QStringList subnets;
         // Operate on the m_sortFilter to grab the strings in sorted order
@@ -77,7 +78,8 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
         Preferences::instance()->setWebUiAuthSubnetWhitelist(subnets);
         QDialog::accept();
     }
-    else {
+    else
+    {
         QDialog::reject();
     }
 }
@@ -86,7 +88,8 @@ void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
 {
     bool ok = false;
     const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text(), &ok);
-    if (!ok) {
+    if (!ok)
+    {
         QMessageBox::critical(this, tr("Error"), tr("The entered subnet is invalid."));
         return;
     }

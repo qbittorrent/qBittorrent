@@ -32,7 +32,8 @@ namespace BitTorrent
 {
     bool isValidDownloadPriority(const DownloadPriority priority)
     {
-        switch (priority) {
+        switch (priority)
+        {
         case DownloadPriority::Ignored:
         case DownloadPriority::Normal:
         case DownloadPriority::High:

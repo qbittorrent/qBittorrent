@@ -72,11 +72,13 @@ void PropListDelegate::initProgressStyleOption(QStyleOptionProgressBar &option, 
     ProgressBarDelegate::initProgressStyleOption(option, index);
     const int priority
         = index.sibling(index.row(), PRIORITY).data(TorrentContentModel::UnderlyingDataRole).toInt();
-    if (static_cast<BitTorrent::DownloadPriority>(priority) == BitTorrent::DownloadPriority::Ignored) {
+    if (static_cast<BitTorrent::DownloadPriority>(priority) == BitTorrent::DownloadPriority::Ignored)
+    {
         option.state &= ~QStyle::State_Enabled;
         option.palette = progressBarDisabledPalette();
     }
-    else {
+    else
+    {
         option.state |= QStyle::State_Enabled;
     }
 }
@@ -86,7 +88,8 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
     auto *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
     const int priority = index.data(TorrentContentModel::UnderlyingDataRole).toInt();
-    switch (static_cast<BitTorrent::DownloadPriority>(priority)) {
+    switch (static_cast<BitTorrent::DownloadPriority>(priority))
+    {
     case BitTorrent::DownloadPriority::Ignored:
         combobox->setCurrentIndex(0);
         break;
@@ -106,7 +109,8 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
 {
     if (index.column() != PRIORITY) return nullptr;
 
-    if (m_properties) {
+    if (m_properties)
+    {
         const BitTorrent::TorrentHandle *torrent = m_properties->getCurrentTorrent();
         if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
             return nullptr;
@@ -131,7 +135,8 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
     const int value = combobox->currentIndex();
 
     BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal; // NORMAL
-    switch (value) {
+    switch (value)
+    {
     case 0:
         prio = BitTorrent::DownloadPriority::Ignored; // IGNORED
         break;

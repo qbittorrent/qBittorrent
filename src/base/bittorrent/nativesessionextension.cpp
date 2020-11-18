@@ -36,7 +36,8 @@ namespace
 {
     void handleFastresumeRejectedAlert(const lt::fastresume_rejected_alert *alert)
     {
-        if (alert->error.value() == lt::errors::mismatching_file_size) {
+        if (alert->error.value() == lt::errors::mismatching_file_size)
+        {
             alert->handle.unset_flags(lt::torrent_flags::auto_managed);
             alert->handle.pause();
         }
@@ -55,7 +56,8 @@ std::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt
 
 void NativeSessionExtension::on_alert(const lt::alert *alert)
 {
-    switch (alert->type()) {
+    switch (alert->type())
+    {
     case lt::fastresume_rejected_alert::alert_type:
         handleFastresumeRejectedAlert(static_cast<const lt::fastresume_rejected_alert *>(alert));
         break;

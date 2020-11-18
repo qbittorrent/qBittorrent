@@ -71,7 +71,8 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     const QVector<QStringRef> clipboardList = clipboardText.splitRef('\n');
 
     QSet<QString> uniqueURLs;
-    for (QStringRef strRef : clipboardList) {
+    for (QStringRef strRef : clipboardList)
+    {
         strRef = strRef.trimmed();
         if (strRef.isEmpty()) continue;
 
@@ -96,14 +97,16 @@ void DownloadFromURLDialog::downloadButtonClicked()
     const QVector<QStringRef> urls = plainText.splitRef('\n');
 
     QSet<QString> uniqueURLs;
-    for (QStringRef url : urls) {
+    for (QStringRef url : urls)
+    {
         url = url.trimmed();
         if (url.isEmpty()) continue;
 
         uniqueURLs << url.toString();
     }
 
-    if (uniqueURLs.isEmpty()) {
+    if (uniqueURLs.isEmpty())
+    {
         QMessageBox::warning(this, tr("No URL entered"), tr("Please type at least one URL."));
         return;
     }

@@ -55,7 +55,8 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     d.m_ui->textEdit->setInputMethodHints(inputMethodHints);
 
     d.m_ui->textEdit->selectAll();
-    if (excludeExtension) {
+    if (excludeExtension)
+    {
         int lastDotIndex = text.lastIndexOf('.');
         if ((lastDotIndex > 3) && (text.mid(lastDotIndex - 4, 4).toLower() == ".tar"))
             lastDotIndex -= 4;
@@ -86,7 +87,8 @@ void AutoExpandableDialog::showEvent(QShowEvent *e)
     int wd = m_ui->textEdit->fontMetrics().width(m_ui->textEdit->text()) + 4;
 #endif
 
-    if (!windowTitle().isEmpty()) {
+    if (!windowTitle().isEmpty())
+    {
         // not really the font metrics in window title, so we enlarge it a bit,
         // including the small icon and close button width
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
@@ -97,7 +99,8 @@ void AutoExpandableDialog::showEvent(QShowEvent *e)
         wd = std::max(wd, w);
     }
 
-    if (!m_ui->textLabel->text().isEmpty()) {
+    if (!m_ui->textLabel->text().isEmpty())
+    {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         int w = m_ui->textLabel->fontMetrics().horizontalAdvance(m_ui->textLabel->text());
 #else
@@ -109,7 +112,8 @@ void AutoExpandableDialog::showEvent(QShowEvent *e)
     // Now resize the dialog to fit the contents
     // max width of text from either of: label, title, textedit
     // If the value is less than dialog default size, default size is used
-    if (wd > width()) {
+    if (wd > width())
+    {
         QSize size = {width() - m_ui->verticalLayout->sizeHint().width() + wd, height()};
         Utils::Gui::resize(this, size);
     }

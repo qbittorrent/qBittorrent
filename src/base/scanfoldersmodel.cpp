@@ -106,17 +106,21 @@ QVariant ScanFoldersModel::data(const QModelIndex &index, int role) const
     const PathData *pathData = m_pathList.at(index.row());
     QVariant value;
 
-    switch (index.column()) {
+    switch (index.column())
+    {
     case WATCH:
         if (role == Qt::DisplayRole)
             value = Utils::Fs::toNativePath(pathData->watchPath);
         break;
     case DOWNLOAD:
-        if (role == Qt::UserRole) {
+        if (role == Qt::UserRole)
+        {
             value = pathData->downloadType;
         }
-        else if (role == Qt::DisplayRole) {
-            switch (pathData->downloadType) {
+        else if (role == Qt::DisplayRole)
+        {
+            switch (pathData->downloadType)
+            {
             case DOWNLOAD_IN_WATCH_FOLDER:
             case DEFAULT_LOCATION:
                 value = pathTypeDisplayName(pathData->downloadType);
@@ -139,7 +143,8 @@ QVariant ScanFoldersModel::headerData(int section, Qt::Orientation orientation, 
 
     QVariant title;
 
-    switch (section) {
+    switch (section)
+    {
     case WATCH:
         title = tr("Monitored Folder");
         break;
@@ -158,7 +163,8 @@ Qt::ItemFlags ScanFoldersModel::flags(const QModelIndex &index) const
 
     Qt::ItemFlags flags;
 
-    switch (index.column()) {
+    switch (index.column())
+    {
     case WATCH:
         flags = QAbstractListModel::flags(index);
         break;
@@ -176,7 +182,8 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
         || (index.column() != DOWNLOAD))
         return false;
 
-    if (role == Qt::UserRole) {
+    if (role == Qt::UserRole)
+    {
         const auto type = static_cast<PathType>(value.toInt());
         if (type == CUSTOM_LOCATION)
             return false;
@@ -185,7 +192,8 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
         m_pathList[index.row()]->downloadPath.clear();
         emit dataChanged(index, index);
     }
-    else if (role == Qt::DisplayRole) {
+    else if (role == Qt::DisplayRole)
+    {
         const QString path = value.toString();
         if (path.isEmpty()) // means we didn't pass CUSTOM_LOCATION type
             return false;
@@ -194,7 +202,8 @@ bool ScanFoldersModel::setData(const QModelIndex &index, const QVariant &value, 
         m_pathList[index.row()]->downloadPath = Utils::Fs::toNativePath(path);
         emit dataChanged(index, index);
     }
-    else {
+    else
+    {
         return false;
     }
 
@@ -213,7 +222,8 @@ ScanFoldersModel::PathStatus ScanFoldersModel::addPath(const QString &watchPath,
     const QDir downloadDir(downloadPath);
     const QString canonicalDownloadPath = downloadDir.canonicalPath();
 
-    if (!m_fsWatcher) {
+    if (!m_fsWatcher)
+    {
         m_fsWatcher = new FileSystemWatcher(this);
         connect(m_fsWatcher, &FileSystemWatcher::torrentsAdded, this, &ScanFoldersModel::addTorrentsToSession);
     }
@@ -249,7 +259,8 @@ void ScanFoldersModel::addToFSWatcher(const QStringList &watchPaths)
     if (!m_fsWatcher)
         return; // addPath() wasn't called before this
 
-    for (const QString &path : watchPaths) {
+    for (const QString &path : watchPaths)
+    {
         const QDir watchDir(path);
         const QString canonicalWatchPath = watchDir.canonicalPath();
         m_fsWatcher->addPath(canonicalWatchPath);
@@ -321,7 +332,8 @@ void ScanFoldersModel::makePersistent()
 {
     QVariantHash dirs;
 
-    for (const PathData *pathData : asConst(m_pathList)) {
+    for (const PathData *pathData : asConst(m_pathList))
+    {
         if (pathData->downloadType == CUSTOM_LOCATION)
             dirs.insert(Utils::Fs::toUniformPath(pathData->watchPath), Utils::Fs::toUniformPath(pathData->downloadPath));
         else
@@ -335,7 +347,8 @@ void ScanFoldersModel::configure()
 {
     const QVariantHash dirs = Preferences::instance()->getScanDirs();
 
-    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i) {
+    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i)
+    {
         if (i.value().type() == QVariant::Int)
             addPath(i.key(), static_cast<PathType>(i.value().toInt()), QString());
         else
@@ -345,22 +358,27 @@ void ScanFoldersModel::configure()
 
 void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 {
-    for (const QString &file : pathList) {
+    for (const QString &file : pathList)
+    {
         qDebug("File %s added", qUtf8Printable(file));
 
         BitTorrent::AddTorrentParams params;
-        if (downloadInWatchFolder(file)) {
+        if (downloadInWatchFolder(file))
+        {
             params.savePath = QFileInfo(file).dir().path();
             params.useAutoTMM = TriStateBool::False;
         }
-        else if (!downloadInDefaultFolder(file)) {
+        else if (!downloadInDefaultFolder(file))
+        {
             params.savePath = downloadPathTorrentFolder(file);
             params.useAutoTMM = TriStateBool::False;
         }
 
-        if (file.endsWith(".magnet", Qt::CaseInsensitive)) {
+        if (file.endsWith(".magnet", Qt::CaseInsensitive))
+        {
             QFile f(file);
-            if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            if (f.open(QIODevice::ReadOnly | QIODevice::Text))
+            {
                 QTextStream str(&f);
                 while (!str.atEnd())
                     BitTorrent::Session::instance()->addTorrent(str.readLine(), params);
@@ -368,17 +386,21 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
                 f.close();
                 Utils::Fs::forceRemove(file);
             }
-            else {
+            else
+            {
                 qDebug("Failed to open magnet file: %s", qUtf8Printable(f.errorString()));
             }
         }
-        else {
+        else
+        {
             const BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::loadFromFile(file);
-            if (torrentInfo.isValid()) {
+            if (torrentInfo.isValid())
+            {
                 BitTorrent::Session::instance()->addTorrent(torrentInfo, params);
                 Utils::Fs::forceRemove(file);
             }
-            else {
+            else
+            {
                 qDebug("Ignoring incomplete torrent file: %s", qUtf8Printable(file));
             }
         }
@@ -387,7 +409,8 @@ void ScanFoldersModel::addTorrentsToSession(const QStringList &pathList)
 
 QString ScanFoldersModel::pathTypeDisplayName(const PathType type)
 {
-    switch (type) {
+    switch (type)
+    {
     case DOWNLOAD_IN_WATCH_FOLDER:
         return tr("Monitored folder");
     case DEFAULT_LOCATION:

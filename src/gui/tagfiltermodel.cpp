@@ -120,7 +120,8 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     Q_ASSERT(isValidRow(row));
     const TagModelItem &item = m_tagItems[row];
 
-    switch (role) {
+    switch (role)
+    {
     case Qt::DecorationRole:
         return UIThemeManager::instance()->getIcon("inode-directory");
     case Qt::DisplayRole:
@@ -275,7 +276,8 @@ void TagFilterModel::populate()
                                              [](Torrent *torrent) { return torrent->tags().isEmpty(); });
     addToModel(getSpecialUntaggedTag(), untaggedCount);
 
-    for (const QString &tag : asConst(session->tags())) {
+    for (const QString &tag : asConst(session->tags()))
+    {
         const int count = std::count_if(torrents.cbegin(), torrents.cend(),
                                         [tag](Torrent *torrent) { return torrent->hasTag(tag); });
         addToModel(tag, count);
@@ -295,7 +297,8 @@ void TagFilterModel::removeFromModel(int row)
 
 int TagFilterModel::findRow(const QString &tag) const
 {
-    for (int i = 0; i < m_tagItems.size(); ++i) {
+    for (int i = 0; i < m_tagItems.size(); ++i)
+    {
         if (m_tagItems[i].tag() == tag)
             return i;
     }
@@ -314,7 +317,8 @@ QVector<TagModelItem *> TagFilterModel::findItems(const QSet<QString> &tags)
 {
     QVector<TagModelItem *> items;
     items.reserve(tags.size());
-    for (const QString &tag : tags) {
+    for (const QString &tag : tags)
+    {
         TagModelItem *item = findItem(tag);
         if (item)
             items.push_back(item);

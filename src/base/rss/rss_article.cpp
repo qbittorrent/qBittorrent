@@ -126,7 +126,8 @@ QVariantHash Article::data() const
 
 void Article::markAsRead()
 {
-    if (!m_isRead) {
+    if (!m_isRead)
+    {
         m_isRead = true;
         m_data[KeyIsRead] = m_isRead;
         emit read(this);

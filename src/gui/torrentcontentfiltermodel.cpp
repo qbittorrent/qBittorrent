@@ -71,7 +71,8 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 
 bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType) {
+    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType)
+    {
         // accept folders if they have at least one filtered item
         return hasFiltered(m_model->index(sourceRow, 0, sourceParent));
     }
@@ -81,17 +82,21 @@ bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelInde
 
 bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    switch (sortColumn()) {
-    case TorrentContentModelItem::COL_NAME: {
+    switch (sortColumn())
+    {
+    case TorrentContentModelItem::COL_NAME:
+    {
             const TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
             const TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
 
-            if (leftType == rightType) {
+            if (leftType == rightType)
+            {
                 const QString strL = left.data().toString();
                 const QString strR = right.data().toString();
                 return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
             }
-            if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
+            if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder))
+            {
                 return true;
             }
 
@@ -125,9 +130,11 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
     QString name = folder.data().toString();
     if (name.contains(filterRegExp()))
         return true;
-    for (int child = 0; child < m_model->rowCount(folder); ++child) {
+    for (int child = 0; child < m_model->rowCount(folder); ++child)
+    {
         QModelIndex childIndex = m_model->index(child, 0, folder);
-        if (m_model->hasChildren(childIndex)) {
+        if (m_model->hasChildren(childIndex))
+        {
             if (hasFiltered(childIndex))
                 return true;
             continue;

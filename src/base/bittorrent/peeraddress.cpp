@@ -36,14 +36,17 @@ PeerAddress PeerAddress::parse(const QString &address)
 {
     QVector<QStringRef> ipPort;
 
-    if (address.startsWith('[') && address.contains("]:")) {  // IPv6
+    if (address.startsWith('[') && address.contains("]:"))
+    {  // IPv6
         ipPort = address.splitRef("]:");
         ipPort[0] = ipPort[0].mid(1);  // chop '['
     }
-    else if (address.contains(':')) {  // IPv4
+    else if (address.contains(':'))
+    {  // IPv4
         ipPort = address.splitRef(':');
     }
-    else {
+    else
+    {
         return {};
     }
 

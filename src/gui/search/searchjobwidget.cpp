@@ -101,8 +101,10 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 
     // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
-    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
-        if (!m_ui->resultsBrowser->isColumnHidden(i)) {
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+    {
+        if (!m_ui->resultsBrowser->isColumnHidden(i))
+        {
             atLeastOne = true;
             break;
         }
@@ -218,7 +220,8 @@ void SearchJobWidget::downloadTorrents()
 void SearchJobWidget::openTorrentPages() const
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
-    for (const QModelIndex &rowIndex : rows) {
+    for (const QModelIndex &rowIndex : rows)
+    {
         const QString descrLink = m_proxyModel->data(
                     m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
         if (!descrLink.isEmpty())
@@ -246,7 +249,8 @@ void SearchJobWidget::copyField(const int column) const
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
     QStringList list;
 
-    for (const QModelIndex &rowIndex : rows) {
+    for (const QModelIndex &rowIndex : rows)
+    {
         const QString field = m_proxyModel->data(
             m_proxyModel->index(rowIndex.row(), column)).toString();
         if (!field.isEmpty())
@@ -273,10 +277,12 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
     const QString siteUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_URL)).toString();
 
-    if (torrentUrl.startsWith("magnet:", Qt::CaseInsensitive)) {
+    if (torrentUrl.startsWith("magnet:", Qt::CaseInsensitive))
+    {
         addTorrentToSession(torrentUrl);
     }
-    else {
+    else
+    {
         SearchDownloadHandler *downloadHandler = m_searchHandler->manager()->downloadTorrent(siteUrl, torrentUrl);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this, &SearchJobWidget::addTorrentToSession);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
@@ -418,7 +424,8 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
 
 QString SearchJobWidget::statusText(SearchJobWidget::Status st)
 {
-    switch (st) {
+    switch (st)
+    {
     case Status::Ongoing:
         return tr("Searching...");
     case Status::Finished:
@@ -455,7 +462,8 @@ void SearchJobWidget::displayToggleColumnsMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
 
-    for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+    for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+    {
         QAction *myAct = menu->addAction(m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
         myAct->setCheckable(true);
         myAct->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
@@ -465,7 +473,8 @@ void SearchJobWidget::displayToggleColumnsMenu(const QPoint &)
     connect(menu, &QMenu::triggered, this, [this](const QAction *action)
     {
         int visibleCols = 0;
-        for (int i = 0; i < SearchSortModel::DL_LINK; ++i) {
+        for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+        {
             if (!m_ui->resultsBrowser->isColumnHidden(i))
                 ++visibleCols;
 
@@ -506,7 +515,8 @@ void SearchJobWidget::searchFailed()
 
 void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
 {
-    for (const SearchResult &result : results) {
+    for (const SearchResult &result : results)
+    {
         // Add item to search result list
         int row = m_searchListModel->rowCount();
         m_searchListModel->insertRow(row);
@@ -543,7 +553,8 @@ CachedSettingValue<SearchJobWidget::NameFilteringMode> &SearchJobWidget::nameFil
 
 void SearchJobWidget::keyPressEvent(QKeyEvent *event)
 {
-    switch (event->key()) {
+    switch (event->key())
+    {
     case Qt::Key_Enter:
     case Qt::Key_Return:
         downloadTorrents();

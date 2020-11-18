@@ -41,7 +41,8 @@ Utils::IO::FileDeviceOutputIterator::FileDeviceOutputIterator(QFileDevice &devic
 
 Utils::IO::FileDeviceOutputIterator::~FileDeviceOutputIterator()
 {
-    if (m_buffer.use_count() == 1) {
+    if (m_buffer.use_count() == 1)
+    {
         if (m_device->error() == QFileDevice::NoError)
             m_device->write(*m_buffer);
         m_buffer->clear();
@@ -51,7 +52,8 @@ Utils::IO::FileDeviceOutputIterator::~FileDeviceOutputIterator()
 Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operator=(const char c)
 {
     m_buffer->append(c);
-    if (m_buffer->size() >= m_bufferSize) {
+    if (m_buffer->size() >= m_bufferSize)
+    {
         if (m_device->error() == QFileDevice::NoError)
             m_device->write(*m_buffer);
         m_buffer->clear();
