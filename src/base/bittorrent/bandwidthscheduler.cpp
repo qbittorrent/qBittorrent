@@ -34,7 +34,7 @@
 using namespace Scheduler;
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
-    : QObject(parent)
+    : QObject {parent}
 {
     connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::bandwidthLimitRequested);
     connect(Schedule::instance(), &Schedule::updated, this, [this](int day)

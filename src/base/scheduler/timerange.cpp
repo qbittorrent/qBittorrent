@@ -40,7 +40,8 @@ bool TimeRange::isValid() const
 QJsonObject TimeRange::toJsonObject() const
 {
     // Hour*100 for readability (2100 = 9pm, 100 = 1am, and so on)
-    return {
+    return
+    {
         {"start", startTime.hour() * 100 + startTime.minute()},
         {"end", endTime.hour() * 100 + endTime.minute()},
         {"dl", downloadRate},
@@ -53,7 +54,8 @@ TimeRange TimeRange::fromJsonObject(QJsonObject jsonObject)
     int start = jsonObject["start"].toInt();
     int end = jsonObject["end"].toInt();
 
-    return {
+    return
+    {
         QTime(start / 100, start % 100),
         QTime(end / 100, end % 100, 59, 999),
         jsonObject["dl"].toInt(),

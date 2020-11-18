@@ -603,12 +603,14 @@ void OptionsDialog::initializeScheduler()
     auto *schedule = Scheduler::Schedule::instance();
     int today = QDate::currentDate().dayOfWeek() - 1;
 
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < 7; ++i)
+    {
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
 
         auto *scheduleTable = new QTableWidget(0, Gui::ScheduleColumn::COL_COUNT, tabContent);
-        scheduleTable->setHorizontalHeaderLabels({
+        scheduleTable->setHorizontalHeaderLabels(
+        {
             tr("From", "i.e.: Beginning of time range"),
             tr("To", "i.e.: End of time range"),
             tr("Download", "i.e.: Download rate limit"),
@@ -681,7 +683,8 @@ void OptionsDialog::removeSelectedTimeRanges(const int day)
     QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
     QList<QModelIndex> selection = selectionModel->selectedRows();
 
-    if (selection.count() > 0) {
+    if (selection.count() > 0)
+    {
         std::sort(selection.begin(), selection.end(),
             [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
 
@@ -700,7 +703,8 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
     const QLocale locale{Preferences::instance()->getLocale()};
 
-    for (int i = 0; i < rowCount; ++i) {
+    for (int i = 0; i < rowCount; ++i)
+    {
         Scheduler::TimeRange timeRange = timeRanges[i];
 
         QString dlText = (timeRange.downloadRate == 0) ? QString::fromUtf8(C_INFINITY)

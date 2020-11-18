@@ -2578,7 +2578,8 @@ int Session::downloadSpeedLimit() const
     if (isAltGlobalSpeedLimitEnabled())
         return altGlobalDownloadSpeedLimit();
 
-    if (m_isBandwidthSchedulerEnabled) {
+    if (m_isBandwidthSchedulerEnabled)
+    {
         Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
         int index = today->getNowIndex();
         return (index < 0) ? 0 : today->timeRanges()[index].downloadRate * 1024;
@@ -2600,7 +2601,8 @@ int Session::uploadSpeedLimit() const
     if (isAltGlobalSpeedLimitEnabled())
         return altGlobalUploadSpeedLimit();
 
-    if (m_isBandwidthSchedulerEnabled) {
+    if (m_isBandwidthSchedulerEnabled)
+    {
         Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
         int index = today->getNowIndex();
         return (index < 0) ? 0 : today->timeRanges()[index].uploadRate * 1024;

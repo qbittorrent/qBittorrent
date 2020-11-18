@@ -7,9 +7,9 @@
 #include "utils.h"
 
 TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate, int maxRate)
-    : QDialog(parent)
-    , m_ui(new Ui::TimeRangeDialog)
-    , m_scheduleDay(scheduleDay)
+    : QDialog {parent}
+    , m_ui {new Ui::TimeRangeDialog}
+    , m_scheduleDay {scheduleDay}
 {
     m_ui->setupUi(this);
 

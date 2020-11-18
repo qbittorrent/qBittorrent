@@ -18,7 +18,7 @@ const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
 QPointer<Schedule> Schedule::m_instance = nullptr;
 
 Schedule::Schedule()
-    : m_ioThread(new QThread(this))
+    : m_ioThread {new QThread(this)}
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -31,14 +31,16 @@ Schedule::Schedule()
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString) {
+    connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
+    {
         LogMsg(tr("Couldn't save scheduler data in %1. Error: %2")
                .arg(fileName, errorString), Log::CRITICAL);
     });
 
     m_ioThread->start();
 
-    if (!loadSchedule()) {
+    if (!loadSchedule())
+    {
         for (int i = 0; i < 7; ++i)
             m_scheduleDays.append(new ScheduleDay(i));
     }
@@ -89,7 +91,8 @@ bool Schedule::loadSchedule()
 {
     QFile file(m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName));
 
-    if (file.open(QFile::ReadOnly)) {
+    if (file.open(QFile::ReadOnly))
+    {
         if (file.size() == 0)
             return false;
 
@@ -103,7 +106,8 @@ bool Schedule::loadSchedule()
             throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
 
         const QJsonObject jsonObj = jsonDoc.object();
-        for (int i = 0; i < 7; ++i) {
+        for (int i = 0; i < 7; ++i)
+        {
             QJsonArray arr = jsonObj[DAYS[i]].toArray();
             m_scheduleDays[i] = ScheduleDay::fromJsonArray(arr, i);
         }

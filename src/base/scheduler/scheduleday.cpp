@@ -9,7 +9,7 @@
 using namespace Scheduler;
 
 ScheduleDay::ScheduleDay(int dayOfWeek)
-    : m_dayOfWeek(dayOfWeek)
+    : m_dayOfWeek {dayOfWeek}
 {
 }
 
@@ -24,8 +24,10 @@ bool ScheduleDay::addTimeRange(const TimeRange &timeRange)
         return false;
 
     m_timeRanges.append(timeRange);
-    for (int i = 0; i < m_timeRanges.count(); ++i) {
-        if (m_timeRanges[i].startTime > timeRange.startTime) {
+    for (int i = 0; i < m_timeRanges.count(); ++i)
+    {
+        if (m_timeRanges[i].startTime > timeRange.startTime)
+        {
             m_timeRanges.move(m_timeRanges.count() - 1, i);
             break;
         }
@@ -54,7 +56,8 @@ void ScheduleDay::clearTimeRanges()
 void ScheduleDay::editStartTimeAt(int index, const QTime time)
 {
     bool startTimeCanBeSet = index > 0 && time > m_timeRanges[index - 1].endTime;
-    if (index == 0 || startTimeCanBeSet) {
+    if (index == 0 || startTimeCanBeSet)
+    {
         m_timeRanges[index].setStartTime(time);
         emit dayUpdated(m_dayOfWeek);
     }
@@ -64,7 +67,8 @@ void ScheduleDay::editEndTimeAt(int index, const QTime time)
 {
     int lastIndex = m_timeRanges.count() - 1;
     bool endTimeCanBeSet = index < lastIndex && time < m_timeRanges[index + 1].startTime;
-    if (index == lastIndex || endTimeCanBeSet) {
+    if (index == lastIndex || endTimeCanBeSet)
+    {
         m_timeRanges[index].setEndTime(time);
         emit dayUpdated(m_dayOfWeek);
     }
@@ -85,7 +89,8 @@ void ScheduleDay::editUploadRateAt(int index, int rate)
 int ScheduleDay::getNowIndex()
 {
     QDateTime now = QDateTime::currentDateTime();
-    for (int i = 0; i < m_timeRanges.count(); ++i) {
+    for (int i = 0; i < m_timeRanges.count(); ++i)
+    {
         bool afterStart = now.time() >= m_timeRanges[i].startTime;
         bool beforeEnd = now.time() < m_timeRanges[i].endTime;
         if (afterStart && beforeEnd)
@@ -96,7 +101,8 @@ int ScheduleDay::getNowIndex()
 
 bool ScheduleDay::conflicts(const TimeRange &timeRange)
 {
-    for (TimeRange tr : m_timeRanges) {
+    for (TimeRange tr : m_timeRanges)
+    {
         if (tr.overlaps(timeRange))
             return true;
     }
@@ -116,7 +122,8 @@ ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWe
 {
     ScheduleDay *scheduleDay = new ScheduleDay(dayOfWeek);
 
-    for (QJsonValue jObject : jsonArray) {
+    for (QJsonValue jObject : jsonArray)
+    {
         if (!jObject.isObject())
             throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
 
