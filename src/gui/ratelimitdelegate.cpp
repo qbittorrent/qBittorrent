@@ -25,6 +25,7 @@ QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionView
         const QLocale locale{Preferences::instance()->getLocale()};
         auto *timeEdit = new QTimeEdit(parent);
         timeEdit->setDisplayFormat(locale.timeFormat(QLocale::ShortFormat));
+        timeEdit->setWrapping(true);
         return timeEdit;
     }
 

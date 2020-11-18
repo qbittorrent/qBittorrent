@@ -3526,22 +3526,6 @@ you should put in domain names used by WebUI server.
   <connection>
    <sender>checkScheduleEnable</sender>
    <signal>toggled(bool)</signal>
-   <receiver>rateLimitBox</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>388</x>
-     <y>31</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>103</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkScheduleEnable</sender>
-   <signal>toggled(bool)</signal>
    <receiver>tabSchedule</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>

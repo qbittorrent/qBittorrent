@@ -30,15 +30,13 @@
 #define OPTIONSDIALOG_H
 
 #include <QDialog>
-#include <QHash>
-#include <QStandardItemModel>
-#include <QTableWidget>
 
 #include "base/scheduler/scheduleday.h"
 
 class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
+class QTableWidget;
 
 class AdvancedSettings;
 

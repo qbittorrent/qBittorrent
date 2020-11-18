@@ -40,10 +40,8 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QListView>
-#include <QMap>
 #include <QMessageBox>
 #include <QScrollArea>
-#include <QStandardItemModel>
 #include <QSystemTrayIcon>
 #include <QTableWidget>
 #include <QTranslator>
@@ -1340,7 +1338,6 @@ void OptionsDialog::loadOptions()
     bool schedulerEnabled = session->isBandwidthSchedulerEnabled();
     m_ui->checkScheduleEnable->setChecked(schedulerEnabled);
     m_ui->tabSchedule->setEnabled(schedulerEnabled);
-    m_ui->rateLimitBox->setDisabled(schedulerEnabled);
     // End Speed preferences
 
     // Bittorrent preferences

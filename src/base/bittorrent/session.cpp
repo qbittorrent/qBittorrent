@@ -2704,7 +2704,12 @@ int Session::downloadSpeedLimit() const
     {
         Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
         int index = today->getNowIndex();
-        return (index < 0) ? 0 : today->timeRanges()[index].downloadRate * 1024;
+        if (index < 0)
+            return globalDownloadSpeedLimit();
+
+        int dl = today->timeRanges()[index].downloadRate * 1024;
+        return (globalDownloadSpeedLimit() == 0) ? dl
+            : std::min(globalDownloadSpeedLimit(), dl);
     }
 
     return globalDownloadSpeedLimit();
@@ -2727,7 +2732,12 @@ int Session::uploadSpeedLimit() const
     {
         Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
         int index = today->getNowIndex();
-        return (index < 0) ? 0 : today->timeRanges()[index].uploadRate * 1024;
+        if (index < 0)
+            return globalUploadSpeedLimit();
+
+        int ul = today->timeRanges()[index].uploadRate * 1024;
+        return (globalUploadSpeedLimit() == 0) ? ul
+            : std::min(globalUploadSpeedLimit(), ul);
     }
 
     return globalUploadSpeedLimit();
