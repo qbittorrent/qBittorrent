@@ -54,7 +54,8 @@ lt::storage_holder CustomDiskIOThread::new_torrent(const lt::storage_params &sto
     lt::storage_holder storageHolder = m_nativeDiskIO->new_torrent(storageParams, torrent);
 
     const QString savePath = Utils::Fs::expandPathAbs(QString::fromStdString(storageParams.path));
-    m_storageData[storageHolder] = {
+    m_storageData[storageHolder] =
+    {
             savePath
             , storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files
             , storageParams.priorities};
@@ -196,7 +197,8 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
     const QDir saveDir {savePath};
     const StorageData storageData = m_storageData[storage];
     const lt::file_storage &fileStorage = storageData.files;
-    for (const lt::file_index_t fileIndex : fileStorage.file_range()) {
+    for (const lt::file_index_t fileIndex : fileStorage.file_range())
+    {
         // ignore files that have priority 0
         if ((storageData.filePriorities.end_index() > fileIndex) && (storageData.filePriorities[fileIndex] == lt::dont_download))
             continue;
@@ -205,10 +207,12 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
         if (fileStorage.pad_file_at(fileIndex)) continue;
 
         const QString filePath = QString::fromStdString(fileStorage.file_path(fileIndex));
-        if (filePath.endsWith(QB_EXT)) {
+        if (filePath.endsWith(QB_EXT))
+        {
             const QString completeFilePath = filePath.left(filePath.size() - QB_EXT.size());
             QFile completeFile {saveDir.absoluteFilePath(completeFilePath)};
-            if (completeFile.exists()) {
+            if (completeFile.exists())
+            {
                 QFile incompleteFile {saveDir.absoluteFilePath(filePath)};
                 incompleteFile.remove();
                 completeFile.rename(incompleteFile.fileName());
@@ -261,7 +265,8 @@ void CustomStorage::handleCompleteFiles(const QString &savePath)
     const QDir saveDir {savePath};
 
     const lt::file_storage &fileStorage = files();
-    for (const lt::file_index_t fileIndex : fileStorage.file_range()) {
+    for (const lt::file_index_t fileIndex : fileStorage.file_range())
+    {
         // ignore files that have priority 0
         if ((m_filePriorities.end_index() > fileIndex) && (m_filePriorities[fileIndex] == lt::dont_download))
             continue;
@@ -270,10 +275,12 @@ void CustomStorage::handleCompleteFiles(const QString &savePath)
         if (fileStorage.pad_file_at(fileIndex)) continue;
 
         const QString filePath = QString::fromStdString(fileStorage.file_path(fileIndex));
-        if (filePath.endsWith(QB_EXT)) {
+        if (filePath.endsWith(QB_EXT))
+        {
             const QString completeFilePath = filePath.left(filePath.size() - QB_EXT.size());
             QFile completeFile {saveDir.absoluteFilePath(completeFilePath)};
-            if (completeFile.exists()) {
+            if (completeFile.exists())
+            {
                 QFile incompleteFile {saveDir.absoluteFilePath(filePath)};
                 incompleteFile.remove();
                 completeFile.rename(incompleteFile.fileName());

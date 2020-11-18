@@ -97,7 +97,8 @@ QVariant BaseLogModel::data(const QModelIndex &index, const int role) const
         return {};
 
     const Message &message = m_messages[messageIndex];
-    switch (role) {
+    switch (role)
+    {
     case TimeRole:
         return message.time();
     case MessageRole:
@@ -117,7 +118,8 @@ void BaseLogModel::addNewMessage(const BaseLogModel::Message &message)
 {
     // if row is inserted on filled up buffer, the size will not change
     // but because of calling of beginInsertRows function we'll have ghost rows.
-    if (m_messages.size() == MAX_VISIBLE_MESSAGES) {
+    if (m_messages.size() == MAX_VISIBLE_MESSAGES)
+    {
         const int lastMessage = m_messages.size() - 1;
         beginRemoveRows(QModelIndex(), lastMessage, lastMessage);
         m_messages.pop_back();
@@ -138,7 +140,8 @@ void BaseLogModel::reset()
 
 LogMessageModel::LogMessageModel(QObject *parent)
     : BaseLogModel(parent)
-    , m_foregroundForMessageTypes {
+    , m_foregroundForMessageTypes
+    {
         {Log::NORMAL, UIThemeManager::instance()->getColor(QLatin1String("Log.Normal"), QApplication::palette().color(QPalette::WindowText))},
         {Log::INFO, UIThemeManager::instance()->getColor(QLatin1String("Log.Info"), Qt::blue)},
         {Log::WARNING, UIThemeManager::instance()->getColor(QLatin1String("Log.Warning"), QColor {255, 165, 0})}, // orange

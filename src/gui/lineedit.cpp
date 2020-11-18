@@ -47,7 +47,8 @@ void LineEdit::resizeEvent(QResizeEvent *e)
 
 void LineEdit::keyPressEvent(QKeyEvent *event)
 {
-    if ((event->modifiers() == Qt::NoModifier) && (event->key() == Qt::Key_Escape)) {
+    if ((event->modifiers() == Qt::NoModifier) && (event->key() == Qt::Key_Escape))
+    {
         clear();
     }
     QLineEdit::keyPressEvent(event);

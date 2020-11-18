@@ -140,7 +140,8 @@ QString GeoIPManager::lookup(const QHostAddress &hostAddr) const
 
 QString GeoIPManager::CountryName(const QString &countryISOCode)
 {
-    static const QHash<QString, QString> countries = {
+    static const QHash<QString, QString> countries =
+    {
         // ISO 3166-1 alpha-2 codes
         // http://www.iso.org/iso/home/standards/country_codes/country_names_and_code_elements_txt-temp.htm
 
@@ -404,12 +405,15 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
 void GeoIPManager::configure()
 {
     const bool enabled = Preferences::instance()->resolvePeerCountries();
-    if (m_enabled != enabled) {
+    if (m_enabled != enabled)
+    {
         m_enabled = enabled;
-        if (m_enabled && !m_geoIPDatabase) {
+        if (m_enabled && !m_geoIPDatabase)
+        {
             loadDatabase();
         }
-        else if (!m_enabled) {
+        else if (!m_enabled)
+        {
             delete m_geoIPDatabase;
             m_geoIPDatabase = nullptr;
         }
@@ -418,22 +422,26 @@ void GeoIPManager::configure()
 
 void GeoIPManager::downloadFinished(const DownloadResult &result)
 {
-    if (result.status != DownloadStatus::Success) {
+    if (result.status != DownloadStatus::Success)
+    {
         LogMsg(tr("Couldn't download IP geolocation database file. Reason: %1").arg(result.errorString), Log::WARNING);
         return;
     }
 
     bool ok = false;
     const QByteArray data = Utils::Gzip::decompress(result.data, &ok);
-    if (!ok) {
+    if (!ok)
+    {
         LogMsg(tr("Could not decompress IP geolocation database file."), Log::WARNING);
         return;
     }
 
     QString error;
     GeoIPDatabase *geoIPDatabase = GeoIPDatabase::load(data, error);
-    if (geoIPDatabase) {
-        if (!m_geoIPDatabase || (geoIPDatabase->buildEpoch() > m_geoIPDatabase->buildEpoch())) {
+    if (geoIPDatabase)
+    {
+        if (!m_geoIPDatabase || (geoIPDatabase->buildEpoch() > m_geoIPDatabase->buildEpoch()))
+        {
             delete m_geoIPDatabase;
             m_geoIPDatabase = geoIPDatabase;
             LogMsg(tr("IP geolocation database loaded. Type: %1. Build time: %2.")
@@ -449,11 +457,13 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
             else
                 LogMsg(tr("Successfully updated IP geolocation database."), Log::INFO);
         }
-        else {
+        else
+        {
             delete geoIPDatabase;
         }
     }
-    else {
+    else
+    {
         LogMsg(tr("Couldn't load IP geolocation database. Reason: %1").arg(error), Log::WARNING);
     }
 }

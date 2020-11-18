@@ -58,7 +58,8 @@ bool PortForwarderImpl::isEnabled() const
 
 void PortForwarderImpl::setEnabled(const bool enabled)
 {
-    if (m_active != enabled) {
+    if (m_active != enabled)
+    {
         if (enabled)
             start();
         else
@@ -71,7 +72,8 @@ void PortForwarderImpl::setEnabled(const bool enabled)
 
 void PortForwarderImpl::addPort(const quint16 port)
 {
-    if (!m_mappedPorts.contains(port)) {
+    if (!m_mappedPorts.contains(port))
+    {
         m_mappedPorts.insert(port, {});
         if (isEnabled())
             m_mappedPorts[port] = {m_provider->add_port_mapping(lt::session::tcp, port, port)};
@@ -80,8 +82,10 @@ void PortForwarderImpl::addPort(const quint16 port)
 
 void PortForwarderImpl::deletePort(const quint16 port)
 {
-    if (m_mappedPorts.contains(port)) {
-        if (isEnabled()) {
+    if (m_mappedPorts.contains(port))
+    {
+        if (isEnabled())
+        {
             for (const lt::port_mapping_t &portMapping : m_mappedPorts[port])
             m_provider->delete_port_mapping(portMapping);
         }
@@ -96,7 +100,8 @@ void PortForwarderImpl::start()
     settingsPack.set_bool(lt::settings_pack::enable_upnp, true);
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, true);
     m_provider->apply_settings(settingsPack);
-    for (auto i = m_mappedPorts.begin(); i != m_mappedPorts.end(); ++i) {
+    for (auto i = m_mappedPorts.begin(); i != m_mappedPorts.end(); ++i)
+    {
         // quint16 port = i.key();
         i.value() = {m_provider->add_port_mapping(lt::session::tcp, i.key(), i.key())};
     }

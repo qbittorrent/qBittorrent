@@ -92,9 +92,11 @@ namespace
     QByteArray toBigEndianByteArray(const QHostAddress &addr)
     {
         // translate IP address to a sequence of bytes in big-endian order
-        switch (addr.protocol()) {
+        switch (addr.protocol())
+        {
         case QAbstractSocket::IPv4Protocol:
-        case QAbstractSocket::AnyIPProtocol: {
+        case QAbstractSocket::AnyIPProtocol:
+        {
                 const quint32 ipv4 = addr.toIPv4Address();
                 QByteArray ret;
                 ret.append(static_cast<char>((ipv4 >> 24) & 0xFF))
@@ -104,7 +106,8 @@ namespace
                 return ret;
             }
 
-        case QAbstractSocket::IPv6Protocol: {
+        case QAbstractSocket::IPv6Protocol:
+        {
                 const Q_IPV6ADDR ipv6 = addr.toIPv6Address();
                 QByteArray ret;
                 for (const quint8 i : ipv6.c)
@@ -162,7 +165,8 @@ struct Tracker::TrackerAnnounceRequest
 void Tracker::TorrentStats::setPeer(const Peer &peer)
 {
     // always replace existing peer
-    if (!removePeer(peer)) {
+    if (!removePeer(peer))
+    {
         // Too many peers, remove a random one
         if (peers.size() >= MAX_PEERS_PER_TORRENT)
             removePeer(*peers.begin());
@@ -198,8 +202,10 @@ bool Tracker::start()
     const QHostAddress ip = QHostAddress::Any;
     const int port = Preferences::instance()->getTrackerPort();
 
-    if (m_server->isListening()) {
-        if (m_server->serverPort() == port) {
+    if (m_server->isListening())
+    {
+        if (m_server->serverPort() == port)
+        {
             // Already listening on the right port, just return
             return true;
         }
@@ -211,11 +217,13 @@ bool Tracker::start()
     // Listen on the predefined port
     const bool listenSuccess = m_server->listen(ip, port);
 
-    if (listenSuccess) {
+    if (listenSuccess)
+    {
         LogMsg(tr("Embedded Tracker: Now listening on IP: %1, port: %2")
             .arg(ip.toString(), QString::number(port)), Log::INFO);
     }
-    else {
+    else
+    {
         LogMsg(tr("Embedded Tracker: Unable to bind to IP: %1, port: %2. Reason: %3")
                 .arg(ip.toString(), QString::number(port), m_server->errorString())
             , Log::WARNING);
@@ -233,7 +241,8 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
     status(200);
 
-    try {
+    try
+    {
         // Is it a GET request?
         if (request.method != Http::HEADER_REQUEST_METHOD_GET)
             throw MethodNotAllowedHTTPError();
@@ -243,16 +252,19 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
         else
             throw NotFoundHTTPError();
     }
-    catch (const HTTPError &error) {
+    catch (const HTTPError &error)
+    {
         status(error.statusCode(), error.statusText());
         if (!error.message().isEmpty())
             print(error.message(), Http::CONTENT_TYPE_TXT);
     }
-    catch (const TrackerError &error) {
+    catch (const TrackerError &error)
+    {
         clear();  // clear response
         status(200);
 
-        const lt::entry::dictionary_type bencodedEntry = {
+        const lt::entry::dictionary_type bencodedEntry =
+        {
             {ANNOUNCE_RESPONSE_FAILURE_REASON, {error.what()}}
         };
         QByteArray reply;
@@ -312,7 +324,8 @@ void Tracker::processAnnounceRequest()
 
     // 4. numwant
     const auto numWantIter = queryParams.find(ANNOUNCE_REQUEST_NUM_WANT);
-    if (numWantIter != queryParams.end()) {
+    if (numWantIter != queryParams.end())
+    {
         const int num = numWantIter->toInt();
         if (num < 0)
             throw TrackerError("Invalid \"numwant\" parameter");
@@ -348,15 +361,18 @@ void Tracker::processAnnounceRequest()
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_EMPTY)
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_COMPLETED)
         || (announceReq.event == ANNOUNCE_REQUEST_EVENT_STARTED)
-        || (announceReq.event == ANNOUNCE_REQUEST_EVENT_PAUSED)) {
+        || (announceReq.event == ANNOUNCE_REQUEST_EVENT_PAUSED))
+        {
         // [BEP-21] Extension for partial seeds
         // (partial support - we don't support BEP-48 so the part that concerns that is not supported)
         registerPeer(announceReq);
     }
-    else if (announceReq.event == ANNOUNCE_REQUEST_EVENT_STOPPED) {
+    else if (announceReq.event == ANNOUNCE_REQUEST_EVENT_STOPPED)
+    {
         unregisterPeer(announceReq);
     }
-    else {
+    else
+    {
         throw TrackerError("Invalid \"event\" parameter");
     }
 
@@ -365,7 +381,8 @@ void Tracker::processAnnounceRequest()
 
 void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
 {
-    if (!m_torrents.contains(announceReq.infoHash)) {
+    if (!m_torrents.contains(announceReq.infoHash))
+    {
         // Reached max size, remove a random torrent
         if (m_torrents.size() >= MAX_TORRENTS)
             m_torrents.erase(m_torrents.begin());
@@ -390,7 +407,8 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
 {
     const TorrentStats &torrentStats = m_torrents[announceReq.infoHash];
 
-    lt::entry::dictionary_type replyDict {
+    lt::entry::dictionary_type replyDict
+    {
         {ANNOUNCE_RESPONSE_INTERVAL, ANNOUNCE_INTERVAL},
         {ANNOUNCE_RESPONSE_COMPLETE, torrentStats.seeders},
         {ANNOUNCE_RESPONSE_INCOMPLETE, (torrentStats.peers.size() - torrentStats.seeders)},
@@ -402,13 +420,16 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
     // peer list
     // [BEP-7] IPv6 Tracker Extension (partial support - only the part that concerns BEP-23)
     // [BEP-23] Tracker Returns Compact Peer Lists
-    if (announceReq.compact) {
+    if (announceReq.compact)
+    {
         lt::entry::string_type peers;
         lt::entry::string_type peers6;
 
-        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED) {
+        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED)
+        {
             int counter = 0;
-            for (const Peer &peer : asConst(torrentStats.peers)) {
+            for (const Peer &peer : asConst(torrentStats.peers))
+            {
                 if (counter++ >= announceReq.numwant)
                     break;
 
@@ -423,16 +444,20 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
         if (!peers6.empty())
             replyDict[ANNOUNCE_RESPONSE_PEERS6] = peers6;
     }
-    else {
+    else
+    {
         lt::entry::list_type peerList;
 
-        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED) {
+        if (announceReq.event != ANNOUNCE_REQUEST_EVENT_STOPPED)
+        {
             int counter = 0;
-            for (const Peer &peer : torrentStats.peers) {
+            for (const Peer &peer : torrentStats.peers)
+            {
                 if (counter++ >= announceReq.numwant)
                     break;
 
-                lt::entry::dictionary_type peerDict = {
+                lt::entry::dictionary_type peerDict =
+                {
                     {ANNOUNCE_RESPONSE_PEERS_IP, peer.address},
                     {ANNOUNCE_RESPONSE_PEERS_PORT, peer.port}
                 };

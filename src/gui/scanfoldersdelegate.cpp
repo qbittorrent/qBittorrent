@@ -62,7 +62,8 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
     editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER));
     editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::DEFAULT_LOCATION));
     editor->addItem(ScanFoldersModel::pathTypeDisplayName(ScanFoldersModel::CUSTOM_LOCATION));
-    if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION) {
+    if (index.data(Qt::UserRole).toInt() == ScanFoldersModel::CUSTOM_LOCATION)
+    {
         editor->insertSeparator(3);
         editor->addItem(index.data().toString());
     }
@@ -74,7 +75,8 @@ QWidget *ScanFoldersDelegate::createEditor(QWidget *parent, const QStyleOptionVi
 
 void ScanFoldersDelegate::comboboxIndexChanged(int index)
 {
-    if (index == ScanFoldersModel::CUSTOM_LOCATION) {
+    if (index == ScanFoldersModel::CUSTOM_LOCATION)
+    {
         auto *w = static_cast<QWidget *>(sender());
         if (w && w->parentWidget())
             w->parentWidget()->setFocus();
@@ -86,7 +88,8 @@ void ScanFoldersDelegate::setModelData(QWidget *editor, QAbstractItemModel *mode
     auto *combobox = static_cast<QComboBox*>(editor);
     int value = combobox->currentIndex();
 
-    switch (value) {
+    switch (value)
+    {
     case ScanFoldersModel::DOWNLOAD_IN_WATCH_FOLDER:
     case ScanFoldersModel::DEFAULT_LOCATION:
         model->setData(index, value, Qt::UserRole);

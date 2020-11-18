@@ -47,7 +47,7 @@ int myFunction(int a)
 void myFunction() {} // empty body
 
 MyClass::MyClass(int *parent)
-    : m_parent(parent)
+    : m_parent {parent}
 {
     // initialize
 }
@@ -86,15 +86,18 @@ namespace Name
 ### b. Other code blocks
 
 ```c++
-if (condition) {
+if (condition)
+{
     // code
 }
 
-for (int a = 0; a < b; ++b) {
+for (int a = 0; a < b; ++b)
+{
     // code
 }
 
-switch (a) {
+switch (a)
+{
 case 1:
     // blah
 case 2:
@@ -102,18 +105,25 @@ case 2:
 default:
     // blah
 }
+
+{
+    // code
+}
 ```
 
 ### c. Blocks in switch's case labels
 
 ```c++
-switch (var) {
-case 1: {
+switch (var)
+{
+case 1:
+    {
         // declare local variables
         // code
     }
     break;
-case 2: {
+case 2:
+    {
         // declare local variables
         // code
     }
@@ -128,13 +138,16 @@ default:
 The `else if`/`else` must be on their own lines:
 
 ```c++
-if (condition) {
+if (condition)
+{
     // code
 }
-else if (condition) {
+else if (condition)
+{
     // code
 }
-else {
+else
+{
     // code
 }
 ```
@@ -155,7 +168,8 @@ However you can still choose to use the first rule.
 ```c++
 if (a > 0) return;
 
-while (p) {
+while (p)
+{
     // ...
     if (!b) continue;
 }
@@ -178,14 +192,18 @@ else if (a > b)
 else
     do(c);
 
-if (a < b) {
+if (a < b)
+{
     do(a);
 }
-else if (a > b) {  // curly braces required here, then all branches should also add them
+else if (a > b)
+{
+    // curly braces required here, then all branches should also add them
     do(b);
     do(d);
 }
-else {
+else
+{
     do(c);
 }
 ```
@@ -216,10 +234,10 @@ Initialization lists should be vertical. This will allow for more easily readabl
 
 ```c++
 myClass::myClass(int a, int b, int c, int d)
-    : m_a(a)
-    , m_b(b)
-    , m_c(c)
-    , m_d(d)
+    : m_a {a}
+    , m_b {b}
+    , m_c {c}
+    , m_d {d}
 {
     // code
 }
@@ -396,13 +414,15 @@ class ExampleWidget : public QWidget
     template <typename List>
     void doSomethingWithList(const List &list)
     {
-        foreach (const auto &item, list) {
+        foreach (const auto &item, list)
+        {
             // we don't know item type here so we use 'auto' keyword
             // do something with item
         }
     }
 
-    for (auto it = container.begin(), end = container.end(); it != end; ++it) {
+    for (auto it = container.begin(), end = container.end(); it != end; ++it)
+    {
         // we don't need to know the exact iterator type,
         // because all iterators have the same interface
     }
@@ -420,10 +440,12 @@ class ExampleWidget : public QWidget
     a = (b <= MAX_B ? b : MAX_B);
     ++a;
     --b;
-    for (int a = 0; a < b; ++b) {
+    for (int a = 0; a < b; ++b)
+    {
     }
     // Range-based for loop, spaces before and after the colon
-    for (auto i : container) {
+    for (auto i : container)
+    {
     }
     // Derived class, spaces before and after the colon
     class Derived : public Base

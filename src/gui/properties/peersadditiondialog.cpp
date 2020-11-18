@@ -57,18 +57,22 @@ QVector<BitTorrent::PeerAddress> PeersAdditionDialog::askForPeers(QWidget *paren
 
 void PeersAdditionDialog::validateInput()
 {
-    if (m_ui->textEditPeers->toPlainText().trimmed().isEmpty()) {
+    if (m_ui->textEditPeers->toPlainText().trimmed().isEmpty())
+    {
         QMessageBox::warning(this, tr("No peer entered"),
                     tr("Please type at least one peer."),
                     QMessageBox::Ok);
         return;
     }
-    for (const QString &peer : asConst(m_ui->textEditPeers->toPlainText().trimmed().split('\n'))) {
+    for (const QString &peer : asConst(m_ui->textEditPeers->toPlainText().trimmed().split('\n')))
+    {
         const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer);
-        if (!addr.ip.isNull()) {
+        if (!addr.ip.isNull())
+        {
             m_peersList.append(addr);
         }
-        else {
+        else
+        {
             QMessageBox::warning(this, tr("Invalid peer"),
                     tr("The peer '%1' is invalid.").arg(peer),
                     QMessageBox::Ok);

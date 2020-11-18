@@ -59,7 +59,8 @@ QStringList TrackersAdditionDialog::newTrackers() const
     const QString plainText = m_ui->textEditTrackersList->toPlainText();
 
     QStringList cleanTrackers;
-    for (QStringRef url : asConst(plainText.splitRef('\n'))) {
+    for (QStringRef url : asConst(plainText.splitRef('\n')))
+    {
         url = url.trimmed();
         if (!url.isEmpty())
             cleanTrackers << url.toString();
@@ -78,7 +79,8 @@ void TrackersAdditionDialog::on_uTorrentListButton_clicked()
 
 void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResult &result)
 {
-    if (result.status != Net::DownloadStatus::Success) {
+    if (result.status != Net::DownloadStatus::Success)
+    {
         // To restore the cursor ...
         setCursor(Qt::ArrowCursor);
         m_ui->uTorrentListButton->setEnabled(true);
@@ -92,7 +94,8 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
     const QStringList trackersFromUser = m_ui->textEditTrackersList->toPlainText().split('\n');
     QVector<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     existingTrackers.reserve(trackersFromUser.size());
-    for (const QString &userURL : trackersFromUser) {
+    for (const QString &userURL : trackersFromUser)
+    {
         const BitTorrent::TrackerEntry userTracker(userURL);
         if (!existingTrackers.contains(userTracker))
             existingTrackers << userTracker;
@@ -105,12 +108,14 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
     QBuffer buffer;
     buffer.setData(result.data);
     buffer.open(QBuffer::ReadOnly);
-    while (!buffer.atEnd()) {
+    while (!buffer.atEnd())
+    {
         const QString line = buffer.readLine().trimmed();
         if (line.isEmpty()) continue;
 
         BitTorrent::TrackerEntry newTracker(line);
-        if (!existingTrackers.contains(newTracker)) {
+        if (!existingTrackers.contains(newTracker))
+        {
             m_ui->textEditTrackersList->insertPlainText(line + '\n');
             ++nb;
         }
