@@ -1,0 +1,63 @@
+name: Automated syncronization and update of translations
+
+on:
+  shedule:
+    branches: [ master ]
+    - cron:  '0 0 */3 * *'
+
+jobs:
+  translations_sync_and_update:
+    name: Sync translations from Transifex and update source .ts files with new unstranslated strings
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v2.3
+
+    - name: install necessary tools from Ubuntu repos
+      run: |
+        sudo apt update
+        sudo apt install \
+          qttools5-dev-tools qt5-qmake transifex-client
+
+    - name: Pull translations from Transifex
+      run: |
+        tx pull -a -f -r qbittorrent.qbittorrent_master
+        tx pull -a -f -r qbittorrent.qbittorrent_webui
+
+    - name: Update source .ts files possibly new strings
+      run: |
+        lupdate qbittorrent.pro
+        cd src/webui/www
+        python tstool.py
+
+    - name: Remove new translations
+    # New translation files need to be added manually because they also need code integration
+      run: |
+        git clean -d -f
+
+    # Generate an app token in order to create the pull request.
+    # Using the default GITHUB_TOKEN won't trigger other workflows (eg on.pull_request)
+    # See: https://github.com/peter-evans/create-pull-request/blob/master/docs/concepts-guidelines.md#triggering-further-workflow-runs
+    #      https://github.com/peter-evans/create-pull-request/blob/master/docs/concepts-guidelines.md#authenticating-with-github-app-generated-tokens
+
+    - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.TRANSIFEX_APP_ID }}
+          private_key: ${{ secrets.TRANSIFEX_APP_PRIVATE_KEY }}
+
+    - name: Create PR for the changes
+      uses: peter-evans/create-pull-request@v3.5
+      with:
+          token: ${{ steps.generate-token.outputs.token }}
+          committer: automated-update <no-reply@no-reply.x>
+          author: automated-update <no-reply@no-reply.x>
+          branch: transifex
+          branch-suffix: timestamp
+          delete-branch: true
+          commit-message: 'Sync translations from Transifex and run lupdate'
+          title: 'Sync translations from Transifex and run lupdate'
+          body: 'This is an automated Pull Request'
+          labels: Translation
