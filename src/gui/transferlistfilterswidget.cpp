@@ -291,7 +291,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));
     auto *warningTracker = new QListWidgetItem(this);
     warningTracker->setData(Qt::DisplayRole, tr("Warning (0)"));
-    warningTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxWarning));
+    warningTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("dialog-warning"));
     m_trackers.insert("", QStringList());
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);

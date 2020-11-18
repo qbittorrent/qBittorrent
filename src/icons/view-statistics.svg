@@ -1,3 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#375273" d="M29.7 24.6v1.7H2.3V5.7H4v18.9h25.7zM10.9 16v6.9H7.4V16h3.5zM16 9.1v13.7h-3.4V9.1H16zm5.1 3.5v10.3h-3.4V12.6h3.4zm5.2-5.2v15.4h-3.4V7.4h3.4z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="view-statistics.svg"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="703"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="7.375"
+     inkscape:cx="-12.61017"
+     inkscape:cy="16"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <g
+     id="g8"
+     transform="matrix(1.0218978,0,0,1.3592233,-0.3503648,-5.7475728)"
+     style="fill:#4285f4;fill-opacity:1">
+    <path
+       style="fill:#4285f4;fill-opacity:1"
+       id="path2"
+       d="m 29.7,24.6 v 1.7 H 2.3 V 5.7 H 4 V 24.6 Z M 10.9,16 v 6.9 H 7.4 V 16 Z M 16,9.1 V 22.8 H 12.6 V 9.1 Z m 5.1,3.5 V 22.9 H 17.7 V 12.6 Z M 26.3,7.4 V 22.8 H 22.9 V 7.4 Z"
+       inkscape:connector-curvature="0" />
+  </g>
 </svg>
