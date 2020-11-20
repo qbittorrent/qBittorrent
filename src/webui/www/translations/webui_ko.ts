@@ -109,8 +109,7 @@
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>최대 받기는 -1 보다 커야 합니다.
-</translation>
+        <translation>최대 받기는 -1 보다 커야 합니다.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
