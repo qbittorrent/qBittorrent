@@ -15,7 +15,7 @@ set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 set(requiredBoostVersion 1.40)
 set(requiredQtVersion 5.9.0)
 set(requiredOpenSSLVersion 1.0)
-set(requiredLibtorrentVersion 1.2.0)
+set(requiredLibtorrentVersion 1.2.11)
 set(requiredZlibVersion 1.2.5.2)
 
 # features (some are platform-specific)

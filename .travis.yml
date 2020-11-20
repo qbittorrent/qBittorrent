@@ -125,7 +125,7 @@ install:
       pushd "$HOME"
       git clone --single-branch --branch RC_1_2 https://github.com/arvidn/libtorrent.git
       cd libtorrent
-      git checkout tags/v1.2.10
+      git checkout tags/v1.2.11
 
       cmake \
         -DCMAKE_BUILD_TYPE=Release \
