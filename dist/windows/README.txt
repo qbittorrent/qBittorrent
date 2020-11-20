@@ -1,4 +1,4 @@
-TRANSLATORS:
+TRANSLATORS: tes éqz
 
 1. Use an editor that has NSIS syntax highlighting(eg Notepad++/Geany). This will
    make your life easier.
