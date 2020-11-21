@@ -4581,7 +4581,7 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
 
     const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hash());
 
-    auto *const torrent = new TorrentHandleImpl {this, nativeHandle, params};
+    auto *const torrent = new TorrentHandleImpl {this, nativeHandle, m_nativeSession, params};
     m_torrents.insert(torrent->hash(), torrent);
 
     const bool hasMetadata = torrent->hasMetadata();

@@ -41,6 +41,7 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
+#include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
 #include <libtorrent/version.hpp>
@@ -101,10 +102,11 @@ namespace
 
 // TorrentHandleImpl
 
-TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
-                                     const LoadTorrentParams &params)
+TorrentHandleImpl::TorrentHandleImpl(Session *session, lt::session *nativeSession
+                                     , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
     : QObject(session)
     , m_session(session)
+    , m_nativeSession(nativeSession)
     , m_nativeHandle(nativeHandle)
     , m_name(params.name)
     , m_savePath(Utils::Fs::toNativePath(params.savePath))
@@ -1498,6 +1500,15 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     m_ltAddTorrentParams.save_path = Profile::instance()->toPortablePath(
                 QString::fromStdString(m_ltAddTorrentParams.save_path)).toStdString();
 
+    if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+    {
+        m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_files);
+
+        lt::add_torrent_params p = m_ltAddTorrentParams;
+        p.ti = m_torrentInfo.nativeInfo();
+        m_nativeHandle = m_nativeSession->add_torrent(p);
+    }
+
     auto resumeDataPtr = std::make_shared<lt::entry>(lt::write_resume_data(m_ltAddTorrentParams));
     lt::entry &resumeData = *resumeDataPtr;
 
@@ -1647,20 +1658,25 @@ void TorrentHandleImpl::handleFileCompletedAlert(const lt::file_completed_alert 
 void TorrentHandleImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     Q_UNUSED(p);
+
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
-    updateStatus();
-    if (m_session->isAppendExtensionEnabled())
-        manageIncompleteFiles();
-    if (!m_hasRootFolder)
-        m_torrentInfo.stripRootFolder();
-    if (filesCount() == 1)
-        m_hasRootFolder = false;
-    m_session->handleTorrentMetadataReceived(this);
+    m_maintenanceJob = MaintenanceJob::HandleMetadata;
+
+    saveResumeData();
+
+//    updateStatus();
+//    if (m_session->isAppendExtensionEnabled())
+//        manageIncompleteFiles();
+//    if (!m_hasRootFolder)
+//        m_torrentInfo.stripRootFolder();
+//    if (filesCount() == 1)
+//        m_hasRootFolder = false;
+//    m_session->handleTorrentMetadataReceived(this);
 
     // If first/last piece priority was specified when adding this torrent,
     // we should apply it now that we have metadata:
-    if (m_hasFirstLastPiecePriority)
-        applyFirstLastPiecePriority(true);
+//    if (m_hasFirstLastPiecePriority)
+//        applyFirstLastPiecePriority(true);
 }
 
 void TorrentHandleImpl::handlePerformanceAlert(const lt::performance_alert *p) const
