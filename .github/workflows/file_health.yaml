@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     - name: install zsh
       run: |
