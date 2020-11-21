@@ -347,7 +347,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 
     // Set dialog title
     const QString torrentName = magnetUri.name();
@@ -356,7 +356,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
 
-    BitTorrent::Session::instance()->loadMetadata(magnetUri);
+    BitTorrent::Session::instance()->downloadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     m_ui->labelHashData->setText(infoHash);
 
@@ -613,7 +613,7 @@ void AddNewTorrentDialog::reject()
     if (!m_hasMetadata)
     {
         setMetadataProgressIndicator(false);
-        BitTorrent::Session::instance()->cancelLoadMetadata(m_magnetURI.hash());
+        BitTorrent::Session::instance()->cancelDownloadMetadata(m_magnetURI.hash());
     }
 
     QDialog::reject();
@@ -623,7 +623,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
 {
     if (metadata.hash() != m_magnetURI.hash()) return;
 
-    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
+    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 
     if (!metadata.isValid())
     {
