@@ -184,7 +184,7 @@
            <widget class="QCheckBox" name="checkSmart">
             <property name="toolTip">
              <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</string>
             </property>
             <property name="text">
              <string>Use Smart Episode Filter</string>
