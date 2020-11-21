@@ -593,11 +593,11 @@ void Session::setAppendExtensionEnabled(const bool enabled)
 {
     if (isAppendExtensionEnabled() != enabled)
     {
+        m_isAppendExtensionEnabled = enabled;
+
         // append or remove .!qB extension for incomplete files
         for (TorrentHandleImpl *const torrent : asConst(m_torrents))
             torrent->handleAppendExtensionToggled();
-
-        m_isAppendExtensionEnabled = enabled;
     }
 }
 
