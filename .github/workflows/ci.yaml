@@ -17,7 +17,7 @@ env:
   VCPKG_COMMIT: 32eccc18191fbb57b159784a1724d2d00613ae82
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  UBUNTU_LIBTORRENT_VERSION: libtorrent-1.2.10
+  LIBTORRENT_VERSION_TAG: libtorrent-1.2.10
 
 jobs:
 
@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     - name: install all build dependencies except libtorrent from Ubuntu repos
       run: |
@@ -52,7 +52,7 @@ jobs:
     - name: install libtorrent from source
       run: |
         git clone https://github.com/arvidn/libtorrent && cd libtorrent
-        git checkout ${{ env.UBUNTU_LIBTORRENT_VERSION }}
+        git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
         cmake -B cmake-build-dir -G "Ninja" \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
           -Ddeprecated-functions=OFF \
@@ -70,7 +70,7 @@ jobs:
         cmake --build build
 
     - name: upload artifact as zip
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v2
       with:
         name: qBittorrent-CI-Ubuntu_${{ matrix.os }}-${{ matrix.qbt_gui }}
         path: |
@@ -92,7 +92,7 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     # - ninja is needed for building qBittorrent (because it's preferrable, not a hard requirement)
     - name: install additional required packages with chocolatey
@@ -100,7 +100,7 @@ jobs:
         choco install ninja
 
     - name: setup vcpkg (cached, if possible)
-      uses: lukka/run-vcpkg@v4.1
+      uses: lukka/run-vcpkg@v4
       with:
         vcpkgDirectory: ${{ env.VCPKG_DEST_WIN }}
         vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
@@ -134,7 +134,7 @@ jobs:
 
     # NOTE: this is necessary to correctly find and use cl.exe with the Ninja generator for now
     - name: setup devcmd
-      uses: ilammy/msvc-dev-cmd@v1.4.1
+      uses: ilammy/msvc-dev-cmd@v1
 
     - name: build qBittorrent
       shell: cmd
@@ -149,7 +149,7 @@ jobs:
         cmake --build build
 
     - name: upload artifact as zip
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v2
       with:
         name: qBittorrent-CI-Windows_x64-static-release
         path: |
@@ -175,7 +175,7 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     # - ninja is needed for building qBittorrent (because it's preferrable, not a hard requirement)
     # - pkg-config is needed for some vcpkg installations
@@ -185,7 +185,7 @@ jobs:
         brew install ninja pkg-config
 
     - name: setup vcpkg (cached, if possible)
-      uses: lukka/run-vcpkg@v4.1
+      uses: lukka/run-vcpkg@v4
       with:
         vcpkgDirectory: ${{ env.VCPKG_DEST_MACOS }}
         vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
@@ -234,7 +234,7 @@ jobs:
         cmake --build build
 
     - name: upload artifact as zip
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v2
       with:
         name: qBittorrent-CI-macOS_x64-static-release_${{ matrix.qbt_gui }}
         path: |
