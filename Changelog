@@ -1,3 +1,22 @@
+Wed Nov 25 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.1
+    - FEATURE: Allow progress bar styling from custom themes (jagannatharjun)
+    - FEATURE: Allow adding torrents using "Paste" key sequence (Chocobo1)
+    - FEATURE: Add Latgalian translation (sledgehammer999)
+    - BUGFIX: Prevent resume data to be saved for removed torrent (glassez)
+    - BUGFIX: Clarify connection protocol choice label (FranciscoPombal)
+    - BUGFIX: Fix crash when clicked outside the table of torrent content view (jagannatharjun)
+    - BUGFIX: Don't resume "paused" torrents when put into "checking" state by libtorrent (glassez)
+    - BUGFIX: Fix torrent state calculation (glassez)
+    - BUGFIX: Align integer data to right in torrent content view (jagannatharjun)
+    - WEBUI: Place WebUI RSS description in sandboxed iframe (Sepro)
+    - WEBUI: Avoid settings being reset via WebAPI (Chocobo1)
+    - WEBUI: Fix toggling advanced option in WebUI (thalieht)
+    - WEBUI: Expose contentPath in WebAPI torrents/info (FranciscoPombal)
+    - WEBUI: Fix the issue that IPv6 address can't be banned (brvphoenix)
+    - RSS: Fix confusion in date format description (Thomas De Rocker)
+    - WINDOWS: Update dutch.nsi (Thomas De Rocker)
+    - LINUX: Update .desktop file translations (sledgehammer999)
+
 Thu Oct 22 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.0.1
     - WINDOWS: NSIS: Update Italian translation (bovirus)
 
