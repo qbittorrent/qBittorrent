@@ -23,10 +23,6 @@
         <translation>Jauzi hash egiaztapena</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Sortu azpiagiritegia</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Torrent Kudeaketa Modua:</translation>
     </message>
@@ -709,7 +705,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Gaitutako protokoloa:</translation>
+        <translation type="vanished">Gaitutako protokoloa:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1074,10 +1070,6 @@
         <translation>Berezko Gordetze Helburua aldatzen denean:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Sortu azpiagiritegia agiri ugari duten torrententzat</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>segundu</translation>
     </message>
@@ -1431,6 +1423,10 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2197,7 +2193,7 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>Esleitzen</translation>
+        <translation type="vanished">Esleitzen</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3213,11 +3209,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Create Subfolder:</source>
         <translation type="unfinished" />
     </message>
@@ -3303,6 +3294,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>

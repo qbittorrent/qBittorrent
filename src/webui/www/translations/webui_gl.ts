@@ -23,10 +23,6 @@
         <translation>Saltar a comprobación hash</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Crear subcartafol</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Modo de xestión dos torrents:</translation>
     </message>
@@ -710,7 +706,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Protocolo activado:</translation>
+        <translation type="vanished">Protocolo activado:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1075,10 +1071,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Cando a ruta de gardado da categoría cambiou:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Crear subcartafol para os torrents con varios ficheiros</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>segundos</translation>
     </message>
@@ -1432,6 +1424,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2198,7 +2194,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Allocating</source>
-        <translation>Asignando</translation>
+        <translation type="vanished">Asignando</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3214,11 +3210,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Create Subfolder:</source>
         <translation type="unfinished" />
     </message>
@@ -3304,6 +3295,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>

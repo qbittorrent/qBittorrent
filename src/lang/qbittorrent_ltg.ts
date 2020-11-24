@@ -8358,7 +8358,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/statusbar.cpp" line="90"/>
         <location filename="../gui/statusbar.cpp" line="197"/>
         <source>DHT: %1 nodes</source>
-        <translation>DHT: 1% serveri</translation>
+        <translation>DHT: %1 serveri</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="161"/>

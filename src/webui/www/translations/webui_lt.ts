@@ -23,10 +23,6 @@
         <translation>Praleisti maišos tikrinimą</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Sukurti poaplankį</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Torento tvarkymo veiksena:</translation>
     </message>
@@ -709,7 +705,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Įjungtas protokolas:</translation>
+        <translation type="vanished">Įjungtas protokolas:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1074,10 +1070,6 @@
         <translation>Kai pasikeičia kategorijos išsaugojimo kelias:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Torentams su keliais failais kurti poaplankį</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>sek.</translation>
     </message>
@@ -1218,10 +1210,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">Disko podėlis:</translation>
-    </message>
-    <message>
         <source>Enable embedded tracker:</source>
         <translation type="unfinished" />
     </message>
@@ -1280,10 +1268,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">Tinklo sąsaja (būtina paleisti iš naujo):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1439,6 +1423,10 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2205,7 +2193,7 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>Paskirstoma</translation>
+        <translation type="vanished">Paskirstoma</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3221,11 +3209,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Create Subfolder:</source>
         <translation type="unfinished" />
     </message>
@@ -3311,6 +3294,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>

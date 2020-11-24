@@ -23,10 +23,6 @@
         <translation>Preskočiť kontrolu hash</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Vytvoriť podzložku</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Magnet mód torrentu</translation>
     </message>
@@ -709,7 +705,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Povolený protokol:</translation>
+        <translation type="vanished">Povolený protokol:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1074,10 +1070,6 @@
         <translation>Ak sa zmení cesta pre ukladanie kategórie:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Vytvoriť podadresár pre torrent s viacerými súbormi</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>sekundy</translation>
     </message>
@@ -1174,10 +1166,6 @@
         <translation>Port zabudovaného trackera:</translation>
     </message>
     <message>
-        <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="vanished">Voliteľná IP adresa s ktorou sa prepojiť (vyžaduje reštart):</translation>
-    </message>
-    <message>
         <source>Fastest upload</source>
         <translation>Najrýchlejší upload</translation>
     </message>
@@ -1202,10 +1190,6 @@
         <translation>Sekcia libtorrent</translation>
     </message>
     <message>
-        <source>Coalesce reads &amp; writes:</source>
-        <translation type="vanished">Zlúčenie zapisovacích &amp; čítacích operácií:</translation>
-    </message>
-    <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>Odcházajúce porty (min) [0: Vypnuté]:</translation>
     </message>
@@ -1224,10 +1208,6 @@
     <message>
         <source>Send upload piece suggestions:</source>
         <translation>Doporučenie pre odosielanie častí uploadu:</translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">Disková vyrovnávacia pamäť:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1252,10 +1232,6 @@
     <message>
         <source>Send buffer watermark:</source>
         <translation>Odoslať watermark bufferu:</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="vanished">Interval vypršania platnosti diskovej vyrovnávacej pamäte:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1292,10 +1268,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation>Chovanie upload slotov:</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">Sieťové rozhranie (vyžaduje reštart):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1451,6 +1423,10 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2217,7 +2193,7 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>Prebieha alokácia</translation>
+        <translation type="vanished">Prebieha alokácia</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3233,11 +3209,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Create Subfolder:</source>
         <translation type="unfinished" />
     </message>
@@ -3323,6 +3294,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>
