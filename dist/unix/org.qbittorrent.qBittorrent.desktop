@@ -11,8 +11,6 @@ Type=Application
 StartupNotify=false
 StartupWMClass=qbittorrent
 Keywords=bittorrent;torrent;magnet;download;p2p;
-
-# Translations
 Comment[oc]=Telecargar e partejar de fichièrs amb BitTorrent
 GenericName[oc]=Client BitTorrent
 Name[oc]=qBittorrent

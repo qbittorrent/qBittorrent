@@ -23,10 +23,6 @@
         <translation>Ignorar verificação hash</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Criar sub-pasta</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Modo de gestão de torrent:</translation>
     </message>
@@ -366,7 +362,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -570,11 +566,11 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>Leitor de RSS</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
 </context>
 <context>
@@ -709,7 +705,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Ativar o protocolo:</translation>
+        <translation type="vanished">Ativar o protocolo:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1074,10 +1070,6 @@
         <translation>Quando alterar a 'Categoria do caminho para guardar':</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Criar uma subpasta para os torrents com vários ficheiros</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>segundos</translation>
     </message>
@@ -1174,10 +1166,6 @@
         <translation>Porta do tracker embutido:</translation>
     </message>
     <message>
-        <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="vanished">Endereço IP opcional para associar (necessita de reiniciar):</translation>
-    </message>
-    <message>
         <source>Fastest upload</source>
         <translation>Upload mais rápido</translation>
     </message>
@@ -1202,10 +1190,6 @@
         <translation>Secção libtorrent</translation>
     </message>
     <message>
-        <source>Coalesce reads &amp; writes:</source>
-        <translation type="vanished">Unir leituras e escritas:</translation>
-    </message>
-    <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>Portas de envio (Mín.) [0: Inativa]:</translation>
     </message>
@@ -1224,10 +1208,6 @@
     <message>
         <source>Send upload piece suggestions:</source>
         <translation>Enviar o upload da peça de sugestões:</translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">Cache do disco:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1252,10 +1232,6 @@
     <message>
         <source>Send buffer watermark:</source>
         <translation>Enviar marca de água do buffer:</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="vanished">Intervalo para cache de disco:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1292,10 +1268,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation>Comportamento das slots de upload:</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">Interface de rede (necessita de reiniciar):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1355,7 +1327,7 @@
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished" />
+        <translation>Filtros:</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
@@ -1379,7 +1351,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1387,7 +1359,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>Leitor de RSS</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1395,7 +1367,7 @@
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished" />
+        <translation>Descarregar episódios REPACK/PROPER</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1419,7 +1391,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1451,6 +1423,10 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2217,7 +2193,7 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>A alocar</translation>
+        <translation type="vanished">A alocar</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -2296,7 +2272,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackers</translation>
     </message>
 </context>
 <context>
@@ -2698,7 +2674,7 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Aviso</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -3015,11 +2991,11 @@
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished" />
+        <translation>Atualizar todos</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>Remover</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
@@ -3055,7 +3031,7 @@
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished" />
+        <translation>Nova pasta...</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3063,7 +3039,7 @@
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation>Atualizar</translation>
     </message>
     <message>
         <source>Folder name:</source>
@@ -3087,18 +3063,18 @@
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation>Nova subscrição...</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation>Descarregar torrent</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Regras de descarregamento</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
@@ -3174,11 +3150,11 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Exemplo:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Adicionar nova regra...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -3230,16 +3206,11 @@
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Sempre</translation>
     </message>
     <message>
         <source>Create Subfolder:</source>
-        <translation type="unfinished" />
+        <translation>Criar subpasta:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3271,7 +3242,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Nunca</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
@@ -3279,11 +3250,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>dias</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation>Utilizar filtro inteligente de episódios</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -3323,6 +3294,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>

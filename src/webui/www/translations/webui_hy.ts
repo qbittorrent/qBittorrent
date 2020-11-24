@@ -704,10 +704,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation type="unfinished" />
     </message>
@@ -1423,6 +1419,10 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2198,10 +2198,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 առաջ</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Paused</source>
@@ -3229,11 +3225,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Create Subfolder:</source>
         <translation type="unfinished" />
     </message>
@@ -3319,6 +3310,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>
