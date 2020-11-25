@@ -165,20 +165,24 @@ namespace
         // initialize output variable
         syncData.clear();
 
-        for (auto i = data.cbegin(); i != data.cend(); ++i) {
+        for (auto i = data.cbegin(); i != data.cend(); ++i)
+        {
             const QString &key = i.key();
             const QVariant &value = i.value();
             QVariantList removedItems;
 
-            switch (static_cast<QMetaType::Type>(value.type())) {
-            case QMetaType::QVariantMap: {
+            switch (static_cast<QMetaType::Type>(value.type()))
+            {
+            case QMetaType::QVariantMap:
+            {
                     QVariantMap map;
                     processMap(prevData[key].toMap(), value.toMap(), map);
                     if (!map.isEmpty())
                         syncData[key] = map;
                 }
                 break;
-            case QMetaType::QVariantHash: {
+            case QMetaType::QVariantHash:
+            {
                     QVariantMap map;
                     processHash(prevData[key].toHash(), value.toHash(), map, removedItems);
                     if (!map.isEmpty())
@@ -187,7 +191,8 @@ namespace
                         syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
                 }
                 break;
-            case QMetaType::QVariantList: {
+            case QMetaType::QVariantList:
+            {
                     QVariantList list;
                     processList(prevData[key].toList(), value.toList(), list, removedItems);
                     if (!list.isEmpty())
@@ -226,42 +231,52 @@ namespace
         syncData.clear();
         removedItems.clear();
 
-        if (prevData.isEmpty()) {
+        if (prevData.isEmpty())
+        {
             // If list was empty before, then difference is a whole new list.
             for (auto i = data.cbegin(); i != data.cend(); ++i)
                 syncData[i.key()] = i.value();
         }
-        else {
-            for (auto i = data.cbegin(); i != data.cend(); ++i) {
-                switch (i.value().type()) {
+        else
+        {
+            for (auto i = data.cbegin(); i != data.cend(); ++i)
+            {
+                switch (i.value().type())
+                {
                 case QVariant::Map:
-                    if (!prevData.contains(i.key())) {
+                    if (!prevData.contains(i.key()))
+                    {
                         // new list item found - append it to syncData
                         syncData[i.key()] = i.value();
                     }
-                    else {
+                    else
+                    {
                         QVariantMap map;
                         processMap(prevData[i.key()].toMap(), i.value().toMap(), map);
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
-                        if (!map.isEmpty()) {
+                        if (!map.isEmpty())
+                        {
                             // changed list item found - append its changes to syncData
                             syncData[i.key()] = map;
                         }
                     }
                     break;
                 case QVariant::StringList:
-                    if (!prevData.contains(i.key())) {
+                    if (!prevData.contains(i.key()))
+                    {
                         // new list item found - append it to syncData
                         syncData[i.key()] = i.value();
                     }
-                    else {
+                    else
+                    {
                         QVariantList list;
                         QVariantList removedList;
                         processList(prevData[i.key()].toList(), i.value().toList(), list, removedList);
                         // existing list item found - remove it from prevData
                         prevData.remove(i.key());
-                        if (!list.isEmpty() || !removedList.isEmpty()) {
+                        if (!list.isEmpty() || !removedList.isEmpty())
+                        {
                             // changed list item found - append entire list to syncData
                             syncData[i.key()] = i.value();
                         }
@@ -272,7 +287,8 @@ namespace
                 }
             }
 
-            if (!prevData.isEmpty()) {
+            if (!prevData.isEmpty())
+            {
                 // prevData contains only items that are missing now -
                 // put them in removedItems
                 for (auto i = prevData.cbegin(); i != prevData.cend(); ++i)
@@ -288,12 +304,15 @@ namespace
         syncData.clear();
         removedItems.clear();
 
-        if (prevData.isEmpty()) {
+        if (prevData.isEmpty())
+        {
             // If list was empty before, then difference is a whole new list.
             syncData = data;
         }
-        else {
-            for (const QVariant &item : data) {
+        else
+        {
+            for (const QVariant &item : data)
+            {
                 if (!prevData.contains(item))
                     // new list item found - append it to syncData
                     syncData.append(item);
@@ -314,7 +333,8 @@ namespace
         QVariantMap syncData;
         bool fullUpdate = true;
         int lastResponseId = 0;
-        if (acceptedResponseId > 0) {
+        if (acceptedResponseId > 0)
+        {
             lastResponseId = lastData[KEY_RESPONSE_ID].toInt();
 
             if (lastResponseId == acceptedResponseId)
@@ -322,13 +342,15 @@ namespace
 
             int lastAcceptedResponseId = lastAcceptedData[KEY_RESPONSE_ID].toInt();
 
-            if (lastAcceptedResponseId == acceptedResponseId) {
+            if (lastAcceptedResponseId == acceptedResponseId)
+            {
                 processMap(lastAcceptedData, data, syncData);
                 fullUpdate = false;
             }
         }
 
-        if (fullUpdate) {
+        if (fullUpdate)
+        {
             lastAcceptedData.clear();
             syncData = data;
             syncData[KEY_FULL_UPDATE] = true;
@@ -437,7 +459,8 @@ void SyncController::maindataAction()
 
     QVariantHash torrents;
     QHash<QString, QStringList> trackers;
-    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents())) {
+    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents()))
+    {
         const BitTorrent::InfoHash torrentHash = torrent->hash();
 
         QVariantMap map = serialize(*torrent);
@@ -446,15 +469,18 @@ void SyncController::maindataAction()
         // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
         // So we don't need unnecessary updates of last activity time in response.
         const auto iterTorrents = lastResponse.find("torrents");
-        if (iterTorrents != lastResponse.end()) {
+        if (iterTorrents != lastResponse.end())
+        {
             const QVariantHash lastResponseTorrents = iterTorrents->toHash();
             const auto iterHash = lastResponseTorrents.find(torrentHash);
 
-            if (iterHash != lastResponseTorrents.end()) {
+            if (iterHash != lastResponseTorrents.end())
+            {
                 const QVariantMap torrentData = iterHash->toMap();
                 const auto iterLastActivity = torrentData.find(KEY_TORRENT_LAST_ACTIVITY_TIME);
 
-                if (iterLastActivity != torrentData.end()) {
+                if (iterLastActivity != torrentData.end())
+                {
                     const int lastValue = iterLastActivity->toInt();
                     if (qAbs(lastValue - map[KEY_TORRENT_LAST_ACTIVITY_TIME].toInt()) < 15)
                         map[KEY_TORRENT_LAST_ACTIVITY_TIME] = lastValue;
@@ -471,9 +497,11 @@ void SyncController::maindataAction()
 
     QVariantHash categories;
     const QStringMap categoriesList = session->categories();
-    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it) {
+    for (auto it = categoriesList.cbegin(); it != categoriesList.cend(); ++it)
+    {
         const QString &key = it.key();
-        categories[key] = QVariantMap {
+        categories[key] = QVariantMap
+        {
             {"name", key},
             {"savePath", it.value()}
         };
@@ -486,7 +514,8 @@ void SyncController::maindataAction()
     data["tags"] = tags;
 
     QVariantHash trackersHash;
-    for (auto i = trackers.constBegin(); i != trackers.constEnd(); ++i) {
+    for (auto i = trackers.constBegin(); i != trackers.constEnd(); ++i)
+    {
         trackersHash[i.key()] = i.value();
     }
     data["trackers"] = trackersHash;
@@ -527,10 +556,12 @@ void SyncController::torrentPeersAction()
 
     data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
 
-    for (const BitTorrent::PeerInfo &pi : peersList) {
+    for (const BitTorrent::PeerInfo &pi : peersList)
+    {
         if (pi.address().ip.isNull()) continue;
 
-        QVariantMap peer = {
+        QVariantMap peer =
+        {
             {KEY_PEER_IP, pi.address().ip.toString()},
             {KEY_PEER_PORT, pi.address().port},
             {KEY_PEER_CLIENT, pi.client()},
@@ -547,12 +578,13 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n')}
         };
 
-        if (resolvePeerCountries) {
+        if (resolvePeerCountries)
+        {
             peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
 
-        peers[pi.address().ip.toString() + ':' + QString::number(pi.address().port)] = peer;
+        peers[pi.address().toString()] = peer;
     }
     data["peers"] = peers;
 
@@ -565,7 +597,8 @@ void SyncController::torrentPeersAction()
 
 qint64 SyncController::getFreeDiskSpace()
 {
-    if (m_freeDiskSpaceElapsedTimer.hasExpired(FREEDISKSPACE_CHECK_TIMEOUT)) {
+    if (m_freeDiskSpaceElapsedTimer.hasExpired(FREEDISKSPACE_CHECK_TIMEOUT))
+    {
         invokeChecker();
         m_freeDiskSpaceElapsedTimer.restart();
     }

@@ -306,11 +306,13 @@ bool Preferences::WinStartup() const
 void Preferences::setWinStartup(const bool b)
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-    if (b) {
+    if (b)
+    {
         const QString binPath = '"' + Utils::Fs::toNativePath(qApp->applicationFilePath()) + '"';
         settings.setValue("qBittorrent", binPath);
     }
-    else {
+    else
+    {
         settings.remove("qBittorrent");
     }
 }
@@ -530,7 +532,8 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
     QVector<Utils::Net::Subnet> ret;
     ret.reserve(subnets.size());
 
-    for (const QString &rawSubnet : subnets) {
+    for (const QString &rawSubnet : subnets)
+    {
         bool ok = false;
         const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
         if (ok)
@@ -977,7 +980,8 @@ void Preferences::setNeverCheckFileAssoc(const bool check)
 bool Preferences::isTorrentFileAssocSet()
 {
     const QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
-    if (settings.value(".torrent/Default").toString() != "qBittorrent") {
+    if (settings.value(".torrent/Default").toString() != "qBittorrent")
+    {
         qDebug(".torrent != qBittorrent");
         return false;
     }
@@ -1008,13 +1012,15 @@ void Preferences::setTorrentFileAssoc(const bool set)
     QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
     // .Torrent association
-    if (set) {
+    if (set)
+    {
         const QString oldProgId = settings.value(".torrent/Default").toString();
         if (!oldProgId.isEmpty() && (oldProgId != "qBittorrent"))
             settings.setValue(".torrent/OpenWithProgids/" + oldProgId, "");
         settings.setValue(".torrent/Default", "qBittorrent");
     }
-    else if (isTorrentFileAssocSet()) {
+    else if (isTorrentFileAssocSet())
+    {
         settings.setValue(".torrent/Default", "");
     }
 
@@ -1026,7 +1032,8 @@ void Preferences::setMagnetLinkAssoc(const bool set)
     QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
     // Magnet association
-    if (set) {
+    if (set)
+    {
         const QString commandStr = '"' + qApp->applicationFilePath() + "\" \"%1\"";
         const QString iconStr = '"' + qApp->applicationFilePath() + "\",1";
 
@@ -1037,7 +1044,8 @@ void Preferences::setMagnetLinkAssoc(const bool set)
         settings.setValue("magnet/shell/Default", "open");
         settings.setValue("magnet/shell/open/command/Default", Utils::Fs::toNativePath(commandStr));
     }
-    else if (isMagnetLinkAssocSet()) {
+    else if (isMagnetLinkAssocSet())
+    {
         settings.remove("magnet");
     }
 
@@ -1056,9 +1064,11 @@ bool Preferences::isTorrentFileAssocSet()
 {
     bool isSet = false;
     const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
-    if (torrentId != NULL) {
+    if (torrentId != NULL)
+    {
         const CFStringRef defaultHandlerId = LSCopyDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer);
-        if (defaultHandlerId != NULL) {
+        if (defaultHandlerId != NULL)
+        {
             const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
             isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
             CFRelease(defaultHandlerId);
@@ -1072,7 +1082,8 @@ bool Preferences::isMagnetLinkAssocSet()
 {
     bool isSet = false;
     const CFStringRef defaultHandlerId = LSCopyDefaultHandlerForURLScheme(magnetUrlScheme);
-    if (defaultHandlerId != NULL) {
+    if (defaultHandlerId != NULL)
+    {
         const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
         isSet = CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
         CFRelease(defaultHandlerId);
@@ -1085,7 +1096,8 @@ void Preferences::setTorrentFileAssoc()
     if (isTorrentFileAssocSet())
         return;
     const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
-    if (torrentId != NULL) {
+    if (torrentId != NULL)
+    {
         const CFStringRef myBundleId = CFBundleGetIdentifier(CFBundleGetMainBundle());
         LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
         CFRelease(torrentId);

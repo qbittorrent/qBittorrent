@@ -67,7 +67,8 @@ namespace
         // ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have large
         // Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
 
-        for (int i = 0; i < key.length(); ++i) {
+        for (int i = 0; i < key.length(); ++i)
+        {
             innerPadding[i] = innerPadding[i] ^ key.at(i); // XOR operation between every byte in key and innerpadding, of key length
             outerPadding[i] = outerPadding[i] ^ key.at(i); // XOR operation between every byte in key and outerpadding, of key length
         }
@@ -100,7 +101,8 @@ Smtp::Smtp(QObject *parent)
 {
     static bool needToRegisterMetaType = true;
 
-    if (needToRegisterMetaType) {
+    if (needToRegisterMetaType)
+    {
         qRegisterMetaType<QAbstractSocket::SocketError>();
         needToRegisterMetaType = false;
     }
@@ -153,18 +155,21 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     m_from = from;
     m_rcpt = to;
     // Authentication
-    if (pref->getMailNotificationSMTPAuth()) {
+    if (pref->getMailNotificationSMTPAuth())
+    {
         m_username = pref->getMailNotificationSMTPUsername();
         m_password = pref->getMailNotificationSMTPPassword();
     }
 
     // Connect to SMTP server
 #ifndef QT_NO_OPENSSL
-    if (pref->getMailNotificationSMTPSSL()) {
+    if (pref->getMailNotificationSMTPSSL())
+    {
         m_socket->connectToHostEncrypted(pref->getMailNotificationSMTP(), DEFAULT_PORT_SSL);
         m_useSsl = true;
     }
-    else {
+    else
+    {
 #endif
     m_socket->connectToHost(pref->getMailNotificationSMTP(), DEFAULT_PORT);
     m_useSsl = false;
@@ -178,7 +183,8 @@ void Smtp::readyRead()
     qDebug() << Q_FUNC_INFO;
     // SMTP is line-oriented
     m_buffer += m_socket->readAll();
-    while (true) {
+    while (true)
+    {
         const int pos = m_buffer.indexOf("\r\n");
         if (pos < 0) return; // Loop exit condition
         const QByteArray line = m_buffer.left(pos);
@@ -187,9 +193,11 @@ void Smtp::readyRead()
         // Extract response code
         const QByteArray code = line.left(3);
 
-        switch (m_state) {
+        switch (m_state)
+        {
         case Init:
-            if (code[0] == '2') {
+            if (code[0] == '2')
+            {
                 // The server may send a multiline greeting/INIT/220 response.
                 // We wait until it finishes.
                 if (line[3] != ' ')
@@ -197,7 +205,8 @@ void Smtp::readyRead()
                 // Connection was successful
                 ehlo();
             }
-            else {
+            else
+            {
                 logError(QLatin1String("Connection failed, unrecognized reply: ") + line);
                 m_state = Close;
             }
@@ -209,11 +218,13 @@ void Smtp::readyRead()
             break;
 #ifndef QT_NO_OPENSSL
         case StartTLSSent:
-            if (code == "220") {
+            if (code == "220")
+            {
                 m_socket->startClientEncryption();
                 ehlo();
             }
-            else {
+            else
+            {
                 authenticate();
             }
             break;
@@ -226,59 +237,69 @@ void Smtp::readyRead()
             break;
         case AuthSent:
         case Authenticated:
-            if (code[0] == '2') {
+            if (code[0] == '2')
+            {
                 qDebug() << "Sending <mail from>...";
                 m_socket->write("mail from:<" + m_from.toLatin1() + ">\r\n");
                 m_socket->flush();
                 m_state = Rcpt;
             }
-            else {
+            else
+            {
                 // Authentication failed!
                 logError(QLatin1String("Authentication failed, msg: ") + line);
                 m_state = Close;
             }
             break;
         case Rcpt:
-            if (code[0] == '2') {
+            if (code[0] == '2')
+            {
                 m_socket->write("rcpt to:<" + m_rcpt.toLatin1() + ">\r\n");
                 m_socket->flush();
                 m_state = Data;
             }
-            else {
+            else
+            {
                 logError(QLatin1String("<mail from> was rejected by server, msg: ") + line);
                 m_state = Close;
             }
             break;
         case Data:
-            if (code[0] == '2') {
+            if (code[0] == '2')
+            {
                 m_socket->write("data\r\n");
                 m_socket->flush();
                 m_state = Body;
             }
-            else {
+            else
+            {
                 logError(QLatin1String("<Rcpt to> was rejected by server, msg: ") + line);
                 m_state = Close;
             }
             break;
         case Body:
-            if (code[0] == '3') {
+            if (code[0] == '3')
+            {
                 m_socket->write(m_message + "\r\n.\r\n");
                 m_socket->flush();
                 m_state = Quit;
             }
-            else {
+            else
+            {
                 logError(QLatin1String("<data> was rejected by server, msg: ") + line);
                 m_state = Close;
             }
             break;
         case Quit:
-            if (code[0] == '2') {
+            if (code[0] == '2')
+            {
                 m_socket->write("QUIT\r\n");
                 m_socket->flush();
                 // here, we just close.
                 m_state = Close;
             }
-            else {
+            else
+            {
                 logError(QLatin1String("Message was rejected by the server, error: ") + line);
                 m_state = Close;
             }
@@ -296,10 +317,13 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, cons
     QByteArray rv = "";
     QByteArray line = key.toLatin1() + ": ";
     if (!prefix.isEmpty()) line += prefix;
-    if (!value.contains("=?") && latin1->canEncode(value)) {
+    if (!value.contains("=?") && latin1->canEncode(value))
+    {
         bool firstWord = true;
-        for (const QByteArray &word : asConst(value.toLatin1().split(' '))) {
-            if (line.size() > 78) {
+        for (const QByteArray &word : asConst(value.toLatin1().split(' ')))
+        {
+            if (line.size() > 78)
+            {
                 rv = rv + line + "\r\n";
                 line.clear();
             }
@@ -310,7 +334,8 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, cons
             firstWord = false;
         }
     }
-    else {
+    else
+    {
         // The text cannot be losslessly encoded as Latin-1. Therefore, we
         // must use base64 encoding.
         const QByteArray utf8 = value.toUtf8();
@@ -318,8 +343,10 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, cons
         const QByteArray base64 = utf8.toBase64();
         const int ct = base64.length();
         line += "=?utf-8?b?";
-        for (int i = 0; i < ct; i += 4) {
-            /*if (line.length() > 72) {
+        for (int i = 0; i < ct; i += 4)
+        {
+            /*if (line.length() > 72)
+            {
                rv += line + "?\n\r";
                line = " =?utf-8?b?";
                }*/
@@ -348,14 +375,17 @@ void Smtp::helo()
 
 void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const QString &line)
 {
-    if (code != "250") {
+    if (code != "250")
+    {
         // Error
-        if (m_state == EhloSent) {
+        if (m_state == EhloSent)
+        {
             // try to send HELO instead of EHLO
             qDebug() << "EHLO failed, trying HELO instead...";
             helo();
         }
-        else {
+        else
+        {
             // Both EHLO and HELO failed, chances are this is NOT
             // a SMTP server
             logError("Both EHLO and HELO failed, msg: " + line);
@@ -364,20 +394,24 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
         return;
     }
 
-    if (m_state != EhloGreetReceived) {
-        if (!continued) {
+    if (m_state != EhloGreetReceived)
+    {
+        if (!continued)
+        {
             // greeting only, no extensions
             qDebug() << "No extension";
             m_state = EhloDone;
         }
-        else {
+        else
+        {
             // greeting followed by extensions
             m_state = EhloGreetReceived;
             qDebug() << "EHLO greet received";
             return;
         }
     }
-    else {
+    else
+    {
         qDebug() << Q_FUNC_INFO << "Supported extension: " << line.section(' ', 0, 0).toUpper()
                  << line.section(' ', 1);
         m_extensions[line.section(' ', 0, 0).toUpper()] = line.section(' ', 1);
@@ -387,11 +421,13 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains("STARTTLS") && m_useSsl) {
+    if (m_extensions.contains("STARTTLS") && m_useSsl)
+    {
         qDebug() << "STARTTLS";
         startTLS();
     }
-    else {
+    else
+    {
         authenticate();
     }
 }
@@ -400,7 +436,8 @@ void Smtp::authenticate()
 {
     qDebug() << Q_FUNC_INFO;
     if (!m_extensions.contains("AUTH") ||
-        m_username.isEmpty() || m_password.isEmpty()) {
+        m_username.isEmpty() || m_password.isEmpty())
+        {
         // Skip authentication
         qDebug() << "Skipping authentication...";
         m_state = Authenticated;
@@ -414,19 +451,23 @@ void Smtp::authenticate()
     // authentication modes are supported by
     // the server
     const QStringList auth = m_extensions["AUTH"].toUpper().split(' ', QString::SkipEmptyParts);
-    if (auth.contains("CRAM-MD5")) {
+    if (auth.contains("CRAM-MD5"))
+    {
         qDebug() << "Using CRAM-MD5 authentication...";
         authCramMD5();
     }
-    else if (auth.contains("PLAIN")) {
+    else if (auth.contains("PLAIN"))
+    {
         qDebug() << "Using PLAIN authentication...";
         authPlain();
     }
-    else if (auth.contains("LOGIN")) {
+    else if (auth.contains("LOGIN"))
+    {
         qDebug() << "Using LOGIN authentication...";
         authLogin();
     }
-    else {
+    else
+    {
         // Skip authentication
         logError("The SMTP server does not seem to support any of the authentications modes "
                  "we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, "
@@ -453,13 +494,15 @@ void Smtp::startTLS()
 
 void Smtp::authCramMD5(const QByteArray &challenge)
 {
-    if (m_state != AuthRequestSent) {
+    if (m_state != AuthRequestSent)
+    {
         m_socket->write("auth cram-md5\r\n");
         m_socket->flush();
         m_authType = AuthCramMD5;
         m_state = AuthRequestSent;
     }
-    else {
+    else
+    {
         const QByteArray response = m_username.toLatin1() + ' '
                               + hmacMD5(m_password.toLatin1(), QByteArray::fromBase64(challenge)).toHex();
         m_socket->write(response.toBase64() + "\r\n");
@@ -470,7 +513,8 @@ void Smtp::authCramMD5(const QByteArray &challenge)
 
 void Smtp::authPlain()
 {
-    if (m_state != AuthRequestSent) {
+    if (m_state != AuthRequestSent)
+    {
         m_authType = AuthPlain;
         // Prepare Auth string
         QByteArray auth;
@@ -489,18 +533,21 @@ void Smtp::authPlain()
 
 void Smtp::authLogin()
 {
-    if ((m_state != AuthRequestSent) && (m_state != AuthUsernameSent)) {
+    if ((m_state != AuthRequestSent) && (m_state != AuthUsernameSent))
+    {
         m_socket->write("auth login\r\n");
         m_socket->flush();
         m_authType = AuthLogin;
         m_state = AuthRequestSent;
     }
-    else if (m_state == AuthRequestSent) {
+    else if (m_state == AuthRequestSent)
+    {
         m_socket->write(m_username.toLatin1().toBase64() + "\r\n");
         m_socket->flush();
         m_state = AuthUsernameSent;
     }
-    else {
+    else
+    {
         m_socket->write(m_password.toLatin1().toBase64() + "\r\n");
         m_socket->flush();
         m_state = AuthSent;

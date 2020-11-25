@@ -92,7 +92,8 @@ void sigNormalHandler(int signum);
 void sigAbnormalHandler(int signum);
 #endif
 // sys_signame[] is only defined in BSD
-const char *const sysSigName[] = {
+const char *const sysSigName[] =
+{
 #if defined(Q_OS_WIN)
     "", "", "SIGINT", "", "SIGILL", "", "SIGABRT_COMPAT", "", "SIGFPE", "",
     "", "SIGSEGV", "", "", "", "SIGTERM", "", "", "", "",
@@ -141,19 +142,23 @@ int main(int argc, char *argv[])
         Application::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 #endif
 
-    try {
+    try
+    {
         // Create Application
         auto app = std::make_unique<Application>(argc, argv);
 
         const QBtCommandLineParameters params = app->commandLineArgs();
-        if (!params.unknownParameter.isEmpty()) {
+        if (!params.unknownParameter.isEmpty())
+        {
             throw CommandLineParameterError(QObject::tr("%1 is an unknown command line parameter.",
                                                         "--random-parameter is an unknown command line parameter.")
                                                         .arg(params.unknownParameter));
         }
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
-        if (params.showVersion) {
-            if (isOneArg) {
+        if (params.showVersion)
+        {
+            if (isOneArg)
+            {
                 displayVersion();
                 return EXIT_SUCCESS;
             }
@@ -161,8 +166,10 @@ int main(int argc, char *argv[])
                                      .arg(QLatin1String("-v (or --version)")));
         }
 #endif
-        if (params.showHelp) {
-            if (isOneArg) {
+        if (params.showHelp)
+        {
+            if (isOneArg)
+            {
                 displayUsage(argv[0]);
                 return EXIT_SUCCESS;
             }
@@ -175,7 +182,8 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Couldn't set environment variable...\n");
 
         const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
-        if (firstTimeUser) {
+        if (firstTimeUser)
+        {
 #ifndef DISABLE_GUI
             if (!userAgreesWithLegalNotice())
                 return EXIT_SUCCESS;
@@ -195,9 +203,11 @@ int main(int argc, char *argv[])
         }
 
         // Check if qBittorrent is already running for this user
-        if (app->isRunning()) {
+        if (app->isRunning())
+        {
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
-            if (params.shouldDaemonize) {
+            if (params.shouldDaemonize)
+            {
                 throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
                                      .arg(QLatin1String("-d (or --daemon)")));
             }
@@ -242,7 +252,8 @@ int main(int argc, char *argv[])
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
-        if (!firstTimeUser) {
+        if (!firstTimeUser)
+        {
             handleChangedDefaults(DefaultPreferencesMode::Legacy);
 
 #ifndef DISABLE_GUI
@@ -256,21 +267,26 @@ int main(int argc, char *argv[])
                          && isatty(fileno(stdout)))) return EXIT_FAILURE;
 #endif
         }
-        else {
+        else
+        {
             handleChangedDefaults(DefaultPreferencesMode::Current);
         }
 
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
-        if (params.shouldDaemonize) {
+        if (params.shouldDaemonize)
+        {
             app.reset(); // Destroy current application
-            if (daemon(1, 0) == 0) {
+            if (daemon(1, 0) == 0)
+            {
                 app = std::make_unique<Application>(argc, argv);
-                if (app->isRunning()) {
+                if (app->isRunning())
+                {
                     // Another instance had time to start.
                     return EXIT_FAILURE;
                 }
             }
-            else {
+            else
+            {
                 qCritical("Something went wrong while daemonizing, exiting...");
                 return EXIT_FAILURE;
             }
@@ -289,7 +305,8 @@ int main(int argc, char *argv[])
 
         return app->exec(params.paramList());
     }
-    catch (const CommandLineParameterError &er) {
+    catch (const CommandLineParameterError &er)
+    {
         displayBadArgMessage(er.messageForUser());
         return EXIT_FAILURE;
     }
@@ -300,10 +317,12 @@ void reportToUser(const char *str)
 {
     const size_t strLen = strlen(str);
 #ifndef Q_OS_WIN
-    if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
+    if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen))
+    {
         const auto dummy = write(STDOUT_FILENO, str, strLen);
 #else
-    if (_write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen)) {
+    if (_write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen))
+    {
         const auto dummy = _write(STDOUT_FILENO, str, strLen);
 #endif
         Q_UNUSED(dummy);
@@ -405,7 +424,8 @@ bool userAgreesWithLegalNotice()
     printf("%s", qUtf8Printable(eula));
 
     const char ret = getchar(); // Read pressed key
-    if ((ret == 'y') || (ret == 'Y')) {
+    if ((ret == 'y') || (ret == 'Y'))
+    {
         // Save the answer
         pref->setAcceptedLegal(true);
         return true;
@@ -419,7 +439,8 @@ bool userAgreesWithLegalNotice()
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
-    if (msgBox.clickedButton() == agreeButton) {
+    if (msgBox.clickedButton() == agreeButton)
+    {
         // Save the answer
         pref->setAcceptedLegal(true);
         return true;

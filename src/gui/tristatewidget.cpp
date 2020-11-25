@@ -74,7 +74,8 @@ void TriStateWidget::paintEvent(QPaintEvent *)
     opt.menuHasCheckableItems = true;
     opt.text = m_text;
 
-    switch (m_checkState) {
+    switch (m_checkState)
+    {
     case Qt::PartiallyChecked:
         opt.state |= QStyle::State_NoChange;
         break;
@@ -87,7 +88,8 @@ void TriStateWidget::paintEvent(QPaintEvent *)
     };
 
     if ((opt.state & QStyle::State_HasFocus)
-        || rect().contains(mapFromGlobal(QCursor::pos()))) {
+        || rect().contains(mapFromGlobal(QCursor::pos())))
+        {
         opt.state |= QStyle::State_Selected;
 
         if (QApplication::mouseButtons() != Qt::NoButton)
@@ -102,11 +104,13 @@ void TriStateWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     toggleCheckState();
 
-    if (m_closeOnTriggered) {
+    if (m_closeOnTriggered)
+    {
         // parent `triggered` signal will be emitted
         QWidget::mouseReleaseEvent(event);
     }
-    else {
+    else
+    {
         update();
         // need to emit parent `triggered` signal manually
         emit triggered(m_checkState == Qt::Checked);
@@ -116,10 +120,12 @@ void TriStateWidget::mouseReleaseEvent(QMouseEvent *event)
 void TriStateWidget::keyPressEvent(QKeyEvent *event)
 {
     if ((event->key() == Qt::Key_Return)
-        || (event->key() == Qt::Key_Enter)) {
+        || (event->key() == Qt::Key_Enter))
+        {
         toggleCheckState();
 
-        if (!m_closeOnTriggered) {
+        if (!m_closeOnTriggered)
+        {
             update();
             // need to emit parent `triggered` signal manually
             emit triggered(m_checkState == Qt::Checked);
@@ -132,7 +138,8 @@ void TriStateWidget::keyPressEvent(QKeyEvent *event)
 
 void TriStateWidget::toggleCheckState()
 {
-    switch (m_checkState) {
+    switch (m_checkState)
+    {
     case Qt::Unchecked:
     case Qt::PartiallyChecked:
         m_checkState = Qt::Checked;

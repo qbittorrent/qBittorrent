@@ -1,4 +1,4 @@
-﻿;Installer strings
+;Installer strings
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_DUTCH} "qBittorrent (vereist)"
@@ -19,9 +19,9 @@ LangString inst_pathlimit ${LANG_DUTCH} "De Windows-begrenzing voor padlengte ui
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_DUTCH} "Uitzondering aan Windows Firewall toevoegen"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
-LangString inst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit de toepassing voordat u deze update installeert."
+LangString inst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit het af voordat u deze update installeert."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
-LangString inst_uninstall_question ${LANG_DUTCH} "Er werd een eerdere installatie gedetecteerd. Deze wordt verwijderd zonder de gebruikersinstellingen te verwijderen."
+LangString inst_uninstall_question ${LANG_DUTCH} "De huidige versie zal verwijderd worden. Gebruikersinstellingen en torrents blijven intact."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_DUTCH} "Vorige versie verwijderen."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
@@ -52,7 +52,7 @@ LangString remove_firewallinfo ${LANG_DUTCH} "Uitzondering uit Windows Firewall 
 ;LangString remove_cache ${LANG_ENGLISH} "Remove torrents and cached data"
 LangString remove_cache ${LANG_DUTCH} "Torrents en cachegegevens verwijderen"
 ;LangString uninst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before uninstalling."
-LangString uninst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit de toepassing voordat u ze verwijdert."
+LangString uninst_warning ${LANG_DUTCH} "qBittorrent is actief. Sluit het af voordat u het verwijdert."
 ;LangString uninst_tor_warn ${LANG_ENGLISH} "Not removing .torrent association. It is associated with:"
 LangString uninst_tor_warn ${LANG_DUTCH} ".torrent-associatie wordt niet verwijderd. Ze is gekoppeld met:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"

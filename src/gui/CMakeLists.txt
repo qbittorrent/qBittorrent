@@ -26,6 +26,7 @@ add_library(qbt_gui STATIC
     powermanagement/powermanagement.h
     previewlistdelegate.h
     previewselectdialog.h
+    progressbardelegate.h
     properties/downloadedpiecesbar.h
     properties/peerlistsortmodel.h
     properties/peerlistwidget.h
@@ -105,6 +106,7 @@ add_library(qbt_gui STATIC
     powermanagement/powermanagement.cpp
     previewlistdelegate.cpp
     previewselectdialog.cpp
+    progressbardelegate.cpp
     properties/downloadedpiecesbar.cpp
     properties/peerlistsortmodel.cpp
     properties/peerlistwidget.cpp

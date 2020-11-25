@@ -74,7 +74,8 @@ private:
         const uchar *const data = m_data + offset;
         const quint32 availSize = m_size - offset;
 
-        if ((len > 0) && (len <= sizeof(T) && (availSize >= len))) {
+        if ((len > 0) && (len <= sizeof(T) && (availSize >= len)))
+        {
             // copy input data to last 'len' bytes of 'value'
             uchar *dst = reinterpret_cast<uchar *>(&value) + (sizeof(T) - len);
             memcpy(dst, data, len);

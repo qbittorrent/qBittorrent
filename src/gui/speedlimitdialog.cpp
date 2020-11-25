@@ -59,7 +59,8 @@ long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, const QString &t
     dlg.setWindowTitle(title);
     dlg.setupDialog((maxVal / 1024.), (defaultVal / 1024.));
 
-    if (dlg.exec() == QDialog::Accepted) {
+    if (dlg.exec() == QDialog::Accepted)
+    {
         if (ok) *ok = true;
 
         const int val = dlg.getSpeedLimit();

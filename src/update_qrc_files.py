@@ -88,4 +88,3 @@ output += '''</qresource>
 icons_file = open('icons.qrc', 'w')
 icons_file.write(output)
 icons_file.close()
-

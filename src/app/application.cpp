@@ -181,12 +181,14 @@ Application::Application(int &argc, char **argv)
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
-    if (portableModeEnabled) {
+    if (portableModeEnabled)
+    {
         Logger::instance()->addMessage(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir));
         if (m_commandLineArgs.relativeFastresumePaths)
             Logger::instance()->addMessage(tr("Redundant command line flag detected: \"%1\". Portable mode implies relative fastresume.").arg("--relative-fastresume"), Log::WARNING); // to avoid translating the `--relative-fastresume` string
     }
-    else {
+    else
+    {
         Logger::instance()->addMessage(tr("Using config directory: %1").arg(Profile::instance()->location(SpecialFolder::Config)));
     }
 }
@@ -420,11 +422,13 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
     proc.setArguments(argList);
     proc.setCreateProcessArgumentsModifier([](QProcess::CreateProcessArguments *args)
     {
-        if (Preferences::instance()->isAutoRunConsoleEnabled()) {
+        if (Preferences::instance()->isAutoRunConsoleEnabled())
+        {
             args->flags |= CREATE_NEW_CONSOLE;
             args->flags &= ~(CREATE_NO_WINDOW | DETACHED_PROCESS);
         }
-        else {
+        else
+        {
             args->flags |= CREATE_NO_WINDOW;
             args->flags &= ~(CREATE_NEW_CONSOLE | DETACHED_PROCESS);
         }
@@ -487,7 +491,8 @@ void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
         runExternalProgram(torrent);
 
     // Mail notification
-    if (pref->isMailNotificationEnabled()) {
+    if (pref->isMailNotificationEnabled())
+    {
         Logger::instance()->addMessage(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
@@ -514,16 +519,19 @@ void Application::allTorrentsFinished()
 
 #ifndef DISABLE_GUI
     // ask confirm
-    if ((action == ShutdownDialogAction::Exit) && (pref->dontConfirmAutoExit())) {
+    if ((action == ShutdownDialogAction::Exit) && (pref->dontConfirmAutoExit()))
+    {
         // do nothing & skip confirm
     }
-    else {
+    else
+    {
         if (!ShutdownConfirmDialog::askForConfirmation(m_window, action)) return;
     }
 #endif // DISABLE_GUI
 
     // Actually shut down
-    if (action != ShutdownDialogAction::Exit) {
+    if (action != ShutdownDialogAction::Exit)
+    {
         qDebug("Preparing for auto-shutdown because all downloads are complete!");
         // Disabling it for next time
         pref->setShutdownWhenDownloadsComplete(false);
@@ -549,7 +557,8 @@ bool Application::sendParams(const QStringList &params)
 void Application::processParams(const QStringList &params)
 {
 #ifndef DISABLE_GUI
-    if (params.isEmpty()) {
+    if (params.isEmpty())
+    {
         m_window->activate(); // show UI
         return;
     }
@@ -557,42 +566,50 @@ void Application::processParams(const QStringList &params)
     BitTorrent::AddTorrentParams torrentParams;
     TriStateBool skipTorrentDialog;
 
-    for (QString param : params) {
+    for (QString param : params)
+    {
         param = param.trimmed();
 
         // Process strings indicating options specified by the user.
 
-        if (param.startsWith(QLatin1String("@savePath="))) {
+        if (param.startsWith(QLatin1String("@savePath=")))
+        {
             torrentParams.savePath = param.mid(10);
             continue;
         }
 
-        if (param.startsWith(QLatin1String("@addPaused="))) {
+        if (param.startsWith(QLatin1String("@addPaused=")))
+        {
             torrentParams.addPaused = param.midRef(11).toInt() ? TriStateBool::True : TriStateBool::False;
             continue;
         }
 
-        if (param == QLatin1String("@skipChecking")) {
+        if (param == QLatin1String("@skipChecking"))
+        {
             torrentParams.skipChecking = true;
             continue;
         }
 
-        if (param.startsWith(QLatin1String("@category="))) {
+        if (param.startsWith(QLatin1String("@category=")))
+        {
             torrentParams.category = param.mid(10);
             continue;
         }
 
-        if (param == QLatin1String("@sequential")) {
+        if (param == QLatin1String("@sequential"))
+        {
             torrentParams.sequential = true;
             continue;
         }
 
-        if (param == QLatin1String("@firstLastPiecePriority")) {
+        if (param == QLatin1String("@firstLastPiecePriority"))
+        {
             torrentParams.firstLastPiecePriority = true;
             continue;
         }
 
-        if (param.startsWith(QLatin1String("@skipDialog="))) {
+        if (param.startsWith(QLatin1String("@skipDialog=")))
+        {
             skipTorrentDialog = param.midRef(12).toInt() ? TriStateBool::True : TriStateBool::False;
             continue;
         }
@@ -620,7 +637,8 @@ int Application::exec(const QStringList &params)
     Net::DownloadManager::initInstance();
     IconProvider::initInstance();
 
-    try {
+    try
+    {
         BitTorrent::Session::initInstance();
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
@@ -640,7 +658,8 @@ int Application::exec(const QStringList &params)
         new RSS::Session; // create RSS::Session singleton
         new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
     }
-    catch (const RuntimeError &err) {
+    catch (const RuntimeError &err)
+    {
 #ifdef DISABLE_GUI
         fprintf(stderr, "%s", err.what());
 #else
@@ -664,7 +683,8 @@ int Application::exec(const QStringList &params)
             .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
     printf("%s", qUtf8Printable(mesg));
 
-    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==") {
+    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==")
+    {
         const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
             + tr("The Web UI administrator password is still the default one: %1").arg("adminadmin") + '\n'
             + tr("This is a security risk, please consider changing your password from program preferences.") + '\n';
@@ -682,7 +702,8 @@ int Application::exec(const QStringList &params)
     BitTorrent::Session::instance()->startUpTorrents();
 
     m_paramsQueue = params + m_paramsQueue;
-    if (!m_paramsQueue.isEmpty()) {
+    if (!m_paramsQueue.isEmpty())
+    {
         processParams(m_paramsQueue);
         m_paramsQueue.clear();
     }
@@ -698,7 +719,8 @@ bool Application::isRunning()
 #ifdef Q_OS_MACOS
 bool Application::event(QEvent *ev)
 {
-    if (ev->type() == QEvent::FileOpen) {
+    if (ev->type() == QEvent::FileOpen)
+    {
         QString path = static_cast<QFileOpenEvent *>(ev)->file();
         if (path.isEmpty())
             // Get the url instead
@@ -710,7 +732,8 @@ bool Application::event(QEvent *ev)
             m_paramsQueue.append(path);
         return true;
     }
-    else {
+    else
+    {
         return BaseApplication::event(ev);
     }
 }
@@ -738,11 +761,13 @@ void Application::initializeTranslation()
     installTranslator(&m_translator);
 
 #ifndef DISABLE_GUI
-    if (localeStr.startsWith("ar") || localeStr.startsWith("he")) {
+    if (localeStr.startsWith("ar") || localeStr.startsWith("he"))
+    {
         qDebug("Right to Left mode");
         setLayoutDirection(Qt::RightToLeft);
     }
-    else {
+    else
+    {
         setLayoutDirection(Qt::LeftToRight);
     }
 #endif
@@ -784,7 +809,8 @@ void Application::cleanup()
         return;
 
 #ifndef DISABLE_GUI
-    if (m_window) {
+    if (m_window)
+    {
         // Hide the window and don't leave it on screen as
         // unresponsive. Also for Windows take the WinId
         // after it's hidden, because hide() may cause a
@@ -828,7 +854,8 @@ void Application::cleanup()
     Utils::Fs::removeDirRecursive(Utils::Fs::tempPath());
 
 #ifndef DISABLE_GUI
-    if (m_window) {
+    if (m_window)
+    {
 #ifdef Q_OS_WIN
         ::ShutdownBlockReasonDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
 #endif // Q_OS_WIN
@@ -839,7 +866,8 @@ void Application::cleanup()
 
     Profile::freeInstance();
 
-    if (m_shutdownAct != ShutdownDialogAction::Exit) {
+    if (m_shutdownAct != ShutdownDialogAction::Exit)
+    {
         qDebug() << "Sending computer shutdown/suspend/hibernate signal...";
         Utils::Misc::shutdownComputer(m_shutdownAct);
     }

@@ -1,4 +1,4 @@
-﻿Var uninstallerPath
+Var uninstallerPath
 
 Section "-hidden"
 

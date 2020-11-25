@@ -29,6 +29,7 @@
 #ifndef TORRENTCONTENTMODELITEM_H
 #define TORRENTCONTENTMODELITEM_H
 
+#include <QCoreApplication>
 #include <QVector>
 
 #include "base/bittorrent/downloadpriority.h"
@@ -39,6 +40,8 @@ class TorrentContentModelFolder;
 
 class TorrentContentModelItem
 {
+    Q_DECLARE_TR_FUNCTIONS(TorrentContentModelItem)
+
 public:
     enum TreeItemColumns
     {
@@ -77,13 +80,14 @@ public:
     virtual void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) = 0;
 
     int columnCount() const;
-    QVariant data(int column) const;
+    QString displayData(int column) const;
+    QVariant underlyingData(int column) const;
     int row() const;
 
 protected:
     TorrentContentModelFolder *m_parentItem;
     // Root item members
-    QVector<QVariant> m_itemData;
+    QVector<QString> m_itemData;
     // Non-root item members
     QString m_name;
     qulonglong m_size;

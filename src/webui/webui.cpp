@@ -56,31 +56,38 @@ void WebUI::configure()
     const quint16 oldPort = m_port;
     m_port = pref->getWebUiPort();
 
-    if (pref->isWebUiEnabled()) {
+    if (pref->isWebUiEnabled())
+    {
         // UPnP/NAT-PMP
-        if (pref->useUPnPForWebUIPort()) {
-            if (m_port != oldPort) {
+        if (pref->useUPnPForWebUIPort())
+        {
+            if (m_port != oldPort)
+            {
                 Net::PortForwarder::instance()->deletePort(oldPort);
                 Net::PortForwarder::instance()->addPort(m_port);
             }
         }
-        else {
+        else
+        {
             Net::PortForwarder::instance()->deletePort(oldPort);
         }
 
         // http server
         const QString serverAddressString = pref->getWebUiAddress();
-        if (!m_httpServer) {
+        if (!m_httpServer)
+        {
             m_webapp = new WebApplication(this);
             m_httpServer = new Http::Server(m_webapp, this);
         }
-        else {
+        else
+        {
             if ((m_httpServer->serverAddress().toString() != serverAddressString)
                     || (m_httpServer->serverPort() != m_port))
                 m_httpServer->close();
         }
 
-        if (pref->isWebUiHttpsEnabled()) {
+        if (pref->isWebUiHttpsEnabled())
+        {
             const auto readData = [](const QString &path) -> QByteArray
             {
                 QFile file(path);
@@ -97,18 +104,22 @@ void WebUI::configure()
             else
                 logger->addMessage(tr("Web UI: HTTPS setup failed, fallback to HTTP"), Log::CRITICAL);
         }
-        else {
+        else
+        {
             m_httpServer->disableHttps();
         }
 
-        if (!m_httpServer->isListening()) {
+        if (!m_httpServer->isListening())
+        {
             const auto address = (serverAddressString == "*" || serverAddressString.isEmpty())
                 ? QHostAddress::Any : QHostAddress(serverAddressString);
             bool success = m_httpServer->listen(address, m_port);
-            if (success) {
+            if (success)
+            {
                 logger->addMessage(tr("Web UI: Now listening on IP: %1, port: %2").arg(serverAddressString).arg(m_port));
             }
-            else {
+            else
+            {
                 const QString errorMsg = tr("Web UI: Unable to bind to IP: %1, port: %2. Reason: %3")
                     .arg(serverAddressString).arg(m_port).arg(m_httpServer->errorString());
                 logger->addMessage(errorMsg, Log::CRITICAL);
@@ -120,17 +131,20 @@ void WebUI::configure()
         }
 
         // DynDNS
-        if (pref->isDynDNSEnabled()) {
+        if (pref->isDynDNSEnabled())
+        {
             if (!m_dnsUpdater)
                 m_dnsUpdater = new Net::DNSUpdater(this);
             else
                 m_dnsUpdater->updateCredentials();
         }
-        else {
+        else
+        {
             delete m_dnsUpdater;
         }
     }
-    else {
+    else
+    {
         Net::PortForwarder::instance()->deletePort(oldPort);
 
         delete m_httpServer;

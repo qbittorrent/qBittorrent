@@ -170,7 +170,8 @@ void AdvancedSettings::saveAdvancedSettings()
 
 #if defined(Q_OS_WIN)
     BitTorrent::OSMemoryPriority prio = BitTorrent::OSMemoryPriority::Normal;
-    switch (m_comboBoxOSMemoryPriority.currentIndex()) {
+    switch (m_comboBoxOSMemoryPriority.currentIndex())
+    {
     case 0:
     default:
         prio = BitTorrent::OSMemoryPriority::Normal;
@@ -250,12 +251,14 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->resolvePeerCountries(m_checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(m_checkBoxResolveHosts.isChecked());
     // Network interface
-    if (m_comboBoxInterface.currentIndex() == 0) {
+    if (m_comboBoxInterface.currentIndex() == 0)
+    {
         // All interfaces (default)
         session->setNetworkInterface(QString());
         session->setNetworkInterfaceName(QString());
     }
-    else {
+    else
+    {
         session->setNetworkInterface(m_comboBoxInterface.itemData(m_comboBoxInterface.currentIndex()).toString());
         session->setNetworkInterfaceName(m_comboBoxInterface.currentText());
     }
@@ -342,21 +345,25 @@ void AdvancedSettings::updateInterfaceAddressCombo()
 
     const auto populateCombo = [this](const QHostAddress &addr)
     {
-        if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
+        if (addr.protocol() == QAbstractSocket::IPv4Protocol)
+        {
             const QString str = addr.toString();
             m_comboBoxInterfaceAddress.addItem(str, str);
         }
-        else if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
+        else if (addr.protocol() == QAbstractSocket::IPv6Protocol)
+        {
             const QString str = Utils::Net::canonicalIPv6Addr(addr).toString();
             m_comboBoxInterfaceAddress.addItem(str, str);
         }
     };
 
-    if (ifaceName.isEmpty()) {
+    if (ifaceName.isEmpty())
+    {
         for (const QHostAddress &addr : asConst(QNetworkInterface::allAddresses()))
             populateCombo(addr);
     }
-    else {
+    else
+    {
         const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
         const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
         for (const QNetworkAddressEntry &entry : addresses)
@@ -392,7 +399,8 @@ void AdvancedSettings::loadAdvancedSettings()
 #if defined(Q_OS_WIN)
     m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});
     int OSMemoryPriorityIndex = 0;
-    switch (session->getOSMemoryPriority()) {
+    switch (session->getOSMemoryPriority())
+    {
     default:
     case BitTorrent::OSMemoryPriority::Normal:
         OSMemoryPriorityIndex = 0;
@@ -586,16 +594,19 @@ void AdvancedSettings::loadAdvancedSettings()
     const QString currentInterface = session->networkInterface();
     bool interfaceExists = currentInterface.isEmpty();
     int i = 1;
-    for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces())) {
+    for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces()))
+    {
         m_comboBoxInterface.addItem(iface.humanReadableName(), iface.name());
-        if (!currentInterface.isEmpty() && (iface.name() == currentInterface)) {
+        if (!currentInterface.isEmpty() && (iface.name() == currentInterface))
+        {
             m_comboBoxInterface.setCurrentIndex(i);
             interfaceExists = true;
         }
         ++i;
     }
     // Saved interface does not exist, show it anyway
-    if (!interfaceExists) {
+    if (!interfaceExists)
+    {
         m_comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
         m_comboBoxInterface.setCurrentIndex(i);
     }

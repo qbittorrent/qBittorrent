@@ -39,9 +39,11 @@ PeerListSortModel::PeerListSortModel(QObject *parent)
 
 bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    switch (sortColumn()) {
+    switch (sortColumn())
+    {
     case PeerListWidget::IP:
-    case PeerListWidget::CLIENT: {
+    case PeerListWidget::CLIENT:
+    {
             const QString strL = left.data(UnderlyingDataRole).toString();
             const QString strR = right.data(UnderlyingDataRole).toString();
             const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);

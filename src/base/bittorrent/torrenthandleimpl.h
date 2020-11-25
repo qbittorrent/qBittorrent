@@ -101,7 +101,6 @@ namespace BitTorrent
         qlonglong totalSize() const override;
         qlonglong wantedSize() const override;
         qlonglong completedSize() const override;
-        qlonglong incompletedSize() const override;
         qlonglong pieceLength() const override;
         qlonglong wastedSize() const override;
         QString currentTracker() const override;
@@ -143,7 +142,6 @@ namespace BitTorrent
         TorrentInfo info() const override;
         bool isSeed() const override;
         bool isPaused() const override;
-        bool isResumed() const override;
         bool isQueued() const override;
         bool isForced() const override;
         bool isChecking() const override;
@@ -209,7 +207,7 @@ namespace BitTorrent
         void setSequentialDownload(bool enable) override;
         void setFirstLastPiecePriority(bool enabled) override;
         void pause() override;
-        void resume(bool forced = false) override;
+        void resume(TorrentOperatingMode mode = TorrentOperatingMode::AutoManaged) override;
         void move(QString path) override;
         void forceReannounce(int index = -1) override;
         void forceDHTAnnounce() override;
@@ -271,9 +269,8 @@ namespace BitTorrent
         void handleTrackerReplyAlert(const lt::tracker_reply_alert *p);
         void handleTrackerWarningAlert(const lt::tracker_warning_alert *p);
 
-        void resume_impl(bool forced);
         bool isMoveInProgress() const;
-        bool isAutoManaged() const;
+
         void setAutoManaged(bool enable);
 
         void adjustActualSavePath();
@@ -311,12 +308,14 @@ namespace BitTorrent
         QSet<QString> m_tags;
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
+        TorrentOperatingMode m_operatingMode;
         bool m_hasSeedStatus;
         bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
         bool m_hasRootFolder;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
+        bool m_isStopped;
 
         bool m_unchecked = false;
 

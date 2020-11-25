@@ -60,7 +60,8 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = Preferences::instance()->getNetworkCookies();
-            for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies())) {
+            for (const QNetworkCookie &cookie : asConst(Preferences::instance()->getNetworkCookies()))
+            {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -72,7 +73,8 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = allCookies();
-            for (const QNetworkCookie &cookie : asConst(allCookies())) {
+            for (const QNetworkCookie &cookie : asConst(allCookies()))
+            {
                 if (cookie.isSessionCookie() || (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -87,7 +89,8 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = QNetworkCookieJar::cookiesForUrl(url);
-            for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url))) {
+            for (const QNetworkCookie &cookie : asConst(QNetworkCookieJar::cookiesForUrl(url)))
+            {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -99,7 +102,8 @@ namespace
         {
             const QDateTime now = QDateTime::currentDateTime();
             QList<QNetworkCookie> cookies = cookieList;
-            for (const QNetworkCookie &cookie : cookieList) {
+            for (const QNetworkCookie &cookie : cookieList)
+            {
                 if (!cookie.isSessionCookie() && (cookie.expirationDate() <= now))
                     cookies.removeAll(cookie);
             }
@@ -172,10 +176,12 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
         m_waitingJobs[id].removeOne(downloadHandler);
     });
 
-    if (isSequentialService && m_busyServices.contains(id)) {
+    if (isSequentialService && m_busyServices.contains(id))
+    {
         m_waitingJobs[id].enqueue(downloadHandler);
     }
-    else {
+    else
+    {
         qDebug("Downloading %s...", qUtf8Printable(downloadRequest.url()));
         if (isSequentialService)
             m_busyServices.insert(id);
@@ -230,27 +236,32 @@ void Net::DownloadManager::applyProxySettings()
     const ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
     QNetworkProxy proxy;
 
-    if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None)) {
+    if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None))
+    {
         // Proxy enabled
         proxy.setHostName(proxyConfig.ip);
         proxy.setPort(proxyConfig.port);
         // Default proxy type is HTTP, we must change if it is SOCKS5
-        if ((proxyConfig.type == ProxyType::SOCKS5) || (proxyConfig.type == ProxyType::SOCKS5_PW)) {
+        if ((proxyConfig.type == ProxyType::SOCKS5) || (proxyConfig.type == ProxyType::SOCKS5_PW))
+        {
             qDebug() << Q_FUNC_INFO << "using SOCKS proxy";
             proxy.setType(QNetworkProxy::Socks5Proxy);
         }
-        else {
+        else
+        {
             qDebug() << Q_FUNC_INFO << "using HTTP proxy";
             proxy.setType(QNetworkProxy::HttpProxy);
         }
         // Authentication?
-        if (proxyManager->isAuthenticationRequired()) {
+        if (proxyManager->isAuthenticationRequired())
+        {
             qDebug("Proxy requires authentication, authenticating...");
             proxy.setUser(proxyConfig.username);
             proxy.setPassword(proxyConfig.password);
         }
     }
-    else {
+    else
+    {
         proxy.setType(QNetworkProxy::NoProxy);
     }
 
@@ -264,7 +275,8 @@ void Net::DownloadManager::handleReplyFinished(const QNetworkReply *reply)
     // in the case when the redirection occurred.
     const ServiceID id = ServiceID::fromURL(reply->request().url());
     const auto waitingJobsIter = m_waitingJobs.find(id);
-    if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty()) {
+    if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty())
+    {
         // No more waiting jobs for given ServiceID
         m_busyServices.remove(id);
         return;

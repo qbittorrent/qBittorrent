@@ -43,15 +43,18 @@ UpDownRatioDialog::UpDownRatioDialog(bool useDefault, qreal initialRatioValue,
 {
     m_ui->setupUi(this);
 
-    if (useDefault) {
+    if (useDefault)
+    {
         m_ui->useDefaultButton->setChecked(true);
     }
-    else if ((initialRatioValue == -1.) && (initialTimeValue == -1)) {
+    else if ((initialRatioValue == -1.) && (initialTimeValue == -1))
+    {
         m_ui->noLimitButton->setChecked(true);
         initialRatioValue = BitTorrent::Session::instance()->globalMaxRatio();
         initialTimeValue = BitTorrent::Session::instance()->globalMaxSeedingMinutes();
     }
-    else {
+    else
+    {
         m_ui->torrentLimitButton->setChecked(true);
 
         if (initialRatioValue >= 0)

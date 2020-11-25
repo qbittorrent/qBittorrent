@@ -27,6 +27,7 @@ HEADERS += \
     $$PWD/powermanagement/powermanagement.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
+    $$PWD/progressbardelegate.h \
     $$PWD/properties/downloadedpiecesbar.h \
     $$PWD/properties/peerlistsortmodel.h \
     $$PWD/properties/peerlistwidget.h \
@@ -106,6 +107,7 @@ SOURCES += \
     $$PWD/powermanagement/powermanagement.cpp \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
+    $$PWD/progressbardelegate.cpp \
     $$PWD/properties/downloadedpiecesbar.cpp \
     $$PWD/properties/peerlistsortmodel.cpp \
     $$PWD/properties/peerlistwidget.cpp \
@@ -167,7 +169,7 @@ unix:!macx:dbus {
     HEADERS += \
         $$PWD/powermanagement/powermanagement_x11.h \
         $$PWD/qtnotify/notifications.h
-        
+
     SOURCES += \
         $$PWD/powermanagement/powermanagement_x11.cpp \
         $$PWD/qtnotify/notifications.cpp

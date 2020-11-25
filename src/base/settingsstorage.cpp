@@ -67,7 +67,8 @@ namespace
 
     QString mapKey(const QString &key)
     {
-        static const QHash<QString, QString> keyMapping = {
+        static const QHash<QString, QString> keyMapping =
+        {
             {"BitTorrent/Session/MaxRatioAction", "Preferences/Bittorrent/MaxRatioAction"},
             {"BitTorrent/Session/DefaultSavePath", "Preferences/Downloads/SavePath"},
             {"BitTorrent/Session/TempPath", "Preferences/Downloads/TempPath"},
@@ -193,7 +194,8 @@ bool SettingsStorage::save()
     if (!m_dirty) return true; // something might have changed while we were getting the lock
 
     const TransactionalSettings settings(QLatin1String("qBittorrent"));
-    if (!settings.write(m_data)) {
+    if (!settings.write(m_data))
+    {
         m_timer.start();
         return false;
     }
@@ -215,7 +217,8 @@ void SettingsStorage::storeValue(const QString &key, const QVariant &value)
     const QWriteLocker locker(&m_lock);
 
     QVariant &currentValue = m_data[realKey];
-    if (currentValue != value) {
+    if (currentValue != value)
+    {
         m_dirty = true;
         currentValue = value;
         m_timer.start();
@@ -226,7 +229,8 @@ void SettingsStorage::removeValue(const QString &key)
 {
     const QString realKey = mapKey(key);
     const QWriteLocker locker(&m_lock);
-    if (m_data.remove(realKey) > 0) {
+    if (m_data.remove(realKey) > 0)
+    {
         m_dirty = true;
         m_timer.start();
     }
@@ -237,7 +241,8 @@ QVariantHash TransactionalSettings::read() const
     QVariantHash res;
 
     const QString newPath = deserialize(m_name + QLatin1String("_new"), res);
-    if (!newPath.isEmpty()) { // "_new" file is NOT empty
+    if (!newPath.isEmpty())
+    { // "_new" file is NOT empty
         // This means that the PC closed either due to power outage
         // or because the disk was full. In any case the settings weren't transferred
         // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
@@ -253,7 +258,8 @@ QVariantHash TransactionalSettings::read() const
         Utils::Fs::forceRemove(finalPath);
         QFile::rename(newPath, finalPath);
     }
-    else {
+    else
+    {
         deserialize(m_name, res);
     }
 
@@ -268,7 +274,8 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
     // replace qBittorrent.ini/qBittorrent.conf with it.
     const QString newPath = serialize(m_name + QLatin1String("_new"), data);
-    if (newPath.isEmpty()) {
+    if (newPath.isEmpty())
+    {
         Utils::Fs::forceRemove(newPath);
         return false;
     }
@@ -305,7 +312,8 @@ QString TransactionalSettings::serialize(const QString &name, const QVariantHash
 
     settings->sync(); // Important to get error status
 
-    switch (settings->status()) {
+    switch (settings->status())
+    {
     case QSettings::NoError:
         return settings->fileName();
     case QSettings::AccessError:

@@ -112,7 +112,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
     const QVariant leftValue = left.data(TransferListModel::UnderlyingDataRole);
     const QVariant rightValue = right.data(TransferListModel::UnderlyingDataRole);
 
-    switch (sortColumn) {
+    switch (sortColumn)
+    {
     case TransferListModel::TR_CATEGORY:
     case TransferListModel::TR_TAGS:
     case TransferListModel::TR_NAME:
@@ -132,27 +133,33 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
 
     case TransferListModel::TR_ADD_DATE:
     case TransferListModel::TR_SEED_DATE:
-    case TransferListModel::TR_SEEN_COMPLETE_DATE: {
+    case TransferListModel::TR_SEEN_COMPLETE_DATE:
+    {
             const QDateTime dateL = leftValue.toDateTime();
             const QDateTime dateR = rightValue.toDateTime();
 
-            if (dateL.isValid() && dateR.isValid()) {
+            if (dateL.isValid() && dateR.isValid())
+            {
                 if (dateL != dateR)
                     return dateL < dateR;
             }
-            else if (dateL.isValid()) {
+            else if (dateL.isValid())
+            {
                 return true;
             }
-            else if (dateR.isValid()) {
+            else if (dateR.isValid())
+            {
                 return false;
             }
 
             return hashLessThan();
         }
 
-    case TransferListModel::TR_QUEUE_POSITION: {
+    case TransferListModel::TR_QUEUE_POSITION:
+    {
             // QVariant has comparators for all basic types
-            if ((leftValue > 0) || (rightValue > 0)) {
+            if ((leftValue > 0) || (rightValue > 0))
+            {
                 if ((leftValue > 0) && (rightValue > 0))
                     return leftValue < rightValue;
 
@@ -165,14 +172,17 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             const QDateTime dateR = right.sibling(right.row(), TransferListModel::TR_SEED_DATE)
                     .data(TransferListModel::UnderlyingDataRole).toDateTime();
 
-            if (dateL.isValid() && dateR.isValid()) {
+            if (dateL.isValid() && dateR.isValid())
+            {
                 if (dateL != dateR)
                     return dateL < dateR;
             }
-            else if (dateL.isValid()) {
+            else if (dateL.isValid())
+            {
                 return false;
             }
-            else if (dateR.isValid()) {
+            else if (dateR.isValid())
+            {
                 return true;
             }
 
@@ -180,7 +190,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
         }
 
     case TransferListModel::TR_SEEDS:
-    case TransferListModel::TR_PEERS: {
+    case TransferListModel::TR_PEERS:
+    {
             // QVariant has comparators for all basic types
             // Active peers/seeds take precedence over total peers/seeds.
             if (leftValue != rightValue)
@@ -194,7 +205,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
         }
 
-    case TransferListModel::TR_ETA: {
+    case TransferListModel::TR_ETA:
+    {
             // Sorting rules prioritized.
             // 1. Active torrents at the top
             // 2. Seeding torrents at the bottom
@@ -215,7 +227,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
                     .data(TransferListModel::UnderlyingDataRole).toInt();
             const bool isSeedingL = (queuePosL < 0);
             const bool isSeedingR = (queuePosR < 0);
-            if (isSeedingL != isSeedingR) {
+            if (isSeedingL != isSeedingR)
+            {
                 const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
                 if (isSeedingL)
                     return !isAscendingOrder;
@@ -227,7 +240,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             const qlonglong etaR = rightValue.toLongLong();
             const bool isInvalidL = ((etaL < 0) || (etaL >= MAX_ETA));
             const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
-            if (isInvalidL && isInvalidR) {
+            if (isInvalidL && isInvalidR)
+            {
                 if (isSeedingL)  // Both seeding
                     return invokeLessThanForColumn(TransferListModel::TR_SEED_DATE);
 

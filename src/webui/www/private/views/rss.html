@@ -72,6 +72,11 @@
         width: 100%;
     }
 
+    #rssDescription {
+        width: 100%;
+        border: none;
+    }
+
 </style>
 
 <div id="rssView">
@@ -423,11 +428,15 @@
 
                     return torrentDate;
                 })());
-                // Strip script before interpreting html
-                let torrentDescription = document.createRange().createContextualFragment(
-                    '<div id="rssTorrentDetailsDescription">' + article.description.stripScripts() + '</div>');
-
+                // Place in iframe with sandbox attribute to prevent js execution
+                let torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $('rssDetailsView').append(torrentDescription);
+                document.getElementById('rssDescription').srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
+
+                //calculate height to fill screen
+                document.getElementById('rssDescription').style.height =
+                    "calc(100% - " + document.getElementById('rssTorrentDetailsName').offsetHeight + "px - " +
+                    document.getElementById('rssTorrentDetailsDate').offsetHeight + "px - 5px)";
             }
         };
 
@@ -465,7 +474,7 @@
                     };
                     recFlatten(response);
 
-                    // check if rows matche flattend response
+                    // check if rows matches flattened response
                     let match = false;
                     if (rssFeedTable.rows.getLength() - 1 === flattenedResp.length) {
                         match = true;
@@ -542,7 +551,7 @@
                                         showRssFeed(r.fullName);
                                 }
                                 else {
-                                    // calculate read differnce and update feed data
+                                    // calculate read difference and update feed data
                                     let readDifference = 0;
                                     let readChanged = false;
                                     for (let i = 0; i < r.articles.length; ++i) {
@@ -561,7 +570,7 @@
                                         rssFeedTable.rows.filter((row) => r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
                                             .each((row) => row.full_data.unread += readDifference);
 
-                                        // if feed that is opened changed update dynamicly
+                                        // if feed that is opened changed update dynamically
                                         if (openedFeedPath !== undefined && r.fullName.slice(0, openedFeedPath.length) === openedFeedPath) {
                                             for (let i = 0; i < r.articles.length; ++i) {
                                                 let matchingRow = rssArticleTable.rows.filter((row) => row.full_data.feedUid === r.uid)
@@ -590,7 +599,7 @@
                             name: 'Unread',
                             unread: 0,
                             status: 'unread',
-                            indentaion: 0,
+                            indentation: 0,
                             dataUid: '',
                             dataUrl: '',
                             dataPath: ''
@@ -604,7 +613,7 @@
                                     name: dataEntry.name,
                                     unread: 0,
                                     status: 'isFolder',
-                                    indentaion: dataEntry.depth,
+                                    indentation: dataEntry.depth,
                                     dataUid: '',
                                     dataUrl: '',
                                     dataPath: dataEntry.fullName
@@ -622,7 +631,7 @@
                                     name: dataEntry.name,
                                     unread: 0,
                                     status: status,
-                                    indentaion: dataEntry.depth,
+                                    indentation: dataEntry.depth,
                                     dataUid: dataEntry.uid,
                                     dataUrl: dataEntry.url,
                                     dataPath: dataEntry.fullName

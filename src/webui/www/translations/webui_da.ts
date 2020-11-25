@@ -23,10 +23,6 @@
         <translation>Spring hashtjek over</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Opret undermappe</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Tilstand for håndtering af torrent:</translation>
     </message>
@@ -709,7 +705,7 @@
     </message>
     <message>
         <source>Enabled protocol:</source>
-        <translation>Aktiveret protokol:</translation>
+        <translation type="vanished">Aktiveret protokol:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1074,10 +1070,6 @@
         <translation>Når kategoriens gemmesti ændres:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Opret undermappe til torrents med mere end én fil</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>sekunder</translation>
     </message>
@@ -1174,10 +1166,6 @@
         <translation>Indlejret tracker-port:</translation>
     </message>
     <message>
-        <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="vanished">Valgfri IP-adresse som der skal bindes til (kræver genstart):</translation>
-    </message>
-    <message>
         <source>Fastest upload</source>
         <translation>Hurtigste upload</translation>
     </message>
@@ -1202,10 +1190,6 @@
         <translation>libtorrent-sektion</translation>
     </message>
     <message>
-        <source>Coalesce reads &amp; writes:</source>
-        <translation type="vanished">Coalesce-læsninger og -skrivninger:</translation>
-    </message>
-    <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>Udgående porte (Min.) [0: Deaktiveret]:</translation>
     </message>
@@ -1224,10 +1208,6 @@
     <message>
         <source>Send upload piece suggestions:</source>
         <translation>Send forslag for upload-styk:</translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">Diskmellemlager:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1252,10 +1232,6 @@
     <message>
         <source>Send buffer watermark:</source>
         <translation>Send vandmærke for buffer:</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="vanished">Udløbsinterval for diskmellemlager:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1292,10 +1268,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation>Opførsel for uploadpladser:</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">Netværksgrænseflade (kræver genstart):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1451,6 +1423,10 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2217,7 +2193,7 @@
     </message>
     <message>
         <source>Allocating</source>
-        <translation>Allokerer</translation>
+        <translation type="vanished">Allokerer</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3233,11 +3209,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Create Subfolder:</source>
         <translation type="unfinished" />
     </message>
@@ -3323,6 +3294,11 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation type="unfinished" />
     </message>
 </context>

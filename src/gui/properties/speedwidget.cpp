@@ -92,7 +92,8 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     m_graphsMenuActions = m_graphsMenu->actions();
 
-    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
+    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id)
+    {
         QAction *action = m_graphsMenuActions.at(id);
         action->setCheckable(true);
         action->setChecked(true);
@@ -168,7 +169,8 @@ void SpeedWidget::loadSettings()
     m_periodCombobox->setCurrentIndex(periodIndex);
     onPeriodChange(static_cast<SpeedPlotView::TimePeriod>(periodIndex));
 
-    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
+    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id)
+    {
         QAction *action = m_graphsMenuActions.at(id);
         bool enable = preferences->getSpeedWidgetGraphEnable(id);
 
@@ -183,7 +185,8 @@ void SpeedWidget::saveSettings() const
 
     preferences->setSpeedWidgetPeriod(m_periodCombobox->currentIndex());
 
-    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
+    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id)
+    {
         QAction *action = m_graphsMenuActions.at(id);
         preferences->setSpeedWidgetGraphEnable(id, action->isChecked());
     }

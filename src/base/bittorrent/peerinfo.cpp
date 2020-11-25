@@ -213,7 +213,8 @@ qlonglong PeerInfo::totalDownload() const
 QBitArray PeerInfo::pieces() const
 {
     QBitArray result(m_nativeInfo.pieces.size());
-    for (int i = 0; i < result.size(); ++i) {
+    for (int i = 0; i < result.size(); ++i)
+    {
         if (m_nativeInfo.pieces[lt::piece_index_t {i}])
             result.setBit(i, true);
     }
@@ -225,17 +226,9 @@ QString PeerInfo::connectionType() const
     if (m_nativeInfo.flags & lt::peer_info::utp_socket)
         return QString::fromUtf8(C_UTP);
 
-    QString connection;
-    switch (m_nativeInfo.connection_type) {
-    case lt::peer_info::http_seed:
-    case lt::peer_info::web_seed:
-        connection = "Web";
-        break;
-    default:
-        connection = "BT";
-    }
-
-    return connection;
+    return (m_nativeInfo.connection_type == lt::peer_info::standard_bittorrent)
+        ? QLatin1String {"BT"}
+        : QLatin1String {"Web"};
 }
 
 void PeerInfo::calcRelevance(const TorrentHandle *torrent)
@@ -246,8 +239,10 @@ void PeerInfo::calcRelevance(const TorrentHandle *torrent)
     int localMissing = 0;
     int remoteHaves = 0;
 
-    for (int i = 0; i < allPieces.size(); ++i) {
-        if (!allPieces[i]) {
+    for (int i = 0; i < allPieces.size(); ++i)
+    {
+        if (!allPieces[i])
+        {
             ++localMissing;
             if (peerPieces[i])
                 ++remoteHaves;
@@ -267,14 +262,17 @@ qreal PeerInfo::relevance() const
 
 void PeerInfo::determineFlags()
 {
-    if (isInteresting()) {
+    if (isInteresting())
+    {
         // d = Your client wants to download, but peer doesn't want to send (interested and choked)
-        if (isRemoteChocked()) {
+        if (isRemoteChocked())
+        {
             m_flags += "d ";
             m_flagsDescription += ("d = "
                 + tr("Interested(local) and Choked(peer)") + '\n');
         }
-        else {
+        else
+        {
             // D = Currently downloading (interested and not choked)
             m_flags += "D ";
             m_flagsDescription += ("D = "
@@ -282,14 +280,17 @@ void PeerInfo::determineFlags()
         }
     }
 
-    if (isRemoteInterested()) {
+    if (isRemoteInterested())
+    {
         // u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
-        if (isChocked()) {
+        if (isChocked())
+        {
             m_flags += "u ";
             m_flagsDescription += ("u = "
                 + tr("interested(peer) and choked(local)") + '\n');
         }
-        else {
+        else
+        {
             // U = Currently uploading (interested and not choked)
             m_flags += "U ";
             m_flagsDescription += ("U = "
@@ -298,69 +299,80 @@ void PeerInfo::determineFlags()
     }
 
     // O = Optimistic unchoke
-    if (optimisticUnchoke()) {
+    if (optimisticUnchoke())
+    {
         m_flags += "O ";
         m_flagsDescription += ("O = " + tr("optimistic unchoke") + '\n');
     }
 
     // S = Peer is snubbed
-    if (isSnubbed()) {
+    if (isSnubbed())
+    {
         m_flags += "S ";
         m_flagsDescription += ("S = " + tr("peer snubbed") + '\n');
     }
 
     // I = Peer is an incoming connection
-    if (!isLocalConnection()) {
+    if (!isLocalConnection())
+    {
         m_flags += "I ";
         m_flagsDescription += ("I = " + tr("incoming connection") + '\n');
     }
 
     // K = Peer is unchoking your client, but your client is not interested
-    if (!isRemoteChocked() && !isInteresting()) {
+    if (!isRemoteChocked() && !isInteresting())
+    {
         m_flags += "K ";
         m_flagsDescription += ("K = "
             + tr("not interested(local) and unchoked(peer)") + '\n');
     }
 
     // ? = Your client unchoked the peer but the peer is not interested
-    if (!isChocked() && !isRemoteInterested()) {
+    if (!isChocked() && !isRemoteInterested())
+    {
         m_flags += "? ";
         m_flagsDescription += ("? = "
             + tr("not interested(peer) and unchoked(local)") + '\n');
     }
 
     // X = Peer was included in peerlists obtained through Peer Exchange (PEX)
-    if (fromPeX()) {
+    if (fromPeX())
+    {
         m_flags += "X ";
         m_flagsDescription += ("X = " + tr("peer from PEX") + '\n');
     }
 
     // H = Peer was obtained through DHT
-    if (fromDHT()) {
+    if (fromDHT())
+    {
         m_flags += "H ";
         m_flagsDescription += ("H = " + tr("peer from DHT") + '\n');
     }
 
     // E = Peer is using Protocol Encryption (all traffic)
-    if (isRC4Encrypted()) {
+    if (isRC4Encrypted())
+    {
         m_flags += "E ";
         m_flagsDescription += ("E = " + tr("encrypted traffic")  + '\n');
     }
 
     // e = Peer is using Protocol Encryption (handshake)
-    if (isPlaintextEncrypted()) {
+    if (isPlaintextEncrypted())
+    {
         m_flags += "e ";
         m_flagsDescription += ("e = " + tr("encrypted handshake") + '\n');
     }
 
     // P = Peer is using uTorrent uTP
-    if (useUTPSocket()) {
+    if (useUTPSocket())
+    {
         m_flags += "P ";
         m_flagsDescription += ("P = " + QString::fromUtf8(C_UTP) + '\n');
     }
 
     // L = Peer is local
-    if (fromLSD()) {
+    if (fromLSD())
+    {
         m_flags += "L ";
         m_flagsDescription += ("L = " + tr("peer from LSD") + '\n');
     }

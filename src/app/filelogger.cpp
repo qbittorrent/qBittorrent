@@ -73,7 +73,8 @@ void FileLogger::changePath(const QString &newPath)
     dir.mkpath(newPath);
     const QString tmpPath = dir.absoluteFilePath("qbittorrent.log");
 
-    if (tmpPath != m_path) {
+    if (tmpPath != m_path)
+    {
         m_path = tmpPath;
 
         closeLogFile();
@@ -89,9 +90,11 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
     const QFileInfoList fileList = dir.entryInfoList(QStringList("qbittorrent.log.bak*")
         , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
-    for (const QFileInfo &file : fileList) {
+    for (const QFileInfo &file : fileList)
+    {
         QDateTime modificationDate = file.lastModified();
-        switch (ageType) {
+        switch (ageType)
+        {
         case DAYS:
             modificationDate = modificationDate.addDays(age);
             break;
@@ -124,7 +127,8 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
     QTextStream stream(&m_logFile);
     stream.setCodec("UTF-8");
 
-    switch (msg.type) {
+    switch (msg.type)
+    {
     case Log::INFO:
         stream << "(I) ";
         break;
@@ -140,12 +144,14 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
     stream << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << '\n';
 
-    if (m_backup && (m_logFile.size() >= m_maxSize)) {
+    if (m_backup && (m_logFile.size() >= m_maxSize))
+    {
         closeLogFile();
         int counter = 0;
         QString backupLogFilename = m_path + ".bak";
 
-        while (QFile::exists(backupLogFilename)) {
+        while (QFile::exists(backupLogFilename))
+        {
             ++counter;
             backupLogFilename = m_path + ".bak" + QString::number(counter);
         }
@@ -153,7 +159,8 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
         QFile::rename(m_path, backupLogFilename);
         openLogFile();
     }
-    else {
+    else
+    {
         if (!m_flusher.isActive())
             m_flusher.start();
     }
@@ -168,7 +175,8 @@ void FileLogger::flushLog()
 void FileLogger::openLogFile()
 {
     if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)
-        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
+        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner))
+        {
         m_logFile.close();
         LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
     }

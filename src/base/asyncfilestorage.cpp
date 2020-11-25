@@ -38,7 +38,8 @@ AsyncFileStorage::AsyncFileStorage(const QString &storageFolderPath, QObject *pa
     , m_lockFile(m_storageDir.absoluteFilePath(QStringLiteral("storage.lock")))
 {
     if (!m_storageDir.mkpath(m_storageDir.absolutePath()))
-        throw AsyncFileStorageError {tr("Could not create directory '%1'.")
+        throw AsyncFileStorageError
+        {tr("Could not create directory '%1'.")
                 .arg(m_storageDir.absolutePath())};
 
     // TODO: This folder locking approach does not work for UNIX systems. Implement it.
@@ -73,9 +74,11 @@ void AsyncFileStorage::store_impl(const QString &fileName, const QByteArray &dat
     const QString filePath = m_storageDir.absoluteFilePath(fileName);
     QSaveFile file(filePath);
     qDebug() << "AsyncFileStorage: Saving data to" << filePath;
-    if (file.open(QIODevice::WriteOnly)) {
+    if (file.open(QIODevice::WriteOnly))
+    {
         file.write(data);
-        if (!file.commit()) {
+        if (!file.commit())
+        {
             qDebug() << "AsyncFileStorage: Failed to save data";
             emit failed(filePath, file.errorString());
         }

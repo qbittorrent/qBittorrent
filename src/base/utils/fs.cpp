@@ -113,7 +113,8 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     if (path.isEmpty() || !QDir(path).exists())
         return true;
 
-    const QStringList deleteFilesList = {
+    const QStringList deleteFilesList =
+    {
         // Windows
         QLatin1String("Thumbs.db"),
         QLatin1String("desktop.ini"),
@@ -132,7 +133,8 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const QString &path)
     std::sort(dirList.begin(), dirList.end()
               , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
 
-    for (const QString &p : asConst(dirList)) {
+    for (const QString &p : asConst(dirList))
+    {
         const QDir dir(p);
         // A deeper folder may have not been removed in the previous iteration
         // so don't remove anything from this folder either.
@@ -201,7 +203,8 @@ qint64 Utils::Fs::computePathSize(const QString &path)
     // Compute folder size based on its content
     qint64 size = 0;
     QDirIterator iter(path, QDir::Files | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories);
-    while (iter.hasNext()) {
+    while (iter.hasNext())
+    {
         iter.next();
         size += iter.fileInfo().size();
     }
@@ -220,7 +223,8 @@ bool Utils::Fs::sameFiles(const QString &path1, const QString &path2)
     if (!f2.open(QIODevice::ReadOnly)) return false;
 
     const int readSize = 1024 * 1024;  // 1 MiB
-    while (!f1.atEnd() && !f2.atEnd()) {
+    while (!f1.atEnd() && !f2.atEnd())
+    {
         if (f1.read(readSize) != f2.read(readSize))
             return false;
     }
@@ -243,15 +247,18 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSepar
     if (name.isEmpty()) return false;
 
 #if defined(Q_OS_WIN)
-    const QRegularExpression regex {allowSeparators
+    const QRegularExpression regex
+    {allowSeparators
         ? QLatin1String("[:?\"*<>|]")
         : QLatin1String("[\\\\/:?\"*<>|]")};
 #elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {allowSeparators
+    const QRegularExpression regex
+    {allowSeparators
         ? QLatin1String("[\\0:]")
         : QLatin1String("[\\0/:]")};
 #else
-    const QRegularExpression regex {allowSeparators
+    const QRegularExpression regex
+    {allowSeparators
         ? QLatin1String("[\\0]")
         : QLatin1String("[\\0/]")};
 #endif
@@ -271,7 +278,8 @@ QString Utils::Fs::branchPath(const QString &filePath, QString *removed)
     if (ret.endsWith('/'))
         ret.chop(1);
     const int slashIndex = ret.lastIndexOf('/');
-    if (slashIndex >= 0) {
+    if (slashIndex >= 0)
+    {
         if (removed)
             *removed = ret.mid(slashIndex + 1);
         ret = ret.left(slashIndex);
@@ -312,7 +320,8 @@ QString Utils::Fs::tempPath()
 bool Utils::Fs::isRegularFile(const QString &path)
 {
     struct ::stat st;
-    if (::stat(path.toUtf8().constData(), &st) != 0) {
+    if (::stat(path.toUtf8().constData(), &st) != 0)
+    {
         //  analyse erno and log the error
         const auto err = errno;
         qDebug("Could not get file stats for path '%s'. Error: %s"
@@ -360,7 +369,8 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     // Magic number references:
     // 1. /usr/include/linux/magic.h
     // 2. https://github.com/coreutils/coreutils/blob/master/src/stat.c
-    switch (static_cast<unsigned int>(buf.f_type)) {
+    switch (static_cast<unsigned int>(buf.f_type))
+    {
     case 0xFF534D42:  // CIFS_MAGIC_NUMBER
     case 0x6969:  // NFS_SUPER_MAGIC
     case 0x517B:  // SMB_SUPER_MAGIC
