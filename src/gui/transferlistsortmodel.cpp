@@ -41,6 +41,7 @@
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel {parent}
 {
+    setSortRole(TransferListModel::UnderlyingDataRole);
     QMetaType::registerComparators<BitTorrent::TorrentState>();
 }
 
