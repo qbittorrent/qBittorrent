@@ -42,6 +42,7 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     setFilterRole(TorrentContentModel::UnderlyingDataRole);
     setDynamicSortFilter(true);
     setSortCaseSensitivity(Qt::CaseInsensitive);
+    setSortRole(TorrentContentModel::UnderlyingDataRole);
 }
 
 TorrentContentModel *TorrentContentFilterModel::model() const
