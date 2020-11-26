@@ -376,14 +376,14 @@ const initializeWindows = function() {
         }
     };
 
-    deleteFN = function() {
+    deleteFN = function(deleteFiles = false) {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
                 title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
                 loadMethod: 'iframe',
-                contentURL: 'confirmdeletion.html?hashes=' + hashes.join("|"),
+                contentURL: ('confirmdeletion.html?hashes=' + hashes.join("|") + '&deleteFiles=' + deleteFiles),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
