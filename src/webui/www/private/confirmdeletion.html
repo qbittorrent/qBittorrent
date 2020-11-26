@@ -11,6 +11,9 @@
         'use strict';
 
         window.addEvent('domready', function() {
+            const isDeletingFiles = (new URI().getData('deleteFiles') === "true");
+            $('deleteFromDiskCB').checked = isDeletingFiles;
+
             const hashes = new URI().getData('hashes').split('|');
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', function(e) {
