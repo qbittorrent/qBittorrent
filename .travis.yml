@@ -5,6 +5,7 @@ os:
   - osx
 
 dist: bionic
+osx_image: xcode12.2
 
 env:
   matrix:
