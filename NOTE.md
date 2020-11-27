@@ -24,7 +24,7 @@ PeerID: `-qB430[A-Z]-`, example: `-qB430A-`
 ********************************
 ### Multiple instances tutorial
 
-If you're an advanced(or private tracker) user and you want to open 2 qBittorrent instance at the same time. 
+If you're an advanced(or private tracker) user and you want to open 2 qBittorrent instance at the same time.
 
 Instance 1 for Public torrent, Instance 2 for Private torrent or something else.
 
@@ -48,11 +48,11 @@ qBittorrent should enter to Portable mode now.
 
 2. Open command line, and type it in cmd
 
-Windows: 
+Windows:
 
 `qbittorrent.exe --configuration="new_instance_profile_name"`
 
-*nix: 
+*nix:
 
 If you're using self compiled version and installed to system
 
