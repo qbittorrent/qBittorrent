@@ -4819,17 +4819,17 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
     if (removingTorrentDataIter == m_removingTorrents.end())
         return;
 
-    // libtorrent won't delete the directory if it contains files not listed in the torrent,
-    // so we remove the directory ourselves
-    Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
-
     if (p->error)
     {
+        // libtorrent won't delete the directory if it contains files not listed in the torrent,
+        // so we remove the directory ourselves
+        Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
+
         LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
                 .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
-    else
+    else // torrent without metadata, hence no files on disk
     {
         LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
     }
