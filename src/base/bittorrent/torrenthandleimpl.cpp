@@ -123,8 +123,10 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, const lt::torrent_handle 
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
 
+    m_hash = InfoHash {m_nativeHandle.info_hash()};
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
+
     updateStatus();
-    m_hash = InfoHash(m_nativeStatus.info_hash);
 
     if (hasMetadata())
     {
@@ -792,7 +794,7 @@ void TorrentHandleImpl::updateState()
 
 bool TorrentHandleImpl::hasMetadata() const
 {
-    return m_nativeStatus.has_metadata;
+    return m_torrentInfo.isValid();
 }
 
 bool TorrentHandleImpl::hasMissingFiles() const
@@ -1560,12 +1562,8 @@ void TorrentHandleImpl::handleFastResumeRejectedAlert(const lt::fastresume_rejec
 
 void TorrentHandleImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 {
-    // We don't really need to call updateStatus() in this place.
-    // All we need to do is make sure we have a valid instance of the TorrentInfo object.
-    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
-
-    // remove empty leftover folders
-    // for example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
+    // Remove empty leftover folders
+    // For example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
     const QString oldFilePath = m_oldPath[p->index].takeFirst();
     const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
@@ -1626,10 +1624,6 @@ void TorrentHandleImpl::handleFileRenameFailedAlert(const lt::file_rename_failed
 
 void TorrentHandleImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 {
-    // We don't really need to call updateStatus() in this place.
-    // All we need to do is make sure we have a valid instance of the TorrentInfo object.
-    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
-
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled())
     {
@@ -1647,8 +1641,10 @@ void TorrentHandleImpl::handleFileCompletedAlert(const lt::file_completed_alert 
 void TorrentHandleImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     Q_UNUSED(p);
+
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
-    updateStatus();
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
+
     if (m_session->isAppendExtensionEnabled())
         manageIncompleteFiles();
     if (!m_hasRootFolder)
@@ -1814,13 +1810,6 @@ lt::torrent_handle TorrentHandleImpl::nativeHandle() const
     return m_nativeHandle;
 }
 
-void TorrentHandleImpl::updateTorrentInfo()
-{
-    if (!hasMetadata()) return;
-
-    m_torrentInfo = TorrentInfo(m_nativeStatus.torrent_file.lock());
-}
-
 bool TorrentHandleImpl::isMoveInProgress() const
 {
     return m_storageIsMoving;
@@ -1841,7 +1830,6 @@ void TorrentHandleImpl::updateStatus(const lt::torrent_status &nativeStatus)
     m_nativeStatus = nativeStatus;
 
     updateState();
-    updateTorrentInfo();
 
     // NOTE: Don't change the order of these conditionals!
     // Otherwise it will not work properly since torrent can be CheckingDownloading.
