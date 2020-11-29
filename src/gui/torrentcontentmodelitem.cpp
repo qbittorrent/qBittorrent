@@ -126,12 +126,9 @@ QString TorrentContentModelItem::displayData(const int column) const
             return tr("Normal", "Normal (priority)");
         }
     case COL_PROGRESS:
-        {
-            const qreal progress = m_progress * 100;
-            return (static_cast<int>(progress) == 100)
-                   ? QString::fromLatin1("100%")
-                   : (Utils::String::fromDouble(progress, 1) + QLatin1Char('%'));
-        }
+        return (m_progress >= 1)
+               ? QString::fromLatin1("100%")
+               : (Utils::String::fromDouble((m_progress * 100), 1) + QLatin1Char('%'));
     case COL_SIZE:
         return Utils::Misc::friendlyUnit(m_size);
     case COL_REMAINING:
