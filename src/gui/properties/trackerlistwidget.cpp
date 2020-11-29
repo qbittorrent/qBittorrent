@@ -283,26 +283,34 @@ void TrackerListWidget::clear()
 
 void TrackerListWidget::loadStickyItems(const BitTorrent::TorrentHandle *torrent)
 {
-    QString working = tr("Working");
-    QString disabled = tr("Disabled");
+    const QString working {tr("Working")};
+    const QString disabled {tr("Disabled")};
+    const QString torrentDisabled {tr("Disabled for this torrent")};
+    const auto *session = BitTorrent::Session::instance();
 
     // load DHT information
-    if (BitTorrent::Session::instance()->isDHTEnabled() && !torrent->isPrivate())
-        m_DHTItem->setText(COL_STATUS, working);
-    else
+    if (torrent->isPrivate() || torrent->isDHTDisabled())
+        m_DHTItem->setText(COL_STATUS, torrentDisabled);
+    else if (!session->isDHTEnabled())
         m_DHTItem->setText(COL_STATUS, disabled);
+    else
+        m_DHTItem->setText(COL_STATUS, working);
 
     // Load PeX Information
-    if (BitTorrent::Session::instance()->isPeXEnabled() && !torrent->isPrivate())
-        m_PEXItem->setText(COL_STATUS, working);
-    else
+    if (torrent->isPrivate() || torrent->isPEXDisabled())
+        m_PEXItem->setText(COL_STATUS, torrentDisabled);
+    else if (!session->isPeXEnabled())
         m_PEXItem->setText(COL_STATUS, disabled);
+    else
+        m_PEXItem->setText(COL_STATUS, working);
 
     // Load LSD Information
-    if (BitTorrent::Session::instance()->isLSDEnabled() && !torrent->isPrivate())
-        m_LSDItem->setText(COL_STATUS, working);
-    else
+    if (torrent->isPrivate() || torrent->isLSDDisabled())
+        m_LSDItem->setText(COL_STATUS, torrentDisabled);
+    else if (!session->isLSDEnabled())
         m_LSDItem->setText(COL_STATUS, disabled);
+    else
+        m_LSDItem->setText(COL_STATUS, working);
 
     if (torrent->isPrivate())
     {

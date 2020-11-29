@@ -240,6 +240,9 @@ namespace BitTorrent
         virtual int downloadLimit() const = 0;
         virtual int uploadLimit() const = 0;
         virtual bool superSeeding() const = 0;
+        virtual bool isDHTDisabled() const = 0;
+        virtual bool isPEXDisabled() const = 0;
+        virtual bool isLSDDisabled() const = 0;
         virtual QVector<PeerInfo> peers() const = 0;
         virtual QBitArray pieces() const = 0;
         virtual QBitArray downloadingPieces() const = 0;
@@ -279,6 +282,9 @@ namespace BitTorrent
         virtual void setUploadLimit(int limit) = 0;
         virtual void setDownloadLimit(int limit) = 0;
         virtual void setSuperSeeding(bool enable) = 0;
+        virtual void setDHTDisabled(bool disable) = 0;
+        virtual void setPEXDisabled(bool disable) = 0;
+        virtual void setLSDDisabled(bool disable) = 0;
         virtual void flushCache() const = 0;
         virtual void addTrackers(const QVector<TrackerEntry> &trackers) = 0;
         virtual void replaceTrackers(const QVector<TrackerEntry> &trackers) = 0;

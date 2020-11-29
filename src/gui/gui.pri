@@ -68,6 +68,7 @@ HEADERS += \
     $$PWD/torrentcontentmodelitem.h \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/torrentcreatordialog.h \
+    $$PWD/torrentoptionsdialog.h \
     $$PWD/trackerentriesdialog.h \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
@@ -77,7 +78,6 @@ HEADERS += \
     $$PWD/tristateaction.h \
     $$PWD/tristatewidget.h \
     $$PWD/uithememanager.h \
-    $$PWD/updownratiodialog.h \
     $$PWD/utils.h
 
 SOURCES += \
@@ -148,6 +148,7 @@ SOURCES += \
     $$PWD/torrentcontentmodelitem.cpp \
     $$PWD/torrentcontenttreeview.cpp \
     $$PWD/torrentcreatordialog.cpp \
+    $$PWD/torrentoptionsdialog.cpp \
     $$PWD/trackerentriesdialog.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
@@ -157,7 +158,6 @@ SOURCES += \
     $$PWD/tristateaction.cpp \
     $$PWD/tristatewidget.cpp \
     $$PWD/uithememanager.cpp \
-    $$PWD/updownratiodialog.cpp \
     $$PWD/utils.cpp
 
 win32|macx {
@@ -207,7 +207,7 @@ FORMS += \
     $$PWD/statsdialog.ui \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
-    $$PWD/trackerentriesdialog.ui \
-    $$PWD/updownratiodialog.ui
+    $$PWD/torrentoptionsdialog.ui \
+    $$PWD/trackerentriesdialog.ui
 
 RESOURCES += $$PWD/about.qrc
