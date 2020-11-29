@@ -140,11 +140,11 @@ QString TorrentContentModelItem::displayData(const int column) const
         return Utils::Misc::friendlyUnit(remaining());
     case COL_AVAILABILITY:
     {
-            const int avail = availability();
+            const qreal avail = availability();
             if (avail < 0)
                 return tr("N/A");
 
-            const QString value = (avail >= 1.0)
+            const QString value = (avail >= 1)
                                   ? QString::fromLatin1("100")
                                   : Utils::String::fromDouble((avail * 100), 1);
             return QString {value + C_THIN_SPACE + QLatin1Char('%')};
