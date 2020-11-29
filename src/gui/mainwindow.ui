@@ -83,7 +83,6 @@
     <addaction name="actionOptions"/>
     <addaction name="separator"/>
     <addaction name="menuAutoShutdownOnDownloadsCompletion"/>
-    <addaction name="actionEnableFilter"/>
    </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
@@ -483,11 +482,6 @@
   <action name="actionCloseWindow">
    <property name="text">
     <string>Close Window</string>
-   </property>
-  </action>
-  <action name="actionEnableFilter">
-   <property name="text">
-    <string>Enable Torrent IP Filter</string>
    </property>
   </action>
  </widget>

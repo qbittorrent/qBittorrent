@@ -1033,21 +1033,6 @@ const initializeWindows = function() {
         }
     });
 
-    addClickEvent('enableIPFilter', function(e) {
-        new Event(e).stop();
-        const id = 'enablepage';
-        new MochaUI.Window({
-            id: id,
-            title: 'QBT_TR(Enable Torrent IP Filter)QBT_TR[CONTEXT=MainWindow]',
-            content: "All torrent's IP Filter has been re-enabled." +
-                "<br><br>" +
-                "Note: That's a fix for <a href='https://github.com/c0re100/qBittorrent-Enhanced-Edition/issues/127#issuecomment-684132844'\ target=\"_blank\">issue #127</a>.",
-            padding: 10,
-            width: loadWindowWidth(id, 300),
-            height: loadWindowHeight(id, 80),
-        });
-    });
-
     // Deactivate menu header links
     $$('a.returnFalse').each(function(el) {
         el.addEvent('click', function(e) {

@@ -1163,18 +1163,6 @@ void MainWindow::on_actionStatistics_triggered()
         m_statsDlg = new StatsDialog(this);
 }
 
-void MainWindow::on_actionEnableFilter_triggered() {
-    // Re-enable torrent IP Filter
-    const auto *session = BitTorrent::Session::instance();
-    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents())) {
-        torrent->enableIPFilter();
-    }
-
-    QString text = "All torrent's IP Filter has been re-enabled.<br><br>Note: That's a fix for "
-                   "<a href=\"https://github.com/c0re100/qBittorrent-Enhanced-Edition/issues/127#issuecomment-684132844\">issue #127</a>";
-    QMessageBox::information(this, "Enable Torrent IP Filter", text);
-}
-
 void MainWindow::showEvent(QShowEvent *e)
 {
     qDebug("** Show Event **");

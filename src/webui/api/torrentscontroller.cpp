@@ -1244,12 +1244,3 @@ void TorrentsController::renameFileAction()
 
     torrent->renameFile(fileIndex, newFilePath);
 }
-
-void TorrentsController::enableIPFilterAction()
-{
-    const auto *session = BitTorrent::Session::instance();
-    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents())) {
-        torrent->enableIPFilter();
-    }
-    setResult(QLatin1String("Done."));
-}

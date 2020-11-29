@@ -654,10 +654,6 @@ namespace BitTorrent
         void saveTorrentsQueue();
         void removeTorrentsQueue();
 
-        // load offline downloader filter
-        int parseOfflineFilterFile(const QString &ipFilterFile, libtorrent::ip_filter &filter);
-        void loadOfflineFilter();
-
         void populatePublicTrackers();
 
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
