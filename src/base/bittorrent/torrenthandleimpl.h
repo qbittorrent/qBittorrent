@@ -191,6 +191,9 @@ namespace BitTorrent
         int downloadLimit() const override;
         int uploadLimit() const override;
         bool superSeeding() const override;
+        bool isDHTDisabled() const override;
+        bool isPEXDisabled() const override;
+        bool isLSDDisabled() const override;
         QVector<PeerInfo> peers() const override;
         QBitArray pieces() const override;
         QBitArray downloadingPieces() const override;
@@ -224,6 +227,9 @@ namespace BitTorrent
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;
         void setSuperSeeding(bool enable) override;
+        void setDHTDisabled(bool disable) override;
+        void setPEXDisabled(bool disable) override;
+        void setLSDDisabled(bool disable) override;
         void flushCache() const override;
         void addTrackers(const QVector<TrackerEntry> &trackers) override;
         void replaceTrackers(const QVector<TrackerEntry> &trackers) override;
