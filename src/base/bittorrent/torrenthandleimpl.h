@@ -250,7 +250,6 @@ namespace BitTorrent
         void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
-        void updateTorrentInfo();
 
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
         void handleFileCompletedAlert(const lt::file_completed_alert *p);
