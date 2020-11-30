@@ -33,36 +33,6 @@ public:
     return peer_plugin::on_extension_handshake(d);
   }
 
-  bool on_interested() override
-  {
-    handle_peer();
-    return peer_plugin::on_interested();
-  }
-
-  bool on_have(lt::piece_index_t p) override
-  {
-    handle_peer();
-    return peer_plugin::on_have(p);
-  }
-
-  bool on_bitfield(lt::bitfield const& bitfield) override
-  {
-    handle_peer();
-    return peer_plugin::on_bitfield(bitfield);
-  }
-
-  bool on_have_all() override
-  {
-    handle_peer();
-    return peer_plugin::on_have_all();
-  }
-
-  bool on_request(lt::peer_request const& r) override
-  {
-    handle_peer();
-    return peer_plugin::on_request(r);
-  }
-
 protected:
   void handle_peer(bool handshake = false)
   {
