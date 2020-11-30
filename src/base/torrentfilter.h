@@ -32,12 +32,14 @@
 #include <QSet>
 #include <QString>
 
-typedef QSet<QString> QStringSet;
+#include "base/bittorrent/infohash.h"
 
 namespace BitTorrent
 {
     class TorrentHandle;
 }
+
+using InfoHashSet = QSet<BitTorrent::InfoHash>;
 
 class TorrentFilter
 {
@@ -60,7 +62,7 @@ public:
 
     // These mean any permutation, including no category / tag.
     static const QString AnyCategory;
-    static const QStringSet AnyHash;
+    static const InfoHashSet AnyHash;
     static const QString AnyTag;
 
     static const TorrentFilter DownloadingTorrent;
@@ -75,15 +77,15 @@ public:
     static const TorrentFilter StalledDownloadingTorrent;
     static const TorrentFilter ErroredTorrent;
 
-    TorrentFilter();
+    TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
     // Pass null string (QString()) to disable filtering (i.e. all torrents).
-    TorrentFilter(Type type, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
-    TorrentFilter(const QString &filter, const QStringSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tags = AnyTag);
+    TorrentFilter(Type type, const InfoHashSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
+    TorrentFilter(const QString &filter, const InfoHashSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tags = AnyTag);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
-    bool setHashSet(const QStringSet &hashSet);
+    bool setHashSet(const InfoHashSet &hashSet);
     bool setCategory(const QString &category);
     bool setTag(const QString &tag);
 
@@ -95,10 +97,10 @@ private:
     bool matchCategory(const BitTorrent::TorrentHandle *torrent) const;
     bool matchTag(const BitTorrent::TorrentHandle *torrent) const;
 
-    Type m_type;
+    Type m_type {All};
     QString m_category;
     QString m_tag;
-    QStringSet m_hashSet;
+    InfoHashSet m_hashSet;
 };
 
 #endif // TORRENTFILTER_H

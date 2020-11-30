@@ -38,7 +38,7 @@ namespace BitTorrent
     class InfoHash
     {
     public:
-        InfoHash();
+        InfoHash() = default;
         InfoHash(const lt::sha1_hash &nativeHash);
         InfoHash(const QString &hashString);
         InfoHash(const InfoHash &other) = default;
@@ -54,7 +54,7 @@ namespace BitTorrent
         operator QString() const;
 
     private:
-        bool m_valid;
+        bool m_valid = false;
         lt::sha1_hash m_nativeHash;
         QString m_hashString;
     };

@@ -35,11 +35,6 @@ using namespace BitTorrent;
 
 const int InfoHashTypeId = qRegisterMetaType<InfoHash>();
 
-InfoHash::InfoHash()
-    : m_valid(false)
-{
-}
-
 InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
     : m_valid(true)
     , m_nativeHash(nativeHash)
