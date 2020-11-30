@@ -316,12 +316,11 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
         return tagsList.join(", ");
     };
 
-    const auto progressString = [](qreal progress) -> QString
+    const auto progressString = [](const qreal progress) -> QString
     {
-        progress *= 100;
-        return (static_cast<int>(progress) == 100)
+        return (progress >= 1)
                 ? QString::fromLatin1("100%")
-                : Utils::String::fromDouble(progress, 1) + '%';
+                : Utils::String::fromDouble((progress * 100), 1) + QLatin1Char('%');
     };
 
     const auto statusString = [this](const BitTorrent::TorrentState state, const QString &errorMessage) -> QString

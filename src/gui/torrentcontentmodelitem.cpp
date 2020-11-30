@@ -112,42 +112,37 @@ QString TorrentContentModelItem::displayData(const int column) const
     case COL_NAME:
         return m_name;
     case COL_PRIO:
-    {
-            switch (m_priority)
-            {
-            case BitTorrent::DownloadPriority::Mixed:
-                return tr("Mixed", "Mixed (priorities");
-            case BitTorrent::DownloadPriority::Ignored:
-                return tr("Not downloaded");
-            case BitTorrent::DownloadPriority::High:
-                return tr("High", "High (priority)");
-            case BitTorrent::DownloadPriority::Maximum:
-                return tr("Maximum", "Maximum (priority)");
-            default:
-                return tr("Normal", "Normal (priority)");
-            }
+        switch (m_priority)
+        {
+        case BitTorrent::DownloadPriority::Mixed:
+            return tr("Mixed", "Mixed (priorities");
+        case BitTorrent::DownloadPriority::Ignored:
+            return tr("Not downloaded");
+        case BitTorrent::DownloadPriority::High:
+            return tr("High", "High (priority)");
+        case BitTorrent::DownloadPriority::Maximum:
+            return tr("Maximum", "Maximum (priority)");
+        default:
+            return tr("Normal", "Normal (priority)");
         }
     case COL_PROGRESS:
-    {
-            const qreal progress = m_progress * 100;
-            return (static_cast<int>(progress) == 100)
-                   ? QString::fromLatin1("100%")
-                   : (Utils::String::fromDouble(progress, 1) + QLatin1Char('%'));
-        }
+        return (m_progress >= 1)
+               ? QString::fromLatin1("100%")
+               : (Utils::String::fromDouble((m_progress * 100), 1) + QLatin1Char('%'));
     case COL_SIZE:
         return Utils::Misc::friendlyUnit(m_size);
     case COL_REMAINING:
         return Utils::Misc::friendlyUnit(remaining());
     case COL_AVAILABILITY:
-    {
-            const int avail = availability();
+        {
+            const qreal avail = availability();
             if (avail < 0)
                 return tr("N/A");
 
-            const QString value = (avail >= 1.0)
+            const QString value = (avail >= 1)
                                   ? QString::fromLatin1("100")
                                   : Utils::String::fromDouble((avail * 100), 1);
-            return QString {value + C_THIN_SPACE + QLatin1Char('%')};
+            return {value + C_THIN_SPACE + QLatin1Char('%')};
         }
     default:
         Q_ASSERT(false);
