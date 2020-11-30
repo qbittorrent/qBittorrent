@@ -29,7 +29,6 @@
 #include "transferlistsortmodel.h"
 
 #include <QDateTime>
-#include <QStringList>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrenthandle.h"
@@ -75,9 +74,9 @@ void TransferListSortModel::disableTagFilter()
         invalidateFilter();
 }
 
-void TransferListSortModel::setTrackerFilter(const QStringList &hashes)
+void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes)
 {
-    if (m_filter.setHashSet(List::toSet(hashes)))
+    if (m_filter.setHashSet(hashes))
         invalidateFilter();
 }
 

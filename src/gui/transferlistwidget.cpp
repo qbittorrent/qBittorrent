@@ -41,6 +41,7 @@
 #include <QSet>
 #include <QShortcut>
 #include <QTableView>
+#include <QVector>
 #include <QWheelEvent>
 
 #include "base/bittorrent/infohash.h"
@@ -1226,7 +1227,7 @@ void TransferListWidget::applyTrackerFilterAll()
     m_sortFilterModel->disableTrackerFilter();
 }
 
-void TransferListWidget::applyTrackerFilter(const QStringList &hashes)
+void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes)
 {
     m_sortFilterModel->setTrackerFilter(hashes);
 }
