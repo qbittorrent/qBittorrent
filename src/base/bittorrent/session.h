@@ -51,7 +51,7 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 
-#if !defined(Q_OS_WIN)
+#if !defined(Q_OS_WIN) || (LIBTORRENT_VERSION_NUM >= 10212)
 #define HAS_HTTPS_TRACKER_VALIDATION
 #endif
 
