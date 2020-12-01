@@ -615,6 +615,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);
 #if (LIBTORRENT_VERSION_NUM >= 10207)
     // Max concurrent HTTP announces
+    m_spinBoxMaxConcurrentHTTPAnnounces.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxMaxConcurrentHTTPAnnounces.setValue(session->maxConcurrentHTTPAnnounces());
     addRow(MAX_CONCURRENT_HTTP_ANNOUNCES, (tr("Max concurrent HTTP announces") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces", "(?)"))
            , &m_spinBoxMaxConcurrentHTTPAnnounces);
