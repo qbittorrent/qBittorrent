@@ -383,7 +383,7 @@ void AdvancedSettings::loadAdvancedSettings()
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     auto *labelLibtorrentLink = new QLabel(
-        makeLink(QLatin1String("https://www.libtorrent.org/reference.html")
+        makeLink(QLatin1String("https://www.libtorrent.org/reference-Settings.html")
                  , tr("Open documentation"))
         , this);
     labelLibtorrentLink->setOpenExternalLinks(true);
