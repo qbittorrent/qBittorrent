@@ -82,6 +82,9 @@ namespace
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
         ENABLE_SPEED_WIDGET,
+        // embedded tracker
+        TRACKER_STATUS,
+        TRACKER_PORT,
         // libtorrent section
         LIBTORRENT_HEADER,
         ASYNC_IO_THREADS,
@@ -119,9 +122,6 @@ namespace
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
 #endif
         BLOCK_PEERS_ON_PRIVILEGED_PORTS,
-        // embedded tracker
-        TRACKER_STATUS,
-        TRACKER_PORT,
         // seeding
         CHOKING_ALGORITHM,
         SEED_CHOKING_ALGORITHM,
