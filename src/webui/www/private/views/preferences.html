@@ -1101,6 +1101,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="IDNSupportCheckbox">QBT_TR(Support internationalized domain name (IDN) (requires libtorrent >= 1.2.12):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_idna" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="IDNSupportCheckbox" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="allowMultipleConnectionsFromTheSameIPAddress">QBT_TR(Allow multiple connections from the same IP address:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_ip" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1895,6 +1903,7 @@
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
                         $('UPnPLeaseDuration').setProperty('value', pref.upnp_lease_duration);
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
+                        $('IDNSupportCheckbox').setProperty('checked', pref.idn_support_enabled);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
                         $('validateHTTPSTrackerCertificate').setProperty('checked', pref.validate_https_tracker_certificate);
                         $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.block_peers_on_privileged_ports);
@@ -2282,6 +2291,7 @@
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
             settings.set('upnp_lease_duration', $('UPnPLeaseDuration').getProperty('value'));
             settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
+            settings.set('idn_support_enabled', $('IDNSupportCheckbox').getProperty('checked'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
             settings.set('validate_https_tracker_certificate', $('validateHTTPSTrackerCertificate').getProperty('checked'));
             settings.set('block_peers_on_privileged_ports', $('blockPeersOnPrivilegedPorts').getProperty('checked'));

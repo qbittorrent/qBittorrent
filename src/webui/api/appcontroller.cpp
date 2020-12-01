@@ -309,6 +309,8 @@ void AppController::preferencesAction()
     data["upnp_lease_duration"] = session->UPnPLeaseDuration();
     // uTP-TCP mixed mode
     data["utp_tcp_mixed_mode"] = static_cast<int>(session->utpMixedMode());
+    // Support internationalized domain name (IDN)
+    data["idn_support_enabled"] = session->isIDNSupportEnabled();
     // Multiple connections per IP
     data["enable_multi_connections_from_same_ip"] = session->multiConnectionsPerIpEnabled();
     // Validate HTTPS tracker certificate
@@ -771,6 +773,9 @@ void AppController::setPreferencesAction()
     // uTP-TCP mixed mode
     if (hasKey("utp_tcp_mixed_mode"))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
+    // Support internationalized domain name (IDN)
+    if (hasKey("idn_support_enabled"))
+        session->setIDNSupportEnabled(it.value().toBool());
     // Multiple connections per IP
     if (hasKey("enable_multi_connections_from_same_ip"))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());

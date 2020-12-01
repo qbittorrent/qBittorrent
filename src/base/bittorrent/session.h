@@ -55,6 +55,10 @@
 #define HAS_HTTPS_TRACKER_VALIDATION
 #endif
 
+#if ((LIBTORRENT_VERSION_NUM >= 10212) && (LIBTORRENT_VERSION_NUM < 20000)) || (LIBTORRENT_VERSION_NUM >= 20002)
+#define HAS_IDN_SUPPORT
+#endif
+
 class QFile;
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
@@ -417,6 +421,8 @@ namespace BitTorrent
         void setUTPRateLimited(bool limited);
         MixedModeAlgorithm utpMixedMode() const;
         void setUtpMixedMode(MixedModeAlgorithm mode);
+        bool isIDNSupportEnabled() const;
+        void setIDNSupportEnabled(bool enabled);
         bool multiConnectionsPerIpEnabled() const;
         void setMultiConnectionsPerIpEnabled(bool enabled);
         bool validateHTTPSTrackerCertificate() const;
@@ -688,6 +694,7 @@ namespace BitTorrent
         CachedSettingValue<BTProtocol> m_btProtocol;
         CachedSettingValue<bool> m_isUTPRateLimited;
         CachedSettingValue<MixedModeAlgorithm> m_utpMixedMode;
+        CachedSettingValue<bool> m_IDNSupportEnabled;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
         CachedSettingValue<bool> m_validateHTTPSTrackerCertificate;
         CachedSettingValue<bool> m_blockPeersOnPrivilegedPorts;
