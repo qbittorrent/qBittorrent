@@ -387,6 +387,7 @@ Session::Session(QObject *parent)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY("uTPRateLimited"), true)
     , m_utpMixedMode(BITTORRENT_SESSION_KEY("uTPMixedMode"), MixedModeAlgorithm::TCP
         , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
+    , m_IDNSupportEnabled(BITTORRENT_SESSION_KEY("IDNSupportEnabled"), false)
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY("ValidateHTTPSTrackerCertificate"), false)
     , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY("BlockPeersOnPrivilegedPorts"), false)
@@ -1424,6 +1425,10 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
         settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::peer_proportional);
         break;
     }
+
+#ifdef HAS_IDN_SUPPORT
+    settingsPack.set_bool(lt::settings_pack::allow_idna, isIDNSupportEnabled());
+#endif
 
     settingsPack.set_bool(lt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
 
@@ -3695,6 +3700,19 @@ void Session::setUtpMixedMode(const MixedModeAlgorithm mode)
     if (mode == m_utpMixedMode) return;
 
     m_utpMixedMode = mode;
+    configureDeferred();
+}
+
+bool Session::isIDNSupportEnabled() const
+{
+    return m_IDNSupportEnabled;
+}
+
+void Session::setIDNSupportEnabled(const bool enabled)
+{
+    if (enabled == m_IDNSupportEnabled) return;
+
+    m_IDNSupportEnabled = enabled;
     configureDeferred();
 }
 

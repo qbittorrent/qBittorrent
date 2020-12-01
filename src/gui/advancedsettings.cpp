@@ -113,6 +113,9 @@ namespace
         OUTGOING_PORT_MAX,
         UPNP_LEASE_DURATION,
         UTP_MIX_MODE,
+#ifdef HAS_IDN_SUPPORT
+        IDN_SUPPORT,
+#endif
         MULTI_CONNECTIONS_PER_IP,
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
@@ -223,6 +226,10 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setUPnPLeaseDuration(m_spinBoxUPnPLeaseDuration.value());
     // uTP-TCP mixed mode
     session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(m_comboBoxUtpMixedMode.currentIndex()));
+#ifdef HAS_IDN_SUPPORT
+    // Support internationalized domain name (IDN)
+    session->setIDNSupportEnabled(m_checkBoxIDNSupport.isChecked());
+#endif
     // multiple connections per IP
     session->setMultiConnectionsPerIpEnabled(m_checkBoxMultiConnectionsPerIp.isChecked());
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
@@ -543,6 +550,13 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(UTP_MIX_MODE, (tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP)
             + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm", "(?)"))
             , &m_comboBoxUtpMixedMode);
+#ifdef HAS_IDN_SUPPORT
+    // Support internationalized domain name (IDN)
+    m_checkBoxIDNSupport.setChecked(session->isIDNSupportEnabled());
+    addRow(IDN_SUPPORT, (tr("Support internationalized domain name (IDN)")
+            + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#allow_idna", "(?)"))
+            , &m_checkBoxIDNSupport);
+#endif
     // multiple connections per IP
     m_checkBoxMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
     addRow(MULTI_CONNECTIONS_PER_IP, (tr("Allow multiple connections from the same IP address")
