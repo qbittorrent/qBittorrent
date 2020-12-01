@@ -567,6 +567,7 @@ void TorrentsController::addAction()
     const TriStateBool rootFolder = parseTriStateBool(params()["root_folder"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
+    const QSet<QString> tags = List::toSet(params()["tags"].split(',', QString::SkipEmptyParts));
     const QString cookie = params()["cookie"];
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = params()["upLimit"].toInt();
@@ -599,6 +600,7 @@ void TorrentsController::addAction()
     params.createSubfolder = rootFolder;
     params.savePath = savepath;
     params.category = category;
+    params.tags = tags;
     params.name = torrentName;
     params.uploadLimit = (upLimit > 0) ? upLimit : -1;
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
