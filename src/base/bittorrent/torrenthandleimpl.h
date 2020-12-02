@@ -80,14 +80,20 @@ namespace BitTorrent
         Overwrite
     };
 
+    enum class MaintenanceJob
+    {
+        None,
+        HandleMetadata
+    };
+
     class TorrentHandleImpl final : public QObject, public TorrentHandle
     {
         Q_DISABLE_COPY(TorrentHandleImpl)
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentHandleImpl)
 
     public:
-        TorrentHandleImpl(Session *session, const lt::torrent_handle &nativeHandle,
-                          const LoadTorrentParams &params);
+        TorrentHandleImpl(Session *session, lt::session *nativeSession
+                          , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
         ~TorrentHandleImpl() override;
 
         bool isValid() const;
@@ -241,6 +247,7 @@ namespace BitTorrent
         void handleAppendExtensionToggled();
         void saveResumeData();
         void handleMoveStorageJobFinished(bool hasOutstandingJob);
+        void fileSearchFinished(const QString &savePath, const QStringList &fileNames);
 
         QString actualStorageLocation() const;
 
@@ -278,7 +285,10 @@ namespace BitTorrent
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
+        void endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames);
+
         Session *const m_session;
+        lt::session *m_nativeSession;
         lt::torrent_handle m_nativeHandle;
         lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;
@@ -292,6 +302,8 @@ namespace BitTorrent
         QQueue<EventTrigger> m_moveFinishedTriggers;
         int m_renameCount = 0;
         bool m_storageIsMoving = false;
+
+        MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         // Until libtorrent provide an "old_name" field in `file_renamed_alert`
         // we will rely on this workaround to remove empty leftover folders

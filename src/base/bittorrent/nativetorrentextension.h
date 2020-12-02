@@ -38,6 +38,8 @@ public:
 
 private:
     bool on_pause() override;
+    void on_state(lt::torrent_status::state_t state) override;
 
     lt::torrent_handle m_torrentHandle;
+    lt::torrent_status::state_t m_state = lt::torrent_status::checking_resume_data;
 };
