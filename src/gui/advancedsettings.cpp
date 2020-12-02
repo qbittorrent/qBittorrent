@@ -82,6 +82,9 @@ namespace
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
         ENABLE_SPEED_WIDGET,
+        // embedded tracker
+        TRACKER_STATUS,
+        TRACKER_PORT,
         // libtorrent section
         LIBTORRENT_HEADER,
         ASYNC_IO_THREADS,
@@ -119,9 +122,6 @@ namespace
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
 #endif
         BLOCK_PEERS_ON_PRIVILEGED_PORTS,
-        // embedded tracker
-        TRACKER_STATUS,
-        TRACKER_PORT,
         // seeding
         CHOKING_ALGORITHM,
         SEED_CHOKING_ALGORITHM,
@@ -383,7 +383,7 @@ void AdvancedSettings::loadAdvancedSettings()
     static_cast<QLabel *>(cellWidget(QBITTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
     auto *labelLibtorrentLink = new QLabel(
-        makeLink(QLatin1String("https://www.libtorrent.org/reference.html")
+        makeLink(QLatin1String("https://www.libtorrent.org/reference-Settings.html")
                  , tr("Open documentation"))
         , this);
     labelLibtorrentLink->setOpenExternalLinks(true);
@@ -534,12 +534,16 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxOutgoingPortsMin.setMinimum(0);
     m_spinBoxOutgoingPortsMin.setMaximum(65535);
     m_spinBoxOutgoingPortsMin.setValue(session->outgoingPortsMin());
-    addRow(OUTGOING_PORT_MIN, tr("Outgoing ports (Min) [0: Disabled]"), &m_spinBoxOutgoingPortsMin);
+    addRow(OUTGOING_PORT_MIN, (tr("Outgoing ports (Min) [0: Disabled]")
+        + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#outgoing_port", "(?)"))
+        , &m_spinBoxOutgoingPortsMin);
     // Outgoing port Min
     m_spinBoxOutgoingPortsMax.setMinimum(0);
     m_spinBoxOutgoingPortsMax.setMaximum(65535);
     m_spinBoxOutgoingPortsMax.setValue(session->outgoingPortsMax());
-    addRow(OUTGOING_PORT_MAX, tr("Outgoing ports (Max) [0: Disabled]"), &m_spinBoxOutgoingPortsMax);
+    addRow(OUTGOING_PORT_MAX, (tr("Outgoing ports (Max) [0: Disabled]")
+        + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#outgoing_port", "(?)"))
+        , &m_spinBoxOutgoingPortsMax);
 #if (LIBTORRENT_VERSION_NUM >= 10206)
     // UPnP lease duration
     m_spinBoxUPnPLeaseDuration.setMinimum(0);
@@ -557,7 +561,9 @@ void AdvancedSettings::loadAdvancedSettings()
             , &m_comboBoxUtpMixedMode);
     // multiple connections per IP
     m_checkBoxMultiConnectionsPerIp.setChecked(session->multiConnectionsPerIpEnabled());
-    addRow(MULTI_CONNECTIONS_PER_IP, tr("Allow multiple connections from the same IP address"), &m_checkBoxMultiConnectionsPerIp);
+    addRow(MULTI_CONNECTIONS_PER_IP, (tr("Allow multiple connections from the same IP address")
+            + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_ip", "(?)"))
+            , &m_checkBoxMultiConnectionsPerIp);
 #ifdef HAS_HTTPS_TRACKER_VALIDATION
     // Validate HTTPS tracker certificate
     m_checkBoxValidateHTTPSTrackerCertificate.setChecked(session->validateHTTPSTrackerCertificate());
@@ -612,9 +618,12 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP address to bind to"), &m_comboBoxInterfaceAddress);
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
-    addRow(ANNOUNCE_IP, tr("IP Address to report to trackers (requires restart)"), &m_lineEditAnnounceIP);
+    addRow(ANNOUNCE_IP, (tr("IP Address to report to trackers (requires restart)")
+        + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#announce_ip", "(?)"))
+        , &m_lineEditAnnounceIP);
 #if (LIBTORRENT_VERSION_NUM >= 10207)
     // Max concurrent HTTP announces
+    m_spinBoxMaxConcurrentHTTPAnnounces.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxMaxConcurrentHTTPAnnounces.setValue(session->maxConcurrentHTTPAnnounces());
     addRow(MAX_CONCURRENT_HTTP_ANNOUNCES, (tr("Max concurrent HTTP announces") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces", "(?)"))
            , &m_spinBoxMaxConcurrentHTTPAnnounces);
@@ -671,11 +680,15 @@ void AdvancedSettings::loadAdvancedSettings()
 
     // Announce to all trackers in a tier
     m_checkBoxAnnounceAllTrackers.setChecked(session->announceToAllTrackers());
-    addRow(ANNOUNCE_ALL_TRACKERS, tr("Always announce to all trackers in a tier"), &m_checkBoxAnnounceAllTrackers);
+    addRow(ANNOUNCE_ALL_TRACKERS, (tr("Always announce to all trackers in a tier")
+        + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#announce_to_all_trackers", "(?)"))
+        , &m_checkBoxAnnounceAllTrackers);
 
     // Announce to all tiers
     m_checkBoxAnnounceAllTiers.setChecked(session->announceToAllTiers());
-    addRow(ANNOUNCE_ALL_TIERS, tr("Always announce to all tiers"), &m_checkBoxAnnounceAllTiers);
+    addRow(ANNOUNCE_ALL_TIERS, (tr("Always announce to all tiers")
+        + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#announce_to_all_tiers", "(?)"))
+        , &m_checkBoxAnnounceAllTiers);
 
     m_spinBoxPeerTurnover.setMinimum(0);
     m_spinBoxPeerTurnover.setMaximum(100);
