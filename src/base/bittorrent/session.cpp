@@ -88,6 +88,7 @@
 #include "bandwidthscheduler.h"
 #include "common.h"
 #include "customstorage.h"
+#include "filesearcher.h"
 #include "filterparserthread.h"
 #include "ltunderlyingtype.h"
 #include "magneturi.h"
@@ -509,6 +510,12 @@ Session::Session(QObject *parent)
     m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
     m_resumeDataSavingManager->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
+
+    m_fileSearcher = new FileSearcher;
+    m_fileSearcher->moveToThread(m_ioThread);
+    connect(m_ioThread, &QThread::finished, m_fileSearcher, &QObject::deleteLater);
+    connect(m_fileSearcher, &FileSearcher::searchFinished, this, &Session::fileSearchFinished);
+
     m_ioThread->start();
 
     // Regular saving of fastresume data
@@ -1765,6 +1772,24 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
     }
 }
 
+void Session::fileSearchFinished(const InfoHash &id, const QString &savePath, const QStringList &fileNames)
+{
+    const auto loadingTorrentsIter = m_loadingTorrents.find(id);
+    if (loadingTorrentsIter != m_loadingTorrents.end())
+    {
+        LoadTorrentParams params = loadingTorrentsIter.value();
+        m_loadingTorrents.erase(loadingTorrentsIter);
+
+        lt::add_torrent_params &p = params.ltAddTorrentParams;
+
+        p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+        for (int i = 0; i < fileNames.size(); ++i)
+            p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
+
+        loadTorrent(params);
+    }
+}
+
 // Return the torrent handle, given its hash
 TorrentHandle *Session::findTorrent(const InfoHash &hash) const
 {
@@ -2137,15 +2162,20 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
+    bool isFindingIncompleteFiles = false;
+
     // If empty then Automatic mode, otherwise Manual mode
-    QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
+    const QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
     if (hasMetadata)
     {
         if (!loadTorrentParams.hasRootFolder)
             metadata.stripRootFolder();
 
         if (!loadTorrentParams.hasSeedStatus)
-            findIncompleteFiles(metadata, actualSavePath); // if needed points savePath to incomplete folder too
+        {
+            findIncompleteFiles(metadata, actualSavePath);
+            isFindingIncompleteFiles = true;
+        }
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly
@@ -2175,9 +2205,6 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
 
         if (loadTorrentParams.name.isEmpty() && !p.name.empty())
             loadTorrentParams.name = QString::fromStdString(p.name);
-
-        if (isTempPathEnabled())
-            actualSavePath = tempPath();
     }
 
     p.save_path = Utils::Fs::toNativePath(actualSavePath).toStdString();
@@ -2209,7 +2236,11 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     else
         p.flags |= lt::torrent_flags::auto_managed;
 
-    return loadTorrent(loadTorrentParams);
+    if (!isFindingIncompleteFiles)
+        return loadTorrent(loadTorrentParams);
+
+    m_loadingTorrents.insert(hash, loadTorrentParams);
+    return true;
 }
 
 // Add a torrent to the BitTorrent session
@@ -2234,37 +2265,22 @@ bool Session::loadTorrent(LoadTorrentParams params)
     return true;
 }
 
-bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const
+void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const
 {
-    auto findInDir = [](const QString &dirPath, TorrentInfo &torrentInfo) -> bool
+    const InfoHash searchId = torrentInfo.hash();
+    const QStringList originalFileNames = torrentInfo.filePaths();
+    const QString completeSavePath = savePath;
+    const QString incompleteSavePath = (isTempPathEnabled() ? torrentTempPath(torrentInfo) : QString {});
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_fileSearcher, [=]()
     {
-        const QDir dir(dirPath);
-        bool found = false;
-        for (int i = 0; i < torrentInfo.filesCount(); ++i)
-        {
-            const QString filePath = torrentInfo.filePath(i);
-            if (dir.exists(filePath))
-            {
-                found = true;
-            }
-            else if (dir.exists(filePath + QB_EXT))
-            {
-                found = true;
-                torrentInfo.renameFile(i, filePath + QB_EXT);
-            }
-        }
-
-        return found;
-    };
-
-    bool found = findInDir(savePath, torrentInfo);
-    if (!found && isTempPathEnabled())
-    {
-        savePath = torrentTempPath(torrentInfo);
-        found = findInDir(savePath, torrentInfo);
-    }
-
-    return found;
+        m_fileSearcher->search(searchId, originalFileNames, completeSavePath, incompleteSavePath);
+    });
+#else
+    QMetaObject::invokeMethod(m_fileSearcher, "search"
+                              , Q_ARG(InfoHash, searchId), Q_ARG(QStringList, originalFileNames)
+                              , Q_ARG(QString, completeSavePath), Q_ARG(QString, incompleteSavePath));
+#endif
 }
 
 // Add a torrent to libtorrent session in hidden mode
@@ -3870,8 +3886,6 @@ void Session::handleTorrentUrlSeedsRemoved(TorrentHandleImpl *const torrent, con
 
 void Session::handleTorrentMetadataReceived(TorrentHandleImpl *const torrent)
 {
-    torrent->saveResumeData();
-
     // Save metadata
     const QDir resumeDataDir {m_resumeFolderPath};
     const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->hash())};
@@ -3888,7 +3902,7 @@ void Session::handleTorrentMetadataReceived(TorrentHandleImpl *const torrent)
                .arg(torrentFileName, err.message()), Log::CRITICAL);
     }
 
-    emit torrentMetadataLoaded(torrent);
+    emit torrentMetadataReceived(torrent);
 }
 
 void Session::handleTorrentPaused(TorrentHandleImpl *const torrent)
