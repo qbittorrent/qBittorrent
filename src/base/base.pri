@@ -7,6 +7,7 @@ HEADERS += \
     $$PWD/bittorrent/common.h \
     $$PWD/bittorrent/customstorage.h \
     $$PWD/bittorrent/downloadpriority.h \
+    $$PWD/bittorrent/filesearcher.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/ltqhash.h \
@@ -90,6 +91,7 @@ SOURCES += \
     $$PWD/bittorrent/bandwidthscheduler.cpp \
     $$PWD/bittorrent/customstorage.cpp \
     $$PWD/bittorrent/downloadpriority.cpp \
+    $$PWD/bittorrent/filesearcher.cpp \
     $$PWD/bittorrent/filterparserthread.cpp \
     $$PWD/bittorrent/infohash.cpp \
     $$PWD/bittorrent/magneturi.cpp \

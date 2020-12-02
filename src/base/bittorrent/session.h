@@ -64,6 +64,7 @@ class QTimer;
 class QUrl;
 
 class BandwidthScheduler;
+class FileSearcher;
 class FilterParserThread;
 class ResumeDataSavingManager;
 class Statistics;
@@ -488,6 +489,8 @@ namespace BitTorrent
 
         bool addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString &newPath, MoveStorageMode mode);
 
+        void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
+
     signals:
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
@@ -510,7 +513,7 @@ namespace BitTorrent
         void torrentFinished(TorrentHandle *torrent);
         void torrentFinishedChecking(TorrentHandle *torrent);
         void torrentLoaded(TorrentHandle *torrent);
-        void torrentMetadataLoaded(TorrentHandle *torrent);
+        void torrentMetadataReceived(TorrentHandle *torrent);
         void torrentPaused(TorrentHandle *torrent);
         void torrentResumed(TorrentHandle *torrent);
         void torrentSavePathChanged(TorrentHandle *torrent);
@@ -537,6 +540,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void handleDownloadFinished(const Net::DownloadResult &result);
+        void fileSearchFinished(const InfoHash &id, const QString &savePath, const QStringList &fileNames);
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);
@@ -593,7 +597,6 @@ namespace BitTorrent
         bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const AddTorrentParams &addTorrentParams, const MagnetUri &magnetUri, TorrentInfo torrentInfo = TorrentInfo());
-        bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
 
         void updateSeedingLimitTimer();
         void exportTorrentFile(const TorrentHandle *torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
@@ -763,6 +766,7 @@ namespace BitTorrent
         // fastresume data writing thread
         QThread *m_ioThread = nullptr;
         ResumeDataSavingManager *m_resumeDataSavingManager = nullptr;
+        FileSearcher *m_fileSearcher = nullptr;
 
         QSet<InfoHash> m_downloadedMetadata;
 
