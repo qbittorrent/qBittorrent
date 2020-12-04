@@ -346,11 +346,7 @@ Session::Session(QObject *parent)
     , m_hashingThreads(BITTORRENT_SESSION_KEY("HashingThreadsCount"), 2)
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
-#if (LIBTORRENT_VERSION_NUM >= 10206)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
-#else
-    , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), 64)
-#endif
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
 #ifdef Q_OS_WIN
@@ -380,11 +376,7 @@ Session::Session(QObject *parent)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
     , m_maxConcurrentHTTPAnnounces(BITTORRENT_SESSION_KEY("MaxConcurrentHTTPAnnounces"), 50)
-#if (LIBTORRENT_VERSION_NUM >= 10206)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 5)
-#else
-    , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 1)
-#endif
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), 20, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY("MaxConnectionsPerTorrent"), 100, lowerLimited(0, -1))
@@ -1089,9 +1081,6 @@ void Session::initializeNativeSession()
     // turn them off before `lt::session` ctor to avoid split second effects
     pack.set_bool(lt::settings_pack::enable_upnp, false);
     pack.set_bool(lt::settings_pack::enable_natpmp, false);
-#if (LIBTORRENT_VERSION_NUM < 10204)
-    pack.set_bool(lt::settings_pack::upnp_ignore_nonrouters, true);
-#endif
 
 #if (LIBTORRENT_VERSION_NUM > 20000)
     // preserve the same behavior as in earlier libtorrent versions
@@ -1341,9 +1330,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
 #endif
 
-#if (LIBTORRENT_VERSION_NUM >= 10202)
     settingsPack.set_bool(lt::settings_pack::piece_extent_affinity, usePieceExtentAffinity());
-#endif
 
     settingsPack.set_int(lt::settings_pack::suggest_mode, isSuggestModeEnabled()
                          ? lt::settings_pack::suggest_read_cache : lt::settings_pack::no_piece_suggestions);
@@ -1380,18 +1367,14 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::outgoing_port, outgoingPortsMin());
     settingsPack.set_int(lt::settings_pack::num_outgoing_ports, outgoingPortsMax() - outgoingPortsMin() + 1);
 
-#if (LIBTORRENT_VERSION_NUM >= 10206)
     settingsPack.set_int(lt::settings_pack::upnp_lease_duration, UPnPLeaseDuration());
-#endif
 
     // Include overhead in transfer limits
     settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
     settingsPack.set_str(lt::settings_pack::announce_ip, announceIP().toStdString());
-#if (LIBTORRENT_VERSION_NUM >= 10207)
     // Max concurrent HTTP announces
     settingsPack.set_int(lt::settings_pack::max_concurrent_http_announces, maxConcurrentHTTPAnnounces());
-#endif
     // Stop tracker timeout
     settingsPack.set_int(lt::settings_pack::stop_tracker_timeout, stopTrackerTimeout());
     // * Max connections limit
@@ -4504,11 +4487,6 @@ void Session::handleAlert(const lt::alert *a)
         case lt::file_error_alert::alert_type:
             handleFileErrorAlert(static_cast<const lt::file_error_alert*>(a));
             break;
-#if (LIBTORRENT_VERSION_NUM < 10208)
-        case lt::read_piece_alert::alert_type:
-            handleReadPieceAlert(static_cast<const lt::read_piece_alert*>(a));
-            break;
-#endif
         case lt::add_torrent_alert::alert_type:
             handleAddTorrentAlert(static_cast<const lt::add_torrent_alert*>(a));
             break;
@@ -4554,11 +4532,9 @@ void Session::handleAlert(const lt::alert *a)
         case lt::storage_moved_failed_alert::alert_type:
             handleStorageMovedFailedAlert(static_cast<const lt::storage_moved_failed_alert*>(a));
             break;
-#if (LIBTORRENT_VERSION_NUM >= 10204)
         case lt::socks5_alert::alert_type:
             handleSocks5Alert(static_cast<const lt::socks5_alert *>(a));
             break;
-#endif
         }
     }
     catch (const std::exception &exc)
@@ -4645,12 +4621,6 @@ void Session::createTorrentHandle(const lt::torrent_handle &nativeHandle)
     // Torrent could have error just after adding to libtorrent
     if (torrent->hasError())
         LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: %2.").arg(torrent->name(), torrent->error()), Log::WARNING);
-
-#if (LIBTORRENT_VERSION_NUM < 10208)
-    // Check if file(s) exist when using skip hash check
-    if (nativeHandle.flags() & lt::torrent_flags::seed_mode)
-        nativeHandle.read_piece(lt::piece_index_t {0});
-#endif
 }
 
 void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
@@ -4760,17 +4730,6 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
 
     m_recentErroredTorrentsTimer->start();
 }
-
-#if (LIBTORRENT_VERSION_NUM < 10208)
-void Session::handleReadPieceAlert(const lt::read_piece_alert *p) const
-{
-    if (p->error)
-    {
-        p->handle.unset_flags(lt::torrent_flags::auto_managed);
-        p->handle.force_recheck();
-    }
-}
-#endif
 
 void Session::handlePortmapWarningAlert(const lt::portmap_error_alert *p)
 {
@@ -5013,7 +4972,6 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
         enqueueRefresh();
 }
 
-#if (LIBTORRENT_VERSION_NUM >= 10204)
 void Session::handleSocks5Alert(const lt::socks5_alert *p) const
 {
     if (p->error)
@@ -5022,4 +4980,3 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
             , Log::WARNING);
     }
 }
-#endif

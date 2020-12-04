@@ -445,9 +445,7 @@ void TorrentHandleImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 
 void TorrentHandleImpl::clearPeers()
 {
-#if (LIBTORRENT_VERSION_NUM >= 10207)
     m_nativeHandle.clear_peers();
-#endif
 }
 
 bool TorrentHandleImpl::connectPeer(const PeerAddress &peerAddress)
@@ -1473,7 +1471,7 @@ void TorrentHandleImpl::handleTorrentResumedAlert(const lt::torrent_resumed_aler
 
 void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
-    if (p && !m_hasMissingFiles)
+    if (!m_hasMissingFiles)
     {
         // Update recent resume data
         m_ltAddTorrentParams = p->params;
@@ -1503,7 +1501,7 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
 
     // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
     // === BEGIN DEPRECATED CODE === //
-    const bool useDummyResumeData = !p;
+    const bool useDummyResumeData = !hasMetadata();
     if (useDummyResumeData)
     {
         updateStatus();
@@ -1534,11 +1532,7 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
 void TorrentHandleImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p)
 {
     Q_UNUSED(p);
-
-    // if torrent has no metadata libtorrent doesn't generate "fastresume" data
-    // so we should save dummy "fastresume" data containing the values used to
-    // load torrent and qBittorrent own resume data
-    handleSaveResumeDataAlert(nullptr);
+    Q_ASSERT_X(false, Q_FUNC_INFO, "This point should be unreachable since libtorrent 1.2.11");
 }
 
 void TorrentHandleImpl::handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p)
