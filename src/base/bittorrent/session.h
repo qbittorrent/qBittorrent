@@ -64,6 +64,7 @@ class QTimer;
 class QUrl;
 
 class BandwidthScheduler;
+class FileSearcher;
 class FilterParserThread;
 class ResumeDataSavingManager;
 class Statistics;
@@ -453,8 +454,8 @@ namespace BitTorrent
         bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
         bool deleteTorrent(const InfoHash &hash, DeleteOption deleteOption = Torrent);
-        bool loadMetadata(const MagnetUri &magnetUri);
-        bool cancelLoadMetadata(const InfoHash &hash);
+        bool downloadMetadata(const MagnetUri &magnetUri);
+        bool cancelDownloadMetadata(const InfoHash &hash);
 
         void recursiveTorrentDownload(const InfoHash &hash);
         void increaseTorrentsQueuePos(const QVector<InfoHash> &hashes);
@@ -488,6 +489,8 @@ namespace BitTorrent
 
         bool addMoveTorrentStorageJob(TorrentHandleImpl *torrent, const QString &newPath, MoveStorageMode mode);
 
+        void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
+
     signals:
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
@@ -497,7 +500,7 @@ namespace BitTorrent
         void fullDiskError(TorrentHandle *torrent, const QString &msg);
         void IPFilterParsed(bool error, int ruleCount);
         void loadTorrentFailed(const QString &error);
-        void metadataLoaded(const TorrentInfo &info);
+        void metadataDownloaded(const TorrentInfo &info);
         void recursiveTorrentDownloadPossible(TorrentHandle *torrent);
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
@@ -510,7 +513,7 @@ namespace BitTorrent
         void torrentFinished(TorrentHandle *torrent);
         void torrentFinishedChecking(TorrentHandle *torrent);
         void torrentLoaded(TorrentHandle *torrent);
-        void torrentMetadataLoaded(TorrentHandle *torrent);
+        void torrentMetadataReceived(TorrentHandle *torrent);
         void torrentPaused(TorrentHandle *torrent);
         void torrentResumed(TorrentHandle *torrent);
         void torrentSavePathChanged(TorrentHandle *torrent);
@@ -537,6 +540,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void handleDownloadFinished(const Net::DownloadResult &result);
+        void fileSearchFinished(const InfoHash &id, const QString &savePath, const QStringList &fileNames);
 
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);
@@ -593,7 +597,6 @@ namespace BitTorrent
         bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const AddTorrentParams &addTorrentParams, const MagnetUri &magnetUri, TorrentInfo torrentInfo = TorrentInfo());
-        bool findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const;
 
         void updateSeedingLimitTimer();
         void exportTorrentFile(const TorrentHandle *torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
@@ -763,8 +766,9 @@ namespace BitTorrent
         // fastresume data writing thread
         QThread *m_ioThread = nullptr;
         ResumeDataSavingManager *m_resumeDataSavingManager = nullptr;
+        FileSearcher *m_fileSearcher = nullptr;
 
-        QSet<InfoHash> m_loadedMetadata;
+        QSet<InfoHash> m_downloadedMetadata;
 
         QHash<InfoHash, TorrentHandleImpl *> m_torrents;
         QHash<InfoHash, LoadTorrentParams> m_loadingTorrents;

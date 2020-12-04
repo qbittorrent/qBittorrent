@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,40 +28,25 @@
 
 #pragma once
 
-#include <libtorrent/sha1_hash.hpp>
-
-#include <QMetaType>
-#include <QString>
+#include <QObject>
 
 namespace BitTorrent
 {
-    class InfoHash
-    {
-    public:
-        InfoHash();
-        InfoHash(const lt::sha1_hash &nativeHash);
-        InfoHash(const QString &hashString);
-        InfoHash(const InfoHash &other) = default;
-
-        static constexpr int length()
-        {
-            return lt::sha1_hash::size();
-        }
-
-        bool isValid() const;
-
-        operator lt::sha1_hash() const;
-        operator QString() const;
-
-    private:
-        bool m_valid;
-        lt::sha1_hash m_nativeHash;
-        QString m_hashString;
-    };
-
-    bool operator==(const InfoHash &left, const InfoHash &right);
-    bool operator!=(const InfoHash &left, const InfoHash &right);
-    uint qHash(const InfoHash &key, uint seed);
+    class InfoHash;
 }
 
-Q_DECLARE_METATYPE(BitTorrent::InfoHash)
+class FileSearcher final : public QObject
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(FileSearcher)
+
+public:
+    FileSearcher() = default;
+
+public slots:
+    void search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+                , const QString &completeSavePath, const QString &incompleteSavePath);
+
+signals:
+    void searchFinished(const BitTorrent::InfoHash &id, const QString &savePath, const QStringList &fileNames);
+};

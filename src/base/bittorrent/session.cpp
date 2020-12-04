@@ -88,6 +88,7 @@
 #include "bandwidthscheduler.h"
 #include "common.h"
 #include "customstorage.h"
+#include "filesearcher.h"
 #include "filterparserthread.h"
 #include "ltunderlyingtype.h"
 #include "magneturi.h"
@@ -509,6 +510,12 @@ Session::Session(QObject *parent)
     m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
     m_resumeDataSavingManager->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_resumeDataSavingManager, &QObject::deleteLater);
+
+    m_fileSearcher = new FileSearcher;
+    m_fileSearcher->moveToThread(m_ioThread);
+    connect(m_ioThread, &QThread::finished, m_fileSearcher, &QObject::deleteLater);
+    connect(m_fileSearcher, &FileSearcher::searchFinished, this, &Session::fileSearchFinished);
+
     m_ioThread->start();
 
     // Regular saving of fastresume data
@@ -593,11 +600,11 @@ void Session::setAppendExtensionEnabled(const bool enabled)
 {
     if (isAppendExtensionEnabled() != enabled)
     {
+        m_isAppendExtensionEnabled = enabled;
+
         // append or remove .!qB extension for incomplete files
         for (TorrentHandleImpl *const torrent : asConst(m_torrents))
             torrent->handleAppendExtensionToggled();
-
-        m_isAppendExtensionEnabled = enabled;
     }
 }
 
@@ -1765,6 +1772,24 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
     }
 }
 
+void Session::fileSearchFinished(const InfoHash &id, const QString &savePath, const QStringList &fileNames)
+{
+    const auto loadingTorrentsIter = m_loadingTorrents.find(id);
+    if (loadingTorrentsIter != m_loadingTorrents.end())
+    {
+        LoadTorrentParams params = loadingTorrentsIter.value();
+        m_loadingTorrents.erase(loadingTorrentsIter);
+
+        lt::add_torrent_params &p = params.ltAddTorrentParams;
+
+        p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+        for (int i = 0; i < fileNames.size(); ++i)
+            p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
+
+        loadTorrent(params);
+    }
+}
+
 // Return the torrent handle, given its hash
 TorrentHandle *Session::findTorrent(const InfoHash &hash) const
 {
@@ -1892,12 +1917,12 @@ bool Session::deleteTorrent(const InfoHash &hash, const DeleteOption deleteOptio
     return true;
 }
 
-bool Session::cancelLoadMetadata(const InfoHash &hash)
+bool Session::cancelDownloadMetadata(const InfoHash &hash)
 {
-    const auto loadedMetadataIter = m_loadedMetadata.find(hash);
-    if (loadedMetadataIter == m_loadedMetadata.end()) return false;
+    const auto downloadedMetadataIter = m_downloadedMetadata.find(hash);
+    if (downloadedMetadataIter == m_downloadedMetadata.end()) return false;
 
-    m_loadedMetadata.erase(loadedMetadataIter);
+    m_downloadedMetadata.erase(downloadedMetadataIter);
     --m_extraLimit;
     adjustLimits();
     m_nativeSession->remove_torrent(m_nativeSession->find_torrent(hash), lt::session::delete_files);
@@ -1951,7 +1976,7 @@ void Session::decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
         torrentQueue.pop();
     }
 
-    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
+    for (auto i = m_downloadedMetadata.cbegin(); i != m_downloadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
 
     saveTorrentsQueue();
@@ -2004,7 +2029,7 @@ void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
         torrentQueue.pop();
     }
 
-    for (auto i = m_loadedMetadata.cbegin(); i != m_loadedMetadata.cend(); ++i)
+    for (auto i = m_downloadedMetadata.cbegin(); i != m_downloadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
 
     saveTorrentsQueue();
@@ -2058,21 +2083,6 @@ bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &par
 {
     if (!magnetUri.isValid()) return false;
 
-    const InfoHash hash = magnetUri.hash();
-
-    const auto it = m_loadedMetadata.constFind(hash);
-    if (it != m_loadedMetadata.constEnd())
-    {
-        // It looks illogical that we don't just use an existing handle,
-        // but as previous experience has shown, it actually creates unnecessary
-        // problems and unwanted behavior due to the fact that it was originally
-        // added with parameters other than those provided by the user.
-        m_loadedMetadata.erase(it);
-        --m_extraLimit;
-        adjustLimits();
-        m_nativeSession->remove_torrent(m_nativeSession->find_torrent(hash), lt::session::delete_files);
-    }
-
     return addTorrent_impl(params, magnetUri);
 }
 
@@ -2113,7 +2123,7 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
-            loadTorrentParams.category = "";
+        loadTorrentParams.category = "";
     else
         loadTorrentParams.category = addTorrentParams.category;
 
@@ -2126,9 +2136,15 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     const bool hasMetadata = metadata.isValid();
     const InfoHash hash = (hasMetadata ? metadata.hash() : magnetUri.hash());
 
+    // It looks illogical that we don't just use an existing handle,
+    // but as previous experience has shown, it actually creates unnecessary
+    // problems and unwanted behavior due to the fact that it was originally
+    // added with parameters other than those provided by the user.
+    cancelDownloadMetadata(hash);
+
     // We should not add the torrent if it is already
     // processed or is pending to add to session
-    if (m_loadingTorrents.contains(hash) || m_loadedMetadata.contains(hash))
+    if (m_loadingTorrents.contains(hash))
         return false;
 
     TorrentHandleImpl *const torrent = m_torrents.value(hash);
@@ -2146,15 +2162,20 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
+    bool isFindingIncompleteFiles = false;
+
     // If empty then Automatic mode, otherwise Manual mode
-    QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
+    const QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
     if (hasMetadata)
     {
         if (!loadTorrentParams.hasRootFolder)
             metadata.stripRootFolder();
 
         if (!loadTorrentParams.hasSeedStatus)
-            findIncompleteFiles(metadata, actualSavePath); // if needed points savePath to incomplete folder too
+        {
+            findIncompleteFiles(metadata, actualSavePath);
+            isFindingIncompleteFiles = true;
+        }
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly
@@ -2184,9 +2205,6 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
 
         if (loadTorrentParams.name.isEmpty() && !p.name.empty())
             loadTorrentParams.name = QString::fromStdString(p.name);
-
-        if (isTempPathEnabled())
-            actualSavePath = tempPath();
     }
 
     p.save_path = Utils::Fs::toNativePath(actualSavePath).toStdString();
@@ -2218,7 +2236,11 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     else
         p.flags |= lt::torrent_flags::auto_managed;
 
-    return loadTorrent(loadTorrentParams);
+    if (!isFindingIncompleteFiles)
+        return loadTorrent(loadTorrentParams);
+
+    m_loadingTorrents.insert(hash, loadTorrentParams);
+    return true;
 }
 
 // Add a torrent to the BitTorrent session
@@ -2243,42 +2265,27 @@ bool Session::loadTorrent(LoadTorrentParams params)
     return true;
 }
 
-bool Session::findIncompleteFiles(TorrentInfo &torrentInfo, QString &savePath) const
+void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const
 {
-    auto findInDir = [](const QString &dirPath, TorrentInfo &torrentInfo) -> bool
+    const InfoHash searchId = torrentInfo.hash();
+    const QStringList originalFileNames = torrentInfo.filePaths();
+    const QString completeSavePath = savePath;
+    const QString incompleteSavePath = (isTempPathEnabled() ? torrentTempPath(torrentInfo) : QString {});
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QMetaObject::invokeMethod(m_fileSearcher, [=]()
     {
-        const QDir dir(dirPath);
-        bool found = false;
-        for (int i = 0; i < torrentInfo.filesCount(); ++i)
-        {
-            const QString filePath = torrentInfo.filePath(i);
-            if (dir.exists(filePath))
-            {
-                found = true;
-            }
-            else if (dir.exists(filePath + QB_EXT))
-            {
-                found = true;
-                torrentInfo.renameFile(i, filePath + QB_EXT);
-            }
-        }
-
-        return found;
-    };
-
-    bool found = findInDir(savePath, torrentInfo);
-    if (!found && isTempPathEnabled())
-    {
-        savePath = torrentTempPath(torrentInfo);
-        found = findInDir(savePath, torrentInfo);
-    }
-
-    return found;
+        m_fileSearcher->search(searchId, originalFileNames, completeSavePath, incompleteSavePath);
+    });
+#else
+    QMetaObject::invokeMethod(m_fileSearcher, "search"
+                              , Q_ARG(InfoHash, searchId), Q_ARG(QStringList, originalFileNames)
+                              , Q_ARG(QString, completeSavePath), Q_ARG(QString, incompleteSavePath));
+#endif
 }
 
-// Add a torrent to the BitTorrent session in hidden mode
-// and force it to load its metadata
-bool Session::loadMetadata(const MagnetUri &magnetUri)
+// Add a torrent to libtorrent session in hidden mode
+// and force it to download its metadata
+bool Session::downloadMetadata(const MagnetUri &magnetUri)
 {
     if (!magnetUri.isValid()) return false;
 
@@ -2289,7 +2296,7 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     // processed or adding to session
     if (m_torrents.contains(hash)) return false;
     if (m_loadingTorrents.contains(hash)) return false;
-    if (m_loadedMetadata.contains(hash)) return false;
+    if (m_downloadedMetadata.contains(hash)) return false;
 
     qDebug("Adding torrent to preload metadata...");
     qDebug(" -> Hash: %s", qUtf8Printable(hash));
@@ -2322,13 +2329,13 @@ bool Session::loadMetadata(const MagnetUri &magnetUri)
     p.storage = customStorageConstructor;
 #endif
 
-    // Adding torrent to BitTorrent session
+    // Adding torrent to libtorrent session
     lt::error_code ec;
     lt::torrent_handle h = m_nativeSession->add_torrent(p, ec);
     if (ec) return false;
 
     // waiting for metadata...
-    m_loadedMetadata.insert(h.info_hash());
+    m_downloadedMetadata.insert(h.info_hash());
     ++m_extraLimit;
     adjustLimits();
 
@@ -3775,7 +3782,7 @@ bool Session::isKnownTorrent(const InfoHash &hash) const
 {
     return (m_torrents.contains(hash)
             || m_loadingTorrents.contains(hash)
-            || m_loadedMetadata.contains(hash));
+            || m_downloadedMetadata.contains(hash));
 }
 
 void Session::updateSeedingLimitTimer()
@@ -3879,8 +3886,6 @@ void Session::handleTorrentUrlSeedsRemoved(TorrentHandleImpl *const torrent, con
 
 void Session::handleTorrentMetadataReceived(TorrentHandleImpl *const torrent)
 {
-    torrent->saveResumeData();
-
     // Save metadata
     const QDir resumeDataDir {m_resumeFolderPath};
     const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->hash())};
@@ -3897,7 +3902,7 @@ void Session::handleTorrentMetadataReceived(TorrentHandleImpl *const torrent)
                .arg(torrentFileName, err.message()), Log::CRITICAL);
     }
 
-    emit torrentMetadataLoaded(torrent);
+    emit torrentMetadataReceived(torrent);
 }
 
 void Session::handleTorrentPaused(TorrentHandleImpl *const torrent)
@@ -4724,18 +4729,18 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     const InfoHash hash {p->handle.info_hash()};
-    const auto loadedMetadataIter = m_loadedMetadata.find(hash);
+    const auto downloadedMetadataIter = m_downloadedMetadata.find(hash);
 
-    if (loadedMetadataIter != m_loadedMetadata.end())
+    if (downloadedMetadataIter != m_downloadedMetadata.end())
     {
         TorrentInfo metadata {p->handle.torrent_file()};
 
-        m_loadedMetadata.erase(loadedMetadataIter);
+        m_downloadedMetadata.erase(downloadedMetadataIter);
         --m_extraLimit;
         adjustLimits();
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
 
-        emit metadataLoaded(metadata);
+        emit metadataDownloaded(metadata);
     }
 }
 
