@@ -9348,7 +9348,7 @@ Non verrà aggiunto all&apos;elenco download.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="400"/>
         <source>Not contacted yet</source>
-        <translation>Non ancora contatatto</translation>
+        <translation>Non ancora contattato</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="408"/>
