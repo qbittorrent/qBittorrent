@@ -50,7 +50,7 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 
-#if ((LIBTORRENT_VERSION_NUM >= 10206) && !defined(Q_OS_WIN))
+#if !defined(Q_OS_WIN)
 #define HAS_HTTPS_TRACKER_VALIDATION
 #endif
 
@@ -607,9 +607,6 @@ namespace BitTorrent
         void handleStateUpdateAlert(const lt::state_update_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
-#if (LIBTORRENT_VERSION_NUM < 10208)
-        void handleReadPieceAlert(const lt::read_piece_alert *p) const;
-#endif
         void handleTorrentRemovedAlert(const lt::torrent_removed_alert *p);
         void handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p);
         void handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p);
@@ -625,9 +622,7 @@ namespace BitTorrent
         void handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const;
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
-#if (LIBTORRENT_VERSION_NUM >= 10204)
         void handleSocks5Alert(const lt::socks5_alert *p) const;
-#endif
 
         void createTorrentHandle(const lt::torrent_handle &nativeHandle);
 
