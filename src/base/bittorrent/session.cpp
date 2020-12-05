@@ -2278,7 +2278,7 @@ void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const QString 
     });
 #else
     QMetaObject::invokeMethod(m_fileSearcher, "search"
-                              , Q_ARG(InfoHash, searchId), Q_ARG(QStringList, originalFileNames)
+                              , Q_ARG(BitTorrent::InfoHash, searchId), Q_ARG(QStringList, originalFileNames)
                               , Q_ARG(QString, completeSavePath), Q_ARG(QString, incompleteSavePath));
 #endif
 }
