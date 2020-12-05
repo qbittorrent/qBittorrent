@@ -1,12 +1,12 @@
 if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
-    find_package(LibtorrentRasterbar QUIET ${requiredLibtorrentVersion} COMPONENTS torrent-rasterbar)
+    find_package(LibtorrentRasterbar QUIET ${minLibtorrentVersion} COMPONENTS torrent-rasterbar)
     if (NOT LibtorrentRasterbar_FOUND)
         include(FindPkgConfig)
-        pkg_check_modules(LIBTORRENT_RASTERBAR IMPORTED_TARGET GLOBAL "libtorrent-rasterbar>=${requiredLibtorrentVersion}")
+        pkg_check_modules(LIBTORRENT_RASTERBAR IMPORTED_TARGET GLOBAL "libtorrent-rasterbar>=${minLibtorrentVersion}")
         if (NOT LIBTORRENT_RASTERBAR_FOUND)
             message(
                 FATAL_ERROR
-                "Package LibtorrentRasterbar >= ${requiredLibtorrentVersion} not found"
+                "Package LibtorrentRasterbar >= ${minLibtorrentVersion} not found"
                 " with CMake or pkg-config.\n- Set LibtorrentRasterbar_DIR to a directory containing"
                 " a LibtorrentRasterbarConfig.cmake file or add the installation prefix of LibtorrentRasterbar"
                 " to CMAKE_PREFIX_PATH.\n- Alternatively, make sure there is a valid libtorrent-rasterbar.pc"
@@ -18,9 +18,9 @@ if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
         # force a fake package to show up in the feature summary
         set_property(GLOBAL APPEND PROPERTY
             PACKAGES_FOUND
-            "LibtorrentRasterbar via pkg-config (required version >= ${requiredLibtorrentVersion})"
+            "LibtorrentRasterbar via pkg-config (version >= ${minLibtorrentVersion})"
         )
-        set_package_properties("LibtorrentRasterbar via pkg-config (required version >= ${requiredLibtorrentVersion})"
+        set_package_properties("LibtorrentRasterbar via pkg-config (version >= ${minLibtorrentVersion})"
             PROPERTIES
             TYPE REQUIRED
         )
@@ -28,16 +28,16 @@ if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
         set_package_properties(LibtorrentRasterbar PROPERTIES TYPE REQUIRED)
     endif()
 else()
-    find_package(LibtorrentRasterbar ${requiredLibtorrentVersion} REQUIRED COMPONENTS torrent-rasterbar)
+    find_package(LibtorrentRasterbar ${minLibtorrentVersion} REQUIRED COMPONENTS torrent-rasterbar)
 endif()
 # force variable type so that it always shows up in ccmake/cmake-gui frontends
 set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
-find_package(Boost ${requiredBoostVersion} REQUIRED)
-find_package(OpenSSL ${requiredOpenSSLVersion} REQUIRED)
-find_package(ZLIB ${requiredZlibVersion} REQUIRED)
-find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
+find_package(Boost ${minBoostVersion} REQUIRED)
+find_package(OpenSSL ${minOpenSSLVersion} REQUIRED)
+find_package(ZLIB ${minZlibVersion} REQUIRED)
+find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
 if (DBUS)
-    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS DBus)
+    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS DBus)
     set_package_properties(Qt5DBus PROPERTIES
         DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
         PURPOSE "Required by the DBUS feature"
@@ -60,11 +60,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(base)
 
 if (GUI)
-    find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Widgets Svg)
+    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Widgets Svg)
     if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-        find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS MacExtras)
+        find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS MacExtras)
     elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-        find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS WinExtras)
+        find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS WinExtras)
     endif()
     add_subdirectory(gui)
 endif()

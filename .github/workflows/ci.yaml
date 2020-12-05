@@ -12,12 +12,12 @@ on:
     branches: [ master ]
 
 env:
-  # Qt: 5.15.0
-  # libtorrent: RC_1_2 HEAD, 1.2.10
-  VCPKG_COMMIT: 32eccc18191fbb57b159784a1724d2d00613ae82
+  # Qt: 5.15.1
+  # libtorrent: RC_1_2 HEAD, 1.2.11
+  VCPKG_COMMIT: 133051b793486ef14e67e9d1f48c9cfe64dc127e
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  LIBTORRENT_VERSION_TAG: libtorrent-1.2.10
+  LIBTORRENT_VERSION_TAG: v1.2.11
 
 jobs:
 
@@ -178,11 +178,11 @@ jobs:
       uses: actions/checkout@v2
 
     # - ninja is needed for building qBittorrent (because it's preferrable, not a hard requirement)
-    # - pkg-config is needed for some vcpkg installations
+    # - automake is needed for the installation the vcpkg installation of fontconfig, a dependency of qt5-base
     - name: install additional required packages with homebrew
       shell: bash
       run: |
-        brew install ninja pkg-config
+        brew install automake ninja
 
     - name: setup vcpkg (cached, if possible)
       uses: lukka/run-vcpkg@v4
@@ -197,7 +197,7 @@ jobs:
         Copy-Item ${{ env.RUNVCPKG_VCPKG_ROOT }}/triplets/x64-osx.cmake `
           ${{ github.workspace }}/triplets_overlay/x64-osx-release.cmake
         Add-Content ${{ github.workspace }}/triplets_overlay/x64-osx-release.cmake `
-          -Value "set(VCPKG_BUILD_TYPE release)"
+          -Value "set(VCPKG_BUILD_TYPE release)","set(VCPKG_OSX_DEPLOYMENT_TARGET 10.15)"
 
     # NOTE: Avoids a libtorrent ABI issue. See https://github.com/arvidn/libtorrent/issues/4965
     - name: force AppleClang to compile libtorrent with C++14
