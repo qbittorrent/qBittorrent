@@ -27,7 +27,7 @@ namespace Scheduler
         bool conflicts(const TimeRange &timeRange);
 
         QJsonArray toJsonArray() const;
-        static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek);
+        static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek, bool *errored);
 
     signals:
         void dayUpdated(int dayOfWeek);

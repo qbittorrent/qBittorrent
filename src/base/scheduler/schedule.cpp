@@ -87,35 +87,77 @@ void Schedule::saveSchedule()
     m_fileStorage->store(ScheduleFileName, QJsonDocument(jsonObj).toJson());
 }
 
-bool Schedule::loadSchedule()
+void Schedule::backupSchedule(QString errorMessage, bool preserveOriginal = false)
 {
-    QFile file(m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName));
+    LogMsg(errorMessage, Log::CRITICAL);
 
-    if (file.open(QFile::ReadOnly))
+    QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
+    QString errorFileAbsPath = fileAbsPath + ".error";
+
+    int counter = 0;
+    while (QFile::exists(errorFileAbsPath))
     {
-        if (file.size() == 0)
-            return false;
-
-        QJsonParseError jsonError;
-        const QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &jsonError);
-
-        if (jsonError.error != QJsonParseError::NoError)
-            throw RSS::ParsingError(jsonError.errorString());
-
-        if (!jsonDoc.isObject())
-            throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
-
-        const QJsonObject jsonObj = jsonDoc.object();
-        for (int i = 0; i < 7; ++i)
-        {
-            QJsonArray arr = jsonObj[DAYS[i]].toArray();
-            m_scheduleDays[i] = ScheduleDay::fromJsonArray(arr, i);
-        }
-        return true;
+        ++counter;
+        errorFileAbsPath = fileAbsPath + ".error" + QString::number(counter);
     }
 
-    LogMsg(tr("Couldn't read schedule from %1. Error: %2")
-            .arg(file.fileName(), file.errorString()), Log::CRITICAL);
+    LogMsg(tr("Backing up errored schedule file in %1").arg(errorFileAbsPath), Log::WARNING);
 
-    return false;
+    if (preserveOriginal)
+        QFile::copy(fileAbsPath, errorFileAbsPath);
+    else
+        QFile::rename(fileAbsPath, errorFileAbsPath);
+}
+
+bool Schedule::loadSchedule()
+{
+    QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
+    QFile file(fileAbsPath);
+
+    if (!file.open(QFile::ReadOnly) || file.size() == 0)
+        return false;
+
+    QJsonParseError jsonError;
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &jsonError);
+
+    if (jsonError.error != QJsonParseError::NoError)
+    {
+        file.close();
+        backupSchedule(tr("Scheduler JSON parsing error: %1").arg(jsonError.errorString()));
+        return false;
+    }
+
+    if (!jsonDoc.isObject())
+    {
+        file.close();
+        backupSchedule(tr("Invalid scheduler JSON format"));
+        return false;
+    }
+
+    const QJsonObject jsonObj = jsonDoc.object();
+    bool errored = false;
+
+    for (int day = 0; day < 7; ++day)
+    {
+        if (!jsonObj[DAYS[day]].isArray())
+        {
+            LogMsg(tr("Ignoring invalid value for schedule day: %1 (expected an array)")
+                    .arg(DAYS[day]), Log::WARNING);
+
+            errored = true;
+            m_scheduleDays[day] = new ScheduleDay(day);
+            continue;
+        }
+
+        QJsonArray arr = jsonObj[DAYS[day]].toArray();
+        m_scheduleDays[day] = ScheduleDay::fromJsonArray(arr, day, &errored);
+    }
+
+    if (errored)
+    {
+        backupSchedule(tr("There were invalid data in the scheduler JSON file that have been ignored."), true);
+        saveSchedule();
+    }
+
+    return true;
 }

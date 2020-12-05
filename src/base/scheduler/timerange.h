@@ -9,8 +9,8 @@ namespace Scheduler
     {
         QTime startTime;
         QTime endTime;
-        int downloadRate = -1;
-        int uploadRate = -1;
+        int downloadRate;
+        int uploadRate;
 
         void setStartTime(QTime time);
         void setEndTime(QTime time);
@@ -22,5 +22,6 @@ namespace Scheduler
 
         QJsonObject toJsonObject() const;
         static TimeRange fromJsonObject(QJsonObject jsonObject);
+        static bool validateJsonObject(QJsonObject jsonObject);
     };
 }

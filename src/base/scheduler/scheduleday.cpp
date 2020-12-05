@@ -1,10 +1,14 @@
 #include "scheduleday.h"
 
 #include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonValue>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/rss/rss_autodownloader.h"
+#include "schedule.h"
 
 using namespace Scheduler;
 
@@ -118,16 +122,25 @@ QJsonArray ScheduleDay::toJsonArray() const
     return jsonArr;
 }
 
-ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek)
+ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek, bool *errored)
 {
     ScheduleDay *scheduleDay = new ScheduleDay(dayOfWeek);
 
-    for (QJsonValue jObject : jsonArray)
+    for (QJsonValue jValue : jsonArray)
     {
-        if (!jObject.isObject())
-            throw RSS::ParsingError(RSS::AutoDownloader::tr("Invalid data format."));
+        if (!jValue.isObject())
+        {
+            LogMsg(tr("Ignoring invalid value for a time range in day %1 (expected a time range object)")
+                    .arg(QString::number(dayOfWeek)), Log::WARNING);
+            *errored = true;
+            continue;
+        }
 
-        TimeRange timeRange = TimeRange::fromJsonObject(jObject.toObject());
+        QJsonObject jObject = jValue.toObject();
+        if (!TimeRange::validateJsonObject(jObject))
+            *errored = true;
+
+        TimeRange timeRange = TimeRange::fromJsonObject(jObject);
         scheduleDay->addTimeRange(timeRange);
     }
 

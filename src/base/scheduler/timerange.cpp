@@ -1,5 +1,7 @@
 #include "timerange.h"
 
+#include "base/logger.h"
+
 using namespace Scheduler;
 
 void TimeRange::setStartTime(const QTime time)
@@ -49,16 +51,37 @@ QJsonObject TimeRange::toJsonObject() const
     };
 }
 
-TimeRange TimeRange::fromJsonObject(QJsonObject jsonObject)
+TimeRange TimeRange::fromJsonObject(const QJsonObject jsonObject)
 {
     int start = jsonObject["start"].toInt();
     int end = jsonObject["end"].toInt();
 
+    QTime startTime = QTime(start / 100, start % 100);
+    QTime endTime = QTime(end / 100, end % 100, 59, 999);
+
+    if (start > end)
+        std::swap(startTime, endTime);
+
     return
     {
-        QTime(start / 100, start % 100),
-        QTime(end / 100, end % 100, 59, 999),
-        jsonObject["dl"].toInt(),
-        jsonObject["ul"].toInt()
+        startTime,
+        endTime,
+        jsonObject["dl"].toInt(0),
+        jsonObject["ul"].toInt(0)
     };
+}
+
+bool TimeRange::validateJsonObject(const QJsonObject jsonObject)
+{
+    for (const auto &name : {"start", "end"})
+    {
+        int value = jsonObject[name].toInt(-1);
+        if (value < 0 || value > 2359) {
+            LogMsg(QObject::tr("Ignoring invalid %1 time for a time range: %2 (expected number between 0-2359)")
+                            .arg(name, QString::number(value)), Log::WARNING);
+            return false;
+        }
+    }
+
+    return true;
 }
