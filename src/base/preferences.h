@@ -159,6 +159,15 @@ public:
     int getActionOnDblClOnTorrentFn() const;
     void setActionOnDblClOnTorrentFn(int act);
 
+    // Speed options
+    bool getLegacySchedulerImported() const;
+    void setLegacySchedulerImported(bool imported);
+    QTime getLegacySchedulerStartTime() const;
+    QTime getLegacySchedulerEndTime() const;
+    SchedulerDays getLegacySchedulerDays() const;
+    int getGlobalAltDownloadLimit() const;
+    int getGlobalAltUploadLimit() const;
+
     // Search
     bool isSearchEnabled() const;
     void setSearchEnabled(bool enabled);

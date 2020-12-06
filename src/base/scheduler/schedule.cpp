@@ -7,8 +7,11 @@
 #include "../logger.h"
 #include "../profile.h"
 #include "../utils/fs.h"
+#include "base/bittorrent/session.h"
 #include "base/exceptions.h"
-#include "base/rss/rss_autodownloader.h"
+#include "base/preferences.h"
+#include "base/scheduler/scheduleday.h"
+#include "base/scheduler/timerange.h"
 
 using namespace Scheduler;
 
@@ -34,15 +37,15 @@ Schedule::Schedule()
     connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save scheduler data in %1. Error: %2")
-               .arg(fileName, errorString), Log::CRITICAL);
+                .arg(fileName, errorString), Log::CRITICAL);
     });
 
     m_ioThread->start();
 
     if (!loadSchedule())
     {
-        for (int i = 0; i < 7; ++i)
-            m_scheduleDays.append(new ScheduleDay(i));
+        for (int day = 0; day < 7; ++day)
+            m_scheduleDays.append(new ScheduleDay(day));
     }
 
     for (int i = 0; i < 7; ++i)
@@ -114,6 +117,9 @@ bool Schedule::loadSchedule()
     QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
     QFile file(fileAbsPath);
 
+    if (!file.exists())
+        return importLegacyScheduler();
+
     if (!file.open(QFile::ReadOnly) || file.size() == 0)
         return false;
 
@@ -159,5 +165,61 @@ bool Schedule::loadSchedule()
         saveSchedule();
     }
 
+    return true;
+}
+
+bool Schedule::importLegacyScheduler()
+{
+    Preferences *pref = Preferences::instance();
+    if (pref->getLegacySchedulerImported()) return false;
+
+    LogMsg(tr("Bandwidth scheduler format has been changed. Attempting to transfer into the new JSON format."), Log::INFO);
+
+    const QTime start = pref->getLegacySchedulerStartTime();
+    const QTime end = pref->getLegacySchedulerEndTime();
+    const int schedulerDays = pref->getLegacySchedulerDays();
+    const int altDownloadLimit = pref->getGlobalAltDownloadLimit();
+    const int altUploadLimit = pref->getGlobalAltUploadLimit();
+
+    for (int day = 0; day < 7; ++day)
+    {
+        bool addToScheduleDay = (schedulerDays == EVERY_DAY)
+            || (schedulerDays == WEEK_DAYS && (day == 5 || day == 6))
+            || (schedulerDays == WEEK_ENDS && (day != 5 && day != 6))
+            || (day == schedulerDays - 3);
+
+        // ScheduleDay scheduleDay(day);
+        ScheduleDay *scheduleDay = new ScheduleDay(day);
+
+        if (addToScheduleDay)
+        {
+            if (start > end)
+            {
+                scheduleDay->addTimeRange({
+                    QTime(0, 0), end,
+                    altDownloadLimit, altUploadLimit
+                });
+
+                scheduleDay->addTimeRange({
+                    start, QTime(23, 59, 59, 999),
+                    altDownloadLimit, altUploadLimit
+                });
+            }
+            else
+            {
+                scheduleDay->addTimeRange({
+                    start, end,
+                    altDownloadLimit, altUploadLimit
+                });
+            }
+        }
+
+        m_scheduleDays.append(scheduleDay);
+    }
+
+    saveSchedule();
+    pref->setLegacySchedulerImported(true);
+
+    LogMsg(tr("Successfully transferred the old scheduler into the new JSON format."), Log::INFO);
     return true;
 }

@@ -450,6 +450,41 @@ void Preferences::setActionOnDblClOnTorrentFn(const int act)
     setValue("Preferences/Downloads/DblClOnTorFn", act);
 }
 
+bool Preferences::getLegacySchedulerImported() const
+{
+    return value("Preferences/Scheduler/LegacySchedulerImported", false).toBool();
+}
+
+void Preferences::setLegacySchedulerImported(const bool imported)
+{
+    setValue("Preferences/Scheduler/LegacySchedulerImported", imported);
+}
+
+QTime Preferences::getLegacySchedulerStartTime() const
+{
+    return value("Preferences/Scheduler/start_time").toTime();
+}
+
+QTime Preferences::getLegacySchedulerEndTime() const
+{
+    return value("Preferences/Scheduler/end_time", QTime(20, 0)).toTime();
+}
+
+SchedulerDays Preferences::getLegacySchedulerDays() const
+{
+    return static_cast<SchedulerDays>(value("Preferences/Scheduler/days", EVERY_DAY).toInt());
+}
+
+int Preferences::getGlobalAltDownloadLimit() const
+{
+    return value("Preferences/Connection/GlobalDLLimitAlt", 0).toInt();
+}
+
+int Preferences::getGlobalAltUploadLimit() const
+{
+    return value("Preferences/Connection/GlobalUPLimitAlt", 0).toInt();
+}
+
 // Search
 bool Preferences::isSearchEnabled() const
 {

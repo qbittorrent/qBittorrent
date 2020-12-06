@@ -41,5 +41,6 @@ namespace Scheduler
         bool loadSchedule();
         void saveSchedule();
         void backupSchedule(QString errorMessage, bool preserveOriginal);
+        bool importLegacyScheduler();
     };
 }
