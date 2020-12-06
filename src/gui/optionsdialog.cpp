@@ -308,6 +308,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->showActiveFiltersLabel, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
@@ -680,6 +681,7 @@ void OptionsDialog::saveOptions()
 #endif
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
+    pref->setActiveFiltersLableVisibility(m_ui->showActiveFiltersLabel->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
@@ -933,6 +935,7 @@ void OptionsDialog::loadOptions()
     // Behavior preferences
     setLocale(pref->getLocale());
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
+    m_ui->showActiveFiltersLabel->setChecked(pref->isActiveFiltersLabelVisible());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());

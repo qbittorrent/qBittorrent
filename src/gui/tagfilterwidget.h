@@ -39,6 +39,7 @@ public:
     explicit TagFilterWidget(QWidget *parent = nullptr);
 
     QString currentTag() const;
+    QString currentTagText() const;
 
 signals:
     void tagChanged(const QString &tag);

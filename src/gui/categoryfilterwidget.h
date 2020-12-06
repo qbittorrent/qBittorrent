@@ -39,6 +39,7 @@ public:
     explicit CategoryFilterWidget(QWidget *parent = nullptr);
 
     QString currentCategory() const;
+    QString currentCategoryFullText() const;
 
 signals:
     void categoryChanged(const QString &categoryName);

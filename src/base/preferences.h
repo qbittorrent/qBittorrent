@@ -114,6 +114,8 @@ public:
     void setHideZeroValues(bool b);
     int getHideZeroComboValues() const;
     void setHideZeroComboValues(int n);
+    bool isActiveFiltersLabelVisible() const;
+    void setActiveFiltersLableVisibility(bool b);
     bool isStatusbarDisplayed() const;
     void setStatusbarDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
