@@ -202,13 +202,15 @@ void BandwidthScheduler::saveSchedule()
 bool BandwidthScheduler::importLegacyScheduler()
 {
     Preferences *pref = Preferences::instance();
-    if (pref->getLegacySchedulerImported()) return false;
-
-    LogMsg(tr("Bandwidth scheduler format has been changed. Attempting to transfer into the new JSON format."), Log::INFO);
-
     const QTime start = pref->getLegacySchedulerStartTime();
     const QTime end = pref->getLegacySchedulerEndTime();
     const int schedulerDays = pref->getLegacySchedulerDays();
+
+    if (!start.isValid() || !end.isValid() || schedulerDays == -1)
+        return false;
+
+    LogMsg(tr("Bandwidth scheduler format has been changed. Attempting to transfer into the new JSON format."), Log::INFO);
+
     const int altDownloadLimit = pref->getGlobalAltDownloadLimit();
     const int altUploadLimit = pref->getGlobalAltUploadLimit();
 
@@ -249,7 +251,7 @@ bool BandwidthScheduler::importLegacyScheduler()
     }
 
     saveSchedule();
-    pref->setLegacySchedulerImported(true);
+    pref->removeLegacySchedulerTimes();
 
     LogMsg(tr("Successfully transferred the old scheduler into the new JSON format."), Log::INFO);
     return true;

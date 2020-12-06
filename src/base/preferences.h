@@ -160,11 +160,10 @@ public:
     void setActionOnDblClOnTorrentFn(int act);
 
     // Speed options
-    bool getLegacySchedulerImported() const;
-    void setLegacySchedulerImported(bool imported);
     QTime getLegacySchedulerStartTime() const;
     QTime getLegacySchedulerEndTime() const;
     SchedulerDays getLegacySchedulerDays() const;
+    void removeLegacySchedulerTimes();
     int getGlobalAltDownloadLimit() const;
     int getGlobalAltUploadLimit() const;
 
