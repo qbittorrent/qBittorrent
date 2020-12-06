@@ -2,8 +2,6 @@
 
 #include "base/logger.h"
 
-using namespace Scheduler;
-
 void TimeRange::setStartTime(const QTime time)
 {
     if (time.isValid() && time < endTime)

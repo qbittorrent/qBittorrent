@@ -31,7 +31,7 @@
 
 #include <QDialog>
 
-#include "base/scheduler/scheduleday.h"
+#include "base/bittorrent/scheduler/scheduleday.h"
 
 class QAbstractButton;
 class QCloseEvent;
@@ -116,7 +116,7 @@ private slots:
     void webUIHttpsKeyChanged(const QString &path, ShowError showError);
 
 private:
-    static void populateScheduleDayTable(QTableWidget *scheduleTable, const Scheduler::ScheduleDay *scheduleDay);
+    static void populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay);
 
     // Methods
     void saveOptions();
@@ -149,7 +149,7 @@ private:
     int getPort() const;
     bool isUPnPEnabled() const;
     // Speed options
-    void openTimeRangeDialog(Scheduler::ScheduleDay *scheduleDay);
+    void openTimeRangeDialog(ScheduleDay *scheduleDay);
     void removeSelectedTimeRanges(int day);
     // Bittorrent options
     int getMaxConnecs() const;

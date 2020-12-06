@@ -1,27 +1,55 @@
-#include "schedule.h"
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+#include "bandwidthscheduler.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "../logger.h"
-#include "../profile.h"
-#include "../utils/fs.h"
 #include "base/bittorrent/session.h"
 #include "base/exceptions.h"
+#include "base/logger.h"
 #include "base/preferences.h"
-#include "base/scheduler/scheduleday.h"
-#include "base/scheduler/timerange.h"
-
-using namespace Scheduler;
+#include "base/profile.h"
+#include "base/utils/fs.h"
+#include "scheduleday.h"
+#include "timerange.h"
 
 const QString ScheduleFileName = QStringLiteral("schedule.json");
 const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
 
-QPointer<Schedule> Schedule::m_instance = nullptr;
+QPointer<BandwidthScheduler> BandwidthScheduler::m_instance = nullptr;
 
-Schedule::Schedule()
-    : m_ioThread {new QThread(this)}
+BandwidthScheduler::BandwidthScheduler(QObject *parent)
+    : QObject {parent}
+    , m_ioThread {new QThread(this)}
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -49,48 +77,42 @@ Schedule::Schedule()
     }
 
     for (int i = 0; i < 7; ++i)
-        connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, &Schedule::updateSchedule);
+    {
+        connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, [this](int day)
+        {
+            saveSchedule();
+            emit scheduleUpdated(day);
+
+            if (day == QDate::currentDate().dayOfWeek() - 1)
+                emit limitChangeRequested();
+        });
+    }
+
+    connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::limitChangeRequested);
 }
 
-Schedule::~Schedule()
+BandwidthScheduler::~BandwidthScheduler()
 {
+    m_timer.stop();
     saveSchedule();
 
     m_ioThread->quit();
     m_ioThread->wait();
 }
 
-Schedule *Schedule::instance()
+BandwidthScheduler *BandwidthScheduler::instance()
 {
     return m_instance;
 }
 
-ScheduleDay* Schedule::scheduleDay(const int day) const
+void BandwidthScheduler::start()
 {
-    return m_scheduleDays[day];
+    emit limitChangeRequested();
+    m_timer.start(10000);
 }
 
-ScheduleDay* Schedule::today() const
-{
-    return m_scheduleDays[QDate::currentDate().dayOfWeek() - 1];
-}
 
-void Schedule::updateSchedule(int day)
-{
-    saveSchedule();
-    emit updated(day);
-}
-
-void Schedule::saveSchedule()
-{
-    QJsonObject jsonObj;
-    for (int i = 0; i < 7; ++i)
-        jsonObj.insert(DAYS[i], m_scheduleDays[i]->toJsonArray());
-
-    m_fileStorage->store(ScheduleFileName, QJsonDocument(jsonObj).toJson());
-}
-
-void Schedule::backupSchedule(QString errorMessage, bool preserveOriginal = false)
+void BandwidthScheduler::backupSchedule(QString errorMessage, bool preserveOriginal = false)
 {
     LogMsg(errorMessage, Log::CRITICAL);
 
@@ -112,7 +134,7 @@ void Schedule::backupSchedule(QString errorMessage, bool preserveOriginal = fals
         QFile::rename(fileAbsPath, errorFileAbsPath);
 }
 
-bool Schedule::loadSchedule()
+bool BandwidthScheduler::loadSchedule()
 {
     QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
     QFile file(fileAbsPath);
@@ -168,7 +190,16 @@ bool Schedule::loadSchedule()
     return true;
 }
 
-bool Schedule::importLegacyScheduler()
+void BandwidthScheduler::saveSchedule()
+{
+    QJsonObject jsonObj;
+    for (int i = 0; i < 7; ++i)
+        jsonObj.insert(DAYS[i], m_scheduleDays[i]->toJsonArray());
+
+    m_fileStorage->store(ScheduleFileName, QJsonDocument(jsonObj).toJson());
+}
+
+bool BandwidthScheduler::importLegacyScheduler()
 {
     Preferences *pref = Preferences::instance();
     if (pref->getLegacySchedulerImported()) return false;
@@ -222,4 +253,14 @@ bool Schedule::importLegacyScheduler()
 
     LogMsg(tr("Successfully transferred the old scheduler into the new JSON format."), Log::INFO);
     return true;
+}
+
+ScheduleDay* BandwidthScheduler::scheduleDay(const int day) const
+{
+    return m_scheduleDays[day];
+}
+
+ScheduleDay* BandwidthScheduler::today() const
+{
+    return m_scheduleDays[QDate::currentDate().dayOfWeek() - 1];
 }

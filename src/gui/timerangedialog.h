@@ -2,9 +2,7 @@
 
 #include <QDialog>
 
-#include "../base/scheduler/scheduleday.h"
-
-using namespace Scheduler;
+#include "base/bittorrent/scheduler/scheduleday.h"
 
 namespace Ui
 {

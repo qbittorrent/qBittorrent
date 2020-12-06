@@ -31,19 +31,45 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QThread>
+
+#include "base/asyncfilestorage.h"
+#include "base/preferences.h"
+#include "scheduleday.h"
+
+class Application;
 
 class BandwidthScheduler : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(BandwidthScheduler)
 
+    friend class ::Application;
+
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);
+    ~BandwidthScheduler() override;
+
+    static BandwidthScheduler *instance();
+
+    ScheduleDay* scheduleDay(int day) const;
+    ScheduleDay* today() const;
     void start();
 
 signals:
-    void bandwidthLimitRequested();
+    void limitChangeRequested();
+    void scheduleUpdated(int day);
 
 private:
+    static QPointer<BandwidthScheduler> m_instance;
+
+    bool loadSchedule();
+    void saveSchedule();
+    void backupSchedule(QString errorMessage, bool preserveOriginal);
+    bool importLegacyScheduler();
+
+    QThread *m_ioThread;
+    AsyncFileStorage *m_fileStorage;
+    QList<ScheduleDay*> m_scheduleDays;
     QTimer m_timer;
 };

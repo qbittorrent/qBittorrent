@@ -581,7 +581,7 @@ namespace BitTorrent
         QStringList getListeningIPs() const;
         void configureListeningInterface();
         void enableTracker(bool enable);
-        void enableBandwidthScheduler();
+        void initializeBandwidthScheduler();
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();

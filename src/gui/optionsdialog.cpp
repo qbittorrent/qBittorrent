@@ -51,6 +51,9 @@
 #include "advancedsettings.h"
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
+#include "base/bittorrent/scheduler/scheduleday.h"
+#include "base/bittorrent/scheduler/timerange.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
@@ -60,9 +63,6 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
-#include "base/scheduler/schedule.h"
-#include "base/scheduler/scheduleday.h"
-#include "base/scheduler/timerange.h"
 #include "base/torrentfileguard.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -609,7 +609,7 @@ void OptionsDialog::initializeLanguageCombo()
 
 void OptionsDialog::initializeScheduler()
 {
-    auto *schedule = Scheduler::Schedule::instance();
+    auto *schedule = BandwidthScheduler::instance();
     int today = QDate::currentDate().dayOfWeek() - 1;
 
     for (int i = 0; i < 7; ++i)
@@ -631,7 +631,7 @@ void OptionsDialog::initializeScheduler()
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
 
-        Scheduler::ScheduleDay *scheduleDay = schedule->scheduleDay(i);
+        ScheduleDay *scheduleDay = schedule->scheduleDay(i);
         scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
 
         m_scheduleDayTables.append(scheduleTable);
@@ -661,16 +661,16 @@ void OptionsDialog::initializeScheduler()
     }
 
     const auto &tables = asConst(m_scheduleDayTables);
-    connect(schedule, &Scheduler::Schedule::updated, this, [tables](int day)
+    connect(schedule, &BandwidthScheduler::scheduleUpdated, this, [tables](int day)
     {
-        auto *scheduleDay = Scheduler::Schedule::instance()->scheduleDay(day);
+        auto *scheduleDay = BandwidthScheduler::instance()->scheduleDay(day);
         OptionsDialog::populateScheduleDayTable(tables[day], scheduleDay);
     });
 
     m_ui->tabSchedule->setCurrentIndex(today);
 }
 
-void OptionsDialog::openTimeRangeDialog(Scheduler::ScheduleDay *scheduleDay)
+void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
 {
     auto *dialog = new TimeRangeDialog(this, scheduleDay);
     connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]()
@@ -698,13 +698,13 @@ void OptionsDialog::removeSelectedTimeRanges(const int day)
             [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
 
         for (const QModelIndex &i : selection)
-            Scheduler::Schedule::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
+            BandwidthScheduler::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
 
         selectionModel->clearSelection();
     }
 }
 
-void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const Scheduler::ScheduleDay *scheduleDay)
+void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay)
 {
     auto timeRanges = scheduleDay->timeRanges();
     int rowCount = timeRanges.count();
@@ -714,7 +714,7 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
     for (int i = 0; i < rowCount; ++i)
     {
-        Scheduler::TimeRange timeRange = timeRanges[i];
+        TimeRange timeRange = timeRanges[i];
 
         QString dlText = (timeRange.downloadRate == 0) ? QString::fromUtf8(C_INFINITY)
                        : Utils::Misc::friendlyUnit(timeRange.downloadRate * 1024, true);

@@ -3,7 +3,6 @@ add_library(qbt_base STATIC
     algorithm.h
     asyncfilestorage.h
     bittorrent/addtorrentparams.h
-    bittorrent/bandwidthscheduler.h
     bittorrent/cachestatus.h
     bittorrent/common.h
     bittorrent/customstorage.h
@@ -19,6 +18,9 @@ add_library(qbt_base STATIC
     bittorrent/peerinfo.h
     bittorrent/portforwarderimpl.h
     bittorrent/resumedatasavingmanager.h
+    bittorrent/scheduler/bandwidthscheduler.h
+    bittorrent/scheduler/scheduleday.h
+    bittorrent/scheduler/timerange.h
     bittorrent/session.h
     bittorrent/sessionstatus.h
     bittorrent/speedmonitor.h
@@ -64,9 +66,6 @@ add_library(qbt_base STATIC
     rss/rss_parser.h
     rss/rss_session.h
     scanfoldersmodel.h
-    scheduler/schedule.h
-    scheduler/scheduleday.h
-    scheduler/timerange.h
     search/searchdownloadhandler.h
     search/searchhandler.h
     search/searchpluginmanager.h
@@ -90,7 +89,6 @@ add_library(qbt_base STATIC
 
     # sources
     asyncfilestorage.cpp
-    bittorrent/bandwidthscheduler.cpp
     bittorrent/customstorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filterparserthread.cpp
@@ -102,6 +100,9 @@ add_library(qbt_base STATIC
     bittorrent/peerinfo.cpp
     bittorrent/portforwarderimpl.cpp
     bittorrent/resumedatasavingmanager.cpp
+    bittorrent/scheduler/bandwidthscheduler.cpp
+    bittorrent/scheduler/scheduleday.cpp
+    bittorrent/scheduler/timerange.cpp
     bittorrent/session.cpp
     bittorrent/speedmonitor.cpp
     bittorrent/statistics.cpp
@@ -142,9 +143,6 @@ add_library(qbt_base STATIC
     rss/rss_parser.cpp
     rss/rss_session.cpp
     scanfoldersmodel.cpp
-    scheduler/schedule.cpp
-    scheduler/scheduleday.cpp
-    scheduler/timerange.cpp
     search/searchdownloadhandler.cpp
     search/searchhandler.cpp
     search/searchpluginmanager.cpp

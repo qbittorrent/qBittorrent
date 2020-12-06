@@ -69,15 +69,15 @@
 #include <QTimer>
 #include <QUuid>
 
-#include "bandwidthscheduler.h"
 #include "base/algorithm.h"
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
+#include "base/bittorrent/scheduler/scheduleday.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/profile.h"
-#include "base/scheduler/schedule.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
 #include "base/tristatebool.h"
@@ -475,11 +475,13 @@ Session::Session(QObject *parent)
     m_seedingLimitTimer->setInterval(10000);
     connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
 
+    if (isBandwidthSchedulerEnabled())
+        initializeBandwidthScheduler();
+
     initializeNativeSession();
     configureComponents();
 
-    if (isBandwidthSchedulerEnabled())
-        enableBandwidthScheduler();
+    m_bwScheduler->start();
 
     m_categories = map_cast(m_storedCategories);
     if (isSubcategoriesEnabled())
@@ -1632,15 +1634,14 @@ void Session::enableTracker(const bool enable)
     }
 }
 
-void Session::enableBandwidthScheduler()
+void Session::initializeBandwidthScheduler()
 {
     if (!m_bwScheduler)
     {
         m_bwScheduler = new BandwidthScheduler(this);
-        connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested,
+        connect(m_bwScheduler.data(), &BandwidthScheduler::limitChangeRequested,
             this, &Session::applyBandwidthLimits);
     }
-    m_bwScheduler->start();
 }
 
 void Session::populateAdditionalTrackers()
@@ -2702,14 +2703,14 @@ int Session::downloadSpeedLimit() const
 
     if (m_isBandwidthSchedulerEnabled)
     {
-        Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
+        ScheduleDay *today = m_bwScheduler->today();
         int index = today->getNowIndex();
-        if (index < 0)
-            return globalDownloadSpeedLimit();
-
-        int dl = today->timeRanges()[index].downloadRate * 1024;
-        return (globalDownloadSpeedLimit() == 0) ? dl
-            : std::min(globalDownloadSpeedLimit(), dl);
+        if (index > 0)
+        {
+            int dl = today->timeRanges()[index].downloadRate * 1024;
+            return (globalDownloadSpeedLimit() == 0) ? dl
+                : std::min(globalDownloadSpeedLimit(), dl);
+        }
     }
 
     return globalDownloadSpeedLimit();
@@ -2730,14 +2731,14 @@ int Session::uploadSpeedLimit() const
 
     if (m_isBandwidthSchedulerEnabled)
     {
-        Scheduler::ScheduleDay *today = Scheduler::Schedule::instance()->today();
+        ScheduleDay *today = m_bwScheduler->today();
         int index = today->getNowIndex();
-        if (index < 0)
-            return globalUploadSpeedLimit();
-
-        int ul = today->timeRanges()[index].uploadRate * 1024;
-        return (globalUploadSpeedLimit() == 0) ? ul
-            : std::min(globalUploadSpeedLimit(), ul);
+        if (index > 0)
+        {
+            int ul = today->timeRanges()[index].uploadRate * 1024;
+            return (globalUploadSpeedLimit() == 0) ? ul
+                : std::min(globalUploadSpeedLimit(), ul);
+        }
     }
 
     return globalUploadSpeedLimit();
@@ -2778,7 +2779,10 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
     {
         m_isBandwidthSchedulerEnabled = enabled;
         if (enabled)
-            enableBandwidthScheduler();
+        {
+            initializeBandwidthScheduler();
+            m_bwScheduler->start();
+        }
         else
             delete m_bwScheduler;
     }

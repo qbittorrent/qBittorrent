@@ -5,12 +5,10 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
+#include "bandwidthscheduler.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/rss/rss_autodownloader.h"
-#include "schedule.h"
-
-using namespace Scheduler;
 
 ScheduleDay::ScheduleDay(int dayOfWeek)
     : m_dayOfWeek {dayOfWeek}

@@ -3,8 +3,8 @@
 #include <QSpinBox>
 #include <QTimeEdit>
 
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/preferences.h"
-#include "base/scheduler/schedule.h"
 #include "base/unicodestrings.h"
 
 using namespace Gui;

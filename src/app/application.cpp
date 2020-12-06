@@ -76,7 +76,6 @@
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/scanfoldersmodel.h"
-#include "base/scheduler/schedule.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
@@ -581,7 +580,6 @@ int Application::exec(const QStringList &params)
 
     try
     {
-        new Scheduler::Schedule;
         BitTorrent::Session::initInstance();
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
