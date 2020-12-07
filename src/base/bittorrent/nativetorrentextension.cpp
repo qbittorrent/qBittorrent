@@ -52,3 +52,11 @@ bool NativeTorrentExtension::on_pause()
     // and other extensions to be also invoked.
     return false;
 }
+
+void NativeTorrentExtension::on_state(const lt::torrent_status::state_t state)
+{
+    if (m_state == lt::torrent_status::downloading_metadata)
+        m_torrentHandle.set_flags(lt::torrent_flags::stop_when_ready);
+
+    m_state = state;
+}
