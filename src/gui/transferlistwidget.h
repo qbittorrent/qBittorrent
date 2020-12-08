@@ -30,8 +30,8 @@
 #define TRANSFERLISTWIDGET_H
 
 #include <functional>
+#include <QtContainerFwd>
 #include <QTreeView>
-#include <QVector>
 
 class MainWindow;
 class TransferListDelegate;
@@ -40,6 +40,7 @@ class TransferListSortModel;
 
 namespace BitTorrent
 {
+    class InfoHash;
     class TorrentHandle;
 }
 
@@ -90,7 +91,7 @@ public slots:
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
-    void applyTrackerFilter(const QStringList &hashes);
+    void applyTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes);
     void previewFile(const QString &filePath);
     void renameSelectedTorrent();
 

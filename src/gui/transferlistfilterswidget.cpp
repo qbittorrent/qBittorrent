@@ -74,6 +74,19 @@ namespace
         return scheme;
     }
 
+    QString getHost(const QString &tracker)
+    {
+        // We want the domain + tld. Subdomains should be disregarded
+        const QUrl url {tracker};
+        const QString host {url.host()};
+
+        // host is in IP format
+        if (!QHostAddress(host).isNull())
+            return host;
+
+        return host.section('.', -2, -1);
+    }
+
     class ArrowCheckBox final : public QCheckBox
     {
     public:
@@ -97,6 +110,8 @@ namespace
             style()->drawControl(QStyle::CE_CheckBoxLabel, &labelOption, &painter, this);
         }
     };
+
+    const QString NULL_HOST {""};
 }
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -294,7 +309,7 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     auto *warningTracker = new QListWidgetItem(this);
     warningTracker->setData(Qt::DisplayRole, tr("Warning (0)"));
     warningTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxWarning));
-    m_trackers.insert("", QStringList());
+    m_trackers[NULL_HOST] = {};
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
     toggleFilter(Preferences::instance()->getTrackerFilterState());
@@ -306,27 +321,20 @@ TrackerFiltersList::~TrackerFiltersList()
         Utils::Fs::forceRemove(iconPath);
 }
 
-void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
+void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::InfoHash &hash)
 {
-    QStringList tmp;
-    QListWidgetItem *trackerItem = nullptr;
-    QString host = getHost(tracker);
-    bool exists = m_trackers.contains(host);
+    const QString host {getHost(tracker)};
+    const bool exists {m_trackers.contains(host)};
+    QListWidgetItem *trackerItem {nullptr};
 
     if (exists)
     {
-        tmp = m_trackers.value(host);
-        if (tmp.contains(hash))
+        if (m_trackers.value(host).contains(hash))
             return;
 
-        if (host != "")
-        {
-            trackerItem = item(rowFromTracker(host));
-        }
-        else
-        {
-            trackerItem = item(TRACKERLESS_ROW);
-        }
+        trackerItem = item((host == NULL_HOST)
+            ? TRACKERLESS_ROW
+            : rowFromTracker(host));
     }
     else
     {
@@ -338,17 +346,18 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     }
     if (!trackerItem) return;
 
-    tmp.append(hash);
-    m_trackers.insert(host, tmp);
-    if (host == "")
+    QSet<BitTorrent::InfoHash> &hashes {m_trackers[host]};
+    hashes.insert(hash);
+
+    if (host == NULL_HOST)
     {
-        trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
+        trackerItem->setText(tr("Trackerless (%1)").arg(hashes.size()));
         if (currentRow() == TRACKERLESS_ROW)
             applyFilter(TRACKERLESS_ROW);
         return;
     }
 
-    trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
+    trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(hashes.size())));
     if (exists)
     {
         if (currentRow() == rowFromTracker(host))
@@ -370,16 +379,17 @@ void TrackerFiltersList::addItem(const QString &tracker, const QString &hash)
     updateGeometry();
 }
 
-void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
+void TrackerFiltersList::removeItem(const QString &tracker, const BitTorrent::InfoHash &hash)
 {
-    QString host = getHost(tracker);
-    QListWidgetItem *trackerItem = nullptr;
-    QStringList tmp = m_trackers.value(host);
-    int row = 0;
+    const QString host = getHost(tracker);
+    QSet<BitTorrent::InfoHash> hashes = m_trackers.value(host);
 
-    if (tmp.empty())
+    if (hashes.empty())
         return;
-    tmp.removeAll(hash);
+    hashes.remove(hash);
+
+    int row = 0;
+    QListWidgetItem *trackerItem = nullptr;
 
     if (!host.isEmpty())
     {
@@ -387,7 +397,8 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
         trackerSuccess(hash, tracker);
         row = rowFromTracker(host);
         trackerItem = item(row);
-        if (tmp.empty())
+
+        if (hashes.empty())
         {
             if (currentRow() == row)
                 setCurrentRow(0, QItemSelectionModel::SelectCurrent);
@@ -396,27 +407,29 @@ void TrackerFiltersList::removeItem(const QString &tracker, const QString &hash)
             updateGeometry();
             return;
         }
+
         if (trackerItem)
-            trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(tmp.size())));
+            trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(hashes.size())));
     }
     else
     {
         row = 1;
         trackerItem = item(TRACKERLESS_ROW);
-        trackerItem->setText(tr("Trackerless (%1)").arg(tmp.size()));
+        trackerItem->setText(tr("Trackerless (%1)").arg(hashes.size()));
     }
 
-    m_trackers.insert(host, tmp);
+    m_trackers.insert(host, hashes);
+
     if (currentRow() == row)
         applyFilter(row);
 }
 
-void TrackerFiltersList::changeTrackerless(bool trackerless, const QString &hash)
+void TrackerFiltersList::changeTrackerless(const bool trackerless, const BitTorrent::InfoHash &hash)
 {
     if (trackerless)
-        addItem("", hash);
+        addItem(NULL_HOST, hash);
     else
-        removeItem("", hash);
+        removeItem(NULL_HOST, hash);
 }
 
 void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
@@ -439,70 +452,57 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     }
 }
 
-void TrackerFiltersList::trackerSuccess(const QString &hash, const QString &tracker)
+void TrackerFiltersList::trackerSuccess(const BitTorrent::InfoHash &hash, const QString &tracker)
 {
-    QStringList errored = m_errors.value(hash);
-    QStringList warned = m_warnings.value(hash);
-
-    if (errored.contains(tracker))
+    const auto errorHashesIter = m_errors.find(hash);
+    if (errorHashesIter != m_errors.end())
     {
-        errored.removeAll(tracker);
+        QSet<QString> &errored = *errorHashesIter;
+        errored.remove(tracker);
         if (errored.empty())
         {
-            m_errors.remove(hash);
+            m_errors.erase(errorHashesIter);
             item(ERROR_ROW)->setText(tr("Error (%1)").arg(m_errors.size()));
             if (currentRow() == ERROR_ROW)
                 applyFilter(ERROR_ROW);
         }
-        else
-        {
-            m_errors.insert(hash, errored);
-        }
     }
 
-    if (warned.contains(tracker))
+    const auto warningHashesIter = m_warnings.find(hash);
+    if (warningHashesIter != m_warnings.end())
     {
-        warned.removeAll(tracker);
+        QSet<QString> &warned = *warningHashesIter;
+        warned.remove(tracker);
         if (warned.empty())
         {
-            m_warnings.remove(hash);
+            m_warnings.erase(warningHashesIter);
             item(WARNING_ROW)->setText(tr("Warning (%1)").arg(m_warnings.size()));
             if (currentRow() == WARNING_ROW)
                 applyFilter(WARNING_ROW);
         }
-        else
-        {
-            m_warnings.insert(hash, warned);
-        }
     }
 }
 
-void TrackerFiltersList::trackerError(const QString &hash, const QString &tracker)
+void TrackerFiltersList::trackerError(const BitTorrent::InfoHash &hash, const QString &tracker)
 {
-    QStringList trackers = m_errors.value(hash);
-
+    QSet<QString> &trackers {m_errors[hash]};
     if (trackers.contains(tracker))
         return;
 
-    trackers.append(tracker);
-    m_errors.insert(hash, trackers);
+    trackers.insert(tracker);
     item(ERROR_ROW)->setText(tr("Error (%1)").arg(m_errors.size()));
-
     if (currentRow() == ERROR_ROW)
         applyFilter(ERROR_ROW);
 }
 
-void TrackerFiltersList::trackerWarning(const QString &hash, const QString &tracker)
+void TrackerFiltersList::trackerWarning(const BitTorrent::InfoHash &hash, const QString &tracker)
 {
-    QStringList trackers = m_warnings.value(hash);
-
+    QSet<QString> &trackers {m_warnings[hash]};
     if (trackers.contains(tracker))
         return;
 
-    trackers.append(tracker);
-    m_warnings.insert(hash, trackers);
+    trackers.insert(tracker);
     item(WARNING_ROW)->setText(tr("Warning (%1)").arg(m_warnings.size()));
-
     if (currentRow() == WARNING_ROW)
         applyFilter(WARNING_ROW);
 }
@@ -574,33 +574,33 @@ void TrackerFiltersList::applyFilter(const int row)
     if (row == ALL_ROW)
         transferList->applyTrackerFilterAll();
     else if (isVisible())
-        transferList->applyTrackerFilter(getHashes(row));
+        transferList->applyTrackerFilter(getInfoHashes(row));
 }
 
 void TrackerFiltersList::handleNewTorrent(BitTorrent::TorrentHandle *const torrent)
 {
-    QString hash = torrent->hash();
-    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    const BitTorrent::InfoHash hash {torrent->hash()};
+    const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
     for (const BitTorrent::TrackerEntry &tracker : trackers)
         addItem(tracker.url(), hash);
 
-    //Check for trackerless torrent
+    // Check for trackerless torrent
     if (trackers.isEmpty())
-        addItem("", hash);
+        addItem(NULL_HOST, hash);
 
     item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
 }
 
 void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent)
 {
-    QString hash = torrent->hash();
-    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
+    const BitTorrent::InfoHash hash {torrent->hash()};
+    const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
     for (const BitTorrent::TrackerEntry &tracker : trackers)
         removeItem(tracker.url(), hash);
 
-    //Check for trackerless torrent
+    // Check for trackerless torrent
     if (trackers.isEmpty())
-        removeItem("", hash);
+        removeItem(NULL_HOST, hash);
 
     item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(--m_totalTorrents));
 }
@@ -618,34 +618,24 @@ QString TrackerFiltersList::trackerFromRow(int row) const
 int TrackerFiltersList::rowFromTracker(const QString &tracker) const
 {
     Q_ASSERT(!tracker.isEmpty());
-    for (int i = 4; i<count(); ++i)
-        if (tracker == trackerFromRow(i)) return i;
+    for (int i = 4; i < count(); ++i)
+    {
+        if (tracker == trackerFromRow(i))
+            return i;
+    }
     return -1;
 }
 
-QString TrackerFiltersList::getHost(const QString &tracker) const
-{
-    // We want the domain + tld. Subdomains should be disregarded
-    const QUrl url {tracker};
-    const QString host {url.host()};
-
-    // host is in IP format
-    if (!QHostAddress(host).isNull())
-        return host;
-
-    return host.section('.', -2, -1);
-}
-
-QStringList TrackerFiltersList::getHashes(const int row) const
+QSet<BitTorrent::InfoHash> TrackerFiltersList::getInfoHashes(const int row) const
 {
     switch (row)
     {
     case TRACKERLESS_ROW:
-        return m_trackers.value("");
+        return m_trackers.value(NULL_HOST);
     case ERROR_ROW:
-        return m_errors.keys();
+        return List::toSet(m_errors.keys());
     case WARNING_ROW:
-        return m_warnings.keys();
+        return List::toSet(m_warnings.keys());
     default:
         return m_trackers.value(trackerFromRow(row));
     }
@@ -739,11 +729,11 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(trackerLabel, &QCheckBox::toggled, m_trackerFilters, &TrackerFiltersList::toggleFilter);
     connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
 
-    connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerSuccess)
+    connect(this, qOverload<const BitTorrent::InfoHash &, const QString &>(&TransferListFiltersWidget::trackerSuccess)
             , m_trackerFilters, &TrackerFiltersList::trackerSuccess);
-    connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerError)
+    connect(this, qOverload<const BitTorrent::InfoHash &, const QString &>(&TransferListFiltersWidget::trackerError)
             , m_trackerFilters, &TrackerFiltersList::trackerError);
-    connect(this, qOverload<const QString &, const QString &>(&TransferListFiltersWidget::trackerWarning)
+    connect(this, qOverload<const BitTorrent::InfoHash &, const QString &>(&TransferListFiltersWidget::trackerWarning)
             , m_trackerFilters, &TrackerFiltersList::trackerWarning);
 }
 
@@ -752,34 +742,34 @@ void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
     m_trackerFilters->setDownloadTrackerFavicon(value);
 }
 
-void TransferListFiltersWidget::addTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
+void TransferListFiltersWidget::addTrackers(const BitTorrent::TorrentHandle *torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
 {
     for (const BitTorrent::TrackerEntry &tracker : trackers)
         m_trackerFilters->addItem(tracker.url(), torrent->hash());
 }
 
-void TransferListFiltersWidget::removeTrackers(BitTorrent::TorrentHandle *const torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
+void TransferListFiltersWidget::removeTrackers(const BitTorrent::TorrentHandle *torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
 {
     for (const BitTorrent::TrackerEntry &tracker : trackers)
         m_trackerFilters->removeItem(tracker.url(), torrent->hash());
 }
 
-void TransferListFiltersWidget::changeTrackerless(BitTorrent::TorrentHandle *const torrent, bool trackerless)
+void TransferListFiltersWidget::changeTrackerless(const BitTorrent::TorrentHandle *torrent, const bool trackerless)
 {
     m_trackerFilters->changeTrackerless(trackerless, torrent->hash());
 }
 
-void TransferListFiltersWidget::trackerSuccess(BitTorrent::TorrentHandle *const torrent, const QString &tracker)
+void TransferListFiltersWidget::trackerSuccess(const BitTorrent::TorrentHandle *torrent, const QString &tracker)
 {
     emit trackerSuccess(torrent->hash(), tracker);
 }
 
-void TransferListFiltersWidget::trackerWarning(BitTorrent::TorrentHandle *const torrent, const QString &tracker)
+void TransferListFiltersWidget::trackerWarning(const BitTorrent::TorrentHandle *torrent, const QString &tracker)
 {
     emit trackerWarning(torrent->hash(), tracker);
 }
 
-void TransferListFiltersWidget::trackerError(BitTorrent::TorrentHandle *const torrent, const QString &tracker)
+void TransferListFiltersWidget::trackerError(const BitTorrent::TorrentHandle *torrent, const QString &tracker)
 {
     emit trackerError(torrent->hash(), tracker);
 }
