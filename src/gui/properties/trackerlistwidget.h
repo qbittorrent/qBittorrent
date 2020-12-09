@@ -30,7 +30,7 @@
 #define TRACKERLIST_H
 
 #include <QTreeWidget>
-#include <QVector>
+#include <QtContainerFwd>
 
 class PropertiesWidget;
 

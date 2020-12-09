@@ -33,7 +33,7 @@
 #include <QList>
 #include <QObject>
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QProcess;
 class QTimer;

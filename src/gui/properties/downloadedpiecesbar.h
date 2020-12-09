@@ -30,7 +30,7 @@
 #define DOWNLOADEDPIECESBAR_H
 
 #include <QBitArray>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "piecesbar.h"
 

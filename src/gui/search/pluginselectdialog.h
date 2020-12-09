@@ -31,11 +31,11 @@
 #define PLUGINSELECTDIALOG_H
 
 #include <QDialog>
+#include <QStringList>
 
 #include "base/search/searchpluginmanager.h"
 
 class QDropEvent;
-class QStringList;
 class QTreeWidgetItem;
 
 namespace Net

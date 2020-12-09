@@ -31,8 +31,7 @@
 
 #include <QAbstractListModel>
 #include <QList>
-
-class QStringList;
+#include <QtContainerFwd>
 
 class FileSystemWatcher;
 

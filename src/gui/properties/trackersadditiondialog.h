@@ -30,9 +30,9 @@
 #define TRACKERSADDITION_H
 
 #include <QDialog>
+#include <QtContainerFwd>
 
 class QString;
-class QStringList;
 
 namespace BitTorrent
 {

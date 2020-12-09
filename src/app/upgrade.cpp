@@ -29,6 +29,7 @@
 #include "upgrade.h"
 
 #include <QFile>
+#include <QVector>
 
 #include "base/logger.h"
 #include "base/profile.h"
