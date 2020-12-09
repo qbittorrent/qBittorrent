@@ -117,13 +117,10 @@ private slots:
     void webUIHttpsKeyChanged(const QString &path, ShowError showError);
 
 private:
-    static void populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay);
-
     // Methods
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
-    void initializeScheduler();
 
     // General options
     QString getLocale() const;
@@ -150,9 +147,11 @@ private:
     int getPort() const;
     bool isUPnPEnabled() const;
     // Speed options
+    void initializeSchedulerTables();
+    static void populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay);
     void openTimeRangeDialog(ScheduleDay *scheduleDay);
     void removeSelectedTimeRanges(int day);
-    void showScheduleDayContextMenu(QPoint point, int day);
+    void showScheduleDayContextMenu(int day);
     // Bittorrent options
     int getMaxConnecs() const;
     int getMaxConnecsPerTorrent() const;

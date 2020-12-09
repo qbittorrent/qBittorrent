@@ -266,7 +266,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Languages supported
     initializeLanguageCombo();
 
-    initializeScheduler();
+    initializeSchedulerTables();
 
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
@@ -614,7 +614,20 @@ void OptionsDialog::initializeLanguageCombo()
     }
 }
 
-void OptionsDialog::initializeScheduler()
+// Main destructor
+OptionsDialog::~OptionsDialog()
+{
+    qDebug("-> destructing Options");
+
+    saveWindowState();
+
+    for (const QString &path : asConst(m_addedScanDirs))
+        ScanFoldersModel::instance()->removePath(path);
+    ScanFoldersModel::instance()->configure(); // reloads "removed" paths
+    delete m_ui;
+}
+
+void OptionsDialog::initializeSchedulerTables()
 {
     auto *schedule = BandwidthScheduler::instance();
     int today = QDate::currentDate().dayOfWeek() - 1;
@@ -642,8 +655,8 @@ void OptionsDialog::initializeScheduler()
         ScheduleDay *scheduleDay = schedule->scheduleDay(i);
         scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
 
-        connect(scheduleTable, &QTableWidget::customContextMenuRequested, this,
-            [this, i](QPoint pos) { showScheduleDayContextMenu(pos, i); });
+        connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
+            [this, i](QPoint pos) { showScheduleDayContextMenu(i); });
 
         m_scheduleDayTables.append(scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
@@ -681,6 +694,45 @@ void OptionsDialog::initializeScheduler()
     m_ui->tabSchedule->setCurrentIndex(today);
 }
 
+void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay)
+{
+    auto timeRanges = scheduleDay->timeRanges();
+    int rowCount = timeRanges.count();
+    scheduleTable->setRowCount(rowCount);
+
+    const QLocale locale{Preferences::instance()->getLocale()};
+
+    for (int i = 0; i < rowCount; ++i)
+    {
+        TimeRange timeRange = timeRanges[i];
+
+        QString dlText = (timeRange.downloadRate == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(timeRange.downloadRate * 1024, true);
+        QString ulText = (timeRange.uploadRate == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(timeRange.uploadRate * 1024, true);
+
+        auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
+        auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
+        auto *dl = new QTableWidgetItem(dlText);
+        auto *ul = new QTableWidgetItem(ulText);
+
+        start->setData(Qt::UserRole, timeRange.startTime);
+        end->setData(Qt::UserRole, timeRange.endTime);
+        dl->setData(Qt::UserRole, timeRange.downloadRate);
+        ul->setData(Qt::UserRole, timeRange.uploadRate);
+
+        scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::DOWNLOAD, dl);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::UPLOAD, ul);
+    }
+
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::FROM, 76);
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::TO, 76);
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::DOWNLOAD, 112);
+    scheduleTable->setColumnWidth(Gui::ScheduleColumn::UPLOAD, 112);
+}
+
 void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
 {
     auto *dialog = new TimeRangeDialog(this, scheduleDay);
@@ -698,7 +750,24 @@ void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
     dialog->open();
 }
 
-void OptionsDialog::showScheduleDayContextMenu(QPoint position, int day)
+void OptionsDialog::removeSelectedTimeRanges(const int day)
+{
+    QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
+    QList<QModelIndex> selection = selectionModel->selectedRows();
+
+    if (selection.count() > 0)
+    {
+        std::sort(selection.begin(), selection.end(),
+            [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
+
+        for (const QModelIndex &i : selection)
+            BandwidthScheduler::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
+
+        selectionModel->clearSelection();
+    }
+}
+
+void OptionsDialog::showScheduleDayContextMenu(int day)
 {
     auto *schedule = BandwidthScheduler::instance();
     ScheduleDay *scheduleDay = schedule->scheduleDay(day);
@@ -754,76 +823,7 @@ void OptionsDialog::showScheduleDayContextMenu(QPoint position, int day)
 
     connect(actionClear, &QAction::triggered, scheduleDay, &ScheduleDay::clearTimeRanges);
 
-    menu->popup(scheduleTable->mapToGlobal(position));
-}
-
-void OptionsDialog::removeSelectedTimeRanges(const int day)
-{
-    QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
-    QList<QModelIndex> selection = selectionModel->selectedRows();
-
-    if (selection.count() > 0)
-    {
-        std::sort(selection.begin(), selection.end(),
-            [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
-
-        for (const QModelIndex &i : selection)
-            BandwidthScheduler::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
-
-        selectionModel->clearSelection();
-    }
-}
-
-void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay)
-{
-    auto timeRanges = scheduleDay->timeRanges();
-    int rowCount = timeRanges.count();
-    scheduleTable->setRowCount(rowCount);
-
-    const QLocale locale{Preferences::instance()->getLocale()};
-
-    for (int i = 0; i < rowCount; ++i)
-    {
-        TimeRange timeRange = timeRanges[i];
-
-        QString dlText = (timeRange.downloadRate == 0) ? QString::fromUtf8(C_INFINITY)
-                       : Utils::Misc::friendlyUnit(timeRange.downloadRate * 1024, true);
-        QString ulText = (timeRange.uploadRate == 0) ? QString::fromUtf8(C_INFINITY)
-                       : Utils::Misc::friendlyUnit(timeRange.uploadRate * 1024, true);
-
-        auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
-        auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
-        auto *dl = new QTableWidgetItem(dlText);
-        auto *ul = new QTableWidgetItem(ulText);
-
-        start->setData(Qt::UserRole, timeRange.startTime);
-        end->setData(Qt::UserRole, timeRange.endTime);
-        dl->setData(Qt::UserRole, timeRange.downloadRate);
-        ul->setData(Qt::UserRole, timeRange.uploadRate);
-
-        scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
-        scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
-        scheduleTable->setItem(i, Gui::ScheduleColumn::DOWNLOAD, dl);
-        scheduleTable->setItem(i, Gui::ScheduleColumn::UPLOAD, ul);
-    }
-
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::FROM, 76);
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::TO, 76);
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::DOWNLOAD, 112);
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::UPLOAD, 112);
-}
-
-// Main destructor
-OptionsDialog::~OptionsDialog()
-{
-    qDebug("-> destructing Options");
-
-    saveWindowState();
-
-    for (const QString &path : asConst(m_addedScanDirs))
-        ScanFoldersModel::instance()->removePath(path);
-    ScanFoldersModel::instance()->configure(); // reloads "removed" paths
-    delete m_ui;
+    menu->popup(QCursor::pos());
 }
 
 void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previous)
