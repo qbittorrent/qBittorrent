@@ -41,6 +41,7 @@
 #include <QHash>
 #include <QPointer>
 #include <QSet>
+#include <QtContainerFwd>
 #include <QVector>
 
 #include "base/settingvalue.h"
@@ -58,7 +59,6 @@ class QFile;
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
 class QString;
-class QStringList;
 class QThread;
 class QTimer;
 class QUrl;

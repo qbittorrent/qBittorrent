@@ -32,6 +32,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QVector>
 
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_autodownloader.h"

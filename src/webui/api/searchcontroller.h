@@ -28,15 +28,13 @@
 
 #pragma once
 
-#include <QHash>
-#include <QList>
+#include <QtContainerFwd>
 
 #include "base/search/searchpluginmanager.h"
 #include "apicontroller.h"
 
 class QJsonArray;
 class QJsonObject;
-class QStringList;
 
 struct ISession;
 struct SearchResult;

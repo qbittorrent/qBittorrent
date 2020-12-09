@@ -30,8 +30,7 @@
 #define TAGFILTERMODEL_H
 
 #include <QAbstractListModel>
-#include <QSet>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QModelIndex;
 

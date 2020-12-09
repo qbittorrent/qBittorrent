@@ -40,6 +40,7 @@
 #include <QString>
 #include <QStringList>
 #include <QUrl>
+#include <QVector>
 
 #include "base/exceptions.h"
 #include "base/global.h"

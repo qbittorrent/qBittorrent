@@ -42,6 +42,7 @@
 #include <QTableView>
 #include <QTreeWidgetItem>
 #include <QUrl>
+#include <QVector>
 
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"

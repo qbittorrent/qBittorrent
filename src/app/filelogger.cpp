@@ -33,6 +33,7 @@
 #include <QDateTime>
 #include <QDir>
 #include <QTextStream>
+#include <QVector>
 
 #include "base/global.h"
 #include "base/logger.h"

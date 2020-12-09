@@ -28,10 +28,9 @@
 
 #pragma once
 
-#include <QHash>
 #include <QObject>
 #include <QVariant>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QString;
 

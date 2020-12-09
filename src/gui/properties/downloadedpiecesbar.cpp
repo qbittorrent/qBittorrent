@@ -31,6 +31,7 @@
 #include <cmath>
 
 #include <QDebug>
+#include <QVector>
 
 namespace
 {

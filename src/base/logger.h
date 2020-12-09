@@ -34,7 +34,7 @@
 #include <QObject>
 #include <QReadWriteLock>
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 const int MAX_LOG_MESSAGES = 20000;
 

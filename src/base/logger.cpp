@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QDateTime>
+#include <QVector>
 
 namespace
 {

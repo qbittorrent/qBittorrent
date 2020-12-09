@@ -41,6 +41,7 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
+#include <QList>
 #include <QLocale>
 #include <QNetworkCookie>
 #include <QSettings>
