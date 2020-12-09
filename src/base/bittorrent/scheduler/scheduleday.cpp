@@ -15,6 +15,12 @@ ScheduleDay::ScheduleDay(int dayOfWeek)
 {
 }
 
+ScheduleDay::ScheduleDay(QList<TimeRange> &timeRanges, int dayOfWeek)
+    : m_dayOfWeek(dayOfWeek)
+    , m_timeRanges(timeRanges)
+{
+}
+
 QList<TimeRange> ScheduleDay::timeRanges() const
 {
     return m_timeRanges;

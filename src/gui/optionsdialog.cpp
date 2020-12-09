@@ -32,15 +32,21 @@
 #include <limits>
 
 #include <QAbstractItemModel>
+#include <QAction>
 #include <QApplication>
+#include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QDialogButtonBox>
 #include <QEvent>
 #include <QFileDialog>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QListView>
+#include <QMenu>
 #include <QMessageBox>
+#include <QMimeData>
 #include <QScrollArea>
 #include <QSystemTrayIcon>
 #include <QTableWidget>
@@ -50,6 +56,7 @@
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "app/application.h"
+#include "base/logger.h"
 #include "banlistoptionsdialog.h"
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/scheduler/scheduleday.h"
@@ -630,9 +637,13 @@ void OptionsDialog::initializeScheduler()
         scheduleTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
         scheduleTable->setSelectionBehavior(QAbstractItemView::SelectRows);
         scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
+        scheduleTable->setContextMenuPolicy(Qt::CustomContextMenu);
 
         ScheduleDay *scheduleDay = schedule->scheduleDay(i);
         scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
+
+        connect(scheduleTable, &QTableWidget::customContextMenuRequested, this,
+            [this, i](QPoint pos) { showScheduleDayContextMenu(pos, i); });
 
         m_scheduleDayTables.append(scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
@@ -685,6 +696,65 @@ void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
 
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
+}
+
+void OptionsDialog::showScheduleDayContextMenu(QPoint position, int day)
+{
+    auto *schedule = BandwidthScheduler::instance();
+    ScheduleDay *scheduleDay = schedule->scheduleDay(day);
+    QTableWidget *scheduleTable = m_scheduleDayTables[day];
+
+    auto *menu = new QMenu(scheduleTable);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    auto *theme = UIThemeManager::instance();
+
+    QAction *actionCopy = menu->addAction(theme->getIcon("edit-copy"), tr("Copy"));
+    QAction *actionPaste = menu->addAction(theme->getIcon("edit-paste"), tr("Paste"));
+    menu->addSeparator();
+    QAction *actionCopyAll = menu->addAction(theme->getIcon("edit-copy"), tr("Copy selected to other days"));
+    QAction *actionClear = menu->addAction(theme->getIcon("edit-clear"), tr("Clear all"));
+
+    const QList<TimeRange> allRanges = scheduleDay->timeRanges();
+    const QList<QModelIndex> selectedRows = scheduleTable->selectionModel()->selectedRows();
+
+    actionCopy->setDisabled(selectedRows.empty());
+    actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat("application/json"));
+    actionCopyAll->setDisabled(selectedRows.empty());
+    actionClear->setDisabled(allRanges.empty());
+
+    connect(actionCopy, &QAction::triggered, scheduleDay, [allRanges, selectedRows]()
+    {
+        auto selectedRanges = allRanges.mid(selectedRows[0].row(), selectedRows.count());
+        QMimeData *mimeData = new QMimeData;
+        mimeData->setData("application/json", QJsonDocument(ScheduleDay(selectedRanges).toJsonArray()).toJson());
+        QApplication::clipboard()->setMimeData(mimeData);
+    });
+
+    connect(actionPaste, &QAction::triggered, scheduleDay, [scheduleDay]()
+    {
+        QByteArray json = QApplication::clipboard()->mimeData()->data("application/json");
+        bool errored = false;
+        const auto *day = ScheduleDay::fromJsonArray(QJsonDocument::fromJson(json).array(), -1, &errored);
+        if (errored) return;
+
+        for (const TimeRange tr : day->timeRanges())
+            scheduleDay->addTimeRange(tr);
+    });
+
+    connect(actionCopyAll, &QAction::triggered, scheduleDay, [schedule, day, allRanges, selectedRows]()
+    {
+        const QList<TimeRange> selectedRanges = allRanges.mid(selectedRows[0].row(), selectedRows.count());
+        for (int i = 0; i < 7; ++i)
+        {
+            if (i == day) continue;
+            for (TimeRange timeRange : selectedRanges)
+                schedule->scheduleDay(i)->addTimeRange(timeRange);
+        }
+    });
+
+    connect(actionClear, &QAction::triggered, scheduleDay, &ScheduleDay::clearTimeRanges);
+
+    menu->popup(scheduleTable->mapToGlobal(position));
 }
 
 void OptionsDialog::removeSelectedTimeRanges(const int day)

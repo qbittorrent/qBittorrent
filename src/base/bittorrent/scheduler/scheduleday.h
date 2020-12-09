@@ -8,6 +8,10 @@ class ScheduleDay final : public QObject
 {
     Q_OBJECT
 
+    friend class OptionsDialog;
+
+    ScheduleDay(QList<TimeRange> &timeRanges, int dayOfWeek = -1);
+
 public:
     ScheduleDay(int dayOfWeek);
 

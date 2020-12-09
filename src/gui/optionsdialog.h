@@ -36,6 +36,7 @@
 class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
+class QPoint;
 class QTableWidget;
 
 class AdvancedSettings;
@@ -151,6 +152,7 @@ private:
     // Speed options
     void openTimeRangeDialog(ScheduleDay *scheduleDay);
     void removeSelectedTimeRanges(int day);
+    void showScheduleDayContextMenu(QPoint point, int day);
     // Bittorrent options
     int getMaxConnecs() const;
     int getMaxConnecsPerTorrent() const;
