@@ -78,13 +78,13 @@ public:
 
 private:
     // regular load/save pair
-    template <typename U, typename std::enable_if<!std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<!std::is_enum<U>::value, int> = 0>
     U loadValue(const U &defaultValue)
     {
         return SettingsStorage::instance()->loadValue(m_keyName, defaultValue).template value<T>();
     }
 
-    template <typename U, typename std::enable_if<!std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<!std::is_enum<U>::value, int> = 0>
     void storeValue(const U &value)
     {
         SettingsStorage::instance()->storeValue(m_keyName, value);
@@ -92,16 +92,16 @@ private:
 
     // load/save pair for an enum
     // saves literal value of the enum constant, obtained from QMetaEnum
-    template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<std::is_enum<U>::value, int> = 0>
     U loadValue(const U &defaultValue)
     {
-        return Utils::String::parse(SettingsStorage::instance()->loadValue(m_keyName).toString(), defaultValue);
+        return Utils::String::toEnum(SettingsStorage::instance()->loadValue(m_keyName).toString(), defaultValue);
     }
 
-    template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<std::is_enum<U>::value, int> = 0>
     void storeValue(const U &value)
     {
-        SettingsStorage::instance()->storeValue(m_keyName, Utils::String::serialize(value));
+        SettingsStorage::instance()->storeValue(m_keyName, Utils::String::fromEnum(value));
     }
 
     const QString m_keyName;

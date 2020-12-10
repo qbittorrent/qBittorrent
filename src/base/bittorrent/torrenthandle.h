@@ -177,8 +177,6 @@ namespace BitTorrent
         virtual bool removeTag(const QString &tag) = 0;
         virtual void removeAllTags() = 0;
 
-        virtual bool hasRootFolder() const = 0;
-
         virtual int filesCount() const = 0;
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;

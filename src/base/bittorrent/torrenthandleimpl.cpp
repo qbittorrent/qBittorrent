@@ -115,8 +115,8 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, lt::session *nativeSessio
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_operatingMode(params.forced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)
+    , m_contentLayout(params.contentLayout)
     , m_hasSeedStatus(params.hasSeedStatus)
-    , m_hasRootFolder(params.hasRootFolder)
     , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
     , m_useAutoTMM(params.savePath.isEmpty())
     , m_isStopped(params.paused)
@@ -136,15 +136,7 @@ TorrentHandleImpl::TorrentHandleImpl(Session *session, lt::session *nativeSessio
     updateStatus();
 
     if (hasMetadata())
-    {
         applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
-
-        if (!params.restored)
-        {
-            if (filesCount() == 1)
-                m_hasRootFolder = false;
-        }
-    }
 
     // TODO: Remove the following upgrade code in v.4.4
     // == BEGIN UPGRADE CODE ==
@@ -259,7 +251,7 @@ QString TorrentHandleImpl::savePath(bool actual) const
 
 QString TorrentHandleImpl::rootPath(bool actual) const
 {
-    if ((filesCount() > 1) && !hasRootFolder())
+    if (!hasMetadata())
         return {};
 
     const QString firstFilePath = filePath(0);
@@ -272,10 +264,13 @@ QString TorrentHandleImpl::rootPath(bool actual) const
 
 QString TorrentHandleImpl::contentPath(const bool actual) const
 {
+    if (!hasMetadata())
+        return {};
+
     if (filesCount() == 1)
         return QDir(savePath(actual)).absoluteFilePath(filePath(0));
 
-    if (hasRootFolder())
+    if (m_torrentInfo.hasRootFolder())
         return rootPath(actual);
 
     return savePath(actual);
@@ -295,11 +290,6 @@ void TorrentHandleImpl::setAutoTMMEnabled(bool enabled)
 
     if (m_useAutoTMM)
         move_impl(m_session->categorySavePath(m_category), MoveStorageMode::Overwrite);
-}
-
-bool TorrentHandleImpl::hasRootFolder() const
-{
-    return m_hasRootFolder;
 }
 
 QString TorrentHandleImpl::actualStorageLocation() const
@@ -1581,8 +1571,7 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
         m_ltAddTorrentParams.verified_pieces.clear();
 
         TorrentInfo metadata = TorrentInfo {m_nativeHandle.torrent_file()};
-        if (!m_hasRootFolder)
-            metadata.stripRootFolder();
+        metadata.setContentLayout(m_contentLayout);
 
         m_session->findIncompleteFiles(metadata, m_savePath);
     }
@@ -1614,7 +1603,7 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
     resumeData["qBt-tags"] = setToEntryList(m_tags);
     resumeData["qBt-name"] = m_name.toStdString();
     resumeData["qBt-seedStatus"] = m_hasSeedStatus;
-    resumeData["qBt-hasRootFolder"] = m_hasRootFolder;
+    resumeData["qBt-contentLayout"] = Utils::String::fromEnum(m_contentLayout).toStdString();
     resumeData["qBt-firstLastPiecePriority"] = m_hasFirstLastPiecePriority;
 
     m_session->handleTorrentResumeDataReady(this, resumeDataPtr);

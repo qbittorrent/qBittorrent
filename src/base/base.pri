@@ -23,6 +23,7 @@ HEADERS += \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
     $$PWD/bittorrent/statistics.h \
+    $$PWD/bittorrent/torrentcontentlayout.h \
     $$PWD/bittorrent/torrentcreatorthread.h \
     $$PWD/bittorrent/torrenthandle.h \
     $$PWD/bittorrent/torrenthandleimpl.h \

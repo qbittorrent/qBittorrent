@@ -56,6 +56,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
+#include "base/utils/string.h"
 #include "../webapplication.h"
 
 void AppController::webapiVersionAction()
@@ -100,7 +101,7 @@ void AppController::preferencesAction()
 
     // Downloads
     // When adding a torrent
-    data["create_subfolder_enabled"] = session->isKeepTorrentTopLevelFolder();
+    data["torrent_content_layout"] = Utils::String::fromEnum(session->torrentContentLayout());
     data["start_paused_enabled"] = session->isAddTorrentPaused();
     data["auto_delete_mode"] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
     data["preallocate_all"] = session->isPreallocationEnabled();
@@ -355,8 +356,8 @@ void AppController::setPreferencesAction()
 
     // Downloads
     // When adding a torrent
-    if (hasKey("create_subfolder_enabled"))
-        session->setKeepTorrentTopLevelFolder(it.value().toBool());
+    if (hasKey("torrent_content_layout"))
+        session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
     if (hasKey("start_paused_enabled"))
         session->setAddTorrentPaused(it.value().toBool());
     if (hasKey("auto_delete_mode"))
