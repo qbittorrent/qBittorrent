@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_PEERINFO_H
-#define BITTORRENT_PEERINFO_H
+#pragma once
 
 #include <libtorrent/peer_info.hpp>
 
@@ -104,5 +103,3 @@ namespace BitTorrent
         mutable QString m_country;
     };
 }
-
-#endif // BITTORRENT_PEERINFO_H

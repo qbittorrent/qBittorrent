@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SEARCHSORTMODEL_H
-#define SEARCHSORTMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 #include <QStringList>
@@ -96,5 +95,3 @@ private:
     int m_minLeeches, m_maxLeeches;
     qint64 m_minSize, m_maxSize;
 };
-
-#endif // SEARCHSORTMODEL_H

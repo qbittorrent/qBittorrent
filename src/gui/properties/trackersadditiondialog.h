@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TRACKERSADDITION_H
-#define TRACKERSADDITION_H
+#pragma once
 
 #include <QDialog>
 #include <QtContainerFwd>
@@ -68,5 +67,3 @@ private:
     Ui::TrackersAdditionDialog *m_ui;
     BitTorrent::TorrentHandle *const m_torrent;
 };
-
-#endif // TRACKERSADDITION_H

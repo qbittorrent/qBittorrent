@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTMLBROWSER_H
-#define HTMLBROWSER_H
+#pragma once
 
 #include <QHash>
 #include <QTextBrowser>
@@ -54,5 +53,3 @@ protected:
 protected slots:
     void resourceLoaded(QNetworkReply *reply);
 };
-
-#endif // HTMLBROWSER_H

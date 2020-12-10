@@ -28,8 +28,7 @@
  * exception statement from your version.
  */
 
-#ifndef APP_OPTIONS_H
-#define APP_OPTIONS_H
+#pragma once
 
 #include <stdexcept>
 
@@ -81,5 +80,3 @@ private:
 
 QBtCommandLineParameters parseCommandLine(const QStringList &args);
 void displayUsage(const QString &prgName);
-
-#endif // APP_OPTIONS_H

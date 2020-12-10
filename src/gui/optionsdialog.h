@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef OPTIONSDIALOG_H
-#define OPTIONSDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -183,5 +182,3 @@ private:
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
 };
-
-#endif // OPTIONSDIALOG_H

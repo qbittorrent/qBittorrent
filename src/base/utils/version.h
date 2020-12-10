@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBITTORRENT_UTILS_VERSION_H
-#define QBITTORRENT_UTILS_VERSION_H
+#pragma once
 
 #include <array>
 #include <stdexcept>
@@ -210,5 +209,3 @@ namespace Utils
         return !(left < right);
     }
 }
-
-#endif // QBITTORRENT_UTILS_VERSION_H

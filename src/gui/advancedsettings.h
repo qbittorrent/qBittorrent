@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef ADVANCEDSETTINGS_H
-#define ADVANCEDSETTINGS_H
+#pragma once
 
 #include <libtorrent/version.hpp>
 
@@ -86,5 +85,3 @@ private:
     QComboBox m_comboBoxOSMemoryPriority;
 #endif
 };
-
-#endif // ADVANCEDSETTINGS_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTFILTER_H
-#define TORRENTFILTER_H
+#pragma once
 
 #include <QSet>
 #include <QString>
@@ -102,5 +101,3 @@ private:
     QString m_tag;
     InfoHashSet m_hashSet;
 };
-
-#endif // TORRENTFILTER_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TRISTATEBOOL_H
-#define TRISTATEBOOL_H
+#pragma once
 
 class TriStateBool
 {
@@ -68,5 +67,3 @@ constexpr bool operator!=(const TriStateBool &left, const TriStateBool &right)
 {
     return !(left == right);
 }
-
-#endif // TRISTATEBOOL_H

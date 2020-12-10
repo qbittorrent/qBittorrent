@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_SESSIONSTATUS_H
-#define BITTORRENT_SESSIONSTATUS_H
+#pragma once
 
 #include <QtGlobal>
 
@@ -74,5 +73,3 @@ namespace BitTorrent
         quint64 peersCount = 0;
     };
 }
-
-#endif // BITTORRENT_SESSIONSTATUS_H

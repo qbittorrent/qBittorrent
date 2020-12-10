@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PEERLISTWIDGET_H
-#define PEERLISTWIDGET_H
+#pragma once
 
 #include <QHash>
 #include <QSet>
@@ -109,5 +108,3 @@ private:
     QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
     bool m_resolveCountries;
 };
-
-#endif // PEERLISTWIDGET_H

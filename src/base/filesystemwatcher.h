@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef FILESYSTEMWATCHER_H
-#define FILESYSTEMWATCHER_H
+#pragma once
 
 #include <QDir>
 #include <QFileSystemWatcher>
@@ -69,5 +68,3 @@ private:
     QVector<QDir> m_watchedFolders;
     QTimer m_watchTimer;
 };
-
-#endif // FILESYSTEMWATCHER_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BANLISTOPTIONSDIALOG_H
-#define BANLISTOPTIONSDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -59,5 +58,3 @@ private:
     QSortFilterProxyModel *m_sortFilter;
     bool m_modified;
 };
-
-#endif // BANLISTOPTIONSDIALOG_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SPEEDWIDGET_H
-#define SPEEDWIDGET_H
+#pragma once
 
 #include <QComboBox>
 #include <QWidget>
@@ -80,5 +79,3 @@ private:
     QMenu *m_graphsMenu;
     QList<QAction *> m_graphsMenuActions;
 };
-
-#endif // SPEEDWIDGET_H

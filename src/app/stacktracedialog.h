@@ -27,8 +27,7 @@
  *
  */
 
-#ifndef STACKTRACEDIALOG_H
-#define STACKTRACEDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -51,5 +50,3 @@ public:
 private:
     Ui::StacktraceDialog *m_ui;
 };
-
-#endif // STACKTRACEDIALOG_H

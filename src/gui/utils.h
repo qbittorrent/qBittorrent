@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_GUI_H
-#define UTILS_GUI_H
+#pragma once
 
 #include <QSize>
 
@@ -62,5 +61,3 @@ namespace Utils
         void openFolderSelect(const QString &absolutePath);
     }
 }
-
-#endif  // UTILS_GUI_H

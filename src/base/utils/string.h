@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_STRING_H
-#define UTILS_STRING_H
+#pragma once
 
 #include <QChar>
 #include <QString>
@@ -74,5 +73,3 @@ namespace Utils
         QString join(const QVector<QStringRef> &strings, const QString &separator);
     }
 }
-
-#endif // UTILS_STRING_H

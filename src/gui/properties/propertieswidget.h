@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PROPERTIESWIDGET_H
-#define PROPERTIESWIDGET_H
+#pragma once
 
 #include <QList>
 #include <QWidget>
@@ -125,5 +124,3 @@ private:
     LineEdit *m_contentFilterLine;
     int m_handleWidth;
 };
-
-#endif // PROPERTIESWIDGET_H

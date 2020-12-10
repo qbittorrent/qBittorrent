@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef UPDOWNRATIODIALOG_H
-#define UPDOWNRATIODIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -61,5 +60,3 @@ private slots:
 private:
     Ui::UpDownRatioDialog *m_ui;
 };
-
-#endif // UPDOWNRATIODIALOG_H

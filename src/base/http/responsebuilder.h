@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTTP_RESPONSEBUILDER_H
-#define HTTP_RESPONSEBUILDER_H
+#pragma once
 
 #include "types.h"
 
@@ -50,5 +49,3 @@ namespace Http
         Response m_response;
     };
 }
-
-#endif // HTTP_RESPONSEBUILDER_H

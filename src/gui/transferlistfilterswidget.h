@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TRANSFERLISTFILTERSWIDGET_H
-#define TRANSFERLISTFILTERSWIDGET_H
+#pragma once
 
 #include <QFrame>
 #include <QListWidget>
@@ -176,5 +175,3 @@ private:
     CategoryFilterWidget *m_categoryFilterWidget;
     TagFilterWidget *m_tagFilterWidget;
 };
-
-#endif // TRANSFERLISTFILTERSWIDGET_H

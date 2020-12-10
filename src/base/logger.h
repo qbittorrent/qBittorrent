@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
 #include <boost/circular_buffer.hpp>
 
@@ -103,5 +102,3 @@ private:
 
 // Helper function
 void LogMsg(const QString &message, const Log::MsgType &type = Log::NORMAL);
-
-#endif // LOGGER_H

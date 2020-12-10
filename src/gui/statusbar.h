@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef STATUSBAR_H
-#define STATUSBAR_H
+#pragma once
 
 #include <QStatusBar>
 
@@ -72,5 +71,3 @@ private:
     QPushButton *m_connecStatusLblIcon;
     QPushButton *m_altSpeedsBtn;
 };
-
-#endif // STATUSBAR_H

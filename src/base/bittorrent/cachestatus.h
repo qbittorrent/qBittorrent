@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_CACHESTATUS_H
-#define BITTORRENT_CACHESTATUS_H
+#pragma once
 
 #include <QtGlobal>
 
@@ -42,5 +41,3 @@ namespace BitTorrent
         qreal readRatio = 0.0;
     };
 }
-
-#endif // BITTORRENT_CACHESTATUS_H

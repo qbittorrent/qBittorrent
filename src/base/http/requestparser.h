@@ -28,8 +28,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTTP_REQUESTPARSER_H
-#define HTTP_REQUESTPARSER_H
+#pragma once
 
 #include "types.h"
 
@@ -70,5 +69,3 @@ namespace Http
         Request m_request;
     };
 }
-
-#endif // HTTP_REQUESTPARSER_H
