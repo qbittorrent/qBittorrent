@@ -29,7 +29,7 @@
 #pragma once
 
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QByteArray;
 

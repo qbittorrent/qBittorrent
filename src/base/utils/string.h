@@ -31,9 +31,10 @@
 #define UTILS_STRING_H
 
 #include <QChar>
-#include <QVector>
+#include <QString>
+#include <Qt>
+#include <QtContainerFwd>
 
-class QString;
 class QStringRef;
 
 class TriStateBool;

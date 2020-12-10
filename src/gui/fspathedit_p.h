@@ -32,15 +32,14 @@
 #include <QComboBox>
 #include <QFileIconProvider>
 #include <QLineEdit>
+#include <QtContainerFwd>
 #include <QValidator>
-#include <QVector>
 
 class QAction;
 class QCompleter;
 class QContextMenuEvent;
 class QFileSystemModel;
 class QKeyEvent;
-class QStringList;
 class QStringRef;
 
 namespace Private

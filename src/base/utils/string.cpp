@@ -35,6 +35,7 @@
 #include <QLocale>
 #include <QRegExp>
 #include <QtGlobal>
+#include <QVector>
 
 #if defined(Q_OS_MACOS) || defined(__MINGW32__)
 #define QBT_USES_QTHREADSTORAGE

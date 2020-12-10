@@ -30,16 +30,15 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-#include <QList>
+#include <QtContainerFwd>
+#include <QVariant>
 
 #include "base/utils/net.h"
 
 class QDateTime;
 class QNetworkCookie;
 class QSize;
-class QStringList;
 class QTime;
-class QVariant;
 
 enum SchedulerDays
 {

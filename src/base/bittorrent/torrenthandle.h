@@ -29,15 +29,12 @@
 
 #pragma once
 
-#include <QHash>
 #include <QMetaType>
-#include <QSet>
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QBitArray;
 class QDateTime;
-class QStringList;
 class QUrl;
 
 namespace BitTorrent

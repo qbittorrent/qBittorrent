@@ -30,7 +30,7 @@
 
 #include "apicontroller.h"
 
-class LogController : public APIController
+class LogController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(LogController)

@@ -32,14 +32,13 @@
 #include <libtorrent/torrent_info.hpp>
 
 #include <QCoreApplication>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "base/indexrange.h"
 
 class QByteArray;
 class QDateTime;
 class QString;
-class QStringList;
 class QUrl;
 
 namespace BitTorrent

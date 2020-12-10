@@ -29,7 +29,7 @@
 #ifndef TYPES_H
 #define TYPES_H
 
-#include <QMap>
+#include <QtContainerFwd>
 
 const qlonglong MAX_ETA = 8640000;
 
