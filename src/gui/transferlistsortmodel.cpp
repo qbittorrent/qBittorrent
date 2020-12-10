@@ -102,8 +102,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
     const auto hashLessThan = [this, &left, &right]() -> bool
     {
         const TransferListModel *model = qobject_cast<TransferListModel *>(sourceModel());
-        const QString hashL = model->torrentHandle(left)->hash();
-        const QString hashR = model->torrentHandle(right)->hash();
+        const BitTorrent::InfoHash hashL = model->torrentHandle(left)->hash();
+        const BitTorrent::InfoHash hashR = model->torrentHandle(right)->hash();
         return hashL < hashR;
     };
 

@@ -61,6 +61,7 @@ namespace BitTorrent
 
     bool operator==(const InfoHash &left, const InfoHash &right);
     bool operator!=(const InfoHash &left, const InfoHash &right);
+    bool operator<(const InfoHash &left, const InfoHash &right);
     uint qHash(const InfoHash &key, uint seed);
 }
 
