@@ -568,7 +568,6 @@ void TorrentsController::addAction()
     const bool seqDownload = parseBool(params()["sequentialDownload"], false);
     const bool firstLastPiece = parseBool(params()["firstLastPiecePrio"], false);
     const TriStateBool addPaused = parseTriStateBool(params()["paused"]);
-    const TriStateBool rootFolder = parseTriStateBool(params()["root_folder"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
     const QSet<QString> tags = List::toSet(params()["tags"].split(',', QString::SkipEmptyParts));
@@ -577,6 +576,11 @@ void TorrentsController::addAction()
     const int upLimit = params()["upLimit"].toInt();
     const int dlLimit = params()["dlLimit"].toInt();
     const TriStateBool autoTMM = parseTriStateBool(params()["autoTMM"]);
+
+    const QString contentLayoutParam = params()["contentLayout"];
+    const boost::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
+            ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
+            : boost::optional<BitTorrent::TorrentContentLayout> {});
 
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty())
@@ -601,7 +605,7 @@ void TorrentsController::addAction()
     params.sequential = seqDownload;
     params.firstLastPiecePriority = firstLastPiece;
     params.addPaused = addPaused;
-    params.createSubfolder = rootFolder;
+    params.contentLayout = contentLayout;
     params.savePath = savepath;
     params.category = category;
     params.tags = tags;

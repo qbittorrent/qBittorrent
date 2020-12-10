@@ -114,7 +114,7 @@ namespace BitTorrent
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
     // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
     // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
-    namespace SessionSettingsEnums
+    inline namespace SessionSettingsEnums
     {
         Q_NAMESPACE
 
@@ -160,7 +160,6 @@ namespace BitTorrent
         Q_ENUM_NS(OSMemoryPriority)
 #endif
     }
-    using namespace SessionSettingsEnums;
 
     struct SessionMetricIndices
     {
@@ -274,8 +273,8 @@ namespace BitTorrent
         void setPeXEnabled(bool enabled);
         bool isAddTorrentPaused() const;
         void setAddTorrentPaused(bool value);
-        bool isKeepTorrentTopLevelFolder() const;
-        void setKeepTorrentTopLevelFolder(bool value);
+        TorrentContentLayout torrentContentLayout() const;
+        void setTorrentContentLayout(TorrentContentLayout value);
         bool isTrackerEnabled() const;
         void setTrackerEnabled(bool enabled);
         bool isAppendExtensionEnabled() const;
@@ -702,7 +701,7 @@ namespace BitTorrent
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentPaused;
-        CachedSettingValue<bool> m_isKeepTorrentTopLevelFolder;
+        CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
