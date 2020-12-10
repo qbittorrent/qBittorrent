@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TRANSFERLISTWIDGET_H
-#define TRANSFERLISTWIDGET_H
+#pragma once
 
 #include <functional>
 #include <QtContainerFwd>
@@ -129,5 +128,3 @@ private:
     TransferListSortModel *m_sortFilterModel;
     MainWindow *m_mainWindow;
 };
-
-#endif // TRANSFERLISTWIDGET_H

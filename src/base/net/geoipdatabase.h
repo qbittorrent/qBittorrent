@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef GEOIPDATABASE_H
-#define GEOIPDATABASE_H
+#pragma once
 
 #include <QCoreApplication>
 #include <QtGlobal>
@@ -100,5 +99,3 @@ private:
     quint32 m_size;
     uchar *m_data;
 };
-
-#endif // GEOIPDATABASE_H

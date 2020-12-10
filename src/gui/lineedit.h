@@ -7,8 +7,7 @@
 **
 ****************************************************************************/
 
-#ifndef LINEEDIT_H
-#define LINEEDIT_H
+#pragma once
 
 #include <QLineEdit>
 
@@ -28,5 +27,3 @@ protected:
 private:
     QToolButton *m_searchButton;
 };
-
-#endif // LIENEDIT_H

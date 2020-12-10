@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SCANFOLDERSDELEGATE_H
-#define SCANFOLDERSDELEGATE_H
+#pragma once
 
 #include <QStyledItemDelegate>
 
@@ -57,5 +56,3 @@ private:
 
     QTreeView *m_folderView;
 };
-
-#endif // SCANFOLDERSDELEGATE_H

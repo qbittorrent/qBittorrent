@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef STATSDIALOG_H
-#define STATSDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -50,5 +49,3 @@ private slots:
 private:
     Ui::StatsDialog *m_ui;
 };
-
-#endif // STATSDIALOG_H

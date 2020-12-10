@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PROPTABBAR_H
-#define PROPTABBAR_H
+#pragma once
 
 #include <QHBoxLayout>
 
@@ -64,5 +63,3 @@ private:
     QButtonGroup *m_btnGroup;
     int m_currentIndex;
 };
-
-#endif // PROPTABBAR_H

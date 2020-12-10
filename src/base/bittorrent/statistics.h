@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef STATISTICS_H
-#define STATISTICS_H
+#pragma once
 
 #include <QObject>
 #include <QTimer>
@@ -67,5 +66,3 @@ private:
 
     QTimer m_timer;
 };
-
-#endif // STATISTICS_H

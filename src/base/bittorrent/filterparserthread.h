@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef FILTERPARSERTHREAD_H
-#define FILTERPARSERTHREAD_H
+#pragma once
 
 #include <libtorrent/ip_filter.hpp>
 
@@ -64,5 +63,3 @@ private:
     QString m_filePath;
     lt::ip_filter m_filter;
 };
-
-#endif // BITTORRENT_FILTERPARSERTHREAD_H

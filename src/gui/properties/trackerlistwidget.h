@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TRACKERLIST_H
-#define TRACKERLIST_H
+#pragma once
 
 #include <QTreeWidget>
 #include <QtContainerFwd>
@@ -95,5 +94,3 @@ private:
     QTreeWidgetItem *m_PEXItem;
     QTreeWidgetItem *m_LSDItem;
 };
-
-#endif // TRACKERLIST_H

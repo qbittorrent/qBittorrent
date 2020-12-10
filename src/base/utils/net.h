@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BASE_UTILS_NET_H
-#define BASE_UTILS_NET_H
+#pragma once
 
 #include <QHostAddress>
 #include <QtContainerFwd>
@@ -57,5 +56,3 @@ namespace Utils
         bool isSSLKeyValid(const QByteArray &data);
     }
 }
-
-#endif // BASE_UTILS_NET_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef ADDNEWTORRENTDIALOG_H
-#define ADDNEWTORRENTDIALOG_H
+#pragma once
 
 #include <memory>
 
@@ -122,5 +121,3 @@ private:
     CachedSettingValue<QSize> m_storeDialogSize;
     CachedSettingValue<QByteArray> m_storeSplitterState;
 };
-
-#endif // ADDNEWTORRENTDIALOG_H

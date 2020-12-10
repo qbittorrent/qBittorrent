@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTTP_TYPES_H
-#define HTTP_TYPES_H
+#pragma once
 
 #include <QHostAddress>
 #include <QString>
@@ -127,5 +126,3 @@ namespace Http
         }
     };
 }
-
-#endif // HTTP_TYPES_H

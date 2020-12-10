@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_SESSION_H
-#define BITTORRENT_SESSION_H
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -801,5 +800,3 @@ namespace BitTorrent
 Q_DECLARE_METATYPE(std::shared_ptr<lt::entry>)
 const int sharedPtrLtEntryTypeID = qRegisterMetaType<std::shared_ptr<lt::entry>>();
 #endif
-
-#endif // BITTORRENT_SESSION_H

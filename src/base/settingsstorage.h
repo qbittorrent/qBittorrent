@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef SETTINGSSTORAGE_H
-#define SETTINGSSTORAGE_H
+#pragma once
 
 #include <QObject>
 #include <QReadWriteLock>
@@ -61,5 +60,3 @@ private:
     QTimer m_timer;
     mutable QReadWriteLock m_lock;
 };
-
-#endif // SETTINGSSTORAGE_H

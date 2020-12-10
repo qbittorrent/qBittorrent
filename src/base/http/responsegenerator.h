@@ -28,8 +28,7 @@
  */
 
 
-#ifndef HTTP_RESPONSEGENERATOR_H
-#define HTTP_RESPONSEGENERATOR_H
+#pragma once
 
 class QByteArray;
 class QString;
@@ -42,5 +41,3 @@ namespace Http
     QString httpDate();
     void compressContent(Response &response);
 }
-
-#endif // HTTP_RESPONSEGENERATOR_H

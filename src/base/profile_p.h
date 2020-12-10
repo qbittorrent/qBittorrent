@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_PROFILE_P_H
-#define QBT_PROFILE_P_H
+#pragma once
 
 #include <QDir>
 #include <QStandardPaths>
@@ -132,5 +131,3 @@ namespace Private
         QDir m_baseDir;
     };
 }
-
-#endif // QBT_PROFILE_P_H

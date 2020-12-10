@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PEERLISTSORTMODEL_H
-#define PEERLISTSORTMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
@@ -47,5 +46,3 @@ public:
 private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
 };
-
-#endif // PEERLISTSORTMODEL_H

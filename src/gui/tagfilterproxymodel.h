@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TAGFILTERPROXYMODEL_H
-#define TAGFILTERPROXYMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
@@ -49,5 +48,3 @@ private:
     // we added another overload of index(), hence this using directive:
     using QSortFilterProxyModel::index;
 };
-
-#endif // TAGFILTERPROXYMODEL_H

@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_GEOIPMANAGER_H
-#define NET_GEOIPMANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -73,5 +72,3 @@ namespace Net
         static GeoIPManager *m_instance;
     };
 }
-
-#endif // NET_GEOIPMANAGER_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_TORRENTCREATORTHREAD_H
-#define BITTORRENT_TORRENTCREATORTHREAD_H
+#pragma once
 
 #include <libtorrent/version.hpp>
 
@@ -94,5 +93,3 @@ namespace BitTorrent
         TorrentCreatorParams m_params;
     };
 }
-
-#endif // BITTORRENT_TORRENTCREATORTHREAD_H

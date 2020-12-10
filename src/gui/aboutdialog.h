@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef ABOUTDIALOG_H
-#define ABOUTDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -48,5 +47,3 @@ public:
 private:
     Ui::AboutDialog *m_ui;
 };
-
-#endif // ABOUTDIALOG_H

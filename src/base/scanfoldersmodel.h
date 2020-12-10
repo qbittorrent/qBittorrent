@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SCANFOLDERSMODEL_H
-#define SCANFOLDERSMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QList>
@@ -110,5 +109,3 @@ private:
     QList<PathData*> m_pathList;
     FileSystemWatcher *m_fsWatcher;
 };
-
-#endif // SCANFOLDERSMODEL_H
