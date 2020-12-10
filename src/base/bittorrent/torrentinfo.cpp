@@ -170,7 +170,7 @@ InfoHash TorrentInfo::hash() const
 QString TorrentInfo::name() const
 {
     if (!isValid()) return {};
-    return QString::fromStdString(m_nativeInfo->name());
+    return QString::fromStdString(m_nativeInfo->orig_files().name());
 }
 
 QDateTime TorrentInfo::creationDate() const
