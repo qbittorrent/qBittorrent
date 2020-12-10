@@ -185,17 +185,15 @@ InfoHash TorrentHandleImpl::hash() const
 
 QString TorrentHandleImpl::name() const
 {
-    QString name = m_name;
-    if (!name.isEmpty()) return name;
-
-    name = QString::fromStdString(m_nativeStatus.name);
-    if (!name.isEmpty()) return name;
+    if (!m_name.isEmpty())
+        return m_name;
 
     if (hasMetadata())
-    {
-        name = QString::fromStdString(m_torrentInfo.nativeInfo()->orig_files().name());
-        if (!name.isEmpty()) return name;
-    }
+        return m_torrentInfo.name();
+
+    const QString name = QString::fromStdString(m_nativeStatus.name);
+    if (!name.isEmpty())
+        return name;
 
     return m_hash;
 }

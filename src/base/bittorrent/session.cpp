@@ -661,9 +661,7 @@ QString Session::tempPath() const
 QString Session::torrentTempPath(const TorrentInfo &torrentInfo) const
 {
     if ((torrentInfo.filesCount() > 1) && !torrentInfo.hasRootFolder())
-        return tempPath()
-            + QString::fromStdString(torrentInfo.nativeInfo()->orig_files().name())
-            + '/';
+        return tempPath() + torrentInfo.name() + '/';
 
     return tempPath();
 }
