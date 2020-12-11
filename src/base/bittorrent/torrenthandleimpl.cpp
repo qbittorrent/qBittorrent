@@ -1325,6 +1325,7 @@ void TorrentHandleImpl::endReceivedMetadataHandling(const QString &savePath, con
     m_nativeHandle = m_nativeSession->add_torrent(p);
     m_nativeHandle.queue_position_set(queuePos);
 
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
     // If first/last piece priority was specified when adding this torrent,
     // we should apply it now that we have metadata:
     if (m_hasFirstLastPiecePriority)
@@ -1337,7 +1338,6 @@ void TorrentHandleImpl::endReceivedMetadataHandling(const QString &savePath, con
             m_nativeHandle.resume();
     }
 
-    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
     m_maintenanceJob = MaintenanceJob::None;
 
     updateStatus();
@@ -1485,11 +1485,10 @@ void TorrentHandleImpl::handleTorrentCheckedAlert(const lt::torrent_checked_aler
         return;
     }
 
+    saveResumeData();
+
     if (m_fastresumeDataRejected && !m_hasMissingFiles)
-    {
-        saveResumeData();
         m_fastresumeDataRejected = false;
-    }
 
     updateStatus();
 
@@ -1554,7 +1553,12 @@ void TorrentHandleImpl::handleSaveResumeDataAlert(const lt::save_resume_data_ale
         m_ltAddTorrentParams = p->params;
     }
 
-    if (!m_isStopped)
+    if (m_isStopped)
+    {
+        m_ltAddTorrentParams.flags |= lt::torrent_flags::paused;
+        m_ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
+    }
+    else
     {
         // Torrent can be actually "running" but temporarily "paused" to perform some
         // service jobs behind the scenes so we need to restore it as "running"
@@ -1984,7 +1988,7 @@ void TorrentHandleImpl::prioritizeFiles(const QVector<DownloadPriority> &priorit
         if ((oldPriorities[i] == DownloadPriority::Ignored)
             && (priorities[i] > DownloadPriority::Ignored)
             && (progress[i] < 1.0))
-            {
+        {
             m_hasSeedStatus = false;
             break;
         }
