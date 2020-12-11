@@ -4253,20 +4253,20 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
     if (metadata.isValid())
         p.ti = metadata.nativeInfo();
 
-    torrentParams.paused = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
-    if (!torrentParams.paused)
+    if (p.flags & lt::torrent_flags::stop_when_ready)
     {
         // If torrent has "stop_when_ready" flag set then it is actually "stopped"
-        // but temporarily "resumed" to perform some service jobs (e.g. checking)
-        torrentParams.paused = !!(p.flags & lt::torrent_flags::stop_when_ready);
+        torrentParams.paused = true;
+        torrentParams.forced = false;
+        // ...but temporarily "resumed" to perform some service jobs (e.g. checking)
+        p.flags &= ~lt::torrent_flags::paused;
+        p.flags |= lt::torrent_flags::auto_managed;
     }
     else
     {
-        // Fix inconsistent state when "paused" torrent has "stop_when_ready" flag set
-        p.flags &= ~lt::torrent_flags::stop_when_ready;
+        torrentParams.paused = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+        torrentParams.forced = !(p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
     }
-
-    torrentParams.forced = !(p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
     if (!hasMetadata && !root.dict_find("info-hash"))
