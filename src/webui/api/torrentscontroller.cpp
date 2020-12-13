@@ -262,21 +262,59 @@ void TorrentsController::infoAction()
     for (const QString &hash : hashes)
         hashSet.insert(BitTorrent::InfoHash {hash});
 
+    const TorrentFilter torrentFilter(filter, (hashes.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
     QVariantList torrentList;
-    TorrentFilter torrentFilter(filter, (hashes.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
-    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
+    for (const BitTorrent::TorrentHandle *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
         if (torrentFilter.match(torrent))
             torrentList.append(serialize(*torrent));
     }
 
-    std::sort(torrentList.begin(), torrentList.end()
-              , [sortedColumn, reverse](const QVariant &torrent1, const QVariant &torrent2)
+    if (torrentList.isEmpty())
     {
-        return reverse
-                ? (torrent1.toMap().value(sortedColumn) > torrent2.toMap().value(sortedColumn))
-                : (torrent1.toMap().value(sortedColumn) < torrent2.toMap().value(sortedColumn));
-    });
+        setResult(QJsonObject {});
+        return;
+    }
+
+    if (!sortedColumn.isEmpty())
+    {
+        if (!torrentList[0].toMap().contains(sortedColumn))
+            throw APIError(APIErrorType::BadParams, tr("'sort' parameter is invalid"));
+
+        const auto lessThan = [](const QVariant &left, const QVariant &right) -> bool
+        {
+            Q_ASSERT(left.type() == right.type());
+
+            switch (static_cast<QMetaType::Type>(left.type()))
+            {
+            case QMetaType::Bool:
+                return left.value<bool>() < right.value<bool>();
+            case QMetaType::Double:
+                return left.value<double>() < right.value<double>();
+            case QMetaType::Float:
+                return left.value<float>() < right.value<float>();
+            case QMetaType::Int:
+                return left.value<int>() < right.value<int>();
+            case QMetaType::LongLong:
+                return left.value<qlonglong>() < right.value<qlonglong>();
+            case QMetaType::QString:
+                return left.value<QString>() < right.value<QString>();
+            default:
+                qWarning("Unhandled QVariant comparison, type: %d, name: %s", left.type()
+                    , QMetaType::typeName(left.type()));
+                break;
+            }
+            return false;
+        };
+
+        std::sort(torrentList.begin(), torrentList.end()
+            , [reverse, &sortedColumn, &lessThan](const QVariant &torrent1, const QVariant &torrent2)
+        {
+            const QVariant value1 {torrent1.toMap().value(sortedColumn)};
+            const QVariant value2 {torrent2.toMap().value(sortedColumn)};
+            return reverse ? lessThan(value2, value1) : lessThan(value1, value2);
+        });
+    }
 
     const int size = torrentList.size();
     // normalize offset
