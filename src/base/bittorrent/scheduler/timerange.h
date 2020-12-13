@@ -3,6 +3,14 @@
 #include <QJsonObject>
 #include <QTime>
 
+enum TimeRangeConflict
+{
+    NoConflict,
+    StartTime,
+    EndTime,
+    Both
+};
+
 struct TimeRange
 {
     QTime startTime;
@@ -15,7 +23,7 @@ struct TimeRange
     void setDownloadRate(int rate);
     void setUploadRate(int rate);
 
-    bool overlaps(const TimeRange &other) const;
+    TimeRangeConflict overlaps(const TimeRange &other) const;
     bool isValid() const;
 
     QJsonObject toJsonObject() const;

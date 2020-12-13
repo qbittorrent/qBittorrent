@@ -111,7 +111,6 @@ void BandwidthScheduler::start()
     m_timer.start(10000);
 }
 
-
 void BandwidthScheduler::backupSchedule(QString errorMessage, bool preserveOriginal = false)
 {
     LogMsg(errorMessage, Log::CRITICAL);

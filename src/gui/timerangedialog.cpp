@@ -1,10 +1,14 @@
 #include "timerangedialog.h"
 
 #include <QPushButton>
+#include <QStyle>
 
+#include "base/bittorrent/scheduler/timerange.h"
 #include "base/preferences.h"
 #include "ui_timerangedialog.h"
 #include "utils.h"
+
+static const QString LabelStyle = QStringLiteral("QLabel { background-color : %1; }");
 
 TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate, int maxRate)
     : QDialog {parent}
@@ -41,6 +45,9 @@ void TimeRangeDialog::timesUpdated()
 {
     m_ui->labelTimeFrom->setText(timeFrom().toString("hh:mm:ss.zzz"));
     m_ui->labelTimeTo->setText(timeTo().toString("hh:mm:ss.zzz"));
+
+    m_ui->timeEditFrom->setMaximumTime(m_ui->timeEditTo->time());
+    m_ui->timeEditTo->setMinimumTime(m_ui->timeEditFrom->time());
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(isValid());
 }
 
@@ -48,7 +55,14 @@ bool TimeRangeDialog::isValid() const
 {
     bool timeRangesValid = timeFrom().secsTo(timeTo()) > 0;
     TimeRange timeRange = {timeFrom(), timeTo(), downloadRatio(), uploadRatio()};
-    return timeRangesValid && !m_scheduleDay->conflicts(timeRange);
+    TimeRangeConflict conflict = m_scheduleDay->conflicts(timeRange);
+
+    QString startTimeColor = ((conflict & StartTime) != 0) ? "red" : "transparent";
+    QString endTimeColor = ((conflict & EndTime) != 0) ? "red" : "transparent";
+    m_ui->labelTimeFrom->setStyleSheet(LabelStyle.arg(startTimeColor));
+    m_ui->labelTimeTo->setStyleSheet(LabelStyle.arg(endTimeColor));
+
+    return timeRangesValid && (conflict == NoConflict);
 }
 
 int TimeRangeDialog::downloadRatio() const

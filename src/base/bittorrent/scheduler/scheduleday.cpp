@@ -6,6 +6,7 @@
 #include <QJsonValue>
 
 #include "bandwidthscheduler.h"
+#include "base/bittorrent/scheduler/timerange.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/rss/rss_autodownloader.h"
@@ -107,14 +108,15 @@ int ScheduleDay::getNowIndex()
     return -1;
 }
 
-bool ScheduleDay::conflicts(const TimeRange &timeRange)
+TimeRangeConflict ScheduleDay::conflicts(const TimeRange &timeRange)
 {
     for (TimeRange tr : m_timeRanges)
     {
-        if (tr.overlaps(timeRange))
-            return true;
+        TimeRangeConflict conflict = tr.overlaps(timeRange);
+        if (conflict != NoConflict)
+            return conflict;
     }
-    return false;
+    return NoConflict;
 }
 
 QJsonArray ScheduleDay::toJsonArray() const

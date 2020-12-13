@@ -26,7 +26,7 @@ public:
     void editUploadRateAt(int index, int rate);
 
     int getNowIndex();
-    bool conflicts(const TimeRange &timeRange);
+    TimeRangeConflict conflicts(const TimeRange &timeRange);
 
     QJsonArray toJsonArray() const;
     static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek, bool *errored);
