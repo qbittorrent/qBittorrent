@@ -483,7 +483,6 @@ Session::Session(QObject *parent)
 
     m_tags = List::toSet(m_storedTags.value());
 
-    enqueueRefresh();
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
 
@@ -523,6 +522,12 @@ Session::Session(QObject *parent)
     new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
+
+    QTimer::singleShot(1000, this, [this]()
+    {
+        m_nativeSession->post_torrent_updates();
+        m_nativeSession->post_session_stats();
+    });
 }
 
 bool Session::isDHTEnabled() const
@@ -2592,6 +2597,16 @@ void Session::configureListeningInterface()
     configureDeferred();
 }
 
+int Session::downloadRate() const
+{
+    return m_downloadRate;
+}
+
+int Session::uploadRate() const
+{
+    return m_uploadRate;
+}
+
 int Session::globalDownloadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
@@ -4406,19 +4421,6 @@ quint64 Session::getAlltimeUL() const
     return m_statistics->getAlltimeUL();
 }
 
-void Session::enqueueRefresh()
-{
-    Q_ASSERT(!m_refreshEnqueued);
-
-    QTimer::singleShot(refreshInterval(), this, [this] ()
-    {
-        m_nativeSession->post_torrent_updates();
-        m_nativeSession->post_session_stats();
-    });
-
-    m_refreshEnqueued = true;
-}
-
 void Session::handleIPFilterParsed(const int ruleCount)
 {
     if (m_filterParser)
@@ -4905,10 +4907,10 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
     emit statsUpdated();
 
-    if (m_refreshEnqueued)
-        m_refreshEnqueued = false;
-    else
-        enqueueRefresh();
+    QTimer::singleShot(STATS_UPDATE_INTERVAL, this, [this]()
+    {
+        m_nativeSession->post_session_stats();
+    });
 }
 
 void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
@@ -4964,6 +4966,9 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
     QVector<TorrentHandle *> updatedTorrents;
     updatedTorrents.reserve(p->status.size());
 
+    m_downloadRate = 0;
+    m_uploadRate = 0;
+
     for (const lt::torrent_status &status : p->status)
     {
         TorrentHandleImpl *const torrent = m_torrents.value(status.info_hash);
@@ -4973,15 +4978,19 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
         torrent->handleStateUpdate(status);
         updatedTorrents.push_back(torrent);
+
+        m_downloadRate += torrent->downloadPayloadRate();
+        m_uploadRate += torrent->uploadPayloadRate();
     }
 
+    emit speedRatesUpdated();
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
 
-    if (m_refreshEnqueued)
-        m_refreshEnqueued = false;
-    else
-        enqueueRefresh();
+    QTimer::singleShot(refreshInterval(), this, [this]()
+    {
+        m_nativeSession->post_torrent_updates();
+    });
 }
 
 void Session::handleSocks5Alert(const lt::socks5_alert *p) const

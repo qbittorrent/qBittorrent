@@ -37,6 +37,7 @@
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
+#include "base/bittorrent/session.h"
 
 namespace
 {
@@ -50,15 +51,17 @@ namespace
         HOUR24_SEC = 24 * 60 * 60
     };
 
-    const int MIN5_BUF_SIZE = 5 * 60;
+    const int UPDATE_INTERVAL_SEC = std::chrono::duration_cast<std::chrono::seconds>(STATS_UPDATE_INTERVAL).count();
+    const int MIN1_BUF_SIZE = MIN1_SEC / UPDATE_INTERVAL_SEC;
+    const int MIN5_BUF_SIZE = MIN5_SEC / UPDATE_INTERVAL_SEC;
     const int MIN30_BUF_SIZE = 5 * 60;
     const int HOUR6_BUF_SIZE = 5 * 60;
     const int HOUR12_BUF_SIZE = 10 * 60;
     const int HOUR24_BUF_SIZE = 10 * 60;
-    const int DIVIDER_30MIN = MIN30_SEC / MIN30_BUF_SIZE;
-    const int DIVIDER_6HOUR = HOUR6_SEC / HOUR6_BUF_SIZE;
-    const int DIVIDER_12HOUR = HOUR12_SEC / HOUR12_BUF_SIZE;
-    const int DIVIDER_24HOUR = HOUR24_SEC / HOUR24_BUF_SIZE;
+    const int DIVIDER_30MIN = (MIN30_SEC / UPDATE_INTERVAL_SEC) / MIN30_BUF_SIZE;
+    const int DIVIDER_6HOUR = (HOUR6_SEC / UPDATE_INTERVAL_SEC) / HOUR6_BUF_SIZE;
+    const int DIVIDER_12HOUR = (HOUR12_SEC / UPDATE_INTERVAL_SEC) / HOUR12_BUF_SIZE;
+    const int DIVIDER_24HOUR = (HOUR24_SEC / UPDATE_INTERVAL_SEC) / HOUR24_BUF_SIZE;
 
 
     // table of supposed nice steps for grid marks to get nice looking quarters of scale
@@ -221,11 +224,11 @@ void SpeedPlotView::setPeriod(const TimePeriod period)
     switch (period)
     {
     case SpeedPlotView::MIN1:
-        m_viewablePointsCount = MIN1_SEC;
+        m_viewablePointsCount = MIN1_BUF_SIZE;
         m_currentData = &m_data5Min;
         break;
     case SpeedPlotView::MIN5:
-        m_viewablePointsCount = MIN5_SEC;
+        m_viewablePointsCount = MIN5_BUF_SIZE;
         m_currentData = &m_data5Min;
         break;
     case SpeedPlotView::MIN30:

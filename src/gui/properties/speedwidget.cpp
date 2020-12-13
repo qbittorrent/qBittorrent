@@ -115,9 +115,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     loadSettings();
 
-    QTimer *localUpdateTimer = new QTimer(this);
-    connect(localUpdateTimer, &QTimer::timeout, this, &SpeedWidget::update);
-    localUpdateTimer->start(1000);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &SpeedWidget::update);
 
     m_plot->show();
 }
