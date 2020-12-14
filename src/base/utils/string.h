@@ -30,6 +30,7 @@
 #pragma once
 
 #include <QChar>
+#include <QMetaEnum>
 #include <QString>
 #include <Qt>
 #include <QtContainerFwd>
@@ -71,5 +72,22 @@ namespace Utils
         TriStateBool parseTriStateBool(const QString &string);
 
         QString join(const QVector<QStringRef> &strings, const QString &separator);
+
+        template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
+        QString serialize(const U &value)
+        {
+            return QString::fromLatin1(QMetaEnum::fromType<U>().valueToKey(static_cast<int>(value)));
+        }
+
+        template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
+        U parse(const QString &serializedValue, const U &defaultValue)
+        {
+            static_assert(std::is_same<int, typename std::underlying_type<U>::type>::value,
+                          "Enumeration underlying type has to be int.");
+
+            bool ok = false;
+            const U value = static_cast<U>(QMetaEnum::fromType<U>().keyToValue(serializedValue.toLatin1().constData(), &ok));
+            return (ok ? value : defaultValue);
+        }
     }
 }
