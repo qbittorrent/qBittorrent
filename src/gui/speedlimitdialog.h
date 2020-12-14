@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SPEEDLIMITDIALOG_H
-#define SPEEDLIMITDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -55,5 +54,3 @@ private:
 
     Ui::SpeedLimitDialog *m_ui;
 };
-
-#endif // SPEEDLIMITDIALOG_H

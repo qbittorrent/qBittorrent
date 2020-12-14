@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PLUGINSOURCEDIALOG_H
-#define PLUGINSOURCEDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -55,5 +54,3 @@ private slots:
 private:
     Ui::PluginSourceDialog *m_ui;
 };
-
-#endif // PLUGINSOURCEDIALOG_H

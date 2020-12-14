@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef BANDWIDTHSCHEDULER_H
-#define BANDWIDTHSCHEDULER_H
+#pragma once
 
 #include <QObject>
 #include <QTimer>
@@ -52,5 +51,3 @@ private:
     QTimer m_timer;
     bool m_lastAlternative;
 };
-
-#endif // BANDWIDTHSCHEDULER_H

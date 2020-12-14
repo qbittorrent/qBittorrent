@@ -66,8 +66,7 @@
 ****************************************************************************
 */
 
-#ifndef QTLOCKEDFILE_H
-#define QTLOCKEDFILE_H
+#pragma once
 
 #include <QFile>
 
@@ -112,5 +111,3 @@ namespace QtLP_Private
         LockMode m_lock_mode;
     };
 }
-
-#endif

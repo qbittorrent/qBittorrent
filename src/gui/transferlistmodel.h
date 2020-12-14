@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef TRANSFERLISTMODEL_H
-#define TRANSFERLISTMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QColor>
@@ -128,5 +127,3 @@ private:
 
     HideZeroValuesMode m_hideZeroValuesMode = HideZeroValuesMode::Never;
 };
-
-#endif // TRANSFERLISTMODEL_H

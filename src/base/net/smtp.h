@@ -30,8 +30,7 @@
  * This code is based on QxtSmtp from libqxt (http://libqxt.org)
  */
 
-#ifndef SMTP_H
-#define SMTP_H
+#pragma once
 
 #include <QAbstractSocket>
 #include <QByteArray>
@@ -119,5 +118,3 @@ namespace Net
         QString m_password;
     };
 }
-
-#endif // SMTP_H

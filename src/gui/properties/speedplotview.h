@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SPEEDPLOTVIEW_H
-#define SPEEDPLOTVIEW_H
+#pragma once
 
 #ifndef Q_MOC_RUN
 #include <boost/circular_buffer.hpp>
@@ -131,5 +130,3 @@ private:
     TimePeriod m_period;
     int m_viewablePointsCount;
 };
-
-#endif // SPEEDPLOTVIEW_H

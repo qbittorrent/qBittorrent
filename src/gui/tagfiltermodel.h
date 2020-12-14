@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TAGFILTERMODEL_H
-#define TAGFILTERMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 #include <QtContainerFwd>
@@ -83,5 +82,3 @@ private:
 
     QList<TagModelItem> m_tagItems;  // Index corresponds to its row
 };
-
-#endif // TAGFILTERMODEL_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TYPES_H
-#define TYPES_H
+#pragma once
 
 #include <QtContainerFwd>
 
@@ -42,5 +41,3 @@ enum class ShutdownDialogAction
 };
 
 typedef QMap<QString, QString> QStringMap;
-
-#endif // TYPES_H

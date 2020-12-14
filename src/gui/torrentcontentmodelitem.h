@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELITEM_H
-#define TORRENTCONTENTMODELITEM_H
+#pragma once
 
 #include <QCoreApplication>
 #include <QVector>
@@ -96,5 +95,3 @@ protected:
     qreal m_progress;
     qreal m_availability;
 };
-
-#endif // TORRENTCONTENTMODELITEM_H

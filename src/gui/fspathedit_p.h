@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_GUI_FSPATHEDIT_P_H
-#define QBT_GUI_FSPATHEDIT_P_H
+#pragma once
 
 #include <QComboBox>
 #include <QFileIconProvider>
@@ -157,5 +156,3 @@ namespace Private
         QString text() const;
     };
 }
-
-#endif // QBT_GUI_FSPATHEDIT_P_H

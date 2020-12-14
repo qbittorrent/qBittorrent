@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCREATORDIALOG_H
-#define TORRENTCREATORDIALOG_H
+#pragma once
 
 #include <libtorrent/version.hpp>
 
@@ -97,5 +96,3 @@ private:
     CachedSettingValue<QString> m_storeLastSavePath;
     CachedSettingValue<QString> m_storeSource;
 };
-
-#endif // TORRENTCREATORDIALOG_H

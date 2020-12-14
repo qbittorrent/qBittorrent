@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef DELETIONCONFIRMATIONDIALOG_H
-#define DELETIONCONFIRMATIONDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -55,5 +54,3 @@ private slots:
 private:
     Ui::DeletionConfirmationDialog *m_ui;
 };
-
-#endif // DELETIONCONFIRMATIONDIALOG_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PIECEAVAILABILITYBAR_H
-#define PIECEAVAILABILITYBAR_H
+#pragma once
 
 #include "piecesbar.h"
 
@@ -56,5 +55,3 @@ private:
     // scale int vector to float vector
     QVector<float> intToFloatVector(const QVector<int> &vecin, int reqSize);
 };
-
-#endif // PIECEAVAILABILITYBAR_H

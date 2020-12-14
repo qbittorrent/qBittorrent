@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_INDEXRANGE_H
-#define QBT_INDEXRANGE_H
+#pragma once
 
 #include <QtGlobal>
 
@@ -169,5 +168,3 @@ private:
     IndexType m_first;
     IndexDiffType m_size;
 };
-
-#endif // QBT_INDEXRANGE_H

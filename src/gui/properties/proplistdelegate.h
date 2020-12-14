@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PROPLISTDELEGATE_H
-#define PROPLISTDELEGATE_H
+#pragma once
 
 #include "gui/progressbardelegate.h"
 
@@ -71,5 +70,3 @@ private:
 
     PropertiesWidget *m_properties;
 };
-
-#endif // PROPLISTDELEGATE_H

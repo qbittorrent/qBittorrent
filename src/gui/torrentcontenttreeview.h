@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTTREEVIEW_H
-#define TORRENTCONTENTTREEVIEW_H
+#pragma once
 
 #include <QTreeView>
 
@@ -51,5 +50,3 @@ public:
 private:
     QModelIndex currentNameCell();
 };
-
-#endif // TORRENTCONTENTTREEVIEW_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPointer>
@@ -263,5 +262,3 @@ private:
     bool m_hasPython;
     QMenu *m_toolbarMenu;
 };
-
-#endif // MAINWINDOW_H

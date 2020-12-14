@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef WEBUI_H
-#define WEBUI_H
+#pragma once
 
 #include <QObject>
 #include <QPointer>
@@ -67,5 +66,3 @@ private:
     QPointer<WebApplication> m_webapp;
     quint16 m_port;
 };
-
-#endif // WEBUI_H

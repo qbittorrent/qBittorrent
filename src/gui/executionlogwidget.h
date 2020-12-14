@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef EXECUTIONLOGWIDGET_H
-#define EXECUTIONLOGWIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -58,5 +57,3 @@ private:
     Ui::ExecutionLogWidget *m_ui;
     LogFilterModel *m_messageFilterModel;
 };
-
-#endif // EXECUTIONLOGWIDGET_H

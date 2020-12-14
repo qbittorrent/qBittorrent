@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_TORRENTINFO_H
-#define BITTORRENT_TORRENTINFO_H
+#pragma once
 
 #include <libtorrent/torrent_info.hpp>
 
@@ -105,5 +104,3 @@ namespace BitTorrent
         std::shared_ptr<lt::torrent_info> m_nativeInfo;
     };
 }
-
-#endif // BITTORRENT_TORRENTINFO_H

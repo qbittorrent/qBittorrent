@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef POWERMANAGEMENTINHIBITOR_H
-#define POWERMANAGEMENTINHIBITOR_H
+#pragma once
 
 #include <QObject>
 
@@ -63,5 +62,3 @@ private:
 
     bool m_useGSM;
 };
-
-#endif // POWERMANAGEMENTINHIBITOR_H

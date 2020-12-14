@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODEL_H
-#define TORRENTCONTENTMODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 #include <QVector>
@@ -89,5 +88,3 @@ private:
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider;
 };
-
-#endif // TORRENTCONTENTMODEL_H

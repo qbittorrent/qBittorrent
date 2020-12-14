@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SETTINGVALUE_H
-#define SETTINGVALUE_H
+#pragma once
 
 #include <type_traits>
 
@@ -114,5 +113,3 @@ private:
     const QString m_keyName;
     T m_value;
 };
-
-#endif // SETTINGVALUE_H

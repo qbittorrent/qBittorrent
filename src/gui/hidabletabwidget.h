@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef HIDABLETABWIDGET_H
-#define HIDABLETABWIDGET_H
+#pragma once
 
 #include <QTabWidget>
 
@@ -48,5 +47,3 @@ private:
     void paintEvent(QPaintEvent *event) override;
 #endif
 };
-
-#endif // HIDABLETABWIDGET_H
