@@ -372,7 +372,7 @@ Example:
 
 ## 8. Include guard
 
-`#pragma once` should be used instead of "include guard" in new code:
+`#pragma once` must be used instead of a "classic include guard":
 
 ```c++
 // examplewidget.h
