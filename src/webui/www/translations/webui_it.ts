@@ -653,7 +653,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Salta autenticazione per i client in localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Salta autenticazione per i client nelle sottoreti IP in lista bianca</translation>
     </message>
     <message>

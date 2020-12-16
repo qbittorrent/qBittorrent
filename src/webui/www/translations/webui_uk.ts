@@ -652,7 +652,7 @@
         <translation>Пропустити автентифікацію для клієнтів на цьому ж комп'ютері</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Пропустити автентифікацію для клієнтів із дозволених підмереж IP</translation>
     </message>
     <message>

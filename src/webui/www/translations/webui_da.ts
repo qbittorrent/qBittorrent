@@ -652,7 +652,7 @@
         <translation>Tilsidesæt godkendelse for klienter på localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Tilsidesæt godkendelse for klienter i hvidlistede IP-undernet</translation>
     </message>
     <message>

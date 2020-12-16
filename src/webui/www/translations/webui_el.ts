@@ -652,7 +652,7 @@
         <translation>Παράκαμψη πιστοποίησης για υπολογιστές-πελάτες σε localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Παράκαμψη πιστοποίησης για υπολογιστές-πελάτες σε υποδίκτυα στη λίστα επιτρεπόμενων IP</translation>
     </message>
     <message>

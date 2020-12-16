@@ -652,7 +652,7 @@
         <translation>Мінаваць аўтэнтыфікацыю кліентаў для localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Мінаваць аўтэнтыфікацыю кліентаў для дазволеных падсетак</translation>
     </message>
     <message>

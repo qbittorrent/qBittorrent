@@ -652,7 +652,7 @@
         <translation>Désactiver l'authentification pour localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Désactiver l'authentification pour les IP des clients de sous domaine autorisés</translation>
     </message>
     <message>

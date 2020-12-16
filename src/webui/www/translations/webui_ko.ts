@@ -652,7 +652,7 @@
         <translation>같은 망 클라이언트는 인증 안함</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>허용한 IP 하위망의 클라이언트는 인증 안 함</translation>
     </message>
     <message>

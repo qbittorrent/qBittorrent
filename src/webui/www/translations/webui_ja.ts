@@ -652,7 +652,7 @@
         <translation>ローカルホストではクライアントの認証を行わない</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>ホワイトリストに登録された IP サブネットのクライアントは認証を行わない</translation>
     </message>
     <message>

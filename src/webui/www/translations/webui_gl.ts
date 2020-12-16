@@ -653,7 +653,7 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Omitir autenticación para clientes no servidor local</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Omitir a autenticación para clientes nas subredes con IP incluídas na lista branca</translation>
     </message>
     <message>

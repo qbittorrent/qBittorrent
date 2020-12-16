@@ -653,7 +653,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Evita l'autenticació per als clients en l'amfitrió local</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Evita l'autenticació per als clients en subxarxes en la llista blanca</translation>
     </message>
     <message>

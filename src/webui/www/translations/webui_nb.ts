@@ -652,7 +652,7 @@
         <translation>Omgå autentisering for klienter på lokalvert</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Omgå autentisering for klienter i hvitlistede IP-subnett</translation>
     </message>
     <message>

@@ -652,7 +652,7 @@
         <translation>עקוף אימות עבור לקוחות על localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>עקוף אימות עבור לקוחות אשר בתת-רשתות IP ברשימה לבנה</translation>
     </message>
     <message>

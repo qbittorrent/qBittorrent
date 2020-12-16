@@ -652,7 +652,7 @@
         <translation>Igaropen egiaztapena tokiko-hostalariko berezoentzat</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Igaropen egiaztapena IP azpisare zerrenda-zuriko berezoentzat</translation>
     </message>
     <message>

@@ -652,7 +652,7 @@
         <translation>在本機上跳過客戶端驗證</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>在已在白名單中的 IP 子網跳過驗證</translation>
     </message>
     <message>

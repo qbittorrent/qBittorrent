@@ -652,7 +652,7 @@
         <translation>Kringgå autentisering för klienter på localhost</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Kringgå autentisering för klienter i vitlistade IP-subnät</translation>
     </message>
     <message>

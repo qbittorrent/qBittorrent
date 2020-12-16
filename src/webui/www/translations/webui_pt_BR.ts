@@ -652,7 +652,7 @@
         <translation>Ignorar autenticação para clientes no host local</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Ignorar autenticação para clientes em sub-redes IP da lista branca</translation>
     </message>
     <message>

@@ -652,7 +652,7 @@
         <translation>Apeiti atpažinimą klientams, esantiems vietiniame serveryje</translation>
     </message>
     <message>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Apeiti atpažinimą klientams, kurie yra IP potinklių baltajame sąraše</translation>
     </message>
     <message>
