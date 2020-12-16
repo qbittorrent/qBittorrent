@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[qbittorrent.qbittorrent_master]
+[qbittorrent.qbittorrent_main]
 file_filter = src/lang/qbittorrent_<lang>.ts
 lang_map = pt: pt_PT
 source_file = src/lang/qbittorrent_en.ts
@@ -10,7 +10,7 @@ type = QT
 minimum_perc = 23
 mode = developer
 
-[qbittorrent.qbittorrentdesktop_master]
+[qbittorrent.qbittorrentdesktop_main]
 source_file = dist/unix/org.qbittorrent.qBittorrent.desktop
 source_lang = en
 type = DESKTOP

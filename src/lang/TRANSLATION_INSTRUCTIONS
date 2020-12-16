@@ -21,7 +21,7 @@ The examples use the tx app on Windows. Other OSs should be similar.
 Note: This will also pull updated translations if you haven't already 'tx pull'.
 
 ===Updating the qBittorrent.desktop file===
-1. In the root folder of the project just run "tx pull -s -r qbittorrent.qbittorrentdesktop_master"
+1. In the root folder of the project just run "tx pull -s -r qbittorrent.qbittorrentdesktop_main"
 2. Commit to git
 
 It will pull the source file (en). However, in this case .desktop files contain all other translations
@@ -29,7 +29,7 @@ when you pull the source file.
 
 ===When making new branch===
 1. Switch to new branch
-2. Edit the .tx.config file. You should change the resource for the qbt translations from 'qbittorrent.qbittorrent_master'
+2. Edit the .tx.config file. You should change the resource for the qbt translations from 'qbittorrent.qbittorrent_main'
    to eg 'qbittorrent.qbittorrent_v3_1_x'. It follows this spec: <project>.<resource_slug>_<branchname>'
 3. Commit to git
 4. Use this command to create the new resource on the server and push the translations files "tx push -s -t"

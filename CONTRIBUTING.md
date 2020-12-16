@@ -207,7 +207,7 @@ Following these guidelines helps maintainers and the community understand your s
 
 [astyle-script-url]: https://gist.github.com/Chocobo1/539cee860d1eef0acfa6
 [attachments-howto-url]: https://help.github.com/articles/file-attachments-on-issues-and-pull-requests
-[coding-guidelines-url]: https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md
+[coding-guidelines-url]: https://github.com/qbittorrent/qBittorrent/blob/main/CODING_GUIDELINES.md
 [coding-guidelines-thread-url]: https://github.com/qbittorrent/qBittorrent/issues/2192
 [commit-message-fix-issue-example-url]: https://github.com/qbittorrent/qBittorrent/commit/c07cd440cd46345297debb47cb260f8688975f50
 [forum-url]: http://forum.qbittorrent.org/
@@ -216,6 +216,6 @@ Following these guidelines helps maintainers and the community understand your s
 [python-url]: https://www.python.org/
 [releases-url]: https://github.com/qbittorrent/qBittorrent/releases
 [search-plugins-url]: https://github.com/qbittorrent/search-plugins
-[uncrustify-script-url]: https://raw.githubusercontent.com/qbittorrent/qBittorrent/master/uncrustify.cfg
+[uncrustify-script-url]: https://raw.githubusercontent.com/qbittorrent/qBittorrent/main/uncrustify.cfg
 [wiki-url]: https://github.com/qbittorrent/qBittorrent/wiki
 [builds-url]: https://sourceforge.net/projects/qbittorrent/files/
