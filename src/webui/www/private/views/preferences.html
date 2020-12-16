@@ -771,11 +771,11 @@
                 <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for clients on localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <div class="formRow">
-                <input type="checkbox" id="bypass_auth_subnet_whitelist_checkbox" onclick="qBittorrent.Preferences.updateBypasssAuthSettings();" />
-                <label for="bypass_auth_subnet_whitelist_checkbox">QBT_TR(Bypass authentication for clients in whitelisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="checkbox" id="bypass_auth_subnet_allowlist_checkbox" onclick="qBittorrent.Preferences.updateBypasssAuthSettings();" />
+                <label for="bypass_auth_subnet_allowlist_checkbox">QBT_TR(Bypass authentication for clients in allowlisted IP subnets)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <div class="formRow" style="padding-left: 30px; padding-top: 5px;">
-                <textarea id="bypass_auth_subnet_whitelist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
+                <textarea id="bypass_auth_subnet_allowlist_textarea" rows="5" cols="48" placeholder="Example: 172.17.32.0/24, fdff:ffff:c8::/40"></textarea>
             </div>
             <table>
                 <tr>
@@ -1487,8 +1487,8 @@
         };
 
         const updateBypasssAuthSettings = function() {
-            const isBypassAuthSubnetWhitelistEnabled = $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked');
-            $('bypass_auth_subnet_whitelist_textarea').setProperty('disabled', !isBypassAuthSubnetWhitelistEnabled);
+            const isBypassAuthSubnetAllowlistEnabled = $('bypass_auth_subnet_allowlist_checkbox').getProperty('checked');
+            $('bypass_auth_subnet_allowlist_textarea').setProperty('disabled', !isBypassAuthSubnetAllowlistEnabled);
         };
 
         const updateAlternativeWebUISettings = function() {
@@ -1845,8 +1845,8 @@
                         // Authentication
                         $('webui_username_text').setProperty('value', pref.web_ui_username);
                         $('bypass_local_auth_checkbox').setProperty('checked', pref.bypass_local_auth);
-                        $('bypass_auth_subnet_whitelist_checkbox').setProperty('checked', pref.bypass_auth_subnet_whitelist_enabled);
-                        $('bypass_auth_subnet_whitelist_textarea').setProperty('value', pref.bypass_auth_subnet_whitelist);
+                        $('bypass_auth_subnet_allowlist_checkbox').setProperty('checked', pref.bypass_auth_subnet_allowlist_enabled);
+                        $('bypass_auth_subnet_allowlist_textarea').setProperty('value', pref.bypass_auth_subnet_allowlist);
                         updateBypasssAuthSettings();
                         $('webUIMaxAuthFailCountInput').setProperty('value', pref.web_ui_max_auth_fail_count.toInt());
                         $('webUIBanDurationInput').setProperty('value', pref.web_ui_ban_duration.toInt());
@@ -2231,8 +2231,8 @@
             if (web_ui_password.length > 0)
                 settings.set('web_ui_password', web_ui_password);
             settings.set('bypass_local_auth', $('bypass_local_auth_checkbox').getProperty('checked'));
-            settings.set('bypass_auth_subnet_whitelist_enabled', $('bypass_auth_subnet_whitelist_checkbox').getProperty('checked'));
-            settings.set('bypass_auth_subnet_whitelist', $('bypass_auth_subnet_whitelist_textarea').getProperty('value'));
+            settings.set('bypass_auth_subnet_allowlist_enabled', $('bypass_auth_subnet_allowlist_checkbox').getProperty('checked'));
+            settings.set('bypass_auth_subnet_allowlist', $('bypass_auth_subnet_allowlist_textarea').getProperty('value'));
             settings.set('web_ui_max_auth_fail_count', $('webUIMaxAuthFailCountInput').getProperty('value'));
             settings.set('web_ui_ban_duration', $('webUIBanDurationInput').getProperty('value'));
             settings.set('web_ui_session_timeout', $('webUISessionTimeoutInput').getProperty('value'));

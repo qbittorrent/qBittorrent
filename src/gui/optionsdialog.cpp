@@ -61,7 +61,7 @@
 #include "advancedsettings.h"
 #include "app/application.h"
 #include "banlistoptionsdialog.h"
-#include "ipsubnetwhitelistoptionsdialog.h"
+#include "ipsubnetallowlistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
 #include "ui_optionsdialog.h"
@@ -493,8 +493,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, m_ui->IPSubnetWhitelistButton, &QPushButton::setEnabled);
+    connect(m_ui->checkBypassAuthSubnetAllowlist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBypassAuthSubnetAllowlist, &QAbstractButton::toggled, m_ui->IPSubnetAllowlistButton, &QPushButton::setEnabled);
     connect(m_ui->spinBanCounter, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinBanDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSessionTimeout, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -870,7 +870,7 @@ void OptionsDialog::saveOptions()
         if (!webUiPassword().isEmpty())
             pref->setWebUIPassword(Utils::Password::PBKDF2::generate(webUiPassword()));
         pref->setWebUiLocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
-        pref->setWebUiAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
+        pref->setWebUiAuthSubnetAllowlistEnabled(m_ui->checkBypassAuthSubnetAllowlist->isChecked());
         // Security
         pref->setWebUiClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
         pref->setWebUiCSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());
@@ -1267,8 +1267,8 @@ void OptionsDialog::loadOptions()
     webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath(), ShowError::NotShow);
     m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
-    m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
-    m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
+    m_ui->checkBypassAuthSubnetAllowlist->setChecked(pref->isWebUiAuthSubnetAllowlistEnabled());
+    m_ui->IPSubnetAllowlistButton->setEnabled(m_ui->checkBypassAuthSubnetAllowlist->isChecked());
     m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinBanDuration->setValue(pref->getWebUIBanDuration().count());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
@@ -1882,9 +1882,9 @@ void OptionsDialog::on_banListButton_clicked()
     dialog->open();
 }
 
-void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
+void OptionsDialog::on_IPSubnetAllowlistButton_clicked()
 {
-    auto dialog = new IPSubnetWhitelistOptionsDialog(this);
+    auto dialog = new IPSubnetAllowlistOptionsDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
     dialog->open();

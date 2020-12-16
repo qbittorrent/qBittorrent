@@ -17,7 +17,7 @@ HEADERS += \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
     $$PWD/hidabletabwidget.h \
-    $$PWD/ipsubnetwhitelistoptionsdialog.h \
+    $$PWD/ipsubnetallowlistoptionsdialog.h \
     $$PWD/lineedit.h \
     $$PWD/log/logfiltermodel.h \
     $$PWD/log/loglistview.h \
@@ -97,7 +97,7 @@ SOURCES += \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
     $$PWD/hidabletabwidget.cpp \
-    $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
+    $$PWD/ipsubnetallowlistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
     $$PWD/log/logfiltermodel.cpp \
     $$PWD/log/loglistview.cpp \
@@ -189,7 +189,7 @@ FORMS += \
     $$PWD/deletionconfirmationdialog.ui \
     $$PWD/downloadfromurldialog.ui \
     $$PWD/executionlogwidget.ui \
-    $$PWD/ipsubnetwhitelistoptionsdialog.ui \
+    $$PWD/ipsubnetallowlistoptionsdialog.ui \
     $$PWD/mainwindow.ui \
     $$PWD/optionsdialog.ui \
     $$PWD/previewselectdialog.ui \

@@ -351,8 +351,8 @@ void WebApplication::configure()
     }
 
     m_isLocalAuthEnabled = pref->isWebUiLocalAuthEnabled();
-    m_isAuthSubnetWhitelistEnabled = pref->isWebUiAuthSubnetWhitelistEnabled();
-    m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
+    m_isAuthSubnetAllowlistEnabled = pref->isWebUiAuthSubnetAllowlistEnabled();
+    m_authSubnetAllowlist = pref->getWebUiAuthSubnetAllowlist();
     m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(';', QString::SkipEmptyParts);
@@ -568,7 +568,7 @@ bool WebApplication::isAuthNeeded()
 {
     if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_env.clientAddress))
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_env.clientAddress, m_authSubnetWhitelist))
+    if (m_isAuthSubnetAllowlistEnabled && Utils::Net::isIPInRange(m_env.clientAddress, m_authSubnetAllowlist))
         return false;
     return true;
 }

@@ -6,7 +6,7 @@ skip_tags: true
 image: Visual Studio 2017
 
 branches:
-  except:  # blacklist
+  except:  # excludelist
     - coverity_scan
 
 environment:

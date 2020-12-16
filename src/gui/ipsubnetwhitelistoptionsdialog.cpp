@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-#include "ipsubnetwhitelistoptionsdialog.h"
+#include "ipsubnetallowlistoptionsdialog.h"
 
 #include <QMessageBox>
 #include <QSortFilterProxyModel>
@@ -35,38 +35,38 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/utils/net.h"
-#include "ui_ipsubnetwhitelistoptionsdialog.h"
+#include "ui_ipsubnetallowlistoptionsdialog.h"
 #include "utils.h"
 
-IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
+IPSubnetAllowlistOptionsDialog::IPSubnetAllowlistOptionsDialog(QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::IPSubnetWhitelistOptionsDialog)
+    , m_ui(new Ui::IPSubnetAllowlistOptionsDialog)
     , m_modified(false)
 {
     m_ui->setupUi(this);
 
-    QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : asConst(Preferences::instance()->getWebUiAuthSubnetWhitelist()))
-        authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
-    m_model = new QStringListModel(authSubnetWhitelistStringList, this);
+    QStringList authSubnetAllowlistStringList;
+    for (const Utils::Net::Subnet &subnet : asConst(Preferences::instance()->getWebUiAuthSubnetAllowlist()))
+        authSubnetAllowlistStringList << Utils::Net::subnetToString(subnet);
+    m_model = new QStringListModel(authSubnetAllowlistStringList, this);
 
     m_sortFilter = new QSortFilterProxyModel(this);
     m_sortFilter->setDynamicSortFilter(true);
     m_sortFilter->setSourceModel(m_model);
 
-    m_ui->whitelistedIPSubnetList->setModel(m_sortFilter);
-    m_ui->whitelistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
-    m_ui->buttonWhitelistIPSubnet->setEnabled(false);
+    m_ui->allowlistedIPSubnetList->setModel(m_sortFilter);
+    m_ui->allowlistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
+    m_ui->buttonAllowlistIPSubnet->setEnabled(false);
 
     Utils::Gui::resize(this);
 }
 
-IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()
+IPSubnetAllowlistOptionsDialog::~IPSubnetAllowlistOptionsDialog()
 {
     delete m_ui;
 }
 
-void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
+void IPSubnetAllowlistOptionsDialog::on_buttonBox_accepted()
 {
     if (m_modified)
     {
@@ -75,7 +75,7 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
         // Operate on the m_sortFilter to grab the strings in sorted order
         for (int i = 0; i < m_sortFilter->rowCount(); ++i)
             subnets.append(m_sortFilter->index(i, 0).data().toString());
-        Preferences::instance()->setWebUiAuthSubnetWhitelist(subnets);
+        Preferences::instance()->setWebUiAuthSubnetAllowlist(subnets);
         QDialog::accept();
     }
     else
@@ -84,7 +84,7 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
     }
 }
 
-void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
+void IPSubnetAllowlistOptionsDialog::on_buttonAllowlistIPSubnet_clicked()
 {
     bool ok = false;
     const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text(), &ok);
@@ -100,15 +100,15 @@ void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
     m_modified = true;
 }
 
-void IPSubnetWhitelistOptionsDialog::on_buttonDeleteIPSubnet_clicked()
+void IPSubnetAllowlistOptionsDialog::on_buttonDeleteIPSubnet_clicked()
 {
-    for (const auto &i : asConst(m_ui->whitelistedIPSubnetList->selectionModel()->selectedIndexes()))
+    for (const auto &i : asConst(m_ui->allowlistedIPSubnetList->selectionModel()->selectedIndexes()))
         m_sortFilter->removeRow(i.row());
 
     m_modified = true;
 }
 
-void IPSubnetWhitelistOptionsDialog::on_txtIPSubnet_textChanged(const QString &subnetStr)
+void IPSubnetAllowlistOptionsDialog::on_txtIPSubnet_textChanged(const QString &subnetStr)
 {
-    m_ui->buttonWhitelistIPSubnet->setEnabled(Utils::Net::canParseSubnet(subnetStr));
+    m_ui->buttonAllowlistIPSubnet->setEnabled(Utils::Net::canParseSubnet(subnetStr));
 }

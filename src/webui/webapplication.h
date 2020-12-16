@@ -145,8 +145,8 @@ private:
     bool m_translationFileLoaded = false;
 
     bool m_isLocalAuthEnabled;
-    bool m_isAuthSubnetWhitelistEnabled;
-    QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
+    bool m_isAuthSubnetAllowlistEnabled;
+    QVector<Utils::Net::Subnet> m_authSubnetAllowlist;
     int m_sessionTimeout;
 
     // security related

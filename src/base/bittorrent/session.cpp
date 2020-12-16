@@ -4836,7 +4836,7 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
               , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
             .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 
-    // Force reannounce on all torrents because some trackers blacklist some ports
+    // Force reannounce on all torrents because some trackers blocklist some ports
     for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
         torrent.force_reannounce();
 }

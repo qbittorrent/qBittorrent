@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>IPSubnetWhitelistOptionsDialog</class>
- <widget class="QDialog" name="IPSubnetWhitelistOptionsDialog">
+ <class>IPSubnetAllowlistOptionsDialog</class>
+ <widget class="QDialog" name="IPSubnetAllowlistOptionsDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,11 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>List of whitelisted IP subnets</string>
+   <string>List of allowlisted IP subnets</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QFrame" name="whitelistedIPSubnetBox">
+    <widget class="QFrame" name="allowlistedIPSubnetBox">
      <property name="autoFillBackground">
       <bool>true</bool>
      </property>
@@ -27,7 +27,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_31">
       <item>
-       <widget class="QTreeView" name="whitelistedIPSubnetList">
+       <widget class="QTreeView" name="allowlistedIPSubnetList">
         <property name="rootIsDecorated">
          <bool>false</bool>
         </property>
@@ -59,7 +59,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_12">
         <item>
-         <widget class="QPushButton" name="buttonWhitelistIPSubnet">
+         <widget class="QPushButton" name="buttonAllowlistIPSubnet">
           <property name="text">
            <string>Add subnet</string>
           </property>
@@ -87,9 +87,9 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>whitelistedIPSubnetList</tabstop>
+  <tabstop>allowlistedIPSubnetList</tabstop>
   <tabstop>txtIPSubnet</tabstop>
-  <tabstop>buttonWhitelistIPSubnet</tabstop>
+  <tabstop>buttonAllowlistIPSubnet</tabstop>
   <tabstop>buttonDeleteIPSubnet</tabstop>
  </tabstops>
  <resources/>
@@ -97,7 +97,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>IPSubnetWhitelistOptionsDialog</receiver>
+   <receiver>IPSubnetAllowlistOptionsDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

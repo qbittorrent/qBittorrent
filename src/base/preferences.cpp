@@ -516,19 +516,19 @@ void Preferences::setWebUiLocalAuthEnabled(const bool enabled)
     setValue("Preferences/WebUI/LocalHostAuth", enabled);
 }
 
-bool Preferences::isWebUiAuthSubnetWhitelistEnabled() const
+bool Preferences::isWebUiAuthSubnetAllowlistEnabled() const
 {
-    return value("Preferences/WebUI/AuthSubnetWhitelistEnabled", false).toBool();
+    return value("Preferences/WebUI/AuthSubnetAllowlistEnabled", false).toBool();
 }
 
-void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
+void Preferences::setWebUiAuthSubnetAllowlistEnabled(const bool enabled)
 {
-    setValue("Preferences/WebUI/AuthSubnetWhitelistEnabled", enabled);
+    setValue("Preferences/WebUI/AuthSubnetAllowlistEnabled", enabled);
 }
 
-QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
+QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetAllowlist() const
 {
-    const QStringList subnets = value("Preferences/WebUI/AuthSubnetWhitelist").toStringList();
+    const QStringList subnets = value("Preferences/WebUI/AuthSubnetAllowlist").toStringList();
 
     QVector<Utils::Net::Subnet> ret;
     ret.reserve(subnets.size());
@@ -544,7 +544,7 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
     return ret;
 }
 
-void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
+void Preferences::setWebUiAuthSubnetAllowlist(QStringList subnets)
 {
     Algorithm::removeIf(subnets, [](const QString &subnet)
     {
@@ -553,7 +553,7 @@ void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
         return !ok;
     });
 
-    setValue("Preferences/WebUI/AuthSubnetWhitelist", subnets);
+    setValue("Preferences/WebUI/AuthSubnetAllowlist", subnets);
 }
 
 QString Preferences::getServerDomains() const

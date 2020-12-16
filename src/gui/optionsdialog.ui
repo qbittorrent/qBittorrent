@@ -3015,14 +3015,14 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                    </widget>
                   </item>
                   <item>
-                   <widget class="QCheckBox" name="checkBypassAuthSubnetWhitelist">
+                   <widget class="QCheckBox" name="checkBypassAuthSubnetAllowlist">
                     <property name="text">
-                     <string>Bypass authentication for clients in whitelisted IP subnets</string>
+                     <string>Bypass authentication for clients in allowlisted IP subnets</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="IPSubnetWhitelistButton">
+                   <widget class="QPushButton" name="IPSubnetAllowlistButton">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                       <horstretch>0</horstretch>
@@ -3030,7 +3030,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                      </sizepolicy>
                     </property>
                     <property name="text">
-                     <string>IP subnet whitelist...</string>
+                     <string>IP subnet allowlist...</string>
                     </property>
                    </widget>
                   </item>
@@ -3204,7 +3204,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                        <item>
                         <widget class="QLineEdit" name="textServerDomains">
                          <property name="toolTip">
-                          <string>Whitelist for filtering HTTP Host header values.
+                          <string>Allowlist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -3495,8 +3495,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkWebUIUPnP</tabstop>
   <tabstop>checkWebUiHttps</tabstop>
   <tabstop>checkBypassLocalAuth</tabstop>
-  <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
-  <tabstop>IPSubnetWhitelistButton</tabstop>
+  <tabstop>checkBypassAuthSubnetAllowlist</tabstop>
+  <tabstop>IPSubnetAllowlistButton</tabstop>
   <tabstop>checkDynDNS</tabstop>
   <tabstop>comboDNSService</tabstop>
   <tabstop>registerDNSBtn</tabstop>

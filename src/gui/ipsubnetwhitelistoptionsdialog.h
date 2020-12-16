@@ -35,26 +35,26 @@ class QStringListModel;
 
 namespace Ui
 {
-    class IPSubnetWhitelistOptionsDialog;
+    class IPSubnetAllowlistOptionsDialog;
 }
 
-class IPSubnetWhitelistOptionsDialog : public QDialog
+class IPSubnetAllowlistOptionsDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(IPSubnetWhitelistOptionsDialog)
+    Q_DISABLE_COPY(IPSubnetAllowlistOptionsDialog)
 
 public:
-    explicit IPSubnetWhitelistOptionsDialog(QWidget *parent = nullptr);
-    ~IPSubnetWhitelistOptionsDialog();
+    explicit IPSubnetAllowlistOptionsDialog(QWidget *parent = nullptr);
+    ~IPSubnetAllowlistOptionsDialog();
 
 private slots:
     void on_buttonBox_accepted();
-    void on_buttonWhitelistIPSubnet_clicked();
+    void on_buttonAllowlistIPSubnet_clicked();
     void on_buttonDeleteIPSubnet_clicked();
     void on_txtIPSubnet_textChanged(const QString &subnetStr);
 
 private:
-    Ui::IPSubnetWhitelistOptionsDialog *m_ui;
+    Ui::IPSubnetAllowlistOptionsDialog *m_ui;
     QStringListModel *m_model;
     QSortFilterProxyModel *m_sortFilter;
     bool m_modified;

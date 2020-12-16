@@ -229,11 +229,11 @@ void AppController::preferencesAction()
     // Authentication
     data["web_ui_username"] = pref->getWebUiUsername();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
-    data["bypass_auth_subnet_whitelist_enabled"] = pref->isWebUiAuthSubnetWhitelistEnabled();
-    QStringList authSubnetWhitelistStringList;
-    for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
-        authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
-    data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join('\n');
+    data["bypass_auth_subnet_allowlist_enabled"] = pref->isWebUiAuthSubnetAllowlistEnabled();
+    QStringList authSubnetAllowlistStringList;
+    for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetAllowlist()))
+        authSubnetAllowlistStringList << Utils::Net::subnetToString(subnet);
+    data["bypass_auth_subnet_allowlist"] = authSubnetAllowlistStringList.join('\n');
     data["web_ui_max_auth_fail_count"] = pref->getWebUIMaxAuthFailCount();
     data["web_ui_ban_duration"] = static_cast<int>(pref->getWebUIBanDuration().count());
     data["web_ui_session_timeout"] = pref->getWebUISessionTimeout();
@@ -632,12 +632,12 @@ void AppController::setPreferencesAction()
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
     if (hasKey("bypass_local_auth"))
         pref->setWebUiLocalAuthEnabled(!it.value().toBool());
-    if (hasKey("bypass_auth_subnet_whitelist_enabled"))
-        pref->setWebUiAuthSubnetWhitelistEnabled(it.value().toBool());
-    if (hasKey("bypass_auth_subnet_whitelist"))
+    if (hasKey("bypass_auth_subnet_allowlist_enabled"))
+        pref->setWebUiAuthSubnetAllowlistEnabled(it.value().toBool());
+    if (hasKey("bypass_auth_subnet_allowlist"))
     {
         // recognize new lines and commas as delimiters
-        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
+        pref->setWebUiAuthSubnetAllowlist(it.value().toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
     }
     if (hasKey("web_ui_max_auth_fail_count"))
         pref->setWebUIMaxAuthFailCount(it.value().toInt());
