@@ -2392,34 +2392,34 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.01.01 und 01.01.2017 (Datums-Form
     </message>
 </context>
 <context>
-    <name>IPSubnetWhitelistOptionsDialog</name>
+    <name>IPSubnetAllowlistOptionsDialog</name>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
-        <source>List of whitelisted IP subnets</source>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="14"/>
+        <source>List of allowlisted IP subnets</source>
         <translation>Liste der erlaubten IP-Subnets</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="53"/>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation>Beispiel: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>Subnet hinzufügen</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>The entered subnet is invalid.</source>
         <translation>Das eingegebene Subnet ist ungültig.</translation>
     </message>
@@ -4908,7 +4908,7 @@ Eingabe einer IPv4 oder IPv6-Adresse. Es kann &quot;0.0.0.0&quot; für jede IPv4
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3207"/>
-        <source>Whitelist for filtering HTTP Host header values.
+        <source>Allowlist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -4933,12 +4933,12 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3020"/>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Authentifizierung für Clients auf der Liste der erlaubten IP-Subnets umgehen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3033"/>
-        <source>IP subnet whitelist...</source>
+        <source>IP subnet allowlist...</source>
         <translation>Erlaubte IP-Subnets ...</translation>
     </message>
     <message>

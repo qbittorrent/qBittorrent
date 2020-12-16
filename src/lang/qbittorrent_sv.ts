@@ -2392,34 +2392,34 @@ Stöder formaten: S01E01, 1x1, 2017.01.01 och 01.01.2017 (datumformat stöder oc
     </message>
 </context>
 <context>
-    <name>IPSubnetWhitelistOptionsDialog</name>
+    <name>IPSubnetAllowlistOptionsDialog</name>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
-        <source>List of whitelisted IP subnets</source>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="14"/>
+        <source>List of allowlisted IP subnets</source>
         <translation>Lista över vitlistade IP-subnät</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="53"/>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation>Exempel: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>Lägg till delnät</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>The entered subnet is invalid.</source>
         <translation>Det angivna delnätet är ogiltigt.</translation>
     </message>
@@ -4909,7 +4909,7 @@ Ange en IPv4- eller IPv6-adress. Du kan ange &quot;0.0.0.0&quot; för någon IPv
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3207"/>
-        <source>Whitelist for filtering HTTP Host header values.
+        <source>Allowlist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -4932,12 +4932,12 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3020"/>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Kringgå autentisering för klienter i vitlistade IP-subnät</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3033"/>
-        <source>IP subnet whitelist...</source>
+        <source>IP subnet allowlist...</source>
         <translation>IP-delnätvitlista...</translation>
     </message>
     <message>

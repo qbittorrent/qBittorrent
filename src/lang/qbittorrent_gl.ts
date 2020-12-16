@@ -2394,34 +2394,34 @@ Erro de proxy SOCKS5. Mensaxe: %1</translation>
     </message>
 </context>
 <context>
-    <name>IPSubnetWhitelistOptionsDialog</name>
+    <name>IPSubnetAllowlistOptionsDialog</name>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
-        <source>List of whitelisted IP subnets</source>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="14"/>
+        <source>List of allowlisted IP subnets</source>
         <translation>Lista de subredes con IP incluídas na lista branca</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="53"/>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation>Exemplo: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>Engadir subrede</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>The entered subnet is invalid.</source>
         <translation>A subrede introducida non é válida.</translation>
     </message>
@@ -4912,7 +4912,7 @@ IPv6 ou «*» para ambos os IPv4 e IPv6.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3207"/>
-        <source>Whitelist for filtering HTTP Host header values.
+        <source>Allowlist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -4935,12 +4935,12 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3020"/>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Omitir a autenticación para clientes nas subredes con IP incluídas na lista branca</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3033"/>
-        <source>IP subnet whitelist...</source>
+        <source>IP subnet allowlist...</source>
         <translation>Lista branca de subredes con IP...</translation>
     </message>
     <message>

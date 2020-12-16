@@ -2393,34 +2393,34 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>IPSubnetWhitelistOptionsDialog</name>
+    <name>IPSubnetAllowlistOptionsDialog</name>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
-        <source>List of whitelisted IP subnets</source>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="14"/>
+        <source>List of allowlisted IP subnets</source>
         <translation>허용된 IP 하위망 목록</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="53"/>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation>예: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>하위망 추가</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>오류</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>The entered subnet is invalid.</source>
         <translation>입력한 하위망이 올바르지 않습니다.</translation>
     </message>
@@ -4906,7 +4906,7 @@ IPv4나 IPV6 주소를 지정하세요. IPv4 주소에 &quot;0.0.0.0&quot;을, I
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3207"/>
-        <source>Whitelist for filtering HTTP Host header values.
+        <source>Allowlist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -4929,12 +4929,12 @@ DNS 재결합 공격을 방어하기 위해,
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3020"/>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>허용한 IP 하위망의 클라이언트는 인증 안 함</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3033"/>
-        <source>IP subnet whitelist...</source>
+        <source>IP subnet allowlist...</source>
         <translation>IP 하위망 허용 목록</translation>
     </message>
     <message>

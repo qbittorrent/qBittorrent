@@ -2392,34 +2392,34 @@ Sokong format: S01E01, 1x1, 2017.01.01 dan 01.01.2017 (Format tarikh juga disoko
     </message>
 </context>
 <context>
-    <name>IPSubnetWhitelistOptionsDialog</name>
+    <name>IPSubnetAllowlistOptionsDialog</name>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
-        <source>List of whitelisted IP subnets</source>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="14"/>
+        <source>List of allowlisted IP subnets</source>
         <translation>Senarai subnet IP tersenarai putih</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="53"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="53"/>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation>Contoh: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="64"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="64"/>
         <source>Add subnet</source>
         <translation>Tambah subnet</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
         <translation>Padam</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>Error</source>
         <translation>Ralat</translation>
     </message>
     <message>
-        <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="93"/>
+        <location filename="../gui/ipsubnetallowlistoptionsdialog.cpp" line="93"/>
         <source>The entered subnet is invalid.</source>
         <translation>Subnet yang dimasukkan tidak sah.</translation>
     </message>
@@ -4908,7 +4908,7 @@ Nyatakan satu alamat IPv4 atau IPv6. Anda boleh nyatakan &quot;0.0.0.0&quot; unt
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3207"/>
-        <source>Whitelist for filtering HTTP Host header values.
+        <source>Allowlist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -4931,12 +4931,12 @@ Guna &apos;;&apos; untuk asingkan masukan berbilang. Boleh guna kad liar &apos;*
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3020"/>
-        <source>Bypass authentication for clients in whitelisted IP subnets</source>
+        <source>Bypass authentication for clients in allowlisted IP subnets</source>
         <translation>Lepasi pengesahihan untuk klien dalam subnet IP tersenarai putih</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3033"/>
-        <source>IP subnet whitelist...</source>
+        <source>IP subnet allowlist...</source>
         <translation>Senarai putih subnet IP...</translation>
     </message>
     <message>
