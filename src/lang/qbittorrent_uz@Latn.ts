@@ -3194,7 +3194,7 @@ Uni o‘zingiz o‘rnating.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="215"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <source>Dynamic DNS error: qBittorrent was blocklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>O‘zgaruvchan DNS xatosi: qBittorrent xizmat tomonidan qora ro‘yxatga qo‘shilgan, kamchilik haqida http://bugs.qbittorrent.org manzilida xabar bering.</translation>
     </message>
     <message>

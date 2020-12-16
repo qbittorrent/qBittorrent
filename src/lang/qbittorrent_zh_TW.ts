@@ -3213,7 +3213,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="215"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <source>Dynamic DNS error: qBittorrent was blocklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>動態 DNS 錯誤：qBittorrent 被該服務封鎖了，請遞交這錯誤至 http://bugs.qbittorrent.org。</translation>
     </message>
     <message>

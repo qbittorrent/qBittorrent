@@ -3212,7 +3212,7 @@ Please install it manually.</source>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="215"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <source>Dynamic DNS error: qBittorrent was blocklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Σφάλμα δυναμικού DNS: Το qBittorrent έχει μπει σε λίστα ανεπιθύμητων από την υπηρεσία, παρακαλώ αναφέρετε το σφάλμα στο http://bugs.qbittorrent.org.</translation>
     </message>
     <message>

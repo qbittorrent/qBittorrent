@@ -3212,7 +3212,7 @@ Mesedez ezarri eskuz.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="215"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <source>Dynamic DNS error: qBittorrent was blocklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>DNS dinamiko akatsa: qBittorrent zerbitzuaren zerrenda-beltzean dago, mesedez jakinarazi matxura http://bugs.qbittorrent.org helbidean.</translation>
     </message>
     <message>

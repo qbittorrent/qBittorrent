@@ -3207,7 +3207,7 @@ Installer den venligst manuelt.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="215"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <source>Dynamic DNS error: qBittorrent was blocklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Fejl med dynamisk DNS: qBittorrent blev sortlistet af tjenesten. Rapportér venligst en fejl på http://bugs.qbittorrent.org.</translation>
     </message>
     <message>

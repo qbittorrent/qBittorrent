@@ -3202,7 +3202,7 @@ Namestite Python ročno.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="215"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
+        <source>Dynamic DNS error: qBittorrent was blocklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
         <translation>Napaka dinamičnega DNS-ja: qBittorrent je pristal na črnem seznamu storitve. Prijavite hrošča na http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
