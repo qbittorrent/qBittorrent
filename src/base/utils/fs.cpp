@@ -95,7 +95,7 @@ QString Utils::Fs::folderName(const QString &filePath)
     const QString path = toUniformPath(filePath);
     const int slashIndex = path.lastIndexOf('/');
     if (slashIndex == -1)
-        return path;
+        return {};
     return path.left(slashIndex);
 }
 
