@@ -1390,11 +1390,12 @@ void TorrentHandleImpl::moveStorage(const QString &newPath, const MoveStorageMod
     }
 }
 
-void TorrentHandleImpl::renameFile(const int index, const QString &name)
+void TorrentHandleImpl::renameFile(const int index, const QString &path)
 {
-    m_oldPath[lt::file_index_t {index}].push_back(filePath(index));
+    const QString oldPath = filePath(index);
+    m_oldPath[lt::file_index_t {index}].push_back(oldPath);
     ++m_renameCount;
-    m_nativeHandle.rename_file(lt::file_index_t {index}, Utils::Fs::toNativePath(name).toStdString());
+    m_nativeHandle.rename_file(lt::file_index_t {index}, Utils::Fs::toNativePath(path).toStdString());
 }
 
 void TorrentHandleImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
@@ -1811,7 +1812,7 @@ void TorrentHandleImpl::manageIncompleteFiles()
         QString name = filePath(i);
         if (isAppendExtensionEnabled && (fileSize(i) > 0) && (fp[i] < 1))
         {
-            if (!name.endsWith(QB_EXT))
+            if (!name.endsWith(QB_EXT, Qt::CaseInsensitive))
             {
                 const QString newName = name + QB_EXT;
                 qDebug() << "Renaming" << name << "to" << newName;
@@ -1820,7 +1821,7 @@ void TorrentHandleImpl::manageIncompleteFiles()
         }
         else
         {
-            if (name.endsWith(QB_EXT))
+            if (name.endsWith(QB_EXT, Qt::CaseInsensitive))
             {
                 const QString oldName = name;
                 name.chop(QB_EXT.size());

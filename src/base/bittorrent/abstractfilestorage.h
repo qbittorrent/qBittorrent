@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,26 +28,26 @@
 
 #pragma once
 
-#include <QTreeView>
+#include <QtGlobal>
+#include <QCoreApplication>
+
+class QString;
 
 namespace BitTorrent
 {
-    class AbstractFileStorage;
-    class TorrentHandle;
-    class TorrentInfo;
+    class AbstractFileStorage
+    {
+        Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
+
+    public:
+        virtual int filesCount() const = 0;
+        virtual QString filePath(int index) const = 0;
+        virtual QString fileName(int index) const = 0;
+        virtual qlonglong fileSize(int index) const = 0;
+
+        virtual void renameFile(int index, const QString &name) = 0;
+
+        void renameFile(const QString &oldPath, const QString &newPath);
+        void renameFolder(const QString &oldPath, const QString &newPath);
+    };
 }
-
-class TorrentContentTreeView final : public QTreeView
-{
-    Q_OBJECT
-    Q_DISABLE_COPY(TorrentContentTreeView)
-
-public:
-    explicit TorrentContentTreeView(QWidget *parent = nullptr);
-    void keyPressEvent(QKeyEvent *event) override;
-
-    void renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage);
-
-private:
-    QModelIndex currentNameCell();
-};
