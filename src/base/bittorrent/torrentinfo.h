@@ -34,6 +34,7 @@
 #include <QtContainerFwd>
 
 #include "base/indexrange.h"
+#include "abstractfilestorage.h"
 #include "torrentcontentlayout.h"
 
 class QByteArray;
@@ -46,7 +47,7 @@ namespace BitTorrent
     class InfoHash;
     class TrackerEntry;
 
-    class TorrentInfo
+    class TorrentInfo final : public AbstractFileStorage
     {
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
@@ -68,15 +69,15 @@ namespace BitTorrent
         QString comment() const;
         bool isPrivate() const;
         qlonglong totalSize() const;
-        int filesCount() const;
+        int filesCount() const override;
         int pieceLength() const;
         int pieceLength(int index) const;
         int piecesCount() const;
-        QString filePath(int index) const;
+        QString filePath(int index) const override;
         QStringList filePaths() const;
-        QString fileName(int index) const;
+        QString fileName(int index) const override;
         QString origFilePath(int index) const;
-        qlonglong fileSize(int index) const;
+        qlonglong fileSize(int index) const override;
         qlonglong fileOffset(int index) const;
         QVector<TrackerEntry> trackers() const;
         QVector<QUrl> urlSeeds() const;
@@ -91,7 +92,7 @@ namespace BitTorrent
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
 
-        void renameFile(int index, const QString &newPath);
+        void renameFile(int index, const QString &newPath) override;
 
         QString rootFolder() const;
         bool hasRootFolder() const;
