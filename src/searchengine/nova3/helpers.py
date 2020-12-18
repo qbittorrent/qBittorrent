@@ -33,13 +33,15 @@ import io
 import os
 import re
 import socket
-import socks
 import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
 
 # Some sites blocks default python User-agent
+from socks import socks
+from socks.proxy import Proxy
+
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0'
 headers = {'User-Agent': user_agent}
 # SOCKS5 Proxy support
@@ -48,9 +50,13 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
     m = re.match(r"^(?:(?P<username>[^:]+):(?P<password>[^@]+)@)?(?P<host>[^:]+):(?P<port>\w+)$",
                  proxy_str)
     if m is not None:
-        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, m.group('host'),
-                              int(m.group('port')), True, m.group('username'), m.group('password'))
-        socket.socket = socks.socksocket
+        socks.set_default_proxy(Proxy.PROXY_TYPE_SOCKS5,
+                                m.group('host'),
+                                int(m.group('port')),
+                                True,
+                                m.group('username'),
+                                m.group('password'))
+        socket.socket = socks.SockSocket
 
 
 def htmlentitydecode(s):
