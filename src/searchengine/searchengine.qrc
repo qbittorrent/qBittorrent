@@ -5,6 +5,8 @@
         <file>nova3/nova2dl.py</file>
         <file>nova3/novaprinter.py</file>
         <file>nova3/sgmllib3.py</file>
-        <file>nova3/socks.py</file>
+        <file>nova3/socks/socks.py</file>
+        <file>nova3/socks/proxy.py</file>
+        <file>nova3/socks/socks_error_mapping.py</file>
     </qresource>
 </RCC>

@@ -33,14 +33,11 @@ for tunneling connections through SOCKS proxies.
 """
 from socket import socket, AF_INET, SOCK_STREAM, inet_aton, error as socket_error, gethostbyname, inet_ntoa
 import struct
-
 from socks.proxy import Proxy
 from socks.socks_error_mapping import GeneralStatus, Socks5AuthStatus, Socks5Status, Socks4Status
 
 
 class ProxyError(Exception):
-
-    _error_map = None
 
     def __init__(self, code=None, status=None):
         if code and not status:
@@ -85,6 +82,7 @@ def set_default_proxy(proxytype=None, addr=None, port=None, rdns=True, username=
     unless explicitly changed.
     """
     Proxy.set_defaults(proxytype, addr, port, rdns, username, password)
+
 
 class SockSocket(socket):
     """SockSocket([family[, type[, proto]]]) -> socket object
@@ -184,7 +182,6 @@ class SockSocket(socket):
                 raise GeneralProxyError(1, GeneralStatus.BAD_DATA)
 
     def _authenticate(self):
-
         auth_str = "\x01" + chr(len(self.proxy.username)) + self.proxy.username \
         + chr(len(self.proxy.password)) + self.proxy.password
 
@@ -215,7 +212,6 @@ class SockSocket(socket):
         return request, ipaddr
 
     def _establish_socks5_connection(self, request):
-
         self.sendall(request)
         resp = self.__recvall(4)
 
@@ -352,7 +348,6 @@ class SockSocket(socket):
             self.close()
             raise HTTPError(http_status_code, http_error)
 
-
     def __negotiatesocks4(self, destaddr, destport):
         """__negotiatesocks4(self,destaddr,destport)
         Negotiates a connection through a SOCKS4 server.
@@ -366,7 +361,6 @@ class SockSocket(socket):
         boundaddr, boundport = self._establish_socks4_connection(req)
         self.__proxysockname = (boundaddr, boundport)
         self.__proxypeername = (inet_ntoa(ipaddr) if self.proxy.reverse_dns else destaddr, destport)
-
 
     def __negotiatehttp(self, destaddr, destport):
         """__negotiatehttp(self,destaddr,destport)
