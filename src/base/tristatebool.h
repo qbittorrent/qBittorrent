@@ -42,7 +42,7 @@ public:
         *this = boolean ? True : False;
     }
 
-    TriStateBool &operator=(const TriStateBool &other) = default;  // TODO: add constexpr when using C++17
+    constexpr TriStateBool &operator=(const TriStateBool &other) = default;
 
     explicit constexpr operator signed char() const
     {

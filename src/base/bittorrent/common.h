@@ -30,5 +30,4 @@
 
 #include <QString>
 
-// TODO: Make it inline in C++17
-extern const QString QB_EXT;
+inline const QString QB_EXT {QStringLiteral(".!qB")};

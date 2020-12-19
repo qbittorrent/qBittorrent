@@ -20,22 +20,11 @@ macro(qbt_common_config)
 
     add_library(qbt_common_cfg INTERFACE)
 
-    # Full C++ 14 support is required
+    # Full C++ 17 support is required
     # See also https://cmake.org/cmake/help/latest/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html
     # for a breakdown of the features that CMake recognizes for each C++ standard
     target_compile_features(qbt_common_cfg INTERFACE
-        cxx_std_14
-        cxx_aggregate_default_initializers
-        cxx_attribute_deprecated
-        cxx_binary_literals
-        cxx_contextual_conversions
-        cxx_decltype_auto
-        cxx_digit_separators
-        cxx_generic_lambdas
-        cxx_lambda_init_captures
-        cxx_relaxed_constexpr
-        cxx_return_type_deduction
-        cxx_variable_templates
+        cxx_std_17
     )
 
     set(QBT_PROJECT_VERSION "${qBittorrent_VERSION_MAJOR}.${qBittorrent_VERSION_MINOR}.${qBittorrent_VERSION_PATCH}")

@@ -73,20 +73,20 @@ namespace Utils
 
         QString join(const QVector<QStringRef> &strings, const QString &separator);
 
-        template <typename T, typename std::enable_if_t<std::is_enum<T>::value, int> = 0>
+        template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
         QString fromEnum(const T &value)
         {
-            static_assert(std::is_same<int, typename std::underlying_type_t<T>>::value,
+            static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
                           "Enumeration underlying type has to be int.");
 
             const auto metaEnum = QMetaEnum::fromType<T>();
             return QString::fromLatin1(metaEnum.valueToKey(static_cast<int>(value)));
         }
 
-        template <typename T, typename std::enable_if_t<std::is_enum<T>::value, int> = 0>
+        template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
         T toEnum(const QString &serializedValue, const T &defaultValue)
         {
-            static_assert(std::is_same<int, typename std::underlying_type_t<T>>::value,
+            static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
                           "Enumeration underlying type has to be int.");
 
             const auto metaEnum = QMetaEnum::fromType<T>();

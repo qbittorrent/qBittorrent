@@ -37,15 +37,15 @@ AC_DEFUN([FIND_QTDBUS],
                          HAVE_QTDBUS=[false]])
 ])
 
-# DETECT_CPP14_PROGRAM()
-# Detects if at least C++14 mode is enabled.
+# DETECT_CPP17_PROGRAM()
+# Detects if at least C++17 mode is enabled.
 # --------------------------------------
-AC_DEFUN([DETECT_CPP14_PROGRAM],
+AC_DEFUN([DETECT_CPP17_PROGRAM],
        [AC_LANG_PROGRAM([[
             #ifndef __cplusplus
             #error "This is not a C++ compiler"
-            #elif __cplusplus < 201402L
-            #error "This is not a C++14 compiler"
+            #elif __cplusplus < 201703L
+            #error "This is not a C++17 compiler"
             #endif]],
             [[]])
 ])

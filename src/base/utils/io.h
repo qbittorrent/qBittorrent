@@ -49,10 +49,21 @@ namespace Utils
 
             // mimic std::ostream_iterator behavior
             FileDeviceOutputIterator &operator=(char c);
-            // TODO: make these `constexpr` in C++17
-            FileDeviceOutputIterator &operator*();
-            FileDeviceOutputIterator &operator++();
-            FileDeviceOutputIterator &operator++(int);
+
+            constexpr FileDeviceOutputIterator &operator*()
+            {
+                return *this;
+            }
+
+            constexpr FileDeviceOutputIterator &operator++()
+            {
+                return *this;
+            }
+
+            constexpr FileDeviceOutputIterator &operator++(int)
+            {
+                return *this;
+            }
 
         private:
             QFileDevice *m_device;
