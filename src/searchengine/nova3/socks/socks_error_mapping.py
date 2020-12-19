@@ -127,5 +127,3 @@ class Socks4Status(BaseStatus):
 
 class Status(GeneralStatus, Socks5Status, Socks5AuthStatus, Socks4Status):
     MAP = None
-
-
