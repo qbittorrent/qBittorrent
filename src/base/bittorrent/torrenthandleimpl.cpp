@@ -69,8 +69,6 @@
 #include "session.h"
 #include "trackerentry.h"
 
-const QString QB_EXT {QStringLiteral(".!qB")};
-
 using namespace BitTorrent;
 
 namespace

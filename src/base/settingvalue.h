@@ -48,7 +48,13 @@ public:
 
     T get(const T &defaultValue = {}) const
     {
-        return load(defaultValue);
+        if constexpr (std::is_enum_v<T>) {
+            const auto value = SettingsStorage::instance()->loadValue(m_keyName, {}).toString();
+            return Utils::String::toEnum(value, defaultValue);
+        }
+        else {
+            return SettingsStorage::instance()->loadValue(m_keyName, defaultValue).template value<T>();
+        }
     }
 
     operator T() const
@@ -58,39 +64,14 @@ public:
 
     SettingValue<T> &operator=(const T &value)
     {
-        store(value);
+        if constexpr (std::is_enum_v<T>)
+            SettingsStorage::instance()->storeValue(m_keyName, Utils::String::fromEnum(value));
+        else
+            SettingsStorage::instance()->storeValue(m_keyName, value);
         return *this;
     }
 
 private:
-    // regular load/store pair
-    template <typename U, typename std::enable_if_t<!std::is_enum<U>::value, int> = 0>
-    U load(const U &defaultValue) const
-    {
-        return SettingsStorage::instance()->loadValue(m_keyName, defaultValue)
-            .template value<U>();
-    }
-
-    template <typename U, typename std::enable_if_t<!std::is_enum<U>::value, int> = 0>
-    void store(const U &value)
-    {
-        SettingsStorage::instance()->storeValue(m_keyName, value);
-    }
-
-    // load/store pair for enum type, saves literal value of the enum constant
-    // TODO: merge the load/store functions with `if constexpr` in C++17
-    template <typename U, typename std::enable_if_t<std::is_enum<U>::value, int> = 0>
-    U load(const U defaultValue) const
-    {
-        return Utils::String::toEnum(load(QString {}), defaultValue);
-    }
-
-    template <typename U, typename std::enable_if_t<std::is_enum<U>::value, int> = 0>
-    void store(const U value)
-    {
-        store(Utils::String::fromEnum(value));
-    }
-
     const QString m_keyName;
 };
 

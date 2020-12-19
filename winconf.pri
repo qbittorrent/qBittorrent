@@ -35,12 +35,15 @@ win32-g++* {
     DEFINES += _FILE_OFFSET_BITS=64
     DEFINES += __USE_W32_SOCKETS
 
+    QMAKE_CXXFLAGS += -std=c++17
+
     RC_FILE = qbittorrent_mingw.rc
 
     LIBS += libadvapi32 libiphlpapi libole32 libpowrprof libshell32 libuser32 libwsock32 libws2_32
 }
 else:win32-msvc* {
     CONFIG -= embed_manifest_exe
+    QMAKE_CXXFLAGS += /std:c++17
     QMAKE_LFLAGS += "/MANIFEST:EMBED /MANIFESTINPUT:$$quote($${PWD}/src/qbittorrent.exe.manifest) /STACK:0x800000"
 
     RC_FILE = qbittorrent.rc
