@@ -77,36 +77,6 @@ class HTTPError(ProxyError):
     pass
 
 
-_dfsdsfdsfgeneralerrors = ("success",
-                  "invalid data",
-                  "not connected",
-                  "not available",
-                  "bad proxy type",
-                  "bad input")
-
-_dfssdfdsfsocks5errors = ("succeeded",
-                 "general SOCKS server failure",
-                 "connection not allowed by ruleset",
-                 "Network unreachable",
-                 "Host unreachable",
-                 "Connection refused",
-                 "TTL expired",
-                 "Command not supported",
-                 "Address type not supported",
-                 "Unknown error")
-
-fdsdfsfd_socks5autherrors = ("succeeded",
-                     "authentication is required",
-                     "all offered authentication methods were rejected",
-                     "unknown username or invalid password",
-                     "unknown error")
-
-_dfssdfsdfsocks4errors = ("request granted",
-                 "request rejected or failed",
-                 "request rejected because SOCKS server cannot connect to identd on the client",
-                 "request rejected because the client program and identd report different user-ids",
-                 "unknown error")
-
 def set_default_proxy(proxytype=None, addr=None, port=None, rdns=True, username=None, password=None):
     """
     set_default_proxy(proxytype, addr[, port[, rdns[, username[, password]]]])
@@ -122,6 +92,9 @@ class SockSocket(socket):
     those of the standard socket init. In order for SOCKS to work,
     you must specify family=AF_INET, type=SOCK_STREAM and proto=0.
     """
+    SOCKS_DEFAULT_PORT = 1080
+    HTTP_DEFAULT_PORT = 8080
+    ALLOWED_HTTP_PROTOCOLS = ("HTTP/1.0", "HTTP/1.1")
 
     def __init__(self, family=AF_INET, type=SOCK_STREAM, proto=0, _sock=None):
         socket.__init__(self, family, type, proto, _sock)
@@ -161,9 +134,13 @@ class SockSocket(socket):
         """
         self.__proxy = Proxy(proxytype, addr, port, rdns, username, password)
 
+    @property
+    def proxy(self):
+        return self.__proxy
+
     def _get_chosen_auth(self):
         # First we'll send the authentication packages we support.
-        if self.__proxy.username and self.__proxy.password:
+        if self.proxy.username and self.proxy.password:
             # The username/password details were supplied to the
             # setproxy method so we support the USERNAME/PASSWORD
             # authentication (in addition to the standard none).
@@ -207,8 +184,8 @@ class SockSocket(socket):
 
     def _authenticate(self):
 
-        auth_str = "\x01" + chr(len(self.__proxy.username)) + self.__proxy.username \
-        + chr(len(self.__proxy.password)) + self.__proxy.password
+        auth_str = "\x01" + chr(len(self.proxy.username)) + self.proxy.username \
+        + chr(len(self.proxy.password)) + self.proxy.password
 
         self.sendall(auth_str.encode("utf-8"))
         return self.__recvall(2)
@@ -223,7 +200,7 @@ class SockSocket(socket):
             request += _req_addon
         except socket_error:
             # Well it's not an IP number,  so it's probably a DNS name.
-            if self.__proxy.reverse_dns:
+            if self.proxy.reverse_dns:
                 # Resolve remotely
                 ipaddr = None
                 _req_addon = b"\x03" + chr(len(destaddr)).encode('utf-8') + destaddr.encode('utf-8')
@@ -281,9 +258,9 @@ class SockSocket(socket):
         self.__proxysockname = (boundaddr, boundport)
         self.__proxypeername = (inet_ntoa(ipaddr) if ipaddr else destaddr, destport)
 
-
+    @property
     def getproxysockname(self):
-        """getsockname() -> address info
+        """getsockname -> address info
         Returns the bound IP address and port number at the proxy.
         """
         return self.__proxysockname
@@ -293,10 +270,11 @@ class SockSocket(socket):
         Returns the IP address and port number of the destination
         machine (note: getproxypeername returns the proxy)
         """
-        return self.getpeername()
+        return socket.getpeername(self)
 
+    @property
     def getproxypeername(self):
-        """getproxypeername() -> address info
+        """getproxypeername -> address info
         Returns the IP and port number of the proxy.
         """
         return self.__proxypeername
@@ -307,19 +285,19 @@ class SockSocket(socket):
         except socket_error:
             # It's a DNS name. Check where it should be resolved.
             return inet_aton(gethostbyname(address)) \
-                if self.__proxy.reverse_dns \
+                if self.proxy.reverse_dns \
                 else b"\x00\x00\x00\x01"
 
     def _build_socks4_request(self, destaddr, destport, ipaddr):
         req = b"\x04\x01" + struct.pack(">H", destport) + ipaddr
         # The username parameter is considered userid for SOCKS4
-        if self.__proxy.username:
-            req += self.__proxy.username
+        if self.proxy.username:
+            req += self.proxy.username
         req += b"\x00"
         # DNS name if remote resolving is required
         # NOTE: This is actually an extension to the SOCKS4 protocol
         # called SOCKS4A and may not be supported in all cases.
-        if self.__proxy.reverse_dns:
+        if self.proxy.reverse_dns:
             req = req + destaddr.encode() + b"\x00"
         return req
 
@@ -345,6 +323,34 @@ class SockSocket(socket):
         boundport = struct.unpack(">H", resp[2:4])[0]
         return boundaddr, boundport
 
+    def _interpret_http_response(self, http_response_bytes):
+        response_line_one = http_response_bytes.splitlines()[0]
+        statusline = response_line_one.split(b" ", 2)
+        protocol = statusline[0]
+        try:
+            http_status_code = int(statusline[1])
+            http_error = statusline[2] if http_status_code != 200 else None
+            return protocol, http_status_code, http_error
+        except ValueError:
+            raise GeneralProxyError(9, GeneralStatus.UNKNOWN)
+
+    def _try_http_connection(self, connection_string):
+        self.sendall(connection_string)
+        # We read the response until we get the string "\r\n\r\n"
+        resp = self.recv(1)
+        while resp.find(b"\r\n\r\n") == -1:
+            resp += self.recv(1)
+        # We just need the first line to check if the connection
+        # was successful
+        protocol, http_status_code, http_error = self._interpret_http_response(resp)
+        if protocol not in self.ALLOWED_HTTP_PROTOCOLS:
+            self.close()
+            raise GeneralProxyError(1, GeneralStatus.BAD_DATA)
+
+        if http_status_code != 200:
+            self.close()
+            raise HTTPError(http_status_code, http_error)
+
 
     def __negotiatesocks4(self, destaddr, destport):
         """__negotiatesocks4(self,destaddr,destport)
@@ -358,7 +364,7 @@ class SockSocket(socket):
 
         boundaddr, boundport = self._establish_socks4_connection(req)
         self.__proxysockname = (boundaddr, boundport)
-        self.__proxypeername = (inet_ntoa(ipaddr) if self.__proxy.reverse_dns else destaddr, destport)
+        self.__proxypeername = (inet_ntoa(ipaddr) if self.proxy.reverse_dns else destaddr, destport)
 
 
     def __negotiatehttp(self, destaddr, destport):
@@ -366,71 +372,44 @@ class SockSocket(socket):
         Negotiates a connection through an HTTP server.
         """
         # If we need to resolve locally, we do this now
-        addr = gethostbyname(destaddr) if not self.__proxy.reverse_dns else destaddr
+        addr = gethostbyname(destaddr) if not self.proxy.reverse_dns else destaddr
 
-        _conn_str = "CONNECT " \
-                    + addr \
-                    + ":" \
-                    + str(destport) \
-                    + " HTTP/1.1\r\n" \
-                    + "Host: " \
-                    + destaddr \
-                    + "\r\n\r\n"
+        req = "CONNECT " \
+              + addr \
+              + ":" \
+              + str(destport) \
+              + " HTTP/1.1\r\n" \
+              + "Host: " \
+              + destaddr \
+              + "\r\n\r\n"
 
-        self.sendall(_conn_str)
-        # We read the response until we get the string "\r\n\r\n"
-        resp = self.recv(1)
-        while resp.find("\r\n\r\n")==-1:
-            resp = resp + self.recv(1)
-        # We just need the first line to check if the connection
-        # was successful
-        statusline = resp.splitlines()[0].split(" ",2)
-        if statusline[0] not in ("HTTP/1.0","HTTP/1.1"):
-            self.close()
-            raise GeneralProxyError((1,_generalerrors[1]))
-        try:
-            statuscode = int(statusline[1])
-        except ValueError:
-            self.close()
-            raise GeneralProxyError((1,_generalerrors[1]))
-        if statuscode != 200:
-            self.close()
-            raise HTTPError((statuscode,statusline[2]))
-        self.__proxysockname = ("0.0.0.0",0)
-        self.__proxypeername = (addr,destport)
+        self._try_http_connection(connection_string=req)
+        self.__proxysockname = ("0.0.0.0", 0)
+        self.__proxypeername = (addr, destport)
 
-    def connect(self,destpair):
+    def _connect(self, destaddr, destport):
+        if self.proxy.proxytype == self.proxy.PROXY_TYPE_SOCKS5:
+            socket.connect(self, (self.proxy.address, self.proxy.port or self.SOCKS_DEFAULT_PORT))
+            self.__negotiatesocks5(destaddr, destport)
+        elif self.proxy.proxytype == self.proxy.PROXY_TYPE_SOCKS4:
+            socket.connect(self, (self.proxy.address, self.proxy.port or self.SOCKS_DEFAULT_PORT))
+            self.__negotiatesocks4(destaddr, destport)
+        elif self.proxy.proxytype == self.proxy.PROXY_TYPE_HTTP:
+            socket.connect(self, (self.proxy.address, self.proxy.port or self.HTTP_DEFAULT_PORT))
+            self.__negotiatehttp(destaddr, destport)
+        elif not self.proxy.proxytype:
+            socket.connect(self, (destaddr, destport))
+        else:
+            raise GeneralProxyError(4, GeneralStatus.NOT_AVAIL)
+
+    def connect(self, destpair):
         """connect(self,despair)
         Connects to the specified destination through a proxy.
         destpar - A tuple of the IP/DNS address and the port number.
         (identical to socket's connect).
         To select the proxy server use setproxy().
         """
-        # Do a minimal input check first
-        if (type(destpair) in (list,tuple)==False) or (len(destpair)<2) or (type(destpair[0])!=str) or (type(destpair[1])!=int):
-            raise GeneralProxyError((5,_generalerrors[5]))
-        if self.__proxy[0] == PROXY_TYPE_SOCKS5:
-            if self.__proxy[2] != None:
-                portnum = self.__proxy[2]
-            else:
-                portnum = 1080
-            _orgsocket.connect(self,(self.__proxy[1],portnum))
-            self.__negotiatesocks5(destpair[0],destpair[1])
-        elif self.__proxy[0] == PROXY_TYPE_SOCKS4:
-            if self.__proxy[2] != None:
-                portnum = self.__proxy[2]
-            else:
-                portnum = 1080
-            _orgsocket.connect(self,(self.__proxy[1],portnum))
-            self.__negotiatesocks4(destpair[0],destpair[1])
-        elif self.__proxy[0] == PROXY_TYPE_HTTP:
-            if self.__proxy[2] != None:
-                portnum = self.__proxy[2]
-            else:
-                portnum = 8080
-            _orgsocket.connect(self,(self.__proxy[1],portnum))
-            self.__negotiatehttp(destpair[0],destpair[1])
-        elif self.__proxy[0] == None:
-            _orgsocket.connect(self,(destpair[0],destpair[1]))
-        else:
-            raise GeneralProxyError((4,_generalerrors[4]))
+        try:
+            self._connect(*destpair)
+        except:
+            raise GeneralProxyError(5, GeneralStatus.BAD_PROX)
