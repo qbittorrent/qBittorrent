@@ -172,12 +172,12 @@ bool BandwidthScheduler::loadSchedule()
                     .arg(DAYS[day]), Log::WARNING);
 
             errored = true;
-            m_scheduleDays[day] = new ScheduleDay(day);
+            m_scheduleDays.append(new ScheduleDay(day));
             continue;
         }
 
         QJsonArray arr = jsonObj[DAYS[day]].toArray();
-        m_scheduleDays[day] = ScheduleDay::fromJsonArray(arr, day, &errored);
+        m_scheduleDays.append(ScheduleDay::fromJsonArray(arr, day, &errored));
     }
 
     if (errored)

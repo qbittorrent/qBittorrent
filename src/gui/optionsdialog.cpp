@@ -794,7 +794,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     connect(actionCopy, &QAction::triggered, scheduleDay, [allRanges, selectedRows]()
     {
         auto selectedRanges = allRanges.mid(selectedRows[0].row(), selectedRows.count());
-        QMimeData *mimeData = new QMimeData;
+        auto *mimeData = new QMimeData;
         mimeData->setData("application/json", QJsonDocument(ScheduleDay(selectedRanges).toJsonArray()).toJson());
         QApplication::clipboard()->setMimeData(mimeData);
     });
