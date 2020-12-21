@@ -4065,6 +4065,8 @@ void Session::moveTorrentStorage(const MoveStorageJob &job) const
 void Session::handleMoveTorrentStorageJobFinished()
 {
     const MoveStorageJob finishedJob = m_moveStorageQueue.takeFirst();
+    if (!m_moveStorageQueue.isEmpty())
+        moveTorrentStorage(m_moveStorageQueue.first());
 
     const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
                                    , [&finishedJob](const MoveStorageJob &job)
@@ -4076,22 +4078,17 @@ void Session::handleMoveTorrentStorageJobFinished()
 
     TorrentHandleImpl *torrent = m_torrents.value(finishedJob.torrentHandle.info_hash());
     if (torrent)
-        torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
-
-    if (!torrentHasOutstandingJob)
     {
-        if (!torrent)
-        {
-            // Last job is completed for torrent that being removing, so actually remove it
-            const lt::torrent_handle nativeHandle {finishedJob.torrentHandle};
-            const RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hash()];
-            if (removingTorrentData.deleteOption == Torrent)
-                m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
-        }
+        torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
     }
-
-    if (!m_moveStorageQueue.isEmpty())
-        moveTorrentStorage(m_moveStorageQueue.first());
+    else if (!torrentHasOutstandingJob)
+    {
+        // Last job is completed for torrent that being removing, so actually remove it
+        const lt::torrent_handle nativeHandle {finishedJob.torrentHandle};
+        const RemovingTorrentData &removingTorrentData = m_removingTorrents[nativeHandle.info_hash()];
+        if (removingTorrentData.deleteOption == Torrent)
+            m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_partfile);
+    }
 }
 
 void Session::handleTorrentTrackerWarning(TorrentHandleImpl *const torrent, const QString &trackerUrl)
