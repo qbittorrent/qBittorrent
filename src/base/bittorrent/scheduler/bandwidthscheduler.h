@@ -55,6 +55,7 @@ public:
     ScheduleDay* scheduleDay(int day) const;
     ScheduleDay* today() const;
     void start();
+    void stop();
 
 signals:
     void limitChangeRequested();

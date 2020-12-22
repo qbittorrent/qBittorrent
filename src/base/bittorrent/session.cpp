@@ -475,13 +475,13 @@ Session::Session(QObject *parent)
     m_seedingLimitTimer->setInterval(10000);
     connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
 
-    if (isBandwidthSchedulerEnabled())
-        initializeBandwidthScheduler();
+    initializeBandwidthScheduler();
 
     initializeNativeSession();
     configureComponents();
 
-    m_bwScheduler->start();
+    if (isBandwidthSchedulerEnabled())
+        m_bwScheduler->start();
 
     m_categories = map_cast(m_storedCategories);
     if (isSubcategoriesEnabled())
@@ -2705,7 +2705,7 @@ int Session::downloadSpeedLimit() const
     {
         ScheduleDay *today = m_bwScheduler->today();
         int index = today->getNowIndex();
-        if (index > 0)
+        if (index > -1)
         {
             int dl = today->timeRanges()[index].downloadRate * 1024;
             return (globalDownloadSpeedLimit() == 0) ? dl
@@ -2733,7 +2733,7 @@ int Session::uploadSpeedLimit() const
     {
         ScheduleDay *today = m_bwScheduler->today();
         int index = today->getNowIndex();
-        if (index > 0)
+        if (index > -1)
         {
             int ul = today->timeRanges()[index].uploadRate * 1024;
             return (globalUploadSpeedLimit() == 0) ? ul
@@ -2779,12 +2779,9 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
     {
         m_isBandwidthSchedulerEnabled = enabled;
         if (enabled)
-        {
-            initializeBandwidthScheduler();
             m_bwScheduler->start();
-        }
         else
-            delete m_bwScheduler;
+            m_bwScheduler->stop();
     }
 }
 
