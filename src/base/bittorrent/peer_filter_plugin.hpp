@@ -68,22 +68,3 @@ private:
   filter_function m_filter;
   action_function m_action;
 };
-
-
-class peer_action_plugin_creator
-{
-public:
-  peer_action_plugin_creator(filter_function filter, action_function action)
-    : m_filter(std::move(filter))
-    , m_action(std::move(action))
-  {}
-
-  std::shared_ptr<lt::torrent_plugin> operator()(lt::torrent_handle const&, void*)
-  {
-    return std::make_shared<peer_action_plugin>(m_filter, m_action);
-  }
-
-private:
-  filter_function m_filter;
-  action_function m_action;
-};
