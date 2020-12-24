@@ -272,7 +272,7 @@ void TorrentsController::infoAction()
 
     if (torrentList.isEmpty())
     {
-        setResult(QJsonObject {});
+        setResult(QJsonArray {});
         return;
     }
 
