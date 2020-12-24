@@ -197,7 +197,9 @@ namespace BitTorrent
         {
             int diskBlocksInUse = -1;
             int numBlocksRead = -1;
+#if (LIBTORRENT_VERSION_NUM < 20000)
             int numBlocksCacheHits = -1;
+#endif
             int writeJobs = -1;
             int readJobs = -1;
             int hashJobs = -1;

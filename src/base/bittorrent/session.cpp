@@ -1220,8 +1220,10 @@ void Session::initMetrics()
     m_metricIndices.disk.numBlocksRead = lt::find_metric_idx("disk.num_blocks_read");
     Q_ASSERT(m_metricIndices.disk.numBlocksRead >= 0);
 
+#if (LIBTORRENT_VERSION_NUM < 20000)
     m_metricIndices.disk.numBlocksCacheHits = lt::find_metric_idx("disk.num_blocks_cache_hits");
     Q_ASSERT(m_metricIndices.disk.numBlocksCacheHits >= 0);
+#endif
 
     m_metricIndices.disk.writeJobs = lt::find_metric_idx("disk.num_write_ops");
     Q_ASSERT(m_metricIndices.disk.writeJobs >= 0);
@@ -4908,10 +4910,13 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
 
     const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
-    const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
-    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>(numBlocksCacheHits + numBlocksRead, 1);
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
+
+#if (LIBTORRENT_VERSION_NUM < 20000)
+    const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
+    m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>((numBlocksCacheHits + numBlocksRead), 1);
+#endif
 
     const int64_t totalJobs = stats[m_metricIndices.disk.writeJobs] + stats[m_metricIndices.disk.readJobs]
                   + stats[m_metricIndices.disk.hashJobs];

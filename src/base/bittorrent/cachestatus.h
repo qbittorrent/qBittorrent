@@ -38,6 +38,6 @@ namespace BitTorrent
         quint64 jobQueueLength = 0;
         quint64 averageJobTime = 0;
         quint64 queuedBytes = 0;
-        qreal readRatio = 0.0;
+        qreal readRatio = 0;  // TODO: remove when LIBTORRENT_VERSION_NUM >= 20000
     };
 }
