@@ -1163,82 +1163,44 @@ void Session::applyBandwidthLimits(lt::settings_pack &settingsPack) const
 
 void Session::initMetrics()
 {
-    m_metricIndices.net.hasIncomingConnections = lt::find_metric_idx("net.has_incoming_connections");
-    Q_ASSERT(m_metricIndices.net.hasIncomingConnections >= 0);
+    const auto findMetricIndex = [](const char *name) -> int
+    {
+        const int index = lt::find_metric_idx(name);
+        Q_ASSERT(index >= 0);
+        return index;
+    };
 
-    m_metricIndices.net.sentPayloadBytes = lt::find_metric_idx("net.sent_payload_bytes");
-    Q_ASSERT(m_metricIndices.net.sentPayloadBytes >= 0);
+    // TODO: switch to "designated initializers" in C++20
+    m_metricIndices.net.hasIncomingConnections = findMetricIndex("net.has_incoming_connections");
+    m_metricIndices.net.sentPayloadBytes = findMetricIndex("net.sent_payload_bytes");
+    m_metricIndices.net.recvPayloadBytes = findMetricIndex("net.recv_payload_bytes");
+    m_metricIndices.net.sentBytes = findMetricIndex("net.sent_bytes");
+    m_metricIndices.net.recvBytes = findMetricIndex("net.recv_bytes");
+    m_metricIndices.net.sentIPOverheadBytes = findMetricIndex("net.sent_ip_overhead_bytes");
+    m_metricIndices.net.recvIPOverheadBytes = findMetricIndex("net.recv_ip_overhead_bytes");
+    m_metricIndices.net.sentTrackerBytes = findMetricIndex("net.sent_tracker_bytes");
+    m_metricIndices.net.recvTrackerBytes = findMetricIndex("net.recv_tracker_bytes");
+    m_metricIndices.net.recvRedundantBytes = findMetricIndex("net.recv_redundant_bytes");
+    m_metricIndices.net.recvFailedBytes = findMetricIndex("net.recv_failed_bytes");
 
-    m_metricIndices.net.recvPayloadBytes = lt::find_metric_idx("net.recv_payload_bytes");
-    Q_ASSERT(m_metricIndices.net.recvPayloadBytes >= 0);
+    m_metricIndices.peer.numPeersConnected = findMetricIndex("peer.num_peers_connected");
+    m_metricIndices.peer.numPeersDownDisk = findMetricIndex("peer.num_peers_down_disk");
+    m_metricIndices.peer.numPeersUpDisk = findMetricIndex("peer.num_peers_up_disk");
 
-    m_metricIndices.net.sentBytes = lt::find_metric_idx("net.sent_bytes");
-    Q_ASSERT(m_metricIndices.net.sentBytes >= 0);
+    m_metricIndices.dht.dhtBytesIn = findMetricIndex("dht.dht_bytes_in");
+    m_metricIndices.dht.dhtBytesOut = findMetricIndex("dht.dht_bytes_out");
+    m_metricIndices.dht.dhtNodes = findMetricIndex("dht.dht_nodes");
 
-    m_metricIndices.net.recvBytes = lt::find_metric_idx("net.recv_bytes");
-    Q_ASSERT(m_metricIndices.net.recvBytes >= 0);
-
-    m_metricIndices.net.sentIPOverheadBytes = lt::find_metric_idx("net.sent_ip_overhead_bytes");
-    Q_ASSERT(m_metricIndices.net.sentIPOverheadBytes >= 0);
-
-    m_metricIndices.net.recvIPOverheadBytes = lt::find_metric_idx("net.recv_ip_overhead_bytes");
-    Q_ASSERT(m_metricIndices.net.recvIPOverheadBytes >= 0);
-
-    m_metricIndices.net.sentTrackerBytes = lt::find_metric_idx("net.sent_tracker_bytes");
-    Q_ASSERT(m_metricIndices.net.sentTrackerBytes >= 0);
-
-    m_metricIndices.net.recvTrackerBytes = lt::find_metric_idx("net.recv_tracker_bytes");
-    Q_ASSERT(m_metricIndices.net.recvTrackerBytes >= 0);
-
-    m_metricIndices.net.recvRedundantBytes = lt::find_metric_idx("net.recv_redundant_bytes");
-    Q_ASSERT(m_metricIndices.net.recvRedundantBytes >= 0);
-
-    m_metricIndices.net.recvFailedBytes = lt::find_metric_idx("net.recv_failed_bytes");
-    Q_ASSERT(m_metricIndices.net.recvFailedBytes >= 0);
-
-    m_metricIndices.peer.numPeersConnected = lt::find_metric_idx("peer.num_peers_connected");
-    Q_ASSERT(m_metricIndices.peer.numPeersConnected >= 0);
-
-    m_metricIndices.peer.numPeersDownDisk = lt::find_metric_idx("peer.num_peers_down_disk");
-    Q_ASSERT(m_metricIndices.peer.numPeersDownDisk >= 0);
-
-    m_metricIndices.peer.numPeersUpDisk = lt::find_metric_idx("peer.num_peers_up_disk");
-    Q_ASSERT(m_metricIndices.peer.numPeersUpDisk >= 0);
-
-    m_metricIndices.dht.dhtBytesIn = lt::find_metric_idx("dht.dht_bytes_in");
-    Q_ASSERT(m_metricIndices.dht.dhtBytesIn >= 0);
-
-    m_metricIndices.dht.dhtBytesOut = lt::find_metric_idx("dht.dht_bytes_out");
-    Q_ASSERT(m_metricIndices.dht.dhtBytesOut >= 0);
-
-    m_metricIndices.dht.dhtNodes = lt::find_metric_idx("dht.dht_nodes");
-    Q_ASSERT(m_metricIndices.dht.dhtNodes >= 0);
-
-    m_metricIndices.disk.diskBlocksInUse = lt::find_metric_idx("disk.disk_blocks_in_use");
-    Q_ASSERT(m_metricIndices.disk.diskBlocksInUse >= 0);
-
-    m_metricIndices.disk.numBlocksRead = lt::find_metric_idx("disk.num_blocks_read");
-    Q_ASSERT(m_metricIndices.disk.numBlocksRead >= 0);
-
+    m_metricIndices.disk.diskBlocksInUse = findMetricIndex("disk.disk_blocks_in_use");
+    m_metricIndices.disk.numBlocksRead = findMetricIndex("disk.num_blocks_read");
 #if (LIBTORRENT_VERSION_NUM < 20000)
-    m_metricIndices.disk.numBlocksCacheHits = lt::find_metric_idx("disk.num_blocks_cache_hits");
-    Q_ASSERT(m_metricIndices.disk.numBlocksCacheHits >= 0);
+    m_metricIndices.disk.numBlocksCacheHits = findMetricIndex("disk.num_blocks_cache_hits");
 #endif
-
-    m_metricIndices.disk.writeJobs = lt::find_metric_idx("disk.num_write_ops");
-    Q_ASSERT(m_metricIndices.disk.writeJobs >= 0);
-
-    m_metricIndices.disk.readJobs = lt::find_metric_idx("disk.num_read_ops");
-    Q_ASSERT(m_metricIndices.disk.readJobs >= 0);
-
-    m_metricIndices.disk.hashJobs = lt::find_metric_idx("disk.num_blocks_hashed");
-    Q_ASSERT(m_metricIndices.disk.hashJobs >= 0);
-
-    m_metricIndices.disk.queuedDiskJobs = lt::find_metric_idx("disk.queued_disk_jobs");
-    Q_ASSERT(m_metricIndices.disk.queuedDiskJobs >= 0);
-
-    m_metricIndices.disk.diskJobTime = lt::find_metric_idx("disk.disk_job_time");
-    Q_ASSERT(m_metricIndices.disk.diskJobTime >= 0);
+    m_metricIndices.disk.writeJobs = findMetricIndex("disk.num_write_ops");
+    m_metricIndices.disk.readJobs = findMetricIndex("disk.num_read_ops");
+    m_metricIndices.disk.hashJobs = findMetricIndex("disk.num_blocks_hashed");
+    m_metricIndices.disk.queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs");
+    m_metricIndices.disk.diskJobTime = findMetricIndex("disk.disk_job_time");
 }
 
 void Session::loadLTSettings(lt::settings_pack &settingsPack)
