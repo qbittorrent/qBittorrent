@@ -35,7 +35,7 @@ namespace Ui
     class StatsDialog;
 }
 
-class StatsDialog : public QDialog
+class StatsDialog final : public QDialog
 {
     Q_OBJECT
 
