@@ -166,43 +166,45 @@ namespace BitTorrent
     {
         struct
         {
-            int hasIncomingConnections = 0;
-            int sentPayloadBytes = 0;
-            int recvPayloadBytes = 0;
-            int sentBytes = 0;
-            int recvBytes = 0;
-            int sentIPOverheadBytes = 0;
-            int recvIPOverheadBytes = 0;
-            int sentTrackerBytes = 0;
-            int recvTrackerBytes = 0;
-            int recvRedundantBytes = 0;
-            int recvFailedBytes = 0;
+            int hasIncomingConnections = -1;
+            int sentPayloadBytes = -1;
+            int recvPayloadBytes = -1;
+            int sentBytes = -1;
+            int recvBytes = -1;
+            int sentIPOverheadBytes = -1;
+            int recvIPOverheadBytes = -1;
+            int sentTrackerBytes = -1;
+            int recvTrackerBytes = -1;
+            int recvRedundantBytes = -1;
+            int recvFailedBytes = -1;
         } net;
 
         struct
         {
-            int numPeersConnected = 0;
-            int numPeersUpDisk = 0;
-            int numPeersDownDisk = 0;
+            int numPeersConnected = -1;
+            int numPeersUpDisk = -1;
+            int numPeersDownDisk = -1;
         } peer;
 
         struct
         {
-            int dhtBytesIn = 0;
-            int dhtBytesOut = 0;
-            int dhtNodes = 0;
+            int dhtBytesIn = -1;
+            int dhtBytesOut = -1;
+            int dhtNodes = -1;
         } dht;
 
         struct
         {
-            int diskBlocksInUse = 0;
-            int numBlocksRead = 0;
-            int numBlocksCacheHits = 0;
-            int writeJobs = 0;
-            int readJobs = 0;
-            int hashJobs = 0;
-            int queuedDiskJobs = 0;
-            int diskJobTime = 0;
+            int diskBlocksInUse = -1;
+            int numBlocksRead = -1;
+#if (LIBTORRENT_VERSION_NUM < 20000)
+            int numBlocksCacheHits = -1;
+#endif
+            int writeJobs = -1;
+            int readJobs = -1;
+            int hashJobs = -1;
+            int queuedDiskJobs = -1;
+            int diskJobTime = -1;
         } disk;
     };
 
