@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>שמור על תיקיית רמה למעלה</translation>
+        <translation type="vanished">שמור על תיקיית רמה למעלה</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -39,7 +55,7 @@
     </message>
     <message>
         <source>Uncategorized</source>
-        <translation>בלתי מקוטגר</translation>
+        <translation>ללא קטגוריה</translation>
     </message>
 </context>
 <context>
@@ -89,11 +105,11 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלה עולמית של קצב העלאה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלה כללית של קצב העלאה חייבת להיות גדולה מ-0 או מושבתת.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלה עולמית של קצב הורדה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלה כללית של קצב הורדה חייבת להיות גדולה מ-0 או מושבתת.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
@@ -702,10 +718,6 @@
     <message>
         <source>Password:</source>
         <translation>סיסמה:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">פרוטוקול מאופשר:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1427,6 +1439,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>פרוטוקול חיבור עמיתים:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1514,7 +1530,7 @@
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>רגיל</translation>
+        <translation>רגילה</translation>
     </message>
     <message>
         <source>High</source>
@@ -2190,10 +2206,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 קודם לכן</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">מקצה</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3209,14 +3221,8 @@
         <translation>תמיד</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">מסנן פרקים חכם יבדוק את מספר הפרק כדי למנוע הורדת כפילויות.
-תומך בתסדירים: S01E01, 1x1, 2017.01.01 ו־01.01.2017 (תסדירי תאריך גם נתמכים - בתור מפריד)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>צור תת־תיקייה:</translation>
+        <translation type="vanished">צור תת־תיקייה:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3305,6 +3311,23 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>מסנן פרקים חכם יבדוק את מספר הפרק כדי למנוע הורדת כפילויות.
+תומך בתסדירים: S01E01, 1x1, 2017.12.31 ו־31.12.2017 (תסדירי תאריך גם נתמכים - בתור מפריד)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

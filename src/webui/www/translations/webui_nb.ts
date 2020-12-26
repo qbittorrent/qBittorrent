@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Behold øverste mappe</translation>
+        <translation type="vanished">Behold øverste mappe</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -702,10 +718,6 @@
     <message>
         <source>Password:</source>
         <translation>Passord:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Aktivert protokoll:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1427,6 +1439,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>Protokoll for tilkoblinger fra likemenn:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2190,10 +2206,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 siden</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">Tildeler</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3209,14 +3221,8 @@
         <translation>Alltid</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">Episodesmartfilteret vil sjekke episodenummereringen for å hindre nedlasting av duplikater.
-Støtter de følgende formatene: S01E01, 1x1, 2017.01.01, og 01.01.2017 (Datoformater støtter også å bruke - som skilletegn)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Opprett undermappe:</translation>
+        <translation type="vanished">Opprett undermappe:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3305,6 +3311,23 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.01.01, og 01.01.2017 (Datofor
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>Episodesmartfilteret vil sjekke episodenummereringen for å hindre nedlasting av duplikater.
+Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datoformater støtter også å bruke - som skilletegn)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

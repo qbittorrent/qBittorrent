@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Behåll mapp på högsta nivå</translation>
+        <translation type="vanished">Behåll mapp på högsta nivå</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -145,7 +161,7 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Distributions tidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
+        <translation>Distributionstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
@@ -653,7 +669,7 @@
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>Kringgå autentisering för klienter i vitlistade IP-subnät</translation>
+        <translation>Kringgå autentisering för klienter i vitlistade IP-undernät</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -702,10 +718,6 @@
     <message>
         <source>Password:</source>
         <translation>Lösenord:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Aktiverat protokoll:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -867,7 +879,7 @@
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Aktivera lokal nodidentifiering för att hitta fler noder</translation>
+        <translation>Aktivera upptäckt av lokala noder för att hitta fler noder</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -947,7 +959,7 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation>%D: Sökväg för att spara</translation>
+        <translation>%D: Sökväg att spara i</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
@@ -1019,7 +1031,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Standardsökväg för att spara:</translation>
+        <translation>Standardsökväg att spara i:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1055,7 +1067,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>När standardsökvägen för att spara ändras:</translation>
+        <translation>När standardsökvägen att spara i ändras:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1067,7 +1079,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>När kategorisökväg för att spara ändras:</translation>
+        <translation>När kategorisökväg att spara i ändras:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1315,7 +1327,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>UPnP-anslutningstid [0: Permanent anslutning]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1335,7 +1347,7 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Hashing-trådar (kräver libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
@@ -1367,7 +1379,7 @@
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished" />
+        <translation>Hämta REPACK-/PROPER-avsnitt</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1383,7 +1395,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Högst samtidiga HTTP annonseringar (kräver libtorrent &gt;= 1.2.7):</translation>
+        <translation>Maximalt antal samtidiga HTTP-meddelande (kräver libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source>Keep top-level folder</source>
@@ -1427,6 +1439,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>Nodanslutningsprotokoll:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1506,7 +1522,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation>Land/Region</translation>
+        <translation>Land/region</translation>
     </message>
 </context>
 <context>
@@ -1575,7 +1591,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Slutförd om:</translation>
+        <translation>Slutförs om:</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1635,7 +1651,7 @@
     </message>
     <message>
         <source>Total Size:</source>
-        <translation>Storlek totalt:</translation>
+        <translation>Total storlek:</translation>
     </message>
     <message>
         <source>Pieces:</source>
@@ -1651,11 +1667,11 @@
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Slutfördes den:</translation>
+        <translation>Slutfördes:</translation>
     </message>
     <message>
         <source>Created On:</source>
-        <translation>Skapades den:</translation>
+        <translation>Skapades:</translation>
     </message>
     <message>
         <source>Torrent Hash:</source>
@@ -1663,7 +1679,7 @@
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Sökväg för att spara:</translation>
+        <translation>Sökväg att spara i:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -1967,7 +1983,7 @@
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Slutförd om</translation>
+        <translation>Slutförs om</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2034,7 +2050,7 @@
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Sökväg för att spara</translation>
+        <translation>Sökväg att spara i</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2059,7 +2075,7 @@
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>Storlek totalt</translation>
+        <translation>Total storlek:</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2190,10 +2206,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 sedan</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">Allokerar</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -2413,7 +2425,7 @@
     </message>
     <message>
         <source>Save path</source>
-        <translation>Sökväg för att spara</translation>
+        <translation>Sökväg att spara i</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2588,7 +2600,7 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>Sökväg för att spara är tom</translation>
+        <translation>Sökväg att spara i är tom</translation>
     </message>
 </context>
 <context>
@@ -2847,7 +2859,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Ärendehantering:</translation>
+        <translation>Felhanterare:</translation>
     </message>
     <message>
         <source>About</source>
@@ -3209,14 +3221,8 @@
         <translation>Alltid</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">Smart avsnittsfilter kommer att kontrollera avsnittets nummer för att förhindra hämtning av dubbletter.
-Stöder formaten: S01E01, 1x1, 2017.01.01 och 01.01.2017 (datumformat stöder också - som avskiljare)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Skapa undermapp:</translation>
+        <translation type="vanished">Skapa undermapp:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3305,6 +3311,23 @@ Stöder formaten: S01E01, 1x1, 2017.01.01 och 01.01.2017 (datumformat stöder oc
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>Smart avsnittsfilter kommer att kontrollera avsnittets nummer för att förhindra hämtning av dubbletter.
+Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder även - som avskiljare)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
