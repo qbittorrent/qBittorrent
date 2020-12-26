@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>최상위 폴더 유지</translation>
+        <translation type="vanished">최상위 폴더 유지</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -58,7 +74,7 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>토런트 재시작</translation>
+        <translation>토런트 이어받기</translation>
     </message>
     <message>
         <source>Pause torrents</source>
@@ -149,11 +165,11 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>들어오는 연결에 사용하는 포트는 1 ~ 65535 사이여야 합니다.</translation>
+        <translation>들어오는 연결에 사용하는 포트는 1 ~ 65535여야 합니다.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>웹 UI에 사용하는 포트는 1 ~ 65535 사이여야 합니다.</translation>
+        <translation>웹 UI에 사용하는 포트는 1 ~ 65535여야 합니다.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -226,7 +242,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>토런트 이름 변경</translation>
+        <translation>토런트 이름 바꾸기</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -393,7 +409,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>재시작</translation>
+        <translation>이어받기</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -413,7 +429,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>모두 재시작</translation>
+        <translation>모두 이어받기</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -704,10 +720,6 @@
         <translation>암호:</translation>
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">사용중인 프로토콜:</translation>
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation>TCP 및 μTP</translation>
     </message>
@@ -927,7 +939,7 @@
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
-        <translation>지원되는 변수 (대소문자 구분):</translation>
+        <translation>지원하는 매개변수(대소문자 구분):</translation>
     </message>
     <message>
         <source>%N: Torrent name</source>
@@ -951,7 +963,7 @@
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation>%C: 파일 개수</translation>
+        <translation>%C: 파일수</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
@@ -975,7 +987,7 @@
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>웹 UI 비밀번호는 최소한 여섯 문자 이상이어야 합니다.</translation>
+        <translation>웹 UI 비밀번호는 적어도 6자 이상이어야 합니다.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1007,7 +1019,7 @@
     </message>
     <message>
         <source>Change current password</source>
-        <translation>현재 암호를 바꾸기</translation>
+        <translation>현재 암호 바꾸기</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -1047,7 +1059,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation>0은 무제한을 의미합니다</translation>
+        <translation>0: 무제한</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1055,7 +1067,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>기본 저장 경로가 바뀌었을 때:</translation>
+        <translation>기본 저장 경로를 바꿨을 때:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1279,7 +1291,7 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>토런트 재개 데이터 저장 간격</translation>
+        <translation>토런트 이어받기 데이터 저장 간격</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1427,6 +1439,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>피어 연결 프로토콜:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1583,7 +1599,7 @@
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>시드:</translation>
+        <translation>배포:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -1672,7 +1688,7 @@
     <message>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation>%1 x %2 (%3 개 있음)</translation>
+        <translation>%1 x %2(%3개 있음)</translation>
     </message>
     <message>
         <source>%1 (%2 this session)</source>
@@ -1681,17 +1697,17 @@
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation>%1 (최대 %2)</translation>
+        <translation>%1(최대 %2)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation>%1 (전체 %2)</translation>
+        <translation>%1(전체 %2)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation>%1 (평균 %2)</translation>
+        <translation>%1(평균 %2)</translation>
     </message>
     <message>
         <source>Download limit:</source>
@@ -1768,7 +1784,7 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>최대 시간 공유 비율:</translation>
+        <translation>총 공유 비율:</translation>
     </message>
     <message>
         <source>All-time download:</source>
@@ -1835,7 +1851,7 @@
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>재시작 (0)</translation>
+        <translation>이어받기 (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
@@ -1875,7 +1891,7 @@
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>재시작 (%1)</translation>
+        <translation>이어받기 (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -1942,7 +1958,7 @@
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>시드</translation>
+        <translation>배포</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -2114,7 +2130,7 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation>시드</translation>
+        <translation>배포</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -2181,7 +2197,7 @@
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>추가할 트래커 목록 (한 줄에 하나씩):</translation>
+        <translation>트래커 목록 (한 줄에 하나씩 추가):</translation>
     </message>
 </context>
 <context>
@@ -2190,10 +2206,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 전</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">할당중</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -2249,7 +2261,7 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>토런트 재개 데이터 검사중</translation>
+        <translation>토런트 이어받기 데이터 검사중</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2292,12 +2304,12 @@
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>재시작</translation>
+        <translation>이어받기</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>강제 재시작</translation>
+        <translation>강제 이어받기</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -2369,7 +2381,7 @@
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>강제로 다시 검사</translation>
+        <translation>강제 다시 검사</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2385,7 +2397,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>강제로 다시 검사</translation>
+        <translation>강제 다시 검사</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2405,7 +2417,7 @@
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>강제로 다시 알리기</translation>
+        <translation>강제 다시 알림</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2618,7 +2630,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>시드:</translation>
+        <translation>배포:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2709,7 +2721,7 @@
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>경고: 이러한 검색 엔진에서 토런트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
+        <translation>경고: 검색 엔진으로 토런트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2817,7 +2829,7 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>토런트 재시작</translation>
+        <translation>토런트 이어받기</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3209,14 +3221,8 @@
         <translation>항상</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">지능적 회차 거르기는 회차 번호를 검사, 중복해서 받는 걸 방지해 줍니다.
-지원되는 형식: S01E01, 1x1, 2017.01.01 그리고 01.01.2017 (날짜 형식은 구분자로 -도 지원합니다.)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>하위 폴더 생성:</translation>
+        <translation type="vanished">하위 폴더 생성:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3305,6 +3311,22 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>지능적 회차 거르기는 회차를 검사, 같은 회차를 중복해서 받지 않도록 합니다. 지원하는 형식:  S01E01, 1x1, 2017.12.31 and 31.12.2017(날짜 형식은 구분자로 -도 지원합니다)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3316,7 +3338,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>토런트 재시작</translation>
+        <translation>토런트 이어받기</translation>
     </message>
     <message>
         <source>All (%1)</source>

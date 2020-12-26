@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Mantén la capeta del nivell més elevat</translation>
+        <translation type="vanished">Mantén la capeta del nivell més elevat</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -703,10 +719,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Password:</source>
         <translation>Contrasenya:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Protocol habilitat:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1428,6 +1440,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>Protocol de connexió de clients:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2191,10 +2207,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>fa %1</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">Assignació</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3210,14 +3222,8 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">El filtre d'episodis intel·ligent comprovarà el número d'episodi per evitar de baixar-ne de duplicats.
-Admet els formats S01E01, 1x1, 2017.01.01 i 01.01.2017 (Els formats de data també admeten - com a separador)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Crea una subcarpeta:</translation>
+        <translation type="vanished">Crea una subcarpeta:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3306,6 +3312,23 @@ Admet els formats S01E01, 1x1, 2017.01.01 i 01.01.2017 (Els formats de data tamb
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>El filtre d'episodis intel·ligent comprovarà el número d'episodi per evitar de baixar-ne de duplicats.
+Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data també admeten - com a separador.)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
