@@ -62,11 +62,12 @@ namespace BitTorrent
         QString category;
         QSet<QString> tags;
         QString savePath;
+        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
-        bool hasRootFolder = true;
         bool forced = false;
         bool paused = false;
+
 
         qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
         int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
@@ -128,8 +129,6 @@ namespace BitTorrent
         bool addTag(const QString &tag) override;
         bool removeTag(const QString &tag) override;
         void removeAllTags() override;
-
-        bool hasRootFolder() const override;
 
         int filesCount() const override;
         int piecesCount() const override;
@@ -319,10 +318,10 @@ namespace BitTorrent
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         TorrentOperatingMode m_operatingMode;
+        TorrentContentLayout m_contentLayout;
         bool m_hasSeedStatus;
         bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
-        bool m_hasRootFolder;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
         bool m_isStopped;

@@ -29,8 +29,12 @@
 
 #pragma once
 
+#include <boost/optional.hpp>
+
 #include <QSharedDataPointer>
 #include <QVariant>
+
+#include "base/bittorrent/torrentcontentlayout.h"
 
 class QDateTime;
 class QJsonObject;
@@ -79,8 +83,8 @@ namespace RSS
         void setSavePath(const QString &savePath);
         TriStateBool addPaused() const;
         void setAddPaused(TriStateBool addPaused);
-        TriStateBool createSubfolder() const;
-        void setCreateSubfolder(TriStateBool createSubfolder);
+        boost::optional<BitTorrent::TorrentContentLayout> torrentContentLayout() const;
+        void setTorrentContentLayout(boost::optional<BitTorrent::TorrentContentLayout> contentLayout);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 

@@ -396,7 +396,7 @@ Session::Session(QObject *parent)
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY("GlobalMaxSeedingMinutes"), -1, lowerLimited(-1))
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
-    , m_isKeepTorrentTopLevelFolder(BITTORRENT_SESSION_KEY("CreateTorrentSubfolder"), true)
+    , m_torrentContentLayout(BITTORRENT_SESSION_KEY("TorrentContentLayout"), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY("RefreshInterval"), 1500)
     , m_isPreallocationEnabled(BITTORRENT_SESSION_KEY("Preallocation"), false)
@@ -661,9 +661,7 @@ QString Session::tempPath() const
 QString Session::torrentTempPath(const TorrentInfo &torrentInfo) const
 {
     if ((torrentInfo.filesCount() > 1) && !torrentInfo.hasRootFolder())
-        return tempPath()
-            + QString::fromStdString(torrentInfo.nativeInfo()->orig_files().name())
-            + '/';
+        return tempPath() + torrentInfo.name() + '/';
 
     return tempPath();
 }
@@ -2060,9 +2058,9 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     loadTorrentParams.tags = addTorrentParams.tags;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
-    loadTorrentParams.hasRootFolder = ((addTorrentParams.createSubfolder == TriStateBool::Undefined)
-                        ? isKeepTorrentTopLevelFolder()
-                        : (addTorrentParams.createSubfolder == TriStateBool::True));
+    loadTorrentParams.contentLayout = (addTorrentParams.contentLayout
+                                       ? *addTorrentParams.contentLayout
+                                       : torrentContentLayout());
     loadTorrentParams.forced = (addTorrentParams.addForced == TriStateBool::True);
     loadTorrentParams.paused = ((addTorrentParams.addPaused == TriStateBool::Undefined)
                     ? isAddTorrentPaused()
@@ -2127,8 +2125,7 @@ bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const Ma
     const QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
     if (hasMetadata)
     {
-        if (!loadTorrentParams.hasRootFolder)
-            metadata.stripRootFolder();
+        metadata.setContentLayout(loadTorrentParams.contentLayout);
 
         if (!loadTorrentParams.hasSeedStatus)
         {
@@ -4197,8 +4194,26 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
         Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
     torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
-    torrentParams.hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
     torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", TorrentHandle::USE_GLOBAL_SEEDING_TIME);
+
+    // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
+    // === BEGIN DEPRECATED CODE === //
+    const lt::bdecode_node contentLayoutNode = root.dict_find("qBt-contentLayout");
+    if (contentLayoutNode.type() == lt::bdecode_node::string_t)
+    {
+        const QString contentLayoutStr = fromLTString(contentLayoutNode.string_value());
+        torrentParams.contentLayout = Utils::String::toEnum(contentLayoutStr, TorrentContentLayout::Original);
+    }
+    else
+    {
+        const bool hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
+        torrentParams.contentLayout = (hasRootFolder ? TorrentContentLayout::Original : TorrentContentLayout::NoSubfolder);
+    }
+    // === END DEPRECATED CODE === //
+    // === BEGIN REPLACEMENT CODE === //
+//    torrentParams.contentLayout = Utils::String::parse(
+//                fromLTString(root.dict_find_string_value("qBt-contentLayout")), TorrentContentLayout::Default);
+    // === END REPLACEMENT CODE === //
 
     const lt::string_view ratioLimitString = root.dict_find_string_value("qBt-ratioLimit");
     if (ratioLimitString.empty())
@@ -4430,14 +4445,14 @@ std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time)
     return alerts;
 }
 
-bool Session::isKeepTorrentTopLevelFolder() const
+TorrentContentLayout Session::torrentContentLayout() const
 {
-    return m_isKeepTorrentTopLevelFolder;
+    return m_torrentContentLayout;
 }
 
-void Session::setKeepTorrentTopLevelFolder(const bool value)
+void Session::setTorrentContentLayout(const TorrentContentLayout value)
 {
-    m_isKeepTorrentTopLevelFolder = value;
+    m_torrentContentLayout = value;
 }
 
 // Read alerts sent by the BitTorrent session

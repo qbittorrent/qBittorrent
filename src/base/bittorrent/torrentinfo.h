@@ -34,6 +34,7 @@
 #include <QtContainerFwd>
 
 #include "base/indexrange.h"
+#include "torrentcontentlayout.h"
 
 class QByteArray;
 class QDateTime;
@@ -94,13 +95,17 @@ namespace BitTorrent
 
         QString rootFolder() const;
         bool hasRootFolder() const;
-        void stripRootFolder();
+        void setContentLayout(TorrentContentLayout layout);
 
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
 
     private:
         // returns file index or -1 if fileName is not found
         int fileIndex(const QString &fileName) const;
+        void stripRootFolder();
+        void addRootFolder();
+        TorrentContentLayout defaultContentLayout() const;
+
         std::shared_ptr<lt::torrent_info> m_nativeInfo;
     };
 }

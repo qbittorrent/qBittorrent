@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,38 +28,24 @@
 
 #pragma once
 
-#include <boost/optional.hpp>
-
-#include <QSet>
-#include <QString>
-#include <QVector>
-
-#include "base/tristatebool.h"
-#include "torrenthandle.h"
-#include "torrentcontentlayout.h"
+#include <QMetaEnum>
 
 namespace BitTorrent
 {
-    enum class DownloadPriority;
-
-    struct AddTorrentParams
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace TorrentContentLayoutNS
     {
-        QString name;
-        QString category;
-        QSet<QString> tags;
-        QString savePath;
-        bool disableTempPath = false; // e.g. for imported torrents
-        bool sequential = false;
-        bool firstLastPiecePriority = false;
-        TriStateBool addForced;
-        TriStateBool addPaused;
-        QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool skipChecking = false;
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
-        TriStateBool useAutoTMM;
-        int uploadLimit = -1;
-        int downloadLimit = -1;
-        int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
-        qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
-    };
+        Q_NAMESPACE
+
+        enum class TorrentContentLayout
+        {
+            Original,
+            Subfolder,
+            NoSubfolder
+        };
+
+        Q_ENUM_NS(TorrentContentLayout)
+    }
 }
