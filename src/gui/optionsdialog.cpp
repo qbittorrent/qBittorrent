@@ -88,6 +88,7 @@ namespace
         {
         case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
         case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
+        case QLocale::Azerbaijani: return QString::fromUtf8(C_LOCALE_AZERBAIJANI);
         case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
         case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
         case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
@@ -110,6 +111,7 @@ namespace
             case QLocale::UnitedKingdom: return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
             default: return QString::fromUtf8(C_LOCALE_ENGLISH);
             }
+        case QLocale::Estonian: return QString::fromUtf8(C_LOCALE_ESTONIAN);
         case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
         case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
         case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
@@ -1612,6 +1614,8 @@ void OptionsDialog::setLocale(const QString &localeStr)
         QLocale locale(localeStr);
         if (locale.language() == QLocale::Uzbek)
             name = "uz@Latn";
+        else if (locale.language() == QLocale::Azerbaijani)
+            name = "az@latin";
         else
             name = locale.name();
     }
