@@ -62,13 +62,13 @@
 #include "previewselectdialog.h"
 #include "speedlimitdialog.h"
 #include "torrentcategorydialog.h"
+#include "torrentoptionsdialog.h"
 #include "trackerentriesdialog.h"
 #include "transferlistdelegate.h"
 #include "transferlistmodel.h"
 #include "transferlistsortmodel.h"
 #include "tristateaction.h"
 #include "uithememanager.h"
-#include "updownratiodialog.h"
 #include "utils.h"
 
 #ifdef Q_OS_MACOS
@@ -551,102 +551,13 @@ void TransferListWidget::previewSelectedTorrents()
     }
 }
 
-void TransferListWidget::setDlLimitSelectedTorrents()
+void TransferListWidget::setTorrentOptions()
 {
-    QVector<BitTorrent::TorrentHandle *> torrentsList;
-    for (BitTorrent::TorrentHandle *const torrent : asConst(getSelectedTorrents()))
-    {
-        if (torrent->isSeed())
-            continue;
-        torrentsList += torrent;
-    }
-    if (torrentsList.empty()) return;
+    const QVector<BitTorrent::TorrentHandle *> selectedTorrents = getSelectedTorrents();
+    if (selectedTorrents.empty()) return;
 
-    int oldLimit = torrentsList.first()->downloadLimit();
-    for (BitTorrent::TorrentHandle *const torrent : asConst(torrentsList))
-    {
-        if (torrent->downloadLimit() != oldLimit)
-        {
-            oldLimit = -1;
-            break;
-        }
-    }
-
-    bool ok = false;
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                this, &ok, tr("Torrent Download Speed Limiting"), oldLimit
-                , BitTorrent::Session::instance()->globalDownloadSpeedLimit());
-    if (!ok) return;
-
-    for (BitTorrent::TorrentHandle *const torrent : asConst(torrentsList))
-    {
-        qDebug("Applying download speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qUtf8Printable(torrent->hash()));
-        torrent->setDownloadLimit(newLimit);
-    }
-}
-
-void TransferListWidget::setUpLimitSelectedTorrents()
-{
-    QVector<BitTorrent::TorrentHandle *> torrentsList = getSelectedTorrents();
-    if (torrentsList.empty()) return;
-
-    int oldLimit = torrentsList.first()->uploadLimit();
-    for (BitTorrent::TorrentHandle *const torrent : asConst(torrentsList))
-    {
-        if (torrent->uploadLimit() != oldLimit)
-        {
-            oldLimit = -1;
-            break;
-        }
-    }
-
-    bool ok = false;
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                this, &ok, tr("Torrent Upload Speed Limiting"), oldLimit
-                , BitTorrent::Session::instance()->globalUploadSpeedLimit());
-    if (!ok) return;
-
-    for (BitTorrent::TorrentHandle *const torrent : asConst(torrentsList))
-    {
-        qDebug("Applying upload speed limit of %ld Kb/s to torrent %s", (newLimit / 1024l), qUtf8Printable(torrent->hash()));
-        torrent->setUploadLimit(newLimit);
-    }
-}
-
-void TransferListWidget::setMaxRatioSelectedTorrents()
-{
-    const QVector<BitTorrent::TorrentHandle *> torrents = getSelectedTorrents();
-    if (torrents.isEmpty()) return;
-
-    qreal currentMaxRatio = BitTorrent::Session::instance()->globalMaxRatio();
-    if (torrents.count() == 1)
-        currentMaxRatio = torrents[0]->maxRatio();
-
-    int currentMaxSeedingTime = BitTorrent::Session::instance()->globalMaxSeedingMinutes();
-    if (torrents.count() == 1)
-        currentMaxSeedingTime = torrents[0]->maxSeedingTime();
-
-    bool useGlobalValue = true;
-    if (torrents.count() == 1)
-        useGlobalValue = (torrents[0]->ratioLimit() == BitTorrent::TorrentHandle::USE_GLOBAL_RATIO)
-                && (torrents[0]->seedingTimeLimit() == BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME);
-
-    auto dialog = new UpDownRatioDialog(useGlobalValue, currentMaxRatio, BitTorrent::TorrentHandle::MAX_RATIO,
-                       currentMaxSeedingTime, BitTorrent::TorrentHandle::MAX_SEEDING_TIME, this);
+    auto dialog = new TorrentOptionsDialog {this, selectedTorrents};
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dialog, &QDialog::accepted, this, [dialog, torrents]()
-    {
-        for (BitTorrent::TorrentHandle *const torrent : torrents)
-        {
-            const qreal ratio = (dialog->useDefault()
-                ? BitTorrent::TorrentHandle::USE_GLOBAL_RATIO : dialog->ratio());
-            torrent->setRatioLimit(ratio);
-
-            const int seedingTime = (dialog->useDefault()
-                ? BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME : dialog->seedingTime());
-            torrent->setSeedingTimeLimit(seedingTime);
-        }
-    });
     dialog->open();
 }
 
@@ -897,12 +808,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     auto *actionPreviewFile = new QAction(UIThemeManager::instance()->getIcon("view-preview"), tr("Preview file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
-    auto *actionSetMaxRatio = new QAction(UIThemeManager::instance()->getIcon(QLatin1String("ratio")), tr("Limit share ratio..."), listMenu);
-    connect(actionSetMaxRatio, &QAction::triggered, this, &TransferListWidget::setMaxRatioSelectedTorrents);
-    auto *actionSetUploadLimit = new QAction(UIThemeManager::instance()->getIcon("kt-set-max-upload-speed"), tr("Limit upload rate..."), listMenu);
-    connect(actionSetUploadLimit, &QAction::triggered, this, &TransferListWidget::setUpLimitSelectedTorrents);
-    auto *actionSetDownloadLimit = new QAction(UIThemeManager::instance()->getIcon("kt-set-max-download-speed"), tr("Limit download rate..."), listMenu);
-    connect(actionSetDownloadLimit, &QAction::triggered, this, &TransferListWidget::setDlLimitSelectedTorrents);
+    auto *actionTorrentOptions = new QAction(UIThemeManager::instance()->getIcon("configure"), tr("Torrent options..."), listMenu);
+    connect(actionTorrentOptions, &QAction::triggered, this, &TransferListWidget::setTorrentOptions);
     auto *actionOpenDestinationFolder = new QAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open destination folder"), listMenu);
     connect(actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
     auto *actionIncreaseQueuePos = new QAction(UIThemeManager::instance()->getIcon("go-up"), tr("Move up", "i.e. move up in the queue"), listMenu);
@@ -1132,10 +1039,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     listMenu->addAction(actionAutoTMM);
 
     listMenu->addSeparator();
-    if (oneNotSeed)
-        listMenu->addAction(actionSetDownloadLimit);
-    listMenu->addAction(actionSetUploadLimit);
-    listMenu->addAction(actionSetMaxRatio);
+    listMenu->addAction(actionTorrentOptions);
     if (!oneNotSeed && oneHasMetadata)
     {
         actionSuperSeedingMode->setCheckState(allSameSuperSeeding

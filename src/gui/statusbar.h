@@ -57,8 +57,7 @@ public slots:
 private slots:
     void refresh();
     void updateAltSpeedsBtn(bool alternative);
-    void capDownloadSpeed();
-    void capUploadSpeed();
+    void capSpeed();
 
 private:
     void updateConnectionStatus();

@@ -71,7 +71,7 @@ StatusBar::StatusBar(QWidget *parent)
 
     m_dlSpeedLbl = new QPushButton(this);
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("downloading_small")));
-    connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capDownloadSpeed);
+    connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
@@ -80,7 +80,7 @@ StatusBar::StatusBar(QWidget *parent)
 
     m_upSpeedLbl = new QPushButton(this);
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("seeding")));
-    connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capUploadSpeed);
+    connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
@@ -251,32 +251,9 @@ void StatusBar::updateAltSpeedsBtn(bool alternative)
     refresh();
 }
 
-void StatusBar::capDownloadSpeed()
+void StatusBar::capSpeed()
 {
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-
-    bool ok = false;
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                parentWidget(), &ok, tr("Global Download Speed Limit"), session->downloadSpeedLimit());
-    if (ok)
-    {
-        qDebug("Setting global download rate limit to %.1fKb/s", newLimit / 1024.);
-        session->setDownloadSpeedLimit(newLimit);
-        refresh();
-    }
-}
-
-void StatusBar::capUploadSpeed()
-{
-    BitTorrent::Session *const session = BitTorrent::Session::instance();
-
-    bool ok = false;
-    const long newLimit = SpeedLimitDialog::askSpeedLimit(
-                parentWidget(), &ok, tr("Global Upload Speed Limit"), session->uploadSpeedLimit());
-    if (ok)
-    {
-        qDebug("Setting global upload rate limit to %.1fKb/s", newLimit / 1024.);
-        session->setUploadSpeedLimit(newLimit);
-        refresh();
-    }
+    auto dialog = new SpeedLimitDialog {parentWidget()};
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->open();
 }

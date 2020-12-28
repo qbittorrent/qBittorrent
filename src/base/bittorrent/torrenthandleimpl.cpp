@@ -1016,6 +1016,21 @@ bool TorrentHandleImpl::superSeeding() const
     return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::super_seeding);
 }
 
+bool TorrentHandleImpl::isDHTDisabled() const
+{
+    return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::disable_dht);
+}
+
+bool TorrentHandleImpl::isPEXDisabled() const
+{
+    return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::disable_pex);
+}
+
+bool TorrentHandleImpl::isLSDDisabled() const
+{
+    return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::disable_lsd);
+}
+
 QVector<PeerInfo> TorrentHandleImpl::peers() const
 {
     std::vector<lt::peer_info> nativePeers;
@@ -1935,20 +1950,68 @@ void TorrentHandleImpl::setSeedingTimeLimit(int limit)
 
 void TorrentHandleImpl::setUploadLimit(const int limit)
 {
+    if (limit == uploadLimit())
+        return;
+
     m_nativeHandle.set_upload_limit(limit);
+    saveResumeData();
 }
 
 void TorrentHandleImpl::setDownloadLimit(const int limit)
 {
+    if (limit == downloadLimit())
+        return;
+
     m_nativeHandle.set_download_limit(limit);
+    saveResumeData();
 }
 
 void TorrentHandleImpl::setSuperSeeding(const bool enable)
 {
+    if (enable == superSeeding())
+        return;
+
     if (enable)
         m_nativeHandle.set_flags(lt::torrent_flags::super_seeding);
     else
         m_nativeHandle.unset_flags(lt::torrent_flags::super_seeding);
+    saveResumeData();
+}
+
+void TorrentHandleImpl::setDHTDisabled(const bool disable)
+{
+    if (disable == isDHTDisabled())
+        return;
+
+    if (disable)
+        m_nativeHandle.set_flags(lt::torrent_flags::disable_dht);
+    else
+        m_nativeHandle.unset_flags(lt::torrent_flags::disable_dht);
+    saveResumeData();
+}
+
+void TorrentHandleImpl::setPEXDisabled(const bool disable)
+{
+    if (disable == isPEXDisabled())
+        return;
+
+    if (disable)
+        m_nativeHandle.set_flags(lt::torrent_flags::disable_pex);
+    else
+        m_nativeHandle.unset_flags(lt::torrent_flags::disable_pex);
+    saveResumeData();
+}
+
+void TorrentHandleImpl::setLSDDisabled(const bool disable)
+{
+    if (disable == isLSDDisabled())
+        return;
+
+    if (disable)
+        m_nativeHandle.set_flags(lt::torrent_flags::disable_lsd);
+    else
+        m_nativeHandle.unset_flags(lt::torrent_flags::disable_lsd);
+    saveResumeData();
 }
 
 void TorrentHandleImpl::flushCache() const

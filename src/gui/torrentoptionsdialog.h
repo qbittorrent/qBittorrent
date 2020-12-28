@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christian Kandeler
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -30,33 +30,48 @@
 
 #include <QDialog>
 
-namespace Ui
+namespace BitTorrent
 {
-    class UpDownRatioDialog;
+    class InfoHash;
+    class TorrentHandle;
 }
 
-class UpDownRatioDialog final : public QDialog
+namespace Ui
+{
+    class TorrentOptionsDialog;
+}
+
+class TorrentOptionsDialog final : public QDialog
 {
     Q_OBJECT
 
 public:
-    UpDownRatioDialog(bool useDefault, qreal initialValue, qreal maxValue,
-            int initialTimeValue, int maxTimeValue,
-            QWidget *parent = nullptr);
-    ~UpDownRatioDialog();
-
-    bool useDefault() const;
-    qreal ratio() const;
-    int seedingTime() const;
+    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::TorrentHandle *> &torrents);
+    ~TorrentOptionsDialog() override;
 
 public slots:
     void accept() override;
 
 private slots:
+    void handleUpSpeedLimitChanged();
+    void handleDownSpeedLimitChanged();
+
     void handleRatioTypeChanged();
-    void enableRatioSpin();
-    void enableTimeSpin();
 
 private:
-    Ui::UpDownRatioDialog *m_ui;
+    qreal getRatio() const;
+    int getSeedingTime() const;
+
+    QVector<BitTorrent::InfoHash> m_torrentHashes;
+    Ui::TorrentOptionsDialog *m_ui;
+    struct
+    {
+        qreal ratio;
+        int seedingTime;
+        int upSpeedLimit;
+        int downSpeedLimit;
+        Qt::CheckState disableDHT;
+        Qt::CheckState disablePEX;
+        Qt::CheckState disableLSD;
+    } m_initialValues;
 };
