@@ -39,6 +39,8 @@
 #include "ui_torrentoptionsdialog.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "TorrentOptionsDialog/" name
+
 namespace
 {
     const int MIXED_SHARE_LIMITS = -9;
@@ -54,6 +56,7 @@ namespace
 TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::TorrentHandle *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
+    , m_storeDialogSize {SETTINGS_KEY("Size")}
 {
     m_ui->setupUi(this);
 
@@ -265,11 +268,12 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
             , this, &TorrentOptionsDialog::handleRatioTypeChanged);
 #endif
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
 }
 
 TorrentOptionsDialog::~TorrentOptionsDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 

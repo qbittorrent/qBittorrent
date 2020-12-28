@@ -33,6 +33,7 @@
 #include <QStringList>
 
 #include "base/search/searchpluginmanager.h"
+#include "base/settingvalue.h"
 
 class QDropEvent;
 class QTreeWidgetItem;
@@ -91,8 +92,9 @@ private:
     void finishPluginUpdate();
 
     Ui::PluginSelectDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
     SearchPluginManager *m_pluginManager;
     QStringList m_updatedPlugins;
-    int m_asyncOps;
-    int m_pendingUpdates;
+    int m_asyncOps = 0;
+    int m_pendingUpdates = 0;
 };

@@ -35,6 +35,8 @@
 #include "uithememanager.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "SpeedLimitDialog/" name
+
 namespace
 {
     void updateSliderValue(QSlider *slider, const int value)
@@ -48,6 +50,7 @@ namespace
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     : QDialog {parent}
     , m_ui {new Ui::SpeedLimitDialog}
+    , m_storeDialogSize {SETTINGS_KEY("Size")}
 {
     m_ui->setupUi(this);
 
@@ -103,11 +106,12 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     connect(m_ui->spinAltDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
             , this, [this](const int value) { updateSliderValue(m_ui->sliderAltDownloadLimit, value); });
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
 }
 
 SpeedLimitDialog::~SpeedLimitDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 

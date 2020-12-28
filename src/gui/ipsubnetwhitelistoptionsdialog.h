@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 class QSortFilterProxyModel;
 class QStringListModel;
 
@@ -38,14 +40,14 @@ namespace Ui
     class IPSubnetWhitelistOptionsDialog;
 }
 
-class IPSubnetWhitelistOptionsDialog : public QDialog
+class IPSubnetWhitelistOptionsDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY(IPSubnetWhitelistOptionsDialog)
 
 public:
     explicit IPSubnetWhitelistOptionsDialog(QWidget *parent = nullptr);
-    ~IPSubnetWhitelistOptionsDialog();
+    ~IPSubnetWhitelistOptionsDialog() override;
 
 private slots:
     void on_buttonBox_accepted();
@@ -55,7 +57,9 @@ private slots:
 
 private:
     Ui::IPSubnetWhitelistOptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
+
     QStringListModel *m_model;
     QSortFilterProxyModel *m_sortFilter;
-    bool m_modified;
+    bool m_modified = false;
 };
