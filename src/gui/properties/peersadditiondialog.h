@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PEERADDITION_H
-#define PEERADDITION_H
+#pragma once
 
 #include <QDialog>
 #include <QVector>
@@ -56,5 +55,3 @@ private:
     Ui::PeersAdditionDialog *m_ui;
     QVector<BitTorrent::PeerAddress> m_peersList;
 };
-
-#endif // PEERADDITION_H

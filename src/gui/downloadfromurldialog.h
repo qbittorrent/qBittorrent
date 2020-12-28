@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef DOWNLOADFROMURL_H
-#define DOWNLOADFROMURL_H
+#pragma once
 
 #include <QDialog>
 
@@ -54,5 +53,3 @@ private slots:
 private:
     Ui::DownloadFromURLDialog *m_ui;
 };
-
-#endif // DOWNLOADFROMURL_H

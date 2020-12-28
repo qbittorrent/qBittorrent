@@ -30,8 +30,10 @@
 
 #include <limits>
 
+#include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QList>
 #include <QSharedPointer>
 
 #include "base/global.h"

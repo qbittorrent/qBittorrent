@@ -40,11 +40,11 @@
 #include <QString>
 #include <QStringList>
 
-#include "../global.h"
-#include "../preferences.h"
-#include "../tristatebool.h"
-#include "../utils/fs.h"
-#include "../utils/string.h"
+#include "base/global.h"
+#include "base/preferences.h"
+#include "base/tristatebool.h"
+#include "base/utils/fs.h"
+#include "base/utils/string.h"
 #include "rss_article.h"
 #include "rss_autodownloader.h"
 #include "rss_feed.h"
@@ -91,6 +91,21 @@ namespace
         default: return 0; // default
         }
     }
+
+    boost::optional<BitTorrent::TorrentContentLayout> jsonValueToContentLayout(const QJsonValue &jsonVal)
+    {
+        const QString str = jsonVal.toString();
+        if (str.isEmpty())
+            return {};
+        return Utils::String::toEnum(str, BitTorrent::TorrentContentLayout::Original);
+    }
+
+    QJsonValue contentLayoutToJsonValue(const boost::optional<BitTorrent::TorrentContentLayout> contentLayout)
+    {
+        if (!contentLayout)
+            return {};
+        return Utils::String::fromEnum(*contentLayout);
+    }
 }
 
 const QString Str_Name(QStringLiteral("name"));
@@ -106,6 +121,7 @@ const QString Str_LastMatch(QStringLiteral("lastMatch"));
 const QString Str_IgnoreDays(QStringLiteral("ignoreDays"));
 const QString Str_AddPaused(QStringLiteral("addPaused"));
 const QString Str_CreateSubfolder(QStringLiteral("createSubfolder"));
+const QString Str_ContentLayout(QStringLiteral("torrentContentLayout"));
 const QString Str_SmartFilter(QStringLiteral("smartFilter"));
 const QString Str_PreviouslyMatched(QStringLiteral("previouslyMatchedEpisodes"));
 
@@ -127,7 +143,7 @@ namespace RSS
         QString savePath;
         QString category;
         TriStateBool addPaused = TriStateBool::Undefined;
-        TriStateBool createSubfolder = TriStateBool::Undefined;
+        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -149,7 +165,7 @@ namespace RSS
                     && (savePath == other.savePath)
                     && (category == other.category)
                     && (addPaused == other.addPaused)
-                    && (createSubfolder == other.createSubfolder)
+                    && (contentLayout == other.contentLayout)
                     && (smartFilter == other.smartFilter);
         }
     };
@@ -462,7 +478,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
         , {Str_AddPaused, triStateBoolToJsonValue(addPaused())}
-        , {Str_CreateSubfolder, triStateBoolToJsonValue(createSubfolder())}
+        , {Str_ContentLayout, contentLayoutToJsonValue(torrentContentLayout())}
         , {Str_SmartFilter, useSmartFilter()}
         , {Str_PreviouslyMatched, QJsonArray::fromStringList(previouslyMatchedEpisodes())}};
 }
@@ -479,7 +495,29 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
     rule.setAddPaused(jsonValueToTriStateBool(jsonObj.value(Str_AddPaused)));
-    rule.setCreateSubfolder(jsonValueToTriStateBool(jsonObj.value(Str_CreateSubfolder)));
+
+    // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
+    // === BEGIN DEPRECATED CODE === //
+    if (jsonObj.contains(Str_ContentLayout))
+    {
+        rule.setTorrentContentLayout(jsonValueToContentLayout(jsonObj.value(Str_ContentLayout)));
+    }
+    else
+    {
+        const TriStateBool createSubfolder = jsonValueToTriStateBool(jsonObj.value(Str_CreateSubfolder));
+        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        if (createSubfolder == TriStateBool::True)
+            contentLayout = BitTorrent::TorrentContentLayout::Original;
+        else if (createSubfolder == TriStateBool::False)
+            contentLayout = BitTorrent::TorrentContentLayout::NoSubfolder;
+
+        rule.setTorrentContentLayout(contentLayout);
+    }
+    // === END DEPRECATED CODE === //
+    // === BEGIN REPLACEMENT CODE === //
+//    rule.setTorrentContentLayout(jsonValueToContentLayout(jsonObj.value(Str_ContentLayout)));
+    // === END REPLACEMENT CODE === //
+
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
     rule.setUseSmartFilter(jsonObj.value(Str_SmartFilter).toBool(false));
@@ -611,14 +649,14 @@ void AutoDownloadRule::setAddPaused(const TriStateBool addPaused)
     m_dataPtr->addPaused = addPaused;
 }
 
-TriStateBool AutoDownloadRule::createSubfolder() const
+boost::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
 {
-    return m_dataPtr->createSubfolder;
+    return m_dataPtr->contentLayout;
 }
 
-void AutoDownloadRule::setCreateSubfolder(const TriStateBool createSubfolder)
+void AutoDownloadRule::setTorrentContentLayout(const boost::optional<BitTorrent::TorrentContentLayout> contentLayout)
 {
-    m_dataPtr->createSubfolder = createSubfolder;
+    m_dataPtr->contentLayout = contentLayout;
 }
 
 QString AutoDownloadRule::assignedCategory() const

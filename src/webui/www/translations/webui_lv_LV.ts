@@ -27,7 +27,19 @@
         <translation>Torrenta pārvaldības režīms:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -702,10 +714,6 @@
     <message>
         <source>Password:</source>
         <translation>Parole:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Protokola izvēle:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1427,6 +1435,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2190,10 +2202,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>pirms %1</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">Nodrošinām brīvo vietu</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3209,14 +3217,8 @@
         <translation>Vienmēr</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">Viedais epizožu filtrs pārbaudīs epizožu nummurus, lai novērstu duplikātu lejupielādi.
-Atbalsta formātus: S01E01, 1x1, 2017.01.01 un 01.01.2017 (Datumu formātos kā atdalitāju "." vietā varat izmantot arī "-")</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Izveidot apakšmapi:</translation>
+        <translation type="vanished">Izveidot apakšmapi:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3305,6 +3307,22 @@ Atbalsta formātus: S01E01, 1x1, 2017.01.01 un 01.01.2017 (Datumu formātos kā 
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

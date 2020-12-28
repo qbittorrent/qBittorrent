@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,60 +26,44 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "filesearcher.h"
 
-#include <QDateTime>
-#include <QHostAddress>
-#include <QObject>
-#include <QTimer>
+#include <QDir>
 
-#include "base/preferences.h"
+#include "base/bittorrent/common.h"
+#include "base/bittorrent/infohash.h"
 
-namespace Net
+void FileSearcher::search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+                          , const QString &completeSavePath, const QString &incompleteSavePath)
 {
-    struct DownloadResult;
-
-    // Based on http://www.dyndns.com/developers/specs/
-    class DNSUpdater : public QObject
+    const auto findInDir = [](const QString &dirPath, QStringList &fileNames) -> bool
     {
-        Q_OBJECT
-
-    public:
-        explicit DNSUpdater(QObject *parent = nullptr);
-        ~DNSUpdater();
-
-        static QUrl getRegistrationUrl(int service);
-
-    public slots:
-        void updateCredentials();
-
-    private slots:
-        void checkPublicIP();
-        void ipRequestFinished(const DownloadResult &result);
-        void updateDNSService();
-        void ipUpdateFinished(const DownloadResult &result);
-
-    private:
-        enum State
+        const QDir dir {dirPath};
+        bool found = false;
+        for (QString &fileName : fileNames)
         {
-            OK,
-            INVALID_CREDS,
-            FATAL
-        };
+            if (dir.exists(fileName))
+            {
+                found = true;
+            }
+            else if (dir.exists(fileName + QB_EXT))
+            {
+                found = true;
+                fileName += QB_EXT;
+            }
+        }
 
-        static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
-
-        QString getUpdateUrl() const;
-        void processIPUpdateReply(const QString &reply);
-
-        QHostAddress m_lastIP;
-        QDateTime m_lastIPCheckTime;
-        QTimer m_ipCheckTimer;
-        int m_state;
-        // Service creds
-        DNS::Service m_service;
-        QString m_domain;
-        QString m_username;
-        QString m_password;
+        return found;
     };
+
+    QString savePath = completeSavePath;
+    QStringList adjustedFileNames = originalFileNames;
+    const bool found = findInDir(savePath, adjustedFileNames);
+    if (!found && !incompleteSavePath.isEmpty())
+    {
+        savePath = incompleteSavePath;
+        findInDir(savePath, adjustedFileNames);
+    }
+
+    emit searchFinished(id, savePath, adjustedFileNames);
 }

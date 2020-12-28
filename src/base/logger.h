@@ -26,15 +26,14 @@
  * exception statement from your version.
  */
 
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
 #include <boost/circular_buffer.hpp>
 
 #include <QObject>
 #include <QReadWriteLock>
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 const int MAX_LOG_MESSAGES = 20000;
 
@@ -103,5 +102,3 @@ private:
 
 // Helper function
 void LogMsg(const QString &message, const Log::MsgType &type = Log::NORMAL);
-
-#endif // LOGGER_H

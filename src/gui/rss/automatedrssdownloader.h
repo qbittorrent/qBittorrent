@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef AUTOMATEDRSSDOWNLOADER_H
-#define AUTOMATEDRSSDOWNLOADER_H
+#pragma once
 
 #include <QDialog>
 #include <QHash>
@@ -106,5 +105,3 @@ private:
     QHash<QString, QListWidgetItem *> m_itemsByRuleName;
     QRegularExpression *m_episodeRegex;
 };
-
-#endif // AUTOMATEDRSSDOWNLOADER_H

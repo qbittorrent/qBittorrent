@@ -30,7 +30,7 @@
 
 #include "apicontroller.h"
 
-class RSSController : public APIController
+class RSSController final : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY(RSSController)

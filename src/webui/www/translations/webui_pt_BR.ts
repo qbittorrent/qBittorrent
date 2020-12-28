@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Manter pasta de nível superior</translation>
+        <translation type="vanished">Manter pasta de nível superior</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -702,10 +718,6 @@
     <message>
         <source>Password:</source>
         <translation>Senha:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Protocolo habilitado:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -1427,6 +1439,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>Protocolo de conexão de pares:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2190,10 +2206,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 atrás</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">Alocando</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3209,14 +3221,8 @@
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">O Filtro Inteligente de Episódios irá verificar o número do episódio para prevenir baixar arquivos duplicados.
-Suporta os formatos: S01E01, 1x1, 2017.01.01 e 01.01.2017 (Suporte também para formatos de data - como um separador)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Criar subpasta:</translation>
+        <translation type="vanished">Criar subpasta:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3305,6 +3311,23 @@ Suporta os formatos: S01E01, 1x1, 2017.01.01 e 01.01.2017 (Suporte também para 
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>O Filtro Inteligente de Episódios irá verificar o número do episódio para prevenir baixar arquivos duplicados.
+Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para formatos de data - como um separador)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Tartsa meg a legfelső szintű mappát</translation>
+        <translation type="vanished">Tartsa meg a legfelső szintű mappát</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -704,10 +720,6 @@
         <translation>Jelszó:</translation>
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Engedélyezett protokoll:</translation>
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation>TCP és μTP</translation>
     </message>
@@ -733,19 +745,19 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Torrentenkénti szálak maximális száma:</translation>
+        <translation>Torrentenkénti kapcsolatok maximális száma:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Globális szálak maximális száma:</translation>
+        <translation>Globális kapcsolatok maximális száma:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Torrentenkénti feltöltési szálak maximális száma:</translation>
+        <translation>Torrentenkénti feltöltési kapcsolatok maximális száma:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Globális feltöltési szálak maximális száma:</translation>
+        <translation>Globális feltöltési kapcsolatok maximális száma:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -1427,6 +1439,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>Peer kapcsolati protokoll:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1611,7 +1627,7 @@
     </message>
     <message>
         <source>Connections:</source>
-        <translation>Ügyfelek:</translation>
+        <translation>Kapcsolatok:</translation>
     </message>
     <message>
         <source>Information</source>
@@ -2166,7 +2182,7 @@
     </message>
     <message>
         <source>Progress</source>
-        <translation>Állapot</translation>
+        <translation>Folyamat</translation>
     </message>
     <message>
         <source>Size</source>
@@ -2190,10 +2206,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 ideje</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">Lefoglalás</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3078,7 +3090,7 @@
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation>Egyező RSS Cikkek</translation>
+        <translation>Egyező RSS cikkek</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
@@ -3106,7 +3118,7 @@
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation>Reguláris Kifejezések használata</translation>
+        <translation>Reguláris kifejezések használata</translation>
     </message>
     <message>
         <source>New rule name</source>
@@ -3162,7 +3174,7 @@
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation>Tartalmaznia Kell:</translation>
+        <translation>Tartalmaznia kell:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
@@ -3174,7 +3186,7 @@
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation>Nem Tartalmazhatja:</translation>
+        <translation>Nem tartalmazhatja:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
@@ -3209,13 +3221,8 @@
         <translation>Mindig</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">A Smart Episode Szűrő ellenőrzi az epizód számot, hogy elkerülje ugyanazon epizódok többször letöltését. Támogatott formátuk: S01E01, 1x1, 2017.01.01 és a 01.01.2017. (A dátum formátumok szintén támogatják a "-"-t mint elválasztó)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Almappa létrehozása:</translation>
+        <translation type="vanished">Almappa létrehozása:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3251,7 +3258,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation>Szabály Alkalmazása a Csatornákra:</translation>
+        <translation>Szabály alkalmazása a csatornákra:</translation>
     </message>
     <message>
         <source> days</source>
@@ -3259,7 +3266,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Okos Epizódszűrő használata</translation>
+        <translation>Okos epizódszűrő használata</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -3304,6 +3311,23 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>Az intelligens epizódszűrő ellenőrzi az epizódszámot, hogy megakadályozza a másolatok letöltését.
+Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumformátumok is támogatják - elválasztóként)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

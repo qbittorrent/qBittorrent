@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef ARTICLELISTWIDGET_H
-#define ARTICLELISTWIDGET_H
+#pragma once
 
 #include <QHash>
 #include <QListWidget>
@@ -63,5 +62,3 @@ private:
     bool m_unreadOnly = false;
     QHash<RSS::Article *, QListWidgetItem *> m_rssArticleToListItemMapping;
 };
-
-#endif // ARTICLELISTWIDGET_H

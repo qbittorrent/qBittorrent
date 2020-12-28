@@ -26,10 +26,9 @@
  * exception statement from your version.
  */
 
-#ifndef TYPES_H
-#define TYPES_H
+#pragma once
 
-#include <QMap>
+#include <QtContainerFwd>
 
 const qlonglong MAX_ETA = 8640000;
 
@@ -42,5 +41,3 @@ enum class ShutdownDialogAction
 };
 
 typedef QMap<QString, QString> QStringMap;
-
-#endif // TYPES_H

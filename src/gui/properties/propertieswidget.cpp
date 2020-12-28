@@ -104,7 +104,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_propListDelegate, &PropListDelegate::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataLoaded, this, &PropertiesWidget::updateTorrentInfos);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataReceived, this, &PropertiesWidget::updateTorrentInfos);
     connect(m_ui->filesList, &QAbstractItemView::clicked
             , m_ui->filesList, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
     connect(m_ui->filesList, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFilesListMenu);
@@ -404,7 +404,7 @@ void PropertiesWidget::loadDynamicData()
     switch (m_ui->stackedProperties->currentIndex())
     {
     case PropTabBar::MainTab:
-    {
+        {
             m_ui->labelWastedVal->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
 
             m_ui->labelUpTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload())

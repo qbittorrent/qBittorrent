@@ -31,7 +31,10 @@
 #include <QSortFilterProxyModel>
 #include "base/torrentfilter.h"
 
-class QStringList;
+namespace BitTorrent
+{
+    class InfoHash;
+}
 
 class TransferListSortModel final : public QSortFilterProxyModel
 {
@@ -46,7 +49,7 @@ public:
     void disableCategoryFilter();
     void setTagFilter(const QString &tag);
     void disableTagFilter();
-    void setTrackerFilter(const QStringList &hashes);
+    void setTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes);
     void disableTrackerFilter();
 
 private:

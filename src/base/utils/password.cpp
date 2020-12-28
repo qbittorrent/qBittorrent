@@ -34,6 +34,7 @@
 
 #include <QByteArray>
 #include <QString>
+#include <QVector>
 
 #include "bytearray.h"
 #include "random.h"

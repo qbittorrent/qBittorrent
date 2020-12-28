@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_TRACKERENTRY_H
-#define BITTORRENT_TRACKERENTRY_H
+#pragma once
 
 #include <libtorrent/announce_entry.hpp>
 
@@ -73,5 +72,3 @@ namespace BitTorrent
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
     uint qHash(const TrackerEntry &key, uint seed);
 }
-
-#endif // BITTORRENT_TRACKERENTRY_H

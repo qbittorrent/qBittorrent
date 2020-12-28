@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PREVIEWSELECTDIALOG_H
-#define PREVIEWSELECTDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -86,5 +85,3 @@ private:
     CachedSettingValue<QSize> m_storeDialogSize;
     CachedSettingValue<QByteArray> m_storeTreeHeaderState;
 };
-
-#endif // PREVIEWSELECTDIALOG_H

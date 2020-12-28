@@ -27,15 +27,14 @@
  * exception statement from your version.
  */
 
-#ifndef PLUGINSELECTDIALOG_H
-#define PLUGINSELECTDIALOG_H
+#pragma once
 
 #include <QDialog>
+#include <QStringList>
 
 #include "base/search/searchpluginmanager.h"
 
 class QDropEvent;
-class QStringList;
 class QTreeWidgetItem;
 
 namespace Net
@@ -97,5 +96,3 @@ private:
     int m_asyncOps;
     int m_pendingUpdates;
 };
-
-#endif // PLUGINSELECTDIALOG_H

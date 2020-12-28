@@ -1,6 +1,8 @@
-AC_INIT([qbittorrent], [v4.3.1], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.3.2], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
+: ${CFLAGS=""}
+: ${CXXFLAGS=""}
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_SED
@@ -157,7 +159,7 @@ AS_CASE(["x$enable_qt_dbus"],
         AC_MSG_ERROR([Unknown option "$enable_qt_dbus". Use either "yes" or "no".])])
 
 
-AX_BOOST_BASE([1.40],
+AX_BOOST_BASE([1.65],
               [AC_MSG_NOTICE([Boost CXXFLAGS: "$BOOST_CPPFLAGS"])
                AC_MSG_NOTICE([Boost LDFLAGS: "$BOOST_LDFLAGS"])],
               [AC_MSG_ERROR([Could not find Boost])])
@@ -178,17 +180,17 @@ AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
 LIBS="$BOOST_SYSTEM_LIB $LIBS"
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.2],
+                  [libtorrent-rasterbar >= 1.2.11],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(openssl,
-                  [openssl >= 1.0],
+                  [openssl >= 1.1.1],
                   [CXXFLAGS="$openssl_CFLAGS $CXXFLAGS"
                   LIBS="$openssl_LIBS $LIBS"])
 
 PKG_CHECK_MODULES(zlib,
-                 [zlib >= 1.2.5.2],
+                 [zlib >= 1.2.11],
                  [CXXFLAGS="$zlib_CFLAGS $CXXFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 

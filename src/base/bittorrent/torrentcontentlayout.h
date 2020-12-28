@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,58 +28,24 @@
 
 #pragma once
 
-#include <QDateTime>
-#include <QHostAddress>
-#include <QObject>
-#include <QTimer>
+#include <QMetaEnum>
 
-#include "base/preferences.h"
-
-namespace Net
+namespace BitTorrent
 {
-    struct DownloadResult;
-
-    // Based on http://www.dyndns.com/developers/specs/
-    class DNSUpdater : public QObject
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace TorrentContentLayoutNS
     {
-        Q_OBJECT
+        Q_NAMESPACE
 
-    public:
-        explicit DNSUpdater(QObject *parent = nullptr);
-        ~DNSUpdater();
-
-        static QUrl getRegistrationUrl(int service);
-
-    public slots:
-        void updateCredentials();
-
-    private slots:
-        void checkPublicIP();
-        void ipRequestFinished(const DownloadResult &result);
-        void updateDNSService();
-        void ipUpdateFinished(const DownloadResult &result);
-
-    private:
-        enum State
+        enum class TorrentContentLayout
         {
-            OK,
-            INVALID_CREDS,
-            FATAL
+            Original,
+            Subfolder,
+            NoSubfolder
         };
 
-        static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
-
-        QString getUpdateUrl() const;
-        void processIPUpdateReply(const QString &reply);
-
-        QHostAddress m_lastIP;
-        QDateTime m_lastIPCheckTime;
-        QTimer m_ipCheckTimer;
-        int m_state;
-        // Service creds
-        DNS::Service m_service;
-        QString m_domain;
-        QString m_username;
-        QString m_password;
-    };
+        Q_ENUM_NS(TorrentContentLayout)
+    }
 }

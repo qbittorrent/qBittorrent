@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef PIECESBAR_H
-#define PIECESBAR_H
+#pragma once
 
 #include <QColor>
 #include <QImage>
@@ -95,5 +94,3 @@ private:
     bool m_hovered;
     QRect m_highlitedRegion; //!< part of the bar can be highlighted; this rectangle is in the same frame as m_image
 };
-
-#endif // PIECESBAR_H

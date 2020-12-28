@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_GZIP_H
-#define UTILS_GZIP_H
+#pragma once
 
 class QByteArray;
 
@@ -40,5 +39,3 @@ namespace Utils
         QByteArray decompress(const QByteArray &data, bool *ok = nullptr);
     }
 }
-
-#endif // UTILS_GZIP_H

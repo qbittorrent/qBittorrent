@@ -52,6 +52,7 @@
 #include <QRegularExpression>
 #include <QSet>
 #include <QSysInfo>
+#include <QVector>
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>

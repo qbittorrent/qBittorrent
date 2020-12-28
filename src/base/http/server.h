@@ -28,8 +28,7 @@
  */
 
 
-#ifndef HTTP_SERVER_H
-#define HTTP_SERVER_H
+#pragma once
 
 #include <QSet>
 #include <QSslCertificate>
@@ -67,5 +66,3 @@ namespace Http
         QSslKey m_key;
     };
 }
-
-#endif // HTTP_SERVER_H

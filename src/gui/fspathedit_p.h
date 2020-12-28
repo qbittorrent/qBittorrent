@@ -26,21 +26,19 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_GUI_FSPATHEDIT_P_H
-#define QBT_GUI_FSPATHEDIT_P_H
+#pragma once
 
 #include <QComboBox>
 #include <QFileIconProvider>
 #include <QLineEdit>
+#include <QtContainerFwd>
 #include <QValidator>
-#include <QVector>
 
 class QAction;
 class QCompleter;
 class QContextMenuEvent;
 class QFileSystemModel;
 class QKeyEvent;
-class QStringList;
 class QStringRef;
 
 namespace Private
@@ -158,5 +156,3 @@ namespace Private
         QString text() const;
     };
 }
-
-#endif // QBT_GUI_FSPATHEDIT_P_H

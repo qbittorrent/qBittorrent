@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PROGRAMUPDATER_H
-#define PROGRAMUPDATER_H
+#pragma once
 
 #include <QObject>
 
@@ -59,5 +58,3 @@ private:
     QString m_updateUrl;
     bool m_invokedByUser;
 };
-
-#endif // PROGRAMUPDATER_H

@@ -26,16 +26,14 @@
  * exception statement from your version.
  */
 
-#ifndef FILESYSTEMWATCHER_H
-#define FILESYSTEMWATCHER_H
+#pragma once
 
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QHash>
+#include <QtContainerFwd>
 #include <QTimer>
 #include <QVector>
-
-class QStringList;
 
 /*
  * Subclassing QFileSystemWatcher in order to support Network File
@@ -70,5 +68,3 @@ private:
     QVector<QDir> m_watchedFolders;
     QTimer m_watchTimer;
 };
-
-#endif // FILESYSTEMWATCHER_H

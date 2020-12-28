@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_MISC_H
-#define UTILS_MISC_H
+#pragma once
 
 #include <QtGlobal>
 
@@ -108,5 +107,3 @@ namespace Utils
 #endif // Q_OS_WIN
     }
 }
-
-#endif // UTILS_MISC_H

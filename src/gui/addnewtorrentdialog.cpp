@@ -123,12 +123,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     const bool rememberLastSavePath = settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false).toBool();
     m_ui->checkBoxRememberLastSavePath->setChecked(rememberLastSavePath);
 
-    if (m_torrentParams.createSubfolder == TriStateBool::True)
-        m_ui->keepTopLevelFolderCheckBox->setChecked(true);
-    else if (m_torrentParams.createSubfolder == TriStateBool::False)
-        m_ui->keepTopLevelFolderCheckBox->setChecked(false);
-    else
-        m_ui->keepTopLevelFolderCheckBox->setChecked(session->isKeepTorrentTopLevelFolder());
+    m_ui->contentLayoutComboBox->setCurrentIndex(
+                static_cast<int>(m_torrentParams.contentLayout ? *m_torrentParams.contentLayout : session->torrentContentLayout()));
 
     m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
@@ -308,7 +304,6 @@ bool AddNewTorrentDialog::loadTorrentImpl()
     m_ui->labelHashData->setText(infoHash);
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
-    m_ui->keepTopLevelFolderCheckBox->setEnabled(m_torrentInfo.hasRootFolder());
     return true;
 }
 
@@ -347,7 +342,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
         return false;
     }
 
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 
     // Set dialog title
     const QString torrentName = magnetUri.name();
@@ -356,7 +351,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
 
-    BitTorrent::Session::instance()->loadMetadata(magnetUri);
+    BitTorrent::Session::instance()->downloadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
     m_ui->labelHashData->setText(infoHash);
 
@@ -579,7 +574,7 @@ void AddNewTorrentDialog::accept()
         m_torrentParams.filePriorities = m_contentModel->model()->getFilePriorities();
 
     m_torrentParams.addPaused = TriStateBool(!m_ui->startTorrentCheckBox->isChecked());
-    m_torrentParams.createSubfolder = TriStateBool(m_ui->keepTopLevelFolderCheckBox->isChecked());
+    m_torrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 
     m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
     m_torrentParams.firstLastPiecePriority = m_ui->firstLastCheckBox->isChecked();
@@ -613,7 +608,7 @@ void AddNewTorrentDialog::reject()
     if (!m_hasMetadata)
     {
         setMetadataProgressIndicator(false);
-        BitTorrent::Session::instance()->cancelLoadMetadata(m_magnetURI.hash());
+        BitTorrent::Session::instance()->cancelDownloadMetadata(m_magnetURI.hash());
     }
 
     QDialog::reject();
@@ -623,7 +618,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
 {
     if (metadata.hash() != m_magnetURI.hash()) return;
 
-    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataLoaded, this, &AddNewTorrentDialog::updateMetadata);
+    disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 
     if (!metadata.isValid())
     {
@@ -640,7 +635,6 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
     // Update UI
     setupTreeview();
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
-    m_ui->keepTopLevelFolderCheckBox->setEnabled(m_torrentInfo.hasRootFolder());
 }
 
 void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText)

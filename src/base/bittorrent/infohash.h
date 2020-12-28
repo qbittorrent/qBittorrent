@@ -26,11 +26,11 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_INFOHASH_H
-#define BITTORRENT_INFOHASH_H
+#pragma once
 
 #include <libtorrent/sha1_hash.hpp>
 
+#include <QMetaType>
 #include <QString>
 
 namespace BitTorrent
@@ -38,7 +38,7 @@ namespace BitTorrent
     class InfoHash
     {
     public:
-        InfoHash();
+        InfoHash() = default;
         InfoHash(const lt::sha1_hash &nativeHash);
         InfoHash(const QString &hashString);
         InfoHash(const InfoHash &other) = default;
@@ -54,14 +54,15 @@ namespace BitTorrent
         operator QString() const;
 
     private:
-        bool m_valid;
+        bool m_valid = false;
         lt::sha1_hash m_nativeHash;
         QString m_hashString;
     };
 
     bool operator==(const InfoHash &left, const InfoHash &right);
     bool operator!=(const InfoHash &left, const InfoHash &right);
+    bool operator<(const InfoHash &left, const InfoHash &right);
     uint qHash(const InfoHash &key, uint seed);
 }
 
-#endif // BITTORRENT_INFOHASH_H
+Q_DECLARE_METATYPE(BitTorrent::InfoHash)

@@ -256,23 +256,65 @@ void TorrentsController::infoAction()
     const bool reverse {parseBool(params()["reverse"], false)};
     int limit {params()["limit"].toInt()};
     int offset {params()["offset"].toInt()};
-    const QStringSet hashSet {List::toSet(params()["hashes"].split('|', QString::SkipEmptyParts))};
+    const QStringList hashes {params()["hashes"].split('|', QString::SkipEmptyParts)};
 
+    InfoHashSet hashSet;
+    for (const QString &hash : hashes)
+        hashSet.insert(BitTorrent::InfoHash {hash});
+
+    const TorrentFilter torrentFilter(filter, (hashes.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
     QVariantList torrentList;
-    TorrentFilter torrentFilter(filter, (hashSet.isEmpty() ? TorrentFilter::AnyHash : hashSet), category);
-    for (BitTorrent::TorrentHandle *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
+    for (const BitTorrent::TorrentHandle *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
         if (torrentFilter.match(torrent))
             torrentList.append(serialize(*torrent));
     }
 
-    std::sort(torrentList.begin(), torrentList.end()
-              , [sortedColumn, reverse](const QVariant &torrent1, const QVariant &torrent2)
+    if (torrentList.isEmpty())
     {
-        return reverse
-                ? (torrent1.toMap().value(sortedColumn) > torrent2.toMap().value(sortedColumn))
-                : (torrent1.toMap().value(sortedColumn) < torrent2.toMap().value(sortedColumn));
-    });
+        setResult(QJsonArray {});
+        return;
+    }
+
+    if (!sortedColumn.isEmpty())
+    {
+        if (!torrentList[0].toMap().contains(sortedColumn))
+            throw APIError(APIErrorType::BadParams, tr("'sort' parameter is invalid"));
+
+        const auto lessThan = [](const QVariant &left, const QVariant &right) -> bool
+        {
+            Q_ASSERT(left.type() == right.type());
+
+            switch (static_cast<QMetaType::Type>(left.type()))
+            {
+            case QMetaType::Bool:
+                return left.value<bool>() < right.value<bool>();
+            case QMetaType::Double:
+                return left.value<double>() < right.value<double>();
+            case QMetaType::Float:
+                return left.value<float>() < right.value<float>();
+            case QMetaType::Int:
+                return left.value<int>() < right.value<int>();
+            case QMetaType::LongLong:
+                return left.value<qlonglong>() < right.value<qlonglong>();
+            case QMetaType::QString:
+                return left.value<QString>() < right.value<QString>();
+            default:
+                qWarning("Unhandled QVariant comparison, type: %d, name: %s", left.type()
+                    , QMetaType::typeName(left.type()));
+                break;
+            }
+            return false;
+        };
+
+        std::sort(torrentList.begin(), torrentList.end()
+            , [reverse, &sortedColumn, &lessThan](const QVariant &torrent1, const QVariant &torrent2)
+        {
+            const QVariant value1 {torrent1.toMap().value(sortedColumn)};
+            const QVariant value2 {torrent2.toMap().value(sortedColumn)};
+            return reverse ? lessThan(value2, value1) : lessThan(value1, value2);
+        });
+    }
 
     const int size = torrentList.size();
     // normalize offset
@@ -564,14 +606,19 @@ void TorrentsController::addAction()
     const bool seqDownload = parseBool(params()["sequentialDownload"], false);
     const bool firstLastPiece = parseBool(params()["firstLastPiecePrio"], false);
     const TriStateBool addPaused = parseTriStateBool(params()["paused"]);
-    const TriStateBool rootFolder = parseTriStateBool(params()["root_folder"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
+    const QSet<QString> tags = List::toSet(params()["tags"].split(',', QString::SkipEmptyParts));
     const QString cookie = params()["cookie"];
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = params()["upLimit"].toInt();
     const int dlLimit = params()["dlLimit"].toInt();
     const TriStateBool autoTMM = parseTriStateBool(params()["autoTMM"]);
+
+    const QString contentLayoutParam = params()["contentLayout"];
+    const boost::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
+            ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
+            : boost::optional<BitTorrent::TorrentContentLayout> {});
 
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty())
@@ -596,9 +643,10 @@ void TorrentsController::addAction()
     params.sequential = seqDownload;
     params.firstLastPiecePriority = firstLastPiece;
     params.addPaused = addPaused;
-    params.createSubfolder = rootFolder;
+    params.contentLayout = contentLayout;
     params.savePath = savepath;
     params.category = category;
+    params.tags = tags;
     params.name = torrentName;
     params.uploadLimit = (upLimit > 0) ? upLimit : -1;
     params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;

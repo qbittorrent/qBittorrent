@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_FSPATHEDIT_H
-#define QBT_FSPATHEDIT_H
+#pragma once
 
 #include <QWidget>
 
@@ -149,5 +148,3 @@ private:
     QString editWidgetText() const override;
     void setEditWidgetText(const QString &text) override;
 };
-
-#endif // QBT_FSPATHEDIT_H

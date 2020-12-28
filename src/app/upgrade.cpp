@@ -29,11 +29,15 @@
 #include "upgrade.h"
 
 #include <QFile>
+#include <QMetaEnum>
+#include <QVector>
 
+#include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
+#include "base/utils/string.h"
 
 namespace
 {
@@ -78,11 +82,32 @@ namespace
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
             , Utils::Fs::toNativePath(configPath + QLatin1String("WebUIPrivateKey.pem")));
     }
+
+    void upgradeTorrentContentLayout()
+    {
+        const QString oldKey {QLatin1String {"BitTorrent/Session/CreateTorrentSubfolder"}};
+        const QString newKey {QLatin1String {"BitTorrent/Session/TorrentContentLayout"}};
+
+        SettingsStorage *settingsStorage {SettingsStorage::instance()};
+        const QVariant oldData {settingsStorage->loadValue(oldKey)};
+        const QString newData {settingsStorage->loadValue(newKey).toString()};
+
+        if (!newData.isEmpty() || !oldData.isValid())
+            return;
+
+        const bool createSubfolder = oldData.toBool();
+        const BitTorrent::TorrentContentLayout torrentContentLayout =
+                (createSubfolder ? BitTorrent::TorrentContentLayout::Original : BitTorrent::TorrentContentLayout::NoSubfolder);
+
+        settingsStorage->storeValue(newKey, Utils::String::fromEnum(torrentContentLayout));
+        settingsStorage->removeValue(oldKey);
+    }
 }
 
 bool upgrade(const bool /*ask*/)
 {
     exportWebUIHttpsFiles();
+    upgradeTorrentContentLayout();
     return true;
 }
 

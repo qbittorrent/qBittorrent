@@ -264,11 +264,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerlessStateChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::changeTrackerless);
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerSuccess
-        , m_transferListFiltersWidget, qOverload<BitTorrent::TorrentHandle *const, const QString &>(&TransferListFiltersWidget::trackerSuccess));
+        , m_transferListFiltersWidget, qOverload<const BitTorrent::TorrentHandle *, const QString &>(&TransferListFiltersWidget::trackerSuccess));
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerError
-        , m_transferListFiltersWidget, qOverload<BitTorrent::TorrentHandle *const, const QString &>(&TransferListFiltersWidget::trackerError));
+        , m_transferListFiltersWidget, qOverload<const BitTorrent::TorrentHandle *, const QString &>(&TransferListFiltersWidget::trackerError));
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerWarning
-        , m_transferListFiltersWidget, qOverload<BitTorrent::TorrentHandle *const, const QString &>(&TransferListFiltersWidget::trackerWarning));
+        , m_transferListFiltersWidget, qOverload<const BitTorrent::TorrentHandle *, const QString &>(&TransferListFiltersWidget::trackerWarning));
 
 #ifdef Q_OS_MACOS
     // Increase top spacing to avoid tab overlapping

@@ -66,8 +66,7 @@
 ****************************************************************************
 */
 
-#ifndef QTLOCALPEER_H
-#define QTLOCALPEER_H
+#pragma once
 
 #include "qtlockedfile.h"
 
@@ -99,5 +98,3 @@ protected:
 private:
     static const char* ack;
 };
-
-#endif // QTLOCALPEER_H

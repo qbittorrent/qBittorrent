@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_PORTFORWARDER_H
-#define NET_PORTFORWARDER_H
+#pragma once
 
 #include <QObject>
 
@@ -53,5 +52,3 @@ namespace Net
         static PortForwarder *m_instance;
     };
 }
-
-#endif // NET_PORTFORWARDER_H

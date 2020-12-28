@@ -26,20 +26,19 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_TORRENTINFO_H
-#define BITTORRENT_TORRENTINFO_H
+#pragma once
 
 #include <libtorrent/torrent_info.hpp>
 
 #include <QCoreApplication>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "base/indexrange.h"
+#include "torrentcontentlayout.h"
 
 class QByteArray;
 class QDateTime;
 class QString;
-class QStringList;
 class QUrl;
 
 namespace BitTorrent
@@ -96,15 +95,17 @@ namespace BitTorrent
 
         QString rootFolder() const;
         bool hasRootFolder() const;
-        void stripRootFolder();
+        void setContentLayout(TorrentContentLayout layout);
 
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
 
     private:
         // returns file index or -1 if fileName is not found
         int fileIndex(const QString &fileName) const;
+        void stripRootFolder();
+        void addRootFolder();
+        TorrentContentLayout defaultContentLayout() const;
+
         std::shared_ptr<lt::torrent_info> m_nativeInfo;
     };
 }
-
-#endif // BITTORRENT_TORRENTINFO_H

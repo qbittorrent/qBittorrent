@@ -28,7 +28,23 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Mantieni cartella primo livello</translation>
+        <translation type="vanished">Mantieni cartella primo livello</translation>
+    </message>
+    <message>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -705,10 +721,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Password:</translation>
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation type="vanished">Protocollo abilitato:</translation>
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation>TCP e µTP</translation>
     </message>
@@ -872,15 +884,15 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation>Modalità di cifratura:</translation>
+        <translation>Modalità criptazione:</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation>Esigi cifratura</translation>
+        <translation>Esigi criptazione</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation>Disabilita cifratura</translation>
+        <translation>Disabilita criptazione</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
@@ -1428,6 +1440,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation>Protocollo connessione peer:</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2191,10 +2207,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 fa</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation type="vanished">In allocazione</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3213,14 +3225,8 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">Filtro intelligente episodi controllerà il numero dell'episodio per impedire il download di duplicati.
-Supporta i formati: S01E01, 1x1, 2017.01.01 e 01.01.2017 (supporta anche i formati di data come separatore)</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Crea sotto cartella:</translation>
+        <translation type="vanished">Crea sotto cartella:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3309,6 +3315,23 @@ Supporta i formati: S01E01, 1x1, 2017.01.01 e 01.01.2017 (supporta anche i forma
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation>Il Filtro Intelligente Episodi controllerà il numero dell'episodio per evitare il download di duplicati.
+Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data supportano anche - come separatore)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

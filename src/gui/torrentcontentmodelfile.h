@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELFILE_H
-#define TORRENTCONTENTMODELFILE_H
+#pragma once
 
 #include "torrentcontentmodelitem.h"
 
@@ -51,5 +50,3 @@ public:
 private:
     int m_fileIndex;
 };
-
-#endif // TORRENTCONTENTMODELFILE_H

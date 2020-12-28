@@ -29,15 +29,12 @@
 
 #pragma once
 
-#include <QHash>
 #include <QMetaType>
-#include <QSet>
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QBitArray;
 class QDateTime;
-class QStringList;
 class QUrl;
 
 namespace BitTorrent
@@ -179,8 +176,6 @@ namespace BitTorrent
         virtual bool addTag(const QString &tag) = 0;
         virtual bool removeTag(const QString &tag) = 0;
         virtual void removeAllTags() = 0;
-
-        virtual bool hasRootFolder() const = 0;
 
         virtual int filesCount() const = 0;
         virtual int piecesCount() const = 0;

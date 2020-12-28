@@ -27,7 +27,19 @@
         <translation>Torrenta puorvaļdis režims:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1423,6 +1435,10 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3201,14 +3217,8 @@
         <translation>Vysod</translation>
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="vanished">Gudrais epizozu filtrys izraudzeis epizozu numerus, lai nūgrīztu divkuorteigu atsasyuteišonu.
-Formats: S01E01, 1x1, 2017.01.01 i 01.01.2017 (Datam škiramsimbola "." vītā var lītuot arī "-")</translation>
-    </message>
-    <message>
         <source>Create Subfolder:</source>
-        <translation>Radeit zamapvuoci:</translation>
+        <translation type="vanished">Radeit zamapvuoci:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3297,6 +3307,22 @@ Formats: S01E01, 1x1, 2017.01.01 i 01.01.2017 (Datam škiramsimbola "." vītā v
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef POWERMANAGEMENT_H
-#define POWERMANAGEMENT_H
+#pragma once
 
 #include <QObject>
 
@@ -64,5 +63,3 @@ private:
   IOPMAssertionID m_assertionID;
 #endif
 };
-
-#endif // POWERMANAGEMENT_H

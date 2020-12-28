@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,58 +28,25 @@
 
 #pragma once
 
-#include <QDateTime>
-#include <QHostAddress>
 #include <QObject>
-#include <QTimer>
 
-#include "base/preferences.h"
-
-namespace Net
+namespace BitTorrent
 {
-    struct DownloadResult;
-
-    // Based on http://www.dyndns.com/developers/specs/
-    class DNSUpdater : public QObject
-    {
-        Q_OBJECT
-
-    public:
-        explicit DNSUpdater(QObject *parent = nullptr);
-        ~DNSUpdater();
-
-        static QUrl getRegistrationUrl(int service);
-
-    public slots:
-        void updateCredentials();
-
-    private slots:
-        void checkPublicIP();
-        void ipRequestFinished(const DownloadResult &result);
-        void updateDNSService();
-        void ipUpdateFinished(const DownloadResult &result);
-
-    private:
-        enum State
-        {
-            OK,
-            INVALID_CREDS,
-            FATAL
-        };
-
-        static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
-
-        QString getUpdateUrl() const;
-        void processIPUpdateReply(const QString &reply);
-
-        QHostAddress m_lastIP;
-        QDateTime m_lastIPCheckTime;
-        QTimer m_ipCheckTimer;
-        int m_state;
-        // Service creds
-        DNS::Service m_service;
-        QString m_domain;
-        QString m_username;
-        QString m_password;
-    };
+    class InfoHash;
 }
+
+class FileSearcher final : public QObject
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(FileSearcher)
+
+public:
+    FileSearcher() = default;
+
+public slots:
+    void search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+                , const QString &completeSavePath, const QString &incompleteSavePath);
+
+signals:
+    void searchFinished(const BitTorrent::InfoHash &id, const QString &savePath, const QStringList &fileNames);
+};

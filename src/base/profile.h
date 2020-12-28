@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_PROFILE_H
-#define QBT_PROFILE_H
+#pragma once
 
 #include <memory>
 
@@ -82,5 +81,3 @@ private:
 };
 
 QString specialFolderLocation(SpecialFolder folder);
-
-#endif // QBT_PROFILE_H

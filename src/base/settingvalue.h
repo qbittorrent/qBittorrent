@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SETTINGVALUE_H
-#define SETTINGVALUE_H
+#pragma once
 
 #include <type_traits>
 
@@ -35,6 +34,7 @@
 #include <QString>
 
 #include "settingsstorage.h"
+#include "utils/string.h"
 
 template <typename T>
 class CachedSettingValue
@@ -78,13 +78,13 @@ public:
 
 private:
     // regular load/save pair
-    template <typename U, typename std::enable_if<!std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<!std::is_enum<U>::value, int> = 0>
     U loadValue(const U &defaultValue)
     {
         return SettingsStorage::instance()->loadValue(m_keyName, defaultValue).template value<T>();
     }
 
-    template <typename U, typename std::enable_if<!std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<!std::is_enum<U>::value, int> = 0>
     void storeValue(const U &value)
     {
         SettingsStorage::instance()->storeValue(m_keyName, value);
@@ -92,27 +92,18 @@ private:
 
     // load/save pair for an enum
     // saves literal value of the enum constant, obtained from QMetaEnum
-    template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<std::is_enum<U>::value, int> = 0>
     U loadValue(const U &defaultValue)
     {
-        static_assert(std::is_same<int, typename std::underlying_type<U>::type>::value,
-                      "Enumeration underlying type has to be int");
-
-        bool ok = false;
-        const U res = static_cast<U>(QMetaEnum::fromType<U>().keyToValue(
-            SettingsStorage::instance()->loadValue(m_keyName).toString().toLatin1().constData(), &ok));
-        return ok ? res : defaultValue;
+        return Utils::String::toEnum(SettingsStorage::instance()->loadValue(m_keyName).toString(), defaultValue);
     }
 
-    template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
+    template <typename U, typename std::enable_if_t<std::is_enum<U>::value, int> = 0>
     void storeValue(const U &value)
     {
-        SettingsStorage::instance()->storeValue(m_keyName,
-            QString::fromLatin1(QMetaEnum::fromType<U>().valueToKey(static_cast<int>(value))));
+        SettingsStorage::instance()->storeValue(m_keyName, Utils::String::fromEnum(value));
     }
 
     const QString m_keyName;
     T m_value;
 };
-
-#endif // SETTINGVALUE_H

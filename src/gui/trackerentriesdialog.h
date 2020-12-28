@@ -29,7 +29,7 @@
 #pragma once
 
 #include <QDialog>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "base/settingvalue.h"
 

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef CATEGORYFILTERMODEL_H
-#define CATEGORYFILTERMODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 
@@ -77,5 +76,3 @@ private:
     bool m_isSubcategoriesEnabled;
     CategoryModelItem *m_rootItem;
 };
-
-#endif // CATEGORYFILTERMODEL_H

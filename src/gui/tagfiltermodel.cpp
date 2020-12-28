@@ -30,6 +30,8 @@
 
 #include <QDebug>
 #include <QIcon>
+#include <QSet>
+#include <QVector>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrenthandle.h"

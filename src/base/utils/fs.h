@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_FS_H
-#define UTILS_FS_H
+#pragma once
 
 /**
  * Utility functions related to file system.
@@ -79,5 +78,3 @@ namespace Utils
 #endif
     }
 }
-
-#endif // UTILS_FS_H

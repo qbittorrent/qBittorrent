@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef OPTIONS_IPSUBNETWHITELIST_H
-#define OPTIONS_IPSUBNETWHITELIST_H
+#pragma once
 
 #include <QDialog>
 
@@ -60,5 +59,3 @@ private:
     QSortFilterProxyModel *m_sortFilter;
     bool m_modified;
 };
-
-#endif // OPTIONS_IPSUBNETWHITELIST_H

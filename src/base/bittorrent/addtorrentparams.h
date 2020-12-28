@@ -28,12 +28,15 @@
 
 #pragma once
 
+#include <boost/optional.hpp>
+
 #include <QSet>
 #include <QString>
 #include <QVector>
 
 #include "base/tristatebool.h"
 #include "torrenthandle.h"
+#include "torrentcontentlayout.h"
 
 namespace BitTorrent
 {
@@ -52,7 +55,7 @@ namespace BitTorrent
         TriStateBool addPaused;
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
-        TriStateBool createSubfolder;
+        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
         TriStateBool useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;

@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QHash>
+#include <QVector>
 
 #include "base/bittorrent/trackerentry.h"
 #include "ui_trackerentriesdialog.h"
