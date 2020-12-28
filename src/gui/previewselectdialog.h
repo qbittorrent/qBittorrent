@@ -82,6 +82,6 @@ private:
     bool m_headerStateInitialized = false;
 
     // Settings
-    CachedSettingValue<QSize> m_storeDialogSize;
-    CachedSettingValue<QByteArray> m_storeTreeHeaderState;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeTreeHeaderState;
 };
