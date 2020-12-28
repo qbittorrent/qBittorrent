@@ -59,6 +59,7 @@ mkdir -p "${CROSS_ROOT}" \
   /usr/src/zlib \
   /usr/src/openssl \
   /usr/src/boost \
+  /usr/src/libiconv \
   /usr/src/libtorrent \
   /usr/src/qtbase \
   /usr/src/qttools
@@ -68,6 +69,15 @@ if [ ! -f "${SELF_DIR}/${CROSS_HOST}-cross.tgz" ]; then
   wget -c -O "${SELF_DIR}/${CROSS_HOST}-cross.tgz" "https://musl.cc/${CROSS_HOST}-cross.tgz"
 fi
 tar -zxf "${SELF_DIR}/${CROSS_HOST}-cross.tgz" --transform='s|^\./||S' --strip-components=1 -C "${CROSS_ROOT}"
+# mingw does not contains posix thread support: https://github.com/meganz/mingw-std-threads
+if [ "${TARGET_HOST}" = 'win' ]; then
+  if [ ! -f "${SELF_DIR}/mingw-std-threads.tar.gz" ]; then
+    wget -c -O "${SELF_DIR}/mingw-std-threads.tar.gz" "https://github.com/meganz/mingw-std-threads/archive/master.tar.gz"
+  fi
+  mkdir -p /usr/src/mingw-std-threads/
+  tar -zxf "${SELF_DIR}/mingw-std-threads.tar.gz" --strip-components=1 -C "/usr/src/mingw-std-threads/"
+  cp -fv /usr/src/mingw-std-threads/*.h "${CROSS_PREFIX}/include"
+fi
 
 # zlib
 if [ ! -f "${SELF_DIR}/zlib.tar.gz" ]; then
@@ -93,6 +103,7 @@ fi
 tar -zxf "${SELF_DIR}/openssl.tar.gz" --strip-components=1 -C /usr/src/openssl
 cd /usr/src/openssl
 ./Configure -static --cross-compile-prefix="${CROSS_HOST}-" --prefix="${CROSS_PREFIX}" "${OPENSSL_COMPILER}"
+make depend
 make -j$(nproc)
 make install_sw
 
@@ -129,13 +140,15 @@ find -name '*.conf' -print0 | xargs -0 -r sed -i 's/-fno-fat-lto-objects//g'
 find -name '*.conf' -print0 | xargs -0 -r sed -i 's/-fuse-linker-plugin//g'
 find -name '*.conf' -print0 | xargs -0 -r sed -i 's/-mfloat-abi=softfp//g'
 if [ "${TARGET_HOST}" = 'win' ]; then
-  export OPENSSL_LIBS="-lssl -lcrypto -lws2_32 -lgdi32 -lcrypt32 -ldnsapi -liphlpapi"
+  export OPENSSL_LIBS="-lssl -lcrypto -lcrypt32 -lws2_32"
+  # musl.cc x86_64-w64-mingw32 toolchain not supports thread local
+  sed -i '/define\s*Q_COMPILER_THREAD_LOCAL/d' src/corelib/global/qcompilerdetection.h
 fi
 ./configure --prefix=/opt/qt/ -optimize-size -silent --openssl-linked \
   -static -opensource -confirm-license -release -c++std c++14 -no-opengl \
   -no-dbus -no-widgets -no-gui -no-compile-examples -ltcg -make libs -no-pch \
   -nomake tests -nomake examples -no-xcb -no-feature-testlib \
-  -hostprefix "${CROSS_ROOT}" ${QT_XPLATFORM:+-xplatform "${QT_XPLATFORM}"}\
+  -hostprefix "${CROSS_ROOT}" ${QT_XPLATFORM:+-xplatform "${QT_XPLATFORM}"} \
   ${QT_DEVICE:+-device "${QT_DEVICE}"} -device-option CROSS_COMPILE="${CROSS_HOST}-" \
   -sysroot "${CROSS_PREFIX}"
 make -j$(nproc)
@@ -147,12 +160,20 @@ qmake
 find -name '*.conf' -print0 | xargs -0 -r sed -i 's/-fno-fat-lto-objects//g'
 find -name '*.conf' -print0 | xargs -0 -r sed -i 's/-fuse-linker-plugin//g'
 find -name '*.conf' -print0 | xargs -0 -r sed -i 's/-mfloat-abi=softfp//g'
-cd src
-# We only needs linguist
-qmake
-make -j$(nproc) sub-linguist-install_subtargets
+make -j$(nproc) install
 cd "${CROSS_ROOT}/bin"
 ln -sf lrelease "lrelease-qt${qt_ver:1:1}"
+
+# libiconv
+if [ ! -f "${SELF_DIR}/libiconv.tar.gz" ]; then
+  libiconv_latest_url="$(wget -qO- https://www.gnu.org/software/libiconv/ | grep -o '[^>< "]*ftp.gnu.org/pub/gnu/libiconv/.[^>< "]*' | head -1)"
+  wget -c -O "${SELF_DIR}/libiconv.tar.gz" "${libiconv_latest_url}"
+fi
+tar -zxf "${SELF_DIR}/libiconv.tar.gz" --strip-components=1 -C /usr/src/libiconv/
+cd /usr/src/libiconv/
+./configure CXXFLAGS="-std=c++14" --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --enable-silent-rules
+make -j$(nproc)
+make install
 
 # libtorrent
 if [ ! -f "${SELF_DIR}/libtorrent.tar.gz" ]; then
@@ -160,17 +181,46 @@ if [ ! -f "${SELF_DIR}/libtorrent.tar.gz" ]; then
 fi
 tar -zxf "${SELF_DIR}/libtorrent.tar.gz" --strip-components=1 -C /usr/src/libtorrent
 cd /usr/src/libtorrent
-# TODO: fix x86_64-w64-mingw32 build
-LIBS="${OPENSSL_LIBS}" ./bootstrap.sh CXXFLAGS='-std=c++14' --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --with-boost="${CROSS_PREFIX}"
+if [ "${TARGET_HOST}" = 'win' ]; then
+  export LIBS="-lcrypt32 -lws2_32"
+  # musl.cc x86_64-w64-mingw32 toolchain not supports thread local
+  export CPPFLAGS='-D_WIN32_WINNT=0x0602 -DBOOST_NO_CXX11_THREAD_LOCAL'
+fi
+./bootstrap.sh CXXFLAGS="-std=c++14" --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --enable-silent-rules --with-boost="${CROSS_PREFIX}" --with-libiconv
+# fix x86_64-w64-mingw32 build
+if [ "${TARGET_HOST}" = 'win' ]; then
+  find -type f \( -name '*.cpp' -o -name '*.hpp' \) -print0 |
+    xargs -0 -r sed -i 's/include\s*<condition_variable>/include "mingw.condition_variable.h"/g;
+                        s/include\s*<future>/include "mingw.future.h"/g;
+                        s/include\s*<invoke>/include "mingw.invoke.h"/g;
+                        s/include\s*<mutex>/include "mingw.mutex.h"/g;
+                        s/include\s*<shared_mutex>/include "mingw.shared_mutex.h"/g;
+                        s/include\s*<thread>/include "mingw.thread.h"/g'
+fi
 make -j$(nproc)
 make install
+unset LIBS CPPFLAGS
 
 # build qbittorrent
 cd "${SELF_DIR}/../../"
-./configure --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --disable-gui --with-boost="${CROSS_PREFIX}" CXXFLAGS='-std=c++14' LDFLAGS='-s -static --static'
+if [ "${TARGET_HOST}" = 'win' ]; then
+  find \( -name '*.cpp' -o -name '*.h' \) -type f -print0 |
+    xargs -0 -r sed -i 's/Windows\.h/windows.h/g;
+      s/Shellapi\.h/shellapi.h/g;
+      s/Shlobj\.h/shlobj.h/g;
+      s/Ntsecapi\.h/ntsecapi.h/g'
+  export LIBS="-lmswsock"
+  export CPPFLAGS='-std=c++14 -D_WIN32_WINNT=0x0602'
+fi
+LIBS="${LIBS} -liconv" ./configure --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --disable-gui --with-boost="${CROSS_PREFIX}" CXXFLAGS="-std=c++14 ${CPPFLAGS}" LDFLAGS='-s -static --static'
 make -j$(nproc)
 make install
-cp -fv "${CROSS_PREFIX}/bin/qbittorrent-nox"* /tmp/
+unset LIBS CPPFLAGS
+if [ "${TARGET_HOST}" = 'win' ]; then
+  cp -fv "src/release/qbittorrent-nox.exe" /tmp/
+else
+  cp -fv "${CROSS_PREFIX}/bin/qbittorrent-nox" /tmp/
+fi
 
 # check
 "${RUNNER_CHECKER}" /tmp/qbittorrent-nox* --version 2>/dev/null
