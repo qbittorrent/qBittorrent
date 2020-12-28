@@ -482,7 +482,7 @@ Session::Session(QObject *parent)
         m_storedCategories = map_cast(m_categories);
     }
 
-    m_tags = List::toSet(m_storedTags.value());
+    m_tags = List::toSet(m_storedTags.get());
 
     enqueueRefresh();
     updateSeedingLimitTimer();
@@ -1130,7 +1130,7 @@ void Session::initializeNativeSession()
 void Session::processBannedIPs(lt::ip_filter &filter)
 {
     // First, import current filter
-    for (const QString &ip : asConst(m_bannedIPs.value()))
+    for (const QString &ip : asConst(m_bannedIPs.get()))
     {
         lt::error_code ec;
         const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
@@ -3142,7 +3142,7 @@ void Session::setPeerTurnoverInterval(const int val)
 
 int Session::asyncIOThreads() const
 {
-    return qBound(1, m_asyncIOThreads.value(), 1024);
+    return qBound(1, m_asyncIOThreads.get(), 1024);
 }
 
 void Session::setAsyncIOThreads(const int num)
@@ -3156,7 +3156,7 @@ void Session::setAsyncIOThreads(const int num)
 
 int Session::hashingThreads() const
 {
-    return qBound(1, m_hashingThreads.value(), 1024);
+    return qBound(1, m_hashingThreads.get(), 1024);
 }
 
 void Session::setHashingThreads(const int num)
@@ -3184,7 +3184,7 @@ void Session::setFilePoolSize(const int size)
 
 int Session::checkingMemUsage() const
 {
-    return qMax(1, m_checkingMemUsage.value());
+    return qMax(1, m_checkingMemUsage.get());
 }
 
 void Session::setCheckingMemUsage(int size)
@@ -3201,11 +3201,11 @@ void Session::setCheckingMemUsage(int size)
 int Session::diskCacheSize() const
 {
 #ifdef QBT_APP_64BIT
-    return qMin(m_diskCacheSize.value(), 33554431);  // 32768GiB
+    return qMin(m_diskCacheSize.get(), 33554431);  // 32768GiB
 #else
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    return qMin(m_diskCacheSize.value(), 1536);
+    return qMin(m_diskCacheSize.get(), 1536);
 #endif
 }
 
@@ -3737,7 +3737,7 @@ bool Session::isListening() const
 
 MaxRatioAction Session::maxRatioAction() const
 {
-    return static_cast<MaxRatioAction>(m_maxRatioAction.value());
+    return static_cast<MaxRatioAction>(m_maxRatioAction.get());
 }
 
 void Session::setMaxRatioAction(const MaxRatioAction act)

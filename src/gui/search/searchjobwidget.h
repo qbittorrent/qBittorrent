@@ -43,7 +43,7 @@ class SearchHandler;
 class SearchSortModel;
 struct SearchResult;
 
-template <typename T> class CachedSettingValue;
+template <typename T> class SettingValue;
 
 namespace Ui
 {
@@ -117,7 +117,7 @@ private:
     void copyField(int column) const;
 
     static QString statusText(Status st);
-    static CachedSettingValue<NameFilteringMode> &nameFilteringModeSetting();
+    static SettingValue<NameFilteringMode> &nameFilteringModeSetting();
 
     Ui::SearchJobWidget *m_ui;
     SearchHandler *m_searchHandler;
