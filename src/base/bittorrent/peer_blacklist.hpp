@@ -74,13 +74,9 @@ private:
 
 
 template<typename F>
-auto wrap_filter(F filter, const lt::torrent_handle& th, const std::string& tag)
+auto wrap_filter(F filter, const std::string& tag)
 {
   return [=](const lt::peer_info& info, bool) {
-    // ignore private torrents
-    if (th.torrent_file() && th.torrent_file()->priv())
-      return false;
-
     bool matched = filter(info);
     if (matched)
       peer_logger_singleton::instance().log_peer(info, tag);
@@ -89,24 +85,37 @@ auto wrap_filter(F filter, const lt::torrent_handle& th, const std::string& tag)
 }
 
 
+std::shared_ptr<lt::torrent_plugin> create_peer_action_plugin(
+    const lt::torrent_handle& th,
+    filter_function filter,
+    action_function action)
+{
+  // ignore private torrents
+  if (th.torrent_file() && th.torrent_file()->priv())
+    return nullptr;
+
+  return std::make_shared<peer_action_plugin>(std::move(filter), std::move(action));
+}
+
+
 // plugins factory functions
 
-std::shared_ptr<lt::torrent_plugin> create_drop_bad_peers_plugin(lt::torrent_handle const& th, void* d)
+std::shared_ptr<lt::torrent_plugin> create_drop_bad_peers_plugin(lt::torrent_handle const& th, void*)
 {
-  return peer_action_plugin_creator(wrap_filter(is_bad_peer, th, "bad peer"), drop_connection)(th, d);
+  return create_peer_action_plugin(th, wrap_filter(is_bad_peer, "bad peer"), drop_connection);
 }
 
-std::shared_ptr<lt::torrent_plugin> create_drop_unknown_peers_plugin(lt::torrent_handle const& th, void* d)
+std::shared_ptr<lt::torrent_plugin> create_drop_unknown_peers_plugin(lt::torrent_handle const& th, void*)
 {
-  return peer_action_plugin_creator(wrap_filter(is_unknown_peer, th, "unknown peer"), drop_connection)(th, d);
+  return create_peer_action_plugin(th, wrap_filter(is_unknown_peer, "unknown peer"), drop_connection);
 }
 
-std::shared_ptr<lt::torrent_plugin> create_drop_offline_downloader_plugin(lt::torrent_handle const& th, void* d)
+std::shared_ptr<lt::torrent_plugin> create_drop_offline_downloader_plugin(lt::torrent_handle const& th, void*)
 {
-  return peer_action_plugin_creator(wrap_filter(is_offline_downloader, th, "offline downloader"), drop_connection)(th, d);
+  return create_peer_action_plugin(th, wrap_filter(is_offline_downloader, "offline downloader"), drop_connection);
 }
 
-std::shared_ptr<lt::torrent_plugin> create_drop_bittorrent_media_player_plugin(lt::torrent_handle const& th, void* d)
+std::shared_ptr<lt::torrent_plugin> create_drop_bittorrent_media_player_plugin(lt::torrent_handle const& th, void*)
 {
-  return peer_action_plugin_creator(wrap_filter(is_bittorrent_media_player, th, "bittorrent media player"), drop_connection)(th, d);
+  return create_peer_action_plugin(th, wrap_filter(is_bittorrent_media_player, "bittorrent media player"), drop_connection);
 }

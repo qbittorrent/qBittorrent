@@ -3,9 +3,6 @@
 #include <libtorrent/peer_info.hpp>
 
 #include <QSqlDatabase>
-#include <QSqlField>
-#include <QSqlRecord>
-#include <QSqlTableModel>
 #include <QSqlQuery>
 
 
@@ -48,7 +45,8 @@ class peer_logger
 {
 public:
   explicit peer_logger(QSqlDatabase db, QString table)
-    : m_model(nullptr, db)
+    : m_db(db)
+    , m_table(table)
   {
     if (!db.tables().contains(table)) {
       db.exec(QString(
@@ -62,26 +60,20 @@ public:
                 ");").arg(table));
       db.commit();
     }
-
-    m_model.setTable(table);
   }
 
   bool log_peer(const lt::peer_info& info, const std::string& tag = {})
   {
-    QSqlRecord r;
-    r.append(QSqlField(QStringLiteral("ip"), QVariant::String));
-    r.append(QSqlField(QStringLiteral("client"), QVariant::String));
-    r.append(QSqlField(QStringLiteral("pid"), QVariant::String));
-    r.append(QSqlField(QStringLiteral("tag"), QVariant::String));
-
-    r.setValue(QStringLiteral("ip"), QString::fromStdString(info.ip.address().to_string()));
-    r.setValue(QStringLiteral("client"), QString::fromStdString(info.client));
-    r.setValue(QStringLiteral("pid"), QString::fromStdString(info.pid.to_string().substr(0, 8)));
-    r.setValue(QStringLiteral("tag"), QString::fromStdString(tag));
-
-    return m_model.insertRecord(-1, r);
+    QSqlQuery q(m_db);
+    q.prepare(QString("INSERT INTO '%1' (ip, client, pid, tag) VALUES (?, ?, ?, ?)").arg(m_table));
+    q.addBindValue(QString::fromStdString(info.ip.address().to_string()));
+    q.addBindValue(QString::fromStdString(info.client));
+    q.addBindValue(QString::fromStdString(info.pid.to_string().substr(0, 8)));
+    q.addBindValue(QString::fromStdString(tag));
+    return q.exec();
   }
 
 private:
-  QSqlTableModel m_model;
+  QSqlDatabase m_db;
+  QString m_table;
 };
