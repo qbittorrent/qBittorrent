@@ -30,19 +30,21 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 namespace Ui
 {
     class DownloadFromURLDialog;
 }
 
-class DownloadFromURLDialog : public QDialog
+class DownloadFromURLDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY(DownloadFromURLDialog)
 
 public:
     explicit DownloadFromURLDialog(QWidget *parent);
-    ~DownloadFromURLDialog();
+    ~DownloadFromURLDialog() override;
 
 signals:
     void urlsReadyToBeDownloaded(const QStringList &torrentURLs);
@@ -52,4 +54,5 @@ private slots:
 
 private:
     Ui::DownloadFromURLDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
 };

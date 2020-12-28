@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 namespace BitTorrent
 {
     class InfoHash;
@@ -44,6 +46,7 @@ namespace Ui
 class TorrentOptionsDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TorrentOptionsDialog)
 
 public:
     explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::TorrentHandle *> &torrents);
@@ -64,6 +67,7 @@ private:
 
     QVector<BitTorrent::InfoHash> m_torrentHashes;
     Ui::TorrentOptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
     struct
     {
         qreal ratio;

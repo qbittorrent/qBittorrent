@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 namespace Ui
 {
     class SpeedLimitDialog;
@@ -38,6 +40,7 @@ namespace Ui
 class SpeedLimitDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SpeedLimitDialog)
 
 public:
     explicit SpeedLimitDialog(QWidget *parent);
@@ -48,6 +51,7 @@ public slots:
 
 private:
     Ui::SpeedLimitDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
     struct
     {
         int uploadSpeedLimit;

@@ -48,7 +48,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const QString &defau
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDialog)
     , m_creatorThread(new BitTorrent::TorrentCreatorThread(this))
-    , m_storeDialogSize(SETTINGS_KEY("Dimension"))
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
     , m_storePieceSize(SETTINGS_KEY("PieceSize"))
     , m_storePrivateTorrent(SETTINGS_KEY("PrivateTorrent"))
     , m_storeStartSeeding(SETTINGS_KEY("StartSeeding"))

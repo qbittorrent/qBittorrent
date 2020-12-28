@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 class QSortFilterProxyModel;
 class QStringListModel;
 
@@ -38,13 +40,14 @@ namespace Ui
     class BanListOptionsDialog;
 }
 
-class BanListOptionsDialog : public QDialog
+class BanListOptionsDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(BanListOptionsDialog)
 
 public:
     explicit BanListOptionsDialog(QWidget *parent = nullptr);
-    ~BanListOptionsDialog();
+    ~BanListOptionsDialog() override;
 
 private slots:
     void on_buttonBox_accepted();
@@ -54,7 +57,8 @@ private slots:
 
 private:
     Ui::BanListOptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
     QStringListModel *m_model;
     QSortFilterProxyModel *m_sortFilter;
-    bool m_modified;
+    bool m_modified = false;
 };

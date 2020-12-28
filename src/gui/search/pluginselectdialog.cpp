@@ -49,6 +49,8 @@
 #include "searchwidget.h"
 #include "ui_pluginselectdialog.h"
 
+#define SETTINGS_KEY(name) "SearchPluginSelectDialog/" name
+
 enum PluginColumns
 {
     PLUGIN_NAME,
@@ -60,10 +62,9 @@ enum PluginColumns
 
 PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::PluginSelectDialog())
+    , m_ui(new Ui::PluginSelectDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
     , m_pluginManager(pluginManager)
-    , m_asyncOps(0)
-    , m_pendingUpdates(0)
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -94,12 +95,13 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &PluginSelectDialog::checkForUpdatesFinished);
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &PluginSelectDialog::checkForUpdatesFailed);
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 PluginSelectDialog::~PluginSelectDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 

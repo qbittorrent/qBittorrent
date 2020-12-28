@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 namespace Ui
 {
     class StatsDialog;
@@ -38,6 +40,7 @@ namespace Ui
 class StatsDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(StatsDialog)
 
 public:
   explicit StatsDialog(QWidget *parent);
@@ -48,4 +51,5 @@ private slots:
 
 private:
     Ui::StatsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
 };
