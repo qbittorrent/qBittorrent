@@ -157,7 +157,6 @@
 
         $('downloadForm').addEventListener("submit", function() {
             $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
-            $('rootFolderHidden').value = $('rootFolder').checked ? 'true' : 'false';
 
             $('dlLimitHidden').value = $('dlLimitText').value.toInt() * 1024;
             $('upLimitHidden').value = $('upLimitText').value.toInt() * 1024;
