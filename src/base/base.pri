@@ -1,6 +1,7 @@
 HEADERS += \
     $$PWD/algorithm.h \
     $$PWD/asyncfilestorage.h \
+    $$PWD/bittorrent/abstractfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h \
     $$PWD/bittorrent/bandwidthscheduler.h \
     $$PWD/bittorrent/cachestatus.h \
@@ -89,6 +90,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
+    $$PWD/bittorrent/abstractfilestorage.cpp \
     $$PWD/bittorrent/bandwidthscheduler.cpp \
     $$PWD/bittorrent/customstorage.cpp \
     $$PWD/bittorrent/downloadpriority.cpp \
