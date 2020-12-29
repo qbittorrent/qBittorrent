@@ -272,9 +272,13 @@ AC_SUBST(QBT_REMOVE_CONFIG)
 AC_SUBST(QBT_ADD_DEFINES)
 AC_SUBST(QBT_REMOVE_DEFINES)
 
-AC_OUTPUT(conf.pri)
+QBT_CONFIG_FILES="conf.pri"
+
 AS_IF([test "x$enable_systemd" = "xyes"],
-      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox@.service)])
+      [QBT_CONFIG_FILES="$QBT_CONFIG_FILES dist/unix/systemd/qbittorrent-nox@.service"])
+
+AC_CONFIG_FILES(["$QBT_CONFIG_FILES"])
+AC_OUTPUT
 
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
 TOPDIR="$(cd "$(dirname "$0")" && pwd)"
