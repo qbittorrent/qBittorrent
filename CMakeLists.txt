@@ -22,10 +22,13 @@ set(minZlibVersion 1.2.11)
 include(CheckCXXSourceCompiles) # TODO: migrate to CheckSourceCompiles in CMake >= 3.19
 include(FeatureSummary)
 include(FeatureOptionsSetup)
+
 feature_option(STACKTRACE "Enable stacktraces" ON)
 feature_option(GUI "Build GUI application" ON)
 feature_option(WEBUI "Enables built-in HTTP server for headless use" ON)
 feature_option(VERBOSE_CONFIGURE "Show information about PACKAGES_FOUND and PACKAGES_NOT_FOUND in the configure output (only useful for debugging the CMake build scripts)" OFF)
+feature_option(DEFINE_COMMIT_HASH "Defines git commit hash in version.h, WARNING: may increase incremental build times" OFF)
+
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     feature_option_dependent(DBUS
         "Enables support for notifications and power-management features on Linux via D-Bus"
@@ -64,12 +67,50 @@ if (NOT ${qBittorrent_VERSION_TWEAK} EQUAL 0)
 endif()
 set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}${QBT_VER_STATUS}")
 
+set(HAS_COMMIT_HASH FALSE)
+if (DEFINE_COMMIT_HASH)
+    execute_process(COMMAND git rev-parse --short=10 HEAD
+        WORKING_DIRECTORY ${qBittorrent_SOURCE_DIR}
+        RESULT_VARIABLE QBT_COMMIT_HASH_RESULT
+        OUTPUT_VARIABLE QBT_COMMIT_HASH
+        ERROR_VARIABLE GIT_STDERR_OUT # prevent git to output anything
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+
+    # check if current commit is associated with tag
+    if (QBT_COMMIT_HASH_RESULT EQUAL 0)
+        execute_process(COMMAND git describe --exact-match ${QBT_COMMIT_HASH}
+            WORKING_DIRECTORY ${qBittorrent_SOURCE_DIR}
+            RESULT_VARIABLE QBT_COMMIT_HASH_RESULT
+            OUTPUT_VARIABLE QBT_COMMIT_HASH_CHECK
+            ERROR_VARIABLE GIT_STDERR_OUT # prevent git to output anything
+        )
+
+        if (NOT QBT_COMMIT_HASH_RESULT EQUAL 0)
+            set(HAS_COMMIT_HASH TRUE)
+        endif()
+    else()
+        message(WARNING "failed to get git hash (DEFINE_COMMIT_HASH:ON)")
+    endif()
+endif()
+
+if (NOT HAS_COMMIT_HASH)
+    set(QBT_COMMIT_HASH "")
+endif()
+
 file(READ "src/base/version.h.in" versionHeader)
 string(REPLACE "@VER_MAJOR@" ${qBittorrent_VERSION_MAJOR} versionHeader "${versionHeader}")
 string(REPLACE "@VER_MINOR@" ${qBittorrent_VERSION_MINOR} versionHeader "${versionHeader}")
 string(REPLACE "@VER_BUGFIX@" ${qBittorrent_VERSION_PATCH} versionHeader "${versionHeader}")
 string(REPLACE "@VER_BUILD@" ${qBittorrent_VERSION_TWEAK} versionHeader "${versionHeader}")
 string(REPLACE "@PROJECT_VERSION@" ${QBT_PROJECT_VERSION} versionHeader "${versionHeader}")
+
+if (HAS_COMMIT_HASH) # string(REPLACE) doesn't like variable with empty string
+    string(REPLACE "@COMMIT_HASH@" ${QBT_COMMIT_HASH} versionHeader "${versionHeader}")
+else()
+    string(REPLACE "@COMMIT_HASH@" "" versionHeader "${versionHeader}")
+endif()
+
 file(WRITE "src/base/version.h" "${versionHeader}")
 
 if (VERBOSE_CONFIGURE)
