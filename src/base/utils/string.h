@@ -59,7 +59,7 @@ namespace Utils
         {
             if (str.length() < 2) return str;
 
-            for (const QChar quote : quotes)
+            for (const QChar &quote : quotes)
             {
                 if (str.startsWith(quote) && str.endsWith(quote))
                     return str.mid(1, (str.length() - 2));
