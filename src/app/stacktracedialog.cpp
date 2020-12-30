@@ -49,6 +49,8 @@ StacktraceDialog::~StacktraceDialog()
 
 void StacktraceDialog::setStacktraceString(const QString &sigName, const QString &trace)
 {
+    const QString gitHash {strlen(QBT_COMMIT_HASH) > 0 ? QString::fromLatin1("+git" QBT_COMMIT_HASH) : QString {}};
+
     // try to call Qt function as less as possible
     const QString htmlStr = QString(
         "<p align=center><b><font size=7 color=red>"
@@ -61,18 +63,19 @@ void StacktraceDialog::setStacktraceString(const QString &sigName, const QString
         "</p></font>"
         "<br/><hr><br/>"
         "<p align=center><font size=4>"
-        "qBittorrent version: " QBT_VERSION " (%1-bit)<br/>"
-        "Libtorrent version: %2<br/>"
+        "qBittorrent version: " QBT_VERSION "%1 (%2-bit)<br/>"
+        "Libtorrent version: %3<br/>"
         "Qt version: " QT_VERSION_STR "<br/>"
-        "Boost version: %3<br/>"
-        "OpenSSL version: %4<br/>"
-        "zlib version: %5<br/>"
-        "OS version: %6<br/><br/>"
-        "Caught signal: %7"
+        "Boost version: %4<br/>"
+        "OpenSSL version: %5<br/>"
+        "zlib version: %6<br/>"
+        "OS version: %7<br/><br/>"
+        "Caught signal: %8"
         "</font></p>"
-        "<pre><code>%8</code></pre>"
+        "<pre><code>%9</code></pre>"
         "<br/><hr><br/><br/>")
-            .arg(QString::number(QT_POINTER_SIZE * 8)
+            .arg(gitHash
+                 , QString::number(QT_POINTER_SIZE * 8)
                  , Utils::Misc::libtorrentVersionString()
                  , Utils::Misc::boostVersionString()
                  , Utils::Misc::opensslVersionString()
