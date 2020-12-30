@@ -46,6 +46,7 @@ const char C_UTP[] = "μTP";
 
 const char C_LOCALE_ARABIC[] = "عربي";
 const char C_LOCALE_ARMENIAN[] = "Հայերեն";
+const char C_LOCALE_AZERBAIJANI[] = "Azərbaycan dili";
 const char C_LOCALE_BASQUE[] = "Euskara";
 const char C_LOCALE_BULGARIAN[] = "Български";
 const char C_LOCALE_BYELORUSSIAN[] = "Беларуская";
@@ -61,6 +62,7 @@ const char C_LOCALE_ENGLISH[] = "English";
 const char C_LOCALE_ENGLISH_AUSTRALIA[] = "English (Australia)";
 const char C_LOCALE_ENGLISH_UNITEDKINGDOM[] = "English (United Kingdom)";
 const char C_LOCALE_ESPERANTO[] = "Esperanto";
+const char C_LOCALE_ESTONIAN[] = "Eesti, eesti keel";
 const char C_LOCALE_FINNISH[] = "Suomi";
 const char C_LOCALE_FRENCH[] = "Français";
 const char C_LOCALE_GALICIAN[] = "Galego";
