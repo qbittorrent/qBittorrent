@@ -230,6 +230,10 @@ void SpeedPlotView::setPeriod(const TimePeriod period)
         m_currentMaxDuration = 30min;
         m_currentAverager = &m_averager30Min;
         break;
+    case SpeedPlotView::HOUR3:
+        m_currentMaxDuration = 3h;
+        m_currentAverager = &m_averager6Hour;
+        break;
     case SpeedPlotView::HOUR6:
         m_currentMaxDuration = 6h;
         m_currentAverager = &m_averager6Hour;

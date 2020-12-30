@@ -71,6 +71,7 @@ public:
         MIN1 = 0,
         MIN5,
         MIN30,
+        HOUR3,
         HOUR6,
         HOUR12,
         HOUR24
