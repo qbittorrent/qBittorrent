@@ -2,8 +2,12 @@
     <fieldset class="settings">
         <legend>QBT_TR(When adding a torrent)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
-            <input type="checkbox" id="createsubfolder_checkbox" />
-            <label for="createsubfolder_checkbox">QBT_TR(Keep top-level folder)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="contentlayout_select">QBT_TR(Torrent content layout:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="contentlayout_select">
+                <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
         </div>
         <div class="formRow">
             <input type="checkbox" id="dontstartdownloads_checkbox" />
@@ -1602,7 +1606,19 @@
                     if (pref) {
                         // Downloads tab
                         // When adding a torrent
-                        $('createsubfolder_checkbox').setProperty('checked', pref.create_subfolder_enabled);
+                        let index = 0;
+                        switch (pref.torrent_content_layout) {
+                            case "Original":
+                                index = 0;
+                                break;
+                            case "Subfolder":
+                                index = 1;
+                                break;
+                            case "NoSubfolder":
+                                index = 2;
+                                break;
+                        }
+                        $('contentlayout_select').getChildren('option')[index].setAttribute('selected', '');
                         $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
                         $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
 
@@ -1931,7 +1947,7 @@
             // Validate form data
             // Downloads tab
             // When adding a torrent
-            settings.set('create_subfolder_enabled', $('createsubfolder_checkbox').getProperty('checked'));
+            settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));
             settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
             settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
 
