@@ -48,7 +48,9 @@ AboutDialog::AboutDialog(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose);
 
     // Title
-    m_ui->labelName->setText(QString::fromLatin1("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
+    const QString gitHash {strlen(QBT_COMMIT_HASH) > 0 ? QString::fromLatin1("+git" QBT_COMMIT_HASH) : QString {}};
+    m_ui->labelName->setText(QString::fromLatin1("<b><h2>qBittorrent " QBT_VERSION "%1 (%2-bit)</h2></b>")
+                                 .arg(gitHash, QString::number(QT_POINTER_SIZE * 8)));
 
     m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("qbittorrent-tray")), this, 32));
 
