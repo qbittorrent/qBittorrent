@@ -12,6 +12,7 @@ regressions=0
 exclusions_nonutf8='(.*(7z|gif|ic(ns|o)|png|qm|zip))'
 exclusions_bom='src/base/unicodestrings.h'
 exclusions_tw='(*.ts)|src/webui/www/private/scripts/lib/mootools-1.2-more.js'
+exclusions_trailing_newline='configure'
 exclusions_no_lf='(*.ts)|(.*svg)|compile_commands.json|src/webui/www/private/scripts/lib/mootools-1.2-(core-yc.js|more.js)'
 
 echo -e "\n*** Detect files not encoded in UTF-8 ***\n"
@@ -50,6 +51,7 @@ echo -e "\n*** Detect too many trailing newlines ***\n"
 
 find . -path ./build -prune -false -o -path ./.git -prune -false -o -type f -exec file --mime {} \; | sort \
     | grep -e "charset=us-ascii" -e "charset=utf-8" | cut -d ":" -f 1 \
+    | grep -E -v -e "${exclusions_trailing_newline}" \
     | xargs -L1 -I my_input bash -c 'test "$(tail -q -c2 "my_input" | hexdump -C | grep "0a 0a")" && echo "my_input"' \
     | tee >(echo -e "--> Too many trailing newlines: found" "$(wc -l < /dev/stdin)" "regression(s)\n") \
     | xargs -I my_input -0 bash -c 'echo "my_input"; test "$(echo -n "my_input" | wc -l)" -eq 0'
