@@ -28,6 +28,17 @@
 
 #include "tristatebool.h"
 
+#include <QString>
+
 const TriStateBool TriStateBool::Undefined(-1);
 const TriStateBool TriStateBool::False(0);
 const TriStateBool TriStateBool::True(1);
+
+TriStateBool TriStateBool::fromString(const QString &string)
+{
+    if (string.compare("true", Qt::CaseInsensitive) == 0)
+        return True;
+    if (string.compare("false", Qt::CaseInsensitive) == 0)
+        return False;
+    return Undefined;
+}
