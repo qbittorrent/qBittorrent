@@ -73,7 +73,7 @@ void TorrentFileGuard::markAsAddedToSession()
 
 TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
 {
-    return autoDeleteModeSetting();
+    return autoDeleteModeSetting().get(AutoDeleteMode::Never);
 }
 
 void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
@@ -81,8 +81,8 @@ void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
     autoDeleteModeSetting() = mode;
 }
 
-CachedSettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDeleteModeSetting()
+SettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDeleteModeSetting()
 {
-    static CachedSettingValue<AutoDeleteMode> setting("Core/AutoDeleteAddedTorrentFile", AutoDeleteMode::Never);
+    static SettingValue<AutoDeleteMode> setting {"Core/AutoDeleteAddedTorrentFile"};
     return setting;
 }

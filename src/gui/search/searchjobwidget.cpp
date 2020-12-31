@@ -358,7 +358,7 @@ void SearchJobWidget::fillFilterComboBoxes()
     m_ui->filterMode->addItem(tr("Torrent names only"), static_cast<int>(NameFilteringMode::OnlyNames));
     m_ui->filterMode->addItem(tr("Everywhere"), static_cast<int>(NameFilteringMode::Everywhere));
 
-    QVariant selectedMode = static_cast<int>(nameFilteringModeSetting().value());
+    QVariant selectedMode = static_cast<int>(nameFilteringModeSetting().get(NameFilteringMode::OnlyNames));
     int index = m_ui->filterMode->findData(selectedMode);
     m_ui->filterMode->setCurrentIndex((index == -1) ? 0 : index);
 }
@@ -545,9 +545,9 @@ void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
     updateResultsCount();
 }
 
-CachedSettingValue<SearchJobWidget::NameFilteringMode> &SearchJobWidget::nameFilteringModeSetting()
+SettingValue<SearchJobWidget::NameFilteringMode> &SearchJobWidget::nameFilteringModeSetting()
 {
-    static CachedSettingValue<NameFilteringMode> setting("Search/FilteringMode", NameFilteringMode::OnlyNames);
+    static SettingValue<NameFilteringMode> setting {"Search/FilteringMode"};
     return setting;
 }
 
