@@ -37,8 +37,6 @@
 
 class QStringRef;
 
-class TriStateBool;
-
 namespace Utils
 {
     namespace String
@@ -69,7 +67,6 @@ namespace Utils
         }
 
         bool parseBool(const QString &string, bool defaultValue);
-        TriStateBool parseTriStateBool(const QString &string);
 
         QString join(const QVector<QStringRef> &strings, const QString &separator);
 
