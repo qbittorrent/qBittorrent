@@ -524,7 +524,6 @@ namespace BitTorrent
         void torrentResumed(TorrentHandle *torrent);
         void torrentSavePathChanged(TorrentHandle *torrent);
         void torrentSavingModeChanged(TorrentHandle *torrent);
-        void torrentStorageMoveFailed(TorrentHandle *torrent, const QString &targetPath, const QString &error);
         void torrentsUpdated(const QVector<TorrentHandle *> &torrents);
         void torrentTagAdded(TorrentHandle *torrent, const QString &tag);
         void torrentTagRemoved(TorrentHandle *torrent, const QString &tag);

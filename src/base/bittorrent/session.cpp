@@ -4946,9 +4946,6 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     LogMsg(tr("Failed to move \"%1\" from \"%2\" to \"%3\". Reason: %4.")
            .arg(torrentName, currentLocation, currentJob.path, errorMessage), Log::CRITICAL);
 
-    if (torrent)
-        emit torrentStorageMoveFailed(torrent, currentJob.path, errorMessage);
-
     handleMoveTorrentStorageJobFinished();
 }
 

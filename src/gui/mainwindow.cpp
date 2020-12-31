@@ -208,7 +208,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::downloadFromUrlFailed, this, &MainWindow::handleDownloadFromUrlFailure);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::recursiveTorrentDownloadPossible, this, &MainWindow::askRecursiveTorrentDownloadConfirmation);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentStorageMoveFailed, this, &MainWindow::moveTorrentFailed);
 
     qDebug("create tabWidget");
     m_tabs = new HidableTabWidget(this);
@@ -868,11 +867,6 @@ void MainWindow::torrentNew(BitTorrent::TorrentHandle *const torrent) const
 void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
 {
     showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
-}
-
-void MainWindow::moveTorrentFailed(BitTorrent::TorrentHandle *const torrent, const QString &targetPath, const QString &error) const
-{
-    showNotificationBaloon(tr("Torrent moving failed"), tr("'%1' has failed moving files to '%2'. Reason: %3").arg(torrent->name(), targetPath, error));
 }
 
 // Notification when disk is full
