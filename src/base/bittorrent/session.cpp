@@ -4928,9 +4928,6 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const QString torrentName = (torrent ? torrent->name() : QString {infoHash});
     LogMsg(tr("\"%1\" is successfully moved to \"%2\".").arg(torrentName, newPath));
 
-    if (torrent)
-        emit torrentStorageMoveFinished(torrent, newPath);
-
     handleMoveTorrentStorageJobFinished();
 }
 
