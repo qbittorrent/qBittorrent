@@ -131,7 +131,7 @@ namespace
         case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
         case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
         case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
-        case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
+        case QLocale::NorwegianBokmal: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
         case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
         case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
         case QLocale::Portuguese:
