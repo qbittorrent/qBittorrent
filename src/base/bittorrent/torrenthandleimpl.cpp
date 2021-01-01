@@ -1381,13 +1381,16 @@ void TorrentHandleImpl::resume(const TorrentOperatingMode mode)
     if (hasError())
         m_nativeHandle.clear_error();
 
+    m_operatingMode = mode;
+
     if (m_hasMissingFiles)
     {
         m_hasMissingFiles = false;
-        m_nativeHandle.force_recheck();
+        m_isStopped = false;
+        reload();
+        updateStatus();
+        return;
     }
-
-    m_operatingMode = mode;
 
     if (m_isStopped)
     {
