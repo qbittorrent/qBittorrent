@@ -295,7 +295,11 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
     // or that we don't touch directly in this code (eg disabled by ifdef). This ensures
     // that they will be copied over when save our settings to disk.
     for (const QString &key : asConst(settings->allKeys()))
-        data.insert(key, settings->value(key));
+    {
+        const QVariant value = settings->value(key);
+        if (value.isValid())
+            data[key] = value;
+    }
 
     return settings->fileName();
 }
