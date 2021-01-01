@@ -153,8 +153,7 @@ namespace
 SettingsStorage *SettingsStorage::m_instance = nullptr;
 
 SettingsStorage::SettingsStorage()
-    : m_data{TransactionalSettings(QLatin1String("qBittorrent")).read()}
-    , m_dirty(false)
+    : m_data {TransactionalSettings(QLatin1String("qBittorrent")).read()}
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
@@ -200,14 +199,14 @@ bool SettingsStorage::save()
     return true;
 }
 
-QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultValue) const
+QVariant SettingsStorage::loadValueImpl(const QString &key, const QVariant &defaultValue) const
 {
     const QString realKey = mapKey(key);
     const QReadLocker locker(&m_lock);
     return m_data.value(realKey, defaultValue);
 }
 
-void SettingsStorage::storeValue(const QString &key, const QVariant &value)
+void SettingsStorage::storeValueImpl(const QString &key, const QVariant &value)
 {
     const QString realKey = mapKey(key);
     const QWriteLocker locker(&m_lock);

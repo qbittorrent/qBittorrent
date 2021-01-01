@@ -105,7 +105,7 @@ QString computeSmartFilterRegex(const QStringList &filters)
 }
 
 AutoDownloader::AutoDownloader()
-    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
+    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false))
     , m_processingTimer(new QTimer(this))
     , m_ioThread(new QThread(this))
 {
@@ -290,7 +290,7 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
 
 QStringList AutoDownloader::smartEpisodeFilters() const
 {
-    const QVariant filtersSetting = SettingsStorage::instance()->loadValue(SettingsKey_SmartEpisodeFilter);
+    const auto filtersSetting = SettingsStorage::instance()->loadValue<QVariant>(SettingsKey_SmartEpisodeFilter);
 
     if (filtersSetting.isNull())
     {
@@ -323,7 +323,7 @@ void AutoDownloader::setSmartEpisodeFilters(const QStringList &filters)
 
 bool AutoDownloader::downloadRepacks() const
 {
-    return SettingsStorage::instance()->loadValue(SettingsKey_DownloadRepacks, true).toBool();
+    return SettingsStorage::instance()->loadValue(SettingsKey_DownloadRepacks, true);
 }
 
 void AutoDownloader::setDownloadRepacks(const bool downloadRepacks)

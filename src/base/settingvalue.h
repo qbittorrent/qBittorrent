@@ -28,12 +28,9 @@
 
 #pragma once
 
-#include <type_traits>
-
 #include <QString>
 
 #include "settingsstorage.h"
-#include "utils/string.h"
 
 // This is a thin/handy wrapper over `SettingsStorage`. Use it when store/load value
 // rarely occurs, otherwise use `CachedSettingValue`.
@@ -48,17 +45,7 @@ public:
 
     T get(const T &defaultValue = {}) const
     {
-        if constexpr (std::is_enum_v<T>)
-        {
-            const auto value = SettingsStorage::instance()->loadValue(m_keyName, {}).toString();
-            return Utils::String::toEnum(value, defaultValue);
-        }
-        else
-        {
-            const QVariant value = SettingsStorage::instance()->loadValue(m_keyName);
-            // check if retrieved value is convertible to T
-            return value.template canConvert<T>() ? value.template value<T>() : defaultValue;
-        }
+        return SettingsStorage::instance()->loadValue(m_keyName, defaultValue);
     }
 
     operator T() const
@@ -68,10 +55,7 @@ public:
 
     SettingValue<T> &operator=(const T &value)
     {
-        if constexpr (std::is_enum_v<T>)
-            SettingsStorage::instance()->storeValue(m_keyName, Utils::String::fromEnum(value));
-        else
-            SettingsStorage::instance()->storeValue(m_keyName, value);
+        SettingsStorage::instance()->storeValue(m_keyName, value);
         return *this;
     }
 

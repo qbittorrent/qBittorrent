@@ -489,7 +489,7 @@ MainWindow::~MainWindow()
 
 bool MainWindow::isExecutionLogEnabled() const
 {
-    return settings()->loadValue(KEY_EXECUTIONLOG_ENABLED, false).toBool();
+    return settings()->loadValue(KEY_EXECUTIONLOG_ENABLED, false);
 }
 
 void MainWindow::setExecutionLogEnabled(bool value)
@@ -501,7 +501,7 @@ int MainWindow::executionLogMsgTypes() const
 {
     // as default value we need all the bits set
     // -1 is considered the portable way to achieve that
-    return settings()->loadValue(KEY_EXECUTIONLOG_TYPES, -1).toInt();
+    return settings()->loadValue(KEY_EXECUTIONLOG_TYPES, -1);
 }
 
 void MainWindow::setExecutionLogMsgTypes(const int value)
@@ -512,7 +512,7 @@ void MainWindow::setExecutionLogMsgTypes(const int value)
 
 bool MainWindow::isNotificationsEnabled() const
 {
-    return settings()->loadValue(KEY_NOTIFICATIONS_ENABLED, true).toBool();
+    return settings()->loadValue(KEY_NOTIFICATIONS_ENABLED, true);
 }
 
 void MainWindow::setNotificationsEnabled(bool value)
@@ -522,7 +522,7 @@ void MainWindow::setNotificationsEnabled(bool value)
 
 bool MainWindow::isTorrentAddedNotificationsEnabled() const
 {
-    return settings()->loadValue(KEY_NOTIFICATIONS_TORRENTADDED, false).toBool();
+    return settings()->loadValue(KEY_NOTIFICATIONS_TORRENTADDED, false);
 }
 
 void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
@@ -532,7 +532,7 @@ void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
 
 bool MainWindow::isDownloadTrackerFavicon() const
 {
-    return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, false).toBool();
+    return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, false);
 }
 
 void MainWindow::setDownloadTrackerFavicon(bool value)
