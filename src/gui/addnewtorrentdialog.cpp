@@ -120,7 +120,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     populateSavePathComboBox();
     connect(m_ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
 
-    const bool rememberLastSavePath = settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false).toBool();
+    const bool rememberLastSavePath = settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false);
     m_ui->checkBoxRememberLastSavePath->setChecked(rememberLastSavePath);
 
     m_ui->contentLayoutComboBox->setCurrentIndex(
@@ -135,7 +135,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // Load categories
     QStringList categories = session->categories().keys();
     std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
-    QString defaultCategory = settings()->loadValue(KEY_DEFAULTCATEGORY).toString();
+    auto defaultCategory = settings()->loadValue<QString>(KEY_DEFAULTCATEGORY);
 
     if (!m_torrentParams.category.isEmpty())
         m_ui->categoryComboBox->addItem(m_torrentParams.category);
@@ -170,7 +170,7 @@ AddNewTorrentDialog::~AddNewTorrentDialog()
 
 bool AddNewTorrentDialog::isEnabled()
 {
-    return SettingsStorage::instance()->loadValue(KEY_ENABLED, true).toBool();
+    return SettingsStorage::instance()->loadValue(KEY_ENABLED, true);
 }
 
 void AddNewTorrentDialog::setEnabled(bool value)
@@ -180,7 +180,7 @@ void AddNewTorrentDialog::setEnabled(bool value)
 
 bool AddNewTorrentDialog::isTopLevel()
 {
-    return SettingsStorage::instance()->loadValue(KEY_TOPLEVEL, true).toBool();
+    return SettingsStorage::instance()->loadValue(KEY_TOPLEVEL, true);
 }
 
 void AddNewTorrentDialog::setTopLevel(bool value)
@@ -191,7 +191,7 @@ void AddNewTorrentDialog::setTopLevel(bool value)
 int AddNewTorrentDialog::savePathHistoryLength()
 {
     const int defaultHistoryLength = 8;
-    const int value = settings()->loadValue(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength).toInt();
+    const int value = settings()->loadValue(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength);
     return qBound(minPathHistoryLength, value, maxPathHistoryLength);
 }
 
@@ -204,14 +204,14 @@ void AddNewTorrentDialog::setSavePathHistoryLength(int value)
 
     settings()->storeValue(KEY_SAVEPATHHISTORYLENGTH, clampedValue);
     settings()->storeValue(KEY_SAVEPATHHISTORY
-        , QStringList(settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList().mid(0, clampedValue)));
+        , QStringList(settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY).mid(0, clampedValue)));
 }
 
 void AddNewTorrentDialog::loadState()
 {
     Utils::Gui::resize(this, m_storeDialogSize);
     m_ui->splitter->restoreState(m_storeSplitterState);
-    m_headerState = settings()->loadValue(KEY_TREEHEADERSTATE).toByteArray();
+    m_headerState = settings()->loadValue<QByteArray>(KEY_TREEHEADERSTATE);
 }
 
 void AddNewTorrentDialog::saveState()
@@ -371,7 +371,7 @@ void AddNewTorrentDialog::showEvent(QShowEvent *event)
 void AddNewTorrentDialog::saveSavePathHistory() const
 {
     // Get current history
-    QStringList history = settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList();
+    auto history = settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY);
     QVector<QDir> historyDirs;
     for (const QString &path : asConst(history))
         historyDirs << QDir {path};
@@ -489,11 +489,11 @@ void AddNewTorrentDialog::populateSavePathComboBox()
     m_ui->savePath->clear();
 
     // Load save path history
-    const QStringList savePathHistory {settings()->loadValue(KEY_SAVEPATHHISTORY).toStringList()};
+    const auto savePathHistory {settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY)};
     for (const QString &savePath : savePathHistory)
         m_ui->savePath->addItem(savePath);
 
-    const bool rememberLastSavePath {settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false).toBool()};
+    const bool rememberLastSavePath {settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false)};
     const QString defSavePath {BitTorrent::Session::instance()->defaultSavePath()};
 
     if (!m_torrentParams.savePath.isEmpty())

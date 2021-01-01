@@ -64,15 +64,15 @@ ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     : QObject(parent)
 {
-    m_isProxyOnlyForTorrents = settings()->loadValue(KEY_ONLY_FOR_TORRENTS, false).toBool();
+    m_isProxyOnlyForTorrents = settings()->loadValue(KEY_ONLY_FOR_TORRENTS, false);
     m_config.type = static_cast<ProxyType>(
-                settings()->loadValue(KEY_TYPE, static_cast<int>(ProxyType::None)).toInt());
+                settings()->loadValue(KEY_TYPE, static_cast<int>(ProxyType::None)));
     if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
         m_config.type = ProxyType::None;
-    m_config.ip = settings()->loadValue(KEY_IP, "0.0.0.0").toString();
-    m_config.port = static_cast<ushort>(settings()->loadValue(KEY_PORT, 8080).toUInt());
-    m_config.username = settings()->loadValue(KEY_USERNAME).toString();
-    m_config.password = settings()->loadValue(KEY_PASSWORD).toString();
+    m_config.ip = settings()->loadValue<QString>(KEY_IP, "0.0.0.0");
+    m_config.port = settings()->loadValue<ushort>(KEY_PORT, 8080);
+    m_config.username = settings()->loadValue<QString>(KEY_USERNAME);
+    m_config.password = settings()->loadValue<QString>(KEY_PASSWORD);
     configureProxy();
 }
 
