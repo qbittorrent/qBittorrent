@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
@@ -58,6 +60,8 @@ namespace Ui
 class OptionsDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(OptionsDialog)
+
     using ThisType = OptionsDialog;
 
     enum Tabs
@@ -95,9 +99,7 @@ private slots:
     void enableApplyButton();
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
-    void loadWindowState();
     void loadSplitterState();
-    void saveWindowState() const;
     void handleScanFolderViewSelectionChanged();
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
@@ -161,7 +163,6 @@ private:
     // IP Filter
     bool isIPFilteringEnabled() const;
     QString getFilter() const;
-    bool m_refreshingIpFilter;
     // Queueing system
     bool isQueueingSystemEnabled() const;
     int getMaxActiveDownloads() const;
@@ -177,8 +178,15 @@ private:
     bool schedTimesOk();
 
     Ui::OptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QStringList> m_storeHSplitterSize;
+
     QAbstractButton *m_applyButton;
+
     AdvancedSettings *m_advancedSettings;
+
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
+
+    bool m_refreshingIpFilter = false;
 };
