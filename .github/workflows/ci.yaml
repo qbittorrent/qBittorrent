@@ -200,10 +200,10 @@ jobs:
           -Value "set(VCPKG_BUILD_TYPE release)","set(VCPKG_OSX_DEPLOYMENT_TARGET 10.15)"
 
     # NOTE: Avoids a libtorrent ABI issue. See https://github.com/arvidn/libtorrent/issues/4965
-    - name: force AppleClang to compile libtorrent with C++14
+    - name: force AppleClang to compile libtorrent with C++17
       run: |
         (Get-Content -path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake).Replace( `
-          '${FEATURE_OPTIONS}', '${FEATURE_OPTIONS} -DCMAKE_CXX_STANDARD=14') `
+          '${FEATURE_OPTIONS}', '${FEATURE_OPTIONS} -DCMAKE_CXX_STANDARD=17') `
           | Set-Content -Path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake
 
     - name: install dependencies via vcpkg

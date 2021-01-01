@@ -60,18 +60,3 @@ Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operat
     }
     return *this;
 }
-
-Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operator*()
-{
-    return *this;
-}
-
-Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operator++()
-{
-    return *this;
-}
-
-Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operator++(int)
-{
-    return *this;
-}

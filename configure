@@ -5564,18 +5564,18 @@ $as_echo "yes" >&6; }
                  LIBS="$zlib_LIBS $LIBS"
 fi
 
-# Check if already in >= C++14 mode because of the flags returned by one of the above packages
+# Check if already in >= C++17 mode because of the flags returned by one of the above packages
 TMP_CXXFLAGS="$CXXFLAGS"
 CXXFLAGS=""
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler defaults to C++14 or later mode" >&5
-$as_echo_n "checking if compiler defaults to C++14 or later mode... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler defaults to C++17 or later mode" >&5
+$as_echo_n "checking if compiler defaults to C++17 or later mode... " >&6; }
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
             #ifndef __cplusplus
             #error "This is not a C++ compiler"
-            #elif __cplusplus < 201402L
-            #error "This is not a C++14 compiler"
+            #elif __cplusplus < 201703L
+            #error "This is not a C++17 compiler"
             #endif
 int
 main ()
@@ -5589,27 +5589,27 @@ _ACEOF
 if ac_fn_cxx_try_compile "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-                   QBT_CXX14_FOUND="yes"
+                   QBT_CXX17_FOUND="yes"
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-                   QBT_CXX14_FOUND="no"
+                   QBT_CXX17_FOUND="no"
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
-# In case of no, check if the compiler can support at least C++14
+# In case of no, check if the compiler can support at least C++17
 # and if yes, enable it leaving a warning to the user
-if test "x$QBT_CXX14_FOUND" = "xno"; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler supports C++14" >&5
-$as_echo_n "checking if compiler supports C++14... " >&6; }
-       CXXFLAGS="-std=c++14"
+if test "x$QBT_CXX17_FOUND" = "xno"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking if compiler supports C++17" >&5
+$as_echo_n "checking if compiler supports C++17... " >&6; }
+       CXXFLAGS="-std=c++17"
        cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
             #ifndef __cplusplus
             #error "This is not a C++ compiler"
-            #elif __cplusplus < 201402L
-            #error "This is not a C++14 compiler"
+            #elif __cplusplus < 201703L
+            #error "This is not a C++17 compiler"
             #endif
 int
 main ()
@@ -5623,17 +5623,17 @@ _ACEOF
 if ac_fn_cxx_try_compile "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-                         { $as_echo "$as_me:${as_lineno-$LINENO}: checking if C++14 is disabled by the set compiler flags" >&5
-$as_echo_n "checking if C++14 is disabled by the set compiler flags... " >&6; }
+                         { $as_echo "$as_me:${as_lineno-$LINENO}: checking if C++17 is disabled by the set compiler flags" >&5
+$as_echo_n "checking if C++17 is disabled by the set compiler flags... " >&6; }
                          # prepend the flag so it won't override conflicting user defined flags
-                         CXXFLAGS="-std=c++14 $TMP_CXXFLAGS"
+                         CXXFLAGS="-std=c++17 $TMP_CXXFLAGS"
                          cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
             #ifndef __cplusplus
             #error "This is not a C++ compiler"
-            #elif __cplusplus < 201402L
-            #error "This is not a C++14 compiler"
+            #elif __cplusplus < 201703L
+            #error "This is not a C++17 compiler"
             #endif
 int
 main ()
@@ -5647,19 +5647,19 @@ _ACEOF
 if ac_fn_cxx_try_compile "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++14"
-                                            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: C++14 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&5
-$as_echo "$as_me: WARNING: C++14 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&2;}
+                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++17"
+                                            { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: C++17 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&5
+$as_echo "$as_me: WARNING: C++17 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&2;}
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
-                                            as_fn_error $? "The compiler supports C++14 but the user or a dependency has explicitly enabled a lower mode." "$LINENO" 5
+                                            as_fn_error $? "The compiler supports C++17 but the user or a dependency has explicitly enabled a lower mode." "$LINENO" 5
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-                         as_fn_error $? "A compiler supporting C++14 is required." "$LINENO" 5
+                         as_fn_error $? "A compiler supporting C++17 is required." "$LINENO" 5
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 
@@ -7034,7 +7034,9 @@ $as_echo X/"$am_mf" |
     { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "Something went wrong bootstrapping makefile fragments
-    for automatic dependency tracking.  Try re-running configure with the
+    for automatic dependency tracking.  If GNU make was not used, consider
+    re-running the configure script with MAKE=\"gmake\" (or whatever is
+    necessary).  You can also try re-running configure with the
     '--disable-dependency-tracking' option to at least be able to build
     the package (albeit without support for automatic dependency tracking).
 See \`config.log' for more details" "$LINENO" 5; }
@@ -8351,7 +8353,9 @@ $as_echo X/"$am_mf" |
     { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 as_fn_error $? "Something went wrong bootstrapping makefile fragments
-    for automatic dependency tracking.  Try re-running configure with the
+    for automatic dependency tracking.  If GNU make was not used, consider
+    re-running the configure script with MAKE=\"gmake\" (or whatever is
+    necessary).  You can also try re-running configure with the
     '--disable-dependency-tracking' option to at least be able to build
     the package (albeit without support for automatic dependency tracking).
 See \`config.log' for more details" "$LINENO" 5; }

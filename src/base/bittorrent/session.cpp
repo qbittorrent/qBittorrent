@@ -291,9 +291,8 @@ namespace
     LowerLimited<T> lowerLimited(T limit, T ret) { return LowerLimited<T>(limit, ret); }
 
     template <typename T>
-    std::function<T (const T&)> clampValue(const T lower, const T upper)
+    auto clampValue(const T lower, const T upper)
     {
-        // TODO: change return type to `auto` when using C++17
         return [lower, upper](const T value) -> T
         {
             if (value < lower)
