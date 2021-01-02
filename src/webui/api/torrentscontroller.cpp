@@ -616,9 +616,9 @@ void TorrentsController::addAction()
     const auto autoTMM = TriStateBool::fromString(params()["autoTMM"]);
 
     const QString contentLayoutParam = params()["contentLayout"];
-    const boost::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
+    const std::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
-            : boost::optional<BitTorrent::TorrentContentLayout> {});
+            : std::optional<BitTorrent::TorrentContentLayout> {});
 
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty())

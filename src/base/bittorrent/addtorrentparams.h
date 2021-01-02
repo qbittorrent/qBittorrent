@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <boost/optional.hpp>
+#include <optional>
 
 #include <QSet>
 #include <QString>
@@ -55,7 +55,7 @@ namespace BitTorrent
         TriStateBool addPaused;
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         TriStateBool useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
