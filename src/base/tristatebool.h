@@ -28,6 +28,8 @@
 
 #pragma once
 
+class QString;
+
 class TriStateBool
 {
 public:
@@ -53,6 +55,8 @@ public:
     {
         return (left.m_value == right.m_value);
     }
+
+    static TriStateBool fromString(const QString &string);
 
 private:
     explicit constexpr TriStateBool(const int value)
