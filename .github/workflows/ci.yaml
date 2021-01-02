@@ -66,6 +66,7 @@ jobs:
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
           -D${{ matrix.qbt_gui }} \
           -DVERBOSE_CONFIGURE=ON \
+          -DDEFINE_COMMIT_HASH=ON \
           --graphviz=build/target_graph.dot
         cmake --build build
 
@@ -144,6 +145,7 @@ jobs:
           -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}\scripts\buildsystems\vcpkg.cmake ^
           -DVCPKG_TARGET_TRIPLET=x64-windows-static-release ^
           -DVERBOSE_CONFIGURE=ON ^
+          -DDEFINE_COMMIT_HASH=ON ^
           -DMSVC_RUNTIME_DYNAMIC=OFF ^
           --graphviz=build\target_graph.dot
         cmake --build build
@@ -230,6 +232,7 @@ jobs:
           -DVCPKG_TARGET_TRIPLET=x64-osx-release \
           -D${{ matrix.qbt_gui }} \
           -DVERBOSE_CONFIGURE=ON \
+          -DDEFINE_COMMIT_HASH=ON \
           --graphviz=build/target_graph.dot
         cmake --build build
 
