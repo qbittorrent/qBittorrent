@@ -291,6 +291,7 @@ namespace BitTorrent
         void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         void endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames);
+        void reload();
 
         Session *const m_session;
         lt::session *m_nativeSession;

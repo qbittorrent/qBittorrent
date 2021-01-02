@@ -1308,42 +1308,55 @@ void TorrentHandleImpl::fileSearchFinished(const QString &savePath, const QStrin
 
 void TorrentHandleImpl::endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames)
 {
-    const auto queuePos = m_nativeHandle.queue_position();
+    lt::add_torrent_params &p = m_ltAddTorrentParams;
 
-    lt::add_torrent_params p = m_ltAddTorrentParams;
     p.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
-
-    m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
-
     for (int i = 0; i < fileNames.size(); ++i)
         p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
-
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-    p.flags |= lt::torrent_flags::update_subscribe
-            | lt::torrent_flags::override_trackers
-            | lt::torrent_flags::override_web_seeds;
 
-    m_nativeHandle = m_nativeSession->add_torrent(p);
-    m_nativeHandle.queue_position_set(queuePos);
+    reload();
 
-    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
     // If first/last piece priority was specified when adding this torrent,
     // we should apply it now that we have metadata:
     if (m_hasFirstLastPiecePriority)
         applyFirstLastPiecePriority(true);
 
-    if (!m_isStopped)
-    {
-        setAutoManaged(m_operatingMode == TorrentOperatingMode::AutoManaged);
-        if (m_operatingMode == TorrentOperatingMode::Forced)
-            m_nativeHandle.resume();
-    }
-
     m_maintenanceJob = MaintenanceJob::None;
-
     updateStatus();
 
     m_session->handleTorrentMetadataReceived(this);
+}
+
+void TorrentHandleImpl::reload()
+{
+    const auto queuePos = m_nativeHandle.queue_position();
+
+    m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
+
+    lt::add_torrent_params p = m_ltAddTorrentParams;
+    p.flags |= lt::torrent_flags::update_subscribe
+            | lt::torrent_flags::override_trackers
+            | lt::torrent_flags::override_web_seeds;
+
+    if (m_isStopped)
+    {
+        p.flags |= lt::torrent_flags::paused;
+        p.flags &= ~lt::torrent_flags::auto_managed;
+    }
+    else if (m_operatingMode == TorrentOperatingMode::AutoManaged)
+    {
+        p.flags |= (lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
+    }
+    else
+    {
+        p.flags &= ~(lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
+    }
+
+    m_nativeHandle = m_nativeSession->add_torrent(p);
+    m_nativeHandle.queue_position_set(queuePos);
+
+    m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
 }
 
 void TorrentHandleImpl::pause()
@@ -1368,13 +1381,16 @@ void TorrentHandleImpl::resume(const TorrentOperatingMode mode)
     if (hasError())
         m_nativeHandle.clear_error();
 
+    m_operatingMode = mode;
+
     if (m_hasMissingFiles)
     {
         m_hasMissingFiles = false;
-        m_nativeHandle.force_recheck();
+        m_isStopped = false;
+        reload();
+        updateStatus();
+        return;
     }
-
-    m_operatingMode = mode;
 
     if (m_isStopped)
     {
