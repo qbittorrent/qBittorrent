@@ -107,12 +107,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     const auto *session = BitTorrent::Session::instance();
 
-    if (m_torrentParams.addPaused == TriStateBool::True)
-        m_ui->startTorrentCheckBox->setChecked(false);
-    else if (m_torrentParams.addPaused == TriStateBool::False)
-        m_ui->startTorrentCheckBox->setChecked(true);
-    else
-        m_ui->startTorrentCheckBox->setChecked(!session->isAddTorrentPaused());
+    m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
 
     m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
     m_ui->comboTTM->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
@@ -573,7 +568,7 @@ void AddNewTorrentDialog::accept()
     if (m_contentModel)
         m_torrentParams.filePriorities = m_contentModel->model()->getFilePriorities();
 
-    m_torrentParams.addPaused = TriStateBool(!m_ui->startTorrentCheckBox->isChecked());
+    m_torrentParams.addPaused = !m_ui->startTorrentCheckBox->isChecked();
     m_torrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 
     m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();
@@ -582,13 +577,13 @@ void AddNewTorrentDialog::accept()
     QString savePath = m_ui->savePath->selectedPath();
     if (m_ui->comboTTM->currentIndex() != 1)
     { // 0 is Manual mode and 1 is Automatic mode. Handle all non 1 values as manual mode.
-        m_torrentParams.useAutoTMM = TriStateBool::False;
+        m_torrentParams.useAutoTMM = false;
         m_torrentParams.savePath = savePath;
         saveSavePathHistory();
     }
     else
     {
-        m_torrentParams.useAutoTMM = TriStateBool::True;
+        m_torrentParams.useAutoTMM = true;
     }
 
     setEnabled(!m_ui->checkBoxNeverShow->isChecked());

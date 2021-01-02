@@ -249,7 +249,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
             params.ratioLimit = BitTorrent::TorrentHandle::NO_RATIO_LIMIT;
             params.seedingTimeLimit = BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT;
         }
-        params.useAutoTMM = TriStateBool::False;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
+        params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
         BitTorrent::Session::instance()->addTorrent(info, params);
     }
