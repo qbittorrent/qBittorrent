@@ -52,7 +52,6 @@
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/torrentfilter.h"
-#include "base/tristatebool.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "apierror.h"
@@ -601,11 +600,10 @@ void TorrentsController::pieceStatesAction()
 void TorrentsController::addAction()
 {
     const QString urls = params()["urls"];
-
     const bool skipChecking = parseBool(params()["skip_checking"]).value_or(false);
     const bool seqDownload = parseBool(params()["sequentialDownload"]).value_or(false);
     const bool firstLastPiece = parseBool(params()["firstLastPiecePrio"]).value_or(false);
-    const auto addPaused = TriStateBool::fromString(params()["paused"]);
+    const std::optional<bool> addPaused = parseBool(params()["paused"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
     const QSet<QString> tags = List::toSet(params()["tags"].split(',', QString::SkipEmptyParts));
@@ -613,7 +611,7 @@ void TorrentsController::addAction()
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = params()["upLimit"].toInt();
     const int dlLimit = params()["dlLimit"].toInt();
-    const auto autoTMM = TriStateBool::fromString(params()["autoTMM"]);
+    const std::optional<bool> autoTMM = parseBool(params()["autoTMM"]);
 
     const QString contentLayoutParam = params()["contentLayout"];
     const std::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
