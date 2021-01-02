@@ -124,7 +124,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->checkBoxRememberLastSavePath->setChecked(rememberLastSavePath);
 
     m_ui->contentLayoutComboBox->setCurrentIndex(
-                static_cast<int>(m_torrentParams.contentLayout ? *m_torrentParams.contentLayout : session->torrentContentLayout()));
+                static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
 
     m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);

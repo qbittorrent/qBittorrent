@@ -354,7 +354,7 @@ void AutomatedRssDownloader::updateEditedRule()
         addPaused = TriStateBool::False;
     m_currentRule.setAddPaused(addPaused);
 
-    boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
+    std::optional<BitTorrent::TorrentContentLayout> contentLayout;
     if (m_ui->comboContentLayout->currentIndex() > 0)
         contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->comboContentLayout->currentIndex() - 1);
     m_currentRule.setTorrentContentLayout(contentLayout);

@@ -2057,9 +2057,7 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     loadTorrentParams.tags = addTorrentParams.tags;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
-    loadTorrentParams.contentLayout = (addTorrentParams.contentLayout
-                                       ? *addTorrentParams.contentLayout
-                                       : torrentContentLayout());
+    loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.forced = (addTorrentParams.addForced == TriStateBool::True);
     loadTorrentParams.paused = ((addTorrentParams.addPaused == TriStateBool::Undefined)
                     ? isAddTorrentPaused()

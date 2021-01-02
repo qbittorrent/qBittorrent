@@ -92,15 +92,15 @@ namespace
         }
     }
 
-    boost::optional<BitTorrent::TorrentContentLayout> jsonValueToContentLayout(const QJsonValue &jsonVal)
+    std::optional<BitTorrent::TorrentContentLayout> jsonValueToContentLayout(const QJsonValue &jsonVal)
     {
         const QString str = jsonVal.toString();
         if (str.isEmpty())
-            return {};
+            return std::nullopt;
         return Utils::String::toEnum(str, BitTorrent::TorrentContentLayout::Original);
     }
 
-    QJsonValue contentLayoutToJsonValue(const boost::optional<BitTorrent::TorrentContentLayout> contentLayout)
+    QJsonValue contentLayoutToJsonValue(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
     {
         if (!contentLayout)
             return {};
@@ -143,7 +143,7 @@ namespace RSS
         QString savePath;
         QString category;
         TriStateBool addPaused = TriStateBool::Undefined;
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -505,7 +505,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     else
     {
         const TriStateBool createSubfolder = jsonValueToTriStateBool(jsonObj.value(Str_CreateSubfolder));
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
         if (createSubfolder == TriStateBool::True)
             contentLayout = BitTorrent::TorrentContentLayout::Original;
         else if (createSubfolder == TriStateBool::False)
@@ -649,12 +649,12 @@ void AutoDownloadRule::setAddPaused(const TriStateBool addPaused)
     m_dataPtr->addPaused = addPaused;
 }
 
-boost::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
+std::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
 {
     return m_dataPtr->contentLayout;
 }
 
-void AutoDownloadRule::setTorrentContentLayout(const boost::optional<BitTorrent::TorrentContentLayout> contentLayout)
+void AutoDownloadRule::setTorrentContentLayout(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
 {
     m_dataPtr->contentLayout = contentLayout;
 }
