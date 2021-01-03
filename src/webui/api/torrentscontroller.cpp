@@ -253,7 +253,7 @@ void TorrentsController::infoAction()
     const QString filter {params()["filter"]};
     const QString category {params()["category"]};
     const QString sortedColumn {params()["sort"]};
-    const bool reverse {parseBool(params()["reverse"], false)};
+    const bool reverse {parseBool(params()["reverse"]).value_or(false)};
     int limit {params()["limit"].toInt()};
     int offset {params()["offset"].toInt()};
     const QStringList hashes {params()["hashes"].split('|', QString::SkipEmptyParts)};
@@ -602,9 +602,9 @@ void TorrentsController::addAction()
 {
     const QString urls = params()["urls"];
 
-    const bool skipChecking = parseBool(params()["skip_checking"], false);
-    const bool seqDownload = parseBool(params()["sequentialDownload"], false);
-    const bool firstLastPiece = parseBool(params()["firstLastPiecePrio"], false);
+    const bool skipChecking = parseBool(params()["skip_checking"]).value_or(false);
+    const bool seqDownload = parseBool(params()["sequentialDownload"]).value_or(false);
+    const bool firstLastPiece = parseBool(params()["firstLastPiecePrio"]).value_or(false);
     const auto addPaused = TriStateBool::fromString(params()["paused"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
@@ -962,7 +962,7 @@ void TorrentsController::setSuperSeedingAction()
 {
     requireParams({"hashes", "value"});
 
-    const bool value {parseBool(params()["value"], false)};
+    const bool value {parseBool(params()["value"]).value_or(false)};
     const QStringList hashes {params()["hashes"].split('|')};
     applyToTorrents(hashes, [value](BitTorrent::TorrentHandle *const torrent) { torrent->setSuperSeeding(value); });
 }
@@ -971,7 +971,7 @@ void TorrentsController::setForceStartAction()
 {
     requireParams({"hashes", "value"});
 
-    const bool value {parseBool(params()["value"], false)};
+    const bool value {parseBool(params()["value"]).value_or(false)};
     const QStringList hashes {params()["hashes"].split('|')};
     applyToTorrents(hashes, [value](BitTorrent::TorrentHandle *const torrent)
     {
@@ -984,7 +984,7 @@ void TorrentsController::deleteAction()
     requireParams({"hashes", "deleteFiles"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const DeleteOption deleteOption = parseBool(params()["deleteFiles"], false)
+    const DeleteOption deleteOption = parseBool(params()["deleteFiles"]).value_or(false)
             ? TorrentAndFiles : Torrent;
     applyToTorrents(hashes, [deleteOption](const BitTorrent::TorrentHandle *torrent)
     {
@@ -1085,7 +1085,7 @@ void TorrentsController::setAutoManagementAction()
     requireParams({"hashes", "enable"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const bool isEnabled {parseBool(params()["enable"], false)};
+    const bool isEnabled {parseBool(params()["enable"]).value_or(false)};
 
     applyToTorrents(hashes, [isEnabled](BitTorrent::TorrentHandle *const torrent)
     {

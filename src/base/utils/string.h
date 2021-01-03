@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QChar>
 #include <QMetaEnum>
 #include <QString>
@@ -64,7 +66,7 @@ namespace Utils::String
         return str;
     }
 
-    bool parseBool(const QString &string, bool defaultValue);
+    std::optional<bool> parseBool(const QString &string);
 
     QString join(const QVector<QStringRef> &strings, const QString &separator);
 
