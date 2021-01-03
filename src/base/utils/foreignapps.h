@@ -33,21 +33,18 @@
 
 #include "base/utils/version.h"
 
-namespace Utils
+namespace Utils::ForeignApps
 {
-    namespace ForeignApps
+    struct PythonInfo
     {
-        struct PythonInfo
-        {
-            using Version = Utils::Version<quint8, 3, 1>;
+        using Version = Utils::Version<quint8, 3, 1>;
 
-            bool isValid() const;
-            bool isSupportedVersion() const;
+        bool isValid() const;
+        bool isSupportedVersion() const;
 
-            QString executableName;
-            Version version;
-        };
+        QString executableName;
+        Version version;
+    };
 
-        PythonInfo pythonInfo();
-    }
+    PythonInfo pythonInfo();
 }
