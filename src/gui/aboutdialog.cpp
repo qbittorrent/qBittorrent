@@ -36,9 +36,12 @@
 #include "uithememanager.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "AboutDialog/" name
+
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::AboutDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -107,11 +110,12 @@ AboutDialog::AboutDialog(QWidget *parent)
                                      "The database is licensed under the Creative Commons Attribution 4.0 International License"));
     m_ui->labelDBIP->setText(DBIPText);
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 AboutDialog::~AboutDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }

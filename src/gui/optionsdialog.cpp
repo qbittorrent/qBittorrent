@@ -68,6 +68,8 @@
 #include "uithememanager.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "OptionsDialog/" name
+
 namespace
 {
     QStringList translatedWeekdayNames()
@@ -129,7 +131,7 @@ namespace
         case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
         case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
         case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
-        case QLocale::Norwegian: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
+        case QLocale::NorwegianBokmal: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
         case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
         case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
         case QLocale::Portuguese:
@@ -169,9 +171,10 @@ private:
 
 // Constructor
 OptionsDialog::OptionsDialog(QWidget *parent)
-    : QDialog(parent)
-    , m_refreshingIpFilter(false)
-    , m_ui(new Ui::OptionsDialog)
+    : QDialog {parent}
+    , m_ui {new Ui::OptionsDialog}
+    , m_storeDialogSize {SETTINGS_KEY("Size")}
+    , m_storeHSplitterSize {SETTINGS_KEY("HorizontalSplitterSizes")}
 {
     qDebug("-> Constructing Options");
     m_ui->setupUi(this);
@@ -565,7 +568,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
         widget->installEventFilter(wheelEventEater);
 
-    loadWindowState();
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
     // Have to be called after show(), because splitter width needed
     loadSplitterState();
@@ -606,7 +609,13 @@ OptionsDialog::~OptionsDialog()
 {
     qDebug("-> destructing Options");
 
-    saveWindowState();
+    // save dialog states
+    m_storeDialogSize = size();
+
+    QStringList hSplitterSizes;
+    for (const int size : asConst(m_ui->hsplitter->sizes()))
+        hSplitterSizes.append(QString::number(size));
+    m_storeHSplitterSize = hSplitterSizes;
 
     for (const QString &path : asConst(m_addedScanDirs))
         ScanFoldersModel::instance()->removePath(path);
@@ -621,38 +630,18 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
     m_ui->tabOption->setCurrentIndex(m_ui->tabSelection->row(current));
 }
 
-void OptionsDialog::loadWindowState()
-{
-    Utils::Gui::resize(this, Preferences::instance()->getPrefSize());
-}
-
 void OptionsDialog::loadSplitterState()
 {
-    const QStringList sizesStr = Preferences::instance()->getPrefHSplitterSizes();
-
     // width has been modified, use height as width reference instead
     const int width = Utils::Gui::scaledSize(this
         , (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
-    QList<int> sizes {width, (m_ui->hsplitter->width() - width)};
-    if (sizesStr.size() == 2)
-        sizes = {sizesStr.first().toInt(), sizesStr.last().toInt()};
-    m_ui->hsplitter->setSizes(sizes);
-}
+    const QStringList defaultSizes = {QString::number(width), QString::number(m_ui->hsplitter->width() - width)};
 
-void OptionsDialog::saveWindowState() const
-{
-    Preferences *const pref = Preferences::instance();
+    QList<int> splitterSizes;
+    for (const QString &string : asConst(m_storeHSplitterSize.get(defaultSizes)))
+        splitterSizes.append(string.toInt());
 
-    // window size
-    pref->setPrefSize(size());
-
-    // Splitter size
-    const QStringList sizesStr =
-    {
-        QString::number(m_ui->hsplitter->sizes().first()),
-        QString::number(m_ui->hsplitter->sizes().last())
-    };
-    pref->setPrefHSplitterSizes(sizesStr);
+    m_ui->hsplitter->setSizes(splitterSizes);
 }
 
 void OptionsDialog::saveOptions()

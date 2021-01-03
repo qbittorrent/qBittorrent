@@ -30,18 +30,21 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 namespace Ui
 {
     class PluginSourceDialog;
 }
 
-class PluginSourceDialog : public QDialog
+class PluginSourceDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PluginSourceDialog)
 
 public:
     explicit PluginSourceDialog(QWidget *parent = nullptr);
-    ~PluginSourceDialog();
+    ~PluginSourceDialog() override;
 
 signals:
     void askForUrl();
@@ -53,4 +56,5 @@ private slots:
 
 private:
     Ui::PluginSourceDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
 };
