@@ -39,7 +39,7 @@ const QString KEY_ENABLED = QStringLiteral("Network/PortForwardingEnabled");
 
 PortForwarderImpl::PortForwarderImpl(lt::session *provider, QObject *parent)
     : Net::PortForwarder {parent}
-    , m_active {SettingsStorage::instance()->loadValue(KEY_ENABLED, true).toBool()}
+    , m_active {SettingsStorage::instance()->loadValue(KEY_ENABLED, true)}
     , m_provider {provider}
 {
     if (m_active)

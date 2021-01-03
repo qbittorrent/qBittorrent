@@ -214,7 +214,7 @@ const QBtCommandLineParameters &Application::commandLineArgs() const
 
 bool Application::isFileLoggerEnabled() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true).toBool();
+    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true);
 }
 
 void Application::setFileLoggerEnabled(const bool value)
@@ -228,8 +228,8 @@ void Application::setFileLoggerEnabled(const bool value)
 
 QString Application::fileLoggerPath() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_PATH,
-            {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER}).toString();
+    return settings()->loadValue(KEY_FILELOGGER_PATH
+        , QString {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER});
 }
 
 void Application::setFileLoggerPath(const QString &path)
@@ -241,7 +241,7 @@ void Application::setFileLoggerPath(const QString &path)
 
 bool Application::isFileLoggerBackup() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true).toBool();
+    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true);
 }
 
 void Application::setFileLoggerBackup(const bool value)
@@ -253,7 +253,7 @@ void Application::setFileLoggerBackup(const bool value)
 
 bool Application::isFileLoggerDeleteOld() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true).toBool();
+    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true);
 }
 
 void Application::setFileLoggerDeleteOld(const bool value)
@@ -265,7 +265,7 @@ void Application::setFileLoggerDeleteOld(const bool value)
 
 int Application::fileLoggerMaxSize() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE);
     return std::min(std::max(val, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
 }
 
@@ -279,7 +279,7 @@ void Application::setFileLoggerMaxSize(const int bytes)
 
 int Application::fileLoggerAge() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1);
     return std::min(std::max(val, 1), 365);
 }
 
@@ -290,7 +290,7 @@ void Application::setFileLoggerAge(const int value)
 
 int Application::fileLoggerAgeType() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1);
     return ((val < 0) || (val > 2)) ? 1 : val;
 }
 

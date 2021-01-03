@@ -63,10 +63,10 @@ using namespace RSS;
 QPointer<Session> Session::m_instance = nullptr;
 
 Session::Session()
-    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
+    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false))
     , m_workingThread(new QThread(this))
-    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30).toInt())
-    , m_maxArticlesPerFeed(SettingsStorage::instance()->loadValue(SettingsKey_MaxArticlesPerFeed, 50).toInt())
+    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30))
+    , m_maxArticlesPerFeed(SettingsStorage::instance()->loadValue(SettingsKey_MaxArticlesPerFeed, 50))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -362,8 +362,8 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 
 void Session::loadLegacy()
 {
-    const QStringList legacyFeedPaths = SettingsStorage::instance()->loadValue("Rss/streamList").toStringList();
-    const QStringList feedAliases = SettingsStorage::instance()->loadValue("Rss/streamAlias").toStringList();
+    const auto legacyFeedPaths = SettingsStorage::instance()->loadValue<QStringList>("Rss/streamList");
+    const auto feedAliases = SettingsStorage::instance()->loadValue<QStringList>("Rss/streamAlias");
     if (legacyFeedPaths.size() != feedAliases.size())
     {
         Logger::instance()->addMessage("Corrupted RSS list, not loading it.", Log::WARNING);
