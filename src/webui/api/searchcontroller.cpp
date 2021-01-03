@@ -264,7 +264,7 @@ void SearchController::enablePluginAction()
     requireParams({"names", "enable"});
 
     const QStringList names = params()["names"].split('|');
-    const bool enable = Utils::String::parseBool(params()["enable"].trimmed(), false);
+    const bool enable = Utils::String::parseBool(params()["enable"].trimmed()).value_or(false);
 
     for (const QString &name : names)
         SearchPluginManager::instance()->enablePlugin(name.trimmed(), enable);

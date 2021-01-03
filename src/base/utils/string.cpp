@@ -190,11 +190,14 @@ QString Utils::String::wildcardToRegex(const QString &pattern)
     return qt_regexp_toCanonical(pattern, QRegExp::Wildcard);
 }
 
-bool Utils::String::parseBool(const QString &string, const bool defaultValue)
+std::optional<bool> Utils::String::parseBool(const QString &string)
 {
-    if (defaultValue)
-        return (string.compare("false", Qt::CaseInsensitive) == 0) ? false : true;
-    return (string.compare("true", Qt::CaseInsensitive) == 0) ? true : false;
+    if (string.compare("true", Qt::CaseInsensitive) == 0)
+        return true;
+    if (string.compare("false", Qt::CaseInsensitive) == 0)
+        return false;
+
+    return std::nullopt;
 }
 
 QString Utils::String::join(const QVector<QStringRef> &strings, const QString &separator)
