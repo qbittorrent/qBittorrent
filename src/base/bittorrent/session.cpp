@@ -2039,14 +2039,14 @@ bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &par
 {
     if (!magnetUri.isValid()) return false;
 
-    return addTorrent_impl(params, magnetUri);
+    return addTorrent_impl(magnetUri, params);
 }
 
 bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params)
 {
     if (!torrentInfo.isValid()) return false;
 
-    return addTorrent_impl(params, MagnetUri(), torrentInfo);
+    return addTorrent_impl(torrentInfo, params);
 }
 
 LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorrentParams)
@@ -2087,9 +2087,11 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 }
 
 // Add a torrent to the BitTorrent session
-bool Session::addTorrent_impl(const AddTorrentParams &addTorrentParams, const MagnetUri &magnetUri, TorrentInfo metadata)
+bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams)
 {
-    const bool hasMetadata = metadata.isValid();
+    const bool hasMetadata = std::holds_alternative<TorrentInfo>(source);
+    TorrentInfo metadata = (hasMetadata ? std::get<TorrentInfo>(source) : TorrentInfo {});
+    const MagnetUri &magnetUri = (hasMetadata ? MagnetUri {} : std::get<MagnetUri>(source));
     const InfoHash hash = (hasMetadata ? metadata.hash() : magnetUri.hash());
 
     // It looks illogical that we don't just use an existing handle,
