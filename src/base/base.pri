@@ -85,7 +85,8 @@ HEADERS += \
     $$PWD/utils/password.h \
     $$PWD/utils/random.h \
     $$PWD/utils/string.h \
-    $$PWD/utils/version.h
+    $$PWD/utils/version.h \
+    $$PWD/version.h
 
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \

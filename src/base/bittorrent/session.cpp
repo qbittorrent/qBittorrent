@@ -84,6 +84,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/random.h"
+#include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "common.h"
 #include "customstorage.h"
