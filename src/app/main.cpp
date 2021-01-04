@@ -78,6 +78,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 
 #include "base/preferences.h"
 #include "base/profile.h"
+#include "base/version.h"
 #include "application.h"
 #include "cmdoptions.h"
 #include "upgrade.h"

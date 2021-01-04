@@ -4,6 +4,7 @@ IDI_ICON1 ICON "icons\qbittorrent.ico"
 IDI_ICON2 ICON "icons\qbittorrent_file.ico"
 
 #include <windows.h>
+#include "base/version.h"
 
 #define VER_FILEVERSION             QBT_VERSION_MAJOR,QBT_VERSION_MINOR,QBT_VERSION_BUGFIX,QBT_VERSION_BUILD
 #define VER_FILEVERSION_STR         QBT_VERSION

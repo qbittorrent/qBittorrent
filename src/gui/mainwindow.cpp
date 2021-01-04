@@ -70,6 +70,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/password.h"
+#include "base/version.h"
 #include "aboutdialog.h"
 #include "addnewtorrentdialog.h"
 #include "autoexpandabledialog.h"

@@ -81,6 +81,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "base/version.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
 

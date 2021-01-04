@@ -34,6 +34,7 @@
 
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
+#include "base/version.h"
 
 using namespace Net;
 

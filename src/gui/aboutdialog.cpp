@@ -32,6 +32,7 @@
 
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
+#include "base/version.h"
 #include "ui_aboutdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
