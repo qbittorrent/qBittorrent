@@ -34,47 +34,44 @@
 class QByteArray;
 class QFileDevice;
 
-namespace Utils
+namespace Utils::IO
 {
-    namespace IO
+    // A wrapper class that satisfy LegacyOutputIterator requirement
+    class FileDeviceOutputIterator
     {
-        // A wrapper class that satisfy LegacyOutputIterator requirement
-        class FileDeviceOutputIterator
+    public:
+        // std::iterator_traits
+        using iterator_category = std::output_iterator_tag;
+        using difference_type = void;
+        using value_type = void;
+        using pointer = void;
+        using reference = void;
+
+        explicit FileDeviceOutputIterator(QFileDevice &device, const int bufferSize = (4 * 1024));
+        FileDeviceOutputIterator(const FileDeviceOutputIterator &other) = default;
+        ~FileDeviceOutputIterator();
+
+        // mimic std::ostream_iterator behavior
+        FileDeviceOutputIterator &operator=(char c);
+
+        constexpr FileDeviceOutputIterator &operator*()
         {
-        public:
-            // std::iterator_traits
-            using iterator_category = std::output_iterator_tag;
-            using difference_type = void;
-            using value_type = void;
-            using pointer = void;
-            using reference = void;
+            return *this;
+        }
 
-            explicit FileDeviceOutputIterator(QFileDevice &device, const int bufferSize = (4 * 1024));
-            FileDeviceOutputIterator(const FileDeviceOutputIterator &other) = default;
-            ~FileDeviceOutputIterator();
+        constexpr FileDeviceOutputIterator &operator++()
+        {
+            return *this;
+        }
 
-            // mimic std::ostream_iterator behavior
-            FileDeviceOutputIterator &operator=(char c);
+        constexpr FileDeviceOutputIterator &operator++(int)
+        {
+            return *this;
+        }
 
-            constexpr FileDeviceOutputIterator &operator*()
-            {
-                return *this;
-            }
-
-            constexpr FileDeviceOutputIterator &operator++()
-            {
-                return *this;
-            }
-
-            constexpr FileDeviceOutputIterator &operator++(int)
-            {
-                return *this;
-            }
-
-        private:
-            QFileDevice *m_device;
-            std::shared_ptr<QByteArray> m_buffer;
-            int m_bufferSize;
-        };
-    }
+    private:
+        QFileDevice *m_device;
+        std::shared_ptr<QByteArray> m_buffer;
+        int m_bufferSize;
+    };
 }
