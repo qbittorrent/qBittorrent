@@ -42,7 +42,6 @@
 
 #include "base/global.h"
 #include "base/preferences.h"
-#include "base/tristatebool.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "rss_article.h"
@@ -51,56 +50,49 @@
 
 namespace
 {
-    TriStateBool jsonValueToTriStateBool(const QJsonValue &jsonVal)
+    std::optional<bool> toOptionalBool(const QJsonValue &jsonVal)
     {
         if (jsonVal.isBool())
-            return TriStateBool(jsonVal.toBool());
+            return jsonVal.toBool();
 
-        if (!jsonVal.isNull())
-            qDebug() << Q_FUNC_INFO << "Incorrect value" << jsonVal.toVariant();
-
-        return TriStateBool::Undefined;
+        return std::nullopt;
     }
 
-    QJsonValue triStateBoolToJsonValue(const TriStateBool triStateBool)
+    QJsonValue toJsonValue(const std::optional<bool> boolValue)
     {
-        switch (static_cast<signed char>(triStateBool))
-        {
-        case 0:  return false;
-        case 1:  return true;
-        default: return {};
-        }
+        return boolValue.has_value() ? *boolValue : QJsonValue {};
     }
 
-    TriStateBool addPausedLegacyToTriStateBool(const int val)
+    std::optional<bool> addPausedLegacyToOptionalBool(const int val)
     {
         switch (val)
         {
-        case 1:  return TriStateBool::True; // always
-        case 2:  return TriStateBool::False; // never
-        default: return TriStateBool::Undefined; // default
+        case 1:
+            return true; // always
+        case 2:
+            return false; // never
+        default:
+            return std::nullopt; // default
         }
     }
 
-    int triStateBoolToAddPausedLegacy(const TriStateBool triStateBool)
+    int toAddPausedLegacy(const std::optional<bool> boolValue)
     {
-        switch (static_cast<signed char>(triStateBool))
-        {
-        case 0:  return 2; // never
-        case 1:  return 1; // always
-        default: return 0; // default
-        }
+        if (!boolValue.has_value())
+            return 0; // default
+
+        return (*boolValue ? 1 /* always */ : 2 /* never */);
     }
 
-    boost::optional<BitTorrent::TorrentContentLayout> jsonValueToContentLayout(const QJsonValue &jsonVal)
+    std::optional<BitTorrent::TorrentContentLayout> jsonValueToContentLayout(const QJsonValue &jsonVal)
     {
         const QString str = jsonVal.toString();
         if (str.isEmpty())
-            return {};
+            return std::nullopt;
         return Utils::String::toEnum(str, BitTorrent::TorrentContentLayout::Original);
     }
 
-    QJsonValue contentLayoutToJsonValue(const boost::optional<BitTorrent::TorrentContentLayout> contentLayout)
+    QJsonValue contentLayoutToJsonValue(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
     {
         if (!contentLayout)
             return {};
@@ -142,8 +134,8 @@ namespace RSS
 
         QString savePath;
         QString category;
-        TriStateBool addPaused = TriStateBool::Undefined;
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        std::optional<bool> addPaused;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -477,7 +469,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_AssignedCategory, assignedCategory()}
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
-        , {Str_AddPaused, triStateBoolToJsonValue(addPaused())}
+        , {Str_AddPaused, toJsonValue(addPaused())}
         , {Str_ContentLayout, contentLayoutToJsonValue(torrentContentLayout())}
         , {Str_SmartFilter, useSmartFilter()}
         , {Str_PreviouslyMatched, QJsonArray::fromStringList(previouslyMatchedEpisodes())}};
@@ -494,7 +486,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setEnabled(jsonObj.value(Str_Enabled).toBool(true));
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
-    rule.setAddPaused(jsonValueToTriStateBool(jsonObj.value(Str_AddPaused)));
+    rule.setAddPaused(toOptionalBool(jsonObj.value(Str_AddPaused)));
 
     // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
     // === BEGIN DEPRECATED CODE === //
@@ -504,12 +496,14 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     }
     else
     {
-        const TriStateBool createSubfolder = jsonValueToTriStateBool(jsonObj.value(Str_CreateSubfolder));
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
-        if (createSubfolder == TriStateBool::True)
-            contentLayout = BitTorrent::TorrentContentLayout::Original;
-        else if (createSubfolder == TriStateBool::False)
-            contentLayout = BitTorrent::TorrentContentLayout::NoSubfolder;
+        const std::optional<bool> createSubfolder = toOptionalBool(jsonObj.value(Str_CreateSubfolder));
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        if (createSubfolder.has_value())
+        {
+            contentLayout = (*createSubfolder
+                             ? BitTorrent::TorrentContentLayout::Original
+                             : BitTorrent::TorrentContentLayout::NoSubfolder);
+        }
 
         rule.setTorrentContentLayout(contentLayout);
     }
@@ -556,7 +550,7 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
         {"enabled", isEnabled()},
         {"category_assigned", assignedCategory()},
         {"use_regex", useRegex()},
-        {"add_paused", triStateBoolToAddPausedLegacy(addPaused())},
+        {"add_paused", toAddPausedLegacy(addPaused())},
         {"episode_filter", episodeFilter()},
         {"last_match", lastMatch()},
         {"ignore_days", ignoreDays()}};
@@ -574,7 +568,7 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     rule.setEnabled(dict.value("enabled", false).toBool());
     rule.setSavePath(dict.value("save_path").toString());
     rule.setCategory(dict.value("category_assigned").toString());
-    rule.setAddPaused(addPausedLegacyToTriStateBool(dict.value("add_paused").toInt()));
+    rule.setAddPaused(addPausedLegacyToOptionalBool(dict.value("add_paused").toInt()));
     rule.setLastMatch(dict.value("last_match").toDateTime());
     rule.setIgnoreDays(dict.value("ignore_days").toInt());
 
@@ -639,22 +633,22 @@ void AutoDownloadRule::setSavePath(const QString &savePath)
     m_dataPtr->savePath = Utils::Fs::toUniformPath(savePath);
 }
 
-TriStateBool AutoDownloadRule::addPaused() const
+std::optional<bool> AutoDownloadRule::addPaused() const
 {
     return m_dataPtr->addPaused;
 }
 
-void AutoDownloadRule::setAddPaused(const TriStateBool addPaused)
+void AutoDownloadRule::setAddPaused(const std::optional<bool> addPaused)
 {
     m_dataPtr->addPaused = addPaused;
 }
 
-boost::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
+std::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
 {
     return m_dataPtr->contentLayout;
 }
 
-void AutoDownloadRule::setTorrentContentLayout(const boost::optional<BitTorrent::TorrentContentLayout> contentLayout)
+void AutoDownloadRule::setTorrentContentLayout(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
 {
     m_dataPtr->contentLayout = contentLayout;
 }

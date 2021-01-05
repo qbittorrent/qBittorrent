@@ -78,7 +78,6 @@
 #include "base/profile.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfilter.h"
-#include "base/tristatebool.h"
 #include "base/unicodestrings.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
@@ -2057,19 +2056,13 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     loadTorrentParams.tags = addTorrentParams.tags;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
-    loadTorrentParams.contentLayout = (addTorrentParams.contentLayout
-                                       ? *addTorrentParams.contentLayout
-                                       : torrentContentLayout());
-    loadTorrentParams.forced = (addTorrentParams.addForced == TriStateBool::True);
-    loadTorrentParams.paused = ((addTorrentParams.addPaused == TriStateBool::Undefined)
-                    ? isAddTorrentPaused()
-                    : (addTorrentParams.addPaused == TriStateBool::True));
+    loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
+    loadTorrentParams.forced = addTorrentParams.addForced;
+    loadTorrentParams.paused = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
-    const bool useAutoTMM = ((addTorrentParams.useAutoTMM == TriStateBool::Undefined)
-                           ? !isAutoTMMDisabledByDefault()
-                           : (addTorrentParams.useAutoTMM == TriStateBool::True));
+    const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!isAutoTMMDisabledByDefault());
     if (useAutoTMM)
         loadTorrentParams.savePath = "";
     else if (addTorrentParams.savePath.trimmed().isEmpty())

@@ -89,7 +89,7 @@ void RSSController::moveItemAction()
 
 void RSSController::itemsAction()
 {
-    const bool withData {parseBool(params()["withData"], false)};
+    const bool withData {parseBool(params()["withData"]).value_or(false)};
 
     const auto jsonVal = RSS::Session::instance()->rootFolder()->toJsonValue(withData);
     setResult(jsonVal.toObject());

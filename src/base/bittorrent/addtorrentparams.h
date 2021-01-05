@@ -28,13 +28,12 @@
 
 #pragma once
 
-#include <boost/optional.hpp>
+#include <optional>
 
 #include <QSet>
 #include <QString>
 #include <QVector>
 
-#include "base/tristatebool.h"
 #include "torrenthandle.h"
 #include "torrentcontentlayout.h"
 
@@ -51,12 +50,12 @@ namespace BitTorrent
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;
         bool firstLastPiecePriority = false;
-        TriStateBool addForced;
-        TriStateBool addPaused;
+        bool addForced = false;
+        std::optional<bool> addPaused;
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
-        boost::optional<BitTorrent::TorrentContentLayout> contentLayout;
-        TriStateBool useAutoTMM;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        std::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
         int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
