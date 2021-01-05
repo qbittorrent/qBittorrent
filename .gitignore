@@ -43,3 +43,6 @@ build/
 # Web UI tools
 node_modules
 package-lock.json
+
+# Pycharm
+**/.idea/

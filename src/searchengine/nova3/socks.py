@@ -1,40 +1,40 @@
-"""SocksiPy - Python SOCKS module.
-Version 1.02
+# SocksiPy - Python SOCKS module.
+# Version 1.02
+#
+# Copyright 2006 Dan-Haim. All rights reserved.
+# Various fixes by Christophe DUMEZ <chris@qbittorrent.org> - 2010
+# Refactoring and optimization by Georgi KANCHEV <zkscpqm@daum.net> - 2020
+#
+# Redistribution and use in source and binary forms, with or without modification,
+# are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+# 3. Neither the name of Dan Haim nor the names of his contributors may be used
+#    to endorse or promote products derived from this software without specific
+#    prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY DAN HAIM "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+# EVENT SHALL DAN HAIM OR HIS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA
+# OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+# OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#
+# This module provides a standard socket-like interface for Python
+# for tunneling connections through SOCKS proxies.
 
-Copyright 2006 Dan-Haim. All rights reserved.
-Various fixes by Christophe DUMEZ <chris@qbittorrent.org> - 2010
-Refactoring and optimization by Georgi KANCHEV <zkscpqm@daum.net> - 2020
 
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
-3. Neither the name of Dan Haim nor the names of his contributors may be used
-   to endorse or promote products derived from this software without specific
-   prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY DAN HAIM "AS IS" AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
-EVENT SHALL DAN HAIM OR HIS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA
-OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
-OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMANGE.
-
-
-This module provides a standard socket-like interface for Python
-for tunneling connections through SOCKS proxies.
-
-"""
-from socket import socket, AF_INET, SOCK_STREAM, inet_aton, error as socket_error, gethostbyname, inet_ntoa
+import socket
 import struct
-from socks.proxy import Proxy
-from socks.socks_error_mapping import GeneralStatus, Socks5AuthStatus, Socks5Status, Socks4Status
+from connection_helpers.proxy import Proxy
+from connection_helpers.socks_error_mapping import *
 
 
 class ProxyError(Exception):
@@ -84,7 +84,7 @@ def set_default_proxy(proxytype=None, addr=None, port=None, rdns=True, username=
     Proxy.set_defaults(proxytype, addr, port, rdns, username, password)
 
 
-class SockSocket(socket):
+class SockSocket(socket.socket):
     """SockSocket([family[, type[, proto]]]) -> socket object
 
     Open a SOCKS enabled socket. The parameters are the same as
@@ -95,20 +95,20 @@ class SockSocket(socket):
     HTTP_DEFAULT_PORT = 8080
     ALLOWED_HTTP_PROTOCOLS = ("HTTP/1.0", "HTTP/1.1")
 
-    def __init__(self, family=AF_INET, type=SOCK_STREAM, proto=0, _sock=None):
-        socket.__init__(self, family, type, proto, _sock)
+    def __init__(self, family=socket.AF_INET, typ=socket.SOCK_STREAM, proto=0, _sock=None):
+        socket.socket.__init__(self, family, typ, proto, _sock)
         self.__proxy = Proxy.init_default() if Proxy.default else Proxy.init_unconfigured()
         self.__proxysockname = None
         self.__proxypeername = None
 
-    def __recvall(self, bytes):
+    def __recvall(self, bytez):
         """__recvall(bytes) -> data
         Receive EXACTLY the number of bytes requested from the socket.
         Blocks until the required number of bytes have been received.
         """
         data = b""
-        while len(data) < bytes:
-            _data_stream = self.recv(bytes - len(data))
+        while len(data) < bytez:
+            _data_stream = self.recv(bytez - len(data))
             if not _data_stream:
                 raise GeneralProxyError(GeneralStatus.CONN_CLOSED)
             data += _data_stream
@@ -183,7 +183,7 @@ class SockSocket(socket):
 
     def _authenticate(self):
         auth_str = "\x01" + chr(len(self.proxy.username)) + self.proxy.username \
-        + chr(len(self.proxy.password)) + self.proxy.password
+                   + chr(len(self.proxy.password)) + self.proxy.password
 
         self.sendall(auth_str.encode("utf-8"))
         return self.__recvall(2)
@@ -193,10 +193,10 @@ class SockSocket(socket):
         # If the given destination address is an IP address, we'll
         # use the IPv4 address request even if remote resolving was specified.
         try:
-            ipaddr = inet_aton(destaddr)
+            ipaddr = socket.inet_aton(destaddr)
             _req_addon = b"\x01" + ipaddr
             request += _req_addon
-        except socket_error:
+        except socket.error:
             # Well it's not an IP number,  so it's probably a DNS name.
             if self.proxy.reverse_dns:
                 # Resolve remotely
@@ -205,7 +205,7 @@ class SockSocket(socket):
                 request += _req_addon
             else:
                 # Resolve locally
-                ipaddr = inet_aton(gethostbyname(destaddr))
+                ipaddr = socket.inet_aton(socket.gethostbyname(destaddr))
                 _req_addon = b"\x01" + ipaddr
                 request += _req_addon
         request += struct.pack(">H", destport)
@@ -253,7 +253,7 @@ class SockSocket(socket):
         req, ipaddr = self._build_socks5_request(destaddr, destport)
         boundaddr, boundport = self._establish_socks5_connection(req)
         self.__proxysockname = (boundaddr, boundport)
-        self.__proxypeername = (inet_ntoa(ipaddr) if ipaddr else destaddr, destport)
+        self.__proxypeername = (socket.inet_ntoa(ipaddr) if ipaddr else destaddr, destport)
 
     @property
     def getproxysockname(self):
@@ -267,7 +267,7 @@ class SockSocket(socket):
         Returns the IP address and port number of the destination
         machine (note: getproxypeername returns the proxy)
         """
-        return socket.getpeername(self)
+        return socket.socket.getpeername(self)
 
     @property
     def getproxypeername(self):
@@ -278,10 +278,10 @@ class SockSocket(socket):
 
     def _resolve_ip_address_socks4(self, address):
         try:
-            return inet_aton(address)
-        except socket_error:
+            return socket.inet_aton(address)
+        except socket.error:
             # It's a DNS name. Check where it should be resolved.
-            return inet_aton(gethostbyname(address)) \
+            return socket.inet_aton(socket.gethostbyname(address)) \
                 if self.proxy.reverse_dns \
                 else b"\x00\x00\x00\x01"
 
@@ -316,11 +316,12 @@ class SockSocket(socket):
             else:
                 raise Socks4Error(94, Socks4Status.UNKNOWN)
         # Get the bound address/port
-        boundaddr = inet_ntoa(resp[4:])
+        boundaddr = socket.inet_ntoa(resp[4:])
         boundport = struct.unpack(">H", resp[2:4])[0]
         return boundaddr, boundport
 
-    def _interpret_http_response(self, http_response_bytes):
+    @staticmethod
+    def _interpret_http_response(http_response_bytes):
         response_line_one = http_response_bytes.splitlines()[0]
         statusline = response_line_one.split(b" ", 2)
         protocol = statusline[0]
@@ -360,14 +361,14 @@ class SockSocket(socket):
 
         boundaddr, boundport = self._establish_socks4_connection(req)
         self.__proxysockname = (boundaddr, boundport)
-        self.__proxypeername = (inet_ntoa(ipaddr) if self.proxy.reverse_dns else destaddr, destport)
+        self.__proxypeername = (socket.inet_ntoa(ipaddr) if self.proxy.reverse_dns else destaddr, destport)
 
     def __negotiatehttp(self, destaddr, destport):
         """__negotiatehttp(self,destaddr,destport)
         Negotiates a connection through an HTTP server.
         """
         # If we need to resolve locally, we do this now
-        addr = gethostbyname(destaddr) if not self.proxy.reverse_dns else destaddr
+        addr = socket.gethostbyname(destaddr) if not self.proxy.reverse_dns else destaddr
 
         req = "CONNECT " \
               + addr \
@@ -384,16 +385,16 @@ class SockSocket(socket):
 
     def _connect(self, destaddr, destport):
         if self.proxy.proxytype == self.proxy.PROXY_TYPE_SOCKS5:
-            socket.connect(self, (self.proxy.address, self.proxy.port or self.SOCKS_DEFAULT_PORT))
+            socket.socket.connect(self, (self.proxy.address, self.proxy.port or self.SOCKS_DEFAULT_PORT))
             self.__negotiatesocks5(destaddr, destport)
         elif self.proxy.proxytype == self.proxy.PROXY_TYPE_SOCKS4:
-            socket.connect(self, (self.proxy.address, self.proxy.port or self.SOCKS_DEFAULT_PORT))
+            socket.socket.connect(self, (self.proxy.address, self.proxy.port or self.SOCKS_DEFAULT_PORT))
             self.__negotiatesocks4(destaddr, destport)
         elif self.proxy.proxytype == self.proxy.PROXY_TYPE_HTTP:
-            socket.connect(self, (self.proxy.address, self.proxy.port or self.HTTP_DEFAULT_PORT))
+            socket.socket.connect(self, (self.proxy.address, self.proxy.port or self.HTTP_DEFAULT_PORT))
             self.__negotiatehttp(destaddr, destport)
         elif not self.proxy.proxytype:
-            socket.connect(self, (destaddr, destport))
+            socket.socket.connect(self, (destaddr, destport))
         else:
             raise GeneralProxyError(4, GeneralStatus.NOT_AVAIL)
 

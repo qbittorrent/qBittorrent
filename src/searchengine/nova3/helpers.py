@@ -38,10 +38,11 @@ import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
+import socks
+from connection_helpers.proxy import Proxy
 
 # Some sites blocks default python User-agent
-from socks import socks
-from socks.proxy import Proxy
+
 
 user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0'
 headers = {'User-Agent': user_agent}
