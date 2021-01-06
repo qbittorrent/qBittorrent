@@ -33,7 +33,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "ui_torrentoptionsdialog.h"
@@ -53,7 +53,7 @@ namespace
     }
 }
 
-TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::TorrentHandle *> &torrents)
+TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY("Size")}
@@ -76,7 +76,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     const bool isFirstTorrentLSDDisabled = torrents[0]->isLSDDisabled();
 
     m_torrentHashes.reserve(torrents.size());
-    for (const BitTorrent::TorrentHandle *torrent : torrents)
+    for (const BitTorrent::Torrent *torrent : torrents)
     {
         m_torrentHashes << torrent->hash();
         if (allSameUpLimit)
@@ -180,8 +180,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     }
 
     const bool useGlobalValue = allSameRatio && allSameSeedingTime
-        && (firstTorrentRatio == BitTorrent::TorrentHandle::USE_GLOBAL_RATIO)
-        && (firstTorrentSeedingTime == BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME);
+        && (firstTorrentRatio == BitTorrent::Torrent::USE_GLOBAL_RATIO)
+        && (firstTorrentSeedingTime == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
 
     if (!allSameRatio || !allSameSeedingTime)
     {
@@ -193,8 +193,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     {
         m_ui->radioUseGlobalShareLimits->setChecked(true);
     }
-    else if ((firstTorrentRatio == BitTorrent::TorrentHandle::NO_RATIO_LIMIT)
-             && (firstTorrentSeedingTime == BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT))
+    else if ((firstTorrentRatio == BitTorrent::Torrent::NO_RATIO_LIMIT)
+             && (firstTorrentSeedingTime == BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT))
     {
         m_ui->radioNoLimit->setChecked(true);
     }
@@ -288,7 +288,7 @@ void TorrentOptionsDialog::accept()
     const auto *session = BitTorrent::Session::instance();
     for (const BitTorrent::InfoHash &hash : asConst(m_torrentHashes))
     {
-        BitTorrent::TorrentHandle *torrent = session->findTorrent(hash);
+        BitTorrent::Torrent *torrent = session->findTorrent(hash);
         if (!torrent) continue;
 
         if (m_initialValues.upSpeedLimit != m_ui->spinUploadLimit->value())
@@ -324,10 +324,10 @@ qreal TorrentOptionsDialog::getRatio() const
         return MIXED_SHARE_LIMITS;
 
     if (m_ui->radioUseGlobalShareLimits->isChecked())
-        return BitTorrent::TorrentHandle::USE_GLOBAL_RATIO;
+        return BitTorrent::Torrent::USE_GLOBAL_RATIO;
 
     if (m_ui->radioNoLimit->isChecked() || !m_ui->checkMaxRatio->isChecked())
-        return BitTorrent::TorrentHandle::NO_RATIO_LIMIT;
+        return BitTorrent::Torrent::NO_RATIO_LIMIT;
 
     return m_ui->spinRatioLimit->value();
 }
@@ -338,10 +338,10 @@ int TorrentOptionsDialog::getSeedingTime() const
         return MIXED_SHARE_LIMITS;
 
     if (m_ui->radioUseGlobalShareLimits->isChecked())
-        return BitTorrent::TorrentHandle::USE_GLOBAL_SEEDING_TIME;
+        return BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME;
 
     if (m_ui->radioNoLimit->isChecked() || !m_ui->checkMaxTime->isChecked())
-        return  BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT;
+        return  BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
 
     return m_ui->spinTimeLimit->value();
 }

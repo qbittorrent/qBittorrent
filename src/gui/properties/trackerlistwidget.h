@@ -35,7 +35,7 @@ class PropertiesWidget;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 class TrackerListWidget : public QTreeWidget
@@ -70,7 +70,7 @@ public slots:
     void moveSelectionDown();
 
     void clear();
-    void loadStickyItems(const BitTorrent::TorrentHandle *torrent);
+    void loadStickyItems(const BitTorrent::Torrent *torrent);
     void loadTrackers();
     void askForTrackers();
     void copyTrackerUrl();

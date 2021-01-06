@@ -45,7 +45,7 @@
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -265,7 +265,7 @@ void PropertiesWidget::clear()
     m_propListModel->model()->clear();
 }
 
-BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
+BitTorrent::Torrent *PropertiesWidget::getCurrentTorrent() const
 {
     return m_torrent;
 }
@@ -285,25 +285,25 @@ QTreeView *PropertiesWidget::getFilesList() const
     return m_ui->filesList;
 }
 
-void PropertiesWidget::updateSavePath(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         m_ui->labelSavePathVal->setText(Utils::Fs::toNativePath(m_torrent->savePath()));
 }
 
-void PropertiesWidget::loadTrackers(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::loadTrackers(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         m_trackerList->loadTrackers();
 }
 
-void PropertiesWidget::updateTorrentInfos(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::updateTorrentInfos(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         loadTorrentInfos(m_torrent);
 }
 
-void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 {
     clear();
     m_torrent = torrent;
@@ -437,7 +437,7 @@ void PropertiesWidget::loadDynamicData()
 
             // Update ratio info
             const qreal ratio = m_torrent->realRatio();
-            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
+            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::Torrent::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
 
             m_ui->labelSeedsVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
                 .arg(QString::number(m_torrent->seedsCount())

@@ -32,14 +32,14 @@
 #include <QMessageBox>
 #include <QStringList>
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "gui/uithememanager.h"
 #include "ui_trackersadditiondialog.h"
 
-TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
+TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent)
     : QDialog(parent)
     , m_ui(new Ui::TrackersAdditionDialog())
     , m_torrent(torrent)
@@ -129,7 +129,7 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
 }
 
-QStringList TrackersAdditionDialog::askForTrackers(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
+QStringList TrackersAdditionDialog::askForTrackers(QWidget *parent, BitTorrent::Torrent *const torrent)
 {
     QStringList trackers;
     TrackersAdditionDialog dlg(parent, torrent);

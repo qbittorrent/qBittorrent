@@ -58,7 +58,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -260,11 +260,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerlessStateChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::changeTrackerless);
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerSuccess
-        , m_transferListFiltersWidget, qOverload<const BitTorrent::TorrentHandle *, const QString &>(&TransferListFiltersWidget::trackerSuccess));
+        , m_transferListFiltersWidget, qOverload<const BitTorrent::Torrent *, const QString &>(&TransferListFiltersWidget::trackerSuccess));
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerError
-        , m_transferListFiltersWidget, qOverload<const BitTorrent::TorrentHandle *, const QString &>(&TransferListFiltersWidget::trackerError));
+        , m_transferListFiltersWidget, qOverload<const BitTorrent::Torrent *, const QString &>(&TransferListFiltersWidget::trackerError));
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerWarning
-        , m_transferListFiltersWidget, qOverload<const BitTorrent::TorrentHandle *, const QString &>(&TransferListFiltersWidget::trackerWarning));
+        , m_transferListFiltersWidget, qOverload<const BitTorrent::Torrent *, const QString &>(&TransferListFiltersWidget::trackerWarning));
 
 #ifdef Q_OS_MACOS
     // Increase top spacing to avoid tab overlapping
@@ -858,20 +858,20 @@ void MainWindow::addTorrentFailed(const QString &error) const
 }
 
 // called when a torrent was added
-void MainWindow::torrentNew(BitTorrent::TorrentHandle *const torrent) const
+void MainWindow::torrentNew(BitTorrent::Torrent *const torrent) const
 {
     if (isTorrentAddedNotificationsEnabled())
         showNotificationBaloon(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
 }
 
 // called when a torrent has finished
-void MainWindow::finishedTorrent(BitTorrent::TorrentHandle *const torrent) const
+void MainWindow::finishedTorrent(BitTorrent::Torrent *const torrent) const
 {
     showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const
+void MainWindow::fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const
 {
     showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
         , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
@@ -961,7 +961,7 @@ void MainWindow::displayExecutionLogTab()
 
 // End of keyboard shortcuts slots
 
-void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent)
+void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent)
 {
     Preferences *const pref = Preferences::instance();
     if (pref->recursiveDownloadDisabled()) return;
@@ -1639,7 +1639,7 @@ void MainWindow::reloadSessionStats()
     }
 }
 
-void MainWindow::reloadTorrentStats(const QVector<BitTorrent::TorrentHandle *> &torrents)
+void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents)
 {
     if (currentTabWidget() == m_transferListWidget)
     {

@@ -46,7 +46,7 @@
 
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/preferences.h"
@@ -172,7 +172,7 @@ void TrackerListWidget::setRowColor(const int row, const QColor &color)
 
 void TrackerListWidget::moveSelectionUp()
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent)
     {
         clear();
@@ -218,7 +218,7 @@ void TrackerListWidget::moveSelectionUp()
 
 void TrackerListWidget::moveSelectionDown()
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent)
     {
         clear();
@@ -281,7 +281,7 @@ void TrackerListWidget::clear()
     m_LSDItem->setText(COL_MSG, "");
 }
 
-void TrackerListWidget::loadStickyItems(const BitTorrent::TorrentHandle *torrent)
+void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
 {
     const QString working {tr("Working")};
     const QString disabled {tr("Disabled")};
@@ -361,7 +361,7 @@ void TrackerListWidget::loadStickyItems(const BitTorrent::TorrentHandle *torrent
 void TrackerListWidget::loadTrackers()
 {
     // Load trackers from torrent handle
-    const BitTorrent::TorrentHandle *torrent = m_properties->getCurrentTorrent();
+    const BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     loadStickyItems(torrent);
@@ -438,7 +438,7 @@ void TrackerListWidget::loadTrackers()
 // Ask the user for new trackers and add them to the torrent
 void TrackerListWidget::askForTrackers()
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     QVector<BitTorrent::TrackerEntry> trackers;
@@ -466,7 +466,7 @@ void TrackerListWidget::copyTrackerUrl()
 
 void TrackerListWidget::deleteSelectedTrackers()
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent)
     {
         clear();
@@ -504,7 +504,7 @@ void TrackerListWidget::deleteSelectedTrackers()
 
 void TrackerListWidget::editSelectedTracker()
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     const QVector<QTreeWidgetItem *> selectedTrackerItems = getSelectedTrackerItems();
@@ -555,7 +555,7 @@ void TrackerListWidget::reannounceSelected()
     const QList<QTreeWidgetItem *> selItems = selectedItems();
     if (selItems.isEmpty()) return;
 
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
@@ -585,7 +585,7 @@ void TrackerListWidget::reannounceSelected()
 
 void TrackerListWidget::showTrackerListMenu(const QPoint &)
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     QMenu *menu = new QMenu(this);
@@ -617,7 +617,7 @@ void TrackerListWidget::showTrackerListMenu(const QPoint &)
         const QAction *reannounceAllAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
         connect(reannounceAllAct, &QAction::triggered, this, [this]()
         {
-            BitTorrent::TorrentHandle *h = m_properties->getCurrentTorrent();
+            BitTorrent::Torrent *h = m_properties->getCurrentTorrent();
             h->forceReannounce();
             h->forceDHTAnnounce();
         });

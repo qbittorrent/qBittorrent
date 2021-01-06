@@ -33,7 +33,7 @@
 namespace BitTorrent
 {
     class AbstractFileStorage;
-    class TorrentHandle;
+    class Torrent;
     class TorrentInfo;
 }
 
