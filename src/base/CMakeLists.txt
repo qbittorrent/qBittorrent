@@ -86,6 +86,7 @@ add_library(qbt_base STATIC
     utils/random.h
     utils/string.h
     utils/version.h
+    version.h
 
     # sources
     asyncfilestorage.cpp
@@ -165,7 +166,6 @@ target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto OpenSSL::SSL
         ZLIB::ZLIB
-        qbt_version_definitions
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt5::Core Qt5::Network Qt5::Xml

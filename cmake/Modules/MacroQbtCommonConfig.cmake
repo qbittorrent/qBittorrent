@@ -7,17 +7,6 @@ macro(qbt_common_config)
     # treat value specified by the CXX_STANDARD target property as a requirement by default
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-    # these definitions are only needed for calls to
-    # lt::generate_fingerprint and for the qbittorrent.rc file on Windows
-    add_library(qbt_version_definitions INTERFACE)
-
-    target_compile_definitions(qbt_version_definitions INTERFACE
-        QBT_VERSION_MAJOR=${qBittorrent_VERSION_MAJOR}
-        QBT_VERSION_MINOR=${qBittorrent_VERSION_MINOR}
-        QBT_VERSION_BUGFIX=${qBittorrent_VERSION_PATCH}
-        QBT_VERSION_BUILD=${qBittorrent_VERSION_TWEAK}
-    )
-
     add_library(qbt_common_cfg INTERFACE)
 
     # Full C++ 17 support is required
@@ -27,16 +16,7 @@ macro(qbt_common_config)
         cxx_std_17
     )
 
-    set(QBT_PROJECT_VERSION "${qBittorrent_VERSION_MAJOR}.${qBittorrent_VERSION_MINOR}.${qBittorrent_VERSION_PATCH}")
-    if (NOT ${qBittorrent_VERSION_TWEAK} EQUAL 0)
-        set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}.${qBittorrent_VERSION_TWEAK}")
-    endif()
-
-    set(QBT_FULL_VERSION "${QBT_PROJECT_VERSION}${QBT_VER_STATUS}")
-
     target_compile_definitions(qbt_common_cfg INTERFACE
-        QBT_VERSION="v${QBT_FULL_VERSION}"
-        QBT_VERSION_2="${QBT_FULL_VERSION}"
         QT_DEPRECATED_WARNINGS
         QT_NO_CAST_TO_ASCII
         QT_NO_CAST_FROM_BYTEARRAY

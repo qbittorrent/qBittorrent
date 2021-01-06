@@ -57,6 +57,7 @@
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/string.h"
+#include "base/version.h"
 #include "../webapplication.h"
 
 void AppController::webapiVersionAction()

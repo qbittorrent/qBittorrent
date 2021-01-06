@@ -51,11 +51,26 @@ elseif (MSVC)
     feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
 endif()
 
-set(QBT_VER_STATUS "alpha1" CACHE STRING "Project status version. Should be empty for release builds.")
-
 include(GNUInstallDirs)
 add_subdirectory(src)
 add_subdirectory(dist)
+
+# Generate version header
+set(QBT_VER_STATUS "alpha1" CACHE STRING "Project status version. Should be empty for release builds.")
+
+set(QBT_PROJECT_VERSION "${qBittorrent_VERSION_MAJOR}.${qBittorrent_VERSION_MINOR}.${qBittorrent_VERSION_PATCH}")
+if (NOT ${qBittorrent_VERSION_TWEAK} EQUAL 0)
+    set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}.${qBittorrent_VERSION_TWEAK}")
+endif()
+set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}${QBT_VER_STATUS}")
+
+file(READ "src/base/version.h.in" versionHeader)
+string(REPLACE "@VER_MAJOR@" ${qBittorrent_VERSION_MAJOR} versionHeader "${versionHeader}")
+string(REPLACE "@VER_MINOR@" ${qBittorrent_VERSION_MINOR} versionHeader "${versionHeader}")
+string(REPLACE "@VER_BUGFIX@" ${qBittorrent_VERSION_PATCH} versionHeader "${versionHeader}")
+string(REPLACE "@VER_BUILD@" ${qBittorrent_VERSION_TWEAK} versionHeader "${versionHeader}")
+string(REPLACE "@PROJECT_VERSION@" ${QBT_PROJECT_VERSION} versionHeader "${versionHeader}")
+file(WRITE "src/base/version.h" "${versionHeader}")
 
 if (VERBOSE_CONFIGURE)
     feature_summary(WHAT ALL)

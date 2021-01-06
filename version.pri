@@ -17,10 +17,11 @@ PROJECT_VERSION = $${VER_MAJOR}.$${VER_MINOR}.$${VER_BUGFIX}
 
 PROJECT_VERSION = $${PROJECT_VERSION}$${VER_STATUS}
 
-DEFINES += QBT_VERSION_MAJOR=$${VER_MAJOR}
-DEFINES += QBT_VERSION_MINOR=$${VER_MINOR}
-DEFINES += QBT_VERSION_BUGFIX=$${VER_BUGFIX}
-DEFINES += QBT_VERSION_BUILD=$${VER_BUILD}
-
-DEFINES += QBT_VERSION=\\\"v$${PROJECT_VERSION}\\\"
-DEFINES += QBT_VERSION_2=\\\"$${PROJECT_VERSION}\\\"
+# Generate version header
+versionHeader = $$cat(src/base/version.h.in, blob)
+versionHeader = $$replace(versionHeader, "@VER_MAJOR@", $$VER_MAJOR)
+versionHeader = $$replace(versionHeader, "@VER_MINOR@", $$VER_MINOR)
+versionHeader = $$replace(versionHeader, "@VER_BUGFIX@", $$VER_BUGFIX)
+versionHeader = $$replace(versionHeader, "@VER_BUILD@", $$VER_BUILD)
+versionHeader = $$replace(versionHeader, "@PROJECT_VERSION@", $$PROJECT_VERSION)
+write_file(src/base/version.h, versionHeader)
