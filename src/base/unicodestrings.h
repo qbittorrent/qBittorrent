@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2015  Mike Tzou
  *
@@ -27,11 +27,6 @@
  */
 
 #pragma once
-
-// This file must be encoded in "UTF-8 with BOM"
-#ifdef _MSC_VER
-#pragma execution_character_set("utf-8")
-#endif
 
 // Because of the poor handling of UTF-8 characters in MSVC (emits warning C4819),
 // we put all problematic UTF-8 chars/strings in this file.
