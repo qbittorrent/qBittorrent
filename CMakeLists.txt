@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default t
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
 project(qBittorrent
-    VERSION 4.3.2.0
     DESCRIPTION "The qBittorrent BitTorrent client"
     HOMEPAGE_URL "https://www.qbittorrent.org/"
     LANGUAGES CXX
@@ -55,25 +54,12 @@ include(GNUInstallDirs)
 add_subdirectory(src)
 add_subdirectory(dist)
 
-# Generate version header
-set(QBT_VER_STATUS "alpha1" CACHE STRING "Project status version. Should be empty for release builds.")
-
-set(QBT_PROJECT_VERSION "${qBittorrent_VERSION_MAJOR}.${qBittorrent_VERSION_MINOR}.${qBittorrent_VERSION_PATCH}")
-if (NOT ${qBittorrent_VERSION_TWEAK} EQUAL 0)
-    set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}.${qBittorrent_VERSION_TWEAK}")
-endif()
-set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}${QBT_VER_STATUS}")
-
-file(READ "src/base/version.h.in" versionHeader)
-string(REPLACE "@VER_MAJOR@" ${qBittorrent_VERSION_MAJOR} versionHeader "${versionHeader}")
-string(REPLACE "@VER_MINOR@" ${qBittorrent_VERSION_MINOR} versionHeader "${versionHeader}")
-string(REPLACE "@VER_BUGFIX@" ${qBittorrent_VERSION_PATCH} versionHeader "${versionHeader}")
-string(REPLACE "@VER_BUILD@" ${qBittorrent_VERSION_TWEAK} versionHeader "${versionHeader}")
-string(REPLACE "@PROJECT_VERSION@" ${QBT_PROJECT_VERSION} versionHeader "${versionHeader}")
-file(WRITE "src/base/version.h" "${versionHeader}")
-
 if (VERBOSE_CONFIGURE)
     feature_summary(WHAT ALL)
 else()
     feature_summary(WHAT ENABLED_FEATURES DISABLED_FEATURES)
 endif()
+
+# Generate version header
+file(READ "src/base/version.h.in" versionHeader)
+file(WRITE "src/base/version.h" "${versionHeader}")
