@@ -29,7 +29,7 @@
 #include "torrentfilter.h"
 
 #include "bittorrent/infohash.h"
-#include "bittorrent/torrenthandle.h"
+#include "bittorrent/torrent.h"
 
 const QString TorrentFilter::AnyCategory;
 const InfoHashSet TorrentFilter::AnyHash {{}};
@@ -47,7 +47,7 @@ const TorrentFilter TorrentFilter::StalledUploadingTorrent(TorrentFilter::Stalle
 const TorrentFilter TorrentFilter::StalledDownloadingTorrent(TorrentFilter::StalledDownloading);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
-using BitTorrent::TorrentHandle;
+using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const InfoHashSet &hashSet, const QString &category, const QString &tag)
     : m_type(type)
@@ -146,14 +146,14 @@ bool TorrentFilter::setTag(const QString &tag)
     return false;
 }
 
-bool TorrentFilter::match(const TorrentHandle *const torrent) const
+bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
     return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent));
 }
 
-bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
 {
     switch (m_type)
     {
@@ -187,21 +187,21 @@ bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) c
     }
 }
 
-bool TorrentFilter::matchHash(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
 {
     if (m_hashSet == AnyHash) return true;
 
     return m_hashSet.contains(torrent->hash());
 }
 
-bool TorrentFilter::matchCategory(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchCategory(const BitTorrent::Torrent *const torrent) const
 {
     if (m_category.isNull()) return true;
 
     return (torrent->belongsToCategory(m_category));
 }
 
-bool TorrentFilter::matchTag(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchTag(const BitTorrent::Torrent *const torrent) const
 {
     // Empty tag is a special value to indicate we're filtering for untagged torrents.
     if (m_tag.isNull()) return true;

@@ -31,7 +31,7 @@
 #include <QDateTime>
 
 #include "base/bittorrent/infohash.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/types.h"
 #include "base/utils/string.h"
@@ -292,7 +292,7 @@ bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &
     const auto *model = qobject_cast<TransferListModel *>(sourceModel());
     if (!model) return false;
 
-    const BitTorrent::TorrentHandle *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
+    const BitTorrent::Torrent *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
     if (!torrent) return false;
 
     return m_filter.match(torrent);

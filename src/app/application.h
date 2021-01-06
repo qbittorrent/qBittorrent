@@ -59,7 +59,7 @@ class FileLogger;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace RSS
@@ -112,7 +112,7 @@ protected:
 
 private slots:
     void processMessage(const QString &message);
-    void torrentFinished(BitTorrent::TorrentHandle *const torrent);
+    void torrentFinished(BitTorrent::Torrent *const torrent);
     void allTorrentsFinished();
     void cleanup();
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
@@ -142,6 +142,6 @@ private:
 
     void initializeTranslation();
     void processParams(const QStringList &params);
-    void runExternalProgram(const BitTorrent::TorrentHandle *torrent) const;
-    void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
+    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 };

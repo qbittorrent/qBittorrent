@@ -47,7 +47,7 @@
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/geoipmanager.h"
@@ -260,7 +260,7 @@ void PeerListWidget::updatePeerCountryResolutionState()
 
 void PeerListWidget::showPeerListMenu(const QPoint &)
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     QMenu *menu = new QMenu(this);
@@ -370,7 +370,7 @@ void PeerListWidget::saveSettings() const
     Preferences::instance()->setPeerListState(header()->saveState());
 }
 
-void PeerListWidget::loadPeers(const BitTorrent::TorrentHandle *torrent)
+void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
 {
     if (!torrent) return;
 
@@ -406,7 +406,7 @@ void PeerListWidget::loadPeers(const BitTorrent::TorrentHandle *torrent)
     }
 }
 
-void PeerListWidget::updatePeer(const BitTorrent::TorrentHandle *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer)
+void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer)
 {
     const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
     const QString peerIp = peerEndpoint.address.ip.toString();

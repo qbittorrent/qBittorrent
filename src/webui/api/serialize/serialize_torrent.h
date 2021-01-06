@@ -32,7 +32,7 @@
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 // Torrent keys
@@ -82,4 +82,4 @@ const char KEY_TORRENT_AUTO_TORRENT_MANAGEMENT[] = "auto_tmm";
 const char KEY_TORRENT_TIME_ACTIVE[] = "time_active";
 const char KEY_TORRENT_AVAILABILITY[] = "availability";
 
-QVariantMap serialize(const BitTorrent::TorrentHandle &torrent);
+QVariantMap serialize(const BitTorrent::Torrent &torrent);

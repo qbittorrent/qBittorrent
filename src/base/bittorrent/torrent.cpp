@@ -27,7 +27,7 @@
  * exception statement from your version.
  */
 
-#include "torrenthandle.h"
+#include "torrent.h"
 
 #include <type_traits>
 
@@ -40,33 +40,33 @@ namespace BitTorrent
         return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
     }
 
-    // TorrentHandle
+    // Torrent
 
-    const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
-    const qreal TorrentHandle::NO_RATIO_LIMIT = -1.;
+    const qreal Torrent::USE_GLOBAL_RATIO = -2.;
+    const qreal Torrent::NO_RATIO_LIMIT = -1.;
 
-    const int TorrentHandle::USE_GLOBAL_SEEDING_TIME = -2;
-    const int TorrentHandle::NO_SEEDING_TIME_LIMIT = -1;
+    const int Torrent::USE_GLOBAL_SEEDING_TIME = -2;
+    const int Torrent::NO_SEEDING_TIME_LIMIT = -1;
 
-    const qreal TorrentHandle::MAX_RATIO = 9999.;
-    const int TorrentHandle::MAX_SEEDING_TIME = 525600;
+    const qreal Torrent::MAX_RATIO = 9999.;
+    const int Torrent::MAX_SEEDING_TIME = 525600;
 
-    bool TorrentHandle::isResumed() const
+    bool Torrent::isResumed() const
     {
         return !isPaused();
     }
 
-    qlonglong TorrentHandle::remainingSize() const
+    qlonglong Torrent::remainingSize() const
     {
         return wantedSize() - completedSize();
     }
 
-    void TorrentHandle::toggleSequentialDownload()
+    void Torrent::toggleSequentialDownload()
     {
         setSequentialDownload(!isSequentialDownload());
     }
 
-    void TorrentHandle::toggleFirstLastPiecePriority()
+    void Torrent::toggleFirstLastPiecePriority()
     {
         setFirstLastPiecePriority(!hasFirstLastPiecePriority());
     }

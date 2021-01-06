@@ -46,7 +46,7 @@
 
 #include "infohash.h"
 #include "speedmonitor.h"
-#include "torrenthandle.h"
+#include "torrent.h"
 #include "torrentinfo.h"
 
 namespace BitTorrent
@@ -69,8 +69,8 @@ namespace BitTorrent
         bool paused = false;
 
 
-        qreal ratioLimit = TorrentHandle::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = TorrentHandle::USE_GLOBAL_SEEDING_TIME;
+        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
+        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
 
         bool restored = false;  // is existing torrent job?
     };
@@ -87,15 +87,15 @@ namespace BitTorrent
         HandleMetadata
     };
 
-    class TorrentHandleImpl final : public QObject, public TorrentHandle
+    class TorrentImpl final : public QObject, public Torrent
     {
-        Q_DISABLE_COPY(TorrentHandleImpl)
-        Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentHandleImpl)
+        Q_DISABLE_COPY(TorrentImpl)
+        Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:
-        TorrentHandleImpl(Session *session, lt::session *nativeSession
+        TorrentImpl(Session *session, lt::session *nativeSession
                           , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
-        ~TorrentHandleImpl() override;
+        ~TorrentImpl() override;
 
         bool isValid() const;
 

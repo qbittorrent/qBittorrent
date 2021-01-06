@@ -40,7 +40,7 @@
 #include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/common.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/exceptions.h"
 #include "base/global.h"
