@@ -40,7 +40,7 @@ class TransferListSortModel;
 namespace BitTorrent
 {
     class InfoHash;
-    class TorrentHandle;
+    class Torrent;
 }
 
 class TransferListWidget final : public QTreeView
@@ -96,7 +96,7 @@ protected:
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
-    QVector<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
+    QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
 
 protected slots:
     void torrentDoubleClicked();
@@ -110,7 +110,7 @@ protected slots:
     void saveSettings();
 
 signals:
-    void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
+    void currentTorrentChanged(BitTorrent::Torrent *const torrent);
 
 private:
     void wheelEvent(QWheelEvent *event) override;
@@ -118,8 +118,8 @@ private:
     void editTorrentTrackers();
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
-    void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
-    QVector<BitTorrent::TorrentHandle *> getVisibleTorrents() const;
+    void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
+    QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
 
     TransferListDelegate *m_listDelegate;
     TransferListModel *m_listModel;

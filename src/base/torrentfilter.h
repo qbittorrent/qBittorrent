@@ -35,7 +35,7 @@
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 using InfoHashSet = QSet<BitTorrent::InfoHash>;
@@ -88,13 +88,13 @@ public:
     bool setCategory(const QString &category);
     bool setTag(const QString &tag);
 
-    bool match(const BitTorrent::TorrentHandle *torrent) const;
+    bool match(const BitTorrent::Torrent *torrent) const;
 
 private:
-    bool matchState(const BitTorrent::TorrentHandle *torrent) const;
-    bool matchHash(const BitTorrent::TorrentHandle *torrent) const;
-    bool matchCategory(const BitTorrent::TorrentHandle *torrent) const;
-    bool matchTag(const BitTorrent::TorrentHandle *torrent) const;
+    bool matchState(const BitTorrent::Torrent *torrent) const;
+    bool matchHash(const BitTorrent::Torrent *torrent) const;
+    bool matchCategory(const BitTorrent::Torrent *torrent) const;
+    bool matchTag(const BitTorrent::Torrent *torrent) const;
 
     Type m_type {All};
     QString m_category;

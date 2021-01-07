@@ -58,7 +58,7 @@ class TransferListWidget;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Net
@@ -110,7 +110,7 @@ private slots:
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const;
+    void fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const;
     void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
@@ -127,12 +127,12 @@ private slots:
     void displayExecutionLogTab();
     void focusSearchFilter();
     void reloadSessionStats();
-    void reloadTorrentStats(const QVector<BitTorrent::TorrentHandle *> &torrents);
+    void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences(bool configureSession = true);
     void addTorrentFailed(const QString &error) const;
-    void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
-    void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
-    void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
+    void torrentNew(BitTorrent::Torrent *const torrent) const;
+    void finishedTorrent(BitTorrent::Torrent *const torrent) const;
+    void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
     void optionsSaved();
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);

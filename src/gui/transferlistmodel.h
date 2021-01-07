@@ -34,7 +34,7 @@
 #include <QHash>
 #include <QList>
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 
 namespace BitTorrent
 {
@@ -99,21 +99,21 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-    BitTorrent::TorrentHandle *torrentHandle(const QModelIndex &index) const;
+    BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
 
 private slots:
-    void addTorrent(BitTorrent::TorrentHandle *const torrent);
-    void handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
-    void handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent);
-    void handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents);
+    void addTorrent(BitTorrent::Torrent *const torrent);
+    void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
+    void handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent);
+    void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
 
 private:
     void configure();
-    QString displayValue(const BitTorrent::TorrentHandle *torrent, int column) const;
-    QVariant internalValue(const BitTorrent::TorrentHandle *torrent, int column, bool alt = false) const;
+    QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
+    QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt = false) const;
 
-    QList<BitTorrent::TorrentHandle *> m_torrentList;  // maps row number to torrent handle
-    QHash<BitTorrent::TorrentHandle *, int> m_torrentMap;  // maps torrent handle to row number
+    QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
+    QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
     const QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;

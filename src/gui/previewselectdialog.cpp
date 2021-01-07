@@ -37,7 +37,7 @@
 #include <QTableView>
 
 #include "base/bittorrent/common.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -47,7 +47,7 @@
 
 #define SETTINGS_KEY(name) "PreviewSelectDialog/" name
 
-PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::TorrentHandle *torrent)
+PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent)
     : QDialog(parent)
     , m_ui(new Ui::PreviewSelectDialog)
     , m_torrent(torrent)

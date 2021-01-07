@@ -25,10 +25,10 @@ add_library(qbt_base STATIC
     bittorrent/sessionstatus.h
     bittorrent/speedmonitor.h
     bittorrent/statistics.h
+    bittorrent/torrent.h
     bittorrent/torrentcontentlayout.h
     bittorrent/torrentcreatorthread.h
-    bittorrent/torrenthandle.h
-    bittorrent/torrenthandleimpl.h
+    bittorrent/torrentimpl.h
     bittorrent/torrentinfo.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
@@ -107,9 +107,9 @@ add_library(qbt_base STATIC
     bittorrent/session.cpp
     bittorrent/speedmonitor.cpp
     bittorrent/statistics.cpp
+    bittorrent/torrent.cpp
     bittorrent/torrentcreatorthread.cpp
-    bittorrent/torrenthandle.cpp
-    bittorrent/torrenthandleimpl.cpp
+    bittorrent/torrentimpl.cpp
     bittorrent/torrentinfo.cpp
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp

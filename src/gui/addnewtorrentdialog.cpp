@@ -42,7 +42,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -275,7 +275,7 @@ bool AddNewTorrentDialog::loadTorrentImpl()
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
     {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent)
         {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate())
@@ -316,7 +316,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
     // Prevent showing the dialog if download is already present
     if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
     {
-        BitTorrent::TorrentHandle *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent)
         {
             if (torrent->isPrivate())

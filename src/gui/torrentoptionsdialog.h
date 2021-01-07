@@ -35,7 +35,7 @@
 namespace BitTorrent
 {
     class InfoHash;
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Ui
@@ -49,7 +49,7 @@ class TorrentOptionsDialog final : public QDialog
     Q_DISABLE_COPY(TorrentOptionsDialog)
 
 public:
-    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::TorrentHandle *> &torrents);
+    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents);
     ~TorrentOptionsDialog() override;
 
 public slots:

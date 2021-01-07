@@ -91,7 +91,7 @@ namespace BitTorrent
 
     uint qHash(TorrentState key, uint seed);
 
-    class TorrentHandle : public AbstractFileStorage
+    class Torrent : public AbstractFileStorage
     {
     public:
         static const qreal USE_GLOBAL_RATIO;
@@ -103,7 +103,7 @@ namespace BitTorrent
         static const qreal MAX_RATIO;
         static const int MAX_SEEDING_TIME;
 
-        virtual ~TorrentHandle() = default;
+        virtual ~Torrent() = default;
 
         virtual InfoHash hash() const = 0;
         virtual QString name() const = 0;
