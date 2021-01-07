@@ -6711,7 +6711,7 @@ if ac_fn_cxx_try_compile "$LINENO"
 then :
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++17"
+                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++1z"
                                             { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: C++17 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&5
 printf "%s\n" "$as_me: WARNING: C++17 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors." >&2;}
 else $as_nop

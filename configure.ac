@@ -216,7 +216,7 @@ AS_IF([test "x$QBT_CXX17_FOUND" = "xno"],
                          CXXFLAGS="-std=c++17 $TMP_CXXFLAGS"
                          AC_COMPILE_IFELSE([DETECT_CPP17_PROGRAM()],
                                            [AC_MSG_RESULT([no])
-                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++17"
+                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++1z"
                                             AC_MSG_WARN([C++17 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors.])],
                                            [AC_MSG_RESULT([yes])
                                             AC_MSG_ERROR([The compiler supports C++17 but the user or a dependency has explicitly enabled a lower mode.])])],
