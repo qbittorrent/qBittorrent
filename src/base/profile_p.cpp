@@ -83,7 +83,7 @@ QString Private::DefaultProfile::dataLocation() const
     const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
         + QLatin1Char('/') + profileName() + QLatin1Char('/');
 
-    if (QDir(legacyDir).exists())
+    if (!QDir(dataDir).exists() && QDir(legacyDir).exists())
     {
         qWarning("The legacy data directory '%s' is used. It is recommended to move its content to '%s'",
             qUtf8Printable(legacyDir), qUtf8Printable(dataDir));
