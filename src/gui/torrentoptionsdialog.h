@@ -1,6 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  thalieht
+ * Copyright (C) 2011  Christian Kandeler
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,7 +37,7 @@
 namespace BitTorrent
 {
     class InfoHash;
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Ui
@@ -49,7 +51,7 @@ class TorrentOptionsDialog final : public QDialog
     Q_DISABLE_COPY(TorrentOptionsDialog)
 
 public:
-    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::TorrentHandle *> &torrents);
+    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents);
     ~TorrentOptionsDialog() override;
 
 public slots:

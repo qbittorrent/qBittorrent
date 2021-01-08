@@ -36,7 +36,7 @@ class CategoryModelItem;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 class CategoryFilterModel final : public QAbstractItemModel
@@ -63,9 +63,9 @@ public:
 private slots:
     void categoryAdded(const QString &categoryName);
     void categoryRemoved(const QString &categoryName);
-    void torrentAdded(BitTorrent::TorrentHandle *const torrent);
-    void torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
-    void torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory);
+    void torrentAdded(BitTorrent::Torrent *const torrent);
+    void torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
+    void torrentCategoryChanged(BitTorrent::Torrent *const torrent, const QString &oldCategory);
     void subcategoriesSupportChanged();
 
 private:

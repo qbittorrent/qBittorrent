@@ -37,7 +37,7 @@ class QHelpEvent;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 class PiecesBar : public QWidget
@@ -49,7 +49,7 @@ class PiecesBar : public QWidget
 public:
     explicit PiecesBar(QWidget *parent = nullptr);
 
-    void setTorrent(const BitTorrent::TorrentHandle *torrent);
+    void setTorrent(const BitTorrent::Torrent *torrent);
 
     virtual void clear();
 
@@ -87,7 +87,7 @@ private:
     virtual bool updateImage(QImage &image) = 0;
     void updatePieceColors();
 
-    const BitTorrent::TorrentHandle *m_torrent;
+    const BitTorrent::Torrent *m_torrent;
     QImage m_image;
     // buffered 256 levels gradient from bg_color to piece_color
     QVector<QRgb> m_pieceColors;

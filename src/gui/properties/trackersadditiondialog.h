@@ -35,7 +35,7 @@ class QString;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Net
@@ -53,11 +53,11 @@ class TrackersAdditionDialog : public QDialog
     Q_OBJECT
 
 public:
-    TrackersAdditionDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
+    TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent);
     ~TrackersAdditionDialog();
 
     QStringList newTrackers() const;
-    static QStringList askForTrackers(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
+    static QStringList askForTrackers(QWidget *parent, BitTorrent::Torrent *const torrent);
 
 public slots:
     void on_uTorrentListButton_clicked();
@@ -65,5 +65,5 @@ public slots:
 
 private:
     Ui::TrackersAdditionDialog *m_ui;
-    BitTorrent::TorrentHandle *const m_torrent;
+    BitTorrent::Torrent *const m_torrent;
 };

@@ -63,7 +63,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/iconprovider.h"
 #include "base/logger.h"
@@ -311,7 +311,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) const
+void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 {
     QString program = Preferences::instance()->getAutoRunProgram().trimmed();
     program.replace("%N", torrent->name());
@@ -405,7 +405,7 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
 #endif
 }
 
-void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent)
+void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 {
     // Prepare mail content
     const QString content = tr("Torrent name: %1").arg(torrent->name()) + '\n'
@@ -424,7 +424,7 @@ void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent
                      content);
 }
 
-void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
+void Application::torrentFinished(BitTorrent::Torrent *const torrent)
 {
     Preferences *const pref = Preferences::instance();
 

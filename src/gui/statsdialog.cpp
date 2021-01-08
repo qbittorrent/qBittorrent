@@ -33,7 +33,7 @@
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"

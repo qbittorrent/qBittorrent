@@ -40,7 +40,7 @@ class TransferListWidget;
 namespace BitTorrent
 {
     class InfoHash;
-    class TorrentHandle;
+    class Torrent;
     class TrackerEntry;
 }
 
@@ -69,8 +69,8 @@ protected:
 private slots:
     virtual void showMenu(const QPoint &) = 0;
     virtual void applyFilter(int row) = 0;
-    virtual void handleNewTorrent(BitTorrent::TorrentHandle *const) = 0;
-    virtual void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) = 0;
+    virtual void handleNewTorrent(BitTorrent::Torrent *const) = 0;
+    virtual void torrentAboutToBeDeleted(BitTorrent::Torrent *const) = 0;
 };
 
 class StatusFilterWidget final : public BaseFilterWidget
@@ -90,8 +90,8 @@ private:
     // No need to redeclare them here as slots.
     void showMenu(const QPoint &) override;
     void applyFilter(int row) override;
-    void handleNewTorrent(BitTorrent::TorrentHandle *const) override;
-    void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const) override;
+    void handleNewTorrent(BitTorrent::Torrent *const) override;
+    void torrentAboutToBeDeleted(BitTorrent::Torrent *const) override;
 };
 
 class TrackerFiltersList final : public BaseFilterWidget
@@ -122,8 +122,8 @@ private:
     // No need to redeclare them here as slots.
     void showMenu(const QPoint &) override;
     void applyFilter(int row) override;
-    void handleNewTorrent(BitTorrent::TorrentHandle *const torrent) override;
-    void torrentAboutToBeDeleted(BitTorrent::TorrentHandle *const torrent) override;
+    void handleNewTorrent(BitTorrent::Torrent *const torrent) override;
+    void torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent) override;
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
     QSet<BitTorrent::InfoHash> getInfoHashes(int row) const;
@@ -150,12 +150,12 @@ public:
     void setDownloadTrackerFavicon(bool value);
 
 public slots:
-    void addTrackers(const BitTorrent::TorrentHandle *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::TorrentHandle *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
-    void changeTrackerless(const BitTorrent::TorrentHandle *torrent, bool trackerless);
-    void trackerSuccess(const BitTorrent::TorrentHandle *torrent, const QString &tracker);
-    void trackerWarning(const BitTorrent::TorrentHandle *torrent, const QString &tracker);
-    void trackerError(const BitTorrent::TorrentHandle *torrent, const QString &tracker);
+    void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
+    void removeTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
+    void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
+    void trackerSuccess(const BitTorrent::Torrent *torrent, const QString &tracker);
+    void trackerWarning(const BitTorrent::Torrent *torrent, const QString &tracker);
+    void trackerError(const BitTorrent::Torrent *torrent, const QString &tracker);
 
 signals:
     void trackerSuccess(const BitTorrent::InfoHash &hash, const QString &tracker);
