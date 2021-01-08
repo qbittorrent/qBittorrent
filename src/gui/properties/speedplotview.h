@@ -63,6 +63,7 @@ public:
         MIN1 = 0,
         MIN5,
         MIN30,
+        HOUR2,
         HOUR6,
         HOUR12,
         HOUR24
@@ -116,11 +117,13 @@ private:
 
     boost::circular_buffer<PointData> m_data5Min;
     boost::circular_buffer<PointData> m_data30Min;
+    boost::circular_buffer<PointData> m_data2Hour;
     boost::circular_buffer<PointData> m_data6Hour;
     boost::circular_buffer<PointData> m_data12Hour;
     boost::circular_buffer<PointData> m_data24Hour;
     boost::circular_buffer<PointData> *m_currentData;
     Averager m_averager30Min;
+    Averager m_averager2Hour;
     Averager m_averager6Hour;
     Averager m_averager12Hour;
     Averager m_averager24Hour;
