@@ -27,16 +27,16 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import gzip
-import html.entities
 import io
 import os
 import re
-import socket
+import gzip
 import socks
+import socket
 import tempfile
 import urllib.error
 import urllib.parse
+import html.entities
 import urllib.request
 
 # Some sites blocks default python User-agent
@@ -53,15 +53,16 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
         socket.socket = socks.socksocket
 
 
-def htmlentitydecode(s):
+def htmlentitydecode(s: str) -> str:
     # First convert alpha entities (such as &eacute;)
     # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
-    def entity2char(m):
+    def entity2char(m: re.Match) -> str:
         entity = m.group(1)
         if entity in html.entities.name2codepoint:
             return chr(html.entities.name2codepoint[entity])
         return " "  # Unknown entity: We replace with a space.
-    t = re.sub('&(%s);' % '|'.join(html.entities.name2codepoint), entity2char, s)
+    t = re.sub('&(%s);' % '|'.join(
+        html.entities.name2codepoint), entity2char, s)
 
     # Then convert numerical entities (such as &#233;)
     t = re.sub(r'&#(\d+);', lambda x: chr(int(x.group(1))), t)
@@ -70,14 +71,17 @@ def htmlentitydecode(s):
     return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
 
 
-def retrieve_url(url):
-    """ Return the content of the url page as a string """
+def retrieve_url(url: str) -> str:
+    """
+        Return the content of the url page as a string
+    """
     req = urllib.request.Request(url, headers=headers)
     try:
         response = urllib.request.urlopen(req)
     except urllib.error.URLError as errno:
         print(" ".join(("Connection error:", str(errno.reason))))
         return ""
+
     dat = response.read()
     # Check if it is gzipped
     if dat[:2] == b'\x1f\x8b':
@@ -86,26 +90,33 @@ def retrieve_url(url):
         gzipper = gzip.GzipFile(fileobj=compressedstream)
         extracted_data = gzipper.read()
         dat = extracted_data
+
     info = response.info()
     charset = 'utf-8'
+
     try:
         ignore, charset = info['Content-Type'].split('charset=')
     except Exception:
         pass
+
     dat = dat.decode(charset, 'replace')
     dat = htmlentitydecode(dat)
     # return dat.encode('utf-8', 'replace')
     return dat
 
 
-def download_file(url, referer=None):
-    """ Download file at url and write it to a file, return the path to the file and the url """
+def download_file(url: str, referer: str = None) -> str:
+    """
+        Download file at url and write it to a file,
+        return the path to the file and the url
+    """
     file, path = tempfile.mkstemp()
     file = os.fdopen(file, "wb")
     # Download url
     req = urllib.request.Request(url, headers=headers)
     if referer is not None:
         req.add_header('referer', referer)
+
     response = urllib.request.urlopen(req)
     dat = response.read()
     # Check if it is gzipped
@@ -120,4 +131,4 @@ def download_file(url, referer=None):
     file.write(dat)
     file.close()
     # return file path
-    return (path + " " + url)
+    return path + " " + url

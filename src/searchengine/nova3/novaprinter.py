@@ -25,7 +25,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-def prettyPrinter(dictionary):
+def prettyPrinter(dictionary: dict):
     dictionary['size'] = anySizeToBytes(dictionary['size'])
     outtext = "|".join((dictionary["link"], dictionary["name"].replace("|", " "),
                         str(dictionary["size"]), str(dictionary["seeds"]),
@@ -38,30 +38,34 @@ def prettyPrinter(dictionary):
         print(outtext, file=utf8stdout)
 
 
-def anySizeToBytes(size_string):
+def anySizeToBytes(size_string: str) -> int:
     """
     Convert a string like '1 KB' to '1024' (bytes)
     """
-    # separate integer from unit
+    # Separate integer from unit
     try:
         size, unit = size_string.split()
-    except:
+    except Exception:
         try:
             size = size_string.strip()
             unit = ''.join([c for c in size if c.isalpha()])
             if len(unit) > 0:
                 size = size[:-len(unit)]
-        except:
+        except Exception:
             return -1
+
     if len(size) == 0:
         return -1
+
     size = float(size)
     if len(unit) == 0:
         return int(size)
+
     short_unit = unit.upper()[0]
 
-    # convert
+    # Convert
     units_dict = {'T': 40, 'G': 30, 'M': 20, 'K': 10}
     if short_unit in units_dict:
-        size = size * 2**units_dict[short_unit]
+        size = size * (2 ** units_dict[short_unit])
+
     return int(size)

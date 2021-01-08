@@ -34,9 +34,10 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import urllib.parse
+
 from os import path
-from glob import glob
 from sys import argv
+from glob import glob
 from multiprocessing import Pool, cpu_count
 
 THREADED = True
@@ -45,7 +46,8 @@ try:
 except NotImplementedError:
     MAX_THREADS = 1
 
-CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pictures', 'books'}
+CATEGORIES = {'all', 'movies', 'tv', 'music',
+              'games', 'anime', 'software', 'pictures', 'books'}
 
 ################################################################################
 # Every engine should have a "search" method taking
@@ -56,8 +58,9 @@ CATEGORIES = {'all', 'movies', 'tv', 'music', 'games', 'anime', 'software', 'pic
 ################################################################################
 
 
-def initialize_engines():
-    """ Import available engines
+def initialize_engines() -> list:
+    """
+        Import available engines
 
         Return list of available engines
     """
@@ -68,6 +71,7 @@ def initialize_engines():
         engi = path.basename(engine).split('.')[0].strip()
         if len(engi) == 0 or engi.startswith('_'):
             continue
+
         try:
             # import engines.[engine]
             engine_module = __import__(".".join(("engines", engi)))
@@ -76,14 +80,17 @@ def initialize_engines():
             # bind class name
             globals()[engi] = getattr(engine_module, engi)
             supported_engines.append(engi)
+
         except Exception:
             pass
 
     return supported_engines
 
 
-def engines_to_xml(supported_engines):
-    """ Generates xml for supported engines """
+def engines_to_xml(supported_engines: list) -> str:
+    """
+        Generates xml for supported engines
+    """
     tab = " " * 4
 
     for short_name in supported_engines:
@@ -91,9 +98,9 @@ def engines_to_xml(supported_engines):
 
         supported_categories = ""
         if hasattr(search_engine, "supported_categories"):
-            supported_categories = " ".join((key
-                                             for key in search_engine.supported_categories.keys()
-                                             if key != "all"))
+            supported_categories = " ".join(key
+                                            for key in search_engine.supported_categories.keys()
+                                            if key != "all")
 
         yield "".join((tab, "<", short_name, ">\n",
                        tab, tab, "<name>", search_engine.name, "</name>\n",
@@ -102,16 +109,16 @@ def engines_to_xml(supported_engines):
                        tab, "</", short_name, ">\n"))
 
 
-def displayCapabilities(supported_engines):
+def displayCapabilities(supported_engines: list):
     """
-    Display capabilities in XML format
-    <capabilities>
-      <engine_short_name>
-        <name>long name</name>
-        <url>http://example.com</url>
-        <categories>movies music games</categories>
-      </engine_short_name>
-    </capabilities>
+        Display capabilities in XML format
+        <capabilities>
+        <engine_short_name>
+            <name>long name</name>
+            <url>http://example.com</url>
+            <categories>movies music games</categories>
+        </engine_short_name>
+        </capabilities>
     """
     xml = "".join(("<capabilities>\n",
                    "".join(engines_to_xml(supported_engines)),
@@ -119,8 +126,9 @@ def displayCapabilities(supported_engines):
     print(xml)
 
 
-def run_search(engine_list):
-    """ Run search in engine
+def run_search(engine_list: list) -> bool:
+    """
+        Run search in engine
 
         @param engine_list List with engine, query and category
 
@@ -138,11 +146,12 @@ def run_search(engine_list):
             engine.search(what)
 
         return True
+
     except Exception:
         return False
 
 
-def main(args):
+def main(args: list):
     supported_engines = initialize_engines()
 
     if not args:
@@ -180,10 +189,12 @@ def main(args):
     if THREADED:
         # child process spawning is controlled min(number of searches, number of cpu)
         with Pool(min(len(engines_list), MAX_THREADS)) as pool:
-            pool.map(run_search, ([globals()[engine], what, cat] for engine in engines_list))
+            pool.map(run_search, ([globals()[engine], what, cat]
+                                  for engine in engines_list))
     else:
         # py3 note: map is needed to be evaluated for content to be executed
-        all(map(run_search, ([globals()[engine], what, cat] for engine in engines_list)))
+        all(map(run_search, ([globals()[engine], what, cat]
+                             for engine in engines_list)))
 
 
 if __name__ == "__main__":
