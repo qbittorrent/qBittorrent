@@ -12,11 +12,11 @@ on:
 
 env:
   # Qt: 5.15.1
-  # libtorrent: RC_1_2 HEAD, 1.2.11
+  # libtorrent: RC_1_2 HEAD, 1.2.12
   VCPKG_COMMIT: 133051b793486ef14e67e9d1f48c9cfe64dc127e
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  LIBTORRENT_VERSION_TAG: v1.2.11
+  LIBTORRENT_VERSION_TAG: v1.2.12
 
 jobs:
 

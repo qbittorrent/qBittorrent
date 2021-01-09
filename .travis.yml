@@ -125,7 +125,7 @@ install:
       pushd "$HOME"
       git clone --single-branch --branch RC_1_2 https://github.com/arvidn/libtorrent.git
       cd libtorrent
-      git checkout tags/v1.2.11
+      git checkout tags/v1.2.12
 
       cmake \
         -DCMAKE_BUILD_TYPE=Release \
@@ -140,7 +140,7 @@ install:
       pushd "$HOME"
       git clone --single-branch --branch RC_2_0 https://github.com/arvidn/libtorrent.git
       cd libtorrent
-      git checkout tags/v2.0.1
+      git checkout tags/v2.0.2
       git submodule update --init --recursive
 
       cmake \

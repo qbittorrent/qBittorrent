@@ -51,14 +51,6 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 
-#if !defined(Q_OS_WIN) || (LIBTORRENT_VERSION_NUM >= 10212)
-#define HAS_HTTPS_TRACKER_VALIDATION
-#endif
-
-#if ((LIBTORRENT_VERSION_NUM >= 10212) && (LIBTORRENT_VERSION_NUM < 20000)) || (LIBTORRENT_VERSION_NUM >= 20002)
-#define HAS_IDN_SUPPORT
-#endif
-
 class QFile;
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
