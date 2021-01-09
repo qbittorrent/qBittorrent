@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_MAGNETURI_H
-#define BITTORRENT_MAGNETURI_H
+#pragma once
 
 #include <libtorrent/add_torrent_params.hpp>
 
@@ -65,5 +64,3 @@ namespace BitTorrent
         lt::add_torrent_params m_addTorrentParams;
     };
 }
-
-#endif // BITTORRENT_MAGNETURI_H

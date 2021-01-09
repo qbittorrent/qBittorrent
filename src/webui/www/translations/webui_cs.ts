@@ -23,15 +23,23 @@
         <translation>Přeskočit kontrolu hashe</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Vytvořit podsložku</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Režim správy torrentu:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -708,10 +716,6 @@
         <translation>Heslo:</translation>
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation>Zapnout protokol:</translation>
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation>TCP a μTP</translation>
     </message>
@@ -1074,10 +1078,6 @@
         <translation>Při změně cesty pro uložení Kategorií:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Vytvořit podadresář pro torrent s více soubory</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>sekundy</translation>
     </message>
@@ -1174,10 +1174,6 @@
         <translation>Port vestavěného trackeru:</translation>
     </message>
     <message>
-        <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="vanished">Volitelná přidružená  IP adresa (vyžaduje restart):</translation>
-    </message>
-    <message>
         <source>Fastest upload</source>
         <translation>Nejrychlejší upload</translation>
     </message>
@@ -1202,10 +1198,6 @@
         <translation>Sekce libtorrentu</translation>
     </message>
     <message>
-        <source>Coalesce reads &amp; writes:</source>
-        <translation type="vanished">Sloučení čtecích &amp; zapisovacích operací</translation>
-    </message>
-    <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>Odchozí porty (Min) [0: Vypnuto]</translation>
     </message>
@@ -1224,10 +1216,6 @@
     <message>
         <source>Send upload piece suggestions:</source>
         <translation>Doporučení pro odeslání částí uploadu:</translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">Disková cache:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1252,10 +1240,6 @@
     <message>
         <source>Send buffer watermark:</source>
         <translation>Odeslat watermark bufferu:</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="vanished">Interval vypršení diskové cache:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1292,10 +1276,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation>Chování upload slotů:</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">Síťové rozhraní (vyžaduje restart):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1451,6 +1431,14 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2214,10 +2202,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>před %1</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation>Přiděluji místo</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3233,15 +3217,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Create Subfolder:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation type="unfinished" />
     </message>
@@ -3323,6 +3298,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

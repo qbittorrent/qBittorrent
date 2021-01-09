@@ -223,29 +223,14 @@
     <string>Torrent &amp;Creator</string>
    </property>
   </action>
-  <action name="actionSetUploadLimit">
-   <property name="text">
-    <string>Set Upload Limit...</string>
-   </property>
-  </action>
-  <action name="actionSetDownloadLimit">
-   <property name="text">
-    <string>Set Download Limit...</string>
-   </property>
-  </action>
   <action name="actionDocumentation">
    <property name="text">
     <string>&amp;Documentation</string>
    </property>
   </action>
-  <action name="actionSetGlobalDownloadLimit">
+  <action name="actionSetGlobalSpeedLimits">
    <property name="text">
-    <string>Set Global Download Limit...</string>
-   </property>
-  </action>
-  <action name="actionSetGlobalUploadLimit">
-   <property name="text">
-    <string>Set Global Upload Limit...</string>
+    <string>Set Global Speed Limits...</string>
    </property>
   </action>
   <action name="actionBottomQueuePos">

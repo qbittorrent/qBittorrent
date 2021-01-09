@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,45 +26,26 @@
  * exception statement from your version.
  */
 
-#include "torrenthandle.h"
+#pragma once
 
-#include <type_traits>
+#include <QMetaEnum>
 
 namespace BitTorrent
 {
-    uint qHash(const TorrentState key, const uint seed)
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace TorrentContentLayoutNS
     {
-        return ::qHash(static_cast<std::underlying_type_t<TorrentState>>(key), seed);
-    }
+        Q_NAMESPACE
 
-    // TorrentHandle
+        enum class TorrentContentLayout
+        {
+            Original,
+            Subfolder,
+            NoSubfolder
+        };
 
-    const qreal TorrentHandle::USE_GLOBAL_RATIO = -2.;
-    const qreal TorrentHandle::NO_RATIO_LIMIT = -1.;
-
-    const int TorrentHandle::USE_GLOBAL_SEEDING_TIME = -2;
-    const int TorrentHandle::NO_SEEDING_TIME_LIMIT = -1;
-
-    const qreal TorrentHandle::MAX_RATIO = 9999.;
-    const int TorrentHandle::MAX_SEEDING_TIME = 525600;
-
-    bool TorrentHandle::isResumed() const
-    {
-        return !isPaused();
-    }
-
-    qlonglong TorrentHandle::remainingSize() const
-    {
-        return wantedSize() - completedSize();
-    }
-
-    void TorrentHandle::toggleSequentialDownload()
-    {
-        setSequentialDownload(!isSequentialDownload());
-    }
-
-    void TorrentHandle::toggleFirstLastPiecePriority()
-    {
-        setFirstLastPiecePriority(!hasFirstLastPiecePriority());
+        Q_ENUM_NS(TorrentContentLayout)
     }
 }

@@ -32,7 +32,7 @@
 #include <QIcon>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "uithememanager.h"
 
@@ -336,7 +336,7 @@ void CategoryFilterModel::categoryRemoved(const QString &categoryName)
     }
 }
 
-void CategoryFilterModel::torrentAdded(BitTorrent::TorrentHandle *const torrent)
+void CategoryFilterModel::torrentAdded(BitTorrent::Torrent *const torrent)
 {
     CategoryModelItem *item = findItem(torrent->category());
     Q_ASSERT(item);
@@ -345,7 +345,7 @@ void CategoryFilterModel::torrentAdded(BitTorrent::TorrentHandle *const torrent)
     m_rootItem->childAt(0)->increaseTorrentsCount();
 }
 
-void CategoryFilterModel::torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent)
+void CategoryFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     CategoryModelItem *item = findItem(torrent->category());
     Q_ASSERT(item);
@@ -354,7 +354,7 @@ void CategoryFilterModel::torrentAboutToBeRemoved(BitTorrent::TorrentHandle *con
     m_rootItem->childAt(0)->decreaseTorrentsCount();
 }
 
-void CategoryFilterModel::torrentCategoryChanged(BitTorrent::TorrentHandle *const torrent, const QString &oldCategory)
+void CategoryFilterModel::torrentCategoryChanged(BitTorrent::Torrent *const torrent, const QString &oldCategory)
 {
     QModelIndex i;
 
@@ -403,7 +403,7 @@ void CategoryFilterModel::populate()
     m_rootItem->addChild(UID_ALL, new CategoryModelItem(nullptr, tr("All"), torrents.count()));
 
     // Uncategorized torrents
-    using Torrent = BitTorrent::TorrentHandle;
+    using Torrent = BitTorrent::Torrent;
     m_rootItem->addChild(
                 UID_UNCATEGORIZED
                 , new CategoryModelItem(
@@ -411,7 +411,7 @@ void CategoryFilterModel::populate()
                     , std::count_if(torrents.begin(), torrents.end()
                                     , [](Torrent *torrent) { return torrent->category().isEmpty(); })));
 
-    using Torrent = BitTorrent::TorrentHandle;
+    using Torrent = BitTorrent::Torrent;
     for (auto i = session->categories().cbegin(); i != session->categories().cend(); ++i)
     {
         const QString &category = i.key();

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_PROXYCONFIGURATIONMANAGER_H
-#define NET_PROXYCONFIGURATIONMANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -85,5 +84,3 @@ namespace Net
         bool m_isProxyOnlyForTorrents;
     };
 }
-
-#endif // NET_PROXYCONFIGURATIONMANAGER_H

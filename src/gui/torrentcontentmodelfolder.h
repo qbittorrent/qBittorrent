@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELFOLDER_H
-#define TORRENTCONTENTMODELFOLDER_H
+#pragma once
 
 #include "torrentcontentmodelitem.h"
 
@@ -66,5 +65,3 @@ public:
 private:
     QVector<TorrentContentModelItem*> m_childItems;
 };
-
-#endif // TORRENTCONTENTMODELFOLDER_H

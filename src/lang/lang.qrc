@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/lang">
+        <file>qbittorrent_az@latin.qm</file>
         <file>qbittorrent_ar.qm</file>
         <file>qbittorrent_be.qm</file>
         <file>qbittorrent_bg.qm</file>
@@ -13,6 +14,7 @@
         <file>qbittorrent_en_GB.qm</file>
         <file>qbittorrent_eo.qm</file>
         <file>qbittorrent_es.qm</file>
+        <file>qbittorrent_et.qm</file>
         <file>qbittorrent_eu.qm</file>
         <file>qbittorrent_fi.qm</file>
         <file>qbittorrent_fr.qm</file>

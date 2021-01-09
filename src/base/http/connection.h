@@ -28,8 +28,7 @@
  */
 
 
-#ifndef HTTP_CONNECTION_H
-#define HTTP_CONNECTION_H
+#pragma once
 
 #include <QElapsedTimer>
 #include <QObject>
@@ -66,5 +65,3 @@ namespace Http
         QElapsedTimer m_idleTimer;
     };
 }
-
-#endif // HTTP_CONNECTION_H

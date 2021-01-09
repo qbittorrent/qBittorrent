@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PREVIEWLISTDELEGATE_H
-#define PREVIEWLISTDELEGATE_H
+#pragma once
 
 #include <QItemDelegate>
 
@@ -43,5 +42,3 @@ private:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
 };
-
-#endif // PREVIEWLISTDELEGATE_H

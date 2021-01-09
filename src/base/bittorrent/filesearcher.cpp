@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,47 +26,44 @@
  * exception statement from your version.
  */
 
-#ifndef TRISTATEBOOL_H
-#define TRISTATEBOOL_H
+#include "filesearcher.h"
 
-class TriStateBool
+#include <QDir>
+
+#include "base/bittorrent/common.h"
+#include "base/bittorrent/infohash.h"
+
+void FileSearcher::search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+                          , const QString &completeSavePath, const QString &incompleteSavePath)
 {
-public:
-    static const TriStateBool Undefined;
-    static const TriStateBool False;
-    static const TriStateBool True;
-
-    constexpr TriStateBool() = default;
-    constexpr TriStateBool(const TriStateBool &other) = default;
-    explicit constexpr TriStateBool(const bool boolean)
+    const auto findInDir = [](const QString &dirPath, QStringList &fileNames) -> bool
     {
-        *this = boolean ? True : False;
+        const QDir dir {dirPath};
+        bool found = false;
+        for (QString &fileName : fileNames)
+        {
+            if (dir.exists(fileName))
+            {
+                found = true;
+            }
+            else if (dir.exists(fileName + QB_EXT))
+            {
+                found = true;
+                fileName += QB_EXT;
+            }
+        }
+
+        return found;
+    };
+
+    QString savePath = completeSavePath;
+    QStringList adjustedFileNames = originalFileNames;
+    const bool found = findInDir(savePath, adjustedFileNames);
+    if (!found && !incompleteSavePath.isEmpty())
+    {
+        savePath = incompleteSavePath;
+        findInDir(savePath, adjustedFileNames);
     }
 
-    TriStateBool &operator=(const TriStateBool &other) = default;  // TODO: add constexpr when using C++17
-
-    explicit constexpr operator signed char() const
-    {
-        return m_value;
-    }
-
-    constexpr friend bool operator==(const TriStateBool &left, const TriStateBool &right)
-    {
-        return (left.m_value == right.m_value);
-    }
-
-private:
-    explicit constexpr TriStateBool(const int value)
-        : m_value((value < 0) ? -1 : ((value > 0) ? 1 : 0))
-    {
-    }
-
-    signed char m_value = -1; // Undefined by default
-};
-
-constexpr bool operator!=(const TriStateBool &left, const TriStateBool &right)
-{
-    return !(left == right);
+    emit searchFinished(id, savePath, adjustedFileNames);
 }
-
-#endif // TRISTATEBOOL_H

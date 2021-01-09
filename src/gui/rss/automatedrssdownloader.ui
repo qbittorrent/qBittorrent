@@ -184,7 +184,7 @@
            <widget class="QCheckBox" name="checkSmart">
             <property name="toolTip">
              <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</string>
             </property>
             <property name="text">
              <string>Use Smart Episode Filter</string>
@@ -325,7 +325,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <widget class="QLabel" name="lblKeepTopLevelFolder">
+             <widget class="QLabel" name="lblContentLayout">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -333,12 +333,12 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Keep top-level folder:</string>
+               <string>Torrent content layout:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboCreateSubfolder">
+             <widget class="QComboBox" name="comboContentLayout">
               <item>
                <property name="text">
                 <string>Use global settings</string>
@@ -346,12 +346,17 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
               </item>
               <item>
                <property name="text">
-                <string>Always</string>
+                <string>Original</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Never</string>
+                <string>Create subfolder</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Don't create subfolder</string>
                </property>
               </item>
              </widget>
@@ -471,7 +476,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
   <tabstop>lineSavePath</tabstop>
   <tabstop>spinIgnorePeriod</tabstop>
   <tabstop>comboAddPaused</tabstop>
-  <tabstop>comboCreateSubfolder</tabstop>
+  <tabstop>comboContentLayout</tabstop>
   <tabstop>listFeeds</tabstop>
   <tabstop>treeMatchingArticles</tabstop>
   <tabstop>importBtn</tabstop>

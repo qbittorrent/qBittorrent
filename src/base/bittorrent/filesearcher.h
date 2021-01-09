@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christian Kandeler
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -26,40 +26,27 @@
  * exception statement from your version.
  */
 
-#ifndef UPDOWNRATIODIALOG_H
-#define UPDOWNRATIODIALOG_H
+#pragma once
 
-#include <QDialog>
+#include <QObject>
 
-namespace Ui
+namespace BitTorrent
 {
-    class UpDownRatioDialog;
+    class InfoHash;
 }
 
-class UpDownRatioDialog final : public QDialog
+class FileSearcher final : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(FileSearcher)
 
 public:
-    UpDownRatioDialog(bool useDefault, qreal initialValue, qreal maxValue,
-            int initialTimeValue, int maxTimeValue,
-            QWidget *parent = nullptr);
-    ~UpDownRatioDialog();
-
-    bool useDefault() const;
-    qreal ratio() const;
-    int seedingTime() const;
+    FileSearcher() = default;
 
 public slots:
-    void accept() override;
+    void search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+                , const QString &completeSavePath, const QString &incompleteSavePath);
 
-private slots:
-    void handleRatioTypeChanged();
-    void enableRatioSpin();
-    void enableTimeSpin();
-
-private:
-    Ui::UpDownRatioDialog *m_ui;
+signals:
+    void searchFinished(const BitTorrent::InfoHash &id, const QString &savePath, const QStringList &fileNames);
 };
-
-#endif // UPDOWNRATIODIALOG_H

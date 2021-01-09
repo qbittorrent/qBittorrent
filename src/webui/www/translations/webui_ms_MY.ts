@@ -23,15 +23,23 @@
         <translation>Langkau semakan cincangan</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Cipta subfolder</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>Mod Pengurusan Torrent:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -708,10 +716,6 @@
         <translation>Kata laluan:</translation>
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation>Protokol dibenarkan:</translation>
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation>TCP dan μTP</translation>
     </message>
@@ -1074,10 +1078,6 @@
         <translation>Bila Laluan Simpan Kategori berubah:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">Cipta subfolder untuk torrent dengan fail berbilang</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>saat</translation>
     </message>
@@ -1174,10 +1174,6 @@
         <translation>Port penjejak terbenam:</translation>
     </message>
     <message>
-        <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="vanished">Alamat IP pilihan untuk diikat (perlu mula semula):</translation>
-    </message>
-    <message>
         <source>Fastest upload</source>
         <translation>Muat naik terpantas</translation>
     </message>
@@ -1202,10 +1198,6 @@
         <translation>Seksyen libtorrent</translation>
     </message>
     <message>
-        <source>Coalesce reads &amp; writes:</source>
-        <translation type="vanished">Baca &amp; tulis bertaut:</translation>
-    </message>
-    <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>Port keluar (Min) [0: Dilumpuhkan]:</translation>
     </message>
@@ -1224,10 +1216,6 @@
     <message>
         <source>Send upload piece suggestions:</source>
         <translation>Hantar cadangan cebisan muat naik:</translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">Cache cakera:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1252,10 +1240,6 @@
     <message>
         <source>Send buffer watermark:</source>
         <translation>Hantar tera air penimbal:</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="vanished">Sela luput cache cakera:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1292,10 +1276,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation>Kelakuan slot muat naik:</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">Antara Muka Rangkaian (perlu mula semula):</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1451,6 +1431,14 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2214,10 +2202,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 yang lalu</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation>Memperuntukkan</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3233,15 +3217,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Create Subfolder:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation type="unfinished" />
     </message>
@@ -3323,6 +3298,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

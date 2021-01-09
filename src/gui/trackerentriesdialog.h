@@ -29,7 +29,7 @@
 #pragma once
 
 #include <QDialog>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "base/settingvalue.h"
 
@@ -60,5 +60,5 @@ private:
     void loadSettings();
 
     Ui::TrackerEntriesDialog *m_ui;
-    CachedSettingValue<QSize> m_storeDialogSize;
+    SettingValue<QSize> m_storeDialogSize;
 };

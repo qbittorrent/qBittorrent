@@ -28,15 +28,13 @@
  * exception statement from your version.
  */
 
-#ifndef APP_OPTIONS_H
-#define APP_OPTIONS_H
+#pragma once
 
+#include <optional>
 #include <stdexcept>
 
 #include <QString>
 #include <QStringList>
-
-#include "base/tristatebool.h"
 
 class QProcessEnvironment;
 
@@ -56,8 +54,8 @@ struct QBtCommandLineParameters
     bool shouldDaemonize;
 #endif
     int webUiPort;
-    TriStateBool addPaused;
-    TriStateBool skipDialog;
+    std::optional<bool> addPaused;
+    std::optional<bool> skipDialog;
     QStringList torrents;
     QString profileDir;
     QString configurationName;
@@ -81,5 +79,3 @@ private:
 
 QBtCommandLineParameters parseCommandLine(const QStringList &args);
 void displayUsage(const QString &prgName);
-
-#endif // APP_OPTIONS_H

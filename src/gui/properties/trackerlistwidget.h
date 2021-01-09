@@ -26,17 +26,16 @@
  * exception statement from your version.
  */
 
-#ifndef TRACKERLIST_H
-#define TRACKERLIST_H
+#pragma once
 
 #include <QTreeWidget>
-#include <QVector>
+#include <QtContainerFwd>
 
 class PropertiesWidget;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 class TrackerListWidget : public QTreeWidget
@@ -71,7 +70,7 @@ public slots:
     void moveSelectionDown();
 
     void clear();
-    void loadStickyItems(const BitTorrent::TorrentHandle *torrent);
+    void loadStickyItems(const BitTorrent::Torrent *torrent);
     void loadTrackers();
     void askForTrackers();
     void copyTrackerUrl();
@@ -95,5 +94,3 @@ private:
     QTreeWidgetItem *m_PEXItem;
     QTreeWidgetItem *m_LSDItem;
 };
-
-#endif // TRACKERLIST_H

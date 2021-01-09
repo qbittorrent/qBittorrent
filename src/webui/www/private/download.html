@@ -89,11 +89,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="rootFolder">QBT_TR(Keep top-level folder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="contentLayout">QBT_TR(Content layout:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
-                            <input type="hidden" id="rootFolderHidden" name="root_folder" />
-                            <input type="checkbox" id="rootFolder" />
+                            <select id="contentLayout" name="contentLayout">
+                                <option selected value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -154,7 +157,6 @@
 
         $('downloadForm').addEventListener("submit", function() {
             $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
-            $('rootFolderHidden').value = $('rootFolder').checked ? 'true' : 'false';
 
             $('dlLimitHidden').value = $('dlLimitText').value.toInt() * 1024;
             $('upLimitHidden').value = $('upLimitText').value.toInt() * 1024;

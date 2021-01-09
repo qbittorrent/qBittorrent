@@ -29,11 +29,15 @@
 #include "upgrade.h"
 
 #include <QFile>
+#include <QMetaEnum>
+#include <QVector>
 
+#include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
+#include "base/utils/string.h"
 
 namespace
 {
@@ -42,8 +46,8 @@ namespace
         const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath)
         {
             SettingsStorage *settingsStorage {SettingsStorage::instance()};
-            const QByteArray oldData {settingsStorage->loadValue(oldKey).toByteArray()};
-            const QString newData {settingsStorage->loadValue(newKey).toString()};
+            const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
+            const auto newData {settingsStorage->loadValue<QString>(newKey)};
             const QString errorMsgFormat {QObject::tr("Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
 
             if (!newData.isEmpty() || oldData.isEmpty())
@@ -78,11 +82,32 @@ namespace
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
             , Utils::Fs::toNativePath(configPath + QLatin1String("WebUIPrivateKey.pem")));
     }
+
+    void upgradeTorrentContentLayout()
+    {
+        const QString oldKey {QLatin1String {"BitTorrent/Session/CreateTorrentSubfolder"}};
+        const QString newKey {QLatin1String {"BitTorrent/Session/TorrentContentLayout"}};
+
+        SettingsStorage *settingsStorage {SettingsStorage::instance()};
+        const auto oldData {settingsStorage->loadValue<QVariant>(oldKey)};
+        const auto newData {settingsStorage->loadValue<QString>(newKey)};
+
+        if (!newData.isEmpty() || !oldData.isValid())
+            return;
+
+        const bool createSubfolder = oldData.toBool();
+        const BitTorrent::TorrentContentLayout torrentContentLayout =
+                (createSubfolder ? BitTorrent::TorrentContentLayout::Original : BitTorrent::TorrentContentLayout::NoSubfolder);
+
+        settingsStorage->storeValue(newKey, Utils::String::fromEnum(torrentContentLayout));
+        settingsStorage->removeValue(oldKey);
+    }
 }
 
 bool upgrade(const bool /*ask*/)
 {
     exportWebUIHttpsFiles();
+    upgradeTorrentContentLayout();
     return true;
 }
 
@@ -103,7 +128,7 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
     SettingsStorage *settingsStorage {SettingsStorage::instance()};
     for (auto it = changedDefaults.cbegin(); it != changedDefaults.cend(); ++it)
     {
-        if (settingsStorage->loadValue(it->name).isNull())
+        if (settingsStorage->loadValue<QVariant>(it->name).isNull())
             settingsStorage->storeValue(it->name, (mode == DefaultPreferencesMode::Legacy ? it->legacy : it->current));
     }
 }

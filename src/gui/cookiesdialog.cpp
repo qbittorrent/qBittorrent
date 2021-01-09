@@ -61,9 +61,9 @@ CookiesDialog::CookiesDialog(QWidget *parent)
                     m_cookiesModel->index(0, 0),
                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 
-    Utils::Gui::resize(this, SettingsStorage::instance()->loadValue(KEY_SIZE).toSize());
+    Utils::Gui::resize(this, SettingsStorage::instance()->loadValue<QSize>(KEY_SIZE));
     m_ui->treeView->header()->restoreState(
-                SettingsStorage::instance()->loadValue(KEY_COOKIESVIEWSTATE).toByteArray());
+        SettingsStorage::instance()->loadValue<QByteArray>(KEY_COOKIESVIEWSTATE));
 }
 
 CookiesDialog::~CookiesDialog()

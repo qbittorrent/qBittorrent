@@ -38,7 +38,7 @@
 #include <QToolTip>
 
 #include "base/indexrange.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/utils/misc.h"
 
@@ -119,7 +119,7 @@ PiecesBar::PiecesBar(QWidget *parent)
     setMouseTracking(true);
 }
 
-void PiecesBar::setTorrent(const BitTorrent::TorrentHandle *torrent)
+void PiecesBar::setTorrent(const BitTorrent::Torrent *torrent)
 {
     m_torrent = torrent;
     if (!m_torrent)

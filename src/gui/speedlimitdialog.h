@@ -26,34 +26,37 @@
  * exception statement from your version.
  */
 
-#ifndef SPEEDLIMITDIALOG_H
-#define SPEEDLIMITDIALOG_H
+#pragma once
 
 #include <QDialog>
+
+#include "base/settingvalue.h"
 
 namespace Ui
 {
     class SpeedLimitDialog;
 }
 
-class SpeedLimitDialog : public QDialog
+class SpeedLimitDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SpeedLimitDialog)
 
 public:
     explicit SpeedLimitDialog(QWidget *parent);
-    ~SpeedLimitDialog();
-    static long askSpeedLimit(QWidget *parent, bool *ok, const QString &title, long defaultVal, long maxVal = 10240000);
+    ~SpeedLimitDialog() override;
 
-private slots:
-    void updateSpinValue(int val);
-    void updateSliderValue(int val);
+public slots:
+    void accept() override;
 
 private:
-    void setupDialog(long maxSlider, long val);
-    int getSpeedLimit() const;
-
     Ui::SpeedLimitDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
+    struct
+    {
+        int uploadSpeedLimit;
+        int downloadSpeedLimit;
+        int altUploadSpeedLimit;
+        int altDownloadSpeedLimit;
+    } m_initialValues;
 };
-
-#endif // SPEEDLIMITDIALOG_H

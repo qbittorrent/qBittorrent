@@ -7,6 +7,8 @@ else {
     include(conf.pri)
 }
 
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.14
+
 LIBS += -framework Carbon -framework IOKit -framework AppKit
 
 QT_LANG_PATH = ../dist/qt-translations

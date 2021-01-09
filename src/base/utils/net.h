@@ -26,38 +26,30 @@
  * exception statement from your version.
  */
 
-#ifndef BASE_UTILS_NET_H
-#define BASE_UTILS_NET_H
+#pragma once
 
 #include <QHostAddress>
-#include <QList>
-#include <QPair>
-#include <QVector>
+#include <QtContainerFwd>
 
 class QSslCertificate;
 class QSslKey;
 class QString;
 
-namespace Utils
+namespace Utils::Net
 {
-    namespace Net
-    {
-        using Subnet = QPair<QHostAddress, int>;
+    using Subnet = QPair<QHostAddress, int>;
 
-        bool isValidIP(const QString &ip);
-        Subnet parseSubnet(const QString &subnetStr, bool *ok = nullptr);
-        bool canParseSubnet(const QString &subnetStr);
-        bool isLoopbackAddress(const QHostAddress &addr);
-        bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets);
-        QString subnetToString(const Subnet &subnet);
-        QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
+    bool isValidIP(const QString &ip);
+    Subnet parseSubnet(const QString &subnetStr, bool *ok = nullptr);
+    bool canParseSubnet(const QString &subnetStr);
+    bool isLoopbackAddress(const QHostAddress &addr);
+    bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets);
+    QString subnetToString(const Subnet &subnet);
+    QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
-        const int MAX_SSL_FILE_SIZE = 1024 * 1024;
-        QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
-        bool isSSLCertificatesValid(const QByteArray &data);
-        QSslKey loadSSLKey(const QByteArray &data);
-        bool isSSLKeyValid(const QByteArray &data);
-    }
+    const int MAX_SSL_FILE_SIZE = 1024 * 1024;
+    QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
+    bool isSSLCertificatesValid(const QByteArray &data);
+    QSslKey loadSSLKey(const QByteArray &data);
+    bool isSSLKeyValid(const QByteArray &data);
 }
-
-#endif // BASE_UTILS_NET_H

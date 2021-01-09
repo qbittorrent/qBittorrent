@@ -39,6 +39,8 @@
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "DownloadFromURLDialog/" name
+
 namespace
 {
     bool isDownloadable(const QString &str)
@@ -55,6 +57,7 @@ namespace
 DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::DownloadFromURLDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -82,12 +85,13 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     }
     m_ui->textUrls->setText(uniqueURLs.values().join('\n'));
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 DownloadFromURLDialog::~DownloadFromURLDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 

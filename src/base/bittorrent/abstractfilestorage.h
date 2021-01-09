@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +26,28 @@
  * exception statement from your version.
  */
 
-#include "tristatebool.h"
+#pragma once
 
-const TriStateBool TriStateBool::Undefined(-1);
-const TriStateBool TriStateBool::False(0);
-const TriStateBool TriStateBool::True(1);
+#include <QtGlobal>
+#include <QCoreApplication>
+
+class QString;
+
+namespace BitTorrent
+{
+    class AbstractFileStorage
+    {
+        Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
+
+    public:
+        virtual int filesCount() const = 0;
+        virtual QString filePath(int index) const = 0;
+        virtual QString fileName(int index) const = 0;
+        virtual qlonglong fileSize(int index) const = 0;
+
+        virtual void renameFile(int index, const QString &name) = 0;
+
+        void renameFile(const QString &oldPath, const QString &newPath);
+        void renameFolder(const QString &oldPath, const QString &newPath);
+    };
+}

@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCREATORDIALOG_H
-#define TORRENTCREATORDIALOG_H
+#pragma once
 
 #include <libtorrent/version.hpp>
 
@@ -79,23 +78,21 @@ private:
     BitTorrent::TorrentCreatorThread *m_creatorThread;
 
     // settings
-    CachedSettingValue<QSize> m_storeDialogSize;
-    CachedSettingValue<int> m_storePieceSize;
-    CachedSettingValue<bool> m_storePrivateTorrent;
-    CachedSettingValue<bool> m_storeStartSeeding;
-    CachedSettingValue<bool> m_storeIgnoreRatio;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<int> m_storePieceSize;
+    SettingValue<bool> m_storePrivateTorrent;
+    SettingValue<bool> m_storeStartSeeding;
+    SettingValue<bool> m_storeIgnoreRatio;
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-    CachedSettingValue<int> m_storeTorrentFormat;
+    SettingValue<int> m_storeTorrentFormat;
 #else
-    CachedSettingValue<bool> m_storeOptimizeAlignment;
-    CachedSettingValue<int> m_paddedFileSizeLimit;
+    SettingValue<bool> m_storeOptimizeAlignment;
+    SettingValue<int> m_paddedFileSizeLimit;
 #endif
-    CachedSettingValue<QString> m_storeLastAddPath;
-    CachedSettingValue<QString> m_storeTrackerList;
-    CachedSettingValue<QString> m_storeWebSeedList;
-    CachedSettingValue<QString> m_storeComments;
-    CachedSettingValue<QString> m_storeLastSavePath;
-    CachedSettingValue<QString> m_storeSource;
+    SettingValue<QString> m_storeLastAddPath;
+    SettingValue<QString> m_storeTrackerList;
+    SettingValue<QString> m_storeWebSeedList;
+    SettingValue<QString> m_storeComments;
+    SettingValue<QString> m_storeLastSavePath;
+    SettingValue<QString> m_storeSource;
 };
-
-#endif // TORRENTCREATORDIALOG_H

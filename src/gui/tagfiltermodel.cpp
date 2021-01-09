@@ -30,9 +30,11 @@
 
 #include <QDebug>
 #include <QIcon>
+#include <QSet>
+#include <QVector>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "uithememanager.h"
 
@@ -201,7 +203,7 @@ void TagFilterModel::tagRemoved(const QString &tag)
     endRemoveRows();
 }
 
-void TagFilterModel::torrentTagAdded(BitTorrent::TorrentHandle *const torrent, const QString &tag)
+void TagFilterModel::torrentTagAdded(BitTorrent::Torrent *const torrent, const QString &tag)
 {
     if (torrent->tags().count() == 1)
         untaggedItem()->decreaseTorrentsCount();
@@ -215,7 +217,7 @@ void TagFilterModel::torrentTagAdded(BitTorrent::TorrentHandle *const torrent, c
     emit dataChanged(i, i);
 }
 
-void TagFilterModel::torrentTagRemoved(BitTorrent::TorrentHandle *const torrent, const QString &tag)
+void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const QString &tag)
 {
     if (torrent->tags().empty())
         untaggedItem()->increaseTorrentsCount();
@@ -230,7 +232,7 @@ void TagFilterModel::torrentTagRemoved(BitTorrent::TorrentHandle *const torrent,
     emit dataChanged(i, i);
 }
 
-void TagFilterModel::torrentAdded(BitTorrent::TorrentHandle *const torrent)
+void TagFilterModel::torrentAdded(BitTorrent::Torrent *const torrent)
 {
     allTagsItem()->increaseTorrentsCount();
 
@@ -242,7 +244,7 @@ void TagFilterModel::torrentAdded(BitTorrent::TorrentHandle *const torrent)
         item->increaseTorrentsCount();
 }
 
-void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent)
+void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     allTagsItem()->decreaseTorrentsCount();
 
@@ -264,7 +266,7 @@ QString TagFilterModel::tagDisplayName(const QString &tag)
 
 void TagFilterModel::populate()
 {
-    using Torrent = BitTorrent::TorrentHandle;
+    using Torrent = BitTorrent::Torrent;
 
     const auto *session = BitTorrent::Session::instance();
     const auto torrents = session->torrents();

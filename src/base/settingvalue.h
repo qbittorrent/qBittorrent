@@ -26,93 +26,83 @@
  * exception statement from your version.
  */
 
-#ifndef SETTINGVALUE_H
-#define SETTINGVALUE_H
+#pragma once
 
-#include <type_traits>
-
-#include <QMetaEnum>
 #include <QString>
 
 #include "settingsstorage.h"
+
+// This is a thin/handy wrapper over `SettingsStorage`. Use it when store/load value
+// rarely occurs, otherwise use `CachedSettingValue`.
+template <typename T>
+class SettingValue
+{
+public:
+    explicit SettingValue(const char *keyName)
+        : m_keyName {QLatin1String {keyName}}
+    {
+    }
+
+    T get(const T &defaultValue = {}) const
+    {
+        return SettingsStorage::instance()->loadValue(m_keyName, defaultValue);
+    }
+
+    operator T() const
+    {
+        return get();
+    }
+
+    SettingValue<T> &operator=(const T &value)
+    {
+        SettingsStorage::instance()->storeValue(m_keyName, value);
+        return *this;
+    }
+
+private:
+    const QString m_keyName;
+};
 
 template <typename T>
 class CachedSettingValue
 {
 public:
-    explicit CachedSettingValue(const char *keyName, const T &defaultValue = T())
-        : m_keyName(QLatin1String(keyName))
-        , m_value(loadValue(defaultValue))
+    explicit CachedSettingValue(const char *keyName, const T &defaultValue = {})
+        : m_setting {keyName}
+        , m_cache {m_setting.get(defaultValue)}
     {
     }
 
     // The signature of the ProxyFunc should be equivalent to the following:
     // T proxyFunc(const T &a);
     template <typename ProxyFunc>
-    explicit CachedSettingValue(const char *keyName, const T &defaultValue
-                                , ProxyFunc &&proxyFunc)
-        : m_keyName(QLatin1String(keyName))
-        , m_value(proxyFunc(loadValue(defaultValue)))
+    explicit CachedSettingValue(const char *keyName, const T &defaultValue, ProxyFunc &&proxyFunc)
+        : m_setting {keyName}
+        , m_cache {proxyFunc(m_setting.get(defaultValue))}
     {
     }
 
-    T value() const
+    T get() const
     {
-        return m_value;
+        return m_cache;
     }
 
     operator T() const
     {
-        return value();
+        return get();
     }
 
-    CachedSettingValue<T> &operator=(const T &newValue)
+    CachedSettingValue<T> &operator=(const T &value)
     {
-        if (m_value == newValue)
+        if (m_cache == value)
             return *this;
 
-        m_value = newValue;
-        storeValue(m_value);
+        m_setting = value;
+        m_cache = value;
         return *this;
     }
 
 private:
-    // regular load/save pair
-    template <typename U, typename std::enable_if<!std::is_enum<U>::value, int>::type = 0>
-    U loadValue(const U &defaultValue)
-    {
-        return SettingsStorage::instance()->loadValue(m_keyName, defaultValue).template value<T>();
-    }
-
-    template <typename U, typename std::enable_if<!std::is_enum<U>::value, int>::type = 0>
-    void storeValue(const U &value)
-    {
-        SettingsStorage::instance()->storeValue(m_keyName, value);
-    }
-
-    // load/save pair for an enum
-    // saves literal value of the enum constant, obtained from QMetaEnum
-    template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
-    U loadValue(const U &defaultValue)
-    {
-        static_assert(std::is_same<int, typename std::underlying_type<U>::type>::value,
-                      "Enumeration underlying type has to be int");
-
-        bool ok = false;
-        const U res = static_cast<U>(QMetaEnum::fromType<U>().keyToValue(
-            SettingsStorage::instance()->loadValue(m_keyName).toString().toLatin1().constData(), &ok));
-        return ok ? res : defaultValue;
-    }
-
-    template <typename U, typename std::enable_if<std::is_enum<U>::value, int>::type = 0>
-    void storeValue(const U &value)
-    {
-        SettingsStorage::instance()->storeValue(m_keyName,
-            QString::fromLatin1(QMetaEnum::fromType<U>().valueToKey(static_cast<int>(value))));
-    }
-
-    const QString m_keyName;
-    T m_value;
+    SettingValue<T> m_setting;
+    T m_cache;
 };
-
-#endif // SETTINGVALUE_H

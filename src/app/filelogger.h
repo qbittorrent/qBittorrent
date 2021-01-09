@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef FILELOGGER_H
-#define FILELOGGER_H
+#pragma once
 
 #include <QFile>
 #include <QObject>
@@ -73,5 +72,3 @@ private:
     QFile m_logFile;
     QTimer m_flusher;
 };
-
-#endif // FILELOGGER_H

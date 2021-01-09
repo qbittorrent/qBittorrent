@@ -56,6 +56,8 @@
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
+#include "base/utils/string.h"
+#include "base/version.h"
 #include "../webapplication.h"
 
 void AppController::webapiVersionAction()
@@ -100,7 +102,7 @@ void AppController::preferencesAction()
 
     // Downloads
     // When adding a torrent
-    data["create_subfolder_enabled"] = session->isKeepTorrentTopLevelFolder();
+    data["torrent_content_layout"] = Utils::String::fromEnum(session->torrentContentLayout());
     data["start_paused_enabled"] = session->isAddTorrentPaused();
     data["auto_delete_mode"] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
     data["preallocate_all"] = session->isPreallocationEnabled();
@@ -302,6 +304,8 @@ void AppController::preferencesAction()
     data["upnp_lease_duration"] = session->UPnPLeaseDuration();
     // uTP-TCP mixed mode
     data["utp_tcp_mixed_mode"] = static_cast<int>(session->utpMixedMode());
+    // Support internationalized domain name (IDN)
+    data["idn_support_enabled"] = session->isIDNSupportEnabled();
     // Multiple connections per IP
     data["enable_multi_connections_from_same_ip"] = session->multiConnectionsPerIpEnabled();
     // Validate HTTPS tracker certificate
@@ -346,8 +350,8 @@ void AppController::setPreferencesAction()
 
     // Downloads
     // When adding a torrent
-    if (hasKey("create_subfolder_enabled"))
-        session->setKeepTorrentTopLevelFolder(it.value().toBool());
+    if (hasKey("torrent_content_layout"))
+        session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
     if (hasKey("start_paused_enabled"))
         session->setAddTorrentPaused(it.value().toBool());
     if (hasKey("auto_delete_mode"))
@@ -759,6 +763,9 @@ void AppController::setPreferencesAction()
     // uTP-TCP mixed mode
     if (hasKey("utp_tcp_mixed_mode"))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
+    // Support internationalized domain name (IDN)
+    if (hasKey("idn_support_enabled"))
+        session->setIDNSupportEnabled(it.value().toBool());
     // Multiple connections per IP
     if (hasKey("enable_multi_connections_from_same_ip"))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());

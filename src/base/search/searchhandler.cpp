@@ -31,6 +31,7 @@
 
 #include <QProcess>
 #include <QTimer>
+#include <QVector>
 
 #include "base/global.h"
 #include "base/utils/foreignapps.h"

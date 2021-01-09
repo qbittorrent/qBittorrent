@@ -31,7 +31,7 @@
 #include <QObject>
 #include <QString>
 
-template <typename T> class CachedSettingValue;
+template <typename T> class SettingValue;
 
 /// Utility class to defer file deletion
 class FileGuard
@@ -75,7 +75,7 @@ public:
 
 private:
     TorrentFileGuard(const QString &path, AutoDeleteMode mode);
-    static CachedSettingValue<AutoDeleteMode> &autoDeleteModeSetting();
+    static SettingValue<AutoDeleteMode> &autoDeleteModeSetting();
 
     Q_ENUM(AutoDeleteMode)
     AutoDeleteMode m_mode;

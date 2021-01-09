@@ -26,17 +26,18 @@
  * exception statement from your version.
  */
 
-#ifndef ABOUTDIALOG_H
-#define ABOUTDIALOG_H
+#pragma once
 
 #include <QDialog>
+
+#include "base/settingvalue.h"
 
 namespace Ui
 {
     class AboutDialog;
 }
 
-class AboutDialog : public QDialog
+class AboutDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY(AboutDialog)
@@ -47,6 +48,5 @@ public:
 
 private:
     Ui::AboutDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
 };
-
-#endif // ABOUTDIALOG_H

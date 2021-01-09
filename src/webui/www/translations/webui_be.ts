@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">Пра праграму</translation>
+        <translation type="vanished">Аб праграме</translation>
     </message>
 </context>
 <context>
@@ -23,15 +23,23 @@
         <translation>Прапусціць праверку хэшу</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">Стварыць укладзеную папку</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Keep top-level folder</source>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -74,11 +82,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Новая катэгорыя</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Рэдагаваць катэгорыю...</translation>
     </message>
 </context>
 <context>
@@ -302,11 +310,11 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Недапушчальная назва катэгорыі:\nНе ўжывайце спецыяльныя сімвалы ў назве катэгорыі.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Не атрымалася стварыць катэгорыю</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -469,7 +477,7 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished" />
+        <translation>Сапраўды выйсці з qBittorrent?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
@@ -490,7 +498,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Пошук</translation>
     </message>
     <message>
         <source>Transfers</source>
@@ -609,7 +617,7 @@
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation>Мова інтерфейса:</translation>
+        <translation>Мова інтэрфейсу:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -681,7 +689,7 @@
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Далучаць пашыренне .!qB да незавершаных файлаў</translation>
+        <translation>Дадаваць пашырэнне .!qB да незавершаных файлаў</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -706,10 +714,6 @@
     <message>
         <source>Password:</source>
         <translation>Пароль:</translation>
-    </message>
-    <message>
-        <source>Enabled protocol:</source>
-        <translation>Ключаны пратакол:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -943,11 +947,11 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: Папка змесціва (тая ж, што і карэнная папка для шматфайлавых торэнтаў)</translation>
+        <translation>%F: Шлях прызначэння (тое ж, што і каранёвы шлях для шматфайлавага торэнта)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>% R: Карэнная папка (галоўны шлях для падкаталага торэнта)</translation>
+        <translation>%R: Каранёвы шлях (галоўны шлях для падкаталога торэнта)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -979,15 +983,15 @@
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Пароль карыстальніка вэб-інтэрфейсу павінны быць не меньшым за 6 знакаў.</translation>
+        <translation>Пароль вэб-інтэрфейсу павінен быць не менш за 6 знакаў.</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>хвілін</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>КБ/с</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1015,7 +1019,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Аўтаматычны</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1023,7 +1027,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>Шлях захавання па змаўчанні:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1031,7 +1035,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Не пачынаць спампоўванне аўтаматычна</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1039,7 +1043,7 @@
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>Пры змене катэгорыі торэнта:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1059,7 +1063,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Пры змене шляху захавання:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1071,7 +1075,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Пры змене шляху захавання для катэгорыі:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1083,7 +1087,7 @@
     </message>
     <message>
         <source>Files location:</source>
-        <translation type="unfinished" />
+        <translation>Размяшчэнне файлаў:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1095,7 +1099,7 @@
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Рэжым кіравання торэнтам па змаўчанні:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
@@ -1123,7 +1127,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Уключыць для торэнта рэжым суперраздачы</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1175,7 +1179,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Прыпыніць торэнт</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1203,7 +1207,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Пераправераць торэнты пасля спампоўвання</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1219,7 +1223,7 @@
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць торэнт</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
@@ -1231,7 +1235,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>с</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1251,7 +1255,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>хв</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1263,7 +1267,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>КБ</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1275,7 +1279,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>МБ</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1331,7 +1335,7 @@
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished" />
+        <translation>Фільтры</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
@@ -1355,7 +1359,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1395,7 +1399,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>хв</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1427,6 +1431,14 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1506,7 +1518,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>Краіна/рэгіён</translation>
     </message>
 </context>
 <context>
@@ -1532,7 +1544,7 @@
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Не спампоўваць</translation>
     </message>
 </context>
 <context>
@@ -1639,7 +1651,7 @@
     </message>
     <message>
         <source>Pieces:</source>
-        <translation>Кавалкі:</translation>
+        <translation>Часткі:</translation>
     </message>
     <message>
         <source>Created By:</source>
@@ -1651,7 +1663,7 @@
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Скончаны:</translation>
+        <translation>Завершаны:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -1730,14 +1742,14 @@
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Месца захавання па змаўчанні</translation>
+        <translation>Шлях захавання па змаўчанні</translation>
     </message>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation>КіБ/с</translation>
+        <translation>КБ/с</translation>
     </message>
 </context>
 <context>
@@ -1831,7 +1843,7 @@
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation>Скончаныя (0)</translation>
+        <translation>Завершаныя (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
@@ -1985,7 +1997,7 @@
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Скончаны</translation>
+        <translation>Завершаны</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2063,7 +2075,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Даступна</translation>
     </message>
 </context>
 <context>
@@ -2086,23 +2098,23 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Спампавана</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished" />
+        <translation>URL трэкера:</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>Абнаўленне...</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>Працуе</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Адключаны</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -2114,27 +2126,27 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation type="unfinished" />
+        <translation>Сіды</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>Не працуе</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation type="unfinished" />
+        <translation>Капіяваць URL трэкера</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished" />
+        <translation>Дадаць новы трэкер...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation type="unfinished" />
+        <translation>Змяніць URL трэкера...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished" />
+        <translation>Рэдагаванне трэкера</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2142,27 +2154,27 @@
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць трэкер</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Засталося</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Даступна</translation>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Узровень</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Прыярытэт спампоўвання</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2170,7 +2182,7 @@
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Памер</translation>
     </message>
 </context>
 <context>
@@ -2192,32 +2204,28 @@
         <translation>%1 таму</translation>
     </message>
     <message>
-        <source>Allocating</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>Спынены</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Завершаны</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Перамяшчэнне</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[П] Раздаецца</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Раздаецца</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>У чарзе</translation>
     </message>
     <message>
         <source>Errored</source>
@@ -2225,7 +2233,7 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[П] Спампоўваецца</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
@@ -2272,7 +2280,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Трэкеры</translation>
     </message>
 </context>
 <context>
@@ -2347,7 +2355,7 @@
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation>Спампоўваць з першай і апошняй часткі</translation>
+        <translation>Спачатку пампаваць першую і апошнюю часткі</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -2373,7 +2381,7 @@
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation>Рэжым супер-раздачы</translation>
+        <translation>Рэжым суперраздачы</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -2389,11 +2397,11 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Новая катэгорыя</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Размяшчэнне</translation>
     </message>
     <message>
         <source>New name</source>
@@ -2409,11 +2417,11 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Рэдагаваць катэгорыю</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Шлях захавання</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2433,27 +2441,27 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation>Хэш</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць усе</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Капіяваць</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Чарга</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Дадаць...</translation>
     </message>
 </context>
 <context>
@@ -2476,7 +2484,7 @@
     </message>
     <message>
         <source>ratio</source>
-        <translation>стасунак</translation>
+        <translation>рэйтынг</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -2490,15 +2498,15 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Пацверджанне выдалення</translation>
+        <translation>Пацвярджэнне выдалення</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Таксама выдаліць файлы з дыску</translation>
+        <translation>Выдаліць таксама і файлы з дыска</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Пацвярджэнне выдалення - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2526,32 +2534,32 @@
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>КіБ</translation>
+        <translation>КБ</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>МіБ</translation>
+        <translation>МБ</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>ГіБ</translation>
+        <translation>ГБ</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>ТіБ</translation>
+        <translation>ТБ</translation>
     </message>
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation>ПіБ</translation>
+        <translation>ПБ</translation>
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation>ЭіБ</translation>
+        <translation>ЭБ</translation>
     </message>
     <message>
         <source>/s</source>
@@ -2561,27 +2569,27 @@
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1г %2хв</translation>
+        <translation>%1 гадз %2 хв</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1дз %2г</translation>
+        <translation>%1 дз %2 г</translation>
     </message>
     <message>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation>Невядомы</translation>
+        <translation>Невядома</translation>
     </message>
     <message>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt; 1хв</translation>
+        <translation>&lt; 1 хв</translation>
     </message>
     <message>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1хв</translation>
+        <translation>%1 хв</translation>
     </message>
 </context>
 <context>
@@ -2618,7 +2626,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>Сіды:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2626,7 +2634,7 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Памер:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -2634,19 +2642,19 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Пошук</translation>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>Пошукавыя плагіны...</translation>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Усе катэгорыі</translation>
     </message>
     <message>
         <source>Search in:</source>
-        <translation type="unfinished" />
+        <translation>Шукаць:</translation>
     </message>
     <message>
         <source>Results (showing</source>
@@ -2654,7 +2662,7 @@
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>Фільтр</translation>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -2670,65 +2678,65 @@
     </message>
     <message>
         <source>Everywhere</source>
-        <translation type="unfinished" />
+        <translation>Усюды</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Папярэджанне</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Павялічце шырыню акна, каб убачыць дадатковыя фільтры</translation>
     </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць</translation>
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Усталяваць новы плагін</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>Новыя пошукавыя плагіны можна знайсці тут:</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Закрыць</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation type="unfinished" />
+        <translation>Усталяваныя пошукавыя плагіны:</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Уключаны</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished" />
+        <translation>Увага! Пераканайцеся, што ў вашай краіне спампоўванне торэнтаў праз гэтыя пошукавыя сістэмы не парушае законаў аб аўтарскім праве.</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>Праверыць абнаўленні</translation>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation type="unfinished" />
+        <translation>Пошукавыя плагіны</translation>
     </message>
 </context>
 <context>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Памер</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2736,38 +2744,38 @@
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Пошукавая сістэма</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>Сіды</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>Спасылка</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Уключаны</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Версія</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Так</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Не</translation>
     </message>
 </context>
 <context>
@@ -2805,7 +2813,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць торэнты</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -2813,11 +2821,11 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Прыпыніць торэнты</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Узнавіць торэнты</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -2851,15 +2859,15 @@
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Аб праграме</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Форум:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>Эл. пошта:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
@@ -2871,11 +2879,11 @@
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Грэцыя</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Падзяка</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
@@ -2887,19 +2895,19 @@
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Пра qBittorrent</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Ліцэнзія</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Перакладчыкі</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent сабраны з выкарыстаннем наступных бібліятэк:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -2911,41 +2919,41 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Выкарыстанае ПЗ</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Для вызначэння краіны піра выкарыстана IP to Country Lite – бясплатная база даных ад DB-IP, якая распаўсюджваецца паводле ліцэнзіі Creative Commons Attribution 4.0 International</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>Усе адрасы</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Усе адрасы IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Усе адрасы IPv4</translation>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Капіяваць</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Спампаваць</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Назва</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -2968,18 +2976,18 @@
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Новая назва:</translation>
     </message>
 </context>
 <context>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation>Дата: </translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished" />
+        <translation>Выберыце новую назву для RSS-канала</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
@@ -2987,15 +2995,15 @@
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished" />
+        <translation>Новая назва канала:</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished" />
+        <translation>Абнавіць усе</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
@@ -3039,7 +3047,7 @@
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation>Абнавіць</translation>
     </message>
     <message>
         <source>Folder name:</source>
@@ -3055,11 +3063,11 @@
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Пацвярджэнне выдалення</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation>Сапраўды выдаліць вылучаныя RSS-каналы?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -3098,11 +3106,11 @@
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Апісанне правіла</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Захаваць у:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
@@ -3110,7 +3118,7 @@
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Назва правіла</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
@@ -3126,7 +3134,7 @@
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>Прызначыць катэгорыю:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
@@ -3150,11 +3158,11 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Прыклад: </translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Дадаць новае правіла...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -3209,15 +3217,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Create Subfolder:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation type="unfinished" />
     </message>
@@ -3255,7 +3254,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation> дзён</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3301,35 +3300,56 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
         <source>Clear downloaded episodes...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць торэнты</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Узнавіць торэнты</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Усе (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished" />
+        <translation>Без трэкера (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Прыпыніць торэнты</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>RSS-каналы</translation>
     </message>
 </context>
 </TS>

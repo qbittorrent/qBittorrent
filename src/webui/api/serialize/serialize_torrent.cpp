@@ -29,9 +29,11 @@
 #include "serialize_torrent.h"
 
 #include <QDateTime>
+#include <QSet>
+#include <QVector>
 
 #include "base/bittorrent/infohash.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/utils/fs.h"
 
@@ -81,7 +83,7 @@ namespace
     }
 }
 
-QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
+QVariantMap serialize(const BitTorrent::Torrent &torrent)
 {
     QVariantMap ret =
     {
@@ -134,7 +136,7 @@ QVariantMap serialize(const BitTorrent::TorrentHandle &torrent)
     };
 
     const qreal ratio = torrent.realRatio();
-    ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::TorrentHandle::MAX_RATIO) ? -1 : ratio;
+    ret[KEY_TORRENT_RATIO] = (ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
 
     if (torrent.isPaused() || torrent.isChecking())
     {

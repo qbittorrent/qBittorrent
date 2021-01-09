@@ -72,7 +72,6 @@ window.qBittorrent.Download = (function() {
 
                 defaultSavePath = pref.save_path;
                 $('savepath').setProperty('value', defaultSavePath);
-                $('rootFolder').checked = pref.create_subfolder_enabled;
                 $('startTorrent').checked = !pref.start_paused_enabled;
 
                 if (pref.auto_tmm_enabled == 1) {
@@ -81,6 +80,16 @@ window.qBittorrent.Download = (function() {
                 }
                 else {
                     $('autoTMM').selectedIndex = 0;
+                }
+
+                if (pref.torrent_content_layout === "Subfolder") {
+                    $('contentLayout').selectedIndex = 1;
+                }
+                else if (pref.torrent_content_layout === "NoSubfolder") {
+                    $('contentLayout').selectedIndex = 2;
+                }
+                else {
+                    $('contentLayout').selectedIndex = 0;
                 }
             }
         }).send();

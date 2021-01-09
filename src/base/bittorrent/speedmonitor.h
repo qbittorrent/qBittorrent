@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef SPEEDMONITOR_H
-#define SPEEDMONITOR_H
+#pragma once
 
 #ifndef Q_MOC_RUN
 #include <boost/circular_buffer.hpp>
@@ -86,5 +85,3 @@ private:
     boost::circular_buffer<SpeedSample> m_speedSamples;
     SpeedSample m_sum;
 };
-
-#endif // SPEEDMONITOR_H

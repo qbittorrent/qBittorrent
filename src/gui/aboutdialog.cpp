@@ -32,13 +32,17 @@
 
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
+#include "base/version.h"
 #include "ui_aboutdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "AboutDialog/" name
+
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::AboutDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -60,7 +64,7 @@ AboutDialog::AboutDialog(QWidget *parent)
         "</table>"
         "</p>")
         .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
-            , tr("Copyright %1 2006-2020 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
+            , tr("Copyright %1 2006-2021 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
             , tr("Home Page:")
             , tr("Forum:")
             , tr("Bug Tracker:"));
@@ -107,11 +111,12 @@ AboutDialog::AboutDialog(QWidget *parent)
                                      "The database is licensed under the Creative Commons Attribution 4.0 International License"));
     m_ui->labelDBIP->setText(DBIPText);
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 AboutDialog::~AboutDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }

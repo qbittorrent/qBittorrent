@@ -29,14 +29,16 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QSharedDataPointer>
 #include <QVariant>
+
+#include "base/bittorrent/torrentcontentlayout.h"
 
 class QDateTime;
 class QJsonObject;
 class QRegularExpression;
-
-class TriStateBool;
 
 namespace RSS
 {
@@ -77,10 +79,10 @@ namespace RSS
 
         QString savePath() const;
         void setSavePath(const QString &savePath);
-        TriStateBool addPaused() const;
-        void setAddPaused(TriStateBool addPaused);
-        TriStateBool createSubfolder() const;
-        void setCreateSubfolder(TriStateBool createSubfolder);
+        std::optional<bool> addPaused() const;
+        void setAddPaused(std::optional<bool> addPaused);
+        std::optional<BitTorrent::TorrentContentLayout> torrentContentLayout() const;
+        void setTorrentContentLayout(std::optional<BitTorrent::TorrentContentLayout> contentLayout);
         QString assignedCategory() const;
         void setCategory(const QString &category);
 

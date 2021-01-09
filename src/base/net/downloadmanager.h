@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_DOWNLOADMANAGER_H
-#define NET_DOWNLOADMANAGER_H
+#pragma once
 
 #include <QHash>
 #include <QNetworkAccessManager>
@@ -159,5 +158,3 @@ namespace Net
         connect(handler, &DownloadHandler::finished, context, slot);
     }
 }
-
-#endif // NET_DOWNLOADMANAGER_H

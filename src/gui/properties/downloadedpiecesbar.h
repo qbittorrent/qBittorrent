@@ -26,11 +26,10 @@
  * exception statement from your version.
  */
 
-#ifndef DOWNLOADEDPIECESBAR_H
-#define DOWNLOADEDPIECESBAR_H
+#pragma once
 
 #include <QBitArray>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "piecesbar.h"
 
@@ -63,5 +62,3 @@ private:
     QBitArray m_pieces;
     QBitArray m_downloadedPieces;
 };
-
-#endif // DOWNLOADEDPIECESBAR_H

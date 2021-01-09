@@ -33,16 +33,19 @@
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "ui_statsdialog.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "StatisticsDialog/" name
+
 StatsDialog::StatsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::StatsDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -52,12 +55,18 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
             , this, &StatsDialog::update);
 
-    Utils::Gui::resize(this);
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    m_ui->labelCacheHitsText->hide();
+    m_ui->labelCacheHits->hide();
+#endif
+
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 StatsDialog::~StatsDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 
@@ -78,11 +87,13 @@ void StatsDialog::update()
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
                 : "-");
+#if (LIBTORRENT_VERSION_NUM < 20000)
     // Cache hits
-    qreal readRatio = cs.readRatio;
+    const qreal readRatio = cs.readRatio;
     m_ui->labelCacheHits->setText(QString::fromLatin1("%1%").arg((readRatio > 0)
         ? Utils::String::fromDouble(100 * readRatio, 2)
         : QLatin1String("0")));
+#endif
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent

@@ -30,9 +30,6 @@
 
 #include <type_traits>
 
-template <typename ...>
-using void_t = void;  // replace this with std::void_t in C++17
-
 template <typename T, typename = void>
 struct HasUnderlyingType
     : std::false_type
@@ -40,7 +37,7 @@ struct HasUnderlyingType
 };
 
 template <typename T>
-struct HasUnderlyingType<T, void_t<typename T::underlying_type>>
+struct HasUnderlyingType<T, std::void_t<typename T::underlying_type>>
     : std::true_type
 {
 };

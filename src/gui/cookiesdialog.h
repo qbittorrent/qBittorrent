@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef COOKIESDIALOG_H
-#define COOKIESDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -57,5 +56,3 @@ private:
     Ui::CookiesDialog *m_ui;
     CookiesModel *m_cookiesModel;
 };
-
-#endif // COOKIESDIALOG_H

@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef FEEDLISTWIDGET_H
-#define FEEDLISTWIDGET_H
+#pragma once
 
 #include <QHash>
 #include <QTreeWidget>
@@ -73,5 +72,3 @@ private:
     QHash<RSS::Item *, QTreeWidgetItem *> m_rssToTreeItemMapping;
     QTreeWidgetItem *m_unreadStickyItem;
 };
-
-#endif // FEEDLISTWIDGET_H

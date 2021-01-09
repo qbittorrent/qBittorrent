@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_INDEXRANGE_H
-#define QBT_INDEXRANGE_H
+#pragma once
 
 #include <QtGlobal>
 
@@ -38,8 +37,7 @@ class IndexInterval
 public:
     using IndexType = Index;
 
-    // TODO: add constexpr when using C++17
-    IndexInterval(const IndexType first, const IndexType last)
+    constexpr IndexInterval(const IndexType first, const IndexType last)
         : m_first {first}
         , m_last {last}
     {
@@ -169,5 +167,3 @@ private:
     IndexType m_first;
     IndexDiffType m_size;
 };
-
-#endif // QBT_INDEXRANGE_H

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SHUTDOWNCONFIRMDIALOG_H
-#define SHUTDOWNCONFIRMDIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QTimer>
@@ -68,5 +67,3 @@ private:
     ShutdownDialogAction m_action;
     QString m_msg;
 };
-
-#endif // SHUTDOWNCONFIRMDIALOG_H

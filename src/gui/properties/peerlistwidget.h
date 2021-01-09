@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PEERLISTWIDGET_H
-#define PEERLISTWIDGET_H
+#pragma once
 
 #include <QHash>
 #include <QSet>
@@ -44,7 +43,7 @@ struct PeerEndpoint;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
     class PeerInfo;
 }
 
@@ -81,7 +80,7 @@ public:
     explicit PeerListWidget(PropertiesWidget *parent);
     ~PeerListWidget() override;
 
-    void loadPeers(const BitTorrent::TorrentHandle *torrent);
+    void loadPeers(const BitTorrent::Torrent *torrent);
     void updatePeerHostNameResolutionState();
     void updatePeerCountryResolutionState();
     void clear();
@@ -97,7 +96,7 @@ private slots:
     void handleResolved(const QHostAddress &ip, const QString &hostname) const;
 
 private:
-    void updatePeer(const BitTorrent::TorrentHandle *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
+    void updatePeer(const BitTorrent::Torrent *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
 
     void wheelEvent(QWheelEvent *event) override;
 
@@ -109,5 +108,3 @@ private:
     QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
     bool m_resolveCountries;
 };
-
-#endif // PEERLISTWIDGET_H

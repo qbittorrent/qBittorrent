@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTFILTERMODEL_H
-#define TORRENTCONTENTFILTERMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
@@ -63,5 +62,3 @@ private:
 
     TorrentContentModel *m_model;
 };
-
-#endif // TORRENTCONTENTFILTERMODEL_H

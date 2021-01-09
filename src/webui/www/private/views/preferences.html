@@ -2,8 +2,12 @@
     <fieldset class="settings">
         <legend>QBT_TR(When adding a torrent)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
-            <input type="checkbox" id="createsubfolder_checkbox" />
-            <label for="createsubfolder_checkbox">QBT_TR(Keep top-level folder)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="contentlayout_select">QBT_TR(Torrent content layout:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="contentlayout_select">
+                <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
         </div>
         <div class="formRow">
             <input type="checkbox" id="dontstartdownloads_checkbox" />
@@ -648,10 +652,12 @@
         <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <label for="locale_select">QBT_TR(User Interface Language:)QBT_TR[CONTEXT=OptionsDialog]</label>
         <select id="locale_select">
+            <option value="az@latin">Azərbaycan dili</option>
             <option value="en">English</option>
-            <option value="en_AU">English(Australia)</option>
-            <option value="en_GB">English(United Kingdom)</option>
+            <option value="en_AU">English (Australia)</option>
+            <option value="en_GB">English (United Kingdom)</option>
             <option value="eo_EO">Esperanto</option>
+            <option value="et">Eesti, eesti keel</option>
             <option value="fr_FR">Français</option>
             <option value="de_DE">Deutsch</option>
             <option value="hu_HU">Magyar</option>
@@ -666,9 +672,9 @@
             <option value="pt_BR">Português brasileiro</option>
             <option value="pt_PT">Português</option>
             <option value="pl_PL">Polski</option>
-            <option value="lv_LV">latviešu valoda</option>
+            <option value="lv_LV">Latviešu valoda</option>
             <option value="lt_LT">Lietuvių</option>
-            <option value="ltg">latgalīšu volūda</option>
+            <option value="ltg">Latgalīšu volūda</option>
             <option value="ms_MY">بهاس ملايو</option>
             <option value="cs_CZ">Čeština</option>
             <option value="sk_SK">Slovenčina</option>
@@ -694,7 +700,7 @@
             <option value="ka_GE">ქართული</option>
             <option value="be_BY">Беларуская</option>
             <option value="eu_ES">Euskara</option>
-            <option value="vi_VN">tiếng Việt</option>
+            <option value="vi_VN">Tiếng Việt</option>
             <option value="zh">简体中文</option>
             <option value="zh_TW">正體中文</option>
             <option value="zh_HK">香港正體字</option>
@@ -931,10 +937,26 @@
                     <input type="checkbox" id="resolvePeerCountries">
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="enableEmbeddedTracker">QBT_TR(Enable embedded tracker:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="enableEmbeddedTracker" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="embeddedTrackerPort">QBT_TR(Embedded tracker port:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="embeddedTrackerPort" style="width: 15em;" />
+                </td>
+            </tr>
         </table>
     </fieldset>
     <fieldset class="settings">
-        <legend>QBT_TR(libtorrent Section)QBT_TR[CONTEXT=OptionsDialog]&nbsp;(<a href="https://www.libtorrent.org/reference.html" target="_blank">QBT_TR(Open documentation)QBT_TR[CONTEXT=HttpServer]</a>)</legend>
+        <legend>QBT_TR(libtorrent Section)QBT_TR[CONTEXT=OptionsDialog]&nbsp;(<a href="https://www.libtorrent.org/reference-Settings.html" target="_blank">QBT_TR(Open documentation)QBT_TR[CONTEXT=HttpServer]</a>)</legend>
         <table>
             <tr>
                 <td>
@@ -1050,7 +1072,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="outgoingPortsMin">QBT_TR(Outgoing ports (Min) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="outgoingPortsMin">QBT_TR(Outgoing ports (Min) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#outgoing_port" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="outgoingPortsMin" style="width: 15em;" />
@@ -1058,7 +1080,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="outgoingPortsMax">QBT_TR(Outgoing ports (Max) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="outgoingPortsMax">QBT_TR(Outgoing ports (Max) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#outgoing_port" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="outgoingPortsMax" style="width: 15em;" />
@@ -1085,7 +1107,15 @@
             </tr>
             <tr>
                 <td>
-                    <label for="allowMultipleConnectionsFromTheSameIPAddress">QBT_TR(Allow multiple connections from the same IP address:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="IDNSupportCheckbox">QBT_TR(Support internationalized domain name (IDN) (requires libtorrent >= 1.2.12):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_idna" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="IDNSupportCheckbox" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="allowMultipleConnectionsFromTheSameIPAddress">QBT_TR(Allow multiple connections from the same IP address:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_multiple_connections_per_ip" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="allowMultipleConnectionsFromTheSameIPAddress" />
@@ -1105,22 +1135,6 @@
                 </td>
                 <td>
                     <input type="checkbox" id="blockPeersOnPrivilegedPorts" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="enableEmbeddedTracker">QBT_TR(Enable embedded tracker:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td>
-                    <input type="checkbox" id="enableEmbeddedTracker" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="embeddedTrackerPort">QBT_TR(Embedded tracker port:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                </td>
-                <td>
-                    <input type="text" id="embeddedTrackerPort" style="width: 15em;" />
                 </td>
             </tr>
             <tr>
@@ -1148,7 +1162,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="announceAllTrackers">QBT_TR(Always announce to all trackers in a tier:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="announceAllTrackers">QBT_TR(Always announce to all trackers in a tier:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#announce_to_all_trackers" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="announceAllTrackers" />
@@ -1156,7 +1170,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="announceAllTiers">QBT_TR(Always announce to all tiers:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="announceAllTiers">QBT_TR(Always announce to all tiers:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#announce_to_all_tiers" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="announceAllTiers" />
@@ -1164,7 +1178,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="announceIP">QBT_TR(IP Address to report to trackers (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    <label for="announceIP">QBT_TR(IP Address to report to trackers (requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#announce_ip" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="announceIP" style="width: 15em;" />
@@ -1592,7 +1606,19 @@
                     if (pref) {
                         // Downloads tab
                         // When adding a torrent
-                        $('createsubfolder_checkbox').setProperty('checked', pref.create_subfolder_enabled);
+                        let index = 0;
+                        switch (pref.torrent_content_layout) {
+                            case "Original":
+                                index = 0;
+                                break;
+                            case "Subfolder":
+                                index = 1;
+                                break;
+                            case "NoSubfolder":
+                                index = 2;
+                                break;
+                        }
+                        $('contentlayout_select').getChildren('option')[index].setAttribute('selected', '');
                         $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
                         $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
 
@@ -1895,6 +1921,7 @@
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
                         $('UPnPLeaseDuration').setProperty('value', pref.upnp_lease_duration);
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
+                        $('IDNSupportCheckbox').setProperty('checked', pref.idn_support_enabled);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
                         $('validateHTTPSTrackerCertificate').setProperty('checked', pref.validate_https_tracker_certificate);
                         $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.block_peers_on_privileged_ports);
@@ -1920,7 +1947,7 @@
             // Validate form data
             // Downloads tab
             // When adding a torrent
-            settings.set('create_subfolder_enabled', $('createsubfolder_checkbox').getProperty('checked'));
+            settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));
             settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
             settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
 
@@ -2282,6 +2309,7 @@
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
             settings.set('upnp_lease_duration', $('UPnPLeaseDuration').getProperty('value'));
             settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
+            settings.set('idn_support_enabled', $('IDNSupportCheckbox').getProperty('checked'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
             settings.set('validate_https_tracker_certificate', $('validateHTTPSTrackerCertificate').getProperty('checked'));
             settings.set('block_peers_on_privileged_ports', $('blockPeersOnPrivilegedPorts').getProperty('checked'));

@@ -41,7 +41,7 @@
 #endif
 
 #include "base/bittorrent/downloadpriority.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "gui/torrentcontentmodel.h"
 #include "propertieswidget.h"
 
@@ -111,7 +111,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
 
     if (m_properties)
     {
-        const BitTorrent::TorrentHandle *torrent = m_properties->getCurrentTorrent();
+        const BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
         if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
             return nullptr;
     }

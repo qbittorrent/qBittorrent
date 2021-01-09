@@ -26,12 +26,12 @@
  * exception statement from your version.
  */
 
-#ifndef OPTIONSDIALOG_H
-#define OPTIONSDIALOG_H
+#pragma once
 
 #include <QDialog>
 
 #include "base/bittorrent/scheduler/scheduleday.h"
+#include "base/settingvalue.h"
 
 class QAbstractButton;
 class QCloseEvent;
@@ -63,6 +63,8 @@ namespace Ui
 class OptionsDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(OptionsDialog)
+
     using ThisType = OptionsDialog;
 
     enum Tabs
@@ -100,9 +102,7 @@ private slots:
     void enableApplyButton();
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
-    void loadWindowState();
     void loadSplitterState();
-    void saveWindowState() const;
     void handleScanFolderViewSelectionChanged();
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
@@ -173,7 +173,6 @@ private:
     // IP Filter
     bool isIPFilteringEnabled() const;
     QString getFilter() const;
-    bool m_refreshingIpFilter;
     // Queueing system
     bool isQueueingSystemEnabled() const;
     int getMaxActiveDownloads() const;
@@ -187,11 +186,16 @@ private:
     bool isAlternativeWebUIPathValid();
 
     Ui::OptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QStringList> m_storeHSplitterSize;
+
     QAbstractButton *m_applyButton;
+
     AdvancedSettings *m_advancedSettings;
+
     QList<QString> m_addedScanDirs;
     QList<QString> m_removedScanDirs;
     QList<QTableWidget*> m_scheduleDayTables;
-};
 
-#endif // OPTIONSDIALOG_H
+    bool m_refreshingIpFilter = false;
+};

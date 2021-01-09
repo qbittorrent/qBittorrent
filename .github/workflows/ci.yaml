@@ -12,12 +12,12 @@ on:
     branches: [ master ]
 
 env:
-  # Qt: 5.15.0
-  # libtorrent: RC_1_2 HEAD, 1.2.10
-  VCPKG_COMMIT: 32eccc18191fbb57b159784a1724d2d00613ae82
+  # Qt: 5.15.1
+  # libtorrent: RC_1_2 HEAD, 1.2.11
+  VCPKG_COMMIT: 133051b793486ef14e67e9d1f48c9cfe64dc127e
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  UBUNTU_LIBTORRENT_VERSION: libtorrent-1.2.10
+  LIBTORRENT_VERSION_TAG: v1.2.11
 
 jobs:
 
@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     - name: install all build dependencies except libtorrent from Ubuntu repos
       run: |
@@ -52,7 +52,7 @@ jobs:
     - name: install libtorrent from source
       run: |
         git clone https://github.com/arvidn/libtorrent && cd libtorrent
-        git checkout ${{ env.UBUNTU_LIBTORRENT_VERSION }}
+        git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
         cmake -B cmake-build-dir -G "Ninja" \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
           -Ddeprecated-functions=OFF \
@@ -70,9 +70,9 @@ jobs:
         cmake --build build
 
     - name: upload artifact as zip
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI-Ubuntu_${{ matrix.os }}-${{ matrix.qbt_gui }}
+        name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}
         path: |
           build/compile_commands.json
           build/target_graph.dot
@@ -92,7 +92,7 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     # - ninja is needed for building qBittorrent (because it's preferrable, not a hard requirement)
     - name: install additional required packages with chocolatey
@@ -100,7 +100,7 @@ jobs:
         choco install ninja
 
     - name: setup vcpkg (cached, if possible)
-      uses: lukka/run-vcpkg@v4.1
+      uses: lukka/run-vcpkg@v4
       with:
         vcpkgDirectory: ${{ env.VCPKG_DEST_WIN }}
         vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
@@ -134,7 +134,7 @@ jobs:
 
     # NOTE: this is necessary to correctly find and use cl.exe with the Ninja generator for now
     - name: setup devcmd
-      uses: ilammy/msvc-dev-cmd@v1.4.1
+      uses: ilammy/msvc-dev-cmd@v1
 
     - name: build qBittorrent
       shell: cmd
@@ -149,9 +149,9 @@ jobs:
         cmake --build build
 
     - name: upload artifact as zip
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI-Windows_x64-static-release
+        name: qBittorrent-CI_Windows-x64
         path: |
           build/compile_commands.json
           build/target_graph.dot
@@ -175,17 +175,17 @@ jobs:
 
     steps:
     - name: checkout repository
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2
 
     # - ninja is needed for building qBittorrent (because it's preferrable, not a hard requirement)
-    # - pkg-config is needed for some vcpkg installations
+    # - automake is needed for the installation the vcpkg installation of fontconfig, a dependency of qt5-base
     - name: install additional required packages with homebrew
       shell: bash
       run: |
-        brew install ninja pkg-config
+        brew install automake ninja
 
     - name: setup vcpkg (cached, if possible)
-      uses: lukka/run-vcpkg@v4.1
+      uses: lukka/run-vcpkg@v4
       with:
         vcpkgDirectory: ${{ env.VCPKG_DEST_MACOS }}
         vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
@@ -197,13 +197,13 @@ jobs:
         Copy-Item ${{ env.RUNVCPKG_VCPKG_ROOT }}/triplets/x64-osx.cmake `
           ${{ github.workspace }}/triplets_overlay/x64-osx-release.cmake
         Add-Content ${{ github.workspace }}/triplets_overlay/x64-osx-release.cmake `
-          -Value "set(VCPKG_BUILD_TYPE release)"
+          -Value "set(VCPKG_BUILD_TYPE release)","set(VCPKG_OSX_DEPLOYMENT_TARGET 10.15)"
 
     # NOTE: Avoids a libtorrent ABI issue. See https://github.com/arvidn/libtorrent/issues/4965
-    - name: force AppleClang to compile libtorrent with C++14
+    - name: force AppleClang to compile libtorrent with C++17
       run: |
         (Get-Content -path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake).Replace( `
-          '${FEATURE_OPTIONS}', '${FEATURE_OPTIONS} -DCMAKE_CXX_STANDARD=14') `
+          '${FEATURE_OPTIONS}', '${FEATURE_OPTIONS} -DCMAKE_CXX_STANDARD=17') `
           | Set-Content -Path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake
 
     - name: install dependencies via vcpkg
@@ -234,9 +234,9 @@ jobs:
         cmake --build build
 
     - name: upload artifact as zip
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI-macOS_x64-static-release_${{ matrix.qbt_gui }}
+        name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}
         path: |
           build/compile_commands.json
           build/target_graph.dot

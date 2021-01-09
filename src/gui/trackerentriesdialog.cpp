@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QHash>
+#include <QVector>
 
 #include "base/bittorrent/trackerentry.h"
 #include "ui_trackerentriesdialog.h"
@@ -41,7 +42,7 @@
 TrackerEntriesDialog::TrackerEntriesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::TrackerEntriesDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Dimension"))
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
 

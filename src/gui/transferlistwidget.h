@@ -26,12 +26,11 @@
  * exception statement from your version.
  */
 
-#ifndef TRANSFERLISTWIDGET_H
-#define TRANSFERLISTWIDGET_H
+#pragma once
 
 #include <functional>
+#include <QtContainerFwd>
 #include <QTreeView>
-#include <QVector>
 
 class MainWindow;
 class TransferListDelegate;
@@ -40,7 +39,8 @@ class TransferListSortModel;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class InfoHash;
+    class Torrent;
 }
 
 class TransferListWidget final : public QTreeView
@@ -79,9 +79,7 @@ public slots:
     void openSelectedTorrentsFolder() const;
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();
-    void setDlLimitSelectedTorrents();
-    void setUpLimitSelectedTorrents();
-    void setMaxRatioSelectedTorrents();
+    void setTorrentOptions();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
     void displayDLHoSMenu(const QPoint&);
@@ -90,7 +88,7 @@ public slots:
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
-    void applyTrackerFilter(const QStringList &hashes);
+    void applyTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes);
     void previewFile(const QString &filePath);
     void renameSelectedTorrent();
 
@@ -98,7 +96,7 @@ protected:
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
     bool loadSettings();
-    QVector<BitTorrent::TorrentHandle *> getSelectedTorrents() const;
+    QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
 
 protected slots:
     void torrentDoubleClicked();
@@ -112,7 +110,7 @@ protected slots:
     void saveSettings();
 
 signals:
-    void currentTorrentChanged(BitTorrent::TorrentHandle *const torrent);
+    void currentTorrentChanged(BitTorrent::Torrent *const torrent);
 
 private:
     void wheelEvent(QWheelEvent *event) override;
@@ -120,13 +118,11 @@ private:
     void editTorrentTrackers();
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
-    void applyToSelectedTorrents(const std::function<void (BitTorrent::TorrentHandle *const)> &fn);
-    QVector<BitTorrent::TorrentHandle *> getVisibleTorrents() const;
+    void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
+    QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
 
     TransferListDelegate *m_listDelegate;
     TransferListModel *m_listModel;
     TransferListSortModel *m_sortFilterModel;
     MainWindow *m_mainWindow;
 };
-
-#endif // TRANSFERLISTWIDGET_H

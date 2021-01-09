@@ -9,6 +9,8 @@ unix:!macx: include(../unixconf.pri)
 
 QT += network xml
 
+macx|*-clang*: QMAKE_CXXFLAGS_WARN_ON += -Wno-range-loop-analysis
+
 nogui {
     TARGET = qbittorrent-nox
     QT -= gui

@@ -30,8 +30,10 @@
 
 #include <algorithm>
 
+#include <QHash>
 #include <QJsonDocument>
 #include <QMetaObject>
+#include <QVector>
 
 #include "apierror.h"
 

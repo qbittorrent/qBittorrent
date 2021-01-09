@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef ICONPROVIDER_H
-#define ICONPROVIDER_H
+#pragma once
 
 #include <QObject>
 
@@ -51,5 +50,3 @@ protected:
 
     static IconProvider *m_instance;
 };
-
-#endif // ICONPROVIDER_H

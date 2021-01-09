@@ -4,7 +4,8 @@ os:
   - linux
   - osx
 
-dist: bionic
+dist: focal
+osx_image: xcode12.2
 
 env:
   matrix:
@@ -15,6 +16,11 @@ env:
   global:
     - secure: "OI9CUjj4lTb0HwwIZU5PbECU3hLlAL6KC8KsbwohG8/O3j5fLcnmDsK4Ad9us5cC39sS11Jcd1kDP2qRcCuST/glVNhLkcjKkiQerOfd5nQ/qL4JYfz/1mfP5mdpz9jHKzpLUIG+TXkbSTjP6VVmsb5KPT+3pKEdRFZB+Pu9+J8="
     - coverity_branch: coverity_scan
+
+jobs:
+  include:
+  - env: libt_branch=RC_2_0 gui=true build_system=qmake
+    os: linux
 
 notifications:
   email:
@@ -39,8 +45,7 @@ addons:
   apt:
     sources:
       # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
-      - sourceline: 'ppa:qbittorrent-team/qbt-libtorrent-travisci'
-      - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+      - sourceline: 'deb https://apt.kitware.com/ubuntu/ focal main'
         key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
@@ -69,6 +74,8 @@ before_install:
       # TravisCI installs its own cmake to another location which ovverides other installations
       # if they don't call the new binary directly
       alias cmake="/usr/bin/cmake"
+
+      export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
     fi
   - |
     if [ "$TRAVIS_OS_NAME" = "osx" ]; then
@@ -114,20 +121,34 @@ install:
       ccache -V && ccache --show-stats && ccache --zero-stats
     fi
   - |
-    if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      # Will install latest 1.2.x daily build from the PPA
-      sudo apt-get -y install libtorrent-rasterbar-dev
-    fi
-  - |
-    if [ "$libt_branch" = "RC_1_2" ] && [ "$TRAVIS_OS_NAME" = "osx" ]; then
-      # building libtorrent manually should be faster than using the official bottle
-      # because the bottle will also pull in a lot of updated dependencies and prolong the overall time
+    if [ "$libt_branch" = "RC_1_2" ]; then
       pushd "$HOME"
       git clone --single-branch --branch RC_1_2 https://github.com/arvidn/libtorrent.git
       cd libtorrent
-      git checkout tags/v1.2.10
+      git checkout tags/v1.2.11
 
-      cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=14 -Ddeprecated-functions=OFF -DOPENSSL_ROOT_DIR="$openssl_root_path" ./
+      cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_CXX_STANDARD=17 \
+        -Ddeprecated-functions=OFF \
+        -DOPENSSL_ROOT_DIR="$openssl_root_path" \
+        ./
+      make
+      sudo make install
+      popd
+    elif [ "$libt_branch" = "RC_2_0" ]; then
+      pushd "$HOME"
+      git clone --single-branch --branch RC_2_0 https://github.com/arvidn/libtorrent.git
+      cd libtorrent
+      git checkout tags/v2.0.1
+      git submodule update --init --recursive
+
+      cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_CXX_STANDARD=17 \
+        -Ddeprecated-functions=ON \
+        -DOPENSSL_ROOT_DIR="$openssl_root_path" \
+        ./
       make
       sudo make install
       popd

@@ -23,15 +23,23 @@
         <translation>ハッシュチェックを省略</translation>
     </message>
     <message>
-        <source>Create subfolder</source>
-        <translation type="vanished">サブフォルダーを作成</translation>
-    </message>
-    <message>
         <source>Torrent Management Mode:</source>
         <translation>トレント管理モード:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
+        <source>Content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -708,10 +716,6 @@
         <translation>パスワード:</translation>
     </message>
     <message>
-        <source>Enabled protocol:</source>
-        <translation>有効なプロトコル:</translation>
-    </message>
-    <message>
         <source>TCP and μTP</source>
         <translation>TCP と μTP</translation>
     </message>
@@ -1074,10 +1078,6 @@
         <translation>カテゴリの保存パスが変更されたとき:</translation>
     </message>
     <message>
-        <source>Create subfolder for torrents with multiple files</source>
-        <translation type="vanished">複数ファイルのトレントにはサブフォルダーを作成する</translation>
-    </message>
-    <message>
         <source>seconds</source>
         <translation>秒</translation>
     </message>
@@ -1174,10 +1174,6 @@
         <translation>埋め込みトラッカーポート</translation>
     </message>
     <message>
-        <source>Optional IP Address to bind to (requires restart):</source>
-        <translation type="vanished">バインドする IP アドレスの選択 (再起動が必要)</translation>
-    </message>
-    <message>
         <source>Fastest upload</source>
         <translation>最速アップロード</translation>
     </message>
@@ -1202,10 +1198,6 @@
         <translation>libtorrent 部分</translation>
     </message>
     <message>
-        <source>Coalesce reads &amp; writes:</source>
-        <translation type="vanished">読み込みや書き込みに別バッファを割り当て</translation>
-    </message>
-    <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>送信ポート (最小) [0: 無効]</translation>
     </message>
@@ -1224,10 +1216,6 @@
     <message>
         <source>Send upload piece suggestions:</source>
         <translation>アップロードピースの提案を送信</translation>
-    </message>
-    <message>
-        <source>Disk cache:</source>
-        <translation type="vanished">ディスクキャッシュ</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1252,10 +1240,6 @@
     <message>
         <source>Send buffer watermark:</source>
         <translation>送信バッファーの透かし</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval:</source>
-        <translation type="vanished">ディスクキャッシュの有効期限:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1292,10 +1276,6 @@
     <message>
         <source>Upload slots behavior:</source>
         <translation>アップロードスロットの動作</translation>
-    </message>
-    <message>
-        <source>Network Interface (requires restart):</source>
-        <translation type="vanished">ネットワークインターフェース (再起動が必要)</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1451,6 +1431,14 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer connection protocol:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2214,10 +2202,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 前</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <translation>割り当て中</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -3233,15 +3217,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Create Subfolder:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation type="unfinished" />
     </message>
@@ -3323,6 +3298,27 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>

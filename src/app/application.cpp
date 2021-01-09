@@ -63,7 +63,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/exceptions.h"
 #include "base/iconprovider.h"
 #include "base/logger.h"
@@ -81,6 +81,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "base/version.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
 
@@ -214,7 +215,7 @@ const QBtCommandLineParameters &Application::commandLineArgs() const
 
 bool Application::isFileLoggerEnabled() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true).toBool();
+    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true);
 }
 
 void Application::setFileLoggerEnabled(const bool value)
@@ -228,8 +229,8 @@ void Application::setFileLoggerEnabled(const bool value)
 
 QString Application::fileLoggerPath() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_PATH,
-            {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER}).toString();
+    return settings()->loadValue(KEY_FILELOGGER_PATH
+        , QString {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER});
 }
 
 void Application::setFileLoggerPath(const QString &path)
@@ -241,7 +242,7 @@ void Application::setFileLoggerPath(const QString &path)
 
 bool Application::isFileLoggerBackup() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true).toBool();
+    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true);
 }
 
 void Application::setFileLoggerBackup(const bool value)
@@ -253,7 +254,7 @@ void Application::setFileLoggerBackup(const bool value)
 
 bool Application::isFileLoggerDeleteOld() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true).toBool();
+    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true);
 }
 
 void Application::setFileLoggerDeleteOld(const bool value)
@@ -265,7 +266,7 @@ void Application::setFileLoggerDeleteOld(const bool value)
 
 int Application::fileLoggerMaxSize() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE);
     return std::min(std::max(val, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
 }
 
@@ -279,7 +280,7 @@ void Application::setFileLoggerMaxSize(const int bytes)
 
 int Application::fileLoggerAge() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1);
     return std::min(std::max(val, 1), 365);
 }
 
@@ -290,7 +291,7 @@ void Application::setFileLoggerAge(const int value)
 
 int Application::fileLoggerAgeType() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1).toInt();
+    const int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1);
     return ((val < 0) || (val > 2)) ? 1 : val;
 }
 
@@ -310,7 +311,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) const
+void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 {
     QString program = Preferences::instance()->getAutoRunProgram().trimmed();
     program.replace("%N", torrent->name());
@@ -404,7 +405,7 @@ void Application::runExternalProgram(const BitTorrent::TorrentHandle *torrent) c
 #endif
 }
 
-void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent)
+void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 {
     // Prepare mail content
     const QString content = tr("Torrent name: %1").arg(torrent->name()) + '\n'
@@ -423,7 +424,7 @@ void Application::sendNotificationEmail(const BitTorrent::TorrentHandle *torrent
                      content);
 }
 
-void Application::torrentFinished(BitTorrent::TorrentHandle *const torrent)
+void Application::torrentFinished(BitTorrent::Torrent *const torrent)
 {
     Preferences *const pref = Preferences::instance();
 
@@ -505,7 +506,7 @@ void Application::processParams(const QStringList &params)
     }
 #endif
     BitTorrent::AddTorrentParams torrentParams;
-    TriStateBool skipTorrentDialog;
+    std::optional<bool> skipTorrentDialog;
 
     for (QString param : params)
     {
@@ -521,7 +522,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@addPaused=")))
         {
-            torrentParams.addPaused = param.midRef(11).toInt() ? TriStateBool::True : TriStateBool::False;
+            torrentParams.addPaused = (param.midRef(11).toInt() != 0);
             continue;
         }
 
@@ -551,7 +552,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@skipDialog=")))
         {
-            skipTorrentDialog = param.midRef(12).toInt() ? TriStateBool::True : TriStateBool::False;
+            skipTorrentDialog = (param.midRef(12).toInt() != 0);
             continue;
         }
 
@@ -561,9 +562,7 @@ void Application::processParams(const QStringList &params)
         // be shown and skipTorrentDialog is undefined. The other is when
         // skipTorrentDialog is false, meaning that the application setting
         // should be overridden.
-        const bool showDialogForThisTorrent =
-            ((AddNewTorrentDialog::isEnabled() && skipTorrentDialog == TriStateBool::Undefined)
-             || skipTorrentDialog == TriStateBool::False);
+        const bool showDialogForThisTorrent = !skipTorrentDialog.value_or(!AddNewTorrentDialog::isEnabled());
         if (showDialogForThisTorrent)
             AddNewTorrentDialog::show(param, torrentParams, m_window);
         else

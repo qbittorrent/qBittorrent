@@ -269,17 +269,13 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         if (m_currentRule.assignedCategory().isEmpty())
             m_ui->comboCategory->clearEditText();
         int index = 0;
-        if (m_currentRule.addPaused() == TriStateBool::True)
-            index = 1;
-        else if (m_currentRule.addPaused() == TriStateBool::False)
-            index = 2;
+        if (m_currentRule.addPaused().has_value())
+            index = (*m_currentRule.addPaused() ? 1 : 2);
         m_ui->comboAddPaused->setCurrentIndex(index);
         index = 0;
-        if (m_currentRule.createSubfolder() == TriStateBool::True)
-            index = 1;
-        else if (m_currentRule.createSubfolder() == TriStateBool::False)
-            index = 2;
-        m_ui->comboCreateSubfolder->setCurrentIndex(index);
+        if (m_currentRule.torrentContentLayout())
+            index = static_cast<int>(*m_currentRule.torrentContentLayout()) + 1;
+        m_ui->comboContentLayout->setCurrentIndex(index);
         m_ui->spinIgnorePeriod->setValue(m_currentRule.ignoreDays());
         QDateTime dateTime = m_currentRule.lastMatch();
         QString lMatch;
@@ -320,8 +316,8 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
     m_ui->spinIgnorePeriod->setValue(0);
     m_ui->comboAddPaused->clearEditText();
     m_ui->comboAddPaused->setCurrentIndex(-1);
-    m_ui->comboCreateSubfolder->clearEditText();
-    m_ui->comboCreateSubfolder->setCurrentIndex(-1);
+    m_ui->comboContentLayout->clearEditText();
+    m_ui->comboContentLayout->setCurrentIndex(-1);
     updateFieldsToolTips(m_ui->checkRegex->isChecked());
     updateMustLineValidity();
     updateMustNotLineValidity();
@@ -349,18 +345,18 @@ void AutomatedRssDownloader::updateEditedRule()
     m_currentRule.setEpisodeFilter(m_ui->lineEFilter->text());
     m_currentRule.setSavePath(m_ui->checkBoxSaveDiffDir->isChecked() ? m_ui->lineSavePath->selectedPath() : "");
     m_currentRule.setCategory(m_ui->comboCategory->currentText());
-    TriStateBool addPaused; // Undefined by default
+    std::optional<bool> addPaused;
     if (m_ui->comboAddPaused->currentIndex() == 1)
-        addPaused = TriStateBool::True;
+        addPaused = true;
     else if (m_ui->comboAddPaused->currentIndex() == 2)
-        addPaused = TriStateBool::False;
+        addPaused = false;
     m_currentRule.setAddPaused(addPaused);
-    TriStateBool createSubfolder; // Undefined by default
-    if (m_ui->comboCreateSubfolder->currentIndex() == 1)
-        createSubfolder = TriStateBool::True;
-    else if (m_ui->comboCreateSubfolder->currentIndex() == 2)
-        createSubfolder = TriStateBool::False;
-    m_currentRule.setCreateSubfolder(createSubfolder);
+
+    std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+    if (m_ui->comboContentLayout->currentIndex() > 0)
+        contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->comboContentLayout->currentIndex() - 1);
+    m_currentRule.setTorrentContentLayout(contentLayout);
+
     m_currentRule.setIgnoreDays(m_ui->spinIgnorePeriod->value());
 }
 

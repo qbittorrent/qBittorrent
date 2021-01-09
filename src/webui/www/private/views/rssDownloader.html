@@ -189,7 +189,7 @@
                 </tr>
             </table>
             <div class="formRow" title="QBT_TR(Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator))QBT_TR[CONTEXT=AutomatedRssDownloader]">
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator))QBT_TR[CONTEXT=AutomatedRssDownloader]">
                 <input disabled type="checkbox" id="useSmartFilter" />
                 <label for="useSmartFilter">QBT_TR(Use Smart Episode Filter)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
             </div>
@@ -248,13 +248,14 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
             <table class="fullWidth">
                 <tr>
                     <td>
-                        <label class="noWrap">QBT_TR(Create Subfolder:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        <label class="noWrap">QBT_TR(Torrent content layout:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
                     </td>
                     <td class="fullWidth">
-                        <select disabled id="creatSubfolderCombobox" class="fullWidth">
-                            <option value="default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="always">QBT_TR(Always)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="never">QBT_TR(Never)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                        <select disabled id="contentLayoutCombobox" class="fullWidth">
+                            <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
                         </select>
                     </td>
                 </tr>
@@ -586,15 +587,18 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                     break;
             }
 
-            switch ($('creatSubfolderCombobox').value) {
-                case 'default':
-                    rulesList[rule].createSubfolder = null;
+            switch ($('contentLayoutCombobox').value) {
+                case 'Default':
+                    rulesList[rule].torrentContentLayout = null;
                     break;
-                case 'always':
-                    rulesList[rule].createSubfolder = true;
+                case 'Original':
+                    rulesList[rule].torrentContentLayout = 'Original';
                     break;
-                case 'never':
-                    rulesList[rule].createSubfolder = false;
+                case 'Subfolder':
+                    rulesList[rule].torrentContentLayout = 'Subfolder';
+                    break;
+                case 'NoSubfolder':
+                    rulesList[rule].torrentContentLayout = 'NoSubfolder';
                     break;
             }
 
@@ -660,7 +664,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                 $('saveToText').disabled = true;
                 $('ignoreDaysValue').disabled = true;
                 $('addPausedCombobox').disabled = true;
-                $('creatSubfolderCombobox').disabled = true;
+                $('contentLayoutCombobox').disabled = true;
 
                 // reset all boxes
                 $('useRegEx').checked = false;
@@ -674,7 +678,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                 $('ignoreDaysValue').value = 0;
                 $('lastMatchText').innerHTML = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
                 $('addPausedCombobox').value = 'default';
-                $('creatSubfolderCombobox').value = 'default';
+                $('contentLayoutCombobox').value = 'Default';
                 rssDownloaderFeedSelectionTable.clear();
                 rssDownloaderArticlesTable.clear();
 
@@ -696,7 +700,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                 $('saveToText').disabled = rulesList[ruleName].savePath ? false : true;
                 $('ignoreDaysValue').disabled = false;
                 $('addPausedCombobox').disabled = false;
-                $('creatSubfolderCombobox').disabled = false;
+                $('contentLayoutCombobox').disabled = false;
 
                 // load rule settings
                 $('useRegEx').checked = rulesList[ruleName].useRegex;
@@ -725,10 +729,10 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                 else
                     $('addPausedCombobox').value = rulesList[ruleName].addPaused ? 'always' : 'never';
 
-                if (rulesList[ruleName].createSubfolder === null)
-                    $('creatSubfolderCombobox').value = 'default';
+                if (rulesList[ruleName].torrentContentLayout === null)
+                    $('contentLayoutCombobox').value = 'Default';
                 else
-                    $('creatSubfolderCombobox').value = rulesList[ruleName].createSubfolder ? 'always' : 'never';
+                    $('contentLayoutCombobox').value = rulesList[ruleName].torrentContentLayout;
 
                 setElementTitles();
 

@@ -33,10 +33,7 @@
 
 using namespace BitTorrent;
 
-InfoHash::InfoHash()
-    : m_valid(false)
-{
-}
+const int InfoHashTypeId = qRegisterMetaType<InfoHash>();
 
 InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
     : m_valid(true)
@@ -85,6 +82,11 @@ bool BitTorrent::operator==(const InfoHash &left, const InfoHash &right)
 bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
 {
     return !(left == right);
+}
+
+bool BitTorrent::operator<(const InfoHash &left, const InfoHash &right)
+{
+    return static_cast<lt::sha1_hash>(left) < static_cast<lt::sha1_hash>(right);
 }
 
 uint BitTorrent::qHash(const InfoHash &key, const uint seed)
