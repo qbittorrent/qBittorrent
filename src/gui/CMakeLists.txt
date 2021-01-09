@@ -41,7 +41,6 @@ add_library(qbt_gui STATIC
     properties/trackerlistwidget.h
     properties/trackersadditiondialog.h
     raisedmessagebox.h
-    ratelimitdelegate.h
     rss/articlelistwidget.h
     rss/automatedrssdownloader.h
     rss/feedlistwidget.h
@@ -61,6 +60,7 @@ add_library(qbt_gui STATIC
     tagfilterproxymodel.h
     tagfilterwidget.h
     timerangedialog.h
+    timerangeitemdelegate.h
     torrentcategorydialog.h
     torrentcontentfiltermodel.h
     torrentcontentmodel.h
@@ -123,7 +123,6 @@ add_library(qbt_gui STATIC
     properties/trackerlistwidget.cpp
     properties/trackersadditiondialog.cpp
     raisedmessagebox.cpp
-    ratelimitdelegate.cpp
     rss/articlelistwidget.cpp
     rss/automatedrssdownloader.cpp
     rss/feedlistwidget.cpp
@@ -143,6 +142,7 @@ add_library(qbt_gui STATIC
     tagfilterproxymodel.cpp
     tagfilterwidget.cpp
     timerangedialog.cpp
+    timerangeitemdelegate.cpp
     torrentcategorydialog.cpp
     torrentcontentfiltermodel.cpp
     torrentcontentmodel.cpp

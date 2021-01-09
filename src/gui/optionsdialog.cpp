@@ -77,7 +77,7 @@
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
-#include "gui/ratelimitdelegate.h"
+#include "gui/timerangeitemdelegate.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scanfoldersdelegate.h"
@@ -653,10 +653,7 @@ void OptionsDialog::initializeSchedulerTables()
         scheduleTable->setContextMenuPolicy(Qt::CustomContextMenu);
 
         ScheduleDay *scheduleDay = schedule->scheduleDay(i);
-        scheduleTable->setItemDelegate(new RateLimitDelegate(*scheduleDay, scheduleTable));
-
-        connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
-            [this, i](QPoint pos) { showScheduleDayContextMenu(i); });
+        scheduleTable->setItemDelegate(new TimeRangeItemDelegate(*scheduleDay, scheduleTable));
 
         m_scheduleDayTables.append(scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
@@ -666,12 +663,17 @@ void OptionsDialog::initializeSchedulerTables()
         auto *removeButton = new QPushButton(tr("Remove entry"), tabContent);
         removeButton->setEnabled(false);
 
-        connect(addButton, &QPushButton::clicked, this,
-            [this, scheduleDay]() { OptionsDialog::openTimeRangeDialog(scheduleDay); });
-        connect(removeButton, &QPushButton::clicked, this,
-            [this, i]() { OptionsDialog::removeSelectedTimeRanges(i); });
         connect(selectionModel, &QItemSelectionModel::selectionChanged, this,
             [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
+
+        connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
+            [this, i](QPoint pos) { showScheduleDayContextMenu(i); });
+
+        connect(addButton, &QPushButton::clicked, this,
+            [this, scheduleDay]() { OptionsDialog::openTimeRangeDialog(scheduleDay); });
+
+        connect(removeButton, &QPushButton::clicked, this,
+            [this, i]() { OptionsDialog::removeSelectedTimeRanges(i); });
 
         if (i == today)
             scheduleTable->selectRow(scheduleDay->getNowIndex());

@@ -1,4 +1,4 @@
-#include "ratelimitdelegate.h"
+#include "timerangeitemdelegate.h"
 
 #include <QSpinBox>
 #include <QTimeEdit>
@@ -9,13 +9,13 @@
 
 using namespace Gui;
 
-RateLimitDelegate::RateLimitDelegate(ScheduleDay &scheduleDay, QObject *parent)
+TimeRangeItemDelegate::TimeRangeItemDelegate(ScheduleDay &scheduleDay, QObject *parent)
     : QStyledItemDelegate {parent}
     , m_scheduleDay {scheduleDay}
 {
 }
 
-QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget *TimeRangeItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(option)
     int col = index.column();
@@ -41,7 +41,7 @@ QWidget *RateLimitDelegate::createEditor(QWidget *parent, const QStyleOptionView
     return nullptr;
 }
 
-void RateLimitDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void TimeRangeItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     int col = index.column();
 
@@ -57,7 +57,7 @@ void RateLimitDelegate::setEditorData(QWidget *editor, const QModelIndex &index)
     }
 }
 
-void RateLimitDelegate::setModelData(QWidget *editor, QAbstractItemModel *option, const QModelIndex &index) const
+void TimeRangeItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *option, const QModelIndex &index) const
 {
     Q_UNUSED(option)
     int col = index.column();
@@ -83,7 +83,7 @@ void RateLimitDelegate::setModelData(QWidget *editor, QAbstractItemModel *option
     }
 }
 
-void RateLimitDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void TimeRangeItemDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(index)
     editor->setGeometry(option.rect);

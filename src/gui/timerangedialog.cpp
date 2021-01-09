@@ -43,11 +43,8 @@ TimeRangeDialog::~TimeRangeDialog()
 
 void TimeRangeDialog::timesUpdated()
 {
-    m_ui->labelTimeFrom->setText(timeFrom().toString("hh:mm:ss.zzz"));
-    m_ui->labelTimeTo->setText(timeTo().toString("hh:mm:ss.zzz"));
-
-    m_ui->timeEditFrom->setMaximumTime(m_ui->timeEditTo->time());
-    m_ui->timeEditTo->setMinimumTime(m_ui->timeEditFrom->time());
+    m_ui->labelTimeFrom->setText(timeFrom().toString("hh:mm:ss"));
+    m_ui->labelTimeTo->setText(timeTo().toString("hh:mm:ss"));
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(isValid());
 }
 

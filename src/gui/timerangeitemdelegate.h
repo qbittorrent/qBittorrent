@@ -16,12 +16,12 @@ namespace Gui
     };
 }
 
-class RateLimitDelegate final : public QStyledItemDelegate
+class TimeRangeItemDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
 
 public:
-    RateLimitDelegate(ScheduleDay &scheduleDay, QObject *parent);
+    TimeRangeItemDelegate(ScheduleDay &scheduleDay, QObject *parent);
 
 private:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;

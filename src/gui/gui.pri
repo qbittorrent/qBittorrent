@@ -42,7 +42,6 @@ HEADERS += \
     $$PWD/properties/trackerlistwidget.h \
     $$PWD/properties/trackersadditiondialog.h \
     $$PWD/raisedmessagebox.h \
-    $$PWD/ratelimitdelegate.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
     $$PWD/rss/feedlistwidget.h \
@@ -62,6 +61,7 @@ HEADERS += \
     $$PWD/tagfilterproxymodel.h \
     $$PWD/tagfilterwidget.h \
     $$PWD/timerangedialog.h \
+    $$PWD/timerangeitemdelegate.h \
     $$PWD/torrentcategorydialog.h \
     $$PWD/torrentcontentfiltermodel.h \
     $$PWD/torrentcontentmodel.h \
@@ -124,7 +124,6 @@ SOURCES += \
     $$PWD/properties/trackerlistwidget.cpp \
     $$PWD/properties/trackersadditiondialog.cpp \
     $$PWD/raisedmessagebox.cpp \
-    $$PWD/ratelimitdelegate.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
     $$PWD/rss/feedlistwidget.cpp \
@@ -144,6 +143,7 @@ SOURCES += \
     $$PWD/tagfilterproxymodel.cpp \
     $$PWD/tagfilterwidget.cpp \
     $$PWD/timerangedialog.cpp \
+    $$PWD/timerangeitemdelegate.cpp \
     $$PWD/torrentcategorydialog.cpp \
     $$PWD/torrentcontentfiltermodel.cpp \
     $$PWD/torrentcontentmodel.cpp \

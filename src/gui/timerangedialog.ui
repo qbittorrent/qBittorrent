@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Add scheduled ratio limit</string>
+   <string>Add scheduled speed limit</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -33,7 +33,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="label3">
        <property name="text">
-        <string>Rate limit</string>
+        <string>Speed limit</string>
        </property>
       </widget>
      </item>
@@ -114,7 +114,7 @@
      <item row="4" column="0">
       <widget class="QLabel" name="label5">
        <property name="text">
-        <string>Preview: </string>
+        <string>Preview</string>
        </property>
       </widget>
      </item>
