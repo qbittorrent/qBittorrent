@@ -72,7 +72,7 @@ jobs:
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI-Ubuntu_${{ matrix.os }}-${{ matrix.qbt_gui }}
+        name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}
         path: |
           build/compile_commands.json
           build/target_graph.dot
@@ -151,7 +151,7 @@ jobs:
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI-Windows_x64-static-release
+        name: qBittorrent-CI_Windows-x64
         path: |
           build/compile_commands.json
           build/target_graph.dot
@@ -236,7 +236,7 @@ jobs:
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI-macOS_x64-static-release_${{ matrix.qbt_gui }}
+        name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}
         path: |
           build/compile_commands.json
           build/target_graph.dot

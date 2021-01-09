@@ -59,6 +59,12 @@ macro(qbt_common_config)
         endif()
     endif()
 
+    if ((CXX_COMPILER_ID STREQUAL "Clang") OR (CXX_COMPILER_ID STREQUAL "AppleClang"))
+        target_compile_options(qbt_common_cfg INTERFACE
+            -Wno-range-loop-analysis
+        )
+    endif()
+
     if (MINGW)
         target_link_options(qbt_common_cfg INTERFACE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:LINKER:--dynamicbase>)
     endif()
@@ -70,8 +76,12 @@ macro(qbt_common_config)
     endif()
 
     if (MSVC)
-        target_compile_options(qbt_common_cfg INTERFACE /guard:cf)
-        target_link_options(qbt_common_cfg INTERFACE /guard:cf
+        target_compile_options(qbt_common_cfg INTERFACE
+            /guard:cf
+            /utf-8
+        )
+        target_link_options(qbt_common_cfg INTERFACE
+            /guard:cf
             $<$<NOT:$<CONFIG:Debug>>:/OPT:REF /OPT:ICF>
             # suppress linking warning due to /INCREMENTAL and /OPT:ICF being both ON
             $<$<CONFIG:RelWithDebInfo>:/INCREMENTAL:NO>

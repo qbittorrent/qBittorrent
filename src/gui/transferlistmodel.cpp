@@ -361,9 +361,9 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_TAGS:
         return tagsString(torrent->tags());
     case TR_ADD_DATE:
-        return torrent->addedTime().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_SEED_DATE:
-        return torrent->completedTime().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        return QLocale().toString(torrent->completedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_TRACKER:
         return torrent->currentTracker();
     case TR_DLLIMIT:
@@ -387,7 +387,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
-        return torrent->lastSeenComplete().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        return QLocale().toString(torrent->lastSeenComplete().toLocalTime(), QLocale::ShortFormat);
     case TR_LAST_ACTIVITY:
         return lastActivityString((torrent->isPaused() || torrent->isChecking()) ? -1 : torrent->timeSinceActivity());
     case TR_AVAILABILITY:
