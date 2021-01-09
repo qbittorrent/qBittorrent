@@ -1387,15 +1387,11 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
         break;
     }
 
-#ifdef HAS_IDN_SUPPORT
     settingsPack.set_bool(lt::settings_pack::allow_idna, isIDNSupportEnabled());
-#endif
 
     settingsPack.set_bool(lt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
 
-#ifdef HAS_HTTPS_TRACKER_VALIDATION
     settingsPack.set_bool(lt::settings_pack::validate_https_trackers, validateHTTPSTrackerCertificate());
-#endif
 
     settingsPack.set_bool(lt::settings_pack::no_connect_privileged_ports, blockPeersOnPrivilegedPorts());
 
