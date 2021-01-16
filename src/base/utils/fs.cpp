@@ -273,8 +273,6 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSepar
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 {
-    if (path.isEmpty()) return -1;
-
     return QStorageInfo(path).bytesAvailable();
 }
 
