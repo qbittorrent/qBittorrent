@@ -1923,7 +1923,7 @@ void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVers
     }
     else if (invokedByUser)
     {
-        QMessageBox::information(this, tr("Already Using the Latest qBittorrent Version"),
+        QMessageBox::information(this, tr("qBittorrent Version Check"),
                                  tr("No updates available.\nYou are already using the latest version."));
     }
     sender()->deleteLater();
