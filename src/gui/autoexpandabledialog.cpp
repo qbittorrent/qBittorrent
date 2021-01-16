@@ -28,6 +28,7 @@
 
 #include "autoexpandabledialog.h"
 
+#include "base/utils/fs.h"
 #include "ui_autoexpandabledialog.h"
 #include "utils.h"
 
@@ -57,12 +58,9 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     d.m_ui->textEdit->selectAll();
     if (excludeExtension)
     {
-        int lastDotIndex = text.lastIndexOf('.');
-        if ((lastDotIndex > 3) && (text.mid(lastDotIndex - 4, 4).toLower() == ".tar"))
-            lastDotIndex -= 4;
-        // Select file name without extension, except dot files like .gitignore
-        if (lastDotIndex > 0)
-            d.m_ui->textEdit->setSelection(0, lastDotIndex);
+        const QString extension = Utils::Fs::fileExtension(text);
+        if (!extension.isEmpty())
+            d.m_ui->textEdit->setSelection(0, (text.length() - extension.length() - 1));
     }
 
     bool res = d.exec();
