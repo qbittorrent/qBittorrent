@@ -27,10 +27,6 @@
         <translation>Mode de gestion des torrents</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Conserver le dossier racine</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
         <translation type="unfinished" />
     </message>
@@ -1398,10 +1394,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source> min</source>
         <translation type="unfinished" />
     </message>
@@ -1443,6 +1435,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3219,10 +3227,6 @@
     <message>
         <source>Always</source>
         <translation>Toujours</translation>
-    </message>
-    <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Créer un sous-dossier:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>

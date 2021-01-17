@@ -27,24 +27,20 @@
         <translation>Modo gestione torrent:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Mantieni cartella primo livello</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout contenuto:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originale</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crea sottocartella</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Non creare sottocartella</translation>
     </message>
 </context>
 <context>
@@ -1400,7 +1396,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Mantieni cartella primo livello</translation>
+        <translation type="vanished">Mantieni cartella primo livello</translation>
     </message>
     <message>
         <source> min</source>
@@ -1444,6 +1440,22 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Supporto nome dominio internazionalizzato (IDN) (richiede libtorrent &gt;= 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3225,10 +3237,6 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Crea sotto cartella:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>Il numero di episodio è un valore positivo obbligatorio</translation>
     </message>
@@ -3320,19 +3328,19 @@ Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data suppo
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout contenuto torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crea sottocartella</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originale</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Non creare sottocartella</translation>
     </message>
 </context>
 <context>

@@ -27,24 +27,20 @@
         <translation>Режим управления торрентом:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Сохранять родительскую папку</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Размещение содержимого:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Исходное</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Создавать подпапку</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Не создавать подпапку</translation>
     </message>
 </context>
 <context>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Сохранять родительскую папку</translation>
+        <translation type="vanished">Сохранять родительскую папку</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Поддерживать интернационализованные доменные имена (IDN) (требуется libtorrent &gt;= 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>Всегда</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Создать подпапку:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>Номер эпизода должен быть ненулевым</translation>
     </message>
@@ -3316,19 +3324,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Размещение содержимого торрента:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Создавать подпапку</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Исходное</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Не создавать подпапку</translation>
     </message>
 </context>
 <context>

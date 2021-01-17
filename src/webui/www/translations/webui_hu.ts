@@ -27,24 +27,20 @@
         <translation>Torrentkezelési mód:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Tartsa meg a legfelső szintű mappát</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Tartalom elrendezése:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Eredeti</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Almappa létrehozása</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>
 <context>
@@ -310,7 +306,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Globális feltöltési korlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
+        <translation>Globális feltöltési szálak korlátnak 0-nál nagyobbnak, vagy kikapcsoltnak kell lennie.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -753,11 +749,11 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Torrentenkénti feltöltési kapcsolatok maximális száma:</translation>
+        <translation>Torrentenkénti feltöltési szálak maximális száma:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Globális feltöltési kapcsolatok maximális száma:</translation>
+        <translation>Globális feltöltési szálak maximális száma:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -1071,7 +1067,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>Host fejléc érvényesítés enegdélyezése</translation>
+        <translation>Host fejléc érvényesítés engedélyezése</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1251,7 +1247,7 @@
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation>Rögzített szálak / slotok</translation>
+        <translation>Rögzített szálak</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1279,7 +1275,7 @@
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation>Feltöltési foglalatok működése:</translation>
+        <translation>Feltöltési szálak működése:</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Tartsa meg a legfelső szintű mappát</translation>
+        <translation type="vanished">Tartsa meg a legfelső szintű mappát</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Támogatja a nemzetközi domain nevet (IDN) (szükséges libtorrent &gt;=1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>Mindig</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Almappa létrehozása:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>Az epizódszám egy kötelező pozitív érték</translation>
     </message>
@@ -3316,19 +3324,19 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent tartalom elrendezése:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Almappa létrehozása</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Eredeti</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>
 <context>
