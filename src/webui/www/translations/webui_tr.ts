@@ -27,24 +27,20 @@
         <translation>Torrent Yönetim Kipi:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">En üst seviyedeki klasörü tut</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>İçerik düzeni:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Orijinal</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Alt klasör oluştur</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Alt klasör oluşturma</translation>
     </message>
 </context>
 <context>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>En üst seviyedeki klasörü tut</translation>
+        <translation type="vanished">En üst seviyedeki klasörü tut</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Uluslararasılaştırılmış etki alanı adını (IDN) destekle (libtorrent &gt;= 1.2.12 gerektirir):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>Her zaman</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Alt Klasör Oluştur:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>Bölüm numarası mecburen pozitif bir değerdir</translation>
     </message>
@@ -3316,19 +3324,19 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent içerik düzeni:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Alt klasör oluştur</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Orijinal</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Alt klasör oluşturma</translation>
     </message>
 </context>
 <context>

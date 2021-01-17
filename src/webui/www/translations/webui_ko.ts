@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>토런트 시작</translation>
+        <translation>토렌트 시작</translation>
     </message>
     <message>
         <source>Skip hash check</source>
@@ -24,27 +24,23 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation>토런트 관리 모드:</translation>
-    </message>
-    <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">최상위 폴더 유지</translation>
+        <translation>토렌트 관리 모드:</translation>
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>내용 배치:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>원본</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>폴더 생성</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>폴더 생성 안 함</translation>
     </message>
 </context>
 <context>
@@ -74,15 +70,15 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>토런트 이어받기</translation>
+        <translation>토렌트 이어받기</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>토런트 일시정지</translation>
+        <translation>토렌트 일시정지</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>토런트 삭제</translation>
+        <translation>토렌트 삭제</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -129,7 +125,7 @@
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>최대 활성 토런트는 -1보다 커야 합니다.</translation>
+        <translation>최대 활성 토렌트는 -1보다 커야 합니다.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
@@ -137,11 +133,11 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>토런트 당 최대 연결 제한은 0보다 크거나 사용하지 않아야 합니다.</translation>
+        <translation>토렌트 당 최대 연결 제한은 0보다 크거나 사용하지 않아야 합니다.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>토런트 당 최대 올리기 슬롯 제한은 0보다 크거나 사용하지 않아야 합니다.</translation>
+        <translation>토렌트 당 최대 올리기 슬롯 제한은 0보다 크거나 사용하지 않아야 합니다.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -206,7 +202,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>토런트 올리기</translation>
+        <translation>토렌트 올리기</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -242,7 +238,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>토런트 이름 바꾸기</translation>
+        <translation>토렌트 이름 바꾸기</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -290,15 +286,15 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>URL이나 자석 링크에서 토런트 받기</translation>
+        <translation>URL이나 자석 링크에서 토렌트 받기</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
-        <translation>로컬 토런트 올리기</translation>
+        <translation>로컬 토렌트 올리기</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>선택하신 토런트를 전송 목록에서 삭제할까요?</translation>
+        <translation>선택하신 토렌트를 전송 목록에서 삭제할까요?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -334,7 +330,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>토런트 비활동 타이머는 0보다 커야합니다.</translation>
+        <translation>토렌트 비활동 타이머는 0보다 커야합니다.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -453,7 +449,7 @@
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>토런트 파일 추가</translation>
+        <translation>토렌트 파일 추가</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -461,7 +457,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>토런트 링크 추가</translation>
+        <translation>토렌트 링크 추가</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -498,7 +494,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>토런트 목록 필터</translation>
+        <translation>토렌트 목록 필터</translation>
     </message>
     <message>
         <source>Search</source>
@@ -609,7 +605,7 @@
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation>비트 토런트</translation>
+        <translation>비트 토렌트</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -629,7 +625,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>토런트를 완료했을 때 외부 프로그램 실행</translation>
+        <translation>토렌트를 완료했을 때 외부 프로그램 실행</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -641,7 +637,7 @@
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation>토런트 대기열</translation>
+        <translation>토렌트 대기열</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -677,7 +673,7 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation>완료못한  토런트 보관 위치:</translation>
+        <translation>완료못한  토렌트 보관 위치:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -697,7 +693,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>토런트를 자동 추가할 경로:</translation>
+        <translation>토렌트를 자동 추가할 경로:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -745,7 +741,7 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>토런트당 최대 연결:</translation>
+        <translation>토렌트당 최대 연결:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
@@ -753,7 +749,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>토런트당 최대 올리기 슬롯:</translation>
+        <translation>토렌트당 최대 올리기 슬롯:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -797,7 +793,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>토런트에 프록시만 사용</translation>
+        <translation>토렌트에 프록시만 사용</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -907,11 +903,11 @@
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>최대 활성 토런트:</translation>
+        <translation>최대 활성 토렌트:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>이 제한에 느린 토런트는 계산하지 않음</translation>
+        <translation>이 제한에 느린 토렌트는 계산하지 않음</translation>
     </message>
     <message>
         <source>then</source>
@@ -943,7 +939,7 @@
     </message>
     <message>
         <source>%N: Torrent name</source>
-        <translation>%N: 토런트 이름</translation>
+        <translation>%N: 토렌트 이름</translation>
     </message>
     <message>
         <source>%L: Category</source>
@@ -951,11 +947,11 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: 컨텐츠 경로(여러 토런트에 대해 루트 경로 같은)</translation>
+        <translation>%F: 컨텐츠 경로(여러 토렌트에 대해 루트 경로와 같음)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: 루트 경로(첫 토런트의 경로)</translation>
+        <translation>%R: 루트 경로(첫 토렌트의 경로)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -967,7 +963,7 @@
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation>%Z: 토런트 크기 (바이트)</translation>
+        <translation>%Z: 토렌트 크기 (바이트)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
@@ -1043,15 +1039,15 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>토런트를 수동 모드로 전환</translation>
+        <translation>토렌트를 수동 모드로 전환</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>토런트 범주가 바뀔 때:</translation>
+        <translation>토렌트 범주가 바뀔 때:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation>영향을 받는 토런트의 위치 이동</translation>
+        <translation>영향을 받는 토렌트의 위치 이동</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -1063,7 +1059,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation>토런트 위치 이동</translation>
+        <translation>토렌트 위치 이동</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1087,7 +1083,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>영향 받는 토런트를 수동 모드로 전환</translation>
+        <translation>영향 받는 토렌트를 수동 모드로 전환</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1099,15 +1095,15 @@
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation>토런트 비활성 타이머:</translation>
+        <translation>토렌트 비활성 타이머:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation>기본 토런트 관리 모드:</translation>
+        <translation>기본 토렌트 관리 모드:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation>토런트 추가시</translation>
+        <translation>토렌트 추가시</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
@@ -1131,7 +1127,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>토런트에 대해 초도 배포 사용</translation>
+        <translation>토렌트에 대해 초도 배포 사용</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1139,7 +1135,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>토런트를 검사할 때 사용할 초과 메모리:</translation>
+        <translation>토렌트를 검사할 때 사용할 초과 메모리:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1183,11 +1179,11 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>토런트 일시정지</translation>
+        <translation>토렌트 일시정지</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation>토런트 및 파일 제거</translation>
+        <translation>토렌트 및 파일 제거</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
@@ -1211,7 +1207,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>완료했을 때 토런트 다시 검사</translation>
+        <translation>완료했을 때 토렌트 다시 검사</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1227,7 +1223,7 @@
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation>토런트 제거</translation>
+        <translation>토렌트 제거</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
@@ -1359,7 +1355,7 @@
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation>RSS 토런트 자동 받기</translation>
+        <translation>RSS 토렌트 자동 받기</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>최상위 폴더 유지</translation>
+        <translation type="vanished">최상위 폴더 유지</translation>
     </message>
     <message>
         <source> min</source>
@@ -1419,7 +1415,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation>RSS 토런트 자동 받기 사용</translation>
+        <translation>RSS 토렌트 자동 받기 사용</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>국제 도메인 이름(IDN) 지원(libtorrent &gt;= 1.2.12 이상):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1675,7 +1687,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>토런트 해쉬:</translation>
+        <translation>토렌트 해쉬:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1907,15 +1919,15 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation>정체된 올리기 (%1)</translation>
+        <translation> └ 올리기 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>정체된 받기 (%1)</translation>
+        <translation>└ 받기 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>정체된 받기 (0)</translation>
+        <translation> └ 받기 (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
@@ -1923,7 +1935,7 @@
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>정체된 올리기 (0)</translation>
+        <translation>└ 올리기 (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
@@ -2291,11 +2303,11 @@
     <name>TransferListWidget</name>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation>토런트 받기 속도 제한</translation>
+        <translation>토렌트 받기 속도 제한</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>토런트 올리기 속도 제한</translation>
+        <translation>토렌트 올리기 속도 제한</translation>
     </message>
     <message>
         <source>Rename</source>
@@ -2363,7 +2375,7 @@
     </message>
     <message>
         <source>Automatic Torrent Management</source>
-        <translation>자동 토런트 관리</translation>
+        <translation>자동 토렌트 관리</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2472,7 +2484,7 @@
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>토런트 올리기/받기 비율 제한</translation>
+        <translation>토렌트 올리기/받기 비율 제한</translation>
     </message>
     <message>
         <source>Use global share limit</source>
@@ -2525,7 +2537,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation>토런트 링크 추가</translation>
+        <translation>토렌트 링크 추가</translation>
     </message>
 </context>
 <context>
@@ -2670,7 +2682,7 @@
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation>토런트 이름만</translation>
+        <translation>토렌트 이름만</translation>
     </message>
     <message>
         <source>Only enabled</source>
@@ -2721,7 +2733,7 @@
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>경고: 검색 엔진으로 토런트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
+        <translation>경고: 검색 엔진으로 토렌트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2817,7 +2829,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>토런트 삭제</translation>
+        <translation>토렌트 삭제</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -2825,11 +2837,11 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>토런트 일시정지</translation>
+        <translation>토렌트 일시정지</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>토런트 이어받기</translation>
+        <translation>토렌트 이어받기</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -2891,7 +2903,7 @@
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>C++로 짠 고급 비트토런트 클라이언트로 Qt 툴킷과 libtorrent-rasterbar를 기반으로 만들었습니다.</translation>
+        <translation>C++로 짠 고급 비트토렌트 클라이언트로 Qt 툴킷과 libtorrent-rasterbar를 기반으로 만들었습니다.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3027,7 +3039,7 @@
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation>토런트: (두번 클릭해서 받기)</translation>
+        <translation>토렌트: (두번 클릭해서 받기)</translation>
     </message>
     <message>
         <source>Open news URL</source>
@@ -3079,7 +3091,7 @@
     </message>
     <message>
         <source>Download torrent</source>
-        <translation>토런트 받기</translation>
+        <translation>토렌트 받기</translation>
     </message>
 </context>
 <context>
@@ -3106,7 +3118,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 토런트 자동 받기를 사용 중지했습니다! 프로그램 옵션에서 사용으로 설정할 수 있습니다.</translation>
+        <translation>RSS 토렌트 자동 받기를 사용 중지했습니다! 프로그램 옵션에서 사용으로 설정할 수 있습니다.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3221,10 +3233,6 @@
         <translation>항상</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">하위 폴더 생성:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>회차 번호는 양수여야 합니다</translation>
     </message>
@@ -3315,30 +3323,30 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>토렌트 내용 배치:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>폴더 생성</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>원본</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>폴더 생성 안 함</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>토런트 삭제</translation>
+        <translation>토렌트 삭제</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>토런트 이어받기</translation>
+        <translation>토렌트 이어받기</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3350,7 +3358,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>토런트 일시정지</translation>
+        <translation>토렌트 일시정지</translation>
     </message>
 </context>
 <context>

@@ -27,24 +27,20 @@
         <translation>Modo de gestão de torrent:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Manter pasta de nível superior</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Disposição do conteúdo:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Criar subpasta:</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Não criar subpasta</translation>
     </message>
 </context>
 <context>
@@ -1323,7 +1319,7 @@
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation>Ativar cookie bandeira segura (requer HTTPS)</translation>
+        <translation>Ativar cookie Flag segura (requer HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
@@ -1347,11 +1343,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Segmentos de cálculo de hash (necessário libtorrent &gt;= 2.0):</translation>
+        <translation>Segmentos de cálculo de hash (requer libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Leituras &amp; escritas coalesce (necessário libtorrent &lt; 2.0):</translation>
+        <translation>Leituras e escritas unidas (requer libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1395,11 +1391,11 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Máximo de anúncios HTTP simultâneos (necessário libtorrent &gt;= 1.2.7):</translation>
+        <translation>Máximo de anúncios HTTP simultâneos (requer libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Manter pasta de nível superior</translation>
+        <translation type="vanished">Manter pasta de nível superior</translation>
     </message>
     <message>
         <source> min</source>
@@ -1427,11 +1423,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Cache de disco (necessário libtorrent &lt; 2.0):</translation>
+        <translation>Cache de disco (requer libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Intervalo de expiração do cache de disco (necessário libtorrent &lt; 2.0):</translation>
+        <translation>Intervalo de expiração do cache de disco (requer libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Suporta nome de domínio internacionalizado (IDN) (requer libtorrent &gt;= 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Criar subpasta:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>O número do episódio é um valor positivo obrigatório</translation>
     </message>
@@ -3316,19 +3324,19 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Disposição do conteúdo do torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Criar subpasta</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Não criar subpasta</translation>
     </message>
 </context>
 <context>

@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Izveidot apakšmapi</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Neizveidot apakšmapi</translation>
     </message>
 </context>
 <context>
@@ -1391,11 +1391,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Keep top-level folder</source>
-        <translation type="unfinished" />
+        <translation>Atļautais kopējais HTTP trakeru skaits (requires libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1435,10 +1431,26 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Koplietotāju savienojumu protokols</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2332,12 +2344,12 @@
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation>Pārvietot augšup</translation>
+        <translation>Novietot augstāk sarakstā</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation>Pārvietot lejup</translation>
+        <translation>Novietot zemāk sarakstā</translation>
     </message>
     <message>
         <source>Move to top</source>
@@ -3217,10 +3229,6 @@
         <translation>Vienmēr</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Izveidot apakšmapi:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>Epizodes numurs nedrīkst būt 0</translation>
     </message>
@@ -3307,7 +3315,8 @@
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Viedais epizožu filtrs pārbaudīs epizožu nummurus, lai novērstu duplikātu lejupielādi.
+Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā atdalitāju "." vietā varat izmantot arī "-")</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3315,7 +3324,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Izveidot apakšmapi</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3323,7 +3332,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Neizveidot apakšmapi</translation>
     </message>
 </context>
 <context>

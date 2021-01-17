@@ -27,24 +27,20 @@
         <translation>Torrent 管理模式：</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">保留頂層資料夾</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>內容佈局：</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原始</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>建立子資料夾</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>不要建立子資料夾</translation>
     </message>
 </context>
 <context>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>保留頂層資料夾</translation>
+        <translation type="vanished">保留頂層資料夾</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>支援國際化域名 (IDN)（需要 libtorrent &gt;= 1.2.12）：</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>總是</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">建立子資料夾：</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>章節的數字為一強制正值</translation>
     </message>
@@ -3316,19 +3324,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torretn 內容佈局：</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>建立子資料夾</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原始</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>不要建立子資料夾</translation>
     </message>
 </context>
 <context>
