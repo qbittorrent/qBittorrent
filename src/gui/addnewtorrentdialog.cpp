@@ -502,12 +502,12 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 {
     const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
 
-    const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
+    const auto applyPriorities = [this](const BitTorrent::DownloadPriority prio)
     {
+        const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
         for (const QModelIndex &index : selectedRows)
         {
-            m_contentModel->setData(
-                m_contentModel->index(index.row(), PRIORITY, index.parent())
+            m_contentModel->setData(index.sibling(index.row(), PRIORITY)
                 , static_cast<int>(prio));
         }
     };
@@ -540,6 +540,40 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Maximum);
+    });
+    subMenu->addSeparator();
+    subMenu->addAction(tr("By shown file order"), subMenu, [this]()
+    {
+        // Equally distribute the selected items into groups and for each group assign
+        // a download priority that will apply to each item. The number of groups depends on how
+        // many "download priority" are available to be assigned
+
+        const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
+
+        const int priorityGroups = 3;
+        const int priorityGroupSize = std::max((selectedRows.length() / priorityGroups), 1);
+
+        for (int i = 0; i < selectedRows.length(); ++i)
+        {
+            auto priority = BitTorrent::DownloadPriority::Ignored;
+            switch (i / priorityGroupSize)
+            {
+            case 0:
+                priority = BitTorrent::DownloadPriority::Maximum;
+                break;
+            case 1:
+                priority = BitTorrent::DownloadPriority::High;
+                break;
+            default:
+            case 2:
+                priority = BitTorrent::DownloadPriority::Normal;
+                break;
+            }
+
+            const QModelIndex &index = selectedRows[i];
+            m_contentModel->setData(index.sibling(index.row(), PRIORITY)
+                , static_cast<int>(priority));
+        }
     });
 
     menu->popup(QCursor::pos());
