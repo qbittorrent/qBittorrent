@@ -600,8 +600,6 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
 
     if (!m_torrent->isSeed())
     {
-        QMenu *subMenu = menu->addMenu(tr("Priority"));
-
         const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
         {
             for (const QModelIndex &index : selectedRows)
@@ -614,29 +612,24 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
             filteredFilesChanged();
         };
 
-        connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
+        QMenu *subMenu = menu->addMenu(tr("Priority"));
+
+        subMenu->addAction(tr("Do not download"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
-        subMenu->addAction(m_ui->actionNotDownloaded);
-
-        connect(m_ui->actionNormal, &QAction::triggered, subMenu, [applyPriorities]()
+        subMenu->addAction(tr("Normal"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
         });
-        subMenu->addAction(m_ui->actionNormal);
-
-        connect(m_ui->actionHigh, &QAction::triggered, subMenu, [applyPriorities]()
+        subMenu->addAction(tr("High"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::High);
         });
-        subMenu->addAction(m_ui->actionHigh);
-
-        connect(m_ui->actionMaximum, &QAction::triggered, subMenu, [applyPriorities]()
+        subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Maximum);
         });
-        subMenu->addAction(m_ui->actionMaximum);
     }
 
     // The selected torrent might have disappeared during exec()

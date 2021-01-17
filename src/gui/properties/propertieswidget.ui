@@ -1086,29 +1086,6 @@
     </widget>
    </item>
   </layout>
-  <action name="actionNotDownloaded">
-   <property name="text">
-    <string>Do not download</string>
-   </property>
-   <property name="toolTip">
-    <string>Do not download</string>
-   </property>
-  </action>
-  <action name="actionMaximum">
-   <property name="text">
-    <string>Maximum</string>
-   </property>
-  </action>
-  <action name="actionHigh">
-   <property name="text">
-    <string>High</string>
-   </property>
-  </action>
-  <action name="actionNormal">
-   <property name="text">
-    <string>Normal</string>
-   </property>
-  </action>
  </widget>
  <customwidgets>
   <customwidget>

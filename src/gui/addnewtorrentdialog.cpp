@@ -525,29 +525,22 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 
     QMenu *subMenu = menu->addMenu(tr("Priority"));
 
-    connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("Do not download"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Ignored);
     });
-    subMenu->addAction(m_ui->actionNotDownloaded);
-
-    connect(m_ui->actionNormal, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("Normal"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Normal);
     });
-    subMenu->addAction(m_ui->actionNormal);
-
-    connect(m_ui->actionHigh, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("High"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::High);
     });
-    subMenu->addAction(m_ui->actionHigh);
-
-    connect(m_ui->actionMaximum, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Maximum);
     });
-    subMenu->addAction(m_ui->actionMaximum);
 
     menu->popup(QCursor::pos());
 }
