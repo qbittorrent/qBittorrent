@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2021  Prince Gupta <guptaprince8832@gmail.com>
  * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
@@ -27,41 +28,51 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
 #include <QElapsedTimer>
 #include <QObject>
 
+#include "types.h"
+
 class QTcpSocket;
 
 namespace Http
 {
-    class IRequestHandler;
-    struct Response;
-
     class Connection : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY(Connection)
 
     public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
+        // Connection takes ownership of socket
+        explicit Connection(QTcpSocket *socket, QObject *parent = nullptr);
         ~Connection();
 
-        bool hasExpired(qint64 timeout) const;
-        bool isClosed() const;
+        void sendStatus(const ResponseStatus &status);
+        void sendHeaders(const HeaderMap &headers);
+        void sendContent(const QByteArray &data);
+        void close();
+
+        Environment enviroment() const;
+        qint64 inactivityTime() const;
+        qint64 bytesToWrite() const;
+
+    signals:
+        void bytesWritten(qint64 bytes);
+        void disconnected();
+        void requestReady(Request request);
 
     private slots:
         void read();
 
     private:
-        static bool acceptsGzipEncoding(QString codings);
-        void sendResponse(const Response &response) const;
-
         QTcpSocket *m_socket;
-        IRequestHandler *m_requestHandler;
-        QByteArray m_receivedData;
         QElapsedTimer m_idleTimer;
+        QByteArray m_receivedData;
+        QByteArray m_statusHeaderBuffer;
+        Request m_request;
+        qint64 m_pendingContentSize = 0;
+        bool m_persistentConnection = true;
     };
 }

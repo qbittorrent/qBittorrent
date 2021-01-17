@@ -34,12 +34,13 @@ HEADERS += \
     $$PWD/exceptions.h \
     $$PWD/filesystemwatcher.h \
     $$PWD/global.h \
+    $$PWD/http/basicrequesthandler.h \
     $$PWD/http/connection.h \
     $$PWD/http/httperror.h \
+    $$PWD/http/httputils.h \
     $$PWD/http/irequesthandler.h \
     $$PWD/http/requestparser.h \
     $$PWD/http/responsebuilder.h \
-    $$PWD/http/responsegenerator.h \
     $$PWD/http/server.h \
     $$PWD/http/types.h \
     $$PWD/iconprovider.h \
@@ -115,11 +116,12 @@ SOURCES += \
     $$PWD/bittorrent/trackerentry.cpp \
     $$PWD/exceptions.cpp \
     $$PWD/filesystemwatcher.cpp \
+    $$PWD/http/basicrequesthandler.cpp \
     $$PWD/http/connection.cpp \
     $$PWD/http/httperror.cpp \
+    $$PWD/http/httputils.cpp \
     $$PWD/http/requestparser.cpp \
     $$PWD/http/responsebuilder.cpp \
-    $$PWD/http/responsegenerator.cpp \
     $$PWD/http/server.cpp \
     $$PWD/iconprovider.cpp \
     $$PWD/logger.cpp \

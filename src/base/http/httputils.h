@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,15 +29,14 @@
 
 #pragma once
 
+class QByteArray;
+class QString;
+
 namespace Http
 {
-    class Connection;
-    struct Request;
+    struct Response;
 
-    class IRequestHandler
-    {
-    public:
-        virtual ~IRequestHandler() = default;
-        virtual void handleRequest(const Request &request, Connection *connection) = 0;
-    };
+    bool acceptsGzipEncoding(QString codings);
+    QString httpDate();
+    void tryCompressContent(Response &response);
 }

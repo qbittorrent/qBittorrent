@@ -28,15 +28,20 @@
 
 #pragma once
 
+#include "irequesthandler.h"
+
 namespace Http
 {
-    class Connection;
+    struct Environment;
     struct Request;
+    struct Response;
 
-    class IRequestHandler
+    class BasicRequestHandler : public IRequestHandler
     {
     public:
-        virtual ~IRequestHandler() = default;
-        virtual void handleRequest(const Request &request, Connection *connection) = 0;
+        void handleRequest(const Request &request, Connection *connection) final;
+
+    private:
+        virtual Response processRequest(const Request &request, const Environment &env) = 0;
     };
 }

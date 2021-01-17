@@ -42,6 +42,7 @@
 #include "base/algorithm.h"
 #include "base/utils/net.h"
 #include "connection.h"
+#include "irequesthandler.h"
 
 namespace
 {
@@ -68,9 +69,9 @@ namespace
 using namespace Http;
 
 Server::Server(IRequestHandler *requestHandler, QObject *parent)
-    : QTcpServer(parent)
-    , m_requestHandler(requestHandler)
-    , m_https(false)
+    : QTcpServer {parent}
+    , m_requestHandler {requestHandler}
+    , m_https {false}
 {
     setProxy(QNetworkProxy::NoProxy);
 
@@ -108,9 +109,13 @@ void Server::incomingConnection(const qintptr socketDescriptor)
         static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
     }
 
-    auto *c = new Connection(serverSocket, m_requestHandler, this);
-    m_connections.insert(c);
-    connect(serverSocket, &QAbstractSocket::disconnected, this, [c, this]() { removeConnection(c); });
+    auto *connection = new Connection(serverSocket, this);
+    m_connections.insert(connection);
+    connect(connection, &Connection::disconnected, this, [this, connection]() { removeConnection(connection); });
+    connect(connection, &Connection::requestReady, this, [this, connection](const Request &request)
+    {
+            m_requestHandler->handleRequest(request, connection);
+    });
 }
 
 void Server::removeConnection(Connection *connection)
@@ -123,7 +128,7 @@ void Server::dropTimedOutConnection()
 {
     Algorithm::removeIf(m_connections, [](Connection *connection)
     {
-        if (!connection->hasExpired(KEEP_ALIVE_DURATION))
+        if (connection->inactivityTime() < KEEP_ALIVE_DURATION)
             return false;
 
         connection->deleteLater();
