@@ -28,7 +28,6 @@
 
 #include "propertieswidget.h"
 
-#include <QAction>
 #include <QClipboard>
 #include <QDateTime>
 #include <QDebug>
@@ -586,15 +585,12 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     {
         const QModelIndex index = selectedRows[0];
 
-        const QAction *actOpen = menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open"));
-        connect(actOpen, &QAction::triggered, this, [this, index]() { openItem(index); });
-
-        const QAction *actOpenContainingFolder = menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openParentFolder(index); });
-
-        const QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
-        connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
-
+        menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open")
+            , this, [this, index]() { openItem(index); });
+        menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
+            , this, [this, index]() { openParentFolder(index); });
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
+            , this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
         menu->addSeparator();
     }
 
@@ -688,21 +684,17 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *actAdd = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New Web seed"));
-    connect(actAdd, &QAction::triggered, this, &PropertiesWidget::askWebSeed);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty())
     {
-        const QAction *actDel = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove Web seed"));
-        connect(actDel, &QAction::triggered, this, &PropertiesWidget::deleteSelectedUrlSeeds);
-
+        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove Web seed")
+            , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
-
-        const QAction *actCpy = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
-        connect(actCpy, &QAction::triggered, this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
-
-        const QAction *actEdit = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
-        connect(actEdit, &QAction::triggered, this, &PropertiesWidget::editWebSeed);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy Web seed URL")
+            , this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Web seed URL")
+            , this, &PropertiesWidget::editWebSeed);
     }
 
     menu->popup(QCursor::pos());

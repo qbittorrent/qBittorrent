@@ -270,8 +270,8 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     // Do not allow user to add peers in a private torrent
     if (!torrent->isQueued() && !torrent->isChecking() && !torrent->isPrivate())
     {
-        const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
-        connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
+        menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer...")
+            , this, [this, torrent]()
         {
             const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
             const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
@@ -287,13 +287,11 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
     if (!selectionModel()->selectedRows().isEmpty())
     {
-        const QAction *copyPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
-        connect(copyPeerAct, &QAction::triggered, this, &PeerListWidget::copySelectedPeers);
-
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port")
+            , this, &PeerListWidget::copySelectedPeers);
         menu->addSeparator();
-
-        const QAction *banAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
-        connect(banAct, &QAction::triggered, this, &PeerListWidget::banSelectedPeers);
+        menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently")
+            , this, &PeerListWidget::banSelectedPeers);
     }
 
     if (menu->isEmpty())
