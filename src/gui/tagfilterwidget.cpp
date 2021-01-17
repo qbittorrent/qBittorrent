@@ -28,7 +28,6 @@
 
 #include "tagfilterwidget.h"
 
-#include <QAction>
 #include <QMenu>
 #include <QMessageBox>
 
@@ -108,44 +107,25 @@ void TagFilterWidget::showMenu(QPoint)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *addAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("list-add")
-        , tr("Add tag..."));
-    connect(addAct, &QAction::triggered, this, &TagFilterWidget::addTag);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add tag...")
+        , this, &TagFilterWidget::addTag);
 
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
     {
-        const QAction *removeAct = menu->addAction(
-            UIThemeManager::instance()->getIcon("list-remove")
-            , tr("Remove tag"));
-        connect(removeAct, &QAction::triggered, this, &TagFilterWidget::removeTag);
+        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tag")
+            , this, &TagFilterWidget::removeTag);
     }
 
-    const QAction *removeUnusedAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("list-remove")
-        , tr("Remove unused tags"));
-    connect(removeUnusedAct, &QAction::triggered, this, &TagFilterWidget::removeUnusedTags);
-
+    menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove unused tags")
+        , this, &TagFilterWidget::removeUnusedTags);
     menu->addSeparator();
-
-    const QAction *startAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("media-playback-start")
-        , tr("Resume torrents"));
-    connect(startAct, &QAction::triggered
+    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents")
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
-
-    const QAction *pauseAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("media-playback-pause")
-        , tr("Pause torrents"));
-    connect(pauseAct, &QAction::triggered, this
-        , &TagFilterWidget::actionPauseTorrentsTriggered);
-
-    const QAction *deleteTorrentsAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("edit-delete")
-        , tr("Delete torrents"));
-    connect(deleteTorrentsAct, &QAction::triggered, this
-        , &TagFilterWidget::actionDeleteTorrentsTriggered);
+    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents")
+        , this, &TagFilterWidget::actionPauseTorrentsTriggered);
+    menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents")
+        , this, &TagFilterWidget::actionDeleteTorrentsTriggered);
 
     menu->popup(QCursor::pos());
 }
