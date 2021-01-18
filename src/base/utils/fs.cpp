@@ -55,6 +55,7 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
+#include <QMimeDatabase>
 #include <QStorageInfo>
 #include <QRegularExpression>
 
@@ -76,9 +77,14 @@ QString Utils::Fs::toUniformPath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    const QString ext = QString(filename).remove(QB_EXT);
-    const int pointIndex = ext.lastIndexOf('.');
-    return (pointIndex >= 0) ? ext.mid(pointIndex + 1) : QString();
+    const QString name = filename.endsWith(QB_EXT)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+        ? filename.chopped(QB_EXT.length())
+#else
+        ? filename.left(filename.length() - QB_EXT.length())
+#endif
+        : filename;
+    return QMimeDatabase().suffixForFileName(name);
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
@@ -267,8 +273,6 @@ bool Utils::Fs::isValidFileSystemName(const QString &name, const bool allowSepar
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const QString &path)
 {
-    if (path.isEmpty()) return -1;
-
     return QStorageInfo(path).bytesAvailable();
 }
 
