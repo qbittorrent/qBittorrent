@@ -31,11 +31,8 @@
 
 class QByteArray;
 
-namespace Utils
+namespace Utils::Gzip
 {
-    namespace Gzip
-    {
-        QByteArray compress(const QByteArray &data, int level = 6, bool *ok = nullptr);
-        QByteArray decompress(const QByteArray &data, bool *ok = nullptr);
-    }
+    QByteArray compress(const QByteArray &data, int level = 6, bool *ok = nullptr);
+    QByteArray decompress(const QByteArray &data, bool *ok = nullptr);
 }

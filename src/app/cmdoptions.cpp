@@ -254,13 +254,13 @@ namespace
             return padUsageText(fullParameter() + QLatin1String("=<true|false>"));
         }
 
-        TriStateBool value(const QString &arg) const
+        std::optional<bool> value(const QString &arg) const
         {
             QStringList parts = arg.split(QLatin1Char('='));
 
             if (parts.size() == 1)
             {
-                return TriStateBool(m_defaultValue);
+                return m_defaultValue;
             }
             if (parts.size() == 2)
             {
@@ -268,11 +268,11 @@ namespace
 
                 if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1")))
                 {
-                    return TriStateBool::True;
+                    return true;
                 }
                 if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0")))
                 {
-                    return TriStateBool::False;
+                    return false;
                 }
             }
 
@@ -282,30 +282,30 @@ namespace
                                             .arg(fullParameter(), QLatin1String("<true|false>")));
         }
 
-        TriStateBool value(const QProcessEnvironment &env) const
+        std::optional<bool> value(const QProcessEnvironment &env) const
         {
             const QString val = env.value(envVarName(), "-1");
 
             if (val.isEmpty())
             {
-                return TriStateBool(m_defaultValue);
+                return m_defaultValue;
             }
             if (val == QLatin1String("-1"))
             {
-                return TriStateBool::Undefined;
+                return std::nullopt;
             }
             if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1")))
             {
-                return TriStateBool::True;
+                return true;
             }
             if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0")))
             {
-                return TriStateBool::False;
+                return false;
             }
 
             qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
                 .arg(QLatin1String("true|false"), envVarName(), val);
-            return TriStateBool::Undefined;
+            return std::nullopt;
         }
 
         bool m_defaultValue;
@@ -374,14 +374,8 @@ QStringList QBtCommandLineParameters::paramList() const
     if (!savePath.isEmpty())
         result.append(QLatin1String("@savePath=") + savePath);
 
-    if (addPaused == TriStateBool::True)
-    {
-        result.append(QLatin1String("@addPaused=1"));
-    }
-    else if (addPaused == TriStateBool::False)
-    {
-        result.append(QLatin1String("@addPaused=0"));
-    }
+    if (addPaused.has_value())
+        result.append(*addPaused ? QLatin1String {"@addPaused=1"} : QLatin1String {"@addPaused=0"});
 
     if (skipChecking)
         result.append(QLatin1String("@skipChecking"));
@@ -395,14 +389,8 @@ QStringList QBtCommandLineParameters::paramList() const
     if (firstLastPiecePriority)
         result.append(QLatin1String("@firstLastPiecePriority"));
 
-    if (skipDialog == TriStateBool::True)
-    {
-        result.append(QLatin1String("@skipDialog=1"));
-    }
-    else if (skipDialog == TriStateBool::False)
-    {
-        result.append(QLatin1String("@skipDialog=0"));
-    }
+    if (skipDialog.has_value())
+        result.append(*skipDialog ? QLatin1String {"@skipDialog=1"} : QLatin1String {"@skipDialog=0"});
 
     result += torrents;
     return result;

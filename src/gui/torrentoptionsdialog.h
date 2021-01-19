@@ -1,6 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020  thalieht
+ * Copyright (C) 2011  Christian Kandeler
+ * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,8 +28,56 @@
  * exception statement from your version.
  */
 
-#include "tristatebool.h"
+#pragma once
 
-const TriStateBool TriStateBool::Undefined(-1);
-const TriStateBool TriStateBool::False(0);
-const TriStateBool TriStateBool::True(1);
+#include <QDialog>
+
+#include "base/settingvalue.h"
+
+namespace BitTorrent
+{
+    class InfoHash;
+    class Torrent;
+}
+
+namespace Ui
+{
+    class TorrentOptionsDialog;
+}
+
+class TorrentOptionsDialog final : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(TorrentOptionsDialog)
+
+public:
+    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents);
+    ~TorrentOptionsDialog() override;
+
+public slots:
+    void accept() override;
+
+private slots:
+    void handleUpSpeedLimitChanged();
+    void handleDownSpeedLimitChanged();
+
+    void handleRatioTypeChanged();
+
+private:
+    qreal getRatio() const;
+    int getSeedingTime() const;
+
+    QVector<BitTorrent::InfoHash> m_torrentHashes;
+    Ui::TorrentOptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
+    struct
+    {
+        qreal ratio;
+        int seedingTime;
+        int upSpeedLimit;
+        int downSpeedLimit;
+        Qt::CheckState disableDHT;
+        Qt::CheckState disablePEX;
+        Qt::CheckState disableLSD;
+    } m_initialValues;
+};

@@ -47,7 +47,6 @@
 #include "../logger.h"
 #include "../profile.h"
 #include "../settingsstorage.h"
-#include "../tristatebool.h"
 #include "../utils/fs.h"
 #include "rss_article.h"
 #include "rss_autodownloadrule.h"
@@ -105,7 +104,7 @@ QString computeSmartFilterRegex(const QStringList &filters)
 }
 
 AutoDownloader::AutoDownloader()
-    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false).toBool())
+    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false))
     , m_processingTimer(new QTimer(this))
     , m_ioThread(new QThread(this))
 {
@@ -290,7 +289,7 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
 
 QStringList AutoDownloader::smartEpisodeFilters() const
 {
-    const QVariant filtersSetting = SettingsStorage::instance()->loadValue(SettingsKey_SmartEpisodeFilter);
+    const auto filtersSetting = SettingsStorage::instance()->loadValue<QVariant>(SettingsKey_SmartEpisodeFilter);
 
     if (filtersSetting.isNull())
     {
@@ -323,7 +322,7 @@ void AutoDownloader::setSmartEpisodeFilters(const QStringList &filters)
 
 bool AutoDownloader::downloadRepacks() const
 {
-    return SettingsStorage::instance()->loadValue(SettingsKey_DownloadRepacks, true).toBool();
+    return SettingsStorage::instance()->loadValue(SettingsKey_DownloadRepacks, true);
 }
 
 void AutoDownloader::setDownloadRepacks(const bool downloadRepacks)
@@ -398,7 +397,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         params.addPaused = rule.addPaused();
         params.contentLayout = rule.torrentContentLayout();
         if (!rule.savePath().isEmpty())
-            params.useAutoTMM = TriStateBool::False;
+            params.useAutoTMM = false;
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
         BitTorrent::Session::instance()->addTorrent(torrentURL, params);
 

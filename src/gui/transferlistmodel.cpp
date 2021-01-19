@@ -36,7 +36,7 @@
 #include <QPalette>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
@@ -133,7 +133,7 @@ TransferListModel::TransferListModel(QObject *parent)
 
     // Load the torrents
     using namespace BitTorrent;
-    for (TorrentHandle *const torrent : asConst(Session::instance()->torrents()))
+    for (Torrent *const torrent : asConst(Session::instance()->torrents()))
         addTorrent(torrent);
 
     // Listen for torrent changes
@@ -234,7 +234,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
     return {};
 }
 
-QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent, const int column) const
+QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, const int column) const
 {
     bool hideValues = false;
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
@@ -276,7 +276,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
         if (hideValues && (value <= 0))
             return {};
 
-         return ((static_cast<int>(value) == -1) || (value > BitTorrent::TorrentHandle::MAX_RATIO))
+         return ((static_cast<int>(value) == -1) || (value > BitTorrent::Torrent::MAX_RATIO))
                   ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(value, 2);
     };
 
@@ -361,9 +361,9 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     case TR_TAGS:
         return tagsString(torrent->tags());
     case TR_ADD_DATE:
-        return torrent->addedTime().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_SEED_DATE:
-        return torrent->completedTime().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        return QLocale().toString(torrent->completedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_TRACKER:
         return torrent->currentTracker();
     case TR_DLLIMIT:
@@ -387,7 +387,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
-        return torrent->lastSeenComplete().toLocalTime().toString(Qt::DefaultLocaleShortDate);
+        return QLocale().toString(torrent->lastSeenComplete().toLocalTime(), QLocale::ShortFormat);
     case TR_LAST_ACTIVITY:
         return lastActivityString((torrent->isPaused() || torrent->isChecking()) ? -1 : torrent->timeSinceActivity());
     case TR_AVAILABILITY:
@@ -399,7 +399,7 @@ QString TransferListModel::displayValue(const BitTorrent::TorrentHandle *torrent
     return {};
 }
 
-QVariant TransferListModel::internalValue(const BitTorrent::TorrentHandle *torrent, const int column, const bool alt) const
+QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, const int column, const bool alt) const
 {
     switch (column)
     {
@@ -474,7 +474,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid()) return {};
 
-    const BitTorrent::TorrentHandle *torrent = m_torrentList.value(index.row());
+    const BitTorrent::Torrent *torrent = m_torrentList.value(index.row());
     if (!torrent) return {};
 
     switch (role)
@@ -537,7 +537,7 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 {
     if (!index.isValid() || (role != Qt::DisplayRole)) return false;
 
-    BitTorrent::TorrentHandle *const torrent = m_torrentList.value(index.row());
+    BitTorrent::Torrent *const torrent = m_torrentList.value(index.row());
     if (!torrent) return false;
 
     // Category and Name columns can be edited
@@ -556,7 +556,7 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
-void TransferListModel::addTorrent(BitTorrent::TorrentHandle *const torrent)
+void TransferListModel::addTorrent(BitTorrent::Torrent *const torrent)
 {
     Q_ASSERT(!m_torrentMap.contains(torrent));
 
@@ -576,14 +576,14 @@ Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
     return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
 }
 
-BitTorrent::TorrentHandle *TransferListModel::torrentHandle(const QModelIndex &index) const
+BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) const
 {
     if (!index.isValid()) return nullptr;
 
     return m_torrentList.value(index.row());
 }
 
-void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent)
+void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     const int row = m_torrentMap.value(torrent, -1);
     Q_ASSERT(row >= 0);
@@ -599,7 +599,7 @@ void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::TorrentHandle 
     endRemoveRows();
 }
 
-void TransferListModel::handleTorrentStatusUpdated(BitTorrent::TorrentHandle *const torrent)
+void TransferListModel::handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent)
 {
     const int row = m_torrentMap.value(torrent, -1);
     Q_ASSERT(row >= 0);
@@ -607,13 +607,13 @@ void TransferListModel::handleTorrentStatusUpdated(BitTorrent::TorrentHandle *co
     emit dataChanged(index(row, 0), index(row, columnCount() - 1));
 }
 
-void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::TorrentHandle *> &torrents)
+void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents)
 {
     const int columns = (columnCount() - 1);
 
     if (torrents.size() <= (m_torrentList.size() * 0.5))
     {
-        for (BitTorrent::TorrentHandle *const torrent : torrents)
+        for (BitTorrent::Torrent *const torrent : torrents)
         {
             const int row = m_torrentMap.value(torrent, -1);
             Q_ASSERT(row >= 0);

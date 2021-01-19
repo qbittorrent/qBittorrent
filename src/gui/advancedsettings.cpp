@@ -727,12 +727,12 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
     setCellWidget(row, PROPERTY, label);
     setCellWidget(row, VALUE, widget);
 
-    if (std::is_same<T, QCheckBox>::value)
-        connect(widget, SIGNAL(stateChanged(int)), this, SIGNAL(settingsChanged()));
-    else if (std::is_same<T, QSpinBox>::value)
-        connect(widget, SIGNAL(valueChanged(int)), this, SIGNAL(settingsChanged()));
-    else if (std::is_same<T, QComboBox>::value)
-        connect(widget, SIGNAL(currentIndexChanged(int)), this, SIGNAL(settingsChanged()));
-    else if (std::is_same<T, QLineEdit>::value)
-        connect(widget, SIGNAL(textChanged(QString)), this, SIGNAL(settingsChanged()));
+    if constexpr (std::is_same_v<T, QCheckBox>)
+        connect(widget, &QCheckBox::stateChanged, this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QSpinBox>)
+        connect(widget, qOverload<int>(&QSpinBox::valueChanged), this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QComboBox>)
+        connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
+    else if constexpr (std::is_same_v<T, QLineEdit>)
+        connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
 }

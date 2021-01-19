@@ -27,24 +27,20 @@
         <translation>Mode de gestió de torrents:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Mantén la capeta del nivell més elevat</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Disposició del contingut:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crea una subcarpeta</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>No creïs una subcarpeta</translation>
     </message>
 </context>
 <context>
@@ -1400,7 +1396,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Mantén la capeta del nivell més elevat</translation>
+        <translation type="vanished">Mantén la capeta del nivell més elevat</translation>
     </message>
     <message>
         <source> min</source>
@@ -1444,6 +1440,22 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Admet el nom de domini internacionalitzat (IDN) (requereix libtorrent &gt;= 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3222,10 +3234,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Crea una subcarpeta:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>El número d'episodi ha de ser un valor positiu.</translation>
     </message>
@@ -3317,19 +3325,19 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Disposició del contingut del torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crea una subcarpeta</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>No creïs una subcarpeta</translation>
     </message>
 </context>
 <context>

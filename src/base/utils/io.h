@@ -34,30 +34,44 @@
 class QByteArray;
 class QFileDevice;
 
-namespace Utils
+namespace Utils::IO
 {
-    namespace IO
+    // A wrapper class that satisfy LegacyOutputIterator requirement
+    class FileDeviceOutputIterator
     {
-        // A wrapper class that satisfy LegacyOutputIterator requirement
-        class FileDeviceOutputIterator
-            : public std::iterator<std::output_iterator_tag, void, void, void, void>
+    public:
+        // std::iterator_traits
+        using iterator_category = std::output_iterator_tag;
+        using difference_type = void;
+        using value_type = void;
+        using pointer = void;
+        using reference = void;
+
+        explicit FileDeviceOutputIterator(QFileDevice &device, const int bufferSize = (4 * 1024));
+        FileDeviceOutputIterator(const FileDeviceOutputIterator &other) = default;
+        ~FileDeviceOutputIterator();
+
+        // mimic std::ostream_iterator behavior
+        FileDeviceOutputIterator &operator=(char c);
+
+        constexpr FileDeviceOutputIterator &operator*()
         {
-        public:
-            explicit FileDeviceOutputIterator(QFileDevice &device, const int bufferSize = (4 * 1024));
-            FileDeviceOutputIterator(const FileDeviceOutputIterator &other) = default;
-            ~FileDeviceOutputIterator();
+            return *this;
+        }
 
-            // mimic std::ostream_iterator behavior
-            FileDeviceOutputIterator &operator=(char c);
-            // TODO: make these `constexpr` in C++17
-            FileDeviceOutputIterator &operator*();
-            FileDeviceOutputIterator &operator++();
-            FileDeviceOutputIterator &operator++(int);
+        constexpr FileDeviceOutputIterator &operator++()
+        {
+            return *this;
+        }
 
-        private:
-            QFileDevice *m_device;
-            std::shared_ptr<QByteArray> m_buffer;
-            int m_bufferSize;
-        };
-    }
+        constexpr FileDeviceOutputIterator &operator++(int)
+        {
+            return *this;
+        }
+
+    private:
+        QFileDevice *m_device;
+        std::shared_ptr<QByteArray> m_buffer;
+        int m_bufferSize;
+    };
 }

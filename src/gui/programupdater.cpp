@@ -44,6 +44,7 @@
 #endif
 
 #include "base/net/downloadmanager.h"
+#include "base/version.h"
 
 namespace
 {

@@ -38,7 +38,7 @@
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
@@ -459,7 +459,7 @@ void SyncController::maindataAction()
 
     QVariantHash torrents;
     QHash<QString, QStringList> trackers;
-    for (const BitTorrent::TorrentHandle *torrent : asConst(session->torrents()))
+    for (const BitTorrent::Torrent *torrent : asConst(session->torrents()))
     {
         const BitTorrent::InfoHash torrentHash = torrent->hash();
 
@@ -543,7 +543,7 @@ void SyncController::torrentPeersAction()
     auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastAcceptedResponse")).toMap();
 
     const QString hash {params()["hash"]};
-    const BitTorrent::TorrentHandle *torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 

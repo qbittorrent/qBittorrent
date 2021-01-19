@@ -1,3 +1,21 @@
+Tue Jan 19 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.3
+    - FEATURE: New languages: Azerbaijani, Estonian
+    - BUGFIX: Unify global speed dialogs for normal/alternative speeds (thalieht)
+    - BUGFIX: Increase maximum global speed limits ~2 GiB/s (thalieht)
+    - BUGFIX: Save fastresume when setting torrent speed limits (thalieht)
+    - BUGFIX: Group several torrent options into one dialog (thalieht)
+    - BUGFIX: Capitalize locale names (Chocobo1)
+    - BUGFIX: Improve content file/folder names handling (glassez)
+    - BUGFIX: Drop notification about move storage finished or failed (glassez)
+    - BUGFIX: Reload "missing files" torrent instead of re-checking (glassez)
+    - BUGFIX: Remember dialog sizes (Chocobo1)
+    - BUGFIX: Improve detection of file extension string (Chocobo1)
+    - WEBUI: Don't call non-existent elements (glassez)
+    - WEBUI: Update "Keep top-level folder" in WebUI options (thalieht)
+    - MACOS: QMake: Raise minimal macOS target version to 10.14 (glassez)
+    - LINUX: Use legacy 'data' directory only as a fallback (lbilli)
+    - OTHER: Bump project requirement to C++17 (Chocobo1)
+
 Sun Dec 27 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.2
     - FEATURE: Allow to add root folder to torrent content (glassez)
     - FEATURE: "HTTPS tracker validation" option is available on all platforms with latest libtorrent (Chocobo1)

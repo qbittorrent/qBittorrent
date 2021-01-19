@@ -27,24 +27,20 @@
         <translation>מצב ניהול טורנטים:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">שמור על תיקיית רמה למעלה</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>סידור תוכן:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>מקורי</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>צור תת־תיקייה</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>אל תיצור תת־תיקייה</translation>
     </message>
 </context>
 <context>
@@ -105,19 +101,19 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלה כללית של קצב העלאה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלה כללית של קצב העלאה חייבת להיות גדולה מ־0 או מושבתת.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלה כללית של קצב הורדה חייבת להיות גדולה מ-0 או מושבתת.</translation>
+        <translation>מגבלה כללית של קצב הורדה חייבת להיות גדולה מ־0 או מושבתת.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלת קצב חלופי של העלאה חייבת להיות גדולה מן 0 או מושבתת.</translation>
+        <translation>מגבלת קצב חלופית של העלאה חייבת להיות גדולה מ־0 או מושבתת.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation>מגבלת קצב חלופי של הורדה חייבת להיות גדולה מן 0 או מושבתת.</translation>
+        <translation>מגבלת קצב חלופית של הורדה חייבת להיות גדולה מ־0 או מושבתת.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -310,7 +306,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>מספר עולמי של מגבלת חריצי העלאה חייב להיות גדול מ־0 או מושבת.</translation>
+        <translation>מספר כללי של מגבלת חריצי העלאה חייב להיות גדול מ־0 או מושבת.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -473,11 +469,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>מגבלה עולמית של מהירות העלאה</translation>
+        <translation>מגבלה כללית של מהירות העלאה</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>מגבלה עולמית של מהירות הורדה</translation>
+        <translation>מגבלה כללית של מהירות הורדה</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -490,7 +486,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>מגבלות מהירות חלופית</translation>
+        <translation>מגבלות מהירות חלופיות</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -558,7 +554,7 @@
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation>מגבלות מהירות חלופית: כבוי</translation>
+        <translation>מגבלות מהירות חלופיות: כבוי</translation>
     </message>
     <message>
         <source>Download speed icon</source>
@@ -570,7 +566,7 @@
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation>מגבלות מהירות חלופית: פועל</translation>
+        <translation>מגבלות מהירות חלופיות: פועל</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
@@ -637,7 +633,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>תזמן את השימוש במגבלות קצב חלופי</translation>
+        <translation>תזמן את השימוש במגבלות קצב חלופיות</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -749,7 +745,7 @@
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>מספר מרבי עולמי של חיבורים:</translation>
+        <translation>מספר מרבי כללי של חיבורים:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
@@ -757,7 +753,7 @@
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>מספר מרבי עולמי של חריצי העלאה:</translation>
+        <translation>מספר מרבי כללי של חריצי העלאה:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -813,7 +809,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation>מגבלות קצב עולמי</translation>
+        <translation>מגבלות קצב כלליות</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -825,7 +821,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>מגבלות קצב חלופי</translation>
+        <translation>מגבלות קצב חלופיות</translation>
     </message>
     <message>
         <source>From:</source>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>שמור על תיקיית רמה למעלה</translation>
+        <translation type="vanished">שמור על תיקיית רמה למעלה</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>תמוך בשם בינלאומי של תחום (IDN) (דורש libtorrent &gt;= 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2476,7 +2488,7 @@
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation>השתמש במגבלת שיתוף עולמית</translation>
+        <translation>השתמש במגבלת שיתוף כללית</translation>
     </message>
     <message>
         <source>Set no share limit</source>
@@ -3202,7 +3214,7 @@
     </message>
     <message>
         <source>Use global settings</source>
-        <translation>השתמש בהגדרות עולמיות</translation>
+        <translation>השתמש בהגדרות כלליות</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
@@ -3219,10 +3231,6 @@
     <message>
         <source>Always</source>
         <translation>תמיד</translation>
-    </message>
-    <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">צור תת־תיקייה:</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3316,19 +3324,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>סידור תוכן של טורנט:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>צור תת־תיקייה</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>מקורי</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>אל תיצור תת־תיקייה</translation>
     </message>
 </context>
 <context>

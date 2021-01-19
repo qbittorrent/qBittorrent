@@ -27,24 +27,20 @@
         <translation>نمط إدارة التورنت:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">احتفظ بمجلد المستوى الأعلى</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>تخطيط المحتوى:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>الأصلي</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>
 <context>
@@ -939,7 +935,7 @@
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
-        <translation>العوامل المدعومة (حساس لحالة الأحرف):</translation>
+        <translation>المعلمات المدعومة (حساس لحالة الأحرف):</translation>
     </message>
     <message>
         <source>%N: Torrent name</source>
@@ -979,7 +975,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>نصيحة: غلف المعامل بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، "%N")</translation>
+        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>احتفظ بمجلد المستوى الأعلى</translation>
+        <translation type="vanished">احتفظ بمجلد المستوى الأعلى</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>دعم اسم نطاق الإنترنت الدولي (IDN) (يتطلب libtorrent &gt; 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>دائمًا</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">إنشاء مجلد فرعي:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>رقم الحلقة هو قيمة موجبة إلزامية</translation>
     </message>
@@ -3316,19 +3324,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>تخطيط محتوى التورنت:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>الأصلي</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>
 <context>

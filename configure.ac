@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v4.3.2], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.3.3], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 : ${CFLAGS=""}
@@ -194,34 +194,34 @@ PKG_CHECK_MODULES(zlib,
                  [CXXFLAGS="$zlib_CFLAGS $CXXFLAGS"
                  LIBS="$zlib_LIBS $LIBS"])
 
-# Check if already in >= C++14 mode because of the flags returned by one of the above packages
+# Check if already in >= C++17 mode because of the flags returned by one of the above packages
 TMP_CXXFLAGS="$CXXFLAGS"
 CXXFLAGS=""
-AC_MSG_CHECKING([if compiler defaults to C++14 or later mode])
-AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
+AC_MSG_CHECKING([if compiler defaults to C++17 or later mode])
+AC_COMPILE_IFELSE([DETECT_CPP17_PROGRAM()],
                   [AC_MSG_RESULT([yes])
-                   QBT_CXX14_FOUND="yes"],
+                   QBT_CXX17_FOUND="yes"],
                   [AC_MSG_RESULT([no])
-                   QBT_CXX14_FOUND="no"])
+                   QBT_CXX17_FOUND="no"])
 
-# In case of no, check if the compiler can support at least C++14
+# In case of no, check if the compiler can support at least C++17
 # and if yes, enable it leaving a warning to the user
-AS_IF([test "x$QBT_CXX14_FOUND" = "xno"],
-      [AC_MSG_CHECKING([if compiler supports C++14])
-       CXXFLAGS="-std=c++14"
-       AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
+AS_IF([test "x$QBT_CXX17_FOUND" = "xno"],
+      [AC_MSG_CHECKING([if compiler supports C++17])
+       CXXFLAGS="-std=c++17"
+       AC_COMPILE_IFELSE([DETECT_CPP17_PROGRAM()],
                         [AC_MSG_RESULT([yes])
-                         AC_MSG_CHECKING([if C++14 is disabled by the set compiler flags])
+                         AC_MSG_CHECKING([if C++17 is disabled by the set compiler flags])
                          # prepend the flag so it won't override conflicting user defined flags
-                         CXXFLAGS="-std=c++14 $TMP_CXXFLAGS"
-                         AC_COMPILE_IFELSE([DETECT_CPP14_PROGRAM()],
+                         CXXFLAGS="-std=c++17 $TMP_CXXFLAGS"
+                         AC_COMPILE_IFELSE([DETECT_CPP17_PROGRAM()],
                                            [AC_MSG_RESULT([no])
-                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++14"
-                                            AC_MSG_WARN([C++14 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors.])],
+                                            QBT_ADD_CONFIG="$QBT_ADD_CONFIG c++1z"
+                                            AC_MSG_WARN([C++17 mode is now force enabled. The C++ mode should match the mode that other libraries were built with, otherwise you'll likely get linking errors.])],
                                            [AC_MSG_RESULT([yes])
-                                            AC_MSG_ERROR([The compiler supports C++14 but the user or a dependency has explicitly enabled a lower mode.])])],
+                                            AC_MSG_ERROR([The compiler supports C++17 but the user or a dependency has explicitly enabled a lower mode.])])],
                         [AC_MSG_RESULT([no])
-                         AC_MSG_ERROR([A compiler supporting C++14 is required.])])
+                         AC_MSG_ERROR([A compiler supporting C++17 is required.])])
       ])
 CXXFLAGS="$TMP_CXXFLAGS"
 
@@ -272,9 +272,13 @@ AC_SUBST(QBT_REMOVE_CONFIG)
 AC_SUBST(QBT_ADD_DEFINES)
 AC_SUBST(QBT_REMOVE_DEFINES)
 
-AC_OUTPUT(conf.pri)
+QBT_CONFIG_FILES="conf.pri"
+
 AS_IF([test "x$enable_systemd" = "xyes"],
-      [AC_OUTPUT(dist/unix/systemd/qbittorrent-nox@.service)])
+      [QBT_CONFIG_FILES="$QBT_CONFIG_FILES dist/unix/systemd/qbittorrent-nox@.service"])
+
+AC_CONFIG_FILES(["$QBT_CONFIG_FILES"])
+AC_OUTPUT
 
 AC_MSG_NOTICE([Running qmake to generate the makefile...])
 TOPDIR="$(cd "$(dirname "$0")" && pwd)"

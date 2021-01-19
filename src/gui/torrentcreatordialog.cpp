@@ -48,22 +48,22 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const QString &defau
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDialog)
     , m_creatorThread(new BitTorrent::TorrentCreatorThread(this))
-    , m_storeDialogSize(SETTINGS_KEY("Dimension"))
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
     , m_storePieceSize(SETTINGS_KEY("PieceSize"))
     , m_storePrivateTorrent(SETTINGS_KEY("PrivateTorrent"))
     , m_storeStartSeeding(SETTINGS_KEY("StartSeeding"))
     , m_storeIgnoreRatio(SETTINGS_KEY("IgnoreRatio"))
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-    , m_storeTorrentFormat(SETTINGS_KEY("TorrentFormat"), 1)
+    , m_storeTorrentFormat(SETTINGS_KEY("TorrentFormat"))
 #else
-    , m_storeOptimizeAlignment(SETTINGS_KEY("OptimizeAlignment"), true)
-    , m_paddedFileSizeLimit(SETTINGS_KEY("PaddedFileSizeLimit"), -1)
+    , m_storeOptimizeAlignment(SETTINGS_KEY("OptimizeAlignment"))
+    , m_paddedFileSizeLimit(SETTINGS_KEY("PaddedFileSizeLimit"))
 #endif
-    , m_storeLastAddPath(SETTINGS_KEY("LastAddPath"), QDir::homePath())
+    , m_storeLastAddPath(SETTINGS_KEY("LastAddPath"))
     , m_storeTrackerList(SETTINGS_KEY("TrackerList"))
     , m_storeWebSeedList(SETTINGS_KEY("WebSeedList"))
     , m_storeComments(SETTINGS_KEY("Comments"))
-    , m_storeLastSavePath(SETTINGS_KEY("LastSavePath"), QDir::homePath())
+    , m_storeLastSavePath(SETTINGS_KEY("LastSavePath"))
     , m_storeSource(SETTINGS_KEY("Source"))
 {
     m_ui->setupUi(this);
@@ -184,7 +184,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     input = fi.canonicalFilePath();
 
     // get save path
-    const QString savePath = QString(m_storeLastSavePath) + QLatin1Char('/') + fi.fileName() + QLatin1String(".torrent");
+    const QString savePath = m_storeLastSavePath.get(QDir::homePath()) + QLatin1Char('/') + fi.fileName() + QLatin1String(".torrent");
     QString destination = QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), savePath, tr("Torrent Files (*.torrent)"));
     if (destination.isEmpty())
         return;
@@ -246,10 +246,10 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
         params.skipChecking = true;
         if (m_ui->checkIgnoreShareLimits->isChecked())
         {
-            params.ratioLimit = BitTorrent::TorrentHandle::NO_RATIO_LIMIT;
-            params.seedingTimeLimit = BitTorrent::TorrentHandle::NO_SEEDING_TIME_LIMIT;
+            params.ratioLimit = BitTorrent::Torrent::NO_RATIO_LIMIT;
+            params.seedingTimeLimit = BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
         }
-        params.useAutoTMM = TriStateBool::False;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
+        params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
         BitTorrent::Session::instance()->addTorrent(info, params);
     }
@@ -324,7 +324,7 @@ void TorrentCreatorDialog::saveSettings()
 
 void TorrentCreatorDialog::loadSettings()
 {
-    m_ui->textInputPath->setText(m_storeLastAddPath);
+    m_ui->textInputPath->setText(m_storeLastAddPath.get(QDir::homePath()));
 
     m_ui->comboPieceSize->setCurrentIndex(m_storePieceSize);
     m_ui->checkPrivate->setChecked(m_storePrivateTorrent);
@@ -332,10 +332,10 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-    m_ui->comboTorrentFormat->setCurrentIndex(m_storeTorrentFormat);
+    m_ui->comboTorrentFormat->setCurrentIndex(m_storeTorrentFormat.get(1));
 #else
-    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment);
-    m_ui->spinPaddedFileSizeLimit->setValue(m_paddedFileSizeLimit);
+    m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment.get(true));
+    m_ui->spinPaddedFileSizeLimit->setValue(m_paddedFileSizeLimit.get(-1));
 #endif
 
     m_ui->trackersList->setPlainText(m_storeTrackerList);

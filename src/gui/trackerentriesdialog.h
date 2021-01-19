@@ -60,5 +60,5 @@ private:
     void loadSettings();
 
     Ui::TrackerEntriesDialog *m_ui;
-    CachedSettingValue<QSize> m_storeDialogSize;
+    SettingValue<QSize> m_storeDialogSize;
 };

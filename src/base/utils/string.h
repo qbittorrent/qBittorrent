@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QChar>
 #include <QMetaEnum>
 #include <QString>
@@ -37,62 +39,56 @@
 
 class QStringRef;
 
-class TriStateBool;
-
-namespace Utils
+namespace Utils::String
 {
-    namespace String
+    QString fromDouble(double n, int precision);
+
+    int naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity);
+    template <Qt::CaseSensitivity caseSensitivity>
+    bool naturalLessThan(const QString &left, const QString &right)
     {
-        QString fromDouble(double n, int precision);
+        return (naturalCompare(left, right, caseSensitivity) < 0);
+    }
 
-        int naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity);
-        template <Qt::CaseSensitivity caseSensitivity>
-        bool naturalLessThan(const QString &left, const QString &right)
+    QString wildcardToRegex(const QString &pattern);
+
+    template <typename T>
+    T unquote(const T &str, const QString &quotes = QChar('"'))
+    {
+        if (str.length() < 2) return str;
+
+        for (const QChar quote : quotes)
         {
-            return (naturalCompare(left, right, caseSensitivity) < 0);
+            if (str.startsWith(quote) && str.endsWith(quote))
+                return str.mid(1, (str.length() - 2));
         }
 
-        QString wildcardToRegex(const QString &pattern);
+        return str;
+    }
 
-        template <typename T>
-        T unquote(const T &str, const QString &quotes = QChar('"'))
-        {
-            if (str.length() < 2) return str;
+    std::optional<bool> parseBool(const QString &string);
 
-            for (const QChar quote : quotes)
-            {
-                if (str.startsWith(quote) && str.endsWith(quote))
-                    return str.mid(1, (str.length() - 2));
-            }
+    QString join(const QVector<QStringRef> &strings, const QString &separator);
 
-            return str;
-        }
+    template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
+    QString fromEnum(const T &value)
+    {
+        static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
+                      "Enumeration underlying type has to be int.");
 
-        bool parseBool(const QString &string, bool defaultValue);
-        TriStateBool parseTriStateBool(const QString &string);
+        const auto metaEnum = QMetaEnum::fromType<T>();
+        return QString::fromLatin1(metaEnum.valueToKey(static_cast<int>(value)));
+    }
 
-        QString join(const QVector<QStringRef> &strings, const QString &separator);
+    template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
+    T toEnum(const QString &serializedValue, const T &defaultValue)
+    {
+        static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
+                      "Enumeration underlying type has to be int.");
 
-        template <typename T, typename std::enable_if_t<std::is_enum<T>::value, int> = 0>
-        QString fromEnum(const T &value)
-        {
-            static_assert(std::is_same<int, typename std::underlying_type_t<T>>::value,
-                          "Enumeration underlying type has to be int.");
-
-            const auto metaEnum = QMetaEnum::fromType<T>();
-            return QString::fromLatin1(metaEnum.valueToKey(static_cast<int>(value)));
-        }
-
-        template <typename T, typename std::enable_if_t<std::is_enum<T>::value, int> = 0>
-        T toEnum(const QString &serializedValue, const T &defaultValue)
-        {
-            static_assert(std::is_same<int, typename std::underlying_type_t<T>>::value,
-                          "Enumeration underlying type has to be int.");
-
-            const auto metaEnum = QMetaEnum::fromType<T>();
-            bool ok = false;
-            const T value = static_cast<T>(metaEnum.keyToValue(serializedValue.toLatin1().constData(), &ok));
-            return (ok ? value : defaultValue);
-        }
+        const auto metaEnum = QMetaEnum::fromType<T>();
+        bool ok = false;
+        const T value = static_cast<T>(metaEnum.keyToValue(serializedValue.toLatin1().constData(), &ok));
+        return (ok ? value : defaultValue);
     }
 }

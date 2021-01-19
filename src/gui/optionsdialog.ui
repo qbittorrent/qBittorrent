@@ -1902,7 +1902,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <string> KiB/s</string>
                  </property>
                  <property name="maximum">
-                  <number>1000000</number>
+                  <number>2000000</number>
                  </property>
                  <property name="value">
                   <number>100</number>
@@ -1918,7 +1918,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <string> KiB/s</string>
                  </property>
                  <property name="maximum">
-                  <number>1000000</number>
+                  <number>2000000</number>
                  </property>
                  <property name="value">
                   <number>100</number>
@@ -1973,7 +1973,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <string> KiB/s</string>
                  </property>
                  <property name="maximum">
-                  <number>1000000</number>
+                  <number>2000000</number>
                  </property>
                  <property name="value">
                   <number>10</number>
@@ -2109,7 +2109,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <string> KiB/s</string>
                  </property>
                  <property name="maximum">
-                  <number>1000000</number>
+                  <number>2000000</number>
                  </property>
                  <property name="value">
                   <number>10</number>

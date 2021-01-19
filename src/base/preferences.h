@@ -329,10 +329,6 @@ public:
     void setMainVSplitterState(const QByteArray &state);
     QString getMainLastDir() const;
     void setMainLastDir(const QString &path);
-    QSize getPrefSize() const;
-    void setPrefSize(const QSize &size);
-    QStringList getPrefHSplitterSizes() const;
-    void setPrefHSplitterSizes(const QStringList &sizes);
     QByteArray getPeerListState() const;
     void setPeerListState(const QByteArray &state);
     QString getPropSplitterSizes() const;

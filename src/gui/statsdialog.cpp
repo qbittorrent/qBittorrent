@@ -33,16 +33,19 @@
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "ui_statsdialog.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "StatisticsDialog/" name
+
 StatsDialog::StatsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::StatsDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -57,12 +60,13 @@ StatsDialog::StatsDialog(QWidget *parent)
     m_ui->labelCacheHits->hide();
 #endif
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 StatsDialog::~StatsDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 

@@ -118,6 +118,6 @@ private:
     std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
 
-    CachedSettingValue<QSize> m_storeDialogSize;
-    CachedSettingValue<QByteArray> m_storeSplitterState;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeSplitterState;
 };

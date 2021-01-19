@@ -32,20 +32,21 @@
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class AbstractFileStorage;
+    class Torrent;
     class TorrentInfo;
 }
 
 class TorrentContentTreeView final : public QTreeView
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TorrentContentTreeView)
 
 public:
     explicit TorrentContentTreeView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event) override;
 
-    void renameSelectedFile(BitTorrent::TorrentHandle *torrent);
-    void renameSelectedFile(BitTorrent::TorrentInfo &torrent);
+    void renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage);
 
 private:
     QModelIndex currentNameCell();

@@ -30,14 +30,14 @@
 
 #include <QBitArray>
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
 #include "peeraddress.h"
 
 using namespace BitTorrent;
 
-PeerInfo::PeerInfo(const TorrentHandle *torrent, const lt::peer_info &nativeInfo)
+PeerInfo::PeerInfo(const Torrent *torrent, const lt::peer_info &nativeInfo)
     : m_nativeInfo(nativeInfo)
 {
     calcRelevance(torrent);
@@ -231,7 +231,7 @@ QString PeerInfo::connectionType() const
         : QLatin1String {"Web"};
 }
 
-void PeerInfo::calcRelevance(const TorrentHandle *torrent)
+void PeerInfo::calcRelevance(const Torrent *torrent)
 {
     const QBitArray allPieces = torrent->pieces();
     const QBitArray peerPieces = pieces();

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,42 +28,20 @@
 
 #pragma once
 
-class TriStateBool
-{
-public:
-    static const TriStateBool Undefined;
-    static const TriStateBool False;
-    static const TriStateBool True;
+#define QBT_VERSION_MAJOR 4
+#define QBT_VERSION_MINOR 3
+#define QBT_VERSION_BUGFIX 3
+#define QBT_VERSION_BUILD 0
+#define QBT_VERSION_STATUS ""  // Should be empty for stable releases!
 
-    constexpr TriStateBool() = default;
-    constexpr TriStateBool(const TriStateBool &other) = default;
-    explicit constexpr TriStateBool(const bool boolean)
-    {
-        *this = boolean ? True : False;
-    }
+#define QBT__STRINGIFY(x) #x
+#define QBT_STRINGIFY(x) QBT__STRINGIFY(x)
 
-    TriStateBool &operator=(const TriStateBool &other) = default;  // TODO: add constexpr when using C++17
+#if (QBT_VERSION_BUILD != 0)
+#define PROJECT_VERSION QBT_STRINGIFY(QBT_VERSION_MAJOR.QBT_VERSION_MINOR.QBT_VERSION_BUGFIX.QBT_VERSION_BUILD) QBT_VERSION_STATUS
+#else
+#define PROJECT_VERSION QBT_STRINGIFY(QBT_VERSION_MAJOR.QBT_VERSION_MINOR.QBT_VERSION_BUGFIX) QBT_VERSION_STATUS
+#endif
 
-    explicit constexpr operator signed char() const
-    {
-        return m_value;
-    }
-
-    constexpr friend bool operator==(const TriStateBool &left, const TriStateBool &right)
-    {
-        return (left.m_value == right.m_value);
-    }
-
-private:
-    explicit constexpr TriStateBool(const int value)
-        : m_value((value < 0) ? -1 : ((value > 0) ? 1 : 0))
-    {
-    }
-
-    signed char m_value = -1; // Undefined by default
-};
-
-constexpr bool operator!=(const TriStateBool &left, const TriStateBool &right)
-{
-    return !(left == right);
-}
+#define QBT_VERSION "v" PROJECT_VERSION
+#define QBT_VERSION_2 PROJECT_VERSION

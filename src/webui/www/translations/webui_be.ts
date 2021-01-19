@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Стварыць падтэчку</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Не ствараць падтэчку</translation>
     </message>
 </context>
 <context>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Вольнае месца: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -334,7 +334,7 @@
     </message>
     <message>
         <source>Saving Management</source>
-        <translation type="unfinished" />
+        <translation>Кіраванне захаваннем</translation>
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Адкрыць дакументацыю</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -1071,7 +1071,7 @@
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished" />
+        <translation>Бяспека</translation>
     </message>
     <message>
         <source>When Category Save Path changed:</source>
@@ -1079,11 +1079,11 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>секунд</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Пераключыць закранутыя торэнты ў Ручны рэжым</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1151,7 +1151,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>Калі скончыцца час раздачы</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1263,7 +1263,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Абмежаванне раздачы</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1371,7 +1371,7 @@
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation type="unfinished" />
+        <translation>Змяніць правілы аўтаспампоўвання...</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
@@ -1391,10 +1391,6 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Keep top-level folder</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1439,6 +1435,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2253,7 +2265,7 @@
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>Спампоўваецца</translation>
     </message>
     <message>
         <source>Checking resume data</source>

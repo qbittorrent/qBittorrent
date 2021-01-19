@@ -45,7 +45,7 @@ class TrackerListWidget;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Ui
@@ -68,24 +68,24 @@ public:
     explicit PropertiesWidget(QWidget *parent);
     ~PropertiesWidget() override;
 
-    BitTorrent::TorrentHandle *getCurrentTorrent() const;
+    BitTorrent::Torrent *getCurrentTorrent() const;
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
 
 public slots:
     void setVisibility(bool visible);
-    void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+    void loadTorrentInfos(BitTorrent::Torrent *const torrent);
     void loadDynamicData();
     void clear();
     void readSettings();
     void saveSettings();
     void reloadPreferences();
     void openItem(const QModelIndex &index) const;
-    void loadTrackers(BitTorrent::TorrentHandle *const torrent);
+    void loadTrackers(BitTorrent::Torrent *const torrent);
 
 protected slots:
-    void updateTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+    void updateTorrentInfos(BitTorrent::Torrent *const torrent);
     void loadUrlSeeds();
     void askWebSeed();
     void deleteSelectedUrlSeeds();
@@ -101,7 +101,7 @@ protected slots:
 private slots:
     void configure();
     void filterText(const QString &filter);
-    void updateSavePath(BitTorrent::TorrentHandle *const torrent);
+    void updateSavePath(BitTorrent::Torrent *const torrent);
 
 private:
     QPushButton *getButtonFromIndex(int index);
@@ -110,7 +110,7 @@ private:
     QString getFullPath(const QModelIndex &index) const;
 
     Ui::PropertiesWidget *m_ui;
-    BitTorrent::TorrentHandle *m_torrent;
+    BitTorrent::Torrent *m_torrent;
     SlideState m_state;
     TorrentContentFilterModel *m_propListModel;
     PropListDelegate *m_propListDelegate;

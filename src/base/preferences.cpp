@@ -1241,26 +1241,6 @@ void Preferences::setMainLastDir(const QString &path)
     setValue("MainWindowLastDir", path);
 }
 
-QSize Preferences::getPrefSize() const
-{
-    return value("Preferences/State/size").toSize();
-}
-
-void Preferences::setPrefSize(const QSize &size)
-{
-    setValue("Preferences/State/size", size);
-}
-
-QStringList Preferences::getPrefHSplitterSizes() const
-{
-    return value("Preferences/State/hSplitterSizes").toStringList();
-}
-
-void Preferences::setPrefHSplitterSizes(const QStringList &sizes)
-{
-    setValue("Preferences/State/hSplitterSizes", sizes);
-}
-
 QByteArray Preferences::getPeerListState() const
 {
     return value("TorrentProperties/Peers/qt5/PeerListState").toByteArray();

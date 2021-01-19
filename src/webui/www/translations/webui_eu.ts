@@ -1195,7 +1195,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>libtorrent Atala</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
@@ -1211,7 +1211,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Ahalbidetu enkriptaketa</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1394,10 +1394,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source> min</source>
         <translation type="unfinished" />
     </message>
@@ -1439,6 +1435,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2162,7 +2174,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Eskuragarritasuna</translation>
     </message>
     <message>
         <source>Tier</source>

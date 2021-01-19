@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/www/translations">
+        <file>webui_az@latin.qm</file>
         <file>webui_ar.qm</file>
         <file>webui_be.qm</file>
         <file>webui_bg.qm</file>
@@ -13,6 +14,7 @@
         <file>webui_en_GB.qm</file>
         <file>webui_eo.qm</file>
         <file>webui_es.qm</file>
+        <file>webui_et.qm</file>
         <file>webui_eu.qm</file>
         <file>webui_fi.qm</file>
         <file>webui_fr.qm</file>

@@ -7,47 +7,16 @@ macro(qbt_common_config)
     # treat value specified by the CXX_STANDARD target property as a requirement by default
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-    # these definitions are only needed for calls to
-    # lt::generate_fingerprint and for the qbittorrent.rc file on Windows
-    add_library(qbt_version_definitions INTERFACE)
-
-    target_compile_definitions(qbt_version_definitions INTERFACE
-        QBT_VERSION_MAJOR=${qBittorrent_VERSION_MAJOR}
-        QBT_VERSION_MINOR=${qBittorrent_VERSION_MINOR}
-        QBT_VERSION_BUGFIX=${qBittorrent_VERSION_PATCH}
-        QBT_VERSION_BUILD=${qBittorrent_VERSION_TWEAK}
-    )
-
     add_library(qbt_common_cfg INTERFACE)
 
-    # Full C++ 14 support is required
+    # Full C++ 17 support is required
     # See also https://cmake.org/cmake/help/latest/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html
     # for a breakdown of the features that CMake recognizes for each C++ standard
     target_compile_features(qbt_common_cfg INTERFACE
-        cxx_std_14
-        cxx_aggregate_default_initializers
-        cxx_attribute_deprecated
-        cxx_binary_literals
-        cxx_contextual_conversions
-        cxx_decltype_auto
-        cxx_digit_separators
-        cxx_generic_lambdas
-        cxx_lambda_init_captures
-        cxx_relaxed_constexpr
-        cxx_return_type_deduction
-        cxx_variable_templates
+        cxx_std_17
     )
 
-    set(QBT_PROJECT_VERSION "${qBittorrent_VERSION_MAJOR}.${qBittorrent_VERSION_MINOR}.${qBittorrent_VERSION_PATCH}")
-    if (NOT ${qBittorrent_VERSION_TWEAK} EQUAL 0)
-        set(QBT_PROJECT_VERSION "${QBT_PROJECT_VERSION}.${qBittorrent_VERSION_TWEAK}")
-    endif()
-
-    set(QBT_FULL_VERSION "${QBT_PROJECT_VERSION}${QBT_VER_STATUS}")
-
     target_compile_definitions(qbt_common_cfg INTERFACE
-        QBT_VERSION="v${QBT_FULL_VERSION}"
-        QBT_VERSION_2="${QBT_FULL_VERSION}"
         QT_DEPRECATED_WARNINGS
         QT_NO_CAST_TO_ASCII
         QT_NO_CAST_FROM_BYTEARRAY
@@ -90,6 +59,12 @@ macro(qbt_common_config)
         endif()
     endif()
 
+    if ((CXX_COMPILER_ID STREQUAL "Clang") OR (CXX_COMPILER_ID STREQUAL "AppleClang"))
+        target_compile_options(qbt_common_cfg INTERFACE
+            -Wno-range-loop-analysis
+        )
+    endif()
+
     if (MINGW)
         target_link_options(qbt_common_cfg INTERFACE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:LINKER:--dynamicbase>)
     endif()
@@ -101,8 +76,12 @@ macro(qbt_common_config)
     endif()
 
     if (MSVC)
-        target_compile_options(qbt_common_cfg INTERFACE /guard:cf)
-        target_link_options(qbt_common_cfg INTERFACE /guard:cf
+        target_compile_options(qbt_common_cfg INTERFACE
+            /guard:cf
+            /utf-8
+        )
+        target_link_options(qbt_common_cfg INTERFACE
+            /guard:cf
             $<$<NOT:$<CONFIG:Debug>>:/OPT:REF /OPT:ICF>
             # suppress linking warning due to /INCREMENTAL and /OPT:ICF being both ON
             $<$<CONFIG:RelWithDebInfo>:/INCREMENTAL:NO>

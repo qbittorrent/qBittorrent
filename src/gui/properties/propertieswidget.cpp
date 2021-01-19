@@ -45,7 +45,7 @@
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -158,7 +158,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
 
     const auto *renameFileHotkey = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(renameFileHotkey, &QShortcut::activated, this, [this]() { m_ui->filesList->renameSelectedFile(m_torrent); });
+    connect(renameFileHotkey, &QShortcut::activated, this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
     const auto *openFileHotkeyReturn = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(openFileHotkeyReturn, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
     const auto *openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
@@ -265,7 +265,7 @@ void PropertiesWidget::clear()
     m_propListModel->model()->clear();
 }
 
-BitTorrent::TorrentHandle *PropertiesWidget::getCurrentTorrent() const
+BitTorrent::Torrent *PropertiesWidget::getCurrentTorrent() const
 {
     return m_torrent;
 }
@@ -285,25 +285,25 @@ QTreeView *PropertiesWidget::getFilesList() const
     return m_ui->filesList;
 }
 
-void PropertiesWidget::updateSavePath(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         m_ui->labelSavePathVal->setText(Utils::Fs::toNativePath(m_torrent->savePath()));
 }
 
-void PropertiesWidget::loadTrackers(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::loadTrackers(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         m_trackerList->loadTrackers();
 }
 
-void PropertiesWidget::updateTorrentInfos(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::updateTorrentInfos(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
         loadTorrentInfos(m_torrent);
 }
 
-void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent)
+void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 {
     clear();
     m_torrent = torrent;
@@ -319,7 +319,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::TorrentHandle *const torrent
     if (m_torrent->hasMetadata())
     {
         // Creation date
-        m_ui->labelCreatedOnVal->setText(m_torrent->creationDate().toString(Qt::DefaultLocaleShortDate));
+        m_ui->labelCreatedOnVal->setText(QLocale().toString(m_torrent->creationDate(), QLocale::ShortFormat));
 
         m_ui->labelTotalSizeVal->setText(Utils::Misc::friendlyUnit(m_torrent->totalSize()));
 
@@ -437,7 +437,7 @@ void PropertiesWidget::loadDynamicData()
 
             // Update ratio info
             const qreal ratio = m_torrent->realRatio();
-            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::TorrentHandle::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
+            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::Torrent::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
 
             m_ui->labelSeedsVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
                 .arg(QString::number(m_torrent->seedsCount())
@@ -457,11 +457,11 @@ void PropertiesWidget::loadDynamicData()
             m_ui->labelUpSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
                 .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true), ulAvg));
 
-            m_ui->labelLastSeenCompleteVal->setText(m_torrent->lastSeenComplete().isValid() ? m_torrent->lastSeenComplete().toString(Qt::DefaultLocaleShortDate) : tr("Never"));
+            m_ui->labelLastSeenCompleteVal->setText(m_torrent->lastSeenComplete().isValid() ? QLocale().toString(m_torrent->lastSeenComplete(), QLocale::ShortFormat) : tr("Never"));
 
-            m_ui->labelCompletedOnVal->setText(m_torrent->completedTime().isValid() ? m_torrent->completedTime().toString(Qt::DefaultLocaleShortDate) : "");
+            m_ui->labelCompletedOnVal->setText(m_torrent->completedTime().isValid() ? QLocale().toString(m_torrent->completedTime(), QLocale::ShortFormat) : QString {});
 
-            m_ui->labelAddedOnVal->setText(m_torrent->addedTime().toString(Qt::DefaultLocaleShortDate));
+            m_ui->labelAddedOnVal->setText(QLocale().toString(m_torrent->addedTime(), QLocale::ShortFormat));
 
             if (m_torrent->hasMetadata())
             {
@@ -593,7 +593,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openParentFolder(index); });
 
         const QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
-        connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(m_torrent); });
+        connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
 
         menu->addSeparator();
     }

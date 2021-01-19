@@ -33,6 +33,8 @@
 #include <QString>
 #include <QtContainerFwd>
 
+#include "abstractfilestorage.h"
+
 class QBitArray;
 class QDateTime;
 class QUrl;
@@ -89,7 +91,7 @@ namespace BitTorrent
 
     uint qHash(TorrentState key, uint seed);
 
-    class TorrentHandle
+    class Torrent : public AbstractFileStorage
     {
     public:
         static const qreal USE_GLOBAL_RATIO;
@@ -101,7 +103,7 @@ namespace BitTorrent
         static const qreal MAX_RATIO;
         static const int MAX_SEEDING_TIME;
 
-        virtual ~TorrentHandle() = default;
+        virtual ~Torrent() = default;
 
         virtual InfoHash hash() const = 0;
         virtual QString name() const = 0;
@@ -177,7 +179,6 @@ namespace BitTorrent
         virtual bool removeTag(const QString &tag) = 0;
         virtual void removeAllTags() = 0;
 
-        virtual int filesCount() const = 0;
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;
         virtual qreal progress() const = 0;
@@ -185,9 +186,6 @@ namespace BitTorrent
         virtual qreal ratioLimit() const = 0;
         virtual int seedingTimeLimit() const = 0;
 
-        virtual QString filePath(int index) const = 0;
-        virtual QString fileName(int index) const = 0;
-        virtual qlonglong fileSize(int index) const = 0;
         virtual QStringList absoluteFilePaths() const = 0;
         virtual QVector<DownloadPriority> filePriorities() const = 0;
 
@@ -238,6 +236,9 @@ namespace BitTorrent
         virtual int downloadLimit() const = 0;
         virtual int uploadLimit() const = 0;
         virtual bool superSeeding() const = 0;
+        virtual bool isDHTDisabled() const = 0;
+        virtual bool isPEXDisabled() const = 0;
+        virtual bool isLSDDisabled() const = 0;
         virtual QVector<PeerInfo> peers() const = 0;
         virtual QBitArray pieces() const = 0;
         virtual QBitArray downloadingPieces() const = 0;
@@ -270,13 +271,15 @@ namespace BitTorrent
         virtual void forceReannounce(int index = -1) = 0;
         virtual void forceDHTAnnounce() = 0;
         virtual void forceRecheck() = 0;
-        virtual void renameFile(int index, const QString &name) = 0;
         virtual void prioritizeFiles(const QVector<DownloadPriority> &priorities) = 0;
         virtual void setRatioLimit(qreal limit) = 0;
         virtual void setSeedingTimeLimit(int limit) = 0;
         virtual void setUploadLimit(int limit) = 0;
         virtual void setDownloadLimit(int limit) = 0;
         virtual void setSuperSeeding(bool enable) = 0;
+        virtual void setDHTDisabled(bool disable) = 0;
+        virtual void setPEXDisabled(bool disable) = 0;
+        virtual void setLSDDisabled(bool disable) = 0;
         virtual void flushCache() const = 0;
         virtual void addTrackers(const QVector<TrackerEntry> &trackers) = 0;
         virtual void replaceTrackers(const QVector<TrackerEntry> &trackers) = 0;

@@ -12,88 +12,88 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Անվանակարգ՝</translation>
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>Սկսել torrent-ը</translation>
+        <translation>Մեկնարկել torrent-ը</translation>
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation>Բաց թողնել hash ստուգումը</translation>
+        <translation>Բաց թողնել հեշի ստուգումը</translation>
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent-ի կառավարման գործելաձև՝</translation>
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Պարունակության դասավորություն՝</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Բնօրինակ</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ստեղծել ենթապանակ</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Չստեղծել ենթապանակ</translation>
     </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Բոլորը</translation>
     </message>
     <message>
         <source>Uncategorized</source>
-        <translation type="unfinished" />
+        <translation>Չանվանակարգված</translation>
     </message>
 </context>
 <context>
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել անվանակարգ...</translation>
     </message>
     <message>
         <source>Remove category</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել անվանակարգը</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել չօգտագործվող անվանակարգերը</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Շարունակել torrent-ները</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Դադարեցնել torrent-ները</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Ջնջել torrent-ները</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Նոր անվանակարգ</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Խմբագրել անվանակարգը...</translation>
     </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Ելք qBittorrent-ից</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -177,27 +177,27 @@
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Մուտքանուն</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Գաղտնաբառ</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Օգտանուն</translation>
     </message>
     <message>
         <source>Original authors</source>
-        <translation type="unfinished" />
+        <translation>Հիմնադիր հեղինակներ</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Գործադրել</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել</translation>
     </message>
     <message>
         <source>Upload Torrents</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="unfinished" />
+        <translation>Այլ...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -322,7 +322,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Խմբագրել</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Բացել գործառույթների նկարագությունը</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -374,7 +374,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>ԼԱՎ</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>File</source>
-        <translation>Ֆայլ</translation>
+        <translation>Նիշք</translation>
     </message>
     <message>
         <source>Help</source>
@@ -397,7 +397,7 @@
     </message>
     <message>
         <source>View</source>
-        <translation>Տեսքը</translation>
+        <translation>Տեսք</translation>
     </message>
     <message>
         <source>Options...</source>
@@ -405,19 +405,19 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Վերսկսել</translation>
+        <translation>Շարունակել</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
-        <translation type="unfinished" />
+        <translation>Վերևի գործիքագոտի</translation>
     </message>
     <message>
         <source>Status Bar</source>
-        <translation type="unfinished" />
+        <translation>Վիճակագոտի</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
-        <translation type="unfinished" />
+        <translation>Արագությունը անվանագոտում</translation>
     </message>
     <message>
         <source>Donate!</source>
@@ -425,15 +425,15 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Վերսկսել բոլորը</translation>
+        <translation>Շարունակել բոլորը</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>Վիճակագրություն</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Մասին</translation>
+        <translation>Ծրագրի մասին</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -449,15 +449,15 @@
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել torrent նիշք...</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>Թղթաբանություն</translation>
+        <translation>Նկարագրություն</translation>
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել torrent հղում...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -469,72 +469,72 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Փոխանցման արագ-ան գլոբալ սահ-փակումներ</translation>
+        <translation>Փոխանցման արագ. ընդհանրական սահմանաչափ</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Բեռնման արագ-ան գլոբալ սահ-փակումներ</translation>
+        <translation>Ներբեռնման արագ. ընդհանրական սահմանաչափ</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished" />
+        <translation>Վստա՞հ եք, որ ուզում եք փակել qBittorrent-ը:</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[Ներ. %1, Վեր. %2] qBittorrent %3</translation>
+        <translation>[Ներբեռ.՝ %1, Վերբեռ.՝ %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>Արագության այլընտրանքային սահմանաչափ</translation>
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Որոնիչ</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Զտել torrent-ների ցանկը....</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Որոնել</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>Փոխանցումներ</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>Բարձրացնել հերթի ցանկում</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>Բարձրացնել հերթում</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>Հերթի վերջ</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>Ուղարկել հերթի վերջ</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>Հերթի սկիզբ</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>Իջեցնել հերթում</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>Իջեցնել հերթի ցանկում</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>Ուղարկել հերթի սկիզբ</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -562,7 +562,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>Կապակցման վիճակը</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -578,46 +578,46 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS ընթերցիչ</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
 </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished" />
+        <translation>Ընտրանքներ</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished" />
+        <translation>Ներբեռնումներ</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished" />
+        <translation>Կապակցում</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished" />
+        <translation>Արագություն</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished" />
+        <translation>Վեբ միջերես</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished" />
+        <translation>Լեզու</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished" />
+        <translation>Միջերեսի լեզուն՝</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -649,7 +649,7 @@
     </message>
     <message>
         <source>IP address:</source>
-        <translation type="unfinished" />
+        <translation>IP հասցե՝</translation>
     </message>
     <message>
         <source>Server domains:</source>
@@ -761,31 +761,31 @@
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished" />
+        <translation>Տեսակ՝</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(չկա)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished" />
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished" />
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished" />
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished" />
+        <translation>Խնամորդ՝</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished" />
+        <translation>Միացք՝</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
@@ -805,7 +805,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation type="unfinished" />
+        <translation>Գործադրել գրանցորդների նկատմամբ</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -813,11 +813,11 @@
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Վերբեռ.՝</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Ներբեռ.՝</translation>
     </message>
     <message>
         <source>Alternative Rate Limits</source>
@@ -826,28 +826,28 @@
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished" />
+        <translation>Որտեղից՝</translation>
     </message>
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished" />
+        <translation>Որտեղ՝</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished" />
+        <translation>Երբ՝</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished" />
+        <translation>Ամեն օր</translation>
     </message>
     <message>
         <source>Weekdays</source>
-        <translation type="unfinished" />
+        <translation>Աշխատանքային օրեր</translation>
     </message>
     <message>
         <source>Weekends</source>
-        <translation type="unfinished" />
+        <translation>Հանգստյան օրեր</translation>
     </message>
     <message>
         <source>Rate Limits Settings</source>
@@ -919,19 +919,19 @@
     </message>
     <message>
         <source>Certificate:</source>
-        <translation type="unfinished" />
+        <translation>Վկայագիր՝</translation>
     </message>
     <message>
         <source>Key:</source>
-        <translation type="unfinished" />
+        <translation>Բանալի՝</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished" />
+        <translation>Գրանցել</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished" />
+        <translation>Տիրույթի անվանում՝</translation>
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
@@ -1394,10 +1394,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source> min</source>
         <translation type="unfinished" />
     </message>
@@ -1439,6 +1435,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1928,19 +1940,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Անունը</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Չափը</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">Ընթացքը</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2366,10 +2366,6 @@
         <translation>Բեռնման տեղը...</translation>
     </message>
     <message>
-        <source>Copy name</source>
-        <translation type="vanished">Պատճենել անունը</translation>
-    </message>
-    <message>
         <source>Download first and last pieces first</source>
         <translation type="unfinished" />
     </message>
@@ -2392,16 +2388,8 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Առաջնայնությունը</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>Ստիպ. վերստուգում</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">Պատճենել magnet հղումը</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2526,7 +2514,7 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Նաև ջնջել ֆայլերը պնակից</translation>
+        <translation>Նաև ջնջել նիշքերը կոշտ սկավառակից</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>

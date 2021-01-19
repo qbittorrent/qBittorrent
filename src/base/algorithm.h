@@ -32,9 +32,6 @@
 
 namespace Algorithm
 {
-    template <typename ...>
-    using void_t = void;  // replace this with std::void_t in C++17
-
     template <typename T, typename = void>
     struct HasMappedType
         : std::false_type
@@ -42,7 +39,7 @@ namespace Algorithm
     };
 
     template <typename T>
-    struct HasMappedType<T, void_t<typename T::mapped_type>>
+    struct HasMappedType<T, std::void_t<typename T::mapped_type>>
         : std::true_type
     {
     };

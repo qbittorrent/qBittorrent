@@ -36,7 +36,7 @@ class QStandardItemModel;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 namespace Ui
 {
@@ -60,7 +60,7 @@ public:
         NB_COLUMNS
     };
 
-    PreviewSelectDialog(QWidget *parent, const BitTorrent::TorrentHandle *torrent);
+    PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent);
     ~PreviewSelectDialog();
 
 signals:
@@ -78,10 +78,10 @@ private:
     Ui::PreviewSelectDialog *m_ui;
     QStandardItemModel *m_previewListModel;
     PreviewListDelegate *m_listDelegate;
-    const BitTorrent::TorrentHandle *m_torrent;
+    const BitTorrent::Torrent *m_torrent;
     bool m_headerStateInitialized = false;
 
     // Settings
-    CachedSettingValue<QSize> m_storeDialogSize;
-    CachedSettingValue<QByteArray> m_storeTreeHeaderState;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeTreeHeaderState;
 };

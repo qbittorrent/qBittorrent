@@ -36,7 +36,7 @@ class QBitArray;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
     struct PeerAddress;
 
     class PeerInfo
@@ -45,7 +45,7 @@ namespace BitTorrent
 
     public:
         PeerInfo() = default;
-        PeerInfo(const TorrentHandle *torrent, const lt::peer_info &nativeInfo);
+        PeerInfo(const Torrent *torrent, const lt::peer_info &nativeInfo);
 
         bool fromDHT() const;
         bool fromPeX() const;
@@ -93,7 +93,7 @@ namespace BitTorrent
         int downloadingPieceIndex() const;
 
     private:
-        void calcRelevance(const TorrentHandle *torrent);
+        void calcRelevance(const Torrent *torrent);
         void determineFlags();
 
         lt::peer_info m_nativeInfo = {};

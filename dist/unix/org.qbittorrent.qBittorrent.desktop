@@ -13,6 +13,9 @@ StartupWMClass=qbittorrent
 Keywords=bittorrent;torrent;magnet;download;p2p;
 
 # Translations
+
+
+# Translations
 Comment[oc]=Telecargar e partejar de fichièrs amb BitTorrent
 GenericName[oc]=Client BitTorrent
 Name[oc]=qBittorrent
@@ -85,6 +88,9 @@ Name[hr]=qBittorrent
 Comment[hu]=Fájlok letöltése és megosztása a BitTorrent hálózaton keresztül
 GenericName[hu]=BitTorrent kliens
 Name[hu]=qBittorrent
+Comment[hy]=Նիշքերի փոխանցում BitTorrent-ի միջոցով
+GenericName[hy]=BitTorrent սպասառու
+Name[hy]=qBittorrent
 Comment[id]=Unduh dan berbagi berkas melalui BitTorrent
 GenericName[id]=Klien BitTorrent
 Name[id]=qBittorrent
@@ -100,8 +106,8 @@ Name[ja]=qBittorrent
 Comment[ka]=ჩამოტვირთე და გააზიარე ფაილები Bittorrent-ის საშუალებით
 GenericName[ka]=BitTorrent კლიენტი
 Name[ka]=qBittorrent
-Comment[ko]=비트토런트를 통해 파일을 받고 공유합니다
-GenericName[ko]=비트토런트 클라이언트
+Comment[ko]=비트토렌트를 통해 파일을 받고 공유합니다
+GenericName[ko]=비트토렌트 클라이언트
 Name[ko]=qBittorrent
 Comment[zh]=通过 BitTorrent 下载和分享文件
 GenericName[zh]=BitTorrent 客户端
@@ -189,8 +195,8 @@ Name[ms_MY]=qBittorrent
 Comment[eo]=Elŝutu kaj kunhavigu dosierojn per BitTorrent
 GenericName[eo]=BitTorrent-kliento
 Name[eo]=qBittorrent
-Comment[mn_MN]=BitTorrent ашиглан файлуудыг татаж түгээх
-GenericName[mn_MN]=BitTorrent үйлчлүүлэгч
+Comment[mn_MN]=BitTorrent-оор файлуудаа тат, түгээ
+GenericName[mn_MN]=BitTorrent татагч
 Name[mn_MN]=qBittorrent
 Comment[ta]=BitTorrent வழியாக கோப்புகளை பதிவிறக்க மற்றும் பகிர
 GenericName[ta]=BitTorrent வாடிக்கையாளர்

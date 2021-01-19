@@ -30,12 +30,11 @@
 
 #pragma once
 
+#include <optional>
 #include <stdexcept>
 
 #include <QString>
 #include <QStringList>
-
-#include "base/tristatebool.h"
 
 class QProcessEnvironment;
 
@@ -55,8 +54,8 @@ struct QBtCommandLineParameters
     bool shouldDaemonize;
 #endif
     int webUiPort;
-    TriStateBool addPaused;
-    TriStateBool skipDialog;
+    std::optional<bool> addPaused;
+    std::optional<bool> skipDialog;
     QStringList torrents;
     QString profileDir;
     QString configurationName;

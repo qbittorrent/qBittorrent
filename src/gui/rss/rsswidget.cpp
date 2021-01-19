@@ -486,7 +486,7 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
         QString::fromLatin1("<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>") +
         QString::fromLatin1("<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>").arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
     if (article->date().isValid())
-        html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Date: "), article->date().toLocalTime().toString(Qt::SystemLocaleLongDate));
+        html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
     if (!article->author().isEmpty())
         html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Author: "), article->author());
     html += "</div>"

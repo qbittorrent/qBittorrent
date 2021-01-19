@@ -117,6 +117,7 @@ window.qBittorrent.FileTree = (function() {
 
     const FileNode = new Class({
         name: "",
+        path: "",
         rowId: null,
         size: 0,
         checked: TriState.Unchecked,

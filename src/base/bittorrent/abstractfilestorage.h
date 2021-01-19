@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christian Kandeler
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
@@ -28,35 +28,26 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QtGlobal>
+#include <QCoreApplication>
 
-namespace Ui
+class QString;
+
+namespace BitTorrent
 {
-    class UpDownRatioDialog;
+    class AbstractFileStorage
+    {
+        Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
+
+    public:
+        virtual int filesCount() const = 0;
+        virtual QString filePath(int index) const = 0;
+        virtual QString fileName(int index) const = 0;
+        virtual qlonglong fileSize(int index) const = 0;
+
+        virtual void renameFile(int index, const QString &name) = 0;
+
+        void renameFile(const QString &oldPath, const QString &newPath);
+        void renameFolder(const QString &oldPath, const QString &newPath);
+    };
 }
-
-class UpDownRatioDialog final : public QDialog
-{
-    Q_OBJECT
-
-public:
-    UpDownRatioDialog(bool useDefault, qreal initialValue, qreal maxValue,
-            int initialTimeValue, int maxTimeValue,
-            QWidget *parent = nullptr);
-    ~UpDownRatioDialog();
-
-    bool useDefault() const;
-    qreal ratio() const;
-    int seedingTime() const;
-
-public slots:
-    void accept() override;
-
-private slots:
-    void handleRatioTypeChanged();
-    void enableRatioSpin();
-    void enableTimeSpin();
-
-private:
-    Ui::UpDownRatioDialog *m_ui;
-};

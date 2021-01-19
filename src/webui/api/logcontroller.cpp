@@ -61,10 +61,10 @@ void LogController::mainAction()
 {
     using Utils::String::parseBool;
 
-    const bool isNormal = parseBool(params()["normal"], true);
-    const bool isInfo = parseBool(params()["info"], true);
-    const bool isWarning = parseBool(params()["warning"], true);
-    const bool isCritical = parseBool(params()["critical"], true);
+    const bool isNormal = parseBool(params()["normal"]).value_or(true);
+    const bool isInfo = parseBool(params()["info"]).value_or(true);
+    const bool isWarning = parseBool(params()["warning"]).value_or(true);
+    const bool isCritical = parseBool(params()["critical"]).value_or(true);
 
     bool ok = false;
     int lastKnownId = params()["last_known_id"].toInt(&ok);
