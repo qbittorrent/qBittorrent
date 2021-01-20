@@ -135,7 +135,7 @@ private slots:
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
     void optionsSaved();
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
+    void handleUpdateCheckFinished(bool updateAvailable, const QString &newVersion, bool invokedByUser);
 #endif
     void toggleAlternativeSpeeds();
 
