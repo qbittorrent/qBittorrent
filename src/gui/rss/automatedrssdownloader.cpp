@@ -490,8 +490,8 @@ void AutomatedRssDownloader::displayRulesListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *addAct = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add new rule..."));
-    connect(addAct, &QAction::triggered, this, &AutomatedRssDownloader::on_addRuleBtn_clicked);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add new rule...")
+        , this, &AutomatedRssDownloader::on_addRuleBtn_clicked);
 
     const QList<QListWidgetItem *> selection = m_ui->listRules->selectedItems();
 
@@ -499,24 +499,21 @@ void AutomatedRssDownloader::displayRulesListMenu()
     {
         if (selection.count() == 1)
         {
-            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete rule"));
-            connect(delAct, &QAction::triggered, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
-
+            menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete rule")
+                , this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
             menu->addSeparator();
-
-            const QAction *renameAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename rule..."));
-            connect(renameAct, &QAction::triggered, this, &AutomatedRssDownloader::renameSelectedRule);
+            menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename rule...")
+                , this, &AutomatedRssDownloader::renameSelectedRule);
         }
         else
         {
-            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete selected rules"));
-            connect(delAct, &QAction::triggered, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
+            menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete selected rules")
+                , this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
         }
 
         menu->addSeparator();
-
-        const QAction *clearAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes..."));
-        connect(clearAct, &QAction::triggered, this, &AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes...")
+            , this, &AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList);
     }
 
     menu->popup(QCursor::pos());

@@ -843,7 +843,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
     actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
-    QAction *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
+    auto *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
     // End of actions
 
@@ -969,27 +969,23 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Category"));
 
-    const QAction *newCategoryAction = categoryMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New...", "New category..."));
-    connect(newCategoryAction, &QAction::triggered, this, &TransferListWidget::askNewCategoryForSelection);
-
-    const QAction *resetCategoryAction = categoryMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Reset", "Reset category"));
-    connect(resetCategoryAction, &QAction::triggered, this, [this]() { setSelectionCategory(""); });
-
+    categoryMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New...", "New category...")
+        , this, &TransferListWidget::askNewCategoryForSelection);
+    categoryMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Reset", "Reset category")
+        , this, [this]() { setSelectionCategory(""); });
     categoryMenu->addSeparator();
 
     for (const QString &category : asConst(categories))
     {
         const QString escapedCategory = QString(category).replace('&', "&&");  // avoid '&' becomes accelerator key
+        QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
+            , this, [this, category]() { setSelectionCategory(category); });
 
-        QAction *cat = new QAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory, categoryMenu);
         if (allSameCategory && (category == firstCategory))
         {
             cat->setCheckable(true);
             cat->setChecked(true);
         }
-
-        connect(cat, &QAction::triggered, this, [this, category]() { setSelectionCategory(category); });
-        categoryMenu->addAction(cat);
     }
 
     // Tag Menu
@@ -998,18 +994,16 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Tags"));
 
-    const QAction *addTagAction = tagsMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags..."));
-    connect(addTagAction, &QAction::triggered, this, &TransferListWidget::askAddTagsForSelection);
-
-    const QAction *removeTagsAction = tagsMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Remove All", "Remove all tags"));
-    connect(removeTagsAction, &QAction::triggered, this, [this]()
+    tagsMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags...")
+        , this, &TransferListWidget::askAddTagsForSelection);
+    tagsMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Remove All", "Remove all tags")
+        , this, [this]()
     {
         if (Preferences::instance()->confirmRemoveAllTags())
             confirmRemoveAllTagsForSelection();
         else
             clearSelectionTags();
     });
-
     tagsMenu->addSeparator();
 
     for (const QString &tag : asConst(tags))
