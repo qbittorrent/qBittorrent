@@ -800,7 +800,7 @@ void PropertiesWidget::editWebSeed()
 
     if (!m_ui->listWebSeeds->findItems(newSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, tr("qBittorrent"),
+        QMessageBox::warning(this, QLatin1String("qBittorrent"),
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;
