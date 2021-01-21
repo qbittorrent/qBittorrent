@@ -1478,6 +1478,9 @@ void TorrentImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
 
     m_trackerInfos[trackerUrl].lastMessage = message;
 
+    LogMsg(tr("Tracker error: %1 | failure reason: %2")
+        .arg(QString::fromStdString(p->error.message()), p->error_message()), Log::WARNING);
+
     // Starting with libtorrent 1.2.x each tracker has multiple local endpoints from which
     // an announce is attempted. Some endpoints might succeed while others might fail.
     // Emit the signal only if all endpoints have failed.
