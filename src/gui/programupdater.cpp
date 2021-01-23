@@ -36,7 +36,6 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QRegularExpression>
-#include <QStringList>
 #include <QXmlStreamReader>
 
 #if defined(Q_OS_WIN)
@@ -44,35 +43,32 @@
 #endif
 
 #include "base/net/downloadmanager.h"
+#include "base/utils/version.h"
 #include "base/version.h"
 
 namespace
 {
     bool isVersionMoreRecent(const QString &remoteVersion)
     {
-        const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
-        if (regVerMatch.hasMatch())
-        {
-            const QString localVersion = regVerMatch.captured(1);
-            const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
-            const QVector<QStringRef> localParts = localVersion.splitRef('.');
+        using Version = Utils::Version<int, 4, 3>;
 
-            for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i)
+        try
+        {
+            const Version newVersion {remoteVersion};
+            const Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
+            if (newVersion == currentVersion)
             {
-                if (remoteParts[i].toInt() > localParts[i].toInt())
+                const bool isDevVersion = QString::fromLatin1(QBT_VERSION_STATUS).contains(
+                    QRegularExpression(QLatin1String("(alpha|beta|rc)")));
+                if (isDevVersion)
                     return true;
-                if (remoteParts[i].toInt() < localParts[i].toInt())
-                    return false;
             }
-            // Compared parts were equal, if remote version is longer, then it's more recent (2.9.2.1 > 2.9.2)
-            if (remoteParts.size() > localParts.size())
-                return true;
-            // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
-            const QRegularExpressionMatch regDevelMatch = QRegularExpression("(alpha|beta|rc)").match(QBT_VERSION);
-            if (regDevelMatch.hasMatch())
-                return true;
+            return (newVersion > currentVersion);
         }
-        return false;
+        catch (const std::runtime_error &)
+        {
+            return false;
+        }
     }
 }
 
