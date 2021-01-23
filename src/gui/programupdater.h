@@ -35,7 +35,7 @@ namespace Net
     struct DownloadResult;
 }
 
-class ProgramUpdater : public QObject
+class ProgramUpdater final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(ProgramUpdater)
@@ -43,18 +43,16 @@ class ProgramUpdater : public QObject
 public:
     explicit ProgramUpdater(QObject *parent = nullptr, bool invokedByUser = false);
 
-    void checkForUpdates();
-    void updateProgram();
+    void checkForUpdates() const;
+    void updateProgram() const;
 
 signals:
-    void updateCheckFinished(bool updateAvailable, QString version, bool invokedByUser);
+    void updateCheckFinished(bool updateAvailable, const QString &version, bool invokedByUser);
 
 private slots:
     void rssDownloadFinished(const Net::DownloadResult &result);
 
 private:
-    bool isVersionMoreRecent(const QString &remoteVersion) const;
-
     QString m_updateUrl;
-    bool m_invokedByUser;
+    const bool m_invokedByUser;
 };
