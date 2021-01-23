@@ -48,29 +48,52 @@
 
 namespace
 {
-    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml")};
+    bool isVersionMoreRecent(const QString &remoteVersion)
+    {
+        const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
+        if (regVerMatch.hasMatch())
+        {
+            const QString localVersion = regVerMatch.captured(1);
+            const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
+            const QVector<QStringRef> localParts = localVersion.splitRef('.');
 
-    QString getStringValue(QXmlStreamReader &xml);
+            for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i)
+            {
+                if (remoteParts[i].toInt() > localParts[i].toInt())
+                    return true;
+                if (remoteParts[i].toInt() < localParts[i].toInt())
+                    return false;
+            }
+            // Compared parts were equal, if remote version is longer, then it's more recent (2.9.2.1 > 2.9.2)
+            if (remoteParts.size() > localParts.size())
+                return true;
+            // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
+            const QRegularExpressionMatch regDevelMatch = QRegularExpression("(alpha|beta|rc)").match(QBT_VERSION);
+            if (regDevelMatch.hasMatch())
+                return true;
+        }
+        return false;
+    }
 }
 
-ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser)
+ProgramUpdater::ProgramUpdater(QObject *parent, const bool invokedByUser)
     : QObject(parent)
     , m_invokedByUser(invokedByUser)
 {
 }
 
-void ProgramUpdater::checkForUpdates()
+void ProgramUpdater::checkForUpdates() const
 {
+    const auto RSS_URL = QString::fromLatin1("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml");
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
-                , this, &ProgramUpdater::rssDownloadFinished);
+        Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
+        , this, &ProgramUpdater::rssDownloadFinished);
 }
 
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
-
     if (result.status != Net::DownloadStatus::Success)
     {
         qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
@@ -79,6 +102,14 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     }
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
+
+    const auto getStringValue = [](QXmlStreamReader &xml) -> QString
+    {
+        xml.readNext();
+        return (xml.isCharacters() && !xml.isWhitespace())
+            ? xml.text().toString()
+            : QString {};
+    };
 
 #ifdef Q_OS_MACOS
     const QString OS_TYPE {"Mac OS X"};
@@ -137,48 +168,8 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
 }
 
-void ProgramUpdater::updateProgram()
+void ProgramUpdater::updateProgram() const
 {
     Q_ASSERT(!m_updateUrl.isEmpty());
     QDesktopServices::openUrl(m_updateUrl);
-    return;
-}
-
-bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
-{
-    const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
-    if (regVerMatch.hasMatch())
-    {
-        const QString localVersion = regVerMatch.captured(1);
-        const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
-        const QVector<QStringRef> localParts = localVersion.splitRef('.');
-
-        for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i)
-        {
-            if (remoteParts[i].toInt() > localParts[i].toInt())
-                return true;
-            if (remoteParts[i].toInt() < localParts[i].toInt())
-                return false;
-        }
-        // Compared parts were equal, if remote version is longer, then it's more recent (2.9.2.1 > 2.9.2)
-        if (remoteParts.size() > localParts.size())
-            return true;
-        // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
-        const QRegularExpressionMatch regDevelMatch = QRegularExpression("(alpha|beta|rc)").match(QBT_VERSION);
-        if (regDevelMatch.hasMatch())
-            return true;
-    }
-    return false;
-}
-
-namespace
-{
-    QString getStringValue(QXmlStreamReader &xml)
-    {
-        xml.readNext();
-        if (xml.isCharacters() && !xml.isWhitespace())
-            return xml.text().toString();
-
-        return {};
-    }
 }
