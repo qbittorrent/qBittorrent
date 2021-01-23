@@ -71,7 +71,7 @@ Section "Install with Debug Symbol File"
 
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-  
+
   File "qbittorrent.pdb"
   Exec '"cmd.exe" /c COMPACT /C "$INSTDIR\qbittorrent.pdb"'
 
