@@ -32,7 +32,8 @@ apk add gcc \
   jq \
   pkgconfig \
   linux-headers \
-  zip
+  zip \
+  xz
 
 TARGET_ARCH="${CROSS_HOST%%-*}"
 TARGET_HOST="${CROSS_HOST#*-}"
@@ -119,8 +120,8 @@ sed -i "s/using gcc.*/using gcc : cross : ${CROSS_HOST}-g++ ;/" project-config.j
 ./b2 install --prefix="${CROSS_PREFIX}" --with-system toolset=gcc-cross variant=release link=static runtime-link=static
 
 # qt
-qt_major_ver="$(wget -qO- https://download.qt.io/official_releases/qt/ | sed -nr 's@.*href="([0-9]+(\.[0-9]+)*)/".*@\1@p' | grep "^${QT_VER_PREFIX}" | head -1)"
-qt_ver="$(wget -qO- https://download.qt.io/official_releases/qt/${qt_major_ver}/ | sed -nr 's@.*href="([0-9]+(\.[0-9]+)*)/".*@\1@p' | grep "^${QT_VER_PREFIX}" | head -1)"
+qt_major_ver="$(wget -qO- https://download.qt.io/official_releases/qt/ | sed -nr 's@.*href="([0-9]+(\.[0-9]+)*)/".*@\1@p' | grep "^${QT_VER_PREFIX}" | tail -1)"
+qt_ver="$(wget -qO- https://download.qt.io/official_releases/qt/${qt_major_ver}/ | sed -nr 's@.*href="([0-9]+(\.[0-9]+)*)/".*@\1@p' | grep "^${QT_VER_PREFIX}" | tail -1)"
 echo "Using qt version: ${qt_ver}"
 qtbase_url="https://download.qt.io/official_releases/qt/${qt_major_ver}/${qt_ver}/submodules/qtbase-everywhere-src-${qt_ver}.tar.xz"
 qtbase_filename="qtbase-everywhere-src-${qt_ver}.tar.xz"
@@ -145,7 +146,7 @@ if [ "${TARGET_HOST}" = 'win' ]; then
   sed -i '/define\s*Q_COMPILER_THREAD_LOCAL/d' src/corelib/global/qcompilerdetection.h
 fi
 ./configure --prefix=/opt/qt/ -optimize-size -silent --openssl-linked \
-  -static -opensource -confirm-license -release -c++std c++14 -no-opengl \
+  -static -opensource -confirm-license -release -c++std c++17 -no-opengl \
   -no-dbus -no-widgets -no-gui -no-compile-examples -ltcg -make libs -no-pch \
   -nomake tests -nomake examples -no-xcb -no-feature-testlib \
   -hostprefix "${CROSS_ROOT}" ${QT_XPLATFORM:+-xplatform "${QT_XPLATFORM}"} \
@@ -171,7 +172,7 @@ if [ ! -f "${SELF_DIR}/libiconv.tar.gz" ]; then
 fi
 tar -zxf "${SELF_DIR}/libiconv.tar.gz" --strip-components=1 -C /usr/src/libiconv/
 cd /usr/src/libiconv/
-./configure CXXFLAGS="-std=c++14" --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --enable-silent-rules
+./configure CXXFLAGS="-std=c++17" --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --enable-silent-rules
 make -j$(nproc)
 make install
 
@@ -186,7 +187,7 @@ if [ "${TARGET_HOST}" = 'win' ]; then
   # musl.cc x86_64-w64-mingw32 toolchain not supports thread local
   export CPPFLAGS='-D_WIN32_WINNT=0x0602 -DBOOST_NO_CXX11_THREAD_LOCAL'
 fi
-./bootstrap.sh CXXFLAGS="-std=c++14" --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --enable-silent-rules --with-boost="${CROSS_PREFIX}" --with-libiconv
+./bootstrap.sh CXXFLAGS="-std=c++17" --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --enable-static --disable-shared --enable-silent-rules --with-boost="${CROSS_PREFIX}" --with-libiconv
 # fix x86_64-w64-mingw32 build
 if [ "${TARGET_HOST}" = 'win' ]; then
   find -type f \( -name '*.cpp' -o -name '*.hpp' \) -print0 |
@@ -210,9 +211,9 @@ if [ "${TARGET_HOST}" = 'win' ]; then
       s/Shlobj\.h/shlobj.h/g;
       s/Ntsecapi\.h/ntsecapi.h/g'
   export LIBS="-lmswsock"
-  export CPPFLAGS='-std=c++14 -D_WIN32_WINNT=0x0602'
+  export CPPFLAGS='-std=c++17 -D_WIN32_WINNT=0x0602'
 fi
-LIBS="${LIBS} -liconv" ./configure --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --disable-gui --with-boost="${CROSS_PREFIX}" CXXFLAGS="-std=c++14 ${CPPFLAGS}" LDFLAGS='-s -static --static'
+LIBS="${LIBS} -liconv" ./configure --host="${CROSS_HOST}" --prefix="${CROSS_PREFIX}" --disable-gui --with-boost="${CROSS_PREFIX}" CXXFLAGS="-std=c++17 ${CPPFLAGS}" LDFLAGS='-s -static --static'
 make -j$(nproc)
 make install
 unset LIBS CPPFLAGS

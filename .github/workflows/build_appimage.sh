@@ -16,6 +16,7 @@
 apt update
 apt install -y software-properties-common
 apt-add-repository -y ppa:savoury1/backports
+apt-add-repository -y ppa:savoury1/gcc-defaults-9
 apt update
 apt install -y --no-install-suggests --no-install-recommends \
   curl \
@@ -83,14 +84,14 @@ mkdir -p /usr/src/libtorrent-rasterbar
   tar -zxf - -C /usr/src/libtorrent-rasterbar --strip-components 1
 touch "/usr/src/libtorrent-rasterbar/.unpack_ok"
 cd "/usr/src/libtorrent-rasterbar/"
-CXXFLAGS="-std=c++14" CPPFLAGS="-std=c++14" ./bootstrap.sh --prefix=/usr --with-boost="/usr/local" --with-boost-libdir="/usr/local/lib" --disable-debug --disable-maintainer-mode --with-libiconv
+CXXFLAGS="-std=c++17" CPPFLAGS="-std=c++17" ./bootstrap.sh --prefix=/usr --with-boost="/usr/local" --with-boost-libdir="/usr/local/lib" --disable-debug --disable-maintainer-mode --with-libiconv
 make clean
 make -j$(nproc)
 make install
 
 # build qbittorrent
 cd "${SELF_DIR}/../../"
-./configure --prefix=/tmp/qbee/AppDir/usr --with-boost="/usr/local" --with-boost-libdir="/usr/local/lib" || (cat config.log && exit 1)
+./configure --prefix=/tmp/qbee/AppDir/usr --with-boost="/usr/local" --with-boost-libdir="/usr/local/lib" CXXFLAGS="-std=c++17" CPPFLAGS="-std=c++17" || (cat config.log && exit 1)
 make install -j$(nproc)
 
 # build AppImage
