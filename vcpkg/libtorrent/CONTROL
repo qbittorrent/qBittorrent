@@ -1,0 +1,26 @@
+Source: libtorrent
+Version: 1.2.12
+Homepage: https://github.com/arvidn/libtorrent
+Description: An efficient feature complete C++ BitTorrent implementation
+Build-Depends: openssl, boost-system, boost-date-time, boost-chrono, boost-random, boost-asio, boost-crc, boost-config, boost-iterator, boost-scope-exit, boost-multiprecision, boost-pool, boost-variant
+Supports: !uwp&!(windows&arm)
+
+Feature: deprfun
+Description: build with deprecated functions enabled
+
+Feature: examples
+Description: build the examples in the examples directory
+
+Feature: iconv
+Build-Depends: libiconv (windows)
+Description: build with libiconv on Windows
+
+Feature: python
+Build-Depends: boost-python
+Description: build the python bindings in bindings/python directory
+
+Feature: test
+Description: build the libtorrent tests
+
+Feature: tools
+Description: build the tools in the tools directory
