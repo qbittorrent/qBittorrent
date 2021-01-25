@@ -104,6 +104,8 @@
 #include "programupdater.h"
 #endif
 
+using namespace std::chrono_literals;
+
 namespace
 {
 #define SETTINGS_KEY(name) "GUI/" name
@@ -1585,7 +1587,7 @@ void MainWindow::loadPreferences(const bool configureSession)
         if (!m_programUpdateTimer)
         {
             m_programUpdateTimer = new QTimer(this);
-            m_programUpdateTimer->setInterval(60 * 60 * 1000);
+            m_programUpdateTimer->setInterval(24h);
             m_programUpdateTimer->setSingleShot(true);
             connect(m_programUpdateTimer, &QTimer::timeout, this, [this]() { checkProgramUpdate(false); });
             m_programUpdateTimer->start();
