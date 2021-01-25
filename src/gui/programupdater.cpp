@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -72,12 +73,6 @@ namespace
     }
 }
 
-ProgramUpdater::ProgramUpdater(QObject *parent, const bool invokedByUser)
-    : QObject(parent)
-    , m_invokedByUser(invokedByUser)
-{
-}
-
 void ProgramUpdater::checkForUpdates() const
 {
     const auto RSS_URL = QString::fromLatin1("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml");
@@ -88,12 +83,17 @@ void ProgramUpdater::checkForUpdates() const
         , this, &ProgramUpdater::rssDownloadFinished);
 }
 
+QString ProgramUpdater::getNewVersion() const
+{
+    return m_newVersion;
+}
+
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status != Net::DownloadStatus::Success)
     {
         qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
-        emit updateCheckFinished(false, QString(), m_invokedByUser);
+        emit updateCheckFinished();
         return;
     }
 
@@ -110,17 +110,16 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 #ifdef Q_OS_MACOS
     const QString OS_TYPE {"Mac OS X"};
 #elif defined(Q_OS_WIN)
-    const QString OS_TYPE
-    {(::IsWindows7OrGreater()
-            && QSysInfo::currentCpuArchitecture().endsWith("64"))
+    const QString OS_TYPE {(::IsWindows7OrGreater()
+        && QSysInfo::currentCpuArchitecture().endsWith("64"))
         ? "Windows x64" : "Windows"};
 #endif
 
-    QString version;
-    QXmlStreamReader xml(result.data);
     bool inItem = false;
+    QString version;
     QString updateLink;
     QString type;
+    QXmlStreamReader xml(result.data);
 
     while (!xml.atEnd())
     {
@@ -148,7 +147,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                     {
                         qDebug("Detected version is %s", qUtf8Printable(version));
                         if (isVersionMoreRecent(version))
-                            m_updateUrl = updateLink;
+                        {
+                            m_newVersion = version;
+                            m_updateURL = updateLink;
+                        }
                     }
                     break;
                 }
@@ -161,11 +163,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
         }
     }
 
-    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
+    emit updateCheckFinished();
 }
 
-void ProgramUpdater::updateProgram() const
+bool ProgramUpdater::updateProgram() const
 {
-    Q_ASSERT(!m_updateUrl.isEmpty());
-    QDesktopServices::openUrl(m_updateUrl);
+    return QDesktopServices::openUrl(m_updateURL);
 }
