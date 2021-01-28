@@ -1764,7 +1764,7 @@ bool Session::hasUnfinishedTorrents() const
 {
     return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
     {
-        return (!torrent->isSeed() && !torrent->isPaused());
+        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored());
     });
 }
 
