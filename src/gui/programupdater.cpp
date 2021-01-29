@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,7 +37,6 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QRegularExpression>
-#include <QStringList>
 #include <QXmlStreamReader>
 
 #if defined(Q_OS_WIN)
@@ -44,56 +44,82 @@
 #endif
 
 #include "base/net/downloadmanager.h"
+#include "base/utils/version.h"
 #include "base/version.h"
 
 namespace
 {
-    const QString RSS_URL {QStringLiteral("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml")};
+    bool isVersionMoreRecent(const QString &remoteVersion)
+    {
+        using Version = Utils::Version<int, 4, 3>;
 
-    QString getStringValue(QXmlStreamReader &xml);
+        try
+        {
+            const Version newVersion {remoteVersion};
+            const Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
+            if (newVersion == currentVersion)
+            {
+                const bool isDevVersion = QString::fromLatin1(QBT_VERSION_STATUS).contains(
+                    QRegularExpression(QLatin1String("(alpha|beta|rc)")));
+                if (isDevVersion)
+                    return true;
+            }
+            return (newVersion > currentVersion);
+        }
+        catch (const std::runtime_error &)
+        {
+            return false;
+        }
+    }
 }
 
-ProgramUpdater::ProgramUpdater(QObject *parent, bool invokedByUser)
-    : QObject(parent)
-    , m_invokedByUser(invokedByUser)
+void ProgramUpdater::checkForUpdates() const
 {
-}
-
-void ProgramUpdater::checkForUpdates()
-{
+    const auto RSS_URL = QString::fromLatin1("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml");
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
-                , this, &ProgramUpdater::rssDownloadFinished);
+        Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
+        , this, &ProgramUpdater::rssDownloadFinished);
+}
+
+QString ProgramUpdater::getNewVersion() const
+{
+    return m_newVersion;
 }
 
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
-
     if (result.status != Net::DownloadStatus::Success)
     {
         qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
-        emit updateCheckFinished(false, QString(), m_invokedByUser);
+        emit updateCheckFinished();
         return;
     }
 
     qDebug("Finished downloading the new qBittorrent updates RSS");
 
+    const auto getStringValue = [](QXmlStreamReader &xml) -> QString
+    {
+        xml.readNext();
+        return (xml.isCharacters() && !xml.isWhitespace())
+            ? xml.text().toString()
+            : QString {};
+    };
+
 #ifdef Q_OS_MACOS
     const QString OS_TYPE {"Mac OS X"};
 #elif defined(Q_OS_WIN)
-    const QString OS_TYPE
-    {(::IsWindows7OrGreater()
-            && QSysInfo::currentCpuArchitecture().endsWith("64"))
+    const QString OS_TYPE {(::IsWindows7OrGreater()
+        && QSysInfo::currentCpuArchitecture().endsWith("64"))
         ? "Windows x64" : "Windows"};
 #endif
 
-    QString version;
-    QXmlStreamReader xml(result.data);
     bool inItem = false;
+    QString version;
     QString updateLink;
     QString type;
+    QXmlStreamReader xml(result.data);
 
     while (!xml.atEnd())
     {
@@ -121,7 +147,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                     {
                         qDebug("Detected version is %s", qUtf8Printable(version));
                         if (isVersionMoreRecent(version))
-                            m_updateUrl = updateLink;
+                        {
+                            m_newVersion = version;
+                            m_updateURL = updateLink;
+                        }
                     }
                     break;
                 }
@@ -134,51 +163,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
         }
     }
 
-    emit updateCheckFinished(!m_updateUrl.isEmpty(), version, m_invokedByUser);
+    emit updateCheckFinished();
 }
 
-void ProgramUpdater::updateProgram()
+bool ProgramUpdater::updateProgram() const
 {
-    Q_ASSERT(!m_updateUrl.isEmpty());
-    QDesktopServices::openUrl(m_updateUrl);
-    return;
-}
-
-bool ProgramUpdater::isVersionMoreRecent(const QString &remoteVersion) const
-{
-    const QRegularExpressionMatch regVerMatch = QRegularExpression("([0-9.]+)").match(QBT_VERSION);
-    if (regVerMatch.hasMatch())
-    {
-        const QString localVersion = regVerMatch.captured(1);
-        const QVector<QStringRef> remoteParts = remoteVersion.splitRef('.');
-        const QVector<QStringRef> localParts = localVersion.splitRef('.');
-
-        for (int i = 0; i < qMin(remoteParts.size(), localParts.size()); ++i)
-        {
-            if (remoteParts[i].toInt() > localParts[i].toInt())
-                return true;
-            if (remoteParts[i].toInt() < localParts[i].toInt())
-                return false;
-        }
-        // Compared parts were equal, if remote version is longer, then it's more recent (2.9.2.1 > 2.9.2)
-        if (remoteParts.size() > localParts.size())
-            return true;
-        // versions are equal, check if the local version is a development release, in which case it is older (2.9.2beta < 2.9.2)
-        const QRegularExpressionMatch regDevelMatch = QRegularExpression("(alpha|beta|rc)").match(QBT_VERSION);
-        if (regDevelMatch.hasMatch())
-            return true;
-    }
-    return false;
-}
-
-namespace
-{
-    QString getStringValue(QXmlStreamReader &xml)
-    {
-        xml.readNext();
-        if (xml.isCharacters() && !xml.isWhitespace())
-            return xml.text().toString();
-
-        return {};
-    }
+    return QDesktopServices::openUrl(m_updateURL);
 }

@@ -90,7 +90,6 @@
 #include "statsdialog.h"
 #include "statusbar.h"
 #include "torrentcreatordialog.h"
-
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"
@@ -104,6 +103,8 @@
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
 #endif
+
+using namespace std::chrono_literals;
 
 namespace
 {
@@ -148,9 +149,6 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , m_forceExit(false)
     , m_unlockDlgShowing(false)
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    , m_wasUpdateCheckEnabled(false)
-#endif
     , m_hasPython(false)
 {
     m_ui->setupUi(this);
@@ -317,11 +315,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    m_programUpdateTimer = new QTimer(this);
-    m_programUpdateTimer->setInterval(60 * 60 * 1000);
-    m_programUpdateTimer->setSingleShot(true);
-    connect(m_programUpdateTimer, &QTimer::timeout, this, &MainWindow::checkProgramUpdate);
-    connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, &MainWindow::checkProgramUpdate);
+    connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, [this]() { checkProgramUpdate(true); });
+
+    // trigger an early check on startup
+    if (pref->isUpdateCheckEnabled())
+        checkProgramUpdate(false);
 #else
     m_ui->actionCheckForUpdates->setVisible(false);
 #endif
@@ -804,7 +802,8 @@ void MainWindow::cleanup()
     m_preventTimer->stop();
 
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    m_programUpdateTimer->stop();
+    if (m_programUpdateTimer)
+        m_programUpdateTimer->stop();
 #endif
 
     // remove all child widgets
@@ -1583,15 +1582,21 @@ void MainWindow::loadPreferences(const bool configureSession)
     m_propertiesWidget->reloadPreferences();
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    if (pref->isUpdateCheckEnabled() && !m_wasUpdateCheckEnabled)
+    if (pref->isUpdateCheckEnabled())
     {
-        m_wasUpdateCheckEnabled = true;
-        checkProgramUpdate();
+        if (!m_programUpdateTimer)
+        {
+            m_programUpdateTimer = new QTimer(this);
+            m_programUpdateTimer->setInterval(24h);
+            m_programUpdateTimer->setSingleShot(true);
+            connect(m_programUpdateTimer, &QTimer::timeout, this, [this]() { checkProgramUpdate(false); });
+            m_programUpdateTimer->start();
+        }
     }
-    else if (!pref->isUpdateCheckEnabled() && m_wasUpdateCheckEnabled)
+    else
     {
-        m_wasUpdateCheckEnabled = false;
-        m_programUpdateTimer->stop();
+        delete m_programUpdateTimer;
+        m_programUpdateTimer = nullptr;
     }
 #endif
 
@@ -1897,15 +1902,21 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-void MainWindow::handleUpdateCheckFinished(const bool updateAvailable, const QString &newVersion, const bool invokedByUser)
+void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool invokedByUser)
 {
     m_ui->actionCheckForUpdates->setEnabled(true);
     m_ui->actionCheckForUpdates->setText(tr("&Check for Updates"));
     m_ui->actionCheckForUpdates->setToolTip(tr("Check for program updates"));
 
-    QObject *signalSender = sender();
+    const auto cleanup = [this, updater]()
+    {
+        if (m_programUpdateTimer)
+            m_programUpdateTimer->start();
+        updater->deleteLater();
+    };
 
-    if (updateAvailable)
+    const QString newVersion = updater->getNewVersion();
+    if (!newVersion.isEmpty())
     {
         const QString msg {tr("A new version is available.") + "<br/>"
             + tr("Do you want to download %1?").arg(newVersion) + "<br/><br/>"
@@ -1915,38 +1926,31 @@ void MainWindow::handleUpdateCheckFinished(const bool updateAvailable, const QSt
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
         msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
         msgBox->setDefaultButton(QMessageBox::Yes);
-        connect(msgBox, &QMessageBox::buttonClicked, this, [this, msgBox, signalSender](QAbstractButton *button)
+        connect(msgBox, &QMessageBox::buttonClicked, this, [this, msgBox, updater](QAbstractButton *button)
         {
             if (msgBox->buttonRole(button) == QMessageBox::YesRole)
             {
-                // The user want to update, let's download the update
-                auto *updater = dynamic_cast<ProgramUpdater *>(signalSender);
                 updater->updateProgram();
             }
-            else
-            {
-                if (Preferences::instance()->isUpdateCheckEnabled())
-                    m_programUpdateTimer->start();
-            }
-
-            signalSender->deleteLater();
         });
+        connect(msgBox, &QDialog::finished, this, cleanup);
         msgBox->open();
     }
-    else if (invokedByUser)
+    else
     {
-        auto *msgBox = new QMessageBox {QMessageBox::Information, QLatin1String("qBittorrent")
-            , tr("No updates available.\nYou are already using the latest version.")
-            , QMessageBox::Ok, this};
-        msgBox->setAttribute(Qt::WA_DeleteOnClose);
-        connect(msgBox, &QDialog::finished, this, [this, signalSender](const int)
+        if (invokedByUser)
         {
-            if (Preferences::instance()->isUpdateCheckEnabled())
-                m_programUpdateTimer->start();
-
-            signalSender->deleteLater();
-        });
-        msgBox->open();
+            auto *msgBox = new QMessageBox {QMessageBox::Information, QLatin1String("qBittorrent")
+                , tr("No updates available.\nYou are already using the latest version.")
+                , QMessageBox::Ok, this};
+            msgBox->setAttribute(Qt::WA_DeleteOnClose);
+            connect(msgBox, &QDialog::finished, this, cleanup);
+            msgBox->open();
+        }
+        else
+        {
+            cleanup();
+        }
     }
 }
 #endif
@@ -2106,18 +2110,23 @@ QIcon MainWindow::getSystrayIcon() const
 #endif // Q_OS_MACOS
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-void MainWindow::checkProgramUpdate()
+void MainWindow::checkProgramUpdate(const bool invokedByUser)
 {
-    m_programUpdateTimer->stop(); // If the user had clicked the menu item
+    if (m_programUpdateTimer)
+        m_programUpdateTimer->stop();
+
     m_ui->actionCheckForUpdates->setEnabled(false);
     m_ui->actionCheckForUpdates->setText(tr("Checking for Updates..."));
     m_ui->actionCheckForUpdates->setToolTip(tr("Already checking for program updates in the background"));
-    bool invokedByUser = m_ui->actionCheckForUpdates == qobject_cast<QAction *>(sender());
-    ProgramUpdater *updater = new ProgramUpdater(this, invokedByUser);
-    connect(updater, &ProgramUpdater::updateCheckFinished, this, &MainWindow::handleUpdateCheckFinished);
+
+    auto *updater = new ProgramUpdater(this);
+    connect(updater, &ProgramUpdater::updateCheckFinished
+        , this, [this, invokedByUser, updater]()
+    {
+        handleUpdateCheckFinished(updater, invokedByUser);
+    });
     updater->checkForUpdates();
 }
-
 #endif
 
 #ifdef Q_OS_WIN
