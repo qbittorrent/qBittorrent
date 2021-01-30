@@ -55,10 +55,10 @@ namespace BitTorrent
         lt::add_torrent_params addTorrentParams() const;
 
     private:
-        bool m_valid;
+        bool m_valid = false;
         QString m_url;
-        InfoHash m_hash;
         QString m_name;
+        InfoHash m_hash;
         QVector<TrackerEntry> m_trackers;
         QVector<QUrl> m_urlSeeds;
         lt::add_torrent_params m_addTorrentParams;

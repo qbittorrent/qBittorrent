@@ -36,8 +36,6 @@
 #include <QRegularExpression>
 #include <QUrl>
 
-#include "infohash.h"
-
 namespace
 {
     bool isBitTorrentInfoHash(const QString &string)
@@ -60,13 +58,12 @@ namespace
 using namespace BitTorrent;
 
 MagnetUri::MagnetUri(const QString &source)
-    : m_valid(false)
-    , m_url(source)
 {
     if (source.isEmpty()) return;
 
-    if (isBitTorrentInfoHash(source))
-        m_url = QLatin1String("magnet:?xt=urn:btih:") + source;
+    m_url = isBitTorrentInfoHash(source)
+        ? (QLatin1String("magnet:?xt=urn:btih:") + source)
+        : source;
 
     lt::error_code ec;
     lt::parse_magnet_uri(m_url.toStdString(), m_addTorrentParams, ec);
