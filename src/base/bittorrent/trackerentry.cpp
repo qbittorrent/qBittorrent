@@ -38,12 +38,12 @@
 using namespace BitTorrent;
 
 TrackerEntry::TrackerEntry(const QString &url)
-    : m_nativeEntry(url.toStdString())
+    : m_nativeEntry {url.toStdString()}
 {
 }
 
 TrackerEntry::TrackerEntry(const lt::announce_entry &nativeEntry)
-    : m_nativeEntry(nativeEntry)
+    : m_nativeEntry {nativeEntry}
 {
 }
 
@@ -57,19 +57,29 @@ int TrackerEntry::tier() const
     return nativeEntry().tier;
 }
 
-TrackerEntry::Status TrackerEntry::status() const
+TrackerEntry::Status TrackerEntry::status(const InfoHashFormats hashVersions) const
 {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    Q_ASSERT(hashVersions.testFlag(InfoHashFormat::V1) || hashVersions.testFlag(InfoHashFormat::V2));
+#endif
+
     const auto &endpoints = nativeEntry().endpoints;
 
     const bool allFailed = !endpoints.empty() && std::all_of(endpoints.begin(), endpoints.end()
-        , [](const lt::announce_endpoint &endpoint)
+        , [hashVersions](const lt::announce_endpoint &endpoint) -> bool
     {
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        return std::all_of(endpoint.info_hashes.begin(), endpoint.info_hashes.end()
-            , [](const lt::announce_infohash &infohash)
-            {
-                return (infohash.fails > 0);
-            });
+        if (hashVersions.testFlag(InfoHashFormat::V1)
+            && (endpoint.info_hashes[lt::protocol_version::V1].fails == 0))
+        {
+            return false;
+        }
+        if (hashVersions.testFlag(InfoHashFormat::V2)
+            && (endpoint.info_hashes[lt::protocol_version::V2].fails == 0))
+        {
+            return false;
+        }
+        return true;
 #else
         return (endpoint.fails > 0);
 #endif
@@ -78,14 +88,20 @@ TrackerEntry::Status TrackerEntry::status() const
         return NotWorking;
 
     const bool isUpdating = std::any_of(endpoints.begin(), endpoints.end()
-        , [](const lt::announce_endpoint &endpoint)
+        , [hashVersions](const lt::announce_endpoint &endpoint) -> bool
     {
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        return std::any_of(endpoint.info_hashes.begin(), endpoint.info_hashes.end()
-            , [](const lt::announce_infohash &infohash)
-            {
-                return infohash.updating;
-            });
+        if (hashVersions.testFlag(InfoHashFormat::V1)
+            && endpoint.info_hashes[lt::protocol_version::V1].updating)
+        {
+            return true;
+        }
+        if (hashVersions.testFlag(InfoHashFormat::V2)
+            && endpoint.info_hashes[lt::protocol_version::V2].updating)
+        {
+            return true;
+        }
+        return false;
 #else
         return endpoint.updating;
 #endif
@@ -104,45 +120,66 @@ void TrackerEntry::setTier(const int value)
     m_nativeEntry.tier = value;
 }
 
-int TrackerEntry::numSeeds() const
+int TrackerEntry::numSeeds(const InfoHashFormats hashVersions) const
 {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    Q_ASSERT(hashVersions.testFlag(InfoHashFormat::V1) || hashVersions.testFlag(InfoHashFormat::V2));
+#endif
+
     int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
     {
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        for (const lt::announce_infohash &infoHash : endpoint.info_hashes)
-            value = std::max(value, infoHash.scrape_complete);
+        if (hashVersions.testFlag(InfoHashFormat::V1))
+            value = std::max(value, endpoint.info_hashes[lt::protocol_version::V1].scrape_complete);
+        if (hashVersions.testFlag(InfoHashFormat::V2))
+            value = std::max(value, endpoint.info_hashes[lt::protocol_version::V2].scrape_complete);
 #else
+        Q_UNUSED(hashVersions);
         value = std::max(value, endpoint.scrape_complete);
 #endif
     }
     return value;
 }
 
-int TrackerEntry::numLeeches() const
+int TrackerEntry::numLeeches(const InfoHashFormats hashVersions) const
 {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    Q_ASSERT(hashVersions.testFlag(InfoHashFormat::V1) || hashVersions.testFlag(InfoHashFormat::V2));
+#endif
+
     int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
     {
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        for (const lt::announce_infohash &infoHash : endpoint.info_hashes)
-            value = std::max(value, infoHash.scrape_incomplete);
+        if (hashVersions.testFlag(InfoHashFormat::V1))
+            value = std::max(value, endpoint.info_hashes[lt::protocol_version::V1].scrape_incomplete);
+        if (hashVersions.testFlag(InfoHashFormat::V2))
+            value = std::max(value, endpoint.info_hashes[lt::protocol_version::V2].scrape_incomplete);
 #else
+        Q_UNUSED(hashVersions);
         value = std::max(value, endpoint.scrape_incomplete);
 #endif
     }
     return value;
 }
 
-int TrackerEntry::numDownloaded() const
+int TrackerEntry::numDownloaded(const InfoHashFormats hashVersions) const
 {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    Q_ASSERT(hashVersions.testFlag(InfoHashFormat::V1) || hashVersions.testFlag(InfoHashFormat::V2));
+#endif
+
     int value = -1;
     for (const lt::announce_endpoint &endpoint : nativeEntry().endpoints)
     {
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        for (const lt::announce_infohash &infoHash : endpoint.info_hashes)
-            value = std::max(value, infoHash.scrape_downloaded);
+        if (hashVersions.testFlag(InfoHashFormat::V1))
+            value = std::max(value, endpoint.info_hashes[lt::protocol_version::V1].scrape_downloaded);
+        if (hashVersions.testFlag(InfoHashFormat::V2))
+            value = std::max(value, endpoint.info_hashes[lt::protocol_version::V2].scrape_downloaded);
 #else
+        Q_UNUSED(hashVersions);
         value = std::max(value, endpoint.scrape_downloaded);
 #endif
     }

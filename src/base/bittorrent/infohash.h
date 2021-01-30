@@ -29,12 +29,23 @@
 #pragma once
 
 #include <libtorrent/sha1_hash.hpp>
+#include <libtorrent/version.hpp>
 
+#include <QFlags>
 #include <QMetaType>
 #include <QString>
 
 namespace BitTorrent
 {
+    enum class InfoHashFormat
+    {
+        V1,
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        V2,
+#endif
+    };
+    Q_DECLARE_FLAGS(InfoHashFormats, InfoHashFormat)
+
     class InfoHash
     {
     public:
@@ -65,4 +76,5 @@ namespace BitTorrent
     uint qHash(const InfoHash &key, uint seed);
 }
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(BitTorrent::InfoHashFormats)
 Q_DECLARE_METATYPE(BitTorrent::InfoHash)

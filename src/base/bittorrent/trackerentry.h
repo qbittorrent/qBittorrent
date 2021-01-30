@@ -30,7 +30,7 @@
 
 #include <libtorrent/announce_entry.hpp>
 
-#include <QtGlobal>
+#include "infohash.h"
 
 class QString;
 
@@ -54,14 +54,14 @@ namespace BitTorrent
         TrackerEntry &operator=(const TrackerEntry &other) = default;
 
         QString url() const;
-        Status status() const;
+        Status status(InfoHashFormats hashVersions = InfoHashFormat::V1) const;
 
         int tier() const;
         void setTier(int value);
 
-        int numSeeds() const;
-        int numLeeches() const;
-        int numDownloaded() const;
+        int numSeeds(InfoHashFormats hashVersions = InfoHashFormat::V1) const;
+        int numLeeches(InfoHashFormats hashVersions = InfoHashFormat::V1) const;
+        int numDownloaded(InfoHashFormats hashVersions = InfoHashFormat::V1) const;
 
         const lt::announce_entry &nativeEntry() const;
 
