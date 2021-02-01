@@ -166,27 +166,7 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
                 return positionL != 0;
             }
 
-            // Sort according to TR_SEED_DATE
-            const auto dateL = left.sibling(left.row(), TransferListModel::TR_SEED_DATE)
-                    .data(TransferListModel::UnderlyingDataRole).toDateTime();
-            const auto dateR = right.sibling(right.row(), TransferListModel::TR_SEED_DATE)
-                    .data(TransferListModel::UnderlyingDataRole).toDateTime();
-
-            if (dateL.isValid() && dateR.isValid())
-            {
-                if (dateL != dateR)
-                    return dateL < dateR;
-            }
-            else if (dateL.isValid())
-            {
-                return false;
-            }
-            else if (dateR.isValid())
-            {
-                return true;
-            }
-
-            return hashLessThan();
+            return invokeLessThanForColumn(TransferListModel::TR_SEED_DATE);
         }
 
     case TransferListModel::TR_SEEDS:
