@@ -31,6 +31,7 @@
 #include <QDateTime>
 
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/types.h"
@@ -87,17 +88,38 @@ void TransferListSortModel::disableTrackerFilter()
 
 bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    return lessThan_impl(left, right);
-}
-
-bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelIndex &right) const
-{
     Q_ASSERT(left.column() == right.column());
 
-    const auto invokeLessThanForColumn = [this, &left, &right](const int column) -> bool
+    const int defaultComparison = compare(left, right);
+    if (defaultComparison != 0)
+        return defaultComparison < 0;
+
+    const auto invokeCompareForColumn = [this, &left, &right](const int column) -> int
     {
-        return lessThan_impl(left.sibling(left.row(), column), right.sibling(right.row(), column));
+        return compare(left.sibling(left.row(), column), right.sibling(right.row(), column));
     };
+
+    const bool isQueuingEnabled = BitTorrent::Session::instance()->isQueueingSystemEnabled();
+    if (isQueuingEnabled && (left.column() != TransferListModel::TR_QUEUE_POSITION))
+    {
+        const int queuePosCompare = invokeCompareForColumn(TransferListModel::TR_QUEUE_POSITION);
+        if (queuePosCompare != 0)
+            return queuePosCompare < 0;
+    }
+
+    if (left.column() != TransferListModel::TR_NAME)
+    {
+        const int nameCompare = invokeCompareForColumn(TransferListModel::TR_NAME);
+        if (nameCompare != 0)
+            return nameCompare < 0;
+    }
+
+    if (left.column() != TransferListModel::TR_SEED_DATE)
+    {
+        const int seedDateCompare = invokeCompareForColumn(TransferListModel::TR_SEED_DATE);
+        if (seedDateCompare != 0)
+            return seedDateCompare < 0;
+    }
 
     const auto hashLessThan = [this, &left, &right]() -> bool
     {
@@ -106,6 +128,13 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
         const BitTorrent::InfoHash hashR = model->torrentHandle(right)->hash();
         return hashL < hashR;
     };
+
+    return hashLessThan();
+}
+
+int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &right) const
+{
+    Q_ASSERT(left.column() == right.column());
 
     const int sortColumn = left.column();
     const QVariant leftValue = left.data(TransferListModel::UnderlyingDataRole);
@@ -116,18 +145,13 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
     case TransferListModel::TR_CATEGORY:
     case TransferListModel::TR_TAGS:
     case TransferListModel::TR_NAME:
-        if (!leftValue.isValid() || !rightValue.isValid() || (leftValue == rightValue))
-            return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
-        return (Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive) < 0);
+        return Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive);
 
     case TransferListModel::TR_STATUS:
         {
             const auto stateL = leftValue.value<BitTorrent::TorrentState>();
             const auto stateR = rightValue.value<BitTorrent::TorrentState>();
-
-            if (stateL != stateR)
-                return stateL < stateR;
-            return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
+            return static_cast<int>(stateL) - static_cast<int>(stateR);
         }
 
     case TransferListModel::TR_ADD_DATE:
@@ -136,37 +160,26 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
         {
             const auto dateL = leftValue.toDateTime();
             const auto dateR = rightValue.toDateTime();
-
             if (dateL.isValid() && dateR.isValid())
-            {
-                if (dateL != dateR)
-                    return dateL < dateR;
-            }
-            else if (dateL.isValid())
-            {
-                return true;
-            }
-            else if (dateR.isValid())
-            {
-                return false;
-            }
-
-            return hashLessThan();
+                return dateL.toMSecsSinceEpoch() - dateR.toMSecsSinceEpoch();
+            if (dateL.isValid())
+                return 1;
+            if (dateR.isValid())
+                return -1;
+            return 0;
         }
 
     case TransferListModel::TR_QUEUE_POSITION:
         {
             const auto positionL = leftValue.toInt();
             const auto positionR = rightValue.toInt();
-
-            if ((positionL > 0) || (positionR > 0))
-            {
-                if ((positionL > 0) && (positionR > 0))
-                    return positionL < positionR;
-                return positionL != 0;
-            }
-
-            return invokeLessThanForColumn(TransferListModel::TR_SEED_DATE);
+            if ((positionL > 0) && (positionR > 0))
+                return positionL - positionR;
+            if (positionL > 0)
+                return 1;
+            if (positionR > 0)
+                return -1;
+            return 0;
         }
 
     case TransferListModel::TR_SEEDS:
@@ -176,14 +189,11 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             const auto activeL = leftValue.toInt();
             const auto activeR = rightValue.toInt();
             if (activeL != activeR)
-                return activeL < activeR;
+                return activeL - activeR;
 
             const auto totalL = left.data(TransferListModel::AdditionalUnderlyingDataRole).toInt();
             const auto totalR = right.data(TransferListModel::AdditionalUnderlyingDataRole).toInt();
-            if (totalL != totalR)
-                return totalL < totalR;
-
-            return invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
+            return totalL - totalR;
         }
 
     case TransferListModel::TR_ETA:
@@ -200,7 +210,7 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             const bool isActiveL = TorrentFilter::ActiveTorrent.match(model->torrentHandle(left));
             const bool isActiveR = TorrentFilter::ActiveTorrent.match(model->torrentHandle(right));
             if (isActiveL != isActiveR)
-                return isActiveL;
+                return isActiveL ? 1 : -1;
 
             const auto queuePosL = left.sibling(left.row(), TransferListModel::TR_QUEUE_POSITION)
                     .data(TransferListModel::UnderlyingDataRole).toInt();
@@ -212,9 +222,8 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             {
                 const bool isAscendingOrder = (sortOrder() == Qt::AscendingOrder);
                 if (isSeedingL)
-                    return !isAscendingOrder;
-
-                return isAscendingOrder;
+                    return !isAscendingOrder ? -1 : 1;
+                return isAscendingOrder ? -1 : 1;
             }
 
             const auto etaL = leftValue.toLongLong();
@@ -223,42 +232,49 @@ bool TransferListSortModel::lessThan_impl(const QModelIndex &left, const QModelI
             const bool isInvalidR = ((etaR < 0) || (etaR >= MAX_ETA));
             if (isInvalidL && isInvalidR)
             {
-                if (isSeedingL)  // Both seeding
-                    return invokeLessThanForColumn(TransferListModel::TR_SEED_DATE);
-
-                return (queuePosL < queuePosR);
+                return isSeedingL // Both seeding
+                           ? 0 : (queuePosL - queuePosR);
             }
 
             if (!isInvalidL && !isInvalidR)
-                return (etaL < etaR);
+                return etaL - etaR;
 
-            return !isInvalidL;
+            if (isInvalidL)
+                return 1;
+            if (isInvalidR)
+                return -1;
         }
 
     case TransferListModel::TR_LAST_ACTIVITY:
         {
             const auto lastActivityL = leftValue.toLongLong();
             const auto lastActivityR = rightValue.toLongLong();
-
-            if (lastActivityL < 0) return false;
-            if (lastActivityR < 0) return true;
-            return lastActivityL < lastActivityR;
+            if ((lastActivityL > 0) && (lastActivityR > 0))
+                return lastActivityL - lastActivityR;
+            if (lastActivityL > 0)
+                return 1;
+            if (lastActivityR > 0)
+                return -1;
+            return 0;
         }
 
     case TransferListModel::TR_RATIO_LIMIT:
         {
             const auto ratioL = leftValue.toReal();
             const auto ratioR = rightValue.toReal();
-
-            if (ratioL < 0) return false;
-            if (ratioR < 0) return true;
-            return ratioL < ratioR;
+            if ((ratioL > 0) && (ratioL > 0))
+                return ratioL > ratioR ? 1 : -1;
+            if (ratioL > 0)
+                return 1;
+            if (ratioR > 0)
+                return -1;
+            return 0;
         }
     }
 
     return (leftValue != rightValue)
-        ? QSortFilterProxyModel::lessThan(left, right)
-        : invokeLessThanForColumn(TransferListModel::TR_QUEUE_POSITION);
+               ? (QSortFilterProxyModel::lessThan(left, right) ? -1 : 1)
+               : 0;
 }
 
 bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
