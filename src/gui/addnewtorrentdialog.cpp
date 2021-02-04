@@ -46,6 +46,7 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "base/preferences.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileguard.h"
 #include "base/utils/fs.h"
@@ -121,8 +122,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->contentLayoutComboBox->setCurrentIndex(
                 static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
 
-    m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
-    m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
+    m_ui->sequentialCheckBox->setChecked(Preferences::instance()->sequentialDownloadDefault());
+    m_ui->firstLastCheckBox->setChecked(Preferences::instance()->firstLastPiecePriorityDefault());
 
     m_ui->skipCheckingCheckBox->setChecked(m_torrentParams.skipChecking);
     m_ui->doNotDeleteTorrentCheckBox->setVisible(TorrentFileGuard::autoDeleteMode() != TorrentFileGuard::Never);

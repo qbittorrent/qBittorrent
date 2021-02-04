@@ -1178,6 +1178,26 @@ void Preferences::setTrayIconStyle(const TrayIcon::Style style)
 }
 #endif
 
+bool Preferences::sequentialDownloadDefault() const
+{
+    return value("Preferences/Advanced/sequentialDownloadDefault", false).toBool();
+}
+
+void Preferences::setSequentialDownloadDefault(const bool enabled)
+{
+    setValue("Preferences/Advanced/sequentialDownloadDefault", enabled);
+}
+
+bool Preferences::firstLastPiecePriorityDefault() const
+{
+    return value("Preferences/Advanced/firstLastPiecePriorityDefault", false).toBool();
+}
+
+void Preferences::setFirstLastPiecePriorityDefault(const bool enabled)
+{
+    setValue("Preferences/Advanced/firstLastPiecePriorityDefault", enabled);
+}
+
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
 

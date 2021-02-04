@@ -133,6 +133,8 @@ namespace
         PEER_TURNOVER,
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
+        SEQUENTIAL_DOWNLOAD_DEFAULT,
+        FIRST_LAST_PIECE_PRIORITY_DEFAULT,
 
         ROW_COUNT
     };
@@ -291,6 +293,9 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
 
     pref->setConfirmRemoveAllTags(m_checkBoxConfirmRemoveAllTags.isChecked());
+
+    pref->setSequentialDownloadDefault(m_checkBoxSequentialDownloadDefault.isChecked());
+    pref->setFirstLastPiecePriorityDefault(m_checkBoxFirstLastPiecePriorityDefault.isChecked());
 
     session->setAnnounceToAllTrackers(m_checkBoxAnnounceAllTrackers.isChecked());
     session->setAnnounceToAllTiers(m_checkBoxAnnounceAllTiers.isChecked());
@@ -704,6 +709,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxPeerTurnoverInterval.setValue(session->peerTurnoverInterval());
     addRow(PEER_TURNOVER_INTERVAL, (tr("Peer turnover disconnect interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#peer_turnover", "(?)"))
             , &m_spinBoxPeerTurnoverInterval);
+
+    m_checkBoxSequentialDownloadDefault.setChecked(pref->sequentialDownloadDefault());
+    addRow(SEQUENTIAL_DOWNLOAD_DEFAULT, tr("Download in sequential order by default"), &m_checkBoxSequentialDownloadDefault);
+
+    m_checkBoxFirstLastPiecePriorityDefault.setChecked(pref->firstLastPiecePriorityDefault());
+    addRow(FIRST_LAST_PIECE_PRIORITY_DEFAULT, tr("Download first and last pieces first by default"), &m_checkBoxFirstLastPiecePriorityDefault);
 }
 
 template <typename T>

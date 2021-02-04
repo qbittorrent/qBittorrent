@@ -314,6 +314,10 @@ public:
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
 #endif // Q_OS_MACOS
+    bool sequentialDownloadDefault() const;
+    void setSequentialDownloadDefault(const bool enabled);
+    bool firstLastPiecePriorityDefault() const;
+    void setFirstLastPiecePriorityDefault(const bool enabled);
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.
