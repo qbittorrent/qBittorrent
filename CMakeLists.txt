@@ -61,5 +61,4 @@ else()
 endif()
 
 # Generate version header
-file(READ "src/base/version.h.in" versionHeader)
-file(WRITE "src/base/version.h" "${versionHeader}")
+configure_file("src/base/version.h.in" "${CMAKE_CURRENT_SOURCE_DIR}/src/base/version.h" @ONLY)
