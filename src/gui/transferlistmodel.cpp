@@ -259,7 +259,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto limitString = [hideValues](const qint64 value) -> QString
     {
-        if (hideValues && (value == 0))
+        if (hideValues && (value <= 0))
             return {};
 
         return (value > 0)
