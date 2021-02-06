@@ -274,6 +274,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return QString::fromLatin1("%1 (%2)").arg(QString::number(value), QString::number(total));
     };
 
+    const auto etaString = [hideValues](const qlonglong value) -> QString
+    {
+        if (hideValues && (value >= MAX_ETA))
+            return {};
+        return Utils::Misc::userFriendlyDuration(value, MAX_ETA);
+    };
+
     const auto ratioString = [hideValues](const qreal value) -> QString
     {
         if (hideValues && (value <= 0))
@@ -358,7 +365,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_UPSPEED:
         return unitString(torrent->uploadPayloadRate(), true);
     case TR_ETA:
-        return Utils::Misc::userFriendlyDuration(torrent->eta(), MAX_ETA);
+        return etaString(torrent->eta());
     case TR_RATIO:
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
