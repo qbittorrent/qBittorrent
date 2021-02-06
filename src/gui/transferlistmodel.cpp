@@ -244,8 +244,11 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
     {
-        return (hideValues && (value <= 0))
-                ? QString {} : Utils::String::fromDouble(value, 3);
+        if (hideValues && (value == 0))
+            return {};
+        return (value >= 0)
+            ? Utils::String::fromDouble(value, 3)
+            : tr("N/A");
     };
 
     const auto unitString = [hideValues](const qint64 value, const bool isSpeedUnit = false) -> QString
