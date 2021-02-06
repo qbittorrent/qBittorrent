@@ -50,6 +50,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/torrentcategorydialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "ui_automatedrssdownloader.h"
@@ -68,6 +69,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     // Icons
     m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
     m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon("list-add"));
+    m_ui->addCategoryBtn->setIcon(UIThemeManager::instance()->getIcon("list-add"));
 
     // Ui Settings
     m_ui->listRules->setSortingEnabled(true);
@@ -403,6 +405,17 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
 
     for (const QListWidgetItem *item : selection)
         RSS::AutoDownloader::instance()->removeRule(item->text());
+}
+
+void AutomatedRssDownloader::on_addCategoryBtn_clicked()
+{
+    const QString newCategoryName = TorrentCategoryDialog::createCategory(this);
+
+    if (!newCategoryName.isEmpty())
+    {
+        m_ui->comboCategory->addItem(newCategoryName);
+        m_ui->comboCategory->setCurrentText(newCategoryName);
+    }
 }
 
 void AutomatedRssDownloader::on_exportBtn_clicked()
