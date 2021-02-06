@@ -1565,7 +1565,19 @@ void TorrentImpl::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
 
 void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
-    if (!m_hasMissingFiles)
+    if (m_hasMissingFiles)
+    {
+        const auto havePieces = m_ltAddTorrentParams.have_pieces;
+        const auto unfinishedPieces = m_ltAddTorrentParams.unfinished_pieces;
+        const auto verifiedPieces = m_ltAddTorrentParams.verified_pieces;
+
+        // Update recent resume data but preserve existing progress
+        m_ltAddTorrentParams = p->params;
+        m_ltAddTorrentParams.have_pieces = havePieces;
+        m_ltAddTorrentParams.unfinished_pieces = unfinishedPieces;
+        m_ltAddTorrentParams.verified_pieces = verifiedPieces;
+    }
+    else
     {
         // Update recent resume data
         m_ltAddTorrentParams = p->params;
