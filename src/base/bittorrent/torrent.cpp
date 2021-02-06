@@ -29,8 +29,6 @@
 
 #include "torrent.h"
 
-#include <type_traits>
-
 #include <QHash>
 
 namespace BitTorrent
@@ -42,13 +40,13 @@ namespace BitTorrent
 
     // Torrent
 
-    const qreal Torrent::USE_GLOBAL_RATIO = -2.;
-    const qreal Torrent::NO_RATIO_LIMIT = -1.;
+    const qreal Torrent::USE_GLOBAL_RATIO = -2;
+    const qreal Torrent::NO_RATIO_LIMIT = -1;
 
     const int Torrent::USE_GLOBAL_SEEDING_TIME = -2;
     const int Torrent::NO_SEEDING_TIME_LIMIT = -1;
 
-    const qreal Torrent::MAX_RATIO = 9999.;
+    const qreal Torrent::MAX_RATIO = 9999;
     const int Torrent::MAX_SEEDING_TIME = 525600;
 
     bool Torrent::isResumed() const

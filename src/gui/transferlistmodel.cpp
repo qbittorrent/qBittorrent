@@ -239,7 +239,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     bool hideValues = false;
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
         hideValues = true;
-    else if (m_hideZeroValuesMode != HideZeroValuesMode::Never)
+    else if (m_hideZeroValuesMode == HideZeroValuesMode::Paused)
         hideValues = (torrent->state() == BitTorrent::TorrentState::PausedDownloading);
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
@@ -269,9 +269,9 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto amountString = [hideValues](const qint64 value, const qint64 total) -> QString
     {
-        return (hideValues && (value == 0) && (total == 0))
-                ? QString {}
-                : QString::number(value) + " (" + QString::number(total) + ')';
+        if (hideValues && (value == 0) && (total == 0))
+            return {};
+        return QString::fromLatin1("%1 (%2)").arg(QString::number(value), QString::number(total));
     };
 
     const auto ratioString = [hideValues](const qreal value) -> QString
@@ -285,13 +285,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto queuePositionString = [](const qint64 value) -> QString
     {
-        return (value > 0) ? QString::number(value) : "*";
+        return (value > 0) ? QString::number(value) : QLatin1String("*");
     };
 
     const auto lastActivityString = [hideValues](qint64 value) -> QString
     {
         if (hideValues && ((value < 0) || (value >= MAX_ETA)))
-            return QString {};
+            return {};
 
         // Show '< 1m ago' when elapsed time is 0
         if (value == 0)
