@@ -302,10 +302,14 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
             : Utils::Misc::userFriendlyDuration(value);
     };
 
-    const auto timeElapsedString = [](const qint64 elapsedTime, const qint64 seedingTime) -> QString
+    const auto timeElapsedString = [hideValues](const qint64 elapsedTime, const qint64 seedingTime) -> QString
     {
         if (seedingTime <= 0)
+        {
+            if (hideValues && (elapsedTime == 0))
+                return {};
             return Utils::Misc::userFriendlyDuration(elapsedTime);
+        }
 
         return tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                 .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
