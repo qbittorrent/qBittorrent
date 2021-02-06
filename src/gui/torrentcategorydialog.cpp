@@ -29,6 +29,7 @@
 #include "torrentcategorydialog.h"
 
 #include <QMessageBox>
+#include <QPushButton>
 
 #include "base/bittorrent/session.h"
 #include "ui_torrentcategorydialog.h"
@@ -40,6 +41,13 @@ TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->comboSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->comboSavePath->setDialogCaption(tr("Choose save path"));
+
+    // disable save button
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    connect(m_ui->textCategoryName, &QLineEdit::textChanged, this, [this](const QString &text)
+    {
+        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!text.isEmpty());
+    });
 }
 
 TorrentCategoryDialog::~TorrentCategoryDialog()
