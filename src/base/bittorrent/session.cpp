@@ -1887,7 +1887,7 @@ bool Session::cancelDownloadMetadata(const InfoHash &hash)
 
 void Session::increaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    using ElementType = std::pair<int, TorrentImpl *>;
+    using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType
         , std::vector<ElementType>
         , std::greater<ElementType>> torrentQueue;
@@ -1895,9 +1895,10 @@ void Session::increaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
     // Sort torrents by queue position
     for (const InfoHash &infoHash : hashes)
     {
-        TorrentImpl *const torrent = m_torrents.value(infoHash);
-        if (torrent && !torrent->isSeed())
-            torrentQueue.emplace(torrent->queuePosition(), torrent);
+        const TorrentImpl *torrent = m_torrents.value(infoHash);
+        if (!torrent) continue;
+        if (const int position = torrent->queuePosition(); position >= 0)
+            torrentQueue.emplace(position, torrent);
     }
 
     // Increase torrents queue position (starting with the one in the highest queue position)
@@ -1913,15 +1914,16 @@ void Session::increaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 
 void Session::decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    using ElementType = std::pair<int, TorrentImpl *>;
+    using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType> torrentQueue;
 
     // Sort torrents by queue position
     for (const InfoHash &infoHash : hashes)
     {
-        TorrentImpl *const torrent = m_torrents.value(infoHash);
-        if (torrent && !torrent->isSeed())
-            torrentQueue.emplace(torrent->queuePosition(), torrent);
+        const TorrentImpl *torrent = m_torrents.value(infoHash);
+        if (!torrent) continue;
+        if (const int position = torrent->queuePosition(); position >= 0)
+            torrentQueue.emplace(position, torrent);
     }
 
     // Decrease torrents queue position (starting with the one in the lowest queue position)
@@ -1940,15 +1942,16 @@ void Session::decreaseTorrentsQueuePos(const QVector<InfoHash> &hashes)
 
 void Session::topTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    using ElementType = std::pair<int, TorrentImpl *>;
+    using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType> torrentQueue;
 
     // Sort torrents by queue position
     for (const InfoHash &infoHash : hashes)
     {
-        TorrentImpl *const torrent = m_torrents.value(infoHash);
-        if (torrent && !torrent->isSeed())
-            torrentQueue.emplace(torrent->queuePosition(), torrent);
+        const TorrentImpl *torrent = m_torrents.value(infoHash);
+        if (!torrent) continue;
+        if (const int position = torrent->queuePosition(); position >= 0)
+            torrentQueue.emplace(position, torrent);
     }
 
     // Top torrents queue position (starting with the one in the lowest queue position)
@@ -1964,7 +1967,7 @@ void Session::topTorrentsQueuePos(const QVector<InfoHash> &hashes)
 
 void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
 {
-    using ElementType = std::pair<int, TorrentImpl *>;
+    using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType
         , std::vector<ElementType>
         , std::greater<ElementType>> torrentQueue;
@@ -1972,9 +1975,10 @@ void Session::bottomTorrentsQueuePos(const QVector<InfoHash> &hashes)
     // Sort torrents by queue position
     for (const InfoHash &infoHash : hashes)
     {
-        TorrentImpl *const torrent = m_torrents.value(infoHash);
-        if (torrent && !torrent->isSeed())
-            torrentQueue.emplace(torrent->queuePosition(), torrent);
+        const TorrentImpl *torrent = m_torrents.value(infoHash);
+        if (!torrent) continue;
+        if (const int position = torrent->queuePosition(); position >= 0)
+            torrentQueue.emplace(position, torrent);
     }
 
     // Bottom torrents queue position (starting with the one in the highest queue position)
@@ -2363,7 +2367,7 @@ void Session::saveResumeData()
     }
 }
 
-void Session::saveTorrentsQueue()
+void Session::saveTorrentsQueue() const
 {
     // store hash in textual representation
     QMap<int, QString> queue; // Use QMap since it should be ordered by key
@@ -2390,7 +2394,7 @@ void Session::saveTorrentsQueue()
 #endif
 }
 
-void Session::removeTorrentsQueue()
+void Session::removeTorrentsQueue() const
 {
     const QString filename = QLatin1String {"queue"};
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))

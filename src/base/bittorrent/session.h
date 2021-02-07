@@ -632,8 +632,8 @@ namespace BitTorrent
         void createTorrent(const lt::torrent_handle &nativeHandle);
 
         void saveResumeData();
-        void saveTorrentsQueue();
-        void removeTorrentsQueue();
+        void saveTorrentsQueue() const;
+        void removeTorrentsQueue() const;
 
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
