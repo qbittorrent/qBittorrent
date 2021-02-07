@@ -818,9 +818,7 @@ bool TorrentImpl::hasFilteredPieces() const
 
 int TorrentImpl::queuePosition() const
 {
-    if (m_nativeStatus.queue_position < lt::queue_position_t {0}) return 0;
-
-    return static_cast<int>(m_nativeStatus.queue_position) + 1;
+    return static_cast<int>(m_nativeStatus.queue_position);
 }
 
 QString TorrentImpl::error() const
