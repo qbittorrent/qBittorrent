@@ -87,7 +87,7 @@ namespace
         int i = 0;
         val = static_cast<qreal>(sizeInBytes);
 
-        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
+        while ((val >= 1024.) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
         {
             val /= 1024.;
             ++i;
