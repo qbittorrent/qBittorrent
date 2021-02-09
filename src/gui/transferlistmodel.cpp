@@ -292,7 +292,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto queuePositionString = [](const qint64 value) -> QString
     {
-        return (value > 0) ? QString::number(value) : QLatin1String("*");
+        return (value >= 0) ? QString::number(value + 1) : QLatin1String("*");
     };
 
     const auto lastActivityString = [hideValues](qint64 value) -> QString
