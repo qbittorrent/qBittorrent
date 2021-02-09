@@ -28,6 +28,8 @@
 
 #include "misc.h"
 
+#include <optional>
+
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <powrprof.h>
@@ -80,21 +82,26 @@ namespace
     // see http://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
     // to send numbers instead of strings with suffixes
-    bool splitToFriendlyUnit(const qint64 sizeInBytes, qreal &val, Utils::Misc::SizeUnit &unit)
+    struct SplitToFriendlyUnitResult
     {
-        if (sizeInBytes < 0) return false;
+        qreal value;
+        Utils::Misc::SizeUnit unit;
+    };
+
+    std::optional<SplitToFriendlyUnitResult> splitToFriendlyUnit(const qint64 bytes)
+    {
+        if (bytes < 0)
+            return std::nullopt;
 
         int i = 0;
-        val = static_cast<qreal>(sizeInBytes);
+        auto value = static_cast<qreal>(bytes);
 
-        while ((val >= 1024.) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
+        while ((value >= 1024) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
         {
-            val /= 1024.;
+            value /= 1024;
             ++i;
         }
-
-        unit = static_cast<Utils::Misc::SizeUnit>(i);
-        return true;
+        return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
     }
 }
 
@@ -249,15 +256,14 @@ QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
     return ret;
 }
 
-QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
+QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed)
 {
-    SizeUnit unit;
-    qreal friendlyVal;
-    if (!splitToFriendlyUnit(bytesValue, friendlyVal, unit))
+    const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes);
+    if (!result)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
-    return Utils::String::fromDouble(friendlyVal, friendlyUnitPrecision(unit))
+    return Utils::String::fromDouble(result->value, friendlyUnitPrecision(result->unit))
            + QString::fromUtf8(C_NON_BREAKING_SPACE)
-           + unitString(unit, isSpeed);
+           + unitString(result->unit, isSpeed);
 }
 
 int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
