@@ -143,60 +143,56 @@ void TorrentContentModelFolder::setPriority(BitTorrent::DownloadPriority newPrio
             child->setPriority(m_priority, false);
 }
 
-void TorrentContentModelFolder::recalculateProgress()
+void TorrentContentModelFolder::recalculateProperties(bool progress, bool availability)
 {
+    qulonglong tSize = 0;
+
     qreal tProgress = 0;
-    qulonglong tSize = 0;
     qulonglong tRemaining = 0;
-    for (TorrentContentModelItem *child : asConst(m_childItems))
-    {
-        if (child->priority() == BitTorrent::DownloadPriority::Ignored)
-            continue;
 
-        if (child->itemType() == FolderType)
-            static_cast<TorrentContentModelFolder *>(child)->recalculateProgress();
-        tProgress += child->progress() * child->size();
-        tSize += child->size();
-        tRemaining += child->remaining();
-    }
-
-    if (!isRootItem() && (tSize > 0))
-    {
-        m_progress = tProgress / tSize;
-        m_remaining = tRemaining;
-        Q_ASSERT(m_progress <= 1.);
-    }
-}
-
-void TorrentContentModelFolder::recalculateAvailability()
-{
     qreal tAvailability = 0;
-    qulonglong tSize = 0;
     bool foundAnyData = false;
+
     for (TorrentContentModelItem *child : asConst(m_childItems))
     {
         if (child->priority() == BitTorrent::DownloadPriority::Ignored)
             continue;
 
         if (child->itemType() == FolderType)
-            static_cast<TorrentContentModelFolder*>(child)->recalculateAvailability();
+            static_cast<TorrentContentModelFolder *>(child)->recalculateProperties(progress, availability);
+        tSize += child->size();
+
+        tProgress += child->progress() * child->size();
+        tRemaining += child->remaining();
+
         const qreal childAvailability = child->availability();
         if (childAvailability >= 0)
         { // -1 means "no data"
             tAvailability += childAvailability * child->size();
             foundAnyData = true;
         }
-        tSize += child->size();
     }
 
-    if (!isRootItem() && (tSize > 0) && foundAnyData)
+    if (!isRootItem() && (tSize > 0))
     {
-        m_availability = tAvailability / tSize;
-        Q_ASSERT(m_availability <= 1.);
-    }
-    else
-    {
-        m_availability = -1.;
+        if (progress)
+        {
+            m_progress = tProgress / tSize;
+            m_remaining = tRemaining;
+            Q_ASSERT(m_progress <= 1.);
+        }
+        if (availability)
+        {
+            if (foundAnyData)
+            {
+                m_availability = tAvailability / tSize;
+                Q_ASSERT(m_availability <= 1.);
+            }
+            else
+            {
+                m_availability = -1.;
+            }
+        }
     }
 }
 

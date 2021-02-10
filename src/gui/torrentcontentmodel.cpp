@@ -212,8 +212,7 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
     for (int i = 0; i < fp.size(); ++i)
         m_filesIndex[i]->setProgress(fp[i]);
     // Update folders progress in the tree
-    m_rootItem->recalculateProgress();
-    m_rootItem->recalculateAvailability();
+    m_rootItem->recalculateProperties(true, true);
     emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
@@ -240,7 +239,7 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
     for (int i = 0; i < m_filesIndex.size(); ++i)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
-    m_rootItem->recalculateProgress();
+    m_rootItem->recalculateProperties(true, false);
     emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
@@ -288,8 +287,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
             item->setPriority(prio);
             // Update folders progress in the tree
-            m_rootItem->recalculateProgress();
-            m_rootItem->recalculateAvailability();
+            m_rootItem->recalculateProperties(true, true);
             emit dataChanged(this->index(0, 0), this->index((rowCount() - 1), (columnCount() - 1)));
             emit filteredFilesChanged();
         }
