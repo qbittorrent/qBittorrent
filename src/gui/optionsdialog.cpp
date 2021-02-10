@@ -233,15 +233,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->hsplitter->setCollapsible(0, false);
     m_ui->hsplitter->setCollapsible(1, false);
     // Get apply button in button box
-    const QList<QAbstractButton *> buttons = m_ui->buttonBox->buttons();
-    for (QAbstractButton *button : buttons)
-    {
-        if (m_ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole)
-        {
-            m_applyButton = button;
-            break;
-        }
-    }
+    m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
+    connect(m_applyButton, &QPushButton::clicked, this, &OptionsDialog::applySettings);
 
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
@@ -249,7 +242,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(ScanFoldersModel::instance(), &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleScanFolderViewSelectionChanged);
 
-    connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &OptionsDialog::applySettings);
     // Languages supported
     initializeLanguageCombo();
 
@@ -1439,27 +1431,24 @@ void OptionsDialog::on_buttonBox_accepted()
     accept();
 }
 
-void OptionsDialog::applySettings(QAbstractButton *button)
+void OptionsDialog::applySettings()
 {
-    if (button == m_applyButton)
+    if (!schedTimesOk())
     {
-        if (!schedTimesOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-            return;
-        }
-        if (!webUIAuthenticationOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-        if (!isAlternativeWebUIPathValid())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-        saveOptions();
+        m_ui->tabSelection->setCurrentRow(TAB_SPEED);
+        return;
     }
+    if (!webUIAuthenticationOk())
+    {
+        m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+        return;
+    }
+    if (!isAlternativeWebUIPathValid())
+    {
+        m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+        return;
+    }
+    saveOptions();
 }
 
 void OptionsDialog::closeEvent(QCloseEvent *e)
