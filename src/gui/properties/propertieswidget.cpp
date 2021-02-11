@@ -107,7 +107,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->filesList, &QAbstractItemView::clicked
             , m_ui->filesList, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
     connect(m_ui->filesList, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFilesListMenu);
-    connect(m_ui->filesList, &QAbstractItemView::doubleClicked, this, &PropertiesWidget::openItem);
+    connect(m_ui->filesList, &TorrentContentTreeView::itemDoubleClicked, this, &PropertiesWidget::openItem);
     connect(m_ui->filesList->header(), &QHeaderView::sectionMoved, this, &PropertiesWidget::saveSettings);
     connect(m_ui->filesList->header(), &QHeaderView::sectionResized, this, &PropertiesWidget::saveSettings);
     connect(m_ui->filesList->header(), &QHeaderView::sortIndicatorChanged, this, &PropertiesWidget::saveSettings);

@@ -149,7 +149,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     QShortcut *editHotkey = new QShortcut(Qt::Key_F2, m_ui->contentTreeView, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated
             , this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
-    connect(m_ui->contentTreeView, &QAbstractItemView::doubleClicked
+    connect(m_ui->contentTreeView, &TorrentContentTreeView::itemDoubleClicked
             , this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();

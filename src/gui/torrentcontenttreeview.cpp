@@ -34,6 +34,8 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QModelIndexList>
+#include <QMouseEvent>
+#include <QStyleOptionViewItem>
 #include <QTableView>
 #include <QThread>
 
@@ -104,6 +106,31 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
         Q_ASSERT(index.column() == TorrentContentModelItem::COL_NAME);
         model()->setData(index, state, Qt::CheckStateRole);
     }
+}
+
+void TorrentContentTreeView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    const QPersistentModelIndex index = indexAt(event->pos());
+    if (index.isValid())
+    {
+        const QVariant checkValue = index.data(Qt::CheckStateRole);
+        if (checkValue.isValid() && !checkValue.isNull())
+        {
+            QStyleOptionViewItem option;
+            option.initFrom(this);
+            option.rect = visualRect(index);
+            option.features |= QStyleOptionViewItem::HasCheckIndicator;
+            const QRect checkRect = style()->subElementRect(QStyle::SE_CheckBoxClickRect, &option, this);
+            if (!checkRect.isValid() || !checkRect.contains(event->pos()))
+                emit itemDoubleClicked(index);
+        }
+        else
+        {
+            emit itemDoubleClicked(index);
+        }
+    }
+
+    QTreeView::mouseDoubleClickEvent(event);
 }
 
 void TorrentContentTreeView::renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage)

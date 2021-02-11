@@ -44,10 +44,15 @@ class TorrentContentTreeView final : public QTreeView
 
 public:
     explicit TorrentContentTreeView(QWidget *parent = nullptr);
-    void keyPressEvent(QKeyEvent *event) override;
 
     void renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage);
 
+signals:
+    void itemDoubleClicked(const QModelIndex &index);
+
 private:
     QModelIndex currentNameCell();
+
+    void keyPressEvent(QKeyEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 };
