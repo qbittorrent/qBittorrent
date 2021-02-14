@@ -31,6 +31,7 @@
 
 #if defined(Q_OS_WIN)
 #include <windows.h>
+#include <string>
 #endif
 
 #include <QCoreApplication>
@@ -97,6 +98,10 @@ namespace
         SYSTEM_64BIT
     };
 
+// Note that we use `std::wstring` as a buffer instead of using `::operator new`
+// According to [MSDN](https://docs.microsoft.com/en-us/windows/win32/extensible-storage-engine/wchar),
+// `WCHAR` is a typedef of `wchar_t` and we can always use `wchar_t` because it's part of ISO C++.
+
     QStringList getRegSubkeys(const HKEY handle)
     {
         QStringList keys;
@@ -107,19 +112,19 @@ namespace
 
         if (res == ERROR_SUCCESS)
         {
-            ++cMaxSubKeyLen; // For null character
-            LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
+            ++cMaxSubKeyLen; // For null character.
+            std::wstring name(cMaxSubKeyLen, 0);
             DWORD cName;
 
             for (DWORD i = 0; i < cSubKeys; ++i)
             {
                 cName = cMaxSubKeyLen;
-                res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
+                // `RegEnumKeyExW` says the length should include the terminating null character.
+                res = ::RegEnumKeyExW(handle, i, name.data(), &cName, NULL, NULL, NULL, NULL);
                 if (res == ERROR_SUCCESS)
-                    keys.push_back(QString::fromWCharArray(lpName));
+                    keys.push_back(QString::fromStdWString(name));
             }
 
-            delete[] lpName;
         }
 
         return keys;
@@ -129,30 +134,23 @@ namespace
     {
         QString result;
 
-        DWORD type = 0;
         DWORD cbData = 0;
         LPWSTR lpValueName = NULL;
+        std::wstring valueName;
         if (!name.isEmpty())
         {
-            lpValueName = new WCHAR[name.size() + 1];
-            name.toWCharArray(lpValueName);
-            lpValueName[name.size()] = 0;
+            valueName = name.toStdWString();
+            lpValueName = valueName.data();
         }
 
         // Discover the size of the value
-        ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
-        DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
-        LPWSTR lpData = new WCHAR[cBuffer];
-        LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
-        if (lpValueName)
-            delete[] lpValueName;
+        ::RegQueryValueExW(handle, lpValueName, NULL, NULL, NULL, &cbData);
+        DWORD cBuffer = (cbData / sizeof(WCHAR));
+        std::wstring data(cBuffer, 0);
+        LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, NULL, reinterpret_cast<LPBYTE>(data.data()), &cbData);
 
         if (res == ERROR_SUCCESS)
-        {
-            lpData[cBuffer - 1] = 0;
-            result = QString::fromWCharArray(lpData);
-        }
-        delete[] lpData;
+            result = QString::fromStdWString(data);
 
         return result;
     }
@@ -186,13 +184,10 @@ namespace
             while (!found && !versions.empty())
             {
                 const QString version = versions.takeLast() + "\\InstallPath";
-                LPWSTR lpSubkey = new WCHAR[version.size() + 1];
-                version.toWCharArray(lpSubkey);
-                lpSubkey[version.size()] = 0;
+                std::wstring subkey = version.toStdWString();
 
                 HKEY hkInstallPath;
-                res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
-                delete[] lpSubkey;
+                res = ::RegOpenKeyExW(hkPythonCore, subkey.data(), 0, samDesired, &hkInstallPath);
 
                 if (res == ERROR_SUCCESS)
                 {
@@ -219,7 +214,7 @@ namespace
             }
 
             if (!found)
-                path = QString();
+                path.clear();
 
             ::RegCloseKey(hkPythonCore);
         }
