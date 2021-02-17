@@ -5,13 +5,14 @@
 # Artifacts will copy to the same directory.
 
 # Ubuntu mirror for local building
-# source /etc/os-release
-# cat >/etc/apt/sources.list <<EOF
-# deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME} main restricted universe multiverse
-# deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME}-updates main restricted universe multiverse
-# deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME}-backports main restricted universe multiverse
-# deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME}-security main restricted universe multiverse
-# EOF
+source /etc/os-release
+cat >/etc/apt/sources.list <<EOF
+deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME} main restricted universe multiverse
+deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME}-updates main restricted universe multiverse
+deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME}-backports main restricted universe multiverse
+deb http://opentuna.cn/ubuntu/ ${UBUNTU_CODENAME}-security main restricted universe multiverse
+EOF
+export PIP_INDEX_URL="https://mirrors.aliyun.com/pypi/simple/"
 
 apt update
 apt install -y software-properties-common
@@ -33,7 +34,8 @@ apt install -y --no-install-suggests --no-install-recommends \
   python3-semantic-version \
   python3-lxml \
   python3-requests \
-  p7zip-full \
+  python3-pip \
+  python3-stdeb \
   libfontconfig1 \
   libgl1-mesa-dev \
   libxcb-icccm4 \
@@ -53,9 +55,12 @@ apt install -y --no-install-suggests --no-install-recommends \
 # Force refresh ld.so.cache
 ldconfig
 SELF_DIR="$(dirname "$(readlink -f "${0}")")"
+export PYTHONWARNINGS=ignore:DEPRECATION
 
 # install qt
 if [ ! -d "${HOME}/Qt" ]; then
+  pip3 install --upgrade 'pip<21' 'setuptools<51' 'setuptools_scm<6'
+  pip3 install py7zr
   curl -sSkL --compressed https://raw.githubusercontent.com/engnr/qt-downloader/master/qt-downloader | python3 - linux desktop 5.15.2 gcc_64 -o "${HOME}/Qt" -m qtbase qttools qtsvg icu
 fi
 export QT_BASE_DIR="$(ls -rd "${HOME}/Qt"/*/gcc_64 | head -1)"
