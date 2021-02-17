@@ -45,9 +45,9 @@ public:
     enum TreeItemColumns
     {
         COL_NAME,
-        COL_SIZE,
         COL_PROGRESS,
         COL_PRIO,
+        COL_SIZE,
         COL_WANTED,
         COL_DONE,
         COL_REMAINING,
