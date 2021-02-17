@@ -44,6 +44,8 @@ enum PropColumn
     PCSIZE,
     PROGRESS,
     PRIORITY,
+    WANTED,
+    DONE,
     REMAINING,
     AVAILABILITY
 };

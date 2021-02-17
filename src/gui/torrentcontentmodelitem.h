@@ -48,6 +48,8 @@ public:
         COL_SIZE,
         COL_PROGRESS,
         COL_PRIO,
+        COL_WANTED,
+        COL_DONE,
         COL_REMAINING,
         COL_AVAILABILITY,
         NB_COL
@@ -69,8 +71,10 @@ public:
     QString name() const;
     void setName(const QString &name);
 
+    qulonglong wanted() const;
     qulonglong size() const;
     qreal progress() const;
+    qulonglong done() const;
     qulonglong remaining() const;
 
     qreal availability() const;
@@ -89,6 +93,7 @@ protected:
     QVector<QString> m_itemData;
     // Non-root item members
     QString m_name;
+    qulonglong m_wanted;
     qulonglong m_size;
     qulonglong m_remaining;
     BitTorrent::DownloadPriority m_priority;

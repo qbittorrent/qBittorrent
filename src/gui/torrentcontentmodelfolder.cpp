@@ -146,7 +146,6 @@ void TorrentContentModelFolder::setPriority(BitTorrent::DownloadPriority newPrio
 void TorrentContentModelFolder::recalculateProgress()
 {
     qreal tProgress = 0;
-    qulonglong tSize = 0;
     qulonglong tRemaining = 0;
     for (TorrentContentModelItem *child : asConst(m_childItems))
     {
@@ -155,14 +154,13 @@ void TorrentContentModelFolder::recalculateProgress()
 
         if (child->itemType() == FolderType)
             static_cast<TorrentContentModelFolder *>(child)->recalculateProgress();
-        tProgress += child->progress() * child->size();
-        tSize += child->size();
+        tProgress += child->progress() * child->wanted();
         tRemaining += child->remaining();
     }
 
-    if (!isRootItem() && (tSize > 0))
+    if (!isRootItem())
     {
-        m_progress = tProgress / tSize;
+        m_progress = tProgress / m_wanted;
         m_remaining = tRemaining;
         Q_ASSERT(m_progress <= 1.);
     }
@@ -171,7 +169,6 @@ void TorrentContentModelFolder::recalculateProgress()
 void TorrentContentModelFolder::recalculateAvailability()
 {
     qreal tAvailability = 0;
-    qulonglong tSize = 0;
     bool foundAnyData = false;
     for (TorrentContentModelItem *child : asConst(m_childItems))
     {
@@ -183,15 +180,14 @@ void TorrentContentModelFolder::recalculateAvailability()
         const qreal childAvailability = child->availability();
         if (childAvailability >= 0)
         { // -1 means "no data"
-            tAvailability += childAvailability * child->size();
+            tAvailability += childAvailability * child->wanted();
             foundAnyData = true;
         }
-        tSize += child->size();
     }
 
-    if (!isRootItem() && (tSize > 0) && foundAnyData)
+    if (!isRootItem() && foundAnyData)
     {
-        m_availability = tAvailability / tSize;
+        m_availability = tAvailability / m_wanted;
         Q_ASSERT(m_availability <= 1.);
     }
     else
@@ -200,11 +196,21 @@ void TorrentContentModelFolder::recalculateAvailability()
     }
 }
 
+void TorrentContentModelFolder::updateWanted(qulonglong delta)
+{
+    if (isRootItem())
+        return;
+
+    m_wanted += delta;
+    m_parentItem->updateWanted(delta);
+}
+
 void TorrentContentModelFolder::increaseSize(qulonglong delta)
 {
     if (isRootItem())
         return;
 
     m_size += delta;
+    m_wanted += delta;
     m_parentItem->increaseSize(delta);
 }

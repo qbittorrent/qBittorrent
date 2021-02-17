@@ -184,7 +184,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
+    , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Total"), tr("Progress"), tr("Download Priority"), tr("Wanted"), tr("Done"), tr("Remaining"), tr("Availability") })))
 {
 #if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
@@ -364,6 +364,8 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
         }
     case Qt::TextAlignmentRole:
         if ((index.column() == TorrentContentModelItem::COL_SIZE)
+            || (index.column() == TorrentContentModelItem::COL_WANTED)
+            || (index.column() == TorrentContentModelItem::COL_DONE)
             || (index.column() == TorrentContentModelItem::COL_REMAINING))
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
         return {};
@@ -405,6 +407,8 @@ QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientatio
 
     case Qt::TextAlignmentRole:
         if ((section == TorrentContentModelItem::COL_SIZE)
+            || (section == TorrentContentModelItem::COL_WANTED)
+            || (section == TorrentContentModelItem::COL_DONE)
             || (section == TorrentContentModelItem::COL_REMAINING))
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
         return {};
