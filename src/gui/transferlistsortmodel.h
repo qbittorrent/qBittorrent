@@ -53,9 +53,13 @@ public:
     void disableTrackerFilter();
 
 private:
+    int compare(const QModelIndex &left, const QModelIndex &right) const;
+
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
     TorrentFilter m_filter;
+    mutable int m_subSortColumn = -1;
+    mutable int m_sortColumn = -1;
 };
