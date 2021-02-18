@@ -40,7 +40,15 @@
 namespace
 {
     template <typename T>
-    bool customLessThan(const T left, const T right)
+    int threeWayCompare(const T &left, const T &right)
+    {
+        if (left == right)
+            return 0;
+        return (left < right) ? -1 : 1;
+    }
+
+    template <typename T>
+    int customCompare(const T left, const T right)
     {
         static_assert(std::is_arithmetic_v<T>);
 
@@ -48,8 +56,10 @@ namespace
         const bool isRightValid = (right >= 0);
 
         if (isLeftValid && isRightValid)
-            return left < right;
-        return isLeftValid;
+            return threeWayCompare(left, right);
+        if (!isLeftValid && !isRightValid)
+            return 0;
+        return isLeftValid ? -1 : 1;
     }
 }
 
@@ -101,22 +111,20 @@ void TransferListSortModel::disableTrackerFilter()
         invalidateFilter();
 }
 
-bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &right) const
 {
-    Q_ASSERT(left.column() == right.column());
-
-    const int sortColumn = left.column();
+    const int compareColumn = left.column();
     const QVariant leftValue = left.data(TransferListModel::UnderlyingDataRole);
     const QVariant rightValue = right.data(TransferListModel::UnderlyingDataRole);
 
-    switch (sortColumn)
+    switch (compareColumn)
     {
     case TransferListModel::TR_CATEGORY:
     case TransferListModel::TR_NAME:
     case TransferListModel::TR_SAVE_PATH:
     case TransferListModel::TR_TAGS:
     case TransferListModel::TR_TRACKER:
-        return Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive) < 0;
+        return Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive);
 
     case TransferListModel::TR_AMOUNT_DOWNLOADED:
     case TransferListModel::TR_AMOUNT_DOWNLOADED_SESSION:
@@ -129,28 +137,28 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
     case TransferListModel::TR_SIZE:
     case TransferListModel::TR_TIME_ELAPSED:
     case TransferListModel::TR_TOTAL_SIZE:
-        return customLessThan(leftValue.toLongLong(), rightValue.toLongLong());
+        return customCompare(leftValue.toLongLong(), rightValue.toLongLong());
 
     case TransferListModel::TR_AVAILABILITY:
     case TransferListModel::TR_PROGRESS:
     case TransferListModel::TR_RATIO:
     case TransferListModel::TR_RATIO_LIMIT:
-        return customLessThan(leftValue.toReal(), rightValue.toReal());
+        return customCompare(leftValue.toReal(), rightValue.toReal());
 
     case TransferListModel::TR_STATUS:
-        return leftValue.value<BitTorrent::TorrentState>() < rightValue.value<BitTorrent::TorrentState>();
+        return threeWayCompare(leftValue.toInt(), rightValue.toInt());
 
     case TransferListModel::TR_ADD_DATE:
     case TransferListModel::TR_SEED_DATE:
     case TransferListModel::TR_SEEN_COMPLETE_DATE:
-        return leftValue.toDateTime() < rightValue.toDateTime();
+        return threeWayCompare(leftValue.toDateTime(), rightValue.toDateTime());
 
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:
     case TransferListModel::TR_QUEUE_POSITION:
     case TransferListModel::TR_UPLIMIT:
     case TransferListModel::TR_UPSPEED:
-        return customLessThan(leftValue.toInt(), rightValue.toInt());
+        return customCompare(leftValue.toInt(), rightValue.toInt());
 
     case TransferListModel::TR_PEERS:
     case TransferListModel::TR_SEEDS:
@@ -159,11 +167,11 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
             const auto activeL = leftValue.toInt();
             const auto activeR = rightValue.toInt();
             if (activeL != activeR)
-                return activeL < activeR;
+                return threeWayCompare(activeL, activeR);
 
             const auto totalL = left.data(TransferListModel::AdditionalUnderlyingDataRole).toInt();
             const auto totalR = right.data(TransferListModel::AdditionalUnderlyingDataRole).toInt();
-            return totalL < totalR;
+            return threeWayCompare(totalL, totalR);
         }
 
     default:
@@ -171,7 +179,24 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
         break;
     }
 
-    return false;
+    return 0;
+}
+
+bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
+{
+    Q_ASSERT(left.column() == right.column());
+
+    if (m_sortColumn != left.column())
+    {
+        m_subSortColumn = m_sortColumn;
+        m_sortColumn = left.column();
+    }
+
+    const int result = compare(left, right);
+    if ((result == 0) && (m_subSortColumn != -1))
+        return compare(left.sibling(left.row(), m_subSortColumn), right.sibling(right.row(), m_subSortColumn)) < 0;
+
+    return result < 0;
 }
 
 bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
