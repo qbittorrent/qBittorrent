@@ -55,13 +55,8 @@ AsyncFileStorage::~AsyncFileStorage()
 
 void AsyncFileStorage::store(const QString &fileName, const QByteArray &data)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(this, [this, data, fileName]() { store_impl(fileName, data); }
                               , Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(this, "store_impl", Qt::QueuedConnection
-                              , Q_ARG(QString, fileName), Q_ARG(QByteArray, data));
-#endif
 }
 
 QDir AsyncFileStorage::storageDir() const

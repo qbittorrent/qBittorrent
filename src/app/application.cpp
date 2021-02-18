@@ -359,7 +359,6 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QProcess proc;
     proc.setProgram(QString::fromWCharArray(args[0]));
     proc.setArguments(argList);
@@ -385,9 +384,6 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
         args->startupInfo->hStdError = nullptr;
     });
     proc.startDetached();
-#else
-    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
-#endif // QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 #else // Q_OS_WIN
     // Cannot give users shell environment by default, as doing so could
     // enable command injection via torrent name and other arguments

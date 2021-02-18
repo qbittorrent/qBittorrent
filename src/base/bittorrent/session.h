@@ -790,8 +790,3 @@ namespace BitTorrent
         static Session *m_instance;
     };
 }
-
-#if (QT_VERSION < QT_VERSION_CHECK(5, 10, 0))
-Q_DECLARE_METATYPE(std::shared_ptr<lt::entry>)
-const int sharedPtrLtEntryTypeID = qRegisterMetaType<std::shared_ptr<lt::entry>>();
-#endif

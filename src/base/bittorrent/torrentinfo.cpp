@@ -492,11 +492,7 @@ void TorrentInfo::addRootFolder()
     const QString extension = Utils::Fs::fileExtension(originalName);
     const QString rootFolder = extension.isEmpty()
             ? originalName
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
             : originalName.chopped(extension.size() + 1);
-#else
-            : originalName.left(originalName.size() - (extension.size() + 1));
-#endif
     const std::string rootPrefix = Utils::Fs::toNativePath(rootFolder + QLatin1Char {'/'}).toStdString();
     lt::file_storage files = m_nativeInfo->files();
     files.set_name(rootFolder.toStdString());

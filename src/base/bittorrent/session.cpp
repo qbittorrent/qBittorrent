@@ -1111,11 +1111,7 @@ void Session::initializeNativeSession()
 
     m_nativeSession->set_alert_notify([this]()
     {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
         QMetaObject::invokeMethod(this, &Session::readAlerts, Qt::QueuedConnection);
-#else
-        QMetaObject::invokeMethod(this, "readAlerts", Qt::QueuedConnection);
-#endif
     });
 
     // Enabling plugins
@@ -1854,18 +1850,13 @@ bool Session::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption
     }
 
     // Remove it from torrent resume directory
-    const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->id().toString());
-    const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->id().toString());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->id());
+    const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->id());
     QMetaObject::invokeMethod(m_resumeDataSavingManager, [this, resumedataFile, metadataFile]()
     {
         m_resumeDataSavingManager->remove(resumedataFile);
         m_resumeDataSavingManager->remove(metadataFile);
     });
-#else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, resumedataFile));
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, metadataFile));
-#endif
 
     delete torrent;
     return true;
@@ -2228,16 +2219,10 @@ void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const QString 
     const QStringList originalFileNames = torrentInfo.filePaths();
     const QString completeSavePath = savePath;
     const QString incompleteSavePath = (isTempPathEnabled() ? torrentTempPath(torrentInfo) : QString {});
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_fileSearcher, [=]()
     {
         m_fileSearcher->search(searchId, originalFileNames, completeSavePath, incompleteSavePath);
     });
-#else
-    QMetaObject::invokeMethod(m_fileSearcher, "search"
-                              , Q_ARG(BitTorrent::TorrentID, searchId), Q_ARG(QStringList, originalFileNames)
-                              , Q_ARG(QString, completeSavePath), Q_ARG(QString, incompleteSavePath));
-#endif
 }
 
 // Add a torrent to libtorrent session in hidden mode
@@ -2387,24 +2372,15 @@ void Session::saveTorrentsQueue() const
         data += (torrentID.toLatin1() + '\n');
 
     const QString filename = QLatin1String {"queue"};
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataSavingManager
         , [this, data, filename]() { m_resumeDataSavingManager->save(filename, data); });
-#else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
-                              , Q_ARG(QString, filename), Q_ARG(QByteArray, data));
-#endif
 }
 
 void Session::removeTorrentsQueue() const
 {
     const QString filename = QLatin1String {"queue"};
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_resumeDataSavingManager
         , [this, filename]() { m_resumeDataSavingManager->remove(filename); });
-#else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "remove", Q_ARG(QString, filename));
-#endif
 }
 
 void Session::setDefaultSavePath(QString path)
@@ -3952,14 +3928,9 @@ void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const std
     // Separated thread is used for the blocking IO which results in slow processing of many torrents.
     // Copying lt::entry objects around isn't cheap.
 
-    const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->id().toString());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->id());
     QMetaObject::invokeMethod(m_resumeDataSavingManager
         , [this, filename, data]() { m_resumeDataSavingManager->save(filename, data); });
-#else
-    QMetaObject::invokeMethod(m_resumeDataSavingManager, "save"
-        , Q_ARG(QString, filename), Q_ARG(std::shared_ptr<lt::entry>, data));
-#endif
 }
 
 void Session::handleTorrentTrackerReply(TorrentImpl *const torrent, const QString &trackerUrl)
@@ -4118,15 +4089,9 @@ void Session::configureDeferred()
 {
     if (m_deferredConfigureScheduled)
         return;
-    m_deferredConfigureScheduled = true;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QMetaObject::invokeMethod(this
-        , qOverload<>(&Session::configure)
-        , Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(this, "configure", Qt::QueuedConnection);
-#endif
+    m_deferredConfigureScheduled = true;
+    QMetaObject::invokeMethod(this, qOverload<>(&Session::configure), Qt::QueuedConnection);
 }
 
 // Enable IP Filtering
