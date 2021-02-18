@@ -34,6 +34,8 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QModelIndexList>
+#include <QMouseEvent>
+#include <QStyleOptionViewItem>
 #include <QTableView>
 #include <QThread>
 
@@ -146,6 +148,27 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::AbstractFileStorage 
     {
         RaisedMessageBox::warning(this, tr("Rename error"), error.message(), QMessageBox::Ok);
     }
+}
+
+void TorrentContentTreeView::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    const QModelIndex index = indexAt(event->pos());
+    if (index.isValid())
+    {
+        // skip event when double clicking on the checkbox
+        if (index.column() == TorrentContentModelItem::COL_NAME)
+        {
+            QStyleOptionViewItem option = viewOptions();
+            option.rect = visualRect(index);
+            option.features |= QStyleOptionViewItem::HasCheckIndicator;
+
+            const QRect checkRect = style()->subElementRect(QStyle::SE_CheckBoxClickRect, &option);
+            if (checkRect.contains(event->pos()))
+                return;  // do nothing
+        }
+    }
+
+    QTreeView::mouseDoubleClickEvent(event);
 }
 
 QModelIndex TorrentContentTreeView::currentNameCell()
