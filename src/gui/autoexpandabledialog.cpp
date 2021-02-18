@@ -79,31 +79,19 @@ void AutoExpandableDialog::showEvent(QShowEvent *e)
 
     // Show dialog and resize textbox to fit the text
     // NOTE: For unknown reason QFontMetrics gets more accurate when called from showEvent.
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
     int wd = m_ui->textEdit->fontMetrics().horizontalAdvance(m_ui->textEdit->text()) + 4;
-#else
-    int wd = m_ui->textEdit->fontMetrics().width(m_ui->textEdit->text()) + 4;
-#endif
 
     if (!windowTitle().isEmpty())
     {
         // not really the font metrics in window title, so we enlarge it a bit,
         // including the small icon and close button width
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         int w = fontMetrics().horizontalAdvance(windowTitle()) * 1.8;
-#else
-        int w = fontMetrics().width(windowTitle()) * 1.8;
-#endif
         wd = std::max(wd, w);
     }
 
     if (!m_ui->textLabel->text().isEmpty())
     {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         int w = m_ui->textLabel->fontMetrics().horizontalAdvance(m_ui->textLabel->text());
-#else
-        int w = m_ui->textLabel->fontMetrics().width(m_ui->textLabel->text());
-#endif
         wd = std::max(wd, w);
     }
 

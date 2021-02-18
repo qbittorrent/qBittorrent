@@ -611,9 +611,5 @@ void SyncController::freeDiskSpaceSizeUpdated(qint64 freeSpaceSize)
 
 void SyncController::invokeChecker() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check, Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, "check", Qt::QueuedConnection);
-#endif
 }
