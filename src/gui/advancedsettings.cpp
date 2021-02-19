@@ -82,6 +82,9 @@ namespace
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
         ENABLE_SPEED_WIDGET,
+#ifndef Q_OS_MACOS
+        ENABLE_ICONS_IN_MENUS,
+#endif
         // embedded tracker
         TRACKER_STATUS,
         TRACKER_PORT,
@@ -279,6 +282,9 @@ void AdvancedSettings::saveAdvancedSettings()
     mainWindow->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
     pref->setSpeedWidgetEnabled(m_checkBoxSpeedWidgetEnabled.isChecked());
+#ifndef Q_OS_MACOS
+    pref->setIconsInMenusEnabled(m_checkBoxIconsInMenusEnabled.isChecked());
+#endif
 
     // Tracker
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
@@ -647,6 +653,11 @@ void AdvancedSettings::loadAdvancedSettings()
     // Enable speed graphs
     m_checkBoxSpeedWidgetEnabled.setChecked(pref->isSpeedWidgetEnabled());
     addRow(ENABLE_SPEED_WIDGET, tr("Enable speed graphs"), &m_checkBoxSpeedWidgetEnabled);
+#ifndef Q_OS_MACOS
+    // Enable icons in menus
+    m_checkBoxIconsInMenusEnabled.setChecked(pref->iconsInMenusEnabled());
+    addRow(ENABLE_ICONS_IN_MENUS, tr("Enable icons in menus"), &m_checkBoxIconsInMenusEnabled);
+#endif
     // Tracker State
     m_checkBoxTrackerStatus.setChecked(session->isTrackerEnabled());
     addRow(TRACKER_STATUS, tr("Enable embedded tracker"), &m_checkBoxTrackerStatus);
