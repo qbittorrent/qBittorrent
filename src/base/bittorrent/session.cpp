@@ -1850,8 +1850,8 @@ bool Session::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption
     }
 
     // Remove it from torrent resume directory
-    const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->id());
-    const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->id());
+    const QString resumedataFile = QString::fromLatin1("%1.fastresume").arg(torrent->id().toString());
+    const QString metadataFile = QString::fromLatin1("%1.torrent").arg(torrent->id().toString());
     QMetaObject::invokeMethod(m_resumeDataSavingManager, [this, resumedataFile, metadataFile]()
     {
         m_resumeDataSavingManager->remove(resumedataFile);
@@ -3928,7 +3928,7 @@ void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const std
     // Separated thread is used for the blocking IO which results in slow processing of many torrents.
     // Copying lt::entry objects around isn't cheap.
 
-    const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->id());
+    const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->id().toString());
     QMetaObject::invokeMethod(m_resumeDataSavingManager
         , [this, filename, data]() { m_resumeDataSavingManager->save(filename, data); });
 }
