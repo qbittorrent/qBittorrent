@@ -251,6 +251,9 @@ int main(int argc, char *argv[])
 
         // On OS X the standard is to not show icons in the menus
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
+#else
+        if (!Preferences::instance()->iconsInMenusEnabled())
+            app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
         if (!firstTimeUser)
