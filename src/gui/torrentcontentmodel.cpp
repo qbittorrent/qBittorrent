@@ -386,7 +386,7 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
 
     Qt::ItemFlags flags {Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable};
     if (itemType(index) == TorrentContentModelItem::FolderType)
-        flags |= Qt::ItemIsTristate;
+        flags |= Qt::ItemIsAutoTristate;
     if (index.column() == TorrentContentModelItem::COL_PRIO)
         flags |= Qt::ItemIsEditable;
 
