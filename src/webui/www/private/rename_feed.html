@@ -29,7 +29,7 @@
             }
         }).activate();
         window.addEvent('domready', () => {
-            const oldPath = decodeURIComponent(new URI().getData('oldPath'));
+            const oldPath = new URI().getData('oldPath');
 
             $('rename').value = oldPath;
             $('rename').focus();
