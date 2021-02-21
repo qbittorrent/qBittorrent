@@ -635,8 +635,12 @@ void OptionsDialog::initializeSchedulerTables()
     auto *schedule = BandwidthScheduler::instance();
     int today = QDate::currentDate().dayOfWeek() - 1;
 
+    const QLocale locale{Preferences::instance()->getLocale()};
+    int firstDay = locale.firstDayOfWeek() - 1;
+
     for (int i = 0; i < 7; ++i)
     {
+        int day = (firstDay + i) % 7;
         auto *tabContent = new QWidget(this);
         auto *vLayout = new QVBoxLayout(tabContent);
 
@@ -655,10 +659,10 @@ void OptionsDialog::initializeSchedulerTables()
         scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
         scheduleTable->setContextMenuPolicy(Qt::CustomContextMenu);
 
-        ScheduleDay *scheduleDay = schedule->scheduleDay(i);
+        ScheduleDay *scheduleDay = schedule->scheduleDay(day);
         scheduleTable->setItemDelegate(new TimeRangeItemDelegate(*scheduleDay, scheduleTable));
 
-        m_scheduleDayTables.append(scheduleTable);
+        m_scheduleDayTables.insert(day, scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
 
         QItemSelectionModel *selectionModel = scheduleTable->selectionModel();
@@ -670,15 +674,15 @@ void OptionsDialog::initializeSchedulerTables()
             [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
 
         connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
-            [this, i](QPoint pos) { showScheduleDayContextMenu(i); });
+            [this, day](QPoint pos) { showScheduleDayContextMenu(day); });
 
         connect(addButton, &QPushButton::clicked, this,
             [this, scheduleDay]() { OptionsDialog::openTimeRangeDialog(scheduleDay); });
 
         connect(removeButton, &QPushButton::clicked, this,
-            [this, i]() { OptionsDialog::removeSelectedTimeRanges(i); });
+            [this, day]() { OptionsDialog::removeSelectedTimeRanges(day); });
 
-        if (i == today)
+        if (day == today)
             scheduleTable->selectRow(scheduleDay->getNowIndex());
 
         auto *hLayout = new QHBoxLayout();
@@ -686,7 +690,7 @@ void OptionsDialog::initializeSchedulerTables()
         hLayout->addWidget(removeButton);
         vLayout->addWidget(scheduleTable);
         vLayout->addLayout(hLayout);
-        m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[i]);
+        m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[day]);
     }
 
     const auto &tables = asConst(m_scheduleDayTables);
