@@ -77,7 +77,7 @@ namespace Utils::Misc
     int friendlyUnitPrecision(SizeUnit unit);
     qint64 sizeInBytes(qreal size, SizeUnit unit);
 
-    bool isPreviewable(const QString &extension);
+    bool isPreviewable(const QString &filename);
 
     // Take a number of seconds and return a user-friendly
     // time duration like "1d 2h 10m".
