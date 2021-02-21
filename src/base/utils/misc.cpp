@@ -51,6 +51,7 @@
 #include <zlib.h>
 
 #include <QCoreApplication>
+#include <QMimeDatabase>
 #include <QRegularExpression>
 #include <QSet>
 #include <QSysInfo>
@@ -62,6 +63,7 @@
 
 #include "base/types.h"
 #include "base/unicodestrings.h"
+#include "base/utils/fs.h"
 #include "base/utils/string.h"
 
 namespace
@@ -290,9 +292,17 @@ qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
     return size;
 }
 
-bool Utils::Misc::isPreviewable(const QString &extension)
+bool Utils::Misc::isPreviewable(const QString &filename)
 {
-    static const QSet<QString> multimediaExtensions =
+    const QString mime = QMimeDatabase().mimeTypeForFile(filename, QMimeDatabase::MatchExtension).name();
+
+    if (mime.startsWith(QLatin1String("audio"), Qt::CaseInsensitive)
+        || mime.startsWith(QLatin1String("video"), Qt::CaseInsensitive))
+    {
+        return true;
+    }
+
+    const QSet<QString> multimediaExtensions =
     {
         "3GP",
         "AAC",
@@ -337,7 +347,7 @@ bool Utils::Misc::isPreviewable(const QString &extension)
         "WMA",
         "WMV"
     };
-    return multimediaExtensions.contains(extension.toUpper());
+    return multimediaExtensions.contains(Utils::Fs::fileExtension(filename).toUpper());
 }
 
 QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)

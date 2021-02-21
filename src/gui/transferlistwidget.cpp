@@ -44,6 +44,7 @@
 #include <QVector>
 #include <QWheelEvent>
 
+#include "base/bittorrent/common.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
@@ -93,7 +94,10 @@ namespace
 
         for (int i = 0; i < torrent->filesCount(); ++i)
         {
-            if (Utils::Misc::isPreviewable(Utils::Fs::fileExtension(torrent->fileName(i))))
+            QString fileName = torrent->fileName(i);
+            if (fileName.endsWith(QB_EXT))
+                fileName.chop(QB_EXT.length());
+            if (Utils::Misc::isPreviewable(fileName))
                 return true;
         }
 
