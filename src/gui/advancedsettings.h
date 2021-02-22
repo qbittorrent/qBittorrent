@@ -84,4 +84,8 @@ private:
 #if defined(Q_OS_WIN)
     QComboBox m_comboBoxOSMemoryPriority;
 #endif
+
+#ifndef Q_OS_MACOS
+    QCheckBox m_checkBoxIconsInMenusEnabled;
+#endif
 };
