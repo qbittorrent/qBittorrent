@@ -90,9 +90,8 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     {
         QString fileName = torrent->fileName(i);
         if (fileName.endsWith(QB_EXT))
-            fileName.chop(4);
-        QString extension = Utils::Fs::fileExtension(fileName).toUpper();
-        if (Utils::Misc::isPreviewable(extension))
+            fileName.chop(QB_EXT.length());
+        if (Utils::Misc::isPreviewable(fileName))
         {
             int row = m_previewListModel->rowCount();
             m_previewListModel->insertRow(row);
