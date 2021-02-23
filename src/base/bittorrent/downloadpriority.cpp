@@ -39,6 +39,7 @@ namespace BitTorrent
         case DownloadPriority::High:
         case DownloadPriority::Maximum:
         case DownloadPriority::Mixed:
+        case DownloadPriority::MixedChecked:
             return true;
         default:
             return false;

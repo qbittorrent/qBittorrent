@@ -37,7 +37,8 @@ namespace BitTorrent
         High = 6,
         Maximum = 7,
 
-        Mixed = -1
+        Mixed = -1, // Checkbox shows as partial
+        MixedChecked = -2 // Checkbox shows as normal
     };
 
     bool isValidDownloadPriority(DownloadPriority priority);
