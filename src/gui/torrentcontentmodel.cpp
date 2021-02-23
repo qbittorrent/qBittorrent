@@ -343,7 +343,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
     switch (role)
     {
     case Qt::DecorationRole:
-    {
+        {
             if (index.column() != TorrentContentModelItem::COL_NAME)
                 return {};
 
@@ -352,7 +352,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
             return m_fileIconProvider->icon(QFileInfo(item->name()));
         }
     case Qt::CheckStateRole:
-    {
+        {
             if (index.column() != TorrentContentModelItem::COL_NAME)
                 return {};
 

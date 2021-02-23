@@ -109,20 +109,26 @@ void TorrentContentModelFolder::updatePriority()
 
     Q_ASSERT(!m_childItems.isEmpty());
 
-    // If all children have the same priority
-    // then the folder should have the same
-    // priority
-    const BitTorrent::DownloadPriority prio = m_childItems.first()->priority();
+    BitTorrent::DownloadPriority prio = m_childItems.first()->priority();
     for (int i = 1; i < m_childItems.size(); ++i)
     {
-        if (m_childItems.at(i)->priority() != prio)
+        auto cur = m_childItems.at(i)->priority();
+        if (cur != prio)
         {
-            setPriority(BitTorrent::DownloadPriority::Mixed);
-            return;
+            if (prio == BitTorrent::DownloadPriority::Mixed || cur == BitTorrent::DownloadPriority::Mixed)
+            {
+                prio = BitTorrent::DownloadPriority::Mixed;
+                break;
+            }
+            if ((prio == BitTorrent::DownloadPriority::Ignored || cur == BitTorrent::DownloadPriority::Ignored)
+                && (m_childItems.at(i)->progress() < 1.))
+            {
+                prio = BitTorrent::DownloadPriority::Mixed;
+                break;
+            }
+            prio = BitTorrent::DownloadPriority::MixedChecked;
         }
     }
-    // All child items have the same priority
-    // Update own if necessary
     setPriority(prio);
 }
 
@@ -138,7 +144,7 @@ void TorrentContentModelFolder::setPriority(BitTorrent::DownloadPriority newPrio
         m_parentItem->updatePriority();
 
     // Update children
-    if (m_priority != BitTorrent::DownloadPriority::Mixed)
+    if (m_priority != BitTorrent::DownloadPriority::Mixed && m_priority != BitTorrent::DownloadPriority::MixedChecked)
         for (TorrentContentModelItem *child : asConst(m_childItems))
             child->setPriority(m_priority, false);
 }

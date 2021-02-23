@@ -342,6 +342,8 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
         }
 
         // Load file priorities
+        // Download priority depends on files progress
+        m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
         m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
     }
     // Load dynamic data
