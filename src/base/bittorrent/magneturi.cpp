@@ -78,7 +78,7 @@ MagnetUri::MagnetUri(const QString &source)
 
     m_trackers.reserve(m_addTorrentParams.trackers.size());
     for (const std::string &tracker : m_addTorrentParams.trackers)
-        m_trackers.append(lt::announce_entry {tracker});
+        m_trackers.append({QString::fromStdString(tracker)});
 
     m_urlSeeds.reserve(m_addTorrentParams.url_seeds.size());
     for (const std::string &urlSeed : m_addTorrentParams.url_seeds)

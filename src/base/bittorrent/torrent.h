@@ -45,8 +45,8 @@ namespace BitTorrent
     class InfoHash;
     class PeerInfo;
     class TorrentInfo;
-    class TrackerEntry;
     struct PeerAddress;
+    struct TrackerEntry;
 
     enum class TorrentOperatingMode
     {

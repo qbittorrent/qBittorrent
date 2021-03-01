@@ -488,7 +488,7 @@ void SyncController::maindataAction()
         }
 
         for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
-            trackers[tracker.url()] << torrentHash.toString();
+            trackers[tracker.url] << torrentHash.toString();
 
         torrents[torrentHash.toString()] = map;
     }

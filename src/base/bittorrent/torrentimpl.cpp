@@ -47,6 +47,10 @@
 #include <libtorrent/version.hpp>
 #include <libtorrent/write_resume_data.hpp>
 
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+#include <libtorrent/info_hash.hpp>
+#endif
+
 #include <QBitArray>
 #include <QDebug>
 #include <QDir>
@@ -95,6 +99,114 @@ namespace
         for (const QString &setValue : input)
             entryList.emplace_back(setValue.toStdString());
         return entryList;
+    }
+
+    lt::announce_entry makeNativeAnnouncerEntry(const QString &url, const int tier)
+    {
+        lt::announce_entry entry {url.toStdString()};
+        entry.tier = tier;
+        return entry;
+    }
+
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry, const lt::info_hash_t &hashes)
+#else
+    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry)
+#endif
+    {
+        TrackerEntry trackerEntry {QString::fromStdString(nativeEntry.url), nativeEntry.tier};
+
+        int numUpdating = 0;
+        int numWorking = 0;
+        int numNotContacted = 0;
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        const int numEndpoints = nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
+        trackerEntry.endpoints.reserve(numEndpoints);
+        for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
+        {
+            for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
+            {
+                if (hashes.has(protocolVersion))
+                {
+                    const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
+
+                    TrackerEntry::EndpointStats trackerEndpoint;
+                    trackerEndpoint.protocolVersion = (protocolVersion == lt::protocol_version::V1) ? 1 : 2;
+                    trackerEndpoint.numSeeds = infoHash.scrape_complete;
+                    trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
+                    trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
+                    if (infoHash.updating)
+                    {
+                        trackerEndpoint.status = TrackerEntry::Updating;
+                        ++numUpdating;
+                    }
+                    else if (infoHash.fails > 0)
+                    {
+                        trackerEndpoint.status = TrackerEntry::NotWorking;
+                    }
+                    else if (nativeEntry.verified)
+                    {
+                        trackerEndpoint.status = TrackerEntry::Working;
+                        ++numWorking;
+                    }
+                    else
+                    {
+                        trackerEndpoint.status = TrackerEntry::NotContacted;
+                        ++numNotContacted;
+                    }
+                    trackerEntry.endpoints.append(trackerEndpoint);
+
+                    trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, infoHash.scrape_complete);
+                    trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, infoHash.scrape_incomplete);
+                    trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, infoHash.scrape_downloaded);
+                }
+            }
+        }
+#else
+        trackerEntry.endpoints.reserve(nativeEntry.endpoints.size());
+        for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
+        {
+            TrackerEntry::EndpointStats trackerEndpoint;
+            trackerEndpoint.numSeeds = endpoint.scrape_complete;
+            trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
+            trackerEndpoint.numDownloaded = endpoint.scrape_downloaded;
+            if (endpoint.updating)
+            {
+                trackerEndpoint.status = TrackerEntry::Updating;
+                ++numUpdating;
+            }
+            else if (endpoint.fails > 0)
+            {
+                trackerEndpoint.status = TrackerEntry::NotWorking;
+            }
+            else if (nativeEntry.verified)
+            {
+                trackerEndpoint.status = TrackerEntry::Working;
+                ++numWorking;
+            }
+            else
+            {
+                trackerEndpoint.status = TrackerEntry::NotContacted;
+                ++numNotContacted;
+            }
+            trackerEntry.endpoints.append(trackerEndpoint);
+
+            trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, endpoint.scrape_complete);
+            trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, endpoint.scrape_incomplete);
+            trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, endpoint.scrape_downloaded);
+        }
+#endif
+
+        if (numUpdating > 0)
+            trackerEntry.status = TrackerEntry::Updating;
+        else if (numWorking > 0)
+            trackerEntry.status = TrackerEntry::Working;
+        else if (numNotContacted > 0)
+            trackerEntry.status = TrackerEntry::NotContacted;
+        else
+            trackerEntry.status = TrackerEntry::NotWorking;
+
+        return trackerEntry;
     }
 }
 
@@ -311,7 +423,11 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     entries.reserve(nativeTrackers.size());
 
     for (const lt::announce_entry &tracker : nativeTrackers)
-        entries << tracker;
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        entries << fromNativeAnnouncerEntry(tracker, m_nativeHandle.info_hashes());
+#else
+        entries << fromNativeAnnouncerEntry(tracker);
+#endif
 
     return entries;
 }
@@ -325,7 +441,7 @@ void TorrentImpl::addTrackers(const QVector<TrackerEntry> &trackers)
 {
     QSet<TrackerEntry> currentTrackers;
     for (const lt::announce_entry &entry : m_nativeHandle.trackers())
-        currentTrackers << entry;
+        currentTrackers.insert({QString::fromStdString(entry.url), entry.tier});
 
     QVector<TrackerEntry> newTrackers;
     newTrackers.reserve(trackers.size());
@@ -334,7 +450,7 @@ void TorrentImpl::addTrackers(const QVector<TrackerEntry> &trackers)
     {
         if (!currentTrackers.contains(tracker))
         {
-            m_nativeHandle.add_tracker(tracker.nativeEntry());
+            m_nativeHandle.add_tracker(makeNativeAnnouncerEntry(tracker.url, tracker.tier));
             newTrackers << tracker;
         }
     }
@@ -355,7 +471,7 @@ void TorrentImpl::replaceTrackers(const QVector<TrackerEntry> &trackers)
 
     for (const TrackerEntry &tracker : trackers)
     {
-        nativeTrackers.emplace_back(tracker.nativeEntry());
+        nativeTrackers.emplace_back(makeNativeAnnouncerEntry(tracker.url, tracker.tier));
 
         if (!currentTrackers.removeOne(tracker))
             newTrackers << tracker;
@@ -1496,9 +1612,9 @@ void TorrentImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
     const QVector<TrackerEntry> trackerList = trackers();
     const auto iter = std::find_if(trackerList.cbegin(), trackerList.cend(), [&trackerUrl](const TrackerEntry &entry)
     {
-        return (entry.url() == trackerUrl);
+        return (entry.url == trackerUrl);
     });
-    if ((iter != trackerList.cend()) && (iter->status() == TrackerEntry::NotWorking))
+    if ((iter != trackerList.cend()) && (iter->status == TrackerEntry::NotWorking))
         m_session->handleTorrentTrackerError(this, trackerUrl);
 }
 
