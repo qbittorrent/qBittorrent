@@ -72,11 +72,11 @@ const QString PRIVATE_FOLDER {QStringLiteral("/private")};
 
 namespace
 {
-    QStringMap parseCookie(const QString &cookieStr)
+    QStringMap parseCookie(const QStringView cookieStr)
     {
         // [rfc6265] 4.2.1. Syntax
         QStringMap ret;
-        const QVector<QStringRef> cookies = cookieStr.splitRef(';', Qt::SkipEmptyParts);
+        const QVector<QStringView> cookies = cookieStr.split(u';', Qt::SkipEmptyParts);
 
         for (const auto &cookie : cookies)
         {
@@ -386,10 +386,10 @@ void WebApplication::configure()
 
     if (pref->isWebUICustomHTTPHeadersEnabled())
     {
-        const QString customHeaders = pref->getWebUICustomHTTPHeaders().trimmed();
-        const QVector<QStringRef> customHeaderLines = customHeaders.splitRef('\n', Qt::SkipEmptyParts);
+        const QString customHeaders = pref->getWebUICustomHTTPHeaders();
+        const QVector<QStringView> customHeaderLines = QStringView(customHeaders).trimmed().split(u'\n', Qt::SkipEmptyParts);
 
-        for (const QStringRef &line : customHeaderLines)
+        for (const QStringView line : customHeaderLines)
         {
             const int idx = line.indexOf(':');
             if (idx < 0)

@@ -1590,7 +1590,7 @@ void Session::populateAdditionalTrackers()
     m_additionalTrackerList.clear();
 
     const QString trackers = additionalTrackers();
-    for (QStringRef tracker : asConst(trackers.splitRef('\n')))
+    for (QStringView tracker : asConst(QStringView(trackers).split(QLatin1Char {'\n'})))
     {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())

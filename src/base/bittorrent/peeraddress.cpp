@@ -32,18 +32,18 @@
 
 using namespace BitTorrent;
 
-PeerAddress PeerAddress::parse(const QString &address)
+PeerAddress PeerAddress::parse(const QStringView address)
 {
-    QVector<QStringRef> ipPort;
+    QVector<QStringView> ipPort;
 
-    if (address.startsWith('[') && address.contains("]:"))
+    if (address.startsWith(QLatin1Char {'['}) && address.contains(QLatin1String {"]:"}))
     {  // IPv6
-        ipPort = address.splitRef("]:");
+        ipPort = address.split(QString::fromLatin1("]:"));
         ipPort[0] = ipPort[0].mid(1);  // chop '['
     }
-    else if (address.contains(':'))
+    else if (address.contains(QLatin1Char {':'}))
     {  // IPv4
-        ipPort = address.splitRef(':');
+        ipPort = address.split(QLatin1Char {':'});
     }
     else
     {

@@ -137,9 +137,9 @@ bool Connection::acceptsGzipEncoding(QString codings)
 {
     // [rfc7231] 5.3.4. Accept-Encoding
 
-    const auto isCodingAvailable = [](const QVector<QStringRef> &list, const QString &encoding) -> bool
+    const auto isCodingAvailable = [](const QVector<QStringView> &list, const QStringView encoding) -> bool
     {
-        for (const QStringRef &str : list)
+        for (const QStringView &str : list)
         {
             if (!str.startsWith(encoding))
                 continue;
@@ -149,7 +149,7 @@ bool Connection::acceptsGzipEncoding(QString codings)
                 return true;
 
             // [rfc7231] 5.3.1. Quality Values
-            const QStringRef substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
+            const QStringView substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
 
             bool ok = false;
             const double qvalue = substr.toDouble(&ok);
@@ -161,15 +161,15 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return false;
     };
 
-    const QVector<QStringRef> list = codings.remove(' ').remove('\t').splitRef(',', Qt::SkipEmptyParts);
+    const QVector<QStringView> list = QStringView(codings.remove(' ').remove('\t')).split(QChar::fromLatin1(','), Qt::SkipEmptyParts);
     if (list.isEmpty())
         return false;
 
-    const bool canGzip = isCodingAvailable(list, QLatin1String("gzip"));
+    const bool canGzip = isCodingAvailable(list, QString::fromLatin1("gzip"));
     if (canGzip)
         return true;
 
-    const bool canAny = isCodingAvailable(list, QLatin1String("*"));
+    const bool canAny = isCodingAvailable(list, QString::fromLatin1("*"));
     if (canAny)
         return true;
 

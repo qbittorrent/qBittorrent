@@ -81,13 +81,13 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
 QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
 {
     const QString plainText = m_ui->plainTextEdit->toPlainText();
-    const QVector<QStringRef> lines = plainText.splitRef('\n');
+    const QVector<QStringView> lines = QStringView(plainText).split(u'\n');
 
     QVector<BitTorrent::TrackerEntry> entries;
     entries.reserve(lines.size());
 
     int tier = 0;
-    for (QStringRef line : lines)
+    for (QStringView line : lines)
     {
         line = line.trimmed();
 

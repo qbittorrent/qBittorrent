@@ -163,9 +163,9 @@ void SearchHandler::processFailed()
 // Parse one line of search results list
 // Line is in the following form:
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-bool SearchHandler::parseSearchResult(const QString &line, SearchResult &searchResult)
+bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &searchResult)
 {
-    const QVector<QStringRef> parts = line.splitRef('|');
+    const QVector<QStringView> parts = line.split(u'|');
     const int nbFields = parts.size();
 
     if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
