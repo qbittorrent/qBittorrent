@@ -296,7 +296,7 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         return false;
     }
 
-    m_ui->labelHashData->setText(infoHash);
+    m_ui->labelHashData->setText(infoHash.toString());
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
     return true;
@@ -348,7 +348,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     BitTorrent::Session::instance()->downloadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
-    m_ui->labelHashData->setText(infoHash);
+    m_ui->labelHashData->setText(infoHash.toString());
 
     m_magnetURI = magnetUri;
     return true;

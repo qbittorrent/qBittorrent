@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -40,7 +40,6 @@ namespace BitTorrent
     public:
         InfoHash() = default;
         InfoHash(const lt::sha1_hash &nativeHash);
-        InfoHash(const QString &hashString);
         InfoHash(const InfoHash &other) = default;
 
         static constexpr int length()
@@ -51,7 +50,9 @@ namespace BitTorrent
         bool isValid() const;
 
         operator lt::sha1_hash() const;
-        operator QString() const;
+
+        static InfoHash fromString(const QString &hashString);
+        QString toString() const;
 
     private:
         bool m_valid = false;

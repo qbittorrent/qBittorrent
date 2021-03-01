@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -36,26 +36,11 @@ using namespace BitTorrent;
 const int InfoHashTypeId = qRegisterMetaType<InfoHash>();
 
 InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
-    : m_valid(true)
-    , m_nativeHash(nativeHash)
+    : m_valid {true}
+    , m_nativeHash {nativeHash}
 {
     const QByteArray raw = QByteArray::fromRawData(nativeHash.data(), length());
     m_hashString = QString::fromLatin1(raw.toHex());
-}
-
-InfoHash::InfoHash(const QString &hashString)
-    : m_valid(false)
-{
-    if (hashString.size() != (length() * 2))
-        return;
-
-    const QByteArray raw = QByteArray::fromHex(hashString.toLatin1());
-    if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
-        return;
-
-    m_valid = true;
-    m_hashString = hashString;
-    m_nativeHash.assign(raw.constData());
 }
 
 bool InfoHash::isValid() const
@@ -68,7 +53,24 @@ InfoHash::operator lt::sha1_hash() const
     return m_nativeHash;
 }
 
-InfoHash::operator QString() const
+InfoHash InfoHash::fromString(const QString &hashString)
+{
+    if (hashString.size() != (length() * 2))
+        return {};
+
+    const QByteArray raw = QByteArray::fromHex(hashString.toLatin1());
+    if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
+        return {};
+
+    InfoHash result;
+    result.m_valid = true;
+    result.m_hashString = hashString;
+    result.m_nativeHash.assign(raw.constData());
+
+    return result;
+}
+
+QString InfoHash::toString() const
 {
     return m_hashString;
 }
