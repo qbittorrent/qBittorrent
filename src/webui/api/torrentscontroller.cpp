@@ -455,18 +455,18 @@ void TorrentsController::trackersAction()
     QHash<QString, BitTorrent::TrackerInfo> trackersData = torrent->trackerInfos();
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
     {
-        const BitTorrent::TrackerInfo data = trackersData.value(tracker.url());
+        const BitTorrent::TrackerInfo data = trackersData.value(tracker.url);
 
         trackerList << QJsonObject
         {
-            {KEY_TRACKER_URL, tracker.url()},
-            {KEY_TRACKER_TIER, tracker.tier()},
-            {KEY_TRACKER_STATUS, static_cast<int>(tracker.status())},
+            {KEY_TRACKER_URL, tracker.url},
+            {KEY_TRACKER_TIER, tracker.tier},
+            {KEY_TRACKER_STATUS, static_cast<int>(tracker.status)},
             {KEY_TRACKER_PEERS_COUNT, data.numPeers},
             {KEY_TRACKER_MSG, data.lastMessage.trimmed()},
-            {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds()},
-            {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches()},
-            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded()}
+            {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
+            {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
+            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded}
         };
     }
 
@@ -701,7 +701,7 @@ void TorrentsController::addTrackersAction()
     {
         const QUrl url {urlStr.trimmed()};
         if (url.isValid())
-            trackers << url.toString();
+            trackers.append({url.toString()});
     }
     torrent->addTrackers(trackers);
 }
@@ -729,15 +729,13 @@ void TorrentsController::editTrackerAction()
     bool match = false;
     for (BitTorrent::TrackerEntry &tracker : trackers)
     {
-        const QUrl trackerUrl(tracker.url());
+        const QUrl trackerUrl(tracker.url);
         if (trackerUrl == newTrackerUrl)
             throw APIError(APIErrorType::Conflict, "New tracker URL already exists");
         if (trackerUrl == origTrackerUrl)
         {
             match = true;
-            BitTorrent::TrackerEntry newTracker(newTrackerUrl.toString());
-            newTracker.setTier(tracker.tier());
-            tracker = newTracker;
+            tracker.url = newTrackerUrl.toString();
         }
     }
     if (!match)
@@ -765,7 +763,7 @@ void TorrentsController::removeTrackersAction()
     remainingTrackers.reserve(trackers.size());
     for (const BitTorrent::TrackerEntry &entry : trackers)
     {
-        if (!urls.contains(entry.url()))
+        if (!urls.contains(entry.url))
             remainingTrackers.push_back(entry);
     }
 

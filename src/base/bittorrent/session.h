@@ -99,8 +99,8 @@ namespace BitTorrent
     class Torrent;
     class TorrentImpl;
     class Tracker;
-    class TrackerEntry;
     struct LoadTorrentParams;
+    struct TrackerEntry;
 
     enum class MoveStorageMode;
 

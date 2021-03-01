@@ -41,7 +41,7 @@ namespace BitTorrent
 {
     class InfoHash;
     class Torrent;
-    class TrackerEntry;
+    struct TrackerEntry;
 }
 
 namespace Net

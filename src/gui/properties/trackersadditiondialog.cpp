@@ -96,7 +96,7 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
     existingTrackers.reserve(trackersFromUser.size());
     for (const QString &userURL : trackersFromUser)
     {
-        const BitTorrent::TrackerEntry userTracker(userURL);
+        const BitTorrent::TrackerEntry userTracker {userURL};
         if (!existingTrackers.contains(userTracker))
             existingTrackers << userTracker;
     }
@@ -113,7 +113,7 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         const QString line = buffer.readLine().trimmed();
         if (line.isEmpty()) continue;
 
-        BitTorrent::TrackerEntry newTracker(line);
+        BitTorrent::TrackerEntry newTracker {line};
         if (!existingTrackers.contains(newTracker))
         {
             m_ui->textEditTrackersList->insertPlainText(line + '\n');

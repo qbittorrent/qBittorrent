@@ -580,7 +580,7 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::Torrent *const torrent)
     const BitTorrent::InfoHash hash {torrent->hash()};
     const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
     for (const BitTorrent::TrackerEntry &tracker : trackers)
-        addItem(tracker.url(), hash);
+        addItem(tracker.url, hash);
 
     // Check for trackerless torrent
     if (trackers.isEmpty())
@@ -594,7 +594,7 @@ void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
     const BitTorrent::InfoHash hash {torrent->hash()};
     const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
     for (const BitTorrent::TrackerEntry &tracker : trackers)
-        removeItem(tracker.url(), hash);
+        removeItem(tracker.url, hash);
 
     // Check for trackerless torrent
     if (trackers.isEmpty())
@@ -743,13 +743,13 @@ void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
 void TransferListFiltersWidget::addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
 {
     for (const BitTorrent::TrackerEntry &tracker : trackers)
-        m_trackerFilters->addItem(tracker.url(), torrent->hash());
+        m_trackerFilters->addItem(tracker.url, torrent->hash());
 }
 
 void TransferListFiltersWidget::removeTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers)
 {
     for (const BitTorrent::TrackerEntry &tracker : trackers)
-        m_trackerFilters->removeItem(tracker.url(), torrent->hash());
+        m_trackerFilters->removeItem(tracker.url, torrent->hash());
 }
 
 void TransferListFiltersWidget::changeTrackerless(const BitTorrent::Torrent *torrent, const bool trackerless)

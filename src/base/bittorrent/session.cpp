@@ -1606,7 +1606,7 @@ void Session::populateAdditionalTrackers()
     {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
-            m_additionalTrackerList << tracker.toString();
+            m_additionalTrackerList.append({tracker.toString()});
     }
 }
 
@@ -3825,7 +3825,7 @@ void Session::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVect
     torrent->saveResumeData();
 
     for (const TrackerEntry &newTracker : newTrackers)
-        LogMsg(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url(), torrent->name()));
+        LogMsg(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url, torrent->name()));
     emit trackersAdded(torrent, newTrackers);
     if (torrent->trackers().size() == newTrackers.size())
         emit trackerlessStateChanged(torrent, false);
@@ -3837,7 +3837,7 @@ void Session::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QVe
     torrent->saveResumeData();
 
     for (const TrackerEntry &deletedTracker : deletedTrackers)
-        LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url(), torrent->name()));
+        LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url, torrent->name()));
     emit trackersRemoved(torrent, deletedTrackers);
     if (torrent->trackers().empty())
         emit trackerlessStateChanged(torrent, true);
