@@ -40,7 +40,7 @@
 
 namespace
 {
-    bool isBitTorrentInfoHash(const QString &string)
+    bool isSHA1Hash(const QString &string)
     {
         // There are 2 representations for BitTorrent info hash:
         // 1. 40 chars hex-encoded string
@@ -65,7 +65,7 @@ MagnetUri::MagnetUri(const QString &source)
 {
     if (source.isEmpty()) return;
 
-    if (isBitTorrentInfoHash(source))
+    if (isSHA1Hash(source))
         m_url = QLatin1String("magnet:?xt=urn:btih:") + source;
 
     lt::error_code ec;

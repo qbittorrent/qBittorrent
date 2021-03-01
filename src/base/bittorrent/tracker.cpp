@@ -295,7 +295,7 @@ void Tracker::processAnnounceRequest()
     if (infoHashIter == queryParams.end())
         throw TrackerError("Missing \"info_hash\" parameter");
 
-    const InfoHash infoHash(infoHashIter->toHex());
+    const auto infoHash = InfoHash::fromString(infoHashIter->toHex());
     if (!infoHash.isValid())
         throw TrackerError("Invalid \"info_hash\" parameter");
 

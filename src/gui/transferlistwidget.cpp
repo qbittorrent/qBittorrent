@@ -496,7 +496,7 @@ void TransferListWidget::copySelectedHashes() const
 {
     QStringList torrentHashes;
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrentHashes << torrent->hash();
+        torrentHashes << torrent->hash().toString();
 
     qApp->clipboard()->setText(torrentHashes.join('\n'));
 }

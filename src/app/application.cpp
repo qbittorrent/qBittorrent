@@ -339,7 +339,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     program.replace("%C", QString::number(torrent->filesCount()));
     program.replace("%Z", QString::number(torrent->totalSize()));
     program.replace("%T", torrent->currentTracker());
-    program.replace("%I", torrent->hash());
+    program.replace("%I", torrent->hash().toString());
 
     Logger *logger = Logger::instance();
     logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
