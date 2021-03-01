@@ -8865,13 +8865,13 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="118"/>
         <source>Mixed</source>
-        <comment>Mixed (priorities</comment>
+        <comment>Mixed (priorities)</comment>
         <translation>Смешанный</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="120"/>
         <source>Not downloaded</source>
-        <translation>Не загружено</translation>
+        <translation>Не загружать</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="122"/>
