@@ -561,7 +561,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@addPaused=")))
         {
-            torrentParams.addPaused = (param.midRef(11).toInt() != 0);
+            torrentParams.addPaused = (QStringView(param).mid(11).toInt() != 0);
             continue;
         }
 
@@ -591,7 +591,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@skipDialog=")))
         {
-            skipTorrentDialog = (param.midRef(12).toInt() != 0);
+            skipTorrentDialog = (QStringView(param).mid(12).toInt() != 0);
             continue;
         }
 

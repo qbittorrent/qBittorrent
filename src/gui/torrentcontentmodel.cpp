@@ -503,16 +503,16 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         const QString path = Utils::Fs::toUniformPath(info.filePath(i));
 
         // Iterate of parts of the path to create necessary folders
-        QVector<QStringRef> pathFolders = path.splitRef('/', Qt::SkipEmptyParts);
+        QList<QStringView> pathFolders = QStringView(path).split(u'/', Qt::SkipEmptyParts);
         pathFolders.removeLast();
 
-        for (const QStringRef &pathPartRef : asConst(pathFolders))
+        for (const QStringView pathPart : asConst(pathFolders))
         {
-            const QString pathPart = pathPartRef.toString();
-            TorrentContentModelFolder *newParent = currentParent->childFolderWithName(pathPart);
+            const QString folderPath = pathPart.toString();
+            TorrentContentModelFolder *newParent = currentParent->childFolderWithName(folderPath);
             if (!newParent)
             {
-                newParent = new TorrentContentModelFolder(pathPart, currentParent);
+                newParent = new TorrentContentModelFolder(folderPath, currentParent);
                 currentParent->appendChild(newParent);
             }
             currentParent = newParent;

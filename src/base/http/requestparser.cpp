@@ -57,7 +57,7 @@ namespace
         return in;
     }
 
-    bool parseHeaderLine(const QString &line, HeaderMap &out)
+    bool parseHeaderLine(const QStringView line, HeaderMap &out)
     {
         // [rfc7230] 3.2. Header Fields
         const int i = line.indexOf(':');
@@ -67,8 +67,8 @@ namespace
             return false;
         }
 
-        const QString name = line.leftRef(i).trimmed().toString().toLower();
-        const QString value = line.midRef(i + 1).trimmed().toString();
+        const QString name = line.left(i).trimmed().toString().toLower();
+        const QString value = line.mid(i + 1).trimmed().toString();
         out[name] = value;
 
         return true;
@@ -145,10 +145,10 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
     return {ParseStatus::BadRequest, Request(), 0};  // TODO: SHOULD respond "501 Not Implemented"
 }
 
-bool RequestParser::parseStartLines(const QString &data)
+bool RequestParser::parseStartLines(const QStringView data)
 {
     // we don't handle malformed request which uses `LF` for newline
-    const QVector<QStringRef> lines = data.splitRef(CRLF, Qt::SkipEmptyParts);
+    const QList<QStringView> lines = data.split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
 
     // [rfc7230] 3.2.2. Field Order
     QStringList requestLines;
@@ -267,7 +267,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
             return false;
         }
 
-        const QByteArray delimiter = Utils::String::unquote(contentType.midRef(idx + boundaryFieldName.size())).toLatin1();
+        const QByteArray delimiter = Utils::String::unquote(QStringView(contentType).mid(idx + boundaryFieldName.size())).toLatin1();
         if (delimiter.isEmpty())
         {
             qWarning() << Q_FUNC_INFO << "boundary delimiter field empty!";
@@ -311,13 +311,13 @@ bool RequestParser::parseFormData(const QByteArray &data)
     const QByteArray payload = viewWithoutEndingWith(list[1], CRLF);
 
     HeaderMap headersMap;
-    const QVector<QStringRef> headerLines = headers.splitRef(CRLF, Qt::SkipEmptyParts);
+    const QList<QStringView> headerLines = QStringView(headers).split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
     for (const auto &line : headerLines)
     {
-        if (line.trimmed().startsWith(HEADER_CONTENT_DISPOSITION, Qt::CaseInsensitive))
+        if (line.trimmed().startsWith(QString::fromLatin1(HEADER_CONTENT_DISPOSITION), Qt::CaseInsensitive))
         {
             // extract out filename & name
-            const QVector<QStringRef> directives = line.split(';', Qt::SkipEmptyParts);
+            const QList<QStringView> directives = line.split(u';', Qt::SkipEmptyParts);
 
             for (const auto &directive : directives)
             {
