@@ -176,7 +176,7 @@ target_link_libraries(qbt_base
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml
+        Qt6::Core Qt6::Network Qt6::Sql Qt6::Xml
         qbt_common_cfg
 )
 
@@ -203,5 +203,5 @@ if (NOT WEBUI)
 endif()
 
 if (DBUS)
-    target_link_libraries(qbt_base PUBLIC Qt5::DBus)
+    target_link_libraries(qbt_base PUBLIC Qt6::DBus)
 endif()

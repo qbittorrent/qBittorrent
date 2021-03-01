@@ -4,14 +4,14 @@
 # Based on https://gist.github.com/giraldeau/546ba5512a74dfe9d8ea0862d66db412
 file(GLOB QBT_TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
 set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/lang")
-qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
+qt6_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
 configure_file("${qBittorrent_SOURCE_DIR}/src/lang/lang.qrc" "${qBittorrent_BINARY_DIR}/src/lang/lang.qrc" COPYONLY)
 
 if (WEBUI)
     file(GLOB QBT_WEBUI_TS_FILES "${qBittorrent_SOURCE_DIR}/src/webui/www/translations/*.ts")
     set_source_files_properties(${QBT_WEBUI_TS_FILES}
         PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/webui/www/translations")
-    qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -silent)
+    qt6_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -silent)
     configure_file("${qBittorrent_SOURCE_DIR}/src/webui/www/translations/webui_translations.qrc"
         "${qBittorrent_BINARY_DIR}/src/webui/www/translations/webui_translations.qrc" COPYONLY)
 endif()
@@ -139,7 +139,7 @@ endif()
 if (GUI)
     target_link_libraries(qbt_app PRIVATE qbt_gui)
     if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
-        qt_import_plugins(qbt_app INCLUDE Qt5::QSvgIconPlugin Qt5::QSvgPlugin)
+        qt_import_plugins(qbt_app INCLUDE Qt6::QSvgIconPlugin Qt6::QSvgPlugin)
     endif()
 endif()
 

@@ -199,7 +199,7 @@ target_link_libraries(qbt_gui
     PRIVATE
         qbt_base
     PUBLIC
-        Qt5::Gui Qt5::Widgets
+        Qt6::Gui Qt6::Widgets
 )
 
 if (DBUS)
@@ -219,10 +219,7 @@ if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwi
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    target_link_libraries(qbt_gui PRIVATE
-        Qt5::WinExtras
-        PowrProf
-    )
+    target_link_libraries(qbt_gui PRIVATE PowrProf)
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
@@ -230,7 +227,5 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macutilities.h
         macutilities.mm
     )
-    target_link_libraries(qbt_gui PRIVATE
-        objc
-    )
+    target_link_libraries(qbt_gui PRIVATE objc)
 endif()
