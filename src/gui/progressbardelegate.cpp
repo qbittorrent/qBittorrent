@@ -53,7 +53,6 @@ void ProgressBarDelegate::initProgressStyleOption(QStyleOptionProgressBar &optio
     option.progress = static_cast<int>(index.data(m_dataRole).toReal());
     option.maximum = 100;
     option.minimum = 0;
-    option.state |= (QStyle::State_Enabled | QStyle::State_Horizontal);
     option.textVisible = true;
 }
 
@@ -65,9 +64,11 @@ void ProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     QStyleOptionProgressBar newopt;
     newopt.initFrom(&m_dummyProgressBar);
     newopt.rect = option.rect;
+    newopt.state = option.state;
     initProgressStyleOption(newopt, index);
 
     painter->save();
+    m_dummyProgressBar.style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
     m_dummyProgressBar.style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter, &m_dummyProgressBar);
     painter->restore();
 }
