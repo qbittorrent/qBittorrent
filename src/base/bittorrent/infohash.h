@@ -28,42 +28,25 @@
 
 #pragma once
 
-#include <libtorrent/sha1_hash.hpp>
-
+#include <QHash>
 #include <QMetaType>
-#include <QString>
+
+#include "base/digest32.h"
+
+using SHA1Hash = Digest32<160>;
+using SHA256Hash = Digest32<256>;
 
 namespace BitTorrent
 {
-    class InfoHash
+    class InfoHash : public SHA1Hash
     {
     public:
-        InfoHash() = default;
-        InfoHash(const lt::sha1_hash &nativeHash);
-        InfoHash(const InfoHash &other) = default;
-
-        static constexpr int length()
-        {
-            return lt::sha1_hash::size();
-        }
-
-        bool isValid() const;
-
-        operator lt::sha1_hash() const;
+        using SHA1Hash::SHA1Hash;
 
         static InfoHash fromString(const QString &hashString);
-        QString toString() const;
-
-    private:
-        bool m_valid = false;
-        lt::sha1_hash m_nativeHash;
-        QString m_hashString;
     };
 
-    bool operator==(const InfoHash &left, const InfoHash &right);
-    bool operator!=(const InfoHash &left, const InfoHash &right);
-    bool operator<(const InfoHash &left, const InfoHash &right);
-    uint qHash(const InfoHash &key, uint seed);
+    uint qHash(const InfoHash &key, const uint seed);
 }
 
 Q_DECLARE_METATYPE(BitTorrent::InfoHash)

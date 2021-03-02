@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QSortFilterProxyModel>
+
 #include "base/torrentfilter.h"
 
 namespace BitTorrent
