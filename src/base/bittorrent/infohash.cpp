@@ -28,70 +28,14 @@
 
 #include "infohash.h"
 
-#include <QByteArray>
-#include <QHash>
+const int InfoHashTypeId = qRegisterMetaType<BitTorrent::InfoHash>();
 
-using namespace BitTorrent;
-
-const int InfoHashTypeId = qRegisterMetaType<InfoHash>();
-
-InfoHash::InfoHash(const lt::sha1_hash &nativeHash)
-    : m_valid {true}
-    , m_nativeHash {nativeHash}
+BitTorrent::InfoHash BitTorrent::InfoHash::fromString(const QString &hashString)
 {
-    const QByteArray raw = QByteArray::fromRawData(nativeHash.data(), length());
-    m_hashString = QString::fromLatin1(raw.toHex());
+    return {SHA1Hash::fromString(hashString)};
 }
 
-bool InfoHash::isValid() const
+uint BitTorrent::qHash(const BitTorrent::InfoHash &key, const uint seed)
 {
-    return m_valid;
-}
-
-InfoHash::operator lt::sha1_hash() const
-{
-    return m_nativeHash;
-}
-
-InfoHash InfoHash::fromString(const QString &hashString)
-{
-    if (hashString.size() != (length() * 2))
-        return {};
-
-    const QByteArray raw = QByteArray::fromHex(hashString.toLatin1());
-    if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
-        return {};
-
-    InfoHash result;
-    result.m_valid = true;
-    result.m_hashString = hashString;
-    result.m_nativeHash.assign(raw.constData());
-
-    return result;
-}
-
-QString InfoHash::toString() const
-{
-    return m_hashString;
-}
-
-bool BitTorrent::operator==(const InfoHash &left, const InfoHash &right)
-{
-    return (static_cast<lt::sha1_hash>(left)
-            == static_cast<lt::sha1_hash>(right));
-}
-
-bool BitTorrent::operator!=(const InfoHash &left, const InfoHash &right)
-{
-    return !(left == right);
-}
-
-bool BitTorrent::operator<(const InfoHash &left, const InfoHash &right)
-{
-    return static_cast<lt::sha1_hash>(left) < static_cast<lt::sha1_hash>(right);
-}
-
-uint BitTorrent::qHash(const InfoHash &key, const uint seed)
-{
-    return ::qHash((std::hash<lt::sha1_hash> {})(key), seed);
+    return ::qHash(std::hash<InfoHash::UnderlyingType>()(key), seed);
 }
