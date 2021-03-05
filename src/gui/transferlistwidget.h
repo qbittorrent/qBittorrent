@@ -39,8 +39,8 @@ class TransferListSortModel;
 
 namespace BitTorrent
 {
-    class InfoHash;
     class Torrent;
+    class TorrentID;
 }
 
 class TransferListWidget final : public QTreeView
@@ -88,7 +88,7 @@ public slots:
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
-    void applyTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes);
+    void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void previewFile(const QString &filePath);
     void renameSelectedTorrent();
 

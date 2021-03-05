@@ -958,7 +958,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
     Preferences *const pref = Preferences::instance();
     if (pref->recursiveDownloadDisabled()) return;
 
-    const auto torrentHash = torrent->hash();
+    const auto torrentID = torrent->id();
 
     QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
         , tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent->name())
@@ -969,10 +969,10 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
     const QPushButton *yes = confirmBox->addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox->addButton(tr("No"), QMessageBox::NoRole);
     const QPushButton *never = confirmBox->addButton(tr("Never"), QMessageBox::NoRole);
-    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentHash, yes, never](const QAbstractButton *button)
+    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentID, yes, never](const QAbstractButton *button)
     {
         if (button == yes)
-            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentHash);
+            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
         if (button == never)
             Preferences::instance()->disableRecursiveDownload();
     });

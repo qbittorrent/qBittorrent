@@ -78,13 +78,13 @@
 
 namespace
 {
-    QVector<BitTorrent::InfoHash> extractHashes(const QVector<BitTorrent::Torrent *> &torrents)
+    QVector<BitTorrent::TorrentID> extractIDs(const QVector<BitTorrent::Torrent *> &torrents)
     {
-        QVector<BitTorrent::InfoHash> hashes;
-        hashes.reserve(torrents.size());
+        QVector<BitTorrent::TorrentID> torrentIDs;
+        torrentIDs.reserve(torrents.size());
         for (const BitTorrent::Torrent *torrent : torrents)
-            hashes << torrent->hash();
-        return hashes;
+            torrentIDs << torrent->id();
+        return torrentIDs;
     }
 
     bool torrentContainsPreviewableFiles(const BitTorrent::Torrent *const torrent)
@@ -121,7 +121,7 @@ namespace
         auto *session = BitTorrent::Session::instance();
         const DeleteOption deleteOption = isDeleteFileSelected ? DeleteTorrentAndFiles : DeleteTorrent;
         for (const BitTorrent::Torrent *torrent : torrents)
-            session->deleteTorrent(torrent->hash(), deleteOption);
+            session->deleteTorrent(torrent->id(), deleteOption);
     }
 }
 
@@ -452,26 +452,26 @@ void TransferListWidget::increaseQueuePosSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->increaseTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->increaseTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::decreaseQueuePosSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->decreaseTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->decreaseTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::topQueuePosSelectedTorrents()
 {
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->topTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->topTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::bottomQueuePosSelectedTorrents()
 {
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->bottomTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->bottomTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::copySelectedMagnetURIs() const
@@ -494,11 +494,11 @@ void TransferListWidget::copySelectedNames() const
 
 void TransferListWidget::copySelectedHashes() const
 {
-    QStringList torrentHashes;
+    QStringList torrentIDs;
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrentHashes << torrent->hash().toString();
+        torrentIDs << torrent->id().toString();
 
-    qApp->clipboard()->setText(torrentHashes.join('\n'));
+    qApp->clipboard()->setText(torrentIDs.join('\n'));
 }
 
 void TransferListWidget::hideQueuePosColumn(bool hide)
@@ -1129,9 +1129,9 @@ void TransferListWidget::applyTrackerFilterAll()
     m_sortFilterModel->disableTrackerFilter();
 }
 
-void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes)
+void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
-    m_sortFilterModel->setTrackerFilter(hashes);
+    m_sortFilterModel->setTrackerFilter(torrentIDs);
 }
 
 void TransferListWidget::applyNameFilter(const QString &name)
