@@ -62,7 +62,7 @@ namespace BitTorrent
         TorrentInfo &operator=(const TorrentInfo &other);
 
         bool isValid() const;
-        InfoHash hash() const;
+        InfoHash infoHash() const;
         QString name() const;
         QDateTime creationDate() const;
         QString creator() const;

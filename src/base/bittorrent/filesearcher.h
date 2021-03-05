@@ -32,7 +32,7 @@
 
 namespace BitTorrent
 {
-    class InfoHash;
+    class TorrentID;
 }
 
 class FileSearcher final : public QObject
@@ -44,9 +44,9 @@ public:
     FileSearcher() = default;
 
 public slots:
-    void search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+    void search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
                 , const QString &completeSavePath, const QString &incompleteSavePath);
 
 signals:
-    void searchFinished(const BitTorrent::InfoHash &id, const QString &savePath, const QStringList &fileNames);
+    void searchFinished(const BitTorrent::TorrentID &id, const QString &savePath, const QStringList &fileNames);
 };

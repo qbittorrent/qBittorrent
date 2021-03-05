@@ -36,8 +36,8 @@
 
 namespace BitTorrent
 {
-    class InfoHash;
     class Torrent;
+    class TorrentID;
 }
 
 namespace Ui
@@ -67,7 +67,7 @@ private:
     qreal getRatio() const;
     int getSeedingTime() const;
 
-    QVector<BitTorrent::InfoHash> m_torrentHashes;
+    QVector<BitTorrent::TorrentID> m_torrentIDs;
     Ui::TorrentOptionsDialog *m_ui;
     SettingValue<QSize> m_storeDialogSize;
     struct

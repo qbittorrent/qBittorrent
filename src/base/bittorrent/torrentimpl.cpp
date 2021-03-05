@@ -220,6 +220,11 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
     , m_session(session)
     , m_nativeSession(nativeSession)
     , m_nativeHandle(nativeHandle)
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    , m_infoHash(m_nativeHandle.info_hashes())
+#else
+    , m_infoHash(m_nativeHandle.info_hash())
+#endif
     , m_name(params.name)
     , m_savePath(Utils::Fs::toNativePath(params.savePath))
     , m_category(params.category)
@@ -237,7 +242,6 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
     if (m_useAutoTMM)
         m_savePath = Utils::Fs::toNativePath(m_session->categorySavePath(m_category));
 
-    m_hash = InfoHash {m_nativeHandle.info_hash()};
     if (m_ltAddTorrentParams.ti)
     {
         // Initialize it only if torrent is added with metadata.
@@ -282,9 +286,9 @@ bool TorrentImpl::isValid() const
     return m_nativeHandle.is_valid();
 }
 
-InfoHash TorrentImpl::hash() const
+InfoHash TorrentImpl::infoHash() const
 {
-    return m_hash;
+    return m_infoHash;
 }
 
 QString TorrentImpl::name() const
@@ -299,7 +303,7 @@ QString TorrentImpl::name() const
     if (!name.isEmpty())
         return name;
 
-    return m_hash.toString();
+    return id().toString();
 }
 
 QDateTime TorrentImpl::creationDate() const

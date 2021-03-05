@@ -184,10 +184,15 @@ bool TorrentInfo::isValid() const
     return (m_nativeInfo && m_nativeInfo->is_valid() && (m_nativeInfo->num_files() > 0));
 }
 
-InfoHash TorrentInfo::hash() const
+InfoHash TorrentInfo::infoHash() const
 {
     if (!isValid()) return {};
+
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    return m_nativeInfo->info_hashes();
+#else
     return m_nativeInfo->info_hash();
+#endif
 }
 
 QString TorrentInfo::name() const
@@ -374,7 +379,7 @@ QVector<QByteArray> TorrentInfo::pieceHashes() const
     hashes.reserve(count);
 
     for (int i = 0; i < count; ++i)
-        hashes += {m_nativeInfo->hash_for_piece_ptr(lt::piece_index_t {i}), InfoHash::length()};
+        hashes += {m_nativeInfo->hash_for_piece_ptr(lt::piece_index_t {i}), SHA1Hash::length()};
 
     return hashes;
 }

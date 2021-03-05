@@ -32,7 +32,7 @@
 #include "bittorrent/torrent.h"
 
 const QString TorrentFilter::AnyCategory;
-const InfoHashSet TorrentFilter::AnyHash {{}};
+const TorrentIDSet TorrentFilter::AnyID {{}};
 const QString TorrentFilter::AnyTag;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
@@ -49,19 +49,19 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
 using BitTorrent::Torrent;
 
-TorrentFilter::TorrentFilter(const Type type, const InfoHashSet &hashSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const Type type, const TorrentIDSet &idSet, const QString &category, const QString &tag)
     : m_type(type)
     , m_category(category)
     , m_tag(tag)
-    , m_hashSet(hashSet)
+    , m_idSet(idSet)
 {
 }
 
-TorrentFilter::TorrentFilter(const QString &filter, const InfoHashSet &hashSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const QString &filter, const TorrentIDSet &idSet, const QString &category, const QString &tag)
     : m_type(All)
     , m_category(category)
     , m_tag(tag)
-    , m_hashSet(hashSet)
+    , m_idSet(idSet)
 {
     setTypeByName(filter);
 }
@@ -107,11 +107,11 @@ bool TorrentFilter::setTypeByName(const QString &filter)
     return setType(type);
 }
 
-bool TorrentFilter::setHashSet(const InfoHashSet &hashSet)
+bool TorrentFilter::setTorrentIDSet(const TorrentIDSet &idSet)
 {
-    if (m_hashSet != hashSet)
+    if (m_idSet != idSet)
     {
-        m_hashSet = hashSet;
+        m_idSet = idSet;
         return true;
     }
 
@@ -189,9 +189,9 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
 {
-    if (m_hashSet == AnyHash) return true;
+    if (m_idSet == AnyID) return true;
 
-    return m_hashSet.contains(torrent->hash());
+    return m_idSet.contains(torrent->id());
 }
 
 bool TorrentFilter::matchCategory(const BitTorrent::Torrent *const torrent) const

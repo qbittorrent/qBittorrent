@@ -46,7 +46,7 @@ namespace BitTorrent
         explicit MagnetUri(const QString &source = {});
 
         bool isValid() const;
-        InfoHash hash() const;
+        InfoHash infoHash() const;
         QString name() const;
         QVector<TrackerEntry> trackers() const;
         QVector<QUrl> urlSeeds() const;
@@ -57,7 +57,7 @@ namespace BitTorrent
     private:
         bool m_valid;
         QString m_url;
-        InfoHash m_hash;
+        InfoHash m_infoHash;
         QString m_name;
         QVector<TrackerEntry> m_trackers;
         QVector<QUrl> m_urlSeeds;
