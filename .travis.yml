@@ -106,8 +106,8 @@ install:
 
       brew update > /dev/null
       brew upgrade cmake
-      brew install ccache colormake boost openssl qt zlib
-      brew link --force qt zlib
+      brew install ccache colormake boost openssl qt@5 zlib
+      brew link --force qt@5 zlib
 
       if [ "$build_system" = "cmake" ]; then
         sudo ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
