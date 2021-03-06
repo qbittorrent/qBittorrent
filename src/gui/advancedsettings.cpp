@@ -115,6 +115,7 @@ namespace
         OUTGOING_PORT_MIN,
         OUTGOING_PORT_MAX,
         UPNP_LEASE_DURATION,
+        PEER_TOS,
         UTP_MIX_MODE,
         IDN_SUPPORT,
         MULTI_CONNECTIONS_PER_IP,
@@ -223,6 +224,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setOutgoingPortsMax(m_spinBoxOutgoingPortsMax.value());
     // UPnP lease duration
     session->setUPnPLeaseDuration(m_spinBoxUPnPLeaseDuration.value());
+    // Type of service
+    session->setPeerToS(m_spinBoxPeerToS.value());
     // uTP-TCP mixed mode
     session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(m_comboBoxUtpMixedMode.currentIndex()));
     // Support internationalized domain name (IDN)
@@ -542,6 +545,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxUPnPLeaseDuration.setSuffix(tr(" s", " seconds"));
     addRow(UPNP_LEASE_DURATION, (tr("UPnP lease duration [0: Permanent lease]") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration", "(?)"))
         , &m_spinBoxUPnPLeaseDuration);
+    // Type of service
+    m_spinBoxPeerToS.setMinimum(0);
+    m_spinBoxPeerToS.setMaximum(255);
+    m_spinBoxPeerToS.setValue(session->peerToS());
+    addRow(PEER_TOS, (tr("Type of service (ToS) for connections to peers") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#peer_tos", "(?)"))
+        , &m_spinBoxPeerToS);
     // uTP-TCP mixed mode
     m_comboBoxUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
     m_comboBoxUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));

@@ -372,6 +372,7 @@ Session::Session(QObject *parent)
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY("OutgoingPortsMin"), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY("OutgoingPortsMax"), 0)
     , m_UPnPLeaseDuration(BITTORRENT_SESSION_KEY("UPnPLeaseDuration"), 0)
+    , m_peerToS(BITTORRENT_SESSION_KEY("PeerToS"), 0x20)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY("IgnoreLimitsOnLAN"), false)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
@@ -1335,9 +1336,10 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     // Outgoing ports
     settingsPack.set_int(lt::settings_pack::outgoing_port, outgoingPortsMin());
     settingsPack.set_int(lt::settings_pack::num_outgoing_ports, outgoingPortsMax() - outgoingPortsMin() + 1);
-
+    // UPnP lease duration
     settingsPack.set_int(lt::settings_pack::upnp_lease_duration, UPnPLeaseDuration());
-
+    // Type of service
+    settingsPack.set_int(lt::settings_pack::peer_tos, peerToS());
     // Include overhead in transfer limits
     settingsPack.set_bool(lt::settings_pack::rate_limit_ip_overhead, includeOverheadInLimits());
     // IP address to announce to trackers
@@ -3514,6 +3516,20 @@ void Session::setUPnPLeaseDuration(const int duration)
         m_UPnPLeaseDuration = duration;
         configureDeferred();
     }
+}
+
+int Session::peerToS() const
+{
+    return m_peerToS;
+}
+
+void Session::setPeerToS(const int value)
+{
+    if (value == m_peerToS)
+        return;
+
+    m_peerToS = value;
+    configureDeferred();
 }
 
 bool Session::ignoreLimitsOnLAN() const
