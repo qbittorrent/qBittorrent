@@ -1926,7 +1926,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
         msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
         msgBox->setDefaultButton(QMessageBox::Yes);
-        connect(msgBox, &QMessageBox::buttonClicked, this, [this, msgBox, updater](QAbstractButton *button)
+        connect(msgBox, &QMessageBox::buttonClicked, this, [msgBox, updater](QAbstractButton *button)
         {
             if (msgBox->buttonRole(button) == QMessageBox::YesRole)
             {
