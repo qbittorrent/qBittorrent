@@ -146,7 +146,7 @@ install:
       cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
-        -Ddeprecated-functions=ON \
+        -Ddeprecated-functions=OFF \
         -DOPENSSL_ROOT_DIR="$openssl_root_path" \
         ./
       make
