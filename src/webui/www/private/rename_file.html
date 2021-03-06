@@ -58,7 +58,7 @@
 
                 $('renameButton').disabled = true;
 
-                const parentPath = window.qBittorrent.Filesystem.folderName(oldPath)
+                const parentPath = window.qBittorrent.Filesystem.folderName(oldPath);
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
