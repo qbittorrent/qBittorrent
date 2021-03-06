@@ -384,6 +384,8 @@ namespace BitTorrent
         void setOutgoingPortsMax(int max);
         int UPnPLeaseDuration() const;
         void setUPnPLeaseDuration(int duration);
+        int peerToS() const;
+        void setPeerToS(int value);
         bool ignoreLimitsOnLAN() const;
         void setIgnoreLimitsOnLAN(bool ignore);
         bool includeOverheadInLimits() const;
@@ -673,6 +675,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<int> m_UPnPLeaseDuration;
+        CachedSettingValue<int> m_peerToS;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
