@@ -313,7 +313,7 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
     // Save path
     updateSavePath(m_torrent);
     // Hash
-    m_ui->labelHashVal->setText(m_torrent->hash());
+    m_ui->labelHashVal->setText(m_torrent->hash().toString());
     m_propListModel->model()->clear();
     if (m_torrent->hasMetadata())
     {

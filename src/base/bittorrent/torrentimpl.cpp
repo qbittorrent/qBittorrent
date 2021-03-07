@@ -185,7 +185,7 @@ QString TorrentImpl::name() const
     if (!name.isEmpty())
         return name;
 
-    return m_hash;
+    return m_hash.toString();
 }
 
 QDateTime TorrentImpl::creationDate() const
