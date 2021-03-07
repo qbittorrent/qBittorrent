@@ -1444,12 +1444,14 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
         const QHostAddress addr {ip};
         if (!addr.isNull())
         {
-            const QString ip = ((addr.protocol() == QAbstractSocket::IPv6Protocol)
-                          ? ('[' + Utils::Net::canonicalIPv6Addr(addr).toString() + ']')
-                          : addr.toString());
-            endpoints << (ip + portString);
+            const bool isIPv6 = (addr.protocol() == QAbstractSocket::IPv6Protocol);
+            const QString ip = isIPv6
+                          ? Utils::Net::canonicalIPv6Addr(addr).toString()
+                          : addr.toString();
 
-            if ((ip != "0.0.0.0") && (ip != "[::]"))
+            endpoints << ((isIPv6 ? ('[' + ip + ']') : ip) + portString);
+
+            if ((ip != QLatin1String("0.0.0.0")) && (ip != QLatin1String("::")))
                 outgoingInterfaces << ip;
         }
         else
