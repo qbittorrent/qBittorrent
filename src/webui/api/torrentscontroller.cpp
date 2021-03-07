@@ -144,7 +144,7 @@ namespace
         {
             if (peer.isConnecting()) continue;
 
-            if (peer.isSeed())
+            if (peer.isSeed() && !peer.isUploadOnly)
             {
                 if (peer.fromDHT())
                     ++seedsDHT;
