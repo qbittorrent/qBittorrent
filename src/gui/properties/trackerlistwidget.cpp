@@ -329,7 +329,7 @@ void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
 
         if (peer.fromDHT())
         {
-            if (peer.isSeed() && !(bool)peer.isUploadOnly)
+            if (peer.isSeed() && !(bool)(peer.isUploadOnly))
                 ++seedsDHT;
             else
                 ++peersDHT;
