@@ -336,14 +336,14 @@ void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
         }
         if (peer.fromPeX())
         {
-            if (peer.isSeed() && !(bool)peer.isUploadOnly)
+            if (peer.isSeed() && !(bool)(peer.isUploadOnly))
                 ++seedsPeX;
             else
                 ++peersPeX;
         }
         if (peer.fromLSD())
         {
-            if (peer.isSeed() && !(bool)peer.isUploadOnly)
+            if (peer.isSeed() && !(bool)(peer.isUploadOnly))
                 ++seedsLSD;
             else
                 ++peersLSD;
