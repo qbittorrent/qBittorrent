@@ -309,6 +309,8 @@ void AppController::preferencesAction()
     data["outgoing_ports_max"] = session->outgoingPortsMax();
     // UPnP lease duration
     data["upnp_lease_duration"] = session->UPnPLeaseDuration();
+    // Type of service
+    data["peer_tos"] = session->peerToS();
     // uTP-TCP mixed mode
     data["utp_tcp_mixed_mode"] = static_cast<int>(session->utpMixedMode());
     // Support internationalized domain name (IDN)
@@ -772,6 +774,9 @@ void AppController::setPreferencesAction()
     // UPnP lease duration
     if (hasKey("upnp_lease_duration"))
         session->setUPnPLeaseDuration(it.value().toInt());
+    // Type of service
+    if (hasKey("peer_tos"))
+        session->setPeerToS(it.value().toInt());
     // uTP-TCP mixed mode
     if (hasKey("utp_tcp_mixed_mode"))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
