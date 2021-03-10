@@ -29,23 +29,17 @@
 #pragma once
 
 #include <QProgressBar>
-#include <QStyledItemDelegate>
 
-class QStyleOptionProgressBar;
+class QStyleOptionViewItem;
 
-class ProgressBarDelegate : public QStyledItemDelegate
+class ProgressBarPainter
 {
 public:
-    ProgressBarDelegate(int progressColumn, int dataRole, QObject *parent = nullptr);
+    ProgressBarPainter();
 
-protected:
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-    virtual void initProgressStyleOption(QStyleOptionProgressBar &option, const QModelIndex &index) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress) const;
 
 private:
-    const int m_progressColumn;
-    const int m_dataRole;
-
     // for painting progressbar with stylesheet option, a dummy progress bar is required
     QProgressBar m_dummyProgressBar;
 };

@@ -28,9 +28,11 @@
 
 #pragma once
 
-#include "progressbardelegate.h"
+#include <QStyledItemDelegate>
 
-class TransferListDelegate final : public ProgressBarDelegate
+#include "progressbarpainter.h"
+
+class TransferListDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
     Q_DISABLE_COPY(TransferListDelegate)
@@ -40,4 +42,8 @@ public:
 
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
+private:
+    ProgressBarPainter m_progressBarPainter;
 };

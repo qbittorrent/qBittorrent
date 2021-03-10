@@ -33,7 +33,6 @@
 #include <QTreeView>
 
 class MainWindow;
-class TransferListDelegate;
 class TransferListModel;
 class TransferListSortModel;
 
@@ -121,7 +120,6 @@ private:
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
 
-    TransferListDelegate *m_listDelegate;
     TransferListModel *m_listModel;
     TransferListSortModel *m_sortFilterModel;
     MainWindow *m_mainWindow;

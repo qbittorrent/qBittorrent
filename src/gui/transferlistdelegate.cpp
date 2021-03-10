@@ -33,7 +33,7 @@
 #include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
-    : ProgressBarDelegate {TransferListModel::TR_PROGRESS, TransferListModel::UnderlyingDataRole, parent}
+    : QStyledItemDelegate {parent}
 {
 }
 
@@ -60,4 +60,21 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
     QSize size = QStyledItemDelegate::sizeHint(option, index);
     size.setHeight(std::max(nameColHeight, size.height()));
     return size;
+}
+
+void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    switch (index.column())
+    {
+    case TransferListModel::TR_PROGRESS:
+        {
+            const int progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
+
+            m_progressBarPainter.paint(painter, option, index.data().toString(), progress);
+        }
+        break;
+    default:
+        QStyledItemDelegate::paint(painter, option, index);
+        break;
+    }
 }
