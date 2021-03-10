@@ -126,32 +126,27 @@ namespace
 }
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
-    : QTreeView(parent)
-    , m_mainWindow(mainWindow)
+    : QTreeView {parent}
+    , m_listModel {new TransferListModel {this}}
+    , m_sortFilterModel {new TransferListSortModel {this}}
+    , m_mainWindow {mainWindow}
 {
-
-    setUniformRowHeights(true);
     // Load settings
-    bool columnLoaded = loadSettings();
+    const bool columnLoaded = loadSettings();
 
     // Create and apply delegate
-    m_listDelegate = new TransferListDelegate(this);
-    setItemDelegate(m_listDelegate);
+    setItemDelegate(new TransferListDelegate {this});
 
-    // Create transfer list model
-    m_listModel = new TransferListModel(this);
-
-    m_sortFilterModel = new TransferListSortModel(this);
     m_sortFilterModel->setDynamicSortFilter(true);
     m_sortFilterModel->setSourceModel(m_listModel);
     m_sortFilterModel->setFilterKeyColumn(TransferListModel::TR_NAME);
     m_sortFilterModel->setFilterRole(Qt::DisplayRole);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(TransferListModel::UnderlyingDataRole);
-
     setModel(m_sortFilterModel);
 
     // Visual settings
+    setUniformRowHeights(true);
     setRootIsDecorated(false);
     setAllColumnsShowFocus(true);
     setSortingEnabled(true);
