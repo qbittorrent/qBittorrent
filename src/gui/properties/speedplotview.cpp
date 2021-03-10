@@ -137,7 +137,7 @@ bool SpeedPlotView::Averager::push(const SampleData &sampleData)
         // once we go above the max duration never go below that
         // otherwise it will cause empty space in graphs
         while (!m_sink.empty()
-               && ((m_currentDuration - m_sink.front().duration) > m_maxDuration))
+               && ((m_currentDuration - m_sink.front().duration) >= m_maxDuration))
         {
             m_currentDuration -= m_sink.front().duration;
             m_sink.pop_front();
