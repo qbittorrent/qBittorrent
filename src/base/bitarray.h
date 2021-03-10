@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,37 +28,36 @@
 
 #pragma once
 
-#include <QtContainerFwd>
+#include <libtorrent/bitfield.hpp>
 
-#include "base/bitarray.h"
-#include "piecesbar.h"
-
-class QWidget;
-
-class DownloadedPiecesBar final : public PiecesBar
+class BitArray
 {
-    using base = PiecesBar;
-    Q_OBJECT
-    Q_DISABLE_COPY(DownloadedPiecesBar)
-
 public:
-    DownloadedPiecesBar(QWidget *parent);
+    BitArray() noexcept = default;
+    BitArray(const BitArray &other) noexcept = default;
+    BitArray(BitArray &&other) noexcept = default;
 
-    void setProgress(const BitArray &pieces, const BitArray &downloadedPieces);
+    BitArray(const lt::bitfield &bitfield);
+    explicit BitArray(int size, bool val = false);
 
-    // PiecesBar interface
-    void clear() override;
+    template <typename IndexType>
+    BitArray(const typename lt::typed_bitfield<IndexType> &bitfield)
+        : BitArray {static_cast<const lt::bitfield &>(bitfield)}
+    {
+    }
+
+    BitArray &operator=(const BitArray &other) = default;
+    BitArray &operator=(BitArray &&other) noexcept = default;
+
+    int size() const noexcept;
+    bool isEmpty() const noexcept;
+
+    void setBit(int index);
+    void clear() noexcept;
+
+    operator lt::bitfield() noexcept;
+    bool operator[](int index) const noexcept;
 
 private:
-    // scale bitfield vector to float vector
-    QVector<float> bitfieldToFloatVector(const BitArray &vecin, int reqSize);
-    virtual bool updateImage(QImage &image) override;
-    QString simpleToolTipText() const override;
-
-    // incomplete piece color
-    const QColor m_dlPieceColor;
-    // last used bitfields, uses to better resize redraw
-    // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-    BitArray m_pieces;
-    BitArray m_downloadedPieces;
+    lt::bitfield m_bitfield;
 };

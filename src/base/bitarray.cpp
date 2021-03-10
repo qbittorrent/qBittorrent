@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,39 +26,44 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "bitarray.h"
 
-#include <QtContainerFwd>
-
-#include "base/bitarray.h"
-#include "piecesbar.h"
-
-class QWidget;
-
-class DownloadedPiecesBar final : public PiecesBar
+BitArray::BitArray(const lt::bitfield &bitfield)
+    : m_bitfield {bitfield}
 {
-    using base = PiecesBar;
-    Q_OBJECT
-    Q_DISABLE_COPY(DownloadedPiecesBar)
+}
 
-public:
-    DownloadedPiecesBar(QWidget *parent);
+BitArray::BitArray(const int size, const bool val)
+    : m_bitfield {size, val}
+{
+}
 
-    void setProgress(const BitArray &pieces, const BitArray &downloadedPieces);
+int BitArray::size() const noexcept
+{
+    return m_bitfield.size();
+}
 
-    // PiecesBar interface
-    void clear() override;
+bool BitArray::isEmpty() const noexcept
+{
+    return m_bitfield.empty();
+}
 
-private:
-    // scale bitfield vector to float vector
-    QVector<float> bitfieldToFloatVector(const BitArray &vecin, int reqSize);
-    virtual bool updateImage(QImage &image) override;
-    QString simpleToolTipText() const override;
+void BitArray::setBit(const int index)
+{
+    m_bitfield.set_bit(index);
+}
 
-    // incomplete piece color
-    const QColor m_dlPieceColor;
-    // last used bitfields, uses to better resize redraw
-    // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-    BitArray m_pieces;
-    BitArray m_downloadedPieces;
-};
+void BitArray::clear() noexcept
+{
+    m_bitfield.clear();
+}
+
+bool BitArray::operator[](const int index) const noexcept
+{
+    return m_bitfield[index];
+}
+
+BitArray::operator lt::bitfield() noexcept
+{
+    return m_bitfield;
+}

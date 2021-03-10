@@ -35,7 +35,7 @@
 
 #include "abstractfilestorage.h"
 
-class QBitArray;
+class BitArray;
 class QDateTime;
 class QUrl;
 
@@ -240,8 +240,8 @@ namespace BitTorrent
         virtual bool isPEXDisabled() const = 0;
         virtual bool isLSDDisabled() const = 0;
         virtual QVector<PeerInfo> peers() const = 0;
-        virtual QBitArray pieces() const = 0;
-        virtual QBitArray downloadingPieces() const = 0;
+        virtual BitArray pieces() const = 0;
+        virtual BitArray downloadingPieces() const = 0;
         virtual QVector<int> pieceAvailability() const = 0;
         virtual qreal distributedCopies() const = 0;
         virtual qreal maxRatio() const = 0;

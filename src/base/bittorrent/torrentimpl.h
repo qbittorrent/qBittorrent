@@ -195,8 +195,8 @@ namespace BitTorrent
         bool isPEXDisabled() const override;
         bool isLSDDisabled() const override;
         QVector<PeerInfo> peers() const override;
-        QBitArray pieces() const override;
-        QBitArray downloadingPieces() const override;
+        BitArray pieces() const override;
+        BitArray downloadingPieces() const override;
         QVector<int> pieceAvailability() const override;
         qreal distributedCopies() const override;
         qreal maxRatio() const override;

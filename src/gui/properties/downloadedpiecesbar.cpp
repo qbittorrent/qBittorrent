@@ -48,7 +48,7 @@ DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent)
 {
 }
 
-QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin, int reqSize)
+QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const BitArray &vecin, int reqSize)
 {
     QVector<float> result(reqSize, 0.0);
     if (vecin.isEmpty()) return result;
@@ -169,7 +169,7 @@ bool DownloadedPiecesBar::updateImage(QImage &image)
     return true;
 }
 
-void DownloadedPiecesBar::setProgress(const QBitArray &pieces, const QBitArray &downloadedPieces)
+void DownloadedPiecesBar::setProgress(const BitArray &pieces, const BitArray &downloadedPieces)
 {
     m_pieces = pieces;
     m_downloadedPieces = downloadedPieces;

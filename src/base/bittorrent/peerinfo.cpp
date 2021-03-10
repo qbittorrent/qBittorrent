@@ -28,8 +28,7 @@
 
 #include "peerinfo.h"
 
-#include <QBitArray>
-
+#include "base/bitarray.h"
 #include "base/bittorrent/torrent.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
@@ -205,15 +204,9 @@ qlonglong PeerInfo::totalDownload() const
     return m_nativeInfo.total_download;
 }
 
-QBitArray PeerInfo::pieces() const
+BitArray PeerInfo::pieces() const
 {
-    QBitArray result(m_nativeInfo.pieces.size());
-    for (int i = 0; i < result.size(); ++i)
-    {
-        if (m_nativeInfo.pieces[lt::piece_index_t {i}])
-            result.setBit(i, true);
-    }
-    return result;
+    return m_nativeInfo.pieces;
 }
 
 QString PeerInfo::connectionType() const
@@ -228,8 +221,8 @@ QString PeerInfo::connectionType() const
 
 void PeerInfo::calcRelevance(const Torrent *torrent)
 {
-    const QBitArray allPieces = torrent->pieces();
-    const QBitArray peerPieces = pieces();
+    const BitArray allPieces = torrent->pieces();
+    const BitArray peerPieces = pieces();
 
     int localMissing = 0;
     int remoteHaves = 0;

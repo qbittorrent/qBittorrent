@@ -51,13 +51,13 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
-#include <QBitArray>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QStringList>
 #include <QUrl>
 
+#include "base/bitarray.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -1155,20 +1155,14 @@ QVector<PeerInfo> TorrentImpl::peers() const
     return peers;
 }
 
-QBitArray TorrentImpl::pieces() const
+BitArray TorrentImpl::pieces() const
 {
-    QBitArray result(m_nativeStatus.pieces.size());
-    for (int i = 0; i < result.size(); ++i)
-    {
-        if (m_nativeStatus.pieces[lt::piece_index_t {i}])
-            result.setBit(i, true);
-    }
-    return result;
+    return m_nativeStatus.pieces;
 }
 
-QBitArray TorrentImpl::downloadingPieces() const
+BitArray TorrentImpl::downloadingPieces() const
 {
-    QBitArray result(piecesCount());
+    BitArray result {piecesCount()};
 
     std::vector<lt::partial_piece_info> queue;
     m_nativeHandle.get_download_queue(queue);

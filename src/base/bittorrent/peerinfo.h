@@ -32,7 +32,7 @@
 
 #include <QCoreApplication>
 
-class QBitArray;
+class BitArray;
 
 namespace BitTorrent
 {
@@ -83,7 +83,7 @@ namespace BitTorrent
         int payloadDownSpeed() const;
         qlonglong totalUpload() const;
         qlonglong totalDownload() const;
-        QBitArray pieces() const;
+        BitArray pieces() const;
         QString connectionType() const;
         qreal relevance() const;
         QString flags() const;

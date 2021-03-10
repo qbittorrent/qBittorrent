@@ -30,7 +30,6 @@
 
 #include <functional>
 
-#include <QBitArray>
 #include <QDir>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -39,6 +38,7 @@
 #include <QRegularExpression>
 #include <QUrl>
 
+#include "base/bitarray.h"
 #include "base/bittorrent/common.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
@@ -586,11 +586,11 @@ void TorrentsController::pieceStatesAction()
         throw APIError(APIErrorType::NotFound);
 
     QJsonArray pieceStates;
-    const QBitArray states = torrent->pieces();
+    const BitArray states = torrent->pieces();
     for (int i = 0; i < states.size(); ++i)
         pieceStates.append(static_cast<int>(states[i]) * 2);
 
-    const QBitArray dlstates = torrent->downloadingPieces();
+    const BitArray dlstates = torrent->downloadingPieces();
     for (int i = 0; i < states.size(); ++i)
     {
         if (dlstates[i])
