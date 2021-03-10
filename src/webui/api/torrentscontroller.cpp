@@ -117,6 +117,8 @@ const char KEY_FILE_AVAILABILITY[] = "availability";
 namespace
 {
     using Utils::String::parseBool;
+    using Utils::String::parseInt;
+    using Utils::String::parseDouble;
 
     void applyToTorrents(const QStringList &hashes, const std::function<void (BitTorrent::Torrent *torrent)> &func)
     {
@@ -601,6 +603,8 @@ void TorrentsController::pieceStatesAction()
 void TorrentsController::addAction()
 {
     const QString urls = params()["urls"];
+    const QString cookie = params()["cookie"];
+
     const bool skipChecking = parseBool(params()["skip_checking"]).value_or(false);
     const bool seqDownload = parseBool(params()["sequentialDownload"]).value_or(false);
     const bool firstLastPiece = parseBool(params()["firstLastPiecePrio"]).value_or(false);
@@ -608,10 +612,11 @@ void TorrentsController::addAction()
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
     const QSet<QString> tags = List::toSet(params()["tags"].split(',', QString::SkipEmptyParts));
-    const QString cookie = params()["cookie"];
     const QString torrentName = params()["rename"].trimmed();
-    const int upLimit = params()["upLimit"].toInt();
-    const int dlLimit = params()["dlLimit"].toInt();
+    const int upLimit = parseInt(params()["upLimit"]).value_or(-1);
+    const int dlLimit = parseInt(params()["dlLimit"]).value_or(-1);
+    const double ratioLimit = parseDouble(params()["ratioLimit"]).value_or(BitTorrent::Torrent::USE_GLOBAL_RATIO);
+    const int seedingTimeLimit = parseInt(params()["seedingTimeLimit"]).value_or(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
     const std::optional<bool> autoTMM = parseBool(params()["autoTMM"]);
 
     const QString contentLayoutParam = params()["contentLayout"];
@@ -636,20 +641,22 @@ void TorrentsController::addAction()
         }
     }
 
-    BitTorrent::AddTorrentParams params;
+    BitTorrent::AddTorrentParams addTorrentParams;
     // TODO: Check if destination actually exists
-    params.skipChecking = skipChecking;
-    params.sequential = seqDownload;
-    params.firstLastPiecePriority = firstLastPiece;
-    params.addPaused = addPaused;
-    params.contentLayout = contentLayout;
-    params.savePath = savepath;
-    params.category = category;
-    params.tags = tags;
-    params.name = torrentName;
-    params.uploadLimit = (upLimit > 0) ? upLimit : -1;
-    params.downloadLimit = (dlLimit > 0) ? dlLimit : -1;
-    params.useAutoTMM = autoTMM;
+    addTorrentParams.skipChecking = skipChecking;
+    addTorrentParams.sequential = seqDownload;
+    addTorrentParams.firstLastPiecePriority = firstLastPiece;
+    addTorrentParams.addPaused = addPaused;
+    addTorrentParams.contentLayout = contentLayout;
+    addTorrentParams.savePath = savepath;
+    addTorrentParams.category = category;
+    addTorrentParams.tags = tags;
+    addTorrentParams.name = torrentName;
+    addTorrentParams.uploadLimit = upLimit;
+    addTorrentParams.downloadLimit = dlLimit;
+    addTorrentParams.seedingTimeLimit = seedingTimeLimit;
+    addTorrentParams.ratioLimit = ratioLimit;
+    addTorrentParams.useAutoTMM = autoTMM;
 
     bool partialSuccess = false;
     for (QString url : asConst(urls.split('\n')))
@@ -658,7 +665,7 @@ void TorrentsController::addAction()
         if (!url.isEmpty())
         {
             Net::DownloadManager::instance()->setCookiesFromUrl(cookies, QUrl::fromEncoded(url.toUtf8()));
-            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, params);
+            partialSuccess |= BitTorrent::Session::instance()->addTorrent(url, addTorrentParams);
         }
     }
 
@@ -671,7 +678,7 @@ void TorrentsController::addAction()
                            , tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
         }
 
-        partialSuccess |= BitTorrent::Session::instance()->addTorrent(torrentInfo, params);
+        partialSuccess |= BitTorrent::Session::instance()->addTorrent(torrentInfo, addTorrentParams);
     }
 
     if (partialSuccess)
