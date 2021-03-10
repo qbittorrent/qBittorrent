@@ -208,6 +208,27 @@ namespace
 
         return trackerEntry;
     }
+
+    void initializeStatus(lt::torrent_status &status, const lt::add_torrent_params &params)
+    {
+        status.flags = params.flags;
+        status.active_duration = lt::seconds {params.active_time};
+        status.finished_duration = lt::seconds {params.finished_time};
+        status.seeding_duration = lt::seconds {params.seeding_time};
+        status.num_complete = params.num_complete;
+        status.num_incomplete = params.num_incomplete;
+        status.all_time_download = params.total_downloaded;
+        status.all_time_upload = params.total_uploaded;
+        status.added_time = params.added_time;
+        status.last_seen_complete = params.last_seen_complete;
+        status.last_download = lt::time_point {lt::seconds {params.last_download}};
+        status.last_upload = lt::time_point {lt::seconds {params.last_upload}};
+        status.completed_time = params.completed_time;
+        status.save_path = params.save_path;
+        status.connections_limit = params.max_connections;
+        status.pieces = params.have_pieces;
+        status.verified_pieces = params.verified_pieces;
+    }
 }
 
 // TorrentImpl
@@ -243,7 +264,8 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         m_torrentInfo = TorrentInfo {m_nativeHandle.torrent_file()};
     }
 
-    updateStatus();
+    initializeStatus(m_nativeStatus, m_ltAddTorrentParams);
+    updateState();
 
     if (hasMetadata())
         applyFirstLastPiecePriority(m_hasFirstLastPiecePriority);
