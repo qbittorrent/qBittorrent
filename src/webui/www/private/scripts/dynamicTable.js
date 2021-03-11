@@ -856,6 +856,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             this.columns['num_seeds'].dataProperties.push('num_complete');
             this.columns['num_leechs'].dataProperties.push('num_incomplete');
+            this.columns['time_active'].dataProperties.push('seeding_time');
 
             this.initColumnsFunctions();
         },
@@ -1161,7 +1162,13 @@ window.qBittorrent.DynamicTable = (function() {
 
             // time active
             this.columns['time_active'].updateTd = function(td, row) {
-                const time = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row));
+                const activeTime = this.getRowValue(row, 0);
+                const seedingTime = this.getRowValue(row, 1);
+                const time = (seedingTime > 0)
+                    ? ('QBT_TR(%1 (seeded for %2))QBT_TR[CONTEXT=TransferListDelegate]'
+                        .replace('%1', window.qBittorrent.Misc.friendlyDuration(activeTime))
+                        .replace('%2', window.qBittorrent.Misc.friendlyDuration(seedingTime)))
+                    : window.qBittorrent.Misc.friendlyDuration(activeTime);
                 td.set('text', time);
                 td.set('title', time);
             };
