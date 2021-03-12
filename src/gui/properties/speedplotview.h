@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2021 Prince Gupta <guptaprince8832@gmail.com>
  * Copyright (C) 2015 Anton Lashkov <lenton_91@mail.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,14 +29,21 @@
 
 #pragma once
 
+#include <array>
+#include <chrono>
+
 #ifndef Q_MOC_RUN
 #include <boost/circular_buffer.hpp>
 #endif
 
+#include <QElapsedTimer>
 #include <QGraphicsView>
 #include <QMap>
 
 class QPen;
+
+using std::chrono::milliseconds;
+using namespace std::chrono_literals;
 
 class SpeedPlotView final : public QGraphicsView
 {
@@ -63,42 +71,50 @@ public:
         MIN1 = 0,
         MIN5,
         MIN30,
+        HOUR3,
         HOUR6,
         HOUR12,
         HOUR24
     };
 
-    struct PointData
-    {
-        qint64 x;
-        quint64 y[NB_GRAPHS];
-    };
+    using SampleData = std::array<quint64, NB_GRAPHS>;
 
     explicit SpeedPlotView(QWidget *parent = nullptr);
 
     void setGraphEnable(GraphID id, bool enable);
     void setPeriod(TimePeriod period);
 
-    void pushPoint(const PointData &point);
-
-    void replot();
+    void pushPoint(const SampleData &point);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
+    struct Sample
+    {
+        milliseconds duration;
+        SampleData data;
+    };
+
+    using DataCircularBuffer = boost::circular_buffer<Sample>;
+
     class Averager
     {
     public:
-        Averager(int divider, boost::circular_buffer<PointData> &sink);
-        void push(const PointData &pointData);
-        bool isReady() const;
+        Averager(milliseconds duration, milliseconds resolution);
+
+        bool push(const SampleData &sampleData); // returns true if there is new data to display
+
+        const DataCircularBuffer &data() const;
 
     private:
-        const int m_divider;
-        boost::circular_buffer<PointData> &m_sink;
-        int m_counter;
-        PointData m_accumulator;
+        const milliseconds m_resolution;
+        const milliseconds m_maxDuration;
+        milliseconds m_currentDuration {0ms};
+        int m_counter = 0;
+        SampleData m_accumulator {};
+        DataCircularBuffer m_sink {};
+        QElapsedTimer m_lastSampleTime;
     };
 
     struct GraphProperties
@@ -111,22 +127,16 @@ private:
         bool enable;
     };
 
-    quint64 maxYValue();
-    boost::circular_buffer<PointData> &getCurrentData();
+    quint64 maxYValue() const;
+    const DataCircularBuffer &currentData() const;
 
-    boost::circular_buffer<PointData> m_data5Min;
-    boost::circular_buffer<PointData> m_data30Min;
-    boost::circular_buffer<PointData> m_data6Hour;
-    boost::circular_buffer<PointData> m_data12Hour;
-    boost::circular_buffer<PointData> m_data24Hour;
-    boost::circular_buffer<PointData> *m_currentData;
-    Averager m_averager30Min;
-    Averager m_averager6Hour;
-    Averager m_averager12Hour;
-    Averager m_averager24Hour;
+    Averager m_averager5Min {5min, 1s};
+    Averager m_averager30Min {30min, 6s};
+    Averager m_averager6Hour {6h, 36s};
+    Averager m_averager12Hour {12h, 72s};
+    Averager m_averager24Hour {24h, 144s};
+    Averager *m_currentAverager {&m_averager5Min};
 
     QMap<GraphID, GraphProperties> m_properties;
-
-    TimePeriod m_period;
-    int m_viewablePointsCount;
+    milliseconds m_currentMaxDuration;
 };

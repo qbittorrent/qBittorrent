@@ -281,6 +281,9 @@
        </property>
        <item>
         <widget class="QTextBrowser" name="textBrowserTranslation">
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
          <property name="lineWrapMode">
           <enum>QTextEdit::NoWrap</enum>
          </property>

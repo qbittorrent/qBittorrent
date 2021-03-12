@@ -313,6 +313,8 @@ public:
     void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
+    bool iconsInMenusEnabled() const;
+    void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS
 
     // Stuff that don't appear in the Options GUI but are saved

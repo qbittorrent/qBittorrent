@@ -91,12 +91,12 @@ void ExecutionLogWidget::displayContextMenu(const QPoint &pos, const LogListView
     // only show copy action if any of the row is selected
     if (view->currentIndex().isValid())
     {
-        const QAction *copyAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
-        connect(copyAct, &QAction::triggered, view, &LogListView::copySelection);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy")
+            , view, &LogListView::copySelection);
     }
 
-    const QAction *clearAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear"));
-    connect(clearAct, &QAction::triggered, model, &BaseLogModel::reset);
+    menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear")
+        , model, &BaseLogModel::reset);
 
     menu->popup(view->mapToGlobal(pos));
 }

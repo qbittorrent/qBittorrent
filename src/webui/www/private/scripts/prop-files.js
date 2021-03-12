@@ -422,38 +422,40 @@ window.qBittorrent.PropFiles = (function() {
         const rootNode = new window.qBittorrent.FileTree.FolderNode();
 
         rows.forEach(function(row) {
+            const pathItems = row.fileName.split(window.qBittorrent.Filesystem.PathSeparator);
+
+            pathItems.pop(); // remove last item (i.e. file name)
             let parent = rootNode;
-            let folderPath = window.qBittorrent.Filesystem.folderName(row.fileName);
-            while (folderPath) {
-                const folderName = window.qBittorrent.Filesystem.fileName(folderPath);
+            pathItems.forEach(function(folderName) {
                 if (folderName === '.unwanted')
                     return;
 
-                let parentNode = null;
+                let folderNode = null;
                 if (parent.children !== null) {
                     for (let i = 0; i < parent.children.length; ++i) {
                         const childFolder = parent.children[i];
                         if (childFolder.name === folderName) {
-                            parentNode = childFolder;
+                            folderNode = childFolder;
                             break;
                         }
                     }
                 }
 
-                if (parentNode === null) {
-                    parentNode = new window.qBittorrent.FileTree.FolderNode();
-                    parentNode.path = folderPath;
-                    parentNode.name = folderName;
-                    parentNode.rowId = rowId;
-                    parentNode.root = parent;
-                    parent.addChild(parentNode);
+                if (folderNode === null) {
+                    folderNode = new window.qBittorrent.FileTree.FolderNode();
+                    folderNode.path = (parent.path === "")
+                            ? folderName
+                            : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
+                    folderNode.name = folderName;
+                    folderNode.rowId = rowId;
+                    folderNode.root = parent;
+                    parent.addChild(folderNode);
 
                     ++rowId;
                 }
 
-                parent = parentNode;
-                folderPath = window.qBittorrent.Filesystem.folderName(folderPath);
-            }
+                parent = folderNode;
+            });
 
             const isChecked = row.checked ? TriState.Checked : TriState.Unchecked;
             const remaining = (row.priority === FilePriority.Ignored) ? 0 : row.remaining;

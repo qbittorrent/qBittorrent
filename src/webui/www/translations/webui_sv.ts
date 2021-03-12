@@ -27,24 +27,20 @@
         <translation>Torrenthanteringsläge:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Behåll mapp på högsta nivå</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout för innehåll:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Skapa undermapp</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Skapa inte undermapp</translation>
     </message>
 </context>
 <context>
@@ -629,7 +625,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Kör externa program när torrent slutförs</translation>
+        <translation>Kör externt program när torrenten slutförs</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -745,11 +741,11 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Högsta antal anslutningar per torrent:</translation>
+        <translation>Högsta antalet anslutningar per torrent:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Globalt högsta antal anslutningar:</translation>
+        <translation>Globalt högsta antalet anslutningar:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
@@ -899,7 +895,7 @@
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Högsta antal aktiva hämtningar:</translation>
+        <translation>Högsta antalet aktiva hämtningar:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
@@ -907,7 +903,7 @@
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Högsta antal aktiva torrenter:</translation>
+        <translation>Högsta antalet aktiva torrenter:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
@@ -959,7 +955,7 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation>%D: Sökväg att spara i</translation>
+        <translation>%D: Sparsökväg</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
@@ -1031,7 +1027,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Standardsökväg att spara i:</translation>
+        <translation>Standardsparsökväg:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1067,7 +1063,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>När standardsökvägen att spara i ändras:</translation>
+        <translation>När standardsparsökvägen ändras:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1079,7 +1075,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>När kategorisökväg att spara i ändras:</translation>
+        <translation>När kategorisparsökvägen ändras:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1391,7 +1387,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Högsta antal artiklar per flöde:</translation>
+        <translation>Högsta antalet artiklar per flöde:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Behåll mapp på högsta nivå</translation>
+        <translation type="vanished">Behåll mapp på högsta nivå</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Stöd internationaliserat domännamn (IDN) (kräver libtorrent &gt;= 1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1591,7 +1603,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Slutförs om:</translation>
+        <translation>Slutförs:</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1643,7 +1655,7 @@
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Annonseras igen om:</translation>
+        <translation>Annonseras igen:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -1663,7 +1675,7 @@
     </message>
     <message>
         <source>Added On:</source>
-        <translation>Lades till:</translation>
+        <translation>Tillagd:</translation>
     </message>
     <message>
         <source>Completed On:</source>
@@ -1679,7 +1691,7 @@
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Sökväg att spara i:</translation>
+        <translation>Sparsökväg:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -1983,7 +1995,7 @@
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Slutförs om</translation>
+        <translation>Slutförs</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2001,7 +2013,7 @@
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Slutfördes den</translation>
+        <translation>Slutfördes</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2050,7 +2062,7 @@
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Sökväg att spara i</translation>
+        <translation>Sparsökväg</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2126,7 +2138,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation>Inga</translation>
+        <translation>Ingen</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2425,7 +2437,7 @@
     </message>
     <message>
         <source>Save path</source>
-        <translation>Sökväg att spara i</translation>
+        <translation>Sparsökväg</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2600,7 +2612,7 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>Sökväg att spara i är tom</translation>
+        <translation>Sparsökvägen är tom</translation>
     </message>
 </context>
 <context>
@@ -3063,7 +3075,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>Hämtning av RSS-flöden är inaktiverad nu! Du kan aktivera det i applikationsinställningar.</translation>
+        <translation>Hämtning av RSS-flöden är inaktiverad nu! Du kan aktivera det i programinställningar.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3106,7 +3118,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Automatisk hämtning av RSS-torrenter är inaktiverad nu! Du kan aktivera den i applikationsinställningar.</translation>
+        <translation>Automatisk hämtning av RSS-torrenter är inaktiverad nu! Du kan aktivera den i programinställningar.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3221,10 +3233,6 @@
         <translation>Alltid</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Skapa undermapp:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>Avsnittnummer är ett obligatoriskt positivt värde</translation>
     </message>
@@ -3266,7 +3274,7 @@
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Använd Smart avsnittsfilter</translation>
+        <translation>Använd smart avsnittsfilter</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -3316,19 +3324,19 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout för torrentinnehåll:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Skapa undermapp</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Skapa inte undermapp</translation>
     </message>
 </context>
 <context>

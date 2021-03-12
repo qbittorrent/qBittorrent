@@ -45,7 +45,7 @@ class QUrl;
 namespace BitTorrent
 {
     class InfoHash;
-    class TrackerEntry;
+    struct TrackerEntry;
 
     class TorrentInfo final : public AbstractFileStorage
     {

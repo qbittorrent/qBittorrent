@@ -30,7 +30,7 @@
         }).activate();
         window.addEvent('domready', () => {
             $('feedURL').focus();
-            const path = decodeURIComponent(new URI().getData('path'));
+            const path = new URI().getData('path');
             $('submitButton').addEvent('click', (e) => {
                 new Event(e).stop();
                 // check field

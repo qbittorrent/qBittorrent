@@ -205,9 +205,7 @@ void TrackerListWidget::moveSelectionUp()
     for (int i = NB_STICKY_ITEM; i < topLevelItemCount(); ++i)
     {
         const QString trackerURL = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
-        BitTorrent::TrackerEntry e(trackerURL);
-        e.setTier(i - NB_STICKY_ITEM);
-        trackers.append(e);
+        trackers.append({trackerURL, (i - NB_STICKY_ITEM)});
     }
 
     torrent->replaceTrackers(trackers);
@@ -251,9 +249,7 @@ void TrackerListWidget::moveSelectionDown()
     for (int i = NB_STICKY_ITEM; i < topLevelItemCount(); ++i)
     {
         const QString trackerURL = topLevelItem(i)->data(COL_URL, Qt::DisplayRole).toString();
-        BitTorrent::TrackerEntry e(trackerURL);
-        e.setTier(i - NB_STICKY_ITEM);
-        trackers.append(e);
+        trackers.append({trackerURL, (i - NB_STICKY_ITEM)});
     }
 
     torrent->replaceTrackers(trackers);
@@ -372,7 +368,7 @@ void TrackerListWidget::loadTrackers()
 
     for (const BitTorrent::TrackerEntry &entry : asConst(torrent->trackers()))
     {
-        const QString trackerURL = entry.url();
+        const QString trackerURL = entry.url;
 
         QTreeWidgetItem *item = m_trackerItems.value(trackerURL, nullptr);
         if (!item)
@@ -387,11 +383,11 @@ void TrackerListWidget::loadTrackers()
             oldTrackerURLs.removeOne(trackerURL);
         }
 
-        item->setText(COL_TIER, QString::number(entry.tier()));
+        item->setText(COL_TIER, QString::number(entry.tier));
 
         const BitTorrent::TrackerInfo data = trackerData.value(trackerURL);
 
-        switch (entry.status())
+        switch (entry.status)
         {
         case BitTorrent::TrackerEntry::Working:
             item->setText(COL_STATUS, tr("Working"));
@@ -412,14 +408,14 @@ void TrackerListWidget::loadTrackers()
         }
 
         item->setText(COL_PEERS, QString::number(data.numPeers));
-        item->setText(COL_SEEDS, ((entry.numSeeds() > -1)
-            ? QString::number(entry.numSeeds())
+        item->setText(COL_SEEDS, ((entry.numSeeds > -1)
+            ? QString::number(entry.numSeeds)
             : tr("N/A")));
-        item->setText(COL_LEECHES, ((entry.numLeeches() > -1)
-            ? QString::number(entry.numLeeches())
+        item->setText(COL_LEECHES, ((entry.numLeeches > -1)
+            ? QString::number(entry.numLeeches)
             : tr("N/A")));
-        item->setText(COL_DOWNLOADED, ((entry.numDownloaded() > -1)
-            ? QString::number(entry.numDownloaded())
+        item->setText(COL_DOWNLOADED, ((entry.numDownloaded > -1)
+            ? QString::number(entry.numDownloaded)
             : tr("N/A")));
 
         const Qt::Alignment alignment = (Qt::AlignRight | Qt::AlignVCenter);
@@ -443,7 +439,7 @@ void TrackerListWidget::askForTrackers()
 
     QVector<BitTorrent::TrackerEntry> trackers;
     for (const QString &tracker : asConst(TrackersAdditionDialog::askForTrackers(this, torrent)))
-        trackers << tracker;
+        trackers.append({tracker});
 
     torrent->addTrackers(trackers);
 }
@@ -492,7 +488,7 @@ void TrackerListWidget::deleteSelectedTrackers()
 
     for (const BitTorrent::TrackerEntry &entry : trackers)
     {
-        if (!urlsToRemove.contains(entry.url()))
+        if (!urlsToRemove.contains(entry.url))
             remainingTrackers.push_back(entry);
     }
 
@@ -529,18 +525,16 @@ void TrackerListWidget::editSelectedTracker()
     bool match = false;
     for (BitTorrent::TrackerEntry &entry : trackers)
     {
-        if (newTrackerURL == QUrl(entry.url()))
+        if (newTrackerURL == QUrl(entry.url))
         {
             QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
             return;
         }
 
-        if (!match && (trackerURL == QUrl(entry.url())))
+        if (!match && (trackerURL == QUrl(entry.url)))
         {
             match = true;
-            BitTorrent::TrackerEntry newEntry(newTrackerURL.toString());
-            newEntry.setTier(entry.tier());
-            entry = newEntry;
+            entry.url = newTrackerURL.toString();
         }
     }
 
@@ -572,7 +566,7 @@ void TrackerListWidget::reannounceSelected()
         // Trackers case
         for (int i = 0; i < trackers.size(); ++i)
         {
-            if (item->text(COL_URL) == trackers[i].url())
+            if (item->text(COL_URL) == trackers[i].url)
             {
                 torrent->forceReannounce(i);
                 break;
@@ -592,30 +586,26 @@ void TrackerListWidget::showTrackerListMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    const QAction *addAct = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add a new tracker..."));
-    connect(addAct, &QAction::triggered, this, &TrackerListWidget::askForTrackers);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add a new tracker...")
+        , this, &TrackerListWidget::askForTrackers);
 
     if (!getSelectedTrackerItems().isEmpty())
     {
-        const QAction *editAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"),tr("Edit tracker URL..."));
-        connect(editAct, &QAction::triggered, this, &TrackerListWidget::editSelectedTracker);
-
-        const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tracker"));
-        connect(delAct, &QAction::triggered, this, &TrackerListWidget::deleteSelectedTrackers);
-
-        const QAction *copyAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy tracker URL"));
-        connect(copyAct, &QAction::triggered, this, &TrackerListWidget::copyTrackerUrl);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"),tr("Edit tracker URL...")
+            , this, &TrackerListWidget::editSelectedTracker);
+        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tracker")
+            , this, &TrackerListWidget::deleteSelectedTrackers);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy tracker URL")
+            , this, &TrackerListWidget::copyTrackerUrl);
     }
 
     if (!torrent->isPaused())
     {
-        const QAction *reannounceSelAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers"));
-        connect(reannounceSelAct, &QAction::triggered, this, &TrackerListWidget::reannounceSelected);
-
+        menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers")
+            , this, &TrackerListWidget::reannounceSelected);
         menu->addSeparator();
-
-        const QAction *reannounceAllAct = menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers"));
-        connect(reannounceAllAct, &QAction::triggered, this, [this]()
+        menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers")
+            , this, [this]()
         {
             BitTorrent::Torrent *h = m_properties->getCurrentTorrent();
             h->forceReannounce();

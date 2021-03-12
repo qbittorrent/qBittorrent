@@ -66,8 +66,8 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
 
     for (const BitTorrent::TrackerEntry &entry : trackers)
     {
-        tiers[entry.tier()] += (entry.url() + '\n');
-        maxTier = std::max(maxTier, entry.tier());
+        tiers[entry.tier] += (entry.url + '\n');
+        maxTier = std::max(maxTier, entry.tier);
     }
 
     QString text = tiers.value(0);
@@ -97,9 +97,7 @@ QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
             continue;
         }
 
-        BitTorrent::TrackerEntry entry {line.toString()};
-        entry.setTier(tier);
-        entries.append(entry);
+        entries.append({line.toString(), tier});
     }
 
     return entries;

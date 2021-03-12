@@ -47,6 +47,7 @@ class ExecutionLogWidget;
 class LineEdit;
 class OptionsDialog;
 class PowerManagement;
+class ProgramUpdater;
 class PropertiesWidget;
 class RSSWidget;
 class SearchWidget;
@@ -134,9 +135,6 @@ private slots:
     void finishedTorrent(BitTorrent::Torrent *const torrent) const;
     void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
     void optionsSaved();
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
-#endif
     void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
@@ -177,9 +175,7 @@ private slots:
     void on_actionLock_triggered();
     // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
     void updatePowerManagementState();
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    void checkProgramUpdate();
-#endif
+
     void toolbarMenuRequested(const QPoint &point);
     void toolbarIconsOnly();
     void toolbarTextOnly();
@@ -252,10 +248,13 @@ private:
     // Power Management
     PowerManagement *m_pwr;
     QTimer *m_preventTimer;
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    QTimer *m_programUpdateTimer;
-    bool m_wasUpdateCheckEnabled;
-#endif
     bool m_hasPython;
     QMenu *m_toolbarMenu;
+
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    void checkProgramUpdate(bool invokedByUser);
+    void handleUpdateCheckFinished(ProgramUpdater *updater, bool invokedByUser);
+
+    QTimer *m_programUpdateTimer = nullptr;
+#endif
 };

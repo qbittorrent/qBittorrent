@@ -29,6 +29,7 @@
 #pragma once
 
 #include <QSortFilterProxyModel>
+
 #include "base/torrentfilter.h"
 
 namespace BitTorrent
@@ -53,10 +54,13 @@ public:
     void disableTrackerFilter();
 
 private:
+    int compare(const QModelIndex &left, const QModelIndex &right) const;
+
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
-    bool lessThan_impl(const QModelIndex &left, const QModelIndex &right) const;
 
     TorrentFilter m_filter;
+    mutable int m_subSortColumn = -1;
+    mutable int m_sortColumn = -1;
 };

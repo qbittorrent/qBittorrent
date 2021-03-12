@@ -27,24 +27,20 @@
         <translation>Modo de Gerenciamento de Torrents:</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Manter pasta de nível superior</translation>
-    </message>
-    <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout do conteúdo:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Criar subpasta</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Não criar subpasta</translation>
     </message>
 </context>
 <context>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Manter pasta de nível superior</translation>
+        <translation type="vanished">Manter pasta de nível superior</translation>
     </message>
     <message>
         <source> min</source>
@@ -1443,6 +1439,22 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
+        <translation>Suporte a nome de domínio internacionalizado (IDN) (necessário libtorrent &gt;=1.2.12):</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3221,10 +3233,6 @@
         <translation>Sempre</translation>
     </message>
     <message>
-        <source>Create Subfolder:</source>
-        <translation type="vanished">Criar subpasta:</translation>
-    </message>
-    <message>
         <source>Episode number is a mandatory positive value</source>
         <translation>O número do episódio é um valor positivo obrigatório</translation>
     </message>
@@ -3316,19 +3324,19 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout do conteúdo do torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Criar subpasta</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Não criar subpasta</translation>
     </message>
 </context>
 <context>

@@ -471,7 +471,7 @@ void SyncController::maindataAction()
         if (iterTorrents != lastResponse.end())
         {
             const QVariantHash lastResponseTorrents = iterTorrents->toHash();
-            const auto iterHash = lastResponseTorrents.find(torrentHash);
+            const auto iterHash = lastResponseTorrents.find(torrentHash.toString());
 
             if (iterHash != lastResponseTorrents.end())
             {
@@ -488,9 +488,9 @@ void SyncController::maindataAction()
         }
 
         for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
-            trackers[tracker.url()] << torrentHash;
+            trackers[tracker.url] << torrentHash.toString();
 
-        torrents[torrentHash] = map;
+        torrents[torrentHash.toString()] = map;
     }
     data["torrents"] = torrents;
 
@@ -541,7 +541,7 @@ void SyncController::torrentPeersAction()
     auto lastResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastResponse")).toMap();
     auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastAcceptedResponse")).toMap();
 
-    const QString hash {params()["hash"]};
+    const auto hash = BitTorrent::InfoHash::fromString(params()["hash"]);
     const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->findTorrent(hash);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);

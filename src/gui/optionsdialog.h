@@ -33,7 +33,6 @@
 #include "base/bittorrent/scheduler/scheduleday.h"
 #include "base/settingvalue.h"
 
-class QAbstractButton;
 class QCloseEvent;
 class QListWidgetItem;
 class QPoint;
@@ -98,7 +97,7 @@ private slots:
     void on_buttonBox_accepted();
     void closeEvent(QCloseEvent *e) override;
     void on_buttonBox_rejected();
-    void applySettings(QAbstractButton *button);
+    void applySettings();
     void enableApplyButton();
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
@@ -189,7 +188,7 @@ private:
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
 
-    QAbstractButton *m_applyButton;
+    QPushButton *m_applyButton;
 
     AdvancedSettings *m_advancedSettings;
 

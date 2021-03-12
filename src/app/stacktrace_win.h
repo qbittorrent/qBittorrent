@@ -24,6 +24,7 @@
 #include <dbghelp.h>
 #include <stdio.h>
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
 #ifdef __MINGW32__
@@ -256,7 +257,7 @@ const QString straceWin::getBacktrace()
 
     HANDLE hProcess = GetCurrentProcess();
     HANDLE hThread = GetCurrentThread();
-    SymInitialize(hProcess, NULL, TRUE);
+    SymInitializeW(hProcess, QCoreApplication::applicationDirPath().toStdWString().c_str(), TRUE);
 
     DWORD64 dwDisplacement;
 

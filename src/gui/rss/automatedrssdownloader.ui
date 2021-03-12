@@ -209,7 +209,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Assign Category:</string>
+               <string>Category:</string>
               </property>
              </widget>
             </item>
@@ -219,6 +219,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                <bool>false</bool>
               </property>
              </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="addCategoryBtn" />
             </item>
            </layout>
           </item>

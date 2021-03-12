@@ -234,6 +234,16 @@ void Preferences::setCloseToTrayNotified(const bool b)
 {
     setValue("Preferences/General/CloseToTrayNotified", b);
 }
+
+bool Preferences::iconsInMenusEnabled() const
+{
+    return value("Preferences/Advanced/EnableIconsInMenus", true).toBool();
+}
+
+void Preferences::setIconsInMenusEnabled(const bool enable)
+{
+    setValue("Preferences/Advanced/EnableIconsInMenus", enable);
+}
 #endif // Q_OS_MACOS
 
 bool Preferences::isToolbarDisplayed() const

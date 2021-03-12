@@ -51,14 +51,6 @@
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 
-#if !defined(Q_OS_WIN) || (LIBTORRENT_VERSION_NUM >= 10212)
-#define HAS_HTTPS_TRACKER_VALIDATION
-#endif
-
-#if ((LIBTORRENT_VERSION_NUM >= 10212) && (LIBTORRENT_VERSION_NUM < 20000)) || (LIBTORRENT_VERSION_NUM >= 20002)
-#define HAS_IDN_SUPPORT
-#endif
-
 class QFile;
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
@@ -107,8 +99,8 @@ namespace BitTorrent
     class Torrent;
     class TorrentImpl;
     class Tracker;
-    class TrackerEntry;
     struct LoadTorrentParams;
+    struct TrackerEntry;
 
     enum class MoveStorageMode;
 
@@ -392,6 +384,8 @@ namespace BitTorrent
         void setOutgoingPortsMax(int max);
         int UPnPLeaseDuration() const;
         void setUPnPLeaseDuration(int duration);
+        int peerToS() const;
+        void setPeerToS(int value);
         bool ignoreLimitsOnLAN() const;
         void setIgnoreLimitsOnLAN(bool ignore);
         bool includeOverheadInLimits() const;
@@ -632,8 +626,8 @@ namespace BitTorrent
         void createTorrent(const lt::torrent_handle &nativeHandle);
 
         void saveResumeData();
-        void saveTorrentsQueue();
-        void removeTorrentsQueue();
+        void saveTorrentsQueue() const;
+        void removeTorrentsQueue() const;
 
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
@@ -681,6 +675,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<int> m_UPnPLeaseDuration;
+        CachedSettingValue<int> m_peerToS;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;

@@ -35,7 +35,7 @@
 
 namespace BitTorrent
 {
-    class TrackerEntry;
+    struct TrackerEntry;
 }
 
 namespace Ui

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="az@latin" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="az@latin" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Alt qovluq yarat</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
 </context>
@@ -91,7 +93,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent&apos;dən çıxmaq</translation>
+        <translation>qBittorrent'dən çıxmaq</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -151,7 +153,7 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Paylaşma nisbəti limiti 0 ilə 9998 arasında olmalıdır.</translation>
+        <translation>Paylaşım nisbəti həddi 0 ilə 9998 arasında olmalıdır.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
@@ -356,7 +358,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript&apos;i aktiv etməlisiniz</translation>
+        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript'i aktiv etməlisiniz</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -475,7 +477,7 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation>qBittorent&apos;dən çıxmaq istədiyinizə əminsiniz?</translation>
+        <translation>qBittorent'dən çıxmaq istədiyinizə əminsiniz?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
@@ -972,8 +974,8 @@
         <translation>%I: Məlumat ünvanlaması</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1241,7 +1243,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>İştirakçılarla mütənasib (TCP&apos;ni məhdudlaşdırır)</translation>
+        <translation>İştirakçılarla mütənasib (TCP'ni məhdudlaşdırır)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1393,7 +1395,7 @@
     </message>
     <message>
         <source>Keep top-level folder</source>
-        <translation>Ən yuxarı səviyyədəki qovluğu saxlamaq</translation>
+        <translation type="vanished">Ən yuxarı səviyyədəki qovluğu saxlamaq</translation>
     </message>
     <message>
         <source> min</source>
@@ -1438,6 +1440,22 @@
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
         <translation>Beynəlxalq domen adı (İDN) dəstəkləmək (libtorrent &gt;= 1.2.12 tələb edilir)</translation>
+    </message>
+    <message>
+        <source>Torrent content layout:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1633,11 +1651,11 @@
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation>Paylaşma tezliyi:</translation>
+        <translation>Paylaşım nisbəti:</translation>
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Təkrar elan:</translation>
+        <translation>Növbəti anons:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -1778,7 +1796,7 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>İndiyədək paylaşılanların nisbəti:</translation>
+        <translation>Ümumi paylaşım nisbəti:</translation>
     </message>
     <message>
         <source>All-time download:</source>
@@ -1972,7 +1990,7 @@
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Sürət</translation>
+        <translation>Nisbət</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -2054,7 +2072,7 @@
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Sürət limiti</translation>
+        <translation>Nisbət həddi</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -2317,7 +2335,7 @@
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Paylaşım nisbəti limiti...</translation>
+        <translation>Paylaşım nisbəti həddi...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
@@ -2411,7 +2429,7 @@
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Məcburi təkrar elan etmək</translation>
+        <translation>Məcburi təkrar anons etmək</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2466,7 +2484,7 @@
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Torrent Göndərmə/Endirmə nisbəti məhdudlanır</translation>
+        <translation>Torrent Göndərmə/Endirmə nisbəti məhdudiyyəti</translation>
     </message>
     <message>
         <source>Use global share limit</source>
@@ -2482,7 +2500,7 @@
     </message>
     <message>
         <source>ratio</source>
-        <translation>sürət</translation>
+        <translation>nisbət</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -2714,7 +2732,7 @@
         <translation>Aktiv edildi</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Xəbərdarlıq: Bu axtarış sistemlərinin hər hansı birindən istifadə edərək torrentləri yükləyərkən, mütləq ölkənizin müəllif hüquqları haqqında qanununa rəayət edin.</translation>
     </message>
     <message>
@@ -3317,7 +3335,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
 </context>
