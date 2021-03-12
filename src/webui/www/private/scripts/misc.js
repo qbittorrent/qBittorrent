@@ -43,7 +43,8 @@ window.qBittorrent.Misc = (function() {
             escapeHtml: escapeHtml,
             safeTrim: safeTrim,
             toFixedPointString: toFixedPointString,
-            containsAllTerms: containsAllTerms
+            containsAllTerms: containsAllTerms,
+            MAX_ETA: 8640000
         };
     };
 
@@ -94,9 +95,8 @@ window.qBittorrent.Misc = (function() {
     /*
     * JS counterpart of the function in src/misc.cpp
     */
-    const friendlyDuration = function(seconds) {
-        const MAX_ETA = 8640000;
-        if (seconds < 0 || seconds >= MAX_ETA)
+    const friendlyDuration = function(seconds, maxCap = -1) {
+        if (seconds < 0 || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
         if (seconds === 0)
             return "0";
@@ -109,11 +109,13 @@ window.qBittorrent.Misc = (function() {
         minutes = minutes % 60;
         if (hours < 24)
             return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(hours)).replace("%2", parseInt(minutes));
-        const days = hours / 24;
+        let days = hours / 24;
         hours = hours % 24;
-        if (days < 100)
+        if (days < 365)
             return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(days)).replace("%2", parseInt(hours));
-        return "∞";
+        const years = days / 365;
+        days = days % 365;
+        return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(years)).replace("%2", parseInt(days));
     }
 
     const friendlyPercentage = function(value) {
@@ -213,3 +215,5 @@ window.qBittorrent.Misc = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.Misc);
