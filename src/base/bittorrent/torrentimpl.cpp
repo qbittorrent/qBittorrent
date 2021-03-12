@@ -118,7 +118,7 @@ namespace
 
         int numUpdating = 0;
         int numWorking = 0;
-        int numNotContacted = 0;
+        int numNotWorking = 0;
 #if (LIBTORRENT_VERSION_NUM >= 20000)
         const int numEndpoints = nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
         trackerEntry.endpoints.reserve(numEndpoints);
@@ -143,6 +143,7 @@ namespace
                     else if (infoHash.fails > 0)
                     {
                         trackerEndpoint.status = TrackerEntry::NotWorking;
+                        ++numNotWorking;
                     }
                     else if (nativeEntry.verified)
                     {
@@ -152,7 +153,6 @@ namespace
                     else
                     {
                         trackerEndpoint.status = TrackerEntry::NotContacted;
-                        ++numNotContacted;
                     }
                     trackerEntry.endpoints.append(trackerEndpoint);
 
@@ -163,7 +163,8 @@ namespace
             }
         }
 #else
-        trackerEntry.endpoints.reserve(nativeEntry.endpoints.size());
+        const int numEndpoints = nativeEntry.endpoints.size();
+        trackerEntry.endpoints.reserve(numEndpoints);
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             TrackerEntry::EndpointStats trackerEndpoint;
@@ -178,6 +179,7 @@ namespace
             else if (endpoint.fails > 0)
             {
                 trackerEndpoint.status = TrackerEntry::NotWorking;
+                ++numNotWorking;
             }
             else if (nativeEntry.verified)
             {
@@ -187,7 +189,6 @@ namespace
             else
             {
                 trackerEndpoint.status = TrackerEntry::NotContacted;
-                ++numNotContacted;
             }
             trackerEntry.endpoints.append(trackerEndpoint);
 
@@ -197,14 +198,15 @@ namespace
         }
 #endif
 
-        if (numUpdating > 0)
-            trackerEntry.status = TrackerEntry::Updating;
-        else if (numWorking > 0)
-            trackerEntry.status = TrackerEntry::Working;
-        else if (numNotContacted > 0)
-            trackerEntry.status = TrackerEntry::NotContacted;
-        else
-            trackerEntry.status = TrackerEntry::NotWorking;
+        if (numEndpoints > 0)
+        {
+            if (numUpdating > 0)
+                trackerEntry.status = TrackerEntry::Updating;
+            else if (numWorking > 0)
+                trackerEntry.status = TrackerEntry::Working;
+            else if (numNotWorking == numEndpoints)
+                trackerEntry.status = TrackerEntry::NotWorking;
+        }
 
         return trackerEntry;
     }
