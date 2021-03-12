@@ -649,8 +649,8 @@ void OptionsDialog::initializeSchedulerTables()
         {
             tr("From", "i.e.: Beginning of time range"),
             tr("To", "i.e.: End of time range"),
-            tr("Download", "i.e.: Download rate limit"),
-            tr("Upload", "i.e.: Upload rate limit")
+            tr("Download", "i.e.: Download speed limit"),
+            tr("Upload", "i.e.: Upload speed limit")
         });
 
         scheduleTable->setAlternatingRowColors(true);
@@ -1645,7 +1645,6 @@ void OptionsDialog::on_buttonBox_accepted()
 
 void OptionsDialog::applySettings()
 {
-
     if (!webUIAuthenticationOk())
     {
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);

@@ -1887,13 +1887,6 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
-             <widget class="QCheckBox" name="checkScheduleEnable">
-              <property name="text">
-               <string>Enable advanced scheduler</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QGroupBox" name="rateLimitBox">
               <property name="title">
                <string>Global Rate Limits</string>
@@ -1965,9 +1958,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QTabWidget" name="tabSchedule"/>
-            </item>
-            <item>
              <widget class="QGroupBox" name="altRateLimitBox">
               <property name="title">
                <string>Alternative Rate Limits</string>
@@ -2037,6 +2027,16 @@
                </item>
               </layout>
              </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkScheduleEnable">
+              <property name="text">
+               <string>Enable advanced scheduler</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTabWidget" name="tabSchedule"/>
             </item>
             <item>
              <widget class="QGroupBox" name="rateLimitsGroupBox">
