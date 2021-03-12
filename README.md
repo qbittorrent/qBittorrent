@@ -65,10 +65,19 @@ Latest AppImage download: [qBittorrent-Enhanced-Edition.AppImage](https://github
 brew install --cask c0re100-qbittorrent
 ```
 
-#### Windows (Chocolatey) (Maintainer: [iYato](https://github.com/iYato))
+#### Windows
+
+Chocolatey (Maintainer: [iYato](https://github.com/iYato))
 
 ```
 choco install qbittorrent-enhanced
+```
+
+Scoop (Maintainer: [Chawye Hsu](https://github.com/chawyehsu))
+
+```
+scoop bucket add dorado https://github.com/chawyehsu/dorado
+scoop install qbittorrent-enhanced
 ```
 
 ### Misc:
