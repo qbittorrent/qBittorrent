@@ -105,7 +105,7 @@ window.qBittorrent.PropGeneral = (function() {
                         temp = window.qBittorrent.Misc.friendlyDuration(data.time_elapsed);
                     $('time_elapsed').set('html', temp);
 
-                    $('eta').set('html', window.qBittorrent.Misc.friendlyDuration(data.eta));
+                    $('eta').set('html', window.qBittorrent.Misc.friendlyDuration(data.eta, window.qBittorrent.Misc.MAX_ETA));
 
                     temp = "QBT_TR(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.nb_connections)
