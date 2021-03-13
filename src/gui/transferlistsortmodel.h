@@ -30,6 +30,7 @@
 
 #include <QSortFilterProxyModel>
 
+#include "base/settingvalue.h"
 #include "base/torrentfilter.h"
 
 namespace BitTorrent
@@ -61,6 +62,6 @@ private:
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
     TorrentFilter m_filter;
-    mutable int m_subSortColumn = -1;
-    mutable int m_sortColumn = -1;
+    mutable CachedSettingValue<int> m_subSortColumn;
+    mutable int m_lastSortColumn = -1;
 };
