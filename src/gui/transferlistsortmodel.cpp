@@ -99,15 +99,15 @@ void TransferListSortModel::disableTagFilter()
         invalidateFilter();
 }
 
-void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes)
+void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
-    if (m_filter.setHashSet(hashes))
+    if (m_filter.setTorrentIDSet(torrentIDs))
         invalidateFilter();
 }
 
 void TransferListSortModel::disableTrackerFilter()
 {
-    if (m_filter.setHashSet(TorrentFilter::AnyHash))
+    if (m_filter.setTorrentIDSet(TorrentFilter::AnyID))
         invalidateFilter();
 }
 

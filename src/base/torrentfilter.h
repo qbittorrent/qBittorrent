@@ -38,7 +38,7 @@ namespace BitTorrent
     class Torrent;
 }
 
-using InfoHashSet = QSet<BitTorrent::InfoHash>;
+using TorrentIDSet = QSet<BitTorrent::TorrentID>;
 
 class TorrentFilter
 {
@@ -61,7 +61,7 @@ public:
 
     // These mean any permutation, including no category / tag.
     static const QString AnyCategory;
-    static const InfoHashSet AnyHash;
+    static const TorrentIDSet AnyID;
     static const QString AnyTag;
 
     static const TorrentFilter DownloadingTorrent;
@@ -79,12 +79,12 @@ public:
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
     // Pass null string (QString()) to disable filtering (i.e. all torrents).
-    TorrentFilter(Type type, const InfoHashSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tag = AnyTag);
-    TorrentFilter(const QString &filter, const InfoHashSet &hashSet = AnyHash, const QString &category = AnyCategory, const QString &tags = AnyTag);
+    TorrentFilter(Type type, const TorrentIDSet &idSet = AnyID, const QString &category = AnyCategory, const QString &tag = AnyTag);
+    TorrentFilter(const QString &filter, const TorrentIDSet &idSet = AnyID, const QString &category = AnyCategory, const QString &tags = AnyTag);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
-    bool setHashSet(const InfoHashSet &hashSet);
+    bool setTorrentIDSet(const TorrentIDSet &idSet);
     bool setCategory(const QString &category);
     bool setTag(const QString &tag);
 
@@ -99,5 +99,5 @@ private:
     Type m_type {All};
     QString m_category;
     QString m_tag;
-    InfoHashSet m_hashSet;
+    TorrentIDSet m_idSet;
 };

@@ -312,8 +312,9 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
     // Save path
     updateSavePath(m_torrent);
-    // Hash
-    m_ui->labelHashVal->setText(m_torrent->hash().toString());
+    // Info hash (Truncated info hash (torrent ID) with libtorrent2)
+    // TODO: Update label for this property to express its meaning more clearly (or change it to display real info hash(es))
+    m_ui->labelHashVal->setText(m_torrent->id().toString());
     m_propListModel->model()->clear();
     if (m_torrent->hasMetadata())
     {

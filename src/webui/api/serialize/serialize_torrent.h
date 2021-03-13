@@ -36,7 +36,7 @@ namespace BitTorrent
 }
 
 // Torrent keys
-const char KEY_TORRENT_HASH[] = "hash";
+const char KEY_TORRENT_ID[] = "hash";
 const char KEY_TORRENT_NAME[] = "name";
 const char KEY_TORRENT_MAGNET_URI[] = "magnet_uri";
 const char KEY_TORRENT_SIZE[] = "size";
