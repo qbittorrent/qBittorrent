@@ -61,10 +61,17 @@ namespace
             return 0;
         return isLeftValid ? -1 : 1;
     }
+
+    int adjustSubSortColumn(const int column)
+    {
+        return ((column >= 0) && (column < TransferListModel::NB_COLUMNS))
+                   ? column : TransferListModel::TR_NAME;
+    }
 }
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel {parent}
+    , m_subSortColumn {"TransferList/SubSortColumn", TransferListModel::TR_NAME, adjustSubSortColumn}
 {
     setSortRole(TransferListModel::UnderlyingDataRole);
 }
@@ -186,14 +193,15 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 {
     Q_ASSERT(left.column() == right.column());
 
-    if (m_sortColumn != left.column())
+    if (m_lastSortColumn != left.column())
     {
-        m_subSortColumn = m_sortColumn;
-        m_sortColumn = left.column();
+        if (m_lastSortColumn != -1)
+            m_subSortColumn = m_lastSortColumn;
+        m_lastSortColumn = left.column();
     }
 
     const int result = compare(left, right);
-    if ((result == 0) && (m_subSortColumn != -1))
+    if (result == 0)
         return compare(left.sibling(left.row(), m_subSortColumn), right.sibling(right.row(), m_subSortColumn)) < 0;
 
     return result < 0;
