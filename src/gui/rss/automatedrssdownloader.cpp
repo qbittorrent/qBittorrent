@@ -719,10 +719,14 @@ void AutomatedRssDownloader::updateMustLineValidity()
     {
         QStringList tokens;
         if (isRegex)
+        {
             tokens << text;
+        }
         else
+        {
             for (const QString &token : asConst(text.split('|')))
-                tokens << Utils::String::wildcardToRegex(token);
+                tokens << Utils::String::wildcardToRegexPattern(token);
+        }
 
         for (const QString &token : asConst(tokens))
         {
@@ -762,10 +766,14 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     {
         QStringList tokens;
         if (isRegex)
+        {
             tokens << text;
+        }
         else
+        {
             for (const QString &token : asConst(text.split('|')))
-                tokens << Utils::String::wildcardToRegex(token);
+                tokens << Utils::String::wildcardToRegexPattern(token);
+        }
 
         for (const QString &token : asConst(tokens))
         {

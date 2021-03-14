@@ -50,7 +50,7 @@ namespace Utils::String
         return (naturalCompare(left, right, caseSensitivity) < 0);
     }
 
-    QString wildcardToRegex(const QString &pattern);
+    QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
     T unquote(const T &str, const QString &quotes = QChar('"'))
