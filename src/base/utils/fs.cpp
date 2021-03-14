@@ -78,11 +78,7 @@ QString Utils::Fs::toUniformPath(const QString &path)
 QString Utils::Fs::fileExtension(const QString &filename)
 {
     const QString name = filename.endsWith(QB_EXT)
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
         ? filename.chopped(QB_EXT.length())
-#else
-        ? filename.left(filename.length() - QB_EXT.length())
-#endif
         : filename;
     return QMimeDatabase().suffixForFileName(name);
 }

@@ -304,13 +304,10 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     int yAxisWidth = 0;
     for (const QString &label : speedLabels)
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+    {
         if (fontMetrics.horizontalAdvance(label) > yAxisWidth)
             yAxisWidth = fontMetrics.horizontalAdvance(label);
-#else
-        if (fontMetrics.width(label) > yAxisWidth)
-            yAxisWidth = fontMetrics.width(label);
-#endif
+    }
 
     int i = 0;
     for (const QString &label : speedLabels)
@@ -391,13 +388,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         if (!property.enable)
             continue;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         if (fontMetrics.horizontalAdvance(property.name) > legendWidth)
             legendWidth = fontMetrics.horizontalAdvance(property.name);
-#else
-        if (fontMetrics.width(property.name) > legendWidth)
-            legendWidth = fontMetrics.width(property.name);
-#endif
         legendHeight += 1.5 * fontMetrics.height();
     }
 
@@ -412,11 +404,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         if (!property.enable)
             continue;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         int nameSize = fontMetrics.horizontalAdvance(property.name);
-#else
-        int nameSize = fontMetrics.width(property.name);
-#endif
         double indent = 1.5 * (i++) * fontMetrics.height();
 
         painter.setPen(property.pen);

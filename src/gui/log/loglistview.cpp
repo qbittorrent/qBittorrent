@@ -46,11 +46,7 @@ namespace
 
     int horizontalAdvance(const QFontMetrics &fontMetrics, const QString &text)
     {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         return fontMetrics.horizontalAdvance(text);
-#else
-        return fontMetrics.width(text);
-#endif
     }
 
     QString logText(const QModelIndex &index)
