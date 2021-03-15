@@ -88,7 +88,7 @@ namespace Net
             AuthCramMD5
         };
 
-        QByteArray encodeMimeHeader(const QString &key, const QString &value, const QTextCodec *latin1, const QByteArray &prefix = {});
+        QByteArray encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix = {});
         void ehlo();
         void helo();
         void parseEhloResponse(const QByteArray &code, bool continued, const QString &line);
