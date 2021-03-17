@@ -29,9 +29,9 @@
 #pragma once
 
 #include <QCache>
+#include <QHostAddress>
 #include <QObject>
 
-class QHostAddress;
 class QHostInfo;
 class QString;
 

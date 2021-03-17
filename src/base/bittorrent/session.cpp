@@ -100,7 +100,6 @@
 #include "statistics.h"
 #include "torrentimpl.h"
 #include "tracker.h"
-#include "trackerentry.h"
 
 static const char PEER_ID[] = "qB";
 static const char RESUME_FOLDER[] = "BT_backup";
