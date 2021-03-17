@@ -37,7 +37,6 @@
 #include <QDebug>
 #include <QHostInfo>
 #include <QStringList>
-#include <QTextCodec>
 
 #ifndef QT_NO_OPENSSL
 #include <QSslSocket>
@@ -89,6 +88,14 @@ namespace
 
         return hostname.toLocal8Bit();
     }
+
+    bool canEncodeAsLatin1(const QStringView string)
+    {
+        return std::none_of(string.cbegin(), string.cend(), [](const QChar &ch)
+        {
+            return ch > QChar(0xff);
+        });
+    }
 } // namespace
 
 using namespace Net;
@@ -137,11 +144,10 @@ Smtp::~Smtp()
 void Smtp::sendMail(const QString &from, const QString &to, const QString &subject, const QString &body)
 {
     const Preferences *const pref = Preferences::instance();
-    QTextCodec *latin1 = QTextCodec::codecForName("latin1");
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-                + encodeMimeHeader("From", from, latin1)
-                + encodeMimeHeader("Subject", subject, latin1)
-                + encodeMimeHeader("To", to, latin1)
+                + encodeMimeHeader("From", from)
+                + encodeMimeHeader("Subject", subject)
+                + encodeMimeHeader("To", to)
                 + "MIME-Version: 1.0\r\n"
                 + "Content-Type: text/plain; charset=UTF-8\r\n"
                 + "Content-Transfer-Encoding: base64\r\n"
@@ -312,12 +318,12 @@ void Smtp::readyRead()
     }
 }
 
-QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, const QTextCodec *latin1, const QByteArray &prefix)
+QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix)
 {
     QByteArray rv = "";
     QByteArray line = key.toLatin1() + ": ";
     if (!prefix.isEmpty()) line += prefix;
-    if (!value.contains("=?") && latin1->canEncode(value))
+    if (!value.contains("=?") && canEncodeAsLatin1(value))
     {
         bool firstWord = true;
         for (const QByteArray &word : asConst(value.toLatin1().split(' ')))
