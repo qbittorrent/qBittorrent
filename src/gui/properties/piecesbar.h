@@ -54,15 +54,19 @@ public:
     virtual void clear();
 
     // QObject interface
-    virtual bool event(QEvent*) override;
+    virtual bool event(QEvent *e) override;
 
 protected:
     // QWidget interface
-    void enterEvent(QEvent*) override;
-    void leaveEvent(QEvent*) override;
-    void mouseMoveEvent(QMouseEvent*) override;
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    void enterEvent(QEnterEvent *e) override;
+#else
+    void enterEvent(QEvent *e) override;
+#endif
+    void leaveEvent(QEvent *e) override;
+    void mouseMoveEvent(QMouseEvent *e) override;
 
-    void paintEvent(QPaintEvent*) override;
+    void paintEvent(QPaintEvent *e) override;
     void requestImageUpdate();
 
     QColor backgroundColor() const;
