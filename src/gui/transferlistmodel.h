@@ -110,7 +110,7 @@ private slots:
 private:
     void configure();
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
-    QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt = false) const;
+    QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
 
     QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
     QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
