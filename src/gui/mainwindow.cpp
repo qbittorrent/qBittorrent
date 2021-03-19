@@ -30,6 +30,7 @@
 
 #include <chrono>
 
+#include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
