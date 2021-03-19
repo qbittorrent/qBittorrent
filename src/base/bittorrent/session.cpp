@@ -63,7 +63,9 @@
 #include <QFile>
 #include <QHostAddress>
 #include <QNetworkAddressEntry>
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #include <QNetworkConfigurationManager>
+#endif
 #include <QNetworkInterface>
 #include <QRegularExpression>
 #include <QString>
@@ -465,7 +467,9 @@ Session::Session(QObject *parent)
     , m_statistics {new Statistics {this}}
     , m_ioThread {new QThread {this}}
     , m_recentErroredTorrentsTimer {new QTimer {this}}
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     , m_networkManager {new QNetworkConfigurationManager {this}}
+#endif
 {
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
@@ -506,11 +510,13 @@ Session::Session(QObject *parent)
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
         , this, &Session::configureDeferred);
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     // Network configuration monitor
     connect(m_networkManager, &QNetworkConfigurationManager::onlineStateChanged, this, &Session::networkOnlineStateChanged);
     connect(m_networkManager, &QNetworkConfigurationManager::configurationAdded, this, &Session::networkConfigurationChange);
     connect(m_networkManager, &QNetworkConfigurationManager::configurationRemoved, this, &Session::networkConfigurationChange);
     connect(m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &Session::networkConfigurationChange);
+#endif
 
     m_resumeDataSavingManager = new ResumeDataSavingManager {m_resumeFolderPath};
     m_resumeDataSavingManager->moveToThread(m_ioThread);
@@ -2445,6 +2451,7 @@ void Session::setTempPath(QString path)
         torrent->handleTempPathChanged();
 }
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 void Session::networkOnlineStateChanged(const bool online)
 {
     LogMsg(tr("System network status changed to %1", "e.g: System network status changed to ONLINE").arg(online ? tr("ONLINE") : tr("OFFLINE")), Log::INFO);
@@ -2465,6 +2472,7 @@ void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
         configureListeningInterface();
     }
 }
+#endif
 
 QStringList Session::getListeningIPs() const
 {

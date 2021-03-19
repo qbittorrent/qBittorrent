@@ -53,8 +53,10 @@
 #include "trackerentry.h"
 
 class QFile;
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
+#endif
 class QString;
 class QThread;
 class QTimer;
@@ -542,9 +544,11 @@ namespace BitTorrent
         void handleDownloadFinished(const Net::DownloadResult &result);
         void fileSearchFinished(const TorrentID &id, const QString &savePath, const QStringList &fileNames);
 
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);
         void networkConfigurationChange(const QNetworkConfiguration &);
+#endif
 
     private:
         struct MoveStorageJob
@@ -784,8 +788,9 @@ namespace BitTorrent
 
         SessionStatus m_status;
         CacheStatus m_cacheStatus;
-
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
         QNetworkConfigurationManager *m_networkManager = nullptr;
+#endif
 
         QList<MoveStorageJob> m_moveStorageQueue;
 
