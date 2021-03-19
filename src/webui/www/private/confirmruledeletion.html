@@ -27,7 +27,7 @@
                         noCache: true,
                         method: 'post',
                         data: {
-                            ruleName: rule
+                            ruleName: decodeURIComponent(rule)
                         },
                         onComplete: (response) => {
                             ++completionCount;
