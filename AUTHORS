@@ -17,19 +17,23 @@ Contributors:
 * Nick Tiskov <daymansmail@gmail.com>
 
 Code from other projects:
-* files src/qtsingleapplication/* src/lineedit/*
+* files src/app/qtlocalpeer/*
   copyright: Nokia Corporation
-  license: LGPL
+  license: mixed
 
-* files src/ico.cpp src/ico.h
-  copyright: Malte Starostik <malte@kde.org>
-  license: LGPL
+* files src/gui/lineedit.*
+  copyright: Trolltech ASA <info@trolltech.com>
+  license: custom
 
 * files src/search_engine/socks.py
   copyright: Dan Haim <negativeiq@users.sourceforge.net>
   license: BSD
 
-* file src/stacktrace_win.h
+* file src/app/stacktrace.h
+  copyright: Timo Bingmann from http://idlebox.net/
+  license: WTFPL v2.0
+
+* file src/app/stacktrace_win.h
   copyright: Quassel Project
   license: GPLv2/3
 
