@@ -33,8 +33,7 @@
             if (!currentUrl)
                 return false;
 
-            const decodedUrl = decodeURIComponent(currentUrl);
-            $('trackerUrl').value = decodedUrl;
+            $('trackerUrl').value = currentUrl;
             $('trackerUrl').focus();
 
             $('editTrackerButton').addEvent('click', function(e) {
@@ -45,7 +44,7 @@
                     method: 'post',
                     data: {
                         hash: hash,
-                        origUrl: decodedUrl,
+                        origUrl: currentUrl,
                         newUrl: $('trackerUrl').value
                     },
                     onComplete: function() {

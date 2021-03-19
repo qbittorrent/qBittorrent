@@ -697,11 +697,12 @@
         };
 
         const removeItem = (paths) => {
+            const encodedPaths = paths.map((path) => encodeURIComponent(path));
             new MochaUI.Window({
                 id: 'confirmFeedDeletionPage',
                 title: 'QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]',
                 loadMethod: 'iframe',
-                contentURL: 'confirmfeeddeletion.html?paths=' + encodeURIComponent(paths.join('|')),
+                contentURL: 'confirmfeeddeletion.html?paths=' + encodeURIComponent(encodedPaths.join('|')),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
