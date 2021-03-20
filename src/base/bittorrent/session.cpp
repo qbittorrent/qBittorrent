@@ -4253,51 +4253,7 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
     if (!hasMetadata && !root.dict_find("info-hash"))
-    {
-        // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
-        // === BEGIN DEPRECATED CODE === //
-        // Try to load from legacy data used in older versions for torrents w/o metadata
-        const lt::bdecode_node magnetURINode = root.dict_find("qBt-magnetUri");
-        if (magnetURINode.type() == lt::bdecode_node::string_t)
-        {
-            lt::parse_magnet_uri(magnetURINode.string_value(), p, ec);
-
-            if (isTempPathEnabled())
-            {
-                p.save_path = Utils::Fs::toNativePath(tempPath()).toStdString();
-            }
-            else
-            {
-                // If empty then Automatic mode, otherwise Manual mode
-                const QString savePath = torrentParams.savePath.isEmpty() ? categorySavePath(torrentParams.category) : torrentParams.savePath;
-                p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-            }
-
-            // Preallocation mode
-            p.storage_mode = (isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse);
-
-            const lt::bdecode_node addedTimeNode = root.dict_find("qBt-addedTime");
-            if (addedTimeNode.type() == lt::bdecode_node::int_t)
-                p.added_time = addedTimeNode.int_value();
-
-            const lt::bdecode_node sequentialNode = root.dict_find("qBt-sequential");
-            if (sequentialNode.type() == lt::bdecode_node::int_t)
-            {
-                if (static_cast<bool>(sequentialNode.int_value()))
-                    p.flags |= lt::torrent_flags::sequential_download;
-                else
-                    p.flags &= ~lt::torrent_flags::sequential_download;
-            }
-
-            if (torrentParams.name.isEmpty() && !p.name.empty())
-                torrentParams.name = QString::fromStdString(p.name);
-        }
-        // === END DEPRECATED CODE === //
-        else
-        {
-            return false;
-        }
-    }
+        return false;
 
     return true;
 }
