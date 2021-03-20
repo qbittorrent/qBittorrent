@@ -1676,6 +1676,9 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
         return;
     }
 
+    if (m_nativeHandle.need_save_resume_data())
+        m_session->handleTorrentNeedSaveResumeData(this);
+
     if (m_fastresumeDataRejected && !m_hasMissingFiles)
         m_fastresumeDataRejected = false;
 
