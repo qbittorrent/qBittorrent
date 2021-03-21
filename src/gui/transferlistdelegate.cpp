@@ -68,9 +68,30 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
     {
     case TransferListModel::TR_PROGRESS:
         {
+            using namespace BitTorrent;
+
+            const auto isEnableState = [](const TorrentState state) -> bool
+            {
+                switch (state)
+                {
+                case TorrentState::Error:
+                case TorrentState::PausedDownloading:
+                case TorrentState::Unknown:
+                    return false;
+                default:
+                    return true;
+                }
+            };
+
             const int progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
 
-            m_progressBarPainter.paint(painter, option, index.data().toString(), progress);
+            const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
+            const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<TorrentState>();
+
+            QStyleOptionViewItem customOption {option};
+            customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
+
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
         }
         break;
     default:

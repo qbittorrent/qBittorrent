@@ -11,7 +11,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - OpenSSL >= 1.1.1
 
-  - Qt >= 5.9.5
+  - Qt >= 5.12
 
   - zlib >= 1.2.11
 

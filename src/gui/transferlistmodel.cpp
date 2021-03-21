@@ -498,7 +498,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case Qt::DisplayRole:
         return displayValue(torrent, index.column());
     case UnderlyingDataRole:
-        return internalValue(torrent, index.column());
+        return internalValue(torrent, index.column(), false);
     case AdditionalUnderlyingDataRole:
         return internalValue(torrent, index.column(), true);
     case Qt::DecorationRole:
