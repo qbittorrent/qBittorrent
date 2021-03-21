@@ -30,6 +30,7 @@
 
 #include <chrono>
 
+#include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
@@ -876,36 +877,36 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
     m_ui->actionDelete->setShortcut(QKeySequence::Delete);
     m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
-    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
-    m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
+    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_O);
+    m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
 
-    const auto *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
+    const auto *switchTransferShortcut = new QShortcut((Qt::ALT | Qt::Key_1), this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
-    const auto *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
+    const auto *switchSearchShortcut = new QShortcut((Qt::ALT | Qt::Key_2), this);
     connect(switchSearchShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displaySearchTab));
-    const auto *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
+    const auto *switchRSSShortcut = new QShortcut((Qt::ALT | Qt::Key_3), this);
     connect(switchRSSShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displayRSSTab));
-    const auto *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
+    const auto *switchExecutionLogShortcut = new QShortcut((Qt::ALT | Qt::Key_4), this);
     connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
     const auto *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
     connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
-    m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
-    m_ui->actionStatistics->setShortcut(Qt::CTRL + Qt::Key_I);
-    m_ui->actionStart->setShortcut(Qt::CTRL + Qt::Key_S);
-    m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_S);
-    m_ui->actionPause->setShortcut(Qt::CTRL + Qt::Key_P);
-    m_ui->actionPauseAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_P);
-    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Minus);
-    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Minus);
-    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Plus);
-    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
+    m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
+    m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);
+    m_ui->actionStart->setShortcut(Qt::CTRL | Qt::Key_S);
+    m_ui->actionStartAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
+    m_ui->actionPause->setShortcut(Qt::CTRL | Qt::Key_P);
+    m_ui->actionPauseAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Minus);
+    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Minus);
+    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
+    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Plus);
 #ifdef Q_OS_MACOS
     m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
     addAction(m_ui->actionMinimize);
