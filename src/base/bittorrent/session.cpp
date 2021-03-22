@@ -44,6 +44,7 @@
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
+#include <libtorrent/entry.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
 #include <libtorrent/extensions/ut_metadata.hpp>
@@ -55,6 +56,7 @@
 #include <libtorrent/session_stats.hpp>
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/write_resume_data.hpp>
 
 #include <QDebug>
 #include <QDir>
@@ -301,6 +303,17 @@ namespace
                 return upper;
             return value;
         };
+    }
+
+    using ListType = lt::entry::list_type;
+
+    ListType setToEntryList(const QSet<QString> &input)
+    {
+        ListType entryList;
+        entryList.reserve(input.size());
+        for (const QString &setValue : input)
+            entryList.emplace_back(setValue.toStdString());
+        return entryList;
     }
 
 #ifdef Q_OS_WIN
@@ -3926,16 +3939,52 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const std::shared_ptr<lt::entry> &data)
+void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
 {
     --m_numResumeData;
+
+    // We need to adjust native libtorrent resume data
+    lt::add_torrent_params p = data.ltAddTorrentParams;
+    p.save_path = Profile::instance()->toPortablePath(QString::fromStdString(p.save_path)).toStdString();
+    if (data.paused)
+    {
+        p.flags |= lt::torrent_flags::paused;
+        p.flags &= ~lt::torrent_flags::auto_managed;
+    }
+    else
+    {
+        // Torrent can be actually "running" but temporarily "paused" to perform some
+        // service jobs behind the scenes so we need to restore it as "running"
+        if (!data.forced)
+        {
+            p.flags |= lt::torrent_flags::auto_managed;
+        }
+        else
+        {
+            p.flags &= ~lt::torrent_flags::paused;
+            p.flags &= ~lt::torrent_flags::auto_managed;
+        }
+    }
 
     // Separated thread is used for the blocking IO which results in slow processing of many torrents.
     // Copying lt::entry objects around isn't cheap.
 
+    auto resumeDataPtr = std::make_shared<lt::entry>(lt::write_resume_data(p));
+    lt::entry &resumeData = *resumeDataPtr;
+
+    resumeData["qBt-savePath"] = Profile::instance()->toPortablePath(data.savePath).toStdString();
+    resumeData["qBt-ratioLimit"] = static_cast<int>(data.ratioLimit * 1000);
+    resumeData["qBt-seedingTimeLimit"] = data.seedingTimeLimit;
+    resumeData["qBt-category"] = data.category.toStdString();
+    resumeData["qBt-tags"] = setToEntryList(data.tags);
+    resumeData["qBt-name"] = data.name.toStdString();
+    resumeData["qBt-seedStatus"] = data.hasSeedStatus;
+    resumeData["qBt-contentLayout"] = Utils::String::fromEnum(data.contentLayout).toStdString();
+    resumeData["qBt-firstLastPiecePriority"] = data.firstLastPiecePriority;
+
     const QString filename = QString::fromLatin1("%1.fastresume").arg(torrent->id().toString());
     QMetaObject::invokeMethod(m_resumeDataSavingManager
-        , [this, filename, data]() { m_resumeDataSavingManager->save(filename, data); });
+        , [this, filename, resumeDataPtr]() { m_resumeDataSavingManager->save(filename, resumeDataPtr); });
 }
 
 void Session::handleTorrentTrackerReply(TorrentImpl *const torrent, const QString &trackerUrl)
@@ -4253,51 +4302,7 @@ bool Session::loadTorrentResumeData(const QByteArray &data, const TorrentInfo &m
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
     if (!hasMetadata && !root.dict_find("info-hash"))
-    {
-        // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
-        // === BEGIN DEPRECATED CODE === //
-        // Try to load from legacy data used in older versions for torrents w/o metadata
-        const lt::bdecode_node magnetURINode = root.dict_find("qBt-magnetUri");
-        if (magnetURINode.type() == lt::bdecode_node::string_t)
-        {
-            lt::parse_magnet_uri(magnetURINode.string_value(), p, ec);
-
-            if (isTempPathEnabled())
-            {
-                p.save_path = Utils::Fs::toNativePath(tempPath()).toStdString();
-            }
-            else
-            {
-                // If empty then Automatic mode, otherwise Manual mode
-                const QString savePath = torrentParams.savePath.isEmpty() ? categorySavePath(torrentParams.category) : torrentParams.savePath;
-                p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-            }
-
-            // Preallocation mode
-            p.storage_mode = (isPreallocationEnabled() ? lt::storage_mode_allocate : lt::storage_mode_sparse);
-
-            const lt::bdecode_node addedTimeNode = root.dict_find("qBt-addedTime");
-            if (addedTimeNode.type() == lt::bdecode_node::int_t)
-                p.added_time = addedTimeNode.int_value();
-
-            const lt::bdecode_node sequentialNode = root.dict_find("qBt-sequential");
-            if (sequentialNode.type() == lt::bdecode_node::int_t)
-            {
-                if (static_cast<bool>(sequentialNode.int_value()))
-                    p.flags |= lt::torrent_flags::sequential_download;
-                else
-                    p.flags &= ~lt::torrent_flags::sequential_download;
-            }
-
-            if (torrentParams.name.isEmpty() && !p.name.empty())
-                torrentParams.name = QString::fromStdString(p.name);
-        }
-        // === END DEPRECATED CODE === //
-        else
-        {
-            return false;
-        }
-    }
+        return false;
 
     return true;
 }

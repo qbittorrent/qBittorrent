@@ -39,13 +39,11 @@
 
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
-#include <libtorrent/entry.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
 #include <libtorrent/version.hpp>
-#include <libtorrent/write_resume_data.hpp>
 
 #if (LIBTORRENT_VERSION_NUM >= 20000)
 #include <libtorrent/info_hash.hpp>
@@ -61,7 +59,6 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
-#include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "common.h"
@@ -89,16 +86,6 @@ namespace
                         static_cast<LTUnderlyingType<lt::download_priority_t>>(priority));
         });
         return out;
-    }
-
-    using ListType = lt::entry::list_type;
-
-    ListType setToEntryList(const QSet<QString> &input)
-    {
-        ListType entryList;
-        for (const QString &setValue : input)
-            entryList.emplace_back(setValue.toStdString());
-        return entryList;
     }
 
     lt::announce_entry makeNativeAnnouncerEntry(const QString &url, const int tier)
@@ -1676,6 +1663,9 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
         return;
     }
 
+    if (m_nativeHandle.need_save_resume_data())
+        m_session->handleTorrentNeedSaveResumeData(this);
+
     if (m_fastresumeDataRejected && !m_hasMissingFiles)
         m_fastresumeDataRejected = false;
 
@@ -1756,29 +1746,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         m_ltAddTorrentParams = p->params;
     }
 
-    if (m_isStopped)
-    {
-        m_ltAddTorrentParams.flags |= lt::torrent_flags::paused;
-        m_ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
-    }
-    else
-    {
-        // Torrent can be actually "running" but temporarily "paused" to perform some
-        // service jobs behind the scenes so we need to restore it as "running"
-        if (m_operatingMode == TorrentOperatingMode::AutoManaged)
-        {
-            m_ltAddTorrentParams.flags |= lt::torrent_flags::auto_managed;
-        }
-        else
-        {
-            m_ltAddTorrentParams.flags &= ~lt::torrent_flags::paused;
-            m_ltAddTorrentParams.flags &= ~lt::torrent_flags::auto_managed;
-        }
-    }
-
     m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
-    m_ltAddTorrentParams.save_path = Profile::instance()->toPortablePath(
-                QString::fromStdString(m_ltAddTorrentParams.save_path)).toStdString();
 
     if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
     {
@@ -1791,37 +1759,21 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         m_session->findIncompleteFiles(metadata, m_savePath);
     }
 
-    auto resumeDataPtr = std::make_shared<lt::entry>(lt::write_resume_data(m_ltAddTorrentParams));
-    lt::entry &resumeData = *resumeDataPtr;
+    LoadTorrentParams resumeData;
+    resumeData.name = m_name;
+    resumeData.category = m_category;
+    resumeData.savePath = m_useAutoTMM ? "" : m_savePath;
+    resumeData.tags = m_tags;
+    resumeData.contentLayout = m_contentLayout;
+    resumeData.ratioLimit = m_ratioLimit;
+    resumeData.seedingTimeLimit = m_seedingTimeLimit;
+    resumeData.firstLastPiecePriority = m_hasFirstLastPiecePriority;
+    resumeData.hasSeedStatus = m_hasSeedStatus;
+    resumeData.paused = m_isStopped;
+    resumeData.forced = (m_operatingMode == TorrentOperatingMode::Forced);
+    resumeData.ltAddTorrentParams = m_ltAddTorrentParams;
 
-    // TODO: The following code is deprecated. Remove after several releases in 4.3.x.
-    // === BEGIN DEPRECATED CODE === //
-    const bool useDummyResumeData = !hasMetadata();
-    if (useDummyResumeData)
-    {
-        updateStatus();
-
-        resumeData["qBt-magnetUri"] = createMagnetURI().toStdString();
-        // sequentialDownload needs to be stored in the
-        // resume data if there is no metadata, otherwise they won't be
-        // restored if qBittorrent quits before the metadata are retrieved:
-        resumeData["qBt-sequential"] = isSequentialDownload();
-
-        resumeData["qBt-addedTime"] = addedTime().toSecsSinceEpoch();
-    }
-    // === END DEPRECATED CODE === //
-
-    resumeData["qBt-savePath"] = m_useAutoTMM ? "" : Profile::instance()->toPortablePath(m_savePath).toStdString();
-    resumeData["qBt-ratioLimit"] = static_cast<int>(m_ratioLimit * 1000);
-    resumeData["qBt-seedingTimeLimit"] = m_seedingTimeLimit;
-    resumeData["qBt-category"] = m_category.toStdString();
-    resumeData["qBt-tags"] = setToEntryList(m_tags);
-    resumeData["qBt-name"] = m_name.toStdString();
-    resumeData["qBt-seedStatus"] = m_hasSeedStatus;
-    resumeData["qBt-contentLayout"] = Utils::String::fromEnum(m_contentLayout).toStdString();
-    resumeData["qBt-firstLastPiecePriority"] = m_hasFirstLastPiecePriority;
-
-    m_session->handleTorrentResumeDataReady(this, resumeDataPtr);
+    m_session->handleTorrentResumeDataReady(this, resumeData);
 }
 
 void TorrentImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p)

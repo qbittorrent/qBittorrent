@@ -484,7 +484,7 @@ namespace BitTorrent
         void handleTorrentTrackersChanged(TorrentImpl *const torrent);
         void handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds);
-        void handleTorrentResumeDataReady(TorrentImpl *const torrent, const std::shared_ptr<lt::entry> &data);
+        void handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data);
         void handleTorrentTrackerReply(TorrentImpl *const torrent, const QString &trackerUrl);
         void handleTorrentTrackerWarning(TorrentImpl *const torrent, const QString &trackerUrl);
         void handleTorrentTrackerError(TorrentImpl *const torrent, const QString &trackerUrl);
