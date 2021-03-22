@@ -11,6 +11,7 @@ HEADERS += \
     $$PWD/bittorrent/filesearcher.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
+    $$PWD/bittorrent/loadtorrentparams.h \
     $$PWD/bittorrent/ltqhash.h \
     $$PWD/bittorrent/ltunderlyingtype.h \
     $$PWD/bittorrent/magneturi.h \
@@ -19,7 +20,7 @@ HEADERS += \
     $$PWD/bittorrent/peeraddress.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/portforwarderimpl.h \
-    $$PWD/bittorrent/resumedatasavingmanager.h \
+    $$PWD/bittorrent/resumedatastorage.h \
     $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
@@ -104,7 +105,7 @@ SOURCES += \
     $$PWD/bittorrent/peeraddress.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/portforwarderimpl.cpp \
-    $$PWD/bittorrent/resumedatasavingmanager.cpp \
+    $$PWD/bittorrent/resumedatastorage.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/speedmonitor.cpp \
     $$PWD/bittorrent/statistics.cpp \
