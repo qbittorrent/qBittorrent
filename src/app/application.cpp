@@ -134,9 +134,6 @@ Application::Application(int &argc, char **argv)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
 {
-    qRegisterMetaType<Log::Msg>("Log::Msg");
-    qRegisterMetaType<Log::Peer>("Log::Peer");
-
     setApplicationName("qBittorrent");
     setOrganizationDomain("qbittorrent.org");
 #if !defined(DISABLE_GUI)
@@ -145,6 +142,18 @@ Application::Application(int &argc, char **argv)
     setQuitOnLastWindowClosed(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
+
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
+    const bool endInit = (m_commandLineArgs.showVersion || m_commandLineArgs.showHelp || !m_commandLineArgs.unknownParameter.isEmpty());
+#else
+    const bool endInit = (m_commandLineArgs.showHelp || !m_commandLineArgs.unknownParameter.isEmpty());
+#endif
+
+    if (endInit)
+        return;
+
+    qRegisterMetaType<Log::Msg>("Log::Msg");
+    qRegisterMetaType<Log::Peer>("Log::Peer");
 
     const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty()
             && QDir(QCoreApplication::applicationDirPath()).exists(DEFAULT_PORTABLE_MODE_PROFILE_DIR);
