@@ -823,21 +823,24 @@ void Parser::addArticle(QVariantHash article)
 {
     QVariant &torrentURL = article[Article::KeyTorrentURL];
     if (torrentURL.toString().isEmpty())
-        torrentURL = article[Article::KeyLink];
+        torrentURL = article.value(Article::KeyLink);
 
     // If item does not have an ID, fall back to some other identifier.
     QVariant &localId = article[Article::KeyId];
     if (localId.toString().isEmpty())
-        localId = article.value(Article::KeyTorrentURL);
-    if (localId.toString().isEmpty())
-        localId = article.value(Article::KeyTitle);
-
-    if (localId.toString().isEmpty())
     {
-        // The article could not be uniquely identified
-        // since it has no appropriate data.
-        // Just ignore it.
-        return;
+        localId = article.value(Article::KeyTorrentURL);
+        if (localId.toString().isEmpty())
+        {
+            localId = article.value(Article::KeyTitle);
+            if (localId.toString().isEmpty())
+            {
+                // The article could not be uniquely identified
+                // since it has no appropriate data.
+                // Just ignore it.
+                return;
+            }
+        }
     }
 
     if (m_articleIDs.contains(localId.toString()))
