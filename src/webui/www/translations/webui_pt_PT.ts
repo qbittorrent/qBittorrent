@@ -36,7 +36,7 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>Criar subpasta:</translation>
+        <translation>Criar subpasta</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -1394,10 +1394,6 @@
         <translation>Máximo de anúncios HTTP simultâneos (requer libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Manter pasta de nível superior</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Disposição do conteúdo do torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Criar subpasta</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Não criar subpasta</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Renomear...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Parado</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3158,7 +3170,7 @@
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| é utilizado como operador OR</translation>
+        <translation>| é utilizado como operador OU (OR)</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3166,7 +3178,7 @@
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>Espaços em branco contam como operadores AND (todas as palavras, qualquer ordem)</translation>
+        <translation>Espaços em branco contam como operadores E (AND) (todas as palavras, qualquer ordem)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3254,7 +3266,7 @@
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation>Transferidor de Rss</translation>
+        <translation>Transferidor de RSS</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>

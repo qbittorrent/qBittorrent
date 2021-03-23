@@ -40,7 +40,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Erstelle keine Unterordner</translation>
+        <translation>Erstelle keinen Unterordner</translation>
     </message>
 </context>
 <context>
@@ -1394,10 +1394,6 @@
         <translation>Max. gleichzeitige HTTP-Ansagen (erfordert libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Oberstes Verzeichnis behalten</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> Min.</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout für Torrent-Inhalt:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Erstelle Unterordner</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Erstelle keinen Unterordner</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Umbenennen ...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Verzögert</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2496,7 +2504,7 @@
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation>Begrenzung für das Verhältnis setzen</translation>
+        <translation>Setze Begrenzung für das Verhältnis auf</translation>
     </message>
     <message>
         <source>ratio</source>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 Min</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3336,7 +3348,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Erstelle keine Unterordner</translation>
+        <translation>Erstelle keinen Unterordner</translation>
     </message>
 </context>
 <context>

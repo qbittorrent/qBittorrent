@@ -1395,10 +1395,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Màxim d'anuncis concurrents d'HTTP (cal libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Mantén la capeta del nivell més elevat</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min.</translation>
     </message>
@@ -1444,18 +1440,22 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Disposició del contingut Torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crea una subcarpeta</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>No creïs una subcarpeta</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1741,6 +1741,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Rename...</source>
         <translation>Canvia'n el nom...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2280,6 +2284,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>Stalled</source>
         <translation>Interromput</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2607,6 +2615,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

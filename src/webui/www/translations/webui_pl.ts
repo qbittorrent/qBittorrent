@@ -1394,10 +1394,6 @@
         <translation>Maksymalna liczba jednoczesnych komunikatów HTTP (wymaga libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Zachowaj folder najwyższego poziomu</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Układ zawartości torrenta:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Utwórz podfolder</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Pierwotny</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Nie twórz podfolderu</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1741,12 +1741,16 @@
         <source>Rename...</source>
         <translation>Zmień nazwę...</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation>Monitorowany katalog</translation>
+        <translation>Monitorowany folder</translation>
     </message>
     <message>
         <source>Override Save Location</source>
@@ -1754,7 +1758,7 @@
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation>Monitorowany katalog</translation>
+        <translation>Monitorowany folder</translation>
     </message>
     <message>
         <source>Default save location</source>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Oczekujący</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
