@@ -1287,13 +1287,15 @@ window.qBittorrent.DynamicTable = (function() {
                             return false;
                         break;  // do nothing
 
-                    default:
+                    default: {
                         let rowTags = row['full_data'].tags.split(', ');
                         rowTags = rowTags.map(function(tag) {
                             return genHash(tag);
                         });
                         if (!rowTags.contains(tagHashInt))
                             return false;
+                        break;
+                    }
                 }
             }
 
@@ -1305,11 +1307,12 @@ window.qBittorrent.DynamicTable = (function() {
                     if (row['full_data'].trackers_count !== 0)
                         return false;
                     break;
-                default:
+                default: {
                     const tracker = trackerList.get(trackerHashInt);
                     if (tracker && !tracker.torrents.includes(row['full_data'].rowId))
                         return false;
                     break;
+                }
             }
 
             if ((filterTerms !== undefined) && (filterTerms !== null)
