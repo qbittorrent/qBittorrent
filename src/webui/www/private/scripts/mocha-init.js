@@ -120,9 +120,9 @@ const initializeWindows = function() {
         const id = 'downloadPage';
         let contentUrl = 'download.html';
         if (urls && (urls.length > 0)) {
-            contentUrl += ('?urls=' + urls.map(function(url) {
+            contentUrl += ('?urls=' + encodeURIComponent(urls.map(function(url) {
                 return encodeURIComponent(url);
-            }).join("|"));
+            }).join("|")));
         }
 
         new MochaUI.Window({

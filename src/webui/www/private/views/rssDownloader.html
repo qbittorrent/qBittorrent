@@ -535,11 +535,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const removeRules = (rules) => {
+            const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
                 id: 'removeRulePage',
                 title: 'QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]',
                 loadMethod: 'iframe',
-                contentURL: 'confirmruledeletion.html?rules=' + encodeURIComponent(rules.join('|')),
+                contentURL: 'confirmruledeletion.html?rules=' + encodeURIComponent(encodedRules.join('|')),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -549,11 +550,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const clearDownloadedEpisodes = (rules) => {
+            const encodedRules = rules.map((rule) => encodeURIComponent(rule));
             new MochaUI.Window({
                 id: 'clearRulesPage',
                 title: 'QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]',
                 loadMethod: 'iframe',
-                contentURL: 'confirmruleclear.html?rules=' + encodeURIComponent(rules.join('|')),
+                contentURL: 'confirmruleclear.html?rules=' + encodeURIComponent(encodedRules.join('|')),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
