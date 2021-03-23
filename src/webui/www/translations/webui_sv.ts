@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Gräns för delningsförhållandet måste vara mellan 0 och 9998.</translation>
+        <translation>Gräns för delningskvot måste vara mellan 0 och 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
@@ -469,11 +469,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>Allmän hastighetsgräns för sändning</translation>
+        <translation>Global hastighetsgräns för sändning</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Allmän hastighetsgräns för hämtning</translation>
+        <translation>Global hastighetsgräns för hämtning</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -753,7 +753,7 @@
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Allmänt maximalt antal sändningsplatser:</translation>
+        <translation>Globalt högsta antalet sändningsplatser:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -813,7 +813,7 @@
     </message>
     <message>
         <source>Upload:</source>
-        <translation>Skickat:</translation>
+        <translation>Sändning:</translation>
     </message>
     <message>
         <source>Download:</source>
@@ -1147,7 +1147,7 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>När förhållandet når</translation>
+        <translation>När kvoten når</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
@@ -1394,10 +1394,6 @@
         <translation>Maximalt antal samtidiga HTTP-meddelande (kräver libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Behåll mapp på högsta nivå</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout för torrentinnehåll:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Skapa undermapp</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Ursprunglig</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Skapa inte undermapp</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1603,7 +1603,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Slutförs:</translation>
+        <translation>Slutförs om:</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1651,7 +1651,7 @@
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation>Delningsförhållande:</translation>
+        <translation>Delningskvot:</translation>
     </message>
     <message>
         <source>Reannounce In:</source>
@@ -1741,6 +1741,10 @@
         <source>Rename...</source>
         <translation>Byter namn...</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1796,7 +1800,7 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>Alla tiders delningsförhållande:</translation>
+        <translation>Alla tiders delningskvot:</translation>
     </message>
     <message>
         <source>All-time download:</source>
@@ -1990,7 +1994,7 @@
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation>Förhållande</translation>
+        <translation>Kvot</translation>
     </message>
     <message>
         <source>ETA</source>
@@ -2072,7 +2076,7 @@
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Förhållandegräns</translation>
+        <translation>Kvotgräns</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Avstannad</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2335,7 +2343,7 @@
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Begränsa delningsförhållande...</translation>
+        <translation>Begränsa delningskvot...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
@@ -2500,7 +2508,7 @@
     </message>
     <message>
         <source>ratio</source>
-        <translation>förhållande</translation>
+        <translation>kvot</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

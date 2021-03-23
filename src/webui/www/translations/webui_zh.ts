@@ -1351,7 +1351,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>对等进出阈值百分比：</translation>
+        <translation>Peer 进出阈值百分比：</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1383,7 +1383,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>对等进出断开百分比：</translation>
+        <translation>Peer 进出断开百分比：</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1394,16 +1394,12 @@
         <translation>最大并发 HTTP 发布（需要libtorrent&gt; = 1.2.7）：</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">保留顶层文件夹</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>分钟</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>对等进出断开间隔：</translation>
+        <translation>Peer 进出断开间隔：</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1411,7 +1407,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>禁止连接到特权端口上的对等方：</translation>
+        <translation>禁止连接到特权端口上的 Peer：</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1435,7 +1431,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation>对等连接协议：</translation>
+        <translation>下载连接协议：</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent 内容布局：</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>创建子文件夹</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原始</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>不创建子文件夹</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>重命名...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>等待</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 分钟</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3118,7 +3130,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>自动下载 RSS Torrent 功能已被禁用。您可以在程序的选项中开启。</translation>
+        <translation>自动下载 RSS torrent 功能已被禁用！您可以在应用程序的设置中开启它。</translation>
     </message>
     <message>
         <source>Rule Definition</source>

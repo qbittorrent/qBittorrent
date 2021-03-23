@@ -6,89 +6,85 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="15"/>
         <source>About qBittorrent</source>
-        <translation type="unfinished">qBittorrent के बारे में</translation>
+        <translation>क्यूबिटटोरेंट के बारे में</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="52"/>
         <source>About</source>
-        <translation type="unfinished">बारे मेॅ</translation>
+        <translation>बारे में</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="81"/>
         <source>Author</source>
-        <translation type="unfinished">लेखक</translation>
+        <translation>रचनाकार</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="87"/>
         <source>Current maintainer</source>
-        <translation type="unfinished">वर्तमान अनुरक्षक</translation>
+        <translation>वर्तमान अनुरक्षक</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="93"/>
         <source>Greece</source>
-        <translation type="unfinished">ग्रीस</translation>
+        <translation>ग्रीस</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="113"/>
         <location filename="../gui/aboutdialog.ui" line="204"/>
         <source>Nationality:</source>
-        <translation type="unfinished"></translation>
+        <translation>नागरिकता:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="120"/>
         <location filename="../gui/aboutdialog.ui" line="197"/>
         <source>E-mail:</source>
-        <translation type="unfinished">ई-मेल:</translation>
+        <translation>ईमेल:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="127"/>
         <location filename="../gui/aboutdialog.ui" line="190"/>
         <source>Name:</source>
-        <translation type="unfinished">नाम:</translation>
+        <translation>नाम:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="157"/>
         <source>Original author</source>
-        <translation type="unfinished">मूल लेखक</translation>
+        <translation>मूल निर्माता</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="163"/>
         <source>France</source>
-        <translation type="unfinished">फ्रांस</translation>
+        <translation>फ्रांस</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="241"/>
         <source>Special Thanks</source>
-        <translation type="unfinished"></translation>
+        <translation>सादर आभार</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="267"/>
         <source>Translators</source>
-        <translation type="unfinished"></translation>
+        <translation>अनुवादक</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.ui" line="293"/>
+        <location filename="../gui/aboutdialog.ui" line="296"/>
         <source>License</source>
-        <translation type="unfinished">अधिकार</translation>
+        <translation>लाइसेंस</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.ui" line="319"/>
+        <location filename="../gui/aboutdialog.ui" line="322"/>
         <source>Software Used</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रयुक्त सॉफ्टवेयर</translation>
     </message>
     <message>
-        <source>Libraries</source>
-        <translation type="obsolete">लाईब्रेरीज</translation>
-    </message>
-    <message>
-        <location filename="../gui/aboutdialog.ui" line="325"/>
+        <location filename="../gui/aboutdialog.ui" line="328"/>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट निम्नलिखित लाइब्रेरी द्वारा निर्मित है :</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="66"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>C++ कोड प्रयुक्त कर क्यूटी टूलकिट व libtorrent-rasterbar आधारित, एक उन्नत बिट टोरेंट साधन।</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
@@ -98,116 +94,69 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
         <source>Home Page:</source>
-        <translation type="unfinished"></translation>
+        <translation>होम पृष्ठ:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="69"/>
         <source>Forum:</source>
-        <translation type="unfinished"></translation>
+        <translation>चर्चा मंच:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Bug Tracker:</source>
-        <translation type="unfinished"></translation>
+        <translation>समस्या ट्रैकर:</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="110"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>AboutDlg</name>
-    <message>
-        <source>About qBittorrent</source>
-        <translation type="vanished">qBittorrent के बारे में</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="vanished">बारे मेॅ</translation>
-    </message>
-    <message>
-        <source>Author</source>
-        <translation type="vanished">लेखक</translation>
-    </message>
-    <message>
-        <source>Name:</source>
-        <translation type="vanished">नाम:</translation>
-    </message>
-    <message>
-        <source>E-mail:</source>
-        <translation type="vanished">ई-मेल:</translation>
-    </message>
-    <message>
-        <source>Greece</source>
-        <translation type="vanished">ग्रीस</translation>
-    </message>
-    <message>
-        <source>Current maintainer</source>
-        <translation type="vanished">वर्तमान अनुरक्षक</translation>
-    </message>
-    <message>
-        <source>Original author</source>
-        <translation type="vanished">मूल लेखक</translation>
-    </message>
-    <message>
-        <source>Libraries</source>
-        <translation type="vanished">लाईब्रेरीज</translation>
-    </message>
-    <message>
-        <source>France</source>
-        <translation type="vanished">फ्रांस</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">अधिकार</translation>
+        <translation>पीयर देशों के समन्वय हेतु DB-IP द्वारा प्रदान निशुल्क IP to Country Lite डेटाबेस उपयोग में है। यह डेटाबेस Creative Commons Attribution 4.0 अंतर्राष्ट्रीय लाइसेंस के तहत है।</translation>
     </message>
 </context>
 <context>
     <name>AbstractFileStorage</name>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="60"/>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="103"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="102"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>पुराना पथ अमान्य है: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="62"/>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="105"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="104"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>नया पथ अमान्य है: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="66"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="70"/>
         <source>Invalid file path: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइल पथ अमान्य है: &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="72"/>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="116"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="115"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="83"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="82"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइल पहले से ही है: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="87"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="86"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>ऐसी फाइल नहीं है: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="129"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="127"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>फोल्डर पहले से ही है: &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="133"/>
+        <location filename="../base/bittorrent/abstractfilestorage.cpp" line="131"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>कोई ऐसा फोल्डर नहीं मिला: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -215,46 +164,42 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="80"/>
         <source>Save at</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Set as default save path</source>
-        <translation type="vanished">डिफाल्ट सेव पथ के रूप में सेट करें</translation>
+        <translation>यहाँ संचित करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="384"/>
         <source>Never show again</source>
-        <translation>पुन: नहीं दिखायें</translation>
+        <translation>पुनः न दिखाएँ</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="99"/>
         <source>Torrent settings</source>
-        <translation>टाॅरेंट सेटिंग्स</translation>
+        <translation>टोरेंट सेटिंग्स</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="132"/>
         <source>Set as default category</source>
-        <translation type="unfinished"></translation>
+        <translation>डिफ़ॉल्ट श्रेणी के रूप में सेट करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="107"/>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणी:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="172"/>
         <source>Start torrent</source>
-        <translation>टाॅरेंट चालू करें</translation>
+        <translation>टौरेंट आरंभ करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="249"/>
         <source>Torrent information</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट सूचना</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="158"/>
         <source>Skip hash check</source>
-        <translation>हैश चेक छोड़ें</translation>
+        <translation>हैश जाँच निरस्त</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="196"/>
@@ -264,27 +209,27 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="207"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>मूल</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="212"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>उपफोल्डर बनायें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="217"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>उपफोल्डर न बनायें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="268"/>
         <source>Size:</source>
-        <translation>साईज:</translation>
+        <translation>आकार:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="341"/>
         <source>Hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>हैश:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="348"/>
@@ -294,108 +239,104 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="255"/>
         <source>Date:</source>
-        <translation>तारीख:</translation>
+        <translation>दिनांक:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="41"/>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट प्रबंधन मोड:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="48"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>स्वतः मोड यानि टोरेंट विशेषताएँ (संचय पथ आदि) संबंधित श्रेणी द्वारा निर्धारित होगी</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="52"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>स्वयं</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="57"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>स्वतः</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Remember last used save path</source>
-        <translation type="unfinished"></translation>
+        <translation>अंतिम बार प्रयुक्त संचय पथ स्मरण करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="141"/>
         <source>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>चिन्हित होने पर, विकल्प विंडो की &quot;डाउनलोड&quot; सेटिंग्स सेट होने पर भी .torrent फाइल हटाई नहीं जाएगी</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
         <source>Do not delete .torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent फाइल न मिटाएं</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">अनुक्रमिक तरीके से डाउनलोड करें</translation>
+        <translation>क्रमबद्ध डाउनलोड करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="151"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रथम व अंतिम खंड सबसे पहले डाउनलोड करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="436"/>
         <source>Save as .torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent फाइल के रूप में संचित करें...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="454"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="531"/>
         <source>Normal</source>
-        <translation>साधारण</translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="459"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="535"/>
         <source>High</source>
-        <translation>अधिक</translation>
+        <translation>उच्च</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="464"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="539"/>
         <source>Maximum</source>
-        <translation>सर्वाधिक</translation>
+        <translation>सर्वोच्च</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.ui" line="469"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="527"/>
         <source>Do not download</source>
-        <translation>डाउनलोड नहीं करें</translation>
+        <translation>डाउनलोड न करें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="478"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="620"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="646"/>
         <source>I/O Error</source>
-        <translation>I/O त्रुटि</translation>
+        <translation>इनपुट/आउटपुट त्रुटि</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="259"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="727"/>
         <source>Invalid torrent</source>
         <translation>अमान्य टाॅरेंट</translation>
     </message>
     <message>
-        <source>Already in download list</source>
-        <translation type="obsolete">डाउनलोड सूची में पहले से ही है</translation>
-    </message>
-    <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="648"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="674"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>अनुपलब्ध</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="649"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="675"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>अनुपलब्ध</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="684"/>
         <source>Not available</source>
         <translation>अनुपलब्ध</translation>
     </message>
@@ -410,48 +351,28 @@
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
 &apos; characters. They insert a newline.</comment>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट लोड करना विफल : %1।
+त्रुटि : %2</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="309"/>
         <source>This magnet link was not recognized</source>
-        <translation>यह मैगनेट लिंक अभिज्ञात नहीं हुआ</translation>
+        <translation>अज्ञात मैग्नेट लिंक</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="344"/>
         <source>Magnet link</source>
-        <translation>मैगनेट लिंक</translation>
+        <translation>अज्ञात मैग्नेट लिंक</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="350"/>
         <source>Retrieving metadata...</source>
-        <translation>मेटाडाटा प्राप्त हो रहा है...</translation>
-    </message>
-    <message>
-        <source>Not Available</source>
-        <comment>This size is unavailable.</comment>
-        <translation type="vanished">अनुपलब्ध</translation>
+        <translation>मेटाडाटा प्राप्ति जारी...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="105"/>
         <source>Choose save path</source>
-        <translation>सहेजने हेतु पथ चुनें</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation type="obsolete">फाइल का पुन:नामकरण करें</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="vanished">नया नाम:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation type="obsolete">इस फाइल का पुन:नामकरण नहीं हो सकता</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">इस फाइल के नाम में वर्जित वर्ण हैं, कृपया दूसरा नाम चुनें.</translation>
+        <translation>संचय पथ चुनें</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="283"/>
@@ -461,142 +382,131 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="335"/>
         <source>Torrent is already present</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट पहले से मौजूद है</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="283"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="324"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट &quot;%1&quot; अंतरण सूची में पहले से मौजूद है। निजी टोरेंट होने के कारण ट्रैकर विलय नहीं हुआ।</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="289"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट &quot;%1&quot; अंतरण सूची में पहले से मौजूद है। ट्रैकर विलय हुआ।</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="294"/>
         <source>Torrent is already queued for processing.</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट संसाधन हेतु पंक्तिबद्ध है।</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>Magnet link &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>मैग्नेट लिंक &quot;%1&quot; अंतरण सूची में पहले से मौजूद है। ट्रैकर विलय हुआ।</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="335"/>
         <source>Magnet link is already queued for processing.</source>
-        <translation type="unfinished"></translation>
+        <translation>मैग्नेट लिंक संसाधन हेतु पंक्तिबद्ध है।</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="417"/>
         <source>%1 (Free space on disk: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (डिस्क पर अप्रयुक्त स्पेस : %2)</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="418"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
-        <translation type="unfinished">अनुपलब्ध</translation>
+        <translation>अनुपलब्ध</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="464"/>
         <source>Save as torrent file</source>
+        <translation>टोरेंट फाइल के रूप में संचित करें</translation>
+    </message>
+    <message>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="544"/>
+        <source>By shown file order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="721"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="747"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="vanished">यह नाम पहले से ही इसी फोल्डर के प्रयोग मे है, कृपया दूसरा नाम चुनें.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="vanished">इस फोल्डर का पुन:नामकरण नहीं हो सकता</translation>
+        <translation>&apos;%1&apos; डाउनलोड विफल : %2</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="520"/>
         <source>Rename...</source>
-        <translation>पुन:नामकरण...</translation>
+        <translation>नाम बदलें...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="526"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="525"/>
         <source>Priority</source>
         <translation>प्राथमिकता</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="621"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="647"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>अमान्य मेटाडेटा</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="628"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="654"/>
         <source>Parsing metadata...</source>
-        <translation>मेटाडाटा का पदभंजन हो रहा है...</translation>
+        <translation>मेटाडेटा प्राप्यता जारी...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="632"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="658"/>
         <source>Metadata retrieval complete</source>
-        <translation>मेटाडाटा प्राप्ति पुर्ण</translation>
+        <translation>मेटाडेटा प्राप्ति पूर्ण</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="701"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="727"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>यूआरएल से लोड करना विफल : %1।
+त्रुटि : %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="720"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="746"/>
         <source>Download Error</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड त्रुटि</translation>
     </message>
 </context>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <source>Disk write cache size</source>
-        <translation type="obsolete">डिस्क लेखन कैश साइज</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="311"/>
-        <location filename="../gui/advancedsettings.cpp" line="449"/>
+        <location filename="../gui/advancedsettings.cpp" line="312"/>
+        <location filename="../gui/advancedsettings.cpp" line="450"/>
         <source> MiB</source>
-        <translation> मेगाबाइट्स</translation>
+        <translation>एमबी</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="516"/>
-        <source>Socket backlog size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="530"/>
+        <location filename="../gui/advancedsettings.cpp" line="531"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
-        <translation>निवर्तमान द्वार (न्यूनतम) [0: निर्योग्य]</translation>
+        <translation>जावक पोर्ट (न्यूनतम) [0: निष्क्रिय]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="537"/>
+        <location filename="../gui/advancedsettings.cpp" line="538"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
-        <translation>निवर्तमान द्वार (अधिकतम) [0: निर्योग्य]</translation>
+        <translation>जावक पोर्ट (अधिकतम) [0: निष्क्रिय]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="577"/>
+        <location filename="../gui/advancedsettings.cpp" line="580"/>
         <source>Recheck torrents on completion</source>
-        <translation>टाॅरेंट्स सम्पुर्ण होने पर पुनः जाँच करें</translation>
+        <translation>पूर्ण होने पर टोरेंट पुनः जाँचें</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="583"/>
+        <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Transfer list refresh interval</source>
-        <translation>अंतरण सूची ताजा अंतराल</translation>
+        <translation>अंतरण सूची रिफ्रेश अंतराल</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="582"/>
+        <location filename="../gui/advancedsettings.cpp" line="585"/>
         <source> ms</source>
         <comment> milliseconds</comment>
-        <translation> मिलिसेकंड्स</translation>
+        <translation>मिली सेकंड</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="146"/>
@@ -610,388 +520,370 @@ Error: %2</source>
         <translation>मान</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="307"/>
-        <location filename="../gui/advancedsettings.cpp" line="320"/>
+        <location filename="../gui/advancedsettings.cpp" line="308"/>
+        <location filename="../gui/advancedsettings.cpp" line="321"/>
         <source> (disabled)</source>
-        <translation type="unfinished"></translation>
+        <translation>(निष्क्रिय)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="309"/>
+        <location filename="../gui/advancedsettings.cpp" line="310"/>
         <source> (auto)</source>
-        <translation>.(स्वत:)</translation>
+        <translation>(स्वत:)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="318"/>
+        <location filename="../gui/advancedsettings.cpp" line="319"/>
         <source> min</source>
         <comment> minutes</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="331"/>
-        <source>All addresses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="377"/>
-        <source>qBittorrent Section</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="374"/>
-        <location filename="../gui/advancedsettings.cpp" line="382"/>
-        <source>Open documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>मिनट</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="332"/>
-        <source>All IPv4 addresses</source>
-        <translation type="unfinished"></translation>
+        <source>All addresses</source>
+        <translation>सभी पते</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="378"/>
+        <source>qBittorrent Section</source>
+        <translation>क्यूबिटटोरेंट खंड</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="375"/>
+        <location filename="../gui/advancedsettings.cpp" line="383"/>
+        <source>Open documentation</source>
+        <translation>शास्त्र खोलें</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="333"/>
+        <source>All IPv4 addresses</source>
+        <translation>सभी आईपी4 पते</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="334"/>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>सभी आईपी6 पते</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="385"/>
+        <location filename="../gui/advancedsettings.cpp" line="386"/>
         <source>libtorrent Section</source>
-        <translation type="unfinished"></translation>
+        <translation>libtorrent खंड</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="389"/>
+        <location filename="../gui/advancedsettings.cpp" line="390"/>
         <source>Normal</source>
-        <translation type="unfinished">साधारण</translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="389"/>
+        <location filename="../gui/advancedsettings.cpp" line="390"/>
         <source>Below normal</source>
-        <translation type="unfinished"></translation>
+        <translation>सामान्य से कम</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="389"/>
+        <location filename="../gui/advancedsettings.cpp" line="390"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>मध्यम</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="389"/>
+        <location filename="../gui/advancedsettings.cpp" line="390"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>कम</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="389"/>
+        <location filename="../gui/advancedsettings.cpp" line="390"/>
         <source>Very low</source>
-        <translation type="unfinished"></translation>
+        <translation>सबसे कम</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="411"/>
+        <location filename="../gui/advancedsettings.cpp" line="412"/>
         <source>Process memory priority (Windows &gt;= 8 only)</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रक्रिया मेमोरी प्राथमिकता (केवल विंडोज &gt;=8 हेतु)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="420"/>
+        <location filename="../gui/advancedsettings.cpp" line="421"/>
         <source>Asynchronous I/O threads</source>
-        <translation type="unfinished"></translation>
+        <translation>अतुल्यकालिक इनपुट/आउटपुट प्रक्रिया</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="428"/>
+        <location filename="../gui/advancedsettings.cpp" line="429"/>
         <source>Hashing threads</source>
-        <translation type="unfinished"></translation>
+        <translation>हैश प्रक्रिया</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="436"/>
+        <location filename="../gui/advancedsettings.cpp" line="437"/>
         <source>File pool size</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइल पूल आकार</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="450"/>
+        <location filename="../gui/advancedsettings.cpp" line="451"/>
         <source>Outstanding memory when checking torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट जाँच हेतु सक्रिय मेमोरी</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="466"/>
+        <location filename="../gui/advancedsettings.cpp" line="467"/>
         <source>Disk cache</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="472"/>
-        <location filename="../gui/advancedsettings.cpp" line="544"/>
-        <location filename="../gui/advancedsettings.cpp" line="629"/>
-        <location filename="../gui/advancedsettings.cpp" line="703"/>
-        <source> s</source>
-        <comment> seconds</comment>
-        <translation>सेकंड्स</translation>
+        <translation>डिस्क कैश</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="473"/>
-        <source>Disk cache expiry interval</source>
-        <translation>डिस्क कैश समाप्ति अंतराल</translation>
+        <location filename="../gui/advancedsettings.cpp" line="545"/>
+        <location filename="../gui/advancedsettings.cpp" line="632"/>
+        <location filename="../gui/advancedsettings.cpp" line="711"/>
+        <source> s</source>
+        <comment> seconds</comment>
+        <translation>सेकंड</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="478"/>
+        <location filename="../gui/advancedsettings.cpp" line="474"/>
+        <source>Disk cache expiry interval</source>
+        <translation>डिस्क कैश मान्यता समाप्ति अंतराल</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="479"/>
         <source>Enable OS cache</source>
         <translation>OS कैश चालू करें</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="483"/>
+        <location filename="../gui/advancedsettings.cpp" line="484"/>
         <source>Coalesce reads &amp; writes</source>
-        <translation type="unfinished"></translation>
+        <translation>कॉलेसक पढ़ना और लिखना </translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="488"/>
+        <location filename="../gui/advancedsettings.cpp" line="489"/>
         <source>Use piece extent affinity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="491"/>
+        <location filename="../gui/advancedsettings.cpp" line="492"/>
         <source>Send upload piece suggestions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="496"/>
-        <location filename="../gui/advancedsettings.cpp" line="502"/>
+        <location filename="../gui/advancedsettings.cpp" line="497"/>
+        <location filename="../gui/advancedsettings.cpp" line="503"/>
         <source> KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="498"/>
+        <location filename="../gui/advancedsettings.cpp" line="499"/>
         <source>Send buffer watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="504"/>
+        <location filename="../gui/advancedsettings.cpp" line="505"/>
         <source>Send buffer low watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="510"/>
+        <location filename="../gui/advancedsettings.cpp" line="511"/>
         <source>Send buffer watermark factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="556"/>
-        <source>Support internationalized domain name (IDN)</source>
+        <location filename="../gui/advancedsettings.cpp" line="517"/>
+        <source>Socket backlog size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="693"/>
-        <source>Peer turnover disconnect percentage</source>
+        <location filename="../gui/advancedsettings.cpp" line="546"/>
+        <source>UPnP lease duration [0: Permanent lease]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="699"/>
-        <source>Peer turnover threshold percentage</source>
+        <location filename="../gui/advancedsettings.cpp" line="552"/>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="705"/>
-        <source>Peer turnover disconnect interval</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> m</source>
-        <comment> minutes</comment>
-        <translation type="vanished">मिनट्स</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="548"/>
+        <location filename="../gui/advancedsettings.cpp" line="555"/>
         <source>Prefer TCP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="548"/>
+        <location filename="../gui/advancedsettings.cpp" line="555"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="562"/>
+        <source>Support internationalized domain name (IDN)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Resolve peer countries (GeoIP)</source>
-        <translation type="vanished">सहकर्मी के देशों को दिखायें (GeoIP) </translation>
+        <location filename="../gui/advancedsettings.cpp" line="572"/>
+        <source>Validate HTTPS tracker certificates</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="589"/>
+        <location filename="../gui/advancedsettings.cpp" line="577"/>
+        <source>Disallow connection to peers on privileged ports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="592"/>
         <source>Resolve peer host names</source>
-        <translation>सहकर्मी के होस्टनेम को दिखायें</translation>
+        <translation>पीयर होस्ट नाम समन्वित करें</translation>
     </message>
     <message>
-        <source>Strict super seeding</source>
-        <translation type="vanished">विशूद्ध सूपर सीडिंग</translation>
+        <location filename="../gui/advancedsettings.cpp" line="656"/>
+        <source>Enable icons in menus</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network Interface (requires restart)</source>
-        <translation type="vanished">नेटवर्क अंतरफलक (पुनरारंभ आवश्यक)</translation>
+        <location filename="../gui/advancedsettings.cpp" line="701"/>
+        <source>Peer turnover disconnect percentage</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Listen on IPv6 address (requires restart)</source>
-        <translation type="vanished">IPv6 पते पर सुनें (पुनरारंभ आवश्यक)</translation>
+        <location filename="../gui/advancedsettings.cpp" line="707"/>
+        <source>Peer turnover threshold percentage</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="636"/>
-        <source>Display notifications</source>
+        <location filename="../gui/advancedsettings.cpp" line="713"/>
+        <source>Peer turnover disconnect interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="633"/>
+        <source>Stop tracker timeout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="639"/>
-        <source>Display notifications for added torrents</source>
-        <translation type="unfinished"></translation>
+        <source>Display notifications</source>
+        <translation>नोटिफिकेशन दिखायें</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="642"/>
+        <source>Display notifications for added torrents</source>
+        <translation>जोड़े गए टौरेंटों के लिए नोटिफिकेशन दिखायें</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="645"/>
         <source>Download tracker&apos;s favicon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="646"/>
+        <location filename="../gui/advancedsettings.cpp" line="649"/>
         <source>Save path history length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="649"/>
+        <location filename="../gui/advancedsettings.cpp" line="652"/>
         <source>Enable speed graphs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="659"/>
+        <location filename="../gui/advancedsettings.cpp" line="667"/>
         <source>Fixed slots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="659"/>
+        <location filename="../gui/advancedsettings.cpp" line="667"/>
         <source>Upload rate based</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड दर पर आधारित</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="661"/>
+        <location filename="../gui/advancedsettings.cpp" line="669"/>
         <source>Upload slots behavior</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="664"/>
+        <location filename="../gui/advancedsettings.cpp" line="672"/>
         <source>Round-robin</source>
-        <translation type="unfinished"></translation>
+        <translation>राउंड-रॉबिन</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="664"/>
+        <location filename="../gui/advancedsettings.cpp" line="672"/>
         <source>Fastest upload</source>
-        <translation type="unfinished"></translation>
+        <translation>तीव्रतम अपलोड</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="664"/>
+        <location filename="../gui/advancedsettings.cpp" line="672"/>
         <source>Anti-leech</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="666"/>
+        <location filename="../gui/advancedsettings.cpp" line="674"/>
         <source>Upload choking algorithm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="671"/>
+        <location filename="../gui/advancedsettings.cpp" line="679"/>
         <source>Confirm torrent recheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="675"/>
+        <location filename="../gui/advancedsettings.cpp" line="683"/>
         <source>Confirm removal of all tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="679"/>
+        <location filename="../gui/advancedsettings.cpp" line="687"/>
         <source>Always announce to all trackers in a tier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="685"/>
+        <location filename="../gui/advancedsettings.cpp" line="693"/>
         <source>Always announce to all tiers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Always announce to all trackers</source>
-        <translation type="obsolete">हमेशा सभी ट्रैकर्स को सूचित करें</translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="591"/>
+        <location filename="../gui/advancedsettings.cpp" line="594"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>कोई भी नेटवर्क अंतरफलक</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="525"/>
+        <location filename="../gui/advancedsettings.cpp" line="526"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="545"/>
-        <source>UPnP lease duration [0: Permanent lease]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="550"/>
+        <location filename="../gui/advancedsettings.cpp" line="557"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="568"/>
-        <source>Validate HTTPS tracker certificates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="574"/>
-        <source>Disallow connection to peers on privileged ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="586"/>
+        <location filename="../gui/advancedsettings.cpp" line="589"/>
         <source>Resolve peer countries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="613"/>
+        <location filename="../gui/advancedsettings.cpp" line="616"/>
         <source>Network interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="616"/>
+        <location filename="../gui/advancedsettings.cpp" line="619"/>
         <source>Optional IP address to bind to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="619"/>
+        <location filename="../gui/advancedsettings.cpp" line="622"/>
         <source>IP Address to report to trackers (requires restart)</source>
-        <translation>ट्रैकर्स को सूचित करने हेतु IP पता (पुनरारंभ आवश्यक)</translation>
+        <translation>ट्रैकर हेतु आईपी पता (पुनः आरंभ आवश्यक)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="625"/>
+        <location filename="../gui/advancedsettings.cpp" line="628"/>
         <source>Max concurrent HTTP announces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="630"/>
-        <source>Stop tracker timeout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="652"/>
+        <location filename="../gui/advancedsettings.cpp" line="660"/>
         <source>Enable embedded tracker</source>
-        <translation>एम्बेडेड ट्रैकर को सक्षम करें</translation>
+        <translation>सम्मिलित ट्रैकर सक्रिय करें</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="657"/>
+        <location filename="../gui/advancedsettings.cpp" line="665"/>
         <source>Embedded tracker port</source>
-        <translation>एम्बेडेड ट्रैकर द्वार</translation>
-    </message>
-    <message>
-        <source>Check for software updates</source>
-        <translation type="vanished">सॉफ्टवेयर अद्यतन के लिए जाँच करें</translation>
-    </message>
-    <message>
-        <source>Use system icon theme</source>
-        <translation type="vanished">सिस्टम आईकाॅन थीम का प्रयोग करें</translation>
+        <translation>सम्मिलित ट्रैकर का पोर्ट</translation>
     </message>
 </context>
 <context>
@@ -1000,7 +892,7 @@ Error: %2</source>
         <location filename="../app/application.cpp" line="184"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट %1 आरंभ</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="187"/>
@@ -1018,78 +910,78 @@ Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="345"/>
+        <location filename="../app/application.cpp" line="390"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="411"/>
+        <location filename="../app/application.cpp" line="452"/>
         <source>Torrent name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट नाम: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="412"/>
+        <location filename="../app/application.cpp" line="453"/>
         <source>Torrent size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट आकार: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="413"/>
+        <location filename="../app/application.cpp" line="454"/>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>संचय पथ: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="414"/>
+        <location filename="../app/application.cpp" line="455"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="416"/>
+        <location filename="../app/application.cpp" line="457"/>
         <source>Thank you for using qBittorrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट उपयोग करने हेतु धन्यवाद।</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="423"/>
+        <location filename="../app/application.cpp" line="464"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>[क्यूबिटटोरेंट] &apos;%1&apos; का डाउनलोड पूर्ण</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="438"/>
+        <location filename="../app/application.cpp" line="479"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="608"/>
+        <location filename="../app/application.cpp" line="649"/>
         <source>Application failed to start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="621"/>
+        <location filename="../app/application.cpp" line="662"/>
         <source>Information</source>
-        <translation type="unfinished">सूचना</translation>
+        <translation>सूचना</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="622"/>
+        <location filename="../app/application.cpp" line="663"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट प्रबंधन हेतु, %1 से वेब उपयोक्ता अंतरफलक अभिगम करें</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="628"/>
+        <location filename="../app/application.cpp" line="669"/>
         <source>The Web UI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="629"/>
+        <location filename="../app/application.cpp" line="670"/>
         <source>The Web UI administrator password is still the default one: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="630"/>
+        <location filename="../app/application.cpp" line="671"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="762"/>
+        <location filename="../app/application.cpp" line="803"/>
         <source>Saving torrent progress...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1099,7 +991,7 @@ Error: %2</source>
     <message>
         <location filename="../base/asyncfilestorage.cpp" line="42"/>
         <source>Could not create directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>फोल्डर &apos;%1&apos; नहीं बन सका|</translation>
     </message>
 </context>
 <context>
@@ -1128,9 +1020,9 @@ Error: %2</source>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="240"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="243"/>
         <source>Save to:</source>
-        <translation>इसमें सहेंजें:</translation>
+        <translation>यहाँ संचित करें :</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
@@ -1145,12 +1037,12 @@ Error: %2</source>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="59"/>
         <source>Download Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड के नियम</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="99"/>
         <source>Rule Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>नियम की परिभाषा</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="105"/>
@@ -1184,392 +1076,361 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="212"/>
         <source>Assign Category:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">श्रेणी निर्धारित करें:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="228"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="212"/>
+        <source>Category:</source>
+        <translation type="unfinished">श्रेणी:</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="231"/>
         <source>Save to a Different Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="254"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="257"/>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
         <extracomment>... X days</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="264"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="267"/>
         <source>Disabled</source>
-        <translation type="unfinished">असक्षम</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="267"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="270"/>
         <source> days</source>
         <translation>दिन</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="300"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="303"/>
         <source>Add Paused:</source>
-        <translation type="unfinished"></translation>
+        <translation>विरामित जोड़ें</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="308"/>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="344"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="311"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="347"/>
         <source>Use global settings</source>
-        <translation type="unfinished"></translation>
+        <translation>सार्वभौम सैटिंग का प्रयोग करें</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="313"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="316"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>हमेशा</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="318"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="321"/>
         <source>Never</source>
-        <translation type="unfinished">कभी नहीँ</translation>
+        <translation>कभी नहीं</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="336"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="339"/>
         <source>Torrent content layout:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="349"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="352"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>मूल</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="354"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="357"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>उपफोल्डर बनायें</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="359"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="362"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>उपफोल्डर न बनायें</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="380"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="383"/>
         <source>Apply Rule to Feeds:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="402"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="405"/>
         <source>Matching RSS Articles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="430"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="433"/>
         <source>&amp;Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>आयात&amp;...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.ui" line="440"/>
+        <location filename="../gui/rss/automatedrssdownloader.ui" line="443"/>
         <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>निर्यात&amp; करें...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
         <source>Matches articles based on episode filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="88"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
         <source>Example: </source>
         <translation>उदाहरण:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="89"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
         <source>Episode filter rules: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
         <source>Filter must end with semicolon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
         <source>Three range types for episodes are supported: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="96"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="97"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
         <source>Episode number is a mandatory positive value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="62"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
         <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>नियम</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="64"/>
         <source>Rules (legacy)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="96"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="98"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="283"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="285"/>
         <source>Last Match: %1 days ago</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="285"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="287"/>
         <source>Last Match: Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="377"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="379"/>
         <source>New rule name</source>
-        <translation>नये नियम का नाम</translation>
+        <translation>नए नियम का नाम</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="377"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="379"/>
         <source>Please type the name of the new download rule.</source>
-        <translation>कृपया नये नियम के नाम के लिये नाम टंकित करें.</translation>
+        <translation>नए डाउनलोड नियम का नाम टाइप करें।</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="383"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="541"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="551"/>
         <source>Rule name conflict</source>
-        <translation>नये नाम में दिक्कत</translation>
+        <translation>नियम नाम विरुद्ध</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="384"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="542"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="552"/>
         <source>A rule with this name already exists, please choose another name.</source>
-        <translation>एक नियम इसी नाम से पहले से ही प्रयोग मे है, कृपया दूसरा चुनें.</translation>
+        <translation>इस नाम का नियम पहले से मौजूद है, कृपया अन्य नाम उपयोग करें।</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="398"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="402"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>क्या आप निश्चित है कि आप चुने हुए डाउनलोड नियमों को रद्द करना चाहते हैं?</translation>
+        <translation>क्या आप निश्चित ही चयनित डाउनलोड नियम हटाना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="403"/>
         <source>Rule deletion confirmation</source>
-        <translation>नियम रद्द करने की पुष्टि</translation>
+        <translation>नियम हटाने हेतु पुष्टि</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="80"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
         <source>Destination directory</source>
-        <translation>गन्तव्य डायरेक्टरी</translation>
+        <translation>लक्ष्य डायरेक्टरी</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="412"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
         <source>Invalid action</source>
-        <translation type="unfinished">अमान्य चाल</translation>
+        <translation>अमान्य चाल</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="413"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="426"/>
         <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished">यह सूची खाली है, यहाँ आयात करने के लिए कुछ भी नहीं है.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="419"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
         <source>Export RSS rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="447"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="459"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="477"/>
+        <source>I/O Error</source>
+        <translation type="unfinished">इनपुट/आउटपुट त्रुटि</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="460"/>
         <source>Failed to create the destination file. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="455"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="468"/>
         <source>Import RSS rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="465"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
         <source>Failed to open the file. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="484"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="496"/>
+        <source>Import Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="497"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Where would you like to save the list?</source>
-        <translation type="obsolete">आप सूची को कहाँ सहेजेंगें?</translation>
-    </message>
-    <message>
-        <source>Rules list (*.rssrules)</source>
-        <translation type="obsolete">नियमो की सूची (*.rssrules)</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="446"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="464"/>
-        <source>I/O Error</source>
-        <translation type="unfinished">I/O त्रुटि</translation>
-    </message>
-    <message>
-        <source>Failed to create the destination file</source>
-        <translation type="obsolete">गन्तव्य पर फाइल बनाने में विफल रहा</translation>
-    </message>
-    <message>
-        <source>Please point to the RSS download rules file</source>
-        <translation type="obsolete">कृपया RSS डाउनलोड नियमो की फाइल की तरफ इंगित करें</translation>
-    </message>
-    <message>
-        <source>Rules list</source>
-        <translation type="obsolete">नियमो की सूची</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="483"/>
-        <source>Import Error</source>
-        <translation type="unfinished">निर्यात त्रुटि</translation>
-    </message>
-    <message>
-        <source>Failed to import the selected rules file</source>
-        <translation type="obsolete">चुने हुए नियमो को निर्यात करने में विफल रहा</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="493"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="506"/>
         <source>Add new rule...</source>
-        <translation>नये नियम को जोड़े...</translation>
+        <translation>नया नियम जोड़ें...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="502"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="515"/>
         <source>Delete rule</source>
-        <translation>नियम रद्द करें</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="507"/>
-        <source>Rename rule...</source>
-        <translation>नियम का पुन:नामकरण करें...</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="512"/>
-        <source>Delete selected rules</source>
-        <translation>चुने हुए नियमो को रद्द करें</translation>
+        <translation>नियम मिटायें</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="518"/>
+        <source>Rename rule...</source>
+        <translation>नियम नाम परिवर्तन...</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="523"/>
+        <source>Delete selected rules</source>
+        <translation>चयनित नियम हटाएँ</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="528"/>
         <source>Clear downloaded episodes...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="534"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="544"/>
         <source>Rule renaming</source>
-        <translation>नियम का पुन:नामकरण </translation>
+        <translation>नियम नाम परिवर्तन</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="534"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="544"/>
         <source>Please type the new rule name</source>
-        <translation>कृपया नये नियम का नाम टंकित करें</translation>
+        <translation>नए नियम का नाम टाइप करें</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="562"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="572"/>
         <source>Clear downloaded episodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="563"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="573"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="677"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
         <source>Regex mode: use Perl-compatible regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="723"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="766"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="737"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="784"/>
         <source>Position %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Regex mode: use Perl-like regular expressions</source>
-        <translation type="obsolete">रेगुलर एक्सप्रेसन्स मोड: Perl के साथ रेगुलर एक्सप्रेसन्स का प्रयोग करें</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="681"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="691"/>
         <source>Wildcard mode: you can use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="682"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="692"/>
         <source>? to match any single character</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="683"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="693"/>
         <source>* to match zero or more of any characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="684"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="694"/>
         <source>Whitespaces count as AND operators (all words, any order)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="685"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="695"/>
         <source>| is used as OR operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="686"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="696"/>
         <source>If word order is important use * instead of whitespace.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="693"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="703"/>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
         <comment>We talk about regex/wildcards in the RSS filters section here. So a valid sentence would be: An expression with an empty | clause (e.g. expr|)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="697"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="707"/>
         <source> will match all articles.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="698"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="708"/>
         <source> will exclude all articles.</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BanListOptions</name>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">रद्द करें</translation>
     </message>
 </context>
 <context>
@@ -1587,13 +1448,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/banlistoptionsdialog.ui" line="87"/>
         <source>Delete</source>
-        <translation type="unfinished">रद्द करें</translation>
+        <translation>मिटाएं</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="94"/>
         <location filename="../gui/banlistoptionsdialog.cpp" line="106"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>चेतावनी</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="94"/>
@@ -1609,425 +1470,425 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="568"/>
+        <location filename="../base/bittorrent/session.cpp" line="582"/>
         <source>Restart is required to toggle PeX support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2432"/>
+        <location filename="../base/bittorrent/session.cpp" line="2451"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2432"/>
+        <location filename="../base/bittorrent/session.cpp" line="2451"/>
         <source>ONLINE</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑनलाइन</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2432"/>
+        <location filename="../base/bittorrent/session.cpp" line="2451"/>
         <source>OFFLINE</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑफलाइन</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2446"/>
+        <location filename="../base/bittorrent/session.cpp" line="2465"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1108"/>
-        <location filename="../base/bittorrent/session.cpp" line="2815"/>
+        <location filename="../base/bittorrent/session.cpp" line="1122"/>
+        <location filename="../base/bittorrent/session.cpp" line="2834"/>
         <source>Encryption support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1109"/>
-        <location filename="../base/bittorrent/session.cpp" line="2816"/>
+        <location filename="../base/bittorrent/session.cpp" line="1123"/>
+        <location filename="../base/bittorrent/session.cpp" line="2835"/>
         <source>FORCED</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2933"/>
+        <location filename="../base/bittorrent/session.cpp" line="2952"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1107"/>
-        <location filename="../base/bittorrent/session.cpp" line="3352"/>
+        <location filename="../base/bittorrent/session.cpp" line="1121"/>
+        <location filename="../base/bittorrent/session.cpp" line="3371"/>
         <source>Anonymous mode [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1647"/>
+        <location filename="../base/bittorrent/session.cpp" line="1656"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed torrent and its files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1658"/>
+        <location filename="../base/bittorrent/session.cpp" line="1667"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Enabled super seeding for it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1686"/>
+        <location filename="../base/bittorrent/session.cpp" line="1695"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed torrent and its files.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1697"/>
+        <location filename="../base/bittorrent/session.cpp" line="1706"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Enabled super seeding for it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2348"/>
+        <location filename="../base/bittorrent/session.cpp" line="2376"/>
         <source>Error: Aborted saving resume data for %1 outstanding torrents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2463"/>
+        <location filename="../base/bittorrent/session.cpp" line="2482"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.158.1 isn&apos;t valid.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2504"/>
-        <location filename="../base/bittorrent/session.cpp" line="2539"/>
+        <location filename="../base/bittorrent/session.cpp" line="2523"/>
+        <location filename="../base/bittorrent/session.cpp" line="2558"/>
         <source>Can&apos;t find the configured address &apos;%1&apos; to listen on</source>
         <comment>Can&apos;t find the configured address &apos;192.168.1.3&apos; to listen on</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3865"/>
-        <location filename="../base/bittorrent/session.cpp" line="4596"/>
+        <location filename="../base/bittorrent/session.cpp" line="3885"/>
+        <location filename="../base/bittorrent/session.cpp" line="4597"/>
         <source>Couldn&apos;t save torrent metadata file &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3915"/>
+        <location filename="../base/bittorrent/session.cpp" line="3931"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3974"/>
+        <location filename="../base/bittorrent/session.cpp" line="4021"/>
         <source>Cancelled moving &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3984"/>
+        <location filename="../base/bittorrent/session.cpp" line="4031"/>
         <source>Couldn&apos;t enqueue move of &quot;%1&quot; to &quot;%2&quot;. Torrent is currently moving to the same destination location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3993"/>
+        <location filename="../base/bittorrent/session.cpp" line="4040"/>
         <source>Couldn&apos;t enqueue move of &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;. Both paths point to the same location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4001"/>
+        <location filename="../base/bittorrent/session.cpp" line="4048"/>
         <source>Enqueued to move &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4014"/>
+        <location filename="../base/bittorrent/session.cpp" line="4065"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4081"/>
+        <location filename="../base/bittorrent/session.cpp" line="4132"/>
         <source>Cannot write to torrent resume folder: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4088"/>
+        <location filename="../base/bittorrent/session.cpp" line="4139"/>
         <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4154"/>
+        <location filename="../base/bittorrent/session.cpp" line="4199"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4752"/>
+        <location filename="../base/bittorrent/session.cpp" line="4772"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4755"/>
+        <location filename="../base/bittorrent/session.cpp" line="4775"/>
         <source>port filter</source>
         <comment>this peer was blocked. Reason: port filter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4758"/>
+        <location filename="../base/bittorrent/session.cpp" line="4778"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4761"/>
+        <location filename="../base/bittorrent/session.cpp" line="4781"/>
         <source>use of privileged port</source>
         <comment>this peer was blocked. Reason: use of privileged port.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4764"/>
+        <location filename="../base/bittorrent/session.cpp" line="4784"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 अक्षम है</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4767"/>
+        <location filename="../base/bittorrent/session.cpp" line="4787"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 अक्षम है</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4624"/>
+        <location filename="../base/bittorrent/session.cpp" line="4625"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4633"/>
+        <location filename="../base/bittorrent/session.cpp" line="4634"/>
         <source>Couldn&apos;t load torrent. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4651"/>
-        <location filename="../base/bittorrent/session.cpp" line="4690"/>
+        <location filename="../base/bittorrent/session.cpp" line="4656"/>
+        <location filename="../base/bittorrent/session.cpp" line="4705"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4666"/>
+        <location filename="../base/bittorrent/session.cpp" line="4676"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4684"/>
+        <location filename="../base/bittorrent/session.cpp" line="4699"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4726"/>
+        <location filename="../base/bittorrent/session.cpp" line="4746"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4791"/>
+        <location filename="../base/bittorrent/session.cpp" line="4811"/>
         <source>URL seed name lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4797"/>
+        <location filename="../base/bittorrent/session.cpp" line="4817"/>
         <source>Received error message from a URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4806"/>
+        <location filename="../base/bittorrent/session.cpp" line="4826"/>
         <source>Successfully listening on IP: %1, port: %2/%3</source>
         <comment>e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4818"/>
+        <location filename="../base/bittorrent/session.cpp" line="4838"/>
         <source>Failed to listen on IP: %1, port: %2/%3. Reason: %4</source>
         <comment>e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4826"/>
+        <location filename="../base/bittorrent/session.cpp" line="4846"/>
         <source>Detected external IP: %1</source>
         <comment>e.g. Detected external IP: 1.1.1.1</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4908"/>
+        <location filename="../base/bittorrent/session.cpp" line="4928"/>
         <source>Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4925"/>
+        <location filename="../base/bittorrent/session.cpp" line="4950"/>
         <source>&quot;%1&quot; is successfully moved to &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4942"/>
+        <location filename="../base/bittorrent/session.cpp" line="4972"/>
         <source>Failed to move &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;. Reason: %4.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4977"/>
+        <location filename="../base/bittorrent/session.cpp" line="5011"/>
         <source>SOCKS5 proxy error. Message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2016"/>
+        <location filename="../base/bittorrent/session.cpp" line="2043"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2518"/>
+        <location filename="../base/bittorrent/session.cpp" line="2537"/>
         <source>The network interface defined is invalid: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1102"/>
+        <location filename="../base/bittorrent/session.cpp" line="1116"/>
         <source>Peer ID: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1103"/>
+        <location filename="../base/bittorrent/session.cpp" line="1117"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="539"/>
-        <location filename="../base/bittorrent/session.cpp" line="1104"/>
+        <location filename="../base/bittorrent/session.cpp" line="553"/>
+        <location filename="../base/bittorrent/session.cpp" line="1118"/>
         <source>DHT support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="539"/>
-        <location filename="../base/bittorrent/session.cpp" line="554"/>
-        <location filename="../base/bittorrent/session.cpp" line="1104"/>
-        <location filename="../base/bittorrent/session.cpp" line="1105"/>
-        <location filename="../base/bittorrent/session.cpp" line="1106"/>
-        <location filename="../base/bittorrent/session.cpp" line="1107"/>
-        <location filename="../base/bittorrent/session.cpp" line="1108"/>
-        <location filename="../base/bittorrent/session.cpp" line="2816"/>
-        <location filename="../base/bittorrent/session.cpp" line="3352"/>
+        <location filename="../base/bittorrent/session.cpp" line="553"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
+        <location filename="../base/bittorrent/session.cpp" line="1118"/>
+        <location filename="../base/bittorrent/session.cpp" line="1119"/>
+        <location filename="../base/bittorrent/session.cpp" line="1120"/>
+        <location filename="../base/bittorrent/session.cpp" line="1121"/>
+        <location filename="../base/bittorrent/session.cpp" line="1122"/>
+        <location filename="../base/bittorrent/session.cpp" line="2835"/>
+        <location filename="../base/bittorrent/session.cpp" line="3371"/>
         <source>ON</source>
-        <translation type="unfinished"></translation>
+        <translation>खोलें</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="539"/>
-        <location filename="../base/bittorrent/session.cpp" line="554"/>
-        <location filename="../base/bittorrent/session.cpp" line="1104"/>
-        <location filename="../base/bittorrent/session.cpp" line="1105"/>
-        <location filename="../base/bittorrent/session.cpp" line="1106"/>
-        <location filename="../base/bittorrent/session.cpp" line="1107"/>
-        <location filename="../base/bittorrent/session.cpp" line="1109"/>
-        <location filename="../base/bittorrent/session.cpp" line="2816"/>
-        <location filename="../base/bittorrent/session.cpp" line="3352"/>
+        <location filename="../base/bittorrent/session.cpp" line="553"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
+        <location filename="../base/bittorrent/session.cpp" line="1118"/>
+        <location filename="../base/bittorrent/session.cpp" line="1119"/>
+        <location filename="../base/bittorrent/session.cpp" line="1120"/>
+        <location filename="../base/bittorrent/session.cpp" line="1121"/>
+        <location filename="../base/bittorrent/session.cpp" line="1123"/>
+        <location filename="../base/bittorrent/session.cpp" line="2835"/>
+        <location filename="../base/bittorrent/session.cpp" line="3371"/>
         <source>OFF</source>
-        <translation type="unfinished"></translation>
+        <translation>बंद करें</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="554"/>
-        <location filename="../base/bittorrent/session.cpp" line="1105"/>
+        <location filename="../base/bittorrent/session.cpp" line="568"/>
+        <location filename="../base/bittorrent/session.cpp" line="1119"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1106"/>
+        <location filename="../base/bittorrent/session.cpp" line="1120"/>
         <source>PeX support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1476"/>
+        <location filename="../base/bittorrent/session.cpp" line="1485"/>
         <source>Could not get GUID of network interface: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1491"/>
+        <location filename="../base/bittorrent/session.cpp" line="1500"/>
         <source>Trying to listen on: %1</source>
         <comment>e.g: Trying to listen on: 192.168.0.1:6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1642"/>
+        <location filename="../base/bittorrent/session.cpp" line="1651"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1653"/>
+        <location filename="../base/bittorrent/session.cpp" line="1662"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1681"/>
+        <location filename="../base/bittorrent/session.cpp" line="1690"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1692"/>
+        <location filename="../base/bittorrent/session.cpp" line="1701"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3812"/>
+        <location filename="../base/bittorrent/session.cpp" line="3837"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3824"/>
+        <location filename="../base/bittorrent/session.cpp" line="3847"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3841"/>
+        <location filename="../base/bittorrent/session.cpp" line="3862"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3848"/>
+        <location filename="../base/bittorrent/session.cpp" line="3868"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4372"/>
-        <location filename="../base/bittorrent/session.cpp" line="4382"/>
+        <location filename="../base/bittorrent/session.cpp" line="4373"/>
+        <location filename="../base/bittorrent/session.cpp" line="4383"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट प्रारम्भ करनें में अक्षम &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4348"/>
+        <location filename="../base/bittorrent/session.cpp" line="4349"/>
         <source>Couldn&apos;t load torrents queue from &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4323"/>
+        <location filename="../base/bittorrent/session.cpp" line="4324"/>
         <source>Cannot read file %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4419"/>
+        <location filename="../base/bittorrent/session.cpp" line="4420"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4429"/>
+        <location filename="../base/bittorrent/session.cpp" line="4430"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4577"/>
+        <location filename="../base/bittorrent/session.cpp" line="4578"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4604"/>
+        <location filename="../base/bittorrent/session.cpp" line="4605"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4737"/>
+        <location filename="../base/bittorrent/session.cpp" line="4757"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4743"/>
+        <location filename="../base/bittorrent/session.cpp" line="4763"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2035,56 +1896,61 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="211"/>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="221"/>
-        <source>Create new torrent file failed. Reason: %1</source>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="184"/>
+        <source>Create new torrent aborted.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="210"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="219"/>
+        <source>Create new torrent file failed. Reason: %1</source>
+        <translation>नयी टौरेंट फाइल नहीं बन पायी| कारण: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="459"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="602"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="464"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="607"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1264"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1409"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1265"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1410"/>
         <source>On</source>
-        <translation type="unfinished"></translation>
+        <translation>खोलें</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1265"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1410"/>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>बंद करें</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1656"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1793"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1660"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1797"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1711"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1847"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1755"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1889"/>
         <source>Performance alert: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2107,60 +1973,60 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="245"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणिआ</translation>
     </message>
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="403"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>सभी</translation>
     </message>
     <message>
         <location filename="../gui/categoryfiltermodel.cpp" line="410"/>
         <source>Uncategorized</source>
-        <translation type="unfinished"></translation>
+        <translation>अश्रेणित</translation>
     </message>
 </context>
 <context>
     <name>CategoryFilterWidget</name>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="115"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="112"/>
         <source>Add category...</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणी जोड़ें...</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="125"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="120"/>
         <source>Add subcategory...</source>
-        <translation type="unfinished"></translation>
+        <translation>उपश्रेणी जोड़े...</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="131"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="124"/>
         <source>Edit category...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="136"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="126"/>
         <source>Remove category</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणी हटायें</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="142"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="130"/>
         <source>Remove unused categories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="149"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="133"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="154"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="135"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को विराम दें</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfilterwidget.cpp" line="159"/>
+        <location filename="../gui/categoryfilterwidget.cpp" line="137"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को मिटाएं</translation>
     </message>
 </context>
 <context>
@@ -2181,22 +2047,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="53"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>पथ</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="55"/>
         <source>Name</source>
-        <translation type="unfinished">नाम</translation>
+        <translation>नाम</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="57"/>
         <source>Value</source>
-        <translation type="unfinished">मान</translation>
+        <translation>मान</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="59"/>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>समाप्ति तिथि</translation>
     </message>
 </context>
 <context>
@@ -2204,17 +2070,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="20"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>मिटाने की पुष्टि</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="67"/>
         <source>Remember choice</source>
-        <translation type="unfinished">अपनी पसंद याद रखें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.ui" line="91"/>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished">हार्ड डिस्क की फाइलें भी रद्द करें</translation>
+        <translation>फाइलें हार्ड डिस्क से भी मिटायें</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="44"/>
@@ -2226,15 +2092,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/deletionconfirmationdialog.cpp" line="46"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="unfinished">क्या आप निश्चित है कि आप इन %1 टाॅरेंट्स को अंतरण सूची से रद्द करना चाहते हैं?</translation>
-    </message>
-</context>
-<context>
-    <name>DeletionConfirmationDlg</name>
-    <message>
-        <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
-        <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
-        <translation type="vanished">क्या आप निश्चित है कि आप इन %1 टाॅरेंट्स को अंतरण सूची से रद्द करना चाहते हैं?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2247,7 +2105,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="26"/>
         <source>Add torrent links</source>
-        <translation type="unfinished">टाॅरेंट लिंक्स जोड़ें</translation>
+        <translation>टौरेंट लिंकों को जोड़ें</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="48"/>
@@ -2257,17 +2115,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/downloadfromurldialog.cpp" line="66"/>
         <source>Download</source>
-        <translation type="unfinished">डाउनलोड करें</translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.cpp" line="114"/>
         <source>No URL entered</source>
-        <translation type="unfinished">URL प्रविष्ट नहीं हुआ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.cpp" line="114"/>
         <source>Please type at least one URL.</source>
-        <translation type="unfinished">कृपया कम से कम एक URL टंकित करें.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2275,7 +2133,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="136"/>
         <source>I/O Error</source>
-        <translation type="unfinished">I/O त्रुटि</translation>
+        <translation type="unfinished">इनपुट/आउटपुट त्रुटि</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="154"/>
@@ -2400,7 +2258,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="256"/>
         <source>Unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>अज्ञात त्रुटि</translation>
     </message>
 </context>
 <context>
@@ -2422,37 +2280,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>ExecutionLog</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">साधारण</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">प्रतिबंधित आई पीज</translation>
-    </message>
-</context>
-<context>
     <name>ExecutionLogWidget</name>
     <message>
         <location filename="../gui/executionlogwidget.ui" line="36"/>
         <source>General</source>
-        <translation type="unfinished">साधारण</translation>
+        <translation type="unfinished">सामान्य</translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.ui" line="42"/>
         <source>Blocked IPs</source>
-        <translation type="unfinished">प्रतिबंधित आई पीज</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="94"/>
         <source>Copy</source>
-        <translation type="unfinished">प्रतिलिपि बनाए</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="98"/>
         <source>Clear</source>
-        <translation type="unfinished">साफ करें</translation>
+        <translation>साफ करें</translation>
     </message>
 </context>
 <context>
@@ -2460,17 +2307,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="50"/>
         <source>RSS feeds</source>
-        <translation>RSS फीड्स</translation>
+        <translation>आरएसएस समाचार स्रोत</translation>
     </message>
     <message>
         <location filename="../gui/rss/feedlistwidget.cpp" line="62"/>
         <location filename="../gui/rss/feedlistwidget.cpp" line="113"/>
         <source>Unread  (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">अपठित</translation>
+        <translation>अपठित (%1)</translation>
     </message>
 </context>
 <context>
@@ -2487,7 +2330,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/fspathedit.cpp" line="59"/>
         <source>...</source>
         <comment>Launch file dialog button text (brief)</comment>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit.cpp" line="61"/>
@@ -2499,18 +2342,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/fspathedit.cpp" line="63"/>
         <source>Choose a file</source>
         <comment>Caption for file open/save dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>फाइल चुनें</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit.cpp" line="65"/>
         <source>Choose a folder</source>
         <comment>Caption for directory open dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>फोल्डर चुनें</translation>
     </message>
     <message>
         <location filename="../gui/fspathedit.cpp" line="104"/>
         <source>Any file</source>
-        <translation type="unfinished"></translation>
+        <translation>कोई भी फाइल</translation>
     </message>
 </context>
 <context>
@@ -2638,102 +2481,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>HttpServer</name>
-    <message>
-        <source>File</source>
-        <translation type="obsolete">फाइल</translation>
-    </message>
-    <message>
-        <source>Edit</source>
-        <translation type="obsolete">संपादन</translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation type="obsolete">सहायता</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">एक पंक्ति में केवल एक लिंक</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="obsolete">डाउनलोड करें</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation type="vanished">कनेक्शन्स की अधिकतम संख्या 0 या disabled.से अधिक होना चाहिए.</translation>
-    </message>
-    <message>
-        <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="vanished">कनेक्शन्स की अधिकतम संख्या हर टारेंट सीमा के लिए 0 या disabled.से अधिक होना चाहिए.</translation>
-    </message>
-    <message>
-        <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="vanished">अपलोड की अधिकतम संख्या हर टारेंट सीमा के लिए 0 या disabled.से अधिक होना चाहिए.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">कार्यक्रम वरीयताओं को सहेजने में असमर्थ, qBittorrent शायद अगम्य है.</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">अज्ञात</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">भाषा</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="obsolete">लॉगिन</translation>
-    </message>
-    <message>
-        <source>Downloading</source>
-        <translation type="obsolete">डाउनलोड हो रहा है</translation>
-    </message>
-    <message>
-        <source>Seeding</source>
-        <translation type="obsolete">सीडिंग</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation type="obsolete">रूका हुआ</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <comment>Is the file downloaded or not?</comment>
-        <translation type="obsolete">डाउनलोडेड</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="vanished">सहेंजें</translation>
-    </message>
-    <message>
-        <source>qBittorrent client is not reachable</source>
-        <translation type="vanished">qBittorrent प्रयोक्ता पहुंच योग्य नहीं है</translation>
-    </message>
-    <message>
-        <source>HTTP Server</source>
-        <translation type="obsolete">HTTP सर्वर</translation>
-    </message>
-    <message>
-        <source>The following parameters are supported:</source>
-        <translation type="obsolete">निम्न पैरामीटर समर्थित हैं:</translation>
-    </message>
-    <message>
-        <source>Torrent path</source>
-        <translation type="obsolete">टाॅरेंट का पथ</translation>
-    </message>
-    <message>
-        <source>Torrent name</source>
-        <translation type="obsolete">टाॅरेंट का नाम</translation>
-    </message>
-    <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent शट डाउन कर दिया गया है.</translation>
-    </message>
-</context>
-<context>
     <name>IPSubnetWhitelistOptionsDialog</name>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="14"/>
@@ -2753,12 +2500,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.ui" line="71"/>
         <source>Delete</source>
-        <translation type="unfinished">रद्द करें</translation>
+        <translation>मिटाएं</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="96"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>त्रुटि</translation>
     </message>
     <message>
         <location filename="../gui/ipsubnetwhitelistoptionsdialog.cpp" line="96"/>
@@ -2767,36 +2514,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
 </context>
 <context>
-    <name>LineEdit</name>
-    <message>
-        <source>Clear the text</source>
-        <translation type="obsolete">टेक्स्ट रद्द करें</translation>
-    </message>
-</context>
-<context>
-    <name>LogListWidget</name>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">प्रतिलिपि बनाए</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">साफ करें</translation>
-    </message>
-</context>
-<context>
     <name>LogPeerModel</name>
     <message>
         <location filename="../gui/log/logmodel.cpp" line="178"/>
         <source>%1 was blocked. Reason: %2.</source>
         <comment>0.0.0.0 was blocked. Reason: reason for blocking.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 को अवरुद्धित किया। कारण: %2</translation>
     </message>
     <message>
         <location filename="../gui/log/logmodel.cpp" line="179"/>
         <source>%1 was banned</source>
         <comment>0.0.0.0 was banned</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 को प्रतिबन्धित किया</translation>
     </message>
 </context>
 <context>
@@ -2804,42 +2533,42 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="43"/>
         <source>&amp;Edit</source>
-        <translation>&amp;संपादन</translation>
+        <translation>संपादन (&amp;E)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="68"/>
         <source>&amp;Tools</source>
-        <translation>&amp;औजार</translation>
+        <translation>साधन (&amp;T)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="89"/>
         <source>&amp;File</source>
-        <translation>&amp;फाइल</translation>
+        <translation>फाइल (&amp;F)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="58"/>
         <source>&amp;Help</source>
-        <translation>&amp;सहायता</translation>
+        <translation>सहायता (&amp;H)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="72"/>
         <source>On Downloads &amp;Done</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड&amp; पूरा होने पर</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="99"/>
         <source>&amp;View</source>
-        <translation>&amp;देंखे</translation>
+        <translation>देंखे (&amp;V)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="180"/>
         <source>&amp;Options...</source>
-        <translation>&amp;विकल्प...</translation>
+        <translation>विकल्प (&amp;O)...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="190"/>
         <source>&amp;Resume</source>
-        <translation>&amp;प्रारम्भ</translation>
+        <translation>प्रार&amp;म्भ</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="223"/>
@@ -2850,27 +2579,27 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/mainwindow.ui" line="285"/>
         <location filename="../gui/mainwindow.ui" line="288"/>
         <source>Alternative Speed Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>वैकल्पिक गति सीमायें</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="296"/>
         <source>&amp;Top Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>शीर्ष &amp;उपकरण पट्टी</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="299"/>
         <source>Display Top Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>शीर्ष उपकरण पट्टी दिखाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="307"/>
         <source>Status &amp;Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>स्थिति &amp;पट्टी</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="315"/>
         <source>S&amp;peed in Title Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>शीर्षक&amp; पट्टी में गति</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="318"/>
@@ -2890,7 +2619,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="339"/>
         <source>L&amp;ock qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट लॉक करें (&amp;o)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="350"/>
@@ -2905,7 +2634,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
         <source>R&amp;esume All</source>
-        <translation>प्रा&amp;रम्भ</translation>
+        <translation>सभी आरंभ (&amp;e)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="421"/>
@@ -2920,22 +2649,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="440"/>
         <source>Normal Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>सामान्य सन्देश</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="448"/>
         <source>Information Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>सूचना सन्देश</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="456"/>
         <source>Warning Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>चेतावनी सन्देश</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="464"/>
         <source>Critical Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>जोखिम सन्देश</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="103"/>
@@ -2950,47 +2679,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="238"/>
         <source>Bottom of Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में अन्तिम</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="241"/>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में अन्तिम पर ले जाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="249"/>
         <source>Top of Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में प्रथम</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="252"/>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में प्रथम पर ले जाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="260"/>
         <source>Move Down Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में पीछे ले जाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="263"/>
         <source>Move down in the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में पीछे ले जाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="271"/>
         <source>Move Up Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में आगे ले जाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="274"/>
         <source>Move up in the queue</source>
-        <translation type="unfinished"></translation>
+        <translation>पंक्ति में आगे ले जाएं</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="361"/>
         <source>&amp;Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट बंद करें (&amp;E)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="369"/>
@@ -3015,12 +2744,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="408"/>
         <source>&amp;Statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>आं&amp;कड़े</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="413"/>
         <source>Check for Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>अद्यतन के लिए जाँचे</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="416"/>
@@ -3030,32 +2759,32 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="185"/>
         <source>&amp;About</source>
-        <translation>&amp;बारे मेॅ</translation>
+        <translation>बारे में (&amp;A)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="195"/>
         <source>&amp;Pause</source>
-        <translation>&amp;रूकें</translation>
+        <translation>रोकें (&amp;P)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="210"/>
         <source>&amp;Delete</source>
-        <translation>&amp;रद्द करें</translation>
+        <translation>हटाएँ (&amp;D)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="205"/>
         <source>P&amp;ause All</source>
-        <translation>सबको रो&amp;कें</translation>
+        <translation>सभी रोकें (&amp;P)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="167"/>
         <source>&amp;Add Torrent File...</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट फाइ&amp;ल जोड़ें...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="170"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>खोलें</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="175"/>
@@ -3065,293 +2794,285 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="218"/>
         <source>Open URL</source>
-        <translation type="unfinished"></translation>
+        <translation>यूआरएल खोलें</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="228"/>
         <source>&amp;Documentation</source>
-        <translation>&amp;दस्तावेज़ीकरण</translation>
+        <translation>प्रलेखन (&amp;D)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="342"/>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>लॉक</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="398"/>
         <location filename="../gui/mainwindow.ui" line="432"/>
-        <location filename="../gui/mainwindow.cpp" line="1739"/>
+        <location filename="../gui/mainwindow.cpp" line="1738"/>
         <source>Show</source>
-        <translation>दिखायें</translation>
+        <translation>दिखाएँ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1932"/>
+        <location filename="../gui/mainwindow.cpp" line="1910"/>
         <source>Check for program updates</source>
         <translation>कार्यक्रम अद्यतन के लिए जाँच करें</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="215"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट लिं&amp;क जोड़ें...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="353"/>
         <source>If you like qBittorrent, please donate!</source>
-        <translation>यदि आप qBittorrent पसंद करते हैं, तो कृपया दान करें!</translation>
+        <translation>यदि क्यूबिटटोरेंट आपके कार्यों हेतु उपयोगी हो तो कृपया दान करें!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1968"/>
-        <location filename="../gui/mainwindow.cpp" line="1970"/>
+        <location filename="../gui/mainwindow.cpp" line="1988"/>
+        <location filename="../gui/mainwindow.cpp" line="1990"/>
         <source>Execution Log</source>
-        <translation>क्रियान्वयन दैनिकी</translation>
+        <translation>निष्पादन वृतांत</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="660"/>
+        <location filename="../gui/mainwindow.cpp" line="652"/>
         <source>Clear the password</source>
         <translation>पासवर्ड रद्द करें</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="198"/>
+        <location filename="../gui/mainwindow.cpp" line="197"/>
         <source>&amp;Set Password</source>
-        <translation type="unfinished"></translation>
+        <translation>पासवर्ड ल&amp;गायें</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="169"/>
+        <location filename="../gui/mainwindow.cpp" line="168"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="200"/>
+        <location filename="../gui/mainwindow.cpp" line="198"/>
         <source>&amp;Clear Password</source>
-        <translation type="unfinished"></translation>
+        <translation>पासवर्ड ह&amp;टायें</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="226"/>
+        <location filename="../gui/mainwindow.cpp" line="223"/>
         <source>Filter torrent names...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="252"/>
+        <location filename="../gui/mainwindow.cpp" line="249"/>
         <source>Transfers</source>
         <translation>अंतरण</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="423"/>
-        <location filename="../gui/mainwindow.cpp" line="1294"/>
+        <location filename="../gui/mainwindow.cpp" line="420"/>
+        <location filename="../gui/mainwindow.cpp" line="1287"/>
         <source>qBittorrent is minimized to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट ट्रे आइकन रूप में संक्षिप्त</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="423"/>
-        <location filename="../gui/mainwindow.cpp" line="1194"/>
-        <location filename="../gui/mainwindow.cpp" line="1294"/>
+        <location filename="../gui/mainwindow.cpp" line="420"/>
+        <location filename="../gui/mainwindow.cpp" line="1187"/>
+        <location filename="../gui/mainwindow.cpp" line="1287"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="467"/>
+        <location filename="../gui/mainwindow.cpp" line="464"/>
         <source>Torrent file association</source>
-        <translation>टाॅरेंट फाइल का संगठन</translation>
+        <translation>टोरेंट फाइल हेतु प्रोग्राम</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="468"/>
+        <location filename="../gui/mainwindow.cpp" line="465"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेंट या मैग्नेट फाइलें खोलने हेतु क्यूबिटटोरेंट डिफ़ॉल्ट अनुप्रयोग नहीं है।
+क्या आप क्यूबिटटोरेंट को टोरेंट व मैग्नेट फाइलों हेतु डिफ़ॉल्ट सेट करना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="550"/>
         <source>Icons Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="555"/>
+        <location filename="../gui/mainwindow.cpp" line="551"/>
         <source>Text Only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="552"/>
         <source>Text Alongside Icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="559"/>
+        <location filename="../gui/mainwindow.cpp" line="553"/>
         <source>Text Under Icons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="561"/>
+        <location filename="../gui/mainwindow.cpp" line="554"/>
         <source>Follow System Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="643"/>
-        <location filename="../gui/mainwindow.cpp" line="1047"/>
+        <location filename="../gui/mainwindow.cpp" line="635"/>
+        <location filename="../gui/mainwindow.cpp" line="1040"/>
         <source>UI lock password</source>
-        <translation>UI पर ताला लगाने हेतु पासवर्ड सेट करें</translation>
+        <translation>उपयोक्ता अंतरफलक लॉक हेतु कूटशब्द</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="644"/>
-        <location filename="../gui/mainwindow.cpp" line="1048"/>
+        <location filename="../gui/mainwindow.cpp" line="636"/>
+        <location filename="../gui/mainwindow.cpp" line="1041"/>
         <source>Please type the UI lock password:</source>
-        <translation>कृपया UI ताले हेतु पासवर्ड टंकित करें:</translation>
+        <translation>उपयोक्ता अंतरफलक लॉक हेतु कूटशब्द दर्ज करें :</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="650"/>
+        <location filename="../gui/mainwindow.cpp" line="642"/>
         <source>The password should contain at least 3 characters</source>
-        <translation>यह पासवर्ड कम से कम तीन वर्णमालाओं से बना होना चाहिए</translation>
+        <translation>कूटशब्द में न्यूनतम 3 अक्षर होना आवश्यक है</translation>
     </message>
     <message>
-        <source>Password update</source>
-        <translation type="vanished">पासवर्ड अद्यतन करें</translation>
-    </message>
-    <message>
-        <source>The UI lock password has been successfully updated</source>
-        <translation type="vanished">UI ताले का पासवर्ड सफलता पुर्वक अद्यतन हो चुका है</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="661"/>
+        <location filename="../gui/mainwindow.cpp" line="653"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>क्या आप निश्चित है कि आप पासवर्ड रद्द करना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="720"/>
+        <location filename="../gui/mainwindow.cpp" line="712"/>
         <source>Use regular expressions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="742"/>
+        <location filename="../gui/mainwindow.cpp" line="734"/>
         <source>Search</source>
         <translation>खोंजे</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="759"/>
+        <location filename="../gui/mainwindow.cpp" line="751"/>
         <source>Transfers (%1)</source>
         <translation>अंतरण (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="857"/>
+        <location filename="../gui/mainwindow.cpp" line="850"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>त्रुटि</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="850"/>
+        <source>Failed to add torrent: %1</source>
+        <translation>टौरेंट: %1 को जोड़ने में विफल</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="857"/>
-        <source>Failed to add torrent: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="864"/>
         <source>Torrent added</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट जोड़ा गया</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="864"/>
+        <location filename="../gui/mainwindow.cpp" line="857"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; को जोड़ा गया।</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="870"/>
+        <location filename="../gui/mainwindow.cpp" line="863"/>
         <source>Download completion</source>
-        <translation>डाउनलोड समाप्त</translation>
+        <translation>डाउनलोड पूर्ण</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="876"/>
+        <location filename="../gui/mainwindow.cpp" line="869"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
-        <translation>I/O त्रुटि</translation>
+        <translation>इनपुट/आउटपुट त्रुटि</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="971"/>
+        <location filename="../gui/mainwindow.cpp" line="964"/>
         <source>Recursive download confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>पुनरावर्ती डाउनलोड हेतु पुष्टि</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="977"/>
+        <location filename="../gui/mainwindow.cpp" line="970"/>
         <source>Yes</source>
         <translation>हाँ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="978"/>
+        <location filename="../gui/mainwindow.cpp" line="971"/>
         <source>No</source>
         <translation>नहीँ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="979"/>
+        <location filename="../gui/mainwindow.cpp" line="972"/>
         <source>Never</source>
         <translation>कभी नहीँ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1070"/>
+        <location filename="../gui/mainwindow.cpp" line="1063"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट अपडेट किया गया व परिवर्तन लागू करने हेतु इसे पुनः आरंभ आवश्यक है।</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1194"/>
+        <location filename="../gui/mainwindow.cpp" line="1187"/>
         <source>qBittorrent is closed to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट ट्रे आइकन रूप में संक्षिप्त</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1209"/>
+        <location filename="../gui/mainwindow.cpp" line="1202"/>
         <source>Some files are currently transferring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1209"/>
+        <location filename="../gui/mainwindow.cpp" line="1202"/>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished"></translation>
+        <translation>क्या आप निश्चित ही क्यूबिटटोरेंट बंद करना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1211"/>
+        <location filename="../gui/mainwindow.cpp" line="1204"/>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;नहीँ</translation>
+        <translation>&amp;नहीं</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1212"/>
+        <location filename="../gui/mainwindow.cpp" line="1205"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;हाँ</translation>
+        <translation>&amp;हां</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1213"/>
+        <location filename="../gui/mainwindow.cpp" line="1206"/>
         <source>&amp;Always Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>हमे&amp;शा हां</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1616"/>
+        <location filename="../gui/mainwindow.cpp" line="1615"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1/से</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1848"/>
-        <location filename="../gui/mainwindow.cpp" line="1854"/>
+        <location filename="../gui/mainwindow.cpp" line="1847"/>
+        <location filename="../gui/mainwindow.cpp" line="1853"/>
         <source>Missing Python Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1875"/>
+        <location filename="../gui/mainwindow.cpp" line="1874"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 3.3.0.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1912"/>
+        <location filename="../gui/mainwindow.cpp" line="1925"/>
         <source>qBittorrent Update Available</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट अपडेट उपलब्ध है</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1926"/>
         <source>Already Using the Latest qBittorrent Version</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">क्यूबिटटोरेंट का नवीनतम संस्करण पहले से कार्यरत है</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="870"/>
+        <location filename="../gui/mainwindow.cpp" line="863"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="877"/>
+        <location filename="../gui/mainwindow.cpp" line="870"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -3359,154 +3080,150 @@ Minimum requirement: 3.3.0.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="972"/>
+        <location filename="../gui/mainwindow.cpp" line="965"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="994"/>
+        <location filename="../gui/mainwindow.cpp" line="987"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Missing Python Interpreter</source>
-        <translation type="vanished">Python Interpreter नहीं है</translation>
-    </message>
-    <message>
-        <location filename="../gui/mainwindow.cpp" line="1849"/>
+        <location filename="../gui/mainwindow.cpp" line="1848"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1855"/>
+        <location filename="../gui/mainwindow.cpp" line="1854"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1867"/>
-        <location filename="../gui/mainwindow.cpp" line="1874"/>
+        <location filename="../gui/mainwindow.cpp" line="1866"/>
+        <location filename="../gui/mainwindow.cpp" line="1873"/>
         <source>Old Python Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1868"/>
+        <location filename="../gui/mainwindow.cpp" line="1867"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: 3.5.0.
 Do you want to install a newer version now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1913"/>
+        <location filename="../gui/mainwindow.cpp" line="1922"/>
         <source>A new version is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>नया वर्जन उपलब्ध है|</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1914"/>
+        <location filename="../gui/mainwindow.cpp" line="1923"/>
         <source>Do you want to download %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1915"/>
+        <location filename="../gui/mainwindow.cpp" line="1924"/>
         <source>Open changelog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1927"/>
+        <location filename="../gui/mainwindow.cpp" line="1945"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1931"/>
+        <location filename="../gui/mainwindow.cpp" line="1909"/>
         <source>&amp;Check for Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;अद्यतन के लिए जाँचे</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2098"/>
+        <location filename="../gui/mainwindow.cpp" line="2120"/>
         <source>Checking for Updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>अद्यतन के लिए जाँचा चल रही है...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2099"/>
+        <location filename="../gui/mainwindow.cpp" line="2121"/>
         <source>Already checking for program updates in the background</source>
         <translation>कार्यक्रम अद्यतन की जाँच पहले से ही पृष्टभूमि में चल रही है</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2129"/>
+        <location filename="../gui/mainwindow.cpp" line="2154"/>
         <source>Download error</source>
         <translation>डाउनलोड त्रुटि</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2130"/>
+        <location filename="../gui/mainwindow.cpp" line="2155"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="650"/>
-        <location filename="../gui/mainwindow.cpp" line="1056"/>
+        <location filename="../gui/mainwindow.cpp" line="642"/>
+        <location filename="../gui/mainwindow.cpp" line="1049"/>
         <source>Invalid password</source>
-        <translation>अमान्य पासवर्ड</translation>
+        <translation>अमान्य कूटशब्द</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="686"/>
-        <location filename="../gui/mainwindow.cpp" line="699"/>
-        <location filename="../gui/mainwindow.cpp" line="701"/>
+        <location filename="../gui/mainwindow.cpp" line="678"/>
+        <location filename="../gui/mainwindow.cpp" line="691"/>
+        <location filename="../gui/mainwindow.cpp" line="693"/>
         <source>RSS (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="993"/>
+        <location filename="../gui/mainwindow.cpp" line="986"/>
         <source>URL download error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1056"/>
+        <location filename="../gui/mainwindow.cpp" line="1049"/>
         <source>The password is invalid</source>
-        <translation>यह पासवर्ड अमान्य है</translation>
+        <translation>यह कूटशब्द अमान्य है</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1627"/>
+        <location filename="../gui/mainwindow.cpp" line="1626"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1628"/>
+        <location filename="../gui/mainwindow.cpp" line="1627"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1635"/>
+        <location filename="../gui/mainwindow.cpp" line="1634"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished"></translation>
+        <translation>[डाउनलोड : %1, अपलोड : %2] क्यूबिटटोरेंट %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1739"/>
+        <location filename="../gui/mainwindow.cpp" line="1738"/>
         <source>Hide</source>
-        <translation>छुपायें</translation>
+        <translation>अदृश्य करें</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1207"/>
+        <location filename="../gui/mainwindow.cpp" line="1200"/>
         <source>Exiting qBittorrent</source>
-        <translation>qBittorrent बंद हो रहा है</translation>
+        <translation>क्यूबिटटोरेंट बंद होना जारी</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1425"/>
+        <location filename="../gui/mainwindow.cpp" line="1418"/>
         <source>Open Torrent Files</source>
-        <translation>टाॅरेंट फाइल खोलें</translation>
+        <translation>टोरेंट फाइल खोलें</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1426"/>
+        <location filename="../gui/mainwindow.cpp" line="1419"/>
         <source>Torrent Files</source>
-        <translation>टाॅरेंट फाइल्स</translation>
+        <translation>टोरेंट फाइलें</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1481"/>
+        <location filename="../gui/mainwindow.cpp" line="1474"/>
         <source>Options were saved successfully.</source>
-        <translation>विकल्प सफलता पुर्वक सहेज दिये गये.</translation>
+        <translation>विकल्प सफलतापूर्वक संचित।</translation>
     </message>
 </context>
 <context>
@@ -3534,12 +3251,12 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="216"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>गतिशील डीएनएस त्रुटि : सेवा द्वारा क्यूबिटटोरेंट निरुद्ध सूची में दर्ज, यह समस्या http://bugs.qbittorrent.org पर सूचित करें।</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="224"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>गतिशील डीएनएस त्रुटि : सेवा द्वारा %1 प्राप्त, यह समस्या http://bugs.qbittorrent.org पर सूचित करें।</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="232"/>
@@ -3560,13 +3277,6 @@ Please install it manually.</source>
         <location filename="../base/net/dnsupdater.cpp" line="281"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Net::DownloadHandler</name>
-    <message>
-        <source>I/O Error</source>
-        <translation type="obsolete">I/O त्रुटि</translation>
     </message>
 </context>
 <context>
@@ -3610,327 +3320,327 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="150"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"></translation>
+        <translation>यूनाइटेड अरब अमीरात</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="151"/>
         <source>Afghanistan</source>
-        <translation type="unfinished"></translation>
+        <translation>अफगानिस्तान</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="152"/>
         <source>Antigua and Barbuda</source>
-        <translation type="unfinished"></translation>
+        <translation>एंटीगुआ और बरबुडा</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="153"/>
         <source>Anguilla</source>
-        <translation type="unfinished"></translation>
+        <translation>एंगुइला</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="154"/>
         <source>Albania</source>
-        <translation type="unfinished"></translation>
+        <translation>अल्बानिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="155"/>
         <source>Armenia</source>
-        <translation type="unfinished"></translation>
+        <translation>आर्मेनिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="156"/>
         <source>Angola</source>
-        <translation type="unfinished"></translation>
+        <translation>अंगोला</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Antarctica</source>
-        <translation type="unfinished"></translation>
+        <translation>अंटार्कटिका</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="158"/>
         <source>Argentina</source>
-        <translation type="unfinished"></translation>
+        <translation>अर्जेंटीना</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>American Samoa</source>
-        <translation type="unfinished"></translation>
+        <translation>अमेरिकी समोआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="160"/>
         <source>Austria</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑस्ट्रिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="161"/>
         <source>Australia</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑस्ट्रेलिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="162"/>
         <source>Aruba</source>
-        <translation type="unfinished"></translation>
+        <translation>अरूबा</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="164"/>
         <source>Azerbaijan</source>
-        <translation type="unfinished"></translation>
+        <translation>अजरबैजान</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="165"/>
         <source>Bosnia and Herzegovina</source>
-        <translation type="unfinished"></translation>
+        <translation>बोस्निआ और हर्जेगोविना</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="166"/>
         <source>Barbados</source>
-        <translation type="unfinished"></translation>
+        <translation>बारबेडोस</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="167"/>
         <source>Bangladesh</source>
-        <translation type="unfinished"></translation>
+        <translation>बांग्लादेश</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Belgium</source>
-        <translation type="unfinished"></translation>
+        <translation>बेल्जियम</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="169"/>
         <source>Burkina Faso</source>
-        <translation type="unfinished"></translation>
+        <translation>बुर्किना फासो</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="170"/>
         <source>Bulgaria</source>
-        <translation type="unfinished"></translation>
+        <translation>बुल्गारिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Bahrain</source>
-        <translation type="unfinished"></translation>
+        <translation>बहरीन</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="172"/>
         <source>Burundi</source>
-        <translation type="unfinished"></translation>
+        <translation>बुरुंदी</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Benin</source>
-        <translation type="unfinished"></translation>
+        <translation>बेनिन</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="175"/>
         <source>Bermuda</source>
-        <translation type="unfinished"></translation>
+        <translation>बरमूडा</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Brunei Darussalam</source>
-        <translation type="unfinished"></translation>
+        <translation>ब्रूनेई दारूसलम</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="179"/>
         <source>Brazil</source>
-        <translation type="unfinished"></translation>
+        <translation>ब्राजील</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="180"/>
         <source>Bahamas</source>
-        <translation type="unfinished"></translation>
+        <translation>बहामस</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="181"/>
         <source>Bhutan</source>
-        <translation type="unfinished"></translation>
+        <translation>भूटान</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Bouvet Island</source>
-        <translation type="unfinished"></translation>
+        <translation>बोवेत द्वीप</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="183"/>
         <source>Botswana</source>
-        <translation type="unfinished"></translation>
+        <translation>बोत्सवाना</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="184"/>
         <source>Belarus</source>
-        <translation type="unfinished"></translation>
+        <translation>बेलारस</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Belize</source>
-        <translation type="unfinished"></translation>
+        <translation>बिलीज</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="186"/>
         <source>Canada</source>
-        <translation type="unfinished"></translation>
+        <translation>कनाडा</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Cocos (Keeling) Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>कोको (कीलिंग) द्वीप</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="188"/>
         <source>Congo, The Democratic Republic of the</source>
-        <translation type="unfinished"></translation>
+        <translation>कांगो लोकतान्त्रिक गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="189"/>
         <source>Central African Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>मध्य अफ्रीकी गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="190"/>
         <source>Congo</source>
-        <translation type="unfinished"></translation>
+        <translation>कांगो</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>स्विटजरलैंड</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Cook Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>कुक द्वीप</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="194"/>
         <source>Chile</source>
-        <translation type="unfinished"></translation>
+        <translation>चिली</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Cameroon</source>
-        <translation type="unfinished"></translation>
+        <translation>कैमरून</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>चीन</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="197"/>
         <source>Colombia</source>
-        <translation type="unfinished"></translation>
+        <translation>कोलम्बिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="198"/>
         <source>Costa Rica</source>
-        <translation type="unfinished"></translation>
+        <translation>कोस्टा रिका</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="199"/>
         <source>Cuba</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबा</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="200"/>
         <source>Cape Verde</source>
-        <translation type="unfinished"></translation>
+        <translation>केप वर्ड</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="201"/>
         <source>Curacao</source>
-        <translation type="unfinished"></translation>
+        <translation>कुरासावो</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Christmas Island</source>
-        <translation type="unfinished"></translation>
+        <translation>क्रिसमस द्वीप</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Cyprus</source>
-        <translation type="unfinished"></translation>
+        <translation>सायप्रस</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="204"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>चेक रिपब्लिक</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="205"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>जर्मनी</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="206"/>
         <source>Djibouti</source>
-        <translation type="unfinished"></translation>
+        <translation>जिबूती</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="207"/>
         <source>Denmark</source>
-        <translation type="unfinished"></translation>
+        <translation>डेनमार्क</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="208"/>
         <source>Dominica</source>
-        <translation type="unfinished"></translation>
+        <translation>डॉमिनिका</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="209"/>
         <source>Dominican Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>डॉमिनिकन रिपब्लिक</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="210"/>
         <source>Algeria</source>
-        <translation type="unfinished"></translation>
+        <translation>अल्जीरिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="211"/>
         <source>Ecuador</source>
-        <translation type="unfinished"></translation>
+        <translation>इक्वाडोर</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="212"/>
         <source>Estonia</source>
-        <translation type="unfinished"></translation>
+        <translation>एस्टोनिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="213"/>
         <source>Egypt</source>
-        <translation type="unfinished"></translation>
+        <translation>मिस्त्र</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="214"/>
         <source>Western Sahara</source>
-        <translation type="unfinished"></translation>
+        <translation>पश्चिमी सहारा</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="215"/>
         <source>Eritrea</source>
-        <translation type="unfinished"></translation>
+        <translation>इरित्रिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>Spain</source>
-        <translation type="unfinished"></translation>
+        <translation>स्पेन</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>Ethiopia</source>
-        <translation type="unfinished"></translation>
+        <translation>ईथोपिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>फिनलैंड</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="219"/>
         <source>Fiji</source>
-        <translation type="unfinished"></translation>
+        <translation>फिजी</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="220"/>
@@ -3955,7 +3665,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Gabon</source>
-        <translation type="unfinished"></translation>
+        <translation>गेबॉन</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="225"/>
@@ -3985,7 +3695,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="231"/>
         <source>Gibraltar</source>
-        <translation type="unfinished"></translation>
+        <translation>जिब्राल्टर</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="232"/>
@@ -3995,7 +3705,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="233"/>
         <source>Gambia</source>
-        <translation type="unfinished"></translation>
+        <translation>गाम्बिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="234"/>
@@ -4015,7 +3725,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="237"/>
         <source>Greece</source>
-        <translation type="unfinished">ग्रीस</translation>
+        <translation>ग्रीस</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="238"/>
@@ -4035,7 +3745,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="241"/>
         <source>Guinea-Bissau</source>
-        <translation type="unfinished"></translation>
+        <translation>गिनी-बिसाऊ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="242"/>
@@ -4065,72 +3775,72 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>Haiti</source>
-        <translation type="unfinished"></translation>
+        <translation>हैती</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="248"/>
         <source>Hungary</source>
-        <translation type="unfinished"></translation>
+        <translation>हंगरी</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="249"/>
         <source>Indonesia</source>
-        <translation type="unfinished"></translation>
+        <translation>इंडोनेशिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="250"/>
         <source>Ireland</source>
-        <translation type="unfinished"></translation>
+        <translation>आयरलैंड</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="251"/>
         <source>Israel</source>
-        <translation type="unfinished"></translation>
+        <translation>इजराइल</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>भारत</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>British Indian Ocean Territory</source>
-        <translation type="unfinished"></translation>
+        <translation>ब्रिटिश हिंद महासागर क्षेत्र</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="255"/>
         <source>Iraq</source>
-        <translation type="unfinished"></translation>
+        <translation>इराक</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="256"/>
         <source>Iran, Islamic Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>ईरानी इस्लामिक गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="257"/>
         <source>Iceland</source>
-        <translation type="unfinished"></translation>
+        <translation>आइसलैंड</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>इटली</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="260"/>
         <source>Jamaica</source>
-        <translation type="unfinished"></translation>
+        <translation>जमैका</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="261"/>
         <source>Jordan</source>
-        <translation type="unfinished"></translation>
+        <translation>जॉर्डन</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>जापान</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="263"/>
@@ -4145,12 +3855,12 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Cambodia</source>
-        <translation type="unfinished"></translation>
+        <translation>कम्बोडिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="266"/>
         <source>Kiribati</source>
-        <translation type="unfinished"></translation>
+        <translation>किरिबाती</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="267"/>
@@ -4165,12 +3875,12 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>कोरिया जनवादी लोकतांत्रिक गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Korea, Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>कोरिया गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="271"/>
@@ -4190,12 +3900,12 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Lao People&apos;s Democratic Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>लाओ जनवादी लोकतान्त्रिक गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="275"/>
         <source>Lebanon</source>
-        <translation type="unfinished"></translation>
+        <translation>लेबनान</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="276"/>
@@ -4215,7 +3925,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Liberia</source>
-        <translation type="unfinished"></translation>
+        <translation>लाईबेरिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="280"/>
@@ -4230,7 +3940,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="282"/>
         <source>Luxembourg</source>
-        <translation type="unfinished"></translation>
+        <translation>लग्जमबर्ग</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="283"/>
@@ -4250,7 +3960,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Moldova, Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>माल्दोवा गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="290"/>
@@ -4330,17 +4040,17 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="307"/>
         <source>Mozambique</source>
-        <translation type="unfinished"></translation>
+        <translation>मोजाम्बीक</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="308"/>
         <source>Namibia</source>
-        <translation type="unfinished"></translation>
+        <translation>नामीबिया</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="309"/>
         <source>New Caledonia</source>
-        <translation type="unfinished"></translation>
+        <translation>न्यू कालेडोनिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="310"/>
@@ -4390,7 +4100,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>New Zealand</source>
-        <translation type="unfinished"></translation>
+        <translation>न्यूजीलैंड</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="320"/>
@@ -4415,7 +4125,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Papua New Guinea</source>
-        <translation type="unfinished"></translation>
+        <translation>पापुआ न्यू गिनी</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="325"/>
@@ -4485,7 +4195,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="341"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"></translation>
+        <translation>सउदी अरब</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="342"/>
@@ -4565,7 +4275,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="360"/>
         <source>Syrian Arab Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>सीरियाई अरब गणराज्य</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="361"/>
@@ -4815,7 +4525,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="338"/>
         <source>Serbia</source>
-        <translation type="unfinished"></translation>
+        <translation>सर्बिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="395"/>
@@ -4825,7 +4535,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="396"/>
         <source>Zambia</source>
-        <translation type="unfinished"></translation>
+        <translation>जाम्बिआ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="288"/>
@@ -4835,7 +4545,7 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="397"/>
         <source>Zimbabwe</source>
-        <translation type="unfinished"></translation>
+        <translation>जिब्बावे</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="163"/>
@@ -4860,13 +4570,13 @@ Please install it manually.</source>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="174"/>
         <source>Saint Barthelemy</source>
-        <translation type="unfinished"></translation>
+        <translation>सेंट बार्थेलेमी</translation>
     </message>
 </context>
 <context>
     <name>Net::Smtp</name>
     <message>
-        <location filename="../base/net/smtp.cpp" line="560"/>
+        <location filename="../base/net/smtp.cpp" line="566"/>
         <source>Email Notification Error:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4876,32 +4586,32 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="14"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>विकल्प</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="52"/>
         <source>Behavior</source>
-        <translation type="unfinished"></translation>
+        <translation>व्यवहार</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="57"/>
         <source>Downloads</source>
-        <translation type="unfinished">डाउनलोड्स</translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="62"/>
         <source>Connection</source>
-        <translation type="unfinished">संबंध</translation>
+        <translation>कनेक्शन</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="67"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>गति</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="72"/>
         <source>BitTorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>बिटटोरेंट</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="77"/>
@@ -4916,11 +4626,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="87"/>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="obsolete">भाषा</translation>
+        <translation>उन्नत</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="219"/>
@@ -4946,12 +4652,12 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="258"/>
         <source>Always</source>
-        <translation type="unfinished"></translation>
+        <translation>हमेशा</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="263"/>
         <source>Paused torrents only</source>
-        <translation type="unfinished"></translation>
+        <translation>केवल विरामित टौरेंट</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="286"/>
@@ -4973,7 +4679,7 @@ Please install it manually.</source>
         <location filename="../gui/optionsdialog.ui" line="308"/>
         <location filename="../gui/optionsdialog.ui" line="334"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">गन्तव्य डायरेक्टरी खोलें</translation>
+        <translation type="unfinished">लक्षित फोल्डर खोलें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="313"/>
@@ -4994,7 +4700,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="377"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>विंडोज के साथ क्यूबिटटोरेंट ही आरंभ करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="384"/>
@@ -5004,7 +4710,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="397"/>
         <source>Start qBittorrent minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट संक्षिप्त रूप में आरंभ करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="407"/>
@@ -5019,7 +4725,7 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="605"/>
         <source> KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="776"/>
@@ -5029,17 +4735,17 @@ Please install it manually.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="787"/>
         <source>Original</source>
-        <translation type="unfinished"></translation>
+        <translation>मूल</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="792"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">उपफोल्डर बनायें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="797"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">उपफोल्डर न बनायें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1225"/>
@@ -5067,26 +4773,16 @@ Please install it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2001"/>
-        <source>Start time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2004"/>
         <source>From:</source>
         <comment>From start time</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/optionsdialog.ui" line="2028"/>
-        <source>End time</source>
-        <translation type="unfinished"></translation>
+        <translation>से:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2031"/>
         <source>To:</source>
         <comment>To end time</comment>
-        <translation type="unfinished"></translation>
+        <translation>को:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2236"/>
@@ -5108,7 +4804,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2335"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;अधिक जानकारी&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2363"/>
@@ -5138,19 +4834,19 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2761"/>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished">लेखों की प्रति फीड अधिकतम संख्या:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2560"/>
         <location filename="../gui/optionsdialog.ui" line="2768"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>न्यूनतम</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2551"/>
         <source>Seeding Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>बीजारोपण की सीमायें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2573"/>
@@ -5160,17 +4856,17 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2594"/>
         <source>Pause torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट को विराम दें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2599"/>
         <source>Remove torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट को हटायें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2604"/>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट और उसकी फाइलों को हटायें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2609"/>
@@ -5237,7 +4933,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="3098"/>
         <source>Never</source>
-        <translation type="unfinished">कभी नहीँ</translation>
+        <translation>कभी नहीं</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3108"/>
@@ -5252,7 +4948,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="3142"/>
         <source>Disabled</source>
-        <translation type="unfinished">असक्षम</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3218"/>
@@ -5301,7 +4997,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="439"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट को अधिसूचना क्षेत्र में संक्षिप्त करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="133"/>
@@ -5321,7 +5017,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="469"/>
         <source>Normal</source>
-        <translation type="unfinished">साधारण</translation>
+        <translation type="unfinished">सामान्य</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="505"/>
@@ -5331,12 +5027,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="511"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent फाइल हेतु क्यूबिटटोरेंट उपयोग करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="518"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished"></translation>
+        <translation>मैग्नेट लिंक हेतु क्यूबिटटोरेंट उपयोग करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="528"/>
@@ -5351,7 +5047,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="581"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>संचय पथ:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="598"/>
@@ -5366,7 +5062,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="746"/>
         <source>When adding a torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट जोड़ते समय</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="761"/>
@@ -5406,17 +5102,17 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="937"/>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>स्वयं</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="942"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>स्वतः</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="965"/>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished"></translation>
+        <translation>जब टौरेंट की श्रेणी बदल जाए:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="975"/>
@@ -5458,7 +5154,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="1120"/>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपूर्ण टौरेंटों को यहाँ रखें:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1113"/>
@@ -5468,7 +5164,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="427"/>
         <source>Show &amp;qBittorrent in notification area</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट को अधिसूचना क्षेत्र में दिखाएँ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="561"/>
@@ -5493,7 +5189,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="888"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>सभी फाइलों के लिए डिस्क में स्थान पूर्व-निर्धारित करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="139"/>
@@ -5508,7 +5204,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="181"/>
         <source>Use system icon theme</source>
-        <translation type="unfinished">सिस्टम आईकाॅन थीम का प्रयोग करें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="209"/>
@@ -5528,7 +5224,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="394"/>
         <source>When qBittorrent is started, the main window will be minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट आरंभ होने पर मुख्य विंडो संक्षिप्त रखें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="404"/>
@@ -5549,7 +5245,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="452"/>
         <source>Close qBittorrent to notification area</source>
         <extracomment>The systray icon will still be visible when closing the main window</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट को अधिसूचना क्षेत्र में बंद करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="474"/>
@@ -5597,13 +5293,13 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="820"/>
         <source>The torrent will be added to download list in a paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट को सूची में विरामित अवस्था में जोड़ा जाएगा</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="823"/>
         <source>Do not start the download automatically</source>
         <extracomment>The torrent will be added to download list in a paused state</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड स्वतः आरम्भ न करें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="885"/>
@@ -5613,7 +5309,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="895"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>अपूर्ण फाइलों में .!qB एक्सटेंशन जोड़े</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="902"/>
@@ -5639,7 +5335,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1141"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>यहाँ से टौरेंट स्वतः जोड़े</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1188"/>
@@ -5660,7 +5356,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="1245"/>
         <source>To:</source>
         <comment>To receiver</comment>
-        <translation type="unfinished"></translation>
+        <translation>को:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1252"/>
@@ -5676,7 +5372,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="1268"/>
         <source>From:</source>
         <comment>From sender</comment>
-        <translation type="unfinished"></translation>
+        <translation>से:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1277"/>
@@ -5695,7 +5391,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="3020"/>
         <location filename="../gui/optionsdialog.ui" line="3342"/>
         <source>Username:</source>
-        <translation type="unfinished">प्रयोक्ता नाम:</translation>
+        <translation>यूजरनेम:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1306"/>
@@ -5703,7 +5399,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="3030"/>
         <location filename="../gui/optionsdialog.ui" line="3356"/>
         <source>Password:</source>
-        <translation type="unfinished">पासवर्ड:</translation>
+        <translation>पासवर्ड</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1341"/>
@@ -5743,17 +5439,17 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1506"/>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>कनेक्शन सीमायें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1522"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रति टौरेंट अधिकतम कनेक्शनों की संख्या</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1532"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>सार्वभौम अधिकतम कनेक्शनों की संख्या</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1571"/>
@@ -5773,27 +5469,27 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1628"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रकार:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1636"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation>(कोई नहीं)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1641"/>
         <source>SOCKS4</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1646"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1651"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1662"/>
@@ -5859,7 +5555,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1893"/>
         <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>सीमाओं की सार्वभौम दर</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1899"/>
@@ -5880,53 +5576,59 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="2469"/>
         <location filename="../gui/optionsdialog.ui" line="2482"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी/से</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1947"/>
         <location filename="../gui/optionsdialog.ui" line="2135"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation type="obsolete">किलोबाइट्स/सेकंड्स</translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1954"/>
         <location filename="../gui/optionsdialog.ui" line="2142"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1964"/>
         <source>Alternative Rate Limits</source>
+        <translation>सीमाओं की वैकल्पिक दर</translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2001"/>
+        <source>Start time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2028"/>
+        <source>End time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2058"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>कब:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2072"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रत्येक दिन</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2077"/>
         <source>Weekdays</source>
-        <translation type="unfinished"></translation>
+        <translation>कार्यदिवसों</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2082"/>
         <source>Weekends</source>
-        <translation type="unfinished"></translation>
+        <translation>अवकाशदिवस</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2152"/>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>दर सीमा की सैटिंग</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2172"/>
@@ -5956,7 +5658,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2249"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>संगत बिटटोरेंट साधन (µTorrent, Vuze, ...) से पीयर अंतरण</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2252"/>
@@ -6001,22 +5703,23 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2375"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>अधिकतम सक्रिय डाउनलोड:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2398"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>अधिकतम सक्रिय अपलोड:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2421"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>अधिकतम सक्रिय टौरेंट</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2457"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation>
+इन सीमाओं में धीमे टौरेंटों को न गिनें</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2495"/>
@@ -6044,7 +5747,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2580"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>फिर</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2951"/>
@@ -6054,7 +5757,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2980"/>
         <source>Certificate:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणपत्र:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2973"/>
@@ -6084,7 +5787,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3198"/>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरक्षा</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3204"/>
@@ -6119,7 +5822,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3319"/>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>पंजीकृत हों</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3328"/>
@@ -6137,209 +5840,209 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="259"/>
+        <location filename="../gui/optionsdialog.cpp" line="251"/>
         <source>Select qBittorrent UI Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट उपयोक्ता अंतरफलक थीम फाइल चयन</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="260"/>
+        <location filename="../gui/optionsdialog.cpp" line="252"/>
         <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट उपयोक्ता अंतरफलक थीम फाइल (*.qbtheme)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="296"/>
+        <location filename="../gui/optionsdialog.cpp" line="288"/>
         <source>Choose Alternative UI files location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="394"/>
+        <location filename="../gui/optionsdialog.cpp" line="386"/>
         <source>Supported parameters (case sensitive):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="395"/>
+        <location filename="../gui/optionsdialog.cpp" line="387"/>
         <source>%N: Torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>%N: टौरेंट नाम</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="396"/>
+        <location filename="../gui/optionsdialog.cpp" line="388"/>
         <source>%L: Category</source>
-        <translation type="unfinished"></translation>
+        <translation>%L: श्रेणी</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="398"/>
+        <location filename="../gui/optionsdialog.cpp" line="390"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="399"/>
+        <location filename="../gui/optionsdialog.cpp" line="391"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="400"/>
+        <location filename="../gui/optionsdialog.cpp" line="392"/>
         <source>%D: Save path</source>
-        <translation type="unfinished"></translation>
+        <translation>%D: संचय पथ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="401"/>
+        <location filename="../gui/optionsdialog.cpp" line="393"/>
         <source>%C: Number of files</source>
-        <translation type="unfinished"></translation>
+        <translation>%C: फाइलों की संख्या</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="402"/>
+        <location filename="../gui/optionsdialog.cpp" line="394"/>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished"></translation>
+        <translation>%Z: टौरेंट आकर (बाइट्स)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="403"/>
+        <location filename="../gui/optionsdialog.cpp" line="395"/>
         <source>%T: Current tracker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="404"/>
+        <location filename="../gui/optionsdialog.cpp" line="396"/>
         <source>%I: Info hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="405"/>
+        <location filename="../gui/optionsdialog.cpp" line="397"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="473"/>
+        <location filename="../gui/optionsdialog.cpp" line="465"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="482"/>
+        <location filename="../gui/optionsdialog.cpp" line="474"/>
         <source>Certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="483"/>
+        <location filename="../gui/optionsdialog.cpp" line="475"/>
         <source>Select certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="485"/>
+        <location filename="../gui/optionsdialog.cpp" line="477"/>
         <source>Private key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="486"/>
+        <location filename="../gui/optionsdialog.cpp" line="478"/>
         <source>Select private key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1665"/>
+        <location filename="../gui/optionsdialog.cpp" line="1654"/>
         <source>Select folder to monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1674"/>
+        <location filename="../gui/optionsdialog.cpp" line="1663"/>
         <source>Folder is already being monitored:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1677"/>
+        <location filename="../gui/optionsdialog.cpp" line="1666"/>
         <source>Folder does not exist:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1680"/>
+        <location filename="../gui/optionsdialog.cpp" line="1669"/>
         <source>Folder is not readable:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1691"/>
+        <location filename="../gui/optionsdialog.cpp" line="1680"/>
         <source>Adding entry failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1761"/>
-        <location filename="../gui/optionsdialog.cpp" line="1787"/>
+        <location filename="../gui/optionsdialog.cpp" line="1750"/>
+        <location filename="../gui/optionsdialog.cpp" line="1776"/>
         <source>Invalid path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1864"/>
+        <location filename="../gui/optionsdialog.cpp" line="1853"/>
         <source>Location Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1864"/>
+        <location filename="../gui/optionsdialog.cpp" line="1853"/>
         <source>The alternative Web UI files location cannot be blank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="548"/>
-        <location filename="../gui/optionsdialog.cpp" line="551"/>
-        <location filename="../gui/optionsdialog.cpp" line="1720"/>
-        <location filename="../gui/optionsdialog.cpp" line="1722"/>
+        <location filename="../gui/optionsdialog.cpp" line="540"/>
+        <location filename="../gui/optionsdialog.cpp" line="543"/>
+        <location filename="../gui/optionsdialog.cpp" line="1709"/>
+        <location filename="../gui/optionsdialog.cpp" line="1711"/>
         <source>Choose export directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="223"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="unfinished"></translation>
+        <translation>ये विकल्प सक्रिय होने पर क्यूबिटटोरेंट द्वारा डाउनलोड पंक्ति में सफलतापूर्वक जोड़ी गई (पहला विकल्प) या नहीं जोड़ी गई (दूसरा विकल्प) .torrent फाइलों को &lt;strong&gt;हटा&lt;/strong&gt; दिया जाएगा। यह &amp;ldquo;टोरेंट जोड़ें&amp;rdquo; मेन्यू कार्य के &lt;strong&gt;साथ&lt;/strong&gt; ही &lt;strong&gt;संलग्न फाइल प्रकार&lt;/strong&gt; द्वारा प्रयुक्त फाइलों पर भी लागू होगा</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="397"/>
+        <location filename="../gui/optionsdialog.cpp" line="389"/>
         <source>%G: Tags (separated by comma)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="545"/>
-        <location filename="../gui/optionsdialog.cpp" line="558"/>
-        <location filename="../gui/optionsdialog.cpp" line="561"/>
+        <location filename="../gui/optionsdialog.cpp" line="537"/>
+        <location filename="../gui/optionsdialog.cpp" line="550"/>
+        <location filename="../gui/optionsdialog.cpp" line="553"/>
         <source>Choose a save directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="554"/>
+        <location filename="../gui/optionsdialog.cpp" line="546"/>
         <source>Choose an IP filter file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="555"/>
+        <location filename="../gui/optionsdialog.cpp" line="547"/>
         <source>All supported filters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1828"/>
+        <location filename="../gui/optionsdialog.cpp" line="1817"/>
         <source>Parsing error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1828"/>
+        <location filename="../gui/optionsdialog.cpp" line="1817"/>
         <source>Failed to parse the provided IP filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1830"/>
+        <location filename="../gui/optionsdialog.cpp" line="1819"/>
         <source>Successfully refreshed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1830"/>
+        <location filename="../gui/optionsdialog.cpp" line="1819"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1794"/>
+        <location filename="../gui/optionsdialog.cpp" line="1783"/>
         <source>Invalid key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1794"/>
+        <location filename="../gui/optionsdialog.cpp" line="1783"/>
         <source>This is not a valid SSL key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1768"/>
+        <location filename="../gui/optionsdialog.cpp" line="1757"/>
         <source>Invalid certificate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6349,33 +6052,33 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1768"/>
+        <location filename="../gui/optionsdialog.cpp" line="1757"/>
         <source>This is not a valid SSL certificate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1839"/>
+        <location filename="../gui/optionsdialog.cpp" line="1828"/>
         <source>Time Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1839"/>
+        <location filename="../gui/optionsdialog.cpp" line="1828"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1849"/>
-        <location filename="../gui/optionsdialog.cpp" line="1854"/>
+        <location filename="../gui/optionsdialog.cpp" line="1838"/>
+        <location filename="../gui/optionsdialog.cpp" line="1843"/>
         <source>Length Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1849"/>
+        <location filename="../gui/optionsdialog.cpp" line="1838"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1854"/>
+        <location filename="../gui/optionsdialog.cpp" line="1843"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6458,7 +6161,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="95"/>
         <source>Country/Region</source>
-        <translation type="unfinished"></translation>
+        <translation>देश/छेत्र</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="96"/>
@@ -6473,18 +6176,18 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="98"/>
         <source>Flags</source>
-        <translation>निशानियाँ</translation>
+        <translation>फ्लैग</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="99"/>
         <source>Connection</source>
-        <translation>संबंध</translation>
+        <translation>कनेक्शन</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="100"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation>उपभोक्ता</translation>
+        <translation>प्रोग्राम</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="101"/>
@@ -6508,13 +6211,13 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="104"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>डाउनलोडेड</translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="105"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>अपलोडेड</translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="106"/>
@@ -6526,17 +6229,17 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="107"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished"></translation>
+        <translation>फाइलों</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="182"/>
         <source>Column visibility</source>
-        <translation type="unfinished">स्तंभ दृश्यता</translation>
+        <translation type="unfinished">पंक्ति दृश्यता</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="273"/>
         <source>Add a new peer...</source>
-        <translation>नया सहकर्मी जोड़े...</translation>
+        <translation>नया पीयर जोड़ें...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="282"/>
@@ -6555,41 +6258,25 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="295"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="321"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="293"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="319"/>
         <source>Ban peer permanently</source>
-        <translation>सहकर्मी को स्थायी रुप से प्रतिबंधित करें</translation>
+        <translation>पीयर स्थायी रूप से अवरुद्ध करें</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="322"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="320"/>
         <source>Are you sure you want to permanently ban the selected peers?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="328"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="326"/>
         <source>Peer &quot;%1&quot; is manually banned</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Peer addition</source>
-        <translation type="vanished">सहकर्मी जोड़े</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="290"/>
         <source>Copy IP:port</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to ban permanently the selected peers?</source>
-        <translation type="vanished">क्या आप निश्चित है कि आप चयनित सहकर्मी को स्थायी रुप से प्रतिबंधित करना चाहते हैं?</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation type="vanished">&amp;हाँ</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation type="vanished">&amp;नहीँ</translation>
     </message>
 </context>
 <context>
@@ -6686,7 +6373,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="53"/>
         <source>Name</source>
-        <translation type="unfinished">नाम</translation>
+        <translation>नाम</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="58"/>
@@ -6712,7 +6399,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>नए खोज साधन प्लगिन यहाँ से प्राप्त करें : &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
@@ -6722,7 +6409,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="115"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>अद्यतन के लिए जाँचे</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="122"/>
@@ -6739,7 +6426,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/search/pluginselectdialog.cpp" line="238"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="303"/>
         <source>Yes</source>
-        <translation type="unfinished">हाँ</translation>
+        <translation>हाँ</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="172"/>
@@ -6747,7 +6434,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/search/pluginselectdialog.cpp" line="243"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="308"/>
         <source>No</source>
-        <translation type="unfinished">नहीँ</translation>
+        <translation>नहीं</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="223"/>
@@ -6758,7 +6445,8 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/search/pluginselectdialog.cpp" line="223"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट में सम्मिलित होने के कारण सभी प्लगिन हटाना संभव नहीं है। आप केवल स्वयं द्वारा जोड़ें गए प्लगिन ही हटा सकते हैं।
+वे प्लगिन निष्क्रिय कर दिए गए।</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="225"/>
@@ -6813,7 +6501,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="392"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट खोज प्लगिन</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="456"/>
@@ -6839,21 +6527,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdialog.cpp" line="504"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PluginSelectDlg</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">नाम</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">हाँ</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">नहीँ</translation>
     </message>
 </context>
 <context>
@@ -6897,30 +6570,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/powermanagement/powermanagement.cpp" line="76"/>
         <source>qBittorrent is active</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PreviewSelect</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">नाम</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">साईज</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="obsolete">प्रगति</translation>
-    </message>
-    <message>
-        <source>Preview impossible</source>
-        <translation type="obsolete">पूर्वावलोकन असंभव</translation>
-    </message>
-    <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">माफ कीजिए, हम इस फाइल का पूर्वावलोकन नहीं कर सकते हैं</translation>
+        <translation>क्यूबिटटोरेंट सक्रिय है</translation>
     </message>
 </context>
 <context>
@@ -6933,41 +6583,37 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="62"/>
         <source>Preview</source>
-        <translation type="unfinished">पूर्वावलोकन</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="70"/>
         <source>Name</source>
-        <translation type="unfinished">नाम</translation>
+        <translation>नाम</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="71"/>
         <source>Size</source>
-        <translation type="unfinished">साईज</translation>
+        <translation>आकार</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="72"/>
         <source>Progress</source>
-        <translation type="unfinished">प्रगति</translation>
+        <translation>प्रगति</translation>
+    </message>
+    <message>
+        <location filename="../gui/previewselectdialog.cpp" line="136"/>
+        <source>Preview impossible</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="137"/>
-        <source>Preview impossible</source>
-        <translation type="unfinished">पूर्वावलोकन असंभव</translation>
-    </message>
-    <message>
-        <location filename="../gui/previewselectdialog.cpp" line="138"/>
         <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sorry, we can&apos;t preview this file</source>
-        <translation type="obsolete">माफ कीजिए, हम इस फाइल का पूर्वावलोकन नहीं कर सकते हैं</translation>
-    </message>
-    <message>
         <location filename="../gui/previewselectdialog.ui" line="14"/>
         <source>Preview selection</source>
-        <translation type="unfinished">पूर्वावलोकन चयन</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7001,37 +6647,28 @@ Those plugins were disabled.</source>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <source>Not downloaded</source>
-        <translation type="vanished">डाउनलोड नहीं हुआ है</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="126"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="87"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>साधारण</translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="125"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="86"/>
         <source>Do not download</source>
         <comment>Do not download (priority)</comment>
-        <translation type="unfinished">डाउनलोड नहीं करें</translation>
+        <translation>डाउनलोड न करें</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="127"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="88"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation>अधिक</translation>
+        <translation>उच्च</translation>
     </message>
     <message>
-        <source>Mixed</source>
-        <comment>Mixed (priorities</comment>
-        <translation type="vanished">मिश्रित</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="128"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="89"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>सर्वाधिक</translation>
+        <translation>सर्वोच्च</translation>
     </message>
 </context>
 <context>
@@ -7039,22 +6676,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="51"/>
         <source>General</source>
-        <translation>साधारण</translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="60"/>
         <source>Trackers</source>
-        <translation>ट्रैकर्स</translation>
+        <translation>ट्रैकर</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="69"/>
         <source>Peers</source>
-        <translation>सहकर्मी</translation>
+        <translation>पीयर</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="78"/>
         <source>HTTP Sources</source>
-        <translation>HTTP स्रोत</translation>
+        <translation>एचटीटीपी स्रोत</translation>
     </message>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="87"/>
@@ -7064,7 +6701,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="98"/>
         <source>Speed</source>
-        <translation type="unfinished"></translation>
+        <translation>गति</translation>
     </message>
 </context>
 <context>
@@ -7072,17 +6709,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="333"/>
         <source>Downloaded:</source>
-        <translation>डाउनलोडेड:</translation>
+        <translation>डाउनलोड :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="110"/>
         <source>Availability:</source>
-        <translation>उपलब्धता:</translation>
+        <translation>उपलब्धता :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="81"/>
         <source>Progress:</source>
-        <translation type="unfinished">प्रगति:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="157"/>
@@ -7103,22 +6740,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="507"/>
         <source>Uploaded:</source>
-        <translation>अपलोडेड:</translation>
+        <translation>अपलोड :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="436"/>
         <source>Seeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>बीज:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="452"/>
         <source>Download Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड गति</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="188"/>
         <source>Upload Speed:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड गति</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="217"/>
@@ -7128,22 +6765,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="275"/>
         <source>Download Limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड सीमा</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="349"/>
         <source>Upload Limit:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड सीमा</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="594"/>
         <source>Wasted:</source>
-        <translation>बर्बाद:</translation>
+        <translation>व्यर्थ :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="233"/>
         <source>Connections:</source>
-        <translation>कनेक्शन्स:</translation>
+        <translation>कनेक्शन :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="607"/>
@@ -7153,32 +6790,32 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="866"/>
         <source>Comment:</source>
-        <translation>टिप्पणी:</translation>
+        <translation>टिप्पणी :</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1026"/>
         <source>Select All</source>
-        <translation>सबको चुनें</translation>
+        <translation>सभी चुनें</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1033"/>
         <source>Select None</source>
-        <translation>किसी को न चुनें</translation>
+        <translation>कुछ न चुनें</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1109"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="619"/>
         <source>Normal</source>
-        <translation>साधारण</translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1104"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="623"/>
         <source>High</source>
-        <translation>अधिक</translation>
+        <translation>उच्च</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="291"/>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>बांटने का अनुपात</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="407"/>
@@ -7203,22 +6840,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="683"/>
         <source>Created By:</source>
-        <translation type="unfinished"></translation>
+        <translation>के द्वारा बनाया गया:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="712"/>
         <source>Added On:</source>
-        <translation type="unfinished"></translation>
+        <translation>को जोड़ा गया</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="741"/>
         <source>Completed On:</source>
-        <translation type="unfinished"></translation>
+        <translation>को पूर्ण हुआ</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="770"/>
         <source>Created On:</source>
-        <translation type="unfinished"></translation>
+        <translation>को बनाया गया</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="799"/>
@@ -7228,29 +6865,28 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="831"/>
         <source>Save Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>संचय पथ:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1099"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="627"/>
         <source>Maximum</source>
-        <translation>सर्वाधिक</translation>
+        <translation>सर्वोच्च</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.ui" line="1091"/>
-        <location filename="../gui/properties/propertieswidget.ui" line="1094"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="615"/>
         <source>Do not download</source>
-        <translation>डाउनलोड नहीं करें</translation>
+        <translation>डाउनलोड न करें</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="460"/>
         <source>Never</source>
-        <translation type="unfinished">कभी नहीँ</translation>
+        <translation>कभी नहीं</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="468"/>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 x %2 (हैं %3)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="410"/>
@@ -7268,127 +6904,107 @@ Those plugins were disabled.</source>
         <location filename="../gui/properties/propertieswidget.cpp" line="429"/>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2 अधिकतम)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="442"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="446"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2 कुल)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="452"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="457"/>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2 औसत)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="589"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">खोलें</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="592"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="591"/>
         <source>Open Containing Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="595"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="593"/>
         <source>Rename...</source>
-        <translation>पुन:नामकरण...</translation>
+        <translation>नाम बदलें...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="603"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="613"/>
         <source>Priority</source>
         <translation>प्राथमिकता</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="663"/>
-        <source>New Web seed</source>
-        <translation>नया वेब स्रोत</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="668"/>
-        <source>Remove Web seed</source>
-        <translation>वेब स्रोत को रद्द करें</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="673"/>
-        <source>Copy Web seed URL</source>
-        <translation>वेब स्रोत URL  की प्रतिलिपि बनायें</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="676"/>
-        <source>Edit Web seed URL</source>
-        <translation>वेब स्रोत URL का संपादन करें</translation>
-    </message>
-    <message>
-        <source>Rename the file</source>
-        <translation type="obsolete">फाइल का पुन:नामकरण करें</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="vanished">नया नाम:</translation>
-    </message>
-    <message>
-        <source>The file could not be renamed</source>
-        <translation type="obsolete">इस फाइल का पुन:नामकरण नहीं हो सकता</translation>
-    </message>
-    <message>
-        <source>This file name contains forbidden characters, please choose a different one.</source>
-        <translation type="obsolete">इस फाइल के नाम में वर्जित वर्ण हैं, कृपया दूसरा नाम चुनें.</translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="vanished">यह नाम पहले से ही इसी फोल्डर के प्रयोग मे है, कृपया दूसरा नाम चुनें.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="vanished">इस फोल्डर का पुन:नामकरण नहीं हो सकता</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="783"/>
-        <source>qBittorrent</source>
-        <translation>qBittorrent</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="94"/>
-        <source>Filter files...</source>
+        <location filename="../gui/properties/propertieswidget.cpp" line="632"/>
+        <source>By shown file order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="710"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
+        <source>New Web seed</source>
+        <translation>नया वेब सीड</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="692"/>
+        <source>Remove Web seed</source>
+        <translation>वेब सीड हटाएँ</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="695"/>
+        <source>Copy Web seed URL</source>
+        <translation>वेब सीड यूआरएल कॉपी करें</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="697"/>
+        <source>Edit Web seed URL</source>
+        <translation>वेब सीड यूआरएल संपादित करें</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="731"/>
         <source>&lt;center&gt;&lt;b&gt;Speed graphs are disabled&lt;/b&gt;&lt;p&gt;You may change this setting in Advanced Options &lt;/center&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="722"/>
+        <source>qBittorrent</source>
+        <translation type="vanished">क्यूबिटटोरेंट</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="93"/>
+        <source>Filter files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/propertieswidget.cpp" line="743"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="723"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="744"/>
         <source>New URL seed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="730"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="784"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="751"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="805"/>
         <source>This URL seed is already in the list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="776"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="797"/>
         <source>Web seed editing</source>
-        <translation>वेब स्रोत का संपादन</translation>
+        <translation>वेब सीड संपादन</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="777"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="798"/>
         <source>Web seed URL:</source>
-        <translation>वेब स्रोत URL:</translation>
+        <translation>वेब सीड यूआरएल :</translation>
     </message>
 </context>
 <context>
@@ -7408,7 +7024,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/main.cpp" line="212"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 उपयोग करना संभव नहीं है : इस उपयोक्ता हेतु क्यूबिटटोरेंट पहले से सक्रिय है।</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="540"/>
@@ -7503,7 +7119,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="560"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>विन्यास फाइलें इन डायरेक्टरी में संचित करें qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="562"/>
@@ -7538,17 +7154,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="569"/>
         <source>Torrent save path</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट संचय पथ</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="570"/>
         <source>Add torrents as started or paused</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंट को आरम्भित या विरामित की तरह जोड़े</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="571"/>
         <source>Skip hash check</source>
-        <translation type="unfinished">हैश चेक छोड़ें</translation>
+        <translation type="unfinished">हैश जाँच निरस्त</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="573"/>
@@ -7558,12 +7174,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="575"/>
         <source>Download files in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइलों को क्रम में डाउनलोड करें</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="577"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रथम व अंतिम भाग पहले डाउनलोड करें</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="583"/>
@@ -7578,62 +7194,64 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="596"/>
         <source>Help</source>
-        <translation type="unfinished">सहायता</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="399"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="401"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="407"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="420"/>
         <source>Legal Notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="421"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट एक फाइल सहभाजन प्रोग्राम है। टोरेंट आरंभ करने के उपरांत सम्मिलित डेटा अपलोड के माध्यम से अन्य व्यक्तियों को उपलब्ध होगा। इस सहभाजित सामग्री हेतु उत्तरदायित्व केवल आपका है।</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="422"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="435"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट एक फाइल सहभाजन प्रोग्राम है। टोरेंट आरंभ करने के उपरांत सम्मिलित डेटा अपलोड के माध्यम से अन्य व्यक्तियों को उपलब्ध होगा। इस सहभाजित सामग्री हेतु उत्तरदायित्व केवल आपका है।
+
+इस विषय पर पुनः सूचित नहीं किया जाएगा।</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="423"/>
         <source>Press %1 key to accept and continue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="436"/>
         <source>Legal notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="437"/>
         <source>Cancel</source>
-        <translation type="unfinished">रद्द करें</translation>
+        <translation>रद्द करें</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="438"/>
         <source>I Agree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7666,77 +7284,6 @@ No further notices will be issued.</source>
         <location filename="../app/upgrade.cpp" line="73"/>
         <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RSS</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">खोंजे</translation>
-    </message>
-    <message>
-        <source>New subscription</source>
-        <translation type="obsolete">नयी सदस्यता</translation>
-    </message>
-    <message>
-        <source>Mark items read</source>
-        <translation type="obsolete">सभी वस्तुओं पर पठित निशान लगायें</translation>
-    </message>
-    <message>
-        <source>Update all</source>
-        <translation type="obsolete">सबको नवीनतम बनायें</translation>
-    </message>
-    <message>
-        <source>RSS Downloader...</source>
-        <translation type="obsolete">RSS डाउनलोडर...</translation>
-    </message>
-    <message>
-        <source>Settings...</source>
-        <translation type="obsolete">सेटिंग्स...</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="obsolete">रद्द करें</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="obsolete">पुन:नामकरण...</translation>
-    </message>
-    <message>
-        <source>Rename</source>
-        <translation type="obsolete">पुन:नामकरण</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation type="obsolete">नवीनतम बनायें</translation>
-    </message>
-    <message>
-        <source>New subscription...</source>
-        <translation type="obsolete">नयी सदस्यता...</translation>
-    </message>
-    <message>
-        <source>Update all feeds</source>
-        <translation type="obsolete">सभी फीड्स को नवीनतम बनायें</translation>
-    </message>
-    <message>
-        <source>Download torrent</source>
-        <translation type="obsolete">टाॅरेंट डाउनलोड करें</translation>
-    </message>
-    <message>
-        <source>Open news URL</source>
-        <translation type="obsolete">नया URL खोलें </translation>
-    </message>
-    <message>
-        <source>Copy feed URL</source>
-        <translation type="obsolete">फीड URL की प्रतिलिपि बनायें</translation>
-    </message>
-    <message>
-        <source>New folder...</source>
-        <translation type="obsolete">नया फोल्डर...</translation>
-    </message>
-    <message>
-        <source>Refresh RSS streams</source>
-        <translation type="obsolete">RSS स्ट्रीम्स को नया करें</translation>
     </message>
 </context>
 <context>
@@ -7814,12 +7361,12 @@ No further notices will be issued.</source>
 <context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="599"/>
+        <location filename="../base/rss/rss_parser.cpp" line="596"/>
         <source>Invalid RSS feed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="603"/>
+        <location filename="../base/rss/rss_parser.cpp" line="600"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7884,58 +7431,11 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
-    <name>RSSImp</name>
-    <message>
-        <source>Stream URL:</source>
-        <translation type="obsolete">स्ट्रीम URL: </translation>
-    </message>
-    <message>
-        <source>Please choose a folder name</source>
-        <translation type="obsolete">कृपया फोल्डर का नाम चुनें</translation>
-    </message>
-    <message>
-        <source>Folder name:</source>
-        <translation type="obsolete">फोल्डर का नाम:</translation>
-    </message>
-    <message>
-        <source>New folder</source>
-        <translation type="obsolete">नया फोल्डर</translation>
-    </message>
-    <message>
-        <source>Please choose a new name for this RSS feed</source>
-        <translation type="obsolete">कृपया इस RSS फीड के लिये नया नाम चुनें</translation>
-    </message>
-    <message>
-        <source>New feed name:</source>
-        <translation type="obsolete">नया फीड नाम:</translation>
-    </message>
-    <message>
-        <source>Name already in use</source>
-        <translation type="obsolete">यह नाम पहले से ही प्रयोग में हैं</translation>
-    </message>
-    <message>
-        <source>This name is already used by another item, please choose another one.</source>
-        <translation type="obsolete">यह नाम पहले से ही दुसरे वस्तु के प्रयोग मे है, कृपया दूसरा चुनें.</translation>
-    </message>
-    <message>
-        <source>Date: </source>
-        <translation type="obsolete">तारीख:</translation>
-    </message>
-    <message>
-        <source>Author: </source>
-        <translation type="obsolete">लेखक:</translation>
-    </message>
-    <message>
-        <source>Unread</source>
-        <translation type="obsolete">अपठित</translation>
-    </message>
-</context>
-<context>
     <name>RSSWidget</name>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="17"/>
         <source>Search</source>
-        <translation type="unfinished">खोंजे</translation>
+        <translation>खोंजे</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="31"/>
@@ -7945,29 +7445,29 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="43"/>
         <source>New subscription</source>
-        <translation type="unfinished">नयी सदस्यता</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="50"/>
         <location filename="../gui/rss/rsswidget.ui" line="174"/>
         <location filename="../gui/rss/rsswidget.ui" line="177"/>
         <source>Mark items read</source>
-        <translation type="unfinished">सभी वस्तुओं पर पठित निशान लगायें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="57"/>
         <source>Refresh RSS streams</source>
-        <translation type="unfinished">RSS स्ट्रीम्स को नया करें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="60"/>
         <source>Update all</source>
-        <translation type="unfinished">सबको नवीनतम बनायें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="80"/>
         <source>RSS Downloader...</source>
-        <translation type="unfinished">RSS डाउनलोडर...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="108"/>
@@ -7978,69 +7478,69 @@ No further notices will be issued.</source>
         <location filename="../gui/rss/rsswidget.ui" line="137"/>
         <location filename="../gui/rss/rsswidget.ui" line="140"/>
         <source>Delete</source>
-        <translation type="unfinished">रद्द करें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="145"/>
         <source>Rename...</source>
-        <translation type="unfinished">पुन:नामकरण...</translation>
+        <translation>पुनः नामकरण...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="148"/>
         <source>Rename</source>
-        <translation type="unfinished">पुन:नामकरण</translation>
+        <translation type="unfinished">नाम बदलें</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="153"/>
         <location filename="../gui/rss/rsswidget.ui" line="156"/>
         <source>Update</source>
-        <translation type="unfinished">नवीनतम बनायें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="161"/>
         <source>New subscription...</source>
-        <translation type="unfinished">नयी सदस्यता...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="166"/>
         <location filename="../gui/rss/rsswidget.ui" line="169"/>
         <source>Update all feeds</source>
-        <translation type="unfinished">सभी फीड्स को नवीनतम बनायें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="182"/>
         <source>Download torrent</source>
-        <translation type="unfinished">टाॅरेंट डाउनलोड करें</translation>
+        <translation>डाउनलोड टौरेंट</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="187"/>
         <source>Open news URL</source>
-        <translation type="unfinished">नया URL खोलें </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="192"/>
         <source>Copy feed URL</source>
-        <translation type="unfinished">फीड URL की प्रतिलिपि बनायें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="197"/>
         <source>New folder...</source>
-        <translation type="unfinished">नया फोल्डर...</translation>
+        <translation>नया फोल्डर</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="228"/>
         <source>Please choose a folder name</source>
-        <translation type="unfinished">कृपया फोल्डर का नाम चुनें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="228"/>
         <source>Folder name:</source>
-        <translation type="unfinished">फोल्डर का नाम:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="229"/>
         <source>New folder</source>
-        <translation type="unfinished">नया फोल्डर</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="270"/>
@@ -8055,7 +7555,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="312"/>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>मिटाने की पुष्टि</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="312"/>
@@ -8065,12 +7565,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="409"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished">कृपया इस RSS फीड के लिये नया नाम चुनें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="409"/>
         <source>New feed name:</source>
-        <translation type="unfinished">नया फीड नाम:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="417"/>
@@ -8080,12 +7580,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="489"/>
         <source>Date: </source>
-        <translation type="unfinished">तारीख:</translation>
+        <translation>दिनांक:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="491"/>
         <source>Author: </source>
-        <translation type="unfinished">लेखक:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8096,21 +7596,6 @@ No further notices will be issued.</source>
         <location filename="../base/bittorrent/resumedatasavingmanager.cpp" line="73"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RssSettingsDlg</name>
-    <message>
-        <source>RSS Reader Settings</source>
-        <translation type="obsolete">RSS पाठक सेटिंग्स</translation>
-    </message>
-    <message>
-        <source>RSS feeds refresh interval:</source>
-        <translation type="obsolete">RSS फीड्स को नया करने का अंतराल:</translation>
-    </message>
-    <message>
-        <source>Maximum number of articles per feed:</source>
-        <translation type="obsolete">लेखों की प्रति फीड अधिकतम संख्या:</translation>
     </message>
 </context>
 <context>
@@ -8218,7 +7703,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="87"/>
         <source>Seeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>बीज:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="94"/>
@@ -8250,7 +7735,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="170"/>
         <source>Size:</source>
-        <translation type="unfinished">साईज:</translation>
+        <translation>आकार:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="179"/>
@@ -8266,30 +7751,30 @@ No further notices will be issued.</source>
         <location filename="../gui/search/searchjobwidget.cpp" line="77"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">नाम</translation>
+        <translation>नाम</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="78"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
-        <translation type="unfinished">साईज</translation>
+        <translation>आकार</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="79"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished">सभी स्रोतो की संख्या</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="80"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
-        <translation type="unfinished">आंशिक स्रोतो की संख्या</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="81"/>
         <source>Search engine</source>
-        <translation type="unfinished">खोज इंजन</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="132"/>
@@ -8305,12 +7790,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="358"/>
         <source>Torrent names only</source>
-        <translation type="unfinished"></translation>
+        <translation>केवल टौरेंटों के नाम</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="359"/>
         <source>Everywhere</source>
-        <translation type="unfinished"></translation>
+        <translation>हर जगह</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="382"/>
@@ -8318,71 +7803,64 @@ No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="397"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="396"/>
         <source>Download</source>
-        <translation type="unfinished">डाउनलोड करें</translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="403"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="399"/>
         <source>Open description page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="407"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="403"/>
         <source>Copy</source>
-        <translation type="unfinished">प्रतिलिपि बनाए</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="410"/>
-        <source>Name</source>
-        <translation type="unfinished">नाम</translation>
-    </message>
-    <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="414"/>
-        <source>Download link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="419"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="405"/>
+        <source>Name</source>
+        <translation>नाम</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="407"/>
+        <source>Download link</source>
+        <translation>डाउनलोड लिंक</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="409"/>
         <source>Description page URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="430"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="420"/>
         <source>Searching...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="432"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="422"/>
         <source>Search has finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="434"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="424"/>
         <source>Search aborted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="436"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="426"/>
         <source>An error occurred during search...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="438"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="428"/>
         <source>Search returned no results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="463"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="453"/>
         <source>Column visibility</source>
-        <translation type="unfinished">स्तंभ दृश्यता</translation>
-    </message>
-</context>
-<context>
-    <name>SearchListDelegate</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="obsolete">अज्ञात</translation>
+        <translation type="unfinished">पंक्ति दृश्यता</translation>
     </message>
 </context>
 <context>
@@ -8421,7 +7899,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="342"/>
         <source>All categories</source>
-        <translation type="unfinished"></translation>
+        <translation>सभी श्रेणिआ</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="343"/>
@@ -8491,41 +7969,6 @@ No further notices will be issued.</source>
     </message>
 </context>
 <context>
-    <name>SearchTab</name>
-    <message>
-        <source>Name</source>
-        <comment>i.e: file name</comment>
-        <translation type="vanished">नाम</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: file size</comment>
-        <translation type="vanished">साईज</translation>
-    </message>
-    <message>
-        <source>Seeders</source>
-        <comment>i.e: Number of full sources</comment>
-        <translation type="vanished">सभी स्रोतो की संख्या</translation>
-    </message>
-    <message>
-        <source>Leechers</source>
-        <comment>i.e: Number of partial sources</comment>
-        <translation type="vanished">आंशिक स्रोतो की संख्या</translation>
-    </message>
-    <message>
-        <source>Search engine</source>
-        <translation type="vanished">खोज इंजन</translation>
-    </message>
-    <message>
-        <source>Column visibility</source>
-        <translation type="obsolete">स्तंभ दृश्यता</translation>
-    </message>
-    <message>
-        <source>Size:</source>
-        <translation type="obsolete">साईज:</translation>
-    </message>
-</context>
-<context>
     <name>SearchWidget</name>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="14"/>
@@ -8535,17 +7978,13 @@ No further notices will be issued.</source>
         <location filename="../gui/search/searchwidget.cpp" line="372"/>
         <location filename="../gui/search/searchwidget.cpp" line="380"/>
         <source>Search</source>
-        <translation type="unfinished">खोंजे</translation>
+        <translation>खोंजे</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="79"/>
         <source>There aren&apos;t any search plugins installed.
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="obsolete">डाउनलोड करें</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="132"/>
@@ -8620,7 +8059,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="347"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>रोकें</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="368"/>
@@ -8643,7 +8082,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="114"/>
         <source>qBittorrent will now exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट अब बंद होगा।</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="115"/>
@@ -8668,7 +8107,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="121"/>
         <source>Shutdown confirmation</source>
-        <translation type="unfinished">बंद करने की पु‍ष्टि</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="124"/>
@@ -8707,18 +8146,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     </message>
 </context>
 <context>
-    <name>ShutdownConfirmDlg</name>
-    <message>
-        <source>Shutdown confirmation</source>
-        <translation type="vanished">बंद करने की पु‍ष्टि</translation>
-    </message>
-</context>
-<context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">किलोबाइट्स/सेकंड्स</translation>
-    </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="14"/>
         <source>Global Speed Limits</source>
@@ -8733,7 +8161,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/speedlimitdialog.ui" line="33"/>
         <location filename="../gui/speedlimitdialog.ui" line="103"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="47"/>
@@ -8749,69 +8177,69 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/speedlimitdialog.ui" line="120"/>
         <location filename="../gui/speedlimitdialog.ui" line="147"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी/से</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="60"/>
         <location filename="../gui/speedlimitdialog.ui" line="130"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="90"/>
         <source>Alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>वैकल्पिक गति सीमा</translation>
     </message>
 </context>
 <context>
     <name>SpeedPlotView</name>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="178"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="173"/>
         <source>Total Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="179"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="174"/>
         <source>Total Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="183"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="178"/>
         <source>Payload Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="184"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="179"/>
         <source>Payload Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="188"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="183"/>
         <source>Overhead Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="189"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="184"/>
         <source>Overhead Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="193"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="188"/>
         <source>DHT Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="194"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="189"/>
         <source>DHT Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="198"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="193"/>
         <source>Tracker Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedplotview.cpp" line="199"/>
+        <location filename="../gui/properties/speedplotview.cpp" line="194"/>
         <source>Tracker Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8839,72 +8267,77 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="74"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="75"/>
         <source>6 Hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="104"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="105"/>
         <source>Select Graphs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="82"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
         <source>Total Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="75"/>
-        <source>12 Hours</source>
+        <location filename="../gui/properties/speedwidget.cpp" line="74"/>
+        <source>3 Hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="76"/>
+        <source>12 Hours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/speedwidget.cpp" line="77"/>
         <source>24 Hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="83"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>Total Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="84"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Payload Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="85"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
         <source>Payload Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="86"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
         <source>Overhead Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="87"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
         <source>Overhead Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="88"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="89"/>
         <source>DHT Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="89"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="90"/>
         <source>DHT Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="90"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="91"/>
         <source>Tracker Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/speedwidget.cpp" line="91"/>
+        <location filename="../gui/properties/speedwidget.cpp" line="92"/>
         <source>Tracker Download</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8914,7 +8347,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../app/stacktracedialog.ui" line="14"/>
         <source>Crash info</source>
-        <translation type="unfinished">दुर्घटना की जानकारी</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -8922,17 +8355,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/statsdialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation>सांख्यिकी</translation>
+        <translation>आंकड़े</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="20"/>
         <source>User statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>उपयोगकर्ता के आंकड़े</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="99"/>
         <source>Cache statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>कैष के आंकड़े</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
@@ -8977,7 +8410,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
         <source>Performance statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रदर्शन के आंकड़े</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="170"/>
@@ -9000,10 +8433,6 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">ठीक है</translation>
-    </message>
-    <message>
         <location filename="../gui/statsdialog.cpp" line="112"/>
         <source>%1 ms</source>
         <comment>18 milliseconds</comment>
@@ -9016,50 +8445,50 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/statusbar.cpp" line="68"/>
         <location filename="../gui/statusbar.cpp" line="192"/>
         <source>Connection status:</source>
-        <translation>कनेक्शन स्थिति:</translation>
+        <translation>कनेक्शन स्थिति :</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="69"/>
         <location filename="../gui/statusbar.cpp" line="192"/>
         <source>No direct connections. This may indicate network configuration problems.</source>
-        <translation type="unfinished"></translation>
+        <translation>कोई प्रत्यक्ष कनेक्शन नहीं। नेटवर्क विन्यास समस्या संभव है।</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="90"/>
         <location filename="../gui/statusbar.cpp" line="202"/>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished"></translation>
+        <translation>डीएचटी : %1 नोड</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="161"/>
         <source>qBittorrent needs to be restarted!</source>
-        <translation type="unfinished"></translation>
+        <translation>क्यूबिटटोरेंट पुनः आरंभ करना आवश्यक है!</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="179"/>
         <location filename="../gui/statusbar.cpp" line="187"/>
         <source>Connection Status:</source>
-        <translation>कनेक्शन स्थिति:</translation>
+        <translation>कनेक्शन स्थिति :</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="179"/>
         <source>Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections.</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑफलाइन। यानि क्यूबिटटोरेंट द्वारा आवक कनेक्शन हेतु चयनित पोर्ट कार्यरत करना विफल रहा।</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="187"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>ऑनलाइन</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="248"/>
         <source>Click to switch to alternative speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>वैकल्पिक गति सीमाएँ उपयोग करने हेतु क्लिक करें</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="242"/>
         <source>Click to switch to regular speed limits</source>
-        <translation type="unfinished"></translation>
+        <translation>सामान्य गति सीमाएँ उपयोग करने हेतु क्लिक करें</translation>
     </message>
 </context>
 <context>
@@ -9068,42 +8497,42 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/transferlistfilterswidget.cpp" line="183"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>सभी (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="186"/>
         <source>Downloading (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड हो रहे हैं (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="189"/>
         <source>Seeding (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>बीजारोपण हो रहे हैं (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="192"/>
         <source>Completed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>पूर्ण (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="195"/>
         <source>Resumed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रारम्भित(0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="198"/>
         <source>Paused (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>विरामित (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="201"/>
         <source>Active (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>सक्रिय (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="204"/>
         <source>Inactive (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>अक्रिय (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="207"/>
@@ -9123,47 +8552,47 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="216"/>
         <source>Errored (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>त्रुटिपूर्ण (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="270"/>
         <source>All (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>सभी (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="271"/>
         <source>Downloading (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड हो रहे हैं (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="272"/>
         <source>Seeding (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>बीजारोपण हो रहे हैं (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="273"/>
         <source>Completed (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>पूर्ण (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="275"/>
         <source>Paused (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>विरामित (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="274"/>
         <source>Resumed (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रारम्भित(%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="276"/>
         <source>Active (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>सक्रिय (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="277"/>
         <source>Inactive (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>अक्रिय (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="278"/>
@@ -9183,7 +8612,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="281"/>
         <source>Errored (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>त्रुटिपूर्ण (%1)</translation>
     </message>
 </context>
 <context>
@@ -9196,7 +8625,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfiltermodel.cpp" line="261"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">सभी</translation>
     </message>
     <message>
         <location filename="../gui/tagfiltermodel.cpp" line="263"/>
@@ -9207,62 +8636,62 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>TagFilterWidget</name>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="113"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="110"/>
         <source>Add tag...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="121"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="116"/>
         <source>Remove tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="127"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="120"/>
         <source>Remove unused tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="134"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="123"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="140"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="125"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को विराम दें</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="146"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="127"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को मिटाएं</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="191"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="171"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>नया चिह्न</translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="191"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="171"/>
         <source>Tag:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="197"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="177"/>
         <source>Invalid tag name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="198"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="178"/>
         <source>Tag name &apos;%1&apos; is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="213"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="193"/>
         <source>Tag exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/tagfilterwidget.cpp" line="213"/>
+        <location filename="../gui/tagfilterwidget.cpp" line="193"/>
         <source>Tag name already exists.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9277,42 +8706,42 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="35"/>
         <source>Name:</source>
-        <translation type="unfinished">नाम:</translation>
+        <translation>नाम:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
         <source>Save path:</source>
-        <translation type="unfinished"></translation>
+        <translation>संचय पथ:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="42"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="43"/>
         <source>Choose save path</source>
-        <translation type="unfinished">सहेजने हेतु पथ चुनें</translation>
+        <translation>संचय पथ चुनें</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="57"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="65"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>नई श्रेणी</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="68"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="76"/>
         <source>Invalid category name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="69"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="77"/>
         <source>Category name cannot contain &apos;\&apos;.
 Category name cannot start/end with &apos;/&apos;.
 Category name cannot contain &apos;//&apos; sequence.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="76"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="84"/>
         <source>Category creation error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/torrentcategorydialog.cpp" line="77"/>
+        <location filename="../gui/torrentcategorydialog.cpp" line="85"/>
         <source>Category with the given name already exists.
 Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
@@ -9328,7 +8757,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
         <source>Size</source>
-        <translation>साईज</translation>
+        <translation>आकार</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
@@ -9343,12 +8772,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
         <source>Remaining</source>
-        <translation type="unfinished">बचा हुआ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
         <source>Availability</source>
-        <translation type="unfinished"></translation>
+        <translation>उपलब्धता</translation>
     </message>
 </context>
 <context>
@@ -9357,30 +8786,30 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="118"/>
         <source>Mixed</source>
         <comment>Mixed (priorities</comment>
-        <translation type="unfinished">मिश्रित</translation>
+        <translation>मिश्रित</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="120"/>
         <source>Not downloaded</source>
-        <translation type="unfinished">डाउनलोड नहीं हुआ है</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="122"/>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished">अधिक</translation>
+        <translation type="unfinished">उच्च</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="124"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished">सर्वाधिक</translation>
+        <translation type="unfinished">सर्वोच्च</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="126"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished">साधारण</translation>
+        <translation type="unfinished">सामान्य</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="140"/>
@@ -9391,27 +8820,19 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
-        <location filename="../gui/torrentcontenttreeview.cpp" line="122"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="124"/>
         <source>Renaming</source>
-        <translation type="unfinished"></translation>
+        <translation>पुनः नामकरण</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontenttreeview.cpp" line="122"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="124"/>
         <source>New name:</source>
-        <translation type="unfinished">नया नाम:</translation>
+        <translation>नया नाम:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontenttreeview.cpp" line="145"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="147"/>
         <source>Rename error</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This name is already in use in this folder. Please use a different name.</source>
-        <translation type="obsolete">यह नाम पहले से ही इसी फोल्डर के प्रयोग मे है, कृपया दूसरा नाम चुनें.</translation>
-    </message>
-    <message>
-        <source>The folder could not be renamed</source>
-        <translation type="obsolete">इस फोल्डर का पुन:नामकरण नहीं हो सकता</translation>
     </message>
 </context>
 <context>
@@ -9466,72 +8887,72 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="185"/>
         <source>Piece size:</source>
-        <translation type="unfinished">टुकड़ो की साइज:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="199"/>
         <source>Auto</source>
-        <translation type="unfinished">स्वत</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="204"/>
         <source>16 KiB</source>
-        <translation type="unfinished">512 किबिबाइट्स {16 ?}</translation>
+        <translation>16 केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="209"/>
         <source>32 KiB</source>
-        <translation type="unfinished">32 किबिबाइट्स</translation>
+        <translation>32 केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="214"/>
         <source>64 KiB</source>
-        <translation type="unfinished">64 किबिबाइट्स</translation>
+        <translation>64 केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="219"/>
         <source>128 KiB</source>
-        <translation type="unfinished">128 किबिबाइट्स</translation>
+        <translation>128 केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="224"/>
         <source>256 KiB</source>
-        <translation type="unfinished">256 किबिबाइट्स</translation>
+        <translation>256 केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="229"/>
         <source>512 KiB</source>
-        <translation type="unfinished">512 किबिबाइट्स</translation>
+        <translation>512 केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="234"/>
         <source>1 MiB</source>
-        <translation type="unfinished">1 मेबिबाइट्स</translation>
+        <translation>1 एमबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="239"/>
         <source>2 MiB</source>
-        <translation type="unfinished">2 मेबिबाइट्स</translation>
+        <translation>2 एमबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="244"/>
         <source>4 MiB</source>
-        <translation type="unfinished">4 मेबिबाइट्स</translation>
+        <translation>4 एमबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="249"/>
         <source>8 MiB</source>
-        <translation type="unfinished">4 मेबिबाइट्स {8 ?}</translation>
+        <translation>8 एमबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="254"/>
         <source>16 MiB</source>
-        <translation type="unfinished">4 मेबिबाइट्स {16 ?}</translation>
+        <translation>16 एमबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="259"/>
         <source>32 MiB</source>
-        <translation type="unfinished">4 मेबिबाइट्स {16 ?} {32 ?}</translation>
+        <translation>32 एमबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="267"/>
@@ -9551,7 +8972,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="313"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished">इस टाॅरेंट के लिए शेयर अनुपात सीमा की अवहेलना करें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="320"/>
@@ -9566,12 +8987,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="338"/>
         <source>Disabled</source>
-        <translation type="unfinished">असक्षम</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="341"/>
         <source> KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="378"/>
@@ -9581,12 +9002,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="384"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
-        <translation type="unfinished">आप ट्रैकर्स के समूह को एक खाली पंक्ति के साथ अलग कर सकतें हैं.</translation>
-    </message>
-    <message>
-        <source>You can separate tracker tiers / groups with an empty line.</source>
-        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="obsolete">आप ट्रैकर्स के समूह को एक खाली पंक्ति के साथ अलग कर सकतें हैं.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="394"/>
@@ -9596,7 +9012,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="415"/>
         <source>Tracker URLs:</source>
-        <translation type="unfinished">ट्रैकर URLs:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="422"/>
@@ -9611,7 +9027,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="448"/>
         <source>Progress:</source>
-        <translation type="unfinished">प्रगति:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="73"/>
@@ -9633,7 +9049,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="188"/>
         <source>Select where to save the new torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>नया टौरेंट संचित करने के स्थान को चुनें</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="188"/>
@@ -9662,110 +9078,6 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TorrentCreatorDlg</name>
-    <message>
-        <source>Select a folder to add to the torrent</source>
-        <translation type="obsolete">टाॅरेंट में जोड़ने के लिये एक फोल्डर चुनें</translation>
-    </message>
-    <message>
-        <source>Select a file to add to the torrent</source>
-        <translation type="obsolete">टाॅरेंट में जोड़ने के लिये एक फाइल चुनें</translation>
-    </message>
-    <message>
-        <source>No input path set</source>
-        <translation type="obsolete">निवेश पथ नहीं चुना गया</translation>
-    </message>
-    <message>
-        <source>Please type an input path first</source>
-        <translation type="obsolete">कृपया पहले एक निवेश पथ टंकित करें</translation>
-    </message>
-    <message>
-        <source>Select destination torrent file</source>
-        <translation type="obsolete">टाॅरेंट फाइल के लिए गन्तव्य चुनें</translation>
-    </message>
-    <message>
-        <source>Torrent creation</source>
-        <translation type="obsolete">टाॅरेंट निर्माण</translation>
-    </message>
-    <message>
-        <source>Torrent creation was unsuccessful, reason: %1</source>
-        <translation type="obsolete">टाॅरेंट निर्माण विफल रहा, वजह: %1</translation>
-    </message>
-    <message>
-        <source>Piece size:</source>
-        <translation type="obsolete">टुकड़ो की साइज:</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="obsolete">स्वत</translation>
-    </message>
-    <message>
-        <source>16 KiB</source>
-        <translation type="obsolete">512 किबिबाइट्स {16 ?}</translation>
-    </message>
-    <message>
-        <source>32 KiB</source>
-        <translation type="obsolete">32 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>64 KiB</source>
-        <translation type="obsolete">64 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>128 KiB</source>
-        <translation type="obsolete">128 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>256 KiB</source>
-        <translation type="obsolete">256 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>512 KiB</source>
-        <translation type="obsolete">512 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>1 MiB</source>
-        <translation type="obsolete">1 मेबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>2 MiB</source>
-        <translation type="obsolete">2 मेबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>4 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>8 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स {8 ?}</translation>
-    </message>
-    <message>
-        <source>16 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स {16 ?}</translation>
-    </message>
-    <message>
-        <source>32 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स {16 ?} {32 ?}</translation>
-    </message>
-    <message>
-        <source>Ignore share ratio limits for this torrent</source>
-        <translation type="obsolete">इस टाॅरेंट के लिए शेयर अनुपात सीमा की अवहेलना करें</translation>
-    </message>
-    <message>
-        <source>You can separate tracker tiers / groups with an empty line.</source>
-        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="obsolete">आप ट्रैकर्स के समूह को एक खाली पंक्ति के साथ अलग कर सकतें हैं.</translation>
-    </message>
-    <message>
-        <source>Tracker URLs:</source>
-        <translation type="obsolete">ट्रैकर URLs:</translation>
-    </message>
-    <message>
-        <source>Progress:</source>
-        <translation type="obsolete">प्रगति:</translation>
-    </message>
-</context>
-<context>
     <name>TorrentInfo</name>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="138"/>
@@ -9789,108 +9101,6 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TorrentModel</name>
-    <message>
-        <source>Name</source>
-        <comment>i.e: torrent name</comment>
-        <translation type="vanished">नाम</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <comment>i.e: torrent size</comment>
-        <translation type="vanished">साईज</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">पूर्ण</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="vanished">स्थिति</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="vanished">सभी स्रोत</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="vanished">सहकर्मी</translation>
-    </message>
-    <message>
-        <source>Down Speed</source>
-        <comment>i.e: Download speed</comment>
-        <translation type="vanished">डाउनलोड गति</translation>
-    </message>
-    <message>
-        <source>Up Speed</source>
-        <comment>i.e: Upload speed</comment>
-        <translation type="vanished">अपलोड गति</translation>
-    </message>
-    <message>
-        <source>Ratio</source>
-        <comment>Share ratio</comment>
-        <translation type="vanished">अनुपात</translation>
-    </message>
-    <message>
-        <source>ETA</source>
-        <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="vanished">बचा हुआ समय</translation>
-    </message>
-    <message>
-        <source>Added On</source>
-        <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="vanished">जोड़ा गया</translation>
-    </message>
-    <message>
-        <source>Completed On</source>
-        <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="vanished">पूर्ण हुआ</translation>
-    </message>
-    <message>
-        <source>Tracker</source>
-        <translation type="vanished">ट्रैकर</translation>
-    </message>
-    <message>
-        <source>Down Limit</source>
-        <comment>i.e: Download limit</comment>
-        <translation type="vanished">डाउनलोड सीमा</translation>
-    </message>
-    <message>
-        <source>Up Limit</source>
-        <comment>i.e: Upload limit</comment>
-        <translation type="vanished">अपलोड सीमा</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="vanished">डाउनलोडेड</translation>
-    </message>
-    <message>
-        <source>Uploaded</source>
-        <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="vanished">अपलोडेड</translation>
-    </message>
-    <message>
-        <source>Remaining</source>
-        <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="vanished">बचा हुआ</translation>
-    </message>
-    <message>
-        <source>Time Active</source>
-        <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="vanished">सक्रिय रहने का समय</translation>
-    </message>
-    <message>
-        <source>Save path</source>
-        <comment>Torrent save path</comment>
-        <translation type="vanished">सहेजने हेतु पथ</translation>
-    </message>
-</context>
-<context>
     <name>TorrentOptionsDialog</name>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="14"/>
@@ -9905,7 +9115,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="26"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="33"/>
@@ -9917,7 +9127,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentoptionsdialog.ui" line="36"/>
         <location filename="../gui/torrentoptionsdialog.ui" line="49"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>केबी/से</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="59"/>
@@ -9927,7 +9137,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="66"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="90"/>
@@ -9937,7 +9147,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="96"/>
         <source>Use global share limit</source>
-        <translation type="unfinished"></translation>
+        <translation>सीमाओं की सार्वभौम दर का प्रयोग करें</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="106"/>
@@ -9952,12 +9162,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="128"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>मिनट</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="171"/>
         <source>ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>अनुपात</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="185"/>
@@ -9993,108 +9203,92 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentsController</name>
     <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">अभी तक संपर्क नहीं हुआ</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">नवीनतम हो रहा हैं...</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">कार्यान्वित</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">कार्यान्वित नहीँ है</translation>
-    </message>
-    <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="670"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="678"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="835"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="841"/>
         <source>Priority must be an integer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="838"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="844"/>
         <source>Priority is not valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="844"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="850"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="853"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="859"/>
         <source>File IDs must be integers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="855"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="861"/>
         <source>File ID is not valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="998"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1009"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1020"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1031"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1004"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1015"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1026"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1037"/>
         <source>Torrent queueing must be enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1045"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1051"/>
         <source>Save path cannot be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1132"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1149"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1138"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1155"/>
         <source>Category cannot be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1138"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1144"/>
         <source>Unable to create category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1152"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1158"/>
         <source>Unable to edit category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1049"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1055"/>
         <source>Cannot make save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="281"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="284"/>
         <source>&apos;sort&apos; parameter is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1053"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1059"/>
         <source>Cannot write to directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1057"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1063"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1071"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1077"/>
         <source>Incorrect torrent name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1120"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1135"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1126"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1141"/>
         <source>Incorrect category name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10123,7 +9317,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="301"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
-        <translation type="unfinished"></translation>
+        <translation>सभी (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="304"/>
@@ -10161,298 +9355,172 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="560"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="563"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="562"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को विराम दें</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="566"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="564"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>टौरेंटो को मिटाएं</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="591"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="605"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="589"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="603"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TrackerList</name>
-    <message>
-        <source>URL</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">स्थिति</translation>
-    </message>
-    <message>
-        <source>Seeds</source>
-        <translation type="obsolete">सभी स्रोत</translation>
-    </message>
-    <message>
-        <source>Peers</source>
-        <translation type="vanished">पीयर्स</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <translation type="obsolete">डाउनलोडेड</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">संदेश</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="vanished">कार्यान्वित</translation>
-    </message>
-    <message>
-        <source>Disabled</source>
-        <translation type="vanished">असक्षम</translation>
-    </message>
-    <message>
-        <source>This torrent is private</source>
-        <translation type="vanished">यह टाॅरेंट निजी है</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="vanished">नवीनतम हो रहा हैं...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="vanished">कार्यान्वित नहीँ है</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="vanished">अभी तक संपर्क नहीं हुआ</translation>
-    </message>
-    <message>
-        <source>Tracker URL:</source>
-        <translation type="vanished">ट्रैकर URL:</translation>
-    </message>
-    <message>
-        <source>Tracker editing</source>
-        <translation type="vanished">ट्रैकर संपादन</translation>
-    </message>
-    <message>
-        <source>Tracker editing failed</source>
-        <translation type="vanished">ट्रैकर संपादन विफल रहा</translation>
-    </message>
-    <message>
-        <source>The tracker URL entered is invalid.</source>
-        <translation type="vanished">दाखिल किया गया टाॅरेंट URL अमान्य है.</translation>
-    </message>
-    <message>
-        <source>The tracker URL already exists.</source>
-        <translation type="vanished">यह टाॅरेंट URL पहले से ही प्रयोग में है.</translation>
-    </message>
-    <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">नया ट्रैकर जोड़े...</translation>
-    </message>
-    <message>
-        <source>Edit selected tracker URL</source>
-        <translation type="vanished">चुने हुए ट्रैकर URL का संपादन करें</translation>
-    </message>
-    <message>
-        <source>Force reannounce to selected trackers</source>
-        <translation type="vanished">चयनित ट्रैकर्स को बलपुर्वक पुन: सुचित करें</translation>
-    </message>
-    <message>
-        <source>Force reannounce to all trackers</source>
-        <translation type="vanished">सभी ट्रैकर्स को बलपुर्वक सूचित करें</translation>
-    </message>
-    <message>
-        <source>Column visibility</source>
-        <translation type="obsolete">स्तंभ दृश्यता</translation>
-    </message>
-    <message>
-        <source>Remove tracker</source>
-        <translation type="vanished">ट्रैकर हटाएँ</translation>
+        <translation>सभी (%1)</translation>
     </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="286"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="397"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="282"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="393"/>
         <source>Working</source>
-        <translation type="unfinished">कार्यान्वित</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="287"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="283"/>
         <source>Disabled</source>
-        <translation type="unfinished">असक्षम</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="288"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="284"/>
         <source>Disabled for this torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="317"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="169"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="313"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="172"/>
         <source>This torrent is private</source>
-        <translation type="unfinished">यह टाॅरेंट निजी है</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="397"/>
+        <source>Updating...</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="401"/>
-        <source>Updating...</source>
-        <translation type="unfinished">नवीनतम हो रहा हैं...</translation>
+        <source>Not working</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="405"/>
-        <source>Not working</source>
-        <translation type="unfinished">कार्यान्वित नहीँ है</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="409"/>
         <source>Not contacted yet</source>
-        <translation type="unfinished">अभी तक संपर्क नहीं हुआ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="417"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="420"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="423"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="413"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="416"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="419"/>
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="517"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="513"/>
         <source>Tracker editing</source>
-        <translation type="unfinished">ट्रैकर संपादन</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="517"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="513"/>
         <source>Tracker URL:</source>
-        <translation type="unfinished">ट्रैकर URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="523"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="534"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="519"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="530"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished">ट्रैकर संपादन विफल रहा</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="523"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="519"/>
         <source>The tracker URL entered is invalid.</source>
-        <translation type="unfinished">दाखिल किया गया टाॅरेंट URL अमान्य है.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="534"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="530"/>
         <source>The tracker URL already exists.</source>
-        <translation type="unfinished">यह टाॅरेंट URL पहले से ही प्रयोग में है.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="595"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="589"/>
         <source>Add a new tracker...</source>
-        <translation type="unfinished">नया ट्रैकर जोड़े...</translation>
+        <translation>नया ट्रैकर जोड़ें...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="600"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="594"/>
         <source>Edit tracker URL...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="603"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="596"/>
         <source>Remove tracker</source>
-        <translation type="unfinished">ट्रैकर हटाएँ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="606"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="598"/>
         <source>Copy tracker URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit selected tracker URL</source>
-        <translation type="obsolete">चुने हुए ट्रैकर URL का संपादन करें</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="612"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="604"/>
         <source>Force reannounce to selected trackers</source>
-        <translation type="unfinished">चयनित ट्रैकर्स को बलपुर्वक पुन: सुचित करें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="617"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="607"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished">सभी ट्रैकर्स को बलपुर्वक सूचित करें</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="643"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="633"/>
         <source>Tier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="644"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="634"/>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="645"/>
-        <source>Status</source>
-        <translation type="unfinished">स्थिति</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="647"/>
-        <source>Seeds</source>
-        <translation type="unfinished">सभी स्रोत</translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="646"/>
-        <source>Peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="648"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="635"/>
+        <source>Status</source>
+        <translation>स्थिति</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="637"/>
+        <source>Seeds</source>
+        <translation>बीज</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="636"/>
+        <source>Peers</source>
+        <translation type="unfinished">पीयर</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="638"/>
         <source>Leeches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="649"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="639"/>
         <source>Downloaded</source>
-        <translation type="unfinished">डाउनलोडेड</translation>
+        <translation>डाउनलोड हो चुके</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="650"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="640"/>
         <source>Message</source>
-        <translation type="unfinished">संदेश</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="670"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="660"/>
         <source>Column visibility</source>
-        <translation type="unfinished">स्तंभ दृश्यता</translation>
-    </message>
-</context>
-<context>
-    <name>TrackerLoginDialog</name>
-    <message>
-        <source>Tracker authentication</source>
-        <translation type="obsolete">ट्रैकर प्रमाणीकरण</translation>
-    </message>
-    <message>
-        <source>Tracker:</source>
-        <translation type="obsolete">ट्रैकर:</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="obsolete">लॉगिन</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="obsolete">प्रयोक्ता नाम:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="obsolete">पासवर्ड:</translation>
-    </message>
-    <message>
-        <source>Log in</source>
-        <translation type="obsolete">लॉगिन</translation>
+        <translation type="unfinished">पंक्ति दृश्यता</translation>
     </message>
 </context>
 <context>
@@ -10460,27 +9528,27 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="14"/>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished">ट्रैकर्स जोड़ने हेतु डायलाग</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="20"/>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished">जोड़ने के लिए ट्रैकर्स की सूची (प्रति पंक्ति एक):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.ui" line="37"/>
         <source>µTorrent compatible list URL:</source>
-        <translation type="unfinished">µTorrent संगत सूची URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="129"/>
         <source>No change</source>
-        <translation type="unfinished">कोई बदलाव नहीं</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="129"/>
         <source>No additional trackers were found.</source>
-        <translation type="unfinished">कोई और ट्रैकर्स नहीं मिलें.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/properties/trackersadditiondialog.cpp" line="88"/>
@@ -10494,108 +9562,26 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>TrackersAdditionDlg</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">ट्रैकर्स जोड़ने हेतु डायलाग</translation>
-    </message>
-    <message>
-        <source>List of trackers to add (one per line):</source>
-        <translation type="vanished">जोड़ने के लिए ट्रैकर्स की सूची (प्रति पंक्ति एक):</translation>
-    </message>
-    <message>
-        <source>µTorrent compatible list URL:</source>
-        <translation type="vanished">µTorrent संगत सूची URL:</translation>
-    </message>
-    <message>
-        <source>I/O Error</source>
-        <translation type="vanished">I/O त्रुटि</translation>
-    </message>
-    <message>
-        <source>No change</source>
-        <translation type="vanished">कोई बदलाव नहीं</translation>
-    </message>
-    <message>
-        <source>No additional trackers were found.</source>
-        <translation type="vanished">कोई और ट्रैकर्स नहीं मिलें.</translation>
-    </message>
-    <message>
-        <source>Download error</source>
-        <translation type="vanished">डाउनलोड त्रुटि</translation>
-    </message>
-</context>
-<context>
-    <name>TransferListDelegate</name>
-    <message>
-        <source>Downloading</source>
-        <translation type="vanished">डाउनलोड हो रहा है</translation>
-    </message>
-    <message>
-        <source>Downloading metadata</source>
-        <comment>used when loading a magnet link</comment>
-        <translation type="vanished">मेटाडाटा डाउनलोड हो रहा है</translation>
-    </message>
-    <message>
-        <source>Allocating</source>
-        <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="vanished">आवंटन</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation type="vanished">रूका हुआ</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <comment>i.e. torrent is queued</comment>
-        <translation type="vanished">कतारबद्ध</translation>
-    </message>
-    <message>
-        <source>Seeding</source>
-        <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="vanished">सीडिंग</translation>
-    </message>
-    <message>
-        <source>Stalled</source>
-        <comment>Torrent is waiting for download to begin</comment>
-        <translation type="vanished">अवस्र्द्ध</translation>
-    </message>
-    <message>
-        <source>Checking</source>
-        <comment>Torrent local data is being checked</comment>
-        <translation type="vanished">जाँच हो रहा है</translation>
-    </message>
-    <message>
-        <source>Downloading metadata</source>
-        <comment>Used when loading a magnet link</comment>
-        <translation type="obsolete">मेटाडाटा डाउनलोड हो रहा है</translation>
-    </message>
-    <message>
-        <source>Queued</source>
-        <comment>Torrent is queued</comment>
-        <translation type="obsolete">कतारबद्ध</translation>
-    </message>
-</context>
-<context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="674"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="672"/>
         <source>Status</source>
-        <translation type="unfinished">स्थिति</translation>
+        <translation>स्थिति</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="682"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="680"/>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणिआ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="701"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="699"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="719"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="717"/>
         <source>Trackers</source>
-        <translation type="unfinished">ट्रैकर्स</translation>
+        <translation type="unfinished">ट्रैकर</translation>
     </message>
 </context>
 <context>
@@ -10603,19 +9589,19 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="111"/>
         <source>Downloading</source>
-        <translation type="unfinished">डाउनलोड हो रहा है</translation>
+        <translation>डाउनलोड हो रहा है</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="112"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation type="unfinished">अवस्र्द्ध</translation>
+        <translation>अवरुद्ध</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="113"/>
         <source>Downloading metadata</source>
         <comment>Used when loading a magnet link</comment>
-        <translation type="unfinished">मेटाडाटा डाउनलोड हो रहा है</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="114"/>
@@ -10624,16 +9610,11 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Allocating</source>
-        <comment>qBittorrent is allocating the files on disk</comment>
-        <translation type="obsolete">आवंटन</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="115"/>
         <location filename="../gui/transferlistmodel.cpp" line="116"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="unfinished">सीडिंग</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="117"/>
@@ -10646,30 +9627,30 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="119"/>
         <source>Queued</source>
         <comment>Torrent is queued</comment>
-        <translation type="unfinished">कतारबद्ध</translation>
+        <translation>कतारबद्ध</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="120"/>
         <location filename="../gui/transferlistmodel.cpp" line="121"/>
         <source>Checking</source>
         <comment>Torrent local data is being checked</comment>
-        <translation type="unfinished">जाँच हो रहा है</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="122"/>
         <source>Checking resume data</source>
         <comment>Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.</comment>
-        <translation type="unfinished"></translation>
+        <translation>प्रारम्भ करनें की जानकारी को जांचा जा रहा है</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="123"/>
         <source>Paused</source>
-        <translation type="unfinished">रूका हुआ</translation>
+        <translation>विरामित</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="124"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>पूर्ण</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="125"/>
@@ -10686,48 +9667,43 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="127"/>
         <source>Errored</source>
         <comment>Torrent status, the torrent has an error</comment>
-        <translation type="unfinished"></translation>
+        <translation>त्रुटिपूर्ण</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="170"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">नाम</translation>
+        <translation>नाम</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="171"/>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished">साईज</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="obsolete">पूर्ण</translation>
+        <translation>आकार</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="172"/>
         <source>Progress</source>
         <comment>% Done</comment>
-        <translation type="unfinished">प्रगति</translation>
+        <translation>प्रगति</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="173"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished">स्थिति</translation>
+        <translation>स्थिति</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished">सभी स्रोत</translation>
+        <translation>बीज</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">पीयर</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="176"/>
@@ -10745,18 +9721,18 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="178"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished">अनुपात</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="179"/>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished">बचा हुआ समय</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="180"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणी</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="181"/>
@@ -10767,42 +9743,42 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished">जोड़ा गया</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished">पूर्ण हुआ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Tracker</source>
-        <translation type="unfinished">ट्रैकर</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="185"/>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished">डाउनलोड सीमा</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="186"/>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished">अपलोड सीमा</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished">डाउनलोडेड</translation>
+        <translation>डाउनलोड हो चुके</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="188"/>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished">अपलोडेड</translation>
+        <translation type="unfinished">अपलोड</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="189"/>
@@ -10820,31 +9796,31 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="191"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished">बचा हुआ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="192"/>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished">सक्रिय रहने का समय</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="193"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished">सहेजने हेतु पथ</translation>
+        <translation>संचय पथ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="194"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>पूर्ण</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="195"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>अनुपात की सीमा</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
@@ -10862,22 +9838,27 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="198"/>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished"></translation>
+        <translation>कुल आकर</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="199"/>
         <source>Availability</source>
         <comment>The number of distributed copies of the torrent</comment>
+        <translation>उपलब्धता</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistmodel.cpp" line="251"/>
+        <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="298"/>
+        <location filename="../gui/transferlistmodel.cpp" line="308"/>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 पहले</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistmodel.cpp" line="307"/>
+        <location filename="../gui/transferlistmodel.cpp" line="321"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
         <translation type="unfinished"></translation>
@@ -10886,274 +9867,246 @@ Please choose a different name and try again.</source>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="587"/>
+        <location filename="../gui/transferlistwidget.cpp" line="585"/>
         <source>Column visibility</source>
-        <translation>स्तंभ दृश्यता</translation>
+        <translation>पंक्ति दृश्यता</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="338"/>
+        <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
-        <translation>सहेजने हेतु पथ चुनें</translation>
+        <translation>संचय पथ चुनें</translation>
     </message>
     <message>
-        <source>Torrent Download Speed Limiting</source>
-        <translation type="vanished">टाॅरेंट डाउनलोड गति सीमा</translation>
-    </message>
-    <message>
-        <source>Torrent Upload Speed Limiting</source>
-        <translation type="vanished">टाॅरेंट अपलोड गति सीमा</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="568"/>
+        <location filename="../gui/transferlistwidget.cpp" line="566"/>
         <source>Recheck confirmation</source>
-        <translation>पुन:जाँच करने की पु‍ष्टि</translation>
+        <translation>पुन: जाँच हेतु पु‍ष्टि</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="568"/>
+        <location filename="../gui/transferlistwidget.cpp" line="566"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>क्या आप निश्चित है कि आप चयनित टाॅरेंट्स की पुन:जाँच करना चाहते हैं?</translation>
+        <translation>क्या आप निश्चित ही चयनित टोरेंट पुनः जाँचना चाहते हैं?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="761"/>
+        <location filename="../gui/transferlistwidget.cpp" line="759"/>
         <source>Rename</source>
-        <translation>पुन:नामकरण</translation>
+        <translation>नाम बदलें</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="761"/>
+        <location filename="../gui/transferlistwidget.cpp" line="759"/>
         <source>New name:</source>
         <translation>नया नाम:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="801"/>
+        <location filename="../gui/transferlistwidget.cpp" line="799"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>पुन: आरंभ करें</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="805"/>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>आरंभ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="803"/>
+        <source>Force Resume</source>
+        <comment>Force Resume/start the torrent</comment>
+        <translation>बलपूर्वक प्रारम्भ करें</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="801"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>रोकें</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="548"/>
+        <location filename="../gui/transferlistwidget.cpp" line="546"/>
         <source>Unable to preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="548"/>
+        <location filename="../gui/transferlistwidget.cpp" line="546"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="664"/>
+        <location filename="../gui/transferlistwidget.cpp" line="662"/>
         <source>Add Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="707"/>
+        <location filename="../gui/transferlistwidget.cpp" line="705"/>
         <source>Remove All Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="707"/>
+        <location filename="../gui/transferlistwidget.cpp" line="705"/>
         <source>Remove all tags from selected torrents?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="722"/>
+        <location filename="../gui/transferlistwidget.cpp" line="720"/>
         <source>Comma-separated tags:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="731"/>
+        <location filename="../gui/transferlistwidget.cpp" line="729"/>
         <source>Invalid tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="732"/>
+        <location filename="../gui/transferlistwidget.cpp" line="730"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="807"/>
+        <location filename="../gui/transferlistwidget.cpp" line="805"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>रद्द करें</translation>
+        <translation>हटाएँ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="809"/>
+        <location filename="../gui/transferlistwidget.cpp" line="807"/>
         <source>Preview file...</source>
-        <translation>फाईल पूर्वावलोकन...</translation>
+        <translation>फाइल पूर्वावलोकन...</translation>
     </message>
     <message>
-        <source>Limit share ratio...</source>
-        <translation type="vanished">शेयर अनुपात की सीमा...</translation>
-    </message>
-    <message>
-        <source>Limit upload rate...</source>
-        <translation type="vanished">अपलोड दर की सीमा...</translation>
-    </message>
-    <message>
-        <source>Limit download rate...</source>
-        <translation type="vanished">डाउनलोड दर की सीमा...</translation>
+        <location filename="../gui/transferlistwidget.cpp" line="811"/>
+        <source>Open destination folder</source>
+        <translation>लक्षित फोल्डर खोलें</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="813"/>
-        <source>Open destination folder</source>
-        <translation>गन्तव्य डायरेक्टरी खोलें</translation>
+        <source>Move up</source>
+        <comment>i.e. move up in the queue</comment>
+        <translation>ऊपर करें</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="815"/>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation>ऊपर जांए</translation>
+        <source>Move down</source>
+        <comment>i.e. Move down in the queue</comment>
+        <translation>नीचे लाएँ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation>नीचे जांए</translation>
+        <source>Move to top</source>
+        <comment>i.e. Move to top of the queue</comment>
+        <translation>शीर्ष पर ले जाएँ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="819"/>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation>सबसे ऊपर जांए</translation>
+        <source>Move to bottom</source>
+        <comment>i.e. Move to bottom of the queue</comment>
+        <translation>अंत में ले जाएँ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="821"/>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation>सबसे नीचे जांए</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="823"/>
         <source>Set location...</source>
-        <translation>जगह निर्धारित करें...</translation>
+        <translation>स्थान निर्धारण...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="827"/>
+        <location filename="../gui/transferlistwidget.cpp" line="825"/>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="829"/>
+        <location filename="../gui/transferlistwidget.cpp" line="827"/>
         <source>Magnet link</source>
-        <translation type="unfinished">मैगनेट लिंक</translation>
+        <translation>चुम्बकीय लिंक</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="829"/>
+        <source>Name</source>
+        <translation>नाम</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="831"/>
-        <source>Name</source>
-        <translation type="unfinished">नाम</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="833"/>
         <source>Hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1084"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1076"/>
         <source>Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>कतार</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1092"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1084"/>
         <source>Copy</source>
-        <translation type="unfinished">प्रतिलिपि बनाए</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="841"/>
-        <source>Download first and last pieces first</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="811"/>
+        <location filename="../gui/transferlistwidget.cpp" line="839"/>
+        <source>Download first and last pieces first</source>
+        <translation>प्रथम व अंतिम भाग पहले डाउनलोड करें</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="809"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="843"/>
+        <location filename="../gui/transferlistwidget.cpp" line="841"/>
         <source>Automatic Torrent Management</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="844"/>
+        <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">स्वतः मोड यानि टोरेंट विशेषताएँ (संचय पथ आदि) संबंधित श्रेणी द्वारा निर्धारित होगी</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="846"/>
+        <location filename="../gui/transferlistwidget.cpp" line="844"/>
         <source>Edit trackers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <location filename="../gui/transferlistwidget.cpp" line="968"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>श्रेणी</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <source>New...</source>
+        <comment>New category...</comment>
+        <translation>नया...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="972"/>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="975"/>
         <source>Reset</source>
         <comment>Reset category</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="999"/>
+        <location filename="../gui/transferlistwidget.cpp" line="993"/>
         <source>Tags</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1001"/>
+        <location filename="../gui/transferlistwidget.cpp" line="995"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
-        <translation type="unfinished"></translation>
+        <translation>जोड़ें...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1004"/>
+        <location filename="../gui/transferlistwidget.cpp" line="997"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>सभी हटायें</translation>
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">वरीयता</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="825"/>
+        <location filename="../gui/transferlistwidget.cpp" line="823"/>
         <source>Force recheck</source>
-        <translation>फिरसे बलपुर्वक जांचे</translation>
+        <translation>पुनः जाँच बाध्य करें</translation>
     </message>
     <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">मैगनेट लिंक की प्रतिलिपि बनायें</translation>
+        <location filename="../gui/transferlistwidget.cpp" line="833"/>
+        <source>Super seeding mode</source>
+        <translation>सुपर सीड मोड</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="835"/>
-        <source>Super seeding mode</source>
-        <translation>विशूद्ध सूपर सीडिंग मोड</translation>
+        <source>Rename...</source>
+        <translation>नाम बदलें...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="837"/>
-        <source>Rename...</source>
-        <translation>पुन:नामकरण...</translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="839"/>
         <source>Download in sequential order</source>
-        <translation>अनुक्रमिक तरीके से डाउनलोड करें</translation>
+        <translation>क्रमबद्ध डाउनलोड करें</translation>
     </message>
 </context>
 <context>
@@ -11188,17 +10141,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/uithememanager.cpp" line="228"/>
         <source>Invalid color for ID &quot;%1&quot; is provided by theme</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UpDownRatioDlg</name>
-    <message>
-        <source>Set no ratio limit</source>
-        <translation type="obsolete">कोई अनुपात सीमा निर्धारित न करें</translation>
-    </message>
-    <message>
-        <source>Set ratio limit to</source>
-        <translation type="obsolete">निर्धारित अनुपात सीमा</translation>
     </message>
 </context>
 <context>
@@ -11301,344 +10243,95 @@ Please choose a different name and try again.</source>
     </message>
 </context>
 <context>
-    <name>authentication</name>
-    <message>
-        <source>Tracker authentication</source>
-        <translation type="vanished">ट्रैकर प्रमाणीकरण</translation>
-    </message>
-    <message>
-        <source>Tracker:</source>
-        <translation type="vanished">ट्रैकर:</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation type="vanished">लॉगिन</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation type="vanished">प्रयोक्ता नाम:</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="vanished">पासवर्ड:</translation>
-    </message>
-    <message>
-        <source>Log in</source>
-        <translation type="obsolete">लॉगिन</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">रद्द करें</translation>
-    </message>
-</context>
-<context>
-    <name>confirmDeletionDlg</name>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="obsolete">रद्द करनें हेतु पुष्टि करें - qBittorrent</translation>
-    </message>
-    <message>
-        <source>Remember choice</source>
-        <translation type="vanished">अपनी पसंद याद रखें</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">हार्ड डिस्क की फाइलें भी रद्द करें</translation>
-    </message>
-</context>
-<context>
-    <name>createTorrentDialog</name>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">रद्द करें</translation>
-    </message>
-    <message>
-        <source>Torrent Creation Tool</source>
-        <translation type="obsolete">टाॅरेंट निर्माण उपकरण</translation>
-    </message>
-    <message>
-        <source>Torrent file creation</source>
-        <translation type="obsolete">टाॅरेंट फाइल निर्माण</translation>
-    </message>
-    <message>
-        <source>Add file</source>
-        <translation type="obsolete">फाईल जोड़ें</translation>
-    </message>
-    <message>
-        <source>Add folder</source>
-        <translation type="obsolete">फोल्डर जोड़ें</translation>
-    </message>
-    <message>
-        <source>File or folder to add to the torrent:</source>
-        <translation type="obsolete">टाॅरेंट में जोड़ने के लिये फाइल या फोल्डर:</translation>
-    </message>
-    <message>
-        <source>Tracker URLs:</source>
-        <translation type="obsolete">ट्रैकर URLs:</translation>
-    </message>
-    <message>
-        <source>Web seeds urls:</source>
-        <translation type="obsolete">वेब सीड्स urls:</translation>
-    </message>
-    <message>
-        <source>Comment:</source>
-        <translation type="obsolete">टिप्पणी:</translation>
-    </message>
-    <message>
-        <source>You can separate tracker tiers / groups with an empty line.</source>
-        <comment>A tracker tier is a group of trackers, consisting of a main tracker and its mirrors.</comment>
-        <translation type="obsolete">आप ट्रैकर्स के समूह को एक खाली पंक्ति के साथ अलग कर सकतें हैं.</translation>
-    </message>
-    <message>
-        <source>Piece size:</source>
-        <translation type="obsolete">टुकड़ो की साइज:</translation>
-    </message>
-    <message>
-        <source>16 KiB</source>
-        <translation type="obsolete">512 किबिबाइट्स {16 ?}</translation>
-    </message>
-    <message>
-        <source>32 KiB</source>
-        <translation type="obsolete">32 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>64 KiB</source>
-        <translation type="obsolete">64 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>128 KiB</source>
-        <translation type="obsolete">128 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>256 KiB</source>
-        <translation type="obsolete">256 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>512 KiB</source>
-        <translation type="obsolete">512 किबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>1 MiB</source>
-        <translation type="obsolete">1 मेबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>2 MiB</source>
-        <translation type="obsolete">2 मेबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>4 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स</translation>
-    </message>
-    <message>
-        <source>8 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स {8 ?}</translation>
-    </message>
-    <message>
-        <source>16 MiB</source>
-        <translation type="obsolete">4 मेबिबाइट्स {16 ?}</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="obsolete">स्वत</translation>
-    </message>
-    <message>
-        <source>Private (won&apos;t be distributed on DHT network if enabled)</source>
-        <translation type="obsolete">निजी(DHT नेटवर्क पर बाँटा नहीं जाएगा यदि सक्षम है)</translation>
-    </message>
-    <message>
-        <source>Start seeding after creation</source>
-        <translation type="obsolete">निर्माण के बाद सीडिंग शुरू करें</translation>
-    </message>
-    <message>
-        <source>Ignore share ratio limits for this torrent</source>
-        <translation type="obsolete">इस टाॅरेंट के लिए शेयर अनुपात सीमा की अवहेलना करें</translation>
-    </message>
-    <message>
-        <source>Create and save...</source>
-        <translation type="obsolete">बनाएं और सहेंजें...</translation>
-    </message>
-    <message>
-        <source>Progress:</source>
-        <translation type="obsolete">प्रगति:</translation>
-    </message>
-</context>
-<context>
-    <name>downloadFromURL</name>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">टाॅरेंट लिंक्स जोड़ें</translation>
-    </message>
-    <message>
-        <source>One per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="obsolete">प्रति पंक्ति एक (HTTP लिंक्स, मैगनेट लिंक्स और इन्फो-हैशेज समर्थित हैं)</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">डाउनलोड करें</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">रद्द करें</translation>
-    </message>
-    <message>
-        <source>Download from urls</source>
-        <translation type="obsolete">urls से डाउनलोड करें</translation>
-    </message>
-    <message>
-        <source>No URL entered</source>
-        <translation type="vanished">URL प्रविष्ट नहीं हुआ</translation>
-    </message>
-    <message>
-        <source>Please type at least one URL.</source>
-        <translation type="vanished">कृपया कम से कम एक URL टंकित करें.</translation>
-    </message>
-</context>
-<context>
-    <name>errorDialog</name>
-    <message>
-        <source>Crash info</source>
-        <translation type="vanished">दुर्घटना की जानकारी</translation>
-    </message>
-</context>
-<context>
-    <name>fsutils</name>
-    <message>
-        <source>Downloads</source>
-        <translation type="vanished">डाउनलोड्स</translation>
-    </message>
-</context>
-<context>
     <name>misc</name>
     <message>
-        <location filename="../base/utils/misc.cpp" line="69"/>
+        <location filename="../base/utils/misc.cpp" line="73"/>
         <source>B</source>
         <comment>bytes</comment>
         <translation>बाइट्स</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="70"/>
+        <location filename="../base/utils/misc.cpp" line="74"/>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>किबिबाइट्स</translation>
+        <translation>केबी</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="71"/>
+        <location filename="../base/utils/misc.cpp" line="75"/>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>मेबिबाइट्स</translation>
+        <translation>एमबी</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="72"/>
+        <location filename="../base/utils/misc.cpp" line="76"/>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>गिबिबाइट्स</translation>
+        <translation>जीबी</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="73"/>
+        <location filename="../base/utils/misc.cpp" line="77"/>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
         <translation>टेबिबाइट्स</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="74"/>
+        <location filename="../base/utils/misc.cpp" line="78"/>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="75"/>
+        <location filename="../base/utils/misc.cpp" line="79"/>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="248"/>
+        <location filename="../base/utils/misc.cpp" line="257"/>
         <source>/s</source>
         <comment>per second</comment>
         <translation>/सेकंड</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="358"/>
+        <location filename="../base/utils/misc.cpp" line="374"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
         <translation>%1घण्टा %2मिनट</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="365"/>
+        <location filename="../base/utils/misc.cpp" line="381"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
         <translation>%1दिन %2घण्टा</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="370"/>
+        <location filename="../base/utils/misc.cpp" line="386"/>
         <source>%1y %2d</source>
         <comment>e.g: 2years 10days</comment>
         <translation type="unfinished">%1दिन %2घण्टा {1y?} {2d?}</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="257"/>
+        <location filename="../base/utils/misc.cpp" line="265"/>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
         <translation>अज्ञात</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="135"/>
+        <location filename="../base/utils/misc.cpp" line="144"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent अब कम्प्युटर बंद करेगा क्योंकि सारे डाउनलोड्स पुर्ण हो गये है.</translation>
+        <translation>सभी डाउनलोड पूर्ण होने के कारण अब क्यूबिटटोरेंट द्वारा कंप्यूटर बंद किया जाएगा।</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="348"/>
+        <location filename="../base/utils/misc.cpp" line="364"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
         <translation>&lt; 1 मिनट</translation>
     </message>
     <message>
-        <location filename="../base/utils/misc.cpp" line="352"/>
+        <location filename="../base/utils/misc.cpp" line="368"/>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1मिनट</translation>
-    </message>
-    <message>
-        <source>Working</source>
-        <translation type="obsolete">कार्यान्वित</translation>
-    </message>
-    <message>
-        <source>Updating...</source>
-        <translation type="obsolete">नवीनतम हो रहा हैं...</translation>
-    </message>
-    <message>
-        <source>Not working</source>
-        <translation type="obsolete">कार्यान्वित नहीँ है</translation>
-    </message>
-    <message>
-        <source>Not contacted yet</source>
-        <translation type="obsolete">अभी तक संपर्क नहीं हुआ</translation>
-    </message>
-</context>
-<context>
-    <name>preview</name>
-    <message>
-        <source>Preview selection</source>
-        <translation type="vanished">पूर्वावलोकन चयन</translation>
-    </message>
-    <message>
-        <source>The following files support previewing, please select one of them:</source>
-        <translation type="vanished">निम्नलिखित फ़ाइलें पूर्वावलोकन समर्थन करती हैं, कृपया उनमें से एक का चयन करें:</translation>
-    </message>
-    <message>
-        <source>Preview</source>
-        <translation type="obsolete">पूर्वावलोकन</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">रद्द करें</translation>
-    </message>
-</context>
-<context>
-    <name>trackerLogin</name>
-    <message>
-        <source>Log in</source>
-        <translation type="obsolete">लॉगिन</translation>
     </message>
 </context>
 </TS>

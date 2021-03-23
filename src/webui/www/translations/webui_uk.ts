@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Створити підтеку</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Не створювати підтеку</translation>
     </message>
 </context>
 <context>
@@ -1439,11 +1439,11 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Розміщення вмісту:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Створити підтеку</translation>
     </message>
     <message>
         <source>Original</source>
@@ -1451,6 +1451,10 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Не створювати підтеку</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1736,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Перейменувати...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2275,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Заглох</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2602,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1хв</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3043,7 +3059,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Перейменувати...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3319,11 +3335,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Розміщення вмісту:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Створити підтеку</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3331,7 +3347,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Не створювати підтеку</translation>
     </message>
 </context>
 <context>
