@@ -211,3 +211,5 @@ window.qBittorrent.PropGeneral = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.PropGeneral);

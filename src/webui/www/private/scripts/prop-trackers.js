@@ -235,3 +235,5 @@ window.qBittorrent.PropTrackers = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.PropTrackers);

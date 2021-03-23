@@ -667,3 +667,5 @@ window.qBittorrent.ContextMenu = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.ContextMenu);

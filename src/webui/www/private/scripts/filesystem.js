@@ -76,3 +76,5 @@ window.qBittorrent.Filesystem = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.Filesystem);

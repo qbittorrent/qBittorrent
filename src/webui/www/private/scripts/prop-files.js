@@ -727,3 +727,5 @@ window.qBittorrent.PropFiles = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.PropFiles);

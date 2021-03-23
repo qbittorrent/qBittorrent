@@ -2495,4 +2495,6 @@ window.qBittorrent.DynamicTable = (function() {
     return exports();
 })();
 
+Object.freeze(window.qBittorrent.DynamicTable);
+
 /*************************************************************/

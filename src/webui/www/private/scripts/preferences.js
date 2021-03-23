@@ -59,3 +59,5 @@ window.qBittorrent.LocalPreferences = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.LocalPreferences);
