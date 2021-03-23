@@ -1,0 +1,14 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": "eslint:recommended",
+    "plugins": [
+        "html"
+    ],
+    "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off"
+    }
+}
