@@ -193,3 +193,5 @@ window.qBittorrent.FileTree = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.FileTree);

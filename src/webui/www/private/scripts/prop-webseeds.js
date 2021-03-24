@@ -151,3 +151,5 @@ window.qBittorrent.PropWebseeds = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.PropWebseeds);
