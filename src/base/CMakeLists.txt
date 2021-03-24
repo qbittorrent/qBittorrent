@@ -9,6 +9,7 @@ add_library(qbt_base STATIC
     bittorrent/cachestatus.h
     bittorrent/common.h
     bittorrent/customstorage.h
+    bittorrent/dbresumedatastorage.h
     bittorrent/downloadpriority.h
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
@@ -100,6 +101,7 @@ add_library(qbt_base STATIC
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/customstorage.cpp
+    bittorrent/dbresumedatastorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
@@ -176,7 +178,7 @@ target_link_libraries(qbt_base
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Xml
+        Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml
         qbt_common_cfg
 )
 

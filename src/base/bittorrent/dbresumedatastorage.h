@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,26 +28,20 @@
 
 #pragma once
 
-#include <QDir>
-#include <QVector>
-
 #include "resumedatastorage.h"
 
-class QByteArray;
 class QThread;
 
 namespace BitTorrent
 {
-    class TorrentInfo;
-
-    class BencodeResumeDataStorage final : public ResumeDataStorage
+    class DBResumeDataStorage final : public ResumeDataStorage
     {
         Q_OBJECT
-        Q_DISABLE_COPY(BencodeResumeDataStorage)
+        Q_DISABLE_COPY(DBResumeDataStorage)
 
     public:
-        explicit BencodeResumeDataStorage(const QString &path, QObject *parent = nullptr);
-        ~BencodeResumeDataStorage() override;
+        explicit DBResumeDataStorage(const QString &dbPath, QObject *parent = nullptr);
+        ~DBResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;
         std::optional<LoadTorrentParams> load(const TorrentID &id) const override;
@@ -56,10 +50,8 @@ namespace BitTorrent
         void storeQueue(const QVector<TorrentID> &queue) const override;
 
     private:
-        std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata) const;
+        void createDB() const;
 
-        const QDir m_resumeDataDir;
-        QVector<TorrentID> m_registeredTorrents;
         QThread *m_ioThread = nullptr;
 
         class Worker;
