@@ -30,19 +30,14 @@
 
 #include <optional>
 
-#include <libtorrent/fwd.hpp>
-
-#include <QDir>
+#include <QtContainerFwd>
 #include <QObject>
-#include <QVector>
-
-#include "infohash.h"
-#include "loadtorrentparams.h"
-
-class QByteArray;
 
 namespace BitTorrent
 {
+    class TorrentID;
+    struct LoadTorrentParams;
+
     class ResumeDataStorage : public QObject
     {
         Q_OBJECT
@@ -56,26 +51,5 @@ namespace BitTorrent
         virtual void store(const TorrentID &id, const LoadTorrentParams &resumeData) const = 0;
         virtual void remove(const TorrentID &id) const = 0;
         virtual void storeQueue(const QVector<TorrentID> &queue) const = 0;
-    };
-
-    class BencodeResumeDataStorage final : public ResumeDataStorage
-    {
-        Q_OBJECT
-        Q_DISABLE_COPY(BencodeResumeDataStorage)
-
-    public:
-        explicit BencodeResumeDataStorage(const QString &resumeFolderPath);
-
-        QVector<TorrentID> registeredTorrents() const override;
-        std::optional<LoadTorrentParams> load(const TorrentID &id) const override;
-        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
-        void remove(const TorrentID &id) const override;
-        void storeQueue(const QVector<TorrentID> &queue) const override;
-
-    private:
-        std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata) const;
-
-        const QDir m_resumeDataDir;
-        QVector<TorrentID> m_registeredTorrents;
     };
 }

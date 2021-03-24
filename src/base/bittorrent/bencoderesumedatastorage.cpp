@@ -26,10 +26,11 @@
  * exception statement from your version.
  */
 
-#include "resumedatastorage.h"
+#include "bencoderesumedatastorage.h"
 
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
+#include <libtorrent/create_torrent.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/write_resume_data.hpp>
@@ -37,18 +38,42 @@
 #include <QByteArray>
 #include <QRegularExpression>
 #include <QSaveFile>
+#include <QThread>
 
 #include "base/algorithm.h"
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
+#include "infohash.h"
+#include "loadtorrentparams.h"
 #include "torrentinfo.h"
+
+namespace BitTorrent
+{
+    class BencodeResumeDataStorage::Worker final : public QObject
+    {
+        Q_DISABLE_COPY(Worker)
+
+    public:
+        explicit Worker(const QDir &resumeDataDir);
+
+        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const;
+        void remove(const TorrentID &id) const;
+        void storeQueue(const QVector<TorrentID> &queue) const;
+
+    private:
+        const QDir m_resumeDataDir;
+    };
+}
 
 namespace
 {
+    const char RESUME_FOLDER[] = "BT_backup";
+
     template <typename LTStr>
     QString fromLTString(const LTStr &str)
     {
@@ -65,11 +90,31 @@ namespace
             entryList.emplace_back(setValue.toStdString());
         return entryList;
     }
+
+    void writeEntryToFile(const QString &filepath, const lt::entry &data)
+    {
+        QSaveFile file {filepath};
+        if (!file.open(QIODevice::WriteOnly))
+            throw RuntimeError(file.errorString());
+
+        lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, data);
+        if (file.error() != QFileDevice::NoError || !file.commit())
+            throw RuntimeError(file.errorString());
+    }
 }
 
-BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &resumeFolderPath)
-    : m_resumeDataDir {resumeFolderPath}
+BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(QObject *parent)
+    : ResumeDataStorage {parent}
+    , m_resumeDataDir {Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER)}
+    , m_ioThread {new QThread {this}}
+    , m_asyncWorker {new Worker {m_resumeDataDir}}
 {
+    if (!m_resumeDataDir.exists() && !m_resumeDataDir.mkpath(m_resumeDataDir.absolutePath()))
+    {
+        throw RuntimeError {tr("Cannot create torrent resume folder: \"%1\"")
+                    .arg(Utils::Fs::toNativePath(m_resumeDataDir.absolutePath()))};
+    }
+
     const QRegularExpression filenamePattern {QLatin1String("^([A-Fa-f0-9]{40})\\.fastresume$")};
     const QStringList filenames = m_resumeDataDir.entryList(QStringList(QLatin1String("*.fastresume")), QDir::Files, QDir::Unsorted);
 
@@ -109,6 +154,16 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &re
     }
 
     qDebug("Registered torrents count: %d", m_registeredTorrents.size());
+
+    m_asyncWorker->moveToThread(m_ioThread);
+    connect(m_ioThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);
+    m_ioThread->start();
+}
+
+BitTorrent::BencodeResumeDataStorage::~BencodeResumeDataStorage()
+{
+    m_ioThread->quit();
+    m_ioThread->wait();
 }
 
 QVector<BitTorrent::TorrentID> BitTorrent::BencodeResumeDataStorage::registeredTorrents() const
@@ -122,42 +177,17 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::BencodeResumeDataStorag
     const QString fastresumePath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.fastresume").arg(idString));
     const QString torrentFilePath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.torrent").arg(idString));
 
-    const auto readFile = [](const QString &path, QByteArray &buf) -> bool
+    QFile file {fastresumePath};
+    if (!file.open(QIODevice::ReadOnly))
     {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly))
-        {
-            LogMsg(tr("Cannot read file %1: %2").arg(path, file.errorString()), Log::WARNING);
-            return false;
-        }
-
-        buf = file.readAll();
-        return true;
-    };
-
-    QByteArray data;
-    if (!readFile(fastresumePath, data))
+        LogMsg(tr("Cannot read file %1: %2").arg(fastresumePath, file.errorString()), Log::WARNING);
         return std::nullopt;
+    }
 
+    const QByteArray data = file.readAll();
     const TorrentInfo metadata = TorrentInfo::loadFromFile(torrentFilePath);
 
     return loadTorrentResumeData(data, metadata);
-}
-
-void BitTorrent::BencodeResumeDataStorage::storeQueue(const QVector<TorrentID> &queue) const
-{
-    QByteArray data;
-    data.reserve(((TorrentID::length() * 2) + 1) * queue.size());
-    for (const TorrentID &torrentID : queue)
-        data += (torrentID.toString().toLatin1() + '\n');
-
-    const QString filepath = m_resumeDataDir.absoluteFilePath(QLatin1String("queue"));
-    QSaveFile file {filepath};
-    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit())
-    {
-        LogMsg(tr("Couldn't save data to '%1'. Error: %2")
-            .arg(filepath, file.errorString()), Log::CRITICAL);
-    }
 }
 
 std::optional<BitTorrent::LoadTorrentParams> BitTorrent::BencodeResumeDataStorage::loadTorrentResumeData(
@@ -222,16 +252,17 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::BencodeResumeDataStorag
     if (p.flags & lt::torrent_flags::stop_when_ready)
     {
         // If torrent has "stop_when_ready" flag set then it is actually "stopped"
-        torrentParams.paused = true;
-        torrentParams.forced = false;
+        torrentParams.stopped = true;
+        torrentParams.operatingMode = TorrentOperatingMode::AutoManaged;
         // ...but temporarily "resumed" to perform some service jobs (e.g. checking)
         p.flags &= ~lt::torrent_flags::paused;
         p.flags |= lt::torrent_flags::auto_managed;
     }
     else
     {
-        torrentParams.paused = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
-        torrentParams.forced = !(p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+        torrentParams.stopped = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+        torrentParams.operatingMode = (p.flags & lt::torrent_flags::paused) || (p.flags & lt::torrent_flags::auto_managed)
+                ? TorrentOperatingMode::AutoManaged : TorrentOperatingMode::Forced;
     }
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
@@ -243,10 +274,39 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::BencodeResumeDataStorag
 
 void BitTorrent::BencodeResumeDataStorage::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
 {
+    QMetaObject::invokeMethod(m_asyncWorker, [this, id, resumeData]()
+    {
+        m_asyncWorker->store(id, resumeData);
+    });
+}
+
+void BitTorrent::BencodeResumeDataStorage::remove(const TorrentID &id) const
+{
+    QMetaObject::invokeMethod(m_asyncWorker, [this, id]()
+    {
+        m_asyncWorker->remove(id);
+    });
+}
+
+void BitTorrent::BencodeResumeDataStorage::storeQueue(const QVector<TorrentID> &queue) const
+{
+    QMetaObject::invokeMethod(m_asyncWorker, [this, queue]()
+    {
+        m_asyncWorker->storeQueue(queue);
+    });
+}
+
+BitTorrent::BencodeResumeDataStorage::Worker::Worker(const QDir &resumeDataDir)
+    : m_resumeDataDir {resumeDataDir}
+{
+}
+
+void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
+{
     // We need to adjust native libtorrent resume data
     lt::add_torrent_params p = resumeData.ltAddTorrentParams;
     p.save_path = Profile::instance()->toPortablePath(QString::fromStdString(p.save_path)).toStdString();
-    if (resumeData.paused)
+    if (resumeData.stopped)
     {
         p.flags |= lt::torrent_flags::paused;
         p.flags &= ~lt::torrent_flags::auto_managed;
@@ -255,7 +315,7 @@ void BitTorrent::BencodeResumeDataStorage::store(const TorrentID &id, const Load
     {
         // Torrent can be actually "running" but temporarily "paused" to perform some
         // service jobs behind the scenes so we need to restore it as "running"
-        if (!resumeData.forced)
+        if (resumeData.operatingMode == BitTorrent::TorrentOperatingMode::AutoManaged)
         {
             p.flags |= lt::torrent_flags::auto_managed;
         }
@@ -263,6 +323,25 @@ void BitTorrent::BencodeResumeDataStorage::store(const TorrentID &id, const Load
         {
             p.flags &= ~lt::torrent_flags::paused;
             p.flags &= ~lt::torrent_flags::auto_managed;
+        }
+    }
+
+    // metadata is stored in separate .torrent file
+    const std::shared_ptr<lt::torrent_info> torrentInfo = std::move(p.ti);
+    if (torrentInfo)
+    {
+        const QString torrentFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.torrent").arg(id.toString()));
+        const lt::create_torrent torrentCreator = lt::create_torrent(*torrentInfo);
+        const lt::entry metadata = torrentCreator.generate();
+        try
+        {
+            writeEntryToFile(torrentFilepath, metadata);
+        }
+        catch (const RuntimeError &err)
+        {
+            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2")
+                   .arg(torrentFilepath, err.message()), Log::CRITICAL);
+            return;
         }
     }
 
@@ -278,29 +357,39 @@ void BitTorrent::BencodeResumeDataStorage::store(const TorrentID &id, const Load
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
 
-    const QString filepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.fastresume").arg(id.toString()));
-
-    QSaveFile file {filepath};
-    if (!file.open(QIODevice::WriteOnly))
+    const QString resumeFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.fastresume").arg(id.toString()));
+    try
     {
-        LogMsg(tr("Couldn't save data to '%1'. Error: %2")
-               .arg(filepath, file.errorString()), Log::CRITICAL);
-        return;
+        writeEntryToFile(resumeFilepath, data);
     }
-
-    lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, data);
-    if ((file.error() != QFileDevice::NoError) || !file.commit())
+    catch (const RuntimeError &err)
     {
-        LogMsg(tr("Couldn't save data to '%1'. Error: %2")
-               .arg(filepath, file.errorString()), Log::CRITICAL);
+        LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2")
+               .arg(resumeFilepath, err.message()), Log::CRITICAL);
     }
 }
 
-void BitTorrent::BencodeResumeDataStorage::remove(const TorrentID &id) const
+void BitTorrent::BencodeResumeDataStorage::Worker::remove(const TorrentID &id) const
 {
     const QString resumeFilename = QString::fromLatin1("%1.fastresume").arg(id.toString());
     Utils::Fs::forceRemove(m_resumeDataDir.absoluteFilePath(resumeFilename));
 
     const QString torrentFilename = QString::fromLatin1("%1.torrent").arg(id.toString());
     Utils::Fs::forceRemove(m_resumeDataDir.absoluteFilePath(torrentFilename));
+}
+
+void BitTorrent::BencodeResumeDataStorage::Worker::storeQueue(const QVector<TorrentID> &queue) const
+{
+    QByteArray data;
+    data.reserve(((BitTorrent::TorrentID::length() * 2) + 1) * queue.size());
+    for (const BitTorrent::TorrentID &torrentID : queue)
+        data += (torrentID.toString().toLatin1() + '\n');
+
+    const QString filepath = m_resumeDataDir.absoluteFilePath(QLatin1String("queue"));
+    QSaveFile file {filepath};
+    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit())
+    {
+        LogMsg(tr("Couldn't save data to '%1'. Error: %2")
+            .arg(filepath, file.errorString()), Log::CRITICAL);
+    }
 }

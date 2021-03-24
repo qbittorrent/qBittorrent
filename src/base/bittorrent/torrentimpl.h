@@ -269,6 +269,7 @@ namespace BitTorrent
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
+        void prepareResumeData(const lt::add_torrent_params &params);
         void endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames);
         void reload();
 
