@@ -701,7 +701,7 @@ window.addEvent('load', function() {
     };
 
     const syncData = function(delay) {
-        if (!syncRequestInProgress){
+        if (!syncRequestInProgress) {
             clearTimeout(syncMainDataTimer);
             syncMainDataTimer = syncMainData.delay(delay);
         }
@@ -744,21 +744,18 @@ window.addEvent('load', function() {
         }
 
         switch (serverState.connection_status) {
-        case 'connected': {
+            case 'connected':
                 $('connectionStatus').src = 'icons/connected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
-            }
-            break;
-        case 'firewalled': {
+                break;
+            case 'firewalled':
                 $('connectionStatus').src = 'icons/firewalled.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
-            }
-            break;
-        default: {
+                break;
+            default:
                 $('connectionStatus').src = 'icons/disconnected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
-            }
-            break;
+                break;
         }
 
         if (queueing_enabled != serverState.queueing) {

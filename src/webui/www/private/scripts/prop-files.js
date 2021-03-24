@@ -444,8 +444,8 @@ window.qBittorrent.PropFiles = (function() {
                 if (folderNode === null) {
                     folderNode = new window.qBittorrent.FileTree.FolderNode();
                     folderNode.path = (parent.path === "")
-                            ? folderName
-                            : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
+                        ? folderName
+                        : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
                     folderNode.name = folderName;
                     folderNode.rowId = rowId;
                     folderNode.root = parent;
@@ -542,7 +542,7 @@ window.qBittorrent.PropFiles = (function() {
                     title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
                     loadMethod: 'iframe',
                     contentURL: 'rename_file.html?hash=' + hash + '&isFolder=' + node.isFolder
-                                + '&path=' + encodeURIComponent(path),
+                        + '&path=' + encodeURIComponent(path),
                     scrollbars: false,
                     resizable: false,
                     maximizable: false,
