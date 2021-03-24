@@ -84,7 +84,7 @@ MochaUI.extend({
                     else {
                         new Request.JSON({
                             url: 'api/v2/torrents/uploadLimit',
-                            noCache : true,
+                            noCache: true,
                             method: 'post',
                             data: {
                                 hashes: hashes.join('|')
@@ -92,7 +92,7 @@ MochaUI.extend({
                             onSuccess: function(data) {
                                 if (data) {
                                     let up_limit = data[hashes[0]];
-                                    for(const key in data)
+                                    for (const key in data)
                                         if (up_limit != data[key]) {
                                             up_limit = 0;
                                             break;
@@ -186,7 +186,7 @@ MochaUI.extend({
                     else {
                         new Request.JSON({
                             url: 'api/v2/torrents/downloadLimit',
-                            noCache : true,
+                            noCache: true,
                             method: 'post',
                             data: {
                                 hashes: hashes.join('|')
@@ -194,7 +194,7 @@ MochaUI.extend({
                             onSuccess: function(data) {
                                 if (data) {
                                     let dl_limit = data[hashes[0]];
-                                    for(const key in data)
+                                    for (const key in data)
                                         if (dl_limit != data[key]) {
                                             dl_limit = 0;
                                             break;

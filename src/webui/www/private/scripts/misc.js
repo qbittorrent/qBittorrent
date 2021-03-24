@@ -49,8 +49,8 @@ window.qBittorrent.Misc = (function() {
     };
 
     /*
-    * JS counterpart of the function in src/misc.cpp
-    */
+     * JS counterpart of the function in src/misc.cpp
+     */
     const friendlyUnit = function(value, isSpeed) {
         const units = [
             "QBT_TR(B)QBT_TR[CONTEXT=misc]",
@@ -93,8 +93,8 @@ window.qBittorrent.Misc = (function() {
     }
 
     /*
-    * JS counterpart of the function in src/misc.cpp
-    */
+     * JS counterpart of the function in src/misc.cpp
+     */
     const friendlyDuration = function(seconds, maxCap = -1) {
         if (seconds < 0 || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
@@ -132,8 +132,8 @@ window.qBittorrent.Misc = (function() {
     }
 
     /*
-    * From: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-    */
+     * From: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+     */
     if (!Date.prototype.toISOString) {
         (function() {
 
@@ -159,8 +159,8 @@ window.qBittorrent.Misc = (function() {
     }
 
     /*
-    * JS counterpart of the function in src/misc.cpp
-    */
+     * JS counterpart of the function in src/misc.cpp
+     */
     const parseHtmlLinks = function(text) {
         const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/ig;
         return text.replace(exp, "<a target='_blank' href='$1'>$1</a>");
