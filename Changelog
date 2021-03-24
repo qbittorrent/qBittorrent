@@ -1,3 +1,7 @@
+Wed Mar 24 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.4.1
+    - BUGFIX: Correctly draw progress bar (glassez)
+    - WEBUI: Fix javascript code which broke the UI (Chocobo1)
+
 Tue Mar 23 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.4
     - FEATURE: Add ability to prioritize selected items by shown file order (Chocobo1)
     - FEATURE: Allow tab to escape the text box in "Edit trackers" dialog (Christoph Rackwitz)
