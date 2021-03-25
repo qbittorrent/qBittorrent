@@ -52,27 +52,7 @@
 namespace BitTorrent
 {
     class Session;
-    struct AddTorrentParams;
-
-    struct LoadTorrentParams
-    {
-        lt::add_torrent_params ltAddTorrentParams {};
-
-        QString name;
-        QString category;
-        QSet<QString> tags;
-        QString savePath;
-        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
-        bool firstLastPiecePriority = false;
-        bool hasSeedStatus = false;
-        bool forced = false;
-        bool paused = false;
-
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-
-        bool restored = false;  // is existing torrent job?
-    };
+    struct LoadTorrentParams;
 
     enum class MoveStorageMode
     {

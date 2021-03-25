@@ -63,6 +63,7 @@
 #include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
+#include "loadtorrentparams.h"
 #include "ltqhash.h"
 #include "ltunderlyingtype.h"
 #include "peeraddress.h"

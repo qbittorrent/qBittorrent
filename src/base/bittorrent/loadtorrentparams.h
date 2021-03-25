@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,33 @@
 
 #pragma once
 
-#include <memory>
+#include <libtorrent/add_torrent_params.hpp>
 
-#include <libtorrent/fwd.hpp>
+#include <QSet>
+#include <QString>
 
-#include <QDir>
-#include <QObject>
+#include "torrent.h"
+#include "torrentcontentlayout.h"
 
-class QByteArray;
-
-class ResumeDataSavingManager : public QObject
+namespace BitTorrent
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(ResumeDataSavingManager)
+    struct LoadTorrentParams
+    {
+        lt::add_torrent_params ltAddTorrentParams {};
 
-public:
-    explicit ResumeDataSavingManager(const QString &resumeFolderPath);
+        QString name;
+        QString category;
+        QSet<QString> tags;
+        QString savePath;
+        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
+        bool firstLastPiecePriority = false;
+        bool hasSeedStatus = false;
+        bool forced = false;
+        bool paused = false;
 
-public slots:
-    void save(const QString &filename, const QByteArray &data) const;
-    void save(const QString &filename, const std::shared_ptr<lt::entry> &data) const;
-    void remove(const QString &filename) const;
+        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
+        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
 
-private:
-    const QDir m_resumeDataDir;
-};
+        bool restored = false;  // is existing torrent job?
+    };
+}
