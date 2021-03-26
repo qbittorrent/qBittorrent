@@ -129,7 +129,7 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
     // this should be called only with folders
     // check if the folder name itself matches the filter string
     QString name = folder.data().toString();
-    if (name.contains(filterRegularExpression()))
+    if (name.contains(filterRegExp()))
         return true;
     for (int child = 0; child < m_model->rowCount(folder); ++child)
     {
@@ -141,7 +141,7 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
             continue;
         }
         name = childIndex.data().toString();
-        if (name.contains(filterRegularExpression()))
+        if (name.contains(filterRegExp()))
             return true;
     }
 

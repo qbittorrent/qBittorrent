@@ -79,7 +79,6 @@
 #include <QDir>
 #include <QLocalServer>
 #include <QLocalSocket>
-#include <QRegularExpression>
 
 #include "base/utils/misc.h"
 
@@ -109,7 +108,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
 #endif
         prefix = id.section(QLatin1Char('/'), -1);
     }
-    prefix.remove(QRegularExpression("[^a-zA-Z]"));
+    prefix.remove(QRegExp("[^a-zA-Z]"));
     prefix.truncate(6);
 
     QByteArray idc = id.toUtf8();

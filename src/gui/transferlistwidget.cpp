@@ -36,6 +36,7 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
+#include <QRegExp>
 #include <QRegularExpression>
 #include <QSet>
 #include <QShortcut>
@@ -1130,9 +1131,9 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
-                ? name : Utils::String::wildcardToRegexPattern(name));
-    m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
+    const QRegExp::PatternSyntax patternSyntax = Preferences::instance()->getRegexAsFilteringPatternForTransferList()
+                ? QRegExp::RegExp : QRegExp::WildcardUnix;
+    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, patternSyntax));
 }
 
 void TransferListWidget::applyStatusFilter(int f)
