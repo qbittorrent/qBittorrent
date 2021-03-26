@@ -778,7 +778,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
+                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -1007,7 +1007,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['name'].compareRows = function(row1, row2) {
                 const row1Val = this.getRowValue(row1);
                 const row2Val = this.getRowValue(row2);
-                return row1Val.localeCompare(row2Val, undefined, {numeric: true, sensitivity: 'base'});
+                return row1Val.localeCompare(row2Val, undefined, { numeric: true, sensitivity: 'base' });
             };
             this.columns['category'].compareRows = this.columns['name'].compareRows;
             this.columns['tags'].compareRows = this.columns['name'].compareRows;
@@ -1264,11 +1264,11 @@ window.qBittorrent.DynamicTable = (function() {
             if (!isNaN(categoryHashInt)) {
                 switch (categoryHashInt) {
                     case CATEGORIES_ALL:
-                        break;  // do nothing
+                        break; // do nothing
                     case CATEGORIES_UNCATEGORIZED:
                         if (row['full_data'].category.length !== 0)
                             return false;
-                        break;  // do nothing
+                        break; // do nothing
                     default:
                         if (categoryHashInt !== genHash(row['full_data'].category))
                             return false;
@@ -1280,20 +1280,22 @@ window.qBittorrent.DynamicTable = (function() {
             if (isNumber) {
                 switch (tagHashInt) {
                     case TAGS_ALL:
-                        break;  // do nothing
+                        break; // do nothing
 
                     case TAGS_UNTAGGED:
                         if (row['full_data'].tags.length !== 0)
                             return false;
-                        break;  // do nothing
+                        break; // do nothing
 
-                    default:
+                    default: {
                         let rowTags = row['full_data'].tags.split(', ');
                         rowTags = rowTags.map(function(tag) {
                             return genHash(tag);
                         });
                         if (!rowTags.contains(tagHashInt))
                             return false;
+                        break;
+                    }
                 }
             }
 
@@ -1305,11 +1307,12 @@ window.qBittorrent.DynamicTable = (function() {
                     if (row['full_data'].trackers_count !== 0)
                         return false;
                     break;
-                default:
+                default: {
                     const tracker = trackerList.get(trackerHashInt);
                     if (tracker && !tracker.torrents.includes(row['full_data'].rowId))
                         return false;
                     break;
+                }
             }
 
             if ((filterTerms !== undefined) && (filterTerms !== null)
@@ -1588,8 +1591,8 @@ window.qBittorrent.DynamicTable = (function() {
                 for (let i = 0; i < rows.length; ++i) {
                     const row = rows[i];
 
-                if (searchInTorrentName && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, searchTerms)) continue;
-                if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, filterTerms)) continue;
+                    if (searchInTorrentName && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, searchTerms)) continue;
+                    if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, filterTerms)) continue;
                     if ((sizeFilters.min > 0.00) && (row.full_data.fileSize < sizeFilters.min)) continue;
                     if ((sizeFilters.max > 0.00) && (row.full_data.fileSize > sizeFilters.max)) continue;
                     if ((seedsFilters.min > 0) && (row.full_data.nbSeeders < seedsFilters.min)) continue;
@@ -1909,7 +1912,7 @@ window.qBittorrent.DynamicTable = (function() {
 
         _filterNodes: function(node, filterTerms, filteredRows) {
             if (node.isFolder) {
-                const childAdded = node.children.reduce(function (acc, child) {
+                const childAdded = node.children.reduce(function(acc, child) {
                     // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
                     return (this._filterNodes(child, filterTerms, filteredRows) || acc);
                 }.bind(this), false);
@@ -2058,7 +2061,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
+                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -2203,7 +2206,7 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
+                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
@@ -2484,13 +2487,12 @@ window.qBittorrent.DynamicTable = (function() {
 
             const tds = tr.getElements('td');
             for (let i = 0; i < this.columns.length; ++i) {
-                if (data.hasOwnProperty(this.columns[i].dataProperties[0]))
+                if (Object.prototype.hasOwnProperty.call(data, this.columns[i].dataProperties[0]))
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
         }
     });
-
 
     return exports();
 })();
