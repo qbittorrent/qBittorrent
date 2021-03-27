@@ -28,18 +28,11 @@
 
 #include "previewlistdelegate.h"
 
-#include <QApplication>
 #include <QModelIndex>
 #include <QPainter>
-#include <QStyleOptionProgressBar>
 #include <QStyleOptionViewItem>
 
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#include <QProxyStyle>
-#endif
-
 #include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "previewselectdialog.h"
 
 PreviewListDelegate::PreviewListDelegate(QObject *parent)
@@ -61,30 +54,19 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
         break;
 
     case PreviewSelectDialog::PROGRESS:
-    {
+        {
             const qreal progress = (index.data().toReal() * 100);
+            const QString text = (progress >= 100)
+                ? QString::fromLatin1("100%")
+                : (Utils::String::fromDouble(progress, 1) + '%');
 
-            QStyleOptionProgressBar newopt;
-            newopt.rect = opt.rect;
-            newopt.text = ((progress == 100) ? QString("100%") : (Utils::String::fromDouble(progress, 1) + '%'));
-            newopt.progress = static_cast<int>(progress);
-            newopt.maximum = 100;
-            newopt.minimum = 0;
-            newopt.state |= QStyle::State_Enabled;
-            newopt.textVisible = true;
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-            // XXX: To avoid having the progress text on the right of the bar
-            QProxyStyle st("fusion");
-            st.drawControl(QStyle::CE_ProgressBar, &newopt, painter, 0);
-#else
-            QApplication::style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter);
-#endif
+            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress));
         }
         break;
 
     default:
         QItemDelegate::paint(painter, option, index);
+        break;
     }
 
     painter->restore();

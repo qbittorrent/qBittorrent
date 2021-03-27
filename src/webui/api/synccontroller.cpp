@@ -461,10 +461,10 @@ void SyncController::maindataAction()
     QHash<QString, QStringList> trackers;
     for (const BitTorrent::Torrent *torrent : asConst(session->torrents()))
     {
-        const BitTorrent::InfoHash torrentHash = torrent->hash();
+        const BitTorrent::TorrentID torrentID = torrent->id();
 
         QVariantMap map = serialize(*torrent);
-        map.remove(KEY_TORRENT_HASH);
+        map.remove(KEY_TORRENT_ID);
 
         // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
         // So we don't need unnecessary updates of last activity time in response.
@@ -472,11 +472,11 @@ void SyncController::maindataAction()
         if (iterTorrents != lastResponse.end())
         {
             const QVariantHash lastResponseTorrents = iterTorrents->toHash();
-            const auto iterHash = lastResponseTorrents.find(torrentHash);
+            const auto iterID = lastResponseTorrents.find(torrentID.toString());
 
-            if (iterHash != lastResponseTorrents.end())
+            if (iterID != lastResponseTorrents.end())
             {
-                const QVariantMap torrentData = iterHash->toMap();
+                const QVariantMap torrentData = iterID->toMap();
                 const auto iterLastActivity = torrentData.find(KEY_TORRENT_LAST_ACTIVITY_TIME);
 
                 if (iterLastActivity != torrentData.end())
@@ -489,9 +489,9 @@ void SyncController::maindataAction()
         }
 
         for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
-            trackers[tracker.url()] << torrentHash;
+            trackers[tracker.url] << torrentID.toString();
 
-        torrents[torrentHash] = map;
+        torrents[torrentID.toString()] = map;
     }
     data["torrents"] = torrents;
 
@@ -535,15 +535,15 @@ void SyncController::maindataAction()
 }
 
 // GET param:
-//   - hash (string): torrent hash
+//   - hash (string): torrent hash (ID)
 //   - rid (int): last response id
 void SyncController::torrentPeersAction()
 {
     auto lastResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastResponse")).toMap();
     auto lastAcceptedResponse = sessionManager()->session()->getData(QLatin1String("syncTorrentPeersLastAcceptedResponse")).toMap();
 
-    const QString hash {params()["hash"]};
-    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->findTorrent(hash);
+    const auto id = BitTorrent::TorrentID::fromString(params()["hash"]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->findTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -613,9 +613,5 @@ void SyncController::freeDiskSpaceSizeUpdated(qint64 freeSpaceSize)
 
 void SyncController::invokeChecker() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check, Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, "check", Qt::QueuedConnection);
-#endif
 }

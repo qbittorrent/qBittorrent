@@ -1287,7 +1287,7 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>토런트 이어받기 데이터 저장 간격</translation>
+        <translation>토렌트 이어받기 데이터 저장 간격</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1394,10 +1394,6 @@
         <translation>최대 동시 HTTP 알림(libtorrent &gt;= 1.2.7 필요)</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">최상위 폴더 유지</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>분</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>내용 배치:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>폴더 생성</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>원본</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>폴더 생성 안 함</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>이름 바꾸기</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2273,11 +2277,15 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>토런트 이어받기 데이터 검사중</translation>
+        <translation>토렌트 이어받기 데이터 검사중</translation>
     </message>
     <message>
         <source>Stalled</source>
         <translation>정체</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1분</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

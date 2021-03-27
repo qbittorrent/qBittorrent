@@ -11,7 +11,7 @@
         'use strict';
 
         window.addEvent('domready', () => {
-            const paths = decodeURIComponent(new URI().getData('paths')).split('|');
+            const paths = new URI().getData('paths').split('|');
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', (e) => {
                 new Event(e).stop();
@@ -26,7 +26,7 @@
                         noCache: true,
                         method: 'post',
                         data: {
-                            path: path
+                            path: decodeURIComponent(path)
                         },
                         onComplete: (response) => {
                             ++completionCount;

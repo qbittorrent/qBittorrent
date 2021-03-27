@@ -32,10 +32,9 @@
 
         window.addEvent('domready', function() {
             const hash = new URI().getData('hash');
-            const path = new URI().getData('path');
+            const oldPath = new URI().getData('path');
             const isFolder = ((new URI().getData('isFolder')) === 'true');
 
-            const oldPath = decodeURIComponent(path);
             const oldName = window.qBittorrent.Filesystem.fileName(oldPath);
             $('rename').value = oldName;
             $('rename').focus();
@@ -58,7 +57,7 @@
 
                 $('renameButton').disabled = true;
 
-                const parentPath = window.qBittorrent.Filesystem.folderName(oldPath)
+                const parentPath = window.qBittorrent.Filesystem.folderName(oldPath);
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;

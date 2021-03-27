@@ -1,11 +1,6 @@
 name: GitHub Actions file health check
 
-on:
-  push:
-    branches: [ '**' ]
-  pull_request:
-    types: [edited, opened, reopened, synchronize]
-    branches: [ '**' ]
+on: [pull_request, push]
 
 jobs:
   check_file_health:

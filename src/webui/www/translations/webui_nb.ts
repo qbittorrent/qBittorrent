@@ -28,19 +28,19 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Innholdsoppsett:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Opprinnelig</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Lag undermappe</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ikke lag undermappe</translation>
     </message>
 </context>
 <context>
@@ -1394,10 +1394,6 @@
         <translation>Største antall samtidige HTTP-annonseringer (krever libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Behold øverste mappe</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>min</translation>
     </message>
@@ -1439,22 +1435,26 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="unfinished" />
+        <translation>Støtte for internasjonale domenenavn (IDN) (krever libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Oppsett av innhold i torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Lag undermappe</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Opprinnelig</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Ikke lag undermappe</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Gi nytt navn …</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Laster ikke ned</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3324,19 +3336,19 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Oppsett av innhold i torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Lag undermappe</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Opprinnelig</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Ikke lag undermappe</translation>
     </message>
 </context>
 <context>

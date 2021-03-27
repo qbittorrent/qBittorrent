@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2021 Prince Gupta <guptaprince8832@gmail.com>
  * Copyright (C) 2015 Anton Lashkov <lenton_91@mail.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -34,33 +35,13 @@
 #include <QPainter>
 #include <QPen>
 
+#include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 
 namespace
 {
-    enum PeriodInSeconds
-    {
-        MIN1_SEC = 60,
-        MIN5_SEC = 5 * 60,
-        MIN30_SEC = 30 * 60,
-        HOUR6_SEC = 6 * 60 * 60,
-        HOUR12_SEC = 12 * 60 * 60,
-        HOUR24_SEC = 24 * 60 * 60
-    };
-
-    const int MIN5_BUF_SIZE = 5 * 60;
-    const int MIN30_BUF_SIZE = 5 * 60;
-    const int HOUR6_BUF_SIZE = 5 * 60;
-    const int HOUR12_BUF_SIZE = 10 * 60;
-    const int HOUR24_BUF_SIZE = 10 * 60;
-    const int DIVIDER_30MIN = MIN30_SEC / MIN30_BUF_SIZE;
-    const int DIVIDER_6HOUR = HOUR6_SEC / HOUR6_BUF_SIZE;
-    const int DIVIDER_12HOUR = HOUR12_SEC / HOUR12_BUF_SIZE;
-    const int DIVIDER_24HOUR = HOUR24_SEC / HOUR24_BUF_SIZE;
-
-
     // table of supposed nice steps for grid marks to get nice looking quarters of scale
     const double roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
 
@@ -118,55 +99,69 @@ namespace
     }
 }
 
-SpeedPlotView::Averager::Averager(int divider, boost::circular_buffer<PointData> &sink)
-    : m_divider(divider)
-    , m_sink(sink)
-    , m_counter(0)
-    , m_accumulator {}
+SpeedPlotView::Averager::Averager(const milliseconds duration, const milliseconds resolution)
+    : m_resolution {resolution}
+    , m_maxDuration {duration}
+    , m_sink {static_cast<DataCircularBuffer::size_type>(duration / resolution)}
 {
+    m_lastSampleTime.start();
 }
 
-void SpeedPlotView::Averager::push(const PointData &pointData)
+bool SpeedPlotView::Averager::push(const SampleData &sampleData)
 {
     // Accumulator overflow will be hit in worst case on longest used averaging span,
     // defined by divider value. Maximum divider is DIVIDER_24HOUR = 144
     // Using int32 for accumulator we get overflow when transfer speed reaches 2^31/144 ~~ 14.2 MBytes/s.
     // With quint64 this speed limit is 2^64/144 ~~ 114 PBytes/s.
     // This speed is inaccessible to an ordinary user.
-    m_accumulator.x += pointData.x;
+    ++m_counter;
     for (int id = UP; id < NB_GRAPHS; ++id)
-        m_accumulator.y[id] += pointData.y[id];
-    m_counter = (m_counter + 1) % m_divider;
-    if (m_counter != 0)
-        return; // still accumulating
+        m_accumulator[id] += sampleData[id];
+
+    // system may go to sleep, that can cause very big elapsed interval
+    const milliseconds updateInterval {static_cast<int64_t>(BitTorrent::Session::instance()->refreshInterval() * 1.25)};
+    const milliseconds maxElapsed {std::max(updateInterval, m_resolution)};
+    const milliseconds elapsed {std::min(milliseconds {m_lastSampleTime.elapsed()}, maxElapsed)};
+    if (elapsed < m_resolution)
+        return false; // still accumulating
+
     // it is time final averaging calculations
     for (int id = UP; id < NB_GRAPHS; ++id)
-        m_accumulator.y[id] /= m_divider;
-    m_accumulator.x /= m_divider;
+        m_accumulator[id] /= m_counter;
+
+    m_currentDuration += elapsed;
+
+    // remove extra data from front if we reached max duration
+    if (m_currentDuration > m_maxDuration)
+    {
+        // once we go above the max duration never go below that
+        // otherwise it will cause empty space in graphs
+        while (!m_sink.empty()
+               && ((m_currentDuration - m_sink.front().duration) >= m_maxDuration))
+        {
+            m_currentDuration -= m_sink.front().duration;
+            m_sink.pop_front();
+        }
+    }
+
     // now flush out averaged data
-    m_sink.push_back(m_accumulator);
+    Q_ASSERT(m_sink.size() < m_sink.capacity());
+    m_sink.push_back({elapsed, m_accumulator});
+
+    // reset
     m_accumulator = {};
+    m_counter = 0;
+    m_lastSampleTime.restart();
+    return true;
 }
 
-bool SpeedPlotView::Averager::isReady() const
+const SpeedPlotView::DataCircularBuffer &SpeedPlotView::Averager::data() const
 {
-    return m_counter == 0;
+    return m_sink;
 }
 
 SpeedPlotView::SpeedPlotView(QWidget *parent)
-    : QGraphicsView(parent)
-    , m_data5Min(MIN5_BUF_SIZE)
-    , m_data30Min(MIN30_BUF_SIZE)
-    , m_data6Hour(HOUR6_BUF_SIZE)
-    , m_data12Hour(HOUR12_BUF_SIZE)
-    , m_data24Hour(HOUR24_BUF_SIZE)
-    , m_currentData(&m_data5Min)
-    , m_averager30Min(DIVIDER_30MIN, m_data30Min)
-    , m_averager6Hour(DIVIDER_6HOUR, m_data6Hour)
-    , m_averager12Hour(DIVIDER_12HOUR, m_data12Hour)
-    , m_averager24Hour(DIVIDER_24HOUR, m_data24Hour)
-    , m_period(MIN5)
-    , m_viewablePointsCount(MIN5_SEC)
+    : QGraphicsView {parent}
 {
     QPen greenPen;
     greenPen.setWidthF(1.5);
@@ -205,69 +200,65 @@ void SpeedPlotView::setGraphEnable(GraphID id, bool enable)
     viewport()->update();
 }
 
-void SpeedPlotView::pushPoint(const SpeedPlotView::PointData &point)
+void SpeedPlotView::pushPoint(const SpeedPlotView::SampleData &point)
 {
-    m_data5Min.push_back(point);
-    m_averager30Min.push(point);
-    m_averager6Hour.push(point);
-    m_averager12Hour.push(point);
-    m_averager24Hour.push(point);
+    for (Averager *averager : {&m_averager5Min, &m_averager30Min
+                                , &m_averager6Hour, &m_averager12Hour
+                                , &m_averager24Hour})
+    {
+        if (averager->push(point))
+        {
+            if (m_currentAverager == averager)
+                viewport()->update();
+        }
+    }
 }
 
 void SpeedPlotView::setPeriod(const TimePeriod period)
 {
-    m_period = period;
-
     switch (period)
     {
     case SpeedPlotView::MIN1:
-        m_viewablePointsCount = MIN1_SEC;
-        m_currentData = &m_data5Min;
+        m_currentMaxDuration = 1min;
+        m_currentAverager = &m_averager5Min;
         break;
     case SpeedPlotView::MIN5:
-        m_viewablePointsCount = MIN5_SEC;
-        m_currentData = &m_data5Min;
+        m_currentMaxDuration = 5min;
+        m_currentAverager = &m_averager5Min;
         break;
     case SpeedPlotView::MIN30:
-        m_viewablePointsCount = MIN30_BUF_SIZE;
-        m_currentData = &m_data30Min;
+        m_currentMaxDuration = 30min;
+        m_currentAverager = &m_averager30Min;
+        break;
+    case SpeedPlotView::HOUR3:
+        m_currentMaxDuration = 3h;
+        m_currentAverager = &m_averager6Hour;
         break;
     case SpeedPlotView::HOUR6:
-        m_viewablePointsCount = HOUR6_BUF_SIZE;
-        m_currentData = &m_data6Hour;
+        m_currentMaxDuration = 6h;
+        m_currentAverager = &m_averager6Hour;
         break;
     case SpeedPlotView::HOUR12:
-        m_viewablePointsCount = HOUR12_BUF_SIZE;
-        m_currentData = &m_data12Hour;
+        m_currentMaxDuration = 12h;
+        m_currentAverager = &m_averager12Hour;
         break;
     case SpeedPlotView::HOUR24:
-        m_viewablePointsCount = HOUR24_BUF_SIZE;
-        m_currentData = &m_data24Hour;
+        m_currentMaxDuration = 24h;
+        m_currentAverager = &m_averager24Hour;
         break;
     }
 
     viewport()->update();
 }
 
-void SpeedPlotView::replot()
+const SpeedPlotView::DataCircularBuffer &SpeedPlotView::currentData() const
 {
-    if ((m_period == MIN1)
-        || (m_period == MIN5)
-        || ((m_period == MIN30) && m_averager30Min.isReady())
-        || ((m_period == HOUR6) && m_averager6Hour.isReady())
-        || ((m_period == HOUR12) && m_averager12Hour.isReady())
-        || ((m_period == HOUR24) && m_averager24Hour.isReady()) )
-        viewport()->update();
+    return m_currentAverager->data();
 }
 
-boost::circular_buffer<SpeedPlotView::PointData> &SpeedPlotView::getCurrentData()
+quint64 SpeedPlotView::maxYValue() const
 {
-    return *m_currentData;
-}
-
-quint64 SpeedPlotView::maxYValue()
-{
-    boost::circular_buffer<PointData> &queue = getCurrentData();
+    const DataCircularBuffer &queue = currentData();
 
     quint64 maxYValue = 0;
     for (int id = UP; id < NB_GRAPHS; ++id)
@@ -276,9 +267,14 @@ quint64 SpeedPlotView::maxYValue()
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j < m_viewablePointsCount); --i, ++j)
-            if (queue[i].y[id] > maxYValue)
-                maxYValue = queue[i].y[id];
+        milliseconds duration {0ms};
+        for (int i = static_cast<int>(queue.size()) - 1; i >= 0; --i)
+        {
+            maxYValue = std::max(maxYValue, queue[i].data[id]);
+            duration += queue[i].duration;
+            if (duration >= m_currentMaxDuration)
+                break;
+        }
     }
 
     return maxYValue;
@@ -308,13 +304,10 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     int yAxisWidth = 0;
     for (const QString &label : speedLabels)
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+    {
         if (fontMetrics.horizontalAdvance(label) > yAxisWidth)
             yAxisWidth = fontMetrics.horizontalAdvance(label);
-#else
-        if (fontMetrics.width(label) > yAxisWidth)
-            yAxisWidth = fontMetrics.width(label);
-#endif
+    }
 
     int i = 0;
     for (const QString &label : speedLabels)
@@ -350,12 +343,16 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.setRenderHints(QPainter::Antialiasing);
 
     // draw graphs
-    rect.adjust(3, 0, 0, 0); // Need, else graphs cross left gridline
+    // averager is duration based, it may go little above the maxDuration
+    painter.setClipping(true);
+    painter.setClipRect(rect);
 
-    const double yMultiplier = (niceScale.arg == 0.0) ? 0.0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
-    const double xTickSize = static_cast<double>(rect.width()) / (m_viewablePointsCount - 1);
+    const DataCircularBuffer &queue = currentData();
 
-    boost::circular_buffer<PointData> &queue = getCurrentData();
+    // last point will be drawn at x=0, so we don't need it in the calculation of xTickSize
+    const milliseconds lastDuration {queue.empty() ? 0ms : queue.back().duration};
+    const double xTickSize = static_cast<double>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
+    const double yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
 
     for (int id = UP; id < NB_GRAPHS; ++id)
     {
@@ -363,18 +360,23 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
             continue;
 
         QVector<QPoint> points;
-        for (int i = static_cast<int>(queue.size()) - 1, j = 0; (i >= 0) && (j < m_viewablePointsCount); --i, ++j)
+        milliseconds duration {0ms};
+
+        for (int i = static_cast<int>(queue.size()) - 1; i >= 0; --i)
         {
-
-            int newX = rect.right() - j * xTickSize;
-            int newY = rect.bottom() - queue[i].y[id] * yMultiplier;
-
+            const int newX = rect.right() - (duration.count() * xTickSize);
+            const int newY = rect.bottom() - (queue[i].data[id] * yMultiplier);
             points.push_back(QPoint(newX, newY));
+
+            duration += queue[i].duration;
+            if (duration >= m_currentMaxDuration)
+                break;
         }
 
         painter.setPen(m_properties[static_cast<GraphID>(id)].pen);
         painter.drawPolyline(points.data(), points.size());
     }
+    painter.setClipping(false);
 
     // draw legend
     QPoint legendTopLeft(rect.left() + 4, fullRect.top() + 4);
@@ -386,13 +388,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         if (!property.enable)
             continue;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         if (fontMetrics.horizontalAdvance(property.name) > legendWidth)
             legendWidth = fontMetrics.horizontalAdvance(property.name);
-#else
-        if (fontMetrics.width(property.name) > legendWidth)
-            legendWidth = fontMetrics.width(property.name);
-#endif
         legendHeight += 1.5 * fontMetrics.height();
     }
 
@@ -407,11 +404,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         if (!property.enable)
             continue;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
         int nameSize = fontMetrics.horizontalAdvance(property.name);
-#else
-        int nameSize = fontMetrics.width(property.name);
-#endif
         double indent = 1.5 * (i++) * fontMetrics.height();
 
         painter.setPen(property.pen);

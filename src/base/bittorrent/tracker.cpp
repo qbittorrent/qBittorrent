@@ -153,7 +153,7 @@ struct Tracker::TrackerAnnounceRequest
 {
     QHostAddress socketAddress;
     QByteArray claimedAddress;  // self claimed by peer
-    InfoHash infoHash;
+    TorrentID torrentID;
     QString event;
     Peer peer;
     int numwant = 50;
@@ -295,11 +295,11 @@ void Tracker::processAnnounceRequest()
     if (infoHashIter == queryParams.end())
         throw TrackerError("Missing \"info_hash\" parameter");
 
-    const InfoHash infoHash(infoHashIter->toHex());
-    if (!infoHash.isValid())
+    const auto torrentID = TorrentID::fromString(infoHashIter->toHex());
+    if (!torrentID.isValid())
         throw TrackerError("Invalid \"info_hash\" parameter");
 
-    announceReq.infoHash = infoHash;
+    announceReq.torrentID = torrentID;
 
     // 2. peer_id
     const auto peerIdIter = queryParams.find(ANNOUNCE_REQUEST_PEER_ID);
@@ -381,19 +381,19 @@ void Tracker::processAnnounceRequest()
 
 void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
 {
-    if (!m_torrents.contains(announceReq.infoHash))
+    if (!m_torrents.contains(announceReq.torrentID))
     {
         // Reached max size, remove a random torrent
         if (m_torrents.size() >= MAX_TORRENTS)
             m_torrents.erase(m_torrents.begin());
     }
 
-    m_torrents[announceReq.infoHash].setPeer(announceReq.peer);
+    m_torrents[announceReq.torrentID].setPeer(announceReq.peer);
 }
 
 void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 {
-    const auto torrentStatsIter = m_torrents.find(announceReq.infoHash);
+    const auto torrentStatsIter = m_torrents.find(announceReq.torrentID);
     if (torrentStatsIter == m_torrents.end())
         return;
 
@@ -405,7 +405,7 @@ void Tracker::unregisterPeer(const TrackerAnnounceRequest &announceReq)
 
 void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
 {
-    const TorrentStats &torrentStats = m_torrents[announceReq.infoHash];
+    const TorrentStats &torrentStats = m_torrents[announceReq.torrentID];
 
     lt::entry::dictionary_type replyDict
     {

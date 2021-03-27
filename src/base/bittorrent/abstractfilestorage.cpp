@@ -78,8 +78,7 @@ void BitTorrent::AbstractFileStorage::renameFile(const QString &oldPath, const Q
 
         if ((renamingFileIndex < 0) && areSameFileNames(path, oldFilePath))
             renamingFileIndex = i;
-
-        if (areSameFileNames(path, newFilePath))
+        else if (areSameFileNames(path, newFilePath))
             throw RuntimeError {tr("The file already exists: '%1'.").arg(newFilePath)};
     }
 
@@ -124,8 +123,7 @@ void BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const
 
         if (path.startsWith(oldFolderPath, CASE_SENSITIVITY))
             renamingFileIndexes.append(i);
-
-        if (path.startsWith(newFolderPath, CASE_SENSITIVITY))
+        else if (path.startsWith(newFolderPath, CASE_SENSITIVITY))
             throw RuntimeError {tr("The folder already exists: '%1'.").arg(newFolderPath)};
     }
 

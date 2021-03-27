@@ -31,6 +31,7 @@ HEADERS += \
     $$PWD/bittorrent/torrentinfo.h \
     $$PWD/bittorrent/tracker.h \
     $$PWD/bittorrent/trackerentry.h \
+    $$PWD/digest32.h \
     $$PWD/exceptions.h \
     $$PWD/filesystemwatcher.h \
     $$PWD/global.h \

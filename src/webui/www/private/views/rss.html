@@ -11,7 +11,8 @@
         vertical-align: top;
     }
 
-    #rssFeedFixedHeaderDiv .dynamicTableHeader, #rssArticleFixedHeaderDiv .dynamicTableHeader {
+    #rssFeedFixedHeaderDiv .dynamicTableHeader,
+    #rssArticleFixedHeaderDiv .dynamicTableHeader {
         cursor: default;
     }
 
@@ -33,7 +34,9 @@
         margin: 0 10px 0 10px;
     }
 
-    #leftRssColumn, #centerRssColumn, #rightRssColumn {
+    #leftRssColumn,
+    #centerRssColumn,
+    #rightRssColumn {
         float: left;
         /* should be 20 px but due to rounding differences some browsers don't render that properly */
         width: calc(calc(100% - 21px) / 3);
@@ -44,7 +47,8 @@
         overflow: auto;
     }
 
-    #rssFeedTableDiv, #rssArticleTableDiv {
+    #rssFeedTableDiv,
+    #rssArticleTableDiv {
         height: calc(100vh - 180px);
     }
 
@@ -172,14 +176,14 @@
                 refreshAllFeeds: refreshAllFeeds,
                 moveItem: moveItem,
                 addRSSFeed: addRSSFeed,
-                markSelectedAsRead : markSelectedAsRead,
+                markSelectedAsRead: markSelectedAsRead,
                 openRssDownloader: openRssDownloader,
                 rssFeedTable: rssFeedTable
             };
         };
 
         let feedData = {};
-        let pathByFeedId = new Map();;
+        let pathByFeedId = new Map();
         let feedRefreshTimer;
         let rssFeedTable = new window.qBittorrent.DynamicTable.RssFeedTable();
         let rssArticleTable = new window.qBittorrent.DynamicTable.RssArticleTable();
@@ -197,9 +201,9 @@
                         $('rssFetchingDisabled').removeClass('invisible');
 
                     // recalculate heights
-                    let nonPageHeight = $('rssTopBar').getBoundingClientRect().height +
-                                        $('desktopHeader').getBoundingClientRect().height +
-                                        $('desktopFooterWrapper').getBoundingClientRect().height + 20;
+                    let nonPageHeight = $('rssTopBar').getBoundingClientRect().height
+                        + $('desktopHeader').getBoundingClientRect().height
+                        + $('desktopFooterWrapper').getBoundingClientRect().height + 20;
                     $('rssDetailsView').style.height = 'calc(100vh - ' + nonPageHeight + 'px)';
 
                     let nonTableHeight = nonPageHeight + $('rssFeedFixedHeaderDiv').getBoundingClientRect().height;
@@ -273,7 +277,6 @@
                 }
             });
             rssFeedTable.setup('rssFeedTableDiv', 'rssFeedFixedHeaderDiv', rssFeedContextMenu);
-
 
             const rssArticleContextMenu = new window.qBittorrent.ContextMenu.RssArticleContextMenu({
                 targets: '.rssArticleElement',
@@ -435,8 +438,8 @@
 
                 //calculate height to fill screen
                 document.getElementById('rssDescription').style.height =
-                    "calc(100% - " + document.getElementById('rssTorrentDetailsName').offsetHeight + "px - " +
-                    document.getElementById('rssTorrentDetailsDate').offsetHeight + "px - 5px)";
+                    "calc(100% - " + document.getElementById('rssTorrentDetailsName').offsetHeight + "px - "
+                    + document.getElementById('rssTorrentDetailsDate').offsetHeight + "px - 5px)";
             }
         };
 
@@ -479,8 +482,8 @@
                     if (rssFeedTable.rows.getLength() - 1 === flattenedResp.length) {
                         match = true;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            if ((flattenedResp[i].uid ? flattenedResp[i].uid : '') !== rssFeedTable.rows[i + 1].full_data.dataUid ||
-                                flattenedResp[i].fullName !== rssFeedTable.rows[i + 1].full_data.dataPath) {
+                            if ((flattenedResp[i].uid ? flattenedResp[i].uid : '') !== rssFeedTable.rows[i + 1].full_data.dataUid
+                                || flattenedResp[i].fullName !== rssFeedTable.rows[i + 1].full_data.dataPath) {
                                 match = false;
                                 break;
                             }
@@ -697,11 +700,12 @@
         };
 
         const removeItem = (paths) => {
+            const encodedPaths = paths.map((path) => encodeURIComponent(path));
             new MochaUI.Window({
                 id: 'confirmFeedDeletionPage',
                 title: 'QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]',
                 loadMethod: 'iframe',
-                contentURL: 'confirmfeeddeletion.html?paths=' + encodeURIComponent(paths.join('|')),
+                contentURL: 'confirmfeeddeletion.html?paths=' + encodeURIComponent(encodedPaths.join('|')),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -799,7 +803,7 @@
 
         const markSelectedAsRead = () => {
             let selectedDatapaths = rssFeedTable.selectedRows
-                            .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
+                .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
             // filter children
             let reducedDatapaths = selectedDatapaths.filter((path) =>
                 selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
@@ -821,8 +825,8 @@
                     saveWindowSize(id);
                 },
                 resizeLimit: {
-                    'x' :[800,2500],
-                    'y' :[500,2000]
+                    'x': [800, 2500],
+                    'y': [500, 2000]
                 }
             });
         };

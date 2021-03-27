@@ -26,48 +26,47 @@
  * exception statement from your version.
  */
 
-#include "progressbardelegate.h"
+#include "progressbarpainter.h"
 
-#include <QApplication>
-#include <QModelIndex>
 #include <QPainter>
+#include <QPalette>
+#include <QStyleOptionProgressBar>
 #include <QStyleOptionViewItem>
 
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
 #include <QProxyStyle>
 #endif
 
-ProgressBarDelegate::ProgressBarDelegate(const int progressColumn, const int dataRole, QObject *parent)
-    : QStyledItemDelegate {parent}
-    , m_progressColumn {progressColumn}
-    , m_dataRole {dataRole}
+ProgressBarPainter::ProgressBarPainter()
 {
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    m_dummyProgressBar.setStyle(new QProxyStyle {"fusion"});
+    auto *fusionStyle = new QProxyStyle {"fusion"};
+    fusionStyle->setParent(&m_dummyProgressBar);
+    m_dummyProgressBar.setStyle(fusionStyle);
 #endif
 }
 
-void ProgressBarDelegate::initProgressStyleOption(QStyleOptionProgressBar &option, const QModelIndex &index) const
+void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress) const
 {
-    option.text = index.data().toString();
-    option.progress = static_cast<int>(index.data(m_dataRole).toReal());
-    option.maximum = 100;
-    option.minimum = 0;
-    option.state |= (QStyle::State_Enabled | QStyle::State_Horizontal);
-    option.textVisible = true;
-}
+    QStyleOptionProgressBar styleOption;
+    styleOption.initFrom(&m_dummyProgressBar);
+    // QStyleOptionProgressBar fields
+    styleOption.maximum = 100;
+    styleOption.minimum = 0;
+    styleOption.progress = progress;
+    styleOption.text = text;
+    styleOption.textVisible = true;
+    // QStyleOption fields
+    styleOption.rect = option.rect;
+    // Qt 6 requires QStyle::State_Horizontal to be set for correctly drawing horizontal progress bar
+    styleOption.state = option.state | QStyle::State_Horizontal;
 
-void ProgressBarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    if (index.column() != m_progressColumn)
-        return QStyledItemDelegate::paint(painter, option, index);
-
-    QStyleOptionProgressBar newopt;
-    newopt.initFrom(&m_dummyProgressBar);
-    newopt.rect = option.rect;
-    initProgressStyleOption(newopt, index);
+    const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
+    styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
     painter->save();
-    m_dummyProgressBar.style()->drawControl(QStyle::CE_ProgressBar, &newopt, painter, &m_dummyProgressBar);
+    const QStyle *style = m_dummyProgressBar.style();
+    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
+    style->drawControl(QStyle::CE_ProgressBar, &styleOption, painter, &m_dummyProgressBar);
     painter->restore();
 }

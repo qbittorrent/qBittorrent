@@ -547,13 +547,8 @@ Parser::Parser(const QString lastBuildDate)
 
 void Parser::parse(const QByteArray &feedData)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(this, [this, feedData]() { parse_impl(feedData); }
                               , Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(this, "parse_impl", Qt::QueuedConnection
-                              , Q_ARG(QByteArray, feedData));
-#endif
 }
 
 // read and create items from a rss document

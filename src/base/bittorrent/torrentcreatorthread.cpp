@@ -100,8 +100,6 @@ void TorrentCreatorThread::sendProgressSignal(int currentPieceIdx, int totalPiec
 
 void TorrentCreatorThread::run()
 {
-    const QString creatorStr("qBittorrent " QBT_VERSION);
-
     emit updateProgress(0);
 
     try
@@ -178,17 +176,19 @@ void TorrentCreatorThread::run()
                 newTorrent.add_tracker(tracker.trimmed().toStdString(), tier);
         }
 
-        if (isInterruptionRequested()) return;
-
         // calculate the hash for all pieces
         lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
             , [this, &newTorrent](const lt::piece_index_t n)
         {
+            if (isInterruptionRequested())
+                throw RuntimeError {tr("Create new torrent aborted.")};
+
             sendProgressSignal(static_cast<LTUnderlyingType<lt::piece_index_t>>(n), newTorrent.num_pieces());
         });
+
         // Set qBittorrent as creator and add user comment to
         // torrent_info structure
-        newTorrent.set_creator(creatorStr.toUtf8().constData());
+        newTorrent.set_creator("qBittorrent " QBT_VERSION);
         newTorrent.set_comment(m_params.comment.toUtf8().constData());
         // Is private ?
         newTorrent.set_priv(m_params.isPrivate);
@@ -207,8 +207,7 @@ void TorrentCreatorThread::run()
         QFile outfile {m_params.savePath};
         if (!outfile.open(QIODevice::WriteOnly))
         {
-            throw RuntimeError
-            {tr("Create new torrent file failed. Reason: %1")
+            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
                 .arg(outfile.errorString())};
         }
 
@@ -217,8 +216,7 @@ void TorrentCreatorThread::run()
         lt::bencode(Utils::IO::FileDeviceOutputIterator {outfile}, entry);
         if (outfile.error() != QFileDevice::NoError)
         {
-            throw RuntimeError
-            {tr("Create new torrent file failed. Reason: %1")
+            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
                 .arg(outfile.errorString())};
         }
         outfile.close();

@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
         // 3. https://bugreports.qt.io/browse/QTBUG-46015
 
         qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && !defined(DISABLE_GUI)
+#if !defined(DISABLE_GUI)
         // this is the default in Qt6
         app->setAttribute(Qt::AA_DisableWindowContextHelpButton);
 #endif
@@ -251,6 +251,9 @@ int main(int argc, char *argv[])
 
         // On OS X the standard is to not show icons in the menus
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
+#else
+        if (!Preferences::instance()->iconsInMenusEnabled())
+            app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
         if (!firstTimeUser)
@@ -378,11 +381,7 @@ void showSplashScreen()
     const QString version = QBT_VERSION;
     painter.setPen(QPen(Qt::white));
     painter.setFont(QFont("Arial", 22, QFont::Black));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
     painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
-#else
-    painter.drawText(224 - painter.fontMetrics().width(version), 270, version);
-#endif
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
     QTimer::singleShot(1500, splash, &QObject::deleteLater);

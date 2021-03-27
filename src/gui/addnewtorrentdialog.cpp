@@ -270,12 +270,12 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
 bool AddNewTorrentDialog::loadTorrentImpl()
 {
     m_hasMetadata = true;
-    const BitTorrent::InfoHash infoHash = m_torrentInfo.hash();
+    const auto torrentID = BitTorrent::TorrentID::fromInfoHash(m_torrentInfo.infoHash());
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+    if (BitTorrent::Session::instance()->isKnownTorrent(torrentID))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
         if (torrent)
         {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate())
@@ -296,7 +296,7 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         return false;
     }
 
-    m_ui->labelHashData->setText(infoHash);
+    m_ui->labelHashData->setText(torrentID.toString());
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
     return true;
@@ -312,11 +312,11 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     m_torrentGuard = std::make_unique<TorrentFileGuard>();
 
-    const BitTorrent::InfoHash infoHash = magnetUri.hash();
+    const auto torrentID = BitTorrent::TorrentID::fromInfoHash(magnetUri.infoHash());
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+    if (BitTorrent::Session::instance()->isKnownTorrent(torrentID))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
         if (torrent)
         {
             if (torrent->isPrivate())
@@ -348,7 +348,7 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     BitTorrent::Session::instance()->downloadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
-    m_ui->labelHashData->setText(infoHash);
+    m_ui->labelHashData->setText(torrentID.toString());
 
     m_magnetURI = magnetUri;
     return true;
@@ -502,12 +502,12 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 {
     const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
 
-    const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
+    const auto applyPriorities = [this](const BitTorrent::DownloadPriority prio)
     {
+        const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
         for (const QModelIndex &index : selectedRows)
         {
-            m_contentModel->setData(
-                m_contentModel->index(index.row(), PRIORITY, index.parent())
+            m_contentModel->setData(index.sibling(index.row(), PRIORITY)
                 , static_cast<int>(prio));
         }
     };
@@ -517,37 +517,63 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 
     if (selectedRows.size() == 1)
     {
-        QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
-        connect(actRename, &QAction::triggered, this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
-
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
+            , this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
         menu->addSeparator();
     }
 
     QMenu *subMenu = menu->addMenu(tr("Priority"));
 
-    connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("Do not download"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Ignored);
     });
-    subMenu->addAction(m_ui->actionNotDownloaded);
-
-    connect(m_ui->actionNormal, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("Normal"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Normal);
     });
-    subMenu->addAction(m_ui->actionNormal);
-
-    connect(m_ui->actionHigh, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("High"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::High);
     });
-    subMenu->addAction(m_ui->actionHigh);
-
-    connect(m_ui->actionMaximum, &QAction::triggered, subMenu, [applyPriorities]()
+    subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
     {
         applyPriorities(BitTorrent::DownloadPriority::Maximum);
     });
-    subMenu->addAction(m_ui->actionMaximum);
+    subMenu->addSeparator();
+    subMenu->addAction(tr("By shown file order"), subMenu, [this]()
+    {
+        // Equally distribute the selected items into groups and for each group assign
+        // a download priority that will apply to each item. The number of groups depends on how
+        // many "download priority" are available to be assigned
+
+        const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
+
+        const int priorityGroups = 3;
+        const int priorityGroupSize = std::max((selectedRows.length() / priorityGroups), 1);
+
+        for (int i = 0; i < selectedRows.length(); ++i)
+        {
+            auto priority = BitTorrent::DownloadPriority::Ignored;
+            switch (i / priorityGroupSize)
+            {
+            case 0:
+                priority = BitTorrent::DownloadPriority::Maximum;
+                break;
+            case 1:
+                priority = BitTorrent::DownloadPriority::High;
+                break;
+            default:
+            case 2:
+                priority = BitTorrent::DownloadPriority::Normal;
+                break;
+            }
+
+            const QModelIndex &index = selectedRows[i];
+            m_contentModel->setData(index.sibling(index.row(), PRIORITY)
+                , static_cast<int>(priority));
+        }
+    });
 
     menu->popup(QCursor::pos());
 }
@@ -603,7 +629,7 @@ void AddNewTorrentDialog::reject()
     if (!m_hasMetadata)
     {
         setMetadataProgressIndicator(false);
-        BitTorrent::Session::instance()->cancelDownloadMetadata(m_magnetURI.hash());
+        BitTorrent::Session::instance()->cancelDownloadMetadata(m_magnetURI.infoHash().toTorrentID());
     }
 
     QDialog::reject();
@@ -611,7 +637,7 @@ void AddNewTorrentDialog::reject()
 
 void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata)
 {
-    if (metadata.hash() != m_magnetURI.hash()) return;
+    if (metadata.infoHash() != m_magnetURI.infoHash()) return;
 
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &AddNewTorrentDialog::updateMetadata);
 

@@ -33,7 +33,7 @@
 #include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
-    : ProgressBarDelegate {TransferListModel::TR_PROGRESS, TransferListModel::UnderlyingDataRole, parent}
+    : QStyledItemDelegate {parent}
 {
 }
 
@@ -60,4 +60,42 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
     QSize size = QStyledItemDelegate::sizeHint(option, index);
     size.setHeight(std::max(nameColHeight, size.height()));
     return size;
+}
+
+void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    switch (index.column())
+    {
+    case TransferListModel::TR_PROGRESS:
+        {
+            using namespace BitTorrent;
+
+            const auto isEnableState = [](const TorrentState state) -> bool
+            {
+                switch (state)
+                {
+                case TorrentState::Error:
+                case TorrentState::PausedDownloading:
+                case TorrentState::Unknown:
+                    return false;
+                default:
+                    return true;
+                }
+            };
+
+            const int progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
+
+            const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
+            const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<TorrentState>();
+
+            QStyleOptionViewItem customOption {option};
+            customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
+
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
+        }
+        break;
+    default:
+        QStyledItemDelegate::paint(painter, option, index);
+        break;
+    }
 }

@@ -234,6 +234,16 @@ void Preferences::setCloseToTrayNotified(const bool b)
 {
     setValue("Preferences/General/CloseToTrayNotified", b);
 }
+
+bool Preferences::iconsInMenusEnabled() const
+{
+    return value("Preferences/Advanced/EnableIconsInMenus", true).toBool();
+}
+
+void Preferences::setIconsInMenusEnabled(const bool enable)
+{
+    setValue("Preferences/Advanced/EnableIconsInMenus", enable);
+}
 #endif // Q_OS_MACOS
 
 bool Preferences::isToolbarDisplayed() const
@@ -853,7 +863,7 @@ void Preferences::setAutoRunProgram(const QString &program)
     setValue("AutoRun/program", program);
 }
 
-#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#if defined(Q_OS_WIN)
 bool Preferences::isAutoRunConsoleEnabled() const
 {
     return value("AutoRun/ConsoleEnabled", false).toBool();

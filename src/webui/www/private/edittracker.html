@@ -33,8 +33,7 @@
             if (!currentUrl)
                 return false;
 
-            const decodedUrl = decodeURIComponent(currentUrl);
-            $('trackerUrl').value = decodedUrl;
+            $('trackerUrl').value = currentUrl;
             $('trackerUrl').focus();
 
             $('editTrackerButton').addEvent('click', function(e) {
@@ -45,7 +44,7 @@
                     method: 'post',
                     data: {
                         hash: hash,
-                        origUrl: decodedUrl,
+                        origUrl: currentUrl,
                         newUrl: $('trackerUrl').value
                     },
                     onComplete: function() {
@@ -59,12 +58,12 @@
 
 <body>
     <div style="text-align: center;">
-        <br/>
+        <br />
         <h2 class="vcenter">QBT_TR(Tracker URL:)QBT_TR[CONTEXT=TrackerListWidget]</h2>
         <div style="text-align: center; padding-top: 10px;">
             <input id="trackerUrl" style="width: 90%;" />
         </div>
-        <br/>
+        <br />
         <input type="button" value="QBT_TR(Edit)QBT_TR[CONTEXT=HttpServer]" id="editTrackerButton" />
     </div>
 </body>

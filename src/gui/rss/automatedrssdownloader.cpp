@@ -50,6 +50,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/torrentcategorydialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "ui_automatedrssdownloader.h"
@@ -68,6 +69,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     // Icons
     m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
     m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon("list-add"));
+    m_ui->addCategoryBtn->setIcon(UIThemeManager::instance()->getIcon("list-add"));
 
     // Ui Settings
     m_ui->listRules->setSortingEnabled(true);
@@ -185,7 +187,7 @@ void AutomatedRssDownloader::loadFeedList()
     {
         QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
     }
 
     updateFeedList();
@@ -405,6 +407,17 @@ void AutomatedRssDownloader::on_removeRuleBtn_clicked()
         RSS::AutoDownloader::instance()->removeRule(item->text());
 }
 
+void AutomatedRssDownloader::on_addCategoryBtn_clicked()
+{
+    const QString newCategoryName = TorrentCategoryDialog::createCategory(this);
+
+    if (!newCategoryName.isEmpty())
+    {
+        m_ui->comboCategory->addItem(newCategoryName);
+        m_ui->comboCategory->setCurrentText(newCategoryName);
+    }
+}
+
 void AutomatedRssDownloader::on_exportBtn_clicked()
 {
     if (RSS::AutoDownloader::instance()->rules().isEmpty())
@@ -490,8 +503,8 @@ void AutomatedRssDownloader::displayRulesListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *addAct = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add new rule..."));
-    connect(addAct, &QAction::triggered, this, &AutomatedRssDownloader::on_addRuleBtn_clicked);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add new rule...")
+        , this, &AutomatedRssDownloader::on_addRuleBtn_clicked);
 
     const QList<QListWidgetItem *> selection = m_ui->listRules->selectedItems();
 
@@ -499,24 +512,21 @@ void AutomatedRssDownloader::displayRulesListMenu()
     {
         if (selection.count() == 1)
         {
-            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete rule"));
-            connect(delAct, &QAction::triggered, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
-
+            menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete rule")
+                , this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
             menu->addSeparator();
-
-            const QAction *renameAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename rule..."));
-            connect(renameAct, &QAction::triggered, this, &AutomatedRssDownloader::renameSelectedRule);
+            menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename rule...")
+                , this, &AutomatedRssDownloader::renameSelectedRule);
         }
         else
         {
-            const QAction *delAct = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete selected rules"));
-            connect(delAct, &QAction::triggered, this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
+            menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Delete selected rules")
+                , this, &AutomatedRssDownloader::on_removeRuleBtn_clicked);
         }
 
         menu->addSeparator();
-
-        const QAction *clearAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes..."));
-        connect(clearAct, &QAction::triggered, this, &AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Clear downloaded episodes...")
+            , this, &AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList);
     }
 
     menu->popup(QCursor::pos());

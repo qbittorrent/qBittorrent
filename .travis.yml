@@ -106,8 +106,8 @@ install:
 
       brew update > /dev/null
       brew upgrade cmake
-      brew install ccache colormake boost openssl qt zlib
-      brew link --force qt zlib
+      brew install ccache colormake boost openssl qt@5 zlib
+      brew link --force qt@5 zlib
 
       if [ "$build_system" = "cmake" ]; then
         sudo ln -s /usr/local/opt/qt/mkspecs /usr/local/mkspecs
@@ -125,7 +125,7 @@ install:
       pushd "$HOME"
       git clone --single-branch --branch RC_1_2 https://github.com/arvidn/libtorrent.git
       cd libtorrent
-      git checkout tags/v1.2.11
+      git checkout tags/v1.2.12
 
       cmake \
         -DCMAKE_BUILD_TYPE=Release \
@@ -140,13 +140,13 @@ install:
       pushd "$HOME"
       git clone --single-branch --branch RC_2_0 https://github.com/arvidn/libtorrent.git
       cd libtorrent
-      git checkout tags/v2.0.1
+      git checkout tags/v2.0.2
       git submodule update --init --recursive
 
       cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_CXX_STANDARD=17 \
-        -Ddeprecated-functions=ON \
+        -Ddeprecated-functions=OFF \
         -DOPENSSL_ROOT_DIR="$openssl_root_path" \
         ./
       make

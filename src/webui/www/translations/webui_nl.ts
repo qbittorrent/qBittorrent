@@ -129,15 +129,15 @@
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor maximaal aantal verbindingen moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor maximaal aantal verbindingen moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor maximaal aantal verbindingen per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor maximaal aantal verbindingen per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor maximaal aantal uploadslots per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor maximaal aantal uploadslots per torrent moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -306,7 +306,7 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Limiet voor algemeen aantal uploadslots moet groter zijn dan 0 of uitgeschakeld.</translation>
+        <translation>Begrenzing voor algemeen aantal uploadslots moet groter zijn dan 0 of uitgeschakeld.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
@@ -486,7 +486,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Alternatieve snelheidsbegrenzingen</translation>
+        <translation>Alternatieve snelheidsbegrenzing</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -554,7 +554,7 @@
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation>Alternatieve snelheidsbegrenzingen: uit</translation>
+        <translation>Alternatieve snelheidsbegrenzing: uit</translation>
     </message>
     <message>
         <source>Download speed icon</source>
@@ -566,7 +566,7 @@
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation>Alternatieve snelheidsbegrenzingen: aan</translation>
+        <translation>Alternatieve snelheidsbegrenzing: aan</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
@@ -633,7 +633,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Gebruik van alternatieve snelheidsbegrenzingen inplannen</translation>
+        <translation>Gebruik van alternatieve snelheidsbegrenzing inplannen</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -809,7 +809,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation>Algemene snelheidsbegrenzingen</translation>
+        <translation>Algemene snelheidsbegrenzing</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -821,7 +821,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>Alternatieve snelheidsbegrenzingen</translation>
+        <translation>Alternatieve snelheidsbegrenzing</translation>
     </message>
     <message>
         <source>From:</source>
@@ -907,7 +907,7 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>Trage torrents niet meerekenen bij deze begrenzingen</translation>
+        <translation>Trage torrents niet meerekenen bij deze begrenzing</translation>
     </message>
     <message>
         <source>then</source>
@@ -1051,7 +1051,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Snelheidslimiet toepassen op peers op LAN</translation>
+        <translation>Snelheidsbegrenzing toepassen op peers op LAN</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1394,10 +1394,6 @@
         <translation>Maximaal aantal gelijktijdige HTTP-aankondigingen (vereist libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Bovenste map behouden</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Indeling van torrent-inhoud:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Submap aanmaken</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Oorspronkelijk</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Geen submap aanmaken</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Naam wijzigen...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Onderbroken</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

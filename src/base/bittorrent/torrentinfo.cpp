@@ -184,10 +184,15 @@ bool TorrentInfo::isValid() const
     return (m_nativeInfo && m_nativeInfo->is_valid() && (m_nativeInfo->num_files() > 0));
 }
 
-InfoHash TorrentInfo::hash() const
+InfoHash TorrentInfo::infoHash() const
 {
     if (!isValid()) return {};
+
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    return m_nativeInfo->info_hashes();
+#else
     return m_nativeInfo->info_hash();
+#endif
 }
 
 QString TorrentInfo::name() const
@@ -302,7 +307,7 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
     ret.reserve(trackers.size());
 
     for (const lt::announce_entry &tracker : trackers)
-        ret.append(tracker);
+        ret.append({QString::fromStdString(tracker.url)});
     return ret;
 }
 
@@ -374,7 +379,7 @@ QVector<QByteArray> TorrentInfo::pieceHashes() const
     hashes.reserve(count);
 
     for (int i = 0; i < count; ++i)
-        hashes += {m_nativeInfo->hash_for_piece_ptr(lt::piece_index_t {i}), InfoHash::length()};
+        hashes += {m_nativeInfo->hash_for_piece_ptr(lt::piece_index_t {i}), SHA1Hash::length()};
 
     return hashes;
 }
@@ -481,9 +486,13 @@ void TorrentInfo::stripRootFolder()
 
 void TorrentInfo::addRootFolder()
 {
-    const QString rootFolder = name();
-    Q_ASSERT(!rootFolder.isEmpty());
+    const QString originalName = name();
+    Q_ASSERT(!originalName.isEmpty());
 
+    const QString extension = Utils::Fs::fileExtension(originalName);
+    const QString rootFolder = extension.isEmpty()
+            ? originalName
+            : originalName.chopped(extension.size() + 1);
     const std::string rootPrefix = Utils::Fs::toNativePath(rootFolder + QLatin1Char {'/'}).toStdString();
     lt::file_storage files = m_nativeInfo->files();
     files.set_name(rootFolder.toStdString());

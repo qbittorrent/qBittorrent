@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v4.3.3], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.3.4.1], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 : ${CFLAGS=""}
@@ -141,7 +141,7 @@ AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
 AS_IF([test "x$enable_gui" = "xyes"],
-      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.5.1])
+      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.11])
       ])
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],
@@ -180,7 +180,7 @@ AC_MSG_NOTICE([Boost.System LIB: "$BOOST_SYSTEM_LIB"])
 LIBS="$BOOST_SYSTEM_LIB $LIBS"
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.2.11],
+                  [libtorrent-rasterbar >= 1.2.12],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 

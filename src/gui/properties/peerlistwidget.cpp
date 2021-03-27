@@ -48,7 +48,6 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/geoipmanager.h"
@@ -99,7 +98,6 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::FLAGS, Qt::Horizontal, tr("Flags"));
     m_listModel->setHeaderData(PeerListColumns::CONNECTION, Qt::Horizontal, tr("Connection"));
     m_listModel->setHeaderData(PeerListColumns::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
-    m_listModel->setHeaderData(PeerListColumns::PEERID, Qt::Horizontal, tr("Peer ID", "i.e.: Client Peer ID"));
     m_listModel->setHeaderData(PeerListColumns::PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
     m_listModel->setHeaderData(PeerListColumns::DOWN_SPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
     m_listModel->setHeaderData(PeerListColumns::UP_SPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
@@ -270,10 +268,10 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
     // Add Peer Action
     // Do not allow user to add peers in a private torrent
-    // Except torrent tracker is empty.
-    if (!torrent->isQueued() && !torrent->isChecking() && !torrent->isPrivate() || torrent->isPrivate() && torrent->trackers().isEmpty()) {
-        const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
-        connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
+    if (!torrent->isQueued() && !torrent->isChecking() && !torrent->isPrivate())
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer...")
+            , this, [this, torrent]()
         {
             const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
             const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
@@ -289,13 +287,11 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
     if (!selectionModel()->selectedRows().isEmpty())
     {
-        const QAction *copyPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
-        connect(copyPeerAct, &QAction::triggered, this, &PeerListWidget::copySelectedPeers);
-
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port")
+            , this, &PeerListWidget::copySelectedPeers);
         menu->addSeparator();
-
-        const QAction *banAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
-        connect(banAct, &QAction::triggered, this, &PeerListWidget::banSelectedPeers);
+        menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently")
+            , this, &PeerListWidget::banSelectedPeers);
     }
 
     if (menu->isEmpty())
@@ -309,34 +305,14 @@ void PeerListWidget::banSelectedPeers()
     // Store selected rows first as selected peers may disconnect
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
 
-    struct selectedData {
-        QString ip;
-        QString client;
-        QString peerId;
-        QString country;
-	};
-
-    QVector<selectedData> selectedDatas;
-    selectedDatas.reserve(selectedIndexes.size());
+    QVector<QString> selectedIPs;
+    selectedIPs.reserve(selectedIndexes.size());
 
     for (const QModelIndex &index : selectedIndexes)
     {
         const int row = m_proxyModel->mapToSource(index).row();
         const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
-        const QString client = m_listModel->item(row, PeerListColumns::CLIENT)->text();
-        const QString peerId = m_listModel->item(row, PeerListColumns::PEERID)->text();
-
-        QHostAddress host;
-        host.setAddress(ip);
-        const QString country = Net::GeoIPManager::CountryName(Net::GeoIPManager::instance()->lookup(host));
-
-        selectedData tmp;
-        tmp.ip = ip;
-        tmp.client = client;
-        tmp.peerId = peerId;
-        tmp.country = country;
-
-        selectedDatas += tmp;
+        selectedIPs += ip;
     }
 
     // Confirm before banning peer
@@ -344,9 +320,10 @@ void PeerListWidget::banSelectedPeers()
         , tr("Are you sure you want to permanently ban the selected peers?"));
     if (btn != QMessageBox::Yes) return;
 
-    for (const selectedData &data : selectedDatas) {
-        BitTorrent::Session::instance()->banIP(data.ip);
-        LogMsg(tr("Peer \"%1\" is manually banned. PeerID: '%2' Client: '%3' Country: '%4'").arg(data.ip).arg(data.peerId).arg(data.client).arg(data.country));
+    for (const QString &ip : selectedIPs)
+    {
+        BitTorrent::Session::instance()->banIP(ip);
+        LogMsg(tr("Peer \"%1\" is manually banned").arg(ip));
     }
     // Refresh list
     loadPeers(m_properties->getCurrentTorrent());
@@ -471,8 +448,6 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
     const QString client = peer.client().toHtmlEscaped();
     setModelData(row, PeerListColumns::CLIENT, client, client);
-    const QString peerId = peer.peerId().left(8).toHtmlEscaped();
-    setModelData(row, PeerListColumns::PEERID, peerId, peerId);
     setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + '%'), peer.progress(), intDataTextAlignment);
     const QString downSpeed = (hideValues && (peer.payloadDownSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
     setModelData(row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);

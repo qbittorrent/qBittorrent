@@ -248,7 +248,7 @@ public:
     void setAutoRunEnabled(bool enabled);
     QString getAutoRunProgram() const;
     void setAutoRunProgram(const QString &program);
-#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#if defined(Q_OS_WIN)
     bool isAutoRunConsoleEnabled() const;
     void setAutoRunConsoleEnabled(bool enabled);
 #endif
@@ -313,6 +313,8 @@ public:
     void setCloseToTrayNotified(bool b);
     TrayIcon::Style trayIconStyle() const;
     void setTrayIconStyle(TrayIcon::Style style);
+    bool iconsInMenusEnabled() const;
+    void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS
 
     // Stuff that don't appear in the Options GUI but are saved

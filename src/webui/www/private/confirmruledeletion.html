@@ -11,7 +11,7 @@
         'use strict';
 
         window.addEvent('domready', () => {
-            const rules = decodeURIComponent(new URI().getData('rules')).split('|');
+            const rules = new URI().getData('rules').split('|');
 
             $('cancelBtn').focus();
             $('cancelBtn').addEvent('click', (e) => {
@@ -27,7 +27,7 @@
                         noCache: true,
                         method: 'post',
                         data: {
-                            ruleName: rule
+                            ruleName: decodeURIComponent(rule)
                         },
                         onComplete: (response) => {
                             ++completionCount;

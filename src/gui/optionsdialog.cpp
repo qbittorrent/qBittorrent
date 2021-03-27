@@ -212,8 +212,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")), this, 16));
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow")), this, 16));
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")), this, 24));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow")), this, 24));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -234,15 +234,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->hsplitter->setCollapsible(0, false);
     m_ui->hsplitter->setCollapsible(1, false);
     // Get apply button in button box
-    const QList<QAbstractButton *> buttons = m_ui->buttonBox->buttons();
-    for (QAbstractButton *button : buttons)
-    {
-        if (m_ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole)
-        {
-            m_applyButton = button;
-            break;
-        }
-    }
+    m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
+    connect(m_applyButton, &QPushButton::clicked, this, &OptionsDialog::applySettings);
 
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
@@ -250,7 +243,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(ScanFoldersModel::instance(), &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleScanFolderViewSelectionChanged);
 
-    connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &OptionsDialog::applySettings);
     // Languages supported
     initializeLanguageCombo();
 
@@ -764,7 +756,7 @@ void OptionsDialog::saveOptions()
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
     pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
     pref->setAutoRunProgram(m_ui->lineEditAutoRun->text().trimmed());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined(Q_OS_WIN)
+#if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
@@ -1056,7 +1048,7 @@ void OptionsDialog::loadOptions()
 
     m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
     m_ui->lineEditAutoRun->setText(pref->getAutoRunProgram());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined(Q_OS_WIN)
+#if defined(Q_OS_WIN)
     m_ui->autoRunConsole->setChecked(pref->isAutoRunConsoleEnabled());
 #else
     m_ui->autoRunConsole->hide();
@@ -1447,27 +1439,24 @@ void OptionsDialog::on_buttonBox_accepted()
     accept();
 }
 
-void OptionsDialog::applySettings(QAbstractButton *button)
+void OptionsDialog::applySettings()
 {
-    if (button == m_applyButton)
+    if (!schedTimesOk())
     {
-        if (!schedTimesOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_SPEED);
-            return;
-        }
-        if (!webUIAuthenticationOk())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-        if (!isAlternativeWebUIPathValid())
-        {
-            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-            return;
-        }
-        saveOptions();
+        m_ui->tabSelection->setCurrentRow(TAB_SPEED);
+        return;
     }
+    if (!webUIAuthenticationOk())
+    {
+        m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+        return;
+    }
+    if (!isAlternativeWebUIPathValid())
+    {
+        m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+        return;
+    }
+    saveOptions();
 }
 
 void OptionsDialog::closeEvent(QCloseEvent *e)

@@ -30,6 +30,7 @@
 
 #include <chrono>
 
+#include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
@@ -90,7 +91,6 @@
 #include "statsdialog.h"
 #include "statusbar.h"
 #include "torrentcreatordialog.h"
-
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"
@@ -104,6 +104,8 @@
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
 #endif
+
+using namespace std::chrono_literals;
 
 namespace
 {
@@ -148,16 +150,13 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , m_forceExit(false)
     , m_unlockDlgShowing(false)
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    , m_wasUpdateCheckEnabled(false)
-#endif
     , m_hasPython(false)
 {
     m_ui->setupUi(this);
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
-    setWindowTitle("qBittorrent Enhanced Edition " QBT_VERSION);
+    setWindowTitle("qBittorrent " QBT_VERSION);
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MACOS
@@ -195,10 +194,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
 
     auto *lockMenu = new QMenu(this);
-    QAction *defineUiLockPasswdAct = lockMenu->addAction(tr("&Set Password"));
-    connect(defineUiLockPasswdAct, &QAction::triggered, this, &MainWindow::defineUILockPassword);
-    QAction *clearUiLockPasswdAct = lockMenu->addAction(tr("&Clear Password"));
-    connect(clearUiLockPasswdAct, &QAction::triggered, this, &MainWindow::clearUILockPassword);
+    lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
+    lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
 
     // Creating Bittorrent session
@@ -319,11 +316,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    m_programUpdateTimer = new QTimer(this);
-    m_programUpdateTimer->setInterval(60 * 60 * 1000);
-    m_programUpdateTimer->setSingleShot(true);
-    connect(m_programUpdateTimer, &QTimer::timeout, this, &MainWindow::checkProgramUpdate);
-    connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, &MainWindow::checkProgramUpdate);
+    connect(m_ui->actionCheckForUpdates, &QAction::triggered, this, [this]() { checkProgramUpdate(true); });
+
+    // trigger an early check on startup
+    if (pref->isUpdateCheckEnabled())
+        checkProgramUpdate(false);
 #else
     m_ui->actionCheckForUpdates->setVisible(false);
 #endif
@@ -550,16 +547,11 @@ void MainWindow::addToolbarContextMenu()
     m_ui->toolBar->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_ui->toolBar, &QWidget::customContextMenuRequested, this, &MainWindow::toolbarMenuRequested);
 
-    QAction *iconsOnly = m_toolbarMenu->addAction(tr("Icons Only"));
-    connect(iconsOnly, &QAction::triggered, this, &MainWindow::toolbarIconsOnly);
-    QAction *textOnly = m_toolbarMenu->addAction(tr("Text Only"));
-    connect(textOnly, &QAction::triggered, this, &MainWindow::toolbarTextOnly);
-    QAction *textBesideIcons =  m_toolbarMenu->addAction(tr("Text Alongside Icons"));
-    connect(textBesideIcons, &QAction::triggered, this, &MainWindow::toolbarTextBeside);
-    QAction *textUnderIcons = m_toolbarMenu->addAction(tr("Text Under Icons"));
-    connect(textUnderIcons, &QAction::triggered, this, &MainWindow::toolbarTextUnder);
-    QAction *followSystemStyle = m_toolbarMenu->addAction(tr("Follow System Style"));
-    connect(followSystemStyle, &QAction::triggered, this, &MainWindow::toolbarFollowSystem);
+    QAction *iconsOnly = m_toolbarMenu->addAction(tr("Icons Only"), this, &MainWindow::toolbarIconsOnly);
+    QAction *textOnly = m_toolbarMenu->addAction(tr("Text Only"), this, &MainWindow::toolbarTextOnly);
+    QAction *textBesideIcons = m_toolbarMenu->addAction(tr("Text Alongside Icons"), this, &MainWindow::toolbarTextBeside);
+    QAction *textUnderIcons = m_toolbarMenu->addAction(tr("Text Under Icons"), this, &MainWindow::toolbarTextUnder);
+    QAction *followSystemStyle = m_toolbarMenu->addAction(tr("Follow System Style"), this, &MainWindow::toolbarFollowSystem);
 
     auto *textPositionGroup = new QActionGroup(m_toolbarMenu);
     textPositionGroup->addAction(iconsOnly);
@@ -811,7 +803,8 @@ void MainWindow::cleanup()
     m_preventTimer->stop();
 
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    m_programUpdateTimer->stop();
+    if (m_programUpdateTimer)
+        m_programUpdateTimer->stop();
 #endif
 
     // remove all child widgets
@@ -884,36 +877,36 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
     m_ui->actionDelete->setShortcut(QKeySequence::Delete);
     m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
-    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
-    m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
+    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_O);
+    m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
 
-    const auto *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
+    const auto *switchTransferShortcut = new QShortcut((Qt::ALT | Qt::Key_1), this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
-    const auto *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
+    const auto *switchSearchShortcut = new QShortcut((Qt::ALT | Qt::Key_2), this);
     connect(switchSearchShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displaySearchTab));
-    const auto *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
+    const auto *switchRSSShortcut = new QShortcut((Qt::ALT | Qt::Key_3), this);
     connect(switchRSSShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displayRSSTab));
-    const auto *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
+    const auto *switchExecutionLogShortcut = new QShortcut((Qt::ALT | Qt::Key_4), this);
     connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
     const auto *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
     connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
-    m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
-    m_ui->actionStatistics->setShortcut(Qt::CTRL + Qt::Key_I);
-    m_ui->actionStart->setShortcut(Qt::CTRL + Qt::Key_S);
-    m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_S);
-    m_ui->actionPause->setShortcut(Qt::CTRL + Qt::Key_P);
-    m_ui->actionPauseAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_P);
-    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Minus);
-    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Minus);
-    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Plus);
-    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
+    m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
+    m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);
+    m_ui->actionStart->setShortcut(Qt::CTRL | Qt::Key_S);
+    m_ui->actionStartAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
+    m_ui->actionPause->setShortcut(Qt::CTRL | Qt::Key_P);
+    m_ui->actionPauseAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Minus);
+    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Minus);
+    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
+    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Plus);
 #ifdef Q_OS_MACOS
     m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
     addAction(m_ui->actionMinimize);
@@ -966,7 +959,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
     Preferences *const pref = Preferences::instance();
     if (pref->recursiveDownloadDisabled()) return;
 
-    const auto torrentHash = torrent->hash();
+    const auto torrentID = torrent->id();
 
     QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
         , tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent->name())
@@ -977,10 +970,10 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
     const QPushButton *yes = confirmBox->addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox->addButton(tr("No"), QMessageBox::NoRole);
     const QPushButton *never = confirmBox->addButton(tr("Never"), QMessageBox::NoRole);
-    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentHash, yes, never](const QAbstractButton *button)
+    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentID, yes, never](const QAbstractButton *button)
     {
         if (button == yes)
-            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentHash);
+            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
         if (button == never)
             Preferences::instance()->disableRecursiveDownload();
     });
@@ -1590,15 +1583,21 @@ void MainWindow::loadPreferences(const bool configureSession)
     m_propertiesWidget->reloadPreferences();
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    if (pref->isUpdateCheckEnabled() && !m_wasUpdateCheckEnabled)
+    if (pref->isUpdateCheckEnabled())
     {
-        m_wasUpdateCheckEnabled = true;
-        checkProgramUpdate();
+        if (!m_programUpdateTimer)
+        {
+            m_programUpdateTimer = new QTimer(this);
+            m_programUpdateTimer->setInterval(24h);
+            m_programUpdateTimer->setSingleShot(true);
+            connect(m_programUpdateTimer, &QTimer::timeout, this, [this]() { checkProgramUpdate(false); });
+            m_programUpdateTimer->start();
+        }
     }
-    else if (!pref->isUpdateCheckEnabled() && m_wasUpdateCheckEnabled)
+    else
     {
-        m_wasUpdateCheckEnabled = false;
-        m_programUpdateTimer->stop();
+        delete m_programUpdateTimer;
+        m_programUpdateTimer = nullptr;
     }
 #endif
 
@@ -1632,7 +1631,7 @@ void MainWindow::reloadSessionStats()
 
     if (m_displaySpeedInTitle)
     {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent Enhanced Edition %3", "D = Download; U = Upload; %3 is qBittorrent version")
+        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
             .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
                 , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
                 , QBT_VERSION));
@@ -1804,26 +1803,26 @@ void MainWindow::on_actionOptions_triggered()
 
 void MainWindow::on_actionTopToolBar_triggered()
 {
-    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
+    const bool isVisible = static_cast<QAction *>(sender())->isChecked();
     m_ui->toolBar->setVisible(isVisible);
     Preferences::instance()->setToolbarDisplayed(isVisible);
 }
 
 void MainWindow::on_actionShowStatusbar_triggered()
 {
-    const bool isVisible = static_cast<QAction*>(sender())->isChecked();
+    const bool isVisible = static_cast<QAction *>(sender())->isChecked();
     Preferences::instance()->setStatusbarDisplayed(isVisible);
     showStatusBar(isVisible);
 }
 
 void MainWindow::on_actionSpeedInTitleBar_triggered()
 {
-    m_displaySpeedInTitle = static_cast<QAction * >(sender())->isChecked();
+    m_displaySpeedInTitle = static_cast<QAction *>(sender())->isChecked();
     Preferences::instance()->showSpeedInTitleBar(m_displaySpeedInTitle);
     if (m_displaySpeedInTitle)
         reloadSessionStats();
     else
-        setWindowTitle("qBittorrent Enhanced Edition " QBT_VERSION);
+        setWindowTitle("qBittorrent " QBT_VERSION);
 }
 
 void MainWindow::on_actionRSSReader_triggered()
@@ -1904,35 +1903,56 @@ void MainWindow::on_actionDownloadFromURL_triggered()
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-void MainWindow::handleUpdateCheckFinished(bool updateAvailable, QString newVersion, QString newContent, QString nextUpdate, bool invokedByUser)
+void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool invokedByUser)
 {
-    QMessageBox::StandardButton answer = QMessageBox::Yes;
-    if (updateAvailable)
-    {
-        answer = QMessageBox::question(this, tr("qBittorrent Update Available")
-            , tr("A new version is available.") + "<br/>"
-                + tr("Do you want to download %1?<br/><br/>%2").arg(newVersion).arg(newContent) + "<br/><br/>"
-                + QString::fromLatin1("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))
-            , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
-        if (answer == QMessageBox::Yes)
-        {
-            // The user want to update, let's download the update
-            ProgramUpdater *updater = dynamic_cast<ProgramUpdater * >(sender());
-            updater->updateProgram();
-        }
-    }
-    else if (invokedByUser)
-    {
-        QMessageBox::information(this, tr("Already Using the Latest qBittorrent Version"),
-                                 tr("No updates available.\nYou are already using the latest version.\n%1").arg(nextUpdate));
-    }
-    sender()->deleteLater();
     m_ui->actionCheckForUpdates->setEnabled(true);
     m_ui->actionCheckForUpdates->setText(tr("&Check for Updates"));
     m_ui->actionCheckForUpdates->setToolTip(tr("Check for program updates"));
-    // Don't bother the user again in this session if he chose to ignore the update
-    if (Preferences::instance()->isUpdateCheckEnabled() && (answer == QMessageBox::Yes))
-        m_programUpdateTimer->start();
+
+    const auto cleanup = [this, updater]()
+    {
+        if (m_programUpdateTimer)
+            m_programUpdateTimer->start();
+        updater->deleteLater();
+    };
+
+    const QString newVersion = updater->getNewVersion();
+    if (!newVersion.isEmpty())
+    {
+        const QString msg {tr("A new version is available.") + "<br/>"
+            + tr("Do you want to download %1?").arg(newVersion) + "<br/><br/>"
+            + QString::fromLatin1("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))};
+        auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
+            , (QMessageBox::Yes | QMessageBox::No), this};
+        msgBox->setAttribute(Qt::WA_DeleteOnClose);
+        msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
+        msgBox->setDefaultButton(QMessageBox::Yes);
+        connect(msgBox, &QMessageBox::buttonClicked, this, [msgBox, updater](QAbstractButton *button)
+        {
+            if (msgBox->buttonRole(button) == QMessageBox::YesRole)
+            {
+                updater->updateProgram();
+            }
+        });
+        connect(msgBox, &QDialog::finished, this, cleanup);
+        msgBox->open();
+    }
+    else
+    {
+        if (invokedByUser)
+        {
+            auto *msgBox = new QMessageBox {QMessageBox::Information, QLatin1String("qBittorrent")
+                , tr("No updates available.\nYou are already using the latest version.")
+                , QMessageBox::Ok, this};
+            msgBox->setAttribute(Qt::WA_DeleteOnClose);
+            connect(msgBox, &QDialog::finished, this, cleanup);
+            msgBox->open();
+        }
+        else
+        {
+            cleanup();
+        }
+    }
 }
 #endif
 
@@ -2091,18 +2111,23 @@ QIcon MainWindow::getSystrayIcon() const
 #endif // Q_OS_MACOS
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-void MainWindow::checkProgramUpdate()
+void MainWindow::checkProgramUpdate(const bool invokedByUser)
 {
-    m_programUpdateTimer->stop(); // If the user had clicked the menu item
+    if (m_programUpdateTimer)
+        m_programUpdateTimer->stop();
+
     m_ui->actionCheckForUpdates->setEnabled(false);
     m_ui->actionCheckForUpdates->setText(tr("Checking for Updates..."));
     m_ui->actionCheckForUpdates->setToolTip(tr("Already checking for program updates in the background"));
-    bool invokedByUser = m_ui->actionCheckForUpdates == qobject_cast<QAction * >(sender());
-    ProgramUpdater *updater = new ProgramUpdater(this, invokedByUser);
-    connect(updater, &ProgramUpdater::updateCheckFinished, this, &MainWindow::handleUpdateCheckFinished);
+
+    auto *updater = new ProgramUpdater(this);
+    connect(updater, &ProgramUpdater::updateCheckFinished
+        , this, [this, invokedByUser, updater]()
+    {
+        handleUpdateCheckFinished(updater, invokedByUser);
+    });
     updater->checkForUpdates();
 }
-
 #endif
 
 #ifdef Q_OS_WIN

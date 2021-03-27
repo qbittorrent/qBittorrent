@@ -25,7 +25,7 @@
     </div>
     <div class="formRow">
         <span id="appendexttr">
-            <input type="checkbox" id="appendext_checkbox"/>
+            <input type="checkbox" id="appendext_checkbox" />
             <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR[CONTEXT=OptionsDialog]</label>
         </span>
     </div>
@@ -821,7 +821,8 @@
 
         <fieldset class="settings">
             <legend><input type="checkbox" id="use_alt_webui_checkbox" onclick="qBittorrent.Preferences.updateAlternativeWebUISettings();" />
-                <label for="use_alt_webui_checkbox">QBT_TR(Use alternative Web UI)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+                <label for="use_alt_webui_checkbox">QBT_TR(Use alternative Web UI)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
             <div class="formRow">
                 <label for="webui_files_location_textarea">QBT_TR(Files location:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <input type="text" id="webui_files_location_textarea" />
@@ -1130,6 +1131,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="peerToS">QBT_TR(Type of service (ToS) for connections to peers)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_tos" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="peerToS" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="utpTCPMixedModeAlgorithm">QBT_TR(μTP-TCP mixed mode algorithm:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1225,7 +1234,7 @@
                 <td>
                     <input type="text" id="maxConcurrentHTTPAnnounces" style="width: 15em;" />
                 </td>
-             </tr>
+            </tr>
             <tr>
                 <td>
                     <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
@@ -1233,31 +1242,31 @@
                 <td>
                     <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
                 </td>
-             </tr>
-             <tr>
+            </tr>
+            <tr>
                 <td>
                     <label for="peerTurnover">QBT_TR(Peer turnover disconnect percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="peerTurnover" style="width: 15em;" />&nbsp;&nbsp;%
                 </td>
-             </tr>
-             <tr>
+            </tr>
+            <tr>
                 <td>
                     <label for="peerTurnoverCutoff">QBT_TR(Peer turnover threshold percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="peerTurnoverCutoff" style="width: 15em;" />&nbsp;&nbsp;%
                 </td>
-             </tr>
-             <tr>
+            </tr>
+            <tr>
                 <td>
                     <label for="peerTurnoverInterval">QBT_TR(Peer turnover disconnect interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="peerTurnoverInterval" style="width: 15em;" />&nbsp;&nbsp;s
                 </td>
-             </tr>
+            </tr>
         </table>
     </fieldset>
 </div>
@@ -1959,6 +1968,7 @@
                         $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
                         $('UPnPLeaseDuration').setProperty('value', pref.upnp_lease_duration);
+                        $('peerToS').setProperty('value', pref.peer_tos);
                         $('utpTCPMixedModeAlgorithm').setProperty('value', pref.utp_tcp_mixed_mode);
                         $('IDNSupportCheckbox').setProperty('checked', pref.idn_support_enabled);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
@@ -2351,6 +2361,7 @@
             settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
             settings.set('upnp_lease_duration', $('UPnPLeaseDuration').getProperty('value'));
+            settings.set('peer_tos', $('peerToS').getProperty('value'));
             settings.set('utp_tcp_mixed_mode', $('utpTCPMixedModeAlgorithm').getProperty('value'));
             settings.set('idn_support_enabled', $('IDNSupportCheckbox').getProperty('checked'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));

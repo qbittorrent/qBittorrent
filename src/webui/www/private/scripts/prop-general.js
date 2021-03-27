@@ -98,14 +98,14 @@ window.qBittorrent.PropGeneral = (function() {
                     let temp;
                     // Update Torrent data
                     if (data.seeding_time > 0)
-                        temp = "QBT_TR(%1 (%2 this session))QBT_TR[CONTEXT=PropertiesWidget]"
+                        temp = "QBT_TR(%1 (seeded for %2))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", window.qBittorrent.Misc.friendlyDuration(data.time_elapsed))
                         .replace("%2", window.qBittorrent.Misc.friendlyDuration(data.seeding_time));
                     else
                         temp = window.qBittorrent.Misc.friendlyDuration(data.time_elapsed);
                     $('time_elapsed').set('html', temp);
 
-                    $('eta').set('html', window.qBittorrent.Misc.friendlyDuration(data.eta));
+                    $('eta').set('html', window.qBittorrent.Misc.friendlyDuration(data.eta, window.qBittorrent.Misc.MAX_ETA));
 
                     temp = "QBT_TR(%1 (%2 max))QBT_TR[CONTEXT=PropertiesWidget]"
                         .replace("%1", data.nb_connections)

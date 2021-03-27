@@ -61,7 +61,7 @@ private:
     template <typename T> void addRow(int row, const QString &text, T *widget);
 
     QSpinBox m_spinBoxAsyncIOThreads, m_spinBoxFilePoolSize, m_spinBoxCheckingMemUsage,
-             m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxUPnPLeaseDuration,
+             m_spinBoxSaveResumeDataInterval, m_spinBoxOutgoingPortsMin, m_spinBoxOutgoingPortsMax, m_spinBoxUPnPLeaseDuration, m_spinBoxPeerToS,
              m_spinBoxListRefresh, m_spinBoxTrackerPort, m_spinBoxSendBufferWatermark, m_spinBoxSendBufferLowWatermark,
              m_spinBoxSendBufferWatermarkFactor, m_spinBoxSocketBacklogSize, m_spinBoxMaxConcurrentHTTPAnnounces, m_spinBoxStopTrackerTimeout,
              m_spinBoxSavePathHistoryLength, m_spinBoxPeerTurnover, m_spinBoxPeerTurnoverCutoff, m_spinBoxPeerTurnoverInterval;
@@ -83,5 +83,9 @@ private:
     // OS dependent settings
 #if defined(Q_OS_WIN)
     QComboBox m_comboBoxOSMemoryPriority;
+#endif
+
+#ifndef Q_OS_MACOS
+    QCheckBox m_checkBoxIconsInMenusEnabled;
 #endif
 };

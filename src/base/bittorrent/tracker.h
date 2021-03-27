@@ -102,6 +102,6 @@ namespace BitTorrent
         Http::Request m_request;
         Http::Environment m_env;
 
-        QHash<InfoHash, TorrentStats> m_torrents;
+        QHash<TorrentID, TorrentStats> m_torrents;
     };
 }

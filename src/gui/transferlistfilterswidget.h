@@ -39,9 +39,9 @@ class TransferListWidget;
 
 namespace BitTorrent
 {
-    class InfoHash;
     class Torrent;
-    class TrackerEntry;
+    class TorrentID;
+    struct TrackerEntry;
 }
 
 namespace Net
@@ -104,15 +104,15 @@ public:
     ~TrackerFiltersList() override;
 
     // Redefine addItem() to make sure the list stays sorted
-    void addItem(const QString &tracker, const BitTorrent::InfoHash &hash);
-    void removeItem(const QString &tracker, const BitTorrent::InfoHash &hash);
-    void changeTrackerless(bool trackerless, const BitTorrent::InfoHash &hash);
+    void addItem(const QString &tracker, const BitTorrent::TorrentID &id);
+    void removeItem(const QString &tracker, const BitTorrent::TorrentID &id);
+    void changeTrackerless(bool trackerless, const BitTorrent::TorrentID &id);
     void setDownloadTrackerFavicon(bool value);
 
 public slots:
-    void trackerSuccess(const BitTorrent::InfoHash &hash, const QString &tracker);
-    void trackerError(const BitTorrent::InfoHash &hash, const QString &tracker);
-    void trackerWarning(const BitTorrent::InfoHash &hash, const QString &tracker);
+    void trackerSuccess(const BitTorrent::TorrentID &id, const QString &tracker);
+    void trackerError(const BitTorrent::TorrentID &id, const QString &tracker);
+    void trackerWarning(const BitTorrent::TorrentID &id, const QString &tracker);
 
 private slots:
     void handleFavicoDownloadFinished(const Net::DownloadResult &result);
@@ -126,12 +126,12 @@ private:
     void torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent) override;
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
-    QSet<BitTorrent::InfoHash> getInfoHashes(int row) const;
+    QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &url);
 
-    QHash<QString, QSet<BitTorrent::InfoHash>> m_trackers;  // <tracker host, torrent hashes>
-    QHash<BitTorrent::InfoHash, QSet<QString>> m_errors;  // <torrent hash, tracker hosts>
-    QHash<BitTorrent::InfoHash, QSet<QString>> m_warnings;  // <torrent hash, tracker hosts>
+    QHash<QString, QSet<BitTorrent::TorrentID>> m_trackers;  // <tracker host, torrent IDs>
+    QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
+    QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
     QStringList m_iconPaths;
     int m_totalTorrents;
     bool m_downloadTrackerFavicon;
@@ -158,9 +158,9 @@ public slots:
     void trackerError(const BitTorrent::Torrent *torrent, const QString &tracker);
 
 signals:
-    void trackerSuccess(const BitTorrent::InfoHash &hash, const QString &tracker);
-    void trackerError(const BitTorrent::InfoHash &hash, const QString &tracker);
-    void trackerWarning(const BitTorrent::InfoHash &hash, const QString &tracker);
+    void trackerSuccess(const BitTorrent::TorrentID &id, const QString &tracker);
+    void trackerError(const BitTorrent::TorrentID &id, const QString &tracker);
+    void trackerWarning(const BitTorrent::TorrentID &id, const QString &tracker);
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);

@@ -1394,10 +1394,6 @@
         <translation>Max anuncios HTTP concurrentes (requiere libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Mantener la carpeta de nivel superior</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Diseño de contenido de torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crear subcarpeta</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>No crear subcarpetas</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Renombrar...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Detenido</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

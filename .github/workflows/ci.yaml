@@ -8,16 +8,13 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    types: [edited, opened, reopened, synchronize]
     branches: [ master ]
 
 env:
-  # Qt: 5.15.1
-  # libtorrent: RC_1_2 HEAD, 1.2.11
-  VCPKG_COMMIT: 133051b793486ef14e67e9d1f48c9cfe64dc127e
+  VCPKG_COMMIT: e4ce66eecfd3e5cca5eac06c971921bf8e37cf88
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  LIBTORRENT_VERSION_TAG: v1.2.11
+  LIBTORRENT_VERSION_TAG: v1.2.12
 
 jobs:
 
@@ -26,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
       fail-fast: false
 
@@ -125,10 +122,15 @@ jobs:
           "qt5-svg:x64-windows-static-release",
           "qt5-tools:x64-windows-static-release",
           "qt5-winextras:x64-windows-static-release"
+        ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe upgrade `
+            --overlay-triplets=${{ github.workspace }}/triplets_overlay `
+            --overlay-ports=${{ github.workspace }}/vcpkg `
+            --no-dry-run
         foreach($package in $packages)
         {
           ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe install $package `
             --overlay-triplets=${{ github.workspace }}/triplets_overlay `
+            --overlay-ports=${{ github.workspace }}/vcpkg `
             --clean-after-build
         }
 
@@ -199,13 +201,6 @@ jobs:
         Add-Content ${{ github.workspace }}/triplets_overlay/x64-osx-release.cmake `
           -Value "set(VCPKG_BUILD_TYPE release)","set(VCPKG_OSX_DEPLOYMENT_TARGET 10.15)"
 
-    # NOTE: Avoids a libtorrent ABI issue. See https://github.com/arvidn/libtorrent/issues/4965
-    - name: force AppleClang to compile libtorrent with C++17
-      run: |
-        (Get-Content -path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake).Replace( `
-          '${FEATURE_OPTIONS}', '${FEATURE_OPTIONS} -DCMAKE_CXX_STANDARD=17') `
-          | Set-Content -Path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake
-
     - name: install dependencies via vcpkg
       run: |
         $packages = `
@@ -215,10 +210,15 @@ jobs:
           "qt5-svg:x64-osx-release",
           "qt5-tools:x64-osx-release",
           "qt5-macextras:x64-osx-release"
+        ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg upgrade `
+            --overlay-triplets=${{ github.workspace }}/triplets_overlay `
+            --overlay-ports=${{ github.workspace }}/vcpkg `
+            --no-dry-run
         foreach($package in $packages)
         {
           ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg install $package `
             --overlay-triplets=${{ github.workspace }}/triplets_overlay `
+            --overlay-ports=${{ github.workspace }}/vcpkg `
             --clean-after-build
         }
 

@@ -68,7 +68,6 @@ namespace BitTorrent
         bool forced = false;
         bool paused = false;
 
-
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
 
@@ -99,7 +98,7 @@ namespace BitTorrent
 
         bool isValid() const;
 
-        InfoHash hash() const override;
+        InfoHash infoHash() const override;
         QString name() const override;
         QDateTime creationDate() const override;
         QString creator() const override;
@@ -301,7 +300,7 @@ namespace BitTorrent
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
 
-        InfoHash m_hash;
+        InfoHash m_infoHash;
 
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete

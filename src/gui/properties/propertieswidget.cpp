@@ -28,7 +28,6 @@
 
 #include "propertieswidget.h"
 
-#include <QAction>
 #include <QClipboard>
 #include <QDateTime>
 #include <QDebug>
@@ -313,8 +312,9 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
     // Save path
     updateSavePath(m_torrent);
-    // Hash
-    m_ui->labelHashVal->setText(m_torrent->hash());
+    // Info hash (Truncated info hash (torrent ID) with libtorrent2)
+    // TODO: Update label for this property to express its meaning more clearly (or change it to display real info hash(es))
+    m_ui->labelHashVal->setText(m_torrent->id().toString());
     m_propListModel->model()->clear();
     if (m_torrent->hasMetadata())
     {
@@ -586,57 +586,82 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     {
         const QModelIndex index = selectedRows[0];
 
-        const QAction *actOpen = menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open"));
-        connect(actOpen, &QAction::triggered, this, [this, index]() { openItem(index); });
-
-        const QAction *actOpenContainingFolder = menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder"));
-        connect(actOpenContainingFolder, &QAction::triggered, this, [this, index]() { openParentFolder(index); });
-
-        const QAction *actRename = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."));
-        connect(actRename, &QAction::triggered, this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
-
+        menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open")
+            , this, [this, index]() { openItem(index); });
+        menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
+            , this, [this, index]() { openParentFolder(index); });
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
+            , this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
         menu->addSeparator();
     }
 
     if (!m_torrent->isSeed())
     {
-        QMenu *subMenu = menu->addMenu(tr("Priority"));
-
-        const auto applyPriorities = [this, selectedRows](const BitTorrent::DownloadPriority prio)
+        const auto applyPriorities = [this](const BitTorrent::DownloadPriority prio)
         {
+            const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
             for (const QModelIndex &index : selectedRows)
             {
-                m_propListModel->setData(
-                    m_propListModel->index(index.row(), PRIORITY, index.parent()), static_cast<int>(prio));
+                m_propListModel->setData(index.sibling(index.row(), PRIORITY)
+                    , static_cast<int>(prio));
             }
 
             // Save changes
             filteredFilesChanged();
         };
 
-        connect(m_ui->actionNotDownloaded, &QAction::triggered, subMenu, [applyPriorities]()
+        QMenu *subMenu = menu->addMenu(tr("Priority"));
+
+        subMenu->addAction(tr("Do not download"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
-        subMenu->addAction(m_ui->actionNotDownloaded);
-
-        connect(m_ui->actionNormal, &QAction::triggered, subMenu, [applyPriorities]()
+        subMenu->addAction(tr("Normal"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
         });
-        subMenu->addAction(m_ui->actionNormal);
-
-        connect(m_ui->actionHigh, &QAction::triggered, subMenu, [applyPriorities]()
+        subMenu->addAction(tr("High"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::High);
         });
-        subMenu->addAction(m_ui->actionHigh);
-
-        connect(m_ui->actionMaximum, &QAction::triggered, subMenu, [applyPriorities]()
+        subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Maximum);
         });
-        subMenu->addAction(m_ui->actionMaximum);
+        subMenu->addSeparator();
+        subMenu->addAction(tr("By shown file order"), subMenu, [this]()
+        {
+            // Equally distribute the selected items into groups and for each group assign
+            // a download priority that will apply to each item. The number of groups depends on how
+            // many "download priority" are available to be assigned
+
+            const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
+
+            const int priorityGroups = 3;
+            const int priorityGroupSize = std::max((selectedRows.length() / priorityGroups), 1);
+
+            for (int i = 0; i < selectedRows.length(); ++i)
+            {
+                auto priority = BitTorrent::DownloadPriority::Ignored;
+                switch (i / priorityGroupSize)
+                {
+                case 0:
+                    priority = BitTorrent::DownloadPriority::Maximum;
+                    break;
+                case 1:
+                    priority = BitTorrent::DownloadPriority::High;
+                    break;
+                default:
+                case 2:
+                    priority = BitTorrent::DownloadPriority::Normal;
+                    break;
+                }
+
+                const QModelIndex &index = selectedRows[i];
+                m_propListModel->setData(index.sibling(index.row(), PRIORITY)
+                    , static_cast<int>(priority));
+            }
+        });
     }
 
     // The selected torrent might have disappeared during exec()
@@ -660,21 +685,17 @@ void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *actAdd = menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New Web seed"));
-    connect(actAdd, &QAction::triggered, this, &PropertiesWidget::askWebSeed);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty())
     {
-        const QAction *actDel = menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove Web seed"));
-        connect(actDel, &QAction::triggered, this, &PropertiesWidget::deleteSelectedUrlSeeds);
-
+        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove Web seed")
+            , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
-
-        const QAction *actCpy = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy Web seed URL"));
-        connect(actCpy, &QAction::triggered, this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
-
-        const QAction *actEdit = menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Web seed URL"));
-        connect(actEdit, &QAction::triggered, this, &PropertiesWidget::editWebSeed);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy Web seed URL")
+            , this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Web seed URL")
+            , this, &PropertiesWidget::editWebSeed);
     }
 
     menu->popup(QCursor::pos());
@@ -780,7 +801,7 @@ void PropertiesWidget::editWebSeed()
 
     if (!m_ui->listWebSeeds->findItems(newSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, tr("qBittorrent"),
+        QMessageBox::warning(this, QLatin1String("qBittorrent"),
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;

@@ -1395,10 +1395,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Numero massimo annunci HTTP simultanei (richiede libtorrent&gt; = 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Mantieni cartella primo livello</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1444,18 +1440,22 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Layout contenuto torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Crea sottocartella</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originale</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Non creare sottocartella</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1741,6 +1741,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>Rename...</source>
         <translation>Rinomina...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2280,6 +2284,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>Stalled</source>
         <translation>In stallo</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2607,6 +2615,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

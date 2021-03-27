@@ -35,7 +35,6 @@
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QDesktopWidget>
 #include <QFileInfo>
 #include <QIcon>
 #include <QPixmap>
@@ -48,6 +47,10 @@
 #include <QUrl>
 #include <QWidget>
 #include <QWindow>
+
+#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0)) && defined(Q_OS_WIN)
+#include <QDesktopWidget>
+#endif
 
 #include "base/utils/fs.h"
 #include "base/utils/version.h"

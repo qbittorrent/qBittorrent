@@ -239,13 +239,16 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     bool hideValues = false;
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
         hideValues = true;
-    else if (m_hideZeroValuesMode != HideZeroValuesMode::Never)
+    else if (m_hideZeroValuesMode == HideZeroValuesMode::Paused)
         hideValues = (torrent->state() == BitTorrent::TorrentState::PausedDownloading);
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
     {
-        return (hideValues && (value <= 0))
-                ? QString {} : Utils::String::fromDouble(value, 3);
+        if (hideValues && (value == 0))
+            return {};
+        return (value >= 0)
+            ? Utils::String::fromDouble(value, 3)
+            : tr("N/A");
     };
 
     const auto unitString = [hideValues](const qint64 value, const bool isSpeedUnit = false) -> QString
@@ -256,7 +259,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto limitString = [hideValues](const qint64 value) -> QString
     {
-        if (hideValues && (value == 0))
+        if (hideValues && (value <= 0))
             return {};
 
         return (value > 0)
@@ -266,9 +269,16 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto amountString = [hideValues](const qint64 value, const qint64 total) -> QString
     {
-        return (hideValues && (value == 0) && (total == 0))
-                ? QString {}
-                : QString::number(value) + " (" + QString::number(total) + ')';
+        if (hideValues && (value == 0) && (total == 0))
+            return {};
+        return QString::fromLatin1("%1 (%2)").arg(QString::number(value), QString::number(total));
+    };
+
+    const auto etaString = [hideValues](const qlonglong value) -> QString
+    {
+        if (hideValues && (value >= MAX_ETA))
+            return {};
+        return Utils::Misc::userFriendlyDuration(value, MAX_ETA);
     };
 
     const auto ratioString = [hideValues](const qreal value) -> QString
@@ -282,13 +292,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
     const auto queuePositionString = [](const qint64 value) -> QString
     {
-        return (value > 0) ? QString::number(value) : "*";
+        return (value >= 0) ? QString::number(value + 1) : QLatin1String("*");
     };
 
     const auto lastActivityString = [hideValues](qint64 value) -> QString
     {
         if (hideValues && ((value < 0) || (value >= MAX_ETA)))
-            return QString {};
+            return {};
 
         // Show '< 1m ago' when elapsed time is 0
         if (value == 0)
@@ -299,10 +309,14 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
             : Utils::Misc::userFriendlyDuration(value);
     };
 
-    const auto timeElapsedString = [](const qint64 elapsedTime, const qint64 seedingTime) -> QString
+    const auto timeElapsedString = [hideValues](const qint64 elapsedTime, const qint64 seedingTime) -> QString
     {
         if (seedingTime <= 0)
+        {
+            if (hideValues && (elapsedTime == 0))
+                return {};
             return Utils::Misc::userFriendlyDuration(elapsedTime);
+        }
 
         return tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                 .arg(Utils::Misc::userFriendlyDuration(elapsedTime)
@@ -351,7 +365,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_UPSPEED:
         return unitString(torrent->uploadPayloadRate(), true);
     case TR_ETA:
-        return Utils::Misc::userFriendlyDuration(torrent->eta(), MAX_ETA);
+        return etaString(torrent->eta());
     case TR_RATIO:
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
@@ -484,7 +498,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case Qt::DisplayRole:
         return displayValue(torrent, index.column());
     case UnderlyingDataRole:
-        return internalValue(torrent, index.column());
+        return internalValue(torrent, index.column(), false);
     case AdditionalUnderlyingDataRole:
         return internalValue(torrent, index.column(), true);
     case Qt::DecorationRole:

@@ -64,6 +64,8 @@ namespace
 TorrentContentTreeView::TorrentContentTreeView(QWidget *parent)
     : QTreeView(parent)
 {
+    setExpandsOnDoubleClick(false);
+
     // This hack fixes reordering of first column with Qt5.
     // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
     QTableView unused;

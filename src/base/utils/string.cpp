@@ -200,6 +200,26 @@ std::optional<bool> Utils::String::parseBool(const QString &string)
     return std::nullopt;
 }
 
+std::optional<int> Utils::String::parseInt(const QString &string)
+{
+    bool ok = false;
+    const int result = string.toInt(&ok);
+    if (ok)
+        return result;
+
+    return std::nullopt;
+}
+
+std::optional<double> Utils::String::parseDouble(const QString &string)
+{
+    bool ok = false;
+    const double result = string.toDouble(&ok);
+    if (ok)
+        return result;
+
+    return std::nullopt;
+}
+
 QString Utils::String::join(const QVector<QStringRef> &strings, const QString &separator)
 {
     if (strings.empty())

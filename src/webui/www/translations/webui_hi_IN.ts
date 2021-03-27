@@ -12,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी :</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -24,76 +24,76 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>टोरेंट प्रबंधन मोड :</translation>
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>सामग्री अभिन्यास :</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>वास्तविक</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>उप-फोल्डर बनाएँ</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>उप-फोल्डर न बनाएँ</translation>
     </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>सभी</translation>
     </message>
     <message>
         <source>Uncategorized</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी रहित</translation>
     </message>
 </context>
 <context>
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी जोड़ें...</translation>
     </message>
     <message>
         <source>Remove category</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी हटाएँ</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation type="unfinished" />
+        <translation>अप्रयुक्त श्रेणियाँ हटाएँ</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को विराम दें</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को मिटाएं</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>नई श्रेणी</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी संपादन...</translation>
     </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>क्यूबिटटोरेंट बंद करें</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -101,31 +101,31 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>सार्वभौम अपलोड दर 0 से अधिक या अक्षम हो।</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>सार्वभौम डाउनलोड दर 0 से अधिक या अक्षम हो।</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक अपलोड दर 0 से अधिक या अक्षम हो।</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक डाउनलोड दर 0 से अधिक या अक्षम हो।</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय डाउनलोड -1 से अधिक होने चाहिए।</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय अपलोड -1 से अधिक होने चाहिए।</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय टौरेंट -1 से अधिक होने चाहिए।</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
@@ -149,15 +149,15 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished">अज्ञात</translation>
+        <translation>अज्ञात</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="unfinished" />
+        <translation>बांटने की दर का अनुपात 0 से 9998 के बीच हो।</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="unfinished" />
+        <translation>बीजारोपण की समय सीमा 0 से 525600 के बीच हो।</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
@@ -173,36 +173,36 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>यूजरनेम व पासवर्ड अमान्य हैं।</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>यूजरनेम</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>पासवर्ड</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished">लॉगिन</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original authors</source>
-        <translation type="unfinished" />
+        <translation>मूल रचियता</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>लागू करें</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished" />
+        <translation>जोड़ें</translation>
     </message>
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>टौरेंटों को अपलोड करें</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -210,7 +210,7 @@
     </message>
     <message>
         <source>Cookie:</source>
-        <translation type="unfinished" />
+        <translation>कुकी:</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -218,67 +218,67 @@
     </message>
     <message>
         <source>More information</source>
-        <translation type="unfinished" />
+        <translation>अधिक जानकारी</translation>
     </message>
     <message>
         <source>Information about certificates</source>
-        <translation type="unfinished" />
+        <translation>प्रमाणपत्रों के बारे में जानकारी</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>स्थान चुनें</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>अपलोड की दर सीमित करें</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड की दर सीमित करें</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट का नाम बदलें</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="unfinished" />
+        <translation>अन्य...</translation>
     </message>
     <message>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>सोमवार</translation>
     </message>
     <message>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>मंगलवार</translation>
     </message>
     <message>
         <source>Wednesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>बुद्धवार</translation>
     </message>
     <message>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>गुरुवार</translation>
     </message>
     <message>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>शुक्रवार</translation>
     </message>
     <message>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>शनिवार</translation>
     </message>
     <message>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>रविवार</translation>
     </message>
     <message>
         <source>Logout</source>
@@ -305,10 +305,6 @@
         <translation>qBittorrent प्रयोक्ता पहुंच योग्य नहीं है</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent शट डाउन कर दिया गया है.</translation>
-    </message>
-    <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
         <translation type="unfinished" />
     </message>
@@ -330,7 +326,7 @@
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>खाली स्थान: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -350,7 +346,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>शास्त्र खोलें</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -366,7 +362,7 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>नाम रिक्त नहीं हो सकता</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
@@ -409,31 +405,31 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>प्रारम्भ</translation>
+        <translation>प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
-        <translation type="unfinished" />
+        <translation>शीर्ष उपकरण पट्टी</translation>
     </message>
     <message>
         <source>Status Bar</source>
-        <translation type="unfinished" />
+        <translation>स्थिति पट्टी</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
-        <translation type="unfinished" />
+        <translation>शीर्षक पट्टी में गति</translation>
     </message>
     <message>
         <source>Donate!</source>
-        <translation type="unfinished" />
+        <translation>दान करें!</translation>
     </message>
     <message>
         <source>Resume All</source>
-        <translation>प्रारम्भ</translation>
+        <translation>सभी को प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>आंकड़े</translation>
     </message>
     <message>
         <source>About</source>
@@ -441,27 +437,27 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>रूकें</translation>
+        <translation>विराम दें</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>रद्द करें</translation>
+        <translation>मिटाएं</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>सबको रोकें</translation>
+        <translation>सभी को विराम दें</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट फाइल जोड़ें...</translation>
     </message>
     <message>
         <source>Documentation</source>
-        <translation>दस्तावेज़ीकरण</translation>
+        <translation>शास्त्र</translation>
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट लिंक जोड़ें...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -473,11 +469,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation type="unfinished" />
+        <translation>सार्वभौम अपलोड गति सीमा</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation type="unfinished" />
+        <translation>सार्वभौम डाउनलोड गति सीमा</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -490,7 +486,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक गति सीमा</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -502,43 +498,43 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>खोंजे</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>स्थानांतरण</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में आगे ले जाएं</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में आगे ले जाएं</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में अन्तिम</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में अन्तिम पर ले जाएं</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में प्रथम</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में पीछे ले जाएं</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में पीछे ले जाएं</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>पंक्ति में प्रथम पर ले जाएं</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -550,35 +546,35 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>कनेक्शन स्थिति: अवरोधित</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>कनेक्शन स्थिति: जुड़ा हुआ</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक गति सीमा: बंद</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड गति का चित्र</translation>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>कनेक्शन स्थिति</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक गति सीमा: चालू</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation>अपलोड गति का चित्र</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>कनेक्शन स्थिति: कटा हुआ</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -593,23 +589,23 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished" />
+        <translation>विकल्प</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished">डाउनलोड्स</translation>
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished">संबंध</translation>
+        <translation>कनेक्शन</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished" />
+        <translation>गति</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished" />
+        <translation>बिटटौरेंट</translation>
     </message>
     <message>
         <source>Web UI</source>
@@ -617,7 +613,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished">भाषा</translation>
+        <translation>भाषा</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
@@ -641,7 +637,7 @@
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट कतारबद्धीकरण</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -677,7 +673,7 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished" />
+        <translation>अपूर्ण टौरेंटों को यहाँ रखें:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
@@ -689,15 +685,15 @@
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished" />
+        <translation>सभी फाइलों के लिए डिस्क में स्थान पूर्व-निर्धारित करें</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished" />
+        <translation>अपूर्ण फाइलों में .!qB एक्सटेंशन जोड़े</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished" />
+        <translation>यहाँ से टौरेंट स्वतः जोड़े</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -713,11 +709,11 @@
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished">प्रयोक्ता नाम:</translation>
+        <translation>यूजरनेम:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">पासवर्ड:</translation>
+        <translation>पासवर्ड:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -741,15 +737,15 @@
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished" />
+        <translation>कनेक्शन सीमायें</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished" />
+        <translation>प्रति टौरेंट अधिकतम कनेक्शनों की संख्या</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished" />
+        <translation>सार्वभौम अधिकतम कनेक्शनों की संख्या</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
@@ -765,23 +761,23 @@
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished" />
+        <translation>प्रकार:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(कोई नहीं)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished" />
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished" />
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished" />
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -813,53 +809,49 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>सीमाओं की सार्वभौम दर</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>किलोबाइट्स/सेकंड्स</translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>सीमाओं की वैकल्पिक दर</translation>
     </message>
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished" />
+        <translation>से:</translation>
     </message>
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished" />
+        <translation>को:</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished" />
+        <translation>कब:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished" />
+        <translation>प्रत्येक दिन</translation>
     </message>
     <message>
         <source>Weekdays</source>
-        <translation type="unfinished" />
+        <translation>कार्यदिवसों</translation>
     </message>
     <message>
         <source>Weekends</source>
-        <translation type="unfinished" />
+        <translation>अवकाशदिवस</translation>
     </message>
     <message>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished" />
+        <translation>दर सीमा की सैटिंग</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
@@ -903,23 +895,23 @@
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय डाउनलोड:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय अपलोड:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय टौरेंट</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished" />
+        <translation>इन सीमाओं में धीमे टौरेंटों को न गिनें</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished" />
+        <translation>फिर</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -927,7 +919,7 @@
     </message>
     <message>
         <source>Certificate:</source>
-        <translation type="unfinished" />
+        <translation>प्रमाणपत्र:</translation>
     </message>
     <message>
         <source>Key:</source>
@@ -935,7 +927,7 @@
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished" />
+        <translation>पंजीकृत हों</translation>
     </message>
     <message>
         <source>Domain name:</source>
@@ -947,11 +939,11 @@
     </message>
     <message>
         <source>%N: Torrent name</source>
-        <translation type="unfinished" />
+        <translation>%N: टौरेंट नाम</translation>
     </message>
     <message>
         <source>%L: Category</source>
-        <translation type="unfinished" />
+        <translation>%L: श्रेणी</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -963,15 +955,15 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation type="unfinished" />
+        <translation>%D: संचय पथ</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: फाइलों की संख्या</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: टौरेंट आकर (बाइट्स)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
@@ -995,7 +987,11 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>मिनट</translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>किलोबाइट्स/सेकंड्स</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1023,7 +1019,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>स्वतः</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1039,7 +1035,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड स्वतः आरम्भ न करें</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1047,7 +1043,7 @@
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>जब टौरेंट की श्रेणी बदल जाए:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1059,7 +1055,7 @@
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 का अर्थ असीमित हो</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1075,7 +1071,7 @@
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished" />
+        <translation>सुरक्षा</translation>
     </message>
     <message>
         <source>When Category Save Path changed:</source>
@@ -1083,7 +1079,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>सेकंड</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1095,7 +1091,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>स्वयं</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
@@ -1107,7 +1103,7 @@
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट जोड़ते समय</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
@@ -1119,7 +1115,7 @@
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>अपलोड दर पर आधारित</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
@@ -1179,15 +1175,15 @@
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>तीव्रतम अपलोड</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट को विराम दें</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट और उसकी फाइलों को हटायें</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
@@ -1227,7 +1223,7 @@
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट को हटायें</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
@@ -1255,11 +1251,11 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>उन्नत</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>न्यूनतम</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1267,15 +1263,15 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>बीजारोपण की सीमायें</translation>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>किलोबाइट्स</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>राउंड-रॉबिन</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1283,7 +1279,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>एमबी</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1399,7 +1395,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>न्यूनतम</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1451,10 +1447,14 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>मूल</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1514,7 +1514,7 @@
     <message>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished" />
+        <translation>फाइलों</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
@@ -1534,7 +1534,7 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>देश/छेत्र</translation>
     </message>
 </context>
 <context>
@@ -1556,11 +1556,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>मिश्रित</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड न करें</translation>
     </message>
 </context>
 <context>
@@ -1611,15 +1611,15 @@
     </message>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>बीज:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड गति</translation>
     </message>
     <message>
         <source>Upload Speed:</source>
-        <translation type="unfinished" />
+        <translation>अपलोड गति</translation>
     </message>
     <message>
         <source>Peers:</source>
@@ -1627,11 +1627,11 @@
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड सीमा</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation type="unfinished" />
+        <translation>अपलोड सीमा</translation>
     </message>
     <message>
         <source>Wasted:</source>
@@ -1651,7 +1651,7 @@
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished" />
+        <translation>बांटने का अनुपात</translation>
     </message>
     <message>
         <source>Reannounce In:</source>
@@ -1671,19 +1671,19 @@
     </message>
     <message>
         <source>Created By:</source>
-        <translation type="unfinished" />
+        <translation>के द्वारा बनाया गया:</translation>
     </message>
     <message>
         <source>Added On:</source>
-        <translation type="unfinished" />
+        <translation>को जोड़ा गया:</translation>
     </message>
     <message>
         <source>Completed On:</source>
-        <translation type="unfinished" />
+        <translation>को पूर्ण हुआ:</translation>
     </message>
     <message>
         <source>Created On:</source>
-        <translation type="unfinished" />
+        <translation>को बनाया गया:</translation>
     </message>
     <message>
         <source>Torrent Hash:</source>
@@ -1691,16 +1691,16 @@
     </message>
     <message>
         <source>Save Path:</source>
-        <translation type="unfinished" />
+        <translation>संचय पथ:</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished">कभी नहीँ</translation>
+        <translation>कभी नहीं</translation>
     </message>
     <message>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation type="unfinished" />
+        <translation>%1 x %2 (हैं %3)</translation>
     </message>
     <message>
         <source>%1 (%2 this session)</source>
@@ -1709,29 +1709,29 @@
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (%2 अधिकतम)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (%2 कुल)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (%2 औसत)</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड सीमा:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>अपलोड सीमा:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>प्राथमिकता</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -1739,6 +1739,10 @@
     </message>
     <message>
         <source>Rename...</source>
+        <translation>पुनः नामकरण...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1772,15 +1776,15 @@
     <name>StatsDialog</name>
     <message>
         <source>Statistics</source>
-        <translation>सांख्यिकी</translation>
+        <translation>आंकड़े</translation>
     </message>
     <message>
         <source>User statistics</source>
-        <translation type="unfinished" />
+        <translation>उपयोगकर्ता के आंकड़े</translation>
     </message>
     <message>
         <source>Cache statistics</source>
-        <translation type="unfinished" />
+        <translation>कैष के आंकड़े</translation>
     </message>
     <message>
         <source>Read cache hits:</source>
@@ -1816,7 +1820,7 @@
     </message>
     <message>
         <source>Performance statistics</source>
-        <translation type="unfinished" />
+        <translation>प्रदर्शन के आंकड़े</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
@@ -1847,75 +1851,75 @@
     <message>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished" />
+        <translation>सभी (0)</translation>
     </message>
     <message>
         <source>Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड हो रहे हैं (0)</translation>
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation type="unfinished" />
+        <translation>बीजारोपण हो रहे हैं (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation type="unfinished" />
+        <translation>पूर्ण (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation type="unfinished" />
+        <translation>प्रारम्भित(0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation type="unfinished" />
+        <translation>विरामित (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
-        <translation type="unfinished" />
+        <translation>सक्रिय (0)</translation>
     </message>
     <message>
         <source>Inactive (0)</source>
-        <translation type="unfinished" />
+        <translation>अक्रिय (0)</translation>
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation type="unfinished" />
+        <translation>त्रुटिपूर्ण (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>सभी (%1)</translation>
     </message>
     <message>
         <source>Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड हो रहे हैं (%1)</translation>
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation type="unfinished" />
+        <translation>बीजारोपण हो रहे हैं (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation type="unfinished" />
+        <translation>पूर्ण (%1)</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation type="unfinished" />
+        <translation>विरामित (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation type="unfinished" />
+        <translation>प्रारम्भित(%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
-        <translation type="unfinished" />
+        <translation>सक्रिय (%1)</translation>
     </message>
     <message>
         <source>Inactive (%1)</source>
-        <translation type="unfinished" />
+        <translation>अक्रिय (%1)</translation>
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation type="unfinished" />
+        <translation>त्रुटिपूर्ण (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
@@ -1944,19 +1948,7 @@
 </context>
 <context>
     <name>TorrentContentModel</name>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">नाम</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">साईज</translation>
-    </message>
-    <message>
-        <source>Progress</source>
-        <translation type="vanished">प्रगति</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>TransferListModel</name>
     <message>
@@ -2011,7 +2003,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2079,12 +2071,12 @@
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>पूर्ण</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation type="unfinished" />
+        <translation>अनुपात की सीमा</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -2099,11 +2091,11 @@
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished" />
+        <translation>कुल आकर</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>उपलब्धता</translation>
     </message>
 </context>
 <context>
@@ -2126,7 +2118,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड हो चुके</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2154,7 +2146,7 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation type="unfinished" />
+        <translation>बीज</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -2166,7 +2158,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished" />
+        <translation>नया ट्रैकर जोड़ें...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2190,7 +2182,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>उपलब्धता</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2202,15 +2194,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>प्रगति</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>आकार</translation>
     </message>
 </context>
 <context>
@@ -2229,15 +2221,15 @@
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished" />
+        <translation>%1 पहले</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>विरामित</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>पूर्ण</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -2253,11 +2245,11 @@
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>कतारबद्ध</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>त्रुटिपूर्ण</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2281,14 +2273,18 @@
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड हो रहा है</translation>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>प्रारम्भ करनें की जानकारी को जांचा जा रहा है</translation>
     </message>
     <message>
         <source>Stalled</source>
+        <translation>अवरुद्ध</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2296,11 +2292,11 @@
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation type="unfinished">स्थिति</translation>
+        <translation>स्थिति</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished" />
+        <translation>श्रेणिआ</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2328,22 +2324,22 @@
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>पुन: आरंभ करें</translation>
+        <translation>प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished" />
+        <translation>बलपूर्वक प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>रोकें</translation>
+        <translation>विराम दें</translation>
     </message>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>रद्द करें</translation>
+        <translation>मिटाएं</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2383,7 +2379,7 @@
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>प्रथम व अंतिम भाग पहले डाउनलोड करें</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -2391,12 +2387,12 @@
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished" />
+        <translation>नया...</translation>
     </message>
     <message>
         <source>Reset</source>
@@ -2404,16 +2400,8 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">वरीयता</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation>फिरसे बलपुर्वक जांचे</translation>
-    </message>
-    <message>
-        <source>Copy magnet link</source>
-        <translation type="vanished">मैगनेट लिंक की प्रतिलिपि बनायें</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -2425,7 +2413,7 @@
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation>अनुक्रमिक तरीके से डाउनलोड करें</translation>
+        <translation>क्रमबद्ध डाउनलोड करें</translation>
     </message>
     <message>
         <source>Force Recheck</source>
@@ -2433,7 +2421,7 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>नई श्रेणी</translation>
     </message>
     <message>
         <source>Location</source>
@@ -2441,11 +2429,11 @@
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>नया नाम</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>स्थान चुनें</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2457,7 +2445,7 @@
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>संचय पथ</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2473,7 +2461,7 @@
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>चुम्बकीय लिंक</translation>
     </message>
     <message>
         <source>Hash</source>
@@ -2481,11 +2469,11 @@
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>सभी हटायें</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -2493,22 +2481,22 @@
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>कतार</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>जोड़ें...</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट के डाउनलोड/अपलोड को सीमित करना</translation>
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation type="unfinished" />
+        <translation>सीमाओं की सार्वभौम दर का प्रयोग करें</translation>
     </message>
     <message>
         <source>Set no share limit</source>
@@ -2520,11 +2508,11 @@
     </message>
     <message>
         <source>ratio</source>
-        <translation type="unfinished" />
+        <translation>अनुपात</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>मिनट</translation>
     </message>
 </context>
 <context>
@@ -2533,16 +2521,16 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>रद्द करनें हेतु पुष्टि करें - qBittorrent</translation>
-    </message>
-    <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>मिटाने की पुष्टि</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
         <translation>हार्ड डिस्क की फाइलें भी रद्द करें</translation>
+    </message>
+    <message>
+        <source>Deletion confirmation - qBittorrent</source>
+        <translation>रद्द करनें हेतु पुष्टि करें - qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2557,7 +2545,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट लिंकों को जोड़ें</translation>
     </message>
 </context>
 <context>
@@ -2627,6 +2615,10 @@
         <comment>e.g: 10minutes</comment>
         <translation>%1मिनट</translation>
     </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentsController</name>
@@ -2639,7 +2631,7 @@
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>रद्द करें</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2655,14 +2647,14 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>ठीक</translation>
     </message>
 </context>
 <context>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>बीज:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2670,15 +2662,15 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>आकार:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>रोकें</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>खोंजे</translation>
     </message>
     <message>
         <source>Search plugins...</source>
@@ -2686,7 +2678,7 @@
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>सभी श्रेणिआ</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -2702,7 +2694,7 @@
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation type="unfinished" />
+        <translation>केवल टौरेंटों के नाम</translation>
     </message>
     <message>
         <source>Only enabled</source>
@@ -2710,15 +2702,15 @@
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>में से</translation>
     </message>
     <message>
         <source>Everywhere</source>
-        <translation type="unfinished" />
+        <translation>हर जगह</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>चेतावनी</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -2757,7 +2749,7 @@
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>अद्यतन के लिए जाँचे</translation>
     </message>
     <message>
         <source>Search plugins</source>
@@ -2768,11 +2760,11 @@
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>आकार</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2791,7 +2783,7 @@
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Url</source>
@@ -2807,18 +2799,18 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>हाँ</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>नहीं</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>रद्द करें</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -2830,7 +2822,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>ठीक</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2841,7 +2833,7 @@
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>नया चिह्न</translation>
     </message>
     <message>
         <source>Add tag...</source>
@@ -2849,7 +2841,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को मिटाएं</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -2857,11 +2849,11 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को विराम दें</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -2891,19 +2883,19 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>समस्या ट्रैकर:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>बारे में</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>चर्चा मंच:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>ईमेल:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
@@ -2911,15 +2903,15 @@
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>होम पृष्ठ:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>ग्रीस</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>विशेष धन्यवाद</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
@@ -2927,11 +2919,11 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>नाम:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>क्यूबिटटौरेंट के बारे में</translation>
     </message>
     <message>
         <source>License</source>
@@ -2939,7 +2931,7 @@
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>अनुवादक</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
@@ -2947,15 +2939,15 @@
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>नागरिकता:</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>रचनाकार</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>प्रयुक्त सॉफ्टवेयर</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -2985,11 +2977,11 @@
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3001,25 +2993,25 @@
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड लिंक</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>पुनः नामकरण</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>नया नाम:</translation>
     </message>
 </context>
 <context>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation>दिनांक:</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3039,7 +3031,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>मिटाएं</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
@@ -3067,7 +3059,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>पुनः नामकरण...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3075,7 +3067,7 @@
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished" />
+        <translation>नया फोल्डर</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3099,7 +3091,7 @@
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>मिटाने की पुष्टि</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
@@ -3111,14 +3103,14 @@
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड टौरेंट</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड के नियम</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
@@ -3142,7 +3134,7 @@
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>नियम की परिभाषा</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -3154,7 +3146,7 @@
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>नए नियम का नाम</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
@@ -3170,7 +3162,7 @@
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी निर्धारित करें:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
@@ -3194,11 +3186,11 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>उदाहरण:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>नया नियम जोड़े</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -3234,7 +3226,7 @@
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>सार्वभौम सैटिंग का प्रयोग करें</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
@@ -3246,11 +3238,11 @@
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>नियम का नाम परिवर्तन</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>हमेशा</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3262,7 +3254,7 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>नियम मिटाने की पुष्टि</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -3282,7 +3274,7 @@
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>कभी नहीं</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
@@ -3290,7 +3282,7 @@
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>दिन</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3302,7 +3294,7 @@
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>विरामित जोड़ें:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3318,7 +3310,7 @@
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>नियम मिटाए</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
@@ -3326,7 +3318,7 @@
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>नियम का पुनः नामकरण</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
@@ -3351,7 +3343,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>मूल</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -3362,15 +3354,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को मिटाएं</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>सभी (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3378,7 +3370,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को विराम दें</translation>
     </message>
 </context>
 <context>
