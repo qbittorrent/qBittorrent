@@ -47,6 +47,18 @@ namespace
         return (left < right) ? -1 : 1;
     }
 
+    int customCompare(const QDateTime &left, const QDateTime &right)
+    {
+        const bool isLeftValid = left.isValid();
+        const bool isRightValid = right.isValid();
+
+        if (isLeftValid && isRightValid)
+            return threeWayCompare(left, right);
+        if (!isLeftValid && !isRightValid)
+            return 0;
+        return isLeftValid ? -1 : 1;
+    }
+
     template <typename T>
     int customCompare(const T left, const T right)
     {
@@ -158,7 +170,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_ADD_DATE:
     case TransferListModel::TR_SEED_DATE:
     case TransferListModel::TR_SEEN_COMPLETE_DATE:
-        return threeWayCompare(leftValue.toDateTime(), rightValue.toDateTime());
+        return customCompare(leftValue.toDateTime(), rightValue.toDateTime());
 
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:

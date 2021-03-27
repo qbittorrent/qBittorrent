@@ -464,7 +464,7 @@ window.addEvent('load', function() {
         const torrentsCount = torrentsTable.getRowIds().length;
         let untagged = 0;
         for (const key in torrentsTable.rows) {
-            if (torrentsTable.rows.hasOwnProperty(key) && torrentsTable.rows[key]['full_data'].tags.length === 0)
+            if (Object.prototype.hasOwnProperty.call(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].tags.length === 0))
                 untagged += 1;
         }
         tagFilterList.appendChild(createLink(TAGS_ALL, 'QBT_TR(All)QBT_TR[CONTEXT=TagFilterModel]', torrentsCount));
@@ -519,7 +519,7 @@ window.addEvent('load', function() {
         trackerFilterList.appendChild(createLink(TRACKERS_ALL, 'QBT_TR(All (%1))QBT_TR[CONTEXT=TrackerFiltersList]', torrentsCount));
         let trackerlessTorrentsCount = 0;
         for (const key in torrentsTable.rows) {
-            if (torrentsTable.rows.hasOwnProperty(key) && (torrentsTable.rows[key]['full_data'].trackers_count === 0))
+            if (Object.prototype.hasOwnProperty.call(torrentsTable.rows, key) && (torrentsTable.rows[key]['full_data'].trackers_count === 0))
                 trackerlessTorrentsCount += 1;
         }
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
@@ -701,7 +701,7 @@ window.addEvent('load', function() {
     };
 
     const syncData = function(delay) {
-        if (!syncRequestInProgress){
+        if (!syncRequestInProgress) {
             clearTimeout(syncMainDataTimer);
             syncMainDataTimer = syncMainData.delay(delay);
         }
@@ -744,21 +744,18 @@ window.addEvent('load', function() {
         }
 
         switch (serverState.connection_status) {
-        case 'connected': {
+            case 'connected':
                 $('connectionStatus').src = 'icons/connected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
-            }
-            break;
-        case 'firewalled': {
+                break;
+            case 'firewalled':
                 $('connectionStatus').src = 'icons/firewalled.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
-            }
-            break;
-        default: {
+                break;
+            default:
                 $('connectionStatus').src = 'icons/disconnected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
-            }
-            break;
+                break;
         }
 
         if (queueing_enabled != serverState.queueing) {
