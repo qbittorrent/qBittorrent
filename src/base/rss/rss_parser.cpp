@@ -34,7 +34,7 @@
 #include <QGlobalStatic>
 #include <QHash>
 #include <QMetaObject>
-#include <QRegularExpression>
+#include <QRegExp>
 #include <QStringList>
 #include <QVariant>
 #include <QXmlStreamEntityResolver>
@@ -391,13 +391,12 @@ namespace
         int nmin   = 8;
         int nsec   = 9;
         // Also accept obsolete form "Weekday, DD-Mon-YY HH:MM:SS ±hhmm"
-        QRegularExpression rx {"^(?:([A-Z][a-z]+),\\s*)?(\\d{1,2})(\\s+|-)([^-\\s]+)(\\s+|-)(\\d{2,4})\\s+(\\d\\d):(\\d\\d)(?::(\\d\\d))?\\s+(\\S+)$"};
-        QRegularExpressionMatch rxMatch;
+        QRegExp rx("^(?:([A-Z][a-z]+),\\s*)?(\\d{1,2})(\\s+|-)([^-\\s]+)(\\s+|-)(\\d{2,4})\\s+(\\d\\d):(\\d\\d)(?::(\\d\\d))?\\s+(\\S+)$");
         QStringList parts;
-        if (str.indexOf(rx, 0, &rxMatch) == 0)
+        if (!str.indexOf(rx))
         {
             // Check that if date has '-' separators, both separators are '-'.
-            parts = rxMatch.capturedTexts();
+            parts = rx.capturedTexts();
             const bool h1 = (parts[3] == QLatin1String("-"));
             const bool h2 = (parts[5] == QLatin1String("-"));
             if (h1 != h2)
@@ -406,10 +405,9 @@ namespace
         else
         {
             // Check for the obsolete form "Wdy Mon DD HH:MM:SS YYYY"
-            rx = QRegularExpression {"^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$"};
-            if (str.indexOf(rx, 0, &rxMatch) != 0)
+            rx = QRegExp("^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$");
+            if (str.indexOf(rx))
                 return QDateTime::currentDateTime();
-
             nyear  = 7;
             nmonth = 2;
             nday   = 3;
@@ -417,7 +415,7 @@ namespace
             nhour  = 4;
             nmin   = 5;
             nsec   = 6;
-            parts = rxMatch.capturedTexts();
+            parts = rx.capturedTexts();
         }
 
         bool ok[4];
@@ -465,11 +463,11 @@ namespace
         bool negOffset = false;
         if (parts.count() > 10)
         {
-            rx = QRegularExpression {"^([+-])(\\d\\d)(\\d\\d)$"};
-            if (parts[10].indexOf(rx, 0, &rxMatch) == 0)
+            rx = QRegExp("^([+-])(\\d\\d)(\\d\\d)$");
+            if (!parts[10].indexOf(rx))
             {
                 // It's a UTC offset ±hhmm
-                parts = rxMatch.capturedTexts();
+                parts = rx.capturedTexts();
                 offset = parts[2].toInt(&ok[0]) * 3600;
                 const int offsetMin = parts[3].toInt(&ok[1]);
                 if (!ok[0] || !ok[1] || offsetMin > 59)
