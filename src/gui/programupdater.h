@@ -48,6 +48,8 @@ public:
 
     void checkForUpdates() const;
     QString getNewVersion() const;
+    QString getNewContent() const;
+    QString getNextUpdate() const;
     bool updateProgram() const;
 
 signals:
@@ -58,5 +60,7 @@ private slots:
 
 private:
     QString m_newVersion;
+    QString m_nextUpdate;
+    QString m_content;
     QUrl m_updateURL;
 };

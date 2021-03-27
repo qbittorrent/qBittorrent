@@ -1703,7 +1703,7 @@ void Session::populatePublicTrackers()
     for (QStringRef tracker : asConst(trackers.splitRef('\n'))) {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
-            m_publicTrackerList << tracker.toString();
+            m_publicTrackerList.append({tracker.toString()});
     }
 }
 
