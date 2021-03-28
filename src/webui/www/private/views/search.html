@@ -386,7 +386,7 @@
         const downloadSearchTorrent = function() {
             const urls = [];
             searchResultsTable.selectedRowsIds().each(function(rowId) {
-                urls.push(encodeURIComponent(searchResultsTable.rows.get(rowId).full_data.fileUrl));
+                urls.push(searchResultsTable.rows.get(rowId).full_data.fileUrl);
             });
 
             // only proceed if at least 1 row was selected
