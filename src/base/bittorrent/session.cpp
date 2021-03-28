@@ -1009,9 +1009,9 @@ void Session::adjustLimits()
 
 void Session::applyBandwidthLimits()
 {
-        lt::settings_pack settingsPack = m_nativeSession->get_settings();
-        applyBandwidthLimits(settingsPack);
-        m_nativeSession->apply_settings(settingsPack);
+    lt::settings_pack settingsPack = m_nativeSession->get_settings();
+    applyBandwidthLimits(settingsPack);
+    m_nativeSession->apply_settings(settingsPack);
 }
 
 void Session::configure()
