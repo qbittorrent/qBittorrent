@@ -83,7 +83,12 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
         if (isDownloadable(str))
             uniqueURLs << str;
     }
-    m_ui->textUrls->setText(uniqueURLs.values().join('\n'));
+
+    const QString text = uniqueURLs.values().join(QLatin1Char('\n'))
+        + (!uniqueURLs.isEmpty() ? QLatin1String("\n") : QLatin1String(""));
+
+    m_ui->textUrls->setText(text);
+    m_ui->textUrls->moveCursor(QTextCursor::End);
 
     Utils::Gui::resize(this, m_storeDialogSize);
     show();
