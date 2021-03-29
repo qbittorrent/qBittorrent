@@ -68,7 +68,7 @@ public:
     q.prepare(QString("INSERT INTO '%1' (ip, client, pid, tag) VALUES (?, ?, ?, ?)").arg(m_table));
     q.addBindValue(QString::fromStdString(info.ip.address().to_string()));
     q.addBindValue(QString::fromStdString(info.client));
-    q.addBindValue(QString::fromStdString(info.pid.to_string().substr(0, 8)));
+    q.addBindValue(QString::fromLatin1(info.pid.data(), 8));
     q.addBindValue(QString::fromStdString(tag));
     return q.exec();
   }
@@ -76,4 +76,28 @@ public:
 private:
   QSqlDatabase m_db;
   QString m_table;
+};
+
+
+class peer_logger_singleton
+{
+public:
+  static peer_logger_singleton& instance()
+  {
+    static peer_logger_singleton logger;
+    return logger;
+  }
+
+  void log_peer(const lt::peer_info& info, const std::string& tag)
+  {
+    m_logger.log_peer(info, tag);
+  }
+
+protected:
+  peer_logger_singleton()
+    : m_logger(db_connection::instance().connection(), QStringLiteral("banned_peers"))
+  {}
+
+private:
+  peer_logger m_logger;
 };

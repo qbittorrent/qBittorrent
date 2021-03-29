@@ -12,10 +12,9 @@
 // bad peer filter
 bool is_bad_peer(const lt::peer_info& info)
 {
-  std::string pid = info.pid.to_string().substr(0, 8);
   std::regex id_filter("-(XL|SD|XF|QD|BN|DL)(\\d+)-");
   std::regex ua_filter(R"((\d+.\d+.\d+.\d+|cacao_torrent))");
-  return std::regex_match(pid, id_filter) || std::regex_match(info.client, ua_filter);
+  return std::regex_match(info.pid.data(), info.pid.data() + 8, id_filter) || std::regex_match(info.client, ua_filter);
 }
 
 // Unknown Peer filter
@@ -36,9 +35,8 @@ bool is_offline_downloader(const lt::peer_info& info)
 // BitTorrent Media Player Peer filter
 bool is_bittorrent_media_player(const lt::peer_info& info)
 {
-  std::string pid = info.pid.to_string().substr(0, 8);
   std::regex player_filter("-(UW\\w{4})-");
-  return !!std::regex_match(pid, player_filter);
+  return !!std::regex_match(info.pid.data(), info.pid.data() + 8, player_filter);
 }
 
 
@@ -47,30 +45,6 @@ void drop_connection(lt::peer_connection_handle ph)
 {
   ph.disconnect(boost::asio::error::connection_refused, lt::operation_t::bittorrent, lt::disconnect_severity_t{0});
 }
-
-
-class peer_logger_singleton
-{
-public:
-  static peer_logger_singleton& instance()
-  {
-    static peer_logger_singleton logger;
-    return logger;
-  }
-
-  void log_peer(const lt::peer_info& info, const std::string& tag)
-  {
-    m_logger.log_peer(info, tag);
-  }
-
-protected:
-  peer_logger_singleton()
-    : m_logger(db_connection::instance().connection(), QStringLiteral("banned_peers"))
-  {}
-
-private:
-  peer_logger m_logger;
-};
 
 
 template<typename F>
