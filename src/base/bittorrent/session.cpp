@@ -4857,38 +4857,37 @@ void Session::publicIPRequestFinished(const Net::DownloadResult& result)
 {
     if (result.status != Net::DownloadStatus::Success)
     {
-        qWarning() << "Public IP request failed:" << result.errorString;
+        LogMsg(tr("Public IP request failed: %1").arg(result.errorString), Log::WARNING);
         return;
     }
 
     // Parse response
     QString ipStr = QString::fromUtf8(result.data);
-    qDebug() << Q_FUNC_INFO << "The following public IP was captured:" << ipStr;
+    LogMsg(tr("The following public IP was captured: %1").arg(ipStr));
     QHostAddress newIP(ipStr);
     if (!newIP.isNull())
     {
         if (m_lastPublicIP != newIP)
         {
-            qDebug() << Q_FUNC_INFO << "The public IP address changed, announce to all trackers...";
-            qDebug() << m_lastPublicIP.toString() << "->" << newIP.toString();
+            LogMsg("The public IP address changed, force reannounce to all trackers...");
+            LogMsg(tr("%1 -> %2").arg(m_lastPublicIP.toString(), newIP.toString()));
             m_lastPublicIP = newIP;
-            forceAnnounceToAllTrackers();
+            forceReannounceToAllTrackers();
         }
     }
     else
     {
-        qWarning() << Q_FUNC_INFO << "Failed to construct a QHostAddress from the IP string";
+        LogMsg("Failed to construct a QHostAddress from the IP string", Log::WARNING);
     }
 }
 
-void Session::forceAnnounceToAllTrackers()
+void Session::forceReannounceToAllTrackers()
 {
-    lt::settings_pack settingsPack = m_nativeSession->get_settings();
-    forceAnnounceToAllTrackers(settingsPack);
-    m_nativeSession->apply_settings(settingsPack);
-}
-
-void Session::forceAnnounceToAllTrackers(lt::settings_pack& settingsPack) const
-{
-    settingsPack.set_int(lt::settings_pack::announce_to_all_trackers, true);
+    for (TorrentImpl* const torrent : asConst(m_torrents))
+    {
+        if (!torrent->isPrivate() && torrent->isActive())
+        {
+            torrent->forceReannounce();
+        }
+    }
 }
