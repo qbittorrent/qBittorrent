@@ -28,7 +28,6 @@
 
 #include "reverseresolution.h"
 
-#include <QHostAddress>
 #include <QHostInfo>
 #include <QString>
 
