@@ -801,8 +801,7 @@ namespace BitTorrent
         static const int PUBLIC_IP_CHECK_INTERVAL = 1800000; // 30 min
         QHostAddress m_lastPublicIP;
         QDateTime m_lastPublicIPCheckTime;
-        void forceAnnounceToAllTrackers();
-        void forceAnnounceToAllTrackers(lt::settings_pack& settingsPack) const;
+        void forceReannounceToAllTrackers();
 
         static Session *m_instance;
     };
