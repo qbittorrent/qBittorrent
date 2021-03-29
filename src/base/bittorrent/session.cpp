@@ -4257,6 +4257,9 @@ void Session::handleAlert(const lt::alert *a)
     {
         switch (a->type())
         {
+#if (LIBTORRENT_VERSION_NUM >= 20003)
+        case lt::file_prio_alert::alert_type:
+#endif
         case lt::file_renamed_alert::alert_type:
         case lt::file_completed_alert::alert_type:
         case lt::torrent_finished_alert::alert_type:

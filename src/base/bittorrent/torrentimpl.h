@@ -49,6 +49,17 @@
 #include "torrent.h"
 #include "torrentinfo.h"
 
+#if (LIBTORRENT_VERSION_NUM == 20003)
+// file_prio_alert is missing to be forward declared in "libtorrent/fwd.hpp"
+namespace libtorrent
+{
+    inline namespace v2
+    {
+        struct file_prio_alert;
+    }
+}
+#endif
+
 namespace BitTorrent
 {
     class Session;
@@ -244,6 +255,9 @@ namespace BitTorrent
 
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
         void handleFileCompletedAlert(const lt::file_completed_alert *p);
+#if (LIBTORRENT_VERSION_NUM >= 20003)
+        void handleFilePrioAlert(const lt::file_prio_alert *p);
+#endif
         void handleFileRenamedAlert(const lt::file_renamed_alert *p);
         void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
