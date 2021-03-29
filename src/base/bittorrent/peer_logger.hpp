@@ -51,12 +51,11 @@ public:
     if (!db.tables().contains(table)) {
       db.exec(QString(
                 "CREATE TABLE '%1' ("
-                "    'id'      INTEGER NOT NULL UNIQUE,"
+                "    'id'      INTEGER PRIMARY KEY,"
                 "    'ip'      TEXT NOT NULL UNIQUE,"
-                "    'client'  TEXT,"
-                "    'pid'     TEXT,"
-                "    'tag'     TEXT,"
-                "    PRIMARY KEY('id' AUTOINCREMENT)"
+                "    'client'  TEXT NOT NULL,"
+                "    'pid'     BLOB NOT NULL,"
+                "    'tag'     TEXT"
                 ");").arg(table));
       db.commit();
     }
