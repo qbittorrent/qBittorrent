@@ -50,8 +50,9 @@ void drop_connection(lt::peer_connection_handle ph)
 template<typename F>
 auto wrap_filter(F filter, const std::string& tag)
 {
-  return [=](const lt::peer_info& info, bool) {
+  return [=](const lt::peer_info& info, bool handshake, bool* stop_filtering) {
     bool matched = filter(info);
+    *stop_filtering = !handshake && !matched;
     if (matched)
       peer_logger_singleton::instance().log_peer(info, tag);
     return matched;

@@ -106,6 +106,7 @@ add_library(qbt_base STATIC
     bittorrent/peer_blacklist.hpp
     bittorrent/peer_filter_plugin.hpp
     bittorrent/peer_logger.hpp
+    bittorrent/peer_whitelist.hpp
     bittorrent/portforwarderimpl.cpp
     bittorrent/resumedatasavingmanager.cpp
     bittorrent/session.cpp
