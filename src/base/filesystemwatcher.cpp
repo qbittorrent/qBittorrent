@@ -30,6 +30,8 @@
 
 #include <QtGlobal>
 
+#include <chrono>
+
 #if defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <cstring>
 #include <sys/mount.h>
@@ -42,9 +44,11 @@
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
+using namespace std::chrono_literals;
+
 namespace
 {
-    const int WATCH_INTERVAL = 10000; // 10 sec
+    const std::chrono::duration WATCH_INTERVAL = 10s;
     const int MAX_PARTIAL_RETRIES = 5;
 }
 
