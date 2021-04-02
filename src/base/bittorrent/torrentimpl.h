@@ -53,10 +53,9 @@
 // file_prio_alert is missing to be forward declared in "libtorrent/fwd.hpp"
 namespace libtorrent
 {
-    inline namespace v2
-    {
-        struct file_prio_alert;
-    }
+    TORRENT_VERSION_NAMESPACE_3
+    struct file_prio_alert;
+    TORRENT_VERSION_NAMESPACE_3_END
 }
 #endif
 
