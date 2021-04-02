@@ -85,15 +85,16 @@
 #include "base/utils/random.h"
 #include "base/version.h"
 #include "bandwidthscheduler.h"
+#include "bencoderesumedatastorage.h"
 #include "common.h"
 #include "customstorage.h"
 #include "filesearcher.h"
 #include "filterparserthread.h"
+#include "loadtorrentparams.h"
 #include "ltunderlyingtype.h"
 #include "magneturi.h"
 #include "nativesessionextension.h"
 #include "portforwarderimpl.h"
-#include "resumedatastorage.h"
 #include "statistics.h"
 #include "torrentimpl.h"
 #include "tracker.h"
@@ -103,7 +104,6 @@ using namespace BitTorrent;
 namespace
 {
     const char PEER_ID[] = "qB";
-    const char RESUME_FOLDER[] = "BT_backup";
     const char USER_AGENT[] = "qBittorrent/" QBT_VERSION_2;
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
@@ -439,7 +439,6 @@ Session::Session(QObject *parent)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
-    , m_resumeFolderLock {new QFile {this}}
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
     , m_statistics {new Statistics {this}}
@@ -980,9 +979,6 @@ Session::~Session()
 
     m_ioThread->quit();
     m_ioThread->wait();
-
-    m_resumeFolderLock->close();
-    m_resumeFolderLock->remove();
 }
 
 void Session::initInstance()
@@ -1844,10 +1840,7 @@ bool Session::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption
     }
 
     // Remove it from torrent resume directory
-    QMetaObject::invokeMethod(m_resumeDataStorage, [this, torrentID = torrent->id()]()
-    {
-        m_resumeDataStorage->remove(torrentID);
-    });
+    m_resumeDataStorage->remove(torrent->id());
 
     delete torrent;
     return true;
@@ -2061,8 +2054,8 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
-    loadTorrentParams.forced = addTorrentParams.addForced;
-    loadTorrentParams.paused = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
+    loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
+    loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
@@ -2181,11 +2174,11 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     else
         p.flags &= ~lt::torrent_flags::seed_mode;
 
-    if (loadTorrentParams.paused || !loadTorrentParams.forced)
+    if (loadTorrentParams.stopped || (loadTorrentParams.operatingMode == TorrentOperatingMode::AutoManaged))
         p.flags |= lt::torrent_flags::paused;
     else
         p.flags &= ~lt::torrent_flags::paused;
-    if (loadTorrentParams.paused || loadTorrentParams.forced)
+    if (loadTorrentParams.stopped || (loadTorrentParams.operatingMode == TorrentOperatingMode::Forced))
         p.flags &= ~lt::torrent_flags::auto_managed;
     else
         p.flags |= lt::torrent_flags::auto_managed;
@@ -2300,23 +2293,28 @@ void Session::exportTorrentFile(const Torrent *torrent, TorrentExportFolder fold
              ((folder == TorrentExportFolder::Finished) && !finishedTorrentExportDirectory().isEmpty()));
 
     const QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
-    const QString torrentFilename = QString::fromLatin1("%1.torrent").arg(torrent->id().toString());
     QString torrentExportFilename = QString::fromLatin1("%1.torrent").arg(validName);
-    const QString torrentPath = QDir(m_resumeFolderPath).absoluteFilePath(torrentFilename);
     const QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
     if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath()))
     {
         QString newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         int counter = 0;
-        while (QFile::exists(newTorrentPath) && !Utils::Fs::sameFiles(torrentPath, newTorrentPath))
+        while (QFile::exists(newTorrentPath))
         {
             // Append number to torrent name to make it unique
             torrentExportFilename = QString::fromLatin1("%1 %2.torrent").arg(validName).arg(++counter);
             newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
         }
 
-        if (!QFile::exists(newTorrentPath))
-            QFile::copy(torrentPath, newTorrentPath);
+        try
+        {
+            torrent->info().saveToFile(newTorrentPath);
+        }
+        catch (const RuntimeError &err)
+        {
+            LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2")
+                   .arg(newTorrentPath, err.message()), Log::WARNING);
+        }
     }
 }
 
@@ -2382,14 +2380,12 @@ void Session::saveTorrentsQueue() const
         }
     }
 
-    QMetaObject::invokeMethod(m_resumeDataStorage
-        , [this, queue]() { m_resumeDataStorage->storeQueue(queue); });
+    m_resumeDataStorage->storeQueue(queue);
 }
 
 void Session::removeTorrentsQueue() const
 {
-    QMetaObject::invokeMethod(m_resumeDataStorage
-        , [this]() { m_resumeDataStorage->storeQueue({}); });
+    m_resumeDataStorage->storeQueue({});
 }
 
 void Session::setDefaultSavePath(QString path)
@@ -3844,21 +3840,9 @@ void Session::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVe
 
 void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
-    // Save metadata
-    const QDir resumeDataDir {m_resumeFolderPath};
-    const QString torrentFileName {QString {"%1.torrent"}.arg(torrent->id().toString())};
-    try
-    {
-        torrent->info().saveToFile(resumeDataDir.absoluteFilePath(torrentFileName));
-        // Copy the torrent file to the export folder
-        if (!torrentExportDirectory().isEmpty())
-            exportTorrentFile(torrent);
-    }
-    catch (const RuntimeError &err)
-    {
-        LogMsg(tr("Couldn't save torrent metadata file '%1'. Reason: %2")
-               .arg(torrentFileName, err.message()), Log::CRITICAL);
-    }
+    // Copy the torrent file to the export folder
+    if (!torrentExportDirectory().isEmpty())
+        exportTorrentFile(torrent);
 
     emit torrentMetadataReceived(torrent);
 }
@@ -3919,8 +3903,7 @@ void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const Loa
 {
     --m_numResumeData;
 
-    QMetaObject::invokeMethod(m_resumeDataStorage
-        , [this, torrentID = torrent->id(), data]() { m_resumeDataStorage->store(torrentID, data); });
+    m_resumeDataStorage->store(torrent->id(), data);
 }
 
 void Session::handleTorrentTrackerReply(TorrentImpl *const torrent, const QString &trackerUrl)
@@ -4055,26 +4038,7 @@ bool Session::hasPerTorrentSeedingTimeLimit() const
 
 void Session::initResumeDataStorage()
 {
-    m_resumeFolderPath = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER);
-    const QDir resumeFolderDir(m_resumeFolderPath);
-    if (resumeFolderDir.exists() || resumeFolderDir.mkpath(resumeFolderDir.absolutePath()))
-    {
-        m_resumeFolderLock->setFileName(resumeFolderDir.absoluteFilePath("session.lock"));
-        if (!m_resumeFolderLock->open(QFile::WriteOnly))
-        {
-            throw RuntimeError {tr("Cannot write to torrent resume folder: \"%1\"")
-                        .arg(Utils::Fs::toNativePath(m_resumeFolderPath))};
-        }
-    }
-    else
-    {
-        throw RuntimeError {tr("Cannot create torrent resume folder: \"%1\"")
-                    .arg(Utils::Fs::toNativePath(m_resumeFolderPath))};
-    }
-
-    m_resumeDataStorage = new BencodeResumeDataStorage {m_resumeFolderPath};
-    m_resumeDataStorage->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_resumeDataStorage, &QObject::deleteLater);
+    m_resumeDataStorage = new BencodeResumeDataStorage(this);
 }
 
 void Session::configureDeferred()
@@ -4381,24 +4345,14 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
     }
     else
     {
+        m_resumeDataStorage->store(torrent->id(), params);
+
         // The following is useless for newly added magnet
         if (hasMetadata)
         {
-            // Backup torrent file
-            const QDir resumeDataDir {m_resumeFolderPath};
-            const QString torrentFileName {QString::fromLatin1("%1.torrent").arg(torrent->id().toString())};
-            try
-            {
-                torrent->info().saveToFile(resumeDataDir.absoluteFilePath(torrentFileName));
-                // Copy the torrent file to the export folder
-                if (!torrentExportDirectory().isEmpty())
-                    exportTorrentFile(torrent);
-            }
-            catch (const RuntimeError &err)
-            {
-                LogMsg(tr("Couldn't save torrent metadata file '%1'. Reason: %2")
-                       .arg(torrentFileName, err.message()), Log::CRITICAL);
-            }
+            // Copy the torrent file to the export folder
+            if (!torrentExportDirectory().isEmpty())
+                exportTorrentFile(torrent);
         }
 
         if (isAddTrackersEnabled() && !torrent->isPrivate())
@@ -4406,10 +4360,6 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 
         LogMsg(tr("'%1' added to download list.", "'torrent name' was added to download list.")
             .arg(torrent->name()));
-
-        // In case of crash before the scheduled generation
-        // of the fastresumes.
-        torrent->saveResumeData();
     }
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
