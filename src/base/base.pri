@@ -57,6 +57,7 @@ HEADERS += \
     $$PWD/net/proxyconfigurationmanager.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
+    $$PWD/orderedset.h \
     $$PWD/preferences.h \
     $$PWD/profile.h \
     $$PWD/profile_p.h \
@@ -74,6 +75,7 @@ HEADERS += \
     $$PWD/search/searchpluginmanager.h \
     $$PWD/settingsstorage.h \
     $$PWD/settingvalue.h \
+    $$PWD/tagset.h \
     $$PWD/torrentfileguard.h \
     $$PWD/torrentfilter.h \
     $$PWD/types.h \
@@ -152,6 +154,7 @@ SOURCES += \
     $$PWD/search/searchhandler.cpp \
     $$PWD/search/searchpluginmanager.cpp \
     $$PWD/settingsstorage.cpp \
+    $$PWD/tagset.cpp \
     $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/utils/bytearray.cpp \

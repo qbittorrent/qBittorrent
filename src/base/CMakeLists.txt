@@ -58,6 +58,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.h
     net/reverseresolution.h
     net/smtp.h
+    orderedset.h
     preferences.h
     profile.h
     profile_p.h
@@ -74,6 +75,7 @@ add_library(qbt_base STATIC
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
+    tagset.h
     torrentfileguard.h
     torrentfilter.h
     types.h
@@ -152,6 +154,7 @@ add_library(qbt_base STATIC
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
+    tagset.cpp
     torrentfileguard.cpp
     torrentfilter.cpp
     utils/bytearray.cpp

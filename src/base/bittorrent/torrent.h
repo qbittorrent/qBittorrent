@@ -33,6 +33,7 @@
 #include <QString>
 #include <QtContainerFwd>
 
+#include "base/tagset.h"
 #include "abstractfilestorage.h"
 
 class QBitArray;
@@ -168,7 +169,7 @@ namespace BitTorrent
         virtual bool belongsToCategory(const QString &category) const = 0;
         virtual bool setCategory(const QString &category) = 0;
 
-        virtual QSet<QString> tags() const = 0;
+        virtual TagSet tags() const = 0;
         virtual bool hasTag(const QString &tag) const = 0;
         virtual bool addTag(const QString &tag) = 0;
         virtual bool removeTag(const QString &tag) = 0;

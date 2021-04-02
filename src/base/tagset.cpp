@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,35 +26,12 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "tagset.h"
 
-#include <libtorrent/add_torrent_params.hpp>
-
-#include <QString>
-
-#include "base/tagset.h"
-#include "torrent.h"
-#include "torrentcontentlayout.h"
-
-namespace BitTorrent
+bool TagLessThan::operator()(const QString &left, const QString &right) const
 {
-    struct LoadTorrentParams
-    {
-        lt::add_torrent_params ltAddTorrentParams {};
-
-        QString name;
-        QString category;
-        TagSet tags;
-        QString savePath;
-        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
-        TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
-        bool firstLastPiecePriority = false;
-        bool hasSeedStatus = false;
-        bool stopped = false;
-
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-
-        bool restored = false;  // is existing torrent job?
-    };
+    const int result = m_compare(left, right);
+    if (result != 0)
+        return (result < 0);
+    return (m_subCompare(left, right) < 0);
 }

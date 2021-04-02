@@ -42,10 +42,10 @@
 #include <QMap>
 #include <QObject>
 #include <QQueue>
-#include <QSet>
 #include <QString>
 #include <QVector>
 
+#include "base/tagset.h"
 #include "infohash.h"
 #include "speedmonitor.h"
 #include "torrent.h"
@@ -115,7 +115,7 @@ namespace BitTorrent
         bool belongsToCategory(const QString &category) const override;
         bool setCategory(const QString &category) override;
 
-        QSet<QString> tags() const override;
+        TagSet tags() const override;
         bool hasTag(const QString &tag) const override;
         bool addTag(const QString &tag) override;
         bool removeTag(const QString &tag) override;
@@ -247,7 +247,7 @@ namespace BitTorrent
         QString actualStorageLocation() const;
 
     private:
-        typedef std::function<void ()> EventTrigger;
+        using EventTrigger = std::function<void ()>;
 
         void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
@@ -315,7 +315,7 @@ namespace BitTorrent
         QString m_name;
         QString m_savePath;
         QString m_category;
-        QSet<QString> m_tags;
+        TagSet m_tags;
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         TorrentOperatingMode m_operatingMode;
