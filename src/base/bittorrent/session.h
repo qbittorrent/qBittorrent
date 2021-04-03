@@ -46,7 +46,6 @@
 
 #include "base/settingvalue.h"
 #include "base/types.h"
-#include "base/net/dnsupdater.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "sessionstatus.h"
@@ -494,9 +493,6 @@ namespace BitTorrent
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
 
-        bool isCheckPublicIPEnabled() const;
-        void setCheckPublicIPEnabled(bool enabled);
-
     signals:
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
@@ -549,9 +545,6 @@ namespace BitTorrent
         // Session reconfiguration triggers
         void networkOnlineStateChanged(bool online);
         void networkConfigurationChange(const QNetworkConfiguration &);
-
-        void checkPublicIP();
-        void publicIPRequestFinished(const Net::DownloadResult& result);
 
     private:
         struct MoveStorageJob
@@ -794,14 +787,6 @@ namespace BitTorrent
         QNetworkConfigurationManager *m_networkManager = nullptr;
 
         QList<MoveStorageJob> m_moveStorageQueue;
-
-        bool m_isCheckPublicIPEnabled = false;
-        QTimer *m_publicIPCheckTimer = nullptr;
-        static const int PUBLIC_IP_CHECK_INTERVAL = 1800000; // 30 min
-        QHostAddress m_lastPublicIP;
-        QDateTime m_lastPublicIPCheckTime;
-        void forceAnnounceToAllTrackers();
-        void forceAnnounceToAllTrackers(lt::settings_pack& settingsPack) const;
 
         static Session *m_instance;
     };

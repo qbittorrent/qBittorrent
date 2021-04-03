@@ -426,7 +426,6 @@ Session::Session(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY("PeerTurnover"), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY("PeerTurnoverCutOff"), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY("PeerTurnoverInterval"), 300)
-    , m_isCheckPublicIPEnabled(false)
     , m_bannedIPs("State/BannedIPs"
                   , QStringList()
                   , [](const QStringList &value)
@@ -442,7 +441,6 @@ Session::Session(QObject *parent)
     , m_resumeFolderLock {new QFile {this}}
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
-    , m_publicIPCheckTimer {new QTimer {this}}
     , m_statistics {new Statistics {this}}
     , m_ioThread {new QThread {this}}
     , m_recentErroredTorrentsTimer {new QTimer {this}}
@@ -513,15 +511,6 @@ Session::Session(QObject *parent)
     new PortForwarderImpl {m_nativeSession};
 
     initMetrics();
-
-    m_publicIPCheckTimer->setInterval(PUBLIC_IP_CHECK_INTERVAL);
-    connect(m_publicIPCheckTimer, &QTimer::timeout, this, &Session::checkPublicIP);
-    if (isCheckPublicIPEnabled())
-    {
-        m_lastPublicIP = QHostAddress();
-        m_lastPublicIPCheckTime = QDateTime::currentDateTime();
-        m_publicIPCheckTimer->start();
-    }
 }
 
 bool Session::isDHTEnabled() const
@@ -4814,81 +4803,4 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
         LogMsg(tr("SOCKS5 proxy error. Message: %1").arg(QString::fromStdString(p->message()))
             , Log::WARNING);
     }
-}
-
-bool Session::isCheckPublicIPEnabled() const
-{
-    return m_isCheckPublicIPEnabled;
-}
-
-void Session::setCheckPublicIPEnabled(bool enabled)
-{
-    if (enabled == m_isCheckPublicIPEnabled)
-    {
-        return;
-    }
-
-    m_isCheckPublicIPEnabled = enabled;
-
-    if (m_isCheckPublicIPEnabled == true)
-    {
-        m_lastPublicIP = QHostAddress();
-        m_lastPublicIPCheckTime = QDateTime::currentDateTime();
-        m_publicIPCheckTimer->start();
-    }
-    else
-    {
-        m_publicIPCheckTimer->stop();
-    }
-
-    configureDeferred();
-}
-
-void Session::checkPublicIP()
-{
-    Net::DownloadManager::instance()->download(
-        Net::DownloadRequest("http://api64.ipify.org").userAgent("qBittorrent/" QBT_VERSION_2)
-        , this, &Session::publicIPRequestFinished);
-
-    m_lastPublicIPCheckTime = QDateTime::currentDateTime();
-}
-
-void Session::publicIPRequestFinished(const Net::DownloadResult& result)
-{
-    if (result.status != Net::DownloadStatus::Success)
-    {
-        qWarning() << "Public IP request failed:" << result.errorString;
-        return;
-    }
-
-    // Parse response
-    QString ipStr = QString::fromUtf8(result.data);
-    qDebug() << Q_FUNC_INFO << "The following public IP was captured:" << ipStr;
-    QHostAddress newIP(ipStr);
-    if (!newIP.isNull())
-    {
-        if (m_lastPublicIP != newIP)
-        {
-            qDebug() << Q_FUNC_INFO << "The public IP address changed, announce to all trackers...";
-            qDebug() << m_lastPublicIP.toString() << "->" << newIP.toString();
-            m_lastPublicIP = newIP;
-            forceAnnounceToAllTrackers();
-        }
-    }
-    else
-    {
-        qWarning() << Q_FUNC_INFO << "Failed to construct a QHostAddress from the IP string";
-    }
-}
-
-void Session::forceAnnounceToAllTrackers()
-{
-    lt::settings_pack settingsPack = m_nativeSession->get_settings();
-    forceAnnounceToAllTrackers(settingsPack);
-    m_nativeSession->apply_settings(settingsPack);
-}
-
-void Session::forceAnnounceToAllTrackers(lt::settings_pack& settingsPack) const
-{
-    settingsPack.set_int(lt::settings_pack::announce_to_all_trackers, true);
 }
