@@ -240,12 +240,12 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
     , m_tags(params.tags)
     , m_ratioLimit(params.ratioLimit)
     , m_seedingTimeLimit(params.seedingTimeLimit)
-    , m_operatingMode(params.forced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged)
+    , m_operatingMode(params.operatingMode)
     , m_contentLayout(params.contentLayout)
     , m_hasSeedStatus(params.hasSeedStatus)
     , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
     , m_useAutoTMM(params.savePath.isEmpty())
-    , m_isStopped(params.paused)
+    , m_isStopped(params.stopped)
     , m_ltAddTorrentParams(params.ltAddTorrentParams)
 {
     if (m_useAutoTMM)
@@ -1470,6 +1470,7 @@ void TorrentImpl::endReceivedMetadataHandling(const QString &savePath, const QSt
 
     m_maintenanceJob = MaintenanceJob::None;
     updateStatus();
+    prepareResumeData(p);
 
     m_session->handleTorrentMetadataReceived(this);
 }
@@ -1729,28 +1730,10 @@ void TorrentImpl::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
 
 void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
-    if (m_hasMissingFiles)
-    {
-        const auto havePieces = m_ltAddTorrentParams.have_pieces;
-        const auto unfinishedPieces = m_ltAddTorrentParams.unfinished_pieces;
-        const auto verifiedPieces = m_ltAddTorrentParams.verified_pieces;
-
-        // Update recent resume data but preserve existing progress
-        m_ltAddTorrentParams = p->params;
-        m_ltAddTorrentParams.have_pieces = havePieces;
-        m_ltAddTorrentParams.unfinished_pieces = unfinishedPieces;
-        m_ltAddTorrentParams.verified_pieces = verifiedPieces;
-    }
-    else
-    {
-        // Update recent resume data
-        m_ltAddTorrentParams = p->params;
-    }
-
-    m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
-
     if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
     {
+        m_ltAddTorrentParams = p->params;
+
         m_ltAddTorrentParams.have_pieces.clear();
         m_ltAddTorrentParams.verified_pieces.clear();
 
@@ -1759,6 +1742,33 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 
         m_session->findIncompleteFiles(metadata, m_savePath);
     }
+    else
+    {
+        prepareResumeData(p->params);
+    }
+}
+
+void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
+{
+    if (m_hasMissingFiles)
+    {
+        const auto havePieces = m_ltAddTorrentParams.have_pieces;
+        const auto unfinishedPieces = m_ltAddTorrentParams.unfinished_pieces;
+        const auto verifiedPieces = m_ltAddTorrentParams.verified_pieces;
+
+        // Update recent resume data but preserve existing progress
+        m_ltAddTorrentParams = params;
+        m_ltAddTorrentParams.have_pieces = havePieces;
+        m_ltAddTorrentParams.unfinished_pieces = unfinishedPieces;
+        m_ltAddTorrentParams.verified_pieces = verifiedPieces;
+    }
+    else
+    {
+        // Update recent resume data
+        m_ltAddTorrentParams = params;
+    }
+
+    m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
 
     LoadTorrentParams resumeData;
     resumeData.name = m_name;
@@ -1770,8 +1780,8 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
     resumeData.seedingTimeLimit = m_seedingTimeLimit;
     resumeData.firstLastPiecePriority = m_hasFirstLastPiecePriority;
     resumeData.hasSeedStatus = m_hasSeedStatus;
-    resumeData.paused = m_isStopped;
-    resumeData.forced = (m_operatingMode == TorrentOperatingMode::Forced);
+    resumeData.stopped = m_isStopped;
+    resumeData.operatingMode = m_operatingMode;
     resumeData.ltAddTorrentParams = m_ltAddTorrentParams;
 
     m_session->handleTorrentResumeDataReady(this, resumeData);
@@ -1876,6 +1886,14 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     }
 }
 
+#if (LIBTORRENT_VERSION_NUM >= 20003)
+void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *p)
+{
+    if (m_nativeHandle.need_save_resume_data())
+        m_session->handleTorrentNeedSaveResumeData(this);
+}
+#endif
+
 void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
     Q_UNUSED(p);
@@ -1913,6 +1931,11 @@ void TorrentImpl::handleAlert(const lt::alert *a)
 {
     switch (a->type())
     {
+#if (LIBTORRENT_VERSION_NUM >= 20003)
+    case lt::file_prio_alert::alert_type:
+        handleFilePrioAlert(static_cast<const lt::file_prio_alert*>(a));
+        break;
+#endif
     case lt::file_renamed_alert::alert_type:
         handleFileRenamedAlert(static_cast<const lt::file_renamed_alert*>(a));
         break;

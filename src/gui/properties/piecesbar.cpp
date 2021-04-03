@@ -143,7 +143,11 @@ bool PiecesBar::event(QEvent *e)
     return base::event(e);
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+void PiecesBar::enterEvent(QEnterEvent *e)
+#else
 void PiecesBar::enterEvent(QEvent *e)
+#endif
 {
     m_hovered = true;
     base::enterEvent(e);

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,42 +29,40 @@
 #pragma once
 
 #include <QDir>
-#include <QFileSystemWatcher>
-#include <QHash>
-#include <QTimer>
 #include <QVector>
 
-/*
- * Subclassing QFileSystemWatcher in order to support Network File
- * System watching (NFS, CIFS) on Linux and Mac OS.
- */
-class FileSystemWatcher final : public QFileSystemWatcher
+#include "resumedatastorage.h"
+
+class QByteArray;
+class QThread;
+
+namespace BitTorrent
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(FileSystemWatcher)
+    class TorrentInfo;
 
-public:
-    explicit FileSystemWatcher(QObject *parent = nullptr);
+    class BencodeResumeDataStorage final : public ResumeDataStorage
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(BencodeResumeDataStorage)
 
-    QStringList directories() const;
-    void addPath(const QString &path);
-    void removePath(const QString &path);
+    public:
+        explicit BencodeResumeDataStorage(QObject *parent = nullptr);
+        ~BencodeResumeDataStorage() override;
 
-signals:
-    void torrentsAdded(const QStringList &pathList);
+        QVector<TorrentID> registeredTorrents() const override;
+        std::optional<LoadTorrentParams> load(const TorrentID &id) const override;
+        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
+        void remove(const TorrentID &id) const override;
+        void storeQueue(const QVector<TorrentID> &queue) const override;
 
-private slots:
-    void scanLocalFolder(const QString &path);
-    void processPartialTorrents();
-    void scanNetworkFolders();
+    private:
+        std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata) const;
 
-private:
-    void processTorrentsInDir(const QDir &dir);
+        const QDir m_resumeDataDir;
+        QVector<TorrentID> m_registeredTorrents;
+        QThread *m_ioThread = nullptr;
 
-    // Partial torrents
-    QHash<QString, int> m_partialTorrents;
-    QTimer m_partialTorrentTimer;
-
-    QVector<QDir> m_watchedFolders;
-    QTimer m_watchTimer;
-};
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+    };
+}

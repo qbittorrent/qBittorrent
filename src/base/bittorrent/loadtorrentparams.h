@@ -47,10 +47,10 @@ namespace BitTorrent
         QSet<QString> tags;
         QString savePath;
         TorrentContentLayout contentLayout = TorrentContentLayout::Original;
+        TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
-        bool forced = false;
-        bool paused = false;
+        bool stopped = false;
 
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;

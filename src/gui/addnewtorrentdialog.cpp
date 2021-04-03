@@ -549,10 +549,10 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 
         const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
 
-        const int priorityGroups = 3;
-        const int priorityGroupSize = std::max((selectedRows.length() / priorityGroups), 1);
+        const qsizetype priorityGroups = 3;
+        const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
 
-        for (int i = 0; i < selectedRows.length(); ++i)
+        for (qsizetype i = 0; i < selectedRows.length(); ++i)
         {
             auto priority = BitTorrent::DownloadPriority::Ignored;
             switch (i / priorityGroupSize)
