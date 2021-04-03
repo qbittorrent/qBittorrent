@@ -342,9 +342,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
     , sequential(SEQUENTIAL_OPTION.value(env))
     , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     , showVersion(false)
-#endif
 #ifndef DISABLE_GUI
     , noSplash(NO_SPLASH_OPTION.value(env))
 #elif !defined(Q_OS_WIN)
@@ -412,12 +410,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             {
                 result.showHelp = true;
             }
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
             else if (arg == SHOW_VERSION_OPTION)
             {
                 result.showVersion = true;
             }
-#endif
             else if (arg == WEBUI_PORT_OPTION)
             {
                 result.webUiPort = WEBUI_PORT_OPTION.value(arg);
@@ -541,9 +537,7 @@ QString makeUsage(const QString &prgName)
     stream << indentation << prgName << QLatin1String(" [options] [(<filename> | <url>)...]") << '\n';
 
     stream << QObject::tr("Options:") << '\n';
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     stream << SHOW_VERSION_OPTION.usage() << wrapText(QObject::tr("Display program version and exit")) << '\n';
-#endif
     stream << SHOW_HELP_OPTION.usage() << wrapText(QObject::tr("Display this help message and exit")) << '\n';
     stream << WEBUI_PORT_OPTION.usage(QObject::tr("port"))
            << wrapText(QObject::tr("Change the Web UI port"))

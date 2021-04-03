@@ -45,9 +45,7 @@ struct QBtCommandLineParameters
     bool skipChecking;
     bool sequential;
     bool firstLastPiecePriority;
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     bool showVersion;
-#endif
 #ifndef DISABLE_GUI
     bool noSplash;
 #elif !defined(Q_OS_WIN)

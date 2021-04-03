@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
                                                         "--random-parameter is an unknown command line parameter.")
                                                         .arg(params.unknownParameter));
         }
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
+
         if (params.showVersion)
         {
             if (isOneArg)
@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
             throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
                                      .arg(QLatin1String("-v (or --version)")));
         }
-#endif
+
         if (params.showHelp)
         {
             if (isOneArg)
