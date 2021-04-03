@@ -43,11 +43,10 @@
 #include <QSet>
 #include <QtContainerFwd>
 #include <QVector>
-#include <QDateTime>
-#include <QHostAddress>
 
 #include "base/settingvalue.h"
 #include "base/types.h"
+#include "base/net/dnsupdater.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "sessionstatus.h"
