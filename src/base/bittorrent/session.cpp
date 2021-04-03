@@ -2741,7 +2741,7 @@ void Session::setPort(const int port)
         m_port = port;
         configureListeningInterface();
         for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
-            torrent.force_reannounce(lt::torrent_handle::ignore_min_interval);
+            torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
     }
 }
 
@@ -4604,7 +4604,7 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
     if (!m_lastExternalIP.isNull() && m_lastExternalIP != externalIP)
     {
         for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
-            torrent.force_reannounce(lt::torrent_handle::ignore_min_interval);
+            torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
     }
     m_lastExternalIP = externalIP;
 }
