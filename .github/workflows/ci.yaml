@@ -4,11 +4,7 @@ name: GitHub Actions CI
 # Cache is not used for Ubuntu builds, because it already has all dependencies except
 # the appropriate libtorrent version, which only takes 3-5 minutes to build from source anyway
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [pull_request, push]
 
 env:
   VCPKG_COMMIT: e4ce66eecfd3e5cca5eac06c971921bf8e37cf88
