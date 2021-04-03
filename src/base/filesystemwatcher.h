@@ -31,7 +31,6 @@
 #include <QDir>
 #include <QFileSystemWatcher>
 #include <QHash>
-#include <QtContainerFwd>
 #include <QTimer>
 #include <QVector>
 
@@ -39,9 +38,10 @@
  * Subclassing QFileSystemWatcher in order to support Network File
  * System watching (NFS, CIFS) on Linux and Mac OS.
  */
-class FileSystemWatcher : public QFileSystemWatcher
+class FileSystemWatcher final : public QFileSystemWatcher
 {
     Q_OBJECT
+    Q_DISABLE_COPY(FileSystemWatcher)
 
 public:
     explicit FileSystemWatcher(QObject *parent = nullptr);
@@ -53,7 +53,7 @@ public:
 signals:
     void torrentsAdded(const QStringList &pathList);
 
-protected slots:
+private slots:
     void scanLocalFolder(const QString &path);
     void processPartialTorrents();
     void scanNetworkFolders();

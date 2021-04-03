@@ -394,15 +394,14 @@ void AppController::setPreferencesAction()
     if (hasKey("scan_dirs"))
     {
         const QVariantHash nativeDirs = it.value().toHash();
-        QVariantHash oldScanDirs = pref->getScanDirs();
+        const QVariantHash oldScanDirs = pref->getScanDirs();
         QVariantHash scanDirs;
         ScanFoldersModel *model = ScanFoldersModel::instance();
+
         for (auto i = nativeDirs.cbegin(); i != nativeDirs.cend(); ++i)
         {
-            QString folder = Utils::Fs::toUniformPath(i.key());
-            int downloadType;
+            int downloadType = 0;
             QString downloadPath;
-            ScanFoldersModel::PathStatus ec;
             if (i.value().type() == QVariant::String)
             {
                 downloadType = ScanFoldersModel::CUSTOM_LOCATION;
@@ -411,23 +410,17 @@ void AppController::setPreferencesAction()
             else
             {
                 downloadType = i.value().toInt();
-                downloadPath = (downloadType == ScanFoldersModel::DEFAULT_LOCATION) ? "Default folder" : "Watch folder";
+                downloadPath = (downloadType == ScanFoldersModel::DEFAULT_LOCATION)
+                    ? QLatin1String("Default folder")
+                    : QLatin1String("Watch folder");
             }
 
-            if (!oldScanDirs.contains(folder))
-                ec = model->addPath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath);
-            else
-                ec = model->updatePath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath);
-
+            const QString folder = Utils::Fs::toUniformPath(i.key());
+            const ScanFoldersModel::PathStatus ec = !oldScanDirs.contains(folder)
+                ? model->addPath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath)
+                : model->updatePath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath);
             if (ec == ScanFoldersModel::Ok)
-            {
-                scanDirs.insert(folder, (downloadType == ScanFoldersModel::CUSTOM_LOCATION) ? QVariant(downloadPath) : QVariant(downloadType));
-                qDebug("New watched folder: %s to %s", qUtf8Printable(folder), qUtf8Printable(downloadPath));
-            }
-            else
-            {
-                qDebug("Watched folder %s failed with error %d", qUtf8Printable(folder), ec);
-            }
+                scanDirs.insert(folder, ((downloadType == ScanFoldersModel::CUSTOM_LOCATION) ? QVariant(downloadPath) : QVariant(downloadType)));
         }
 
         // Update deleted folders
@@ -435,11 +428,9 @@ void AppController::setPreferencesAction()
         {
             const QString &folder = i.key();
             if (!scanDirs.contains(folder))
-            {
                 model->removePath(folder);
-                qDebug("Removed watched folder %s", qUtf8Printable(folder));
-            }
         }
+
         pref->setScanDirs(scanDirs);
     }
     // Email notification upon download completion
