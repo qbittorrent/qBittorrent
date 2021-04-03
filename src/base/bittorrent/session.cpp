@@ -438,6 +438,7 @@ Session::Session(QObject *parent)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
+    , m_lastExternalIP()
     , m_resumeFolderLock {new QFile {this}}
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
@@ -2736,6 +2737,8 @@ void Session::setPort(const int port)
     {
         m_port = port;
         configureListeningInterface();
+        for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
+            torrent.force_reannounce(lt::torrent_handle::ignore_min_interval);
     }
 }
 
@@ -4635,8 +4638,15 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
+    const QHostAddress externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
-        .arg(toString(p->external_address)), Log::INFO);
+        .arg(externalIP.toString()), Log::INFO);
+    if (!m_lastExternalIP.isNull() && m_lastExternalIP != externalIP)
+    {
+        for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
+            torrent.force_reannounce(lt::torrent_handle::ignore_min_interval);
+    }
+    m_lastExternalIP = externalIP;
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
