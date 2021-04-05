@@ -47,8 +47,8 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
-#include "base/utils/string.h"
 #include "categoryfilterwidget.h"
 #include "tagfilterwidget.h"
 #include "transferlistwidget.h"
@@ -366,10 +366,11 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     }
 
     Q_ASSERT(count() >= 4);
+    const Utils::Compare::NaturalLessThan<Qt::CaseSensitive> naturalLessThan {};
     int insPos = count();
     for (int i = 4; i < count(); ++i)
     {
-        if (Utils::String::naturalLessThan<Qt::CaseSensitive>(host, item(i)->text()))
+        if (naturalLessThan(host, item(i)->text()))
         {
             insPos = i;
             break;

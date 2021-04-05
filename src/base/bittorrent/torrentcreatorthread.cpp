@@ -42,9 +42,9 @@
 
 #include "base/exceptions.h"
 #include "base/global.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
-#include "base/utils/string.h"
 #include "base/version.h"
 #include "ltunderlyingtype.h"
 
@@ -105,6 +105,7 @@ void TorrentCreatorThread::run()
     try
     {
         const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + '/';
+        const Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> naturalLessThan {};
 
         // Adding files to the torrent
         lt::file_storage fs;
@@ -123,7 +124,7 @@ void TorrentCreatorThread::run()
                 dirIter.next();
                 dirs += dirIter.filePath();
             }
-            std::sort(dirs.begin(), dirs.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+            std::sort(dirs.begin(), dirs.end(), naturalLessThan);
 
             QStringList fileNames;
             QHash<QString, qint64> fileSizeMap;
@@ -142,7 +143,7 @@ void TorrentCreatorThread::run()
                     fileSizeMap[relFilePath] = fileIter.fileInfo().size();
                 }
 
-                std::sort(tmpNames.begin(), tmpNames.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+                std::sort(tmpNames.begin(), tmpNames.end(), naturalLessThan);
                 fileNames += tmpNames;
             }
 

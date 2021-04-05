@@ -31,6 +31,8 @@
 #include <QSortFilterProxyModel>
 #include <QStringList>
 
+#include "base/utils/compare.h"
+
 class SearchSortModel final : public QSortFilterProxyModel
 {
     using base = QSortFilterProxyModel;
@@ -94,4 +96,6 @@ private:
     int m_minSeeds, m_maxSeeds;
     int m_minLeeches, m_maxLeeches;
     qint64 m_minSize, m_maxSize;
+
+    Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };

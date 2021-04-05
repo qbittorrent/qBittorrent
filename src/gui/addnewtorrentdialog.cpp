@@ -48,9 +48,9 @@
 #include "base/net/downloadmanager.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileguard.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "properties/proplistdelegate.h"
 #include "raisedmessagebox.h"
@@ -129,7 +129,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     // Load categories
     QStringList categories = session->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     auto defaultCategory = settings()->loadValue<QString>(KEY_DEFAULTCATEGORY);
 
     if (!m_torrentParams.category.isEmpty())

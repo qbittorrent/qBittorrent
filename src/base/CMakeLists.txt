@@ -79,6 +79,7 @@ add_library(qbt_base STATIC
     types.h
     unicodestrings.h
     utils/bytearray.h
+    utils/compare.h
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
@@ -154,6 +155,7 @@ add_library(qbt_base STATIC
     torrentfileguard.cpp
     torrentfilter.cpp
     utils/bytearray.cpp
+    utils/compare.cpp
     utils/foreignapps.cpp
     utils/fs.cpp
     utils/gzip.cpp

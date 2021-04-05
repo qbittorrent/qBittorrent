@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2013  Nick Tiskov <daymansmail@gmail.com>
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,29 +26,63 @@
  * exception statement from your version.
  */
 
-#include "peerlistsortmodel.h"
+#pragma once
 
-#include "peerlistwidget.h"
+#include <Qt>
+#include <QtGlobal>
 
-PeerListSortModel::PeerListSortModel(QObject *parent)
-    : QSortFilterProxyModel(parent)
+#ifndef Q_OS_WIN
+#define QBT_USE_QCOLLATOR
+#include <QCollator>
+#endif
+
+class QString;
+
+namespace Utils::Compare
 {
-    setSortRole(UnderlyingDataRole);
-}
-
-bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
-{
-    switch (sortColumn())
+#ifdef QBT_USE_QCOLLATOR
+    template <Qt::CaseSensitivity caseSensitivity>
+    class NaturalCompare
     {
-    case PeerListWidget::IP:
-    case PeerListWidget::CLIENT:
+    public:
+        NaturalCompare()
         {
-            const QString strL = left.data(UnderlyingDataRole).toString();
-            const QString strR = right.data(UnderlyingDataRole).toString();
-            return m_naturalLessThan(strL, strR);
+            m_collator.setNumericMode(true);
+            m_collator.setCaseSensitivity(caseSensitivity);
         }
-        break;
-    default:
-        return QSortFilterProxyModel::lessThan(left, right);
+
+        int operator()(const QString &left, const QString &right) const
+        {
+            return m_collator.compare(left, right);
+        }
+
+    private:
+        QCollator m_collator;
+    };
+#else
+    int naturalCompare(const QString &left, const QString &right, Qt::CaseSensitivity caseSensitivity);
+
+    template <Qt::CaseSensitivity caseSensitivity>
+    class NaturalCompare
+    {
+    public:
+        int operator()(const QString &left, const QString &right) const
+        {
+            return naturalCompare(left, right, caseSensitivity);
+        }
+    };
+#endif
+
+    template <Qt::CaseSensitivity caseSensitivity>
+    class NaturalLessThan
+    {
+    public:
+        bool operator()(const QString &left, const QString &right) const
+        {
+            return (m_comparator(left, right) < 0);
+        }
+
+    private:
+        NaturalCompare<caseSensitivity> m_comparator;
     };
 }
