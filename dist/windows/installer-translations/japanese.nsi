@@ -30,7 +30,8 @@ LangString launch_qbt ${LANG_JAPANESE} "qBittorrent を起動"
 LangString inst_requires_64bit ${LANG_JAPANESE} "このインストーラーは 64 ビット版の Windows でのみ実行できます。"
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_JAPANESE} "このバージョンの qBittorrent には Windows 7 以降が必要です。"
-
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_JAPANESE} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

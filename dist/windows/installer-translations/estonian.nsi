@@ -30,7 +30,8 @@ LangString launch_qbt ${LANG_ESTONIAN} "Käivita qBittorrent."
 LangString inst_requires_64bit ${LANG_ESTONIAN} "See installer töötab ainult 64-bit Windowsi versioonides."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_ESTONIAN} "Selle qBittorrenti versiooni jaoks on vajalik vähemalt Windows 7."
-
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_ESTONIAN} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings
