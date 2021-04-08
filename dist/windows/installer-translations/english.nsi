@@ -33,7 +33,6 @@ LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 
-
 ;------------------------------------
 ;Uninstaller strings
 
