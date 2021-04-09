@@ -28,9 +28,9 @@
    </item>
    <item>
     <widget class="QPlainTextEdit" name="plainTextEdit">
-     <attribute name="tabChangesFocus">
+     <property name="tabChangesFocus">
       <bool>true</bool>
-     </attribute>
+     </property>
     </widget>
    </item>
    <item>
