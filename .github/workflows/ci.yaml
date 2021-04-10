@@ -62,6 +62,9 @@ jobs:
           --graphviz=build/target_graph.dot
         cmake --build build
 
+    - name: install qBittorrent
+      run: sudo cmake --build build --target install
+
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
