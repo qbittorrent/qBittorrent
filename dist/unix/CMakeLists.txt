@@ -30,12 +30,6 @@ install(FILES ${MAN_FILES}
 )
 
 if (GUI)
-    install(DIRECTORY menuicons/
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor
-        COMPONENT data
-        FILES_MATCHING PATTERN "*.png"
-    )
-
     install(FILES org.qbittorrent.qBittorrent.desktop
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/
         COMPONENT data
@@ -43,6 +37,11 @@ if (GUI)
 
     install(FILES org.qbittorrent.qBittorrent.appdata.xml
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo/
+        COMPONENT data
+    )
+
+    install(DIRECTORY menuicons/
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor
         COMPONENT data
     )
 
