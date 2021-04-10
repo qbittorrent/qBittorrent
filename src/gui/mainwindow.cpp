@@ -1664,11 +1664,14 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
 
 void MainWindow::showNotificationBaloon(const QString &title, const QString &msg) const
 {
-    if (!isNotificationsEnabled()) return;
+    if (!isNotificationsEnabled())
+        return;
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    OrgFreedesktopNotificationsInterface notifications("org.freedesktop.Notifications",
-                                                  "/org/freedesktop/Notifications",
-                                                  QDBusConnection::sessionBus());
+    OrgFreedesktopNotificationsInterface notifications(QLatin1String("org.freedesktop.Notifications")
+        , QLatin1String("/org/freedesktop/Notifications")
+        , QDBusConnection::sessionBus());
+
     // Testing for 'notifications.isValid()' isn't helpful here.
     // If the notification daemon is configured to run 'as needed'
     // the above check can be false if the daemon wasn't started
@@ -1679,8 +1682,9 @@ void MainWindow::showNotificationBaloon(const QString &title, const QString &msg
     // to start their daemons at the session startup and have it sit
     // idling for the whole session.
     const QVariantMap hints {{QLatin1String("desktop-entry"), QLatin1String("org.qbittorrent.qBittorrent")}};
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, getNotificationTimeout());
+    QDBusPendingReply<uint> reply = notifications.Notify(QLatin1String("qBittorrent"), 0
+        , QLatin1String("qbittorrent"), title, msg, {}, hints, getNotificationTimeout());
+
     reply.waitForFinished();
     if (!reply.isError())
         return;
