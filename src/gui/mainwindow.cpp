@@ -1666,7 +1666,7 @@ void MainWindow::showNotificationBaloon(const QString &title, const QString &msg
 {
     if (!isNotificationsEnabled()) return;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
+    OrgFreedesktopNotificationsInterface notifications("org.freedesktop.Notifications",
                                                   "/org/freedesktop/Notifications",
                                                   QDBusConnection::sessionBus());
     // Testing for 'notifications.isValid()' isn't helpful here.
