@@ -62,7 +62,7 @@ Latest AppImage download: [qBittorrent-Enhanced-Edition.AppImage](https://github
 
 #### macOS (Homebrew) (Maintainer: [AlexaraWu](https://github.com/AlexaraWu))
 ```
-brew install --cask c0re100-qbittorrent
+brew install c0re100-qbittorrent
 ```
 
 #### Windows
