@@ -88,4 +88,8 @@ private:
 #ifndef Q_OS_MACOS
     QCheckBox m_checkBoxIconsInMenusEnabled;
 #endif
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    QSpinBox m_spinBoxNotificationTimeout;
+#endif
 };

@@ -120,6 +120,9 @@ namespace
 #define NOTIFICATIONS_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Notifications/") name)
     const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
     const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    const QString KEY_NOTIFICATION_TIMEOUT = NOTIFICATIONS_SETTINGS_KEY("Timeout");
+#endif
 
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
@@ -527,6 +530,18 @@ void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
 {
     settings()->storeValue(KEY_NOTIFICATIONS_TORRENTADDED, value);
 }
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+int MainWindow::getNotificationTimeout() const
+{
+    return settings()->loadValue(KEY_NOTIFICATION_TIMEOUT, -1);
+}
+
+void MainWindow::setNotificationTimeout(const int value)
+{
+    settings()->storeValue(KEY_NOTIFICATION_TIMEOUT, value);
+}
+#endif
 
 bool MainWindow::isDownloadTrackerFavicon() const
 {
@@ -1666,7 +1681,7 @@ void MainWindow::showNotificationBaloon(const QString &title, const QString &msg
     QVariantMap hints;
     hints["desktop-entry"] = "qBittorrent";
     QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, -1);
+                                                         msg, QStringList(), hints, getNotificationTimeout());
     reply.waitForFinished();
     if (!reply.isError())
         return;
