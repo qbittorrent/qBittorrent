@@ -772,6 +772,16 @@ void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
     setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
 }
 
+QString Preferences::getWebUIBasePath() const
+{
+    return value("Preferences/WebUI/BasePath").toString();
+}
+
+void Preferences::setWebUIBasePath(const Qstring &path)
+{
+    setValue("Preferences/WebUI/BasePath", path);
+}
+
 bool Preferences::isDynDNSEnabled() const
 {
     return value("Preferences/DynDNS/Enabled", false).toBool();

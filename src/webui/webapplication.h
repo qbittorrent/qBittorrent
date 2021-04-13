@@ -132,6 +132,7 @@ private:
     QSet<QString> m_publicAPIs;
     bool m_isAltUIUsed = false;
     QString m_rootFolder;
+    QString m_basePath;
 
     struct TranslatedFile
     {

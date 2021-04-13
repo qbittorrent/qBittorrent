@@ -362,6 +362,7 @@ void WebApplication::configure()
     m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
+    m_basePath = pref->getWebUIBasePath();
 
     m_prebuiltHeaders.clear();
     m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block")});
@@ -495,6 +496,11 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         }
 
         sessionInitialize();
+
+        //Replace base path prefix with a '/'
+        if(!m_basePath.isEmpty() && m_request.path.indexOf(m_basePath == 0))
+            m_request.path.replace(0, m_basePath.length, QChar('/'));
+
         doProcessRequest();
     }
     catch (const HTTPError &error)

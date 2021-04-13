@@ -180,6 +180,8 @@ public:
     void setWebUiPort(quint16 port);
     bool useUPnPForWebUIPort() const;
     void setUPnPForWebUIPort(bool enabled);
+    QString getWebUIBasePath() const;
+    void setWebUIBasePath(const QString &path);
 
     // Authentication
     bool isWebUiLocalAuthEnabled() const;
