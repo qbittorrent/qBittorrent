@@ -47,6 +47,7 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
@@ -330,7 +331,7 @@ void AutomatedRssDownloader::initCategoryCombobox()
 {
     // Load torrent categories
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     m_ui->comboCategory->addItem("");
     m_ui->comboCategory->addItems(categories);
 }

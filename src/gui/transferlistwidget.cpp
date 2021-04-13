@@ -52,6 +52,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -963,7 +964,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Category"));
 
@@ -988,7 +989,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     // Tag Menu
     QStringList tags(BitTorrent::Session::instance()->tags().values());
-    std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Tags"));
 
