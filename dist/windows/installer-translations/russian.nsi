@@ -31,7 +31,7 @@ LangString inst_requires_64bit ${LANG_RUSSIAN} "Этот установщик р
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_RUSSIAN} "Для работы этой версии qBittorrent требуется Windows 7 или выше."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
-LangString inst_uninstall_link_description ${LANG_RUSSIAN} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_RUSSIAN} "Деинсталлировать qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings
