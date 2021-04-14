@@ -2945,6 +2945,22 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                  </item>
                 </layout>
                </item>
+                  <item>
+                      <widget class="QLabel" name="lblWebUiBasePath">
+                          <property name="text">
+                              <string>Base Path:</string>
+                          </property>
+                      </widget>
+                  </item>
+                  <item>
+                      <widget class="QLineEdit" name="textWebUIBasePath">
+                          <property name="toolTip">
+                              <string>
+                                  URL path root for the WebUI. Requires a WebUI restart to take effect.
+                              </string>
+                          </property>
+                      </widget>
+                  </item>
                <item>
                 <widget class="QCheckBox" name="checkWebUIUPnP">
                  <property name="text">

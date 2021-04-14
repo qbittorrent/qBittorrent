@@ -228,6 +228,7 @@ void AppController::preferencesAction()
     data["use_https"] = pref->isWebUiHttpsEnabled();
     data["web_ui_https_cert_path"] = pref->getWebUIHttpsCertificatePath();
     data["web_ui_https_key_path"] = pref->getWebUIHttpsKeyPath();
+    data["web_ui_base_path"] = pref->getWebUIBasePath();
     // Authentication
     data["web_ui_username"] = pref->getWebUiUsername();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
@@ -640,6 +641,8 @@ void AppController::setPreferencesAction()
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
     if (hasKey("web_ui_session_timeout"))
         pref->setWebUISessionTimeout(it.value().toInt());
+    if (hasKey("web_ui_base_path"))
+        pref->setWebUIBasePath(it.value().toString());
     // Use alternative Web UI
     if (hasKey("alternative_webui_enabled"))
         pref->setAltWebUiEnabled(it.value().toBool());

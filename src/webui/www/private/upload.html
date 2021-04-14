@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
-    <script src="scripts/download.js?v=${CACHEID}"></script>
+    <link rel="stylesheet" href="${BASEPATH}/css/style.css?v=${CACHEID}" type="text/css" />
+    <link rel="stylesheet" href="${BASEPATH}/css/Window.css?v=${CACHEID}" type="text/css" />
+    <script src="${BASEPATH}/scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="${BASEPATH}/scripts/download.js?v=${CACHEID}"></script>
 </head>
 
 <body>
     <iframe id="upload_frame" name="upload_frame" class="invisible" src="about:blank"></iframe>
-    <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
+    <form action="${BASEPATH}/api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
             <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
         </div>

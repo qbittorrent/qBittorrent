@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/qbittorrent/qBittorrent.git"
   },
-  "scripts": {
+  "${BASEPATH}/scripts": {
     "format": "js-beautify private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js",
     "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js"
   },

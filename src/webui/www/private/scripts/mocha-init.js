@@ -153,11 +153,11 @@ const initializeWindows = function() {
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: 'xhr',
             toolbar: true,
-            contentURL: 'views/preferences.html',
+            contentURL: '${BASEPATH}/views/preferences.html',
             require: {
                 css: ['css/Tabs.css']
             },
-            toolbarURL: 'views/preferencesToolbar.html',
+            toolbarURL: '${BASEPATH}/views/preferencesToolbar.html',
             maximizable: false,
             closable: true,
             paddingVertical: 0,
@@ -270,7 +270,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/toggleSequentialDownload',
+                url: '${BASEPATH}/api/v2/torrents/toggleSequentialDownload',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -284,7 +284,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/toggleFirstLastPiecePrio',
+                url: '${BASEPATH}/api/v2/torrents/toggleFirstLastPiecePrio',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -298,7 +298,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/setSuperSeeding',
+                url: '${BASEPATH}/api/v2/torrents/setSuperSeeding',
                 method: 'post',
                 data: {
                     value: val,
@@ -313,7 +313,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/setForceStart',
+                url: '${BASEPATH}/api/v2/torrents/setForceStart',
                 method: 'post',
                 data: {
                     value: 'true',
@@ -346,7 +346,7 @@ const initializeWindows = function() {
             id: id,
             title: 'QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]',
             loadMethod: 'xhr',
-            contentURL: 'views/statistics.html',
+            contentURL: '${BASEPATH}/views/statistics.html',
             maximizable: false,
             padding: 10,
             width: loadWindowWidth(id, 275),
@@ -404,7 +404,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: '${BASEPATH}/api/v2/torrents/pause',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -418,7 +418,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: '${BASEPATH}/api/v2/torrents/resume',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -438,7 +438,7 @@ const initializeWindows = function() {
                     enable = true;
             });
             new Request({
-                url: 'api/v2/torrents/setAutoManagement',
+                url: '${BASEPATH}/api/v2/torrents/setAutoManagement',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|"),
@@ -453,7 +453,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/recheck',
+                url: '${BASEPATH}/api/v2/torrents/recheck',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|"),
@@ -467,7 +467,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/reannounce',
+                url: '${BASEPATH}/api/v2/torrents/reannounce',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|"),
@@ -549,7 +549,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/setCategory',
+                url: '${BASEPATH}/api/v2/torrents/setCategory',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|"),
@@ -600,7 +600,7 @@ const initializeWindows = function() {
     removeCategoryFN = function(categoryHash) {
         const categoryName = category_list[categoryHash].name;
         new Request({
-            url: 'api/v2/torrents/removeCategories',
+            url: '${BASEPATH}/api/v2/torrents/removeCategories',
             method: 'post',
             data: {
                 categories: categoryName
@@ -616,7 +616,7 @@ const initializeWindows = function() {
                 categories.push(category_list[hash].name);
         }
         new Request({
-            url: 'api/v2/torrents/removeCategories',
+            url: '${BASEPATH}/api/v2/torrents/removeCategories',
             method: 'post',
             data: {
                 categories: categories.join('\n')
@@ -629,7 +629,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: '${BASEPATH}/api/v2/torrents/resume',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -643,7 +643,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', categoryHash, TAGS_ALL, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: '${BASEPATH}/api/v2/torrents/pause',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -697,7 +697,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: (isSet ? 'api/v2/torrents/addTags' : 'api/v2/torrents/removeTags'),
+                url: (isSet ? '${BASEPATH}/api/v2/torrents/addTags' : '${BASEPATH}/api/v2/torrents/removeTags'),
                 method: 'post',
                 data: {
                     hashes: hashes.join("|"),
@@ -711,7 +711,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: ('api/v2/torrents/removeTags'),
+                url: ('${BASEPATH}/api/v2/torrents/removeTags'),
                 method: 'post',
                 data: {
                     hashes: hashes.join("|"),
@@ -741,7 +741,7 @@ const initializeWindows = function() {
     removeTagFN = function(tagHash) {
         const tagName = tagList[tagHash].name;
         new Request({
-            url: 'api/v2/torrents/deleteTags',
+            url: '${BASEPATH}/api/v2/torrents/deleteTags',
             method: 'post',
             data: {
                 tags: tagName
@@ -757,7 +757,7 @@ const initializeWindows = function() {
                 tags.push(tagList[hash].name);
         }
         new Request({
-            url: 'api/v2/torrents/deleteTags',
+            url: '${BASEPATH}/api/v2/torrents/deleteTags',
             method: 'post',
             data: {
                 tags: tags.join(',')
@@ -770,7 +770,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: '${BASEPATH}/api/v2/torrents/resume',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -784,7 +784,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, tagHash, TRACKERS_ALL);
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: '${BASEPATH}/api/v2/torrents/pause',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -830,7 +830,7 @@ const initializeWindows = function() {
 
         if (hashes.length > 0) {
             new Request({
-                url: 'api/v2/torrents/resume',
+                url: '${BASEPATH}/api/v2/torrents/resume',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -857,7 +857,7 @@ const initializeWindows = function() {
 
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/pause',
+                url: '${BASEPATH}/api/v2/torrents/pause',
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -936,7 +936,7 @@ const initializeWindows = function() {
         addClickEvent(item + 'All', function(e) {
             new Event(e).stop();
             new Request({
-                url: 'api/v2/torrents/' + item,
+                url: '${BASEPATH}/api/v2/torrents/' + item,
                 method: 'post',
                 data: {
                     hashes: "all"
@@ -953,7 +953,7 @@ const initializeWindows = function() {
             if (hashes.length) {
                 hashes.each(function(hash, index) {
                     new Request({
-                        url: 'api/v2/torrents/' + item,
+                        url: '${BASEPATH}/api/v2/torrents/' + item,
                         method: 'post',
                         data: {
                             hashes: hash
@@ -976,7 +976,7 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length) {
             new Request({
-                url: 'api/v2/torrents/' + cmd,
+                url: '${BASEPATH}/api/v2/torrents/' + cmd,
                 method: 'post',
                 data: {
                     hashes: hashes.join("|")
@@ -993,12 +993,12 @@ const initializeWindows = function() {
             id: id,
             title: 'QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]',
             loadMethod: 'xhr',
-            contentURL: 'views/about.html',
+            contentURL: '${BASEPATH}/views/about.html',
             require: {
                 css: ['css/Tabs.css']
             },
             toolbar: true,
-            toolbarURL: 'views/aboutToolbar.html',
+            toolbarURL: '${BASEPATH}/views/aboutToolbar.html',
             padding: 10,
             width: loadWindowWidth(id, 550),
             height: loadWindowHeight(id, 360),
@@ -1011,7 +1011,7 @@ const initializeWindows = function() {
     addClickEvent('logout', function(e) {
         new Event(e).stop();
         new Request({
-            url: 'api/v2/auth/logout',
+            url: '${BASEPATH}/api/v2/auth/logout',
             method: 'post',
             onSuccess: function() {
                 window.location.reload(true);
@@ -1023,7 +1023,7 @@ const initializeWindows = function() {
         new Event(e).stop();
         if (confirm('QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
-                url: 'api/v2/app/shutdown',
+                url: '${BASEPATH}/api/v2/app/shutdown',
                 onSuccess: function() {
                     document.write('<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <title>QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</title></head><body> <h1 style="text-align: center;">QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</h1></body></html>');
                     document.close();

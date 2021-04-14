@@ -777,7 +777,7 @@ QString Preferences::getWebUIBasePath() const
     return value("Preferences/WebUI/BasePath").toString();
 }
 
-void Preferences::setWebUIBasePath(const Qstring &path)
+void Preferences::setWebUIBasePath(const QString &path)
 {
     setValue("Preferences/WebUI/BasePath", path);
 }

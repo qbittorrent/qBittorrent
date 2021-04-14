@@ -55,6 +55,7 @@ namespace Http
     const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
     const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
     const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
+    const char HEADER_LOCATION[] = "location";
 
     const char HEADER_REQUEST_METHOD_GET[] = "GET";
     const char HEADER_REQUEST_METHOD_HEAD[] = "HEAD";

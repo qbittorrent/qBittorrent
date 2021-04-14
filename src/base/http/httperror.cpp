@@ -84,3 +84,7 @@ InternalServerErrorHTTPError::InternalServerErrorHTTPError(const QString &messag
     : HTTPError(500, QLatin1String("Internal Server Error"), message)
 {
 }
+SeeOtherHTTPError::SeeOtherHTTPError(const QString &message)
+    : HTTPError(303, QLatin1String("See Other"), message)
+{
+}

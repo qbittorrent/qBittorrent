@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Set location)QBT_TR[CONTEXT=HttpServer]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
-    <script src="scripts/lib/mootools-1.2-more.js"></script>
-    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <link rel="stylesheet" href="${BASEPATH}/css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="${BASEPATH}/scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="${BASEPATH}/scripts/lib/mootools-1.2-more.js"></script>
+    <script src="${BASEPATH}/scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
         'use strict';
 
@@ -47,7 +47,7 @@
 
                 const hashesList = new URI().getData('hashes');
                 new Request({
-                    url: 'api/v2/torrents/setLocation',
+                    url: '${BASEPATH}/api/v2/torrents/setLocation',
                     method: 'post',
                     data: {
                         hashes: hashesList,

@@ -190,7 +190,7 @@
 
         const init = () => {
             new Request.JSON({
-                url: 'api/v2/app/preferences',
+                url: '${BASEPATH}/api/v2/app/preferences',
                 method: 'get',
                 noCache: true,
                 onFailure: () => {
@@ -434,7 +434,7 @@
                 // Place in iframe with sandbox attribute to prevent js execution
                 let torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $('rssDetailsView').append(torrentDescription);
-                document.getElementById('rssDescription').srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
+                document.getElementById('rssDescription').srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="${BASEPATH}/css/style.css" /></head><body>' + article.description + "</body></html>";
 
                 //calculate height to fill screen
                 document.getElementById('rssDescription').style.height =
@@ -445,7 +445,7 @@
 
         const updateRssFeedList = () => {
             new Request.JSON({
-                url: 'api/v2/rss/items',
+                url: '${BASEPATH}/api/v2/rss/items',
                 noCache: true,
                 method: 'post',
                 data: {
@@ -667,7 +667,7 @@
             rssFeedTable.updateIcons();
 
             new Request({
-                url: 'api/v2/rss/refreshItem',
+                url: '${BASEPATH}/api/v2/rss/refreshItem',
                 noCache: true,
                 method: 'post',
                 data: {
@@ -745,7 +745,7 @@
 
             // send request
             new Request({
-                url: 'api/v2/rss/markAsRead',
+                url: '${BASEPATH}/api/v2/rss/markAsRead',
                 noCache: true,
                 method: 'post',
                 data: {
@@ -786,7 +786,7 @@
                 rssFeedTable.updateTable(true);
 
                 new Request({
-                    url: 'api/v2/rss/markAsRead',
+                    url: '${BASEPATH}/api/v2/rss/markAsRead',
                     noCache: true,
                     method: 'post',
                     data: {
@@ -817,7 +817,7 @@
                 id: id,
                 title: 'QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]',
                 loadMethod: 'xhr',
-                contentURL: 'views/rssDownloader.html',
+                contentURL: '${BASEPATH}/views/rssDownloader.html',
                 maximizable: false,
                 width: loadWindowWidth(id, 800),
                 height: loadWindowHeight(id, 650),

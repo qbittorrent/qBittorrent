@@ -111,7 +111,7 @@ window.qBittorrent.PropWebseeds = (function() {
             wsTable.removeAllRows();
             current_hash = new_hash;
         }
-        const url = new URI('api/v2/torrents/webseeds?hash=' + current_hash);
+        const url = new URI('${BASEPATH}/api/v2/torrents/webseeds?hash=' + current_hash);
         new Request.JSON({
             url: url,
             noCache: true,

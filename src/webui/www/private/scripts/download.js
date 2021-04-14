@@ -40,7 +40,7 @@ window.qBittorrent.Download = (function() {
 
     const getCategories = function() {
         new Request.JSON({
-            url: 'api/v2/torrents/categories',
+            url: '${BASEPATH}/api/v2/torrents/categories',
             noCache: true,
             method: 'get',
             onSuccess: function(data) {
@@ -60,7 +60,7 @@ window.qBittorrent.Download = (function() {
 
     const getPreferences = function() {
         new Request.JSON({
-            url: 'api/v2/app/preferences',
+            url: '${BASEPATH}/api/v2/app/preferences',
             method: 'get',
             noCache: true,
             onFailure: function() {

@@ -90,3 +90,9 @@ class InternalServerErrorHTTPError : public HTTPError
 public:
     explicit InternalServerErrorHTTPError(const QString &message = {});
 };
+
+class SeeOtherHTTPError : public HTTPError
+{
+public:
+    explicit SeeOtherHTTPError(const QString &message = {});
+};

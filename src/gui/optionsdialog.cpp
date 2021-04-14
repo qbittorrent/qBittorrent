@@ -489,6 +489,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const QString &s) { webUIHttpsKeyChanged(s, ShowError::Show); });
     connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textWebUIBasePath, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, m_ui->IPSubnetWhitelistButton, &QPushButton::setEnabled);
@@ -848,6 +849,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
         pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
         pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
+        pref->setWebUIBasePath(m_ui->textWebUIBasePath->text());
         // Authentication
         pref->setWebUiUsername(webUiUsername());
         if (!webUiPassword().isEmpty())
@@ -1255,6 +1257,7 @@ void OptionsDialog::loadOptions()
     m_ui->spinBanCounter->setValue(pref->getWebUIMaxAuthFailCount());
     m_ui->spinBanDuration->setValue(pref->getWebUIBanDuration().count());
     m_ui->spinSessionTimeout->setValue(pref->getWebUISessionTimeout());
+    m_ui->textWebUIBasePath->setText(pref->getWebUIBasePath());
 
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUiClickjackingProtectionEnabled());

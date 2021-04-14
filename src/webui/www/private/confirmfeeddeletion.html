@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="${LANG}">
 
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
-    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <link rel="stylesheet" href="${BASEPATH}/css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="${BASEPATH}/scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="${BASEPATH}/scripts/lib/mootools-1.2-more.js"></script>
     <script>
         'use strict';
 
@@ -22,7 +22,7 @@
                 let completionCount = 0;
                 paths.forEach((path) => {
                     new Request({
-                        url: 'api/v2/rss/removeItem',
+                        url: '${BASEPATH}/api/v2/rss/removeItem',
                         noCache: true,
                         method: 'post',
                         data: {

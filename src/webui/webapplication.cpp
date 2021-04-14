@@ -130,6 +130,7 @@ WebApplication::WebApplication(QObject *parent)
 
     declarePublicAPI(QLatin1String("auth/login"));
 
+    fireOnceConfigure();
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
 }
@@ -238,6 +239,7 @@ void WebApplication::translateDocument(QString &data) const
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
         data.replace(QLatin1String("${CACHEID}"), m_cacheID);
+        data.replace(QLatin1String("${BASEPATH}"), m_basePath);
     }
 }
 
@@ -254,6 +256,24 @@ const Http::Request &WebApplication::request() const
 const Http::Environment &WebApplication::env() const
 {
     return m_env;
+}
+
+void WebApplication::doProcessPath()
+{
+    if(!m_basePath.isEmpty())
+    {
+        if(m_request.path.indexOf(m_basePath) == 0)
+        {
+            m_request.path.remove(0, m_basePath.length());
+        }
+        else
+        {
+            //Set location header for redirect
+            setHeader({Http::HEADER_LOCATION, m_basePath + m_request.path});
+
+            throw SeeOtherHTTPError(m_basePath + m_request.path);
+        }
+    }
 }
 
 void WebApplication::doProcessRequest()
@@ -314,6 +334,13 @@ void WebApplication::doProcessRequest()
     }
 }
 
+//For configurations that require a restart to take effect
+void WebApplication::fireOnceConfigure()
+{
+    const auto *pref = Preferences::instance();
+    m_basePath = pref->getWebUIBasePath();
+}
+
 void WebApplication::configure()
 {
     const auto *pref = Preferences::instance();
@@ -362,7 +389,6 @@ void WebApplication::configure()
     m_isSecureCookieEnabled = pref->isWebUiSecureCookieEnabled();
     m_isHostHeaderValidationEnabled = pref->isWebUIHostHeaderValidationEnabled();
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
-    m_basePath = pref->getWebUIBasePath();
 
     m_prebuiltHeaders.clear();
     m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block")});
@@ -496,11 +522,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         }
 
         sessionInitialize();
-
-        //Replace base path prefix with a '/'
-        if(!m_basePath.isEmpty() && m_request.path.indexOf(m_basePath == 0))
-            m_request.path.replace(0, m_basePath.length, QChar('/'));
-
+        doProcessPath();
         doProcessRequest();
     }
     catch (const HTTPError &error)
