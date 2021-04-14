@@ -239,7 +239,17 @@ void WebApplication::translateDocument(QString &data) const
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
         data.replace(QLatin1String("${CACHEID}"), m_cacheID);
-        data.replace(QLatin1String("${BASEPATH}"), m_basePath);
+
+        //Rewrite base paths
+        if(!m_basePath.isEmpty())
+        {
+            data.replace(QLatin1String("api/"), m_basePath + "/api/");
+            data.replace(QLatin1String("api/"), m_basePath + "/css/");
+            data.replace(QLatin1String("api/"), m_basePath + "/images/");
+            data.replace(QLatin1String("api/"), m_basePath + "/scripts/");
+            data.replace(QLatin1String("api/"), m_basePath + "/views/");
+        }
+        
     }
 }
 

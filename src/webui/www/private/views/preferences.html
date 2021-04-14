@@ -1533,7 +1533,7 @@
 
         // Advanced Tab
         const updateNetworkInterfaces = function(default_iface) {
-            const url = '${BASEPATH}/api/v2/app/networkInterfaceList';
+            const url = 'api/v2/app/networkInterfaceList';
             $('networkInterface').empty();
             new Request.JSON({
                 url: url,
@@ -1555,7 +1555,7 @@
         };
 
         const updateInterfaceAddresses = function(iface, default_addr) {
-            const url = '${BASEPATH}/api/v2/app/networkInterfaceAddressList';
+            const url = 'api/v2/app/networkInterfaceAddressList';
             $('optionalIPAddressToBind').empty();
             new Request.JSON({
                 url: url,
@@ -1582,7 +1582,7 @@
         };
 
         const loadPreferences = function() {
-            const url = '${BASEPATH}/api/v2/app/preferences';
+            const url = 'api/v2/app/preferences';
             new Request.JSON({
                 url: url,
                 method: 'get',
@@ -2322,7 +2322,7 @@
             const json_str = JSON.encode(settings);
 
             new Request({
-                url: '${BASEPATH}/api/v2/app/setPreferences',
+                url: 'api/v2/app/setPreferences',
                 method: 'post',
                 data: {
                     'json': json_str,

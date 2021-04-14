@@ -41,7 +41,7 @@ function submitLoginForm() {
     const errorMsgElement = document.getElementById('error_msg');
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '${BASEPATH}/api/v2/auth/login', true);
+    xhr.open('POST', 'api/v2/auth/login', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState === 4) { // DONE state

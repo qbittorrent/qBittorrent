@@ -312,7 +312,7 @@ window.qBittorrent.PropFiles = (function() {
 
         clearTimeout(loadTorrentFilesDataTimer);
         new Request({
-            url: '${BASEPATH}/api/v2/torrents/filePrio',
+            url: 'api/v2/torrents/filePrio',
             method: 'post',
             data: {
                 'hash': current_hash,
@@ -356,7 +356,7 @@ window.qBittorrent.PropFiles = (function() {
             current_hash = new_hash;
             loadedNewTorrent = true;
         }
-        const url = new URI('${BASEPATH}/api/v2/torrents/files?hash=' + current_hash);
+        const url = new URI('api/v2/torrents/files?hash=' + current_hash);
         new Request.JSON({
             url: url,
             noCache: true,

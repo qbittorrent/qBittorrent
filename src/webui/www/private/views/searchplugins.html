@@ -122,7 +122,7 @@
                 id: 'installSearchPlugin',
                 title: "QBT_TR(Install plugin)QBT_TR[CONTEXT=PluginSourceDlg]",
                 loadMethod: 'xhr',
-                contentURL: '${BASEPATH}/views/installsearchplugin.html',
+                contentURL: 'views/installsearchplugin.html',
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -135,7 +135,7 @@
 
         const uninstallPlugin = function() {
             const plugins = searchPluginsTable.selectedRowsIds().join('|');
-            const url = new URI('${BASEPATH}/api/v2/search/uninstallPlugin');
+            const url = new URI('api/v2/search/uninstallPlugin');
             new Request({
                 url: url,
                 noCache: true,
@@ -152,7 +152,7 @@
             if (plugins && plugins.length)
                 enable = !window.qBittorrent.Search.getPlugin(plugins[0]).enabled;
 
-            const url = new URI('${BASEPATH}/api/v2/search/enablePlugin');
+            const url = new URI('api/v2/search/enablePlugin');
             new Request({
                 url: url,
                 noCache: true,
@@ -165,7 +165,7 @@
         };
 
         const checkForUpdates = function() {
-            const url = new URI('${BASEPATH}/api/v2/search/updatePlugins');
+            const url = new URI('api/v2/search/updatePlugins');
             new Request({
                 url: url,
                 noCache: true,

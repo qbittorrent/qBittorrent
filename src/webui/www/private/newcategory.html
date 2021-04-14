@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <title>QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]</title>
-    <link rel="stylesheet" href="${BASEPATH}/css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="${BASEPATH}/scripts/lib/mootools-1.2-core-yc.js"></script>
-    <script src="${BASEPATH}/scripts/lib/mootools-1.2-more.js"></script>
-    <script src="${BASEPATH}/scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
         'use strict';
 
@@ -70,7 +70,7 @@
                             return;
 
                         new Request({
-                            url: '${BASEPATH}/api/v2/torrents/createCategory',
+                            url: 'api/v2/torrents/createCategory',
                             method: 'post',
                             data: {
                                 category: categoryName,
@@ -78,7 +78,7 @@
                             },
                             onSuccess: function() {
                                 new Request({
-                                    url: '${BASEPATH}/api/v2/torrents/setCategory',
+                                    url: 'api/v2/torrents/setCategory',
                                     method: 'post',
                                     data: {
                                         hashes: uriHashes,
@@ -99,7 +99,7 @@
                             return;
 
                         new Request({
-                            url: '${BASEPATH}/api/v2/torrents/createCategory',
+                            url: 'api/v2/torrents/createCategory',
                             method: 'post',
                             data: {
                                 category: categoryName,
@@ -112,7 +112,7 @@
                         break;
                     case "edit":
                         new Request({
-                            url: '${BASEPATH}/api/v2/torrents/editCategory',
+                            url: 'api/v2/torrents/editCategory',
                             method: 'post',
                             data: {
                                 category: uriCategoryName, // category name can't be changed

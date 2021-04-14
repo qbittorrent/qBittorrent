@@ -61,7 +61,7 @@ window.qBittorrent.PropTrackers = (function() {
             torrentTrackersTable.clear();
             current_hash = new_hash;
         }
-        const url = new URI('${BASEPATH}/api/v2/torrents/trackers?hash=' + current_hash);
+        const url = new URI('api/v2/torrents/trackers?hash=' + current_hash);
         new Request.JSON({
             url: url,
             noCache: true,
@@ -213,7 +213,7 @@ window.qBittorrent.PropTrackers = (function() {
 
         const selectedTrackers = torrentTrackersTable.selectedRowsIds();
         new Request({
-            url: '${BASEPATH}/api/v2/torrents/removeTrackers',
+            url: 'api/v2/torrents/removeTrackers',
             method: 'post',
             data: {
                 hash: current_hash,

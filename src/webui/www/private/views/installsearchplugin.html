@@ -64,7 +64,7 @@
             const path = $("newPluginPath").get("value").trim();
             if (path)
                 new Request({
-                    url: '${BASEPATH}/api/v2/search/installPlugin',
+                    url: 'api/v2/search/installPlugin',
                     noCache: true,
                     method: 'post',
                     data: {

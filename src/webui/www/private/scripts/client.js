@@ -102,7 +102,7 @@ function getSyncMainDataInterval() {
 
 const fetchQbtVersion = function() {
     new Request({
-        url: '${BASEPATH}/api/v2/app/version',
+        url: 'api/v2/app/version',
         method: 'get',
         onSuccess: function(info) {
             if (!info) return;
@@ -255,7 +255,7 @@ window.addEvent('load', function() {
             left: 0
         },
         loadMethod: 'xhr',
-        contentURL: '${BASEPATH}/views/filters.html',
+        contentURL: 'views/filters.html',
         onContentLoaded: function() {
             setFilter(selected_filter);
         },
@@ -542,7 +542,7 @@ window.addEvent('load', function() {
 
     let syncMainDataTimer;
     const syncMainData = function() {
-        const url = new URI('${BASEPATH}/api/v2/sync/maindata');
+        const url = new URI('api/v2/sync/maindata');
         url.setData('rid', syncMainDataLastResponseId);
         const request = new Request.JSON({
             url: url,
@@ -804,7 +804,7 @@ window.addEvent('load', function() {
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
         new Request({
-            url: '${BASEPATH}/api/v2/transfer/toggleSpeedLimitsMode',
+            url: 'api/v2/transfer/toggleSpeedLimitsMode',
             method: 'post',
             onComplete: function() {
                 alternativeSpeedLimits = !alternativeSpeedLimits;
@@ -981,7 +981,7 @@ window.addEvent('load', function() {
                 left: 0
             },
             loadMethod: 'xhr',
-            contentURL: '${BASEPATH}/views/search.html',
+            contentURL: 'views/search.html',
             content: '',
             column: 'searchTabColumn',
             height: null
@@ -1000,7 +1000,7 @@ window.addEvent('load', function() {
                 left: 0
             },
             loadMethod: 'xhr',
-            contentURL: '${BASEPATH}/views/rss.html',
+            contentURL: 'views/rss.html',
             content: '',
             column: 'rssTabColumn',
             height: null
@@ -1018,7 +1018,7 @@ window.addEvent('load', function() {
             left: 0
         },
         loadMethod: 'xhr',
-        contentURL: '${BASEPATH}/views/transferlist.html',
+        contentURL: 'views/transferlist.html',
         onContentLoaded: function() {
             handleDownloadParam();
             updateMainData();
@@ -1042,12 +1042,12 @@ window.addEvent('load', function() {
             bottom: 0,
             left: 0
         },
-        contentURL: '${BASEPATH}/views/properties.html',
+        contentURL: 'views/properties.html',
         require: {
             css: ['css/Tabs.css', 'css/dynamicTable.css'],
             js: ['scripts/prop-general.js', 'scripts/prop-trackers.js', 'scripts/prop-peers.js', 'scripts/prop-webseeds.js', 'scripts/prop-files.js'],
         },
-        tabsURL: '${BASEPATH}/views/propertiesToolbar.html',
+        tabsURL: 'views/propertiesToolbar.html',
         tabsOnload: function() {
             MochaUI.initializeTabs('propertiesTabs');
 

@@ -82,7 +82,7 @@ window.qBittorrent.PropGeneral = (function() {
         }
         // Display hash
         $('torrent_hash').set('html', current_hash);
-        const url = new URI('${BASEPATH}/api/v2/torrents/properties?hash=' + current_hash);
+        const url = new URI('api/v2/torrents/properties?hash=' + current_hash);
         new Request.JSON({
             url: url,
             noCache: true,

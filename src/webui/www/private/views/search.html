@@ -301,7 +301,7 @@
             searchResultsRowId = 0;
             requestCount = 0;
 
-            const url = new URI('${BASEPATH}/api/v2/search/start');
+            const url = new URI('api/v2/search/start');
             new Request.JSON({
                 url: url,
                 noCache: true,
@@ -321,7 +321,7 @@
         };
 
         const stopSearch = function() {
-            const url = new URI('${BASEPATH}/api/v2/search/stop');
+            const url = new URI('api/v2/search/stop');
             new Request({
                 url: url,
                 noCache: true,
@@ -402,7 +402,7 @@
                     id: id,
                     title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
                     loadMethod: 'xhr',
-                    contentURL: '${BASEPATH}/views/searchplugins.html',
+                    contentURL: 'views/searchplugins.html',
                     scrollbars: false,
                     maximizable: false,
                     paddingVertical: 0,
@@ -512,7 +512,7 @@
 
         const getPlugins = function() {
             new Request.JSON({
-                url: new URI('${BASEPATH}/api/v2/search/plugins'),
+                url: new URI('api/v2/search/plugins'),
                 noCache: true,
                 method: 'get',
                 onSuccess: function(response) {
@@ -638,7 +638,7 @@
 
         const loadSearchResultsData = function() {
             const maxResults = 500;
-            const url = new URI('${BASEPATH}/api/v2/search/results');
+            const url = new URI('api/v2/search/results');
             new Request.JSON({
                 url: url,
                 noCache: true,

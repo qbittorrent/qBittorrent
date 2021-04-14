@@ -350,7 +350,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const initRssDownloader = () => {
             new Request.JSON({
-                url: '${BASEPATH}/api/v2/app/preferences',
+                url: 'api/v2/app/preferences',
                 method: 'get',
                 noCache: true,
                 onFailure: () => {
@@ -426,7 +426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             });
             // get all categories and add to combobox
             new Request.JSON({
-                url: '${BASEPATH}/api/v2/torrents/categories',
+                url: 'api/v2/torrents/categories',
                 noCache: true,
                 method: 'get',
                 onSuccess: (response) => {
@@ -440,7 +440,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             }).send();
             // get all rss feed
             new Request.JSON({
-                url: '${BASEPATH}/api/v2/rss/items',
+                url: 'api/v2/rss/items',
                 noCache: true,
                 method: 'post',
                 data: {
@@ -468,7 +468,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const updateRulesList = () => {
             // get all rules
             new Request.JSON({
-                url: '${BASEPATH}/api/v2/rss/rules',
+                url: 'api/v2/rss/rules',
                 noCache: true,
                 method: 'get',
                 onSuccess: (response) => {
@@ -490,7 +490,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const modifyRuleState = (rule, setting, newState, callback = () => {}) => {
             rulesList[rule][setting] = newState;
             new Request({
-                url: '${BASEPATH}/api/v2/rss/setRule',
+                url: 'api/v2/rss/setRule',
                 noCache: true,
                 method: 'post',
                 data: {
@@ -613,7 +613,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 .getValues();
 
             new Request({
-                url: '${BASEPATH}/api/v2/rss/setRule',
+                url: 'api/v2/rss/setRule',
                 noCache: true,
                 method: 'post',
                 data: {
@@ -628,7 +628,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const updateMatchingArticles = (ruleName) => {
             new Request.JSON({
-                url: '${BASEPATH}/api/v2/rss/matchingArticles',
+                url: 'api/v2/rss/matchingArticles',
                 noCache: true,
                 method: 'post',
                 data: {
