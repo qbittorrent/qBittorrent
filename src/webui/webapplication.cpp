@@ -238,19 +238,23 @@ void WebApplication::translateDocument(QString &data) const
         }
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
-        data.replace(QLatin1String("${CACHEID}"), m_cacheID);
+        data.replace(QLatin1String("${CACHEID}"), m_cacheID);        
+    }
 
-        //Rewrite base paths
+            //Rewrite base paths
         if(!m_basePath.isEmpty())
         {
-            data.replace(QLatin1String("api/"), m_basePath + "/api/");
-            data.replace(QLatin1String("api/"), m_basePath + "/css/");
-            data.replace(QLatin1String("api/"), m_basePath + "/images/");
-            data.replace(QLatin1String("api/"), m_basePath + "/scripts/");
-            data.replace(QLatin1String("api/"), m_basePath + "/views/");
+            QString basePath = (m_basePath.indexOf('/') == 0)
+                ? m_basePath
+                : "/" + m_basePath;
+    
+            data.replace(QString("api/"), basePath + "/api/");
+            data.replace(QString("css/"), basePath + "/css/");
+            data.replace(QString("images/"), basePath + "/images/");
+            data.replace(QString("icons/"), basePath + "/icons/");
+            data.replace(QString("scripts/"), basePath + "/scripts/");
+            data.replace(QString("views/"), basePath + "/views/");
         }
-        
-    }
 }
 
 WebSession *WebApplication::session()
