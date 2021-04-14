@@ -159,7 +159,7 @@ void WebApplication::sendWebUIFile()
 
     const QString path
     {
-        (request().path.isEmpty() || requst().path == QLatin1String("/")
+        (request().path.isEmpty() || request().path == QLatin1String("/")
                 ? QLatin1String("/index.html")
                 : request().path)
     };
