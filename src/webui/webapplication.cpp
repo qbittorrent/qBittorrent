@@ -238,7 +238,7 @@ void WebApplication::translateDocument(QString &data) const
         }
 
         data.replace(QLatin1String("${LANG}"), m_currentLocale.left(2));
-        data.replace(QLatin1String("${CACHEID}"), m_cacheID);        
+        data.replace(QLatin1String("${CACHEID}"), m_cacheID);
     }
 
             //Rewrite base paths
@@ -247,7 +247,7 @@ void WebApplication::translateDocument(QString &data) const
             QString basePath = (m_basePath.indexOf('/') == 0)
                 ? m_basePath
                 : "/" + m_basePath;
-    
+
             data.replace(QString("api/"), basePath + "/api/");
             data.replace(QString("css/"), basePath + "/css/");
             data.replace(QString("images/"), basePath + "/images/");
