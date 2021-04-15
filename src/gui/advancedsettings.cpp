@@ -78,6 +78,9 @@ namespace
         RESOLVE_COUNTRIES,
         PROGRAM_NOTIFICATIONS,
         TORRENT_ADDED_NOTIFICATIONS,
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+        NOTIFICATION_TIMEOUT,
+#endif
         CONFIRM_REMOVE_ALL_TAGS,
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
@@ -273,6 +276,9 @@ void AdvancedSettings::saveAdvancedSettings()
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    mainWindow->setNotificationTimeout(m_spinBoxNotificationTimeout.value());
+#endif
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
@@ -640,6 +646,15 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent added notifications
     m_checkBoxTorrentAddedNotifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
     addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &m_checkBoxTorrentAddedNotifications);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    // Notification timeout
+    m_spinBoxNotificationTimeout.setMinimum(-1);
+    m_spinBoxNotificationTimeout.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxNotificationTimeout.setValue(mainWindow->getNotificationTimeout());
+    m_spinBoxNotificationTimeout.setSpecialValueText(tr("System default"));
+    m_spinBoxNotificationTimeout.setSuffix(tr(" ms", " milliseconds"));
+    addRow(NOTIFICATION_TIMEOUT, tr("Notification timeout [0: infinite]"), &m_spinBoxNotificationTimeout);
+#endif
     // Download tracker's favicon
     m_checkBoxTrackerFavicon.setChecked(mainWindow->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &m_checkBoxTrackerFavicon);
