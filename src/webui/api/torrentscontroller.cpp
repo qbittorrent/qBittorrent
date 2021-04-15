@@ -106,6 +106,7 @@ const char KEY_PROP_SAVE_PATH[] = "save_path";
 const char KEY_PROP_COMMENT[] = "comment";
 
 // File keys
+const char KEY_FILE_INDEX[] = "index";
 const char KEY_FILE_NAME[] = "name";
 const char KEY_FILE_SIZE[] = "size";
 const char KEY_FILE_PROGRESS[] = "progress";
@@ -501,6 +502,7 @@ void TorrentsController::webseedsAction()
 // Returns the files in a torrent in JSON format.
 // The return value is a JSON-formatted list of dictionaries.
 // The dictionary keys are:
+//   - "index": File index
 //   - "name": File name
 //   - "size": File size
 //   - "progress": File progress
@@ -517,6 +519,32 @@ void TorrentsController::filesAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    const int filesCount = torrent->filesCount();
+    QVector<int> fileIndexes;
+    const auto idxIt = params().constFind(QLatin1String("indexes"));
+    if (idxIt != params().cend())
+    {
+        const QStringList indexStrings = idxIt.value().split('|');
+        fileIndexes.reserve(indexStrings.size());
+        std::transform(indexStrings.cbegin(), indexStrings.cend(), std::back_inserter(fileIndexes)
+                       , [&filesCount](const QString &indexString) -> int
+        {
+            bool ok = false;
+            const int index = indexString.toInt(&ok);
+            if (!ok || (index < 0))
+                throw APIError(APIErrorType::Conflict, tr("\"%1\" is not a valid file index.").arg(indexString));
+            if (index >= filesCount)
+                throw APIError(APIErrorType::Conflict, tr("Index %1 is out of bounds.").arg(indexString));
+            return index;
+        });
+    }
+    else
+    {
+        fileIndexes.reserve(filesCount);
+        for (int i = 0; i < filesCount; ++i)
+            fileIndexes.append(i);
+    }
+
     QJsonArray fileList;
     if (torrent->hasMetadata())
     {
@@ -524,25 +552,26 @@ void TorrentsController::filesAction()
         const QVector<qreal> fp = torrent->filesProgress();
         const QVector<qreal> fileAvailability = torrent->availableFileFractions();
         const BitTorrent::TorrentInfo info = torrent->info();
-        for (int i = 0; i < torrent->filesCount(); ++i)
+        for (const int index : asConst(fileIndexes))
         {
             QJsonObject fileDict =
             {
-                {KEY_FILE_PROGRESS, fp[i]},
-                {KEY_FILE_PRIORITY, static_cast<int>(priorities[i])},
-                {KEY_FILE_SIZE, torrent->fileSize(i)},
-                {KEY_FILE_AVAILABILITY, fileAvailability[i]}
+                {KEY_FILE_INDEX, index},
+                {KEY_FILE_PROGRESS, fp[index]},
+                {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
+                {KEY_FILE_SIZE, torrent->fileSize(index)},
+                {KEY_FILE_AVAILABILITY, fileAvailability[index]}
             };
 
-            QString fileName = torrent->filePath(i);
+            QString fileName = torrent->filePath(index);
             if (fileName.endsWith(QB_EXT, Qt::CaseInsensitive))
                 fileName.chop(QB_EXT.size());
             fileDict[KEY_FILE_NAME] = Utils::Fs::toUniformPath(fileName);
 
-            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(i);
+            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
             fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};
 
-            if (i == 0)
+            if (index == 0)
                 fileDict[KEY_FILE_IS_SEED] = torrent->isSeed();
 
             fileList.append(fileDict);
