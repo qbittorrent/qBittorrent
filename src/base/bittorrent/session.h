@@ -495,6 +495,9 @@ namespace BitTorrent
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
 
+        bool isForceReannounceEnabled() const;
+        void setForceReannounceEnabled(bool enabled);
+
     signals:
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
@@ -792,6 +795,7 @@ namespace BitTorrent
         QList<MoveStorageJob> m_moveStorageQueue;
 
         QHostAddress m_lastExternalIP;
+        bool m_isForceReannounceEnabled = false;
 
         static Session *m_instance;
     };
