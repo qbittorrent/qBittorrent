@@ -48,10 +48,6 @@
 #include <QtGlobal>
 #include <QTimer>
 
-#ifdef Q_OS_MACOS
-#include <QtMac>
-#include <QtMacExtras>
-#endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "qtnotify/notifications.h"
@@ -1627,12 +1623,12 @@ void MainWindow::reloadSessionStats()
 #ifdef Q_OS_MACOS
     if (status.payloadDownloadRate > 0)
     {
-        QtMac::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
+        MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
             .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
     }
-    else if (!QtMac::badgeLabelText().isEmpty())
+    else if (!MacUtils::badgeLabelText().isEmpty())
     {
-        QtMac::setBadgeLabelText("");
+        MacUtils::setBadgeLabelText("");
     }
 #else
     if (m_systrayIcon)

@@ -42,4 +42,7 @@ namespace MacUtils
     void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
     void displayNotification(const QString &title, const QString &message);
     void openFiles(const QSet<QString> &pathsList);
+
+    QString badgeLabelText();
+    void setBadgeLabelText(const QString &text);
 }
