@@ -1887,7 +1887,7 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 }
 
 #if (LIBTORRENT_VERSION_NUM >= 20003)
-void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *p)
+void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 {
     if (m_nativeHandle.need_save_resume_data())
         m_session->handleTorrentNeedSaveResumeData(this);

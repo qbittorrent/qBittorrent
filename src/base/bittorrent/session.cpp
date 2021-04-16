@@ -3766,14 +3766,13 @@ void Session::updateSeedingLimitTimer()
     }
 }
 
-void Session::handleTorrentShareLimitChanged(TorrentImpl *const torrent)
+void Session::handleTorrentShareLimitChanged(TorrentImpl *const)
 {
     updateSeedingLimitTimer();
 }
 
-void Session::handleTorrentNameChanged(TorrentImpl *const torrent)
+void Session::handleTorrentNameChanged(TorrentImpl *const)
 {
-    Q_UNUSED(torrent);
 }
 
 void Session::handleTorrentSavePathChanged(TorrentImpl *const torrent)
@@ -4653,11 +4652,11 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
 
-    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
 #if (LIBTORRENT_VERSION_NUM < 20000)
+    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
     const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>((numBlocksCacheHits + numBlocksRead), 1);
 #endif
