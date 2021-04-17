@@ -291,6 +291,14 @@ void PeerInfo::determineFlags()
         }
     }
 
+    // K = Peer is unchoking your client, but your client is not interested
+    if (!isRemoteChocked() && !isInteresting())
+        updateFlags(QLatin1Char('K'), tr("Not interested (local) and unchoked (peer)"));
+
+    // ? = Your client unchoked the peer but the peer is not interested
+    if (!isChocked() && !isRemoteInterested())
+        updateFlags(QLatin1Char('?'), tr("Not interested (peer) and unchoked (local)"));
+
     // O = Optimistic unchoke
     if (optimisticUnchoke())
         updateFlags(QLatin1Char('O'), tr("Optimistic unchoke"));
@@ -303,21 +311,17 @@ void PeerInfo::determineFlags()
     if (!isLocalConnection())
         updateFlags(QLatin1Char('I'), tr("Incoming connection"));
 
-    // K = Peer is unchoking your client, but your client is not interested
-    if (!isRemoteChocked() && !isInteresting())
-        updateFlags(QLatin1Char('K'), tr("Not interested (local) and unchoked (peer)"));
-
-    // ? = Your client unchoked the peer but the peer is not interested
-    if (!isChocked() && !isRemoteInterested())
-        updateFlags(QLatin1Char('?'), tr("Not interested (peer) and unchoked (local)"));
+    // H = Peer was obtained through DHT
+    if (fromDHT())
+        updateFlags(QLatin1Char('H'), tr("Peer from DHT"));
 
     // X = Peer was included in peerlists obtained through Peer Exchange (PEX)
     if (fromPeX())
         updateFlags(QLatin1Char('X'), tr("Peer from PEX"));
 
-    // H = Peer was obtained through DHT
-    if (fromDHT())
-        updateFlags(QLatin1Char('H'), tr("Peer from DHT"));
+    // L = Peer is local
+    if (fromLSD())
+        updateFlags(QLatin1Char('L'), tr("Peer from LSD"));
 
     // E = Peer is using Protocol Encryption (all traffic)
     if (isRC4Encrypted())
@@ -330,10 +334,6 @@ void PeerInfo::determineFlags()
     // P = Peer is using uTorrent uTP
     if (useUTPSocket())
         updateFlags(QLatin1Char('P'), QString::fromUtf8(C_UTP));
-
-    // L = Peer is local
-    if (fromLSD())
-        updateFlags(QLatin1Char('L'), tr("Peer from LSD"));
 
     m_flags.chop(1);
     m_flagsDescription.chop(1);
