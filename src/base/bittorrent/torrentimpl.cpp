@@ -106,6 +106,8 @@ namespace
         int numUpdating = 0;
         int numWorking = 0;
         int numNotWorking = 0;
+        QString firstTrackerMessage;
+        QString firstErrorMessage;
 #if (LIBTORRENT_VERSION_NUM >= 20000)
         const int numEndpoints = nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
         trackerEntry.endpoints.reserve(numEndpoints);
@@ -122,6 +124,7 @@ namespace
                     trackerEndpoint.numSeeds = infoHash.scrape_complete;
                     trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
                     trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
+
                     if (infoHash.updating)
                     {
                         trackerEndpoint.status = TrackerEntry::Updating;
@@ -141,11 +144,20 @@ namespace
                     {
                         trackerEndpoint.status = TrackerEntry::NotContacted;
                     }
-                    trackerEntry.endpoints.append(trackerEndpoint);
 
-                    trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, infoHash.scrape_complete);
-                    trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, infoHash.scrape_incomplete);
-                    trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, infoHash.scrape_downloaded);
+                    const QString trackerMessage = QString::fromStdString(infoHash.message);
+                    const QString errorMessage = QString::fromLocal8Bit(infoHash.last_error.message().c_str());
+                    trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
+
+                    trackerEntry.endpoints.append(trackerEndpoint);
+                    trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
+                    trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
+                    trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
+
+                    if (firstTrackerMessage.isEmpty())
+                        firstTrackerMessage = trackerMessage;
+                    if (firstErrorMessage.isEmpty())
+                        firstErrorMessage = errorMessage;
                 }
             }
         }
@@ -158,6 +170,7 @@ namespace
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
             trackerEndpoint.numDownloaded = endpoint.scrape_downloaded;
+
             if (endpoint.updating)
             {
                 trackerEndpoint.status = TrackerEntry::Updating;
@@ -177,22 +190,39 @@ namespace
             {
                 trackerEndpoint.status = TrackerEntry::NotContacted;
             }
-            trackerEntry.endpoints.append(trackerEndpoint);
 
-            trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, endpoint.scrape_complete);
-            trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, endpoint.scrape_incomplete);
-            trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, endpoint.scrape_downloaded);
+            const QString trackerMessage = QString::fromStdString(endpoint.message);
+            const QString errorMessage = QString::fromLocal8Bit(endpoint.last_error.message().c_str());
+            trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
+
+            trackerEntry.endpoints.append(trackerEndpoint);
+            trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
+            trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
+            trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
+
+            if (firstTrackerMessage.isEmpty())
+                firstTrackerMessage = trackerMessage;
+            if (firstErrorMessage.isEmpty())
+                firstErrorMessage = errorMessage;
         }
 #endif
 
         if (numEndpoints > 0)
         {
             if (numUpdating > 0)
+            {
                 trackerEntry.status = TrackerEntry::Updating;
+            }
             else if (numWorking > 0)
+            {
                 trackerEntry.status = TrackerEntry::Working;
+                trackerEntry.message = firstTrackerMessage;
+            }
             else if (numNotWorking == numEndpoints)
+            {
                 trackerEntry.status = TrackerEntry::NotWorking;
+                trackerEntry.message = (!firstTrackerMessage.isEmpty() ? firstTrackerMessage : firstErrorMessage);
+            }
         }
 
         return trackerEntry;
@@ -439,11 +469,13 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     entries.reserve(nativeTrackers.size());
 
     for (const lt::announce_entry &tracker : nativeTrackers)
+    {
 #if (LIBTORRENT_VERSION_NUM >= 20000)
         entries << fromNativeAnnouncerEntry(tracker, m_nativeHandle.info_hashes());
 #else
         entries << fromNativeAnnouncerEntry(tracker);
 #endif
+    }
 
     return entries;
 }
@@ -1630,7 +1662,7 @@ void TorrentImpl::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
     const QString trackerUrl(p->tracker_url());
     qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
     // Connection was successful now. Remove possible old errors
-    m_trackerInfos[trackerUrl] = {{}, p->num_peers};
+    m_trackerInfos[trackerUrl] = {p->num_peers};
 
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }
@@ -1638,20 +1670,12 @@ void TorrentImpl::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
 void TorrentImpl::handleTrackerWarningAlert(const lt::tracker_warning_alert *p)
 {
     const QString trackerUrl = p->tracker_url();
-    const QString message = p->warning_message();
-
-    // Connection was successful now but there is a warning message
-    m_trackerInfos[trackerUrl].lastMessage = message; // Store warning message
-
     m_session->handleTorrentTrackerWarning(this, trackerUrl);
 }
 
 void TorrentImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
 {
     const QString trackerUrl = p->tracker_url();
-    const QString message = p->error_message();
-
-    m_trackerInfos[trackerUrl].lastMessage = message;
 
     // Starting with libtorrent 1.2.x each tracker has multiple local endpoints from which
     // an announce is attempted. Some endpoints might succeed while others might fail.

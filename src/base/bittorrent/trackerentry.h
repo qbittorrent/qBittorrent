@@ -52,6 +52,7 @@ namespace BitTorrent
             int numSeeds = -1;
             int numLeeches = -1;
             int numDownloaded = -1;
+            QString message;
         };
 
         QString url;
@@ -64,6 +65,7 @@ namespace BitTorrent
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
+        QString message;
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
