@@ -33,7 +33,6 @@
 #include <QClipboard>
 #include <QColor>
 #include <QDebug>
-#include <QHash>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
@@ -391,22 +390,19 @@ void TrackerListWidget::loadTrackers()
         {
         case BitTorrent::TrackerEntry::Working:
             item->setText(COL_STATUS, tr("Working"));
-            item->setText(COL_MSG, "");
             break;
         case BitTorrent::TrackerEntry::Updating:
             item->setText(COL_STATUS, tr("Updating..."));
-            item->setText(COL_MSG, "");
             break;
         case BitTorrent::TrackerEntry::NotWorking:
             item->setText(COL_STATUS, tr("Not working"));
-            item->setText(COL_MSG, data.lastMessage.trimmed());
             break;
         case BitTorrent::TrackerEntry::NotContacted:
             item->setText(COL_STATUS, tr("Not contacted yet"));
-            item->setText(COL_MSG, "");
             break;
         }
 
+        item->setText(COL_MSG, entry.message);
         item->setText(COL_PEERS, QString::number(data.numPeers));
         item->setText(COL_SEEDS, ((entry.numSeeds > -1)
             ? QString::number(entry.numSeeds)
