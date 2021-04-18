@@ -463,7 +463,7 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
     const QString client = peer.client().toHtmlEscaped();
     setModelData(row, PeerListColumns::CLIENT, client, client);
-    const QString peerId = peer.peerId().left(8).toHtmlEscaped();
+    const QString peerId = peer.peerId().toHtmlEscaped();
     setModelData(row, PeerListColumns::PEERID, peerId, peerId);
     setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + '%'), peer.progress(), intDataTextAlignment);
     const QString downSpeed = (hideValues && (peer.payloadDownSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);

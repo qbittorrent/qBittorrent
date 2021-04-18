@@ -182,7 +182,12 @@ QString PeerInfo::client() const
 
 QString PeerInfo::peerId() const
 {
-    return QString::fromStdString(m_nativeInfo.pid.to_string());
+    // when peer ID is not known yet it contains only zero bytes,
+    // do not create string in such case, return empty string instead
+    if (*reinterpret_cast<const quint64*>(m_nativeInfo.pid.data()) == 0)
+        return {};
+    // peer ID in only first 8 bytes, the rest is not interesting
+    return QString::fromLatin1(m_nativeInfo.pid.data(), 8);
 }
 
 qreal PeerInfo::progress() const

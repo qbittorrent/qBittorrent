@@ -565,7 +565,7 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_IP, pi.address().ip.toString()},
             {KEY_PEER_PORT, pi.address().port},
             {KEY_PEER_CLIENT, pi.client()},
-            {KEY_PEER_ID, pi.peerId().left(8)},
+            {KEY_PEER_ID, pi.peerId()},
             {KEY_PEER_PROGRESS, pi.progress()},
             {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
             {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
