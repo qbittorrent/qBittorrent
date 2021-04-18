@@ -508,10 +508,6 @@ namespace BitTorrent
         void setPublicTrackers(const QString &trackers);
         void updatePublicTracker();
 
-        // Enhanced Function
-        CachedSettingValue<QString> m_publicTrackers;
-        QTimer *m_updateTimer;
-
     signals:
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
@@ -763,9 +759,12 @@ namespace BitTorrent
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
+        // Enhanced Function
+        CachedSettingValue<QString> m_publicTrackers;
         CachedSettingValue<bool> m_autoBanUnknownPeer;
         CachedSettingValue<bool> m_autoBanBTPlayerPeer;
         CachedSettingValue<bool> m_isAutoUpdateTrackersEnabled;
+        QTimer *m_updateTimer;
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor

@@ -5,6 +5,8 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
+#include <QVariant>
+
 
 class db_connection
 {

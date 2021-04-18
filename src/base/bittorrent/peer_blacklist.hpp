@@ -4,6 +4,8 @@
 
 #include <libtorrent/torrent_info.hpp>
 
+#include <QHostAddress>
+
 #include "base/net/geoipmanager.h"
 
 #include "peer_filter_plugin.hpp"

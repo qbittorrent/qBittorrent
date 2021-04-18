@@ -451,10 +451,6 @@ Session::Session(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY("PeerTurnover"), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY("PeerTurnoverCutOff"), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY("PeerTurnoverInterval"), 300)
-    , m_autoBanUnknownPeer(BITTORRENT_SESSION_KEY("AutoBanUnknownPeer"), false)
-    , m_autoBanBTPlayerPeer(BITTORRENT_SESSION_KEY("AutoBanBTPlayerPeer"), false)
-    , m_isAutoUpdateTrackersEnabled(BITTORRENT_SESSION_KEY("AutoUpdateTrackersEnabled"), false)
-    , m_publicTrackers(BITTORRENT_SESSION_KEY("PublicTrackersList"))
     , m_bannedIPs("State/BannedIPs"
                   , QStringList()
                   , [](const QStringList &value)
@@ -464,6 +460,10 @@ Session::Session(QObject *parent)
                             return tmp;
                         }
                  )
+    , m_publicTrackers(BITTORRENT_SESSION_KEY("PublicTrackersList"))
+    , m_autoBanUnknownPeer(BITTORRENT_SESSION_KEY("AutoBanUnknownPeer"), false)
+    , m_autoBanBTPlayerPeer(BITTORRENT_SESSION_KEY("AutoBanBTPlayerPeer"), false)
+    , m_isAutoUpdateTrackersEnabled(BITTORRENT_SESSION_KEY("AutoUpdateTrackersEnabled"), false)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
