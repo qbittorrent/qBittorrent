@@ -2,6 +2,14 @@
 <html lang="${LANG}">
 
 <head>
+    <script>
+        let path = window.location.pathname;
+        if (path) {
+            let lastChar = path.substr(path.length - 1);
+            if (lastChar != '/')
+                window.location.replace(window.location.href + '/');
+        }
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>qBittorrent Web UI</title>
