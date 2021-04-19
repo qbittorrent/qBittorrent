@@ -257,123 +257,86 @@ qreal PeerInfo::relevance() const
 
 void PeerInfo::determineFlags()
 {
+    const auto updateFlags = [this](const QChar specifier, const QString &explanation)
+    {
+        m_flags += (specifier + QLatin1Char(' '));
+        m_flagsDescription += QString::fromLatin1("%1 = %2\n").arg(specifier, explanation);
+    };
+
     if (isInteresting())
     {
-        // d = Your client wants to download, but peer doesn't want to send (interested and choked)
         if (isRemoteChocked())
         {
-            m_flags += "d ";
-            m_flagsDescription += ("d = "
-                + tr("Interested(local) and Choked(peer)") + '\n');
+            // d = Your client wants to download, but peer doesn't want to send (interested and choked)
+            updateFlags(QLatin1Char('d'), tr("Interested (local) and choked (peer)"));
         }
         else
         {
             // D = Currently downloading (interested and not choked)
-            m_flags += "D ";
-            m_flagsDescription += ("D = "
-                + tr("interested(local) and unchoked(peer)") + '\n');
+            updateFlags(QLatin1Char('D'), tr("Interested (local) and unchoked (peer)"));
         }
     }
 
     if (isRemoteInterested())
     {
-        // u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
         if (isChocked())
         {
-            m_flags += "u ";
-            m_flagsDescription += ("u = "
-                + tr("interested(peer) and choked(local)") + '\n');
+            // u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
+            updateFlags(QLatin1Char('u'), tr("Interested (peer) and choked (local)"));
         }
         else
         {
             // U = Currently uploading (interested and not choked)
-            m_flags += "U ";
-            m_flagsDescription += ("U = "
-                + tr("interested(peer) and unchoked(local)") + '\n');
+            updateFlags(QLatin1Char('U'), tr("Interested (peer) and unchoked (local)"));
         }
-    }
-
-    // O = Optimistic unchoke
-    if (optimisticUnchoke())
-    {
-        m_flags += "O ";
-        m_flagsDescription += ("O = " + tr("optimistic unchoke") + '\n');
-    }
-
-    // S = Peer is snubbed
-    if (isSnubbed())
-    {
-        m_flags += "S ";
-        m_flagsDescription += ("S = " + tr("peer snubbed") + '\n');
-    }
-
-    // I = Peer is an incoming connection
-    if (!isLocalConnection())
-    {
-        m_flags += "I ";
-        m_flagsDescription += ("I = " + tr("incoming connection") + '\n');
     }
 
     // K = Peer is unchoking your client, but your client is not interested
     if (!isRemoteChocked() && !isInteresting())
-    {
-        m_flags += "K ";
-        m_flagsDescription += ("K = "
-            + tr("not interested(local) and unchoked(peer)") + '\n');
-    }
+        updateFlags(QLatin1Char('K'), tr("Not interested (local) and unchoked (peer)"));
 
     // ? = Your client unchoked the peer but the peer is not interested
     if (!isChocked() && !isRemoteInterested())
-    {
-        m_flags += "? ";
-        m_flagsDescription += ("? = "
-            + tr("not interested(peer) and unchoked(local)") + '\n');
-    }
+        updateFlags(QLatin1Char('?'), tr("Not interested (peer) and unchoked (local)"));
 
-    // X = Peer was included in peerlists obtained through Peer Exchange (PEX)
-    if (fromPeX())
-    {
-        m_flags += "X ";
-        m_flagsDescription += ("X = " + tr("peer from PEX") + '\n');
-    }
+    // O = Optimistic unchoke
+    if (optimisticUnchoke())
+        updateFlags(QLatin1Char('O'), tr("Optimistic unchoke"));
+
+    // S = Peer is snubbed
+    if (isSnubbed())
+        updateFlags(QLatin1Char('S'), tr("Peer snubbed"));
+
+    // I = Peer is an incoming connection
+    if (!isLocalConnection())
+        updateFlags(QLatin1Char('I'), tr("Incoming connection"));
 
     // H = Peer was obtained through DHT
     if (fromDHT())
-    {
-        m_flags += "H ";
-        m_flagsDescription += ("H = " + tr("peer from DHT") + '\n');
-    }
+        updateFlags(QLatin1Char('H'), tr("Peer from DHT"));
 
-    // E = Peer is using Protocol Encryption (all traffic)
-    if (isRC4Encrypted())
-    {
-        m_flags += "E ";
-        m_flagsDescription += ("E = " + tr("encrypted traffic")  + '\n');
-    }
-
-    // e = Peer is using Protocol Encryption (handshake)
-    if (isPlaintextEncrypted())
-    {
-        m_flags += "e ";
-        m_flagsDescription += ("e = " + tr("encrypted handshake") + '\n');
-    }
-
-    // P = Peer is using uTorrent uTP
-    if (useUTPSocket())
-    {
-        m_flags += "P ";
-        m_flagsDescription += ("P = " + QString::fromUtf8(C_UTP) + '\n');
-    }
+    // X = Peer was included in peerlists obtained through Peer Exchange (PEX)
+    if (fromPeX())
+        updateFlags(QLatin1Char('X'), tr("Peer from PEX"));
 
     // L = Peer is local
     if (fromLSD())
-    {
-        m_flags += "L ";
-        m_flagsDescription += ("L = " + tr("peer from LSD") + '\n');
-    }
+        updateFlags(QLatin1Char('L'), tr("Peer from LSD"));
 
-    m_flags = m_flags.trimmed();
-    m_flagsDescription = m_flagsDescription.trimmed();
+    // E = Peer is using Protocol Encryption (all traffic)
+    if (isRC4Encrypted())
+        updateFlags(QLatin1Char('E'), tr("Encrypted traffic"));
+
+    // e = Peer is using Protocol Encryption (handshake)
+    if (isPlaintextEncrypted())
+        updateFlags(QLatin1Char('e'), tr("Encrypted handshake"));
+
+    // P = Peer is using uTorrent uTP
+    if (useUTPSocket())
+        updateFlags(QLatin1Char('P'), QString::fromUtf8(C_UTP));
+
+    m_flags.chop(1);
+    m_flagsDescription.chop(1);
 }
 
 QString PeerInfo::flags() const
