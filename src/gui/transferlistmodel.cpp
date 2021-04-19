@@ -403,7 +403,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_SEEN_COMPLETE_DATE:
         return QLocale().toString(torrent->lastSeenComplete().toLocalTime(), QLocale::ShortFormat);
     case TR_LAST_ACTIVITY:
-        return lastActivityString((torrent->isPaused() || torrent->isChecking()) ? -1 : torrent->timeSinceActivity());
+        return lastActivityString(torrent->timeSinceActivity());
     case TR_AVAILABILITY:
         return availabilityString(torrent->distributedCopies());
     case TR_TOTAL_SIZE:
@@ -474,7 +474,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_SEEN_COMPLETE_DATE:
         return torrent->lastSeenComplete();
     case TR_LAST_ACTIVITY:
-        return (torrent->isPaused() || torrent->isChecking()) ? -1 : torrent->timeSinceActivity();
+        return torrent->timeSinceActivity();
     case TR_AVAILABILITY:
         return torrent->distributedCopies();
     case TR_TOTAL_SIZE:
