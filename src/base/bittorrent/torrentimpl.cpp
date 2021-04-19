@@ -96,9 +96,11 @@ namespace
     }
 
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry, const lt::info_hash_t &hashes)
+    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry
+        , const lt::info_hash_t &hashes, const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
 #else
-    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry)
+    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry
+        , const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
 #endif
     {
         TrackerEntry trackerEntry {QString::fromStdString(nativeEntry.url), nativeEntry.tier};
@@ -121,6 +123,7 @@ namespace
 
                     TrackerEntry::EndpointStats trackerEndpoint;
                     trackerEndpoint.protocolVersion = (protocolVersion == lt::protocol_version::V1) ? 1 : 2;
+                    trackerEndpoint.numPeers = trackerPeerCounts.value(endpoint.local_endpoint, -1);
                     trackerEndpoint.numSeeds = infoHash.scrape_complete;
                     trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
                     trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
@@ -150,6 +153,7 @@ namespace
                     trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
                     trackerEntry.endpoints.append(trackerEndpoint);
+                    trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
                     trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
                     trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
                     trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
@@ -167,6 +171,7 @@ namespace
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             TrackerEntry::EndpointStats trackerEndpoint;
+            trackerEndpoint.numPeers = trackerPeerCounts.value(endpoint.local_endpoint, -1);
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
             trackerEndpoint.numDownloaded = endpoint.scrape_downloaded;
@@ -196,6 +201,7 @@ namespace
             trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
             trackerEntry.endpoints.append(trackerEndpoint);
+            trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
             trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
             trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
             trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
@@ -470,19 +476,15 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
 
     for (const lt::announce_entry &tracker : nativeTrackers)
     {
+        const QString trackerURL = QString::fromStdString(tracker.url);
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        entries << fromNativeAnnouncerEntry(tracker, m_nativeHandle.info_hashes());
+        entries << fromNativeAnnouncerEntry(tracker, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
 #else
-        entries << fromNativeAnnouncerEntry(tracker);
+        entries << fromNativeAnnouncerEntry(tracker, m_trackerPeerCounts[trackerURL]);
 #endif
     }
 
     return entries;
-}
-
-QHash<QString, TrackerInfo> TorrentImpl::trackerInfos() const
-{
-    return m_trackerInfos;
 }
 
 void TorrentImpl::addTrackers(const QVector<TrackerEntry> &trackers)
@@ -1659,10 +1661,8 @@ void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
 
 void TorrentImpl::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
 {
-    const QString trackerUrl(p->tracker_url());
-    qDebug("Received a tracker reply from %s (Num_peers = %d)", qUtf8Printable(trackerUrl), p->num_peers);
-    // Connection was successful now. Remove possible old errors
-    m_trackerInfos[trackerUrl] = {p->num_peers};
+    const QString trackerUrl = p->tracker_url();
+    m_trackerPeerCounts[trackerUrl][p->local_endpoint] = p->num_peers;
 
     m_session->handleTorrentTrackerReply(this, trackerUrl);
 }
