@@ -85,7 +85,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     )
     set_target_properties(qbt_app PROPERTIES
         MACOSX_BUNDLE ON
-        MACOSX_BUNDLE_BUNDLE_NAME "${EXECUTABLE}"
+        MACOSX_BUNDLE_BUNDLE_NAME "qBittorrent"
         MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist
     )
     target_sources(qbt_app PRIVATE
