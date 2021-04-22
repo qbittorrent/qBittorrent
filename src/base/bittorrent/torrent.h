@@ -84,12 +84,6 @@ namespace BitTorrent
         Error
     };
 
-    struct TrackerInfo
-    {
-        QString lastMessage;
-        int numPeers = 0;
-    };
-
     uint qHash(TorrentState key, uint seed);
 
     class Torrent : public AbstractFileStorage
@@ -211,7 +205,6 @@ namespace BitTorrent
         virtual bool hasFilteredPieces() const = 0;
         virtual int queuePosition() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
-        virtual QHash<QString, TrackerInfo> trackerInfos() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;
