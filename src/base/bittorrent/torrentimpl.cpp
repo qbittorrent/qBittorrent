@@ -948,7 +948,7 @@ bool TorrentImpl::hasMissingFiles() const
 
 bool TorrentImpl::hasError() const
 {
-    return static_cast<bool>(m_nativeStatus.errc);
+    return (m_nativeStatus.errc || (m_nativeStatus.flags & lt::torrent_flags::upload_mode));
 }
 
 bool TorrentImpl::hasFilteredPieces() const
@@ -967,7 +967,13 @@ int TorrentImpl::queuePosition() const
 
 QString TorrentImpl::error() const
 {
-    return QString::fromStdString(m_nativeStatus.errc.message());
+    if (m_nativeStatus.errc)
+        return QString::fromStdString(m_nativeStatus.errc.message());
+
+    if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
+        return tr("There's not enough space on disk. Torrent is currently in \"upload only\" mode.");
+
+    return {};
 }
 
 qlonglong TorrentImpl::totalDownload() const
@@ -1527,7 +1533,10 @@ void TorrentImpl::pause()
 void TorrentImpl::resume(const TorrentOperatingMode mode)
 {
     if (hasError())
+    {
         m_nativeHandle.clear_error();
+        m_nativeHandle.unset_flags(lt::torrent_flags::upload_mode);
+    }
 
     m_operatingMode = mode;
 
@@ -1769,6 +1778,9 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
     }
 
     m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
+
+    // We shouldn't save upload_mode flag to allow torrent operate normally on next run
+    m_ltAddTorrentParams.flags &= ~lt::torrent_flags::upload_mode;
 
     LoadTorrentParams resumeData;
     resumeData.name = m_name;
