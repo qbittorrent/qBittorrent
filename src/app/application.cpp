@@ -75,9 +75,9 @@
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
-#include "base/scanfoldersmodel.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
+#include "base/torrentfileswatcher.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -621,7 +621,7 @@ int Application::exec(const QStringList &params)
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         Net::GeoIPManager::initInstance();
-        ScanFoldersModel::initInstance();
+        TorrentFilesWatcher::initInstance();
 
 #ifndef DISABLE_WEBUI
         m_webui = new WebUI;
@@ -817,7 +817,7 @@ void Application::cleanup()
     delete RSS::AutoDownloader::instance();
     delete RSS::Session::instance();
 
-    ScanFoldersModel::freeInstance();
+    TorrentFilesWatcher::freeInstance();
     BitTorrent::Session::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();

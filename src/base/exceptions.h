@@ -45,3 +45,9 @@ class RuntimeError : public Exception
 public:
     using Exception::Exception;
 };
+
+class InvalidArgument : public Exception
+{
+public:
+    using Exception::Exception;
+};

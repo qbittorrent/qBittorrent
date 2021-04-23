@@ -50,8 +50,8 @@
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
-#include "base/scanfoldersmodel.h"
 #include "base/torrentfileguard.h"
+#include "base/torrentfileswatcher.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -117,17 +117,26 @@ void AppController::preferencesAction()
     data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
     data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
     data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
-    // Automatically add torrents from
-    const QVariantHash dirs = pref->getScanDirs();
+
+    // TODO: The following code is deprecated. Delete it once replaced by updated API method.
+    // === BEGIN DEPRECATED CODE === //
+    TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
+    const QHash<QString, TorrentFilesWatcher::WatchedFolderOptions> watchedFolders = fsWatcher->folders();
     QJsonObject nativeDirs;
-    for (auto i = dirs.cbegin(); i != dirs.cend(); ++i)
+    for (auto i = watchedFolders.cbegin(); i != watchedFolders.cend(); ++i)
     {
-        if (i.value().type() == QVariant::Int)
-            nativeDirs.insert(Utils::Fs::toNativePath(i.key()), i.value().toInt());
+        const QString watchedFolder = i.key();
+        const BitTorrent::AddTorrentParams params = i.value().addTorrentParams;
+        if (params.savePath.isEmpty())
+            nativeDirs.insert(Utils::Fs::toNativePath(watchedFolder), 1);
+        else if (params.savePath == watchedFolder)
+            nativeDirs.insert(Utils::Fs::toNativePath(watchedFolder), 0);
         else
-            nativeDirs.insert(Utils::Fs::toNativePath(i.key()), Utils::Fs::toNativePath(i.value().toString()));
+            nativeDirs.insert(Utils::Fs::toNativePath(watchedFolder), Utils::Fs::toNativePath(params.savePath));
     }
     data["scan_dirs"] = nativeDirs;
+    // === END DEPRECATED CODE === //
+
     // Email notification upon download completion
     data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
     data["mail_notification_sender"] = pref->getMailNotificationSender();
@@ -390,49 +399,57 @@ void AppController::setPreferencesAction()
         session->setTorrentExportDirectory(it.value().toString());
     if (hasKey("export_dir_fin"))
         session->setFinishedTorrentExportDirectory(it.value().toString());
-    // Automatically add torrents from
+
+    // TODO: The following code is deprecated. Delete it once replaced by updated API method.
+    // === BEGIN DEPRECATED CODE === //
     if (hasKey("scan_dirs"))
     {
+        QStringList scanDirs;
+        TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
+        const QStringList oldScanDirs = fsWatcher->folders().keys();
         const QVariantHash nativeDirs = it.value().toHash();
-        const QVariantHash oldScanDirs = pref->getScanDirs();
-        QVariantHash scanDirs;
-        ScanFoldersModel *model = ScanFoldersModel::instance();
-
         for (auto i = nativeDirs.cbegin(); i != nativeDirs.cend(); ++i)
         {
-            int downloadType = 0;
-            QString downloadPath;
-            if (i.value().type() == QVariant::String)
+            try
             {
-                downloadType = ScanFoldersModel::CUSTOM_LOCATION;
-                downloadPath = Utils::Fs::toUniformPath(i.value().toString());
-            }
-            else
-            {
-                downloadType = i.value().toInt();
-                downloadPath = (downloadType == ScanFoldersModel::DEFAULT_LOCATION)
-                    ? QLatin1String("Default folder")
-                    : QLatin1String("Watch folder");
-            }
+                const QString watchedFolder = TorrentFilesWatcher::makeCleanPath(i.key());
+                TorrentFilesWatcher::WatchedFolderOptions options = fsWatcher->folders().value(watchedFolder);
+                BitTorrent::AddTorrentParams &params = options.addTorrentParams;
 
-            const QString folder = Utils::Fs::toUniformPath(i.key());
-            const ScanFoldersModel::PathStatus ec = !oldScanDirs.contains(folder)
-                ? model->addPath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath)
-                : model->updatePath(folder, static_cast<ScanFoldersModel::PathType>(downloadType), downloadPath);
-            if (ec == ScanFoldersModel::Ok)
-                scanDirs.insert(folder, ((downloadType == ScanFoldersModel::CUSTOM_LOCATION) ? QVariant(downloadPath) : QVariant(downloadType)));
+                bool isInt = false;
+                const int intVal = i.value().toInt(&isInt);
+                if (isInt)
+                {
+                    if (intVal == 0)
+                    {
+                        params.savePath = watchedFolder;
+                        params.useAutoTMM = false;
+                    }
+                }
+                else
+                {
+                    const QString customSavePath = i.value().toString();
+                    params.savePath = customSavePath;
+                    params.useAutoTMM = false;
+                }
+
+                fsWatcher->setWatchedFolder(watchedFolder, options);
+                scanDirs.append(watchedFolder);
+            }
+            catch (...)
+            {
+            }
         }
 
         // Update deleted folders
-        for (auto i = oldScanDirs.cbegin(); i != oldScanDirs.cend(); ++i)
+        for (const QString &path : oldScanDirs)
         {
-            const QString &folder = i.key();
-            if (!scanDirs.contains(folder))
-                model->removePath(folder);
+            if (!scanDirs.contains(path))
+                fsWatcher->removeWatchedFolder(path);
         }
-
-        pref->setScanDirs(scanDirs);
     }
+    // === END DEPRECATED CODE === //
+
     // Email notification upon download completion
     if (hasKey("mail_notification_enabled"))
         pref->setMailNotificationEnabled(it.value().toBool());

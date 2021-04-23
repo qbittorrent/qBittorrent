@@ -318,6 +318,8 @@ namespace
 #endif
 }
 
+const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
+
 // Session
 
 Session *Session::m_instance = nullptr;
