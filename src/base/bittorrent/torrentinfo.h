@@ -110,3 +110,5 @@ namespace BitTorrent
         std::shared_ptr<lt::torrent_info> m_nativeInfo;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::TorrentInfo)

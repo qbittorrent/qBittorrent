@@ -31,12 +31,11 @@
 #include <libtorrent/add_torrent_params.hpp>
 
 #include <QString>
+#include <QUrl>
 #include <QVector>
 
 #include "infohash.h"
 #include "trackerentry.h"
-
-class QUrl;
 
 namespace BitTorrent
 {
@@ -64,3 +63,5 @@ namespace BitTorrent
         lt::add_torrent_params m_addTorrentParams;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::MagnetUri)

@@ -34,7 +34,6 @@
 #include <libtorrent/sha1_hash.hpp>
 
 #include <QRegularExpression>
-#include <QUrl>
 
 #include "infohash.h"
 
@@ -58,6 +57,8 @@ namespace
 }
 
 using namespace BitTorrent;
+
+const int magnetUriId = qRegisterMetaType<MagnetUri>();
 
 MagnetUri::MagnetUri(const QString &source)
     : m_valid(false)

@@ -49,11 +49,21 @@ namespace BitTorrent
     struct PeerAddress;
     struct TrackerEntry;
 
-    enum class TorrentOperatingMode
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace TorrentOperatingModeNS
     {
-        AutoManaged = 0,
-        Forced = 1
-    };
+        Q_NAMESPACE
+
+        enum class TorrentOperatingMode
+        {
+            AutoManaged = 0,
+            Forced = 1
+        };
+
+        Q_ENUM_NS(TorrentOperatingMode)
+    }
 
     enum class TorrentState
     {
