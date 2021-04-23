@@ -1183,19 +1183,29 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_37">
                    <item>
-                    <widget class="QPushButton" name="addScanFolderButton">
+                    <widget class="QPushButton" name="addWatchedFolderButton">
                      <property name="text">
-                      <string>Add entry</string>
+                      <string>Add...</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="removeScanFolderButton">
+                    <widget class="QPushButton" name="editWatchedFolderButton">
                      <property name="enabled">
                       <bool>false</bool>
                      </property>
                      <property name="text">
-                      <string>Remove entry</string>
+                      <string>Options..</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="removeWatchedFolderButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Remove</string>
                      </property>
                     </widget>
                    </item>
@@ -3469,8 +3479,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>textTempPath</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>scanFoldersView</tabstop>
-  <tabstop>addScanFolderButton</tabstop>
-  <tabstop>removeScanFolderButton</tabstop>
+  <tabstop>addWatchedFolderButton</tabstop>
+  <tabstop>editWatchedFolderButton</tabstop>
+  <tabstop>removeWatchedFolderButton</tabstop>
   <tabstop>checkExportDir</tabstop>
   <tabstop>textExportDir</tabstop>
   <tabstop>checkExportDirFin</tabstop>

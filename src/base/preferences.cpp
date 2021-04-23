@@ -340,17 +340,6 @@ void Preferences::setLastLocationPath(const QString &path)
     setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::toUniformPath(path));
 }
 
-QVariantHash Preferences::getScanDirs() const
-{
-    return value("Preferences/Downloads/ScanDirsV2").toHash();
-}
-
-// This must be called somewhere with data from the model
-void Preferences::setScanDirs(const QVariantHash &dirs)
-{
-    setValue("Preferences/Downloads/ScanDirsV2", dirs);
-}
-
 QString Preferences::getScanDirsLastPath() const
 {
     return Utils::Fs::toUniformPath(value("Preferences/Downloads/ScanDirsLastPath").toString());

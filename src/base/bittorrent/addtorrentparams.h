@@ -30,6 +30,7 @@
 
 #include <optional>
 
+#include <QMetaType>
 #include <QSet>
 #include <QString>
 #include <QVector>
@@ -62,3 +63,5 @@ namespace BitTorrent
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::AddTorrentParams)

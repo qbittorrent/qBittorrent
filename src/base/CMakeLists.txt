@@ -34,7 +34,6 @@ add_library(qbt_base STATIC
     bittorrent/trackerentry.h
     digest32.h
     exceptions.h
-    filesystemwatcher.h
     global.h
     http/connection.h
     http/httperror.h
@@ -67,12 +66,12 @@ add_library(qbt_base STATIC
     rss/rss_item.h
     rss/rss_parser.h
     rss/rss_session.h
-    scanfoldersmodel.h
     search/searchdownloadhandler.h
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
     torrentfileguard.h
+    torrentfileswatcher.h
     torrentfilter.h
     types.h
     unicodestrings.h
@@ -115,7 +114,6 @@ add_library(qbt_base STATIC
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
     exceptions.cpp
-    filesystemwatcher.cpp
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
@@ -144,12 +142,12 @@ add_library(qbt_base STATIC
     rss/rss_item.cpp
     rss/rss_parser.cpp
     rss/rss_session.cpp
-    scanfoldersmodel.cpp
     search/searchdownloadhandler.cpp
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
     torrentfileguard.cpp
+    torrentfileswatcher.cpp
     torrentfilter.cpp
     utils/bytearray.cpp
     utils/foreignapps.cpp
