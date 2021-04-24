@@ -66,7 +66,7 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
 
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
-    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
+    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, option.widget);
     style->drawControl(QStyle::CE_ProgressBar, &styleOption, painter, &m_dummyProgressBar);
     painter->restore();
 }
