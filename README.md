@@ -50,7 +50,10 @@ Latest AppImage download: [qBittorrent-Enhanced-Edition.AppImage](https://github
 
 #### Debian (Maintainer: [Kolcha](https://github.com/Kolcha))
 
-[repo](https://software.opensuse.org//download.html?project=home%3Anikoneko%3Aqbittorrent-nightly&package=qbittorrent-enhanced)
+[release repo](https://software.opensuse.org//download.html?project=home%3Anikoneko%3Atest&package=qbittorrent-enhanced)
+[nightly repo](https://software.opensuse.org//download.html?project=home%3Anikoneko%3Aqbittorrent-nightly&package=qbittorrent-enhanced)
+
+Note: 'nightly' repo **doesn't have Debian 10** builds!
 
 #### openSUSE/RPM-based Linux distro (Maintainer: [PhoenixEmik](https://github.com/PhoenixEmik))
 
