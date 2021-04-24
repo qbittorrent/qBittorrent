@@ -3,6 +3,12 @@
 #include <libtorrent/extensions.hpp>
 #include <libtorrent/peer_connection_handle.hpp>
 
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+using client_data = lt::client_data_t;
+#else
+using client_data = void*;
+#endif
+
 using filter_function = std::function<bool(const lt::peer_info&, bool, bool*)>;
 using action_function = std::function<void(lt::peer_connection_handle)>;
 

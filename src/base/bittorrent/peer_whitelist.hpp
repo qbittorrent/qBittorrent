@@ -71,7 +71,7 @@ private:
 };
 
 
-std::shared_ptr<lt::torrent_plugin> create_peer_whitelist_plugin(lt::torrent_handle const&, void*)
+std::shared_ptr<lt::torrent_plugin> create_peer_whitelist_plugin(lt::torrent_handle const&, client_data)
 {
   QDir qbt_data_dir(specialFolderLocation(SpecialFolder::Data));
 
