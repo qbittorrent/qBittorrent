@@ -742,6 +742,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<QStringList> m_bannedIPs;
+        CachedSettingValue<bool> m_isReannounceWhenAddressChanged;
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
@@ -795,7 +796,6 @@ namespace BitTorrent
         QList<MoveStorageJob> m_moveStorageQueue;
 
         QHostAddress m_lastExternalIP;
-        bool m_isReannounceWhenAddressChanged = false;
 
         static Session *m_instance;
     };

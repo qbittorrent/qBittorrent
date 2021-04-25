@@ -439,7 +439,7 @@ Session::Session(QObject *parent)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
-    , m_isReannounceWhenAddressChanged(false)
+    , m_isReannounceWhenAddressChanged(BITTORRENT_SESSION_KEY("Reannounce/AddressChanged"), false)
     , m_lastExternalIP()
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
