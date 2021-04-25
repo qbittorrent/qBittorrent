@@ -742,7 +742,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<QStringList> m_bannedIPs;
-        CachedSettingValue<bool> m_isReannounceWhenAddressChanged;
+        CachedSettingValue<bool> m_reannounceWhenAddressChanged;
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
