@@ -1195,6 +1195,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="reannounceWhenAddressChanged">QBT_TR(Reannounce to all trackers when IP or port changed:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://libtorrent.org/reference-Torrent_Handle.html#force-reannounce-force-dht-announce-force-lsd-announce" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="reannounceWhenAddressChanged" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="peerTurnover">QBT_TR(Peer turnover disconnect percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1915,6 +1923,7 @@
                         $('announceIP').setProperty('value', pref.announce_ip);
                         $('maxConcurrentHTTPAnnounces').setProperty('value', pref.max_concurrent_http_announces);
                         $('stopTrackerTimeout').setProperty('value', pref.stop_tracker_timeout);
+                        $('reannounceWhenAddressChanged').setProperty('checked', pref.reannounce_when_address_changed);
                         $('peerTurnover').setProperty('value', pref.peer_turnover);
                         $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
                         $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
@@ -2304,6 +2313,7 @@
             settings.set('announce_ip', $('announceIP').getProperty('value'));
             settings.set('max_concurrent_http_announces', $('maxConcurrentHTTPAnnounces').getProperty('value'));
             settings.set('stop_tracker_timeout', $('stopTrackerTimeout').getProperty('value'));
+            settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
             settings.set('peer_turnover', $('peerTurnover').getProperty('value'));
             settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
             settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));

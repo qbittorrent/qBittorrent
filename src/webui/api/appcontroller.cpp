@@ -334,6 +334,8 @@ void AppController::preferencesAction()
     data["announce_ip"] = session->announceIP();
     data["max_concurrent_http_announces"] = session->maxConcurrentHTTPAnnounces();
     data["stop_tracker_timeout"] = session->stopTrackerTimeout();
+    // Reannounce to all trackers when ip/port changed
+    data["reannounce_when_address_changed"] = session->isReannounceWhenAddressChanged();
     // Peer Turnover
     data["peer_turnover"] = session->peerTurnover();
     data["peer_turnover_cutoff"] = session->peerTurnoverCutoff();
@@ -808,6 +810,9 @@ void AppController::setPreferencesAction()
         session->setMaxConcurrentHTTPAnnounces(it.value().toInt());
     if (hasKey("stop_tracker_timeout"))
         session->setStopTrackerTimeout(it.value().toInt());
+    // Reannounce to all trackers when ip/port changed
+    if (hasKey("reannounce_when_address_changed"))
+        session->setReannounceWhenAddressChanged(it.value().toBool());
     // Peer Turnover
     if (hasKey("peer_turnover"))
         session->setPeerTurnover(it.value().toInt());
