@@ -439,7 +439,7 @@ Session::Session(QObject *parent)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
-    , m_isForceReannounceEnabled(false)
+    , m_isReannounceWhenAddressChanged(false)
     , m_lastExternalIP()
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
@@ -2742,7 +2742,7 @@ void Session::setPort(const int port)
         m_port = port;
         configureListeningInterface();
 
-        if (isForceReannounceEnabled())
+        if (isReannounceWhenAddressChanged())
         {
             for (const lt::torrent_handle& torrent : m_nativeSession->get_torrents())
                 torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
@@ -4606,7 +4606,7 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
     const QHostAddress externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
         .arg(externalIP.toString()), Log::INFO);
-    if (isForceReannounceEnabled() && !m_lastExternalIP.isNull() && m_lastExternalIP != externalIP)
+    if (isReannounceWhenAddressChanged() && !m_lastExternalIP.isNull() && m_lastExternalIP != externalIP)
     {
         for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
             torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
@@ -4780,17 +4780,17 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
     }
 }
 
-bool Session::isForceReannounceEnabled() const
+bool Session::isReannounceWhenAddressChanged() const
 {
-    return m_isForceReannounceEnabled;
+    return m_isReannounceWhenAddressChanged;
 }
 
-void Session::setForceReannounceEnabled(bool enabled)
+void Session::setReannounceWhenAddressChanged(bool enabled)
 {
-    if (enabled == m_isForceReannounceEnabled)
+    if (enabled == m_isReannounceWhenAddressChanged)
     {
         return;
     }
 
-    m_isForceReannounceEnabled = enabled;
+    m_isReannounceWhenAddressChanged = enabled;
 }
