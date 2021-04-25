@@ -104,6 +104,7 @@ add_library(qbt_base STATIC
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
     bittorrent/peer_blacklist.hpp
+    bittorrent/peer_filter.hpp
     bittorrent/peer_filter_plugin.hpp
     bittorrent/peer_logger.hpp
     bittorrent/peer_whitelist.hpp

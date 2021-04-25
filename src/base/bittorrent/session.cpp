@@ -1207,6 +1207,7 @@ void Session::initializeNativeSession()
     }
     if (isAutoBanBTPlayerPeerEnabled())
         m_nativeSession->add_extension(&create_drop_bittorrent_media_player_plugin);
+    m_nativeSession->add_extension(&create_peer_blacklist_plugin);
     m_nativeSession->add_extension(&create_peer_whitelist_plugin);
 
     m_nativeSession->add_extension(std::make_shared<NativeSessionExtension>());
