@@ -4782,15 +4782,15 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
 
 bool Session::isReannounceWhenAddressChanged() const
 {
-    return m_isReannounceWhenAddressChanged;
+    return m_reannounceWhenAddressChanged;
 }
 
 void Session::setReannounceWhenAddressChanged(bool enabled)
 {
-    if (enabled == m_isReannounceWhenAddressChanged)
+    if (enabled == m_reannounceWhenAddressChanged)
     {
         return;
     }
 
-    m_isReannounceWhenAddressChanged = enabled;
+    m_reannounceWhenAddressChanged = enabled;
 }
