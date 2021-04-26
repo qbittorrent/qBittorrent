@@ -57,7 +57,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>4.4.0</string>
 	<key>CFBundleExecutable</key>
-	<string>@EXECUTABLE@</string>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.qbittorrent.qBittorrent</string>
 	<key>LSMinimumSystemVersion</key>
