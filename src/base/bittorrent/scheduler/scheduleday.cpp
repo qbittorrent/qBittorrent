@@ -62,10 +62,22 @@ void ScheduleDay::clearTimeRanges()
     emit dayUpdated(m_dayOfWeek);
 }
 
+bool ScheduleDay::canSetStartTime(int index, QTime time)
+{
+    return (time < m_timeRanges[index].endTime) && ((index == 0)
+        || (index > 0 && time > m_timeRanges[index - 1].endTime));
+}
+
+bool ScheduleDay::canSetEndTime(int index, QTime time)
+{
+    int last = m_timeRanges.count() - 1;
+    return (time > m_timeRanges[index].startTime) && ((index == last)
+        || (index < last && time < m_timeRanges[index + 1].startTime));
+}
+
 void ScheduleDay::editStartTimeAt(int index, const QTime time)
 {
-    bool startTimeCanBeSet = index > 0 && time > m_timeRanges[index - 1].endTime;
-    if (index == 0 || startTimeCanBeSet)
+    if (canSetStartTime(index, time))
     {
         m_timeRanges[index].setStartTime(time);
         emit dayUpdated(m_dayOfWeek);
@@ -74,9 +86,7 @@ void ScheduleDay::editStartTimeAt(int index, const QTime time)
 
 void ScheduleDay::editEndTimeAt(int index, const QTime time)
 {
-    int lastIndex = m_timeRanges.count() - 1;
-    bool endTimeCanBeSet = index < lastIndex && time < m_timeRanges[index + 1].startTime;
-    if (index == lastIndex || endTimeCanBeSet)
+    if (canSetEndTime(index, time))
     {
         m_timeRanges[index].setEndTime(time);
         emit dayUpdated(m_dayOfWeek);

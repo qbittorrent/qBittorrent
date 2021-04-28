@@ -20,6 +20,8 @@ public:
     bool removeTimeRangeAt(const int index);
     void clearTimeRanges();
 
+    bool canSetStartTime(int index, QTime time);
+    bool canSetEndTime(int index, QTime time);
     void editStartTimeAt(int index, QTime time);
     void editEndTimeAt(int index, QTime time);
     void editDownloadRateAt(int index, int rate);

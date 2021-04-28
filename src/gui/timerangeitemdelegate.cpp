@@ -49,6 +49,14 @@ void TimeRangeItemDelegate::setEditorData(QWidget *editor, const QModelIndex &in
     {
         auto *timeEdit = static_cast<QTimeEdit*>(editor);
         timeEdit->setTime(index.data(Qt::UserRole).toTime());
+        connect(timeEdit, &QTimeEdit::timeChanged, this, [this, timeEdit, index](const QTime time)
+        {
+            bool ok = (index.column() == FROM && m_scheduleDay.canSetStartTime(index.row(), time))
+                || (index.column() == TO && m_scheduleDay.canSetEndTime(index.row(), time));
+
+            QString color = ok ? "green" : "red";
+            timeEdit->setStyleSheet("border: 1px solid " + color);
+        });
     }
     else if (col == DOWNLOAD || col == UPLOAD)
     {
