@@ -28,7 +28,6 @@
 
 #include "tagfilterproxymodel.h"
 
-#include "base/utils/string.h"
 #include "tagfiltermodel.h"
 
 TagFilterProxyModel::TagFilterProxyModel(QObject *parent)
@@ -51,8 +50,5 @@ bool TagFilterProxyModel::lessThan(const QModelIndex &left, const QModelIndex &r
     // "All" and "Untagged" must be left in place
     if (TagFilterModel::isSpecialItem(left) || TagFilterModel::isSpecialItem(right))
         return (left < right);
-
-    int result = Utils::String::naturalCompare(left.data().toString(), right.data().toString()
-        , Qt::CaseInsensitive);
-    return (result < 0);
+    return m_naturalLessThan(left.data().toString(), right.data().toString());
 }

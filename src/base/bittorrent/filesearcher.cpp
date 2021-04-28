@@ -33,7 +33,7 @@
 #include "base/bittorrent/common.h"
 #include "base/bittorrent/infohash.h"
 
-void FileSearcher::search(const BitTorrent::InfoHash &id, const QStringList &originalFileNames
+void FileSearcher::search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
                           , const QString &completeSavePath, const QString &incompleteSavePath)
 {
     const auto findInDir = [](const QString &dirPath, QStringList &fileNames) -> bool

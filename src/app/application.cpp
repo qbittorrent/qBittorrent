@@ -78,9 +78,9 @@
 #include "base/scanfoldersmodel.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
@@ -313,14 +313,6 @@ void Application::processMessage(const QString &message)
 
 void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 {
-    QString program = Preferences::instance()->getAutoRunProgram().trimmed();
-    program.replace("%N", torrent->name());
-    program.replace("%L", torrent->category());
-
-    QStringList tags = torrent->tags().values();
-    std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
-    program.replace("%G", tags.join(','));
-
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString
     {
@@ -328,21 +320,70 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             return str.mid(0, (str.length() -1));
         return str;
     };
-    program.replace("%F", chopPathSep(Utils::Fs::toNativePath(torrent->contentPath())));
-    program.replace("%R", chopPathSep(Utils::Fs::toNativePath(torrent->rootPath())));
-    program.replace("%D", chopPathSep(Utils::Fs::toNativePath(torrent->savePath())));
-#else
-    program.replace("%F", Utils::Fs::toNativePath(torrent->contentPath()));
-    program.replace("%R", Utils::Fs::toNativePath(torrent->rootPath()));
-    program.replace("%D", Utils::Fs::toNativePath(torrent->savePath()));
 #endif
-    program.replace("%C", QString::number(torrent->filesCount()));
-    program.replace("%Z", QString::number(torrent->totalSize()));
-    program.replace("%T", torrent->currentTracker());
-    program.replace("%I", torrent->hash().toString());
 
-    Logger *logger = Logger::instance();
-    logger->addMessage(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
+    QString program = Preferences::instance()->getAutoRunProgram().trimmed();
+
+    for (int i = (program.length() - 2); i >= 0; --i)
+    {
+        if (program[i] != QLatin1Char('%'))
+            continue;
+
+        const ushort specifier = program[i + 1].unicode();
+        switch (specifier)
+        {
+        case u'C':
+            program.replace(i, 2, QString::number(torrent->filesCount()));
+            break;
+        case u'D':
+#if defined(Q_OS_WIN)
+            program.replace(i, 2, chopPathSep(Utils::Fs::toNativePath(torrent->savePath())));
+#else
+            program.replace(i, 2, Utils::Fs::toNativePath(torrent->savePath()));
+#endif
+            break;
+        case u'F':
+#if defined(Q_OS_WIN)
+            program.replace(i, 2, chopPathSep(Utils::Fs::toNativePath(torrent->contentPath())));
+#else
+            program.replace(i, 2, Utils::Fs::toNativePath(torrent->contentPath()));
+#endif
+            break;
+        case u'G':
+            program.replace(i, 2, torrent->tags().join(QLatin1String(",")));
+            break;
+        case u'I':
+            program.replace(i, 2, torrent->id().toString());
+            break;
+        case u'L':
+            program.replace(i, 2, torrent->category());
+            break;
+        case u'N':
+            program.replace(i, 2, torrent->name());
+            break;
+        case u'R':
+#if defined(Q_OS_WIN)
+            program.replace(i, 2, chopPathSep(Utils::Fs::toNativePath(torrent->rootPath())));
+#else
+            program.replace(i, 2, Utils::Fs::toNativePath(torrent->rootPath()));
+#endif
+            break;
+        case u'T':
+            program.replace(i, 2, torrent->currentTracker());
+            break;
+        case u'Z':
+            program.replace(i, 2, QString::number(torrent->totalSize()));
+            break;
+        default:
+            // do nothing
+            break;
+        }
+
+        // decrement `i` to avoid unwanted replacement, example pattern: "%%N"
+        --i;
+    }
+
+    LogMsg(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
 
 #if defined(Q_OS_WIN)
     auto programWchar = std::make_unique<wchar_t[]>(program.length() + 1);
@@ -358,7 +399,6 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QProcess proc;
     proc.setProgram(QString::fromWCharArray(args[0]));
     proc.setArguments(argList);
@@ -384,9 +424,6 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
         args->startupInfo->hStdError = nullptr;
     });
     proc.startDetached();
-#else
-    QProcess::startDetached(QString::fromWCharArray(args[0]), argList);
-#endif // QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 #else // Q_OS_WIN
     // Cannot give users shell environment by default, as doing so could
     // enable command injection via torrent name and other arguments

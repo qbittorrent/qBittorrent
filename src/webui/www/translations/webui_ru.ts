@@ -1394,10 +1394,6 @@
         <translation>Максимум одновременных анонсов HTTP (требуется libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Сохранять родительскую папку</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> мин</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Размещение содержимого торрента:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Создавать подпапку</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Исходное</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Не создавать подпапку</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Переименовать…</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Простаивает</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 мин</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

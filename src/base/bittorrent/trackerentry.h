@@ -49,9 +49,11 @@ namespace BitTorrent
             int protocolVersion = 1;
 
             Status status = NotContacted;
+            int numPeers = -1;
             int numSeeds = -1;
             int numLeeches = -1;
             int numDownloaded = -1;
+            QString message;
         };
 
         QString url;
@@ -61,9 +63,11 @@ namespace BitTorrent
 
         // Deprecated fields
         Status status = NotContacted;
+        int numPeers = -1;
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
+        QString message;
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);

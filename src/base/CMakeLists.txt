@@ -4,6 +4,7 @@ add_library(qbt_base STATIC
     asyncfilestorage.h
     bittorrent/abstractfilestorage.h
     bittorrent/addtorrentparams.h
+    bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
     bittorrent/common.h
     bittorrent/customstorage.h
@@ -11,6 +12,7 @@ add_library(qbt_base STATIC
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
     bittorrent/infohash.h
+    bittorrent/loadtorrentparams.h
     bittorrent/ltqhash.h
     bittorrent/ltunderlyingtype.h
     bittorrent/magneturi.h
@@ -19,7 +21,7 @@ add_library(qbt_base STATIC
     bittorrent/peeraddress.h
     bittorrent/peerinfo.h
     bittorrent/portforwarderimpl.h
-    bittorrent/resumedatasavingmanager.h
+    bittorrent/resumedatastorage.h
     bittorrent/scheduler/bandwidthscheduler.h
     bittorrent/scheduler/scheduleday.h
     bittorrent/scheduler/timerange.h
@@ -58,6 +60,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.h
     net/reverseresolution.h
     net/smtp.h
+    orderedset.h
     preferences.h
     profile.h
     profile_p.h
@@ -74,11 +77,13 @@ add_library(qbt_base STATIC
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
+    tagset.h
     torrentfileguard.h
     torrentfilter.h
     types.h
     unicodestrings.h
     utils/bytearray.h
+    utils/compare.h
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
@@ -94,6 +99,7 @@ add_library(qbt_base STATIC
     # sources
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp
+    bittorrent/bencoderesumedatastorage.cpp
     bittorrent/customstorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
@@ -105,7 +111,6 @@ add_library(qbt_base STATIC
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
     bittorrent/portforwarderimpl.cpp
-    bittorrent/resumedatasavingmanager.cpp
     bittorrent/scheduler/bandwidthscheduler.cpp
     bittorrent/scheduler/scheduleday.cpp
     bittorrent/scheduler/timerange.cpp
@@ -153,9 +158,11 @@ add_library(qbt_base STATIC
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
+    tagset.cpp
     torrentfileguard.cpp
     torrentfilter.cpp
     utils/bytearray.cpp
+    utils/compare.cpp
     utils/foreignapps.cpp
     utils/fs.cpp
     utils/gzip.cpp

@@ -312,8 +312,9 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
     // Save path
     updateSavePath(m_torrent);
-    // Hash
-    m_ui->labelHashVal->setText(m_torrent->hash().toString());
+    // Info hash (Truncated info hash (torrent ID) with libtorrent2)
+    // TODO: Update label for this property to express its meaning more clearly (or change it to display real info hash(es))
+    m_ui->labelHashVal->setText(m_torrent->id().toString());
     m_propListModel->model()->clear();
     if (m_torrent->hasMetadata())
     {
@@ -636,10 +637,10 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
 
             const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
 
-            const int priorityGroups = 3;
-            const int priorityGroupSize = std::max((selectedRows.length() / priorityGroups), 1);
+            const qsizetype priorityGroups = 3;
+            const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
 
-            for (int i = 0; i < selectedRows.length(); ++i)
+            for (qsizetype i = 0; i < selectedRows.length(); ++i)
             {
                 auto priority = BitTorrent::DownloadPriority::Ignored;
                 switch (i / priorityGroupSize)
@@ -824,7 +825,8 @@ void PropertiesWidget::filteredFilesChanged()
 
 void PropertiesWidget::filterText(const QString &filter)
 {
-    m_propListModel->setFilterRegExp(QRegExp(filter, Qt::CaseInsensitive, QRegExp::WildcardUnix));
+    const QString pattern = Utils::String::wildcardToRegexPattern(filter);
+    m_propListModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
     if (filter.isEmpty())
     {
         m_ui->filesList->collapseAll();

@@ -33,6 +33,7 @@
 #include <QString>
 #include <QtContainerFwd>
 
+#include "base/tagset.h"
 #include "abstractfilestorage.h"
 
 class QBitArray;
@@ -44,6 +45,7 @@ namespace BitTorrent
     enum class DownloadPriority;
     class InfoHash;
     class PeerInfo;
+    class TorrentID;
     class TorrentInfo;
     struct PeerAddress;
     struct TrackerEntry;
@@ -83,12 +85,6 @@ namespace BitTorrent
         Error
     };
 
-    struct TrackerInfo
-    {
-        QString lastMessage;
-        int numPeers = 0;
-    };
-
     uint qHash(TorrentState key, uint seed);
 
     class Torrent : public AbstractFileStorage
@@ -105,7 +101,7 @@ namespace BitTorrent
 
         virtual ~Torrent() = default;
 
-        virtual InfoHash hash() const = 0;
+        virtual InfoHash infoHash() const = 0;
         virtual QString name() const = 0;
         virtual QDateTime creationDate() const = 0;
         virtual QString creator() const = 0;
@@ -173,7 +169,7 @@ namespace BitTorrent
         virtual bool belongsToCategory(const QString &category) const = 0;
         virtual bool setCategory(const QString &category) = 0;
 
-        virtual QSet<QString> tags() const = 0;
+        virtual TagSet tags() const = 0;
         virtual bool hasTag(const QString &tag) const = 0;
         virtual bool addTag(const QString &tag) = 0;
         virtual bool removeTag(const QString &tag) = 0;
@@ -210,7 +206,6 @@ namespace BitTorrent
         virtual bool hasFilteredPieces() const = 0;
         virtual int queuePosition() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
-        virtual QHash<QString, TrackerInfo> trackerInfos() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;
@@ -290,6 +285,7 @@ namespace BitTorrent
 
         virtual QString createMagnetURI() const = 0;
 
+        TorrentID id() const;
         bool isResumed() const;
         qlonglong remainingSize() const;
 

@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/abstractfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h \
+    $$PWD/bittorrent/bencoderesumedatastorage.h \
     $$PWD/bittorrent/cachestatus.h \
     $$PWD/bittorrent/common.h \
     $$PWD/bittorrent/customstorage.h \
@@ -10,6 +11,7 @@ HEADERS += \
     $$PWD/bittorrent/filesearcher.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
+    $$PWD/bittorrent/loadtorrentparams.h \
     $$PWD/bittorrent/ltqhash.h \
     $$PWD/bittorrent/ltunderlyingtype.h \
     $$PWD/bittorrent/magneturi.h \
@@ -18,7 +20,7 @@ HEADERS += \
     $$PWD/bittorrent/peeraddress.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/portforwarderimpl.h \
-    $$PWD/bittorrent/resumedatasavingmanager.h \
+    $$PWD/bittorrent/resumedatastorage.h \
     $$PWD/bittorrent/scheduler/bandwidthscheduler.h \
     $$PWD/bittorrent/scheduler/scheduleday.h \
     $$PWD/bittorrent/scheduler/timerange.h \
@@ -57,6 +59,7 @@ HEADERS += \
     $$PWD/net/proxyconfigurationmanager.h \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
+    $$PWD/orderedset.h \
     $$PWD/preferences.h \
     $$PWD/profile.h \
     $$PWD/profile_p.h \
@@ -74,11 +77,13 @@ HEADERS += \
     $$PWD/search/searchpluginmanager.h \
     $$PWD/settingsstorage.h \
     $$PWD/settingvalue.h \
+    $$PWD/tagset.h \
     $$PWD/torrentfileguard.h \
     $$PWD/torrentfilter.h \
     $$PWD/types.h \
     $$PWD/unicodestrings.h \
     $$PWD/utils/bytearray.h \
+    $$PWD/utils/compare.h \
     $$PWD/utils/foreignapps.h \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
@@ -94,6 +99,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/abstractfilestorage.cpp \
+    $$PWD/bittorrent/bencoderesumedatastorage.cpp \
     $$PWD/bittorrent/customstorage.cpp \
     $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/filesearcher.cpp \
@@ -105,7 +111,6 @@ SOURCES += \
     $$PWD/bittorrent/peeraddress.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/portforwarderimpl.cpp \
-    $$PWD/bittorrent/resumedatasavingmanager.cpp \
     $$PWD/bittorrent/scheduler/bandwidthscheduler.cpp \
     $$PWD/bittorrent/scheduler/scheduleday.cpp \
     $$PWD/bittorrent/scheduler/timerange.cpp \
@@ -153,9 +158,11 @@ SOURCES += \
     $$PWD/search/searchhandler.cpp \
     $$PWD/search/searchpluginmanager.cpp \
     $$PWD/settingsstorage.cpp \
+    $$PWD/tagset.cpp \
     $$PWD/torrentfileguard.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/utils/bytearray.cpp \
+    $$PWD/utils/compare.cpp \
     $$PWD/utils/foreignapps.cpp \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \

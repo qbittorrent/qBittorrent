@@ -28,14 +28,54 @@
 
 #include "infohash.h"
 
-const int InfoHashTypeId = qRegisterMetaType<BitTorrent::InfoHash>();
+const int TorrentIDTypeId = qRegisterMetaType<BitTorrent::TorrentID>();
 
-BitTorrent::InfoHash BitTorrent::InfoHash::fromString(const QString &hashString)
+BitTorrent::InfoHash::InfoHash(const WrappedType &nativeHash)
+    : m_valid {true}
+    , m_nativeHash {nativeHash}
 {
-    return {SHA1Hash::fromString(hashString)};
 }
 
-uint BitTorrent::qHash(const BitTorrent::InfoHash &key, const uint seed)
+bool BitTorrent::InfoHash::isValid() const
 {
-    return ::qHash(std::hash<InfoHash::UnderlyingType>()(key), seed);
+    return m_valid;
+}
+
+BitTorrent::TorrentID BitTorrent::InfoHash::toTorrentID() const
+{
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    return m_nativeHash.get_best();
+#else
+    return {m_nativeHash};
+#endif
+}
+
+BitTorrent::InfoHash::operator WrappedType() const
+{
+    return m_nativeHash;
+}
+
+BitTorrent::TorrentID BitTorrent::TorrentID::fromString(const QString &hashString)
+{
+    return {BaseType::fromString(hashString)};
+}
+
+BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::InfoHash &infoHash)
+{
+    return infoHash.toTorrentID();
+}
+
+uint BitTorrent::qHash(const BitTorrent::TorrentID &key, const uint seed)
+{
+    return ::qHash(std::hash<TorrentID::UnderlyingType>()(key), seed);
+}
+
+bool BitTorrent::operator==(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
+{
+    return (static_cast<InfoHash::WrappedType>(left) == static_cast<InfoHash::WrappedType>(right));
+}
+
+bool BitTorrent::operator!=(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
+{
+    return !(left == right);
 }

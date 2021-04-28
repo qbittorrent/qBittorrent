@@ -28,7 +28,6 @@
 
 #include "torrentcontentfiltermodel.h"
 
-#include "base/utils/string.h"
 #include "torrentcontentmodel.h"
 
 TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
@@ -94,7 +93,7 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
             {
                 const QString strL = left.data().toString();
                 const QString strR = right.data().toString();
-                return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
+                return m_naturalLessThan(strL, strR);
             }
             if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder))
             {
@@ -129,7 +128,7 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
     // this should be called only with folders
     // check if the folder name itself matches the filter string
     QString name = folder.data().toString();
-    if (name.contains(filterRegExp()))
+    if (name.contains(filterRegularExpression()))
         return true;
     for (int child = 0; child < m_model->rowCount(folder); ++child)
     {
@@ -141,7 +140,7 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
             continue;
         }
         name = childIndex.data().toString();
-        if (name.contains(filterRegExp()))
+        if (name.contains(filterRegularExpression()))
             return true;
     }
 

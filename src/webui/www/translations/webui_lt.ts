@@ -1453,6 +1453,10 @@
         <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1736,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Pervardinti...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2275,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Laukiama</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2602,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 min.</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

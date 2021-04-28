@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,22 @@
 
 #pragma once
 
-#include <memory>
+#include <QMetaType>
+#include <QString>
 
-#include <libtorrent/fwd.hpp>
+#include "base/orderedset.h"
+#include "base/utils/compare.h"
 
-#include <QDir>
-#include <QObject>
-
-class QByteArray;
-
-class ResumeDataSavingManager : public QObject
+class TagLessThan
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(ResumeDataSavingManager)
-
 public:
-    explicit ResumeDataSavingManager(const QString &resumeFolderPath);
-
-public slots:
-    void save(const QString &filename, const QByteArray &data) const;
-    void save(const QString &filename, const std::shared_ptr<lt::entry> &data) const;
-    void remove(const QString &filename) const;
+    bool operator()(const QString &left, const QString &right) const;
 
 private:
-    const QDir m_resumeDataDir;
+    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_compare;
+    Utils::Compare::NaturalCompare<Qt::CaseSensitive> m_subCompare;
 };
+
+using TagSet = OrderedSet<QString, TagLessThan>;
+
+Q_DECLARE_METATYPE(TagSet)

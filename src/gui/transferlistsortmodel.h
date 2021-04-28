@@ -30,7 +30,9 @@
 
 #include <QSortFilterProxyModel>
 
+#include "base/settingvalue.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 
 namespace BitTorrent
 {
@@ -50,7 +52,7 @@ public:
     void disableCategoryFilter();
     void setTagFilter(const QString &tag);
     void disableTagFilter();
-    void setTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes);
+    void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();
 
 private:
@@ -61,6 +63,8 @@ private:
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
     TorrentFilter m_filter;
-    mutable int m_subSortColumn = -1;
-    mutable int m_sortColumn = -1;
+    mutable CachedSettingValue<int> m_subSortColumn;
+    mutable int m_lastSortColumn = -1;
+
+    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_naturalCompare;
 };

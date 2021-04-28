@@ -30,6 +30,7 @@
 
 #include <chrono>
 
+#include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
@@ -47,10 +48,6 @@
 #include <QtGlobal>
 #include <QTimer>
 
-#ifdef Q_OS_MACOS
-#include <QtMac>
-#include <QtMacExtras>
-#endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "qtnotify/notifications.h"
@@ -119,6 +116,9 @@ namespace
 #define NOTIFICATIONS_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Notifications/") name)
     const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
     const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    const QString KEY_NOTIFICATION_TIMEOUT = NOTIFICATIONS_SETTINGS_KEY("Timeout");
+#endif
 
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
@@ -527,6 +527,18 @@ void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
     settings()->storeValue(KEY_NOTIFICATIONS_TORRENTADDED, value);
 }
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+int MainWindow::getNotificationTimeout() const
+{
+    return settings()->loadValue(KEY_NOTIFICATION_TIMEOUT, -1);
+}
+
+void MainWindow::setNotificationTimeout(const int value)
+{
+    settings()->storeValue(KEY_NOTIFICATION_TIMEOUT, value);
+}
+#endif
+
 bool MainWindow::isDownloadTrackerFavicon() const
 {
     return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, false);
@@ -876,36 +888,36 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
     m_ui->actionDelete->setShortcut(QKeySequence::Delete);
     m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
-    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
-    m_ui->actionExit->setShortcut(Qt::CTRL + Qt::Key_Q);
+    m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_O);
+    m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
 
-    const auto *switchTransferShortcut = new QShortcut(Qt::ALT + Qt::Key_1, this);
+    const auto *switchTransferShortcut = new QShortcut((Qt::ALT | Qt::Key_1), this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
-    const auto *switchSearchShortcut = new QShortcut(Qt::ALT + Qt::Key_2, this);
+    const auto *switchSearchShortcut = new QShortcut((Qt::ALT | Qt::Key_2), this);
     connect(switchSearchShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displaySearchTab));
-    const auto *switchRSSShortcut = new QShortcut(Qt::ALT + Qt::Key_3, this);
+    const auto *switchRSSShortcut = new QShortcut((Qt::ALT | Qt::Key_3), this);
     connect(switchRSSShortcut, &QShortcut::activated, this, qOverload<>(&MainWindow::displayRSSTab));
-    const auto *switchExecutionLogShortcut = new QShortcut(Qt::ALT + Qt::Key_4, this);
+    const auto *switchExecutionLogShortcut = new QShortcut((Qt::ALT | Qt::Key_4), this);
     connect(switchExecutionLogShortcut, &QShortcut::activated, this, &MainWindow::displayExecutionLogTab);
     const auto *switchSearchFilterShortcut = new QShortcut(QKeySequence::Find, m_transferListWidget);
     connect(switchSearchFilterShortcut, &QShortcut::activated, this, &MainWindow::focusSearchFilter);
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
-    m_ui->actionOptions->setShortcut(Qt::ALT + Qt::Key_O);
-    m_ui->actionStatistics->setShortcut(Qt::CTRL + Qt::Key_I);
-    m_ui->actionStart->setShortcut(Qt::CTRL + Qt::Key_S);
-    m_ui->actionStartAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_S);
-    m_ui->actionPause->setShortcut(Qt::CTRL + Qt::Key_P);
-    m_ui->actionPauseAll->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_P);
-    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Minus);
-    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Minus);
-    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL + Qt::Key_Plus);
-    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_Plus);
+    m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
+    m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);
+    m_ui->actionStart->setShortcut(Qt::CTRL | Qt::Key_S);
+    m_ui->actionStartAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_S);
+    m_ui->actionPause->setShortcut(Qt::CTRL | Qt::Key_P);
+    m_ui->actionPauseAll->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_P);
+    m_ui->actionBottomQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Minus);
+    m_ui->actionDecreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Minus);
+    m_ui->actionIncreaseQueuePos->setShortcut(Qt::CTRL | Qt::Key_Plus);
+    m_ui->actionTopQueuePos->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_Plus);
 #ifdef Q_OS_MACOS
     m_ui->actionMinimize->setShortcut(Qt::CTRL + Qt::Key_M);
     addAction(m_ui->actionMinimize);
@@ -958,7 +970,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
     Preferences *const pref = Preferences::instance();
     if (pref->recursiveDownloadDisabled()) return;
 
-    const auto torrentHash = torrent->hash();
+    const auto torrentID = torrent->id();
 
     QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
         , tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent->name())
@@ -969,10 +981,10 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
     const QPushButton *yes = confirmBox->addButton(tr("Yes"), QMessageBox::YesRole);
     /*QPushButton *no = */ confirmBox->addButton(tr("No"), QMessageBox::NoRole);
     const QPushButton *never = confirmBox->addButton(tr("Never"), QMessageBox::NoRole);
-    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentHash, yes, never](const QAbstractButton *button)
+    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentID, yes, never](const QAbstractButton *button)
     {
         if (button == yes)
-            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentHash);
+            BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
         if (button == never)
             Preferences::instance()->disableRecursiveDownload();
     });
@@ -1611,12 +1623,12 @@ void MainWindow::reloadSessionStats()
 #ifdef Q_OS_MACOS
     if (status.payloadDownloadRate > 0)
     {
-        QtMac::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
+        MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
             .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
     }
-    else if (!QtMac::badgeLabelText().isEmpty())
+    else if (!MacUtils::badgeLabelText().isEmpty())
     {
-        QtMac::setBadgeLabelText("");
+        MacUtils::setBadgeLabelText("");
     }
 #else
     if (m_systrayIcon)
@@ -1648,11 +1660,14 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
 
 void MainWindow::showNotificationBaloon(const QString &title, const QString &msg) const
 {
-    if (!isNotificationsEnabled()) return;
+    if (!isNotificationsEnabled())
+        return;
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
-                                                  "/org/freedesktop/Notifications",
-                                                  QDBusConnection::sessionBus());
+    OrgFreedesktopNotificationsInterface notifications(QLatin1String("org.freedesktop.Notifications")
+        , QLatin1String("/org/freedesktop/Notifications")
+        , QDBusConnection::sessionBus());
+
     // Testing for 'notifications.isValid()' isn't helpful here.
     // If the notification daemon is configured to run 'as needed'
     // the above check can be false if the daemon wasn't started
@@ -1662,10 +1677,10 @@ void MainWindow::showNotificationBaloon(const QString &title, const QString &msg
     // some inactivity shuts it down. Other DEs, like GNOME, choose
     // to start their daemons at the session startup and have it sit
     // idling for the whole session.
-    QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, -1);
+    const QVariantMap hints {{QLatin1String("desktop-entry"), QLatin1String("org.qbittorrent.qBittorrent")}};
+    QDBusPendingReply<uint> reply = notifications.Notify(QLatin1String("qBittorrent"), 0
+        , QLatin1String("qbittorrent"), title, msg, {}, hints, getNotificationTimeout());
+
     reply.waitForFinished();
     if (!reply.isError())
         return;

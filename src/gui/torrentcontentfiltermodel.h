@@ -30,6 +30,7 @@
 
 #include <QSortFilterProxyModel>
 
+#include "base/utils/compare.h"
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModel;
@@ -61,4 +62,5 @@ private:
     bool hasFiltered(const QModelIndex &folder) const;
 
     TorrentContentModel *m_model;
+    Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };

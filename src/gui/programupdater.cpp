@@ -127,18 +127,18 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 
         if (xml.isStartElement())
         {
-            if (xml.name() == "item")
+            if (xml.name() == QLatin1String("item"))
                 inItem = true;
-            else if (inItem && xml.name() == "link")
+            else if (inItem && (xml.name() == QLatin1String("link")))
                 updateLink = getStringValue(xml);
-            else if (inItem && xml.name() == "type")
+            else if (inItem && (xml.name() == QLatin1String("type")))
                 type = getStringValue(xml);
-            else if (inItem && xml.name() == "version")
+            else if (inItem && (xml.name() == QLatin1String("version")))
                 version = getStringValue(xml);
         }
         else if (xml.isEndElement())
         {
-            if (inItem && xml.name() == "item")
+            if (inItem && (xml.name() == QLatin1String("item")))
             {
                 if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0)
                 {

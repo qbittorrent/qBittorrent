@@ -34,7 +34,7 @@
 #include <QGlobalStatic>
 #include <QHash>
 #include <QMetaObject>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 #include <QVariant>
 #include <QXmlStreamEntityResolver>
@@ -391,12 +391,13 @@ namespace
         int nmin   = 8;
         int nsec   = 9;
         // Also accept obsolete form "Weekday, DD-Mon-YY HH:MM:SS ±hhmm"
-        QRegExp rx("^(?:([A-Z][a-z]+),\\s*)?(\\d{1,2})(\\s+|-)([^-\\s]+)(\\s+|-)(\\d{2,4})\\s+(\\d\\d):(\\d\\d)(?::(\\d\\d))?\\s+(\\S+)$");
+        QRegularExpression rx {"^(?:([A-Z][a-z]+),\\s*)?(\\d{1,2})(\\s+|-)([^-\\s]+)(\\s+|-)(\\d{2,4})\\s+(\\d\\d):(\\d\\d)(?::(\\d\\d))?\\s+(\\S+)$"};
+        QRegularExpressionMatch rxMatch;
         QStringList parts;
-        if (!str.indexOf(rx))
+        if (str.indexOf(rx, 0, &rxMatch) == 0)
         {
             // Check that if date has '-' separators, both separators are '-'.
-            parts = rx.capturedTexts();
+            parts = rxMatch.capturedTexts();
             const bool h1 = (parts[3] == QLatin1String("-"));
             const bool h2 = (parts[5] == QLatin1String("-"));
             if (h1 != h2)
@@ -405,9 +406,10 @@ namespace
         else
         {
             // Check for the obsolete form "Wdy Mon DD HH:MM:SS YYYY"
-            rx = QRegExp("^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$");
-            if (str.indexOf(rx))
+            rx = QRegularExpression {"^([A-Z][a-z]+)\\s+(\\S+)\\s+(\\d\\d)\\s+(\\d\\d):(\\d\\d):(\\d\\d)\\s+(\\d\\d\\d\\d)$"};
+            if (str.indexOf(rx, 0, &rxMatch) != 0)
                 return QDateTime::currentDateTime();
+
             nyear  = 7;
             nmonth = 2;
             nday   = 3;
@@ -415,7 +417,7 @@ namespace
             nhour  = 4;
             nmin   = 5;
             nsec   = 6;
-            parts = rx.capturedTexts();
+            parts = rxMatch.capturedTexts();
         }
 
         bool ok[4];
@@ -463,11 +465,11 @@ namespace
         bool negOffset = false;
         if (parts.count() > 10)
         {
-            rx = QRegExp("^([+-])(\\d\\d)(\\d\\d)$");
-            if (!parts[10].indexOf(rx))
+            rx = QRegularExpression {"^([+-])(\\d\\d)(\\d\\d)$"};
+            if (parts[10].indexOf(rx, 0, &rxMatch) == 0)
             {
                 // It's a UTC offset ±hhmm
-                parts = rx.capturedTexts();
+                parts = rxMatch.capturedTexts();
                 offset = parts[2].toInt(&ok[0]) * 3600;
                 const int offsetMin = parts[3].toInt(&ok[1]);
                 if (!ok[0] || !ok[1] || offsetMin > 59)
@@ -547,13 +549,8 @@ Parser::Parser(const QString lastBuildDate)
 
 void Parser::parse(const QByteArray &feedData)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QMetaObject::invokeMethod(this, [this, feedData]() { parse_impl(feedData); }
                               , Qt::QueuedConnection);
-#else
-    QMetaObject::invokeMethod(this, "parse_impl", Qt::QueuedConnection
-                              , Q_ARG(QByteArray, feedData));
-#endif
 }
 
 // read and create items from a rss document
@@ -566,12 +563,12 @@ void Parser::parse_impl(const QByteArray &feedData)
 
     while (xml.readNextStartElement())
     {
-        if (xml.name() == "rss")
+        if (xml.name() == QLatin1String("rss"))
         {
             // Find channels
             while (xml.readNextStartElement())
             {
-                if (xml.name() == "channel")
+                if (xml.name() == QLatin1String("channel"))
                 {
                     parseRSSChannel(xml);
                     foundChannel = true;
@@ -583,7 +580,7 @@ void Parser::parse_impl(const QByteArray &feedData)
             }
             break;
         }
-        if (xml.name() == "feed")
+        if (xml.name() == QLatin1String("feed"))
         { // Atom feed
             parseAtomChannel(xml);
             foundChannel = true;
@@ -826,21 +823,24 @@ void Parser::addArticle(QVariantHash article)
 {
     QVariant &torrentURL = article[Article::KeyTorrentURL];
     if (torrentURL.toString().isEmpty())
-        torrentURL = article[Article::KeyLink];
+        torrentURL = article.value(Article::KeyLink);
 
     // If item does not have an ID, fall back to some other identifier.
     QVariant &localId = article[Article::KeyId];
     if (localId.toString().isEmpty())
-        localId = article.value(Article::KeyTorrentURL);
-    if (localId.toString().isEmpty())
-        localId = article.value(Article::KeyTitle);
-
-    if (localId.toString().isEmpty())
     {
-        // The article could not be uniquely identified
-        // since it has no appropriate data.
-        // Just ignore it.
-        return;
+        localId = article.value(Article::KeyTorrentURL);
+        if (localId.toString().isEmpty())
+        {
+            localId = article.value(Article::KeyTitle);
+            if (localId.toString().isEmpty())
+            {
+                // The article could not be uniquely identified
+                // since it has no appropriate data.
+                // Just ignore it.
+                return;
+            }
+        }
     }
 
     if (m_articleIDs.contains(localId.toString()))

@@ -33,47 +33,38 @@
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
+#include <libtorrent/socket.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
 
 #include <QDateTime>
 #include <QHash>
+#include <QMap>
 #include <QObject>
 #include <QQueue>
-#include <QSet>
 #include <QString>
 #include <QVector>
 
+#include "base/tagset.h"
 #include "infohash.h"
 #include "speedmonitor.h"
 #include "torrent.h"
 #include "torrentinfo.h"
 
+#if (LIBTORRENT_VERSION_NUM == 20003)
+// file_prio_alert is missing to be forward declared in "libtorrent/fwd.hpp"
+namespace libtorrent
+{
+    TORRENT_VERSION_NAMESPACE_3
+    struct file_prio_alert;
+    TORRENT_VERSION_NAMESPACE_3_END
+}
+#endif
+
 namespace BitTorrent
 {
     class Session;
-    struct AddTorrentParams;
-
-    struct LoadTorrentParams
-    {
-        lt::add_torrent_params ltAddTorrentParams {};
-
-        QString name;
-        QString category;
-        QSet<QString> tags;
-        QString savePath;
-        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
-        bool firstLastPiecePriority = false;
-        bool hasSeedStatus = false;
-        bool forced = false;
-        bool paused = false;
-
-
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-
-        bool restored = false;  // is existing torrent job?
-    };
+    struct LoadTorrentParams;
 
     enum class MoveStorageMode
     {
@@ -99,7 +90,7 @@ namespace BitTorrent
 
         bool isValid() const;
 
-        InfoHash hash() const override;
+        InfoHash infoHash() const override;
         QString name() const override;
         QDateTime creationDate() const override;
         QString creator() const override;
@@ -124,7 +115,7 @@ namespace BitTorrent
         bool belongsToCategory(const QString &category) const override;
         bool setCategory(const QString &category) override;
 
-        QSet<QString> tags() const override;
+        TagSet tags() const override;
         bool hasTag(const QString &tag) const override;
         bool addTag(const QString &tag) override;
         bool removeTag(const QString &tag) override;
@@ -165,7 +156,6 @@ namespace BitTorrent
         bool hasFilteredPieces() const override;
         int queuePosition() const override;
         QVector<TrackerEntry> trackers() const override;
-        QHash<QString, TrackerInfo> trackerInfos() const override;
         QVector<QUrl> urlSeeds() const override;
         QString error() const override;
         qlonglong totalDownload() const override;
@@ -257,7 +247,7 @@ namespace BitTorrent
         QString actualStorageLocation() const;
 
     private:
-        typedef std::function<void ()> EventTrigger;
+        using EventTrigger = std::function<void ()>;
 
         void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
@@ -265,6 +255,9 @@ namespace BitTorrent
 
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
         void handleFileCompletedAlert(const lt::file_completed_alert *p);
+#if (LIBTORRENT_VERSION_NUM >= 20003)
+        void handleFilePrioAlert(const lt::file_prio_alert *p);
+#endif
         void handleFileRenamedAlert(const lt::file_renamed_alert *p);
         void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
@@ -290,6 +283,7 @@ namespace BitTorrent
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
+        void prepareResumeData(const lt::add_torrent_params &params);
         void endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames);
         void reload();
 
@@ -301,7 +295,7 @@ namespace BitTorrent
         TorrentInfo m_torrentInfo;
         SpeedMonitor m_speedMonitor;
 
-        InfoHash m_hash;
+        InfoHash m_infoHash;
 
         // m_moveFinishedTriggers is activated only when the following conditions are met:
         // all file rename jobs complete, all file move jobs complete
@@ -315,13 +309,13 @@ namespace BitTorrent
         // we will rely on this workaround to remove empty leftover folders
         QHash<lt::file_index_t, QVector<QString>> m_oldPath;
 
-        QHash<QString, TrackerInfo> m_trackerInfos;
+        QHash<QString, QMap<lt::tcp::endpoint, int>> m_trackerPeerCounts;
 
         // Persistent data
         QString m_name;
         QString m_savePath;
         QString m_category;
-        QSet<QString> m_tags;
+        TagSet m_tags;
         qreal m_ratioLimit;
         int m_seedingTimeLimit;
         TorrentOperatingMode m_operatingMode;

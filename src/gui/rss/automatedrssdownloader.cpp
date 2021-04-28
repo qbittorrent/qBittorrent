@@ -47,6 +47,7 @@
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
@@ -187,7 +188,7 @@ void AutomatedRssDownloader::loadFeedList()
     {
         QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
-        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsTristate);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
     }
 
     updateFeedList();
@@ -330,7 +331,7 @@ void AutomatedRssDownloader::initCategoryCombobox()
 {
     // Load torrent categories
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     m_ui->comboCategory->addItem("");
     m_ui->comboCategory->addItems(categories);
 }
@@ -719,10 +720,14 @@ void AutomatedRssDownloader::updateMustLineValidity()
     {
         QStringList tokens;
         if (isRegex)
+        {
             tokens << text;
+        }
         else
+        {
             for (const QString &token : asConst(text.split('|')))
-                tokens << Utils::String::wildcardToRegex(token);
+                tokens << Utils::String::wildcardToRegexPattern(token);
+        }
 
         for (const QString &token : asConst(tokens))
         {
@@ -762,10 +767,14 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     {
         QStringList tokens;
         if (isRegex)
+        {
             tokens << text;
+        }
         else
+        {
             for (const QString &token : asConst(text.split('|')))
-                tokens << Utils::String::wildcardToRegex(token);
+                tokens << Utils::String::wildcardToRegexPattern(token);
+        }
 
         for (const QString &token : asConst(tokens))
         {

@@ -25,7 +25,7 @@
     </div>
     <div class="formRow">
         <span id="appendexttr">
-            <input type="checkbox" id="appendext_checkbox"/>
+            <input type="checkbox" id="appendext_checkbox" />
             <label for="appendext_checkbox">QBT_TR(Append .!qB extension to incomplete files)QBT_TR[CONTEXT=OptionsDialog]</label>
         </span>
     </div>
@@ -127,22 +127,6 @@
                 </tr>
             </thead>
             <tbody></tbody>
-            <tfoot>
-                <tr>
-                    <td style="padding-top:4px;"><input type="text" id="new_watch_folder_txt" autocorrect="off" autocapitalize="none" /></td>
-                    <td style="padding-top:4px;">
-                        <div class="select-watched-folder-editable">
-                            <select id="new_watch_folder_select" onchange="qBittorrent.Preferences.changeWatchFolderSelect(this)">
-                                <option value="watch_folder">QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>
-                                <option selected value="default_folder">QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>
-                                <option value="other">QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>
-                            </select>
-                            <input id="new_watch_folder_other_txt" type="text" value="QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]" hidden />
-                            <img src="icons/list-add.svg" alt="Add" style="padding-left:170px;width:16px;cursor:pointer;" onclick="qBittorrent.Preferences.addWatchFolder();" />
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
     </fieldset>
 
@@ -803,7 +787,8 @@
 
         <fieldset class="settings">
             <legend><input type="checkbox" id="use_alt_webui_checkbox" onclick="qBittorrent.Preferences.updateAlternativeWebUISettings();" />
-                <label for="use_alt_webui_checkbox">QBT_TR(Use alternative Web UI)QBT_TR[CONTEXT=OptionsDialog]</label></legend>
+                <label for="use_alt_webui_checkbox">QBT_TR(Use alternative Web UI)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
             <div class="formRow">
                 <label for="webui_files_location_textarea">QBT_TR(Files location:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <input type="text" id="webui_files_location_textarea" />
@@ -1199,7 +1184,7 @@
                 <td>
                     <input type="text" id="maxConcurrentHTTPAnnounces" style="width: 15em;" />
                 </td>
-             </tr>
+            </tr>
             <tr>
                 <td>
                     <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
@@ -1207,31 +1192,31 @@
                 <td>
                     <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
                 </td>
-             </tr>
-             <tr>
+            </tr>
+            <tr>
                 <td>
                     <label for="peerTurnover">QBT_TR(Peer turnover disconnect percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="peerTurnover" style="width: 15em;" />&nbsp;&nbsp;%
                 </td>
-             </tr>
-             <tr>
+            </tr>
+            <tr>
                 <td>
                     <label for="peerTurnoverCutoff">QBT_TR(Peer turnover threshold percentage:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="peerTurnoverCutoff" style="width: 15em;" />&nbsp;&nbsp;%
                 </td>
-             </tr>
-             <tr>
+            </tr>
+            <tr>
                 <td>
                     <label for="peerTurnoverInterval">QBT_TR(Peer turnover disconnect interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="peerTurnoverInterval" style="width: 15em;" />&nbsp;&nbsp;s
                 </td>
-             </tr>
+            </tr>
         </table>
     </fieldset>
 </div>
@@ -1282,37 +1267,17 @@
         };
 
         // Downloads tab
-        const WatchedFoldersTable = new HtmlTable($("watched_folders_tab"));
+        const watchedFoldersTable = new HtmlTable($("watched_folders_tab"));
 
         const updateTempDirEnabled = function() {
             const isTempDirEnabled = $('temppath_checkbox').getProperty('checked');
             $('temppath_text').setProperty('disabled', !isTempDirEnabled);
         };
 
-        const addWatchFolder = function() {
-            const new_folder = $('new_watch_folder_txt').getProperty('value').trim();
-            if (new_folder.length <= 0) return;
-
-            const new_other = $('new_watch_folder_other_txt').getProperty('value').trim();
-            if (new_other.length <= 0) return;
-
-            const new_select = $('new_watch_folder_select').getProperty('value').trim();
-
-            const i = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
-            pushWatchFolder(i, new_folder, new_select, new_other);
-
-            // Clear fields
-            $('new_watch_folder_txt').setProperty('value', '');
-            const elt = $('new_watch_folder_select');
-            elt.setProperty('value', 'watch_folder');
-            const text = elt.options[elt.selectedIndex].innerHTML;
-            $('new_watch_folder_other_txt').setProperty('value', text);
-        };
-
-        const changeWatchFolderSelect = function(item) {
-            if (item.value == "other") {
+        const changeWatchFolderSelect = (item) => {
+            if (item.value === "other") {
                 item.nextElementSibling.hidden = false;
-                item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR[CONTEXT=HttpServer]';
+                item.nextElementSibling.value = 'QBT_TR(Type folder here)QBT_TR[CONTEXT=ScanFoldersModel]';
                 item.nextElementSibling.select();
             }
             else {
@@ -1322,40 +1287,47 @@
             }
         };
 
-        const pushWatchFolder = function(pos, folder, sel, other) {
+        const addWatchFolder = (folder = "", sel = "default_folder", other = "") => {
+            const pos = $('watched_folders_tab').getChildren('tbody')[0].getChildren('tr').length;
             const myinput = "<input id='text_watch_" + pos + "' type='text' value='" + folder + "'>";
-            const disableInput = (sel != "other");
+            const disableInput = (sel !== "other");
             const mycb = "<div class='select-watched-folder-editable'>"
                 + "<select id ='cb_watch_" + pos + "' onchange='qBittorrent.Preferences.changeWatchFolderSelect(this)'>"
                 + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
                 + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=HttpServer]</option>"
+                + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
                 + "</select>"
-                + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/></div>";
+                + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/>"
+                + "<img src='icons/list-add.svg' id='addFolderImg_" + pos + "' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();' />"
+                + "</div>";
 
-            WatchedFoldersTable.push([myinput, mycb]);
+            watchedFoldersTable.push([myinput, mycb]);
             $('cb_watch_' + pos).setProperty('value', sel);
             if (disableInput) {
                 const elt = $('cb_watch_' + pos);
                 other = elt.options[elt.selectedIndex].innerHTML;
             }
             $('cb_watch_txt_' + pos).setProperty('value', other);
+
+            // hide previous img
+            if (pos > 0)
+                $('addFolderImg_' + (pos - 1)).style.display = "none";
         };
 
-        const getWatchedFolders = function() {
+        const getWatchedFolders = () => {
             const nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
             const folders = new Hash();
             for (let i = 0; i < nb_folders; ++i) {
                 const fpath = $('text_watch_' + i).getProperty('value').trim();
                 if (fpath.length > 0) {
-                    let other;
                     const sel = $('cb_watch_' + i).getProperty('value').trim();
-                    if (sel == "other") {
+
+                    let other;
+                    if (sel === "other")
                         other = $('cb_watch_txt_' + i).getProperty('value').trim();
-                    }
-                    else {
-                        other = (sel == "watch_folder") ? 0 : 1;
-                    }
+                    else
+                        other = (sel === "watch_folder") ? 0 : 1;
+
                     folders.set(fpath, other);
                 }
             }
@@ -1662,19 +1634,19 @@
                         updateExportDirFinEnabled();
 
                         // Automatically add torrents from
-                        let i = 0;
-                        for (const folder in pref.scan_dirs) {
-                            let sel;
+                        for (const [folder, folderType] of Object.entries(pref.scan_dirs)) {
+                            let sel = "";
                             let other = "";
-                            if (typeof pref.scan_dirs[folder] == "string") {
-                                other = pref.scan_dirs[folder];
-                                sel = "other";
+                            if (typeof folderType === "number") {
+                                sel = (folderType === 0) ? "watch_folder" : "default_folder";
                             }
                             else {
-                                sel = (pref.scan_dirs[folder] == 0) ? "watch_folder" : "default_folder";
+                                sel = "other";
+                                other = folderType;
                             }
-                            pushWatchFolder(i++, folder, sel, other);
+                            addWatchFolder(folder, sel, other);
                         }
+                        addWatchFolder();
 
                         // Email notification upon download completion
                         $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
@@ -2365,4 +2337,6 @@
 
         return exports();
     })();
+
+    Object.freeze(window.qBittorrent.Preferences);
 </script>

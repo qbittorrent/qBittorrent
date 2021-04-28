@@ -182,3 +182,5 @@ window.qBittorrent.PropPeers = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.PropPeers);

@@ -11,7 +11,7 @@
     "space_in_empty_paren": false,
     "jslint_happy": false,
     "space_after_anon_function": false,
-    "brace_style": "end-expand",
+    "brace_style": "end-expand,preserve-inline",
     "unindent_chained_methods": false,
     "break_chained_methods": false,
     "keep_array_indentation": false,

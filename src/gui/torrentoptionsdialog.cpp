@@ -77,10 +77,10 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     const bool isFirstTorrentPEXDisabled = torrents[0]->isPEXDisabled();
     const bool isFirstTorrentLSDDisabled = torrents[0]->isLSDDisabled();
 
-    m_torrentHashes.reserve(torrents.size());
+    m_torrentIDs.reserve(torrents.size());
     for (const BitTorrent::Torrent *torrent : torrents)
     {
-        m_torrentHashes << torrent->hash();
+        m_torrentIDs << torrent->id();
         if (allSameUpLimit)
         {
             if (qMax(0, torrent->uploadLimit()) != firstTorrentUpLimit)
@@ -288,9 +288,9 @@ void TorrentOptionsDialog::accept()
     }
 
     const auto *session = BitTorrent::Session::instance();
-    for (const BitTorrent::InfoHash &hash : asConst(m_torrentHashes))
+    for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
-        BitTorrent::Torrent *torrent = session->findTorrent(hash);
+        BitTorrent::Torrent *torrent = session->findTorrent(id);
         if (!torrent) continue;
 
         if (m_initialValues.upSpeedLimit != m_ui->spinUploadLimit->value())

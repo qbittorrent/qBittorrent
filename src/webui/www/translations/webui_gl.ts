@@ -1454,6 +1454,10 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Don't create subfolder</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1736,6 +1740,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Rename...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2276,6 +2284,10 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Stalled</source>
         <translation>Á espera</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2603,6 +2615,10 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1 m</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

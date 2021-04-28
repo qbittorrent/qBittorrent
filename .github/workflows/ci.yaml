@@ -4,17 +4,13 @@ name: GitHub Actions CI
 # Cache is not used for Ubuntu builds, because it already has all dependencies except
 # the appropriate libtorrent version, which only takes 3-5 minutes to build from source anyway
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [pull_request, push]
 
 env:
   VCPKG_COMMIT: e4ce66eecfd3e5cca5eac06c971921bf8e37cf88
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  LIBTORRENT_VERSION_TAG: v1.2.12
+  LIBTORRENT_VERSION_TAG: v1.2.13
 
 jobs:
 
@@ -23,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
       fail-fast: false
 
@@ -65,6 +61,9 @@ jobs:
           -DVERBOSE_CONFIGURE=ON \
           --graphviz=build/target_graph.dot
         cmake --build build
+
+    - name: install qBittorrent
+      run: sudo cmake --build build --target install
 
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2

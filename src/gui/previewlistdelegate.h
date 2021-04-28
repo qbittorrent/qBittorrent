@@ -30,6 +30,8 @@
 
 #include <QItemDelegate>
 
+#include "progressbarpainter.h"
+
 class PreviewListDelegate final : public QItemDelegate
 {
     Q_OBJECT
@@ -38,7 +40,9 @@ class PreviewListDelegate final : public QItemDelegate
 public:
     explicit PreviewListDelegate(QObject *parent = nullptr);
 
-private:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     QWidget *createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const override;
+
+private:
+    ProgressBarPainter m_progressBarPainter;
 };

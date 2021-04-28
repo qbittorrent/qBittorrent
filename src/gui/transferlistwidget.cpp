@@ -36,7 +36,6 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QSet>
 #include <QShortcut>
@@ -53,6 +52,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -78,13 +78,13 @@
 
 namespace
 {
-    QVector<BitTorrent::InfoHash> extractHashes(const QVector<BitTorrent::Torrent *> &torrents)
+    QVector<BitTorrent::TorrentID> extractIDs(const QVector<BitTorrent::Torrent *> &torrents)
     {
-        QVector<BitTorrent::InfoHash> hashes;
-        hashes.reserve(torrents.size());
+        QVector<BitTorrent::TorrentID> torrentIDs;
+        torrentIDs.reserve(torrents.size());
         for (const BitTorrent::Torrent *torrent : torrents)
-            hashes << torrent->hash();
-        return hashes;
+            torrentIDs << torrent->id();
+        return torrentIDs;
     }
 
     bool torrentContainsPreviewableFiles(const BitTorrent::Torrent *const torrent)
@@ -121,37 +121,32 @@ namespace
         auto *session = BitTorrent::Session::instance();
         const DeleteOption deleteOption = isDeleteFileSelected ? DeleteTorrentAndFiles : DeleteTorrent;
         for (const BitTorrent::Torrent *torrent : torrents)
-            session->deleteTorrent(torrent->hash(), deleteOption);
+            session->deleteTorrent(torrent->id(), deleteOption);
     }
 }
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
-    : QTreeView(parent)
-    , m_mainWindow(mainWindow)
+    : QTreeView {parent}
+    , m_listModel {new TransferListModel {this}}
+    , m_sortFilterModel {new TransferListSortModel {this}}
+    , m_mainWindow {mainWindow}
 {
-
-    setUniformRowHeights(true);
     // Load settings
-    bool columnLoaded = loadSettings();
+    const bool columnLoaded = loadSettings();
 
     // Create and apply delegate
-    m_listDelegate = new TransferListDelegate(this);
-    setItemDelegate(m_listDelegate);
+    setItemDelegate(new TransferListDelegate {this});
 
-    // Create transfer list model
-    m_listModel = new TransferListModel(this);
-
-    m_sortFilterModel = new TransferListSortModel(this);
     m_sortFilterModel->setDynamicSortFilter(true);
     m_sortFilterModel->setSourceModel(m_listModel);
     m_sortFilterModel->setFilterKeyColumn(TransferListModel::TR_NAME);
     m_sortFilterModel->setFilterRole(Qt::DisplayRole);
     m_sortFilterModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     m_sortFilterModel->setSortRole(TransferListModel::UnderlyingDataRole);
-
     setModel(m_sortFilterModel);
 
     // Visual settings
+    setUniformRowHeights(true);
     setRootIsDecorated(false);
     setAllColumnsShowFocus(true);
     setSortingEnabled(true);
@@ -452,26 +447,26 @@ void TransferListWidget::increaseQueuePosSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->increaseTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->increaseTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::decreaseQueuePosSelectedTorrents()
 {
     qDebug() << Q_FUNC_INFO;
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->decreaseTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->decreaseTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::topQueuePosSelectedTorrents()
 {
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->topTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->topTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::bottomQueuePosSelectedTorrents()
 {
     if (m_mainWindow->currentTabWidget() == this)
-        BitTorrent::Session::instance()->bottomTorrentsQueuePos(extractHashes(getSelectedTorrents()));
+        BitTorrent::Session::instance()->bottomTorrentsQueuePos(extractIDs(getSelectedTorrents()));
 }
 
 void TransferListWidget::copySelectedMagnetURIs() const
@@ -494,11 +489,11 @@ void TransferListWidget::copySelectedNames() const
 
 void TransferListWidget::copySelectedHashes() const
 {
-    QStringList torrentHashes;
+    QStringList torrentIDs;
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrentHashes << torrent->hash().toString();
+        torrentIDs << torrent->id().toString();
 
-    qApp->clipboard()->setText(torrentHashes.join('\n'));
+    qApp->clipboard()->setText(torrentIDs.join('\n'));
 }
 
 void TransferListWidget::hideQueuePosColumn(bool hide)
@@ -863,8 +858,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
     bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
-    QSet<QString> tagsInAny;
-    QSet<QString> tagsInAll;
+    TagSet tagsInAny;
+    TagSet tagsInAll;
 
     for (const QModelIndex &index : selectedIndexes)
     {
@@ -878,16 +873,17 @@ void TransferListWidget::displayListMenu(const QPoint &)
         if (firstCategory != torrent->category())
             allSameCategory = false;
 
-        tagsInAny.unite(torrent->tags());
+        const TagSet torrentTags = torrent->tags();
+        tagsInAny.unite(torrentTags);
 
         if (first)
         {
             firstAutoTMM = torrent->isAutoTMMEnabled();
-            tagsInAll = torrent->tags();
+            tagsInAll = torrentTags;
         }
         else
         {
-            tagsInAll.intersect(torrent->tags());
+            tagsInAll.intersect(torrentTags);
         }
 
         if (firstAutoTMM != torrent->isAutoTMMEnabled())
@@ -969,7 +965,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Category"));
 
@@ -994,7 +990,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     // Tag Menu
     QStringList tags(BitTorrent::Session::instance()->tags().values());
-    std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Tags"));
 
@@ -1016,8 +1012,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         action->setCloseOnTriggered(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
-                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked
-                                            : Qt::Unchecked;
+                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked : Qt::Unchecked;
         action->setCheckState(initialState);
 
         connect(action, &QAction::triggered, this, [this, tag](const bool checked)
@@ -1129,16 +1124,16 @@ void TransferListWidget::applyTrackerFilterAll()
     m_sortFilterModel->disableTrackerFilter();
 }
 
-void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes)
+void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
-    m_sortFilterModel->setTrackerFilter(hashes);
+    m_sortFilterModel->setTrackerFilter(torrentIDs);
 }
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QRegExp::PatternSyntax patternSyntax = Preferences::instance()->getRegexAsFilteringPatternForTransferList()
-                ? QRegExp::RegExp : QRegExp::WildcardUnix;
-    m_sortFilterModel->setFilterRegExp(QRegExp(name, Qt::CaseInsensitive, patternSyntax));
+    const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
+                ? name : Utils::String::wildcardToRegexPattern(name));
+    m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
 }
 
 void TransferListWidget::applyStatusFilter(int f)

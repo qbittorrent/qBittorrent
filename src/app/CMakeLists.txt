@@ -4,22 +4,14 @@
 # Based on https://gist.github.com/giraldeau/546ba5512a74dfe9d8ea0862d66db412
 file(GLOB QBT_TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
 set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/lang")
-if (Qt5_VERSION VERSION_LESS 5.12)
-    qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES})
-else()
-    qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
-endif()
+qt5_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
 configure_file("${qBittorrent_SOURCE_DIR}/src/lang/lang.qrc" "${qBittorrent_BINARY_DIR}/src/lang/lang.qrc" COPYONLY)
 
 if (WEBUI)
     file(GLOB QBT_WEBUI_TS_FILES "${qBittorrent_SOURCE_DIR}/src/webui/www/translations/*.ts")
     set_source_files_properties(${QBT_WEBUI_TS_FILES}
         PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/webui/www/translations")
-    if (Qt5_VERSION VERSION_LESS 5.12)
-        qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES})
-    else()
-        qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -silent)
-    endif()
+    qt5_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -silent)
     configure_file("${qBittorrent_SOURCE_DIR}/src/webui/www/translations/webui_translations.qrc"
         "${qBittorrent_BINARY_DIR}/src/webui/www/translations/webui_translations.qrc" COPYONLY)
 endif()
@@ -83,18 +75,14 @@ set_source_files_properties(
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    # substitute @EXECUTABLE@ in dist/mac/Info.plist
-    get_target_property(EXECUTABLE qbt_app OUTPUT_NAME)
-    configure_file(${qBittorrent_SOURCE_DIR}/dist/mac/Info.plist
-        ${qBittorrent_BINARY_DIR}/dist/mac/pregen.plist @ONLY)
-    file(GENERATE
-        OUTPUT ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist
-        INPUT ${qBittorrent_BINARY_DIR}/dist/mac/pregen.plist
-    )
+    # provide variables for substitution in dist/mac/Info.plist
+    get_target_property(EXECUTABLE_NAME qbt_app OUTPUT_NAME)
+    # This variable name should be changed once qmake is no longer used. Refer to the discussion in PR #14813
+    set(MACOSX_DEPLOYMENT_TARGET ${CMAKE_OSX_DEPLOYMENT_TARGET})
     set_target_properties(qbt_app PROPERTIES
         MACOSX_BUNDLE ON
-        MACOSX_BUNDLE_BUNDLE_NAME "${EXECUTABLE}"
-        MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist
+        MACOSX_BUNDLE_BUNDLE_NAME "qBittorrent"
+        MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_SOURCE_DIR}/dist/mac/Info.plist
     )
     target_sources(qbt_app PRIVATE
         ${QT_TRANSLATIONS}

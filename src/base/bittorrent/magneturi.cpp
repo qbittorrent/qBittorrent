@@ -47,8 +47,8 @@ namespace
         //      == 20 (SHA-1 length in bytes) * 2 (each byte maps to 2 hex characters)
         // 2. 32 chars Base32 encoded string
         //      == 20 (SHA-1 length in bytes) * 1.6 (the efficiency of Base32 encoding)
-        const int SHA1_HEX_SIZE = BitTorrent::InfoHash::length() * 2;
-        const int SHA1_BASE32_SIZE = BitTorrent::InfoHash::length() * 1.6;
+        const int SHA1_HEX_SIZE = SHA1Hash::length() * 2;
+        const int SHA1_BASE32_SIZE = SHA1Hash::length() * 1.6;
 
         return ((((string.size() == SHA1_HEX_SIZE))
                 && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]"))))
@@ -73,7 +73,13 @@ MagnetUri::MagnetUri(const QString &source)
     if (ec) return;
 
     m_valid = true;
-    m_hash = m_addTorrentParams.info_hash;
+
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    m_infoHash = m_addTorrentParams.info_hashes;
+#else
+    m_infoHash = m_addTorrentParams.info_hash;
+#endif
+
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
     m_trackers.reserve(m_addTorrentParams.trackers.size());
@@ -90,9 +96,9 @@ bool MagnetUri::isValid() const
     return m_valid;
 }
 
-InfoHash MagnetUri::hash() const
+InfoHash MagnetUri::infoHash() const
 {
-    return m_hash;
+    return m_infoHash;
 }
 
 QString MagnetUri::name() const

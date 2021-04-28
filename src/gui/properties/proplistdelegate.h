@@ -28,11 +28,12 @@
 
 #pragma once
 
-#include "gui/progressbardelegate.h"
+#include <QStyledItemDelegate>
+
+#include "gui/progressbarpainter.h"
 
 class QAbstractItemModel;
 class QModelIndex;
-class QPainter;
 class QStyleOptionViewItem;
 
 class PropertiesWidget;
@@ -48,25 +49,26 @@ enum PropColumn
     AVAILABILITY
 };
 
-class PropListDelegate final : public ProgressBarDelegate
+class PropListDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PropListDelegate)
 
 public:
     explicit PropListDelegate(PropertiesWidget *properties);
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem & /* option */, const QModelIndex &index) const override;
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 public slots:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex & /* index */) const override;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 signals:
     void filteredFilesChanged() const;
 
 private:
-    void initProgressStyleOption(QStyleOptionProgressBar &option, const QModelIndex &index) const override;
-
     PropertiesWidget *m_properties;
+    ProgressBarPainter m_progressBarPainter;
 };

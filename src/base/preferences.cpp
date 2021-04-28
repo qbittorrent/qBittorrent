@@ -865,7 +865,7 @@ void Preferences::setAutoRunProgram(const QString &program)
     setValue("AutoRun/program", program);
 }
 
-#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+#if defined(Q_OS_WIN)
 bool Preferences::isAutoRunConsoleEnabled() const
 {
     return value("AutoRun/ConsoleEnabled", false).toBool();

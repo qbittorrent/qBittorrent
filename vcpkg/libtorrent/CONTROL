@@ -1,5 +1,5 @@
 Source: libtorrent
-Version: 1.2.12
+Version: 1.2.13
 Homepage: https://github.com/arvidn/libtorrent
 Description: An efficient feature complete C++ BitTorrent implementation
 Build-Depends: openssl, boost-system, boost-date-time, boost-chrono, boost-random, boost-asio, boost-crc, boost-config, boost-iterator, boost-scope-exit, boost-multiprecision, boost-pool, boost-variant

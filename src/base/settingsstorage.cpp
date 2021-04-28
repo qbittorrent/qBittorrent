@@ -224,7 +224,11 @@ void SettingsStorage::removeValue(const QString &key)
 {
     const QString realKey = mapKey(key);
     const QWriteLocker locker(&m_lock);
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    if (m_data.remove(realKey))
+#else
     if (m_data.remove(realKey) > 0)
+#endif
     {
         m_dirty = true;
         m_timer.start();

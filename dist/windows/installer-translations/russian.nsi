@@ -21,16 +21,17 @@ LangString inst_firewallinfo ${LANG_RUSSIAN} "Добавление в списо
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_RUSSIAN} "qBittorrent запущен. Пожалуйста, закройте qBittorrent и перезапустите программу установки."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
-LangString inst_uninstall_question ${LANG_RUSSIAN} "Текущая версия будет деинсталлирована. Пользовательские настройки и торренты останутся нетронутыми."
+LangString inst_uninstall_question ${LANG_RUSSIAN} "Текущая версия будет удалена. Пользовательские настройки и торренты останутся нетронутыми."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
-LangString inst_unist ${LANG_RUSSIAN} "Деинсталлируется старая версия."
+LangString inst_unist ${LANG_RUSSIAN} "Удаляется старая версия."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_RUSSIAN} "Запустить qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_RUSSIAN} "Этот установщик работает только на 64-битных версиях Windows."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_RUSSIAN} "Для работы этой версии qBittorrent требуется Windows 7 или выше."
-
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_RUSSIAN} "Удалить qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings
@@ -52,7 +53,7 @@ LangString remove_firewallinfo ${LANG_RUSSIAN} "Удаление из списк
 ;LangString remove_cache ${LANG_ENGLISH} "Remove torrents and cached data"
 LangString remove_cache ${LANG_RUSSIAN} "Удалить сохранённые торрент-файлы"
 ;LangString uninst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before uninstalling."
-LangString uninst_warning ${LANG_RUSSIAN} "qBittorrent запущен. Пожалуйста, закройте qBittorrent и перезапустите программу удаления."
+LangString uninst_warning ${LANG_RUSSIAN} "qBittorrent запущен. Пожалуйста, закройте qBittorrent перед удалением."
 ;LangString uninst_tor_warn ${LANG_ENGLISH} "Not removing .torrent association. It is associated with:"
 LangString uninst_tor_warn ${LANG_RUSSIAN} "Ассоциации торрент-файлов не сброшены. Уже ассоциированы с:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"

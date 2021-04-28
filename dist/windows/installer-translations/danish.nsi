@@ -30,7 +30,8 @@ LangString launch_qbt ${LANG_DANISH} "Start qBittorrent."
 LangString inst_requires_64bit ${LANG_DANISH} "Dette installationsprogram virker kun i 64-bit Windows versioner."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_DANISH} "This qBittorrent version requires at least Windows 7."
-
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_DANISH} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

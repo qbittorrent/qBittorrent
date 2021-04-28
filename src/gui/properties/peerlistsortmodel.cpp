@@ -28,7 +28,6 @@
 
 #include "peerlistsortmodel.h"
 
-#include "base/utils/string.h"
 #include "peerlistwidget.h"
 
 PeerListSortModel::PeerListSortModel(QObject *parent)
@@ -43,11 +42,10 @@ bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     {
     case PeerListWidget::IP:
     case PeerListWidget::CLIENT:
-    {
+        {
             const QString strL = left.data(UnderlyingDataRole).toString();
             const QString strR = right.data(UnderlyingDataRole).toString();
-            const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
-            return (result < 0);
+            return m_naturalLessThan(strL, strR);
         }
         break;
     default:

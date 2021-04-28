@@ -1394,10 +1394,6 @@
         <translation>En fazla eşzamanlı HTTP duyurusu (libtorrent &gt;= 1.2.7 gerektirir):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">En üst seviyedeki klasörü tut</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> dak</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent içerik düzeni:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Alt klasör oluştur</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Orijinal</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Alt klasör oluşturma</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Yeniden adlandır...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Durduruldu</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1dk</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

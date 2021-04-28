@@ -1394,10 +1394,6 @@
         <translation>Eyni vaxtda ən çox HTTP elanları (libtorrent &gt;= 1.2.7 tələb olunur):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">Ən yuxarı səviyyədəki qovluğu saxlamaq</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> dəq</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent məzmunu maketi:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Alt qovluq yaratmaq</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Orijinal</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>Alt qovluq yaratmamaq</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>Adını dəyişdirin..</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>Dayandırıldı</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2492,7 +2500,7 @@
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation>Paylaşma limiti təyin edilməyib</translation>
+        <translation>Paylaşma limiti təyin etməyin</translation>
     </message>
     <message>
         <source>Set share limit to</source>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1dəq</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

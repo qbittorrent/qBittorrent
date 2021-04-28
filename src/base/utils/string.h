@@ -41,16 +41,7 @@ class QStringRef;
 
 namespace Utils::String
 {
-    QString fromDouble(double n, int precision);
-
-    int naturalCompare(const QString &left, const QString &right, const Qt::CaseSensitivity caseSensitivity);
-    template <Qt::CaseSensitivity caseSensitivity>
-    bool naturalLessThan(const QString &left, const QString &right)
-    {
-        return (naturalCompare(left, right, caseSensitivity) < 0);
-    }
-
-    QString wildcardToRegex(const QString &pattern);
+    QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
     T unquote(const T &str, const QString &quotes = QChar('"'))
@@ -71,6 +62,8 @@ namespace Utils::String
     std::optional<double> parseDouble(const QString &string);
 
     QString join(const QVector<QStringRef> &strings, const QString &separator);
+
+    QString fromDouble(double n, int precision);
 
     template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
     QString fromEnum(const T &value)

@@ -142,3 +142,5 @@ window.qBittorrent.Download = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.Download);

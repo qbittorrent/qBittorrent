@@ -151,3 +151,5 @@ window.qBittorrent.ProgressBar = (function() {
 
     return exports();
 })();
+
+Object.freeze(window.qBittorrent.ProgressBar);

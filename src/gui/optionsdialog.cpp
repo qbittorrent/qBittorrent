@@ -973,7 +973,7 @@ void OptionsDialog::saveOptions()
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
     pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
     pref->setAutoRunProgram(m_ui->lineEditAutoRun->text().trimmed());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined(Q_OS_WIN)
+#if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
@@ -1261,7 +1261,7 @@ void OptionsDialog::loadOptions()
 
     m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
     m_ui->lineEditAutoRun->setText(pref->getAutoRunProgram());
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)) && defined(Q_OS_WIN)
+#if defined(Q_OS_WIN)
     m_ui->autoRunConsole->setChecked(pref->isAutoRunConsoleEnabled());
 #else
     m_ui->autoRunConsole->hide();

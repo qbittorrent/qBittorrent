@@ -34,7 +34,6 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
-#include "base/utils/string.h"
 #include "transferlistmodel.h"
 
 namespace
@@ -45,6 +44,31 @@ namespace
         if (left == right)
             return 0;
         return (left < right) ? -1 : 1;
+    }
+
+    int customCompare(const QDateTime &left, const QDateTime &right)
+    {
+        const bool isLeftValid = left.isValid();
+        const bool isRightValid = right.isValid();
+
+        if (isLeftValid && isRightValid)
+            return threeWayCompare(left, right);
+        if (!isLeftValid && !isRightValid)
+            return 0;
+        return isLeftValid ? -1 : 1;
+    }
+
+    int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
+    {
+        for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
+            (leftIter != left.cend()) && (rightIter != right.cend());
+            ++leftIter, ++rightIter)
+        {
+            const int result = compare(*leftIter, *rightIter);
+            if (result != 0)
+                return result;
+        }
+        return threeWayCompare(left.size(), right.size());
     }
 
     template <typename T>
@@ -61,10 +85,17 @@ namespace
             return 0;
         return isLeftValid ? -1 : 1;
     }
+
+    int adjustSubSortColumn(const int column)
+    {
+        return ((column >= 0) && (column < TransferListModel::NB_COLUMNS))
+                   ? column : TransferListModel::TR_NAME;
+    }
 }
 
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel {parent}
+    , m_subSortColumn {"TransferList/SubSortColumn", TransferListModel::TR_NAME, adjustSubSortColumn}
 {
     setSortRole(TransferListModel::UnderlyingDataRole);
 }
@@ -99,15 +130,15 @@ void TransferListSortModel::disableTagFilter()
         invalidateFilter();
 }
 
-void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::InfoHash> &hashes)
+void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
-    if (m_filter.setHashSet(hashes))
+    if (m_filter.setTorrentIDSet(torrentIDs))
         invalidateFilter();
 }
 
 void TransferListSortModel::disableTrackerFilter()
 {
-    if (m_filter.setHashSet(TorrentFilter::AnyHash))
+    if (m_filter.setTorrentIDSet(TorrentFilter::AnyID))
         invalidateFilter();
 }
 
@@ -122,9 +153,11 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_CATEGORY:
     case TransferListModel::TR_NAME:
     case TransferListModel::TR_SAVE_PATH:
-    case TransferListModel::TR_TAGS:
     case TransferListModel::TR_TRACKER:
-        return Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive);
+        return m_naturalCompare(leftValue.toString(), rightValue.toString());
+
+    case TransferListModel::TR_TAGS:
+        return customCompare(leftValue.value<TagSet>(), rightValue.value<TagSet>(), m_naturalCompare);
 
     case TransferListModel::TR_AMOUNT_DOWNLOADED:
     case TransferListModel::TR_AMOUNT_DOWNLOADED_SESSION:
@@ -151,7 +184,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_ADD_DATE:
     case TransferListModel::TR_SEED_DATE:
     case TransferListModel::TR_SEEN_COMPLETE_DATE:
-        return threeWayCompare(leftValue.toDateTime(), rightValue.toDateTime());
+        return customCompare(leftValue.toDateTime(), rightValue.toDateTime());
 
     case TransferListModel::TR_DLLIMIT:
     case TransferListModel::TR_DLSPEED:
@@ -186,14 +219,15 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 {
     Q_ASSERT(left.column() == right.column());
 
-    if (m_sortColumn != left.column())
+    if (m_lastSortColumn != left.column())
     {
-        m_subSortColumn = m_sortColumn;
-        m_sortColumn = left.column();
+        if (m_lastSortColumn != -1)
+            m_subSortColumn = m_lastSortColumn;
+        m_lastSortColumn = left.column();
     }
 
     const int result = compare(left, right);
-    if ((result == 0) && (m_subSortColumn != -1))
+    if (result == 0)
         return compare(left.sibling(left.row(), m_subSortColumn), right.sibling(right.row(), m_subSortColumn)) < 0;
 
     return result < 0;

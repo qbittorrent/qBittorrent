@@ -28,6 +28,11 @@
 
 #pragma once
 
+#include <libtorrent/version.hpp>
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+#include <libtorrent/info_hash.hpp>
+#endif
+
 #include <QHash>
 #include <QMetaType>
 
@@ -38,15 +43,45 @@ using SHA256Hash = Digest32<256>;
 
 namespace BitTorrent
 {
-    class InfoHash : public SHA1Hash
+    class InfoHash;
+
+    class TorrentID : public Digest32<160>
     {
     public:
-        using SHA1Hash::SHA1Hash;
+        using BaseType = Digest32<160>;
+        using BaseType::BaseType;
 
-        static InfoHash fromString(const QString &hashString);
+        static TorrentID fromString(const QString &hashString);
+        static TorrentID fromInfoHash(const InfoHash &infoHash);
     };
 
-    uint qHash(const InfoHash &key, const uint seed);
+    class InfoHash
+    {
+    public:
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        using WrappedType = lt::info_hash_t;
+#else
+        using WrappedType = lt::sha1_hash;
+#endif
+
+        InfoHash() = default;
+        InfoHash(const InfoHash &other) = default;
+        InfoHash(const WrappedType &nativeHash);
+
+        bool isValid() const;
+        TorrentID toTorrentID() const;
+
+        operator WrappedType() const;
+
+    private:
+        bool m_valid = false;
+        WrappedType m_nativeHash;
+    };
+
+    uint qHash(const TorrentID &key, uint seed);
+
+    bool operator==(const InfoHash &left, const InfoHash &right);
+    bool operator!=(const InfoHash &left, const InfoHash &right);
 }
 
-Q_DECLARE_METATYPE(BitTorrent::InfoHash)
+Q_DECLARE_METATYPE(BitTorrent::TorrentID)

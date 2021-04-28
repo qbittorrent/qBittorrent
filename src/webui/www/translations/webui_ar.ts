@@ -234,7 +234,7 @@
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>حد التنزيل</translation>
+        <translation>حد معدل التنزيل</translation>
     </message>
     <message>
         <source>Rename torrent</source>
@@ -469,11 +469,11 @@
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
-        <translation>حدود سرعة الرفع العامة</translation>
+        <translation>حد سرعة الرفع العامة</translation>
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>حدود سرعة التنزيل العامة</translation>
+        <translation>حد سرعة التنزيل العامة</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -486,7 +486,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>حدود السرعات البديلة</translation>
+        <translation>حدود السرعة البديلة</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -554,7 +554,7 @@
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation>حدود السرعة البديلة: إيقاف</translation>
+        <translation>حدود السرعة البديلة: مُعطلة</translation>
     </message>
     <message>
         <source>Download speed icon</source>
@@ -566,7 +566,7 @@
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation>حدود السرعة البديلة: تشغيل</translation>
+        <translation>حدود السرعة البديلة: مُفعلة</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
@@ -633,7 +633,7 @@
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>جدولة استخدام السرعة البديلة</translation>
+        <translation>جدولة استخدام حدود المعدل البديل</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -821,7 +821,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation>حدود السرعة البديلة</translation>
+        <translation>حدود المعدل البديل</translation>
     </message>
     <message>
         <source>From:</source>
@@ -1051,7 +1051,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>تطبيق حدود السرعة على القرناء الموجودين على الشبكة المحلية</translation>
+        <translation>تطبيق حد المعدل على القرناء الموجودين على الشبكة المحلية</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1394,10 +1394,6 @@
         <translation>يعلن أقصى HTTP متزامن (يتطلب libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
-        <source>Keep top-level folder</source>
-        <translation type="vanished">احتفظ بمجلد المستوى الأعلى</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>د</translation>
     </message>
@@ -1443,18 +1439,22 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>تخطيط محتوى التورنت:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>الأصلي</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
+        <translation>لا تقم بإنشاء مجلد فرعي</translation>
+    </message>
+    <message>
+        <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1740,6 +1740,10 @@
     <message>
         <source>Rename...</source>
         <translation>إعادة التسمية...</translation>
+    </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2072,7 +2076,7 @@
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>نسبة المشاركة</translation>
+        <translation>حد نسبة المشاركة</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -2279,6 +2283,10 @@
         <source>Stalled</source>
         <translation>عالق</translation>
     </message>
+    <message>
+        <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2484,19 +2492,19 @@
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>حد نسبة التنزيل والرفع للتورنت</translation>
+        <translation>حد نسبة الرفع/التنزيل للتورنت</translation>
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation>استخدام حدود المشاركة العامة</translation>
+        <translation>استخدام حد المشاركة العامة</translation>
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation>ضبط بدون حدود مشاركة</translation>
+        <translation>تعيين بدون حد مشاركة</translation>
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation>ضبط حدود المشاركة إلى</translation>
+        <translation>تعيين حد المشاركة إلى</translation>
     </message>
     <message>
         <source>ratio</source>
@@ -2606,6 +2614,10 @@
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
         <translation>%1د</translation>
+    </message>
+    <message>
+        <source>%1y %2d</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

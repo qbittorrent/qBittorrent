@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
+ * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,24 +28,41 @@
 
 #pragma once
 
-#include <QProgressBar>
-#include <QStyledItemDelegate>
+#include <QDir>
+#include <QVector>
 
-class QStyleOptionProgressBar;
+#include "resumedatastorage.h"
 
-class ProgressBarDelegate : public QStyledItemDelegate
+class QByteArray;
+class QThread;
+
+namespace BitTorrent
 {
-public:
-    ProgressBarDelegate(int progressColumn, int dataRole, QObject *parent = nullptr);
+    class TorrentInfo;
 
-protected:
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-    virtual void initProgressStyleOption(QStyleOptionProgressBar &option, const QModelIndex &index) const;
+    class BencodeResumeDataStorage final : public ResumeDataStorage
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY(BencodeResumeDataStorage)
 
-private:
-    const int m_progressColumn;
-    const int m_dataRole;
+    public:
+        explicit BencodeResumeDataStorage(QObject *parent = nullptr);
+        ~BencodeResumeDataStorage() override;
 
-    // for painting progressbar with stylesheet option, a dummy progress bar is required
-    QProgressBar m_dummyProgressBar;
-};
+        QVector<TorrentID> registeredTorrents() const override;
+        std::optional<LoadTorrentParams> load(const TorrentID &id) const override;
+        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
+        void remove(const TorrentID &id) const override;
+        void storeQueue(const QVector<TorrentID> &queue) const override;
+
+    private:
+        std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata) const;
+
+        const QDir m_resumeDataDir;
+        QVector<TorrentID> m_registeredTorrents;
+        QThread *m_ioThread = nullptr;
+
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+    };
+}

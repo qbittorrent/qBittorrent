@@ -213,10 +213,8 @@ QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, cons
     QRegularExpression &regex = m_dataPtr->cachedRegexes[expression];
     if (regex.pattern().isEmpty())
     {
-        regex = QRegularExpression
-        {
-                (isRegex ? expression : Utils::String::wildcardToRegex(expression))
-                , QRegularExpression::CaseInsensitiveOption};
+        const QString pattern = (isRegex ? expression : Utils::String::wildcardToRegexPattern(expression));
+        regex = QRegularExpression {pattern, QRegularExpression::CaseInsensitiveOption};
     }
 
     return regex;

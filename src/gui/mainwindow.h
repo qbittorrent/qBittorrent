@@ -96,6 +96,10 @@ public:
     void setNotificationsEnabled(bool value);
     bool isTorrentAddedNotificationsEnabled() const;
     void setTorrentAddedNotificationsEnabled(bool value);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    int getNotificationTimeout() const;
+    void setNotificationTimeout(int value);
+#endif
 
     // Misc properties
     bool isDownloadTrackerFavicon() const;

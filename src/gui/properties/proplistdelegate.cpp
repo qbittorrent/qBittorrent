@@ -28,59 +28,20 @@
 
 #include "proplistdelegate.h"
 
-#include <QApplication>
 #include <QComboBox>
 #include <QModelIndex>
 #include <QPainter>
-#include <QPalette>
 #include <QProgressBar>
-#include <QStyleOptionProgressBar>
-
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-#include <QProxyStyle>
-#endif
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/torrent.h"
 #include "gui/torrentcontentmodel.h"
 #include "propertieswidget.h"
 
-namespace
-{
-    QPalette progressBarDisabledPalette()
-    {
-        static const QPalette palette = []()
-        {
-            QProgressBar bar;
-            bar.setEnabled(false);
-            QStyleOptionProgressBar opt;
-            opt.initFrom(&bar);
-            return opt.palette;
-        }();
-        return palette;
-    }
-}
-
 PropListDelegate::PropListDelegate(PropertiesWidget *properties)
-    : ProgressBarDelegate {PROGRESS, TorrentContentModel::UnderlyingDataRole, properties}
-    , m_properties(properties)
+    : QStyledItemDelegate {properties}
+    , m_properties {properties}
 {
-}
-
-void PropListDelegate::initProgressStyleOption(QStyleOptionProgressBar &option, const QModelIndex &index) const
-{
-    ProgressBarDelegate::initProgressStyleOption(option, index);
-    const int priority
-        = index.sibling(index.row(), PRIORITY).data(TorrentContentModel::UnderlyingDataRole).toInt();
-    if (static_cast<BitTorrent::DownloadPriority>(priority) == BitTorrent::DownloadPriority::Ignored)
-    {
-        option.state &= ~QStyle::State_Enabled;
-        option.palette = progressBarDisabledPalette();
-    }
-    else
-    {
-        option.state |= QStyle::State_Enabled;
-    }
 }
 
 void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
@@ -155,4 +116,26 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
 void PropListDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     editor->setGeometry(option.rect);
+}
+
+void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    switch (index.column())
+    {
+    case PropColumn::PROGRESS:
+        {
+            const int progress = static_cast<int>(index.data(TorrentContentModel::UnderlyingDataRole).toReal());
+            const int priority = index.sibling(index.row(), PropColumn::PRIORITY).data(TorrentContentModel::UnderlyingDataRole).toInt();
+            const bool isEnabled = static_cast<BitTorrent::DownloadPriority>(priority) != BitTorrent::DownloadPriority::Ignored;
+
+            QStyleOptionViewItem customOption {option};
+            customOption.state.setFlag(QStyle::State_Enabled, isEnabled);
+
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
+        }
+        break;
+    default:
+        QStyledItemDelegate::paint(painter, option, index);
+        break;
+    }
 }
