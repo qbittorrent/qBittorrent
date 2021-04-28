@@ -45,6 +45,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/profile.h"
+#include "base/tagset.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
@@ -82,7 +83,7 @@ namespace
 
     using ListType = lt::entry::list_type;
 
-    ListType setToEntryList(const QSet<QString> &input)
+    ListType setToEntryList(const TagSet &input)
     {
         ListType entryList;
         entryList.reserve(input.size());

@@ -703,7 +703,7 @@ bool TorrentImpl::belongsToCategory(const QString &category) const
     return false;
 }
 
-QSet<QString> TorrentImpl::tags() const
+TagSet TorrentImpl::tags() const
 {
     return m_tags;
 }
@@ -717,18 +717,18 @@ bool TorrentImpl::addTag(const QString &tag)
 {
     if (!Session::isValidTag(tag))
         return false;
+    if (hasTag(tag))
+        return false;
 
-    if (!hasTag(tag))
+    if (!m_session->hasTag(tag))
     {
-        if (!m_session->hasTag(tag))
-            if (!m_session->addTag(tag))
-                return false;
-        m_tags.insert(tag);
-        m_session->handleTorrentNeedSaveResumeData(this);
-        m_session->handleTorrentTagAdded(this, tag);
-        return true;
+        if (!m_session->addTag(tag))
+            return false;
     }
-    return false;
+    m_tags.insert(tag);
+    m_session->handleTorrentNeedSaveResumeData(this);
+    m_session->handleTorrentTagAdded(this, tag);
+    return true;
 }
 
 bool TorrentImpl::removeTag(const QString &tag)

@@ -58,6 +58,19 @@ namespace
         return isLeftValid ? -1 : 1;
     }
 
+    int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
+    {
+        for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
+            (leftIter != left.cend()) && (rightIter != right.cend());
+            ++leftIter, ++rightIter)
+        {
+            const int result = compare(*leftIter, *rightIter);
+            if (result != 0)
+                return result;
+        }
+        return threeWayCompare(left.size(), right.size());
+    }
+
     template <typename T>
     int customCompare(const T left, const T right)
     {
@@ -140,9 +153,11 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_CATEGORY:
     case TransferListModel::TR_NAME:
     case TransferListModel::TR_SAVE_PATH:
-    case TransferListModel::TR_TAGS:
     case TransferListModel::TR_TRACKER:
         return m_naturalCompare(leftValue.toString(), rightValue.toString());
+
+    case TransferListModel::TR_TAGS:
+        return customCompare(leftValue.value<TagSet>(), rightValue.value<TagSet>(), m_naturalCompare);
 
     case TransferListModel::TR_AMOUNT_DOWNLOADED:
     case TransferListModel::TR_AMOUNT_DOWNLOADED_SESSION:

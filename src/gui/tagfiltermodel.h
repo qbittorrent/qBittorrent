@@ -31,6 +31,8 @@
 #include <QAbstractListModel>
 #include <QtContainerFwd>
 
+#include "base/tagset.h"
+
 class QModelIndex;
 
 class TagModelItem;
@@ -76,7 +78,7 @@ private:
     bool isValidRow(int row) const;
     int findRow(const QString &tag) const;
     TagModelItem *findItem(const QString &tag);
-    QVector<TagModelItem *> findItems(const QSet<QString> &tags);
+    QVector<TagModelItem *> findItems(const TagSet &tags);
     TagModelItem *allTagsItem();
     TagModelItem *untaggedItem();
 

@@ -350,11 +350,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 #endif
             break;
         case u'G':
-            {
-                QStringList tags = torrent->tags().values();
-                std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
-                program.replace(i, 2, tags.join(','));
-            }
+            program.replace(i, 2, torrent->tags().join(QLatin1String(",")));
             break;
         case u'I':
             program.replace(i, 2, torrent->id().toString());

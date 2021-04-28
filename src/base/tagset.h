@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,33 +28,22 @@
 
 #pragma once
 
-#include <libtorrent/add_torrent_params.hpp>
-
+#include <QMetaType>
 #include <QString>
 
-#include "base/tagset.h"
-#include "torrent.h"
-#include "torrentcontentlayout.h"
+#include "base/orderedset.h"
+#include "base/utils/compare.h"
 
-namespace BitTorrent
+class TagLessThan
 {
-    struct LoadTorrentParams
-    {
-        lt::add_torrent_params ltAddTorrentParams {};
+public:
+    bool operator()(const QString &left, const QString &right) const;
 
-        QString name;
-        QString category;
-        TagSet tags;
-        QString savePath;
-        TorrentContentLayout contentLayout = TorrentContentLayout::Original;
-        TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
-        bool firstLastPiecePriority = false;
-        bool hasSeedStatus = false;
-        bool stopped = false;
+private:
+    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_compare;
+    Utils::Compare::NaturalCompare<Qt::CaseSensitive> m_subCompare;
+};
 
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
+using TagSet = OrderedSet<QString, TagLessThan>;
 
-        bool restored = false;  // is existing torrent job?
-    };
-}
+Q_DECLARE_METATYPE(TagSet)

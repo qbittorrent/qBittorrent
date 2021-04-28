@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QVariantMap>
+#include <QVariant>
 
 namespace BitTorrent
 {

@@ -858,8 +858,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
     bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
-    QSet<QString> tagsInAny;
-    QSet<QString> tagsInAll;
+    TagSet tagsInAny;
+    TagSet tagsInAll;
 
     for (const QModelIndex &index : selectedIndexes)
     {
@@ -873,16 +873,17 @@ void TransferListWidget::displayListMenu(const QPoint &)
         if (firstCategory != torrent->category())
             allSameCategory = false;
 
-        tagsInAny.unite(torrent->tags());
+        const TagSet torrentTags = torrent->tags();
+        tagsInAny.unite(torrentTags);
 
         if (first)
         {
             firstAutoTMM = torrent->isAutoTMMEnabled();
-            tagsInAll = torrent->tags();
+            tagsInAll = torrentTags;
         }
         else
         {
-            tagsInAll.intersect(torrent->tags());
+            tagsInAll.intersect(torrentTags);
         }
 
         if (firstAutoTMM != torrent->isAutoTMMEnabled())
@@ -1011,8 +1012,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         action->setCloseOnTriggered(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
-                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked
-                                            : Qt::Unchecked;
+                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked : Qt::Unchecked;
         action->setCheckState(initialState);
 
         connect(action, &QAction::triggered, this, [this, tag](const bool checked)

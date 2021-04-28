@@ -637,7 +637,7 @@ void TorrentsController::addAction()
     const std::optional<bool> addPaused = parseBool(params()["paused"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
-    const QSet<QString> tags = List::toSet(params()["tags"].split(',', QString::SkipEmptyParts));
+    const QStringList tags = params()["tags"].split(',', QString::SkipEmptyParts);
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = parseInt(params()["upLimit"]).value_or(-1);
     const int dlLimit = parseInt(params()["dlLimit"]).value_or(-1);
@@ -676,7 +676,7 @@ void TorrentsController::addAction()
     addTorrentParams.contentLayout = contentLayout;
     addTorrentParams.savePath = savepath;
     addTorrentParams.category = category;
-    addTorrentParams.tags = tags;
+    addTorrentParams.tags.insert(tags.cbegin(), tags.cend());
     addTorrentParams.name = torrentName;
     addTorrentParams.uploadLimit = upLimit;
     addTorrentParams.downloadLimit = dlLimit;
