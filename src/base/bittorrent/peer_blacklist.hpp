@@ -121,7 +121,7 @@ std::shared_ptr<lt::torrent_plugin> create_peer_blacklist_plugin(lt::torrent_han
   }
 
   auto peer_in_list = [&](const lt::peer_info& info, bool handshake, bool* stop_filtering) {
-    bool matched = filter.match_peer(info, handshake);
+    bool matched = filter.match_peer(info, false);
     *stop_filtering = !handshake && !matched;
     if (matched)
       peer_logger_singleton::instance().log_peer(info, "blacklist");
