@@ -821,12 +821,14 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
 
     connect(actionCopyAll, &QAction::triggered, scheduleDay, [schedule, day, allRanges, selectedRows]()
     {
-        const QList<TimeRange> selectedRanges = allRanges.mid(selectedRows[0].row(), selectedRows.count());
-        for (int i = 0; i < 7; ++i)
+        for (QModelIndex index : selectedRows)
         {
-            if (i == day) continue;
-            for (TimeRange timeRange : selectedRanges)
+            TimeRange timeRange = allRanges[index.row()];
+            for (int i = 0; i < 7; ++i)
+            {
+                if (i == day) continue;
                 schedule->scheduleDay(i)->addTimeRange(timeRange);
+            }
         }
     });
 
