@@ -195,8 +195,14 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     // Disable dialog & set busy cursor
     setInteractionEnabled(false);
     setCursor(QCursor(Qt::WaitCursor));
-
-    const QStringList trackers = m_ui->trackersList->toPlainText().trimmed()
+    
+    // Add new line before each protocol prefix
+    QString trackerString = m_ui->trackersList->toPlainText();
+    trackerString.replace(QString("udp://"), QString("\nudp://"));
+    trackerString.replace(QString("http://"), QString("\nhttp://"));
+    trackerString.replace(QString("https://"), QString("\nhttps://"));
+    
+    const QStringList trackers = trackerString.trimmed()
         .replace(QRegularExpression("\n\n[\n]+"), "\n\n").split('\n');
     const BitTorrent::TorrentCreatorParams params
     {
