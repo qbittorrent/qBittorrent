@@ -8,8 +8,6 @@
 #include "ui_timerangedialog.h"
 #include "utils.h"
 
-static const QString LabelStyle = QStringLiteral("QLabel { background-color : %1; }");
-
 TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate, int maxRate)
     : QDialog {parent}
     , m_ui {new Ui::TimeRangeDialog}
@@ -54,10 +52,11 @@ bool TimeRangeDialog::isValid() const
     TimeRange timeRange = {timeFrom(), timeTo(), downloadRatio(), uploadRatio()};
     TimeRangeConflict conflict = m_scheduleDay->conflicts(timeRange);
 
-    QString startTimeColor = ((conflict & StartTime) != 0) ? "red" : "transparent";
-    QString endTimeColor = ((conflict & EndTime) != 0) ? "red" : "transparent";
-    m_ui->labelTimeFrom->setStyleSheet(LabelStyle.arg(startTimeColor));
-    m_ui->labelTimeTo->setStyleSheet(LabelStyle.arg(endTimeColor));
+    const QString borderStyle = "border: 1px solid %1";
+    QString startTimeColor = ((conflict & StartTime) == StartTime) ? "red" : "green";
+    QString endTimeColor = ((conflict & EndTime) == EndTime) ? "red" : "green";
+    m_ui->timeEditFrom->setStyleSheet(borderStyle.arg(startTimeColor));
+    m_ui->timeEditTo->setStyleSheet(borderStyle.arg(endTimeColor));
 
     return timeRangesValid && (conflict == NoConflict);
 }

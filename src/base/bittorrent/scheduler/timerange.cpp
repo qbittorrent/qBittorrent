@@ -24,18 +24,6 @@ void TimeRange::setUploadRate(int rate)
     uploadRate = rate;
 }
 
-TimeRangeConflict TimeRange::overlaps(const TimeRange &other) const
-{
-    bool startTimeOverlaps = (other.startTime >= startTime) && (other.startTime <= endTime);
-    bool endTimeOverlaps = (other.endTime >= startTime) && (other.endTime <= endTime);
-    bool encompasses = (other.startTime <= startTime) && (other.endTime >= endTime);
-
-    return (encompasses || startTimeOverlaps && endTimeOverlaps) ? Both
-        : startTimeOverlaps ? StartTime
-        : endTimeOverlaps ? EndTime
-        : NoConflict;
-}
-
 bool TimeRange::isValid() const
 {
     return startTime.isValid() && endTime.isValid() && (startTime < endTime);

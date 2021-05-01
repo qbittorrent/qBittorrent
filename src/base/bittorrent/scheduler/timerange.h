@@ -23,7 +23,6 @@ struct TimeRange
     void setDownloadRate(int rate);
     void setUploadRate(int rate);
 
-    TimeRangeConflict overlaps(const TimeRange &other) const;
     bool isValid() const;
 
     QJsonObject toJsonObject() const;

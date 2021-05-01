@@ -120,13 +120,26 @@ int ScheduleDay::getNowIndex()
 
 TimeRangeConflict ScheduleDay::conflicts(const TimeRange &timeRange)
 {
-    for (TimeRange tr : m_timeRanges)
+    TimeRangeConflict conflict = NoConflict;
+    for (TimeRange other : m_timeRanges)
     {
-        TimeRangeConflict conflict = tr.overlaps(timeRange);
-        if (conflict != NoConflict)
-            return conflict;
+        bool startOverlaps = (timeRange.startTime >= other.startTime) && (timeRange.startTime <= other.endTime);
+        bool endOverlaps = (timeRange.endTime >= other.startTime) && (timeRange.endTime <= other.endTime);
+        bool encompasses = (timeRange.startTime <= other.startTime) && (timeRange.endTime >= other.endTime);
+
+        if (encompasses || (startOverlaps && endOverlaps))
+            return Both;
+        if (conflict == EndTime && startOverlaps)
+            return Both;
+        if (conflict == StartTime && endOverlaps)
+            return Both;
+
+        if (startOverlaps)
+            conflict = StartTime;
+        else if (endOverlaps)
+            conflict = EndTime;
     }
-    return NoConflict;
+    return conflict;
 }
 
 QJsonArray ScheduleDay::toJsonArray() const
