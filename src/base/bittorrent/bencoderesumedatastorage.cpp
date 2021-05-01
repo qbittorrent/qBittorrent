@@ -73,8 +73,6 @@ namespace BitTorrent
 
 namespace
 {
-    const char RESUME_FOLDER[] = "BT_backup";
-
     template <typename LTStr>
     QString fromLTString(const LTStr &str)
     {
@@ -104,9 +102,9 @@ namespace
     }
 }
 
-BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(QObject *parent)
+BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &path, QObject *parent)
     : ResumeDataStorage {parent}
-    , m_resumeDataDir {Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER)}
+    , m_resumeDataDir {path}
     , m_ioThread {new QThread {this}}
     , m_asyncWorker {new Worker {m_resumeDataDir}}
 {

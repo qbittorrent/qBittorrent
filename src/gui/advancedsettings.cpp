@@ -61,6 +61,7 @@ namespace
     {
         // qBittorrent section
         QBITTORRENT_HEADER,
+        RESUME_DATA_STORAGE,
 #if defined(Q_OS_WIN)
         OS_MEMORY_PRIORITY,
 #endif
@@ -165,6 +166,10 @@ void AdvancedSettings::saveAdvancedSettings()
 {
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
+
+    session->setResumeDataStorageType((m_comboBoxResumeDataStorage.currentIndex() == 0)
+                                      ? BitTorrent::ResumeDataStorageType::Legacy
+                                      : BitTorrent::ResumeDataStorageType::SQLite);
 
 #if defined(Q_OS_WIN)
     BitTorrent::OSMemoryPriority prio = BitTorrent::OSMemoryPriority::Normal;
@@ -391,6 +396,10 @@ void AdvancedSettings::loadAdvancedSettings()
     labelLibtorrentLink->setOpenExternalLinks(true);
     addRow(LIBTORRENT_HEADER, QString::fromLatin1("<b>%1</b>").arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
+
+    m_comboBoxResumeDataStorage.addItems({tr("Fastresume files"), tr("SQLite database (experimental)")});
+    m_comboBoxResumeDataStorage.setCurrentIndex((session->resumeDataStorageType() == BitTorrent::ResumeDataStorageType::Legacy) ? 0 : 1);
+    addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
 
 #if defined(Q_OS_WIN)
     m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});

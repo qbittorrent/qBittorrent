@@ -70,7 +70,8 @@ private:
               m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers, m_checkBoxAnnounceAllTiers,
               m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxBlockPeersOnPrivilegedPorts, m_checkBoxPieceExtentAffinity,
               m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled, m_checkBoxIDNSupport;
-    QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm, m_comboBoxSeedChokingAlgorithm;
+    QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm,
+              m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage;
     QLineEdit m_lineEditAnnounceIP;
 
 #if (LIBTORRENT_VERSION_NUM < 20000)
