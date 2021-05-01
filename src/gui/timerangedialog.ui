@@ -6,38 +6,44 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>337</width>
+    <width>367</width>
     <height>181</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Add scheduled speed limit</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
+   </property>
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
+     <item row="0" column="1">
       <widget class="QLabel" name="label1">
        <property name="text">
         <string>Download</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
+     <item row="0" column="2">
       <widget class="QLabel" name="label2">
        <property name="text">
         <string>Upload</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="1" column="0">
       <widget class="QLabel" name="label3">
        <property name="text">
         <string>Speed limit</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="1" column="1">
       <widget class="QSpinBox" name="downloadSpinBox">
        <property name="specialValueText">
         <string>∞</string>
@@ -50,7 +56,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
+     <item row="1" column="2">
       <widget class="QSpinBox" name="uploadSpinBox">
        <property name="specialValueText">
         <string>∞</string>
@@ -63,14 +69,14 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="label4">
        <property name="text">
         <string>In between</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="2" column="1">
       <widget class="QTimeEdit" name="timeEditFrom">
        <property name="wrapping">
         <bool>true</bool>
@@ -84,7 +90,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="2">
+     <item row="2" column="2">
       <widget class="QTimeEdit" name="timeEditTo">
        <property name="wrapping">
         <bool>true</bool>
@@ -98,46 +104,20 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="3">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="label5">
        <property name="text">
         <string>Preview</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="3" column="1">
       <widget class="QLabel" name="labelTimeFrom"/>
      </item>
-     <item row="4" column="2">
+     <item row="3" column="2">
       <widget class="QLabel" name="labelTimeTo"/>
      </item>
     </layout>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
