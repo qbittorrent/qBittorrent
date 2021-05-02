@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Idatzi agiritegia hemen</translation>
+        <translation type="vanished">Idatzi agiritegia hemen</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Besterik...</translation>
+        <translation type="vanished">Besterik...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>Berezko gordetze kokalekua</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

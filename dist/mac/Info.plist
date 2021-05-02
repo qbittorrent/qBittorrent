@@ -47,7 +47,7 @@
 		</dict>
 	</array>
 	<key>CFBundleName</key>
-	<string>@EXECUTABLE@</string>
+	<string>qBittorrent</string>
 	<key>CFBundleIconFile</key>
 	<string>qbittorrent_mac.icns</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -55,9 +55,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.3.4.1</string>
+	<string>4.3.5</string>
 	<key>CFBundleExecutable</key>
-	<string>@EXECUTABLE@</string>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.qbittorrent.qBittorrent</string>
 	<key>LSMinimumSystemVersion</key>

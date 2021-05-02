@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Skriv mappe her</translation>
+        <translation type="vanished">Skriv mappe her</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Andet...</translation>
+        <translation type="vanished">Andet...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>Standardplacering at gemme</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

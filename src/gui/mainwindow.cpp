@@ -1663,8 +1663,7 @@ void MainWindow::showNotificationBaloon(const QString &title, const QString &msg
     // some inactivity shuts it down. Other DEs, like GNOME, choose
     // to start their daemons at the session startup and have it sit
     // idling for the whole session.
-    QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
+    const QVariantMap hints {{QLatin1String("desktop-entry"), QLatin1String("org.qbittorrent.qBittorrent")}};
     QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
                                                          msg, QStringList(), hints, -1);
     reply.waitForFinished();

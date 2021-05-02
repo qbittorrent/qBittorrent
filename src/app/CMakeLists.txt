@@ -83,18 +83,14 @@ set_source_files_properties(
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    # substitute @EXECUTABLE@ in dist/mac/Info.plist
-    get_target_property(EXECUTABLE qbt_app OUTPUT_NAME)
-    configure_file(${qBittorrent_SOURCE_DIR}/dist/mac/Info.plist
-        ${qBittorrent_BINARY_DIR}/dist/mac/pregen.plist @ONLY)
-    file(GENERATE
-        OUTPUT ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist
-        INPUT ${qBittorrent_BINARY_DIR}/dist/mac/pregen.plist
-    )
+    # provide variables for substitution in dist/mac/Info.plist
+    get_target_property(EXECUTABLE_NAME qbt_app OUTPUT_NAME)
+    # This variable name should be changed once qmake is no longer used. Refer to the discussion in PR #14813
+    set(MACOSX_DEPLOYMENT_TARGET ${CMAKE_OSX_DEPLOYMENT_TARGET})
     set_target_properties(qbt_app PROPERTIES
         MACOSX_BUNDLE ON
-        MACOSX_BUNDLE_BUNDLE_NAME "${EXECUTABLE}"
-        MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_BINARY_DIR}/dist/mac/Info.plist
+        MACOSX_BUNDLE_BUNDLE_NAME "qBittorrent"
+        MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_SOURCE_DIR}/dist/mac/Info.plist
     )
     target_sources(qbt_app PRIVATE
         ${QT_TRANSLATIONS}

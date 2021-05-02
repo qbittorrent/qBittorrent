@@ -213,10 +213,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>More information</source>
         <translation type="unfinished" />
     </message>
@@ -238,11 +234,6 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1766,6 +1757,14 @@
     </message>
     <message>
         <source>Default save location</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
         <translation type="unfinished" />
     </message>
 </context>

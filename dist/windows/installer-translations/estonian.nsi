@@ -21,16 +21,17 @@ LangString inst_firewallinfo ${LANG_ESTONIAN} "Lisatakse Windowsi Tulemüüri re
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_ESTONIAN} "qBittorrent töötab. Palun sulge see programm, enne installi."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
-LangString inst_uninstall_question ${LANG_ESTONIAN} "Praegune versioon uninstallitakse. Kasutaja sätted ja torrenti failid jäetakse alles."
+LangString inst_uninstall_question ${LANG_ESTONIAN} "Praegune versioon desinstallitakse. Kasutaja sätted ja torrenti failid jäetakse alles."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
-LangString inst_unist ${LANG_ESTONIAN} "Uninstallitakse eelmist versiooni."
+LangString inst_unist ${LANG_ESTONIAN} "Desinstallitakse eelmist versiooni."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_ESTONIAN} "Käivita qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ESTONIAN} "See installer töötab ainult 64-bit Windowsi versioonides."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_ESTONIAN} "Selle qBittorrenti versiooni jaoks on vajalik vähemalt Windows 7."
-
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_ESTONIAN} "Desinstalli qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

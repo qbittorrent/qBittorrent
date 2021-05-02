@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Napíšte sem názov priečinku</translation>
+        <translation type="vanished">Napíšte sem názov priečinku</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Iné...</translation>
+        <translation type="vanished">Iné...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>Predvolená cesta pre ukladanie</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

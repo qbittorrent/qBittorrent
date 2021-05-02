@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Sisesta kaust siia</translation>
+        <translation type="vanished">Sisesta kaust siia</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Muud...</translation>
+        <translation type="vanished">Muud...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -397,7 +397,7 @@
     </message>
     <message>
         <source>View</source>
-        <translation>Vaata</translation>
+        <translation>Vaade</translation>
     </message>
     <message>
         <source>Options...</source>
@@ -749,7 +749,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maksimum kogus ülelsaadimiste kohti ühel torrentil:</translation>
+        <translation>Maksimum kogus üleslaadimise kohti ühel torrentil:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -1011,7 +1011,7 @@
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Üleslaadimise kiiruse piirang:</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -1387,7 +1387,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>Maksimum kogus artikleid feed'idel:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1411,7 +1411,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished" />
+        <translation>Luba RSS'i torrentite automaatne allalaadimine</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>Tava salvestamise asukoht</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2617,7 +2625,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1a %2p</translation>
     </message>
 </context>
 <context>
@@ -2721,7 +2729,7 @@
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Uninstalli</translation>
     </message>
     <message>
         <source>Install new plugin</source>
