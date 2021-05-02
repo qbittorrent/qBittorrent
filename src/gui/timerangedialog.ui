@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>367</width>
-    <height>181</height>
+    <height>150</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -103,19 +103,6 @@
         </time>
        </property>
       </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label5">
-       <property name="text">
-        <string>Preview</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="labelTimeFrom"/>
-     </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="labelTimeTo"/>
      </item>
     </layout>
    </item>
