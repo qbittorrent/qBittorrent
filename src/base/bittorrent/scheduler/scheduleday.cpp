@@ -1,15 +1,9 @@
 #include "scheduleday.h"
 
 #include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonValue>
 
-#include "bandwidthscheduler.h"
-#include "base/bittorrent/scheduler/timerange.h"
 #include "base/global.h"
 #include "base/logger.h"
-#include "base/rss/rss_autodownloader.h"
 
 ScheduleDay::ScheduleDay(int dayOfWeek)
     : m_dayOfWeek {dayOfWeek}

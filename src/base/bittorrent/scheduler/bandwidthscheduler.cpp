@@ -32,15 +32,12 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QPointer>
 
-#include "base/bittorrent/session.h"
-#include "base/exceptions.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
-#include "scheduleday.h"
-#include "timerange.h"
 
 const QString ScheduleFileName = QStringLiteral("schedule.json");
 const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};

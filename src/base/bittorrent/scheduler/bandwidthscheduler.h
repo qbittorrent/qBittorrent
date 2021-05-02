@@ -34,7 +34,6 @@
 #include <QThread>
 
 #include "base/asyncfilestorage.h"
-#include "base/preferences.h"
 #include "scheduleday.h"
 
 class Application;

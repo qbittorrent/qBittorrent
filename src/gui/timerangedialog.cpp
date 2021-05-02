@@ -1,7 +1,6 @@
 #include "timerangedialog.h"
 
 #include <QPushButton>
-#include <QStyle>
 
 #include "base/bittorrent/scheduler/timerange.h"
 #include "base/preferences.h"
