@@ -89,7 +89,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Bản quyền %1 2006-2021 Dự án qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="110"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Cơ sở dữ liệu IP đến Country Lite miễn phí của DB-IP được sử dụng để giải quyết các quốc gia ngang hàng. Cơ sở dữ liệu được cấp phép theo Giấy phép Quốc tế Creative Commons Attribution 4.0</translation>
+        <translation>Cơ sở dữ liệu IP đến Country Lite miễn phí của DB-IP được sử dụng để giải quyết các quốc gia ngang hàng. Cơ sở dữ liệu được cấp phép theo Giấy Phép Quốc Tế Ghi Nhận Tác Giả Creative Commons 4.0</translation>
     </message>
 </context>
 <context>
@@ -118,45 +118,45 @@
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="60"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="102"/>
         <source>The old path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đường dẫn cũ không hợp lệ: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="62"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="104"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đường dẫn mới không hợp lệ: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="66"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="70"/>
         <source>Invalid file path: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đường dẫn tệp không hợp lệ: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="72"/>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="115"/>
         <source>Absolute path isn&apos;t allowed: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đường dẫn tuyệt đối không được phép: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="82"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tệp đã tồn tại: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="86"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không có tệp như vậy: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="127"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Thư mục đã tồn tại: &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="131"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không có thư mục nào như vậy: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -214,12 +214,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="212"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tạo thư mục con</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="217"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Không tạo thư mục con</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="268"/>
@@ -244,12 +244,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="41"/>
         <source>Torrent Management Mode:</source>
-        <translation>Quản lý Torrent tự động</translation>
+        <translation>Chế độ quản lý Torrent:</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="48"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Chế độ tự động có nghĩa là các thuộc tính torrent khác nhau (ví dụ: đường dẫn lưu) sẽ được quyết định bởi danh mục liên quan</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="52"/>
@@ -259,22 +259,22 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="57"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Tự động</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Remember last used save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ghi nhớ đường dẫn lưu được sử dụng gần đây nhất</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="141"/>
         <source>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Khi được chọn, tệp .torrent sẽ không bị xóa mặc dù đã cài đặt tại trang &quot;Tải xuống&quot; của hộp thoại tùy chọn</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="144"/>
         <source>Do not delete .torrent file</source>
-        <translation type="unfinished"></translation>
+        <translation>Không xóa tệp .torrent</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="165"/>
@@ -284,12 +284,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="151"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Tải xuống phần đầu tiên và phần cuối cùng trước tiên</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="436"/>
         <source>Save as .torrent file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lưu dưới dạng tệp .torrent...</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="531"/>
@@ -398,12 +398,12 @@ Lỗi: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="294"/>
         <source>Torrent is already queued for processing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent đã được xếp hàng đợi để xử lý.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="330"/>
         <source>Magnet link &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liên kết nam châm &apos;%1&apos; đã có trong danh sách trao đổi. Máy theo dõi đã được gộp.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="335"/>
@@ -413,7 +413,7 @@ Lỗi: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="417"/>
         <source>%1 (Free space on disk: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (Dung lượng trống trên đĩa: %2)</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="418"/>
@@ -429,7 +429,7 @@ Lỗi: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="544"/>
         <source>By shown file order</source>
-        <translation type="unfinished"></translation>
+        <translation>Theo thứ tự tệp được hiển thị</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="747"/>
@@ -477,411 +477,437 @@ Lỗi: %2</translation>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="312"/>
-        <location filename="../gui/advancedsettings.cpp" line="450"/>
+        <location filename="../gui/advancedsettings.cpp" line="323"/>
+        <location filename="../gui/advancedsettings.cpp" line="465"/>
         <source> MiB</source>
         <translation>MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="531"/>
+        <location filename="../gui/advancedsettings.cpp" line="546"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Cổng gửi (Tối thiểu) [0: Tắt]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="538"/>
+        <location filename="../gui/advancedsettings.cpp" line="553"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Cổng gửi (Tối đa) [0: Tắt]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="580"/>
+        <location filename="../gui/advancedsettings.cpp" line="595"/>
         <source>Recheck torrents on completion</source>
         <translation>Kiểm tra lại các torrent sau khi hoàn tất</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="586"/>
+        <location filename="../gui/advancedsettings.cpp" line="601"/>
         <source>Transfer list refresh interval</source>
         <translation>Khoảng thời gian làm mới danh sách truyền tải</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="585"/>
+        <location filename="../gui/advancedsettings.cpp" line="600"/>
+        <location filename="../gui/advancedsettings.cpp" line="664"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation>m.gi.</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="146"/>
+        <location filename="../gui/advancedsettings.cpp" line="150"/>
         <source>Setting</source>
         <translation>Cài đặt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="146"/>
+        <location filename="../gui/advancedsettings.cpp" line="150"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Giá trị</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="308"/>
-        <location filename="../gui/advancedsettings.cpp" line="321"/>
+        <location filename="../gui/advancedsettings.cpp" line="319"/>
+        <location filename="../gui/advancedsettings.cpp" line="332"/>
         <source> (disabled)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="310"/>
+        <location filename="../gui/advancedsettings.cpp" line="321"/>
         <source> (auto)</source>
         <translation>(tự động)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="319"/>
+        <location filename="../gui/advancedsettings.cpp" line="330"/>
         <source> min</source>
         <comment> minutes</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="332"/>
+        <location filename="../gui/advancedsettings.cpp" line="343"/>
         <source>All addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Tất cả các địa chỉ</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="378"/>
+        <location filename="../gui/advancedsettings.cpp" line="389"/>
         <source>qBittorrent Section</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="375"/>
-        <location filename="../gui/advancedsettings.cpp" line="383"/>
-        <source>Open documentation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="333"/>
-        <source>All IPv4 addresses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/advancedsettings.cpp" line="334"/>
-        <source>All IPv6 addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Phần qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="386"/>
+        <location filename="../gui/advancedsettings.cpp" line="394"/>
+        <source>Open documentation</source>
+        <translation>Mở tài liệu</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="344"/>
+        <source>All IPv4 addresses</source>
+        <translation>Tất cả địa chỉ IPv4</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="345"/>
+        <source>All IPv6 addresses</source>
+        <translation>Tất cả địa chỉ IPv6</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="397"/>
         <source>libtorrent Section</source>
+        <translation>Phần libtorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="400"/>
+        <source>Fastresume files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="390"/>
+        <location filename="../gui/advancedsettings.cpp" line="400"/>
+        <source>SQLite database (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="402"/>
+        <source>Resume data storage type (requires restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="405"/>
         <source>Normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Bình thường</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="390"/>
+        <location filename="../gui/advancedsettings.cpp" line="405"/>
         <source>Below normal</source>
-        <translation type="unfinished"></translation>
+        <translation>Dưới mức trung bình</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="390"/>
+        <location filename="../gui/advancedsettings.cpp" line="405"/>
         <source>Medium</source>
-        <translation type="unfinished"></translation>
+        <translation>Trung bình</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="390"/>
+        <location filename="../gui/advancedsettings.cpp" line="405"/>
         <source>Low</source>
-        <translation type="unfinished"></translation>
+        <translation>Thấp</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="390"/>
+        <location filename="../gui/advancedsettings.cpp" line="405"/>
         <source>Very low</source>
-        <translation type="unfinished"></translation>
+        <translation>Rất thấp</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="412"/>
+        <location filename="../gui/advancedsettings.cpp" line="427"/>
         <source>Process memory priority (Windows &gt;= 8 only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ưu tiên bộ nhớ xử lý (chỉ dành cho Windows &gt;= 8)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="421"/>
+        <location filename="../gui/advancedsettings.cpp" line="436"/>
         <source>Asynchronous I/O threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="429"/>
+        <location filename="../gui/advancedsettings.cpp" line="444"/>
         <source>Hashing threads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="437"/>
+        <location filename="../gui/advancedsettings.cpp" line="452"/>
         <source>File pool size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="451"/>
+        <location filename="../gui/advancedsettings.cpp" line="466"/>
         <source>Outstanding memory when checking torrents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="467"/>
+        <location filename="../gui/advancedsettings.cpp" line="482"/>
         <source>Disk cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Bộ nhớ đệm trên đĩa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="473"/>
-        <location filename="../gui/advancedsettings.cpp" line="545"/>
-        <location filename="../gui/advancedsettings.cpp" line="632"/>
-        <location filename="../gui/advancedsettings.cpp" line="711"/>
+        <location filename="../gui/advancedsettings.cpp" line="488"/>
+        <location filename="../gui/advancedsettings.cpp" line="560"/>
+        <location filename="../gui/advancedsettings.cpp" line="647"/>
+        <location filename="../gui/advancedsettings.cpp" line="735"/>
         <source> s</source>
         <comment> seconds</comment>
-        <translation>gi.</translation>
+        <translation> gi.</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="474"/>
+        <location filename="../gui/advancedsettings.cpp" line="489"/>
         <source>Disk cache expiry interval</source>
         <translation>Khoảng thời gian hết hạn của bộ nhớ tạm trên đĩa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="479"/>
+        <location filename="../gui/advancedsettings.cpp" line="494"/>
         <source>Enable OS cache</source>
         <translation>Bật bộ nhớ đệm của HĐH</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="484"/>
+        <location filename="../gui/advancedsettings.cpp" line="499"/>
         <source>Coalesce reads &amp; writes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="489"/>
+        <location filename="../gui/advancedsettings.cpp" line="504"/>
         <source>Use piece extent affinity</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="492"/>
+        <location filename="../gui/advancedsettings.cpp" line="507"/>
         <source>Send upload piece suggestions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="497"/>
-        <location filename="../gui/advancedsettings.cpp" line="503"/>
+        <location filename="../gui/advancedsettings.cpp" line="512"/>
+        <location filename="../gui/advancedsettings.cpp" line="518"/>
         <source> KiB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="499"/>
+        <location filename="../gui/advancedsettings.cpp" line="514"/>
         <source>Send buffer watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="505"/>
+        <location filename="../gui/advancedsettings.cpp" line="520"/>
         <source>Send buffer low watermark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="511"/>
+        <location filename="../gui/advancedsettings.cpp" line="526"/>
         <source>Send buffer watermark factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="517"/>
+        <location filename="../gui/advancedsettings.cpp" line="532"/>
         <source>Socket backlog size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="546"/>
+        <location filename="../gui/advancedsettings.cpp" line="561"/>
         <source>UPnP lease duration [0: Permanent lease]</source>
-        <translation type="unfinished"></translation>
+        <translation>Thời hạn thuê UPnP [0: thuê vĩnh viễn]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="552"/>
+        <location filename="../gui/advancedsettings.cpp" line="567"/>
         <source>Type of service (ToS) for connections to peers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="555"/>
+        <location filename="../gui/advancedsettings.cpp" line="570"/>
         <source>Prefer TCP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="555"/>
+        <location filename="../gui/advancedsettings.cpp" line="570"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="562"/>
+        <location filename="../gui/advancedsettings.cpp" line="577"/>
         <source>Support internationalized domain name (IDN)</source>
         <translation>Hỗ trợ tên miền quốc tế hóa (IDN)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="567"/>
+        <location filename="../gui/advancedsettings.cpp" line="582"/>
         <source>Allow multiple connections from the same IP address</source>
-        <translation type="unfinished"></translation>
+        <translation>Cho phép nhiều kết nối từ cùng một địa chỉ IP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="572"/>
+        <location filename="../gui/advancedsettings.cpp" line="587"/>
         <source>Validate HTTPS tracker certificates</source>
         <translation>Xác thực chứng chỉ máy theo dõi HTTPS</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="577"/>
+        <location filename="../gui/advancedsettings.cpp" line="592"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Không cho phép kết nối ngang hàng trên các cổng đặc quyền</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="592"/>
+        <location filename="../gui/advancedsettings.cpp" line="607"/>
         <source>Resolve peer host names</source>
-        <translation>Xử lý tên các máy peer</translation>
+        <translation>Xử lý tên các máy chủ ngang hàng</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="656"/>
-        <source>Enable icons in menus</source>
+        <location filename="../gui/advancedsettings.cpp" line="663"/>
+        <source>System default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="701"/>
+        <location filename="../gui/advancedsettings.cpp" line="665"/>
+        <source>Notification timeout [0: infinite]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="680"/>
+        <source>Enable icons in menus</source>
+        <translation>Bật các biểu tượng trong menu</translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="725"/>
         <source>Peer turnover disconnect percentage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="707"/>
+        <location filename="../gui/advancedsettings.cpp" line="731"/>
         <source>Peer turnover threshold percentage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="713"/>
+        <location filename="../gui/advancedsettings.cpp" line="737"/>
         <source>Peer turnover disconnect interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="633"/>
+        <location filename="../gui/advancedsettings.cpp" line="648"/>
         <source>Stop tracker timeout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="639"/>
+        <location filename="../gui/advancedsettings.cpp" line="654"/>
         <source>Display notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị thông báo</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="642"/>
+        <location filename="../gui/advancedsettings.cpp" line="657"/>
         <source>Display notifications for added torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị thông báo cho các torrent được thêm vào</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="645"/>
+        <location filename="../gui/advancedsettings.cpp" line="669"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>Tải về biểu tượng đại diện của máy theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="649"/>
+        <location filename="../gui/advancedsettings.cpp" line="673"/>
         <source>Save path history length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="652"/>
+        <location filename="../gui/advancedsettings.cpp" line="676"/>
         <source>Enable speed graphs</source>
         <translation>Bật biểu đồ tốc độ</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="667"/>
+        <location filename="../gui/advancedsettings.cpp" line="691"/>
         <source>Fixed slots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="667"/>
+        <location filename="../gui/advancedsettings.cpp" line="691"/>
         <source>Upload rate based</source>
-        <translation type="unfinished"></translation>
+        <translation>Tỷ lệ tải lên dựa trên</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="669"/>
+        <location filename="../gui/advancedsettings.cpp" line="693"/>
         <source>Upload slots behavior</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="672"/>
+        <location filename="../gui/advancedsettings.cpp" line="696"/>
         <source>Round-robin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="672"/>
+        <location filename="../gui/advancedsettings.cpp" line="696"/>
         <source>Fastest upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Tải lên nhanh nhất</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="672"/>
+        <location filename="../gui/advancedsettings.cpp" line="696"/>
         <source>Anti-leech</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="674"/>
+        <location filename="../gui/advancedsettings.cpp" line="698"/>
         <source>Upload choking algorithm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="679"/>
+        <location filename="../gui/advancedsettings.cpp" line="703"/>
         <source>Confirm torrent recheck</source>
         <translation>Xác nhận kiểm tra lại torrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="683"/>
+        <location filename="../gui/advancedsettings.cpp" line="707"/>
         <source>Confirm removal of all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Xác nhận xóa tất cả các thẻ</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="687"/>
+        <location filename="../gui/advancedsettings.cpp" line="711"/>
         <source>Always announce to all trackers in a tier</source>
-        <translation type="unfinished"></translation>
+        <translation>Luôn thông báo cho tất cả các máy theo dõi trong một cấp</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="693"/>
+        <location filename="../gui/advancedsettings.cpp" line="717"/>
         <source>Always announce to all tiers</source>
-        <translation type="unfinished"></translation>
+        <translation>Luôn thông báo cho tất cả các cấp</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="594"/>
+        <location filename="../gui/advancedsettings.cpp" line="609"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Bất kỳ giao diện nào</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="526"/>
+        <location filename="../gui/advancedsettings.cpp" line="541"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>Lưu khoảng thời gian dữ liệu bắt đầu lại</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="557"/>
+        <location filename="../gui/advancedsettings.cpp" line="572"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="589"/>
+        <location filename="../gui/advancedsettings.cpp" line="604"/>
         <source>Resolve peer countries</source>
-        <translation type="unfinished"></translation>
+        <translation>Giải quyết các quốc gia ngang hàng</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="616"/>
+        <location filename="../gui/advancedsettings.cpp" line="631"/>
         <source>Network interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Giao diện mạng</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="619"/>
+        <location filename="../gui/advancedsettings.cpp" line="634"/>
         <source>Optional IP address to bind to</source>
-        <translation type="unfinished"></translation>
+        <translation>Địa chỉ IP tùy chọn để liên kết với</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="622"/>
+        <location filename="../gui/advancedsettings.cpp" line="637"/>
         <source>IP Address to report to trackers (requires restart)</source>
         <translation>Địa chỉ IP để gửi báo cáo đến tracker (cần khởi động lại)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="628"/>
+        <location filename="../gui/advancedsettings.cpp" line="643"/>
         <source>Max concurrent HTTP announces</source>
-        <translation type="unfinished"></translation>
+        <translation>Thông báo HTTP đồng thời tối đa</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="660"/>
+        <location filename="../gui/advancedsettings.cpp" line="684"/>
         <source>Enable embedded tracker</source>
         <translation>Bật tracker nhúng</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="665"/>
+        <location filename="../gui/advancedsettings.cpp" line="689"/>
         <source>Embedded tracker port</source>
         <translation>Cổng tracker nhúng</translation>
     </message>
@@ -910,78 +936,78 @@ Lỗi: %2</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="390"/>
+        <location filename="../app/application.cpp" line="386"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="452"/>
+        <location filename="../app/application.cpp" line="448"/>
         <source>Torrent name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="453"/>
+        <location filename="../app/application.cpp" line="449"/>
         <source>Torrent size: %1</source>
         <translation>Kích cỡ Torrent: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="454"/>
+        <location filename="../app/application.cpp" line="450"/>
         <source>Save path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Đường dẫn lưu: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="455"/>
+        <location filename="../app/application.cpp" line="451"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent đã được tải về trong %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="457"/>
+        <location filename="../app/application.cpp" line="453"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Cảm ơn bạn đã sử dụng qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="464"/>
+        <location filename="../app/application.cpp" line="460"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &apos;%1&apos; đã tải xong</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="479"/>
+        <location filename="../app/application.cpp" line="475"/>
         <source>Torrent: %1, sending mail notification</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent: %1, gửi thông báo qua thư</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="649"/>
+        <location filename="../app/application.cpp" line="645"/>
         <source>Application failed to start.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ứng dụng không khởi động được.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="662"/>
+        <location filename="../app/application.cpp" line="658"/>
         <source>Information</source>
         <translation>Thông tin</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="663"/>
+        <location filename="../app/application.cpp" line="659"/>
         <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Để điều khiển qBittorrent, hãy truy cập giao diện người dùng Web tại %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="669"/>
+        <location filename="../app/application.cpp" line="665"/>
         <source>The Web UI administrator username is: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="670"/>
+        <location filename="../app/application.cpp" line="666"/>
         <source>The Web UI administrator password is still the default one: %1</source>
-        <translation>Tên người dùng quản trị Web UI vẫn là mặc định: %1</translation>
+        <translation>Mật khẩu quản trị viên giao diện người dùng Web vẫn là mật khẩu mặc định: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="671"/>
+        <location filename="../app/application.cpp" line="667"/>
         <source>This is a security risk, please consider changing your password from program preferences.</source>
         <translation>Đây là một mối nguy về bảo mật, vui lòng xem xét việc thay đổi mật khẩu từ phần cài đặt của chương trình.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="803"/>
+        <location filename="../app/application.cpp" line="799"/>
         <source>Saving torrent progress...</source>
         <translation>Đang lưu tiến trình torrent...</translation>
     </message>
@@ -991,7 +1017,7 @@ Lỗi: %2</translation>
     <message>
         <location filename="../base/asyncfilestorage.cpp" line="42"/>
         <source>Could not create directory &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể tạo thư mục &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1004,12 +1030,12 @@ Lỗi: %2</translation>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="57"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Địa chỉ IP của bạn đã bị cấm sau quá nhiều lần xác thực không thành công.</translation>
     </message>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="73"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Đăng nhập WebAPI thành công. IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/api/authcontroller.cpp" line="80"/>
@@ -1052,7 +1078,7 @@ Lỗi: %2</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="190"/>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử Dụng Bộ Lọc Tập Thông Minh</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="114"/>
@@ -1079,7 +1105,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="212"/>
         <source>Category:</source>
-        <translation type="unfinished">Danh mục:</translation>
+        <translation>Thể loại:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="231"/>
@@ -1126,7 +1152,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="339"/>
         <source>Torrent content layout:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bố cục nội dung torrent:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="352"/>
@@ -1136,12 +1162,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="357"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Tạo thư mục con</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="362"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Không tạo thư mục con</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="383"/>
@@ -1164,270 +1190,270 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>&amp;Xuất...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
         <source>Matches articles based on episode filter.</source>
         <translation>Chọn bài viết phù hợp dựa vào bộ lọc phân đoạn.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="90"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
         <source>Example: </source>
         <translation>Ví dụ:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="91"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
         <translation>sẽ tìm 2, 5, 8 thông qua 15, 30 và các phân đoạn tiếp theo của mùa một</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
         <source>Episode filter rules: </source>
         <translation>Quy luật lọc phân đoạn:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="92"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
         <source>Season number is a mandatory non-zero value</source>
         <translation>Số mùa phải là một giá trị không âm</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
         <source>Filter must end with semicolon</source>
         <translation>Bộ lọc phải kết thúc bằng dấu chấm phẩy</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="95"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="96"/>
         <source>Three range types for episodes are supported: </source>
-        <translation>Ba loại phạm vi cho các phân đoạn được hỗ trợ:</translation>
+        <translation>Ba loại phạm vi cho các tập được hỗ trợ:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="96"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="97"/>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
         <translation>Số đơn: &lt;b&gt;1x25;&lt;/b&gt; phù hợp với phân đoạn 25 của mùa một</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="97"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="98"/>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
         <translation>Khoảng thông thường: &lt;b&gt;1x25-40;&lt;/b&gt; phù hợp với các phân đoạn từ 25 đến 40 của mùa một</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="94"/>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="63"/>
-        <source>Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Số tập là một giá trị dương bắt buộc</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="64"/>
+        <source>Rules</source>
+        <translation>Quy tắc</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="65"/>
         <source>Rules (legacy)</source>
-        <translation type="unfinished"></translation>
+        <translation>Quy tắc (kế thừa)</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="98"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="99"/>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished"></translation>
+        <translation>Phạm vi vô hạn:&lt;b&gt;1x25-;&lt;/b&gt; khớp với các tập từ 25 trở lên của phần một và tất cả các tập của các phần sau</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="285"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="286"/>
         <source>Last Match: %1 days ago</source>
         <translation>Kết quả phù hợp gần đây: %1 ngày trước</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="287"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="288"/>
         <source>Last Match: Unknown</source>
         <translation>Kết quả phù hợp gần đây: Không rõ</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="379"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
         <source>New rule name</source>
-        <translation>Tên của luật mới</translation>
+        <translation>Tên quy tắc mới</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="379"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="380"/>
         <source>Please type the name of the new download rule.</source>
-        <translation>Hãy gõ tên của quy luật tải về mới.</translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="385"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="551"/>
-        <source>Rule name conflict</source>
-        <translation>Xung đột tên quy luật</translation>
+        <translation>Vui lòng nhập tên của quy tắc tải xuống mới.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="386"/>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="552"/>
+        <source>Rule name conflict</source>
+        <translation>Xung đột tên quy tắc</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="387"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="553"/>
         <source>A rule with this name already exists, please choose another name.</source>
         <translation>Đã có một quy luật với tên như vậy, hãy chọn một tên khác.</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="400"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="401"/>
         <source>Are you sure you want to remove the download rule named &apos;%1&apos;?</source>
-        <translation>Có chắc là bạn muốn xoá quy luật tải về tên là &apos;%1&apos;?</translation>
+        <translation>Bạn có chắc chắn muốn xóa quy tắc tải xuống có tên &apos;% 1&apos; không?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="402"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="403"/>
         <source>Are you sure you want to remove the selected download rules?</source>
         <translation>Có chắc là bạn muốn xoá các quy luật tải về đã chọn hay không?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="403"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="404"/>
         <source>Rule deletion confirmation</source>
         <translation>Xác nhận xoá quy luật</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="82"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="83"/>
         <source>Destination directory</source>
         <translation>Thư mục đích</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="425"/>
-        <source>Invalid action</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="426"/>
-        <source>The list is empty, there is nothing to export.</source>
-        <translation type="unfinished"></translation>
+        <source>Invalid action</source>
+        <translation>Hành động không hợp lệ</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="432"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="427"/>
+        <source>The list is empty, there is nothing to export.</source>
+        <translation>Danh sách trống, không có gì để xuất.</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="433"/>
         <source>Export RSS rules</source>
         <translation>Xuất quy tắc RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="459"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="477"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="460"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
         <source>I/O Error</source>
         <translation>Lỗi I/O</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="460"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="461"/>
         <source>Failed to create the destination file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể tạo tệp đích. Lý do: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="468"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="469"/>
         <source>Import RSS rules</source>
         <translation>Nhập quy tắc RSS</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="478"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="479"/>
         <source>Failed to open the file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Không mở được tệp. Lý do: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="496"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="497"/>
         <source>Import Error</source>
         <translation>Lỗi Nhập Vào</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="497"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="498"/>
         <source>Failed to import the selected rules file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể nhập tệp quy tắc đã chọn. Lý do: %1</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="506"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="507"/>
         <source>Add new rule...</source>
         <translation>Thêm quy luật mới...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="515"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="516"/>
         <source>Delete rule</source>
         <translation>Xoá quy luật</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="518"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="519"/>
         <source>Rename rule...</source>
         <translation>Đổi tên quy luật...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="523"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="524"/>
         <source>Delete selected rules</source>
         <translation>Xoá các quy luật đã chọn</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="528"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="529"/>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"></translation>
+        <translation>Xóa các tập đã tải xuống...</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="544"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="545"/>
         <source>Rule renaming</source>
         <translation>Đổi tên quy luật</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="544"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="545"/>
         <source>Please type the new rule name</source>
         <translation>Vui lòng gõ tên quy luật mới</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="572"/>
-        <source>Clear downloaded episodes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="573"/>
+        <source>Clear downloaded episodes</source>
+        <translation>Xóa các tập đã tải xuống</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="574"/>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"></translation>
+        <translation>Bạn có chắc chắn muốn xóa danh sách các tập đã tải xuống cho quy tắc đã chọn không?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="687"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="688"/>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Chế độ Biểu thức chính quy: sử dụng biểu thức chính quy tương thích với Perl</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="737"/>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="784"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="738"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="785"/>
         <source>Position %1: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="691"/>
-        <source>Wildcard mode: you can use</source>
-        <translation type="unfinished"></translation>
+        <translation>Vị trí %1: %2</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="692"/>
-        <source>? to match any single character</source>
-        <translation type="unfinished"></translation>
+        <source>Wildcard mode: you can use</source>
+        <translation>Chế độ ký tự đại diện: bạn có thể sử dụng</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="693"/>
-        <source>* to match zero or more of any characters</source>
-        <translation type="unfinished"></translation>
+        <source>? to match any single character</source>
+        <translation>? để khớp với bất kỳ ký tự đơn lẻ nào</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="694"/>
-        <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished"></translation>
+        <source>* to match zero or more of any characters</source>
+        <translation>* để khớp với không hoặc nhiều hơn bất kỳ ký tự nào</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="695"/>
-        <source>| is used as OR operator</source>
-        <translation type="unfinished"></translation>
+        <source>Whitespaces count as AND operators (all words, any order)</source>
+        <translation>Khoảng trắng được tính là toán tử VÀ (tất cả các từ, bất kỳ thứ tự nào)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="696"/>
-        <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished"></translation>
+        <source>| is used as OR operator</source>
+        <translation>| được sử dụng như toán tử HOẶC</translation>
     </message>
     <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="703"/>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="697"/>
+        <source>If word order is important use * instead of whitespace.</source>
+        <translation>Nếu thứ tự từ là quan trọng, hãy sử dụng * thay vì khoảng trắng.</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="704"/>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
         <comment>We talk about regex/wildcards in the RSS filters section here. So a valid sentence would be: An expression with an empty | clause (e.g. expr|)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/rss/automatedrssdownloader.cpp" line="707"/>
-        <source> will match all articles.</source>
-        <translation type="unfinished"></translation>
+        <translation>Một biểu thức có mệnh đề %1 trống (ví dụ: %2)</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="708"/>
+        <source> will match all articles.</source>
+        <translation> sẽ phù hợp với tất cả các bài báo.</translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/automatedrssdownloader.cpp" line="709"/>
         <source> will exclude all articles.</source>
-        <translation type="unfinished"></translation>
+        <translation> sẽ loại trừ tất cả các bài báo.</translation>
     </message>
 </context>
 <context>
@@ -1435,17 +1461,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/banlistoptionsdialog.ui" line="14"/>
         <source>List of banned IP addresses</source>
-        <translation type="unfinished"></translation>
+        <translation>Danh sách các địa chỉ IP bị cấm</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.ui" line="80"/>
         <source>Ban IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Cấm IP</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.ui" line="87"/>
         <source>Delete</source>
-        <translation type="unfinished">Xóa</translation>
+        <translation>Xóa</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="94"/>
@@ -1456,436 +1482,480 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="94"/>
         <source>The entered IP address is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Địa chỉ IP đã nhập không hợp lệ.</translation>
     </message>
     <message>
         <location filename="../gui/banlistoptionsdialog.cpp" line="106"/>
         <source>The entered IP is already banned.</source>
+        <translation>IP đã nhập đã bị cấm.</translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::BencodeResumeDataStorage</name>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="113"/>
+        <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="151"/>
+        <source>Couldn&apos;t load torrents queue from &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished">Không thể tải hàng đợi torrent từ &apos;%1&apos;. Lỗi: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="182"/>
+        <source>Cannot read file %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="341"/>
+        <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="366"/>
+        <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="391"/>
+        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BitTorrent::DBResumeDataStorage</name>
+    <message>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="261"/>
+        <source>Not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="265"/>
+        <source>Couldn&apos;t load resume data of torrent &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="505"/>
+        <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="529"/>
+        <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="574"/>
+        <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="582"/>
+        <location filename="../base/bittorrent/session.cpp" line="560"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation type="unfinished"></translation>
+        <translation>Khởi động lại là bắt buộc để chuyển đổi hỗ trợ PeX</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2451"/>
+        <location filename="../base/bittorrent/session.cpp" line="2420"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
-        <translation type="unfinished"></translation>
+        <translation>Trạng thái mạng hệ thống đã thay đổi thành %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2451"/>
+        <location filename="../base/bittorrent/session.cpp" line="2420"/>
         <source>ONLINE</source>
-        <translation type="unfinished"></translation>
+        <translation>TRỰC TUYẾN</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2451"/>
+        <location filename="../base/bittorrent/session.cpp" line="2420"/>
         <source>OFFLINE</source>
-        <translation type="unfinished"></translation>
+        <translation>NGOẠI TUYẾN</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2465"/>
+        <location filename="../base/bittorrent/session.cpp" line="2434"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
-        <translation type="unfinished"></translation>
+        <translation>Cấu hình mạng của %1 đã thay đổi, liên kết phiên làm mới</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1122"/>
-        <location filename="../base/bittorrent/session.cpp" line="2834"/>
+        <location filename="../base/bittorrent/session.cpp" line="1097"/>
+        <location filename="../base/bittorrent/session.cpp" line="2804"/>
         <source>Encryption support [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>Hỗ trợ mã hóa [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1123"/>
-        <location filename="../base/bittorrent/session.cpp" line="2835"/>
+        <location filename="../base/bittorrent/session.cpp" line="1098"/>
+        <location filename="../base/bittorrent/session.cpp" line="2805"/>
         <source>FORCED</source>
-        <translation type="unfinished"></translation>
+        <translation>BẮT BUỘC</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2952"/>
+        <location filename="../base/bittorrent/session.cpp" line="2922"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned addresses.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 không phải là địa chỉ IP hợp lệ và đã bị từ chối trong khi áp dụng danh sách các địa chỉ bị cấm.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1121"/>
-        <location filename="../base/bittorrent/session.cpp" line="3371"/>
+        <location filename="../base/bittorrent/session.cpp" line="1096"/>
+        <location filename="../base/bittorrent/session.cpp" line="3351"/>
         <source>Anonymous mode [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>Chế độ ẩn danh [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1656"/>
+        <location filename="../base/bittorrent/session.cpp" line="1631"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed torrent and its files.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đạt đến tỷ lệ tối đa bạn đã đặt. Đã xóa torrent và các tệp của nó.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1667"/>
+        <location filename="../base/bittorrent/session.cpp" line="1642"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Enabled super seeding for it.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đạt đến tỷ lệ tối đa bạn đã đặt. Đã bật siêu chia sẻ cho nó.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1695"/>
+        <location filename="../base/bittorrent/session.cpp" line="1670"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed torrent and its files.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đã đạt đến thời gian chia sẻ tối đa mà bạn đã đặt. Đã xóa torrent và các tệp của nó.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1706"/>
+        <location filename="../base/bittorrent/session.cpp" line="1681"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Enabled super seeding for it.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đã đạt đến thời gian bắt đầu tối đa mà bạn đã đặt. Đã bật siêu chia sẻ cho nó.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2376"/>
+        <location filename="../base/bittorrent/session.cpp" line="2350"/>
         <source>Error: Aborted saving resume data for %1 outstanding torrents.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi: Đã hủy bỏ việc lưu dữ liệu tiếp tục cho %1 torrent chưa xử lý.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2482"/>
+        <location filename="../base/bittorrent/session.cpp" line="2452"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.158.1 isn&apos;t valid.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2523"/>
-        <location filename="../base/bittorrent/session.cpp" line="2558"/>
+        <location filename="../base/bittorrent/session.cpp" line="2493"/>
+        <location filename="../base/bittorrent/session.cpp" line="2528"/>
         <source>Can&apos;t find the configured address &apos;%1&apos; to listen on</source>
         <comment>Can&apos;t find the configured address &apos;192.168.1.3&apos; to listen on</comment>
-        <translation type="unfinished"></translation>
+        <translation>Không thể tìm thấy địa chỉ đã định cấu hình &apos;%1&apos; để nghe tiếp</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3885"/>
-        <location filename="../base/bittorrent/session.cpp" line="4597"/>
-        <source>Couldn&apos;t save torrent metadata file &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="3931"/>
+        <location filename="../base/bittorrent/session.cpp" line="3898"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể giải mã tệp torrent &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4021"/>
+        <location filename="../base/bittorrent/session.cpp" line="3947"/>
         <source>Cancelled moving &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã hủy di chuyển &quot;%1&quot; từ &quot;%2&quot; sang &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4031"/>
+        <location filename="../base/bittorrent/session.cpp" line="3957"/>
         <source>Couldn&apos;t enqueue move of &quot;%1&quot; to &quot;%2&quot;. Torrent is currently moving to the same destination location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4040"/>
+        <location filename="../base/bittorrent/session.cpp" line="3966"/>
         <source>Couldn&apos;t enqueue move of &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;. Both paths point to the same location.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4048"/>
+        <location filename="../base/bittorrent/session.cpp" line="3974"/>
         <source>Enqueued to move &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4065"/>
+        <location filename="../base/bittorrent/session.cpp" line="3991"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4132"/>
-        <source>Cannot write to torrent resume folder: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="4139"/>
-        <source>Cannot create torrent resume folder: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="4199"/>
+        <location filename="../base/bittorrent/session.cpp" line="4103"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4772"/>
+        <location filename="../base/bittorrent/session.cpp" line="4576"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4775"/>
+        <location filename="../base/bittorrent/session.cpp" line="4579"/>
         <source>port filter</source>
         <comment>this peer was blocked. Reason: port filter.</comment>
         <translation>bộ lọc cổng</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4778"/>
+        <location filename="../base/bittorrent/session.cpp" line="4582"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4781"/>
+        <location filename="../base/bittorrent/session.cpp" line="4585"/>
         <source>use of privileged port</source>
         <comment>this peer was blocked. Reason: use of privileged port.</comment>
         <translation>sử dụng cổng đặc quyền</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4784"/>
+        <location filename="../base/bittorrent/session.cpp" line="4588"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4787"/>
+        <location filename="../base/bittorrent/session.cpp" line="4591"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4625"/>
+        <location filename="../base/bittorrent/session.cpp" line="4429"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: %2.</source>
         <translation>Torrent Bị Lỗi. Torrent: &quot;%1&quot;. Lỗi: %2.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4634"/>
+        <location filename="../base/bittorrent/session.cpp" line="4438"/>
         <source>Couldn&apos;t load torrent. Reason: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4656"/>
-        <location filename="../base/bittorrent/session.cpp" line="4705"/>
+        <location filename="../base/bittorrent/session.cpp" line="4460"/>
+        <location filename="../base/bittorrent/session.cpp" line="4509"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4676"/>
+        <location filename="../base/bittorrent/session.cpp" line="4480"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4699"/>
+        <location filename="../base/bittorrent/session.cpp" line="4503"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
         <translation>&apos;%1&apos; đã bị xóa khỏi danh sách trao đổi nhưng không thể xóa tệp. Lỗi: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4746"/>
+        <location filename="../base/bittorrent/session.cpp" line="4550"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
         <translation>Cảnh báo lỗi tệp. Torrent: &quot;%1&quot;. Tệp: &quot;%2&quot;. Lý do:%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4811"/>
+        <location filename="../base/bittorrent/session.cpp" line="4615"/>
         <source>URL seed name lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm tên URL chia sẻ không thành công. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Lỗi: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4817"/>
+        <location filename="../base/bittorrent/session.cpp" line="4621"/>
         <source>Received error message from a URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã nhận được thông báo lỗi từ URL chia sẻ. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4826"/>
+        <location filename="../base/bittorrent/session.cpp" line="4630"/>
         <source>Successfully listening on IP: %1, port: %2/%3</source>
         <comment>e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4838"/>
+        <location filename="../base/bittorrent/session.cpp" line="4642"/>
         <source>Failed to listen on IP: %1, port: %2/%3. Reason: %4</source>
         <comment>e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use</comment>
-        <translation type="unfinished"></translation>
+        <translation>Không nghe được trên IP: %1, cổng: %2 / %3. Lý do: %4</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4846"/>
+        <location filename="../base/bittorrent/session.cpp" line="4650"/>
         <source>Detected external IP: %1</source>
         <comment>e.g. Detected external IP: 1.1.1.1</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4928"/>
+        <location filename="../base/bittorrent/session.cpp" line="4732"/>
         <source>Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2</source>
         <translation>Lỗi: Hàng đợi cảnh báo nội bộ đã đầy và cảnh báo đã bị loại bỏ, bạn có thể thấy hiệu suất bị giảm sút. Loại cảnh báo bị bỏ: %1. Thông điệp: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4950"/>
+        <location filename="../base/bittorrent/session.cpp" line="4754"/>
         <source>&quot;%1&quot; is successfully moved to &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4972"/>
+        <location filename="../base/bittorrent/session.cpp" line="4776"/>
         <source>Failed to move &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;. Reason: %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>Thất bại di chuyển &quot;%1&quot; từ &quot;%2&quot; sang &quot;%3&quot;. Lý do: %4.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5011"/>
+        <location filename="../base/bittorrent/session.cpp" line="4815"/>
         <source>SOCKS5 proxy error. Message: %1</source>
         <translation>Lỗi SOCKS5 proxy. Thông báo: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2043"/>
+        <location filename="../base/bittorrent/session.cpp" line="2012"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
         <translation>Đang tải &apos;%1&apos;, hãy đợi...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2537"/>
+        <location filename="../base/bittorrent/session.cpp" line="2507"/>
         <source>The network interface defined is invalid: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Giao diện mạng đã đưa ra không hợp lệ: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1116"/>
+        <location filename="../base/bittorrent/session.cpp" line="1091"/>
         <source>Peer ID: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1117"/>
+        <location filename="../base/bittorrent/session.cpp" line="1092"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Tác nhân Người dùng HTTP là &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="553"/>
-        <location filename="../base/bittorrent/session.cpp" line="1118"/>
+        <location filename="../base/bittorrent/session.cpp" line="531"/>
+        <location filename="../base/bittorrent/session.cpp" line="1093"/>
         <source>DHT support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="553"/>
-        <location filename="../base/bittorrent/session.cpp" line="568"/>
-        <location filename="../base/bittorrent/session.cpp" line="1118"/>
-        <location filename="../base/bittorrent/session.cpp" line="1119"/>
-        <location filename="../base/bittorrent/session.cpp" line="1120"/>
-        <location filename="../base/bittorrent/session.cpp" line="1121"/>
-        <location filename="../base/bittorrent/session.cpp" line="1122"/>
-        <location filename="../base/bittorrent/session.cpp" line="2835"/>
-        <location filename="../base/bittorrent/session.cpp" line="3371"/>
+        <location filename="../base/bittorrent/session.cpp" line="531"/>
+        <location filename="../base/bittorrent/session.cpp" line="546"/>
+        <location filename="../base/bittorrent/session.cpp" line="1093"/>
+        <location filename="../base/bittorrent/session.cpp" line="1094"/>
+        <location filename="../base/bittorrent/session.cpp" line="1095"/>
+        <location filename="../base/bittorrent/session.cpp" line="1096"/>
+        <location filename="../base/bittorrent/session.cpp" line="1097"/>
+        <location filename="../base/bittorrent/session.cpp" line="2805"/>
+        <location filename="../base/bittorrent/session.cpp" line="3351"/>
         <source>ON</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="553"/>
-        <location filename="../base/bittorrent/session.cpp" line="568"/>
-        <location filename="../base/bittorrent/session.cpp" line="1118"/>
-        <location filename="../base/bittorrent/session.cpp" line="1119"/>
-        <location filename="../base/bittorrent/session.cpp" line="1120"/>
-        <location filename="../base/bittorrent/session.cpp" line="1121"/>
-        <location filename="../base/bittorrent/session.cpp" line="1123"/>
-        <location filename="../base/bittorrent/session.cpp" line="2835"/>
-        <location filename="../base/bittorrent/session.cpp" line="3371"/>
+        <location filename="../base/bittorrent/session.cpp" line="531"/>
+        <location filename="../base/bittorrent/session.cpp" line="546"/>
+        <location filename="../base/bittorrent/session.cpp" line="1093"/>
+        <location filename="../base/bittorrent/session.cpp" line="1094"/>
+        <location filename="../base/bittorrent/session.cpp" line="1095"/>
+        <location filename="../base/bittorrent/session.cpp" line="1096"/>
+        <location filename="../base/bittorrent/session.cpp" line="1098"/>
+        <location filename="../base/bittorrent/session.cpp" line="2805"/>
+        <location filename="../base/bittorrent/session.cpp" line="3351"/>
         <source>OFF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="568"/>
-        <location filename="../base/bittorrent/session.cpp" line="1119"/>
+        <location filename="../base/bittorrent/session.cpp" line="546"/>
+        <location filename="../base/bittorrent/session.cpp" line="1094"/>
         <source>Local Peer Discovery support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1120"/>
+        <location filename="../base/bittorrent/session.cpp" line="1095"/>
         <source>PeX support [%1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1485"/>
+        <location filename="../base/bittorrent/session.cpp" line="1460"/>
         <source>Could not get GUID of network interface: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1500"/>
+        <location filename="../base/bittorrent/session.cpp" line="1475"/>
         <source>Trying to listen on: %1</source>
         <comment>e.g: Trying to listen on: 192.168.0.1:6881</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1651"/>
+        <location filename="../base/bittorrent/session.cpp" line="1626"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đã đạt đến tỷ lệ tối đa mà bạn đã đặt. Được xóa.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1662"/>
+        <location filename="../base/bittorrent/session.cpp" line="1637"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đạt đến tỷ lệ tối đa bạn đã đặt. Bị tạm dừng.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1690"/>
+        <location filename="../base/bittorrent/session.cpp" line="1665"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đã đạt đến thời gian chia sẻ tối đa mà bạn đã đặt. Đã xóa.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1701"/>
+        <location filename="../base/bittorrent/session.cpp" line="1676"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
+        <translation>&apos;%1&apos; đã đạt đến thời gian chia sẻ tối đa mà bạn đã đặt. Đã tạm dừng.</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2315"/>
+        <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3837"/>
+        <location filename="../base/bittorrent/session.cpp" line="3816"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy theo dõi &apos;%1&apos; đã được thêm vào torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3847"/>
+        <location filename="../base/bittorrent/session.cpp" line="3826"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3862"/>
+        <location filename="../base/bittorrent/session.cpp" line="3841"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL chia sẻ &apos;%1&apos; đã được thêm vào torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3868"/>
+        <location filename="../base/bittorrent/session.cpp" line="3847"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>URL chia sẻ &apos;%1&apos; đã bị xóa khỏi torrent &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4373"/>
-        <location filename="../base/bittorrent/session.cpp" line="4383"/>
+        <location filename="../base/bittorrent/session.cpp" line="4178"/>
+        <location filename="../base/bittorrent/session.cpp" line="4188"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
-        <translation type="unfinished"></translation>
+        <translation>Không thể tiếp tục torrent &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4349"/>
         <source>Couldn&apos;t load torrents queue from &apos;%1&apos;. Error: %2</source>
-        <translation>Không thể tải hàng đợi torrent từ &apos;%1&apos;. Lỗi: %2</translation>
+        <translation type="vanished">Không thể tải hàng đợi torrent từ &apos;%1&apos;. Lỗi: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4324"/>
-        <source>Cannot read file %1: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/session.cpp" line="4420"/>
+        <location filename="../base/bittorrent/session.cpp" line="4235"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>Đã phân tích cú pháp thành công bộ lọc IP đã cung cấp: %1 quy tắc đã được áp dụng.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4430"/>
+        <location filename="../base/bittorrent/session.cpp" line="4245"/>
         <source>Error: Failed to parse the provided IP filter.</source>
         <translation>Lỗi: Không phân tích được bộ lọc IP đã cung cấp.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4578"/>
+        <location filename="../base/bittorrent/session.cpp" line="4396"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4605"/>
+        <location filename="../base/bittorrent/session.cpp" line="4413"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
         <translation>&apos;%1&apos; đã thêm vào danh sách tải xuống.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4757"/>
+        <location filename="../base/bittorrent/session.cpp" line="4561"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4763"/>
+        <location filename="../base/bittorrent/session.cpp" line="4567"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1893,61 +1963,66 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreatorThread</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="184"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="185"/>
         <source>Create new torrent aborted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="210"/>
-        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="219"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="211"/>
+        <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="220"/>
         <source>Create new torrent file failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tạo tệp torrent mới không thành công. Lý do: %1</translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="602"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="637"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thêm được máy ngang hàng &quot;%1&quot; vào torrent &quot;%2&quot;. Lý do: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="607"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="642"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
+        <translation>Máy ngang hàng &quot;%1&quot; được thêm vào torrent &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1008"/>
+        <source>There&apos;s not enough space on disk. Torrent is currently in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1409"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1450"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1410"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1451"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1410"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1451"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1793"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1840"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1797"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1844"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1847"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1894"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Đổi tên tệp thất bại. Torrent: &quot;%1&quot;, tệp: &quot;%2&quot;, lý do: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1889"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1944"/>
         <source>Performance alert: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -2013,17 +2088,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="133"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tiếp tục torrent</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="135"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tạm dừng torrent</translation>
     </message>
     <message>
         <location filename="../gui/categoryfilterwidget.cpp" line="137"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Xóa torrent</translation>
     </message>
 </context>
 <context>
@@ -2031,7 +2106,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/cookiesdialog.ui" line="14"/>
         <source>Manage Cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Quản lý Cookie</translation>
     </message>
 </context>
 <context>
@@ -2049,7 +2124,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="55"/>
         <source>Name</source>
-        <translation type="unfinished">Tên</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="57"/>
@@ -2059,7 +2134,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/cookiesmodel.cpp" line="59"/>
         <source>Expiration Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Ngày Hết Hạn</translation>
     </message>
 </context>
 <context>
@@ -2107,7 +2182,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/downloadfromurldialog.ui" line="48"/>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished"></translation>
+        <translation>Một liên kết trên mỗi dòng (liên kết HTTP, liên kết Magnet và băm thông tin được hỗ trợ)</translation>
     </message>
     <message>
         <location filename="../gui/downloadfromurldialog.cpp" line="66"/>
@@ -2115,12 +2190,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Tải Về</translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="114"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="119"/>
         <source>No URL entered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/downloadfromurldialog.cpp" line="114"/>
+        <location filename="../gui/downloadfromurldialog.cpp" line="119"/>
         <source>Please type at least one URL.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2155,7 +2230,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="216"/>
         <source>The operation was canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoạt động đã bị hủy bỏ</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="218"/>
@@ -2170,7 +2245,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="222"/>
         <source>SSL/TLS handshake failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Bắt tay SSL / TLS không thành công</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="224"/>
@@ -2210,7 +2285,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="238"/>
         <source>The operation requested on the remote content is not permitted</source>
-        <translation type="unfinished"></translation>
+        <translation>Thao tác được yêu cầu trên nội dung từ xa không được phép</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="240"/>
@@ -2230,7 +2305,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="246"/>
         <source>The requested operation is invalid for this protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>Thao tác được yêu cầu không hợp lệ cho giao thức này</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="248"/>
@@ -2273,7 +2348,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/properties/downloadedpiecesbar.cpp" line="194"/>
         <source>Completed pieces</source>
-        <translation type="unfinished"></translation>
+        <translation>Các mảnh đã hoàn thành</translation>
     </message>
 </context>
 <context>
@@ -2316,9 +2391,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>FileLogger</name>
     <message>
-        <location filename="../app/filelogger.cpp" line="182"/>
+        <location filename="../app/filelogger.cpp" line="184"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã xảy ra lỗi khi cố gắng mở tệp nhật ký. Đăng nhập vào tệp bị vô hiệu hóa.</translation>
     </message>
 </context>
 <context>
@@ -2356,12 +2431,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>FileSystemWatcher</name>
     <message>
-        <location filename="../base/filesystemwatcher.cpp" line="82"/>
+        <location filename="../base/filesystemwatcher.cpp" line="86"/>
         <source>Watching remote folder: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/filesystemwatcher.cpp" line="91"/>
+        <location filename="../base/filesystemwatcher.cpp" line="95"/>
         <source>Watching local folder: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2446,7 +2521,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/geoipdatabase.cpp" line="247"/>
         <source>Unsupported database version: %1.%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Phiên bản cơ sở dữ liệu không được hỗ trợ: %1.%2</translation>
     </message>
     <message>
         <location filename="../base/net/geoipdatabase.cpp" line="255"/>
@@ -2461,7 +2536,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/net/geoipdatabase.cpp" line="294"/>
         <source>Database corrupted: no data section found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cơ sở dữ liệu bị hỏng: không tìm thấy phần dữ liệu.</translation>
     </message>
 </context>
 <context>
@@ -2469,12 +2544,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/http/connection.cpp" line="73"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Kích thước yêu cầu http vượt quá giới hạn, đóng socket. Giới hạn: %1, IP: %2</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="87"/>
         <source>Bad Http request, closing socket. IP: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Yêu cầu Http không hợp lệ, đóng ổ cắm. IP: %1</translation>
     </message>
 </context>
 <context>
@@ -2555,7 +2630,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="99"/>
         <source>&amp;View</source>
-        <translation>&amp;Chế Độ Xem</translation>
+        <translation>&amp;Xem</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="180"/>
@@ -2570,7 +2645,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="223"/>
         <source>Torrent &amp;Creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent &amp;Người tạo</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="285"/>
@@ -2586,7 +2661,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="299"/>
         <source>Display Top Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị Thanh công cụ Hàng đầu</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="307"/>
@@ -2601,7 +2676,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="318"/>
         <source>Show Transfer Speed in Title Bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị tốc độ truyền trong thanh tiêu đề</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="326"/>
@@ -2626,7 +2701,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="469"/>
         <source>Close Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Đóng cửa sổ</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
@@ -2636,12 +2711,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="421"/>
         <source>Manage Cookies...</source>
-        <translation type="unfinished"></translation>
+        <translation>Quản lý Cookie...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="424"/>
         <source>Manage stored network cookies</source>
-        <translation type="unfinished"></translation>
+        <translation>Quản lý cookie mạng được lưu trữ</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="440"/>
@@ -2716,17 +2791,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="361"/>
         <source>&amp;Exit qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Thoát qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="369"/>
         <source>&amp;Suspend System</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tạm Ngừng Hệ Thống</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="377"/>
         <source>&amp;Hibernate System</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ngủ Đông Hệ Thống</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="385"/>
@@ -2776,12 +2851,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="167"/>
         <source>&amp;Add Torrent File...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Thêm tệp Torrent...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="170"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Mở</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="175"/>
@@ -2791,7 +2866,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="218"/>
         <source>Open URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Mở URL</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="228"/>
@@ -2806,12 +2881,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="398"/>
         <location filename="../gui/mainwindow.ui" line="432"/>
-        <location filename="../gui/mainwindow.cpp" line="1738"/>
+        <location filename="../gui/mainwindow.cpp" line="1752"/>
         <source>Show</source>
         <translation>Hiển Thị</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1910"/>
+        <location filename="../gui/mainwindow.cpp" line="1924"/>
         <source>Check for program updates</source>
         <translation>Kiểm tra cập nhật chương trình</translation>
     </message>
@@ -2826,246 +2901,247 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Nếu Bạn Thích qBittorrent, Hãy Quyên Góp!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1988"/>
-        <location filename="../gui/mainwindow.cpp" line="1990"/>
+        <location filename="../gui/mainwindow.cpp" line="2002"/>
+        <location filename="../gui/mainwindow.cpp" line="2004"/>
         <source>Execution Log</source>
         <translation>Thi Hành Việc Cập Nhật Nhật Trình</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="652"/>
+        <location filename="../gui/mainwindow.cpp" line="663"/>
         <source>Clear the password</source>
         <translation>Xóa phần mật khẩu</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="197"/>
+        <location filename="../gui/mainwindow.cpp" line="196"/>
         <source>&amp;Set Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="168"/>
+        <location filename="../gui/mainwindow.cpp" line="167"/>
         <source>Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="198"/>
+        <location filename="../gui/mainwindow.cpp" line="197"/>
         <source>&amp;Clear Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="223"/>
+        <location filename="../gui/mainwindow.cpp" line="222"/>
         <source>Filter torrent names...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="249"/>
+        <location filename="../gui/mainwindow.cpp" line="248"/>
         <source>Transfers</source>
         <translation>Truyền Đổi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="420"/>
-        <location filename="../gui/mainwindow.cpp" line="1287"/>
+        <location filename="../gui/mainwindow.cpp" line="419"/>
+        <location filename="../gui/mainwindow.cpp" line="1298"/>
         <source>qBittorrent is minimized to tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="420"/>
-        <location filename="../gui/mainwindow.cpp" line="1187"/>
-        <location filename="../gui/mainwindow.cpp" line="1287"/>
+        <location filename="../gui/mainwindow.cpp" line="419"/>
+        <location filename="../gui/mainwindow.cpp" line="1198"/>
+        <location filename="../gui/mainwindow.cpp" line="1298"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="464"/>
+        <location filename="../gui/mainwindow.cpp" line="463"/>
         <source>Torrent file association</source>
         <translation>Quản Lý Định Dạng Tập Tin Của Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="465"/>
+        <location filename="../gui/mainwindow.cpp" line="464"/>
         <source>qBittorrent is not the default application to open torrent files or Magnet links.
 Do you want to associate qBittorrent to torrent files and Magnet links?</source>
         <translation>qBittorrent không phải là ứng dụng mặc định để mở các tập tin torrent hoặc liên kết dạng Magnet.
 Bạn có muốn qBittorrent đảm nhiệm mặc định cho thao tác mở các tập tin torrent và liên kết dạng Magnet không?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="550"/>
+        <location filename="../gui/mainwindow.cpp" line="561"/>
         <source>Icons Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉ Biểu Tượng</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="551"/>
+        <location filename="../gui/mainwindow.cpp" line="562"/>
         <source>Text Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉ Văn Bản</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="552"/>
+        <location filename="../gui/mainwindow.cpp" line="563"/>
         <source>Text Alongside Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Văn bản dọc theo biểu tượng</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="564"/>
         <source>Text Under Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Văn bản dưới biểu tượng</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="554"/>
+        <location filename="../gui/mainwindow.cpp" line="565"/>
         <source>Follow System Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Theo kiểu hệ thống</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="635"/>
-        <location filename="../gui/mainwindow.cpp" line="1040"/>
+        <location filename="../gui/mainwindow.cpp" line="646"/>
+        <location filename="../gui/mainwindow.cpp" line="1051"/>
         <source>UI lock password</source>
         <translation>Mật Khẩu Khóa Lại Giao Diện</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="636"/>
-        <location filename="../gui/mainwindow.cpp" line="1041"/>
+        <location filename="../gui/mainwindow.cpp" line="647"/>
+        <location filename="../gui/mainwindow.cpp" line="1052"/>
         <source>Please type the UI lock password:</source>
         <translation>Vui Lòng Điền Vào Mật Khẩu Khóa Lại Giao Diện:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="642"/>
+        <location filename="../gui/mainwindow.cpp" line="653"/>
         <source>The password should contain at least 3 characters</source>
         <translation>Mật Khẩu Nên Chứa Ít Nhất 3 Ký Tự</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="653"/>
+        <location filename="../gui/mainwindow.cpp" line="664"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Bạn có chắc bạn muốn xóa đi phần mật khẩu?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="712"/>
+        <location filename="../gui/mainwindow.cpp" line="723"/>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng biểu thức chính quy</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="734"/>
+        <location filename="../gui/mainwindow.cpp" line="745"/>
         <source>Search</source>
         <translation>Tìm Kiếm</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="751"/>
+        <location filename="../gui/mainwindow.cpp" line="762"/>
         <source>Transfers (%1)</source>
         <translation>Truyền Đổi (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="850"/>
+        <location filename="../gui/mainwindow.cpp" line="861"/>
         <source>Error</source>
         <translation>Lỗi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="850"/>
+        <location filename="../gui/mainwindow.cpp" line="861"/>
         <source>Failed to add torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thêm được torrent: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="857"/>
+        <location filename="../gui/mainwindow.cpp" line="868"/>
         <source>Torrent added</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent đã thêm</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="857"/>
+        <location filename="../gui/mainwindow.cpp" line="868"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
-        <translation type="unfinished"></translation>
+        <translation>&apos;%1&apos; đã được thêm vào.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="863"/>
+        <location filename="../gui/mainwindow.cpp" line="874"/>
         <source>Download completion</source>
         <translation>Tải Về Hoàn Tất</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="869"/>
+        <location filename="../gui/mainwindow.cpp" line="880"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>Lỗi I/O</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="964"/>
+        <location filename="../gui/mainwindow.cpp" line="975"/>
         <source>Recursive download confirmation</source>
         <translation>Xác Nhận Tải Về Đệ Quy</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="970"/>
+        <location filename="../gui/mainwindow.cpp" line="981"/>
         <source>Yes</source>
         <translation>Đồng Ý</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="971"/>
+        <location filename="../gui/mainwindow.cpp" line="982"/>
         <source>No</source>
         <translation>Không Đồng Ý</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="972"/>
+        <location filename="../gui/mainwindow.cpp" line="983"/>
         <source>Never</source>
         <translation>Không Bao Giờ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1063"/>
+        <location filename="../gui/mainwindow.cpp" line="1074"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent vừa được cập nhật và cần được khởi động lại để các thay đổi có hiệu lực.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1187"/>
+        <location filename="../gui/mainwindow.cpp" line="1198"/>
         <source>qBittorrent is closed to tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1202"/>
+        <location filename="../gui/mainwindow.cpp" line="1213"/>
         <source>Some files are currently transferring.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1202"/>
+        <location filename="../gui/mainwindow.cpp" line="1213"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1204"/>
+        <location filename="../gui/mainwindow.cpp" line="1215"/>
         <source>&amp;No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1205"/>
+        <location filename="../gui/mainwindow.cpp" line="1216"/>
         <source>&amp;Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1206"/>
+        <location filename="../gui/mainwindow.cpp" line="1217"/>
         <source>&amp;Always Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1615"/>
+        <location filename="../gui/mainwindow.cpp" line="1626"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1847"/>
-        <location filename="../gui/mainwindow.cpp" line="1853"/>
+        <location filename="../gui/mainwindow.cpp" line="1861"/>
+        <location filename="../gui/mainwindow.cpp" line="1867"/>
         <source>Missing Python Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1874"/>
+        <location filename="../gui/mainwindow.cpp" line="1888"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: 3.3.0.</source>
-        <translation type="unfinished"></translation>
+        <translation>Phiên bản Python của bạn (%1) đã lỗi thời. Vui lòng nâng cấp lên phiên bản mới nhất để công cụ tìm kiếm hoạt động.
+Yêu cầu tối thiểu: 3.3.0.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1925"/>
+        <location filename="../gui/mainwindow.cpp" line="1939"/>
         <source>qBittorrent Update Available</source>
         <translation>Cập Nhật qBittorrent Có Sẵn</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="863"/>
+        <location filename="../gui/mainwindow.cpp" line="874"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&apos;%1&apos; đã tải xong.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="870"/>
+        <location filename="../gui/mainwindow.cpp" line="881"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -3073,151 +3149,152 @@ Minimum requirement: 3.3.0.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="965"/>
+        <location filename="../gui/mainwindow.cpp" line="976"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="987"/>
+        <location filename="../gui/mainwindow.cpp" line="998"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Không thể tải xuống tệp tại URL &apos;%1&apos;, lý do: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1848"/>
+        <location filename="../gui/mainwindow.cpp" line="1862"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python được yêu cầu để sử dụng công cụ tìm kiếm nhưng nó dường như không được cài đặt.
 Bạn có muốn cài đặt nó ngay bây giờ không?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1854"/>
+        <location filename="../gui/mainwindow.cpp" line="1868"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python được yêu cầu để sử dụng công cụ tìm kiếm nhưng nó dường như không được cài đặt.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1866"/>
-        <location filename="../gui/mainwindow.cpp" line="1873"/>
+        <location filename="../gui/mainwindow.cpp" line="1880"/>
+        <location filename="../gui/mainwindow.cpp" line="1887"/>
         <source>Old Python Runtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1867"/>
+        <location filename="../gui/mainwindow.cpp" line="1881"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: 3.5.0.
 Do you want to install a newer version now?</source>
-        <translation type="unfinished"></translation>
+        <translation>Phiên bản Python của bạn (%1) đã lỗi thời. Yêu cầu tối thiểu: 3.5.0.
+Bạn có muốn cài đặt phiên bản mới hơn ngay bây giờ không?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1922"/>
+        <location filename="../gui/mainwindow.cpp" line="1936"/>
         <source>A new version is available.</source>
         <translation>Một phiên bản mới có sẵn.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1923"/>
+        <location filename="../gui/mainwindow.cpp" line="1937"/>
         <source>Do you want to download %1?</source>
         <translation>Bạn có muốn tải về %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1924"/>
+        <location filename="../gui/mainwindow.cpp" line="1938"/>
         <source>Open changelog...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1945"/>
+        <location filename="../gui/mainwindow.cpp" line="1959"/>
         <source>No updates available.
 You are already using the latest version.</source>
-        <translation>Không có bảng cập nhật có sẵn.
+        <translation>Không có bản cập nhật có sẵn.
 Bạn đang sử dụng phiên bản mới nhất.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1909"/>
+        <location filename="../gui/mainwindow.cpp" line="1923"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Kiểm Tra Cập Nhật</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2120"/>
+        <location filename="../gui/mainwindow.cpp" line="2134"/>
         <source>Checking for Updates...</source>
         <translation>Đang Kiểm Tra Cập Nhật...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2121"/>
+        <location filename="../gui/mainwindow.cpp" line="2135"/>
         <source>Already checking for program updates in the background</source>
         <translation>Đã thực thi việc kiểm tra bản cập nhật ở chế độ nền</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2154"/>
+        <location filename="../gui/mainwindow.cpp" line="2168"/>
         <source>Download error</source>
         <translation>Tải về bị lỗi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2155"/>
+        <location filename="../gui/mainwindow.cpp" line="2169"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Không thể tải xuống thiết lập Python, lý do: %1.
 Hãy cài đặt thủ công.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="642"/>
-        <location filename="../gui/mainwindow.cpp" line="1049"/>
+        <location filename="../gui/mainwindow.cpp" line="653"/>
+        <location filename="../gui/mainwindow.cpp" line="1060"/>
         <source>Invalid password</source>
         <translation>Mật Khẩu Không Hợp Lệ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="678"/>
-        <location filename="../gui/mainwindow.cpp" line="691"/>
-        <location filename="../gui/mainwindow.cpp" line="693"/>
+        <location filename="../gui/mainwindow.cpp" line="689"/>
+        <location filename="../gui/mainwindow.cpp" line="702"/>
+        <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>RSS (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="986"/>
+        <location filename="../gui/mainwindow.cpp" line="997"/>
         <source>URL download error</source>
         <translation>URL tải về bị lỗi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1049"/>
+        <location filename="../gui/mainwindow.cpp" line="1060"/>
         <source>The password is invalid</source>
         <translation>Phần Mật Khẩu Không Hợp Lệ</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1626"/>
+        <location filename="../gui/mainwindow.cpp" line="1637"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1627"/>
+        <location filename="../gui/mainwindow.cpp" line="1638"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1634"/>
+        <location filename="../gui/mainwindow.cpp" line="1645"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1738"/>
+        <location filename="../gui/mainwindow.cpp" line="1752"/>
         <source>Hide</source>
         <translation>Ẩn Đi</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1200"/>
+        <location filename="../gui/mainwindow.cpp" line="1211"/>
         <source>Exiting qBittorrent</source>
-        <translation>Thoát Khỏi qBittorrent</translation>
+        <translation>Thoát qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1418"/>
+        <location filename="../gui/mainwindow.cpp" line="1429"/>
         <source>Open Torrent Files</source>
         <translation>Mở Các Tập Tin Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1419"/>
+        <location filename="../gui/mainwindow.cpp" line="1430"/>
         <source>Torrent Files</source>
         <translation>Các Tập Tin Torrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1474"/>
+        <location filename="../gui/mainwindow.cpp" line="1485"/>
         <source>Options were saved successfully.</source>
         <translation>Các Tùy Chọn Đã Được Lưu Thành Công.</translation>
     </message>
@@ -3247,32 +3324,32 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="216"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi DNS động: qBittorrent đã bị dịch vụ đưa vào danh sách đen, vui lòng báo cáo lỗi tại http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="224"/>
         <source>Dynamic DNS error: %1 was returned by the service, please report a bug at http://bugs.qbittorrent.org.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi DNS động: %1 đã được dịch vụ trả lại, vui lòng báo cáo lỗi tại http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="232"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi DNS động: Tên người dùng của bạn đã bị chặn do lạm dụng.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="255"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi DNS động: tên miền được cung cấp không hợp lệ.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="268"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi DNS động: tên người dùng được cung cấp quá ngắn.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="281"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi DNS động: mật khẩu đã cung cấp quá ngắn.</translation>
     </message>
 </context>
 <context>
@@ -3361,7 +3438,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>American Samoa</source>
-        <translation type="unfinished"></translation>
+        <translation>Samoa thuộc Mỹ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="160"/>
@@ -3436,7 +3513,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Brunei Darussalam</source>
-        <translation type="unfinished"></translation>
+        <translation>Vương quốc Bru-nây</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="179"/>
@@ -3456,7 +3533,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Bouvet Island</source>
-        <translation type="unfinished"></translation>
+        <translation>Đảo Bouvet</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="183"/>
@@ -3481,7 +3558,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Cocos (Keeling) Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Cocos (Keeling)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="188"/>
@@ -3501,12 +3578,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Switzerland</source>
-        <translation type="unfinished"></translation>
+        <translation>Thụy Sĩ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Cook Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Cúc</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="194"/>
@@ -3516,12 +3593,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Cameroon</source>
-        <translation type="unfinished"></translation>
+        <translation>Ca-mơ-run</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>China</source>
-        <translation type="unfinished"></translation>
+        <translation>Trung Quốc</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="197"/>
@@ -3551,12 +3628,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Christmas Island</source>
-        <translation type="unfinished"></translation>
+        <translation>Đảo Giáng Sinh</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Cyprus</source>
-        <translation type="unfinished"></translation>
+        <translation>Síp</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="204"/>
@@ -3631,7 +3708,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>Finland</source>
-        <translation type="unfinished"></translation>
+        <translation>Phần Lan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="219"/>
@@ -3641,7 +3718,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="220"/>
         <source>Falkland Islands (Malvinas)</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Foóc-lân (Malvinas)</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="221"/>
@@ -3651,7 +3728,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="222"/>
         <source>Faroe Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Faroe</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="223"/>
@@ -3726,7 +3803,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="238"/>
         <source>South Georgia and the South Sandwich Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Nam Georgia và Nam Sandwich</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="239"/>
@@ -3751,12 +3828,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="243"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"></translation>
+        <translation>Hồng Kông</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="244"/>
         <source>Heard Island and McDonald Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Đảo Heard và Quần đảo McDonald</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="245"/>
@@ -3796,12 +3873,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>India</source>
-        <translation type="unfinished"></translation>
+        <translation>Ấn Độ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>British Indian Ocean Territory</source>
-        <translation type="unfinished"></translation>
+        <translation>Lãnh thổ Anh tại Ấn Độ Dương</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="255"/>
@@ -3821,7 +3898,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>Italy</source>
-        <translation type="unfinished"></translation>
+        <translation>Ý</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="260"/>
@@ -3836,7 +3913,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Japan</source>
-        <translation type="unfinished"></translation>
+        <translation>Nhật Bản</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="263"/>
@@ -3851,7 +3928,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Cambodia</source>
-        <translation type="unfinished"></translation>
+        <translation>Campuchia</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="266"/>
@@ -3871,12 +3948,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Cộng hòa Dân chủ Nhân dân Triều Tiên</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Korea, Republic of</source>
-        <translation type="unfinished"></translation>
+        <translation>Hàn Quốc</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="271"/>
@@ -3886,7 +3963,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="272"/>
         <source>Cayman Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Cayman</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="273"/>
@@ -3896,7 +3973,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Lao People&apos;s Democratic Republic</source>
-        <translation type="unfinished"></translation>
+        <translation>Cộng hòa Dân chủ nhân dân Lào</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="275"/>
@@ -3981,7 +4058,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="295"/>
         <source>Mongolia</source>
-        <translation type="unfinished"></translation>
+        <translation>Mông Cổ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="297"/>
@@ -3996,7 +4073,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="299"/>
         <source>Mauritania</source>
-        <translation type="unfinished"></translation>
+        <translation>Mô-ri-ta-ni</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="300"/>
@@ -4071,7 +4148,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="314"/>
         <source>Netherlands</source>
-        <translation type="unfinished"></translation>
+        <translation>Hà Lan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="315"/>
@@ -4136,7 +4213,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="327"/>
         <source>Poland</source>
-        <translation type="unfinished"></translation>
+        <translation>Ba Lan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="328"/>
@@ -4181,7 +4258,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="339"/>
         <source>Russian Federation</source>
-        <translation type="unfinished"></translation>
+        <translation>Liên bang Nga</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="340"/>
@@ -4256,7 +4333,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="355"/>
         <source>Suriname</source>
-        <translation type="unfinished"></translation>
+        <translation>Xu-ri-nam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="357"/>
@@ -4301,7 +4378,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="366"/>
         <source>Thailand</source>
-        <translation type="unfinished"></translation>
+        <translation>Thái Lan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="367"/>
@@ -4331,7 +4408,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="389"/>
         <source>Vietnam</source>
-        <translation type="unfinished"></translation>
+        <translation>Việt Nam</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="427"/>
@@ -4341,7 +4418,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="435"/>
         <source>Could not decompress IP geolocation database file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể giải nén tệp cơ sở dữ liệu vị trí địa lý IP.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="456"/>
@@ -4436,7 +4513,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="376"/>
         <source>Taiwan</source>
-        <translation type="unfinished"></translation>
+        <translation>Đài Loan</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="377"/>
@@ -4456,7 +4533,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>United States Minor Outlying Islands</source>
-        <translation type="unfinished"></translation>
+        <translation>Các đảo xa thuộc Hoa Kỳ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="381"/>
@@ -4476,7 +4553,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>Holy See (Vatican City State)</source>
-        <translation type="unfinished"></translation>
+        <translation>Toàn Thánh Va-ti-căn</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="385"/>
@@ -4486,12 +4563,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="387"/>
         <source>Virgin Islands, British</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Virgin thuộc Anh</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="388"/>
         <source>Virgin Islands, U.S.</source>
-        <translation type="unfinished"></translation>
+        <translation>Quần đảo Virgin, Hoa Kỳ</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="390"/>
@@ -4638,7 +4715,7 @@ Hãy cài đặt thủ công.</translation>
         <location filename="../gui/optionsdialog.ui" line="238"/>
         <source>Use alternating row colors</source>
         <extracomment>In table elements, every other row will have a grey background.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng các màu hàng xen kẽ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="250"/>
@@ -4653,7 +4730,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="263"/>
         <source>Paused torrents only</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉ torrent bị tạm dừng</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="286"/>
@@ -4686,7 +4763,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="321"/>
         <source>Completed torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent đã hoàn thành:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="371"/>
@@ -4696,7 +4773,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="377"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Khởi chạy qBittorrent lúc Windows khởi động</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="384"/>
@@ -4726,7 +4803,7 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="776"/>
         <source>Torrent content layout:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bố cục nội dung torrent:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="787"/>
@@ -4736,12 +4813,12 @@ Hãy cài đặt thủ công.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="792"/>
         <source>Create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tạo thư mục con</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="797"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"></translation>
+        <translation>Không tạo thư mục con</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1225"/>
@@ -4800,7 +4877,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2335"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
-        <translation type="unfinished"></translation>
+        <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Thêm thông tin&lt;/a&gt;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2363"/>
@@ -4842,12 +4919,12 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2551"/>
         <source>Seeding Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Giới hạn chia sẻ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2573"/>
         <source>When seeding time reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Khi thời gian chia sẻ đạt đến</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2594"/>
@@ -4867,12 +4944,12 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2609"/>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bật siêu chia sẻ cho torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2617"/>
         <source>When ratio reaches</source>
-        <translation type="unfinished"></translation>
+        <translation>Khi tỷ lệ đạt đến</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2802"/>
@@ -4892,7 +4969,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2825"/>
         <source>RSS Smart Episode Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Bộ Lọc Tập Thông Minh RSS</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2831"/>
@@ -4902,12 +4979,12 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2838"/>
         <source>Filters:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bộ Lọc:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2899"/>
         <source>Web User Interface (Remote control)</source>
-        <translation type="unfinished"></translation>
+        <translation>Giao diện người dùng web (Điều khiển từ xa)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2913"/>
@@ -4949,7 +5026,7 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="3218"/>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bật cờ bảo mật cookie (yêu cầu HTTPS)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3236"/>
@@ -4963,12 +5040,16 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Danh sách trắng để lọc các giá trị tiêu đề Máy chủ lưu trữ HTTP.
+Để bảo vệ khỏi cuộc tấn công gắn lại DNS,
+bạn nên đặt tên miền được sử dụng bởi máy chủ WebUI.
+
+Sử dụng &apos;;&apos; để chia nhiều mục nhập. Có thể sử dụng ký tự đại diện &apos;*&apos;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2961"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sử dụng HTTPS thay vì HTTP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3049"/>
@@ -5023,12 +5104,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="511"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng qBittorrent cho các tệp .torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="518"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng qBittorrent cho các liên kết nam châm</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="528"/>
@@ -5038,7 +5119,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="538"/>
         <source>Power Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Quản lý năng lượng</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="581"/>
@@ -5073,7 +5154,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="845"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation type="unfinished"></translation>
+        <translation>Đồng thời xóa các tệp .torrent có phần bổ sung đã bị hủy</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="848"/>
@@ -5088,22 +5169,22 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="912"/>
         <source>Saving Management</source>
-        <translation type="unfinished"></translation>
+        <translation>Quản lý tiết kiệm</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="920"/>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chế độ quản lý Torrent mặc định:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="937"/>
         <source>Manual</source>
-        <translation type="unfinished">Thủ công</translation>
+        <translation>Thủ công</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="942"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tự động</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="965"/>
@@ -5118,7 +5199,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="980"/>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Chuyển torrent sang Chế độ thủ công</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1003"/>
@@ -5135,12 +5216,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="1021"/>
         <location filename="../gui/optionsdialog.ui" line="1062"/>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Chuyển torrent bị ảnh hưởng sang Chế độ thủ công</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1087"/>
         <source>Use Subcategories</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng các danh mục phụ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1106"/>
@@ -5210,17 +5291,17 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="225"/>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị hộp thoại xác nhận khi xóa torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="339"/>
         <source>Preview file, otherwise open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Xem trước tệp, nếu không, hãy mở thư mục đích</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="394"/>
         <source>When qBittorrent is started, the main window will be minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>Khi qBittorrent được khởi động, cửa sổ chính sẽ được thu nhỏ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="404"/>
@@ -5230,12 +5311,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="436"/>
         <source>When minimizing, the main window is closed and must be reopened from the systray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Khi thu nhỏ, cửa sổ chính sẽ bị đóng và phải được mở lại từ biểu tượng systray</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="449"/>
         <source>The systray icon will still be visible when closing the main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Biểu tượng systray sẽ vẫn hiển thị khi đóng cửa sổ chính</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="452"/>
@@ -5261,7 +5342,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="551"/>
         <source>Inhibit system sleep when torrents are seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>Ngăn cản chế độ ngủ của hệ thống khi torrent đang khởi động</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="595"/>
@@ -5289,7 +5370,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="820"/>
         <source>The torrent will be added to download list in a paused state</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent sẽ được thêm vào danh sách tải xuống ở trạng thái tạm dừng</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="823"/>
@@ -5321,7 +5402,8 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="932"/>
         <source>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
 Manual: Various torrent properties (e.g. save path) must be assigned manually</source>
-        <translation type="unfinished"></translation>
+        <translation>Tự động: Các thuộc tính torrent khác nhau (ví dụ: đường dẫn lưu) sẽ do danh mục liên quan quyết định
+Thủ công: Các thuộc tính torrent khác nhau (ví dụ: đường dẫn lưu) phải được gán thủ công</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1044"/>
@@ -5357,7 +5439,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1252"/>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy chủ SMTP:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1265"/>
@@ -5373,7 +5455,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1277"/>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy chủ này yêu cầu kết nối an toàn (SSL)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1284"/>
@@ -5387,7 +5469,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.ui" line="3020"/>
         <location filename="../gui/optionsdialog.ui" line="3342"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên người dùng:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1306"/>
@@ -5400,7 +5482,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1341"/>
         <source>Show console window</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị cửa sổ bảng điều khiển</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1403"/>
@@ -5415,7 +5497,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1444"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cổng được sử dụng cho các kết nối đến:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1464"/>
@@ -5425,12 +5507,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1486"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng chuyển tiếp cổng UPnP / NAT-PMP từ bộ định tuyến của tôi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1496"/>
         <source>Use different port on each startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng các cổng khác nhau trên mỗi lần khởi động</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1506"/>
@@ -5450,7 +5532,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1571"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>Số lượng máy tải lên tối đa trên mỗi torrent:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1581"/>
@@ -5460,7 +5542,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1620"/>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy chủ proxy</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1628"/>
@@ -5501,12 +5583,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1710"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Nếu không, máy chủ proxy chỉ được sử dụng cho các kết nối máy theo dõi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1713"/>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng proxy cho các kết nối ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1720"/>
@@ -5516,7 +5598,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1723"/>
         <source>Use proxy only for torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉ sử dụng proxy cho torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1736"/>
@@ -5531,17 +5613,17 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1797"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished"></translation>
+        <translation>Đường dẫn bộ lọc (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1813"/>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Tải lại bộ lọc</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1828"/>
         <source>Manually banned IP addresses...</source>
-        <translation type="unfinished"></translation>
+        <translation>Các địa chỉ IP bị cấm theo cách thủ công...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1835"/>
@@ -5624,7 +5706,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2152"/>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Cài đặt giới hạn tỷ lệ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2172"/>
@@ -5649,7 +5731,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2239"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Bật DHT (mạng phi tập trung) để tìm thêm máy ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2249"/>
@@ -5659,7 +5741,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2252"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Bật Trao Đổi Ngang Hàng (PeX) để tìm thêm máy ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2262"/>
@@ -5669,7 +5751,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2265"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Bật tính năng Khám phá ngang hàng cục bộ để tìm thêm máy ngang hàng khác</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2277"/>
@@ -5714,7 +5796,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2457"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Không tính các torrent chậm trong các giới hạn này</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2495"/>
@@ -5747,7 +5829,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2951"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng UPnP / NAT-PMP để chuyển tiếp cổng từ bộ định tuyến của tôi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2980"/>
@@ -5762,7 +5844,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="2993"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Thông tin về chứng chỉ&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3040"/>
@@ -5772,7 +5854,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3173"/>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng giao diện người dùng web thay thế</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3185"/>
@@ -5802,7 +5884,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3262"/>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Thêm tiêu đề HTTP tùy chỉnh</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3274"/>
@@ -5812,7 +5894,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3296"/>
         <source>Service:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dịch vụ:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3319"/>
@@ -5822,7 +5904,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3328"/>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên miền:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="221"/>
@@ -5852,7 +5934,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="386"/>
         <source>Supported parameters (case sensitive):</source>
-        <translation type="unfinished"></translation>
+        <translation>Các thông số được hỗ trợ (phân biệt chữ hoa chữ thường):</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="387"/>
@@ -5952,7 +6034,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1680"/>
         <source>Adding entry failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Thêm mục nhập không thành công</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1750"/>
@@ -5968,7 +6050,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1853"/>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vị trí tệp giao diện người dùng Web thay thế không được để trống.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="540"/>
@@ -5976,7 +6058,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.cpp" line="1709"/>
         <location filename="../gui/optionsdialog.cpp" line="1711"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Chọn thư mục xuất</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="223"/>
@@ -5986,7 +6068,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="389"/>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G: Thẻ (phân tách bằng dấu phẩy)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="537"/>
@@ -5998,12 +6080,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="546"/>
         <source>Choose an IP filter file</source>
-        <translation type="unfinished"></translation>
+        <translation>Chọn tệp bộ lọc IP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="547"/>
         <source>All supported filters</source>
-        <translation type="unfinished"></translation>
+        <translation>Tất cả các bộ lọc được hỗ trợ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1817"/>
@@ -6013,7 +6095,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1817"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Không phân tích được bộ lọc IP đã cung cấp</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1819"/>
@@ -6024,7 +6106,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.cpp" line="1819"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Đã phân tích cú pháp thành công bộ lọc IP đã cung cấp: %1 quy tắc đã được áp dụng.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1783"/>
@@ -6065,89 +6147,89 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.cpp" line="1838"/>
         <location filename="../gui/optionsdialog.cpp" line="1843"/>
         <source>Length Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi độ dài</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1838"/>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên người dùng giao diện người dùng Web phải dài ít nhất 3 ký tự.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1843"/>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mật khẩu giao diện người dùng Web phải dài ít nhất 6 ký tự.</translation>
     </message>
 </context>
 <context>
     <name>PeerInfo</name>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="267"/>
-        <source>Interested(local) and Choked(peer)</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="271"/>
+        <source>Interested (local) and choked (peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="274"/>
-        <source>interested(local) and unchoked(peer)</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="276"/>
+        <source>Interested (local) and unchoked (peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="285"/>
-        <source>interested(peer) and choked(local)</source>
+        <source>Interested (peer) and choked (local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="292"/>
-        <source>interested(peer) and unchoked(local)</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="290"/>
+        <source>Interested (peer) and unchoked (local)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="296"/>
+        <source>Not interested (local) and unchoked (peer)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="300"/>
-        <source>optimistic unchoke</source>
+        <source>Not interested (peer) and unchoked (local)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="307"/>
-        <source>peer snubbed</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="304"/>
+        <source>Optimistic unchoke</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="314"/>
-        <source>incoming connection</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="308"/>
+        <source>Peer snubbed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="322"/>
-        <source>not interested(local) and unchoked(peer)</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="312"/>
+        <source>Incoming connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="330"/>
-        <source>not interested(peer) and unchoked(local)</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="316"/>
+        <source>Peer from DHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="337"/>
-        <source>peer from PEX</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="320"/>
+        <source>Peer from PEX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="344"/>
-        <source>peer from DHT</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="324"/>
+        <source>Peer from LSD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="351"/>
-        <source>encrypted traffic</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="328"/>
+        <source>Encrypted traffic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="358"/>
-        <source>encrypted handshake</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/peerinfo.cpp" line="372"/>
-        <source>peer from LSD</source>
+        <location filename="../base/bittorrent/peerinfo.cpp" line="332"/>
+        <source>Encrypted handshake</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6245,12 +6327,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="282"/>
         <source>Some peers cannot be added. Check the Log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể thêm một số máy ngang hàng. Kiểm tra nhật ký để biết chi tiết.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="284"/>
         <source>Peers are added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Các máy ngang hàng được thêm vào torrent này.</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="293"/>
@@ -6266,7 +6348,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="326"/>
         <source>Peer &quot;%1&quot; is manually banned</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy ngang hàng &quot;%1&quot; bị cấm theo cách thủ công</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="290"/>
@@ -6328,27 +6410,27 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
 <context>
     <name>PiecesBar</name>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="268"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="272"/>
         <source>Files in this piece:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="273"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="277"/>
         <source>File in this piece</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="275"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="279"/>
         <source>File in these pieces</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="292"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="296"/>
         <source>Wait until metadata become available to see detailed information</source>
         <translation>Chờ cho đến khi dữ liệu mô tả có sẵn để xem thông tin chi tiết</translation>
     </message>
     <message>
-        <location filename="../gui/properties/piecesbar.cpp" line="294"/>
+        <location filename="../gui/properties/piecesbar.cpp" line="298"/>
         <source>Hold Shift key for detailed information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6358,17 +6440,17 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="17"/>
         <source>Search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm plugin</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="30"/>
         <source>Installed search plugins:</source>
-        <translation type="unfinished"></translation>
+        <translation>Các plugin tìm kiếm đã cài đặt:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="53"/>
         <source>Name</source>
-        <translation type="unfinished">Tên</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="58"/>
@@ -6394,12 +6476,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
         <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Bạn có thể tải các plugin công cụ tìm kiếm mới tại đây: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
         <source>Install a new one</source>
-        <translation type="unfinished"></translation>
+        <translation>Cài đặt một cái mới</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="115"/>
@@ -6440,7 +6522,8 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/search/pluginselectdialog.cpp" line="223"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể gỡ cài đặt một số plugin vì chúng được bao gồm trong qBittorrent. Chỉ có thể gỡ cài đặt những cái bạn đã tự thêm vào.
+Các plugin đó đã bị vô hiệu hóa.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="225"/>
@@ -6469,7 +6552,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/pluginselectdialog.cpp" line="368"/>
         <location filename="../gui/search/pluginselectdialog.cpp" line="376"/>
         <source>New search engine plugin URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL plugin công cụ tìm kiếm mới</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="369"/>
@@ -6485,22 +6568,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="374"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Liên kết dường như không trỏ đến một plugin công cụ tìm kiếm.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="391"/>
         <source>Select search plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Chọn các plugin tìm kiếm</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="392"/>
         <source>qBittorrent search plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin tìm kiếm qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="456"/>
         <source>All your plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tất cả các plugin của bạn đã được cập nhật.</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="471"/>
@@ -6510,12 +6593,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="485"/>
         <source>Search plugin install</source>
-        <translation type="unfinished"></translation>
+        <translation>Cài đặt plugin tìm kiếm</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="486"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể cài đặt plugin công cụ tìm kiếm &quot;%1&quot;. %2</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.cpp" line="504"/>
@@ -6533,17 +6616,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="27"/>
         <source>Search plugin source:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm nguồn plugin:</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="36"/>
         <source>Local file</source>
-        <translation type="unfinished"></translation>
+        <translation>Tệp cục bộ</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginsourcedialog.ui" line="43"/>
         <source>Web link</source>
-        <translation type="unfinished"></translation>
+        <translation>Liên kết Web</translation>
     </message>
 </context>
 <context>
@@ -6572,12 +6655,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="59"/>
         <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Các tệp sau từ torrent &quot;%1&quot; hỗ trợ xem trước, vui lòng chọn một trong số chúng:</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="62"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Xem trước</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="70"/>
@@ -6597,17 +6680,17 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="136"/>
         <source>Preview impossible</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể xem trước</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="137"/>
         <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Xin lỗi, chúng tôi không thể xem trước tệp này: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.ui" line="14"/>
         <source>Preview selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Xem trước lựa chọn</translation>
     </message>
 </context>
 <context>
@@ -6739,7 +6822,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="436"/>
         <source>Seeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chia sẻ:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="452"/>
@@ -6809,7 +6892,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="291"/>
         <source>Share Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tỷ Lệ Chia Sẻ:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="407"/>
@@ -6819,12 +6902,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="365"/>
         <source>Last Seen Complete:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lần Xem Cuối Hoàn Thành:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="625"/>
         <source>Total Size:</source>
-        <translation>Tổng Kích Cỡ:</translation>
+        <translation>Tổng Kích Thước:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="654"/>
@@ -6839,12 +6922,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="712"/>
         <source>Added On:</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã Thêm Vào:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="741"/>
         <source>Completed On:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoàn Thành Lúc:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="770"/>
@@ -6886,13 +6969,13 @@ Those plugins were disabled.</source>
         <location filename="../gui/properties/propertieswidget.cpp" line="410"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="413"/>
         <source>%1 (%2 this session)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 (%2 phiên này)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="422"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (đã chia sẻ cho %2)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="429"/>
@@ -6905,7 +6988,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/properties/propertieswidget.cpp" line="446"/>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (tổng %2)</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="452"/>
@@ -6917,12 +7000,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="589"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation>Mở</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="591"/>
         <source>Open Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Mở Thư Mục Chứa</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="593"/>
@@ -6937,12 +7020,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="632"/>
         <source>By shown file order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Theo thứ tự tệp được hiển thị</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="688"/>
         <source>New Web seed</source>
-        <translation>Seed Web mới</translation>
+        <translation>Web Chia Sẻ Mới</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="692"/>
@@ -6965,30 +7048,26 @@ Those plugins were disabled.</source>
         <translation>&lt;center&gt;&lt;b&gt;Biểu đồ tốc độ bị tắt&lt;/b&gt;&lt;p&gt;Bạn có thể thay đổi cài đặt này trong Tùy chọn nâng cao &lt;/center&gt;</translation>
     </message>
     <message>
-        <source>qBittorrent</source>
-        <translation type="vanished">qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="93"/>
         <source>Filter files...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bộ Lọc tệp ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="743"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
-        <translation type="unfinished"></translation>
+        <translation>URL chia sẻ mới</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="744"/>
         <source>New URL seed:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL chia sẻ mới:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="751"/>
         <location filename="../gui/properties/propertieswidget.cpp" line="805"/>
         <source>This URL seed is already in the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>URL chia sẻ này đã có trong danh sách.</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="797"/>
@@ -7007,13 +7086,13 @@ Those plugins were disabled.</source>
         <location filename="../app/main.cpp" line="154"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 là một tham số dòng lệnh không xác định.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="166"/>
         <location filename="../app/main.cpp" line="177"/>
         <source>%1 must be the single command line parameter.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 phải là tham số dòng lệnh duy nhất.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="212"/>
@@ -7023,12 +7102,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="540"/>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng:</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="543"/>
         <source>Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tùy chọn:</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="161"/>
@@ -7045,7 +7124,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="222"/>
         <source>Expected integer number in environment variable &apos;%1&apos;, but got &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Số nguyên mong đợi trong biến môi trường &apos;%1&apos;, nhưng có &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="279"/>
@@ -7056,7 +7135,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="306"/>
         <source>Expected %1 in environment variable &apos;%2&apos;, but got &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Dự kiến %1 trong biến môi trường &apos;%2&apos;, nhưng có &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="548"/>
@@ -7086,7 +7165,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="552"/>
         <source>Disable splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Tắt màn hình giật gân</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="554"/>
@@ -7102,18 +7181,18 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="558"/>
         <source>Store configuration files in &lt;dir&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Lưu trữ các tệp cấu hình trong &lt;dir&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="559"/>
         <location filename="../app/cmdoptions.cpp" line="572"/>
         <source>name</source>
-        <translation type="unfinished"></translation>
+        <translation>tên</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="560"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Lưu trữ các tệp cấu hình trong thư mục qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="562"/>
@@ -7133,12 +7212,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="579"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉ định xem hộp thoại &quot;Thêm Torrent mới&quot; có mở khi thêm torrent hay không.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="568"/>
         <source>Options when adding new torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Các tùy chọn khi thêm torrent mới:</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="569"/>
@@ -7173,7 +7252,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="577"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tải xuống phần đầu tiên và phần cuối cùng trước tiên</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="583"/>
@@ -7188,12 +7267,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="596"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Trợ giúp</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="399"/>
         <source>Run application with -h option to read about command line parameters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Chạy ứng dụng với tùy chọn -h để đọc về các tham số dòng lệnh.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="401"/>
@@ -7242,42 +7321,42 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../app/main.cpp" line="437"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Hủy bỏ</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="438"/>
         <source>I Agree</source>
-        <translation type="unfinished"></translation>
+        <translation>Tôi Đồng Ý</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="245"/>
+        <location filename="../base/settingsstorage.cpp" line="249"/>
         <source>Detected unclean program exit. Using fallback file to restore settings: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="319"/>
+        <location filename="../base/settingsstorage.cpp" line="323"/>
         <source>An access error occurred while trying to write the configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã xảy ra lỗi định dạng khi cố gắng ghi tệp cấu hình.</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="322"/>
+        <location filename="../base/settingsstorage.cpp" line="326"/>
         <source>A format error occurred while trying to write the configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã xảy ra lỗi định dạng khi cố gắng ghi tệp cấu hình.</translation>
     </message>
     <message>
-        <location filename="../base/settingsstorage.cpp" line="325"/>
+        <location filename="../base/settingsstorage.cpp" line="329"/>
         <source>An unknown error occurred while trying to write the configuration file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã xảy ra lỗi không xác định khi cố gắng ghi tệp cấu hình.</translation>
     </message>
     <message>
         <location filename="../app/upgrade.cpp" line="51"/>
         <source>Migrate preferences failed: WebUI https, file: &quot;%1&quot;, error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Tùy chọn di chuyển không thành công: WebUI https, tệp: &quot;%1&quot;, lỗi: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../app/upgrade.cpp" line="73"/>
         <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Tùy chọn đã di chuyển: WebUI https, dữ liệu được xuất sang tệp: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -7314,7 +7393,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="215"/>
         <source>Failed to download RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Không tải xuống được nguồn cấp RSS tại &apos;%1&apos;. Lý do: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="251"/>
@@ -7324,7 +7403,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="248"/>
         <source>Failed to parse RSS feed at &apos;%1&apos;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể phân tích cú pháp nguồn cấp dữ liệu RSS tại &apos;%1&apos;. Lý do: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="205"/>
@@ -7401,7 +7480,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="333"/>
         <source>Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>UID nguồn cấp RSS trùng lặp: %1 Cấu hình dường như bị hỏng.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="354"/>
@@ -7429,17 +7508,17 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="17"/>
         <source>Search</source>
-        <translation type="unfinished">Tìm Kiếm</translation>
+        <translation>Tìm Kiếm</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="31"/>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm nạp nguồn cấp RSS hiện đã bị vô hiệu hóa! Bạn có thể bật nó trong cài đặt ứng dụng.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="43"/>
         <source>New subscription</source>
-        <translation type="unfinished"></translation>
+        <translation>Đăng ký mới</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="50"/>
@@ -7477,12 +7556,12 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="145"/>
         <source>Rename...</source>
-        <translation type="unfinished">Đổi tên...</translation>
+        <translation>Đổi tên...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="148"/>
         <source>Rename</source>
-        <translation type="unfinished">Đổi tên</translation>
+        <translation>Đổi tên</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="153"/>
@@ -7493,7 +7572,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="161"/>
         <source>New subscription...</source>
-        <translation type="unfinished"></translation>
+        <translation>Đăng ký mới</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="166"/>
@@ -7509,7 +7588,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="187"/>
         <source>Open news URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Mở URL tin tức</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="192"/>
@@ -7519,7 +7598,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="197"/>
         <source>New folder...</source>
-        <translation type="unfinished"></translation>
+        <translation>Thư mục mới...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="228"/>
@@ -7534,7 +7613,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="229"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Thư mục mới</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="270"/>
@@ -7559,17 +7638,17 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="409"/>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vui lòng chọn một tên mới cho nguồn cấp dữ liệu RSS này</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="409"/>
         <source>New feed name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên nguồn cấp dữ liệu mới:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="417"/>
         <source>Rename failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Đổi tên thất bại</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="489"/>
@@ -7583,21 +7662,11 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     </message>
 </context>
 <context>
-    <name>ResumeDataSavingManager</name>
-    <message>
-        <location filename="../base/bittorrent/resumedatasavingmanager.cpp" line="53"/>
-        <location filename="../base/bittorrent/resumedatasavingmanager.cpp" line="65"/>
-        <location filename="../base/bittorrent/resumedatasavingmanager.cpp" line="73"/>
-        <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ScanFoldersDelegate</name>
     <message>
         <location filename="../gui/scanfoldersdelegate.cpp" line="102"/>
         <source>Select save location</source>
-        <translation type="unfinished"></translation>
+        <translation>Chọn vị trí lưu</translation>
     </message>
 </context>
 <context>
@@ -7625,7 +7694,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/scanfoldersmodel.cpp" line="419"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Duyệt qua...</translation>
     </message>
 </context>
 <context>
@@ -7633,12 +7702,12 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="98"/>
         <source>Python must be installed to use the Search Engine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Python phải được cài đặt để sử dụng Công cụ tìm kiếm.</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="123"/>
         <source>Unable to create more than %1 concurrent searches.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể tạo nhiều hơn %1 tìm kiếm đồng thời.</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="203"/>
@@ -7649,17 +7718,17 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="286"/>
         <source>All plugins are already up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tất cả các plugin đã được cập nhật.</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="290"/>
         <source>Updating %1 plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang cập nhật %1 plugins</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="295"/>
         <source>Updating plugin %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang cập nhật plugin %1</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="302"/>
@@ -7677,12 +7746,12 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="22"/>
         <source>Results(xxx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kết quả(xxx)</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="45"/>
         <source>Search in:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm ở:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="55"/>
@@ -7692,17 +7761,17 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="84"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Đặt số lượng máy chia sẻ tối thiểu và tối đa cho phép&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="87"/>
         <source>Seeds:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chia sẻ:</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="94"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Số lượng chia sẻ tối thiểu&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="116"/>
@@ -7713,7 +7782,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Số lượng chia sẻ tối đa&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="126"/>
@@ -7745,7 +7814,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
         <location filename="../gui/search/searchjobwidget.cpp" line="77"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
-        <translation type="unfinished">Tên</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="78"/>
@@ -7757,7 +7826,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
         <location filename="../gui/search/searchjobwidget.cpp" line="79"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
-        <translation type="unfinished"></translation>
+        <translation>Máy chia sẻ</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="80"/>
@@ -7768,12 +7837,12 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="81"/>
         <source>Search engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy tìm kiếm</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="132"/>
         <source>Filter search results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lọc kết quả tìm kiếm...</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="307"/>
@@ -7794,7 +7863,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="382"/>
         <source>Use regular expressions</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng biểu thức chính quy</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="396"/>
@@ -7814,7 +7883,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="405"/>
         <source>Name</source>
-        <translation type="unfinished">Tên</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="407"/>
@@ -7829,27 +7898,27 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="420"/>
         <source>Searching...</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang tìm kiếm...</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="422"/>
         <source>Search has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm đã kết thúc</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="424"/>
         <source>Search aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm bị hủy bỏ</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="426"/>
         <source>An error occurred during search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã xảy ra lỗi khi tìm kiếm...</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="428"/>
         <source>Search returned no results</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm không trả về kết quả</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="453"/>
@@ -7862,7 +7931,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="221"/>
         <source>Unknown search engine plugin file format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Định dạng tệp plugin của công cụ tìm kiếm không xác định.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="233"/>
@@ -7898,7 +7967,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="343"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Phim</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="344"/>
@@ -7944,12 +8013,12 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
         <location filename="../base/search/searchpluginmanager.cpp" line="405"/>
         <location filename="../base/search/searchpluginmanager.cpp" line="407"/>
         <source>Failed to download the plugin file. %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể tải xuống tệp plugin. %1</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="537"/>
         <source>Plugin &quot;%1&quot; is outdated, updating to version %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin &quot;%1&quot; đã lỗi thời, cập nhật lên phiên bản %2</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="544"/>
@@ -7959,7 +8028,7 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="583"/>
         <source>Search plugin &apos;%1&apos; contains invalid version string (&apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin tìm kiếm &apos;%1&apos; chứa chuỗi phiên bản không hợp lệ (&apos;%2&apos;)</translation>
     </message>
 </context>
 <context>
@@ -7972,28 +8041,29 @@ Không có thông báo nào khác sẽ được phát hành.</translation>
         <location filename="../gui/search/searchwidget.cpp" line="372"/>
         <location filename="../gui/search/searchwidget.cpp" line="380"/>
         <source>Search</source>
-        <translation type="unfinished">Tìm Kiếm</translation>
+        <translation>Tìm Kiếm</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="79"/>
         <source>There aren&apos;t any search plugins installed.
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
-        <translation type="unfinished"></translation>
+        <translation>Không có bất kỳ plugin tìm kiếm nào được cài đặt.
+Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phải của cửa sổ để cài đặt một số plugin.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="132"/>
         <source>Search plugins...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm plugins...</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="96"/>
         <source>A phrase to search for.</source>
-        <translation type="unfinished"></translation>
+        <translation>Một cụm từ để tìm kiếm.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="97"/>
         <source>Spaces in a search term may be protected by double quotes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Các dấu cách trong một cụm từ tìm kiếm có thể được bảo vệ bằng dấu ngoặc kép.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="99"/>
@@ -8005,13 +8075,13 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/search/searchwidget.cpp" line="101"/>
         <source>&lt;b&gt;foo bar&lt;/b&gt;: search for &lt;b&gt;foo&lt;/b&gt; and &lt;b&gt;bar&lt;/b&gt;</source>
         <comment>Search phrase example, illustrates quotes usage, a pair of space delimited words, individal words are highlighted</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;foo bar&lt;/b&gt;: tìm kiếm &lt;b&gt;foo&lt;/b&gt; và &lt;b&gt;bar&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="105"/>
         <source>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: search for &lt;b&gt;foo bar&lt;/b&gt;</source>
         <comment>Search phrase example, illustrates quotes usage, double quotedpair of space delimited words, the whole pair is highlighted</comment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;&amp;quot;foo bar&amp;quot;&lt;/b&gt;: tìm kiếm &lt;b&gt;foo bar&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="195"/>
@@ -8026,29 +8096,29 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="196"/>
         <source>Select...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lựa chọn...</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="297"/>
         <location filename="../gui/search/searchwidget.cpp" line="366"/>
         <location filename="../gui/search/searchwidget.cpp" line="368"/>
         <source>Search Engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy tìm kiếm</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="297"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vui lòng cài đặt Python để sử dụng Công cụ tìm kiếm.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="317"/>
         <source>Empty search pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Mẫu tìm kiếm trống</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="317"/>
         <source>Please type a search pattern first</source>
-        <translation type="unfinished"></translation>
+        <translation>Vui lòng nhập một mẫu tìm kiếm trước tiên</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="347"/>
@@ -8058,12 +8128,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="368"/>
         <source>Search has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm đã kết thúc</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="366"/>
         <source>Search has failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tìm kiếm không thành công</translation>
     </message>
 </context>
 <context>
@@ -8071,12 +8141,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.ui" line="64"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Đừng hiển thị lại</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="114"/>
         <source>qBittorrent will now exit.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent bây giờ sẽ thoát.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="115"/>
@@ -8091,12 +8161,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="119"/>
         <source>The computer is going to shutdown.</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy tính sẽ tắt.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="120"/>
         <source>&amp;Shutdown Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tắt Máy Ngay</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="121"/>
@@ -8106,32 +8176,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="124"/>
         <source>The computer is going to enter suspend mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy tính sẽ chuyển sang chế độ tạm ngừng.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="125"/>
         <source>&amp;Suspend Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Tạm Ngừng Ngay Bây Giờ</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="126"/>
         <source>Suspend confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Xác nhận tạm ngừng</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="129"/>
         <source>The computer is going to enter hibernation mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy tính sẽ chuyển sang chế độ ngủ đông.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="130"/>
         <source>&amp;Hibernate Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ngủ Đông Bây Giờ</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="131"/>
         <source>Hibernate confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Xác nhận ngủ đông</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="141"/>
@@ -8190,12 +8260,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="173"/>
         <source>Total Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Tổng Tải Lên</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="174"/>
         <source>Total Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Tổng Tải Xuống</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="178"/>
@@ -8268,12 +8338,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="105"/>
         <source>Select Graphs</source>
-        <translation type="unfinished"></translation>
+        <translation>Chọn Đồ Thị</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="83"/>
         <source>Total Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Tổng Tải Lên</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="74"/>
@@ -8293,7 +8363,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>Total Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Tổng Tải Xuống</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="85"/>
@@ -8379,7 +8449,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/statsdialog.ui" line="40"/>
         <source>All-time share ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tỷ lệ chia sẻ mọi lúc:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="54"/>
@@ -8501,12 +8571,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="189"/>
         <source>Seeding (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang chia sẻ (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="192"/>
         <source>Completed (0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã Hoàn Tất (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="195"/>
@@ -8561,12 +8631,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="272"/>
         <source>Seeding (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang chia sẻ (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="273"/>
         <source>Completed (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã Hoàn Tất (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="275"/>
@@ -8612,19 +8682,19 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
 <context>
     <name>TagFilterModel</name>
     <message>
-        <location filename="../gui/tagfiltermodel.cpp" line="150"/>
+        <location filename="../gui/tagfiltermodel.cpp" line="149"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Thẻ</translation>
     </message>
     <message>
-        <location filename="../gui/tagfiltermodel.cpp" line="261"/>
+        <location filename="../gui/tagfiltermodel.cpp" line="260"/>
         <source>All</source>
         <translation>Tất cả</translation>
     </message>
     <message>
-        <location filename="../gui/tagfiltermodel.cpp" line="263"/>
+        <location filename="../gui/tagfiltermodel.cpp" line="262"/>
         <source>Untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Không được gắn thẻ</translation>
     </message>
 </context>
 <context>
@@ -8642,27 +8712,27 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="120"/>
         <source>Remove unused tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Xóa các thẻ không sử dụng</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="123"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tiếp tục torrent</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="125"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tạm dừng torrent</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="127"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Xóa torrent</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="171"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Thẻ mới</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="171"/>
@@ -8672,12 +8742,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="177"/>
         <source>Invalid tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên thẻ không hợp lệ</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="178"/>
         <source>Tag name &apos;%1&apos; is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên thẻ &apos;%1&apos; không hợp lệ</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="193"/>
@@ -8687,7 +8757,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="193"/>
         <source>Tag name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên thẻ đã tồn tại.</translation>
     </message>
 </context>
 <context>
@@ -8715,7 +8785,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="65"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Danh mục mới</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="76"/>
@@ -8744,32 +8814,32 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentContentModel</name>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Name</source>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Size</source>
         <translation>Kích cỡ</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Progress</source>
         <translation>Tiến độ</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Download Priority</source>
-        <translation type="unfinished"></translation>
+        <translation>Ưu Tiên Tải Xuống</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>Còn lại</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="187"/>
+        <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Availability</source>
         <translation>Khả dụng</translation>
     </message>
@@ -8826,7 +8896,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontenttreeview.cpp" line="147"/>
         <source>Rename error</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi đổi tên</translation>
     </message>
 </context>
 <context>
@@ -8834,7 +8904,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="17"/>
         <source>Torrent Creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Trình tạo Torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="56"/>
@@ -8961,12 +9031,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="303"/>
         <source>Start seeding immediately</source>
-        <translation type="unfinished"></translation>
+        <translation>Bắt đầu chia sẻ ngay lập tức</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="313"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Bỏ qua giới hạn tỷ lệ chia sẻ cho torrent này</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="320"/>
@@ -9001,7 +9071,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="394"/>
         <source>Web seed URLs:</source>
-        <translation type="unfinished"></translation>
+        <translation>URL Web chia sẻ</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="415"/>
@@ -9033,7 +9103,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcreatordialog.cpp" line="226"/>
         <location filename="../gui/torrentcreatordialog.cpp" line="240"/>
         <source>Torrent creation failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tạo torrent không thành công</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="181"/>
@@ -9043,7 +9113,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="188"/>
         <source>Select where to save the new torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Chọn nơi lưu torrent mới</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="188"/>
@@ -9058,12 +9128,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="240"/>
         <source>Reason: Created torrent is invalid. It won&apos;t be added to download list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lý do: torrent đã tạo không hợp lệ. Nó sẽ không được thêm vào danh sách tải xuống.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="256"/>
         <source>Torrent creator</source>
-        <translation type="unfinished"></translation>
+        <translation>Trình tạo Torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="257"/>
@@ -9161,7 +9231,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="171"/>
         <source>ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>tỉ lệ</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="185"/>
@@ -9197,92 +9267,102 @@ Please choose a different name and try again.</source>
 <context>
     <name>TorrentsController</name>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="678"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="704"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi: &apos;%1&apos; không phải là tệp torrent hợp lệ.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="841"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="867"/>
         <source>Priority must be an integer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="844"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="870"/>
         <source>Priority is not valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="850"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="876"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="859"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="885"/>
         <source>File IDs must be integers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="861"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="887"/>
         <source>File ID is not valid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1004"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1015"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1026"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1037"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1030"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1041"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1052"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1063"/>
         <source>Torrent queueing must be enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1051"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1077"/>
         <source>Save path cannot be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1138"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1155"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1164"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1181"/>
         <source>Category cannot be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1144"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1170"/>
         <source>Unable to create category</source>
         <translation>Không thể tạo danh mục</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1158"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1184"/>
         <source>Unable to edit category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1055"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1081"/>
         <source>Cannot make save path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="284"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="285"/>
         <source>&apos;sort&apos; parameter is invalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1059"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="532"/>
+        <source>&quot;%1&quot; is not a valid file index.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="534"/>
+        <source>Index %1 is out of bounds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1085"/>
         <source>Cannot write to directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1063"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1089"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1077"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1103"/>
         <source>Incorrect torrent name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1126"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1141"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1152"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1167"/>
         <source>Incorrect category name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9292,7 +9372,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/trackerentriesdialog.ui" line="14"/>
         <source>Edit trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉnh sửa máy theo dõi</translation>
     </message>
     <message>
         <location filename="../gui/trackerentriesdialog.ui" line="20"/>
@@ -9330,40 +9410,40 @@ Please choose a different name and try again.</source>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="354"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="418"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="419"/>
         <source>Trackerless (%1)</source>
         <translation>Không máy theo dõi (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="465"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="493"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="466"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="494"/>
         <source>Error (%1)</source>
         <translation>Lỗi (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="479"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="505"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="480"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="506"/>
         <source>Warning (%1)</source>
         <translation>Cảnh báo (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="560"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="561"/>
         <source>Resume torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiếp tục torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="562"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="563"/>
         <source>Pause torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Tạm dừng torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="564"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="565"/>
         <source>Delete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Xóa torrent</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="589"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="603"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="590"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="604"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Tất cả (%1)</translation>
@@ -9372,147 +9452,148 @@ Please choose a different name and try again.</source>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="282"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="393"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="281"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="389"/>
         <source>Working</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang làm việc</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="283"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="282"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="284"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="283"/>
         <source>Disabled for this torrent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="313"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="172"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="312"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="173"/>
         <source>This torrent is private</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="397"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="392"/>
         <source>Updating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Đang cập nhật...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="401"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="395"/>
         <source>Not working</source>
-        <translation type="unfinished"></translation>
+        <translation>Không làm việc</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="398"/>
+        <source>Not contacted yet</source>
+        <translation>Chưa liên hệ</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="405"/>
-        <source>Not contacted yet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="413"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="416"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="419"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="408"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="411"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="414"/>
         <source>N/A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="513"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="508"/>
         <source>Tracker editing</source>
         <translation>Sửa máy theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="513"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="508"/>
         <source>Tracker URL:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="519"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="530"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="514"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="525"/>
         <source>Tracker editing failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉnh sửa máy theo dõi thất bại</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="519"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="514"/>
         <source>The tracker URL entered is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="530"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="525"/>
         <source>The tracker URL already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="589"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="584"/>
         <source>Add a new tracker...</source>
         <translation>Thêm máy theo dõi mới...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="594"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="589"/>
         <source>Edit tracker URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉnh sửa URL máy theo dõi...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="596"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="591"/>
         <source>Remove tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>Xóa máy theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="598"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="593"/>
         <source>Copy tracker URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Sao chép URL máy theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="604"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="599"/>
         <source>Force reannounce to selected trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Buộc thông báo lại với các máy theo dõi đã chọn</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="607"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="602"/>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Buộc thông báo lại với tất cả máy theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="633"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="628"/>
         <source>Tier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="634"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="629"/>
         <source>URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="635"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="630"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Trạng thái</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="637"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="632"/>
         <source>Seeds</source>
-        <translation type="unfinished"></translation>
+        <translation>Chia sẻ</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="636"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="631"/>
         <source>Peers</source>
         <translation type="unfinished">Mạng ngang hàng</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="638"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="633"/>
         <source>Leeches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="639"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="634"/>
         <source>Downloaded</source>
         <translation>Đã tải về</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="640"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="635"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="660"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="655"/>
         <source>Column visibility</source>
         <translation type="unfinished">Chế độ hiển thị cột</translation>
     </message>
@@ -9558,22 +9639,22 @@ Please choose a different name and try again.</source>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="672"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="673"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Trạng thái</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="680"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="681"/>
         <source>Categories</source>
         <translation>Danh mục</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="699"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="700"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Gắn thẻ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="717"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="718"/>
         <source>Trackers</source>
         <translation>Máy theo dõi</translation>
     </message>
@@ -9608,13 +9689,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="116"/>
         <source>Seeding</source>
         <comment>Torrent is complete and in upload-only mode</comment>
-        <translation type="unfinished"></translation>
+        <translation>Đang chia sẻ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="117"/>
         <source>[F] Seeding</source>
         <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished"></translation>
+        <translation>[F] Đang chia sẻ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="118"/>
@@ -9644,7 +9725,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="124"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Đã Hoàn Tất</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="125"/>
@@ -9667,7 +9748,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="170"/>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished">Tên</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="171"/>
@@ -9685,13 +9766,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="173"/>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Trạng thái</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Chia sẻ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -9715,7 +9796,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="178"/>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tỉ Lệ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="179"/>
@@ -9731,19 +9812,19 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="181"/>
         <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Thẻ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Đã Thêm Vào</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hoàn Thành Lúc</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
@@ -9790,7 +9871,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="191"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Còn lại</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="192"/>
@@ -9808,13 +9889,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="194"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Đã Hoàn Tất</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="195"/>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation type="unfinished"></translation>
+        <translation>Giới Hạn Tỷ Lệ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
@@ -9855,250 +9936,250 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="321"/>
         <source>%1 (seeded for %2)</source>
         <comment>e.g. 4m39s (seeded for 3m10s)</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (đã chia sẻ cho %2)</translation>
     </message>
 </context>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="585"/>
+        <location filename="../gui/transferlistwidget.cpp" line="586"/>
         <source>Column visibility</source>
         <translation>Chế độ hiển thị cột</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="336"/>
+        <location filename="../gui/transferlistwidget.cpp" line="337"/>
         <source>Choose save path</source>
         <translation>Chọn đường dẫn để lưu</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="566"/>
+        <location filename="../gui/transferlistwidget.cpp" line="567"/>
         <source>Recheck confirmation</source>
         <translation>Kiểm tra lại phần xác nhận</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="566"/>
+        <location filename="../gui/transferlistwidget.cpp" line="567"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Bạn có chắc bạn muốn kiểm tra lại (các)torrent đã chọn hay không?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="759"/>
+        <location filename="../gui/transferlistwidget.cpp" line="760"/>
         <source>Rename</source>
         <translation>Đổi tên</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="759"/>
+        <location filename="../gui/transferlistwidget.cpp" line="760"/>
         <source>New name:</source>
         <translation>Tên mới:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="799"/>
+        <location filename="../gui/transferlistwidget.cpp" line="800"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Khôi phục lại</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="803"/>
+        <location filename="../gui/transferlistwidget.cpp" line="804"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Buộc Tiếp Tục</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="801"/>
+        <location filename="../gui/transferlistwidget.cpp" line="802"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Tạm dừng</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="546"/>
+        <location filename="../gui/transferlistwidget.cpp" line="547"/>
         <source>Unable to preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Không thể xem trước</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="546"/>
+        <location filename="../gui/transferlistwidget.cpp" line="547"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent đã chọn &quot;%1&quot; không chứa các tệp có thể xem trước</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="662"/>
+        <location filename="../gui/transferlistwidget.cpp" line="663"/>
         <source>Add Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Thêm thẻ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="705"/>
+        <location filename="../gui/transferlistwidget.cpp" line="706"/>
         <source>Remove All Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Xóa Tất Cả Các Thẻ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="705"/>
+        <location filename="../gui/transferlistwidget.cpp" line="706"/>
         <source>Remove all tags from selected torrents?</source>
-        <translation type="unfinished"></translation>
+        <translation>Xóa tất cả các thẻ khỏi torrent đã chọn?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="720"/>
+        <location filename="../gui/transferlistwidget.cpp" line="721"/>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>Phân tách các thẻ bằng dấu phẩy:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="729"/>
+        <location filename="../gui/transferlistwidget.cpp" line="730"/>
         <source>Invalid tag</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="730"/>
+        <location filename="../gui/transferlistwidget.cpp" line="731"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên thẻ &apos;%1&apos; không hợp lệ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="805"/>
+        <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Xóa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="807"/>
+        <location filename="../gui/transferlistwidget.cpp" line="808"/>
         <source>Preview file...</source>
-        <translation>Xem sơ lược tập tin...</translation>
+        <translation>Xem trước tệp...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="811"/>
+        <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Open destination folder</source>
         <translation>Mở thư mục đích</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="813"/>
+        <location filename="../gui/transferlistwidget.cpp" line="814"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Di chuyển lên trên</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="815"/>
+        <location filename="../gui/transferlistwidget.cpp" line="816"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Di chuyển xuống dưới</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="817"/>
+        <location filename="../gui/transferlistwidget.cpp" line="818"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Di chuyển lên trên cùng</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="819"/>
+        <location filename="../gui/transferlistwidget.cpp" line="820"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Di chuyển xuống dưới cùng</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="821"/>
+        <location filename="../gui/transferlistwidget.cpp" line="822"/>
         <source>Set location...</source>
         <translation>Đặt vị trí...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="825"/>
+        <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Buộc thông báo lại</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="827"/>
+        <location filename="../gui/transferlistwidget.cpp" line="828"/>
         <source>Magnet link</source>
         <translation type="unfinished">Liên kết magnet</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="829"/>
+        <location filename="../gui/transferlistwidget.cpp" line="830"/>
         <source>Name</source>
-        <translation type="unfinished">Tên</translation>
+        <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="831"/>
+        <location filename="../gui/transferlistwidget.cpp" line="832"/>
         <source>Hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1076"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1077"/>
         <source>Queue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1084"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1085"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="839"/>
+        <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tải xuống phần đầu tiên và phần cuối cùng trước tiên</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="809"/>
+        <location filename="../gui/transferlistwidget.cpp" line="810"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="841"/>
-        <source>Automatic Torrent Management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
+        <source>Automatic Torrent Management</source>
+        <translation>Quản lý Torrent tự động</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="843"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Chế độ tự động có nghĩa là các thuộc tính torrent khác nhau (ví dụ: đường dẫn lưu) sẽ được quyết định bởi danh mục liên quan</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="844"/>
+        <location filename="../gui/transferlistwidget.cpp" line="845"/>
         <source>Edit trackers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chỉnh sửa máy theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="968"/>
+        <location filename="../gui/transferlistwidget.cpp" line="970"/>
         <source>Category</source>
         <translation>Danh mục</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="970"/>
+        <location filename="../gui/transferlistwidget.cpp" line="972"/>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Mới...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="972"/>
+        <location filename="../gui/transferlistwidget.cpp" line="974"/>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/transferlistwidget.cpp" line="993"/>
-        <source>Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Cài lại</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="995"/>
+        <source>Tags</source>
+        <translation>Thẻ</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="997"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="997"/>
+        <location filename="../gui/transferlistwidget.cpp" line="999"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="823"/>
+        <location filename="../gui/transferlistwidget.cpp" line="824"/>
         <source>Force recheck</source>
         <translation>Buộc kiểm tra lại</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="833"/>
+        <location filename="../gui/transferlistwidget.cpp" line="834"/>
         <source>Super seeding mode</source>
-        <translation>Chế độ seed cao cấp</translation>
+        <translation>Chế độ siêu chia sẻ</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="835"/>
+        <location filename="../gui/transferlistwidget.cpp" line="836"/>
         <source>Rename...</source>
         <translation>Đổi tên...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="837"/>
+        <location filename="../gui/transferlistwidget.cpp" line="838"/>
         <source>Download in sequential order</source>
         <translation>Tải về theo thứ tự tuần tự</translation>
     </message>
@@ -10108,7 +10189,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/uithememanager.cpp" line="88"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Không tải được chủ đề giao diện người dùng từ tệp: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="110"/>
@@ -10118,7 +10199,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/uithememanager.cpp" line="205"/>
         <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Không mở được &quot;%1&quot;. Lý do: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="213"/>
@@ -10165,7 +10246,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webapplication.cpp" line="330"/>
         <source>Using built-in Web UI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sử dụng giao diện người dùng Web tích hợp sẵn.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="332"/>
@@ -10185,7 +10266,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webapplication.cpp" line="397"/>
         <source>Missing &apos;:&apos; separator in WebUI custom HTTP header: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Thiếu dấu phân tách &apos;:&apos; trong tiêu đề HTTP tùy chỉnh WebUI: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="444"/>
@@ -10218,12 +10299,12 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webui.cpp" line="103"/>
         <source>Web UI: HTTPS setup successful</source>
-        <translation type="unfinished"></translation>
+        <translation>Giao diện người dùng web: Thiết lập HTTPS thành công</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="105"/>
         <source>Web UI: HTTPS setup failed, fallback to HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>Giao diện người dùng web: Thiết lập HTTPS không thành công, dự phòng cho HTTP</translation>
     </message>
     <message>
         <location filename="../webui/webui.cpp" line="119"/>
@@ -10313,7 +10394,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/misc.cpp" line="144"/>
         <source>qBittorrent will shutdown the computer now because all downloads are complete.</source>
-        <translation>qBittorrent sẽ tắt máy tính vì toàn bộ các phần tải về đã được hoàn tất.</translation>
+        <translation>qBittorrent sẽ tắt máy tính ngay bây giờ vì tất cả quá trình tải xuống đã hoàn tất.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="364"/>

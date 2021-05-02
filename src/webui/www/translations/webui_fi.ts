@@ -32,15 +32,15 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Alkuperäinen</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Luo alikansio</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Älä luo alikansiota</translation>
     </message>
 </context>
 <context>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Kirjoita kansio tähän</translation>
+        <translation type="vanished">Kirjoita kansio tähän</translation>
     </message>
     <message>
         <source>More information</source>
@@ -238,12 +238,12 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>Nimeä uudelleen torrent</translation>
+        <translation>Nimeä torrent uudelleen</translation>
     </message>
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Muu...</translation>
+        <translation type="vanished">Muu...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -991,7 +991,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation>Kt/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1035,7 +1035,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Älä aloita latausta automaattisesti</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1091,7 +1091,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manuaalinen</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
@@ -1267,7 +1267,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation>KiB</translation>
+        <translation>Kt</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1279,7 +1279,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation>MiB</translation>
+        <translation>Mt</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1659,7 +1659,7 @@
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>Viimeksi Nähty Valmistuneen:</translation>
+        <translation>Viimeksi nähty valmistuneen:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -1764,12 +1764,20 @@
         <source>Default save location</source>
         <translation>Oletus tallennussijainti</translation>
     </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation>Kt/s</translation>
     </message>
 </context>
 <context>
@@ -1999,7 +2007,7 @@
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Aika</translation>
+        <translation>Aikaa valmistumiseen</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2081,12 +2089,12 @@
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Viimeksi Nähty Valmistuneen</translation>
+        <translation>Viimeksi nähty valmistuneen</translation>
     </message>
     <message>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation>Viimeisin Toiminta</translation>
+        <translation>Viimeisin toiminta</translation>
     </message>
     <message>
         <source>Total Size</source>
@@ -2095,7 +2103,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Saatavuus</translation>
     </message>
 </context>
 <context>
@@ -2130,11 +2138,11 @@
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>Toiminnassa</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Pois käytöstä</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -2150,7 +2158,7 @@
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>Ei toimi</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
@@ -2233,7 +2241,7 @@
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Siirretään</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
@@ -2249,7 +2257,7 @@
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>Virhe</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2281,7 +2289,7 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>Pysähtynyt</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2553,37 +2561,37 @@
     <message>
         <source>B</source>
         <comment>bytes</comment>
-        <translation>B</translation>
+        <translation>T</translation>
     </message>
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>KiB</translation>
+        <translation>Kt</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>MiB</translation>
+        <translation>Mt</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>GiB</translation>
+        <translation>Gt</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>TiB</translation>
+        <translation>Tt</translation>
     </message>
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation>PiB</translation>
+        <translation>Pt</translation>
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation>EiB</translation>
+        <translation>Et</translation>
     </message>
     <message>
         <source>/s</source>
@@ -2923,7 +2931,7 @@
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Tietoa qBittorrentista</translation>
     </message>
     <message>
         <source>License</source>

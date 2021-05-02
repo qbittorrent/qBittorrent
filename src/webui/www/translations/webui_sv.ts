@@ -157,7 +157,7 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Distributionstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
+        <translation>Delningstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Ange mapp här</translation>
+        <translation type="vanished">Ange mapp här</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Annan...</translation>
+        <translation type="vanished">Annan...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -741,11 +741,11 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Högsta antalet anslutningar per torrent:</translation>
+        <translation>Högst antal anslutningar per torrent:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Globalt högsta antalet anslutningar:</translation>
+        <translation>Globalt högst antal anslutningar:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
@@ -753,7 +753,7 @@
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Globalt högsta antalet sändningsplatser:</translation>
+        <translation>Globalt högst antal sändningsplatser:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -895,7 +895,7 @@
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Högsta antalet aktiva hämtningar:</translation>
+        <translation>Högst antal aktiva hämtningar:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
@@ -903,7 +903,7 @@
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Högsta antalet aktiva torrenter:</translation>
+        <translation>Högst antal aktiva torrenter:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
@@ -999,7 +999,7 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation>Aktivera Cross-Site Request Forgery (CSRF) skydd</translation>
+        <translation>Aktivera Cross-Site Request Forgery (CSRF)-skydd</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -1051,7 +1051,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Tillämpa hastighetsgräns för noder på LAN</translation>
+        <translation>Tillämpa hastighetsgräns för LAN-noder</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1127,7 +1127,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Aktivera superdistribuering för torrent</translation>
+        <translation>Aktivera superdelning för torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1151,7 +1151,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>När distribueringstiden når</translation>
+        <translation>När delningstiden når</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1263,7 +1263,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation>Distributionsgränser</translation>
+        <translation>Delningsgränser</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1387,7 +1387,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Högsta antalet artiklar per flöde:</translation>
+        <translation>Högst antal artiklar per flöde:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1455,7 +1455,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>Typ av tjänst (TOS) för anslutningar till noder</translation>
     </message>
 </context>
 <context>
@@ -1611,7 +1611,7 @@
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>Distributörer:</translation>
+        <translation>Delningar:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -1743,7 +1743,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (delad i %2)</translation>
     </message>
 </context>
 <context>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>Standard spara plats</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1859,7 +1867,7 @@
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation>Distribuerar (0)</translation>
+        <translation>Delar (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
@@ -1895,7 +1903,7 @@
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation>Distribuerar (%1)</translation>
+        <translation>Delar (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
@@ -1974,7 +1982,7 @@
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Distributörer</translation>
+        <translation>Delningar</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -2146,7 +2154,7 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation>Distribueringar</translation>
+        <translation>Delningar</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -2237,11 +2245,11 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[T] Distribuerar</translation>
+        <translation>[T] Delar</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation>Distribuerar</translation>
+        <translation>Delar</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -2285,7 +2293,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (delad i %2)</translation>
     </message>
 </context>
 <context>
@@ -2405,7 +2413,7 @@
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation>Superdistributionsläge</translation>
+        <translation>Superdelningsläge</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -2617,7 +2625,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2654,7 +2662,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>Distributörer:</translation>
+        <translation>Delningar:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2776,7 +2784,7 @@
     </message>
     <message>
         <source>Seeders</source>
-        <translation>Distributörer</translation>
+        <translation>Delare</translation>
     </message>
 </context>
 <context>
@@ -2947,7 +2955,7 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation>Mjukvara som används</translation>
+        <translation>Använd mjukvara</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>

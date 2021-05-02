@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>在這裡輸入資料夾</translation>
+        <translation type="vanished">在這裡輸入資料夾</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>其他…</translation>
+        <translation type="vanished">其他…</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1455,7 +1455,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>與 peers 連線的服務類型 (ToS)</translation>
     </message>
 </context>
 <context>
@@ -1743,7 +1743,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1（已做種 %2）</translation>
     </message>
 </context>
 <context>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>預設儲存位置</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2285,7 +2293,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1（已做種 %2）</translation>
     </message>
 </context>
 <context>
@@ -2617,7 +2625,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1年%2天</translation>
     </message>
 </context>
 <context>
