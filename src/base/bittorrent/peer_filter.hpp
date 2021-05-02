@@ -36,13 +36,14 @@ public:
       QRegularExpression peer_id_re(QString::fromStdString(peer_id));
       QRegularExpression client_re(QString::fromStdString(client));
 
-      QString msg_tmpl("'%1': invalid %2 matching expression '%3' detected, ignoring rule");
+      QString msg_tmpl("'%1': invalid %2 matching expression '%3' detected at line %4, ignoring rule");
+      int line = m_filters.size() + 1;
 
       if (!peer_id_re.isValid())
-        LogMsg(msg_tmpl.arg(log_tag).arg("peer id").arg(peer_id_re.pattern()), Log::WARNING);
+        LogMsg(msg_tmpl.arg(log_tag).arg("peer id").arg(peer_id_re.pattern()).arg(line), Log::WARNING);
 
       if (!client_re.isValid())
-        LogMsg(msg_tmpl.arg(log_tag).arg("client name").arg(client_re.pattern()), Log::WARNING);
+        LogMsg(msg_tmpl.arg(log_tag).arg("client name").arg(client_re.pattern()).arg(line), Log::WARNING);
 
       if (peer_id_re.isValid() && client_re.isValid())
         m_filters.append({peer_id_re, client_re});
@@ -61,6 +62,7 @@ public:
   }
 
   bool is_empty() const { return m_filters.isEmpty(); }
+  int rules_count() const { return m_filters.size(); }
 
 private:
   QVector<QVector<QRegularExpression>> m_filters;

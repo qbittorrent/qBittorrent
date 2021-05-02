@@ -4,15 +4,11 @@
 
 #include <libtorrent/torrent_info.hpp>
 
-#include <QDir>
 #include <QHostAddress>
 
-#include "base/logger.h"
 #include "base/net/geoipmanager.h"
-#include "base/profile.h"
 
 #include "peer_filter_plugin.hpp"
-#include "peer_filter.hpp"
 #include "peer_logger.hpp"
 
 // bad peer filter
@@ -99,34 +95,4 @@ std::shared_ptr<lt::torrent_plugin> create_drop_offline_downloader_plugin(lt::to
 std::shared_ptr<lt::torrent_plugin> create_drop_bittorrent_media_player_plugin(lt::torrent_handle const& th, client_data)
 {
   return create_peer_action_plugin(th, wrap_filter(is_bittorrent_media_player, "bittorrent media player"), drop_connection);
-}
-
-std::shared_ptr<lt::torrent_plugin> create_peer_blacklist_plugin(lt::torrent_handle const&, client_data)
-{
-  QDir qbt_data_dir(specialFolderLocation(SpecialFolder::Data));
-
-  QString filter_file = qbt_data_dir.absoluteFilePath(QStringLiteral("peer_blacklist.txt"));
-  // do not create plugin if filter file doesn't exists
-  if (!QFile::exists(filter_file)) {
-    LogMsg("'peer_blacklist.txt' doesn't exist, do not enabling blacklist plugin", Log::INFO);
-    return nullptr;
-  }
-
-  // create filter object only once
-  static peer_filter filter(filter_file);
-  // do not create plugin if no rules were loaded
-  if (filter.is_empty()) {
-    LogMsg("'peer_blacklist.txt' has no valid rules, do not enabling blacklist plugin", Log::WARNING);
-    return nullptr;
-  }
-
-  auto peer_in_list = [&](const lt::peer_info& info, bool handshake, bool* stop_filtering) {
-    bool matched = filter.match_peer(info, false);
-    *stop_filtering = !handshake && !matched;
-    if (matched)
-      peer_logger_singleton::instance().log_peer(info, "blacklist");
-    return matched;
-  };
-
-  return std::make_shared<peer_action_plugin>(std::move(peer_in_list), drop_connection);
 }
