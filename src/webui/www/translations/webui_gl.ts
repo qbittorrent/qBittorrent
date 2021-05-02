@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Escribir o cartafol aquí</translation>
+        <translation type="vanished">Escribir o cartafol aquí</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Outra...</translation>
+        <translation type="vanished">Outra...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1764,6 +1764,14 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Default save location</source>
         <translation>Localización predeterminada onde gardar</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
