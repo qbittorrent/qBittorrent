@@ -8,18 +8,18 @@
 #include "ui_timerangedialog.h"
 #include "utils.h"
 
-TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate, int maxRate)
+TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed, int maxSpeed)
     : QDialog {parent}
     , m_ui {new Ui::TimeRangeDialog}
     , m_scheduleDay {scheduleDay}
 {
     m_ui->setupUi(this);
 
-    m_ui->downloadSpinBox->setMaximum(maxRate);
-    m_ui->downloadSpinBox->setValue(initialRate);
+    m_ui->downloadSpinBox->setMaximum(maxSpeed);
+    m_ui->downloadSpinBox->setValue(initialSpeed);
 
-    m_ui->uploadSpinBox->setMaximum(maxRate);
-    m_ui->uploadSpinBox->setValue(initialRate);
+    m_ui->uploadSpinBox->setMaximum(maxSpeed);
+    m_ui->uploadSpinBox->setValue(initialSpeed);
 
     const QLocale locale{Preferences::instance()->getLocale()};
     const QString timeFormat = locale.timeFormat(QLocale::ShortFormat);
@@ -49,7 +49,7 @@ void TimeRangeDialog::timesUpdated()
 bool TimeRangeDialog::isValid() const
 {
     bool timeRangesValid = timeFrom().secsTo(timeTo()) > 0;
-    TimeRange timeRange = {timeFrom(), timeTo(), downloadRatio(), uploadRatio()};
+    TimeRange timeRange = {timeFrom(), timeTo(), downloadSpeed(), uploadSpeed()};
     TimeRangeConflict conflict = m_scheduleDay->conflicts(timeRange);
 
     const QString borderStyle = "border: 1px solid %1";
@@ -61,12 +61,12 @@ bool TimeRangeDialog::isValid() const
     return timeRangesValid && (conflict == NoConflict);
 }
 
-int TimeRangeDialog::downloadRatio() const
+int TimeRangeDialog::downloadSpeed() const
 {
     return m_ui->downloadSpinBox->value();
 }
 
-int TimeRangeDialog::uploadRatio() const
+int TimeRangeDialog::uploadSpeed() const
 {
     return m_ui->uploadSpinBox->value();
 }

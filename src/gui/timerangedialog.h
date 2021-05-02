@@ -14,13 +14,13 @@ class TimeRangeDialog final : public QDialog
     Q_OBJECT
 
 public:
-    TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialRate = 100, int maxRate = 1000000);
+    TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed = 100, int maxSpeed = 1000000);
     ~TimeRangeDialog() override;
 
     QTime timeFrom() const;
     QTime timeTo() const;
-    int downloadRatio() const;
-    int uploadRatio() const;
+    int downloadSpeed() const;
+    int uploadSpeed() const;
 
 private slots:
     void timesUpdated();

@@ -15,13 +15,13 @@ struct TimeRange
 {
     QTime startTime;
     QTime endTime;
-    int downloadRate;
-    int uploadRate;
+    int downloadSpeed;
+    int uploadSpeed;
 
     void setStartTime(QTime time);
     void setEndTime(QTime time);
-    void setDownloadRate(int rate);
-    void setUploadRate(int rate);
+    void setDownloadSpeed(int speed);
+    void setUploadSpeed(int speed);
 
     bool isValid() const;
 

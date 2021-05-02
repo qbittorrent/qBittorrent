@@ -24,8 +24,8 @@ public:
     bool canSetEndTime(int index, QTime time);
     void editStartTimeAt(int index, QTime time);
     void editEndTimeAt(int index, QTime time);
-    void editDownloadRateAt(int index, int rate);
-    void editUploadRateAt(int index, int rate);
+    void editDownloadSpeedAt(int index, int speed);
+    void editUploadSpeedAt(int index, int speed);
 
     int getNowIndex();
     TimeRangeConflict conflicts(const TimeRange &timeRange);

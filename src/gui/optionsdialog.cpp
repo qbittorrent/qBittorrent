@@ -715,10 +715,10 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
     {
         TimeRange timeRange = timeRanges[i];
 
-        QString dlText = (timeRange.downloadRate == 0) ? QString::fromUtf8(C_INFINITY)
-                       : Utils::Misc::friendlyUnit(timeRange.downloadRate * 1024, true);
-        QString ulText = (timeRange.uploadRate == 0) ? QString::fromUtf8(C_INFINITY)
-                       : Utils::Misc::friendlyUnit(timeRange.uploadRate * 1024, true);
+        QString dlText = (timeRange.downloadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(timeRange.downloadSpeed * 1024, true);
+        QString ulText = (timeRange.uploadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(timeRange.uploadSpeed * 1024, true);
 
         auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
         auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
@@ -727,8 +727,8 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
         start->setData(Qt::UserRole, timeRange.startTime);
         end->setData(Qt::UserRole, timeRange.endTime);
-        dl->setData(Qt::UserRole, timeRange.downloadRate);
-        ul->setData(Qt::UserRole, timeRange.uploadRate);
+        dl->setData(Qt::UserRole, timeRange.downloadSpeed);
+        ul->setData(Qt::UserRole, timeRange.uploadSpeed);
 
         scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
         scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
@@ -750,8 +750,8 @@ void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
         scheduleDay->addTimeRange({
             dialog->timeFrom(),
             dialog->timeTo(),
-            dialog->downloadRatio(),
-            dialog->uploadRatio()
+            dialog->downloadSpeed(),
+            dialog->uploadSpeed()
         });
     });
 

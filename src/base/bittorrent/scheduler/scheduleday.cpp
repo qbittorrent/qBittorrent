@@ -93,15 +93,15 @@ void ScheduleDay::editEndTimeAt(int index, const QTime time)
     }
 }
 
-void ScheduleDay::editDownloadRateAt(int index, int rate)
+void ScheduleDay::editDownloadSpeedAt(int index, int speed)
 {
-    m_timeRanges[index].setDownloadRate(rate);
+    m_timeRanges[index].setDownloadSpeed(speed);
     emit dayUpdated(m_dayOfWeek);
 }
 
-void ScheduleDay::editUploadRateAt(int index, int rate)
+void ScheduleDay::editUploadSpeedAt(int index, int speed)
 {
-    m_timeRanges[index].setUploadRate(rate);
+    m_timeRanges[index].setUploadSpeed(speed);
     emit dayUpdated(m_dayOfWeek);
 }
 

@@ -85,9 +85,9 @@ void TimeRangeItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *op
         int value = static_cast<QSpinBox*>(editor)->value();
 
         if (col == DOWNLOAD)
-            m_scheduleDay.editDownloadRateAt(row, value);
+            m_scheduleDay.editDownloadSpeedAt(row, value);
         else
-            m_scheduleDay.editUploadRateAt(row, value);
+            m_scheduleDay.editUploadSpeedAt(row, value);
     }
 }
 

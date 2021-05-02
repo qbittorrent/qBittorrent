@@ -2654,7 +2654,7 @@ int Session::downloadSpeedLimit() const
         int index = today->getNowIndex();
         if (index > -1)
         {
-            int dl = today->timeRanges()[index].downloadRate * 1024;
+            int dl = today->timeRanges()[index].downloadSpeed * 1024;
             return (globalDownloadSpeedLimit() == 0) ? dl
                 : std::min(globalDownloadSpeedLimit(), dl);
         }
@@ -2682,7 +2682,7 @@ int Session::uploadSpeedLimit() const
         int index = today->getNowIndex();
         if (index > -1)
         {
-            int ul = today->timeRanges()[index].uploadRate * 1024;
+            int ul = today->timeRanges()[index].uploadSpeed * 1024;
             return (globalUploadSpeedLimit() == 0) ? ul
                 : std::min(globalUploadSpeedLimit(), ul);
         }

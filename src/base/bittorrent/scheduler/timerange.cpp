@@ -14,14 +14,14 @@ void TimeRange::setEndTime(const QTime time)
         endTime = time;
 }
 
-void TimeRange::setDownloadRate(int rate)
+void TimeRange::setDownloadSpeed(int speed)
 {
-    downloadRate = rate;
+    downloadSpeed = speed;
 }
 
-void TimeRange::setUploadRate(int rate)
+void TimeRange::setUploadSpeed(int speed)
 {
-    uploadRate = rate;
+    uploadSpeed = speed;
 }
 
 bool TimeRange::isValid() const
@@ -36,8 +36,8 @@ QJsonObject TimeRange::toJsonObject() const
     {
         {"start", startTime.hour() * 100 + startTime.minute()},
         {"end", endTime.hour() * 100 + endTime.minute()},
-        {"dl", downloadRate},
-        {"ul", uploadRate}
+        {"dl", downloadSpeed},
+        {"ul", uploadSpeed}
     };
 }
 
