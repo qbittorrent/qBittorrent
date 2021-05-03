@@ -43,6 +43,7 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/portforwarder.h"
@@ -183,6 +184,7 @@ void AppController::preferencesAction()
     data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
+    data["scheduler_json"] = QString(BandwidthScheduler::instance()->getJson());
 
     // Bittorrent
     // Privacy
@@ -212,7 +214,9 @@ void AppController::preferencesAction()
 
     // Web UI
     // Language
-    data["locale"] = pref->getLocale();
+    const QLocale locale{pref->getLocale()};
+    data["locale"] = locale.name();
+    data["locale_first_day"] = locale.firstDayOfWeek();
     // HTTP Server
     data["web_ui_domain_list"] = pref->getServerDomains();
     data["web_ui_address"] = pref->getWebUiAddress();

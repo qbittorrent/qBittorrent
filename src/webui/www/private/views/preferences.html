@@ -399,33 +399,17 @@
             </tr>
         </table>
         <i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i>
+    </fieldset>
 
-        <fieldset class="settings">
-            <legend>
-                <input type="checkbox" id="limit_sheduling_checkbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
-                <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
-            </legend>
-            <div class="formRow">
-                QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
-                <input type="text" id="schedule_from_hour" style="width: 1.5em;" />:<input type="text" id="schedule_from_min" style="width: 1.5em;" /> QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]
-                <input type="text" id="schedule_to_hour" style="width: 1.5em;" />:<input type="text" id="schedule_to_min" style="width: 1.5em;" />
-            </div>
-            <div class="formRow">
-                QBT_TR(When:)QBT_TR[CONTEXT=OptionsDialog]
-                <select id="schedule_freq_select">
-                    <option value="0">QBT_TR(Every day)QBT_TR[CONTEXT=OptionsDialog]</option>
-                    <option value="1">QBT_TR(Weekdays)QBT_TR[CONTEXT=OptionsDialog]</option>
-                    <option value="2">QBT_TR(Weekends)QBT_TR[CONTEXT=OptionsDialog]</option>
-                    <option value="3">QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="4">QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="5">QBT_TR(Wednesday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="6">QBT_TR(Thursday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="7">QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
-                    <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
-                </select>
-            </div>
-        </fieldset>
+    <fieldset class="settings">
+        <legend>
+            <input type="checkbox" id="limit_sheduling_checkbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
+            <label for="limit_sheduling_checkbox">QBT_TR(Enable advanced scheduler)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div id="schedulerTable" class="toolbarTabs">
+            <ul id="schedulerTabsList" class="tab-menu"></ul>
+            <div class="clear"></div>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1425,11 +1409,80 @@
         // Speed tab
         const updateSchedulingEnabled = function() {
             const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
-            $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
-            $('schedule_from_min').setProperty('disabled', !isLimitSchedulingEnabled);
-            $('schedule_to_hour').setProperty('disabled', !isLimitSchedulingEnabled);
-            $('schedule_to_min').setProperty('disabled', !isLimitSchedulingEnabled);
-            $('schedule_freq_select').setProperty('disabled', !isLimitSchedulingEnabled);
+        };
+
+        const initializeSchedulerTables = (scheduleJson, firstDayOfWeek) => {
+            const dayTranslations = [
+                "QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]", 
+                "QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]", 
+                "QBT_TR(Wednesday)QBT_TR[CONTEXT=HttpServer]", 
+                "QBT_TR(Thursday)QBT_TR[CONTEXT=HttpServer]", 
+                "QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]", 
+                "QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]", 
+                "QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]"
+            ];
+            const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const schedule = JSON.parse(scheduleJson);
+
+            firstDayOfWeek--;
+            let today = new Date().getDay() - 1;
+
+            for (let i = 0; i < 7; i++) {
+                const day = (firstDayOfWeek + i) % 7;
+                const timeRanges = schedule[dayShorts[day]];
+
+                let listItem = document.createElement('li');
+                listItem.id = 'scheduleDay' + day.toString();
+                let link = document.createElement('a');
+                link.innerText = dayTranslations[day];
+                listItem.append(link);
+                $('schedulerTabsList').append(listItem);
+
+                // Create the table and its contents
+                let dayTab = document.createElement('div');
+                dayTab.id = 'scheduleDayTab' + day.toString();
+                dayTab.className = 'scheduleDayTab';
+
+                let tabContent = document.createElement('div');
+                tabContent.className = 'formRow';
+                let table = document.createElement('table');
+
+                let headerRow = table.createTHead().insertRow();
+                headerRow.insertCell().textContent = 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]';
+                headerRow.insertCell().textContent = 'QBT_TR(To)QBT_TR[CONTEXT=OptionsDialog]';
+                headerRow.insertCell().textContent = 'QBT_TR(Download)QBT_TR[CONTEXT=OptionsDialog]';
+                headerRow.insertCell().textContent = 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]';
+
+                let tableBody = table.createTBody();
+                timeRanges.forEach(timeRange => {
+                    let start = new Date(0, 0, 0, Math.floor(timeRange.start / 100), timeRange.start % 100);
+                    let end = new Date(0, 0, 0, Math.floor(timeRange.end / 100), timeRange.end % 100);
+                    
+                    let row = tableBody.insertRow();
+                    row.insertCell().textContent = start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    row.insertCell().textContent = end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    row.insertCell().textContent = timeRange['dl'] + ' KiB/s';
+                    row.insertCell().textContent = timeRange['ul'] + ' KiB/s';
+                });
+
+                dayTab.append(tabContent);
+                tabContent.append(table);
+                $('schedulerTabsList').after(dayTab);
+
+                // Highlight today
+                if (day == today)
+                    listItem.className = 'selected';
+                else
+                    dayTab.addClass('invisible');
+
+                // Set up events
+                listItem.addEvent('click', (e) => {
+                    $$('.scheduleDayTab').addClass('invisible');
+                    dayTab.removeClass('invisible');
+                });
+            }
+
+            MochaUI.initializeTabs('schedulerTabsList');
         };
 
         // Bittorrent tab
@@ -1761,12 +1814,8 @@
                         $('limit_lan_peers_checkbox').setProperty('checked', pref.limit_lan_peers);
 
                         // Scheduling
+                        initializeSchedulerTables(pref.scheduler_json, pref.locale_first_day);
                         $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
-                        $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
-                        $('schedule_from_min').setProperty('value', time_padding(pref.schedule_from_min));
-                        $('schedule_to_hour').setProperty('value', time_padding(pref.schedule_to_hour));
-                        $('schedule_to_min').setProperty('value', time_padding(pref.schedule_to_min));
-                        $('schedule_freq_select').setProperty('value', pref.scheduler_days);
                         updateSchedulingEnabled();
 
                         // Bittorrent tab
@@ -2101,13 +2150,6 @@
             // Scheduler
             const scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
             settings.set('scheduler_enabled', scheduling_enabled);
-            if (scheduling_enabled) {
-                settings.set('schedule_from_hour', $('schedule_from_hour').getProperty('value').toInt());
-                settings.set('schedule_from_min', $('schedule_from_min').getProperty('value').toInt());
-                settings.set('schedule_to_hour', $('schedule_to_hour').getProperty('value').toInt());
-                settings.set('schedule_to_min', $('schedule_to_min').getProperty('value').toInt());
-                settings.set('scheduler_days', $('schedule_freq_select').getProperty('value').toInt());
-            }
 
             // Bittorrent tab
             // Privacy

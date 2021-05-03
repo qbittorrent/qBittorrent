@@ -193,11 +193,16 @@ bool BandwidthScheduler::loadSchedule()
 
 void BandwidthScheduler::saveSchedule()
 {
+    m_fileStorage->store(ScheduleFileName, getJson());
+}
+
+QByteArray BandwidthScheduler::getJson() const
+{
     QJsonObject jsonObj;
     for (int i = 0; i < 7; ++i)
         jsonObj.insert(DAYS[i], m_scheduleDays[i]->toJsonArray());
 
-    m_fileStorage->store(ScheduleFileName, QJsonDocument(jsonObj).toJson());
+    return QJsonDocument(jsonObj).toJson();
 }
 
 bool BandwidthScheduler::importLegacyScheduler()

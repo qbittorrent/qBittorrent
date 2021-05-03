@@ -56,6 +56,8 @@ public:
     void start();
     void stop();
 
+    QByteArray getJson() const;
+
 signals:
     void limitChangeRequested();
     void scheduleUpdated(int day);
