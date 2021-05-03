@@ -125,6 +125,7 @@ private:
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
+    void createCatgorySubMenus(QMenu *parentMenu, const QString parentName, const QVariantMap &leafs);
 
     TransferListModel *m_listModel;
     TransferListSortModel *m_sortFilterModel;

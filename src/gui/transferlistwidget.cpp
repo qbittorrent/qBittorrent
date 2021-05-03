@@ -123,6 +123,7 @@ namespace
         for (const BitTorrent::Torrent *torrent : torrents)
             session->deleteTorrent(torrent->id(), deleteOption);
     }
+
 }
 
 TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
@@ -813,6 +814,37 @@ void TransferListWidget::clearSelectionTags()
     applyToSelectedTorrents([](BitTorrent::Torrent *const torrent) { torrent->removeAllTags(); });
 }
 
+void TransferListWidget::createCatgorySubMenus(QMenu *parentMenu, const QString parentName, const QVariantMap &leafs)
+{
+    QList<QMenu*> subMenus;
+    for (QString category : leafs.keys())
+    {
+        QVariantMap subs = qvariant_cast<QVariantMap>(leafs[category]);
+        const QString categoryName = parentName + category;
+        const QString escapedCategory = category.replace('&', "&&");
+        if (subs.size() > 0)
+        {
+            auto childMenu = new QMenu(escapedCategory);
+            childMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Set This Category")
+                , this, [this, categoryName]() { this->setSelectionCategory(categoryName); });
+            childMenu->addSeparator();
+            subMenus.append(childMenu);
+            createCatgorySubMenus(childMenu, categoryName + '/', subs);
+        }
+        else
+        {
+            parentMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
+                , this, [this, categoryName]() { this->setSelectionCategory(categoryName); });
+        }
+    }
+
+    parentMenu->addSeparator();
+
+    for (QMenu* subMenu : subMenus) {
+        parentMenu->addMenu(subMenu);
+    }
+}
+
 void TransferListWidget::displayListMenu(const QPoint &)
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
@@ -1012,17 +1044,40 @@ void TransferListWidget::displayListMenu(const QPoint &)
         , this, [this]() { setSelectionCategory(""); });
     categoryMenu->addSeparator();
 
-    for (const QString &category : asConst(categories))
+    if (!BitTorrent::Session::instance()->isSubcategoriesAsSubMenusEnabled())
     {
-        const QString escapedCategory = QString(category).replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
-            , this, [this, category]() { setSelectionCategory(category); });
-
-        if (allSameCategory && (category == firstCategory))
+        for (const QString &category : asConst(categories))
         {
-            cat->setCheckable(true);
-            cat->setChecked(true);
+            const QString escapedCategory = QString(category).replace('&', "&&");  // avoid '&' becomes accelerator key
+            QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
+               , this, [this, category]() { setSelectionCategory(category); });
+
+            if (allSameCategory && (category == firstCategory))
+            {
+                cat->setCheckable(true);
+                cat->setChecked(true);
+            }
         }
+    }
+    else
+    {
+        QVariantMap root;
+        for (const QString &category : asConst(categories))
+        {
+            QStringList expanded = category.split('/');
+            QVariantMap *branch = &root;
+
+            for (int i = 0; i < expanded.length(); i++) {
+                auto c = expanded[i];
+
+                if (!branch->contains(c))
+                {
+                    (*branch)[c] = QVariantMap();
+                }
+                branch = (QVariantMap*)&((*branch)[c]);
+            }
+        }
+        createCatgorySubMenus(categoryMenu, "", root);
     }
 
     // Tag Menu
