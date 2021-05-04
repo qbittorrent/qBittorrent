@@ -228,7 +228,6 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macutilities.mm
     )
     target_link_libraries(qbt_gui PRIVATE
-        Qt5::MacExtras
         objc
     )
 endif()

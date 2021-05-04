@@ -78,9 +78,9 @@
 #include "base/scanfoldersmodel.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
@@ -350,11 +350,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 #endif
             break;
         case u'G':
-            {
-                QStringList tags = torrent->tags().values();
-                std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
-                program.replace(i, 2, tags.join(','));
-            }
+            program.replace(i, 2, torrent->tags().join(QLatin1String(",")));
             break;
         case u'I':
             program.replace(i, 2, torrent->id().toString());

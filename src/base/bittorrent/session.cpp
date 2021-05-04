@@ -88,6 +88,7 @@
 #include "bencoderesumedatastorage.h"
 #include "common.h"
 #include "customstorage.h"
+#include "dbresumedatastorage.h"
 #include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
@@ -436,6 +437,7 @@ Session::Session(QObject *parent)
                             return tmp;
                         }
                  )
+    , m_resumeDataStorageType(BITTORRENT_SESSION_KEY("ResumeDataStorageType"), ResumeDataStorageType::Legacy)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
@@ -452,8 +454,6 @@ Session::Session(QObject *parent)
 {
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
-
-    initResumeDataStorage();
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1000);
@@ -2946,6 +2946,16 @@ void Session::setBannedIPs(const QStringList &newList)
     configureDeferred();
 }
 
+ResumeDataStorageType Session::resumeDataStorageType() const
+{
+    return m_resumeDataStorageType;
+}
+
+void Session::setResumeDataStorageType(const ResumeDataStorageType type)
+{
+    m_resumeDataStorageType = type;
+}
+
 QStringList Session::bannedIPs() const
 {
     return m_bannedIPs;
@@ -3774,14 +3784,13 @@ void Session::updateSeedingLimitTimer()
     }
 }
 
-void Session::handleTorrentShareLimitChanged(TorrentImpl *const torrent)
+void Session::handleTorrentShareLimitChanged(TorrentImpl *const)
 {
     updateSeedingLimitTimer();
 }
 
-void Session::handleTorrentNameChanged(TorrentImpl *const torrent)
+void Session::handleTorrentNameChanged(TorrentImpl *const)
 {
-    Q_UNUSED(torrent);
 }
 
 void Session::handleTorrentSavePathChanged(TorrentImpl *const torrent)
@@ -4044,11 +4053,6 @@ bool Session::hasPerTorrentSeedingTimeLimit() const
     });
 }
 
-void Session::initResumeDataStorage()
-{
-    m_resumeDataStorage = new BencodeResumeDataStorage(this);
-}
-
 void Session::configureDeferred()
 {
     if (m_deferredConfigureScheduled)
@@ -4127,18 +4131,56 @@ const CacheStatus &Session::cacheStatus() const
     return m_cacheStatus;
 }
 
-// Will resume torrents in backup directory
 void Session::startUpTorrents()
 {
+    qDebug("Initializing torrents resume data storage...");
+
+    const QString dbPath = Utils::Fs::expandPathAbs(
+                specialFolderLocation(SpecialFolder::Data) + QLatin1String("torrents.db"));
+    const bool dbStorageExists = QFile::exists(dbPath);
+
+    ResumeDataStorage *startupStorage = nullptr;
+    if (resumeDataStorageType() == ResumeDataStorageType::SQLite)
+    {
+        m_resumeDataStorage = new DBResumeDataStorage(dbPath, this);
+
+        if (!dbStorageExists)
+        {
+            const QString dataPath = Utils::Fs::expandPathAbs(
+                        specialFolderLocation(SpecialFolder::Data) + QLatin1String("BT_backup"));
+            startupStorage = new BencodeResumeDataStorage(dataPath, this);
+        }
+    }
+    else
+    {
+        const QString dataPath = Utils::Fs::expandPathAbs(
+                    specialFolderLocation(SpecialFolder::Data) + QLatin1String("BT_backup"));
+        m_resumeDataStorage = new BencodeResumeDataStorage(dataPath, this);
+
+        if (dbStorageExists)
+            startupStorage = new DBResumeDataStorage(dbPath, this);
+    }
+
+    if (!startupStorage)
+        startupStorage = m_resumeDataStorage;
+
     qDebug("Starting up torrents...");
 
-    const QVector<TorrentID> torrents = m_resumeDataStorage->registeredTorrents();
+    const QVector<TorrentID> torrents = startupStorage->registeredTorrents();
     int resumedTorrentsCount = 0;
+    QVector<TorrentID> queue;
     for (const TorrentID &torrentID : torrents)
     {
-        const std::optional<LoadTorrentParams> resumeData = m_resumeDataStorage->load(torrentID);
+        const std::optional<LoadTorrentParams> resumeData = startupStorage->load(torrentID);
         if (resumeData)
         {
+            if (m_resumeDataStorage != startupStorage)
+            {
+                m_resumeDataStorage->store(torrentID, *resumeData);
+                if (isQueueingSystemEnabled() && !resumeData->hasSeedStatus)
+                    queue.append(torrentID);
+            }
+
             qDebug() << "Starting up torrent" << torrentID.toString() << "...";
             if (!loadTorrent(*resumeData))
                 LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
@@ -4154,6 +4196,16 @@ void Session::startUpTorrents()
             LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
                        .arg(torrentID.toString()), Log::CRITICAL);
         }
+    }
+
+    if (m_resumeDataStorage != startupStorage)
+    {
+        delete startupStorage;
+        if (resumeDataStorageType() == ResumeDataStorageType::Legacy)
+            Utils::Fs::forceRemove(dbPath);
+
+        if (isQueueingSystemEnabled())
+            m_resumeDataStorage->storeQueue(queue);
     }
 }
 
@@ -4668,11 +4720,11 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
 
-    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
 #if (LIBTORRENT_VERSION_NUM < 20000)
+    const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
     const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>((numBlocksCacheHits + numBlocksRead), 1);
 #endif

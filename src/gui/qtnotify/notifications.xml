@@ -22,7 +22,7 @@
       <arg name="body" type="s" direction="in"/>
       <arg name="actions" type="as" direction="in"/>
       <arg name="hints" type="a{sv}" direction="in"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In6" value="QVariantMap"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In6" value="QVariantMap"/>
       <arg name="timeout" type="i" direction="in"/>
       <arg name="return_id" type="u" direction="out"/>
     </method>

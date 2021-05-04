@@ -48,10 +48,6 @@
 #include <QtGlobal>
 #include <QTimer>
 
-#ifdef Q_OS_MACOS
-#include <QtMac>
-#include <QtMacExtras>
-#endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusConnection>
 #include "qtnotify/notifications.h"
@@ -120,6 +116,9 @@ namespace
 #define NOTIFICATIONS_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Notifications/") name)
     const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
     const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    const QString KEY_NOTIFICATION_TIMEOUT = NOTIFICATIONS_SETTINGS_KEY("Timeout");
+#endif
 
     // Misc
     const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
@@ -527,6 +526,18 @@ void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
 {
     settings()->storeValue(KEY_NOTIFICATIONS_TORRENTADDED, value);
 }
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+int MainWindow::getNotificationTimeout() const
+{
+    return settings()->loadValue(KEY_NOTIFICATION_TIMEOUT, -1);
+}
+
+void MainWindow::setNotificationTimeout(const int value)
+{
+    settings()->storeValue(KEY_NOTIFICATION_TIMEOUT, value);
+}
+#endif
 
 bool MainWindow::isDownloadTrackerFavicon() const
 {
@@ -1612,12 +1623,12 @@ void MainWindow::reloadSessionStats()
 #ifdef Q_OS_MACOS
     if (status.payloadDownloadRate > 0)
     {
-        QtMac::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
+        MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
             .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
     }
-    else if (!QtMac::badgeLabelText().isEmpty())
+    else if (!MacUtils::badgeLabelText().isEmpty())
     {
-        QtMac::setBadgeLabelText("");
+        MacUtils::setBadgeLabelText("");
     }
 #else
     if (m_systrayIcon)
@@ -1649,11 +1660,14 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
 
 void MainWindow::showNotificationBaloon(const QString &title, const QString &msg) const
 {
-    if (!isNotificationsEnabled()) return;
+    if (!isNotificationsEnabled())
+        return;
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    org::freedesktop::Notifications notifications("org.freedesktop.Notifications",
-                                                  "/org/freedesktop/Notifications",
-                                                  QDBusConnection::sessionBus());
+    OrgFreedesktopNotificationsInterface notifications(QLatin1String("org.freedesktop.Notifications")
+        , QLatin1String("/org/freedesktop/Notifications")
+        , QDBusConnection::sessionBus());
+
     // Testing for 'notifications.isValid()' isn't helpful here.
     // If the notification daemon is configured to run 'as needed'
     // the above check can be false if the daemon wasn't started
@@ -1663,10 +1677,10 @@ void MainWindow::showNotificationBaloon(const QString &title, const QString &msg
     // some inactivity shuts it down. Other DEs, like GNOME, choose
     // to start their daemons at the session startup and have it sit
     // idling for the whole session.
-    QVariantMap hints;
-    hints["desktop-entry"] = "qBittorrent";
-    QDBusPendingReply<uint> reply = notifications.Notify("qBittorrent", 0, "qbittorrent", title,
-                                                         msg, QStringList(), hints, -1);
+    const QVariantMap hints {{QLatin1String("desktop-entry"), QLatin1String("org.qbittorrent.qBittorrent")}};
+    QDBusPendingReply<uint> reply = notifications.Notify(QLatin1String("qBittorrent"), 0
+        , QLatin1String("qbittorrent"), title, msg, {}, hints, getNotificationTimeout());
+
     reply.waitForFinished();
     if (!reply.isError())
         return;

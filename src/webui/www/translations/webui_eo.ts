@@ -213,10 +213,6 @@
         <translation>Kuketo:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>More information</source>
         <translation>Pli informoj</translation>
     </message>
@@ -243,7 +239,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Alia...</translation>
+        <translation type="vanished">Alia...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1762,6 +1758,14 @@
     </message>
     <message>
         <source>Default save location</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
         <translation type="unfinished" />
     </message>
 </context>

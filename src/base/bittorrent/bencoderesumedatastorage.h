@@ -46,7 +46,7 @@ namespace BitTorrent
         Q_DISABLE_COPY(BencodeResumeDataStorage)
 
     public:
-        explicit BencodeResumeDataStorage(QObject *parent = nullptr);
+        explicit BencodeResumeDataStorage(const QString &path, QObject *parent = nullptr);
         ~BencodeResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;

@@ -110,7 +110,7 @@ SpeedPlotView::Averager::Averager(const milliseconds duration, const millisecond
 bool SpeedPlotView::Averager::push(const SampleData &sampleData)
 {
     // Accumulator overflow will be hit in worst case on longest used averaging span,
-    // defined by divider value. Maximum divider is DIVIDER_24HOUR = 144
+    // defined by resolution. Maximum resolution is 144 seconds
     // Using int32 for accumulator we get overflow when transfer speed reaches 2^31/144 ~~ 14.2 MBytes/s.
     // With quint64 this speed limit is 2^64/144 ~~ 114 PBytes/s.
     // This speed is inaccessible to an ordinary user.

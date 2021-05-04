@@ -45,6 +45,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/profile.h"
+#include "base/tagset.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
@@ -72,8 +73,6 @@ namespace BitTorrent
 
 namespace
 {
-    const char RESUME_FOLDER[] = "BT_backup";
-
     template <typename LTStr>
     QString fromLTString(const LTStr &str)
     {
@@ -82,7 +81,7 @@ namespace
 
     using ListType = lt::entry::list_type;
 
-    ListType setToEntryList(const QSet<QString> &input)
+    ListType setToEntryList(const TagSet &input)
     {
         ListType entryList;
         entryList.reserve(input.size());
@@ -103,9 +102,9 @@ namespace
     }
 }
 
-BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(QObject *parent)
+BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &path, QObject *parent)
     : ResumeDataStorage {parent}
-    , m_resumeDataDir {Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER)}
+    , m_resumeDataDir {path}
     , m_ioThread {new QThread {this}}
     , m_asyncWorker {new Worker {m_resumeDataDir}}
 {

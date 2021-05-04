@@ -30,6 +30,8 @@
 
 #include <QSortFilterProxyModel>
 
+#include "base/utils/compare.h"
+
 class PeerListSortModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -45,4 +47,6 @@ public:
 
 private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
+
+    Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };

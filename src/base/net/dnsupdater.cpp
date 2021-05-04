@@ -300,7 +300,7 @@ QUrl DNSUpdater::getRegistrationUrl(const int service)
     switch (service)
     {
     case DNS::DYNDNS:
-        return {"https://www.dyndns.com/account/services/hosts/add.html"};
+        return {"https://account.dyn.com/entrance/"};
     case DNS::NOIP:
         return {"https://www.noip.com/remote-access"};
     default:

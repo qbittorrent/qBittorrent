@@ -52,6 +52,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
@@ -857,8 +858,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
     bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
-    QSet<QString> tagsInAny;
-    QSet<QString> tagsInAll;
+    TagSet tagsInAny;
+    TagSet tagsInAll;
 
     for (const QModelIndex &index : selectedIndexes)
     {
@@ -872,16 +873,17 @@ void TransferListWidget::displayListMenu(const QPoint &)
         if (firstCategory != torrent->category())
             allSameCategory = false;
 
-        tagsInAny.unite(torrent->tags());
+        const TagSet torrentTags = torrent->tags();
+        tagsInAny.unite(torrentTags);
 
         if (first)
         {
             firstAutoTMM = torrent->isAutoTMMEnabled();
-            tagsInAll = torrent->tags();
+            tagsInAll = torrentTags;
         }
         else
         {
-            tagsInAll.intersect(torrent->tags());
+            tagsInAll.intersect(torrentTags);
         }
 
         if (firstAutoTMM != torrent->isAutoTMMEnabled())
@@ -963,7 +965,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Category"));
 
@@ -988,7 +990,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     // Tag Menu
     QStringList tags(BitTorrent::Session::instance()->tags().values());
-    std::sort(tags.begin(), tags.end(), Utils::String::naturalLessThan<Qt::CaseInsensitive>);
+    std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Tags"));
 
@@ -1010,8 +1012,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         action->setCloseOnTriggered(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
-                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked
-                                            : Qt::Unchecked;
+                                            : tagsInAny.contains(tag) ? Qt::PartiallyChecked : Qt::Unchecked;
         action->setCheckState(initialState);
 
         connect(action, &QAction::triggered, this, [this, tag](const bool checked)

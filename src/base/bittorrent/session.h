@@ -143,6 +143,13 @@ namespace BitTorrent
         };
         Q_ENUM_NS(SeedChokingAlgorithm)
 
+        enum class ResumeDataStorageType
+        {
+            Legacy,
+            SQLite
+        };
+        Q_ENUM_NS(ResumeDataStorageType)
+
 #if defined(Q_OS_WIN)
         enum class OSMemoryPriority : int
         {
@@ -430,6 +437,8 @@ namespace BitTorrent
         void setTrackerFilteringEnabled(bool enabled);
         QStringList bannedIPs() const;
         void setBannedIPs(const QStringList &newList);
+        ResumeDataStorageType resumeDataStorageType() const;
+        void setResumeDataStorageType(ResumeDataStorageType type);
 #if defined(Q_OS_WIN)
         OSMemoryPriority getOSMemoryPriority() const;
         void setOSMemoryPriority(OSMemoryPriority priority);
@@ -573,8 +582,6 @@ namespace BitTorrent
 
         bool hasPerTorrentRatioLimit() const;
         bool hasPerTorrentSeedingTimeLimit() const;
-
-        void initResumeDataStorage();
 
         // Session configuration
         Q_INVOKABLE void configure();
@@ -743,6 +750,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<bool> m_reannounceWhenAddressChanged;
+        CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif

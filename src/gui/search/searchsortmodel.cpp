@@ -29,7 +29,6 @@
 #include "searchsortmodel.h"
 
 #include "base/global.h"
-#include "base/utils/string.h"
 
 SearchSortModel::SearchSortModel(QObject *parent)
     : base(parent)
@@ -118,11 +117,10 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
     {
     case NAME:
     case ENGINE_URL:
-    {
+        {
             const QString strL = left.data().toString();
             const QString strR = right.data().toString();
-            const int result = Utils::String::naturalCompare(strL, strR, Qt::CaseInsensitive);
-            return (result < 0);
+            return m_naturalLessThan(strL, strR);
         }
         break;
     default:

@@ -49,21 +49,25 @@ namespace BitTorrent
             int protocolVersion = 1;
 
             Status status = NotContacted;
+            int numPeers = -1;
             int numSeeds = -1;
             int numLeeches = -1;
             int numDownloaded = -1;
+            QString message {};
         };
 
-        QString url;
+        QString url {};
         int tier = 0;
 
         QVector<EndpointStats> endpoints {};
 
         // Deprecated fields
         Status status = NotContacted;
+        int numPeers = -1;
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
+        QString message {};
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);

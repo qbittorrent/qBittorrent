@@ -29,12 +29,12 @@
 #include "serialize_torrent.h"
 
 #include <QDateTime>
-#include <QSet>
 #include <QVector>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/tagset.h"
 #include "base/utils/fs.h"
 
 namespace
@@ -95,13 +95,6 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         return (ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
     };
 
-    const auto adjustLastActivity = [&torrent](const qlonglong value) -> qlonglong
-    {
-        return (torrent.isPaused() || torrent.isChecking())
-            ? 0
-            : (QDateTime::currentDateTime().toSecsSinceEpoch() - value);
-    };
-
     return {
         // TODO: Add fields for real SHA1 and SHA256 hashes
         {KEY_TORRENT_ID, QString(torrent.id().toString())},
@@ -123,7 +116,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_FIRST_LAST_PIECE_PRIO, torrent.hasFirstLastPiecePriority()},
 
         {KEY_TORRENT_CATEGORY, torrent.category()},
-        {KEY_TORRENT_TAGS, torrent.tags().values().join(", ")},
+        {KEY_TORRENT_TAGS, torrent.tags().join(QLatin1String(", "))},
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},
@@ -149,7 +142,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_AUTO_TORRENT_MANAGEMENT, torrent.isAutoTMMEnabled()},
         {KEY_TORRENT_TIME_ACTIVE, torrent.activeTime()},
         {KEY_TORRENT_SEEDING_TIME, torrent.seedingTime()},
-        {KEY_TORRENT_LAST_ACTIVITY_TIME, adjustLastActivity(torrent.timeSinceActivity())},
+        {KEY_TORRENT_LAST_ACTIVITY_TIME, (QDateTime::currentDateTime().toSecsSinceEpoch() - torrent.timeSinceActivity())},
         {KEY_TORRENT_AVAILABILITY, torrent.distributedCopies()},
 
         {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()}
