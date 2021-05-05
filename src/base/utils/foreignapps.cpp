@@ -76,7 +76,7 @@ namespace
             {
                 info = {exeName, versionStr.left(idx)};
             }
-            catch (const std::runtime_error &)
+            catch (const RuntimeError &)
             {
                 return false;
             }
