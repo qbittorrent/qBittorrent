@@ -642,7 +642,7 @@ int Application::exec(const QStringList &params)
     catch (const RuntimeError &err)
     {
 #ifdef DISABLE_GUI
-        fprintf(stderr, "%s", err.what());
+        fprintf(stderr, "%s", qPrintable(err.message()));
 #else
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Critical);
