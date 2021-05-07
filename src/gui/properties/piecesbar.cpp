@@ -112,8 +112,6 @@ namespace
 
 PiecesBar::PiecesBar(QWidget *parent)
     : QWidget {parent}
-    , m_torrent {nullptr}
-    , m_hovered {false}
 {
     updatePieceColors();
     setMouseTracking(true);
