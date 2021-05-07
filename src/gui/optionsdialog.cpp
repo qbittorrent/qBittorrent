@@ -131,8 +131,10 @@ namespace
         case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
         case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
         case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
+        case QLocale::Mongolian: return QString::fromUtf8(C_LOCALE_MONGOLIAN);
         case QLocale::NorwegianBokmal: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
         case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
+        case QLocale::Persian: return QString::fromUtf8(C_LOCALE_PERSIAN);
         case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
         case QLocale::Portuguese:
             if (locale.country() == QLocale::Brazil)
@@ -145,6 +147,7 @@ namespace
         case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
         case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
         case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
+        case QLocale::Thai: return QString::fromUtf8(C_LOCALE_THAI);
         case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
         case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
         case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
