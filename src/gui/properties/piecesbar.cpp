@@ -154,7 +154,7 @@ void PiecesBar::enterEvent(QEvent *e)
 void PiecesBar::leaveEvent(QEvent *e)
 {
     m_hovered = false;
-    m_highlitedRegion = QRect();
+    m_highlightedRegion = {};
     requestImageUpdate();
     base::leaveEvent(e);
 }
@@ -183,11 +183,11 @@ void PiecesBar::paintEvent(QPaintEvent *)
         painter.drawImage(imageRect, m_image);
     }
 
-    if (!m_highlitedRegion.isNull())
+    if (!m_highlightedRegion.isNull())
     {
         QColor highlightColor {this->palette().color(QPalette::Active, QPalette::Highlight)};
         highlightColor.setAlphaF(0.35);
-        QRect targetHighlightRect {m_highlitedRegion.adjusted(borderWidth, borderWidth, borderWidth, height() - 2 * borderWidth)};
+        QRect targetHighlightRect {m_highlightedRegion.adjusted(borderWidth, borderWidth, borderWidth, height() - 2 * borderWidth)};
         painter.fillRect(targetHighlightRect, highlightColor);
     }
 
@@ -316,15 +316,15 @@ void PiecesBar::highlightFile(int imagePos)
 
         ImageRange imageRange = transform.imagePos(filePieces);
         QRect newHighlitedRegion {imageRange.first(), 0, imageRange.size(), m_image.height()};
-        if (newHighlitedRegion != m_highlitedRegion)
+        if (newHighlitedRegion != m_highlightedRegion)
         {
-            m_highlitedRegion = newHighlitedRegion;
+            m_highlightedRegion = newHighlitedRegion;
             update();
         }
     }
-    else if (!m_highlitedRegion.isEmpty())
+    else if (!m_highlightedRegion.isEmpty())
     {
-        m_highlitedRegion = QRect();
+        m_highlightedRegion = {};
         update();
     }
 }

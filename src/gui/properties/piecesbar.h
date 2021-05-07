@@ -96,5 +96,5 @@ private:
     // buffered 256 levels gradient from bg_color to piece_color
     QVector<QRgb> m_pieceColors;
     bool m_hovered = false;
-    QRect m_highlitedRegion; //!< part of the bar can be highlighted; this rectangle is in the same frame as m_image
+    QRect m_highlightedRegion; // part of the bar can be highlighted; this rectangle is in the same frame as m_image
 };
