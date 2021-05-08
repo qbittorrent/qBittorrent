@@ -875,11 +875,11 @@ void MainWindow::finishedTorrent(BitTorrent::Torrent *const torrent) const
 }
 
 // Notification when disk is full
-void MainWindow::fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const
+void MainWindow::fullDiskError(const QString &msg) const
 {
     showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
-        , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
-            , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
+        , tr("An I/O error occurred for torrent '%1'.
+            , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(msg));
 }
 
 void MainWindow::createKeyboardShortcuts()
