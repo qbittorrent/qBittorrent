@@ -19,7 +19,7 @@ LangString inst_pathlimit ${LANG_SWEDISH} "Inaktivera gränsen för Windows-sök
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_SWEDISH} "Lägger till Windows-brandväggregel"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
-LangString inst_warning ${LANG_SWEDISH} "qBittorrent körs. Stäng programmet innan du installerar. "
+LangString inst_warning ${LANG_SWEDISH} "qBittorrent körs. Vänligen stäng programmet innan du installerar. "
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_SWEDISH} "Nuvarande version avinstalleras. Användarinställningar och torrenter kommer att förbli intakta."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
