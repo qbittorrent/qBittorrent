@@ -115,7 +115,7 @@ private slots:
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const;
+    void fullDiskError(const QString &msg) const;
     void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
