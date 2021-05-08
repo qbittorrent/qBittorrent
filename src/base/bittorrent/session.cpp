@@ -4550,7 +4550,7 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: %3")
                 .arg(torrent->name(), p->filename(), msg)
             , Log::WARNING);
-        emit fullDiskError(torrent, msg);
+        emit fullDiskError(msg);
     }
 
     m_recentErroredTorrentsTimer->start();
