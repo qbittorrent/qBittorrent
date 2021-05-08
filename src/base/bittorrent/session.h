@@ -509,7 +509,7 @@ namespace BitTorrent
         void categoryRemoved(const QString &categoryName);
         void downloadFromUrlFailed(const QString &url, const QString &reason);
         void downloadFromUrlFinished(const QString &url);
-        void fullDiskError(Torrent *torrent, const QString &msg);
+        void fullDiskError(const QString &msg);
         void IPFilterParsed(bool error, int ruleCount);
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
