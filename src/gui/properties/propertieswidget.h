@@ -38,6 +38,7 @@ class DownloadedPiecesBar;
 class LineEdit;
 class PeerListWidget;
 class PieceAvailabilityBar;
+class PiecesMapWidget;
 class PropListDelegate;
 class PropTabBar;
 class TorrentContentFilterModel;
@@ -115,6 +116,7 @@ private:
     TorrentContentFilterModel *m_propListModel;
     PropListDelegate *m_propListDelegate;
     PeerListWidget *m_peerList;
+    PiecesMapWidget *m_piecesMap;
     TrackerListWidget *m_trackerList;
     QWidget *m_speedWidget = nullptr;
     QList<int> m_slideSizes;

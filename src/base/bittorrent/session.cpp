@@ -1058,7 +1058,8 @@ void Session::initializeNativeSession()
         | lt::alert::port_mapping_notification
         | lt::alert::status_notification
         | lt::alert::storage_notification
-        | lt::alert::tracker_notification;
+        | lt::alert::tracker_notification
+        | lt::alert::piece_progress_notification;
     const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
 
     lt::settings_pack pack;
@@ -4355,6 +4356,9 @@ void Session::handleAlert(const lt::alert *a)
         case lt::socks5_alert::alert_type:
             handleSocks5Alert(static_cast<const lt::socks5_alert *>(a));
             break;
+        case lt::piece_finished_alert::alert_type:
+            handlePieceFinishedAlert(static_cast<const lt::piece_finished_alert *>(a));
+            break;
         }
     }
     catch (const std::exception &exc)
@@ -4815,4 +4819,15 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
         LogMsg(tr("SOCKS5 proxy error. Message: %1").arg(QString::fromStdString(p->message()))
             , Log::WARNING);
     }
+}
+
+void Session::handlePieceFinishedAlert(const lt::piece_finished_alert *p)
+{
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    const auto id = TorrentID::fromInfoHash(p->handle.info_hashes());
+#else
+    const auto id = TorrentID::fromInfoHash(p->handle.info_hash());
+#endif
+    TorrentImpl *const torrent = m_torrents.value(id);
+    emit pieceFinished(torrent);
 }

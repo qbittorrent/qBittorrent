@@ -187,6 +187,7 @@ namespace BitTorrent
 
         virtual int piecesCount() const = 0;
         virtual int piecesHave() const = 0;
+        virtual bool hasPieceFinished(int index) const = 0;
         virtual qreal progress() const = 0;
         virtual QDateTime addedTime() const = 0;
         virtual qreal ratioLimit() const = 0;

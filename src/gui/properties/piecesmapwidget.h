@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021  Alexis Bekhdadi
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,39 +28,64 @@
 
 #pragma once
 
-#include <QHBoxLayout>
+#include <QColor>
+#include <QHash>
+#include <QImage>
+#include <QScrollArea>
+#include <QSet>
+#include <QSize>
+#include <QWidget>
 
-class QButtonGroup;
+class PropertiesWidget;
 
-class PropTabBar : public QHBoxLayout
+namespace BitTorrent
 {
-  Q_OBJECT
-  Q_DISABLE_COPY(PropTabBar)
+    class Torrent;
+}
+
+class PiecesMapWidget final : public QWidget
+{
+    Q_OBJECT
+    Q_DISABLE_COPY(PiecesMapWidget)
 
 public:
-    enum PropertyTab
-    {
-        MainTab,
-        TrackersTab,
-        PeersTab,
-        URLSeedsTab,
-        FilesTab,
-        PiecesTab,
-        SpeedTab
-    };
+    explicit PiecesMapWidget(QScrollArea *parent);
+    ~PiecesMapWidget() override;
 
-    explicit PropTabBar(QWidget *parent = nullptr);
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
+    int heightForWidth(int width) const override;
 
-    int currentIndex() const;
-
-signals:
-    void tabChanged(int index);
-    void visibilityToggled(bool visible);
+    void loadTorrent(const BitTorrent::Torrent *torrent);
+    void clear();
 
 public slots:
-    void setCurrentIndex(int index);
+    void handlePieceFinished(BitTorrent::Torrent *torrent);
 
 private:
-    QButtonGroup *m_btnGroup;
-    int m_currentIndex;
+    void paintEvent(QPaintEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+
+    enum PieceStatus
+    {
+        Needed,
+        Finished
+    };
+
+    struct PieceItem
+    {
+        PieceStatus status;
+        QRect rect;
+    };
+
+    QScrollArea *m_scrollArea = nullptr;
+    const BitTorrent::Torrent *m_torrent = nullptr;
+    int m_piecesCount;
+    QHash<int, PieceItem> m_pieces;
+    int m_piecePixelSize;
+    int m_spacePixelSize;
+    int m_height;
+    QImage m_pieceNeededImage;
+    QImage m_pieceFinishedImage;
+    QImage m_map;
 };

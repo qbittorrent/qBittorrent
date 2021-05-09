@@ -33,6 +33,7 @@ HEADERS += \
     $$PWD/properties/peerlistwidget.h \
     $$PWD/properties/peersadditiondialog.h \
     $$PWD/properties/pieceavailabilitybar.h \
+    $$PWD/properties/piecesmapwidget.h \
     $$PWD/properties/piecesbar.h \
     $$PWD/properties/propertieswidget.h \
     $$PWD/properties/proplistdelegate.h \
@@ -113,6 +114,7 @@ SOURCES += \
     $$PWD/properties/peerlistwidget.cpp \
     $$PWD/properties/peersadditiondialog.cpp \
     $$PWD/properties/pieceavailabilitybar.cpp \
+    $$PWD/properties/piecesmapwidget.cpp \
     $$PWD/properties/piecesbar.cpp \
     $$PWD/properties/propertieswidget.cpp \
     $$PWD/properties/proplistdelegate.cpp \

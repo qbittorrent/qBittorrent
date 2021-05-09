@@ -124,6 +124,7 @@ namespace BitTorrent
         int filesCount() const override;
         int piecesCount() const override;
         int piecesHave() const override;
+        bool hasPieceFinished(int index) const override;
         qreal progress() const override;
         QDateTime addedTime() const override;
         qreal ratioLimit() const override;
