@@ -1412,7 +1412,7 @@
             const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
         };
 
-        const initializeSchedulerTables = (scheduleJson, locale, firstDayOfWeek) => {
+        const initializeSchedulerTables = (scheduleJson, locale, firstDayOfWeek, today) => {
             const dayTranslations = [
                 'QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]',
                 'QBT_TR(Tuesday)QBT_TR[CONTEXT=HttpServer]',
@@ -1425,9 +1425,7 @@
             const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
             const schedule = JSON.parse(scheduleJson);
 
-            firstDayOfWeek--;
             locale = locale.replace('_', '-');
-            let today = new Date().getDay();
 
             for (let i = 0; i < 7; i++) {
                 const day = (firstDayOfWeek + i) % 7;
@@ -1816,7 +1814,7 @@
                         $('limit_lan_peers_checkbox').setProperty('checked', pref.limit_lan_peers);
 
                         // Scheduling
-                        initializeSchedulerTables(pref.scheduler_json, pref.locale, pref.locale_first_day);
+                        initializeSchedulerTables(pref.scheduler_json, pref.locale, pref.locale_first_day, pref.current_day_of_week);
                         $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
                         updateSchedulingEnabled();
 

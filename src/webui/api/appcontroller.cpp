@@ -33,6 +33,7 @@
 #include <algorithm>
 
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -185,6 +186,9 @@ void AppController::preferencesAction()
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
     data["scheduler_json"] = QString(BandwidthScheduler::instance()->getJson());
+    const QLocale locale{pref->getLocale()};
+    data["locale_first_day"] = locale.firstDayOfWeek() - 1;
+    data["current_day_of_week"] = QDate::currentDate().dayOfWeek() - 1;
 
     // Bittorrent
     // Privacy
@@ -214,9 +218,7 @@ void AppController::preferencesAction()
 
     // Web UI
     // Language
-    const QLocale locale{pref->getLocale()};
     data["locale"] = locale.name();
-    data["locale_first_day"] = locale.firstDayOfWeek();
     // HTTP Server
     data["web_ui_domain_list"] = pref->getServerDomains();
     data["web_ui_address"] = pref->getWebUiAddress();
