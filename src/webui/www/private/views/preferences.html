@@ -1428,7 +1428,6 @@
             firstDayOfWeek--;
             locale = locale.replace('_', '-');
             let today = new Date().getDay();
-            console.log({locale, firstDayOfWeek, today});
 
             for (let i = 0; i < 7; i++) {
                 const day = (firstDayOfWeek + i) % 7;
