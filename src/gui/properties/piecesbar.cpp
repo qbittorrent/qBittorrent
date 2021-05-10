@@ -315,7 +315,7 @@ void PiecesBar::highlightFile(int imagePos)
         BitTorrent::TorrentInfo::PieceRange filePieces = m_torrent->info().filePieces(fileIndices.first());
 
         ImageRange imageRange = transform.imagePos(filePieces);
-        QRect newHighligtedRegion {imageRange.first(), 0, imageRange.size(), m_image.height()};
+        QRect newHighlightedRegion {imageRange.first(), 0, imageRange.size(), m_image.height()};
         if (newHighlightedRegion != m_highlightedRegion)
         {
             m_highlightedRegion = newHighlightedRegion;
