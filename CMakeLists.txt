@@ -49,6 +49,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     endif()
 elseif (MSVC)
     feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
+    feature_option(COPY_RUNTIME_DEPS_TO_BUILDIR "Copy dynamic build runtime dependencies to the build directory (e.g. DLLs), so that fully dynamic builds can be executed from there directly without requiring PATH setup or installing first." OFF)
 endif()
 
 include(GNUInstallDirs)

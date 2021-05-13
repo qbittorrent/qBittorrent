@@ -98,6 +98,40 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
         target_sources(qbt_app PRIVATE "${qBittorrent_SOURCE_DIR}/src/qbittorrent.rc")
     endif()
     target_sources(qbt_app PRIVATE "${qBittorrent_SOURCE_DIR}/src/qbittorrent.exe.manifest")
+
+    # Find and copy dependent DLLs to the build folder after the build,
+    # so that the executable can be run from there with no additional setup.
+    # When using vcpkg, everything is automatically copied except for some stuff handled by windeployqt;
+    # this is no problem because the `copy_if_different` command is idempotent in this case
+    if (COPY_RUNTIME_DEPS_TO_BUILDIR)
+        # Variables this macro defines: OPENSSL_LIBCRYPTO_DLL, OPENSSL_LIBSSL_DLL,
+        # and one or both of ZLIB_DLL_DBG, ZLIB_DLL_REL
+        include(MacroQbtFindDependentDLLs)
+        qbt_find_dependent_dlls()
+
+        # TODO: remove this target definition after migrating to Qt6, since it provides a Qt6::windeployqt target natively
+        if (NOT TARGET Qt5::windeployqt)
+            get_target_property(_qt5_qmake_location Qt5::qmake IMPORTED_LOCATION)
+            cmake_path(GET _qt5_qmake_location PARENT_PATH _qt5_bin_dir)
+            cmake_path(APPEND _qt5_bin_dir "windeployqt.exe" OUTPUT_VARIABLE qt5_windeployqt_imported_location)
+            add_executable(Qt5::windeployqt IMPORTED)
+            set_target_properties(Qt5::windeployqt PROPERTIES
+                IMPORTED_LOCATION "${qt5_windeployqt_imported_location}"
+            )
+        endif()
+
+        list(APPEND WINDEPLOYQT_OPTIONS_LIST "--verbose" "0")
+        list(APPEND WINDEPLOYQT_OPTIONS_LIST "--no-angle") # TODO: remove when migrating to Qt6.
+        add_custom_command(TARGET qbt_app POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+            "$<IF:$<CONFIG:Debug>,${ZLIB_DLL_DBG},${ZLIB_DLL_REL}>"
+            "${OPENSSL_LIBCRYPTO_DLL}"
+            "${OPENSSL_LIBSSL_DLL}"
+            "$<TARGET_FILE:LibtorrentRasterbar::torrent-rasterbar>"
+            "$<TARGET_FILE_DIR:qbt_app>"
+            COMMAND Qt5::windeployqt ${WINDEPLOYQT_OPTIONS_LIST} "$<TARGET_FILE:qbt_app>"
+        )
+    endif()
 endif()
 
 # Additional feature dependent configuration
@@ -158,15 +192,30 @@ endif()
 # Installation
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
+# On Windows, everything goes in the base install location
+
 install(TARGETS qbt_app
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    BUNDLE  DESTINATION .
+    RUNTIME DESTINATION "$<IF:$<BOOL:${WIN32}>,.,${CMAKE_INSTALL_BINDIR}>"
+    BUNDLE  DESTINATION "."
     COMPONENT runtime
 )
 
+# TODO: works for MSVC, what about MinGW?
 if (MSVC)
     install(FILES $<TARGET_PDB_FILE:qbt_app>
-        DESTINATION ${CMAKE_INSTALL_BINDIR}
+        DESTINATION "."
+        COMPONENT runtime
         OPTIONAL
     )
+    if (COPY_RUNTIME_DEPS_TO_BUILDIR)
+        install(
+            DIRECTORY "${CMAKE_BINARY_DIR}/" # trailing slash is required here to copy only the contents
+            DESTINATION "."
+            COMPONENT runtime
+            FILES_MATCHING REGEX ".*.dll|.*.qm"
+            # the exclusion below is required to prevent creation of empty directories at the destination
+            # see https://gitlab.kitware.com/cmake/cmake/-/issues/19189
+            REGEX "CMakeFiles.*|dist.*|src.*" EXCLUDE
+        )
+    endif()
 endif()
