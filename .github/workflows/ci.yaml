@@ -148,16 +148,19 @@ jobs:
           --graphviz=build\target_graph.dot
         cmake --build build
 
+    - name: install qBittorrent
+      run: |
+        cmake --install build --prefix qBittorrent-CI_Windows-x64
+
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
         name: qBittorrent-CI_Windows-x64
         path: |
           build/compile_commands.json
+          build/install_manifest.txt
           build/target_graph.dot
-          build/qbittorrent.exe
-          build/qbittorrent.pdb
-          dist/windows/qt.conf
+          qBittorrent-CI_Windows-x64
 
   ci_macos:
     name: macOS + vcpkg
