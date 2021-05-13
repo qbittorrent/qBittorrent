@@ -1,5 +1,5 @@
 if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
-    find_package(LibtorrentRasterbar QUIET ${minLibtorrentVersion} COMPONENTS torrent-rasterbar)
+    find_package(LibtorrentRasterbar QUIET "${minLibtorrentVersion}" COMPONENTS torrent-rasterbar)
     if (NOT LibtorrentRasterbar_FOUND)
         include(FindPkgConfig)
         pkg_check_modules(LIBTORRENT_RASTERBAR IMPORTED_TARGET GLOBAL "libtorrent-rasterbar>=${minLibtorrentVersion}")
@@ -28,16 +28,16 @@ if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
         set_package_properties(LibtorrentRasterbar PROPERTIES TYPE REQUIRED)
     endif()
 else()
-    find_package(LibtorrentRasterbar ${minLibtorrentVersion} REQUIRED COMPONENTS torrent-rasterbar)
+    find_package(LibtorrentRasterbar "${minLibtorrentVersion}" REQUIRED COMPONENTS torrent-rasterbar)
 endif()
 # force variable type so that it always shows up in ccmake/cmake-gui frontends
 set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
-find_package(Boost ${minBoostVersion} REQUIRED)
-find_package(OpenSSL ${minOpenSSLVersion} REQUIRED)
-find_package(ZLIB ${minZlibVersion} REQUIRED)
-find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
+find_package(Boost "${minBoostVersion}" REQUIRED)
+find_package(OpenSSL "${minOpenSSLVersion}" REQUIRED)
+find_package(ZLIB "${minZlibVersion}" REQUIRED)
+find_package(Qt5 "${minQtVersion}" REQUIRED COMPONENTS Core LinguistTools Network Sql Xml)
 if (DBUS)
-    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS DBus)
+    find_package(Qt5 "${minQtVersion}" REQUIRED COMPONENTS DBus)
     set_package_properties(Qt5DBus PROPERTIES
         DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
         PURPOSE "Required by the DBUS feature"
@@ -55,14 +55,14 @@ include(MacroQbtCommonConfig)
 qbt_common_config()
 
 # include directories - ideally, would be done per target instead of global directory scope
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
 
 add_subdirectory(base)
 
 if (GUI)
-    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Widgets Svg)
+    find_package(Qt5 "${minQtVersion}" REQUIRED COMPONENTS Widgets Svg)
     if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-        find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS WinExtras)
+        find_package(Qt5 "${minQtVersion}" REQUIRED COMPONENTS WinExtras)
     endif()
     add_subdirectory(gui)
 endif()
