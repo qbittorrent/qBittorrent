@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "grunt": ">=1.3.0",
     "grunt-svg2png": "git+https://git@github.com/bertyhell/grunt-svg2png.git"
   },
   "author": "Bert Verhelst",
