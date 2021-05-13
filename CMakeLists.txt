@@ -18,7 +18,7 @@ set(minLibtorrentVersion 1.2.13)
 set(minZlibVersion 1.2.11)
 
 # features (some are platform-specific)
-include(CheckCXXSourceCompiles) # TODO: migrate to CheckSourceCompiles in CMake >= 3.19
+include(CheckSourceCompiles)
 include(FeatureSummary)
 include(FeatureOptionsSetup)
 feature_option(STACKTRACE "Enable stacktraces" ON)
@@ -35,7 +35,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         OFF "NOT GUI" OFF
     )
     if (STACKTRACE)
-        check_cxx_source_compiles(
+        check_source_compiles(
+            CXX
             "#include <execinfo.h>
             int main(){return 0;}"
             QBITTORRENT_HAS_EXECINFO_H
