@@ -39,12 +39,13 @@ add_library(qbt_base STATIC
     exceptions.h
     filesystemwatcher.h
     global.h
+    http/basicrequesthandler.h
     http/connection.h
     http/httperror.h
+    http/httputils.h
     http/irequesthandler.h
     http/requestparser.h
     http/responsebuilder.h
-    http/responsegenerator.h
     http/server.h
     http/types.h
     iconprovider.h
@@ -123,11 +124,12 @@ add_library(qbt_base STATIC
     bittorrent/trackerentry.cpp
     exceptions.cpp
     filesystemwatcher.cpp
+    http/basicrequesthandler.cpp
     http/connection.cpp
     http/httperror.cpp
+    http/httputils.cpp
     http/requestparser.cpp
     http/responsebuilder.cpp
-    http/responsegenerator.cpp
     http/server.cpp
     iconprovider.cpp
     logger.cpp

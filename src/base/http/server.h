@@ -37,8 +37,8 @@
 
 namespace Http
 {
-    class IRequestHandler;
     class Connection;
+    class IRequestHandler;
 
     class Server final : public QTcpServer
     {

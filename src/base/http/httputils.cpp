@@ -27,42 +27,60 @@
  * exception statement from your version.
  */
 
-#include "responsegenerator.h"
+#include "httputils.h"
 
 #include <QDateTime>
 
 #include "base/http/types.h"
 #include "base/utils/gzip.h"
 
-QByteArray Http::toByteArray(Response response)
+bool Http::acceptsGzipEncoding(QString codings)
 {
-    compressContent(response);
+    // [rfc7231] 5.3.4. Accept-Encoding
 
-    response.headers[HEADER_CONTENT_LENGTH] = QString::number(response.content.length());
-    response.headers[HEADER_DATE] = httpDate();
+    const auto isCodingAvailable = [](const QVector<QStringRef> &list, const QString &encoding) -> bool
+    {
+        for (const QStringRef &str : list)
+        {
+            if (!str.startsWith(encoding))
+                continue;
 
-    QByteArray buf;
-    buf.reserve(10 * 1024);
+            // without quality values
+            if (str == encoding)
+                return true;
 
-    // Status Line
-    buf += QString("HTTP/%1 %2 %3")
-        .arg("1.1",  // TODO: depends on request
-            QString::number(response.status.code),
-            response.status.text)
-        .toLatin1()
-        .append(CRLF);
+            // [rfc7231] 5.3.1. Quality Values
+            const QStringRef substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
 
-    // Header Fields
-    for (auto i = response.headers.constBegin(); i != response.headers.constEnd(); ++i)
-        buf += QString::fromLatin1("%1: %2").arg(i.key(), i.value()).toLatin1().append(CRLF);
+            bool ok = false;
+            const double qvalue = substr.toDouble(&ok);
+            if (!ok || (qvalue <= 0))
+                return false;
 
-    // the first empty line
-    buf += CRLF;
+            return true;
+        }
+        return false;
+    };
 
-    // message body  // TODO: support HEAD request
-    buf += response.content;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    Qt::SplitBehavior skipEmptyParts {Qt::SkipEmptyParts};
+#else
+    QString::SplitBehavior skipEmptyParts {QString::SkipEmptyParts};
+#endif
 
-    return buf;
+    const QVector<QStringRef> list = codings.remove(' ').remove('\t').splitRef(',', skipEmptyParts);
+    if (list.isEmpty())
+        return false;
+
+    const bool canGzip = isCodingAvailable(list, QLatin1String("gzip"));
+    if (canGzip)
+        return true;
+
+    const bool canAny = isCodingAvailable(list, QLatin1String("*"));
+    if (canAny)
+        return true;
+
+    return false;
 }
 
 QString Http::httpDate()
@@ -74,7 +92,7 @@ QString Http::httpDate()
         .append(QLatin1String(" GMT"));
 }
 
-void Http::compressContent(Response &response)
+void Http::tryCompressContent(Response &response)
 {
     if (response.headers.value(HEADER_CONTENT_ENCODING) != QLatin1String("gzip"))
         return;

@@ -37,7 +37,7 @@
 #include <QTranslator>
 
 #include "api/isessionmanager.h"
-#include "base/http/irequesthandler.h"
+#include "base/http/basicrequesthandler.h"
 #include "base/http/responsebuilder.h"
 #include "base/http/types.h"
 #include "base/utils/net.h"
@@ -70,7 +70,7 @@ private:
 };
 
 class WebApplication final
-        : public QObject, public Http::IRequestHandler, public ISessionManager
+        : public QObject, public Http::BasicRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {
     Q_OBJECT
