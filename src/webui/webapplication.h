@@ -43,12 +43,10 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 8, 2};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 3};
 
 class APIController;
 class WebApplication;
-
-constexpr char C_SID[] = "SID"; // name of session id cookie
 
 class WebSession final : public ISession
 {

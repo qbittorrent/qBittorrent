@@ -302,6 +302,8 @@ void AppController::preferencesAction()
     data["send_buffer_watermark"] = session->sendBufferWatermark();
     data["send_buffer_low_watermark"] = session->sendBufferLowWatermark();
     data["send_buffer_watermark_factor"] = session->sendBufferWatermarkFactor();
+    // Outgoing connections per second
+    data["connection_speed"] = session->connectionSpeed();
     // Socket listen backlog size
     data["socket_backlog_size"] = session->socketBacklogSize();
     // Outgoing ports
@@ -754,6 +756,9 @@ void AppController::setPreferencesAction()
         session->setSendBufferLowWatermark(it.value().toInt());
     if (hasKey("send_buffer_watermark_factor"))
         session->setSendBufferWatermarkFactor(it.value().toInt());
+    // Outgoing connections per second
+    if (hasKey("connection_speed"))
+        session->setConnectionSpeed(it.value().toInt());
     // Socket listen backlog size
     if (hasKey("socket_backlog_size"))
         session->setSocketBacklogSize(it.value().toInt());
