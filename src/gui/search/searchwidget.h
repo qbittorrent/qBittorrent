@@ -65,6 +65,7 @@ private:
     bool eventFilter(QObject *object, QEvent *event) override;
     void tabChanged(int index);
     void closeTab(int index);
+    void closeAllTabs();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
