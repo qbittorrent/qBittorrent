@@ -3,7 +3,7 @@ version: '{branch}-{build}'
 # Do not build on tags (GitHub only)
 skip_tags: true
 
-image: Visual Studio 2019
+image: Visual Studio 2017
 
 branches:
   except:  # blacklist
@@ -42,7 +42,7 @@ install:
 
 before_build:
   # setup env
-  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars32.bat"
+  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
   - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
   # setup project
   - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
