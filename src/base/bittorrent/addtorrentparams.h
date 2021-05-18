@@ -30,10 +30,10 @@
 
 #include <optional>
 
-#include <QSet>
 #include <QString>
 #include <QVector>
 
+#include "base/tagset.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 
@@ -45,7 +45,7 @@ namespace BitTorrent
     {
         QString name;
         QString category;
-        QSet<QString> tags;
+        TagSet tags;
         QString savePath;
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;

@@ -30,6 +30,8 @@
 
 #include <QSortFilterProxyModel>
 
+#include "base/utils/compare.h"
+
 class QString;
 
 class CategoryFilterProxyModel final : public QSortFilterProxyModel
@@ -47,4 +49,6 @@ protected:
 private:
     // we added another overload of index(), hence this using directive:
     using QSortFilterProxyModel::index;
+
+    Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };

@@ -34,7 +34,6 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
-#include "base/utils/string.h"
 #include "transferlistmodel.h"
 
 namespace
@@ -57,6 +56,19 @@ namespace
         if (!isLeftValid && !isRightValid)
             return 0;
         return isLeftValid ? -1 : 1;
+    }
+
+    int customCompare(const TagSet &left, const TagSet &right, const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> &compare)
+    {
+        for (auto leftIter = left.cbegin(), rightIter = right.cbegin();
+            (leftIter != left.cend()) && (rightIter != right.cend());
+            ++leftIter, ++rightIter)
+        {
+            const int result = compare(*leftIter, *rightIter);
+            if (result != 0)
+                return result;
+        }
+        return threeWayCompare(left.size(), right.size());
     }
 
     template <typename T>
@@ -141,9 +153,11 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_CATEGORY:
     case TransferListModel::TR_NAME:
     case TransferListModel::TR_SAVE_PATH:
-    case TransferListModel::TR_TAGS:
     case TransferListModel::TR_TRACKER:
-        return Utils::String::naturalCompare(leftValue.toString(), rightValue.toString(), Qt::CaseInsensitive);
+        return m_naturalCompare(leftValue.toString(), rightValue.toString());
+
+    case TransferListModel::TR_TAGS:
+        return customCompare(leftValue.value<TagSet>(), rightValue.value<TagSet>(), m_naturalCompare);
 
     case TransferListModel::TR_AMOUNT_DOWNLOADED:
     case TransferListModel::TR_AMOUNT_DOWNLOADED_SESSION:

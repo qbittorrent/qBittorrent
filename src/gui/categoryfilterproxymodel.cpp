@@ -28,7 +28,6 @@
 
 #include "categoryfilterproxymodel.h"
 
-#include "base/utils/string.h"
 #include "categoryfiltermodel.h"
 
 CategoryFilterProxyModel::CategoryFilterProxyModel(QObject *parent)
@@ -51,9 +50,5 @@ bool CategoryFilterProxyModel::lessThan(const QModelIndex &left, const QModelInd
     // "All" and "Uncategorized" must be left in place
     if (CategoryFilterModel::isSpecialItem(left) || CategoryFilterModel::isSpecialItem(right))
         return (left < right);
-
-    int result = Utils::String::naturalCompare(left.data().toString(), right.data().toString()
-        , Qt::CaseInsensitive);
-
-    return (result < 0);
+    return m_naturalLessThan(left.data().toString(), right.data().toString());
 }

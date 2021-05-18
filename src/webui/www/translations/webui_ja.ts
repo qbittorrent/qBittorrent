@@ -28,19 +28,19 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>コンテンツのレイアウト</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>オリジナル</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>サブフォルダーを作成する</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>サブフォルダーを作成しない</translation>
     </message>
 </context>
 <context>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>フォルダーをここに入力してください</translation>
+        <translation type="vanished">フォルダーをここに入力してください</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>その他...</translation>
+        <translation type="vanished">その他...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -374,7 +374,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
 </context>
 <context>
@@ -578,11 +578,11 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSSリーダー</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
 </context>
 <context>
@@ -1335,19 +1335,19 @@
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished" />
+        <translation>フィルター:</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>RSSフィードの取得を有効にする</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>ハッシュ化スレッド数 (libtorrent 2.0以上が必要)</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>コアレス読み込み／書き込み (libtorrent 2.0以上が必要)</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1355,31 +1355,31 @@
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation type="unfinished" />
+        <translation>RSS Torrent 自動ダウンローダー</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>ネットワークインターフェース:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSSリーダー</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation type="unfinished" />
+        <translation>自動ダウンロードのルールを編集</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished" />
+        <translation> REPACK/PROPERエピソードをダウンロードする</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>フィードの更新間隔:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1387,11 +1387,11 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>フィードごとの記事数の上限: </translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished" />
+        <translation>HTTPでの同時アナウンスの最大数 (libtorrent 1.2.7以上が必要):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>デフォルトの保存先</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

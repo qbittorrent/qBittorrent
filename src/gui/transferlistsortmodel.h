@@ -32,6 +32,7 @@
 
 #include "base/settingvalue.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 
 namespace BitTorrent
 {
@@ -64,4 +65,6 @@ private:
     TorrentFilter m_filter;
     mutable CachedSettingValue<int> m_subSortColumn;
     mutable int m_lastSortColumn = -1;
+
+    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_naturalCompare;
 };

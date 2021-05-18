@@ -563,12 +563,12 @@ void Parser::parse_impl(const QByteArray &feedData)
 
     while (xml.readNextStartElement())
     {
-        if (xml.name() == "rss")
+        if (xml.name() == QLatin1String("rss"))
         {
             // Find channels
             while (xml.readNextStartElement())
             {
-                if (xml.name() == "channel")
+                if (xml.name() == QLatin1String("channel"))
                 {
                     parseRSSChannel(xml);
                     foundChannel = true;
@@ -580,7 +580,7 @@ void Parser::parse_impl(const QByteArray &feedData)
             }
             break;
         }
-        if (xml.name() == "feed")
+        if (xml.name() == QLatin1String("feed"))
         { // Atom feed
             parseAtomChannel(xml);
             foundChannel = true;

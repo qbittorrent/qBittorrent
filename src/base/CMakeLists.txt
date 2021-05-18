@@ -9,6 +9,7 @@ add_library(qbt_base STATIC
     bittorrent/cachestatus.h
     bittorrent/common.h
     bittorrent/customstorage.h
+    bittorrent/dbresumedatastorage.h
     bittorrent/downloadpriority.h
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
@@ -58,6 +59,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.h
     net/reverseresolution.h
     net/smtp.h
+    orderedset.h
     preferences.h
     profile.h
     profile_p.h
@@ -74,11 +76,13 @@ add_library(qbt_base STATIC
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
+    tagset.h
     torrentfileguard.h
     torrentfilter.h
     types.h
     unicodestrings.h
     utils/bytearray.h
+    utils/compare.h
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
@@ -97,6 +101,7 @@ add_library(qbt_base STATIC
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/customstorage.cpp
+    bittorrent/dbresumedatastorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
@@ -151,9 +156,11 @@ add_library(qbt_base STATIC
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
+    tagset.cpp
     torrentfileguard.cpp
     torrentfilter.cpp
     utils/bytearray.cpp
+    utils/compare.cpp
     utils/foreignapps.cpp
     utils/fs.cpp
     utils/gzip.cpp
@@ -171,7 +178,7 @@ target_link_libraries(qbt_base
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Xml
+        Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml
         qbt_common_cfg
 )
 

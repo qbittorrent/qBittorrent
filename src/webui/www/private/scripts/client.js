@@ -1177,7 +1177,7 @@ function handleDownloadParam() {
     if (location.hash.indexOf(downloadHash) !== 0)
         return;
 
-    const url = location.hash.substring(downloadHash.length);
+    const url = decodeURIComponent(location.hash.substring(downloadHash.length));
     // Remove the processed hash from the URL
     history.replaceState('', document.title, (location.pathname + location.search));
     showDownloadPage([url]);

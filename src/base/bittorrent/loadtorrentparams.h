@@ -30,9 +30,9 @@
 
 #include <libtorrent/add_torrent_params.hpp>
 
-#include <QSet>
 #include <QString>
 
+#include "base/tagset.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 
@@ -44,7 +44,7 @@ namespace BitTorrent
 
         QString name;
         QString category;
-        QSet<QString> tags;
+        TagSet tags;
         QString savePath;
         TorrentContentLayout contentLayout = TorrentContentLayout::Original;
         TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;

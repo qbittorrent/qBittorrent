@@ -30,7 +30,8 @@ LangString launch_qbt ${LANG_SIMPCHINESE} "启动 qBittorrent."
 LangString inst_requires_64bit ${LANG_SIMPCHINESE} "此安装程序只能在64位的Windows上工作。"
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_SIMPCHINESE} "This qBittorrent version requires at least Windows 7."
-
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_SIMPCHINESE} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

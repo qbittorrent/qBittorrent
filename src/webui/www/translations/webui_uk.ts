@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Введіть тут назву теки</translation>
+        <translation type="vanished">Введіть тут назву теки</translation>
     </message>
     <message>
         <source>More information</source>
@@ -243,7 +243,7 @@
     <message>
         <source>Other...</source>
         <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Інша...</translation>
+        <translation type="vanished">Інша...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -1363,7 +1363,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Мережевий інтерфейс:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1763,6 +1763,14 @@
     <message>
         <source>Default save location</source>
         <translation>Місце збереження за замовчуванням</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
