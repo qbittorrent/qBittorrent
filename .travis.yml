@@ -5,7 +5,7 @@ os:
   - osx
 
 dist: focal
-osx_image: xcode12.2
+osx_image: xcode12.5
 
 env:
   matrix:
