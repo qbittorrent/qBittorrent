@@ -396,6 +396,9 @@ namespace BitTorrent
         void setAnnounceIP(const QString &ip);
         int maxConcurrentHTTPAnnounces() const;
         void setMaxConcurrentHTTPAnnounces(int value);
+        bool isReannounceWhenAddressChanged() const;
+        void setReannounceWhenAddressChanged(bool enabled);
+        void reannounceToAllTrackers();
         int stopTrackerTimeout() const;
         void setStopTrackerTimeout(int value);
         int maxConnections() const;
@@ -494,10 +497,6 @@ namespace BitTorrent
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newPath, MoveStorageMode mode);
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
-
-        bool isReannounceWhenAddressChanged() const;
-        void setReannounceWhenAddressChanged(bool enabled);
-        void reannounceToAllTrackers();
 
     signals:
         void allTorrentsFinished();

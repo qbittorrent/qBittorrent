@@ -3582,6 +3582,25 @@ void Session::setMaxConcurrentHTTPAnnounces(const int value)
     configureDeferred();
 }
 
+bool Session::isReannounceWhenAddressChanged() const
+{
+    return m_isReannounceWhenAddressChanged;
+}
+
+void Session::setReannounceWhenAddressChanged(const bool enabled)
+{
+    if (enabled == m_isReannounceWhenAddressChanged)
+        return;
+
+    m_isReannounceWhenAddressChanged = enabled;
+}
+
+void Session::reannounceToAllTrackers()
+{
+    for (const lt::torrent_handle& torrent : m_nativeSession->get_torrents())
+        torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
+}
+
 int Session::stopTrackerTimeout() const
 {
     return m_stopTrackerTimeout;
@@ -4776,23 +4795,4 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
         LogMsg(tr("SOCKS5 proxy error. Message: %1").arg(QString::fromStdString(p->message()))
             , Log::WARNING);
     }
-}
-
-bool Session::isReannounceWhenAddressChanged() const
-{
-    return m_isReannounceWhenAddressChanged;
-}
-
-void Session::setReannounceWhenAddressChanged(const bool enabled)
-{
-    if (enabled == m_isReannounceWhenAddressChanged)
-        return;
-
-    m_isReannounceWhenAddressChanged = enabled;
-}
-
-void Session::reannounceToAllTrackers()
-{
-    for (const lt::torrent_handle& torrent : m_nativeSession->get_torrents())
-        torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
 }
