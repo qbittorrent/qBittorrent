@@ -79,6 +79,7 @@ namespace
         PROGRAM_NOTIFICATIONS,
         TORRENT_ADDED_NOTIFICATIONS,
         CONFIRM_REMOVE_ALL_TAGS,
+        REANNOUNCE_WHEN_ADDRESS_CHANGED,
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
         ENABLE_SPEED_WIDGET,
@@ -133,7 +134,6 @@ namespace
         PEER_TURNOVER,
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
-        REANNOUNCE_WHEN_ADDRESS_CHANGED,
 
         ROW_COUNT
     };
@@ -274,6 +274,8 @@ void AdvancedSettings::saveAdvancedSettings()
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
+    // Reannounce to all trackers when ip/port changed
+    session->setReannounceWhenAddressChanged(m_checkBoxReannounceWhenAddressChanged.isChecked());
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
@@ -296,9 +298,6 @@ void AdvancedSettings::saveAdvancedSettings()
 
     session->setAnnounceToAllTrackers(m_checkBoxAnnounceAllTrackers.isChecked());
     session->setAnnounceToAllTiers(m_checkBoxAnnounceAllTiers.isChecked());
-
-    // Reannounce to all trackers when ip/port changed
-    session->setReannounceWhenAddressChanged(m_checkBoxReannounceWhenAddressChanged.isChecked());
 
     session->setPeerTurnover(m_spinBoxPeerTurnover.value());
     session->setPeerTurnoverCutoff(m_spinBoxPeerTurnoverCutoff.value());
