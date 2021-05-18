@@ -4783,12 +4783,10 @@ bool Session::isReannounceWhenAddressChanged() const
     return m_isReannounceWhenAddressChanged;
 }
 
-void Session::setReannounceWhenAddressChanged(bool enabled)
+void Session::setReannounceWhenAddressChanged(const bool enabled)
 {
     if (enabled == m_isReannounceWhenAddressChanged)
-    {
         return;
-    }
 
     m_isReannounceWhenAddressChanged = enabled;
 }
