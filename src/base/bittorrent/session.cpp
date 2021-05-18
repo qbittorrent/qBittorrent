@@ -2744,8 +2744,7 @@ void Session::setPort(const int port)
 
         if (isReannounceWhenAddressChanged())
         {
-            for (const lt::torrent_handle& torrent : m_nativeSession->get_torrents())
-                torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
+            reannounceToAllTrackers();
         }
     }
 }
@@ -4608,8 +4607,7 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
         .arg(externalIP.toString()), Log::INFO);
     if (isReannounceWhenAddressChanged() && !m_lastExternalIP.isNull() && m_lastExternalIP != externalIP)
     {
-        for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
-            torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
+        reannounceToAllTrackers();
     }
     m_lastExternalIP = externalIP;
 }
@@ -4793,4 +4791,10 @@ void Session::setReannounceWhenAddressChanged(bool enabled)
     }
 
     m_isReannounceWhenAddressChanged = enabled;
+}
+
+void Session::reannounceToAllTrackers()
+{
+    for (const lt::torrent_handle& torrent : m_nativeSession->get_torrents())
+        torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
 }

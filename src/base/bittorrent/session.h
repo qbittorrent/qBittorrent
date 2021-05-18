@@ -497,6 +497,7 @@ namespace BitTorrent
 
         bool isReannounceWhenAddressChanged() const;
         void setReannounceWhenAddressChanged(bool enabled);
+        void reannounceToAllTrackers();
 
     signals:
         void allTorrentsFinished();
