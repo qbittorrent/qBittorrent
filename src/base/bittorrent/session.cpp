@@ -4621,10 +4621,10 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
-    const QHostAddress externalIP {toString(p->external_address)};
+    const QString externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
-        .arg(externalIP.toString()), Log::INFO);
-    if (isReannounceWhenAddressChanged() && !m_lastExternalIP.isNull() && m_lastExternalIP != externalIP)
+        .arg(externalIP), Log::INFO);
+    if (isReannounceWhenAddressChanged() && !m_lastExternalIP.isEmpty() && m_lastExternalIP != externalIP)
     {
         reannounceToAllTrackers();
     }

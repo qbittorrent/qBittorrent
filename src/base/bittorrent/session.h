@@ -43,7 +43,6 @@
 #include <QSet>
 #include <QtContainerFwd>
 #include <QVector>
-#include <QHostAddress>
 
 #include "base/settingvalue.h"
 #include "base/types.h"
@@ -795,7 +794,7 @@ namespace BitTorrent
 
         QList<MoveStorageJob> m_moveStorageQueue;
 
-        QHostAddress m_lastExternalIP;
+        QString m_lastExternalIP;
 
         static Session *m_instance;
     };
