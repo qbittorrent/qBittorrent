@@ -644,6 +644,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent added notifications
     m_checkBoxTorrentAddedNotifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
     addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &m_checkBoxTorrentAddedNotifications);
+    // Reannounce to all trackers when ip/port changed
+    m_checkBoxReannounceWhenAddressChanged.setChecked(session->isReannounceWhenAddressChanged());
+    addRow(REANNOUNCE_WHEN_ADDRESS_CHANGED, tr("Reannounce to all trackers when IP or port changed"), &m_checkBoxReannounceWhenAddressChanged);
     // Download tracker's favicon
     m_checkBoxTrackerFavicon.setChecked(mainWindow->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &m_checkBoxTrackerFavicon);
@@ -697,12 +700,6 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(ANNOUNCE_ALL_TIERS, (tr("Always announce to all tiers")
         + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#announce_to_all_tiers", "(?)"))
         , &m_checkBoxAnnounceAllTiers);
-
-    // Reannounce to all trackers when ip/port changed
-    m_checkBoxReannounceWhenAddressChanged.setChecked(session->isReannounceWhenAddressChanged());
-    addRow(REANNOUNCE_WHEN_ADDRESS_CHANGED, (tr("Reannounce to all trackers when IP or port changed")
-        + ' ' + makeLink("https://libtorrent.org/reference-Torrent_Handle.html#force-reannounce-force-dht-announce-force-lsd-announce", "(?)"))
-        , &m_checkBoxReannounceWhenAddressChanged);
 
     m_spinBoxPeerTurnover.setMinimum(0);
     m_spinBoxPeerTurnover.setMaximum(100);
