@@ -687,6 +687,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
         CachedSettingValue<int> m_maxConcurrentHTTPAnnounces;
+        CachedSettingValue<bool> m_isReannounceWhenAddressChanged;
         CachedSettingValue<int> m_stopTrackerTimeout;
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxUploads;
@@ -742,7 +743,6 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<QStringList> m_bannedIPs;
-        CachedSettingValue<bool> m_isReannounceWhenAddressChanged;
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
