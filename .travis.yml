@@ -71,7 +71,7 @@ before_install:
       # setup virtual display for after_success target
       if [ "$gui" = "true" ]; then export "DISPLAY=:99.0" && /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 ; fi ;
       # CMake from Kitware is installed in /usr/bin
-      # TravisCI installs its own cmake to another location which ovverides other installations
+      # TravisCI installs its own cmake to another location which overrides other installations
       # if they don't call the new binary directly
       alias cmake="/usr/bin/cmake"
 
