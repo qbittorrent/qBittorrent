@@ -1005,7 +1005,13 @@ QString TorrentImpl::error() const
         return QString::fromStdString(m_nativeStatus.errc.message());
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
-        return tr("There's not enough space on disk. Torrent is currently in \"upload only\" mode.");
+    {
+        const QString writeErrorStr = tr("Couldn't write to file.");
+        const QString uploadModeStr = tr("Torrent is currently in \"upload only\" mode.");
+        const QString errorMessage = QString::fromLocal8Bit(m_lastFileError.error.message().c_str());
+
+        return writeErrorStr + QLatin1Char(' ') + errorMessage + QLatin1String(". ") + uploadModeStr;
+    }
 
     return {};
 }
@@ -1922,6 +1928,11 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     }
 }
 
+void TorrentImpl::handleFileErrorAlert(const lt::file_error_alert *p)
+{
+    m_lastFileError = {p->error, p->op};
+}
+
 #if (LIBTORRENT_VERSION_NUM >= 20003)
 void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 {
@@ -1980,6 +1991,9 @@ void TorrentImpl::handleAlert(const lt::alert *a)
         break;
     case lt::file_completed_alert::alert_type:
         handleFileCompletedAlert(static_cast<const lt::file_completed_alert*>(a));
+        break;
+    case lt::file_error_alert::alert_type:
+        handleFileErrorAlert(static_cast<const lt::file_error_alert*>(a));
         break;
     case lt::torrent_finished_alert::alert_type:
         handleTorrentFinishedAlert(static_cast<const lt::torrent_finished_alert*>(a));
