@@ -70,9 +70,10 @@ add_library(qbt_base STATIC
     rss/rss_item.h
     rss/rss_parser.h
     rss/rss_session.h
-    search/searchdownloadhandler.h
+    search/searchengine.h
     search/searchhandler.h
-    search/searchpluginmanager.h
+    search/searchresult.h
+    search/torznabrssparser.h
     settingsstorage.h
     tagset.h
     torrentfileguard.h
@@ -82,7 +83,6 @@ add_library(qbt_base STATIC
     unicodestrings.h
     utils/bytearray.h
     utils/compare.h
-    utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
     utils/io.h
@@ -149,9 +149,9 @@ add_library(qbt_base STATIC
     rss/rss_item.cpp
     rss/rss_parser.cpp
     rss/rss_session.cpp
-    search/searchdownloadhandler.cpp
+    search/searchengine.cpp
     search/searchhandler.cpp
-    search/searchpluginmanager.cpp
+    search/torznabrssparser.cpp
     settingsstorage.cpp
     tagset.cpp
     torrentfileguard.cpp
@@ -159,7 +159,6 @@ add_library(qbt_base STATIC
     torrentfilter.cpp
     utils/bytearray.cpp
     utils/compare.cpp
-    utils/foreignapps.cpp
     utils/fs.cpp
     utils/gzip.cpp
     utils/io.cpp

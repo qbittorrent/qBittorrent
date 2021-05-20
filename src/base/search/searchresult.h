@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,39 +26,17 @@
  * exception statement from your version.
  */
 
-#include "pluginsourcedialog.h"
+#pragma once
 
-#include "gui/utils.h"
-#include "ui_pluginsourcedialog.h"
+#include <QString>
 
-#define SETTINGS_KEY(name) "SearchPluginSourceDialog/" name
-
-PluginSourceDialog::PluginSourceDialog(QWidget *parent)
-    : QDialog(parent)
-    , m_ui(new Ui::PluginSourceDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+struct SearchResult
 {
-    m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
-
-    Utils::Gui::resize(this, m_storeDialogSize);
-    show();
-}
-
-PluginSourceDialog::~PluginSourceDialog()
-{
-    m_storeDialogSize = size();
-    delete m_ui;
-}
-
-void PluginSourceDialog::on_localButton_clicked()
-{
-    emit askForLocalFile();
-    close();
-}
-
-void PluginSourceDialog::on_urlButton_clicked()
-{
-    emit askForUrl();
-    close();
-}
+    QString indexerName;
+    QString fileName;
+    QString fileUrl;
+    qlonglong fileSize;
+    qlonglong numSeeders;
+    qlonglong numLeechers;
+    QString descrLink;
+};

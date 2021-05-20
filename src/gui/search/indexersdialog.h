@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,27 +29,45 @@
 
 #pragma once
 
-#include <QObject>
+#include <QDialog>
+#include <QStringList>
 
-class QProcess;
+#include "base/search/searchengine.h"
 
-class SearchPluginManager;
+class QTreeWidgetItem;
 
-class SearchDownloadHandler : public QObject
+namespace Ui
+{
+    class IndexersDialog;
+}
+
+class IndexersDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchDownloadHandler)
+    Q_DISABLE_COPY_MOVE(IndexersDialog)
 
-    friend class SearchPluginManager;
+public:
+    explicit IndexersDialog(SearchEngine *searchEngine, QWidget *parent = nullptr);
+    ~IndexersDialog() override;
 
-    SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager);
-
-signals:
-    void downloadFinished(const QString &path);
+private slots:
+    void on_actionRemove_triggered();
+    void on_addButton_clicked();
+    void on_closeButton_clicked();
+    void toggleIndexerState(QTreeWidgetItem *, int);
+    void displayContextMenu(const QPoint &);
+    void enableSelection(bool enable);
+    void onIndexerAdded(const QString &indexerName);
+    void onIndexerOptionsChanged(const QString &indexerName);
+    void onIndexerStateChanged(const QString &indexerName);
+    void onIndexerRemoved(const QString &indexerName);
 
 private:
-    void downloadProcessFinished(int exitcode);
+    void loadIndexers();
+    void createItem(const QString &indexerName, const IndexerInfo &indexerInfo);
+    QTreeWidgetItem *findItemByName(const QString &indexerName);
+    void setItemColor(QTreeWidgetItem *item, const QString &colorName);
 
-    SearchPluginManager *m_manager;
-    QProcess *m_downloadProcess;
+    Ui::IndexersDialog *m_ui;
+    SearchEngine *m_searchEngine;
 };

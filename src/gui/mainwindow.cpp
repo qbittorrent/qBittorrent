@@ -63,7 +63,6 @@
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "base/settingsstorage.h"
-#include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/password.h"
@@ -149,7 +148,6 @@ MainWindow::MainWindow(QWidget *parent)
     , m_posInitialized(false)
     , m_forceExit(false)
     , m_unlockDlgShowing(false)
-    , m_hasPython(false)
 {
     m_ui->setupUi(this);
 
@@ -1856,55 +1854,6 @@ void MainWindow::on_actionRSSReader_triggered()
 
 void MainWindow::on_actionSearchWidget_triggered()
 {
-    if (!m_hasPython && m_ui->actionSearchWidget->isChecked())
-    {
-        const Utils::ForeignApps::PythonInfo pyInfo = Utils::ForeignApps::pythonInfo();
-
-        // Not installed
-        if (!pyInfo.isValid())
-        {
-            m_ui->actionSearchWidget->setChecked(false);
-            Preferences::instance()->setSearchEnabled(false);
-
-#ifdef Q_OS_WIN
-            const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Missing Python Runtime")
-                , tr("Python is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?")
-                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-            if (buttonPressed == QMessageBox::Yes)
-                installPython();
-#else
-            QMessageBox::information(this, tr("Missing Python Runtime")
-                , tr("Python is required to use the search engine but it does not seem to be installed."));
-#endif
-            return;
-        }
-
-        // Check version requirement
-        if (!pyInfo.isSupportedVersion())
-        {
-            m_ui->actionSearchWidget->setChecked(false);
-            Preferences::instance()->setSearchEnabled(false);
-
-#ifdef Q_OS_WIN
-            const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Minimum requirement: 3.5.0.\nDo you want to install a newer version now?")
-                    .arg(pyInfo.version)
-                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
-            if (buttonPressed == QMessageBox::Yes)
-                installPython();
-#else
-            QMessageBox::information(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 3.3.0.")
-                .arg(pyInfo.version));
-#endif
-            return;
-        }
-
-        m_hasPython = true;
-        m_ui->actionSearchWidget->setChecked(true);
-        Preferences::instance()->setSearchEnabled(true);
-    }
-
     displaySearchTab(m_ui->actionSearchWidget->isChecked());
 }
 
@@ -2152,56 +2101,3 @@ void MainWindow::checkProgramUpdate(const bool invokedByUser)
     updater->checkForUpdates();
 }
 #endif
-
-#ifdef Q_OS_WIN
-void MainWindow::installPython()
-{
-    setCursor(QCursor(Qt::WaitCursor));
-    // Download python
-#ifdef QBT_APP_64BIT
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe";
-#else
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe";
-#endif
-    Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(installerURL).saveToFile(true)
-                , this, &MainWindow::pythonDownloadFinished);
-}
-
-void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
-{
-    if (result.status != Net::DownloadStatus::Success)
-    {
-        setCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::warning(
-                    this, tr("Download error")
-                    , tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
-                    .arg(result.errorString));
-        return;
-    }
-
-    setCursor(QCursor(Qt::ArrowCursor));
-    QProcess installer;
-    qDebug("Launching Python installer in passive mode...");
-
-    QFile::rename(result.filePath, result.filePath + ".exe");
-    installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
-
-    // Wait for setup to complete
-    installer.waitForFinished(10 * 60 * 1000);
-
-    qDebug("Installer stdout: %s", installer.readAllStandardOutput().data());
-    qDebug("Installer stderr: %s", installer.readAllStandardError().data());
-    qDebug("Setup should be complete!");
-
-    // Delete temp file
-    Utils::Fs::forceRemove(result.filePath + ".exe");
-
-    // Reload search engine
-    if (Utils::ForeignApps::pythonInfo().isSupportedVersion())
-    {
-        m_ui->actionSearchWidget->setChecked(true);
-        displaySearchTab(true);
-    }
-}
-#endif // Q_OS_WIN

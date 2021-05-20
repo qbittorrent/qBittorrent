@@ -47,8 +47,8 @@ HEADERS += \
     $$PWD/rss/feedlistwidget.h \
     $$PWD/rss/htmlbrowser.h \
     $$PWD/rss/rsswidget.h \
-    $$PWD/search/pluginselectdialog.h \
-    $$PWD/search/pluginsourcedialog.h \
+    $$PWD/search/indexeroptionsdialog.h \
+    $$PWD/search/indexersdialog.h \
     $$PWD/search/searchjobwidget.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/search/searchwidget.h \
@@ -128,8 +128,8 @@ SOURCES += \
     $$PWD/rss/feedlistwidget.cpp \
     $$PWD/rss/htmlbrowser.cpp \
     $$PWD/rss/rsswidget.cpp \
-    $$PWD/search/pluginselectdialog.cpp \
-    $$PWD/search/pluginsourcedialog.cpp \
+    $$PWD/search/indexeroptionsdialog.cpp \
+    $$PWD/search/indexersdialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/search/searchwidget.cpp \
@@ -200,8 +200,8 @@ FORMS += \
     $$PWD/properties/trackersadditiondialog.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/rss/rsswidget.ui \
-    $$PWD/search/pluginselectdialog.ui \
-    $$PWD/search/pluginsourcedialog.ui \
+    $$PWD/search/indexeroptionsdialog.ui \
+    $$PWD/search/indexersdialog.ui \
     $$PWD/search/searchjobwidget.ui \
     $$PWD/search/searchwidget.ui \
     $$PWD/shutdownconfirmdialog.ui \

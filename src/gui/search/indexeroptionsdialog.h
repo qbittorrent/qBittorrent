@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,43 +26,37 @@
  * exception statement from your version.
  */
 
-#include "searchdownloadhandler.h"
+#pragma once
 
-#include <QProcess>
+#include <QDialog>
 
-#include "../utils/foreignapps.h"
-#include "../utils/fs.h"
-#include "searchpluginmanager.h"
+#include "base/settingvalue.h"
+#include "base/search/searchengine.h"
 
-SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager)
-    : QObject {manager}
-    , m_manager {manager}
-    , m_downloadProcess {new QProcess {this}}
+namespace Ui
 {
-    m_downloadProcess->setEnvironment(QProcess::systemEnvironment());
-    connect(m_downloadProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
-            , this, &SearchDownloadHandler::downloadProcessFinished);
-    const QStringList params
-    {
-        Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2dl.py"),
-        siteUrl,
-        url
-    };
-    // Launch search
-    m_downloadProcess->start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
+    class IndexerOptionsDialog;
 }
 
-void SearchDownloadHandler::downloadProcessFinished(int exitcode)
+class IndexerOptionsDialog final : public QDialog
 {
-    QString path;
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(IndexerOptionsDialog)
 
-    if ((exitcode == 0) && (m_downloadProcess->exitStatus() == QProcess::NormalExit))
-    {
-        const QString line = QString::fromUtf8(m_downloadProcess->readAllStandardOutput()).trimmed();
-        const QVector<QStringRef> parts = line.splitRef(' ');
-        if (parts.size() == 2)
-            path = parts[0].toString();
-    }
+public:
+    explicit IndexerOptionsDialog(QWidget *parent = nullptr);
+    ~IndexerOptionsDialog() override;
 
-    emit downloadFinished(path);
-}
+    QString indexerName() const;
+    void setIndexerName(const QString &name);
+    IndexerOptions indexerOptions() const;
+    void setIndexerOptions(const IndexerOptions &indexerOptions);
+
+private:
+    void loadState();
+    void saveState();
+    void validate();
+
+    Ui::IndexerOptionsDialog *m_ui;
+    SettingValue<QSize> m_storeDialogSize;
+};
