@@ -112,9 +112,9 @@ void AppController::preferencesAction()
     data["torrent_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategoryChanged();
     data["save_path_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
     data["category_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
-    data["save_path"] = Utils::Fs::toNativePath(session->defaultSavePath());
-    data["temp_path_enabled"] = session->isTempPathEnabled();
-    data["temp_path"] = Utils::Fs::toNativePath(session->tempPath());
+    data["save_path"] = Utils::Fs::toNativePath(session->savePath());
+    data["temp_path_enabled"] = session->isDownloadPathEnabled();
+    data["temp_path"] = Utils::Fs::toNativePath(session->downloadPath());
     data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
     data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
 
@@ -399,11 +399,11 @@ void AppController::setPreferencesAction()
     if (hasKey("category_changed_tmm_enabled"))
         session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
     if (hasKey("save_path"))
-        session->setDefaultSavePath(it.value().toString());
+        session->setSavePath(it.value().toString());
     if (hasKey("temp_path_enabled"))
-        session->setTempPathEnabled(it.value().toBool());
+        session->setDownloadPathEnabled(it.value().toBool());
     if (hasKey("temp_path"))
-        session->setTempPath(it.value().toString());
+        session->setDownloadPath(it.value().toString());
     if (hasKey("export_dir"))
         session->setTorrentExportDirectory(it.value().toString());
     if (hasKey("export_dir_fin"))
@@ -866,7 +866,7 @@ void AppController::setPreferencesAction()
 
 void AppController::defaultSavePathAction()
 {
-    setResult(BitTorrent::Session::instance()->defaultSavePath());
+    setResult(BitTorrent::Session::instance()->savePath());
 }
 
 void AppController::networkInterfaceListAction()

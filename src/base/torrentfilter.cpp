@@ -127,7 +127,7 @@ bool TorrentFilter::setCategory(const QString &category)
     if ((m_category != category)
             || (m_category.isNull() && !category.isNull())
             || (!m_category.isNull() && category.isNull()))
-            {
+    {
         m_category = category;
         return true;
     }
@@ -141,7 +141,7 @@ bool TorrentFilter::setTag(const QString &tag)
     if ((m_tag != tag)
         || (m_tag.isNull() && !tag.isNull())
         || (!m_tag.isNull() && tag.isNull()))
-        {
+    {
         m_tag = tag;
         return true;
     }

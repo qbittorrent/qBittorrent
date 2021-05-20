@@ -81,6 +81,8 @@ private slots:
     void displayContentTreeMenu(const QPoint &);
     void updateDiskSpaceLabel();
     void onSavePathChanged(const QString &newPath);
+    void onDownloadPathChanged(const QString &newPath);
+    void onUseDownloadPathChanged(bool checked);
     void updateMetadata(const BitTorrent::TorrentInfo &metadata);
     void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
@@ -97,14 +99,11 @@ private:
     bool loadTorrentFile(const QString &torrentPath);
     bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
-    void populateSavePathComboBox();
-    void saveSavePathHistory() const;
-    int indexOfSavePath(const QString &savePath);
+    void populateSavePaths();
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
-    void setSavePath(const QString &newPath);
     void saveTorrentFile();
     bool hasMetadata() const;
 
@@ -115,7 +114,9 @@ private:
     PropListDelegate *m_contentDelegate = nullptr;
     BitTorrent::MagnetUri m_magnetURI;
     BitTorrent::TorrentInfo m_torrentInfo;
-    int m_oldIndex = 0;
+    int m_savePathIndex = -1;
+    int m_downloadPathIndex = -1;
+    bool m_useDownloadPath = false;
     std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
 

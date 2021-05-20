@@ -78,6 +78,8 @@ private slots:
     void topPrioAction();
     void bottomPrioAction();
     void setLocationAction();
+    void setSavePathAction();
+    void setDownloadPathAction();
     void setAutoManagementAction();
     void setSuperSeedingAction();
     void setForceStartAction();

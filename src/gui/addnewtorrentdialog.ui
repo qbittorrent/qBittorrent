@@ -83,12 +83,47 @@
           <item>
            <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
           </item>
-          <item alignment="Qt::AlignRight">
-           <widget class="QCheckBox" name="checkBoxRememberLastSavePath">
-            <property name="text">
-             <string>Remember last used save path</string>
+          <item>
+           <widget class="QGroupBox" name="groupBoxDownloadPath">
+            <property name="title">
+             <string>Use another path for incomplete torrent</string>
             </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="FileSystemPathComboEdit" name="downloadPath" native="true"/>
+             </item>
+            </layout>
            </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="layoutRememberLastSavePath">
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxRememberLastSavePath">
+              <property name="text">
+               <string>Remember last used save path</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

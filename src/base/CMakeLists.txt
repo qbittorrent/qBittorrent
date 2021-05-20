@@ -8,6 +8,7 @@ add_library(qbt_base STATIC
     bittorrent/bandwidthscheduler.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
+    bittorrent/categoryoptions.h
     bittorrent/common.h
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
@@ -100,6 +101,7 @@ add_library(qbt_base STATIC
     bittorrent/abstractfilestorage.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
+    bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp
     bittorrent/dbresumedatastorage.cpp
     bittorrent/downloadpriority.cpp
