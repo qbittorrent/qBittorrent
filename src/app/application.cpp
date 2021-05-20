@@ -76,7 +76,7 @@
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
-#include "base/search/searchpluginmanager.h"
+#include "base/search/searchengine.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileswatcher.h"
 #include "base/utils/compare.h"
@@ -853,7 +853,7 @@ void Application::cleanup()
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
     IconProvider::freeInstance();
-    SearchPluginManager::freeInstance();
+    SearchEngine::freeInstance();
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 
     LogMsg(tr("qBittorrent is now ready to exit"));

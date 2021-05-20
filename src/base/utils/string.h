@@ -59,6 +59,7 @@ namespace Utils::String
 
     std::optional<bool> parseBool(const QString &string);
     std::optional<int> parseInt(const QString &string);
+    std::optional<qlonglong> parseLongLong(const QString &string);
     std::optional<double> parseDouble(const QString &string);
 
     QString join(const QList<QStringView> &strings, QStringView separator);

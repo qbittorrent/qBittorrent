@@ -207,13 +207,6 @@ int main(int argc, char *argv[])
 #endif // Q_OS_WIN
 
 #ifdef Q_OS_MACOS
-        // Since Apple made difficult for users to set PATH, we set here for convenience.
-        // Users are supposed to install Homebrew Python for search function.
-        // For more info see issue #5571.
-        QByteArray path = "/usr/local/bin:";
-        path += qgetenv("PATH");
-        qputenv("PATH", path.constData());
-
         // On OS X the standard is to not show icons in the menus
         app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #else

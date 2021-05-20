@@ -30,16 +30,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="selectPlugin">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="searchButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -57,9 +47,9 @@
    <item>
     <widget class="QStackedWidget" name="stackedPages">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
-     <widget class="QWidget" name="emptyPage">
+     <widget class="QWidget" name="pageNoIndexers">
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="leftMargin">
         <number>0</number>
@@ -74,10 +64,10 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelNoIndexers">
          <property name="text">
-          <string>There aren't any search plugins installed.
-Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</string>
+          <string>There aren't any search indexers configured.
+Click the &quot;Indexers...&quot; button at the bottom right of the window to add some.</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -86,7 +76,22 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="searchPage">
+     <widget class="QWidget" name="pageNoEnabledIndexers">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="labelNoEnabledIndexers">
+         <property name="text">
+          <string>All the search indexers are disabled.
+Click the &quot;Indexers...&quot; button at the bottom right of the window to enable some.</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageSearch">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="leftMargin">
         <number>0</number>
@@ -127,9 +132,9 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pluginsButton">
+      <widget class="QPushButton" name="indexersButton">
        <property name="text">
-        <string>Search plugins...</string>
+        <string>Indexers...</string>
        </property>
       </widget>
      </item>

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,33 +29,66 @@
 
 #pragma once
 
-#include <QDialog>
+#include <memory>
 
-#include "base/settingvalue.h"
+#include <QHash>
+#include <QObject>
 
-namespace Ui
+#include "base/exceptions.h"
+
+class SearchHandler;
+
+QBT_DECLARE_EXCEPTION(IndexerNotFoundError, RuntimeError)
+QBT_DECLARE_EXCEPTION(IndexerAlreadyExistsError, RuntimeError)
+
+struct IndexerOptions
 {
-    class PluginSourceDialog;
-}
+    QString url;
+    QString apiKey;
+};
 
-class PluginSourceDialog final : public QDialog
+struct IndexerInfo
+{
+    IndexerOptions options;
+    bool enabled = true;
+};
+
+class SearchEngine final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginSourceDialog)
+    Q_DISABLE_COPY_MOVE(SearchEngine)
 
 public:
-    explicit PluginSourceDialog(QWidget *parent = nullptr);
-    ~PluginSourceDialog() override;
+    SearchEngine();
+
+    static SearchEngine *instance();
+    static void freeInstance();
+
+    QHash<QString, IndexerInfo> indexers() const;
+    QStringList supportedCategories() const;
+
+    void addIndexer(const QString &name, const IndexerOptions &options);
+    void setIndexerOptions(const QString &name, const IndexerOptions &options);
+    void enableIndexer(const QString &name, bool enabled = true);
+    void removeIndexer(const QString &name);
+
+    bool hasEnabledIndexers() const;
+
+    SearchHandler *startSearch(const QString &pattern, const QString &category);
+
+    static QString categoryFullName(const QString &categoryName);
 
 signals:
-    void askForUrl();
-    void askForLocalFile();
-
-private slots:
-    void on_localButton_clicked();
-    void on_urlButton_clicked();
+    void indexerAdded(const QString &name);
+    void indexerOptionsChanged(const QString &name);
+    void indexerStateChanged(const QString &name);
+    void indexerRemoved(const QString &name);
 
 private:
-    Ui::PluginSourceDialog *m_ui = nullptr;
-    SettingValue<QSize> m_storeDialogSize;
+    void load();
+    void store() const;
+
+    static QPointer<SearchEngine> m_instance;
+
+    QHash<QString, IndexerInfo> m_indexers;
 };

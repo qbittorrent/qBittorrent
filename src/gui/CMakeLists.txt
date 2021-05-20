@@ -18,8 +18,8 @@ qt_wrap_ui(UI_HEADERS
     properties/trackersadditiondialog.ui
     rss/automatedrssdownloader.ui
     rss/rsswidget.ui
-    search/pluginselectdialog.ui
-    search/pluginsourcedialog.ui
+    search/indexeroptionsdialog.ui
+    search/indexersdialog.ui
     search/searchjobwidget.ui
     search/searchwidget.ui
     shutdownconfirmdialog.ui
@@ -82,8 +82,8 @@ add_library(qbt_gui STATIC
     rss/feedlistwidget.h
     rss/htmlbrowser.h
     rss/rsswidget.h
-    search/pluginselectdialog.h
-    search/pluginsourcedialog.h
+    search/indexeroptionsdialog.h
+    search/indexersdialog.h
     search/searchjobwidget.h
     search/searchsortmodel.h
     search/searchwidget.h
@@ -164,8 +164,8 @@ add_library(qbt_gui STATIC
     rss/feedlistwidget.cpp
     rss/htmlbrowser.cpp
     rss/rsswidget.cpp
-    search/pluginselectdialog.cpp
-    search/pluginsourcedialog.cpp
+    search/indexeroptionsdialog.cpp
+    search/indexersdialog.cpp
     search/searchjobwidget.cpp
     search/searchsortmodel.cpp
     search/searchwidget.cpp

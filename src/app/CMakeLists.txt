@@ -54,7 +54,6 @@ target_sources(qbt_app PRIVATE
 
     # resources
     "${qBittorrent_SOURCE_DIR}/src/icons/icons.qrc"
-    "${qBittorrent_SOURCE_DIR}/src/searchengine/searchengine.qrc"
     ${QBT_QM_FILES}
     "${qBittorrent_BINARY_DIR}/src/lang/lang.qrc" # yes, it's supposed to be "*_BINARY_DIR"
 )

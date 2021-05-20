@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PluginSelectDialog</class>
- <widget class="QDialog" name="PluginSelectDialog">
+ <class>IndexersDialog</class>
+ <widget class="QDialog" name="IndexersDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,11 +14,11 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Search plugins</string>
+   <string>Search indexers</string>
   </property>
-  <layout class="QVBoxLayout" name="pluginSelectLayout">
+  <layout class="QVBoxLayout" name="indexerSelectLayout">
    <item>
-    <widget class="QLabel" name="lbl_plugins">
+    <widget class="QLabel" name="lblIndexers">
      <property name="font">
       <font>
        <weight>75</weight>
@@ -27,12 +27,12 @@
       </font>
      </property>
      <property name="text">
-      <string>Installed search plugins:</string>
+      <string>Registered Torznab indexers:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTreeWidget" name="pluginsTree">
+    <widget class="QTreeWidget" name="indexersTree">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
      </property>
@@ -51,11 +51,6 @@
      <column>
       <property name="text">
        <string>Name</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Version</string>
       </property>
      </column>
      <column>
@@ -86,33 +81,24 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="getNewPlugin_lbl">
-     <property name="font">
-      <font>
-       <italic>true</italic>
-      </font>
-     </property>
-     <property name="text">
-      <string>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</string>
-     </property>
-     <property name="openExternalLinks">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="layout1">
      <item>
-      <widget class="QPushButton" name="installButton">
-       <property name="text">
-        <string>Install a new one</string>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="updateButton">
+      <widget class="QPushButton" name="addButton">
        <property name="text">
-        <string>Check for updates</string>
+        <string>Add...</string>
        </property>
       </widget>
      </item>
@@ -134,9 +120,20 @@
     <string>Enabled</string>
    </property>
   </action>
-  <action name="actionUninstall">
+  <action name="actionRemove">
    <property name="text">
-    <string>Uninstall</string>
+    <string>Remove</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove indexer</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit...</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit indexer options</string>
    </property>
   </action>
  </widget>
