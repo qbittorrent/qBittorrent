@@ -86,6 +86,12 @@ namespace BitTorrent
         HandleMetadata
     };
 
+    struct FileErrorInfo
+    {
+        lt::error_code error;
+        lt::operation_t operation;
+    };
+
     class TorrentImpl final : public QObject, public Torrent
     {
         Q_DISABLE_COPY(TorrentImpl)
@@ -264,6 +270,7 @@ namespace BitTorrent
 
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
         void handleFileCompletedAlert(const lt::file_completed_alert *p);
+        void handleFileErrorAlert(const lt::file_error_alert *p);
         void handleFileRenamedAlert(const lt::file_renamed_alert *p);
         void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
@@ -315,6 +322,7 @@ namespace BitTorrent
         QHash<lt::file_index_t, QVector<QString>> m_oldPath;
 
         QHash<QString, TrackerInfo> m_trackerInfos;
+        FileErrorInfo m_lastFileError;
 
         // Persistent data
         QString m_name;
