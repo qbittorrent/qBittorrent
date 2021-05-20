@@ -37,7 +37,7 @@ macro(qbt_common_config)
         )
     endif()
 
-    if ((CXX_COMPILER_ID STREQUAL "GNU") OR (CXX_COMPILER_ID STREQUAL "Clang") OR (CXX_COMPILER_ID STREQUAL "AppleClang"))
+    if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
         target_compile_options(qbt_common_cfg INTERFACE
             -Wall
             -Wextra
@@ -59,7 +59,7 @@ macro(qbt_common_config)
         endif()
     endif()
 
-    if ((CXX_COMPILER_ID STREQUAL "Clang") OR (CXX_COMPILER_ID STREQUAL "AppleClang"))
+    if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
         target_compile_options(qbt_common_cfg INTERFACE
             -Wno-range-loop-analysis
         )
