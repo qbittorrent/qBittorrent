@@ -4736,8 +4736,9 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
     if (!torrent)
         return;
 
-    const TorrentID id = torrent->id();
+    torrent->handleAlert(p);
 
+    const TorrentID id = torrent->id();
     if (!m_recentErroredTorrents.contains(id))
     {
         m_recentErroredTorrents.insert(id);
