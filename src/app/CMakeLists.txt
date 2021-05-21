@@ -155,6 +155,16 @@ if (WEBUI)
     target_link_libraries(qbt_app PRIVATE qbt_webui)
 endif()
 
+if ((UNIX AND (NOT APPLE)) OR MINGW OR MSYS)
+    add_custom_target(strip_build
+        COMMAND "${CMAKE_COMMAND}" -E "$<IF:$<BOOL:${STACKTRACE}>,echo,echo_append>"
+            "$<IF:$<BOOL:${STACKTRACE}>,WARNING: the STACKTRACE feature is enabled$<COMMA> but stripping the executable will make stacktraces useless.,>"
+        COMMAND "strip" "--strip-all" "$<TARGET_FILE:qbt_app>"
+        COMMENT "Stripping executable..."
+        VERBATIM
+    )
+endif()
+
 # Installation
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
