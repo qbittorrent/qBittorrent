@@ -311,7 +311,7 @@ int main(int argc, char *argv[])
     }
     catch (const CommandLineParameterError &er)
     {
-        displayBadArgMessage(er.messageForUser());
+        displayBadArgMessage(er.message());
         return EXIT_FAILURE;
     }
 }

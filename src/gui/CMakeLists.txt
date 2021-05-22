@@ -46,7 +46,6 @@ add_library(qbt_gui STATIC
     rss/feedlistwidget.h
     rss/htmlbrowser.h
     rss/rsswidget.h
-    scanfoldersdelegate.h
     search/pluginselectdialog.h
     search/pluginsourcedialog.h
     search/searchjobwidget.h
@@ -78,6 +77,8 @@ add_library(qbt_gui STATIC
     tristatewidget.h
     uithememanager.h
     utils.h
+    watchedfolderoptionsdialog.h
+    watchedfoldersmodel.h
 
     # sources
     aboutdialog.cpp
@@ -126,7 +127,6 @@ add_library(qbt_gui STATIC
     rss/feedlistwidget.cpp
     rss/htmlbrowser.cpp
     rss/rsswidget.cpp
-    scanfoldersdelegate.cpp
     search/pluginselectdialog.cpp
     search/pluginsourcedialog.cpp
     search/searchjobwidget.cpp
@@ -158,6 +158,8 @@ add_library(qbt_gui STATIC
     tristatewidget.cpp
     uithememanager.cpp
     utils.cpp
+    watchedfolderoptionsdialog.cpp
+    watchedfoldersmodel.cpp
 
     # forms
     aboutdialog.ui
@@ -188,6 +190,7 @@ add_library(qbt_gui STATIC
     torrentcreatordialog.ui
     torrentoptionsdialog.ui
     trackerentriesdialog.ui
+    watchedfolderoptionsdialog.ui
 )
 
 target_sources(qbt_gui INTERFACE about.qrc)

@@ -114,7 +114,7 @@ AutoDownloader::AutoDownloader()
     m_fileStorage = new AsyncFileStorage(
                 Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
     if (!m_fileStorage)
-        throw std::runtime_error("Directory for RSS AutoDownloader data is unavailable.");
+        throw RuntimeError(tr("Directory for RSS AutoDownloader data is unavailable."));
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
@@ -526,14 +526,4 @@ void AutoDownloader::timerEvent(QTimerEvent *event)
 {
     Q_UNUSED(event);
     store();
-}
-
-ParsingError::ParsingError(const QString &message)
-    : std::runtime_error(message.toUtf8().data())
-{
-}
-
-QString ParsingError::message() const
-{
-    return what();
 }

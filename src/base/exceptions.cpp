@@ -28,12 +28,12 @@
 
 #include "exceptions.h"
 
-RuntimeError::RuntimeError(const QString &message)
-    : std::runtime_error {message.toUtf8().data()}
+Exception::Exception(const QString &message) noexcept
+    : m_message {message}
 {
 }
 
-QString RuntimeError::message() const
+QString Exception::message() const noexcept
 {
-    return what();
+    return m_message;
 }

@@ -318,6 +318,8 @@ namespace
 #endif
 }
 
+const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
+
 // Session
 
 Session *Session::m_instance = nullptr;
@@ -2062,8 +2064,10 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!isAutoTMMDisabledByDefault());
     if (useAutoTMM)
         loadTorrentParams.savePath = "";
-    else if (addTorrentParams.savePath.trimmed().isEmpty())
+    else if (addTorrentParams.savePath.isEmpty())
         loadTorrentParams.savePath = defaultSavePath();
+    else if (QDir(addTorrentParams.savePath).isRelative())
+        loadTorrentParams.savePath = QDir(defaultSavePath()).absoluteFilePath(addTorrentParams.savePath);
     else
         loadTorrentParams.savePath = normalizePath(addTorrentParams.savePath);
 
