@@ -282,11 +282,11 @@ void AdvancedSettings::saveAdvancedSettings()
     MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
-    // Reannounce to all trackers when ip/port changed
-    session->setReannounceWhenAddressChanged(m_checkBoxReannounceWhenAddressChanged.isChecked());
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     mainWindow->setNotificationTimeout(m_spinBoxNotificationTimeout.value());
 #endif
+    // Reannounce to all trackers when ip/port changed
+    session->setReannounceWhenAddressChangedEnabled(m_checkBoxReannounceWhenAddressChanged.isChecked());
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
@@ -658,9 +658,6 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent added notifications
     m_checkBoxTorrentAddedNotifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
     addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &m_checkBoxTorrentAddedNotifications);
-    // Reannounce to all trackers when ip/port changed
-    m_checkBoxReannounceWhenAddressChanged.setChecked(session->isReannounceWhenAddressChanged());
-    addRow(REANNOUNCE_WHEN_ADDRESS_CHANGED, tr("Reannounce to all trackers when IP or port changed"), &m_checkBoxReannounceWhenAddressChanged);
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     // Notification timeout
     m_spinBoxNotificationTimeout.setMinimum(-1);
@@ -670,6 +667,9 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxNotificationTimeout.setSuffix(tr(" ms", " milliseconds"));
     addRow(NOTIFICATION_TIMEOUT, tr("Notification timeout [0: infinite]"), &m_spinBoxNotificationTimeout);
 #endif
+    // Reannounce to all trackers when ip/port changed
+    m_checkBoxReannounceWhenAddressChanged.setChecked(session->isReannounceWhenAddressChangedEnabled());
+    addRow(REANNOUNCE_WHEN_ADDRESS_CHANGED, tr("Reannounce to all trackers when IP or port changed"), &m_checkBoxReannounceWhenAddressChanged);
     // Download tracker's favicon
     m_checkBoxTrackerFavicon.setChecked(mainWindow->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &m_checkBoxTrackerFavicon);

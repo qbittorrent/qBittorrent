@@ -278,7 +278,7 @@ void AppController::preferencesAction()
     // Resolve peer countries
     data["resolve_peer_countries"] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
-    data["reannounce_when_address_changed"] = session->isReannounceWhenAddressChanged();
+    data["reannounce_when_address_changed"] = session->isReannounceWhenAddressChangedEnabled();
 
     // libtorrent preferences
     // Async IO threads
@@ -720,7 +720,7 @@ void AppController::setPreferencesAction()
         pref->resolvePeerCountries(it.value().toBool());
     // Reannounce to all trackers when ip/port changed
     if (hasKey("reannounce_when_address_changed"))
-        session->setReannounceWhenAddressChanged(it.value().toBool());
+        session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
 
     // libtorrent preferences
     // Async IO threads

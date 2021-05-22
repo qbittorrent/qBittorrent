@@ -370,6 +370,7 @@ Session::Session(QObject *parent)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
     , m_maxConcurrentHTTPAnnounces(BITTORRENT_SESSION_KEY("MaxConcurrentHTTPAnnounces"), 50)
+    , m_isReannounceWhenAddressChangedEnabled(BITTORRENT_SESSION_KEY("ReannounceWhenAddressChanged"), false)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 5)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), 20, lowerLimited(0, -1))
@@ -441,8 +442,6 @@ Session::Session(QObject *parent)
 #if defined(Q_OS_WIN)
     , m_OSMemoryPriority(BITTORRENT_KEY("OSMemoryPriority"), OSMemoryPriority::BelowNormal)
 #endif
-    , m_isReannounceWhenAddressChanged(BITTORRENT_SESSION_KEY("ReannounceWhenAddressChanged"), false)
-    , m_lastExternalIP()
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
     , m_statistics {new Statistics {this}}
@@ -2742,10 +2741,8 @@ void Session::setPort(const int port)
         m_port = port;
         configureListeningInterface();
 
-        if (isReannounceWhenAddressChanged())
-        {
+        if (isReannounceWhenAddressChangedEnabled())
             reannounceToAllTrackers();
-        }
     }
 }
 
@@ -3036,7 +3033,6 @@ void Session::setMaxConnectionsPerTorrent(int max)
         // Apply this to all session torrents
         for (const lt::torrent_handle &handle : m_nativeSession->get_torrents())
         {
-            if (!handle.is_valid()) continue;
             try
             {
                 handle.set_max_connections(max);
@@ -3061,7 +3057,6 @@ void Session::setMaxUploadsPerTorrent(int max)
         // Apply this to all session torrents
         for (const lt::torrent_handle &handle : m_nativeSession->get_torrents())
         {
-            if (!handle.is_valid()) continue;
             try
             {
                 handle.set_max_uploads(max);
@@ -3592,22 +3587,22 @@ void Session::setMaxConcurrentHTTPAnnounces(const int value)
     configureDeferred();
 }
 
-bool Session::isReannounceWhenAddressChanged() const
+bool Session::isReannounceWhenAddressChangedEnabled() const
 {
-    return m_isReannounceWhenAddressChanged;
+    return m_isReannounceWhenAddressChangedEnabled;
 }
 
-void Session::setReannounceWhenAddressChanged(const bool enabled)
+void Session::setReannounceWhenAddressChangedEnabled(const bool enabled)
 {
-    if (enabled == m_isReannounceWhenAddressChanged)
+    if (enabled == m_isReannounceWhenAddressChangedEnabled)
         return;
 
-    m_isReannounceWhenAddressChanged = enabled;
+    m_isReannounceWhenAddressChangedEnabled = enabled;
 }
 
-void Session::reannounceToAllTrackers()
+void Session::reannounceToAllTrackers() const
 {
-    for (const lt::torrent_handle& torrent : m_nativeSession->get_torrents())
+    for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
         torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
 }
 
@@ -4658,8 +4653,7 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
             .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
-    for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
-        torrent.force_reannounce();
+    reannounceToAllTrackers();
 }
 
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
@@ -4676,10 +4670,9 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
     const QString externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
         .arg(externalIP), Log::INFO);
-    if (isReannounceWhenAddressChanged() && !m_lastExternalIP.isEmpty() && m_lastExternalIP != externalIP)
-    {
+
+    if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIP.isEmpty() && m_lastExternalIP != externalIP)
         reannounceToAllTrackers();
-    }
     m_lastExternalIP = externalIP;
 }
 
