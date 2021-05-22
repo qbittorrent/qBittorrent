@@ -4671,9 +4671,12 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
         .arg(externalIP), Log::INFO);
 
-    if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIP.isEmpty() && m_lastExternalIP != externalIP)
-        reannounceToAllTrackers();
-    m_lastExternalIP = externalIP;
+    if (m_lastExternalIP != externalIP)
+    {
+        if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIP.isEmpty())
+            reannounceToAllTrackers();
+        m_lastExternalIP = externalIP;
+    }
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
