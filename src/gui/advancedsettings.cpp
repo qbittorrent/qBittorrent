@@ -83,6 +83,7 @@ namespace
         NOTIFICATION_TIMEOUT,
 #endif
         CONFIRM_REMOVE_ALL_TAGS,
+        REANNOUNCE_WHEN_ADDRESS_CHANGED,
         DOWNLOAD_TRACKER_FAVICON,
         SAVE_PATH_HISTORY_LENGTH,
         ENABLE_SPEED_WIDGET,
@@ -284,6 +285,8 @@ void AdvancedSettings::saveAdvancedSettings()
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     mainWindow->setNotificationTimeout(m_spinBoxNotificationTimeout.value());
 #endif
+    // Reannounce to all trackers when ip/port changed
+    session->setReannounceWhenAddressChangedEnabled(m_checkBoxReannounceWhenAddressChanged.isChecked());
     // Misc GUI properties
     mainWindow->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
@@ -664,6 +667,9 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxNotificationTimeout.setSuffix(tr(" ms", " milliseconds"));
     addRow(NOTIFICATION_TIMEOUT, tr("Notification timeout [0: infinite]"), &m_spinBoxNotificationTimeout);
 #endif
+    // Reannounce to all trackers when ip/port changed
+    m_checkBoxReannounceWhenAddressChanged.setChecked(session->isReannounceWhenAddressChangedEnabled());
+    addRow(REANNOUNCE_WHEN_ADDRESS_CHANGED, tr("Reannounce to all trackers when IP or port changed"), &m_checkBoxReannounceWhenAddressChanged);
     // Download tracker's favicon
     m_checkBoxTrackerFavicon.setChecked(mainWindow->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &m_checkBoxTrackerFavicon);

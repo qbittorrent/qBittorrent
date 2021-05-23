@@ -402,6 +402,9 @@ namespace BitTorrent
         void setAnnounceIP(const QString &ip);
         int maxConcurrentHTTPAnnounces() const;
         void setMaxConcurrentHTTPAnnounces(int value);
+        bool isReannounceWhenAddressChangedEnabled() const;
+        void setReannounceWhenAddressChangedEnabled(bool enabled);
+        void reannounceToAllTrackers() const;
         int stopTrackerTimeout() const;
         void setStopTrackerTimeout(int value);
         int maxConnections() const;
@@ -690,6 +693,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
         CachedSettingValue<int> m_maxConcurrentHTTPAnnounces;
+        CachedSettingValue<bool> m_isReannounceWhenAddressChangedEnabled;
         CachedSettingValue<int> m_stopTrackerTimeout;
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxUploads;
@@ -797,6 +801,8 @@ namespace BitTorrent
 #endif
 
         QList<MoveStorageJob> m_moveStorageQueue;
+
+        QString m_lastExternalIP;
 
         static Session *m_instance;
     };

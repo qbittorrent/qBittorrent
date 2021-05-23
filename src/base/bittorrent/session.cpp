@@ -372,6 +372,7 @@ Session::Session(QObject *parent)
     , m_includeOverheadInLimits(BITTORRENT_SESSION_KEY("IncludeOverheadInLimits"), false)
     , m_announceIP(BITTORRENT_SESSION_KEY("AnnounceIP"))
     , m_maxConcurrentHTTPAnnounces(BITTORRENT_SESSION_KEY("MaxConcurrentHTTPAnnounces"), 50)
+    , m_isReannounceWhenAddressChangedEnabled(BITTORRENT_SESSION_KEY("ReannounceWhenAddressChanged"), false)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY("StopTrackerTimeout"), 5)
     , m_maxConnections(BITTORRENT_SESSION_KEY("MaxConnections"), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY("MaxUploads"), 20, lowerLimited(0, -1))
@@ -1012,9 +1013,9 @@ void Session::adjustLimits()
 
 void Session::applyBandwidthLimits()
 {
-        lt::settings_pack settingsPack = m_nativeSession->get_settings();
-        applyBandwidthLimits(settingsPack);
-        m_nativeSession->apply_settings(settingsPack);
+    lt::settings_pack settingsPack = m_nativeSession->get_settings();
+    applyBandwidthLimits(settingsPack);
+    m_nativeSession->apply_settings(settingsPack);
 }
 
 void Session::configure()
@@ -2743,6 +2744,9 @@ void Session::setPort(const int port)
     {
         m_port = port;
         configureListeningInterface();
+
+        if (isReannounceWhenAddressChangedEnabled())
+            reannounceToAllTrackers();
     }
 }
 
@@ -3033,7 +3037,6 @@ void Session::setMaxConnectionsPerTorrent(int max)
         // Apply this to all session torrents
         for (const lt::torrent_handle &handle : m_nativeSession->get_torrents())
         {
-            if (!handle.is_valid()) continue;
             try
             {
                 handle.set_max_connections(max);
@@ -3058,7 +3061,6 @@ void Session::setMaxUploadsPerTorrent(int max)
         // Apply this to all session torrents
         for (const lt::torrent_handle &handle : m_nativeSession->get_torrents())
         {
-            if (!handle.is_valid()) continue;
             try
             {
                 handle.set_max_uploads(max);
@@ -3587,6 +3589,25 @@ void Session::setMaxConcurrentHTTPAnnounces(const int value)
 
     m_maxConcurrentHTTPAnnounces = value;
     configureDeferred();
+}
+
+bool Session::isReannounceWhenAddressChangedEnabled() const
+{
+    return m_isReannounceWhenAddressChangedEnabled;
+}
+
+void Session::setReannounceWhenAddressChangedEnabled(const bool enabled)
+{
+    if (enabled == m_isReannounceWhenAddressChangedEnabled)
+        return;
+
+    m_isReannounceWhenAddressChangedEnabled = enabled;
+}
+
+void Session::reannounceToAllTrackers() const
+{
+    for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
+        torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
 }
 
 int Session::stopTrackerTimeout() const
@@ -4636,8 +4657,7 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
             .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
-    for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
-        torrent.force_reannounce();
+    reannounceToAllTrackers();
 }
 
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
@@ -4651,8 +4671,16 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
+    const QString externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
-        .arg(toString(p->external_address)), Log::INFO);
+        .arg(externalIP), Log::INFO);
+
+    if (m_lastExternalIP != externalIP)
+    {
+        if (isReannounceWhenAddressChangedEnabled() && !m_lastExternalIP.isEmpty())
+            reannounceToAllTrackers();
+        m_lastExternalIP = externalIP;
+    }
 }
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
