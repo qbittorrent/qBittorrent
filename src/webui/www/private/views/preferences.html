@@ -1057,6 +1057,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="connectionSpeed">QBT_TR(Outgoing connections per second:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#connection_speed" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="connectionSpeed" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="socketBacklogSize">QBT_TR(Socket backlog size:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#listen_queue_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1905,6 +1913,7 @@
                         $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
                         $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
                         $('sendBufferWatermarkFactor').setProperty('value', pref.send_buffer_watermark_factor);
+                        $('connectionSpeed').setProperty('value', pref.connection_speed);
                         $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
                         $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
@@ -2295,6 +2304,7 @@
             settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));
             settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));
             settings.set('send_buffer_watermark_factor', $('sendBufferWatermarkFactor').getProperty('value'));
+            settings.set('connection_speed', $('connectionSpeed').getProperty('value'));
             settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
             settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));

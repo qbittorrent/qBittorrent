@@ -116,6 +116,7 @@ namespace
         SEND_BUF_LOW_WATERMARK,
         SEND_BUF_WATERMARK_FACTOR,
         // networking & ports
+        CONNECTION_SPEED,
         SOCKET_BACKLOG_SIZE,
         OUTGOING_PORT_MIN,
         OUTGOING_PORT_MAX,
@@ -224,6 +225,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setSendBufferWatermark(m_spinBoxSendBufferWatermark.value());
     session->setSendBufferLowWatermark(m_spinBoxSendBufferLowWatermark.value());
     session->setSendBufferWatermarkFactor(m_spinBoxSendBufferWatermarkFactor.value());
+    // Outgoing connections per second
+    session->setConnectionSpeed(m_spinBoxConnectionSpeed.value());
     // Socket listen backlog size
     session->setSocketBacklogSize(m_spinBoxSocketBacklogSize.value());
     // Save resume data interval
@@ -528,6 +531,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxSendBufferWatermarkFactor.setValue(session->sendBufferWatermarkFactor());
     addRow(SEND_BUF_WATERMARK_FACTOR, (tr("Send buffer watermark factor") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#send_buffer_watermark_factor", "(?)"))
             , &m_spinBoxSendBufferWatermarkFactor);
+    // Outgoing connections per second
+    m_spinBoxConnectionSpeed.setMinimum(0);
+    m_spinBoxConnectionSpeed.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxConnectionSpeed.setValue(session->connectionSpeed());
+    addRow(CONNECTION_SPEED, (tr("Outgoing connections per second") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#connection_speed", "(?)"))
+            , &m_spinBoxConnectionSpeed);
     // Socket listen backlog size
     m_spinBoxSocketBacklogSize.setMinimum(1);
     m_spinBoxSocketBacklogSize.setMaximum(std::numeric_limits<int>::max());

@@ -354,6 +354,7 @@ Session::Session(QObject *parent)
     , m_sendBufferWatermark(BITTORRENT_SESSION_KEY("SendBufferWatermark"), 500)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY("SendBufferLowWatermark"), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY("SendBufferWatermarkFactor"), 50)
+    , m_connectionSpeed(BITTORRENT_SESSION_KEY("ConnectionSpeed"), 30)
     , m_socketBacklogSize(BITTORRENT_SESSION_KEY("SocketBacklogSize"), 30)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY("AnonymousModeEnabled"), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY("QueueingSystemEnabled"), false)
@@ -1073,7 +1074,6 @@ void Session::initializeNativeSession()
     // Speed up exit
     pack.set_int(lt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
     pack.set_int(lt::settings_pack::auto_scrape_min_interval, 900); // 15 minutes
-    pack.set_int(lt::settings_pack::connection_speed, 20); // default is 10
     // libtorrent 1.1 enables UPnP & NAT-PMP by default
     // turn them off before `lt::session` ctor to avoid split second effects
     pack.set_bool(lt::settings_pack::enable_upnp, false);
@@ -1190,6 +1190,8 @@ void Session::initMetrics()
 
 void Session::loadLTSettings(lt::settings_pack &settingsPack)
 {
+    settingsPack.set_int(lt::settings_pack::connection_speed, connectionSpeed());
+
     // from libtorrent doc:
     // It will not take affect until the listen_interfaces settings is updated
     settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
@@ -3327,6 +3329,19 @@ void Session::setSendBufferWatermarkFactor(const int value)
     if (value == m_sendBufferWatermarkFactor) return;
 
     m_sendBufferWatermarkFactor = value;
+    configureDeferred();
+}
+
+int Session::connectionSpeed() const
+{
+    return m_connectionSpeed;
+}
+
+void Session::setConnectionSpeed(const int value)
+{
+    if (value == m_connectionSpeed) return;
+
+    m_connectionSpeed = value;
     configureDeferred();
 }
 

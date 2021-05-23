@@ -386,7 +386,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
         if (!db.commit())
             throw RuntimeError(db.lastError().text());
     }
-    catch (const RuntimeError &err)
+    catch (const RuntimeError &)
     {
         db.rollback();
         throw;
@@ -563,7 +563,7 @@ void BitTorrent::DBResumeDataStorage::Worker::storeQueue(const QVector<TorrentID
             if (!db.commit())
                 throw RuntimeError(db.lastError().text());
         }
-        catch (const RuntimeError &err)
+        catch (const RuntimeError &)
         {
             db.rollback();
             throw;

@@ -62,7 +62,8 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 
-constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
+const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
+const char C_SID[] = "SID"; // name of session id cookie
 
 const QString PATH_PREFIX_ICONS {QStringLiteral("/icons/")};
 const QString WWW_FOLDER {QStringLiteral(":/www")};
