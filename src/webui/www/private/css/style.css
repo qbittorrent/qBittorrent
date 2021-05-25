@@ -61,6 +61,8 @@ h2 {
 
 #error_div {
     color: #f00;
+    float: left;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -565,10 +567,6 @@ td.generalLabel {
     margin-left: -1px;
 }
 
-#error_div {
-    float: left;
-    font-size: 14px;
-}
 
 .combo_priority {
     font-size: 1em;
