@@ -24,9 +24,6 @@ Required by:
     background-color: #e5e5e5;
 }
 
-.mocha.isFocused {
-}
-
 .mochaOverlay {
     position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
     top: 0;
@@ -178,12 +175,6 @@ div.mochaToolbarWrapper.bottom {
 
 .mochaMinimizeButton {
     margin-left: 0;
-}
-
-.mochaMaximizeButton {
-}
-
-.mochaCloseButton {
 }
 
 .mochaSpinner {

@@ -378,9 +378,6 @@ li.divider {
     text-align: right;
 }
 
-.panel-header-toolbox {
-}
-
 /* Have to specify div here for IE6's sake */
 div.toolbox.divider {
     background: url(../images/toolbox-divider.gif) repeat-y;
