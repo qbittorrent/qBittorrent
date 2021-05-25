@@ -479,7 +479,8 @@ Session::Session(QObject *parent)
         m_storedCategories = map_cast(m_categories);
     }
 
-    m_tags = List::toSet(m_storedTags.get());
+    const QStringList storedTags = m_storedTags.get();
+    m_tags = {storedTags.cbegin(), storedTags.cend()};
 
     enqueueRefresh();
     updateSeedingLimitTimer();

@@ -302,7 +302,7 @@ void Application::setFileLoggerAgeType(const int value)
 
 void Application::processMessage(const QString &message)
 {
-    const QStringList params = message.split(PARAMS_SEPARATOR, QString::SkipEmptyParts);
+    const QStringList params = message.split(PARAMS_SEPARATOR, Qt::SkipEmptyParts);
     // If Application is not running (i.e., other
     // components are not ready) store params
     if (m_running)

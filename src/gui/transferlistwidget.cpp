@@ -721,7 +721,7 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
             this, dialogTitle, tr("Comma-separated tags:"), QLineEdit::Normal, "", &ok).trimmed();
         if (!ok || tagsInput.isEmpty())
             return {};
-        tags = tagsInput.split(',', QString::SkipEmptyParts);
+        tags = tagsInput.split(',', Qt::SkipEmptyParts);
         for (QString &tag : tags)
         {
             tag = tag.trimmed();
@@ -1163,15 +1163,9 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     {
         // Shift + scroll = horizontal scroll
         event->accept();
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
         QWheelEvent scrollHEvent(event->position(), event->globalPosition()
             , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
             , event->modifiers(), event->phase(), event->inverted(), event->source());
-#else
-        QWheelEvent scrollHEvent(event->pos(), event->globalPos()
-            , event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
-#endif
         QTreeView::wheelEvent(&scrollHEvent);
         return;
     }

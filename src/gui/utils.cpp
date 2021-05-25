@@ -48,10 +48,6 @@
 #include <QWidget>
 #include <QWindow>
 
-#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0)) && defined(Q_OS_WIN)
-#include <QDesktopWidget>
-#endif
-
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
 
@@ -65,26 +61,8 @@ void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
 
 qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
     Q_UNUSED(widget);
     return 1;
-#else
-    if (!widget)
-        return 1;
-
-#ifdef Q_OS_WIN
-    const int screenNumber = qApp->desktop()->screenNumber(widget);
-    const QScreen *screen = QApplication::screens()[screenNumber];
-    // Workaround for QScreen::physicalDotsPerInch() that could return
-    // values that are smaller than the normal 96 DPI on Windows
-    const qreal physicalDPI = qMax<qreal>(screen->physicalDotsPerInch(), 96);
-    return (screen->logicalDotsPerInch() / physicalDPI);
-#elif defined(Q_OS_MACOS)
-    return 1;
-#else
-    return widget->devicePixelRatioF();
-#endif // Q_OS_WIN
-#endif // QT_VERSION
 }
 
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)

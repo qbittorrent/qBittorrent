@@ -212,7 +212,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
         , m_ui->txtComment->toPlainText()
         , m_ui->lineEditSource->text()
         , trackers
-        , m_ui->URLSeedsList->toPlainText().split('\n', QString::SkipEmptyParts)
+        , m_ui->URLSeedsList->toPlainText().split('\n', Qt::SkipEmptyParts)
     };
 
     // run the creator thread

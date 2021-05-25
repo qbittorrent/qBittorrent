@@ -35,44 +35,16 @@
 #define QBT_APP_64BIT
 #endif
 
-const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
-const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
+inline const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
+inline const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
 
 template <typename T>
-constexpr typename std::add_const<T>::type &asConst(T &t) noexcept { return t; }
+constexpr typename std::add_const_t<T> &asConst(T &t) noexcept { return t; }
 
 // Forward rvalue as const
 template <typename T>
-constexpr typename std::add_const<T>::type asConst(T &&t) noexcept { return std::move(t); }
+constexpr typename std::add_const_t<T> asConst(T &&t) noexcept { return std::move(t); }
 
 // Prevent const rvalue arguments
 template <typename T>
 void asConst(const T &&) = delete;
-
-namespace List
-{
-    // Replacement for the deprecated`QSet<T> QSet::fromList(const QList<T> &list)`
-    template <typename T>
-    QSet<T> toSet(const QList<T> &list)
-    {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-        return {list.cbegin(), list.cend()};
-#else
-        return QSet<T>::fromList(list);
-#endif
-    }
-}
-
-namespace Vector
-{
-    // Replacement for the deprecated `QVector<T> QVector::fromStdVector(const std::vector<T> &vector)`
-    template <typename T>
-    QVector<T> fromStdVector(const std::vector<T> &vector)
-    {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
-        return {vector.cbegin(), vector.cend()};
-#else
-        return QVector<T>::fromStdVector(vector);
-#endif
-    }
-}

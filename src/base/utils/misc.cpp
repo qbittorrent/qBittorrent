@@ -498,7 +498,7 @@ QString Utils::Misc::opensslVersionString()
 #else
     static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
 #endif
-    return version.splitRef(' ', QString::SkipEmptyParts)[1].toString();
+    return version.splitRef(' ', Qt::SkipEmptyParts)[1].toString();
 }
 
 QString Utils::Misc::zlibVersionString()

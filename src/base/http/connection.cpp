@@ -161,7 +161,7 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return false;
     };
 
-    const QVector<QStringRef> list = codings.remove(' ').remove('\t').splitRef(',', QString::SkipEmptyParts);
+    const QVector<QStringRef> list = codings.remove(' ').remove('\t').splitRef(',', Qt::SkipEmptyParts);
     if (list.isEmpty())
         return false;
 

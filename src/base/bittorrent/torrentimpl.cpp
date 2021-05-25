@@ -1252,7 +1252,7 @@ QVector<int> TorrentImpl::pieceAvailability() const
     std::vector<int> avail;
     m_nativeHandle.piece_availability(avail);
 
-    return Vector::fromStdVector(avail);
+    return {avail.cbegin(), avail.cend()};
 }
 
 qreal TorrentImpl::distributedCopies() const
@@ -1857,9 +1857,9 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
 
-    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', QString::SkipEmptyParts);
+    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', Qt::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
-    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', QString::SkipEmptyParts);
+    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', Qt::SkipEmptyParts);
     newPathParts.removeLast();  // drop file name part
 
 #if defined(Q_OS_WIN)

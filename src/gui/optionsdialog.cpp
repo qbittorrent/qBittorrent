@@ -718,7 +718,7 @@ void OptionsDialog::saveOptions()
     RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
     RSS::Session::instance()->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
     RSS::AutoDownloader::instance()->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
-    RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split('\n', QString::SplitBehavior::SkipEmptyParts));
+    RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split('\n', Qt::SkipEmptyParts));
     RSS::AutoDownloader::instance()->setDownloadRepacks(m_ui->checkSmartFilterDownloadRepacks->isChecked());
 
     auto session = BitTorrent::Session::instance();

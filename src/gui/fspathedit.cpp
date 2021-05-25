@@ -241,7 +241,7 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
         }
         else
         {
-            QStringList filters = filterString.split(QLatin1Char(' '), QString::SkipEmptyParts);
+            QStringList filters = filterString.split(QLatin1Char(' '), Qt::SkipEmptyParts);
             d->m_editor->setFilenameFilters(filters);
         }
     }

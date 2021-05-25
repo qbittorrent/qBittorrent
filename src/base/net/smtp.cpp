@@ -456,7 +456,7 @@ void Smtp::authenticate()
     // AUTH extension is supported, check which
     // authentication modes are supported by
     // the server
-    const QStringList auth = m_extensions["AUTH"].toUpper().split(' ', QString::SkipEmptyParts);
+    const QStringList auth = m_extensions["AUTH"].toUpper().split(' ', Qt::SkipEmptyParts);
     if (auth.contains("CRAM-MD5"))
     {
         qDebug() << "Using CRAM-MD5 authentication...";
