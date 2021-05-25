@@ -24,10 +24,11 @@ Required by:
     background-color: #e5e5e5;
 }
 
-.mocha.isFocused {}
+.mocha.isFocused {
+}
 
 .mochaOverlay {
-    position: absolute;  /* This is also set in theme.js in order to make theme transitions smoother */
+    position: absolute; /* This is also set in theme.js in order to make theme transitions smoother */
     top: 0;
     left: 0;
 }
@@ -63,7 +64,7 @@ Required by:
 }
 
 .mochaToolbarWrapper {
-    width: 100%;  /* For IE */
+    width: 100%; /* For IE */
     position: relative;
     height: 29px;
     background: #f1f1f1;
@@ -77,7 +78,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaToolbar {
-    width: 100%;  /* For IE */
+    width: 100%; /* For IE */
     border-top: 1px solid #fff;
 }
 
@@ -86,7 +87,8 @@ div.mochaToolbarWrapper.bottom {
     border-bottom: 1px solid #dadada;
 }
 
-.mochaContentWrapper {  /* Has a fixed height and scrollbars if required. */
+/* Has a fixed height and scrollbars if required. */
+.mochaContentWrapper {
     font-size: 12px;
     overflow: auto;
     background: #fff;
@@ -102,24 +104,26 @@ div.mochaToolbarWrapper.bottom {
     width: 3px;
     height: 3px;
     z-index: 2;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);  /* IE6 and 7*/
-    opacity: .0;
-    -moz-opacity: .0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
+    opacity: 0;
+    -moz-opacity: 0;
     overflow: hidden;
-    font-size: 1px;  /* For IE6 */
+    font-size: 1px; /* For IE6 */
 }
 
-.mocha .corner {  /* Corner resize handles */
+/* Corner resize handles */
+.mocha .corner {
     width: 10px;
     height: 10px;
     background: #f00;
 }
 
-.mocha .cornerSE {  /* Bottom right resize handle */
+/* Bottom right resize handle */
+.mocha .cornerSE {
     width: 20px;
     height: 20px;
-    background: #fefefe;  /* This is the color of the visible resize handle */
+    background: #fefefe; /* This is the color of the visible resize handle */
 }
 
 .mochaCanvasHeader {
@@ -158,7 +162,9 @@ div.mochaToolbarWrapper.bottom {
 	2. Replcac the background-color with a background-image for each button.
 
 */
-.mochaMinimizeButton, .mochaMaximizeButton, .mochaCloseButton {
+.mochaMinimizeButton,
+.mochaMaximizeButton,
+.mochaCloseButton {
     float: right;
     width: 14px;
     height: 14px;
@@ -217,8 +223,8 @@ div.mochaToolbarWrapper.bottom {
     left: 0;
     width: 100%;
     background: #000;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);  /* IE6 and 7*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     opacity: 0;
     -moz-opacity: 0;
     z-index: 10000;
@@ -231,8 +237,8 @@ div.mochaToolbarWrapper.bottom {
     top: 0;
     left: 0;
     width: 100%;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);  /* IE6 and 7*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     opacity: 0;
     -moz-opacity: 0;
     z-index: 9999;
@@ -254,8 +260,11 @@ div.mochaToolbarWrapper.bottom {
 
 /* The replaced class is used internally when converting CSS values to Canvas. These classes should not be removed. */
 
-.mocha.replaced, .mochaTitlebar.replaced, .mochaMinimizeButton.replaced,
-.mochaMaximizeButton.replaced, .mochaCloseButton.replaced {
+.mocha.replaced,
+.mochaTitlebar.replaced,
+.mochaMinimizeButton.replaced,
+.mochaMaximizeButton.replaced,
+.mochaCloseButton.replaced {
     background-color: transparent !important;
 }
 
@@ -269,8 +278,10 @@ div.mochaToolbarWrapper.bottom {
     overflow: hidden;
 }
 
-.windowClosed .mochaContentBorder, .windowClosed .mochaToolbarWrapper,
-.windowClosed .mochaTitlebar, .windowClosed .mochaControls,
+.windowClosed .mochaContentBorder,
+.windowClosed .mochaToolbarWrapper,
+.windowClosed .mochaTitlebar,
+.windowClosed .mochaControls,
 .windowClosed .mochaCanvasControls {
     position: absolute;
     top: 0;
@@ -315,9 +326,9 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mocha.notification .mochaTitlebar {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";  /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);  /* IE6 and 7*/
-    opacity: .0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
+    opacity: 0;
     -moz-opacity: 0;
 }
 

@@ -2,7 +2,9 @@
 
 /*ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }*/
 
-a img, :link img, :visited img {
+a img,
+:link img,
+:visited img {
     border: none;
 }
 
@@ -33,7 +35,9 @@ body {
 
 /* Typography */
 
-h2, h3, h4 {
+h2,
+h3,
+h4 {
     margin: 0;
     padding: 0 0 5px 0;
     font-size: 12px;
@@ -100,7 +104,7 @@ pre {
     background-color: #f6f6f6;
     color: #006600;
     display: block;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: 11px;
     max-height: 250px;
     overflow: auto;
@@ -148,12 +152,12 @@ hr {
 }
 
 .selectedFilter {
-    background-color: #415A8D;
-    color: #FFFFFF;
+    background-color: #415a8d;
+    color: #ffffff;
 }
 
 .selectedFilter a {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #properties {
@@ -236,7 +240,8 @@ a.propButton img {
     position: relative;
 }
 
-.contextMenu li a.arrow-right, .contextMenu li a:hover.arrow-right {
+.contextMenu li a.arrow-right,
+.contextMenu li a:hover.arrow-right {
     background-image: url(../images/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right center;
@@ -247,7 +252,8 @@ a.propButton img {
 .contextMenu li li.ieHover ul,
 .contextMenu li li li.ieHover ul,
 .contextMenu li li:hover ul,
-.contextMenu li li li:hover ul {  /* lists nested under hovered list items */
+.contextMenu li li li:hover ul {
+    /* lists nested under hovered list items */
     left: auto;
 }
 
@@ -258,7 +264,7 @@ a.propButton img {
     -ms-interpolation-mode: bicubic;
 }
 
-.contextMenu li input[type=checkbox] {
+.contextMenu li input[type="checkbox"] {
     position: relative;
     top: 3px;
 }
@@ -384,7 +390,7 @@ label.tristate {
     display: block;
     float: left;
     height: 13px;
-    margin: .15em 8px 5px 0px;
+    margin: 0.15em 8px 5px 0px;
     overflow: hidden;
     text-indent: -999em;
     width: 13px;
@@ -514,7 +520,8 @@ td.generalLabel {
     border-collapse: collapse;
 }
 
-#watched_folders_tab td, #watched_folders_tab th {
+#watched_folders_tab td,
+#watched_folders_tab th {
     padding: 2px 4px;
     border: 1px solid black;
 }
@@ -546,7 +553,8 @@ td.generalLabel {
     border: none;
 }
 
-.select-watched-folder-editable select:focus, .select-editable input:focus {
+.select-watched-folder-editable select:focus,
+.select-editable input:focus {
     outline: none;
 }
 
@@ -569,7 +577,7 @@ td.generalLabel {
 
 td.statusBarSeparator {
     width: 22px;
-    background-image: url('../images/toolbox-divider.gif');
+    background-image: url("../images/toolbox-divider.gif");
     background-repeat: no-repeat;
     background-position: center 1px;
     background-size: 2px 18px;
@@ -582,7 +590,9 @@ td.statusBarSeparator {
 
 /* Search tab */
 
-#SearchPanel, #SearchPanel_wrapper, #SearchPanel_pad {
+#SearchPanel,
+#SearchPanel_wrapper,
+#SearchPanel_pad {
     height: inherit;
 }
 

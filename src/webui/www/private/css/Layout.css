@@ -18,21 +18,22 @@ Required by:
 /* Layout
 ---------------------------------------------------------------- */
 
-html, body {
+html,
+body {
     background: #fff;
 }
 
 body {
-    margin: 0;  /* Required */
+    margin: 0; /* Required */
 }
 
 #desktop {
     position: relative;
-    min-width: 400px;  /* Helps keep header content from wrapping */
+    min-width: 400px; /* Helps keep header content from wrapping */
     height: 100%;
     min-height: 100%;
     overflow: hidden;
-    cursor: default;  /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
+    cursor: default; /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
 }
 
 #desktopHeader {
@@ -43,7 +44,7 @@ body {
     position: relative;
     height: 45px;
     overflow: hidden;
-    background: #718BA6 url(../images/bg-header.gif) repeat-x;
+    background: #718ba6 url(../images/bg-header.gif) repeat-x;
 }
 
 #desktopTitlebar {
@@ -104,7 +105,7 @@ body {
     background: #f2f2f2;
     /*height: 30px;*/
     margin: 0 0px;
-    overflow: hidden;  /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
+    overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
     /* Fixes by Chris */
     /*background-color: #ccc;*/
     height: 20px;
@@ -118,7 +119,7 @@ body {
     font-size: 12px;
 }
 
-#desktopNavbar>ul>li {
+#desktopNavbar > ul > li {
     float: left;
 }
 
@@ -140,7 +141,8 @@ body {
     background-color: #fff;
 }
 
-#desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
+#desktopNavbar ul li a.arrow-right,
+#desktopNavbar ul li a:hover.arrow-right {
     background-image: url(../images/arrow-right.gif);
     background-repeat: no-repeat;
     background-position: right 7px;
@@ -163,7 +165,8 @@ body {
     left: -999em;
 }
 
-#desktopNavbar li ul ul {  /* third-and-above-level lists */
+#desktopNavbar li ul ul {
+    /* third-and-above-level lists */
     margin: -22px 0 0 163px;
 }
 
@@ -191,7 +194,7 @@ body {
 }
 
 #desktopNavbar li ul li a:hover {
-    background: #6C98D9;
+    background: #6c98d9;
     color: #fff;
     -moz-border-radius: 2px;
 }
@@ -200,16 +203,18 @@ body {
     background: #fff;
 }
 
+/* lists nested under hovered list items */
 #desktopNavbar li:hover ul,
 #desktopNavbar li.ieHover ul,
 #desktopNavbar li li.ieHover ul,
 #desktopNavbar li li li.ieHover ul,
 #desktopNavbar li li:hover ul,
-#desktopNavbar li li li:hover ul {  /* lists nested under hovered list items */
+#desktopNavbar li li li:hover ul {
     left: auto;
 }
 
-#desktopNavbar li:hover {  /* For IE7 */
+/* For IE7 */
+#desktopNavbar li:hover {
     position: static;
 }
 
@@ -221,7 +226,7 @@ li.divider {
 
 #pageWrapper {
     position: relative;
-    overflow: hidden;  /* This can be set to hidden or auto */
+    overflow: hidden; /* This can be set to hidden or auto */
     border-top: 1px solid #909090;
     border-bottom: 1px solid #909090;
     /*height: 100%;*/
@@ -246,8 +251,6 @@ li.divider {
     background: #f2f2f2;
 }
 
-
-
 /* Panel Layout
 ---------------------------------------------------------------- */
 
@@ -256,7 +259,7 @@ li.divider {
 .column {
     position: relative;
     float: left;
-    overflow: hidden;  /* Required by IE6 */
+    overflow: hidden; /* Required by IE6 */
 }
 
 /* Panels */
@@ -349,7 +352,8 @@ li.divider {
     line-height: 1px;
     font-size: 1px;
     overflow: hidden;
-    background: url(../images/handle-icon-horizontal.gif) center center no-repeat;
+    background: url(../images/handle-icon-horizontal.gif) center center
+        no-repeat;
 }
 
 .columnHandle {
@@ -377,7 +381,8 @@ li.divider {
 .panel-header-toolbox {
 }
 
-div.toolbox.divider {  /* Have to specify div here for IE6's sake */
+/* Have to specify div here for IE6's sake */
+div.toolbox.divider {
     background: url(../images/toolbox-divider.gif) repeat-y;
     padding-left: 8px;
 }
