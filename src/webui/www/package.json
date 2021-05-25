@@ -6,12 +6,13 @@
     "url": "https://github.com/qbittorrent/qBittorrent.git"
   },
   "scripts": {
-    "format": "js-beautify private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js",
+    "format": "js-beautify private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && prettier --write **.css",
     "lint": "eslint private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js"
   },
   "devDependencies": {
     "eslint": "*",
     "eslint-plugin-html": "*",
-    "js-beautify": "*"
+    "js-beautify": "*",
+    "prettier": "*"
   }
 }
