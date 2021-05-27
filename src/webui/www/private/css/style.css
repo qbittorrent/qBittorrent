@@ -2,7 +2,9 @@
 
 /*ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }*/
 
-a img, :link img, :visited img {
+a img,
+:link img,
+:visited img {
     border: none;
 }
 
@@ -15,12 +17,12 @@ a img, :link img, :visited img {
 /* Structure */
 
 body {
-    margin: 0;
-    text-align: left;
+    color: #555;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     line-height: 18px;
-    color: #555;
+    margin: 0;
+    text-align: left;
 }
 
 .aside {
@@ -33,30 +35,34 @@ body {
 
 /* Typography */
 
-h2, h3, h4 {
-    margin: 0;
-    padding: 0 0 5px 0;
+h2,
+h3,
+h4 {
+    color: #333;
     font-size: 12px;
     font-weight: bold;
-    color: #333;
+    margin: 0;
+    padding: 0 0 5px 0;
 }
 
 h2 {
-    font-size: 14px;
     color: #555;
+    font-size: 14px;
     font-weight: bold;
 }
 
 #mochaPage h3 {
+    border-bottom: 1px solid #bbb;
     display: block;
     font-size: 12px;
-    padding: 6px 0 6px 0;
     margin: 0 0 8px 0;
-    border-bottom: 1px solid #bbb;
+    padding: 6px 0 6px 0;
 }
 
 #error_div {
     color: #f00;
+    float: left;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -66,8 +72,8 @@ h4 {
 
 a {
     color: #e60;
-    text-decoration: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
 a:hover {
@@ -98,24 +104,24 @@ dd {
 
 pre {
     background-color: #f6f6f6;
+    border: 1px solid #d1d7dc;
     color: #006600;
     display: block;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: 11px;
+    margin: 0 0 10px 0;
     max-height: 250px;
     overflow: auto;
-    margin: 0 0 10px 0;
     padding: 10px;
-    border: 1px solid #d1d7dc;
 }
 
 /* Dividers */
 
 hr {
     background-color: #ddd;
+    border: 0px;
     color: #ccc;
     height: 1px;
-    border: 0px;
 }
 
 .vcenter {
@@ -123,13 +129,13 @@ hr {
 }
 
 #urls {
-    width: 90%;
     height: 100%;
+    width: 90%;
 }
 
 #trackersUrls {
-    width: 90%;
     height: 100%;
+    width: 90%;
 }
 
 #Filters ul {
@@ -141,19 +147,19 @@ hr {
 }
 
 #Filters ul img {
+    height: 16px;
     padding: 2px 4px;
     vertical-align: middle;
     width: 16px;
-    height: 16px;
 }
 
 .selectedFilter {
-    background-color: #415A8D;
-    color: #FFFFFF;
+    background-color: #415a8d;
+    color: #ffffff;
 }
 
 .selectedFilter a {
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 #properties {
@@ -162,10 +168,10 @@ hr {
 
 a.propButton {
     border: 1px solid rgb(85, 81, 91);
-    /*border-radius: 3px;*/
-    padding: 2px;
     margin-left: 3px;
     margin-right: 3px;
+    /*border-radius: 3px;*/
+    padding: 2px;
 }
 
 a.propButton img {
@@ -173,18 +179,18 @@ a.propButton img {
 }
 
 .scrollableMenu {
-    overflow-y: auto;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* context menu specific */
 
 .contextMenu {
-    border: 1px solid #999;
-    padding: 0;
     background: #eee;
-    list-style-type: none;
+    border: 1px solid #999;
     display: none;
+    list-style-type: none;
+    padding: 0;
 }
 
 .contextMenu .separator {
@@ -197,12 +203,12 @@ a.propButton img {
 }
 
 .contextMenu li a {
-    display: block;
-    padding: 5px 20px 5px 5px;
-    font-size: 12px;
-    text-decoration: none;
-    font-family: tahoma, arial, sans-serif;
     color: #000;
+    display: block;
+    font-family: tahoma, arial, sans-serif;
+    font-size: 12px;
+    padding: 5px 20px 5px 5px;
+    text-decoration: none;
     white-space: nowrap;
 }
 
@@ -220,26 +226,26 @@ a.propButton img {
 }
 
 .contextMenu li ul {
-    padding: 0;
-    border: 1px solid #999;
-    padding: 0;
     background: #eee;
-    list-style-type: none;
-    position: absolute;
+    border: 1px solid #999;
     left: -999em;
-    z-index: 8000;
+    list-style-type: none;
     margin: -29px 0 0 100%;
+    padding: 0;
+    position: absolute;
     width: 164px;
+    z-index: 8000;
 }
 
 .contextMenu li ul li a {
     position: relative;
 }
 
-.contextMenu li a.arrow-right, .contextMenu li a:hover.arrow-right {
+.contextMenu li a.arrow-right,
+.contextMenu li a:hover.arrow-right {
     background-image: url(../images/arrow-right.gif);
-    background-repeat: no-repeat;
     background-position: right center;
+    background-repeat: no-repeat;
 }
 
 .contextMenu li:hover ul,
@@ -247,18 +253,19 @@ a.propButton img {
 .contextMenu li li.ieHover ul,
 .contextMenu li li li.ieHover ul,
 .contextMenu li li:hover ul,
-.contextMenu li li li:hover ul {  /* lists nested under hovered list items */
+.contextMenu li li li:hover ul {
+    /* lists nested under hovered list items */
     left: auto;
 }
 
 .contextMenu li img {
-    width: 16px;
     height: 16px;
-    margin-bottom: -4px;
     -ms-interpolation-mode: bicubic;
+    margin-bottom: -4px;
+    width: 16px;
 }
 
-.contextMenu li input[type=checkbox] {
+.contextMenu li input[type="checkbox"] {
     position: relative;
     top: 3px;
 }
@@ -267,49 +274,49 @@ a.propButton img {
 
 .slider {
     clear: both;
-    position: relative;
     font-size: 12px;
     font-weight: bold;
-    width: 400px;
     margin-bottom: 15px;
+    position: relative;
+    width: 400px;
 }
 
 .sliderWrapper {
-    position: relative;
     font-size: 1px;
-    line-height: 1px;
     height: 9px;
+    line-height: 1px;
+    position: relative;
     width: 422px;
 }
 
 .sliderarea {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 7px;
-    width: 420px;
-    font-size: 1px;
-    line-height: 1px;
     background: #f2f2f2 url(../images/slider-area.gif) repeat-x;
     border: 1px solid #a3a3a3;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
+    font-size: 1px;
+    height: 7px;
+    left: 0;
+    line-height: 1px;
     margin: 0;
-    padding: 0;
     overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 420px;
 }
 
 .sliderknob {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 9px;
-    width: 19px;
-    font-size: 1px;
-    line-height: 1px;
     background: url(../images/knob.gif) no-repeat;
     cursor: pointer;
+    font-size: 1px;
+    height: 9px;
+    left: 0;
+    line-height: 1px;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 19px;
     z-index: 2;
 }
 
@@ -324,23 +331,23 @@ a.propButton img {
 /* Mocha Customization */
 
 #mochaToolbar {
-    margin-top: 5px;
-    position: relative;
     height: 29px;
+    margin-top: 5px;
     overflow-y: hidden;
+    position: relative;
 }
 
 #mochaToolbar .divider {
     background-image: url(../images/toolbox-divider.gif);
-    background-repeat: no-repeat;
     background-position: left center;
+    background-repeat: no-repeat;
     padding-left: 14px;
     padding-top: 15px;
 }
 
 .MyMenuIcon {
-    margin-left: -18px;
     margin-bottom: -3px;
+    margin-left: -18px;
     padding-right: 5px;
 }
 
@@ -355,12 +362,12 @@ a.propButton img {
 }
 
 #torrentsFilterInput {
-    width: 160px;
-    padding-left: 2em;
     background-image: url("../icons/edit-find.svg");
+    background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    background-position: left;
+    padding-left: 2em;
+    width: 160px;
 }
 
 #torrentFilesFilterToolbar {
@@ -369,12 +376,12 @@ a.propButton img {
 }
 
 #torrentFilesFilterInput {
-    width: 160px;
-    padding-left: 2em;
     background-image: url("../icons/edit-find.svg");
+    background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
-    background-position: left;
+    padding-left: 2em;
+    width: 160px;
 }
 
 /* Tri-state checkbox */
@@ -384,7 +391,7 @@ label.tristate {
     display: block;
     float: left;
     height: 13px;
-    margin: .15em 8px 5px 0px;
+    margin: 0.15em 8px 5px 0px;
     overflow: hidden;
     text-indent: -999em;
     width: 13px;
@@ -400,16 +407,16 @@ label.partial {
 
 fieldset.settings {
     border: solid 1px black;
-    border-radius: 8px;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
+    border-radius: 8px;
     padding: 4px 4px 4px 10px;
 }
 
 fieldset.settings legend {
+    font-weight: bold;
     margin-left: 8px;
     padding: 4px;
-    font-weight: bold;
 }
 
 fieldset.settings label {
@@ -426,21 +433,21 @@ div.formRow {
 }
 
 .filterTitle {
+    display: block;
     font-weight: bold;
-    text-transform: uppercase;
+    overflow: hidden;
     padding-left: 5px;
     padding-top: 5px;
-    display: block;
-    overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .filterTitle img {
-    width: 16px;
     height: 16px;
     margin-bottom: -3px;
     padding: 0 5px;
+    width: 16px;
 }
 
 .filterTitle img.rotate {
@@ -453,11 +460,11 @@ ul.filterList {
 }
 
 ul.filterList a {
+    color: inherit;
     display: block;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
-    color: inherit;
+    white-space: nowrap;
 }
 
 ul.filterList li:hover {
@@ -469,10 +476,10 @@ ul.filterList li:hover a {
 }
 
 td.generalLabel {
-    white-space: nowrap;
     text-align: right;
-    width: 1px;
     vertical-align: top;
+    white-space: nowrap;
+    width: 1px;
 }
 
 #torrentFilesTableDiv {
@@ -485,16 +492,16 @@ td.generalLabel {
 }
 
 .filesTableCollapseIcon {
-    width: 15px;
-    height: 15px;
     cursor: pointer;
+    height: 15px;
     margin-bottom: -3px;
     padding-right: 5px;
+    width: 15px;
 }
 
 .filesTableCollapseIcon.rotate {
-    transform: rotate(270deg);
     margin-bottom: -1px;
+    transform: rotate(270deg);
 }
 
 .unselectable {
@@ -514,39 +521,41 @@ td.generalLabel {
     border-collapse: collapse;
 }
 
-#watched_folders_tab td, #watched_folders_tab th {
-    padding: 2px 4px;
+#watched_folders_tab td,
+#watched_folders_tab th {
     border: 1px solid black;
+    padding: 2px 4px;
 }
 
 .select-watched-folder-editable {
-    position: relative;
     background-color: white;
     border: solid grey 1px;
-    width: 160px;
     height: 20px;
+    position: relative;
+    width: 160px;
 }
 
 .select-watched-folder-editable select {
-    position: absolute;
-    top: 0px;
+    border: none;
     bottom: 0px;
     left: 0px;
-    border: none;
-    width: 160px;
     margin: 0;
+    position: absolute;
+    top: 0px;
+    width: 160px;
 }
 
 .select-watched-folder-editable input {
+    border: none;
+    left: 0px;
+    padding: 1px;
     position: absolute;
     top: 0px;
-    left: 0px;
     width: 140px;
-    padding: 1px;
-    border: none;
 }
 
-.select-watched-folder-editable select:focus, .select-editable input:focus {
+.select-watched-folder-editable select:focus,
+.select-editable input:focus {
     outline: none;
 }
 
@@ -558,21 +567,16 @@ td.generalLabel {
     margin-left: -1px;
 }
 
-#error_div {
-    float: left;
-    font-size: 14px;
-}
-
 .combo_priority {
     font-size: 1em;
 }
 
 td.statusBarSeparator {
-    width: 22px;
-    background-image: url('../images/toolbox-divider.gif');
-    background-repeat: no-repeat;
+    background-image: url("../images/toolbox-divider.gif");
     background-position: center 1px;
+    background-repeat: no-repeat;
     background-size: 2px 18px;
+    width: 22px;
 }
 
 /* Statistics window */
@@ -582,26 +586,28 @@ td.statusBarSeparator {
 
 /* Search tab */
 
-#SearchPanel, #SearchPanel_wrapper, #SearchPanel_pad {
+#SearchPanel,
+#SearchPanel_wrapper,
+#SearchPanel_pad {
     height: inherit;
 }
 
 #searchResults {
-    padding: 0 20px;
     height: 100%;
+    padding: 0 20px;
 }
 
 #searchResultsTableContainer {
-    height: calc(100% - 140px);
     -moz-height: calc(100% - 140px);
     -webkit-height: calc(100% - 140px);
+    height: calc(100% - 140px);
     overflow: auto;
 }
 
 #searchResultsTableDiv {
-    height: calc(100% - 26px) !important;
     -moz-height: calc(100% - 26px) !important;
     -webkit-height: calc(100% - 26px) !important;
+    height: calc(100% - 26px) !important;
 }
 
 #searchResults .dynamicTable {
