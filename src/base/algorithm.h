@@ -44,7 +44,7 @@ namespace Algorithm
     {
     };
 
-    // To be used with associative array types, such as QMap, QHash and it's variants
+    // To be used with associative array types, such as QMap, QHash and its variants
     template <typename T, typename BinaryPredicate
         , typename std::enable_if_t<HasMappedType<T>::value, int> = 0>
     void removeIf(T &dict, BinaryPredicate &&p)
