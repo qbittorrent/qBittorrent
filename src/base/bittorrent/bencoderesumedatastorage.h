@@ -56,6 +56,7 @@ namespace BitTorrent
         void storeQueue(const QVector<TorrentID> &queue) const override;
 
     private:
+        void loadQueue(const QString &queueFilename);
         std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata) const;
 
         const QDir m_resumeDataDir;

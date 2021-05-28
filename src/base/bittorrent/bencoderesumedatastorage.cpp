@@ -125,32 +125,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &pa
              m_registeredTorrents.append(TorrentID::fromString(rxMatch.captured(1)));
     }
 
-    QFile queueFile {m_resumeDataDir.absoluteFilePath(QLatin1String("queue"))};
-    if (queueFile.open(QFile::ReadOnly))
-    {
-        const QRegularExpression hashPattern {QLatin1String("^([A-Fa-f0-9]{40})$")};
-        QByteArray line;
-        int start = 0;
-        while (!(line = queueFile.readLine().trimmed()).isEmpty())
-        {
-            const QRegularExpressionMatch rxMatch = hashPattern.match(line);
-            if (rxMatch.hasMatch())
-            {
-                const auto torrentID = TorrentID::fromString(rxMatch.captured(1));
-                const int pos = m_registeredTorrents.indexOf(torrentID, start);
-                if (pos != -1)
-                {
-                    std::swap(m_registeredTorrents[start], m_registeredTorrents[pos]);
-                    ++start;
-                }
-            }
-        }
-    }
-    else
-    {
-        LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
-            .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
-    }
+    loadQueue(m_resumeDataDir.absoluteFilePath(QLatin1String("queue")));
 
     qDebug("Registered torrents count: %d", m_registeredTorrents.size());
 
@@ -293,6 +268,39 @@ void BitTorrent::BencodeResumeDataStorage::storeQueue(const QVector<TorrentID> &
     {
         m_asyncWorker->storeQueue(queue);
     });
+}
+
+void BitTorrent::BencodeResumeDataStorage::loadQueue(const QString &queueFilename)
+{
+    QFile queueFile {queueFilename};
+    if (!queueFile.exists())
+        return;
+
+    if (queueFile.open(QFile::ReadOnly))
+    {
+        const QRegularExpression hashPattern {QLatin1String("^([A-Fa-f0-9]{40})$")};
+        QByteArray line;
+        int start = 0;
+        while (!(line = queueFile.readLine().trimmed()).isEmpty())
+        {
+            const QRegularExpressionMatch rxMatch = hashPattern.match(line);
+            if (rxMatch.hasMatch())
+            {
+                const auto torrentID = TorrentID::fromString(rxMatch.captured(1));
+                const int pos = m_registeredTorrents.indexOf(torrentID, start);
+                if (pos != -1)
+                {
+                    std::swap(m_registeredTorrents[start], m_registeredTorrents[pos]);
+                    ++start;
+                }
+            }
+        }
+    }
+    else
+    {
+        LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
+               .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
+    }
 }
 
 BitTorrent::BencodeResumeDataStorage::Worker::Worker(const QDir &resumeDataDir)
