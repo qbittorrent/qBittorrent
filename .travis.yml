@@ -47,12 +47,13 @@ addons:
       # sources list: https://github.com/travis-ci/apt-source-safelist/blob/master/ubuntu.json
       - sourceline: 'deb https://apt.kitware.com/ubuntu/ focal main'
         key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
+      - sourceline: 'ppa:beineri/opt-qt-5.14.2-focal'
     packages:
       # packages list: https://github.com/travis-ci/apt-package-safelist/blob/master/ubuntu-trusty
       - [autoconf, automake, cmake, colormake]
       - [libboost-dev, libboost-system-dev]
       - libssl-dev
-      - [qtbase5-dev, libqt5svg5-dev, qttools5-dev]
+      - [qt514base, qt514svg, qt514tools]
       - zlib1g-dev
 
 before_install:
@@ -74,6 +75,11 @@ before_install:
       # TravisCI installs its own cmake to another location which ovverides other installations
       # if they don't call the new binary directly
       alias cmake="/usr/bin/cmake"
+
+      # Qt 5.14.2
+      PATH="/opt/qt514/bin:$PATH"
+      qmake_conf="$qmake_conf PKG_CONFIG_PATH=/opt/qt514/lib/pkgconfig:$PKG_CONFIG_PATH"
+      cmake_conf="$cmake_conf PKG_CONFIG_PATH=/opt/qt514/lib/pkgconfig:$PKG_CONFIG_PATH"
 
       export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
     fi
