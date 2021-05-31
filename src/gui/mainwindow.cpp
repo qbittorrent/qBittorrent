@@ -1120,17 +1120,26 @@ void MainWindow::on_actionStatistics_triggered()
 void MainWindow::showEvent(QShowEvent *e)
 {
     qDebug("** Show Event **");
-
-    if (currentTabWidget() == m_transferListWidget)
-        m_propertiesWidget->loadDynamicData();
-
     e->accept();
 
-    // Make sure the window is initially centered
-    if (!m_posInitialized)
+    if (isVisible())
     {
-        move(Utils::Gui::screenCenter(this));
-        m_posInitialized = true;
+        // preparations before showing the window
+
+        if (currentTabWidget() == m_transferListWidget)
+            m_propertiesWidget->loadDynamicData();
+
+        // Make sure the window is initially centered
+        if (!m_posInitialized)
+        {
+            move(Utils::Gui::screenCenter(this));
+            m_posInitialized = true;
+        }
+    }
+    else
+    {
+        // to avoid blank screen when restoring from tray icon
+        show();
     }
 }
 
