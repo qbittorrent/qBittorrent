@@ -761,6 +761,16 @@ void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
     setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
 }
 
+QString Preferences::getWebUIReverseProxyAddress() const
+{
+    return value("Preferences/WebUI/ReverseProxyAddress", "").toString().trimmed();
+}
+
+void Preferences::setWebUIReverseProxyAddress(const QString &addr)
+{
+    setValue("Preferences/WebUI/ReverseProxyAddress", addr.trimmed());
+}
+
 bool Preferences::isDynDNSEnabled() const
 {
     return value("Preferences/DynDNS/Enabled", false).toBool();

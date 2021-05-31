@@ -225,6 +225,10 @@ public:
     QString getWebUICustomHTTPHeaders() const;
     void setWebUICustomHTTPHeaders(const QString &headers);
 
+    // Reverse Proxy
+    QString getWebUIReverseProxyAddress() const;
+    void setWebUIReverseProxyAddress(const QString &addr);
+
     // Dynamic DNS
     bool isDynDNSEnabled() const;
     void setDynDNSEnabled(bool enabled);

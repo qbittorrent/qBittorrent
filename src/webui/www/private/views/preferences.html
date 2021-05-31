@@ -838,6 +838,14 @@
             </legend>
             <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" style="width: 90%;"></textarea>
         </fieldset>
+
+        <fieldset class="settings">
+            <legend>QBT_TR(Reverse Proxy Server)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <label for="webui_reverse_proxy_address_textarea" class="leftLabelLarge">QBT_TR(Reverse Proxy Address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_reverse_proxy_address_textarea" />
+            </div>
+        </fieldset>
+
     </fieldset>
 
     <fieldset class="settings">
@@ -1886,6 +1894,9 @@
                         $('webUICustomHTTPHeadersTextarea').setProperty('value', pref.web_ui_custom_http_headers);
                         updateWebUICustomHTTPHeadersSettings();
 
+                        // Reverse Proxy
+                        $('webui_reverse_proxy_address_textarea').setProperty('value', pref.web_ui_reverse_proxy_address);
+
                         // Update my dynamic domain name
                         $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
                         $('dyndns_select').setProperty('value', pref.dyndns_service);
@@ -2276,6 +2287,9 @@
             // Custom HTTP headers
             settings.set('web_ui_use_custom_http_headers_enabled', $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked'));
             settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
+
+            // Reverse Proxy
+            settings.set('web_ui_reverse_proxy_address', $('webui_reverse_proxy_address_textarea').getProperty('value'));
 
             // Update my dynamic domain name
             settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
