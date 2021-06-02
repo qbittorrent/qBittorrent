@@ -225,7 +225,9 @@ public:
     QString getWebUICustomHTTPHeaders() const;
     void setWebUICustomHTTPHeaders(const QString &headers);
 
-    // Reverse Proxy
+    // Reverse proxy
+    bool isWebUIReverseProxyEnabled() const;
+    void setWebUIReverseProxyEnabled(bool enabled);
     QString getWebUIReverseProxyAddress() const;
     void setWebUIReverseProxyAddress(const QString &addr);
 

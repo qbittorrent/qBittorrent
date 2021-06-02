@@ -840,9 +840,12 @@
         </fieldset>
 
         <fieldset class="settings">
-            <legend>QBT_TR(Reverse Proxy Server)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <legend>
+                <input type="checkbox" id="webui_reverse_proxy_checkbox" onclick="qBittorrent.Preferences.updateWebUIReverseProxySettings();" />
+                <label for="webui_reverse_proxy_checkbox">QBT_TR(Reverse proxy server)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
             <div class="formRow">
-                <label for="webui_reverse_proxy_address_textarea" class="leftLabelLarge">QBT_TR(Reverse Proxy Address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_reverse_proxy_address_textarea" />
+                <label for="webui_reverse_proxy_address_textarea" class="leftLabelLarge">QBT_TR(Reverse proxy address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_reverse_proxy_address_textarea" />
             </div>
         </fieldset>
 
@@ -1287,6 +1290,7 @@
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
                 updateWebUICustomHTTPHeadersSettings: updateWebUICustomHTTPHeadersSettings,
+                updateWebUIReverseProxySettings : updateWebUIReverseProxySettings,
                 updateDynDnsSettings: updateDynDnsSettings,
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
@@ -1517,6 +1521,11 @@
         const updateWebUICustomHTTPHeadersSettings = function() {
             const isEnabled = $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked');
             $('webUICustomHTTPHeadersTextarea').setProperty('disabled', !isEnabled);
+        };
+
+        const updateWebUIReverseProxySettings = function() {
+            const isEnabled = $('webui_reverse_proxy_checkbox').getProperty('checked');
+            $('webui_reverse_proxy_address_textarea').setProperty('disabled', !isEnabled);
         };
 
         const updateDynDnsSettings = function() {
@@ -1895,7 +1904,9 @@
                         updateWebUICustomHTTPHeadersSettings();
 
                         // Reverse Proxy
+                        $('webui_reverse_proxy_checkbox').setProperty('checked', pref.web_ui_reverse_proxy_enabled);
                         $('webui_reverse_proxy_address_textarea').setProperty('value', pref.web_ui_reverse_proxy_address);
+                        updateWebUIReverseProxySettings();
 
                         // Update my dynamic domain name
                         $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
@@ -2289,6 +2300,7 @@
             settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
 
             // Reverse Proxy
+            settings.set('web_ui_reverse_proxy_enabled', $('webui_reverse_proxy_checkbox').getProperty('checked'));
             settings.set('web_ui_reverse_proxy_address', $('webui_reverse_proxy_address_textarea').getProperty('value'));
 
             // Update my dynamic domain name

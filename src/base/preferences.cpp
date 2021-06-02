@@ -761,6 +761,16 @@ void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
     setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
 }
 
+bool Preferences::isWebUIReverseProxyEnabled() const
+{
+    return value("Preferences/WebUI/ReverseProxyEnabled", false).toBool();
+}
+
+void Preferences::setWebUIReverseProxyEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/ReverseProxyEnabled", enabled);
+}
+
 QString Preferences::getWebUIReverseProxyAddress() const
 {
     return value("Preferences/WebUI/ReverseProxyAddress", "").toString().trimmed();

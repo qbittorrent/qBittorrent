@@ -3290,11 +3290,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                </item>
 			   <item>
                 <widget class="QGroupBox" name="groupReverseProxy">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
                  <property name="title">
-                  <string>Reverse Proxy Server</string>
+                  <string>Reverse proxy server</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_331">
                   <item>
@@ -3302,7 +3302,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                     <item>
                      <widget class="QLabel" name="lblReverseProxyAddress">
                       <property name="text">
-                       <string>Reverse Proxy Address:</string>
+                       <string>Reverse proxy address:</string>
                       </property>
                      </widget>
                     </item>

@@ -259,7 +259,8 @@ void AppController::preferencesAction()
     // Custom HTTP headers
     data["web_ui_use_custom_http_headers_enabled"] = pref->isWebUICustomHTTPHeadersEnabled();
     data["web_ui_custom_http_headers"] = pref->getWebUICustomHTTPHeaders();
-    // Reverse Proxy
+    // Reverse proxy
+    data["web_ui_reverse_proxy_enabled"] = pref->isWebUIReverseProxyEnabled();
     data["web_ui_reverse_proxy_address"] = pref->getWebUIReverseProxyAddress();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
@@ -682,7 +683,9 @@ void AppController::setPreferencesAction()
         pref->setWebUICustomHTTPHeadersEnabled(it.value().toBool());
     if (hasKey("web_ui_custom_http_headers"))
         pref->setWebUICustomHTTPHeaders(it.value().toString());
-    // Reverse Proxy
+    // Reverse proxy
+    if (hasKey("web_ui_reverse_proxy_enabled"))
+        pref->setWebUIReverseProxyEnabled(it.value().toBool());
     if (m.contains("web_ui_reverse_proxy_address"))
             pref->setWebUIReverseProxyAddress(m["web_ui_reverse_proxy_address"].toString());
     // Update my dynamic domain name

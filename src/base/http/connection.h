@@ -60,7 +60,7 @@ namespace Http
     private:
         static bool acceptsGzipEncoding(QString codings);
         void sendResponse(const Response &response) const;
-        QHostAddress resolvePeerAddress(const Http::Request &request);
+        QHostAddress resolvePeerAddress(const Http::Request &request) const;
 
         QTcpSocket *m_socket;
         IRequestHandler *m_requestHandler;

@@ -515,6 +515,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupWebUIAddCustomHTTPHeaders, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUICustomHTTPHeaders, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->groupReverseProxy, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textReverseProxyAddress, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 #endif // DISABLE_WEBUI
 
@@ -872,7 +873,8 @@ void OptionsDialog::saveOptions()
         // Custom HTTP headers
         pref->setWebUICustomHTTPHeadersEnabled(m_ui->groupWebUIAddCustomHTTPHeaders->isChecked());
         pref->setWebUICustomHTTPHeaders(m_ui->textWebUICustomHTTPHeaders->toPlainText());
-        // Reverse Proxy
+        // Reverse proxy
+        pref->setWebUIReverseProxyEnabled(m_ui->groupReverseProxy->isChecked());
         pref->setWebUIReverseProxyAddress(m_ui->textReverseProxyAddress->text());
     }
     // End Web UI
@@ -1277,7 +1279,8 @@ void OptionsDialog::loadOptions()
     // Custom HTTP headers
     m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
     m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());
-	// Reverse Proxy
+	// Reverse proxy
+	m_ui->groupReverseProxy->setChecked(pref->isWebUIReverseProxyEnabled());
 	m_ui->textReverseProxyAddress->setText(pref->getWebUIReverseProxyAddress());
     // End Web UI preferences
 }

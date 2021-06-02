@@ -177,9 +177,9 @@ bool Connection::acceptsGzipEncoding(QString codings)
     return false;
 }
 
-QHostAddress Connection::resolvePeerAddress(const Http::Request &request)
+QHostAddress Connection::resolvePeerAddress(const Http::Request &request) const
 {
-    QString reverseProxyAddressString = Preferences::instance()->getWebUIReverseProxyAddress();
+    const QString reverseProxyAddressString = Preferences::instance()->getWebUIReverseProxyAddress();
     QHostAddress peerAddress = m_socket->peerAddress();
     QHostAddress reverseProxyAddress;
 
@@ -189,11 +189,13 @@ QHostAddress Connection::resolvePeerAddress(const Http::Request &request)
 
         if (!forwardedFor.isEmpty()) {
             // peer address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-            QStringList remoteIpList = forwardedFor.split(",");
+            const QStringList remoteIpList = forwardedFor.split(",");
             bool hasGlobalIp = false;
 
-            foreach (const QString &remoteIp, remoteIpList) {
-                if (peerAddress.setAddress(remoteIp) && peerAddress.isGlobal()) {
+            for (const QString &remoteIp : remoteIpList)
+            {
+                if (peerAddress.setAddress(remoteIp) && peerAddress.isGlobal())
+                {
                     hasGlobalIp = true;
                     break;
                 }
