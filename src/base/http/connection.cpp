@@ -33,7 +33,6 @@
 #include <QTcpSocket>
 
 #include "base/logger.h"
-#include "base/preferences.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
@@ -98,7 +97,7 @@ void Connection::read()
 
         case RequestParser::ParseStatus::OK:
         {
-                const Environment env {m_socket->localAddress(), m_socket->localPort(), resolvePeerAddress(result.request), m_socket->peerPort()};
+                const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
 
@@ -175,36 +174,4 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return true;
 
     return false;
-}
-
-QHostAddress Connection::resolvePeerAddress(const Http::Request &request) const
-{
-    const QString reverseProxyAddressString = Preferences::instance()->getWebUIReverseProxyAddress();
-    QHostAddress peerAddress = m_socket->peerAddress();
-    QHostAddress reverseProxyAddress;
-
-    // Only reverse proxy can overwrite peer address
-    if (reverseProxyAddress.setAddress(reverseProxyAddressString) && peerAddress.isEqual(reverseProxyAddress)) {
-        QString forwardedFor = request.headers.value(Http::HEADER_X_FORWARDED_FOR);
-
-        if (!forwardedFor.isEmpty()) {
-            // peer address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-            const QStringList remoteIpList = forwardedFor.split(",");
-            bool hasGlobalIp = false;
-
-            for (const QString &remoteIp : remoteIpList)
-            {
-                if (peerAddress.setAddress(remoteIp) && peerAddress.isGlobal())
-                {
-                    hasGlobalIp = true;
-                    break;
-                }
-            }
-
-            if (!hasGlobalIp)
-                peerAddress.setAddress(remoteIpList.at(0));
-        }
-    }
-
-    return peerAddress;
 }

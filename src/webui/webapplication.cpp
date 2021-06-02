@@ -404,6 +404,13 @@ void WebApplication::configure()
             m_prebuiltHeaders.push_back({header, value});
         }
     }
+
+    m_isReverseProxyEnabled = pref->isWebUIReverseProxyEnabled();
+    if(m_isReverseProxyEnabled)
+    {
+        if(!m_reverseProxyAddress.setAddress(pref->getWebUIReverseProxyAddress()))
+            m_isReverseProxyEnabled = false;
+    }
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -495,6 +502,16 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             throw UnauthorizedHTTPError();
         }
 
+        // reverse proxy resolve peer address
+        if(m_isReverseProxyEnabled)
+        {
+            m_clientAddress = resolvePeerAddress();
+        }
+        else
+        {
+            m_clientAddress = m_env.clientAddress;
+        }
+
         sessionInitialize();
         doProcessRequest();
     }
@@ -512,7 +529,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
 QString WebApplication::clientId() const
 {
-    return env().clientAddress.toString();
+    return m_clientAddress.toString();
 }
 
 void WebApplication::sessionInitialize()
@@ -569,7 +586,7 @@ bool WebApplication::isAuthNeeded()
 {
     if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_env.clientAddress))
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_env.clientAddress, m_authSubnetWhitelist))
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_clientAddress, m_authSubnetWhitelist))
         return false;
     return true;
 }
@@ -651,7 +668,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
         const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
         if (isInvalid)
             LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), originValue, targetOrigin)
+                   .arg(m_clientAddress.toString(), originValue, targetOrigin)
                    , Log::WARNING);
         return isInvalid;
     }
@@ -661,7 +678,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
         const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
         if (isInvalid)
             LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
-                   .arg(m_env.clientAddress.toString(), refererValue, targetOrigin)
+                   .arg(m_clientAddress.toString(), refererValue, targetOrigin)
                    , Log::WARNING);
         return isInvalid;
     }
@@ -679,7 +696,7 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
     if ((requestPort != -1) && (m_env.localPort != requestPort))
     {
         LogMsg(tr("WebUI: Invalid Host header, port mismatch. Request source IP: '%1'. Server port: '%2'. Received Host header: '%3'")
-               .arg(m_env.clientAddress.toString()).arg(m_env.localPort)
+               .arg(m_clientAddress.toString()).arg(m_env.localPort)
                .arg(m_request.headers[Http::HEADER_HOST])
                 , Log::WARNING);
         return false;
@@ -700,9 +717,41 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
     }
 
     LogMsg(tr("WebUI: Invalid Host header. Request source IP: '%1'. Received Host header: '%2'")
-           .arg(m_env.clientAddress.toString(), m_request.headers[Http::HEADER_HOST])
+           .arg(m_clientAddress.toString(), m_request.headers[Http::HEADER_HOST])
             , Log::WARNING);
     return false;
+}
+
+QHostAddress WebApplication::resolvePeerAddress() const
+{
+    QHostAddress peerAddress = m_env.clientAddress;
+
+    // Only reverse proxy can overwrite peer address
+    if (peerAddress.isEqual(m_reverseProxyAddress))
+    {
+        const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
+
+        if (!forwardedFor.isEmpty())
+        {
+            // peer address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
+            const QStringList remoteIpList = forwardedFor.split(",");
+            bool hasGlobalIp = false;
+
+            for (const QString &remoteIp : remoteIpList)
+            {
+                if (peerAddress.setAddress(remoteIp) && peerAddress.isGlobal())
+                {
+                    hasGlobalIp = true;
+                    break;
+                }
+            }
+
+            if (!hasGlobalIp)
+                peerAddress.setAddress(remoteIpList.at(0));
+        }
+    }
+
+    return peerAddress;
 }
 
 // WebSession

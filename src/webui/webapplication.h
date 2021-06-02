@@ -35,6 +35,7 @@
 #include <QRegularExpression>
 #include <QSet>
 #include <QTranslator>
+#include <QDateTime>
 
 #include "api/isessionmanager.h"
 #include "base/http/irequesthandler.h"
@@ -114,6 +115,8 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
+    QHostAddress resolvePeerAddress() const;
+
     // Persistent data
     QHash<QString, WebSession *> m_sessions;
 
@@ -153,6 +156,11 @@ private:
     bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
+
+    // Reverse proxy
+    bool m_isReverseProxyEnabled;
+    QHostAddress m_reverseProxyAddress;
+    QHostAddress m_clientAddress;
 
     QVector<Http::Header> m_prebuiltHeaders;
 };
