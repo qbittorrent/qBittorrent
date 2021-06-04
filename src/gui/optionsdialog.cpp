@@ -1279,9 +1279,9 @@ void OptionsDialog::loadOptions()
     // Custom HTTP headers
     m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
     m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());
-	// Reverse proxy
-	m_ui->groupReverseProxy->setChecked(pref->isWebUIReverseProxyEnabled());
-	m_ui->textReverseProxyAddress->setText(pref->getWebUIReverseProxyAddress());
+    // Reverse proxy
+    m_ui->groupReverseProxy->setChecked(pref->isWebUIReverseProxyEnabled());
+    m_ui->textReverseProxyAddress->setText(pref->getWebUIReverseProxyAddress());
     // End Web UI preferences
 }
 

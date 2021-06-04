@@ -687,7 +687,7 @@ void AppController::setPreferencesAction()
     if (hasKey("web_ui_reverse_proxy_enabled"))
         pref->setWebUIReverseProxyEnabled(it.value().toBool());
     if (m.contains("web_ui_reverse_proxy_address"))
-            pref->setWebUIReverseProxyAddress(m["web_ui_reverse_proxy_address"].toString());
+        pref->setWebUIReverseProxyAddress(m["web_ui_reverse_proxy_address"].toString());
     // Update my dynamic domain name
     if (hasKey("dyndns_enabled"))
         pref->setDynDNSEnabled(it.value().toBool());

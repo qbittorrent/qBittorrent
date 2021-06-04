@@ -406,9 +406,9 @@ void WebApplication::configure()
     }
 
     m_isReverseProxyEnabled = pref->isWebUIReverseProxyEnabled();
-    if(m_isReverseProxyEnabled)
+    if (m_isReverseProxyEnabled)
     {
-        if(!m_reverseProxyAddress.setAddress(pref->getWebUIReverseProxyAddress()))
+        if (!m_reverseProxyAddress.setAddress(pref->getWebUIReverseProxyAddress()))
             m_isReverseProxyEnabled = false;
     }
 }
@@ -503,7 +503,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         }
 
         // reverse proxy resolve peer address
-        if(m_isReverseProxyEnabled)
+        if (m_isReverseProxyEnabled)
         {
             m_clientAddress = resolvePeerAddress();
         }
