@@ -502,15 +502,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             throw UnauthorizedHTTPError();
         }
 
-        // reverse proxy resolve peer address
-        if (m_isReverseProxyEnabled)
-        {
-            m_clientAddress = resolvePeerAddress();
-        }
-        else
-        {
-            m_clientAddress = m_env.clientAddress;
-        }
+        // reverse proxy resolve client address
+        m_clientAddress = resolveClientAddress();
 
         sessionInitialize();
         doProcessRequest();
@@ -722,24 +715,27 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
     return false;
 }
 
-QHostAddress WebApplication::resolvePeerAddress() const
+QHostAddress WebApplication::resolveClientAddress() const
 {
-    QHostAddress peerAddress = m_env.clientAddress;
+    QHostAddress clientAddress = m_env.clientAddress;
 
-    // Only reverse proxy can overwrite peer address
-    if (peerAddress.isEqual(m_reverseProxyAddress))
+    if (!m_isReverseProxyEnabled)
+        return clientAddress;
+
+    // Only reverse proxy can overwrite client address
+    if (clientAddress.isEqual(m_reverseProxyAddress))
     {
         const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
 
         if (!forwardedFor.isEmpty())
         {
-            // peer address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
+            // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
             const QStringList remoteIpList = forwardedFor.split(",");
             bool hasGlobalIp = false;
 
             for (const QString &remoteIp : remoteIpList)
             {
-                if (peerAddress.setAddress(remoteIp) && peerAddress.isGlobal())
+                if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
                 {
                     hasGlobalIp = true;
                     break;
@@ -747,11 +743,11 @@ QHostAddress WebApplication::resolvePeerAddress() const
             }
 
             if (!hasGlobalIp)
-                peerAddress.setAddress(remoteIpList.at(0));
+                clientAddress.setAddress(remoteIpList.at(0));
         }
     }
 
-    return peerAddress;
+    return clientAddress;
 }
 
 // WebSession

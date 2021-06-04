@@ -114,7 +114,7 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
-    QHostAddress resolvePeerAddress() const;
+    QHostAddress resolveClientAddress() const;
 
     // Persistent data
     QHash<QString, WebSession *> m_sessions;
