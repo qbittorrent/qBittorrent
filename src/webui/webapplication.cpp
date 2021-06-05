@@ -731,19 +731,13 @@ QHostAddress WebApplication::resolveClientAddress() const
         {
             // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
             const QStringList remoteIpList = forwardedFor.split(",");
-            bool hasGlobalIp = false;
-
             for (const QString &remoteIp : remoteIpList)
             {
                 if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
-                {
-                    hasGlobalIp = true;
-                    break;
-                }
+                    return clientAddress;
             }
 
-            if (!hasGlobalIp)
-                clientAddress.setAddress(remoteIpList.at(0));
+            clientAddress.setAddress(remoteIpList.at(0));
         }
     }
 
