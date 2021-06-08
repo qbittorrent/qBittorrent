@@ -157,8 +157,8 @@ private:
     bool m_isHttpsEnabled;
 
     // Reverse proxy
-    bool m_isReverseProxyEnabled;
-    QHostAddress m_reverseProxyAddress;
+    bool m_isReverseProxySupportEnabled;
+    QVector<QHostAddress> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
 
     QVector<Http::Header> m_prebuiltHeaders;

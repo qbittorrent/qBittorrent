@@ -761,24 +761,24 @@ void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
     setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
 }
 
-bool Preferences::isWebUIReverseProxyEnabled() const
+bool Preferences::isWebUIReverseProxySupportEnabled() const
 {
-    return value("Preferences/WebUI/ReverseProxyEnabled", false).toBool();
+    return value("Preferences/WebUI/ReverseProxySupportEnabled", false).toBool();
 }
 
-void Preferences::setWebUIReverseProxyEnabled(const bool enabled)
+void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
 {
-    setValue("Preferences/WebUI/ReverseProxyEnabled", enabled);
+    setValue("Preferences/WebUI/ReverseProxySupportEnabled", enabled);
 }
 
-QString Preferences::getWebUIReverseProxyAddress() const
+QString Preferences::getWebUITrustedReverseProxiesList() const
 {
-    return value("Preferences/WebUI/ReverseProxyAddress", "").toString().trimmed();
+    return value("Preferences/WebUI/TrustedReverseProxiesList", "").toString().trimmed();
 }
 
-void Preferences::setWebUIReverseProxyAddress(const QString &addr)
+void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
 {
-    setValue("Preferences/WebUI/ReverseProxyAddress", addr.trimmed());
+    setValue("Preferences/WebUI/TrustedReverseProxiesList", addr.trimmed());
 }
 
 bool Preferences::isDynDNSEnabled() const

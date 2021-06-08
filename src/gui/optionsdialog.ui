@@ -3289,9 +3289,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                 </widget>
                </item>
 			   <item>
-                <widget class="QGroupBox" name="groupReverseProxy">
+                <widget class="QGroupBox" name="groupEnableReverseProxySupport">
                  <property name="title">
-                  <string>Reverse proxy server</string>
+                  <string>Enable reverse proxy support</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -3300,16 +3300,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_131">
                     <item>
-                     <widget class="QLabel" name="lblReverseProxyAddress">
+                     <widget class="QLabel" name="lblReverseProxiesList">
                       <property name="text">
-                       <string>Reverse proxy address:</string>
+                       <string>Trusted proxies list:</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="textReverseProxyAddress">
+                     <widget class="QLineEdit" name="textTrustedReverseProxiesList">
                       <property name="toolTip">
-                       <string>Specify reverse proxy IP in order to use forwarded client address (X-Forwarded-For attribute)</string>
+                       <string>Specify reverse proxy IPs in order to use forwarded client address (X-Forwarded-For attribute), use ';' to split multiple entries.</string>
                       </property>
                      </widget>
                     </item>

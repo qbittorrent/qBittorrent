@@ -842,10 +842,10 @@
         <fieldset class="settings">
             <legend>
                 <input type="checkbox" id="webui_reverse_proxy_checkbox" onclick="qBittorrent.Preferences.updateWebUIReverseProxySettings();" />
-                <label for="webui_reverse_proxy_checkbox">QBT_TR(Reverse proxy server)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label for="webui_reverse_proxy_checkbox">QBT_TR(Enable reverse proxy support)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
-                <label for="webui_reverse_proxy_address_textarea" class="leftLabelLarge">QBT_TR(Reverse proxy address:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_reverse_proxy_address_textarea" />
+                <label for="webui_reverse_proxies_list_textarea" class="leftLabelLarge">QBT_TR(Trusted proxies list:)QBT_TR[CONTEXT=OptionsDialog]</label><input type="text" id="webui_reverse_proxies_list_textarea" />
             </div>
         </fieldset>
 
@@ -1525,7 +1525,7 @@
 
         const updateWebUIReverseProxySettings = function() {
             const isEnabled = $('webui_reverse_proxy_checkbox').getProperty('checked');
-            $('webui_reverse_proxy_address_textarea').setProperty('disabled', !isEnabled);
+            $('webui_reverse_proxies_list_textarea').setProperty('disabled', !isEnabled);
         };
 
         const updateDynDnsSettings = function() {
@@ -1904,8 +1904,8 @@
                         updateWebUICustomHTTPHeadersSettings();
 
                         // Reverse Proxy
-                        $('webui_reverse_proxy_checkbox').setProperty('checked', pref.web_ui_reverse_proxy_enabled);
-                        $('webui_reverse_proxy_address_textarea').setProperty('value', pref.web_ui_reverse_proxy_address);
+                        $('webui_reverse_proxy_checkbox').setProperty('checked', pref.web_ui_reverse_proxy_support_enabled);
+                        $('webui_reverse_proxies_list_textarea').setProperty('value', pref.web_ui_trusted_reverse_proxies_list);
                         updateWebUIReverseProxySettings();
 
                         // Update my dynamic domain name
@@ -2300,8 +2300,8 @@
             settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
 
             // Reverse Proxy
-            settings.set('web_ui_reverse_proxy_enabled', $('webui_reverse_proxy_checkbox').getProperty('checked'));
-            settings.set('web_ui_reverse_proxy_address', $('webui_reverse_proxy_address_textarea').getProperty('value'));
+            settings.set('web_ui_reverse_proxy_support_enabled', $('webui_reverse_proxy_checkbox').getProperty('checked'));
+            settings.set('web_ui_trusted_reverse_proxies_list', $('webui_reverse_proxies_list_textarea').getProperty('value'));
 
             // Update my dynamic domain name
             settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));

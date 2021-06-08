@@ -405,11 +405,22 @@ void WebApplication::configure()
         }
     }
 
-    m_isReverseProxyEnabled = pref->isWebUIReverseProxyEnabled();
-    if (m_isReverseProxyEnabled)
+    m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
+    if (m_isReverseProxySupportEnabled)
     {
-        if (!m_reverseProxyAddress.setAddress(pref->getWebUIReverseProxyAddress()))
-            m_isReverseProxyEnabled = false;
+        m_trustedReverseProxyList.clear();
+
+        const QVector<QStringRef> proxyList = pref->getWebUITrustedReverseProxiesList().splitRef(';', QString::SkipEmptyParts);
+
+        for (const QStringRef &proxy : proxyList)
+        {
+            QHostAddress ip;
+            if(ip.setAddress(proxy.toString()))
+                m_trustedReverseProxyList.push_back(ip);
+        }
+
+        if(m_trustedReverseProxyList.length() == 0)
+            m_isReverseProxySupportEnabled = false;
     }
 }
 
@@ -719,11 +730,11 @@ QHostAddress WebApplication::resolveClientAddress() const
 {
     QHostAddress clientAddress = m_env.clientAddress;
 
-    if (!m_isReverseProxyEnabled)
+    if (!m_isReverseProxySupportEnabled)
         return clientAddress;
 
     // Only reverse proxy can overwrite client address
-    if (clientAddress.isEqual(m_reverseProxyAddress))
+    if (m_trustedReverseProxyList.contains(clientAddress))
     {
         const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
 
