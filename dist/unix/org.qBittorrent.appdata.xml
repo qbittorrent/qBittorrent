@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014 sledgehammer999 <sledgehammer999@qbittorrent.org> -->
 <component type="desktop">
-  <id>org.qbittorrent.qBittorrent</id>
+  <id>org.qbittorrent</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0 and OpenSSL</project_license>
   <name>qBittorrent</name>
@@ -50,7 +50,7 @@
       <li>Available in ~70 languages</li>
     </ul>
   </description>
-  <launchable type="desktop-id">org.qbittorrent.qBittorrent.desktop</launchable>
+  <launchable type="desktop-id">org.qbittorrent.desktop</launchable>
   <screenshots>
     <screenshot type="default">
       <image height="675" width="1200">https://alexpl.fedorapeople.org/AppData/qbittorrent/screens/qbittorrent_01.png</image>

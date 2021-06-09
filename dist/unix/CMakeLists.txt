@@ -30,12 +30,12 @@ install(FILES ${MAN_FILES}
 )
 
 if (GUI)
-    install(FILES org.qbittorrent.qBittorrent.desktop
+    install(FILES org.qbittorrent.desktop
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/
         COMPONENT data
     )
 
-    install(FILES org.qbittorrent.qBittorrent.appdata.xml
+    install(FILES org.qbittorrent.appdata.xml
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo/
         COMPONENT data
     )
