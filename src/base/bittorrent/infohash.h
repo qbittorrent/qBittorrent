@@ -69,6 +69,8 @@ namespace BitTorrent
         InfoHash(const WrappedType &nativeHash);
 
         bool isValid() const;
+        SHA1Hash v1() const;
+        SHA256Hash v2() const;
         TorrentID toTorrentID() const;
 
         operator WrappedType() const;

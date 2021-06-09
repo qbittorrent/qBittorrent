@@ -388,7 +388,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->lineEditAutoRun, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunConsole, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 
-    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n%12")
+    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n%14")
         .arg(tr("Supported parameters (case sensitive):")
             , tr("%N: Torrent name")
             , tr("%L: Category")
@@ -399,7 +399,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
             , tr("%C: Number of files")
             , tr("%Z: Torrent size (bytes)"))
         .arg(tr("%T: Current tracker")
-            , tr("%I: Info hash")
+            , tr("%I: Info hash v1 (or '-' if unavailable)")
+            , tr("%J: Info hash v2 (or '-' if unavailable)")
+            , tr("%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)")
             , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
     m_ui->labelAutoRunParam->setText(autoRunStr);
 
