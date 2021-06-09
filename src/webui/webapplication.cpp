@@ -410,16 +410,16 @@ void WebApplication::configure()
     {
         m_trustedReverseProxyList.clear();
 
-        const QVector<QStringRef> proxyList = pref->getWebUITrustedReverseProxiesList().splitRef(';', QString::SkipEmptyParts);
+        const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(';', QString::SkipEmptyParts);
 
-        for (const QStringRef &proxy : proxyList)
+        for (const QString proxy : proxyList)
         {
             QHostAddress ip;
-            if(ip.setAddress(proxy.toString()))
+            if (ip.setAddress(proxy))
                 m_trustedReverseProxyList.push_back(ip);
         }
 
-        if(m_trustedReverseProxyList.length() == 0)
+        if (m_trustedReverseProxyList.length() == 0)
             m_isReverseProxySupportEnabled = false;
     }
 }
