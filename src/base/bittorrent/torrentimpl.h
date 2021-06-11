@@ -51,16 +51,6 @@
 #include "torrent.h"
 #include "torrentinfo.h"
 
-#if (LIBTORRENT_VERSION_NUM == 20003)
-// file_prio_alert is missing to be forward declared in "libtorrent/fwd.hpp"
-namespace libtorrent
-{
-    TORRENT_VERSION_NAMESPACE_3
-    struct file_prio_alert;
-    TORRENT_VERSION_NAMESPACE_3_END
-}
-#endif
-
 namespace BitTorrent
 {
     class Session;
