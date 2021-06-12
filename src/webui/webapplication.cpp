@@ -412,14 +412,14 @@ void WebApplication::configure()
 
         const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(';', QString::SkipEmptyParts);
 
-        for (const QString proxy : proxyList)
+        for (const QString &proxy : proxyList)
         {
             QHostAddress ip;
             if (ip.setAddress(proxy))
                 m_trustedReverseProxyList.push_back(ip);
         }
 
-        if (m_trustedReverseProxyList.length() == 0)
+        if (m_trustedReverseProxyList.isEmpty())
             m_isReverseProxySupportEnabled = false;
     }
 }
@@ -728,31 +728,36 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
 
 QHostAddress WebApplication::resolveClientAddress() const
 {
-    QHostAddress clientAddress = m_env.clientAddress;
-
     if (!m_isReverseProxySupportEnabled)
-        return clientAddress;
+        return m_env.clientAddress;
 
     // Only reverse proxy can overwrite client address
-    if (m_trustedReverseProxyList.contains(clientAddress))
-    {
-        const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
+    if (!m_trustedReverseProxyList.contains(m_env.clientAddress))
+        return m_env.clientAddress;
 
-        if (!forwardedFor.isEmpty())
+    const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
+
+    if (!forwardedFor.isEmpty())
+    {
+        // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
+        const QStringList remoteIpList = forwardedFor.split(',', QString::SkipEmptyParts);
+
+        if (!remoteIpList.isEmpty())
         {
-            // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-            const QStringList remoteIpList = forwardedFor.split(",");
+            QHostAddress clientAddress;
+
             for (const QString &remoteIp : remoteIpList)
             {
                 if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
                     return clientAddress;
             }
 
-            clientAddress.setAddress(remoteIpList.at(0));
+            if (clientAddress.setAddress(remoteIpList[0]))
+                return clientAddress;
         }
     }
 
-    return clientAddress;
+    return m_env.clientAddress;
 }
 
 // WebSession

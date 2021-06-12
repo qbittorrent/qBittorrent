@@ -773,12 +773,12 @@ void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
 
 QString Preferences::getWebUITrustedReverseProxiesList() const
 {
-    return value("Preferences/WebUI/TrustedReverseProxiesList", "").toString().trimmed();
+    return value("Preferences/WebUI/TrustedReverseProxiesList").toString();
 }
 
 void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
 {
-    setValue("Preferences/WebUI/TrustedReverseProxiesList", addr.trimmed());
+    setValue("Preferences/WebUI/TrustedReverseProxiesList", addr);
 }
 
 bool Preferences::isDynDNSEnabled() const
