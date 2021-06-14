@@ -41,7 +41,7 @@ public:
     TriStateWidget(const QString &text, QWidget *parent);
 
     void setCheckState(Qt::CheckState checkState);
-    void setCloseOnTriggered(bool enabled);
+    void setCloseOnInteraction(bool enabled);
 
 signals:
     void triggered(bool checked) const;
@@ -55,7 +55,7 @@ private:
 
     void toggleCheckState();
 
-    bool m_closeOnTriggered;
+    bool m_closeOnInteraction;
     Qt::CheckState m_checkState;
     const QString m_text;
 };
