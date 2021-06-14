@@ -84,8 +84,22 @@ namespace
 TransferListSortModel::TransferListSortModel(QObject *parent)
     : QSortFilterProxyModel {parent}
     , m_subSortColumn {"TransferList/SubSortColumn", TransferListModel::TR_NAME, adjustSubSortColumn}
+    , m_subSortOrder {"TransferList/SubSortOrder", 0}
 {
     setSortRole(TransferListModel::UnderlyingDataRole);
+}
+
+void TransferListSortModel::sort(const int column, const Qt::SortOrder order)
+{
+    if ((m_lastSortColumn != column) && (m_lastSortColumn != -1))
+    {
+        m_subSortColumn = m_lastSortColumn;
+        m_subSortOrder = m_lastSortOrder;
+    }
+    m_lastSortColumn = column;
+    m_lastSortOrder = ((order == Qt::AscendingOrder) ? 0 : 1);
+
+    QSortFilterProxyModel::sort(column, order);
 }
 
 void TransferListSortModel::setStatusFilter(TorrentFilter::Type filter)
@@ -205,16 +219,16 @@ bool TransferListSortModel::lessThan(const QModelIndex &left, const QModelIndex 
 {
     Q_ASSERT(left.column() == right.column());
 
-    if (m_lastSortColumn != left.column())
-    {
-        if (m_lastSortColumn != -1)
-            m_subSortColumn = m_lastSortColumn;
-        m_lastSortColumn = left.column();
-    }
-
     const int result = compare(left, right);
     if (result == 0)
-        return compare(left.sibling(left.row(), m_subSortColumn), right.sibling(right.row(), m_subSortColumn)) < 0;
+    {
+        const int subResult = compare(left.sibling(left.row(), m_subSortColumn), right.sibling(right.row(), m_subSortColumn));
+        // Qt inverses lessThan() result when ordered descending.
+        // For sub-sorting we have to do it manually.
+        // When both are ordered descending subResult must be double-inversed, which is the same as no inversion.
+        const bool inverseSubResult = (m_lastSortOrder != m_subSortOrder); // exactly one is descending
+        return (inverseSubResult ? (subResult > 0) : (subResult < 0));
+    }
 
     return result < 0;
 }
