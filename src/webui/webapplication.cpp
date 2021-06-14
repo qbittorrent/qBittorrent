@@ -410,7 +410,7 @@ void WebApplication::configure()
     {
         m_trustedReverseProxyList.clear();
 
-        const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(';', QString::SkipEmptyParts);
+        const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(';', Qt::SkipEmptyParts);
 
         for (const QString &proxy : proxyList)
         {
@@ -740,7 +740,7 @@ QHostAddress WebApplication::resolveClientAddress() const
     if (!forwardedFor.isEmpty())
     {
         // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-        const QStringList remoteIpList = forwardedFor.split(',', QString::SkipEmptyParts);
+        const QStringList remoteIpList = forwardedFor.split(',', Qt::SkipEmptyParts);
 
         if (!remoteIpList.isEmpty())
         {
