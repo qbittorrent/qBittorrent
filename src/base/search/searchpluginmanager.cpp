@@ -516,14 +516,14 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
     QHash<QString, PluginVersion> updateInfo;
     int numCorrectData = 0;
 
-    const QVector<QByteArray> lines = Utils::ByteArray::splitToViews(info, "\n", QString::SkipEmptyParts);
+    const QVector<QByteArray> lines = Utils::ByteArray::splitToViews(info, "\n", Qt::SkipEmptyParts);
     for (QByteArray line : lines)
     {
         line = line.trimmed();
         if (line.isEmpty()) continue;
         if (line.startsWith('#')) continue;
 
-        const QVector<QByteArray> list = Utils::ByteArray::splitToViews(line, ":", QString::SkipEmptyParts);
+        const QVector<QByteArray> list = Utils::ByteArray::splitToViews(line, ":", Qt::SkipEmptyParts);
         if (list.size() != 2) continue;
 
         const QString pluginName = list.first().trimmed();

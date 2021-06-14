@@ -523,7 +523,7 @@ void AppController::setPreferencesAction()
     if (hasKey("ip_filter_trackers"))
         session->setTrackerFilteringEnabled(it.value().toBool());
     if (hasKey("banned_IPs"))
-        session->setBannedIPs(it.value().toString().split('\n', QString::SkipEmptyParts));
+        session->setBannedIPs(it.value().toString().split('\n', Qt::SkipEmptyParts));
 
     // Speed
     // Global Rate Limits
@@ -653,7 +653,7 @@ void AppController::setPreferencesAction()
     if (hasKey("bypass_auth_subnet_whitelist"))
     {
         // recognize new lines and commas as delimiters
-        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression("\n|,"), QString::SkipEmptyParts));
+        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression("\n|,"), Qt::SkipEmptyParts));
     }
     if (hasKey("web_ui_max_auth_fail_count"))
         pref->setWebUIMaxAuthFailCount(it.value().toInt());

@@ -141,7 +141,7 @@ AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
 AS_IF([test "x$enable_gui" = "xyes"],
-      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.12])
+      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.14])
       ])
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],

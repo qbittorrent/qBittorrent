@@ -1163,7 +1163,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         if (mimeData->hasText())
         {
             const bool useTorrentAdditionDialog {AddNewTorrentDialog::isEnabled()};
-            const QStringList lines {mimeData->text().split('\n', QString::SkipEmptyParts)};
+            const QStringList lines {mimeData->text().split('\n', Qt::SkipEmptyParts)};
 
             for (QString line : lines)
             {
