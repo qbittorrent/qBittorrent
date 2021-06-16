@@ -96,7 +96,7 @@ namespace QtLP_Private
 
 const char* QtLocalPeer::ack = "ack";
 
-QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
+QtLocalPeer::QtLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)
     , id(appId)
 {
@@ -136,8 +136,11 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
 
 QtLocalPeer::~QtLocalPeer()
 {
-    lockFile.unlock();
-    lockFile.remove();
+    if (!isClient())
+    {
+        lockFile.unlock();
+        lockFile.remove();
+    }
 }
 
 bool QtLocalPeer::isClient()
