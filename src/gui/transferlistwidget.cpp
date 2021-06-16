@@ -1009,13 +1009,13 @@ void TransferListWidget::displayListMenu(const QPoint &)
     for (const QString &tag : asConst(tags))
     {
         auto *action = new TriStateAction(tag, tagsMenu);
-        action->setCloseOnTriggered(false);
+        action->setCloseOnInteraction(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
                                             : tagsInAny.contains(tag) ? Qt::PartiallyChecked : Qt::Unchecked;
         action->setCheckState(initialState);
 
-        connect(action, &QAction::triggered, this, [this, tag](const bool checked)
+        connect(action, &QAction::toggled, this, [this, tag](const bool checked)
         {
             if (checked)
                 addSelectionTag(tag);
