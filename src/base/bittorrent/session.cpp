@@ -838,17 +838,13 @@ bool Session::hasTag(const QString &tag) const
 
 bool Session::addTag(const QString &tag)
 {
-    if (!isValidTag(tag))
+    if (!isValidTag(tag) || hasTag(tag))
         return false;
 
-    if (!hasTag(tag))
-    {
-        m_tags.insert(tag);
-        m_storedTags = m_tags.values();
-        emit tagAdded(tag);
-        return true;
-    }
-    return false;
+    m_tags.insert(tag);
+    m_storedTags = m_tags.values();
+    emit tagAdded(tag);
+    return true;
 }
 
 bool Session::removeTag(const QString &tag)
@@ -2056,7 +2052,6 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     LoadTorrentParams loadTorrentParams;
 
     loadTorrentParams.name = addTorrentParams.name;
-    loadTorrentParams.tags = addTorrentParams.tags;
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
@@ -2080,6 +2075,12 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
         loadTorrentParams.category = "";
     else
         loadTorrentParams.category = addTorrentParams.category;
+
+    for (const QString &tag : addTorrentParams.tags)
+    {
+        if (hasTag(tag) || addTag(tag))
+            loadTorrentParams.tags.insert(tag);
+    }
 
     return loadTorrentParams;
 }
