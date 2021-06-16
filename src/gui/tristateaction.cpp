@@ -45,8 +45,7 @@ TriStateAction::TriStateAction(const QString &text, QWidget *parent)
         m_triStateWidget->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
     });
 
-    connect(m_triStateWidget, &TriStateWidget::triggered, this, &QAction::setChecked);
-    connect(m_triStateWidget, &TriStateWidget::triggered, this, &QAction::triggered);
+    connect(m_triStateWidget, &TriStateWidget::triggered, this, &QAction::toggled);
     setDefaultWidget(m_triStateWidget);
 }
 
@@ -56,7 +55,7 @@ void TriStateAction::setCheckState(const Qt::CheckState checkState)
     m_triStateWidget->setCheckState(checkState);
 }
 
-void TriStateAction::setCloseOnTriggered(const bool enabled)
+void TriStateAction::setCloseOnInteraction(const bool enabled)
 {
-    m_triStateWidget->setCloseOnTriggered(enabled);
+    m_triStateWidget->setCloseOnInteraction(enabled);
 }
