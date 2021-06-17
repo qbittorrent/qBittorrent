@@ -98,6 +98,12 @@ void TorrentCreatorThread::sendProgressSignal(int currentPieceIdx, int totalPiec
     emit updateProgress(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
 
+void TorrentCreatorThread::checkInterruptionRequested() const
+{
+    if (isInterruptionRequested())
+        throw RuntimeError(tr("Operation aborted"));
+}
+
 void TorrentCreatorThread::run()
 {
     emit updateProgress(0);
@@ -118,7 +124,7 @@ void TorrentCreatorThread::run()
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.inputPath};
 
-            QDirIterator dirIter(m_params.inputPath, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories);
+            QDirIterator dirIter {m_params.inputPath, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
                 dirIter.next();
@@ -151,7 +157,7 @@ void TorrentCreatorThread::run()
                 fs.add_file(fileName.toStdString(), fileSizeMap[fileName]);
         }
 
-        if (isInterruptionRequested()) return;
+        checkInterruptionRequested();
 
 #if (LIBTORRENT_VERSION_NUM >= 20000)
         lt::create_torrent newTorrent {fs, m_params.pieceSize, toNativeTorrentFormatFlag(m_params.torrentFormat)};
@@ -181,9 +187,7 @@ void TorrentCreatorThread::run()
         lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
             , [this, &newTorrent](const lt::piece_index_t n)
         {
-            if (isInterruptionRequested())
-                throw RuntimeError {tr("Create new torrent aborted.")};
-
+            checkInterruptionRequested();
             sendProgressSignal(static_cast<LTUnderlyingType<lt::piece_index_t>>(n), newTorrent.num_pieces());
         });
 
@@ -194,7 +198,7 @@ void TorrentCreatorThread::run()
         // Is private ?
         newTorrent.set_priv(m_params.isPrivate);
 
-        if (isInterruptionRequested()) return;
+        checkInterruptionRequested();
 
         lt::entry entry = newTorrent.generate();
 
@@ -202,32 +206,30 @@ void TorrentCreatorThread::run()
         if (!m_params.source.isEmpty())
             entry["info"]["source"] = m_params.source.toStdString();
 
-        if (isInterruptionRequested()) return;
+        checkInterruptionRequested();
 
         // create the torrent
         QFile outfile {m_params.savePath};
         if (!outfile.open(QIODevice::WriteOnly))
-        {
-            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
-                .arg(outfile.errorString())};
-        }
+            throw RuntimeError(outfile.errorString());
 
-        if (isInterruptionRequested()) return;
+        checkInterruptionRequested();
 
         lt::bencode(Utils::IO::FileDeviceOutputIterator {outfile}, entry);
         if (outfile.error() != QFileDevice::NoError)
-        {
-            throw RuntimeError {tr("Create new torrent file failed. Reason: %1")
-                .arg(outfile.errorString())};
-        }
+            throw RuntimeError(outfile.errorString());
         outfile.close();
 
         emit updateProgress(100);
         emit creationSuccess(m_params.savePath, parentPath);
     }
-    catch (const std::exception &e)
+    catch (const RuntimeError &err)
     {
-        emit creationFailure(e.what());
+        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(err.message()));
+    }
+    catch (const std::exception &err)
+    {
+        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
     }
 }
 

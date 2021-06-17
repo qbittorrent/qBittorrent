@@ -2321,7 +2321,7 @@ void Session::exportTorrentFile(const Torrent *torrent, TorrentExportFolder fold
         }
         catch (const RuntimeError &err)
         {
-            LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2")
+            LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2.")
                    .arg(newTorrentPath, err.message()), Log::WARNING);
         }
     }

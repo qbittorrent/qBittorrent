@@ -475,7 +475,8 @@ void AddNewTorrentDialog::saveTorrentFile()
     }
     catch (const RuntimeError &err)
     {
-        QMessageBox::critical(this, tr("I/O Error"), err.message());
+        QMessageBox::critical(this, tr("I/O Error")
+            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, err.message()));
     }
 }
 
