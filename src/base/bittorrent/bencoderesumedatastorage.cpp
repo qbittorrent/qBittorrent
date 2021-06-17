@@ -338,16 +338,22 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     if (torrentInfo)
     {
         const QString torrentFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.torrent").arg(id.toString()));
-        const lt::create_torrent torrentCreator = lt::create_torrent(*torrentInfo);
-        const lt::entry metadata = torrentCreator.generate();
         try
         {
+            const auto torrentCreator = lt::create_torrent(*torrentInfo);
+            const lt::entry metadata = torrentCreator.generate();
             writeEntryToFile(torrentFilepath, metadata);
         }
         catch (const RuntimeError &err)
         {
-            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2")
+            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2.")
                    .arg(torrentFilepath, err.message()), Log::CRITICAL);
+            return;
+        }
+        catch (const std::exception &err)
+        {
+            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2.")
+                   .arg(torrentFilepath, QString::fromLocal8Bit(err.what())), Log::CRITICAL);
             return;
         }
     }
@@ -371,7 +377,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     }
     catch (const RuntimeError &err)
     {
-        LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2")
+        LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2.")
                .arg(resumeFilepath, err.message()), Log::CRITICAL);
     }
 }

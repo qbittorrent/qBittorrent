@@ -167,18 +167,25 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
 void TorrentInfo::saveToFile(const QString &path) const
 {
     if (!isValid())
-        throw RuntimeError {tr("Invalid metadata.")};
+        throw RuntimeError {tr("Invalid metadata")};
 
-    const lt::create_torrent torrentCreator = lt::create_torrent(*(nativeInfo()));
-    const lt::entry torrentEntry = torrentCreator.generate();
+    try
+    {
+        const auto torrentCreator = lt::create_torrent(*nativeInfo());
+        const lt::entry torrentEntry = torrentCreator.generate();
 
-    QFile torrentFile {path};
-    if (!torrentFile.open(QIODevice::WriteOnly))
-        throw RuntimeError {torrentFile.errorString()};
+        QFile torrentFile {path};
+        if (!torrentFile.open(QIODevice::WriteOnly))
+            throw RuntimeError(torrentFile.errorString());
 
-    lt::bencode(Utils::IO::FileDeviceOutputIterator {torrentFile}, torrentEntry);
-    if (torrentFile.error() != QFileDevice::NoError)
-        throw RuntimeError {torrentFile.errorString()};
+        lt::bencode(Utils::IO::FileDeviceOutputIterator {torrentFile}, torrentEntry);
+        if (torrentFile.error() != QFileDevice::NoError)
+            throw RuntimeError(torrentFile.errorString());
+    }
+    catch (const lt::system_error &err)
+    {
+        throw RuntimeError(QString::fromLocal8Bit(err.what()));
+    }
 }
 
 bool TorrentInfo::isValid() const

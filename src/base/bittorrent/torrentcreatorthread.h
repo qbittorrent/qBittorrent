@@ -65,10 +65,11 @@ namespace BitTorrent
     class TorrentCreatorThread final : public QThread
     {
         Q_OBJECT
+        Q_DISABLE_COPY_MOVE(TorrentCreatorThread)
 
     public:
-        TorrentCreatorThread(QObject *parent = nullptr);
-        ~TorrentCreatorThread();
+        explicit TorrentCreatorThread(QObject *parent = nullptr);
+        ~TorrentCreatorThread() override;
 
         void create(const TorrentCreatorParams &params);
 
@@ -79,16 +80,15 @@ namespace BitTorrent
             , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);
 #endif
 
-    protected:
-        void run() override;
-
     signals:
         void creationFailure(const QString &msg);
         void creationSuccess(const QString &path, const QString &branchPath);
         void updateProgress(int progress);
 
     private:
+        void run() override;
         void sendProgressSignal(int currentPieceIdx, int totalPieces);
+        void checkInterruptionRequested() const;
 
         TorrentCreatorParams m_params;
     };
