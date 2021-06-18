@@ -4424,9 +4424,15 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
 
 void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 {
-    Q_ASSERT(m_loadingTorrents.contains(nativeHandle.info_hash()));
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hashes());
+#else
+    const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hash());
+#endif
 
-    const LoadTorrentParams params = m_loadingTorrents.take(nativeHandle.info_hash());
+    Q_ASSERT(m_loadingTorrents.contains(torrentID));
+
+    const LoadTorrentParams params = m_loadingTorrents.take(torrentID);
 
     auto *const torrent = new TorrentImpl {this, m_nativeSession, nativeHandle, params};
     m_torrents.insert(torrent->id(), torrent);
@@ -4475,10 +4481,18 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
 {
     if (p->error)
     {
-        qDebug("/!\\ Error: Failed to add torrent!");
-        QString msg = QString::fromStdString(p->message());
-        LogMsg(tr("Couldn't load torrent. Reason: %1").arg(msg), Log::WARNING);
+        const QString msg = QString::fromStdString(p->message());
+        LogMsg(tr("Couldn't load torrent. Reason: %1.").arg(msg), Log::WARNING);
         emit loadTorrentFailed(msg);
+
+        const lt::add_torrent_params &params = p->params;
+        const bool hasMetadata = (params.ti && params.ti->is_valid());
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hashes() : params.info_hashes);
+#else
+        const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hash() : params.info_hash);
+#endif
+        m_loadingTorrents.remove(id);
     }
     else if (m_loadingTorrents.contains(p->handle.info_hash()))
     {
