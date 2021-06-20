@@ -672,7 +672,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
         const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
         if (isInvalid)
             LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
-                   .arg(m_clientAddress.toString(), originValue, targetOrigin)
+                   .arg(m_env.clientAddress.toString(), originValue, targetOrigin)
                    , Log::WARNING);
         return isInvalid;
     }
@@ -682,7 +682,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
         const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
         if (isInvalid)
             LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
-                   .arg(m_clientAddress.toString(), refererValue, targetOrigin)
+                   .arg(m_env.clientAddress.toString(), refererValue, targetOrigin)
                    , Log::WARNING);
         return isInvalid;
     }
@@ -700,7 +700,7 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
     if ((requestPort != -1) && (m_env.localPort != requestPort))
     {
         LogMsg(tr("WebUI: Invalid Host header, port mismatch. Request source IP: '%1'. Server port: '%2'. Received Host header: '%3'")
-               .arg(m_clientAddress.toString()).arg(m_env.localPort)
+               .arg(m_env.clientAddress.toString()).arg(m_env.localPort)
                .arg(m_request.headers[Http::HEADER_HOST])
                 , Log::WARNING);
         return false;
@@ -721,7 +721,7 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
     }
 
     LogMsg(tr("WebUI: Invalid Host header. Request source IP: '%1'. Received Host header: '%2'")
-           .arg(m_clientAddress.toString(), m_request.headers[Http::HEADER_HOST])
+           .arg(m_env.clientAddress.toString(), m_request.headers[Http::HEADER_HOST])
             , Log::WARNING);
     return false;
 }
