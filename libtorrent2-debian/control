@@ -1,4 +1,4 @@
-Source: libtorrent-rasterbar
+Source: libtorrent-rasterbar2
 Section: libs
 Priority: optional
 Maintainer: Cristian Greco <cristian@debian.org>
@@ -22,7 +22,7 @@ Package: libtorrent-rasterbar2
 Architecture: any
 Pre-Depends: dpkg (>= 1.15.6~)
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: libtorrent-rasterbar-dbg
+Suggests: libtorrent-rasterbar2-dbg
 Description: C++ bittorrent library by Rasterbar Software
  Bittorrent library by Rasterbar Software (Arvid Norberg).
  libtorrent-rasterbar is a C++ library that aims to be a good alternative to
@@ -40,11 +40,10 @@ Section: libdevel
 Architecture: any
 Pre-Depends: dpkg (>= 1.15.6~)
 Depends: ${misc:Depends},
-         libtorrent-rasterbar10 (= ${binary:Version}),
+         libtorrent-rasterbar2 (= ${binary:Version}),
          libboost-system-dev,
          libssl-dev,
          pkg-config
-Suggests: libtorrent-rasterbar-doc
 Description: Development files for libtorrent-rasterbar
  Bittorrent library by Rasterbar Software (Arvid Norberg).
  libtorrent-rasterbar is a C++ library that aims to be a good alternative to
@@ -62,7 +61,7 @@ Section: debug
 Priority: extra
 Architecture: any
 Pre-Depends: dpkg (>= 1.15.6~)
-Depends: ${misc:Depends}, libtorrent-rasterbar10 (= ${binary:Version})
+Depends: ${misc:Depends}, libtorrent-rasterbar2 (= ${binary:Version})
 Description: Debug symbols for libtorrent-rasterbar
  Bittorrent library by Rasterbar Software (Arvid Norberg).
  libtorrent-rasterbar is a C++ library that aims to be a good alternative to
