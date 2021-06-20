@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+export DEB_LDFLAGS_MAINT_APPEND  = -Wl,--as-needed
+
+ifneq (,$(filter $(DEB_HOST_ARCH), armel mipsel m68k powerpc riscv64 sh4))
+  export DEB_LDFLAGS_MAINT_APPEND += -Wl,--no-as-needed -latomic -Wl,--as-needed
+endif
+
+CMAKE_ARGS = -DCMAKE_INSTALL_PREFIX=/opt/libtorrent-rasterbar2/ -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -Ddeprecated-functions=off
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKE_ARGS)
+
+#override_dh_auto_build:
+#	dh_auto_build --builddirectory build
+#
+#override_dh_auto_install:
+#	dh_auto_install --builddirectory build
+#
+#override_dh_auto_clean:
+#	rm -rf build
+#
+override_dh_compress:
+	dh_compress -Xcpp
+
+override_dh_strip:
+	dh_strip --dbg-package=libtorrent-rasterbar2-dbg
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V

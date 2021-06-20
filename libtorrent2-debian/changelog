@@ -1,0 +1,154 @@
+libtorrent-rasterbar (2.0.4-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 2.0.4
+  * Use C++17 mode
+  * Don't provide python bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sun, 20 Jun 2021 13:11:33 +0300
+
+libtorrent-rasterbar (1.2.13+git20210501.22af326f6c-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.13
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sat, 01 May 2021 00:58:07 +0300
+
+libtorrent-rasterbar (1.2.13+git20210323.34a979720b-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.13
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Tue, 23 Mar 2021 20:15:34 +0200
+
+libtorrent-rasterbar (1.2.13+git20210308.ed960c2562-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.13
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Mon, 08 Mar 2021 14:01:57 +0200
+
+libtorrent-rasterbar (1.2.12+git20210118.3efdb8a941-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.12
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Mon, 18 Jan 2021 14:04:38 +0200
+
+libtorrent-rasterbar (1.2.12+git20210104.bfafd20428-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.12
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Mon, 04 Jan 2021 11:52:50 +0200
+
+libtorrent-rasterbar (1.2.11+git20201226.2c7852ea22-3ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.11
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sat, 28 Dec 2020 21:42:22 +0200
+
+libtorrent-rasterbar (1.2.11+git20201226.2c7852ea22-2ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.11
+  * Use C++14 mode
+  * Don't provide python2 bindings
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sat, 27 Dec 2020 21:42:22 +0200
+
+libtorrent-rasterbar (1.2.11+git20201226.2c7852ea22-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.11
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sat, 26 Dec 2020 21:42:22 +0200
+
+libtorrent-rasterbar (1.2.11+git20201124.afa406f890-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.11
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Wed, 25 Nov 2020 00:40:21 +0200
+
+libtorrent-rasterbar (1.2.10+git20201018.3d48e7d056-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.10
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sun, 18 Oct 2020 21:44:40 +0300
+
+libtorrent-rasterbar (1.2.6+git20200425.a9968916ca-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.6
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Sat, 25 Apr 2020 03:09:38 +0300
+
+libtorrent-rasterbar (1.2.6+git20200424.86f04b2c09-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.6
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Fri, 24 Apr 2020 22:54:49 +0300
+
+libtorrent-rasterbar (1.2.6+git20200422.a9968916ca-2ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.6
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Wed, 22 Apr 2020 19:24:09 +0300
+
+libtorrent-rasterbar (1.2.6+git20200422.a9968916ca-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.6
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Wed, 22 Apr 2020 19:24:08 +0300
+
+libtorrent-rasterbar (1.2.5+git20200401.dcf3c83d29-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.5
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Wed, 01 Apr 2020 18:05:54 +0300
+
+libtorrent-rasterbar (1.2.5+git20200323.0d06d47a29-2ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.5
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Tue, 24 Mar 2020 15:37:24 +0200
+
+libtorrent-rasterbar (1.2.5+git20200323.0d06d47a29-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.5
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Mon, 23 Mar 2020 21:02:09 +0200
+
+libtorrent-rasterbar (1.2.3+git20191216.68196dceae-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.3
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Mon, 16 Dec 2019 01:11:34 +0200
+
+libtorrent-rasterbar (1.2.2+git20191202.7b0bb2fb0b-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.2
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Mon, 02 Dec 2019 15:36:28 +0200
+
+libtorrent-rasterbar (1.2.0+git20190220.82900c441c-1ppa1~21.04) hirsute; urgency=medium
+
+  * Build 1.2.0
+  * Use C++14 mode
+
+ -- sledgehammer999 <hammered999@gmail.com>  Wed, 20 Feb 2019 17:04:17 +0200

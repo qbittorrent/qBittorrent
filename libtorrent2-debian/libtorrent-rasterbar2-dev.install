@@ -1,0 +1,3 @@
+opt/libtorrent-rasterbar2/include/*
+opt/libtorrent-rasterbar2/lib/*/lib*.so
+opt/libtorrent-rasterbar2/lib/*/pkgconfig/*.pc
