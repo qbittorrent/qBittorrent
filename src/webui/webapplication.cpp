@@ -404,6 +404,24 @@ void WebApplication::configure()
             m_prebuiltHeaders.push_back({header, value});
         }
     }
+
+    m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
+    if (m_isReverseProxySupportEnabled)
+    {
+        m_trustedReverseProxyList.clear();
+
+        const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(';', Qt::SkipEmptyParts);
+
+        for (const QString &proxy : proxyList)
+        {
+            QHostAddress ip;
+            if (ip.setAddress(proxy))
+                m_trustedReverseProxyList.push_back(ip);
+        }
+
+        if (m_trustedReverseProxyList.isEmpty())
+            m_isReverseProxySupportEnabled = false;
+    }
 }
 
 void WebApplication::registerAPIController(const QString &scope, APIController *controller)
@@ -495,6 +513,9 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
             throw UnauthorizedHTTPError();
         }
 
+        // reverse proxy resolve client address
+        m_clientAddress = resolveClientAddress();
+
         sessionInitialize();
         doProcessRequest();
     }
@@ -512,7 +533,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
 QString WebApplication::clientId() const
 {
-    return env().clientAddress.toString();
+    return m_clientAddress.toString();
 }
 
 void WebApplication::sessionInitialize()
@@ -567,9 +588,9 @@ QString WebApplication::generateSid() const
 
 bool WebApplication::isAuthNeeded()
 {
-    if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_env.clientAddress))
+    if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_clientAddress))
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_env.clientAddress, m_authSubnetWhitelist))
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_clientAddress, m_authSubnetWhitelist))
         return false;
     return true;
 }
@@ -703,6 +724,40 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
            .arg(m_env.clientAddress.toString(), m_request.headers[Http::HEADER_HOST])
             , Log::WARNING);
     return false;
+}
+
+QHostAddress WebApplication::resolveClientAddress() const
+{
+    if (!m_isReverseProxySupportEnabled)
+        return m_env.clientAddress;
+
+    // Only reverse proxy can overwrite client address
+    if (!m_trustedReverseProxyList.contains(m_env.clientAddress))
+        return m_env.clientAddress;
+
+    const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);
+
+    if (!forwardedFor.isEmpty())
+    {
+        // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
+        const QStringList remoteIpList = forwardedFor.split(',', Qt::SkipEmptyParts);
+
+        if (!remoteIpList.isEmpty())
+        {
+            QHostAddress clientAddress;
+
+            for (const QString &remoteIp : remoteIpList)
+            {
+                if (clientAddress.setAddress(remoteIp) && clientAddress.isGlobal())
+                    return clientAddress;
+            }
+
+            if (clientAddress.setAddress(remoteIpList[0]))
+                return clientAddress;
+        }
+    }
+
+    return m_env.clientAddress;
 }
 
 // WebSession

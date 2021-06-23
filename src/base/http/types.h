@@ -52,6 +52,7 @@ namespace Http
     inline const char HEADER_REFERRER_POLICY[] = "referrer-policy";
     inline const char HEADER_SET_COOKIE[] = "set-cookie";
     inline const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
+    inline const char HEADER_X_FORWARDED_FOR[] = "x-forwarded-for";
     inline const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
     inline const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
     inline const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";

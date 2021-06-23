@@ -114,6 +114,8 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
+    QHostAddress resolveClientAddress() const;
+
     // Persistent data
     QHash<QString, WebSession *> m_sessions;
 
@@ -153,6 +155,11 @@ private:
     bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
+
+    // Reverse proxy
+    bool m_isReverseProxySupportEnabled;
+    QVector<QHostAddress> m_trustedReverseProxyList;
+    QHostAddress m_clientAddress;
 
     QVector<Http::Header> m_prebuiltHeaders;
 };
