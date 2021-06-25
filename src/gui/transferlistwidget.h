@@ -42,9 +42,16 @@ namespace BitTorrent
     class TorrentID;
 }
 
+enum class CopyInfohashPolicy
+{
+    Version1,
+    Version2
+};
+
 class TransferListWidget final : public QTreeView
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TransferListWidget)
 
 public:
     TransferListWidget(QWidget *parent, MainWindow *mainWindow);
@@ -74,7 +81,8 @@ public slots:
     void bottomQueuePosSelectedTorrents();
     void copySelectedMagnetURIs() const;
     void copySelectedNames() const;
-    void copySelectedHashes() const;
+    void copySelectedInfohashes(CopyInfohashPolicy policy) const;
+    void copySelectedIDs() const;
     void openSelectedTorrentsFolder() const;
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();
@@ -91,13 +99,10 @@ public slots:
     void previewFile(const QString &filePath);
     void renameSelectedTorrent();
 
-protected:
-    QModelIndex mapToSource(const QModelIndex &index) const;
-    QModelIndex mapFromSource(const QModelIndex &index) const;
-    bool loadSettings();
-    QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
+signals:
+    void currentTorrentChanged(BitTorrent::Torrent *const torrent);
 
-protected slots:
+private slots:
     void torrentDoubleClicked();
     void displayListMenu(const QPoint &);
     void currentChanged(const QModelIndex &current, const QModelIndex&) override;
@@ -108,11 +113,12 @@ protected slots:
     void askNewCategoryForSelection();
     void saveSettings();
 
-signals:
-    void currentTorrentChanged(BitTorrent::Torrent *const torrent);
-
 private:
     void wheelEvent(QWheelEvent *event) override;
+    QModelIndex mapToSource(const QModelIndex &index) const;
+    QModelIndex mapFromSource(const QModelIndex &index) const;
+    bool loadSettings();
+    QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
     void askAddTagsForSelection();
     void editTorrentTrackers();
     void confirmRemoveAllTagsForSelection();

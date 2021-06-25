@@ -1201,10 +1201,14 @@ function setupCopyEventHandler() {
             switch (trigger.id) {
                 case "copyName":
                     return copyNameFN();
+                case "copyInfohash1":
+                    return copyInfohashFN(1);
+                case "copyInfohash2":
+                    return copyInfohashFN(2);
                 case "copyMagnetLink":
                     return copyMagnetLinkFN();
-                case "copyHash":
-                    return copyHashFN();
+                case "copyID":
+                    return copyIdFN();
                 default:
                     return "";
             }

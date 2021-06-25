@@ -232,7 +232,8 @@ void PropertiesWidget::clear()
     m_ui->labelSavePathVal->clear();
     m_ui->labelCreatedOnVal->clear();
     m_ui->labelTotalPiecesVal->clear();
-    m_ui->labelHashVal->clear();
+    m_ui->labelInfohash1Val->clear();
+    m_ui->labelInfohash2Val->clear();
     m_ui->labelCommentVal->clear();
     m_ui->labelProgressVal->clear();
     m_ui->labelAverageAvailabilityVal->clear();
@@ -312,9 +313,9 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
     // Save path
     updateSavePath(m_torrent);
-    // Info hash (Truncated info hash (torrent ID) with libtorrent2)
-    // TODO: Update label for this property to express its meaning more clearly (or change it to display real info hash(es))
-    m_ui->labelHashVal->setText(m_torrent->id().toString());
+    // Info hashes
+    m_ui->labelInfohash1Val->setText(m_torrent->infoHash().v1().isValid() ? m_torrent->infoHash().v1().toString() : tr("N/A"));
+    m_ui->labelInfohash2Val->setText(m_torrent->infoHash().v2().isValid() ? m_torrent->infoHash().v2().toString() : tr("N/A"));
     m_propListModel->model()->clear();
     if (m_torrent->hasMetadata())
     {

@@ -96,8 +96,9 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
     };
 
     return {
-        // TODO: Add fields for real SHA1 and SHA256 hashes
-        {KEY_TORRENT_ID, QString(torrent.id().toString())},
+        {KEY_TORRENT_ID, torrent.id().toString()},
+        {KEY_TORRENT_INFOHASHV1, torrent.infoHash().v1().toString()},
+        {KEY_TORRENT_INFOHASHV2, torrent.infoHash().v2().toString()},
         {KEY_TORRENT_NAME, torrent.name()},
         {KEY_TORRENT_MAGNET_URI, torrent.createMagnetURI()},
         {KEY_TORRENT_SIZE, torrent.wantedSize()},

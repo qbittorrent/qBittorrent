@@ -382,6 +382,8 @@ void TorrentsController::propertiesAction()
 
     QJsonObject dataDict;
 
+    dataDict[KEY_TORRENT_INFOHASHV1] = torrent->infoHash().v1().toString();
+    dataDict[KEY_TORRENT_INFOHASHV2] = torrent->infoHash().v2().toString();
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->seedingTime();
     dataDict[KEY_PROP_ETA] = static_cast<double>(torrent->eta());

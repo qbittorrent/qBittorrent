@@ -61,7 +61,8 @@ window.qBittorrent.PropGeneral = (function() {
         $('addition_date').set('html', '');
         $('completion_date').set('html', '');
         $('creation_date').set('html', '');
-        $('torrent_hash').set('html', '');
+        $('torrent_hash_v1').set('html', '');
+        $('torrent_hash_v2').set('html', '');
         $('save_path').set('html', '');
         $('comment').set('html', '');
     };
@@ -73,16 +74,14 @@ window.qBittorrent.PropGeneral = (function() {
             // Tab changed, don't do anything
             return;
         }
-        const current_hash = torrentsTable.getCurrentTorrentHash();
-        if (current_hash === "") {
+        const current_id = torrentsTable.getCurrentTorrentID();
+        if (current_id === "") {
             clearData();
             clearTimeout(loadTorrentDataTimer);
             loadTorrentDataTimer = loadTorrentData.delay(5000);
             return;
         }
-        // Display hash
-        $('torrent_hash').set('html', current_hash);
-        const url = new URI('api/v2/torrents/properties?hash=' + current_hash);
+        const url = new URI('api/v2/torrents/properties?hash=' + current_id);
         new Request.JSON({
             url: url,
             noCache: true,
@@ -190,6 +189,18 @@ window.qBittorrent.PropGeneral = (function() {
                     else
                         temp = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
                     $('creation_date').set('html', temp);
+
+                    if (data.infohash_v1 === "")
+                        temp = "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                    else
+                        temp = data.infohash_v1;
+                    $('torrent_hash_v1').set('html', temp);
+
+                    if (data.infohash_v2 === "")
+                        temp = "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
+                    else
+                        temp = data.infohash_v2;
+                    $('torrent_hash_v2').set('html', temp);
 
                     $('save_path').set('html', data.save_path);
 

@@ -36,7 +36,10 @@ namespace BitTorrent
 }
 
 // Torrent keys
+// TODO: Rename it to `id`.
 inline const char KEY_TORRENT_ID[] = "hash";
+inline const char KEY_TORRENT_INFOHASHV1[] = "infohash_v1";
+inline const char KEY_TORRENT_INFOHASHV2[] = "infohash_v2";
 inline const char KEY_TORRENT_NAME[] = "name";
 inline const char KEY_TORRENT_MAGNET_URI[] = "magnet_uri";
 inline const char KEY_TORRENT_SIZE[] = "size";

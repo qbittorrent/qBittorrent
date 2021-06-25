@@ -41,6 +41,24 @@ bool BitTorrent::InfoHash::isValid() const
     return m_valid;
 }
 
+SHA1Hash BitTorrent::InfoHash::v1() const
+{
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    return (m_nativeHash.has_v1() ? SHA1Hash(m_nativeHash.v1) : SHA1Hash());
+#else
+    return {m_nativeHash};
+#endif
+}
+
+SHA256Hash BitTorrent::InfoHash::v2() const
+{
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+    return (m_nativeHash.has_v2() ? SHA256Hash(m_nativeHash.v2) : SHA256Hash());
+#else
+    return {};
+#endif
+}
+
 BitTorrent::TorrentID BitTorrent::InfoHash::toTorrentID() const
 {
 #if (LIBTORRENT_VERSION_NUM >= 20000)

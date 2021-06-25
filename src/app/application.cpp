@@ -353,6 +353,12 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, torrent->tags().join(QLatin1String(",")));
             break;
         case u'I':
+            program.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : QLatin1String("-")));
+            break;
+        case u'J':
+            program.replace(i, 2, (torrent->infoHash().v2().isValid() ? torrent->infoHash().v2().toString() : QLatin1String("-")));
+            break;
+        case u'K':
             program.replace(i, 2, torrent->id().toString());
             break;
         case u'L':

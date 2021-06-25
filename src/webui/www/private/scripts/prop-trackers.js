@@ -50,7 +50,7 @@ window.qBittorrent.PropTrackers = (function() {
             // Tab changed, don't do anything
             return;
         }
-        const new_hash = torrentsTable.getCurrentTorrentHash();
+        const new_hash = torrentsTable.getCurrentTorrentID();
         if (new_hash === "") {
             torrentTrackersTable.clear();
             clearTimeout(loadTrackersDataTimer);
