@@ -213,10 +213,6 @@
         <translation>Cookie:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="vanished">Inserisci cartella</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Più informazioni</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Rinomina torrent</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">Altro...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -972,7 +963,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Info hash</translation>
+        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1458,6 +1449,38 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Tipo di servizio (ToS) per le connessioni ai peer</translation>
     </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1688,7 +1711,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Hash torrent:</translation>
+        <translation type="vanished">Hash torrent:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1746,6 +1769,18 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>%1 (seeded for %2)</source>
         <translation>%1 (condiviso per %2)</translation>
     </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1767,11 +1802,11 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Altro...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Digita qui la cartella</translation>
     </message>
 </context>
 <context>
@@ -2474,7 +2509,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Hash</source>
-        <translation>Hash</translation>
+        <translation type="vanished">Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2495,6 +2530,18 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>Add...</source>
         <translation>Aggiugi...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2724,6 +2771,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>Increase window width to display additional filters</source>
         <translation>Aumenta la larghezza della finestra per visualizzare filtri aggiuntivi</translation>
+    </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3391,6 +3442,10 @@ Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data suppo
     <message>
         <source>RSS feeds</source>
         <translation>Feed RSS</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

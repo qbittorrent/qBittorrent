@@ -157,7 +157,7 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Delningstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
+        <translation>Distributionstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
@@ -213,10 +213,6 @@
         <translation>Kaka:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="vanished">Ange mapp här</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Mer information</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Byt namn på torrent</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">Annan...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -625,7 +616,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Kör externt program när torrenten slutförs</translation>
+        <translation>Kör externt program vid slutföring av torrent</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -689,7 +680,7 @@
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Lägg till .!qB-ändelsen till ofullständiga filer</translation>
+        <translation>Lägg till ändelsen .!qB till ofullständiga filer</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -863,7 +854,7 @@
     </message>
     <message>
         <source>Privacy</source>
-        <translation>Sekretess</translation>
+        <translation>Integritet</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
@@ -911,7 +902,7 @@
     </message>
     <message>
         <source>then</source>
-        <translation>sedan</translation>
+        <translation>därefter</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Info hash</translation>
+        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1127,7 +1118,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Aktivera superdelning för torrent</translation>
+        <translation>Aktivera superdistribution för torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1151,7 +1142,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>När delningstiden når</translation>
+        <translation>När distributionstiden når</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1207,7 +1198,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>Kontrollera torrenter när de slutförs:</translation>
+        <translation>Kontrollera torrenter igen vid slutföring:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1263,7 +1254,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation>Delningsgränser</translation>
+        <translation>Distributionsgränser</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1311,7 +1302,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Stoppa timeout för tracker</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1347,7 +1338,7 @@
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Koalition läsningar &amp; skrivningar (kräver libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1456,6 +1447,38 @@
     <message>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Typ av tjänst (TOS) för anslutningar till noder</translation>
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1603,7 +1626,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Slutförs om:</translation>
+        <translation>Slutförs:</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1611,7 +1634,7 @@
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>Delningar:</translation>
+        <translation>Distributioner:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Torrenthash:</translation>
+        <translation type="vanished">Torrenthash:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1743,7 +1766,19 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation>%1 (delad i %2)</translation>
+        <translation>%1 (distribuerad i %2)</translation>
+    </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1766,11 +1801,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Annan...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Ange mapp här</translation>
     </message>
 </context>
 <context>
@@ -1867,7 +1902,7 @@
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation>Delar (0)</translation>
+        <translation>Distribuerar (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
@@ -1903,7 +1938,7 @@
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation>Delar (%1)</translation>
+        <translation>Distribuerar (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
@@ -1982,7 +2017,7 @@
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Delningar</translation>
+        <translation>Distributioner</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -2154,7 +2189,7 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation>Delningar</translation>
+        <translation>Distributioner</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -2245,11 +2280,11 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[T] Delar</translation>
+        <translation>[T] Distribuerar</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation>Delar</translation>
+        <translation>Distribuerar</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -2293,7 +2328,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation>%1 (delad i %2)</translation>
+        <translation>%1 (distribuerad i %2)</translation>
     </message>
 </context>
 <context>
@@ -2413,7 +2448,7 @@
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation>Superdelningsläge</translation>
+        <translation>Superdistributionsläge</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -2473,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>Hash</translation>
+        <translation type="vanished">Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2494,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>Lägg till...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2662,7 +2709,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>Delningar:</translation>
+        <translation>Distributioner:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2724,6 +2771,10 @@
         <source>Increase window width to display additional filters</source>
         <translation>Öka fönsterbredden för att visa ytterligare filter</translation>
     </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2784,7 +2835,7 @@
     </message>
     <message>
         <source>Seeders</source>
-        <translation>Delare</translation>
+        <translation>Distributörer</translation>
     </message>
 </context>
 <context>
@@ -3387,6 +3438,10 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <source>RSS feeds</source>
         <translation>RSS-flöden</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
