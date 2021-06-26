@@ -213,10 +213,6 @@
         <translation>कुकी:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="vanished">यहां फोल्डर भरें</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>अधिक जानकारी</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>टौरेंट का नाम बदलें</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">अन्य...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -609,7 +600,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished" />
+        <translation>वेब UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: जानकारी हैश</translation>
+        <translation type="vanished">%I: जानकारी हैश</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1139,7 +1130,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>जोंकरोधी</translation>
     </message>
     <message>
         <source>Enable OS cache:</source>
@@ -1457,6 +1448,38 @@
         <source>Type of service (ToS) for connections to peers</source>
         <translation>सहकर्मियों के कनेक्शानों के लिए सेवा का प्रकार (ToS)</translation>
     </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1504,7 +1527,7 @@
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>अपलोडेड</translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <source>Relevance</source>
@@ -1575,7 +1598,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>सहकर्मी</translation>
+        <translation>सहकर्मीं</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1607,7 +1630,7 @@
     </message>
     <message>
         <source>Uploaded:</source>
-        <translation>अपलोडेड:</translation>
+        <translation>अपलोड:</translation>
     </message>
     <message>
         <source>Seeds:</source>
@@ -1623,11 +1646,11 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation>सहकर्मी:</translation>
+        <translation>सहकर्मीं:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation>डाउनलोड सीमा</translation>
+        <translation>डाउनलोड सीमा:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
@@ -1659,7 +1682,7 @@
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation type="unfinished" />
+        <translation>अन्तिम बार पूर्ण देखा गया:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>टाॅरेंट हैश:</translation>
+        <translation type="vanished">टाॅरेंट हैश:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1744,6 +1767,18 @@
     <message>
         <source>%1 (seeded for %2)</source>
         <translation>%1 (स्रोत काल %2)</translation>
+    </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1804,7 +1839,7 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation>जुड़े हुए सहकर्मी:</translation>
+        <translation>जुड़े हुए सहकर्मीं:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -1987,7 +2022,7 @@
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>सहकर्मी</translation>
+        <translation>सहकर्मीं</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -2049,7 +2084,7 @@
     <message>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation>अपलोडेड</translation>
+        <translation>अपलोड</translation>
     </message>
     <message>
         <source>Session Download</source>
@@ -2089,7 +2124,7 @@
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="unfinished" />
+        <translation>अन्तिम बार पूर्ण देखा गया</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2118,7 +2153,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>पीयर्स</translation>
+        <translation>सहकर्मीं</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2126,7 +2161,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>डाउनलोड हो चुके</translation>
+        <translation>डाउनलोड हो चुका</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2178,7 +2213,7 @@
     </message>
     <message>
         <source>Leeches</source>
-        <translation type="unfinished" />
+        <translation>जोंके</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -2277,7 +2312,7 @@
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>जाँच के लिए पंक्तिबद्ध है</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2304,7 +2339,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>श्रेणिआ</translation>
+        <translation>श्रेणियाँ</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2473,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>हैश</translation>
+        <translation type="vanished">हैश</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2495,6 +2530,18 @@
         <source>Add...</source>
         <translation>जोड़ें...</translation>
     </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2508,7 +2555,7 @@
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation type="unfinished" />
+        <translation>कोई अनुपात सीमा निर्धारित न करें</translation>
     </message>
     <message>
         <source>Set share limit to</source>
@@ -2724,6 +2771,10 @@
         <source>Increase window width to display additional filters</source>
         <translation>अतिरिक्त फिल्टरों को दिखाने के लिए विंडो की चौड़ाई बढ़ायें</translation>
     </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2776,7 +2827,7 @@
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>जोंके</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3387,6 +3438,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>RSS feeds</source>
         <translation>RSS स्रोत</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

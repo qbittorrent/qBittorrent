@@ -213,10 +213,6 @@
         <translation>Cookie:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="vanished">Πληκτρολογήστε την πλήρες διαδρομή του φακέλου εδώ</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Περισσότερες πληροφορίες</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Μετονομασία του torrent</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">Άλλο...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Πληροφορίες hash</translation>
+        <translation type="vanished">%I: Πληροφορίες hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1123,7 +1114,7 @@
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Μέγεθος καθυστερούμενων υποδοχής:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1191,7 +1182,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation>Αποστολή κενού παράγοντα υδατογραφήματος:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1215,7 +1206,7 @@
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>Στείλτε προτάσεις ανεβάσματος  κομματιών:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1239,7 +1230,7 @@
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation>Αποστολή κενού υδατογραφήματος:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1283,7 +1274,7 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>Αποστολή χαμηλού υδατογραφήματος:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1311,7 +1302,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Χρονικό όριο σταματήματος τράκερ:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1456,6 +1447,38 @@
     <message>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Τύπος Υπηρεσίας (ToS) για τις συνδέσεις με τα peers</translation>
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Torrent Hash:</translation>
+        <translation type="vanished">Torrent Hash:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1745,6 +1768,18 @@
         <source>%1 (seeded for %2)</source>
         <translation>%1 (διαμοιράστηκε για %2)</translation>
     </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1766,11 +1801,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Άλλο...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Πληκτρολογήστε τον φάκελο εδώ</translation>
     </message>
 </context>
 <context>
@@ -1931,27 +1966,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Καθυστέρηση αποστολής (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Καθυστέρηση λήψης (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Καθυστέρηση λήψης (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Σε καθυστέρηση (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Καθυστέρηση αποστολής (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Σε καθυστέρηση (%1)</translation>
     </message>
 </context>
 <context>
@@ -2245,11 +2280,11 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[Ε] Γίνεται Διαμοιρασμός</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Γίνεται Διαμοιρασμός</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -2261,7 +2296,7 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[Ε] Γίνεται Λήψη</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
@@ -2289,11 +2324,11 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>Σε καθυστέρηση</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (διαμοιράστηκε για %2)</translation>
     </message>
 </context>
 <context>
@@ -2445,7 +2480,7 @@
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>Εξαναγκαστική επανανακοίνωση</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2473,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Hash:</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2494,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>Προσθήκη...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2724,6 +2771,10 @@
         <source>Increase window width to display additional filters</source>
         <translation>Αύξηση πλάτους παραθύρου για προβολή πρόσθετων φίλτρων</translation>
     </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2822,11 +2873,11 @@
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη Διασυνδέσεων</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>Λίστα διασυνδέσεων για προσθήκη (μία IP ανά γραμμή):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2959,7 +3010,7 @@
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Η δωρεάν βάση δεδομένων IP to Country Lite χρησιμοποιείται για την επίλυση των χωρών των διασυνδέσεων. Η βάση δεδομένων διατίθεται με τους όρους της Διεθνούς Άδειας Αναφοράς Δημιουργού 4.0.</translation>
     </message>
 </context>
 <context>
@@ -3059,7 +3110,7 @@
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished" />
+        <translation>Torrents: (κάντε διπλό κλικ για λήψη)</translation>
     </message>
     <message>
         <source>Open news URL</source>
@@ -3150,7 +3201,7 @@
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>Χρήση Κανονικών Εκφράσεων</translation>
     </message>
     <message>
         <source>New rule name</source>
@@ -3302,7 +3353,7 @@
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη Σε Παύση:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3375,7 +3426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished" />
+        <translation>Χωρίς Τράκερ (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
@@ -3387,6 +3438,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>RSS feeds</source>
         <translation>Τροφοδοσίες RSS</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
