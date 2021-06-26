@@ -30,7 +30,7 @@
 
 #define QBT_VERSION_MAJOR 4
 #define QBT_VERSION_MINOR 3
-#define QBT_VERSION_BUGFIX 5
+#define QBT_VERSION_BUGFIX 6
 #define QBT_VERSION_BUILD 0
 #define QBT_VERSION_STATUS ""  // Should be empty for stable releases!
 
