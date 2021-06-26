@@ -1,3 +1,14 @@
+Sat Jun 26 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.6
+    - FEATURE: New languages: Mongolian, Persian, Thai
+    - BUGFIX: Provide correct error description in "upload mode" (glassez)
+    - BUGFIX: Allow adding torrents with relative save path (glassez)
+    - BUGFIX: Fix main window turns blank after restoring from tray (#15031) (Chocobo1)
+    - BUGFIX: Remove the lockfile on exit (#14997) (brvphoenix)
+    - BUGFIX: Improve "Watched folders" feature (glassez)
+    - BUGFIX: Keep sub-sorting order (#15074) (Dmitry Khlestkov)
+    - BUGFIX: Properly add torrent with new tags (glassez)
+    - WINDOWS: NSIS: Update Japanese, Turkish, Hungarian, Swedish translation (maboroshin, Burak Yavuz, xkrstudio, nonew-star)
+
 Sun May 02 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.5
     - BUGFIX: Move cursor to the end when autofilling URL/hash in "Download from URLs" dialog (Chocobo1)
     - BUGFIX: Sort invalid QDateTime values after valid values (Chocobo1)
