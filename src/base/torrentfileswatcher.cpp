@@ -295,7 +295,7 @@ void TorrentFilesWatcher::load()
     const QJsonDocument jsonDoc = QJsonDocument::fromJson(confFile.readAll(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
-        LogMsg(tr("Couldn't parse  Watched Folders configuration from %1. Error: %2")
+        LogMsg(tr("Couldn't parse Watched Folders configuration from %1. Error: %2")
             .arg(confFile.fileName(), jsonError.errorString()), Log::WARNING);
         return;
     }
