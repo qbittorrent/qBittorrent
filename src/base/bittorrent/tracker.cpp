@@ -265,7 +265,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
 
         const lt::entry::dictionary_type bencodedEntry =
         {
-            {ANNOUNCE_RESPONSE_FAILURE_REASON, {error.what()}}
+            {ANNOUNCE_RESPONSE_FAILURE_REASON, {error.message().toStdString()}}
         };
         QByteArray reply;
         lt::bencode(std::back_inserter(reply), bencodedEntry);

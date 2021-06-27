@@ -66,7 +66,7 @@ namespace
             }
             return (newVersion > currentVersion);
         }
-        catch (const std::runtime_error &)
+        catch (const RuntimeError &)
         {
             return false;
         }

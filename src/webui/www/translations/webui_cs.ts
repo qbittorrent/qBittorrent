@@ -213,10 +213,6 @@
         <translation>Cookie:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation type="vanished">Zadejte název adresáře</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Více informací</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Přejmenovat torrent</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">Jiná...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -789,7 +780,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Použít proxy pro připojení k protějškům</translation>
+        <translation>Použít proxy pro připojení k peerům</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -867,15 +858,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Zapnout DHT síť (decentralizovaná síť) k nalezení většího počtu protějšků</translation>
+        <translation>Zapnout DHT síť (decentralizovaná síť) k nalezení většího počtu peerů</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Zapnout Peer Exchange (PeX) k nalezení většího počtu protějšků</translation>
+        <translation>Zapnout Peer Exchange (PeX) k nalezení většího počtu peerů</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Zapnout místní vyhledávání k nalezení většího počtu protějšků</translation>
+        <translation>Zapnout místní vyhledávání k nalezení většího počtu peerů</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Info hash</translation>
+        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1051,7 +1042,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Omezit poměr sdílení protějškům na LAN</translation>
+        <translation>Omezit poměr sdílení peerům na LAN</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1457,6 +1448,38 @@
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Typ služby (ToS) pro připojování k peerům</translation>
     </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1518,11 +1541,11 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Natrvalo zakázat protějšek</translation>
+        <translation>Natrvalo zakázat peer</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Opravdu chcete natrvalo zakázat označené protějšky?</translation>
+        <translation>Opravdu chcete natrvalo zakázat označené peery?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1530,7 +1553,7 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Přidat nový protějšek...</translation>
+        <translation>Přidat nový peer...</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -1575,7 +1598,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>Protějšky</translation>
+        <translation>Peery</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1623,7 +1646,7 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Protějšky:</translation>
+        <translation>Peery:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Kontrolní součet:</translation>
+        <translation type="vanished">Kontrolní součet:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1745,6 +1768,18 @@
         <source>%1 (seeded for %2)</source>
         <translation>%1 (sdíleno %2)</translation>
     </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1766,11 +1801,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Jiná...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Zadejte název adresáře</translation>
     </message>
 </context>
 <context>
@@ -1987,7 +2022,7 @@
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Protějšky</translation>
+        <translation>Peery</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -2118,7 +2153,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>Protějšky</translation>
+        <translation>Peery</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2473,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>Hash</translation>
+        <translation type="vanished">Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2494,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>Přidat...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2724,6 +2771,10 @@
         <source>Increase window width to display additional filters</source>
         <translation>Rozšířit okno pro zobrazení dalších filtrů</translation>
     </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2822,11 +2873,11 @@
     </message>
     <message>
         <source>Add Peers</source>
-        <translation>Přidání protějšků</translation>
+        <translation>Přidání peerů</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Seznam protějšků pro přidání (jedna IP na řádek):</translation>
+        <translation>Seznam peerů pro přidání (jedna IP na řádek):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -3387,6 +3438,10 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <source>RSS feeds</source>
         <translation>RSS kanály</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

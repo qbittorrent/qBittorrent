@@ -132,8 +132,6 @@ public:
     // Downloads
     QString lastLocationPath() const;
     void setLastLocationPath(const QString &path);
-    QVariantHash getScanDirs() const;
-    void setScanDirs(const QVariantHash &dirs);
     QString getScanDirsLastPath() const;
     void setScanDirsLastPath(const QString &path);
     bool isMailNotificationEnabled() const;

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,43 +28,35 @@
 
 #pragma once
 
-#include <QDir>
-#include <QFileSystemWatcher>
-#include <QHash>
-#include <QTimer>
-#include <QVector>
+#include <QDialog>
 
-/*
- * Subclassing QFileSystemWatcher in order to support Network File
- * System watching (NFS, CIFS) on Linux and Mac OS.
- */
-class FileSystemWatcher final : public QFileSystemWatcher
+#include "base/settingvalue.h"
+#include "base/torrentfileswatcher.h"
+
+namespace Ui
+{
+    class WatchedFolderOptionsDialog;
+}
+
+class WatchedFolderOptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(FileSystemWatcher)
+    Q_DISABLE_COPY(WatchedFolderOptionsDialog)
 
 public:
-    explicit FileSystemWatcher(QObject *parent = nullptr);
+    explicit WatchedFolderOptionsDialog(const TorrentFilesWatcher::WatchedFolderOptions &watchedFolderOptions, QWidget *parent);
+    ~WatchedFolderOptionsDialog() override;
 
-    QStringList directories() const;
-    void addPath(const QString &path);
-    void removePath(const QString &path);
-
-signals:
-    void torrentsAdded(const QStringList &pathList);
-
-private slots:
-    void scanLocalFolder(const QString &path);
-    void processPartialTorrents();
-    void scanNetworkFolders();
+    TorrentFilesWatcher::WatchedFolderOptions watchedFolderOptions() const;
 
 private:
-    void processTorrentsInDir(const QDir &dir);
+    void populateSavePathComboBox();
+    void loadState();
+    void saveState();
+    void onTMMChanged(int index);
+    void onCategoryChanged(int index);
 
-    // Partial torrents
-    QHash<QString, int> m_partialTorrents;
-    QTimer m_partialTorrentTimer;
-
-    QVector<QDir> m_watchedFolders;
-    QTimer m_watchTimer;
+    Ui::WatchedFolderOptionsDialog *m_ui;
+    QString m_savePath;
+    SettingValue<QSize> m_storeDialogSize;
 };

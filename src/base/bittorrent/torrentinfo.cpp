@@ -75,6 +75,8 @@ namespace
     }
 }
 
+const int torrentInfoId = qRegisterMetaType<TorrentInfo>();
+
 TorrentInfo::TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo)
 {
     m_nativeInfo = std::const_pointer_cast<lt::torrent_info>(nativeInfo);

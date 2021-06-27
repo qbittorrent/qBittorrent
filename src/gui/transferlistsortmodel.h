@@ -46,6 +46,8 @@ class TransferListSortModel final : public QSortFilterProxyModel
 public:
     explicit TransferListSortModel(QObject *parent = nullptr);
 
+    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
+
     void setStatusFilter(TorrentFilter::Type filter);
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
@@ -62,6 +64,8 @@ private:
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
     TorrentFilter m_filter;
-    mutable CachedSettingValue<int> m_subSortColumn;
-    mutable int m_lastSortColumn = -1;
+    CachedSettingValue<int> m_subSortColumn;
+    CachedSettingValue<int> m_subSortOrder;
+    int m_lastSortColumn = -1;
+    int m_lastSortOrder = 0;
 };

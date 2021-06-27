@@ -95,7 +95,7 @@ namespace QtLP_Private
 
 const char* QtLocalPeer::ack = "ack";
 
-QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
+QtLocalPeer::QtLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)
     , id(appId)
 {
@@ -131,6 +131,15 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
                        + QLatin1String("-lockfile");
     lockFile.setFileName(lockName);
     lockFile.open(QIODevice::ReadWrite);
+}
+
+QtLocalPeer::~QtLocalPeer()
+{
+    if (!isClient())
+    {
+        lockFile.unlock();
+        lockFile.remove();
+    }
 }
 
 bool QtLocalPeer::isClient()

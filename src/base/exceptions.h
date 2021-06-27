@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018, 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,12 +28,26 @@
 
 #pragma once
 
-#include <stdexcept>
 #include <QString>
 
-class RuntimeError : public std::runtime_error
+class Exception
 {
 public:
-    explicit RuntimeError(const QString &message = {});
-    QString message() const;
+    explicit Exception(const QString &message = {}) noexcept;
+    [[nodiscard]] QString message() const noexcept;
+
+private:
+    QString m_message;
+};
+
+class RuntimeError : public Exception
+{
+public:
+    using Exception::Exception;
+};
+
+class InvalidArgument : public Exception
+{
+public:
+    using Exception::Exception;
 };
