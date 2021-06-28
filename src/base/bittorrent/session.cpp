@@ -2296,28 +2296,25 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     return true;
 }
 
-void Session::exportTorrentFile(const Torrent *torrent, TorrentExportFolder folder)
+void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const QString &folderPath, const QString &baseName)
 {
-    Q_ASSERT(((folder == TorrentExportFolder::Regular) && !torrentExportDirectory().isEmpty()) ||
-             ((folder == TorrentExportFolder::Finished) && !finishedTorrentExportDirectory().isEmpty()));
-
-    const QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
+    const QString validName = Utils::Fs::toValidFileSystemName(baseName);
     QString torrentExportFilename = QString::fromLatin1("%1.torrent").arg(validName);
-    const QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
-    if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath()))
+    const QDir exportDir {folderPath};
+    if (exportDir.exists() || exportDir.mkpath(exportDir.absolutePath()))
     {
-        QString newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
+        QString newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         int counter = 0;
         while (QFile::exists(newTorrentPath))
         {
             // Append number to torrent name to make it unique
             torrentExportFilename = QString::fromLatin1("%1 %2.torrent").arg(validName).arg(++counter);
-            newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
+            newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         }
 
         try
         {
-            torrent->info().saveToFile(newTorrentPath);
+            torrentInfo.saveToFile(newTorrentPath);
         }
         catch (const RuntimeError &err)
         {
@@ -3893,7 +3890,14 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
     // Copy the torrent file to the export folder
     if (!torrentExportDirectory().isEmpty())
-        exportTorrentFile(torrent);
+    {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
+#else
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
+#endif
+        exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
+    }
 
     emit torrentMetadataReceived(torrent);
 }
@@ -3944,7 +3948,14 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
 
     // Move .torrent file to another folder
     if (!finishedTorrentExportDirectory().isEmpty())
-        exportTorrentFile(torrent, TorrentExportFolder::Finished);
+    {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
+#else
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
+#endif
+        exportTorrentFile(torrentInfo, finishedTorrentExportDirectory(), torrent->name());
+    }
 
     if (!hasUnfinishedTorrents())
         emit allTorrentsFinished();
@@ -4452,7 +4463,10 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
         {
             // Copy the torrent file to the export folder
             if (!torrentExportDirectory().isEmpty())
-                exportTorrentFile(torrent);
+            {
+                const TorrentInfo torrentInfo {params.ltAddTorrentParams.ti};
+                exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
+            }
         }
 
         if (isAddTrackersEnabled() && !torrent->isPrivate())
@@ -4579,7 +4593,7 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 
     if (downloadedMetadataIter != m_downloadedMetadata.end())
     {
-        TorrentInfo metadata {p->handle.torrent_file()};
+        const TorrentInfo metadata {p->handle.torrent_file()};
 
         m_downloadedMetadata.erase(downloadedMetadataIter);
         --m_extraLimit;

@@ -460,7 +460,7 @@ void AddNewTorrentDialog::saveTorrentFile()
     Q_ASSERT(m_hasMetadata);
 
     const QString torrentFileExtension {C_TORRENT_FILE_EXTENSION};
-    const QString filter {QString{"Torrent file (*%1)"}.arg(torrentFileExtension)};
+    const QString filter {tr("Torrent file (*%1)").arg(torrentFileExtension)};
 
     QString path = QFileDialog::getSaveFileName(
                 this, tr("Save as torrent file")
@@ -679,6 +679,13 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
     // Update UI
     setupTreeview();
     setMetadataProgressIndicator(false, tr("Metadata retrieval complete"));
+
+    m_ui->buttonSave->setVisible(true);
+    if (m_torrentInfo.infoHash().v2().isValid())
+    {
+        m_ui->buttonSave->setEnabled(false);
+        m_ui->buttonSave->setToolTip(tr("Cannot create v2 torrent until its data is fully downloaded."));
+    }
 }
 
 void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText)
@@ -687,7 +694,6 @@ void AddNewTorrentDialog::setMetadataProgressIndicator(bool visibleIndicator, co
     m_ui->lblMetaLoading->setVisible(true);
     m_ui->lblMetaLoading->setText(labelText);
     m_ui->progMetaLoading->setVisible(visibleIndicator);
-    m_ui->buttonSave->setVisible(!visibleIndicator);
 }
 
 void AddNewTorrentDialog::setupTreeview()
