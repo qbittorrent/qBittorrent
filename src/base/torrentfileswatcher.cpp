@@ -601,13 +601,10 @@ void TorrentFilesWatcher::Worker::addWatchedFolder(const QString &path, const To
 {
 #if !defined Q_OS_HAIKU
     // Check if the path points to a network file system or not
-    if (Utils::Fs::isNetworkFileSystem(path))
-    {
-        m_watchedByTimeoutFolders.insert(path);
-    }
-    else
-#endif
+    if (Utils::Fs::isNetworkFileSystem(path) || options.recursive)
+#else
     if (options.recursive)
+#endif
     {
         m_watchedByTimeoutFolders.insert(path);
         if (!m_watchTimer->isActive())
