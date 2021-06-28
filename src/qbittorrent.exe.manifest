@@ -34,10 +34,13 @@
           <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
       </application>
   </compatibility>
-  <!-- Enable long paths that exceed MAX_PATH in length -->
+  <!-- Set important attributes for better application behavior on modern systems -->
   <asmv3:application>
-    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
-      <longPathAware>true</longPathAware>
+    <asmv3:windowsSettings>
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/pm</dpiAware>
+      <dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">PerMonitorV2, PerMonitor</dpiAwareness>
+      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+      <heapType xmlns="http://schemas.microsoft.com/SMI/2020/WindowsSettings">SegmentHeap</heapType>
     </asmv3:windowsSettings>
   </asmv3:application>
 </assembly>
