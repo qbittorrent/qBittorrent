@@ -1,6 +1,5 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
  * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -30,55 +29,62 @@
 
 #pragma once
 
-#include <QList>
-#include <QPointer>
-#include <QWidget>
+#include <QHash>
+#include <QObject>
 
-class QEvent;
-class QObject;
-class QTabWidget;
+#include "base/exceptions.h"
 
-class MainWindow;
-class SearchJobWidget;
+QBT_DECLARE_EXCEPTION(IndexerNotFoundError, RuntimeError)
+QBT_DECLARE_EXCEPTION(IndexerAlreadyExistsError, RuntimeError)
 
-namespace Ui
+struct IndexerOptions
 {
-    class SearchWidget;
-}
+    QString url;
+    QString apiKey;
+};
 
-class SearchWidget : public QWidget
+struct IndexerInfo
+{
+    IndexerOptions options;
+    bool enabled = true;
+};
+
+class SearchHandler;
+
+class SearchEngine final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchWidget)
+    Q_DISABLE_COPY_MOVE(SearchEngine)
 
 public:
-    explicit SearchWidget(MainWindow *mainWindow);
-    ~SearchWidget() override;
+    SearchEngine();
 
-    void giveFocusToSearchInput();
+    static SearchEngine *instance();
+    static void freeInstance();
 
-private slots:
-    void on_indexersButton_clicked();
-    void on_searchButton_clicked();
+    QHash<QString, IndexerInfo> indexers() const;
+    QStringList supportedCategories() const;
+
+    void addIndexer(const QString &name, const IndexerOptions &options);
+    void setIndexerOptions(const QString &name, const IndexerOptions &options);
+    void enableIndexer(const QString &name, bool enabled = true);
+    void removeIndexer(const QString &name);
+
+    SearchHandler *startSearch(const QString &pattern, const QString &category);
+
+    static QString categoryFullName(const QString &categoryName);
+
+signals:
+    void indexerAdded(const QString &name);
+    void indexerOptionsChanged(const QString &name);
+    void indexerStateChanged(const QString &name);
+    void indexerRemoved(const QString &name);
 
 private:
-    bool eventFilter(QObject *object, QEvent *event) override;
-    void tabChanged(int index);
-    void closeTab(int index);
-    void closeAllTabs();
-    void tabStatusChanged(QWidget *tab);
-    void toggleFocusBetweenLineEdits();
+    void load();
+    void store() const;
 
-    void fillCatCombobox();
-    void selectActivePage();
-    void searchTextEdited(const QString &);
+    static QPointer<SearchEngine> m_instance;
 
-    QString selectedCategory() const;
-
-    Ui::SearchWidget *m_ui;
-    QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
-    QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
-    QList<SearchJobWidget *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow;
-    bool m_isNewQueryString;
+    QHash<QString, IndexerInfo> m_indexers;
 };

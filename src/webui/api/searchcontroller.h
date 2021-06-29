@@ -30,7 +30,7 @@
 
 #include <QtContainerFwd>
 
-#include "base/search/searchpluginmanager.h"
+#include "base/search/searchengine.h"
 #include "apicontroller.h"
 
 class QJsonArray;
@@ -62,11 +62,9 @@ private slots:
 private:
     const int MAX_CONCURRENT_SEARCHES = 5;
 
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
-    void checkForUpdatesFailed(const QString &reason);
     void searchFinished(ISession *session, int id);
     void searchFailed(ISession *session, int id);
     int generateSearchId() const;
     QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
-    QJsonArray getPluginsInfo(const QStringList &plugins) const;
+    QJsonArray getIndexersInfo() const;
 };

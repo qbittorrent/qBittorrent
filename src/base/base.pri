@@ -69,9 +69,10 @@ HEADERS += \
     $$PWD/rss/rss_item.h \
     $$PWD/rss/rss_parser.h \
     $$PWD/rss/rss_session.h \
-    $$PWD/search/searchdownloadhandler.h \
+    $$PWD/search/searchengine.h \
     $$PWD/search/searchhandler.h \
-    $$PWD/search/searchpluginmanager.h \
+    $$PWD/search/searchresult.h \
+    $$PWD/search/torznabrssparser.h \
     $$PWD/settingsstorage.h \
     $$PWD/settingvalue.h \
     $$PWD/tagset.h \
@@ -82,7 +83,6 @@ HEADERS += \
     $$PWD/unicodestrings.h \
     $$PWD/utils/bytearray.h \
     $$PWD/utils/compare.h \
-    $$PWD/utils/foreignapps.h \
     $$PWD/utils/fs.h \
     $$PWD/utils/gzip.h \
     $$PWD/utils/io.h \
@@ -149,9 +149,9 @@ SOURCES += \
     $$PWD/rss/rss_item.cpp \
     $$PWD/rss/rss_parser.cpp \
     $$PWD/rss/rss_session.cpp \
-    $$PWD/search/searchdownloadhandler.cpp \
+    $$PWD/search/searchengine.cpp \
     $$PWD/search/searchhandler.cpp \
-    $$PWD/search/searchpluginmanager.cpp \
+    $$PWD/search/torznabrssparser.cpp \
     $$PWD/settingsstorage.cpp \
     $$PWD/tagset.cpp \
     $$PWD/torrentfileguard.cpp \
@@ -159,7 +159,6 @@ SOURCES += \
     $$PWD/torrentfilter.cpp \
     $$PWD/utils/bytearray.cpp \
     $$PWD/utils/compare.cpp \
-    $$PWD/utils/foreignapps.cpp \
     $$PWD/utils/fs.cpp \
     $$PWD/utils/gzip.cpp \
     $$PWD/utils/io.cpp \

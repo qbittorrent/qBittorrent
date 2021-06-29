@@ -49,11 +49,10 @@
 
 #include "base/global.h"
 #include "base/search/searchhandler.h"
-#include "base/search/searchpluginmanager.h"
-#include "base/utils/foreignapps.h"
+#include "base/search/searchengine.h"
 #include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
-#include "pluginselectdialog.h"
+#include "indexersdialog.h"
 #include "searchjobwidget.h"
 #include "ui_searchwidget.h"
 
@@ -112,7 +111,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 #ifndef Q_OS_MACOS
     // Icons
     m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon("edit-find"));
-    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
+    m_ui->indexersButton->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -122,27 +121,20 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
 
-    const auto *searchManager = SearchPluginManager::instance();
-    const auto onPluginChanged = [this]()
+    const auto *searchManager = SearchEngine::instance();
+    const auto onIndexerChanged = [this]()
     {
-        fillPluginComboBox();
         fillCatCombobox();
         selectActivePage();
     };
-    connect(searchManager, &SearchPluginManager::pluginInstalled, this, onPluginChanged);
-    connect(searchManager, &SearchPluginManager::pluginUninstalled, this, onPluginChanged);
-    connect(searchManager, &SearchPluginManager::pluginUpdated, this, onPluginChanged);
-    connect(searchManager, &SearchPluginManager::pluginEnabled, this, onPluginChanged);
+    connect(searchManager, &SearchEngine::indexerAdded, this, onIndexerChanged);
+    connect(searchManager, &SearchEngine::indexerRemoved, this, onIndexerChanged);
+    connect(searchManager, &SearchEngine::indexerStateChanged, this, onIndexerChanged);
 
-    // Fill in category combobox
-    onPluginChanged();
+    onIndexerChanged();
 
     connect(m_ui->lineEditSearchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
     connect(m_ui->lineEditSearchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
-    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
-            , this, &SearchWidget::selectMultipleBox);
-    connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
-            , this, &SearchWidget::fillCatCombobox);
 
     const auto focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
     connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
@@ -180,12 +172,12 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
 void SearchWidget::fillCatCombobox()
 {
     m_ui->comboCategory->clear();
-    m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName("all"), "all");
+    m_ui->comboCategory->addItem(SearchEngine::categoryFullName("all"), "all");
 
     using QStrPair = QPair<QString, QString>;
     QVector<QStrPair> tmpList;
-    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
-        tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
+    for (const QString &cat : asConst(SearchEngine::instance()->supportedCategories()))
+        tmpList << qMakePair(SearchEngine::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     for (const QStrPair &p : asConst(tmpList))
@@ -198,44 +190,18 @@ void SearchWidget::fillCatCombobox()
         m_ui->comboCategory->insertSeparator(1);
 }
 
-void SearchWidget::fillPluginComboBox()
-{
-    m_ui->selectPlugin->clear();
-    m_ui->selectPlugin->addItem(tr("Only enabled"), "enabled");
-    m_ui->selectPlugin->addItem(tr("All plugins"), "all");
-    m_ui->selectPlugin->addItem(tr("Select..."), "multi");
-
-    using QStrPair = QPair<QString, QString>;
-    QVector<QStrPair> tmpList;
-    for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
-        tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
-    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
-
-    for (const QStrPair &p : asConst(tmpList))
-        m_ui->selectPlugin->addItem(p.first, p.second);
-
-    if (m_ui->selectPlugin->count() > 3)
-        m_ui->selectPlugin->insertSeparator(3);
-}
-
 QString SearchWidget::selectedCategory() const
 {
     return m_ui->comboCategory->itemData(m_ui->comboCategory->currentIndex()).toString();
 }
 
-QString SearchWidget::selectedPlugin() const
-{
-    return m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
-}
-
 void SearchWidget::selectActivePage()
 {
-    if (SearchPluginManager::instance()->allPlugins().isEmpty())
+    if (SearchEngine::instance()->indexers().isEmpty())
     {
         m_ui->stackedPages->setCurrentWidget(m_ui->emptyPage);
         m_ui->lineEditSearchPattern->setEnabled(false);
         m_ui->comboCategory->setEnabled(false);
-        m_ui->selectPlugin->setEnabled(false);
         m_ui->searchButton->setEnabled(false);
     }
     else
@@ -243,14 +209,12 @@ void SearchWidget::selectActivePage()
         m_ui->stackedPages->setCurrentWidget(m_ui->searchPage);
         m_ui->lineEditSearchPattern->setEnabled(true);
         m_ui->comboCategory->setEnabled(true);
-        m_ui->selectPlugin->setEnabled(true);
         m_ui->searchButton->setEnabled(true);
     }
 }
 
 SearchWidget::~SearchWidget()
 {
-    qDebug("Search destruction");
     delete m_ui;
 }
 
@@ -259,13 +223,6 @@ void SearchWidget::tabChanged(int index)
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
     m_currentSearchTab = ((index < 0) ? nullptr : m_allTabs.at(m_ui->tabWidget->currentIndex()));
-}
-
-void SearchWidget::selectMultipleBox(int index)
-{
-    Q_UNUSED(index);
-    if (selectedPlugin() == "multi")
-        on_pluginsButton_clicked();
 }
 
 void SearchWidget::toggleFocusBetweenLineEdits()
@@ -282,10 +239,11 @@ void SearchWidget::toggleFocusBetweenLineEdits()
     }
 }
 
-void SearchWidget::on_pluginsButton_clicked()
+void SearchWidget::on_indexersButton_clicked()
 {
-    new PluginSelectDialog(SearchPluginManager::instance(), this);
+    new IndexersDialog(SearchEngine::instance(), this);
 }
+
 
 void SearchWidget::searchTextEdited(const QString &)
 {
@@ -302,12 +260,6 @@ void SearchWidget::giveFocusToSearchInput()
 // Function called when we click on search button
 void SearchWidget::on_searchButton_clicked()
 {
-    if (!Utils::ForeignApps::pythonInfo().isValid())
-    {
-        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
-        return;
-    }
-
     if (m_activeSearchTab)
     {
         m_activeSearchTab->cancelSearch();
@@ -328,20 +280,10 @@ void SearchWidget::on_searchButton_clicked()
         return;
     }
 
-    QStringList plugins;
-    if (selectedPlugin() == "all")
-        plugins = SearchPluginManager::instance()->allPlugins();
-    else if (selectedPlugin() == "enabled")
-        plugins = SearchPluginManager::instance()->enabledPlugins();
-    else if (selectedPlugin() == "multi")
-        plugins = SearchPluginManager::instance()->enabledPlugins();
-    else
-        plugins << selectedPlugin();
-
     qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
     // Launch search
-    auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
+    auto *searchHandler = SearchEngine::instance()->startSearch(pattern, selectedCategory());
 
     // Tab Addition
     auto *newTab = new SearchJobWidget(searchHandler, this);

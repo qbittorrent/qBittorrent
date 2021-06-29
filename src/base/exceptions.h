@@ -40,14 +40,12 @@ private:
     QString m_message;
 };
 
-class RuntimeError : public Exception
-{
-public:
-    using Exception::Exception;
+#define QBT_DECLARE_EXCEPTION(Type, BaseType) \
+class Type : public BaseType \
+{ \
+public: \
+    using BaseType::BaseType; \
 };
 
-class InvalidArgument : public Exception
-{
-public:
-    using Exception::Exception;
-};
+QBT_DECLARE_EXCEPTION(RuntimeError, Exception)
+QBT_DECLARE_EXCEPTION(InvalidArgument, Exception)

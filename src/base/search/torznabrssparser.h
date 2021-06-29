@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,33 +28,40 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QList>
+#include <QObject>
+#include <QSet>
+#include <QString>
+#include <QVariantHash>
 
-#include "base/settingvalue.h"
+#include "searchresult.h"
 
-namespace Ui
+class QXmlStreamReader;
+
+struct TorznabRSSParsingResult
 {
-    class PluginSourceDialog;
-}
+    QString error;
+    QList<SearchResult> items;
+};
 
-class PluginSourceDialog final : public QDialog
+class TorznabRSSParser : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PluginSourceDialog)
+    Q_DISABLE_COPY(TorznabRSSParser)
 
 public:
-    explicit PluginSourceDialog(QWidget *parent = nullptr);
-    ~PluginSourceDialog() override;
+    TorznabRSSParser() = default;
+    void parse(const QString &indexerName, const QByteArray &feedData);
 
 signals:
-    void askForUrl();
-    void askForLocalFile();
-
-private slots:
-    void on_localButton_clicked();
-    void on_urlButton_clicked();
+    void finished(const TorznabRSSParsingResult &result);
 
 private:
-    Ui::PluginSourceDialog *m_ui;
-    SettingValue<QSize> m_storeDialogSize;
+    void parseRSSItem(QXmlStreamReader &xml);
+    void parseRSSChannel(QXmlStreamReader &xml);
+
+    QString m_indexerName;
+    TorznabRSSParsingResult m_result;
 };
+
+Q_DECLARE_METATYPE(TorznabRSSParsingResult)
