@@ -40,7 +40,7 @@ namespace BitTorrent
 class TorrentContentTreeView final : public QTreeView
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentContentTreeView)
+    Q_DISABLE_COPY_MOVE(TorrentContentTreeView)
 
 public:
     explicit TorrentContentTreeView(QWidget *parent = nullptr);

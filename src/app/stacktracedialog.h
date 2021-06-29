@@ -39,7 +39,7 @@ namespace Ui
 class StacktraceDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(StacktraceDialog)
+    Q_DISABLE_COPY_MOVE(StacktraceDialog)
 
 public:
     explicit StacktraceDialog(QWidget *parent = nullptr);

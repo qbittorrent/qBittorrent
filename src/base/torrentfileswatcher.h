@@ -48,7 +48,7 @@ namespace BitTorrent
 class TorrentFilesWatcher final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentFilesWatcher)
+    Q_DISABLE_COPY_MOVE(TorrentFilesWatcher)
 
 public:
     struct WatchedFolderOptions

@@ -68,7 +68,7 @@ namespace
 class FileSystemPathEdit::FileSystemPathEditPrivate
 {
     Q_DECLARE_PUBLIC(FileSystemPathEdit)
-    Q_DISABLE_COPY(FileSystemPathEditPrivate)
+    Q_DISABLE_COPY_MOVE(FileSystemPathEditPrivate)
 
     FileSystemPathEditPrivate(FileSystemPathEdit *q, Private::FileEditorWithCompletion *editor);
 

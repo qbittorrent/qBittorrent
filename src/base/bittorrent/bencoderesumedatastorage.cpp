@@ -57,7 +57,7 @@ namespace BitTorrent
 {
     class BencodeResumeDataStorage::Worker final : public QObject
     {
-        Q_DISABLE_COPY(Worker)
+        Q_DISABLE_COPY_MOVE(Worker)
 
     public:
         explicit Worker(const QDir &resumeDataDir);

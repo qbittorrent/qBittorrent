@@ -52,7 +52,7 @@ namespace Ui
 class AutomatedRssDownloader : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AutomatedRssDownloader)
+    Q_DISABLE_COPY_MOVE(AutomatedRssDownloader)
 
 public:
     explicit AutomatedRssDownloader(QWidget *parent = nullptr);

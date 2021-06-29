@@ -43,7 +43,7 @@ public:
 class AsyncFileStorage : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AsyncFileStorage)
+    Q_DISABLE_COPY_MOVE(AsyncFileStorage)
 
 public:
     explicit AsyncFileStorage(const QString &storageFolderPath, QObject *parent = nullptr);

@@ -35,7 +35,7 @@
 class PreviewListDelegate final : public QItemDelegate
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PreviewListDelegate)
+    Q_DISABLE_COPY_MOVE(PreviewListDelegate)
 
 public:
     explicit PreviewListDelegate(QObject *parent = nullptr);

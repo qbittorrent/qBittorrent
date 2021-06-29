@@ -40,7 +40,7 @@ namespace Ui
 class PluginSourceDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PluginSourceDialog)
+    Q_DISABLE_COPY_MOVE(PluginSourceDialog)
 
 public:
     explicit PluginSourceDialog(QWidget *parent = nullptr);

@@ -62,7 +62,7 @@ namespace RSS
     class AutoDownloader final : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(AutoDownloader)
+        Q_DISABLE_COPY_MOVE(AutoDownloader)
 
         friend class ::Application;
 

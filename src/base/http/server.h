@@ -43,7 +43,7 @@ namespace Http
     class Server final : public QTcpServer
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Server)
+        Q_DISABLE_COPY_MOVE(Server)
 
     public:
         explicit Server(IRequestHandler *requestHandler, QObject *parent = nullptr);

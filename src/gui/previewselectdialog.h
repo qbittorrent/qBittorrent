@@ -47,7 +47,7 @@ class PreviewListDelegate;
 class PreviewSelectDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PreviewSelectDialog)
+    Q_DISABLE_COPY_MOVE(PreviewSelectDialog)
 
 public:
     enum PreviewColumn

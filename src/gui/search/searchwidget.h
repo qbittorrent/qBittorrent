@@ -49,7 +49,7 @@ namespace Ui
 class SearchWidget : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchWidget)
+    Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
     explicit SearchWidget(MainWindow *mainWindow);

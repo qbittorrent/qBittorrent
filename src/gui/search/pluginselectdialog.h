@@ -51,7 +51,7 @@ namespace Ui
 class PluginSelectDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PluginSelectDialog)
+    Q_DISABLE_COPY_MOVE(PluginSelectDialog)
 
 public:
     explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);

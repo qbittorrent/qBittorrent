@@ -40,7 +40,7 @@ namespace Ui
 class StatsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(StatsDialog)
+    Q_DISABLE_COPY_MOVE(StatsDialog)
 
 public:
   explicit StatsDialog(QWidget *parent);

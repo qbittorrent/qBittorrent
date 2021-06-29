@@ -33,7 +33,7 @@
 class TorrentsController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentsController)
+    Q_DISABLE_COPY_MOVE(TorrentsController)
 
 public:
     using APIController::APIController;

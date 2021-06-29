@@ -59,7 +59,7 @@ namespace RSS
     class Feed final : public Item
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Feed)
+        Q_DISABLE_COPY_MOVE(Feed)
 
         friend class Session;
 

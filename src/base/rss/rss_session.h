@@ -87,7 +87,7 @@ namespace RSS
     class Session : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Session)
+        Q_DISABLE_COPY_MOVE(Session)
 
         friend class ::Application;
 

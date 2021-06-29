@@ -38,7 +38,7 @@ namespace Ui
 class TorrentCategoryDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentCategoryDialog)
+    Q_DISABLE_COPY_MOVE(TorrentCategoryDialog)
 
 public:
     static QString createCategory(QWidget *parent, const QString &parentCategoryName = {});

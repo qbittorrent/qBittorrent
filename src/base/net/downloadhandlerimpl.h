@@ -39,7 +39,7 @@ class QUrl;
 class DownloadHandlerImpl final : public Net::DownloadHandler
 {
     Q_OBJECT
-    Q_DISABLE_COPY(DownloadHandlerImpl)
+    Q_DISABLE_COPY_MOVE(DownloadHandlerImpl)
 
 public:
     DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest);

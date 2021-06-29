@@ -35,7 +35,7 @@ class QString;
 class TriStateWidget final : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TriStateWidget)
+    Q_DISABLE_COPY_MOVE(TriStateWidget)
 
 public:
     TriStateWidget(const QString &text, QWidget *parent);

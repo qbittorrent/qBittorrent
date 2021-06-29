@@ -72,7 +72,7 @@ class WebApplication final
         , private Http::ResponseBuilder
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WebApplication)
+    Q_DISABLE_COPY_MOVE(WebApplication)
 
 #ifndef Q_MOC_RUN
 #define WEBAPI_PUBLIC

@@ -39,7 +39,7 @@ class DownloadedPiecesBar final : public PiecesBar
 {
     using base = PiecesBar;
     Q_OBJECT
-    Q_DISABLE_COPY(DownloadedPiecesBar)
+    Q_DISABLE_COPY_MOVE(DownloadedPiecesBar)
 
 public:
     DownloadedPiecesBar(QWidget *parent);

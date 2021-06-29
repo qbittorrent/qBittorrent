@@ -98,7 +98,7 @@ namespace Net
     class DownloadHandler : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(DownloadHandler)
+        Q_DISABLE_COPY_MOVE(DownloadHandler)
 
     public:
         using QObject::QObject;
@@ -112,7 +112,7 @@ namespace Net
     class DownloadManager : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(DownloadManager)
+        Q_DISABLE_COPY_MOVE(DownloadManager)
 
     public:
         static void initInstance();

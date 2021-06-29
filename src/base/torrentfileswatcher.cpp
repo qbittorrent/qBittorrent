@@ -192,7 +192,7 @@ namespace
 class TorrentFilesWatcher::Worker final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Worker)
+    Q_DISABLE_COPY_MOVE(Worker)
 
 public:
     Worker();

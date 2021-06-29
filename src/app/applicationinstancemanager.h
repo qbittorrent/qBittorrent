@@ -35,7 +35,7 @@ class QtLocalPeer;
 class ApplicationInstanceManager : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(ApplicationInstanceManager)
+    Q_DISABLE_COPY_MOVE(ApplicationInstanceManager)
 
 public:
     explicit ApplicationInstanceManager(const QString &appId, QObject *parent = nullptr);

@@ -72,7 +72,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(Log::MsgTypes)
 class Logger : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Logger)
+    Q_DISABLE_COPY_MOVE(Logger)
 
 public:
     static void initInstance();

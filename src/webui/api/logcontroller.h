@@ -33,7 +33,7 @@
 class LogController final : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(LogController)
+    Q_DISABLE_COPY_MOVE(LogController)
 
 public:
     using APIController::APIController;

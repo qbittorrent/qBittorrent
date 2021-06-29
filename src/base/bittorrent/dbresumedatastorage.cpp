@@ -158,7 +158,7 @@ namespace BitTorrent
 {
     class DBResumeDataStorage::Worker final : public QObject
     {
-        Q_DISABLE_COPY(Worker)
+        Q_DISABLE_COPY_MOVE(Worker)
 
     public:
         Worker(const QString &dbPath, const QString &dbConnectionName);

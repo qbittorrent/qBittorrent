@@ -43,7 +43,7 @@ namespace Ui
 class BanListOptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(BanListOptionsDialog)
+    Q_DISABLE_COPY_MOVE(BanListOptionsDialog)
 
 public:
     explicit BanListOptionsDialog(QWidget *parent = nullptr);
