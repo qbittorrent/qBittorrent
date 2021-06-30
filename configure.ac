@@ -176,7 +176,7 @@ AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
     [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 1.2.13],
+                  [libtorrent-rasterbar >= 1.2.14],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
                   LIBS="$libtorrent_LIBS $LIBS"])
 
