@@ -266,7 +266,7 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
 
     return loadTorrentImpl();
 }
-
+#include "notificationutils.h"
 bool AddNewTorrentDialog::loadTorrentImpl()
 {
     m_hasMetadata = true;
@@ -280,18 +280,39 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         {
             if (torrent->isPrivate() || m_torrentInfo.isPrivate())
             {
-                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                if (Utils::Gui::isNotificationsEnabled())
+                {
+                    Utils::Gui::showNotificationBaloon(tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()));
+                }
+                else
+                {
+                    RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                }
             }
             else
             {
                 torrent->addTrackers(m_torrentInfo.trackers());
                 torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                if (Utils::Gui::isNotificationsEnabled())
+                {
+                    Utils::Gui::showNotificationBaloon(tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()));
+                }
+                else
+                {
+                    RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                }
             }
         }
         else
         {
-            RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent is already queued for processing."), QMessageBox::Ok);
+            if (Utils::Gui::isNotificationsEnabled())
+            {
+                Utils::Gui::showNotificationBaloon(tr("Torrent is already present"), tr("Torrent is already queued for processing."));
+            }
+            else
+            {
+                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent is already queued for processing."), QMessageBox::Ok);
+            }
         }
         return false;
     }
