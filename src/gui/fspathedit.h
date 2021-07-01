@@ -100,7 +100,7 @@ private:
     virtual void setEditWidgetText(const QString &text) = 0;
 
     QWidget *editWidgetImpl() const;
-    Q_DISABLE_COPY(FileSystemPathEdit)
+    Q_DISABLE_COPY_MOVE(FileSystemPathEdit)
     class FileSystemPathEditPrivate;
     Q_DECLARE_PRIVATE(FileSystemPathEdit)
     FileSystemPathEditPrivate *d_ptr;

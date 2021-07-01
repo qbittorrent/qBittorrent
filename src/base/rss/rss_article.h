@@ -42,7 +42,7 @@ namespace RSS
     class Article : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Article)
+        Q_DISABLE_COPY_MOVE(Article)
 
         friend class Feed;
 

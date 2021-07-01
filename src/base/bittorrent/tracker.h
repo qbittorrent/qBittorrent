@@ -72,7 +72,7 @@ namespace BitTorrent
     class Tracker final : public QObject, public Http::IRequestHandler, private Http::ResponseBuilder
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Tracker)
+        Q_DISABLE_COPY_MOVE(Tracker)
 
         struct TrackerAnnounceRequest;
 

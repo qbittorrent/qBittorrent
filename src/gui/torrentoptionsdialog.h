@@ -48,7 +48,7 @@ namespace Ui
 class TorrentOptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentOptionsDialog)
+    Q_DISABLE_COPY_MOVE(TorrentOptionsDialog)
 
 public:
     explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents);

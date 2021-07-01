@@ -35,7 +35,7 @@ class QString;
 
 class IconProvider : public QObject
 {
-    Q_DISABLE_COPY(IconProvider)
+    Q_DISABLE_COPY_MOVE(IconProvider)
 
 public:
     static void initInstance();

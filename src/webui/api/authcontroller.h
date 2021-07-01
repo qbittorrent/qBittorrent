@@ -38,7 +38,7 @@ class QString;
 class AuthController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AuthController)
+    Q_DISABLE_COPY_MOVE(AuthController)
 
 public:
     using APIController::APIController;

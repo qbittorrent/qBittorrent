@@ -40,7 +40,7 @@
 class PortForwarderImpl final : public Net::PortForwarder
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PortForwarderImpl)
+    Q_DISABLE_COPY_MOVE(PortForwarderImpl)
 
 public:
     explicit PortForwarderImpl(lt::session *provider, QObject *parent = nullptr);

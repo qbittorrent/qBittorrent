@@ -76,7 +76,7 @@ namespace BitTorrent
 
     class TorrentImpl final : public QObject, public Torrent
     {
-        Q_DISABLE_COPY(TorrentImpl)
+        Q_DISABLE_COPY_MOVE(TorrentImpl)
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:

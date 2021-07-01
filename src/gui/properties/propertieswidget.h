@@ -56,7 +56,7 @@ namespace Ui
 class PropertiesWidget : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PropertiesWidget)
+    Q_DISABLE_COPY_MOVE(PropertiesWidget)
 
 public:
     enum SlideState

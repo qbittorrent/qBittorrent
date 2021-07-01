@@ -43,7 +43,7 @@ namespace BitTorrent
     class BencodeResumeDataStorage final : public ResumeDataStorage
     {
         Q_OBJECT
-        Q_DISABLE_COPY(BencodeResumeDataStorage)
+        Q_DISABLE_COPY_MOVE(BencodeResumeDataStorage)
 
     public:
         explicit BencodeResumeDataStorage(const QString &path, QObject *parent = nullptr);

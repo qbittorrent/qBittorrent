@@ -37,7 +37,7 @@ namespace BitTorrent
     class DBResumeDataStorage final : public ResumeDataStorage
     {
         Q_OBJECT
-        Q_DISABLE_COPY(DBResumeDataStorage)
+        Q_DISABLE_COPY_MOVE(DBResumeDataStorage)
 
     public:
         explicit DBResumeDataStorage(const QString &dbPath, QObject *parent = nullptr);

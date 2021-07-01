@@ -40,7 +40,7 @@ namespace RSS
     class Folder final : public Item
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Folder)
+        Q_DISABLE_COPY_MOVE(Folder)
 
         friend class Session;
 

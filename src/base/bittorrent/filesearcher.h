@@ -38,7 +38,7 @@ namespace BitTorrent
 class FileSearcher final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(FileSearcher)
+    Q_DISABLE_COPY_MOVE(FileSearcher)
 
 public:
     FileSearcher() = default;

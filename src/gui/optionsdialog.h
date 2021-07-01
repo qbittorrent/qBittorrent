@@ -59,7 +59,7 @@ namespace Ui
 class OptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(OptionsDialog)
+    Q_DISABLE_COPY_MOVE(OptionsDialog)
 
     using ThisType = OptionsDialog;
 

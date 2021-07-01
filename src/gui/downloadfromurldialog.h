@@ -40,7 +40,7 @@ namespace Ui
 class DownloadFromURLDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(DownloadFromURLDialog)
+    Q_DISABLE_COPY_MOVE(DownloadFromURLDialog)
 
 public:
     explicit DownloadFromURLDialog(QWidget *parent);

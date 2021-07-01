@@ -76,7 +76,7 @@ namespace DNS
 class Preferences : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Preferences)
+    Q_DISABLE_COPY_MOVE(Preferences)
 
     Preferences();
 

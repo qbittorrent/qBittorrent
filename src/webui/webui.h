@@ -46,7 +46,7 @@ class WebApplication;
 class WebUI : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WebUI)
+    Q_DISABLE_COPY_MOVE(WebUI)
 
 public:
     WebUI();

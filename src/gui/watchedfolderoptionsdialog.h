@@ -41,7 +41,7 @@ namespace Ui
 class WatchedFolderOptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WatchedFolderOptionsDialog)
+    Q_DISABLE_COPY_MOVE(WatchedFolderOptionsDialog)
 
 public:
     explicit WatchedFolderOptionsDialog(const TorrentFilesWatcher::WatchedFolderOptions &watchedFolderOptions, QWidget *parent);

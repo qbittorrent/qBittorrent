@@ -39,7 +39,7 @@
 class WatchedFoldersModel final : public QAbstractListModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WatchedFoldersModel)
+    Q_DISABLE_COPY_MOVE(WatchedFoldersModel)
 
 public:
     explicit WatchedFoldersModel(TorrentFilesWatcher *fsWatcher, QObject *parent = nullptr);

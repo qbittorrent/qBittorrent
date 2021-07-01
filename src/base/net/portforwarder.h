@@ -34,7 +34,7 @@ namespace Net
 {
     class PortForwarder : public QObject
     {
-        Q_DISABLE_COPY(PortForwarder)
+        Q_DISABLE_COPY_MOVE(PortForwarder)
 
     public:
         explicit PortForwarder(QObject *parent = nullptr);

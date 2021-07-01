@@ -44,7 +44,7 @@ namespace BitTorrent
 class TransferListModel final : public QAbstractListModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TransferListModel)
+    Q_DISABLE_COPY_MOVE(TransferListModel)
 
 public:
     enum Column

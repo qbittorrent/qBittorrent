@@ -42,7 +42,7 @@ namespace BitTorrent
 class TransferListSortModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TransferListSortModel)
+    Q_DISABLE_COPY_MOVE(TransferListSortModel)
 
 public:
     explicit TransferListSortModel(QObject *parent = nullptr);

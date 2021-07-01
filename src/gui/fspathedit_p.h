@@ -112,7 +112,7 @@ namespace Private
     class FileLineEdit final : public QLineEdit, public FileEditorWithCompletion
     {
         Q_OBJECT
-        Q_DISABLE_COPY(FileLineEdit)
+        Q_DISABLE_COPY_MOVE(FileLineEdit)
 
     public:
         FileLineEdit(QWidget *parent = nullptr);

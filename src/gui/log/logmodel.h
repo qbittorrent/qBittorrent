@@ -39,7 +39,7 @@
 
 class BaseLogModel : public QAbstractListModel
 {
-    Q_DISABLE_COPY(BaseLogModel)
+    Q_DISABLE_COPY_MOVE(BaseLogModel)
 
 public:
     enum MessageTypeRole
@@ -86,7 +86,7 @@ private:
 class LogMessageModel : public BaseLogModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(LogMessageModel)
+    Q_DISABLE_COPY_MOVE(LogMessageModel)
 
 public:
     explicit LogMessageModel(QObject *parent = nullptr);
@@ -101,7 +101,7 @@ private:
 class LogPeerModel : public BaseLogModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(LogPeerModel)
+    Q_DISABLE_COPY_MOVE(LogPeerModel)
 
 public:
     explicit LogPeerModel(QObject *parent = nullptr);

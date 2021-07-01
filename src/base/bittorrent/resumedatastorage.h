@@ -41,7 +41,7 @@ namespace BitTorrent
     class ResumeDataStorage : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(ResumeDataStorage)
+        Q_DISABLE_COPY_MOVE(ResumeDataStorage)
 
     public:
         using QObject::QObject;
