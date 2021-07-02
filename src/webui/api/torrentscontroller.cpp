@@ -246,6 +246,7 @@ namespace
 // GET params:
 //   - filter (string): all, downloading, seeding, completed, paused, resumed, active, inactive, stalled, stalled_uploading, stalled_downloading
 //   - category (string): torrent category for filtering by it (empty string means "uncategorized"; no "category" param presented means "any category")
+//   - tag (string): torrent tag for filtering by it (empty string means "untagged"; no "tag" param presented means "any tag")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
@@ -255,6 +256,7 @@ void TorrentsController::infoAction()
 {
     const QString filter {params()["filter"]};
     const QString category {params()["category"]};
+    const QString tag {params()["tag"]};
     const QString sortedColumn {params()["sort"]};
     const bool reverse {parseBool(params()["reverse"]).value_or(false)};
     int limit {params()["limit"].toInt()};
@@ -265,7 +267,7 @@ void TorrentsController::infoAction()
     for (const QString &hash : hashes)
         idSet.insert(BitTorrent::TorrentID::fromString(hash));
 
-    const TorrentFilter torrentFilter(filter, (hashes.isEmpty() ? TorrentFilter::AnyID : idSet), category);
+    const TorrentFilter torrentFilter(filter, (hashes.isEmpty() ? TorrentFilter::AnyID : idSet), category, tag);
     QVariantList torrentList;
     for (const BitTorrent::Torrent *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
