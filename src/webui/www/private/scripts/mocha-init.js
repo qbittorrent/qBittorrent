@@ -84,8 +84,9 @@ let resumeTorrentsByTrackerFN = function() {};
 let pauseTorrentsByTrackerFN = function() {};
 let deleteTorrentsByTrackerFN = function() {};
 let copyNameFN = function() {};
+let copyInfohashFN = function(policy) {};
 let copyMagnetLinkFN = function() {};
-let copyHashFN = function() {};
+let copyIdFN = function() {};
 let setQueuePositionFN = function() {};
 
 const initializeWindows = function() {
@@ -905,7 +906,7 @@ const initializeWindows = function() {
     copyNameFN = function() {
         const selectedRows = torrentsTable.selectedRowsIds();
         const names = [];
-        if (selectedRows.length) {
+        if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
             for (let i = 0; i < selectedRows.length; ++i) {
                 const hash = selectedRows[i];
@@ -915,10 +916,35 @@ const initializeWindows = function() {
         return names.join("\n");
     };
 
+    copyInfohashFN = function(policy) {
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const infohashes = [];
+        if (selectedRows.length > 0) {
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            switch (policy) {
+                case 1:
+                    for (const id of selectedRows) {
+                        const infohash = rows[id].full_data.infohash_v1;
+                        if (infohash !== "")
+                            infohashes.push(infohash);
+                    }
+                    break;
+                case 2:
+                    for (const id of selectedRows) {
+                        const infohash = rows[id].full_data.infohash_v2;
+                        if (infohash !== "")
+                            infohashes.push(infohash);
+                    }
+                    break;
+            }
+        }
+        return infohashes.join("\n");
+    };
+
     copyMagnetLinkFN = function() {
         const selectedRows = torrentsTable.selectedRowsIds();
         const magnets = [];
-        if (selectedRows.length) {
+        if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
             for (let i = 0; i < selectedRows.length; ++i) {
                 const hash = selectedRows[i];
@@ -928,7 +954,7 @@ const initializeWindows = function() {
         return magnets.join("\n");
     };
 
-    copyHashFN = function() {
+    copyIdFN = function() {
         return torrentsTable.selectedRowsIds().join("\n");
     };
 

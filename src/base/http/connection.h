@@ -43,7 +43,7 @@ namespace Http
     class Connection : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Connection)
+        Q_DISABLE_COPY_MOVE(Connection)
 
     public:
         Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);

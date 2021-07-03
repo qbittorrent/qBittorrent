@@ -28,8 +28,6 @@
 
 #pragma once
 
-#include <stdexcept>
-
 #include <QBasicTimer>
 #include <QHash>
 #include <QList>
@@ -37,6 +35,8 @@
 #include <QPointer>
 #include <QRegularExpression>
 #include <QSharedPointer>
+
+#include "base/exceptions.h"
 
 class QThread;
 class QTimer;
@@ -53,17 +53,16 @@ namespace RSS
 
     class AutoDownloadRule;
 
-    class ParsingError : public std::runtime_error
+    class ParsingError : public RuntimeError
     {
     public:
-        explicit ParsingError(const QString &message);
-        QString message() const;
+        using RuntimeError::RuntimeError;
     };
 
     class AutoDownloader final : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(AutoDownloader)
+        Q_DISABLE_COPY_MOVE(AutoDownloader)
 
         friend class ::Application;
 

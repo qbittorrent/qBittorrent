@@ -213,10 +213,6 @@
         <translation>Cookie:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation>Escribir carpeta aquí</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Más Información</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Renombrar torrent</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Otro...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Info hash</translation>
+        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1455,6 +1446,38 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
+        <translation>Tipo de servicio (ToS) para conexiones a pares</translation>
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Hash del torrent:</translation>
+        <translation type="vanished">Hash del torrent:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1743,6 +1766,18 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation>%1 (sembrado para %2)</translation>
+    </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1763,6 +1798,14 @@
     <message>
         <source>Default save location</source>
         <translation>Ubicación de guardado predeterminada</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation>Otros...</translation>
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation>Escriba carpeta aquí</translation>
     </message>
 </context>
 <context>
@@ -2285,7 +2328,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (sembrado para %2)</translation>
     </message>
 </context>
 <context>
@@ -2465,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>Hash</translation>
+        <translation type="vanished">Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2486,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>Agregar...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2617,7 +2672,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2715,6 +2770,10 @@
     <message>
         <source>Increase window width to display additional filters</source>
         <translation>Aumente el ancho de la ventana para mostrar filtros adicionales</translation>
+    </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3379,6 +3438,10 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <message>
         <source>RSS feeds</source>
         <translation>Canales RSS</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

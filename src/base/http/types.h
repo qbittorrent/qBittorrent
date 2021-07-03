@@ -35,43 +35,44 @@
 
 namespace Http
 {
-    const char METHOD_GET[] = "GET";
-    const char METHOD_POST[] = "POST";
+    inline const char METHOD_GET[] = "GET";
+    inline const char METHOD_POST[] = "POST";
 
-    const char HEADER_CACHE_CONTROL[] = "cache-control";
-    const char HEADER_CONNECTION[] = "connection";
-    const char HEADER_CONTENT_DISPOSITION[] = "content-disposition";
-    const char HEADER_CONTENT_ENCODING[] = "content-encoding";
-    const char HEADER_CONTENT_LENGTH[] = "content-length";
-    const char HEADER_CONTENT_SECURITY_POLICY[] = "content-security-policy";
-    const char HEADER_CONTENT_TYPE[] = "content-type";
-    const char HEADER_DATE[] = "date";
-    const char HEADER_HOST[] = "host";
-    const char HEADER_ORIGIN[] = "origin";
-    const char HEADER_REFERER[] = "referer";
-    const char HEADER_REFERRER_POLICY[] = "referrer-policy";
-    const char HEADER_SET_COOKIE[] = "set-cookie";
-    const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
-    const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
-    const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
-    const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
+    inline const char HEADER_CACHE_CONTROL[] = "cache-control";
+    inline const char HEADER_CONNECTION[] = "connection";
+    inline const char HEADER_CONTENT_DISPOSITION[] = "content-disposition";
+    inline const char HEADER_CONTENT_ENCODING[] = "content-encoding";
+    inline const char HEADER_CONTENT_LENGTH[] = "content-length";
+    inline const char HEADER_CONTENT_SECURITY_POLICY[] = "content-security-policy";
+    inline const char HEADER_CONTENT_TYPE[] = "content-type";
+    inline const char HEADER_DATE[] = "date";
+    inline const char HEADER_HOST[] = "host";
+    inline const char HEADER_ORIGIN[] = "origin";
+    inline const char HEADER_REFERER[] = "referer";
+    inline const char HEADER_REFERRER_POLICY[] = "referrer-policy";
+    inline const char HEADER_SET_COOKIE[] = "set-cookie";
+    inline const char HEADER_X_CONTENT_TYPE_OPTIONS[] = "x-content-type-options";
+    inline const char HEADER_X_FORWARDED_FOR[] = "x-forwarded-for";
+    inline const char HEADER_X_FORWARDED_HOST[] = "x-forwarded-host";
+    inline const char HEADER_X_FRAME_OPTIONS[] = "x-frame-options";
+    inline const char HEADER_X_XSS_PROTECTION[] = "x-xss-protection";
 
-    const char HEADER_REQUEST_METHOD_GET[] = "GET";
-    const char HEADER_REQUEST_METHOD_HEAD[] = "HEAD";
-    const char HEADER_REQUEST_METHOD_POST[] = "POST";
+    inline const char HEADER_REQUEST_METHOD_GET[] = "GET";
+    inline const char HEADER_REQUEST_METHOD_HEAD[] = "HEAD";
+    inline const char HEADER_REQUEST_METHOD_POST[] = "POST";
 
-    const char CONTENT_TYPE_HTML[] = "text/html";
-    const char CONTENT_TYPE_CSS[] = "text/css";
-    const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
-    const char CONTENT_TYPE_JS[] = "application/javascript";
-    const char CONTENT_TYPE_JSON[] = "application/json";
-    const char CONTENT_TYPE_GIF[] = "image/gif";
-    const char CONTENT_TYPE_PNG[] = "image/png";
-    const char CONTENT_TYPE_FORM_ENCODED[] = "application/x-www-form-urlencoded";
-    const char CONTENT_TYPE_FORM_DATA[] = "multipart/form-data";
+    inline const char CONTENT_TYPE_HTML[] = "text/html";
+    inline const char CONTENT_TYPE_CSS[] = "text/css";
+    inline const char CONTENT_TYPE_TXT[] = "text/plain; charset=UTF-8";
+    inline const char CONTENT_TYPE_JS[] = "application/javascript";
+    inline const char CONTENT_TYPE_JSON[] = "application/json";
+    inline const char CONTENT_TYPE_GIF[] = "image/gif";
+    inline const char CONTENT_TYPE_PNG[] = "image/png";
+    inline const char CONTENT_TYPE_FORM_ENCODED[] = "application/x-www-form-urlencoded";
+    inline const char CONTENT_TYPE_FORM_DATA[] = "multipart/form-data";
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
-    const char CRLF[] = {0x0D, 0x0A, '\0'};
+    inline const char CRLF[] = {0x0D, 0x0A, '\0'};
 
     struct Environment
     {
@@ -120,7 +121,7 @@ namespace Http
         HeaderMap headers;
         QByteArray content;
 
-        Response(uint code = 200, const QString &text = "OK")
+        Response(uint code = 200, const QString &text = QLatin1String("OK"))
             : status {code, text}
         {
         }

@@ -31,10 +31,11 @@
 #pragma once
 
 #include <optional>
-#include <stdexcept>
 
 #include <QString>
 #include <QStringList>
+
+#include "base/exceptions.h"
 
 class QProcessEnvironment;
 
@@ -67,14 +68,10 @@ struct QBtCommandLineParameters
     QStringList paramList() const;
 };
 
-class CommandLineParameterError : public std::runtime_error
+class CommandLineParameterError : public RuntimeError
 {
 public:
-    explicit CommandLineParameterError(const QString &messageForUser);
-    const QString &messageForUser() const;
-
-private:
-    const QString m_messageForUser;
+    using RuntimeError::RuntimeError;
 };
 
 QBtCommandLineParameters parseCommandLine(const QStringList &args);

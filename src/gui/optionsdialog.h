@@ -62,7 +62,7 @@ namespace Ui
 class OptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(OptionsDialog)
+    Q_DISABLE_COPY_MOVE(OptionsDialog)
 
     using ThisType = OptionsDialog;
 
@@ -102,14 +102,16 @@ private slots:
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
     void loadSplitterState();
-    void handleScanFolderViewSelectionChanged();
+    void handleWatchedFolderViewSelectionChanged();
+    void editWatchedFolderOptions(const QModelIndex &index);
     void on_IpFilterRefreshBtn_clicked();
     void handleIPFilterParsed(bool error, int ruleCount);
     void on_banListButton_clicked();
     void on_IPSubnetWhitelistButton_clicked();
     void on_randomButton_clicked();
-    void on_addScanFolderButton_clicked();
-    void on_removeScanFolderButton_clicked();
+    void on_addWatchedFolderButton_clicked();
+    void on_editWatchedFolderButton_clicked();
+    void on_removeWatchedFolderButton_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
     void webUIHttpsCertChanged(const QString &path, ShowError showError);
@@ -192,8 +194,6 @@ private:
 
     AdvancedSettings *m_advancedSettings;
 
-    QList<QString> m_addedScanDirs;
-    QList<QString> m_removedScanDirs;
     QList<QTableWidget*> m_scheduleDayTables;
 
     bool m_refreshingIpFilter = false;

@@ -340,17 +340,6 @@ void Preferences::setLastLocationPath(const QString &path)
     setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::toUniformPath(path));
 }
 
-QVariantHash Preferences::getScanDirs() const
-{
-    return value("Preferences/Downloads/ScanDirsV2").toHash();
-}
-
-// This must be called somewhere with data from the model
-void Preferences::setScanDirs(const QVariantHash &dirs)
-{
-    setValue("Preferences/Downloads/ScanDirsV2", dirs);
-}
-
 QString Preferences::getScanDirsLastPath() const
 {
     return Utils::Fs::toUniformPath(value("Preferences/Downloads/ScanDirsLastPath").toString());
@@ -772,6 +761,26 @@ QString Preferences::getWebUICustomHTTPHeaders() const
 void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
 {
     setValue("Preferences/WebUI/CustomHTTPHeaders", headers);
+}
+
+bool Preferences::isWebUIReverseProxySupportEnabled() const
+{
+    return value("Preferences/WebUI/ReverseProxySupportEnabled", false).toBool();
+}
+
+void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
+{
+    setValue("Preferences/WebUI/ReverseProxySupportEnabled", enabled);
+}
+
+QString Preferences::getWebUITrustedReverseProxiesList() const
+{
+    return value("Preferences/WebUI/TrustedReverseProxiesList").toString();
+}
+
+void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
+{
+    setValue("Preferences/WebUI/TrustedReverseProxiesList", addr);
 }
 
 bool Preferences::isDynDNSEnabled() const

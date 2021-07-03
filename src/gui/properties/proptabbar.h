@@ -35,7 +35,7 @@ class QButtonGroup;
 class PropTabBar : public QHBoxLayout
 {
   Q_OBJECT
-  Q_DISABLE_COPY(PropTabBar)
+  Q_DISABLE_COPY_MOVE(PropTabBar)
 
 public:
     enum PropertyTab

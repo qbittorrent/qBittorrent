@@ -313,7 +313,7 @@ void Feed::loadArticles(const QByteArray &data)
             if (!addArticle(article))
                 delete article;
         }
-        catch (const std::runtime_error&) {}
+        catch (const RuntimeError &) {}
     }
 }
 
@@ -335,7 +335,7 @@ void Feed::loadArticlesLegacy()
             if (!addArticle(article))
                 delete article;
         }
-        catch (const std::runtime_error&) {}
+        catch (const RuntimeError &) {}
     }
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  sledgehammer999 <hammered999@gmail.com>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,31 +28,33 @@
 
 #pragma once
 
-#include <QStyledItemDelegate>
+#include "resumedatastorage.h"
 
-class QAbstractItemModel;
-class QModelIndex;
-class QPainter;
-class QStyleOptionViewItem;
-class QTreeView;
+class QThread;
 
-class PropertiesWidget;
-
-class ScanFoldersDelegate final : public QStyledItemDelegate
+namespace BitTorrent
 {
-    Q_OBJECT
+    class DBResumeDataStorage final : public ResumeDataStorage
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(DBResumeDataStorage)
 
-public:
-    ScanFoldersDelegate(QObject *parent, QTreeView *foldersView);
+    public:
+        explicit DBResumeDataStorage(const QString &dbPath, QObject *parent = nullptr);
+        ~DBResumeDataStorage() override;
 
-private slots:
-    void comboboxIndexChanged(int index);
+        QVector<TorrentID> registeredTorrents() const override;
+        std::optional<LoadTorrentParams> load(const TorrentID &id) const override;
+        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
+        void remove(const TorrentID &id) const override;
+        void storeQueue(const QVector<TorrentID> &queue) const override;
 
-private:
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const override;
-    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const override;
+    private:
+        void createDB() const;
 
-    QTreeView *m_folderView;
-};
+        QThread *m_ioThread = nullptr;
+
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+    };
+}

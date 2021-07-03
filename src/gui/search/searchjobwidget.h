@@ -53,7 +53,7 @@ namespace Ui
 class SearchJobWidget final : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchJobWidget)
+    Q_DISABLE_COPY_MOVE(SearchJobWidget)
 
 public:
     enum class NameFilteringMode

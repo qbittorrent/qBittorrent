@@ -107,7 +107,7 @@ QValidator::State Private::FileSystemPathValidator::validate(QString &input, int
 
     // we test path components from beginning to the one with cursor location in strict mode
     // and the one with cursor and beyond in non-strict mode
-    QVector<QStringRef> components = input.splitRef(QDir::separator(), QString::KeepEmptyParts);
+    QVector<QStringRef> components = input.splitRef(QDir::separator(), Qt::KeepEmptyParts);
     // find index of the component that contains pos
     int componentWithCursorIndex = 0;
     int pathLength = 0;

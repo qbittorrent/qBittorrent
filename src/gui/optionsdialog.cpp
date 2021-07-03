@@ -62,6 +62,7 @@
 #include "base/bittorrent/scheduler/scheduleday.h"
 #include "base/bittorrent/scheduler/timerange.h"
 #include "base/bittorrent/session.h"
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
@@ -69,8 +70,8 @@
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
-#include "base/scanfoldersmodel.h"
 #include "base/torrentfileguard.h"
+#include "base/torrentfileswatcher.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -80,11 +81,12 @@
 #include "gui/timerangeitemdelegate.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
-#include "scanfoldersdelegate.h"
 #include "timerangedialog.h"
 #include "ui_optionsdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
+#include "watchedfolderoptionsdialog.h"
+#include "watchedfoldersmodel.h"
 
 #define SETTINGS_KEY(name) "OptionsDialog/" name
 
@@ -149,8 +151,10 @@ namespace
         case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
         case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
         case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
+        case QLocale::Mongolian: return QString::fromUtf8(C_LOCALE_MONGOLIAN);
         case QLocale::NorwegianBokmal: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
         case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
+        case QLocale::Persian: return QString::fromUtf8(C_LOCALE_PERSIAN);
         case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
         case QLocale::Portuguese:
             if (locale.country() == QLocale::Brazil)
@@ -163,6 +167,7 @@ namespace
         case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
         case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
         case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
+        case QLocale::Thai: return QString::fromUtf8(C_LOCALE_THAI);
         case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
         case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
         case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
@@ -254,11 +259,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
     connect(m_applyButton, &QPushButton::clicked, this, &OptionsDialog::applySettings);
 
+    auto watchedFoldersModel = new WatchedFoldersModel(TorrentFilesWatcher::instance(), this);
+    connect(watchedFoldersModel, &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
     m_ui->scanFoldersView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    m_ui->scanFoldersView->setModel(ScanFoldersModel::instance());
-    m_ui->scanFoldersView->setItemDelegate(new ScanFoldersDelegate(this, m_ui->scanFoldersView));
-    connect(ScanFoldersModel::instance(), &QAbstractListModel::dataChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleScanFolderViewSelectionChanged);
+    m_ui->scanFoldersView->setModel(watchedFoldersModel);
+    connect(m_ui->scanFoldersView->selectionModel(), &QItemSelectionModel::selectionChanged, this, &ThisType::handleWatchedFolderViewSelectionChanged);
+    connect(m_ui->scanFoldersView, &QTreeView::doubleClicked, this, &ThisType::editWatchedFolderOptions);
 
     // Languages supported
     initializeLanguageCombo();
@@ -385,8 +391,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkTempFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkTempFolder, &QAbstractButton::toggled, m_ui->textTempPath, &QWidget::setEnabled);
-    connect(m_ui->addScanFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
-    connect(m_ui->removeScanFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
+    connect(m_ui->addWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
+    connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditDestEmail, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -399,7 +405,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->lineEditAutoRun, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunConsole, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 
-    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n%12")
+    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n%14")
         .arg(tr("Supported parameters (case sensitive):")
             , tr("%N: Torrent name")
             , tr("%L: Category")
@@ -410,7 +416,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
             , tr("%C: Number of files")
             , tr("%Z: Torrent size (bytes)"))
         .arg(tr("%T: Current tracker")
-            , tr("%I: Info hash")
+            , tr("%I: Info hash v1 (or '-' if unavailable)")
+            , tr("%J: Info hash v2 (or '-' if unavailable)")
+            , tr("%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)")
             , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
     m_ui->labelAutoRunParam->setText(autoRunStr);
 
@@ -524,6 +532,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->groupWebUIAddCustomHTTPHeaders, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUICustomHTTPHeaders, &QPlainTextEdit::textChanged, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->groupEnableReverseProxySupport, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textTrustedReverseProxiesList, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 #endif // DISABLE_WEBUI
 
     // RSS tab
@@ -624,9 +634,6 @@ OptionsDialog::~OptionsDialog()
         hSplitterSizes.append(QString::number(size));
     m_storeHSplitterSize = hSplitterSizes;
 
-    for (const QString &path : asConst(m_addedScanDirs))
-        ScanFoldersModel::instance()->removePath(path);
-    ScanFoldersModel::instance()->configure(); // reloads "removed" paths
     delete m_ui;
 }
 
@@ -937,7 +944,7 @@ void OptionsDialog::saveOptions()
     RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
     RSS::Session::instance()->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
     RSS::AutoDownloader::instance()->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
-    RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split('\n', QString::SplitBehavior::SkipEmptyParts));
+    RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split('\n', Qt::SkipEmptyParts));
     RSS::AutoDownloader::instance()->setDownloadRepacks(m_ui->checkSmartFilterDownloadRepacks->isChecked());
 
     auto session = BitTorrent::Session::instance();
@@ -958,11 +965,8 @@ void OptionsDialog::saveOptions()
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
-    ScanFoldersModel::instance()->removeFromFSWatcher(m_removedScanDirs);
-    ScanFoldersModel::instance()->addToFSWatcher(m_addedScanDirs);
-    ScanFoldersModel::instance()->makePersistent();
-    m_removedScanDirs.clear();
-    m_addedScanDirs.clear();
+    auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
+    watchedFoldersModel->apply();
     session->setTorrentExportDirectory(getTorrentExportDir());
     session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
@@ -1091,6 +1095,9 @@ void OptionsDialog::saveOptions()
         // Custom HTTP headers
         pref->setWebUICustomHTTPHeadersEnabled(m_ui->groupWebUIAddCustomHTTPHeaders->isChecked());
         pref->setWebUICustomHTTPHeaders(m_ui->textWebUICustomHTTPHeaders->toPlainText());
+        // Reverse proxy
+        pref->setWebUIReverseProxySupportEnabled(m_ui->groupEnableReverseProxySupport->isChecked());
+        pref->setWebUITrustedReverseProxiesList(m_ui->textTrustedReverseProxiesList->text());
     }
     // End Web UI
     // End preferences
@@ -1493,6 +1500,9 @@ void OptionsDialog::loadOptions()
     // Custom HTTP headers
     m_ui->groupWebUIAddCustomHTTPHeaders->setChecked(pref->isWebUICustomHTTPHeadersEnabled());
     m_ui->textWebUICustomHTTPHeaders->setPlainText(pref->getWebUICustomHTTPHeaders());
+    // Reverse proxy
+    m_ui->groupEnableReverseProxySupport->setChecked(pref->isWebUIReverseProxySupportEnabled());
+    m_ui->textTrustedReverseProxiesList->setText(pref->getWebUITrustedReverseProxiesList());
     // End Web UI preferences
 }
 
@@ -1857,57 +1867,85 @@ int OptionsDialog::getActionOnDblClOnTorrentFn() const
     return m_ui->actionTorrentFnOnDblClBox->currentIndex();
 }
 
-void OptionsDialog::on_addScanFolderButton_clicked()
+void OptionsDialog::on_addWatchedFolderButton_clicked()
 {
     Preferences *const pref = Preferences::instance();
     const QString dir = QFileDialog::getExistingDirectory(this, tr("Select folder to monitor"),
-                                                          Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
-    if (!dir.isEmpty())
+        Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
+    if (dir.isEmpty())
+        return;
+
+    auto dialog = new WatchedFolderOptionsDialog({}, this);
+    dialog->setModal(true);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog, dir, pref]()
     {
-        const ScanFoldersModel::PathStatus status = ScanFoldersModel::instance()->addPath(dir, ScanFoldersModel::DEFAULT_LOCATION, QString(), false);
-        QString error;
-        switch (status)
+        try
         {
-        case ScanFoldersModel::AlreadyInList:
-            error = tr("Folder is already being monitored:");
-            break;
-        case ScanFoldersModel::DoesNotExist:
-            error = tr("Folder does not exist:");
-            break;
-        case ScanFoldersModel::CannotRead:
-            error = tr("Folder is not readable:");
-            break;
-        default:
+            auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
+            watchedFoldersModel->addFolder(dir, dialog->watchedFolderOptions());
+
             pref->setScanDirsLastPath(dir);
-            m_addedScanDirs << dir;
-            for (int i = 0; i < ScanFoldersModel::instance()->columnCount(); ++i)
+
+            for (int i = 0; i < watchedFoldersModel->columnCount(); ++i)
                 m_ui->scanFoldersView->resizeColumnToContents(i);
+
             enableApplyButton();
         }
+        catch (const RuntimeError &err)
+        {
+            QMessageBox::critical(this, tr("Adding entry failed"), err.message());
+        }
+    });
 
-        if (!error.isEmpty())
-            QMessageBox::critical(this, tr("Adding entry failed"), QString::fromLatin1("%1\n%2").arg(error, dir));
-    }
+    dialog->open();
 }
 
-void OptionsDialog::on_removeScanFolderButton_clicked()
+void OptionsDialog::on_editWatchedFolderButton_clicked()
+{
+    const QModelIndex selected
+        = m_ui->scanFoldersView->selectionModel()->selectedIndexes().at(0);
+
+    editWatchedFolderOptions(selected);
+}
+
+void OptionsDialog::on_removeWatchedFolderButton_clicked()
 {
     const QModelIndexList selected
         = m_ui->scanFoldersView->selectionModel()->selectedIndexes();
-    if (selected.isEmpty())
-        return;
-    Q_ASSERT(selected.count() == ScanFoldersModel::instance()->columnCount());
+
     for (const QModelIndex &index : selected)
-    {
-        if (index.column() == ScanFoldersModel::WATCH)
-            m_removedScanDirs << index.data().toString();
-    }
-    ScanFoldersModel::instance()->removePath(selected.first().row(), false);
+        m_ui->scanFoldersView->model()->removeRow(index.row());
 }
 
-void OptionsDialog::handleScanFolderViewSelectionChanged()
+void OptionsDialog::handleWatchedFolderViewSelectionChanged()
 {
-    m_ui->removeScanFolderButton->setEnabled(!m_ui->scanFoldersView->selectionModel()->selectedIndexes().isEmpty());
+    const QModelIndexList selectedIndexes = m_ui->scanFoldersView->selectionModel()->selectedIndexes();
+    m_ui->removeWatchedFolderButton->setEnabled(!selectedIndexes.isEmpty());
+    m_ui->editWatchedFolderButton->setEnabled(selectedIndexes.count() == 1);
+}
+
+void OptionsDialog::editWatchedFolderOptions(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+
+    auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
+    auto dialog = new WatchedFolderOptionsDialog(watchedFoldersModel->folderOptions(index.row()), this);
+    dialog->setModal(true);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(dialog, &QDialog::accepted, this, [this, dialog, index, watchedFoldersModel]()
+    {
+        if (index.isValid())
+        {
+            // The index could be invalidated while the dialog was displayed,
+            // for example, if you deleted the folder using the Web API.
+            watchedFoldersModel->setFolderOptions(index.row(), dialog->watchedFolderOptions());
+            enableApplyButton();
+        }
+    });
+
+    dialog->open();
 }
 
 QString OptionsDialog::askForExportDir(const QString &currentExportPath)

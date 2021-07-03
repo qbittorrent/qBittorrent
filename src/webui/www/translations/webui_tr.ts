@@ -213,10 +213,6 @@
         <translation>Tanımlama Bilgisi:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation>Klasörü buraya yazın</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Daha fazla bilgi</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Torrent'i yeniden adlandır</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Diğer...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Bilgi adreslemesi</translation>
+        <translation type="vanished">%I: Bilgi adreslemesi</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1455,6 +1446,38 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
+        <translation>Kişilere bağlantılar için hizmet türü (ToS)</translation>
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Torrent Adreslemesi:</translation>
+        <translation type="vanished">Torrent Adreslemesi:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1743,6 +1766,18 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation>%1 (gönderilme %2)</translation>
+    </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1763,6 +1798,14 @@
     <message>
         <source>Default save location</source>
         <translation>Varsayılan kaydetme yeri</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation>Diğer...</translation>
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation>Klasörü buraya yazın</translation>
     </message>
 </context>
 <context>
@@ -2285,7 +2328,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (gönderilme %2)</translation>
     </message>
 </context>
 <context>
@@ -2465,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>Adresleme</translation>
+        <translation type="vanished">Adresleme</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2486,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>Ekle...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2617,7 +2672,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2gn</translation>
     </message>
 </context>
 <context>
@@ -2715,6 +2770,10 @@
     <message>
         <source>Increase window width to display additional filters</source>
         <translation>Ek süzgeçleri görüntülemek için pencere genişliğini artır</translation>
+    </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3051,7 +3110,7 @@
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation>Torrent'ler: (indirmek için çift tıklayın)</translation>
+        <translation>Torrent’ler: (indirmek için çift tıklayın)</translation>
     </message>
     <message>
         <source>Open news URL</source>
@@ -3379,6 +3438,10 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     <message>
         <source>RSS feeds</source>
         <translation>RSS bildirimleri</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

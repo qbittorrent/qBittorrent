@@ -487,7 +487,33 @@ void TransferListWidget::copySelectedNames() const
     qApp->clipboard()->setText(torrentNames.join('\n'));
 }
 
-void TransferListWidget::copySelectedHashes() const
+void TransferListWidget::copySelectedInfohashes(const CopyInfohashPolicy policy) const
+{
+    const auto selectedTorrents = getSelectedTorrents();
+    QStringList infoHashes;
+    infoHashes.reserve(selectedTorrents.size());
+    switch (policy)
+    {
+    case CopyInfohashPolicy::Version1:
+        for (const BitTorrent::Torrent *torrent : selectedTorrents)
+        {
+            if (const auto infoHash = torrent->infoHash().v1(); infoHash.isValid())
+                infoHashes << infoHash.toString();
+        }
+        break;
+    case CopyInfohashPolicy::Version2:
+        for (const BitTorrent::Torrent *torrent : selectedTorrents)
+        {
+            if (const auto infoHash = torrent->infoHash().v2(); infoHash.isValid())
+                infoHashes << infoHash.toString();
+        }
+        break;
+    }
+
+    qApp->clipboard()->setText(infoHashes.join('\n'));
+}
+
+void TransferListWidget::copySelectedIDs() const
 {
     QStringList torrentIDs;
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
@@ -721,7 +747,7 @@ QStringList TransferListWidget::askTagsForSelection(const QString &dialogTitle)
             this, dialogTitle, tr("Comma-separated tags:"), QLineEdit::Normal, "", &ok).trimmed();
         if (!ok || tagsInput.isEmpty())
             return {};
-        tags = tagsInput.split(',', QString::SkipEmptyParts);
+        tags = tagsInput.split(',', Qt::SkipEmptyParts);
         for (QString &tag : tags)
         {
             tag = tag.trimmed();
@@ -827,10 +853,14 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
     auto *actionCopyMagnetLink = new QAction(UIThemeManager::instance()->getIcon("kt-magnet"), tr("Magnet link"), listMenu);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
+    auto *actionCopyID = new QAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Torrent ID"), listMenu);
+    connect(actionCopyID, &QAction::triggered, this, &TransferListWidget::copySelectedIDs);
     auto *actionCopyName = new QAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Name"), listMenu);
     connect(actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
-    auto *actionCopyHash = new QAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Hash"), listMenu);
-    connect(actionCopyHash, &QAction::triggered, this, &TransferListWidget::copySelectedHashes);
+    auto *actionCopyHash1 = new QAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Info hash v1"), listMenu);
+    connect(actionCopyHash1, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version1); });
+    auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Info hash v2"), listMenu);
+    connect(actionCopyHash2, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version2); });
     auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
     auto *actionRename = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."), listMenu);
@@ -860,6 +890,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     bool first = true;
     TagSet tagsInAny;
     TagSet tagsInAll;
+    bool hasInfohashV1 = false, hasInfohashV2 = false;
 
     for (const QModelIndex &index : selectedIndexes)
     {
@@ -939,12 +970,18 @@ void TransferListWidget::displayListMenu(const QPoint &)
         if (torrent->hasMetadata())
             needsPreview = true;
 
+        if (!hasInfohashV1 && torrent->infoHash().v1().isValid())
+            hasInfohashV1 = true;
+        if (!hasInfohashV2 && torrent->infoHash().v2().isValid())
+            hasInfohashV2 = true;
+
         first = false;
 
         if (oneHasMetadata && oneNotSeed && !allSameSequentialDownloadMode
             && !allSamePrioFirstlast && !allSameSuperSeeding && !allSameCategory
-            && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM)
-            {
+            && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM
+            && hasInfohashV1 && hasInfohashV2)
+        {
             break;
         }
     }
@@ -1009,13 +1046,13 @@ void TransferListWidget::displayListMenu(const QPoint &)
     for (const QString &tag : asConst(tags))
     {
         auto *action = new TriStateAction(tag, tagsMenu);
-        action->setCloseOnTriggered(false);
+        action->setCloseOnInteraction(false);
 
         const Qt::CheckState initialState = tagsInAll.contains(tag) ? Qt::Checked
                                             : tagsInAny.contains(tag) ? Qt::PartiallyChecked : Qt::Unchecked;
         action->setCheckState(initialState);
 
-        connect(action, &QAction::triggered, this, [this, tag](const bool checked)
+        connect(action, &QAction::toggled, this, [this, tag](const bool checked)
         {
             if (checked)
                 addSelectionTag(tag);
@@ -1084,8 +1121,12 @@ void TransferListWidget::displayListMenu(const QPoint &)
     QMenu *copySubMenu = listMenu->addMenu(
         UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
     copySubMenu->addAction(actionCopyName);
-    copySubMenu->addAction(actionCopyHash);
+    copySubMenu->addAction(actionCopyHash1);
+    actionCopyHash1->setEnabled(hasInfohashV1);
+    copySubMenu->addAction(actionCopyHash2);
+    actionCopyHash2->setEnabled(hasInfohashV2);
     copySubMenu->addAction(actionCopyMagnetLink);
+    copySubMenu->addAction(actionCopyID);
 
     listMenu->popup(QCursor::pos());
 }
@@ -1163,15 +1204,9 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     {
         // Shift + scroll = horizontal scroll
         event->accept();
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
         QWheelEvent scrollHEvent(event->position(), event->globalPosition()
             , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
             , event->modifiers(), event->phase(), event->inverted(), event->source());
-#else
-        QWheelEvent scrollHEvent(event->pos(), event->globalPos()
-            , event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
-#endif
         QTreeView::wheelEvent(&scrollHEvent);
         return;
     }

@@ -632,9 +632,9 @@ QSet<BitTorrent::TorrentID> TrackerFiltersList::getTorrentIDs(const int row) con
     case TRACKERLESS_ROW:
         return m_trackers.value(NULL_HOST);
     case ERROR_ROW:
-        return List::toSet(m_errors.keys());
+        return {m_errors.keyBegin(), m_errors.keyEnd()};
     case WARNING_ROW:
-        return List::toSet(m_warnings.keys());
+        return {m_warnings.keyBegin(), m_warnings.keyEnd()};
     default:
         return m_trackers.value(trackerFromRow(row));
     }

@@ -18,21 +18,22 @@ Required by:
 /* Layout
 ---------------------------------------------------------------- */
 
-html, body {
+html,
+body {
     background: #fff;
 }
 
 body {
-    margin: 0;  /* Required */
+    margin: 0; /* Required */
 }
 
 #desktop {
-    position: relative;
-    min-width: 400px;  /* Helps keep header content from wrapping */
+    cursor: default; /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
     height: 100%;
     min-height: 100%;
+    min-width: 400px; /* Helps keep header content from wrapping */
     overflow: hidden;
-    cursor: default;  /* Fix for issue in IE7. IE7 wants to use the I-bar text cursor */
+    position: relative;
 }
 
 #desktopHeader {
@@ -40,35 +41,35 @@ body {
 }
 
 #desktopTitlebarWrapper {
-    position: relative;
+    background: #718ba6 url(../images/bg-header.gif) repeat-x;
     height: 45px;
     overflow: hidden;
-    background: #718BA6 url(../images/bg-header.gif) repeat-x;
+    position: relative;
 }
 
 #desktopTitlebar {
-    padding: 7px 8px 6px 8px;
-    height: 32px;
     background: url(../images/logo.gif) no-repeat;
     background-position: left 0;
+    height: 32px;
+    padding: 7px 8px 6px 8px;
 }
 
 #desktopTitlebar h1.applicationTitle {
+    color: #fff;
     display: none;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 25px;
     margin: 0;
     padding: 0 5px 0 0;
-    font-size: 20px;
-    line-height: 25px;
-    font-weight: bold;
-    color: #fff;
 }
 
 #desktopTitlebar h2.tagline {
-    padding: 7px 0 0 0;
+    color: #d4dce4;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
-    color: #d4dce4;
     font-weight: bold;
+    padding: 7px 0 0 0;
     text-align: center;
     text-transform: uppercase;
 }
@@ -79,14 +80,14 @@ body {
 }
 
 #topNav {
+    color: #d4dce4;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
+    padding: 13px 10px 0 0;
     position: absolute;
     right: 0;
-    top: 0;
-    color: #d4dce4;
     text-align: right;
-    padding: 13px 10px 0 0;
+    top: 0;
 }
 
 #topNav a {
@@ -102,23 +103,21 @@ body {
 
 #desktopNavbar {
     background: #f2f2f2;
-    /*height: 30px;*/
-    margin: 0 0px;
-    overflow: hidden;  /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
-    /* Fixes by Chris */
     /*background-color: #ccc;*/
-    height: 20px;
     border-bottom: 1px solid #3f3f3f;
+    height: 20px;
+    margin: 0 0px;
+    overflow: hidden; /* Remove this line if you want the menu to be backward compatible with Firefox 2 */
 }
 
 #desktopNavbar ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
     font-size: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-#desktopNavbar>ul>li {
+#desktopNavbar > ul > li {
     float: left;
 }
 
@@ -127,33 +126,30 @@ body {
 }
 
 #desktopNavbar ul li a {
-    /*padding: 6px 10px 6px 10px;*/
     color: #333;
     font-weight: normal;
-    /* Fix by Chris */
     padding: 2px 10px 6px 10px;
 }
 
 #desktopNavbar ul li a:hover {
-    color: #333;
-    /* Fix By Chris */
     background-color: #fff;
+    color: #333;
 }
 
-#desktopNavbar ul li a.arrow-right, #desktopNavbar ul li a:hover.arrow-right {
+#desktopNavbar ul li a.arrow-right,
+#desktopNavbar ul li a:hover.arrow-right {
     background-image: url(../images/arrow-right.gif);
-    background-repeat: no-repeat;
     background-position: right 7px;
+    background-repeat: no-repeat;
 }
 
 #desktopNavbar li ul {
-    border: 1px solid #3f3f3f;
     background: #fff url(../images/bg-dropdown.gif) repeat-y;
-    position: absolute;
+    border: 1px solid #3f3f3f;
     left: -999em;
-    z-index: 8000;
-    /* Fix by Chris */
     margin-top: -6px;
+    position: absolute;
+    z-index: 8000;
 }
 
 #desktopNavbar li:hover ul ul,
@@ -163,90 +159,88 @@ body {
     left: -999em;
 }
 
-#desktopNavbar li ul ul {  /* third-and-above-level lists */
+#desktopNavbar li ul ul {
+    /* third-and-above-level lists */
     margin: -22px 0 0 163px;
 }
 
 #desktopNavbar li ul li .check {
+    background: #555;
+    font-size: 1px;
+    height: 5px;
+    left: 6px;
+    line-height: 1px;
+    overflow: hidden;
     position: absolute;
     top: 8px;
-    left: 6px;
     width: 5px;
-    height: 5px;
-    background: #555;
-    overflow: hidden;
-    line-height: 1px;
-    font-size: 1px;
 }
 
 #desktopNavbar li ul li a {
-    position: relative;
-    /*padding: 1px 9px 1px 25px;*/
-    min-width: 120px;
     color: #3f3f3f;
     font-weight: normal;
-    /* Fix By Chris */
+    min-width: 120px;
     padding: 1px 10px 1px 20px;
-    /* Reduce left padding */
+    position: relative;
 }
 
 #desktopNavbar li ul li a:hover {
-    background: #6C98D9;
-    color: #fff;
+    background: #6c98d9;
     -moz-border-radius: 2px;
+    color: #fff;
 }
 
 #desktopNavbar li ul li a:hover .check {
     background: #fff;
 }
 
+/* lists nested under hovered list items */
 #desktopNavbar li:hover ul,
 #desktopNavbar li.ieHover ul,
 #desktopNavbar li li.ieHover ul,
 #desktopNavbar li li li.ieHover ul,
 #desktopNavbar li li:hover ul,
-#desktopNavbar li li li:hover ul {  /* lists nested under hovered list items */
+#desktopNavbar li li li:hover ul {
     left: auto;
 }
 
-#desktopNavbar li:hover {  /* For IE7 */
+/* For IE7 */
+#desktopNavbar li:hover {
     position: static;
 }
 
 li.divider {
+    border-top: 1px solid #ebebeb;
     margin-top: 2px;
     padding-top: 3px;
-    border-top: 1px solid #ebebeb;
 }
 
 #pageWrapper {
-    position: relative;
-    overflow: hidden;  /* This can be set to hidden or auto */
-    border-top: 1px solid #909090;
     border-bottom: 1px solid #909090;
+    border-top: 1px solid #909090;
+    overflow: hidden; /* This can be set to hidden or auto */
+    position: relative;
     /*height: 100%;*/
 }
 
 /* Footer */
 
 #desktopFooterWrapper {
-    position: absolute;
-    left: 0;
     bottom: 0;
-    width: 100%;
     height: 30px;
+    left: 0;
     overflow: hidden;
+    position: absolute;
+    width: 100%;
 }
 
 #desktopFooter {
+    background: #f2f2f2;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 11px;
     height: 24px;
     padding: 6px 8px 0 8px;
-    background: #f2f2f2;
 }
-
-
 
 /* Panel Layout
 ---------------------------------------------------------------- */
@@ -254,18 +248,18 @@ li.divider {
 /* Columns */
 
 .column {
-    position: relative;
     float: left;
-    overflow: hidden;  /* Required by IE6 */
+    overflow: hidden; /* Required by IE6 */
+    position: relative;
 }
 
 /* Panels */
 
 .panel {
-    position: relative;
-    overflow: auto;
     background: #f8f8f8;
     border-bottom: 1px solid #b9b9b9;
+    overflow: auto;
+    position: relative;
 }
 
 .panelWrapper.collapsed .panel-header {
@@ -289,11 +283,11 @@ li.divider {
 }
 
 .panel-header {
-    position: relative;
     background: #f1f1f1 url(../images/bg-panel-header.gif) repeat-x;
+    border-bottom: 1px solid #d3d3d3;
     height: 30px;
     overflow: hidden;
-    border-bottom: 1px solid #d3d3d3;
+    position: relative;
 }
 
 .panel-headerContent {
@@ -306,13 +300,13 @@ li.divider {
 }
 
 .panel-header h2 {
+    color: #333;
     display: inline-block;
     font-size: 12px;
-    margin: 0;
-    padding: 3px 8px 0 8px;
     height: 22px;
+    margin: 0;
     overflow: hidden;
-    color: #333;
+    padding: 3px 8px 0 8px;
 }
 
 .panel-collapse {
@@ -325,18 +319,18 @@ li.divider {
 }
 
 .icon16 {
-    margin: 4px 0 0 2px;
     cursor: pointer;
+    margin: 4px 0 0 2px;
 }
 
 /* Column and Panel Handles */
 
 .horizontalHandle {
+    background: #eee url(../images/bg-handle-horizontal.gif) repeat-x;
+    font-size: 1px;
     height: 4px;
     line-height: 1px;
-    font-size: 1px;
     overflow: hidden;
-    background: #eee url(../images/bg-handle-horizontal.gif) repeat-x;
 }
 
 .horizontalHandle.detached .handleIcon {
@@ -344,40 +338,39 @@ li.divider {
 }
 
 .horizontalHandle .handleIcon {
-    margin: 0 auto;
+    background: url(../images/handle-icon-horizontal.gif) center center
+        no-repeat;
+    font-size: 1px;
     height: 4px;
     line-height: 1px;
-    font-size: 1px;
+    margin: 0 auto;
     overflow: hidden;
-    background: url(../images/handle-icon-horizontal.gif) center center no-repeat;
 }
 
 .columnHandle {
-    min-height: 10px;
-    float: left;
-    width: 4px;
-    overflow: hidden;
     background: #c3c3c3 url(../images/handle-icon.gif) center center no-repeat;
     border: 1px solid #909090;
-    border-top: 0;
     border-bottom: 0;
+    border-top: 0;
+    float: left;
+    min-height: 10px;
+    overflow: hidden;
+    width: 4px;
 }
 
 /* Toolboxes */
 
 .toolbox {
     float: right;
-    margin-top: 3px;
-    padding: 0 5px;
     height: 24px;
+    margin-top: 3px;
     overflow: hidden;
+    padding: 0 5px;
     text-align: right;
 }
 
-.panel-header-toolbox {
-}
-
-div.toolbox.divider {  /* Have to specify div here for IE6's sake */
+/* Have to specify div here for IE6's sake */
+div.toolbox.divider {
     background: url(../images/toolbox-divider.gif) repeat-y;
     padding-left: 8px;
 }
@@ -387,16 +380,16 @@ div.toolbox.divider {  /* Have to specify div here for IE6's sake */
 }
 
 .iconWrapper {
+    border: 1px solid transparent;
     display: inline-block;
     height: 22px;
     min-width: 22px;
     overflow: hidden;
-    border: 1px solid transparent;
 }
 
 * html .iconWrapper {
-    padding: 1px;
     border: 0;
+    padding: 1px;
 }
 
 .iconWrapper img {
@@ -411,22 +404,22 @@ div.toolbox.divider {  /* Have to specify div here for IE6's sake */
 }
 
 #spinnerWrapper {
-    width: 16px;
-    height: 16px;
     background: url(../images/spinner-placeholder.gif) no-repeat;
+    height: 16px;
     margin: 4px 5px 0 5px;
+    width: 16px;
 }
 
 #spinner {
-    display: none;
     background: url(../images/spinner.gif) no-repeat;
-    width: 16px;
+    display: none;
     height: 16px;
+    width: 16px;
 }
 
 #desktopFooter td {
-    vertical-align: top;
     text-align: left;
+    vertical-align: top;
 }
 
 td.speedLabel {

@@ -7,7 +7,7 @@ win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
 unix:!macx: include(../unixconf.pri)
 
-QT += network xml
+QT += network sql xml
 
 macx|*-clang*: QMAKE_CXXFLAGS_WARN_ON += -Wno-range-loop-analysis
 
@@ -56,7 +56,7 @@ CONFIG(release, debug|release) {
 include(../version.pri)
 
 # Qt defines
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050e00
 DEFINES += QT_NO_CAST_TO_ASCII
 DEFINES += QT_NO_CAST_FROM_BYTEARRAY
 DEFINES += QT_USE_QSTRINGBUILDER

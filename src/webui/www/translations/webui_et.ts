@@ -213,10 +213,6 @@
         <translation>Küpsis:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation>Sisesta kaust siia</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Rohkem informatsiooni</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Ümbernimeta torrent</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Muud...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -397,7 +388,7 @@
     </message>
     <message>
         <source>View</source>
-        <translation>Vaata</translation>
+        <translation>Vaade</translation>
     </message>
     <message>
         <source>Options...</source>
@@ -749,7 +740,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maksimum kogus ülelsaadimiste kohti ühel torrentil:</translation>
+        <translation>Maksimum kogus üleslaadimise kohti ühel torrentil:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Info räsi</translation>
+        <translation type="vanished">%I: Info räsi</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1011,7 +1002,7 @@
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Üleslaadimise kiiruse piirang:</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -1031,7 +1022,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>Alternatiivse Web UI failide asukoht ei saa olla tühimik.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1387,7 +1378,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>Maksimum kogus artikleid feed'idel:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1411,7 +1402,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished" />
+        <translation>Luba RSS'i torrentite automaatne allalaadimine</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1455,6 +1446,38 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1509,7 +1532,7 @@
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>Seotus</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Torrenti Räsi:</translation>
+        <translation type="vanished">Torrenti Räsi:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1745,6 +1768,18 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1763,6 +1798,14 @@
     <message>
         <source>Default save location</source>
         <translation>Tava salvestamise asukoht</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation>Muud...</translation>
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation>Sisesta kaust siia</translation>
     </message>
 </context>
 <context>
@@ -1788,7 +1831,7 @@
     </message>
     <message>
         <source>Read cache hits:</source>
-        <translation type="unfinished" />
+        <translation>Lugemise puhvri tabamusi:</translation>
     </message>
     <message>
         <source>Average time in queue:</source>
@@ -2465,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>Räsi</translation>
+        <translation type="vanished">Räsi</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2486,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>Lisa...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2617,7 +2672,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1a %2p</translation>
     </message>
 </context>
 <context>
@@ -2716,12 +2771,16 @@
         <source>Increase window width to display additional filters</source>
         <translation>Suurenda akna laiust, et kuvataks lisa filtreid</translation>
     </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Uninstalli</translation>
     </message>
     <message>
         <source>Install new plugin</source>
@@ -3378,6 +3437,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>RSS feeds</source>
         <translation>RSS feedid</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

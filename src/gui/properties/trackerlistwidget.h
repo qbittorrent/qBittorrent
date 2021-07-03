@@ -41,7 +41,7 @@ namespace BitTorrent
 class TrackerListWidget : public QTreeWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TrackerListWidget)
+    Q_DISABLE_COPY_MOVE(TrackerListWidget)
 
 public:
     enum TrackerListColumn

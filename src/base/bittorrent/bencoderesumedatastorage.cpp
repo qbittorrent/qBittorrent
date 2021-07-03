@@ -57,7 +57,7 @@ namespace BitTorrent
 {
     class BencodeResumeDataStorage::Worker final : public QObject
     {
-        Q_DISABLE_COPY(Worker)
+        Q_DISABLE_COPY_MOVE(Worker)
 
     public:
         explicit Worker(const QDir &resumeDataDir);
@@ -73,8 +73,6 @@ namespace BitTorrent
 
 namespace
 {
-    const char RESUME_FOLDER[] = "BT_backup";
-
     template <typename LTStr>
     QString fromLTString(const LTStr &str)
     {
@@ -104,9 +102,9 @@ namespace
     }
 }
 
-BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(QObject *parent)
+BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &path, QObject *parent)
     : ResumeDataStorage {parent}
-    , m_resumeDataDir {Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + RESUME_FOLDER)}
+    , m_resumeDataDir {path}
     , m_ioThread {new QThread {this}}
     , m_asyncWorker {new Worker {m_resumeDataDir}}
 {
@@ -127,32 +125,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(QObject *parent)
              m_registeredTorrents.append(TorrentID::fromString(rxMatch.captured(1)));
     }
 
-    QFile queueFile {m_resumeDataDir.absoluteFilePath(QLatin1String("queue"))};
-    if (queueFile.open(QFile::ReadOnly))
-    {
-        const QRegularExpression hashPattern {QLatin1String("^([A-Fa-f0-9]{40})$")};
-        QByteArray line;
-        int start = 0;
-        while (!(line = queueFile.readLine().trimmed()).isEmpty())
-        {
-            const QRegularExpressionMatch rxMatch = hashPattern.match(line);
-            if (rxMatch.hasMatch())
-            {
-                const auto torrentID = TorrentID::fromString(rxMatch.captured(1));
-                const int pos = m_registeredTorrents.indexOf(torrentID, start);
-                if (pos != -1)
-                {
-                    std::swap(m_registeredTorrents[start], m_registeredTorrents[pos]);
-                    ++start;
-                }
-            }
-        }
-    }
-    else
-    {
-        LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
-            .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
-    }
+    loadQueue(m_resumeDataDir.absoluteFilePath(QLatin1String("queue")));
 
     qDebug("Registered torrents count: %d", m_registeredTorrents.size());
 
@@ -297,6 +270,39 @@ void BitTorrent::BencodeResumeDataStorage::storeQueue(const QVector<TorrentID> &
     });
 }
 
+void BitTorrent::BencodeResumeDataStorage::loadQueue(const QString &queueFilename)
+{
+    QFile queueFile {queueFilename};
+    if (!queueFile.exists())
+        return;
+
+    if (queueFile.open(QFile::ReadOnly))
+    {
+        const QRegularExpression hashPattern {QLatin1String("^([A-Fa-f0-9]{40})$")};
+        QByteArray line;
+        int start = 0;
+        while (!(line = queueFile.readLine().trimmed()).isEmpty())
+        {
+            const QRegularExpressionMatch rxMatch = hashPattern.match(line);
+            if (rxMatch.hasMatch())
+            {
+                const auto torrentID = TorrentID::fromString(rxMatch.captured(1));
+                const int pos = m_registeredTorrents.indexOf(torrentID, start);
+                if (pos != -1)
+                {
+                    std::swap(m_registeredTorrents[start], m_registeredTorrents[pos]);
+                    ++start;
+                }
+            }
+        }
+    }
+    else
+    {
+        LogMsg(tr("Couldn't load torrents queue from '%1'. Error: %2")
+               .arg(queueFile.fileName(), queueFile.errorString()), Log::WARNING);
+    }
+}
+
 BitTorrent::BencodeResumeDataStorage::Worker::Worker(const QDir &resumeDataDir)
     : m_resumeDataDir {resumeDataDir}
 {
@@ -332,16 +338,22 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     if (torrentInfo)
     {
         const QString torrentFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.torrent").arg(id.toString()));
-        const lt::create_torrent torrentCreator = lt::create_torrent(*torrentInfo);
-        const lt::entry metadata = torrentCreator.generate();
         try
         {
+            const auto torrentCreator = lt::create_torrent(*torrentInfo);
+            const lt::entry metadata = torrentCreator.generate();
             writeEntryToFile(torrentFilepath, metadata);
         }
         catch (const RuntimeError &err)
         {
-            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2")
+            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2.")
                    .arg(torrentFilepath, err.message()), Log::CRITICAL);
+            return;
+        }
+        catch (const std::exception &err)
+        {
+            LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2.")
+                   .arg(torrentFilepath, QString::fromLocal8Bit(err.what())), Log::CRITICAL);
             return;
         }
     }
@@ -365,7 +377,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     }
     catch (const RuntimeError &err)
     {
-        LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2")
+        LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2.")
                .arg(resumeFilepath, err.message()), Log::CRITICAL);
     }
 }

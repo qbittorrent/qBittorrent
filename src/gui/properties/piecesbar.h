@@ -44,7 +44,7 @@ class PiecesBar : public QWidget
 {
     using base = QWidget;
     Q_OBJECT
-    Q_DISABLE_COPY(PiecesBar)
+    Q_DISABLE_COPY_MOVE(PiecesBar)
 
 public:
     explicit PiecesBar(QWidget *parent = nullptr);
@@ -91,10 +91,10 @@ private:
     virtual bool updateImage(QImage &image) = 0;
     void updatePieceColors();
 
-    const BitTorrent::Torrent *m_torrent;
+    const BitTorrent::Torrent *m_torrent = nullptr;
     QImage m_image;
     // buffered 256 levels gradient from bg_color to piece_color
     QVector<QRgb> m_pieceColors;
-    bool m_hovered;
-    QRect m_highlitedRegion; //!< part of the bar can be highlighted; this rectangle is in the same frame as m_image
+    bool m_hovered = false;
+    QRect m_highlightedRegion; // part of the bar can be highlighted; this rectangle is in the same frame as m_image
 };

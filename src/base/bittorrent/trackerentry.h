@@ -53,10 +53,10 @@ namespace BitTorrent
             int numSeeds = -1;
             int numLeeches = -1;
             int numDownloaded = -1;
-            QString message;
+            QString message {};
         };
 
-        QString url;
+        QString url {};
         int tier = 0;
 
         QVector<EndpointStats> endpoints {};
@@ -67,7 +67,7 @@ namespace BitTorrent
         int numSeeds = -1;
         int numLeeches = -1;
         int numDownloaded = -1;
-        QString message;
+        QString message {};
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);

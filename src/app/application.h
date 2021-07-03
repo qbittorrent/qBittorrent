@@ -71,7 +71,7 @@ namespace RSS
 class Application final : public BaseApplication
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Application)
+    Q_DISABLE_COPY_MOVE(Application)
 
 public:
     Application(int &argc, char **argv);

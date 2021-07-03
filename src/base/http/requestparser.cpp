@@ -148,7 +148,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
 bool RequestParser::parseStartLines(const QString &data)
 {
     // we don't handle malformed request which uses `LF` for newline
-    const QVector<QStringRef> lines = data.splitRef(CRLF, QString::SkipEmptyParts);
+    const QVector<QStringRef> lines = data.splitRef(CRLF, Qt::SkipEmptyParts);
 
     // [rfc7230] 3.2.2. Field Order
     QStringList requestLines;
@@ -276,7 +276,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
         // split data by "dash-boundary"
         const QByteArray dashDelimiter = QByteArray("--") + delimiter + CRLF;
-        QVector<QByteArray> multipart = splitToViews(data, dashDelimiter, QString::SkipEmptyParts);
+        QVector<QByteArray> multipart = splitToViews(data, dashDelimiter, Qt::SkipEmptyParts);
         if (multipart.isEmpty())
         {
             qWarning() << Q_FUNC_INFO << "multipart empty";
@@ -299,7 +299,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
 bool RequestParser::parseFormData(const QByteArray &data)
 {
-    const QVector<QByteArray> list = splitToViews(data, EOH, QString::KeepEmptyParts);
+    const QVector<QByteArray> list = splitToViews(data, EOH, Qt::KeepEmptyParts);
 
     if (list.size() != 2)
     {
@@ -311,13 +311,13 @@ bool RequestParser::parseFormData(const QByteArray &data)
     const QByteArray payload = viewWithoutEndingWith(list[1], CRLF);
 
     HeaderMap headersMap;
-    const QVector<QStringRef> headerLines = headers.splitRef(CRLF, QString::SkipEmptyParts);
+    const QVector<QStringRef> headerLines = headers.splitRef(CRLF, Qt::SkipEmptyParts);
     for (const auto &line : headerLines)
     {
         if (line.trimmed().startsWith(HEADER_CONTENT_DISPOSITION, Qt::CaseInsensitive))
         {
             // extract out filename & name
-            const QVector<QStringRef> directives = line.split(';', QString::SkipEmptyParts);
+            const QVector<QStringRef> directives = line.split(';', Qt::SkipEmptyParts);
 
             for (const auto &directive : directives)
             {

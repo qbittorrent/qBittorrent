@@ -75,9 +75,9 @@
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
-#include "base/scanfoldersmodel.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
+#include "base/torrentfileswatcher.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -302,7 +302,7 @@ void Application::setFileLoggerAgeType(const int value)
 
 void Application::processMessage(const QString &message)
 {
-    const QStringList params = message.split(PARAMS_SEPARATOR, QString::SkipEmptyParts);
+    const QStringList params = message.split(PARAMS_SEPARATOR, Qt::SkipEmptyParts);
     // If Application is not running (i.e., other
     // components are not ready) store params
     if (m_running)
@@ -353,6 +353,12 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, torrent->tags().join(QLatin1String(",")));
             break;
         case u'I':
+            program.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : QLatin1String("-")));
+            break;
+        case u'J':
+            program.replace(i, 2, (torrent->infoHash().v2().isValid() ? torrent->infoHash().v2().toString() : QLatin1String("-")));
+            break;
+        case u'K':
             program.replace(i, 2, torrent->id().toString());
             break;
         case u'L':
@@ -621,7 +627,7 @@ int Application::exec(const QStringList &params)
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         Net::GeoIPManager::initInstance();
-        ScanFoldersModel::initInstance();
+        TorrentFilesWatcher::initInstance();
 
 #ifndef DISABLE_WEBUI
         m_webui = new WebUI;
@@ -638,7 +644,7 @@ int Application::exec(const QStringList &params)
     catch (const RuntimeError &err)
     {
 #ifdef DISABLE_GUI
-        fprintf(stderr, "%s", err.what());
+        fprintf(stderr, "%s", qPrintable(err.message()));
 #else
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Critical);
@@ -817,7 +823,7 @@ void Application::cleanup()
     delete RSS::AutoDownloader::instance();
     delete RSS::Session::instance();
 
-    ScanFoldersModel::freeInstance();
+    TorrentFilesWatcher::freeInstance();
     BitTorrent::Session::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();

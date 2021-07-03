@@ -43,10 +43,10 @@ namespace BitTorrent
     class BencodeResumeDataStorage final : public ResumeDataStorage
     {
         Q_OBJECT
-        Q_DISABLE_COPY(BencodeResumeDataStorage)
+        Q_DISABLE_COPY_MOVE(BencodeResumeDataStorage)
 
     public:
-        explicit BencodeResumeDataStorage(QObject *parent = nullptr);
+        explicit BencodeResumeDataStorage(const QString &path, QObject *parent = nullptr);
         ~BencodeResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;
@@ -56,6 +56,7 @@ namespace BitTorrent
         void storeQueue(const QVector<TorrentID> &queue) const override;
 
     private:
+        void loadQueue(const QString &queueFilename);
         std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const TorrentInfo &metadata) const;
 
         const QDir m_resumeDataDir;

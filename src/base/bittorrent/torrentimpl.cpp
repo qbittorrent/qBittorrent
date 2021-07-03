@@ -112,8 +112,8 @@ namespace
         QString firstTrackerMessage;
         QString firstErrorMessage;
 #if (LIBTORRENT_VERSION_NUM >= 20000)
-        const int numEndpoints = nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
-        trackerEntry.endpoints.reserve(numEndpoints);
+        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1));
+        trackerEntry.endpoints.reserve(static_cast<decltype(trackerEntry.endpoints)::size_type>(numEndpoints));
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
@@ -167,8 +167,8 @@ namespace
             }
         }
 #else
-        const int numEndpoints = nativeEntry.endpoints.size();
-        trackerEntry.endpoints.reserve(numEndpoints);
+        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
+        trackerEntry.endpoints.reserve(static_cast<decltype(trackerEntry.endpoints)::size_type>(numEndpoints));
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             TrackerEntry::EndpointStats trackerEndpoint;
@@ -473,7 +473,7 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
 
     QVector<TrackerEntry> entries;
-    entries.reserve(nativeTrackers.size());
+    entries.reserve(static_cast<decltype(entries)::size_type>(nativeTrackers.size()));
 
     for (const lt::announce_entry &tracker : nativeTrackers)
     {
@@ -560,10 +560,10 @@ QVector<QUrl> TorrentImpl::urlSeeds() const
     const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
 
     QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(currentSeeds.size());
+    urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(currentSeeds.size()));
 
     for (const std::string &urlSeed : currentSeeds)
-        urlSeeds.append(QUrl(urlSeed.c_str()));
+        urlSeeds.append(QString::fromStdString(urlSeed));
 
     return urlSeeds;
 }
@@ -1005,7 +1005,13 @@ QString TorrentImpl::error() const
         return QString::fromStdString(m_nativeStatus.errc.message());
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
-        return tr("There's not enough space on disk. Torrent is currently in \"upload only\" mode.");
+    {
+        const QString writeErrorStr = tr("Couldn't write to file.");
+        const QString uploadModeStr = tr("Torrent is currently in \"upload only\" mode.");
+        const QString errorMessage = QString::fromLocal8Bit(m_lastFileError.error.message().c_str());
+
+        return writeErrorStr + QLatin1Char(' ') + errorMessage + QLatin1String(". ") + uploadModeStr;
+    }
 
     return {};
 }
@@ -1217,9 +1223,11 @@ QVector<PeerInfo> TorrentImpl::peers() const
     m_nativeHandle.get_peer_info(nativePeers);
 
     QVector<PeerInfo> peers;
-    peers.reserve(nativePeers.size());
+    peers.reserve(static_cast<decltype(peers)::size_type>(nativePeers.size()));
+
     for (const lt::peer_info &peer : nativePeers)
         peers << PeerInfo(this, peer);
+
     return peers;
 }
 
@@ -1252,7 +1260,7 @@ QVector<int> TorrentImpl::pieceAvailability() const
     std::vector<int> avail;
     m_nativeHandle.piece_availability(avail);
 
-    return Vector::fromStdVector(avail);
+    return {avail.cbegin(), avail.cend()};
 }
 
 qreal TorrentImpl::distributedCopies() const
@@ -1857,9 +1865,9 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
 
-    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', QString::SkipEmptyParts);
+    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', Qt::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
-    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', QString::SkipEmptyParts);
+    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', Qt::SkipEmptyParts);
     newPathParts.removeLast();  // drop file name part
 
 #if defined(Q_OS_WIN)
@@ -1922,6 +1930,11 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     }
 }
 
+void TorrentImpl::handleFileErrorAlert(const lt::file_error_alert *p)
+{
+    m_lastFileError = {p->error, p->op};
+}
+
 #if (LIBTORRENT_VERSION_NUM >= 20003)
 void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 {
@@ -1980,6 +1993,9 @@ void TorrentImpl::handleAlert(const lt::alert *a)
         break;
     case lt::file_completed_alert::alert_type:
         handleFileCompletedAlert(static_cast<const lt::file_completed_alert*>(a));
+        break;
+    case lt::file_error_alert::alert_type:
+        handleFileErrorAlert(static_cast<const lt::file_error_alert*>(a));
         break;
     case lt::torrent_finished_alert::alert_type:
         handleTorrentFinishedAlert(static_cast<const lt::torrent_finished_alert*>(a));

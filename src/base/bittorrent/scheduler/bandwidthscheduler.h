@@ -41,7 +41,7 @@ class Application;
 class BandwidthScheduler : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(BandwidthScheduler)
+    Q_DISABLE_COPY_MOVE(BandwidthScheduler)
 
     friend class ::Application;
 

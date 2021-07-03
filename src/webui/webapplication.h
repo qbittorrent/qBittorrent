@@ -43,12 +43,10 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 8, 2};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 3};
 
 class APIController;
 class WebApplication;
-
-constexpr char C_SID[] = "SID"; // name of session id cookie
 
 class WebSession final : public ISession
 {
@@ -74,7 +72,7 @@ class WebApplication final
         , private Http::ResponseBuilder
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WebApplication)
+    Q_DISABLE_COPY_MOVE(WebApplication)
 
 #ifndef Q_MOC_RUN
 #define WEBAPI_PUBLIC
@@ -116,6 +114,8 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
+    QHostAddress resolveClientAddress() const;
+
     // Persistent data
     QHash<QString, WebSession *> m_sessions;
 
@@ -155,6 +155,11 @@ private:
     bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
+
+    // Reverse proxy
+    bool m_isReverseProxySupportEnabled;
+    QVector<QHostAddress> m_trustedReverseProxyList;
+    QHostAddress m_clientAddress;
 
     QVector<Http::Header> m_prebuiltHeaders;
 };

@@ -59,7 +59,7 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
     }
     else
     {
-        m_searchTermWords = searchTerm.split(QLatin1Char(' '), QString::SkipEmptyParts);
+        m_searchTermWords = searchTerm.split(QLatin1Char(' '), Qt::SkipEmptyParts);
     }
 }
 

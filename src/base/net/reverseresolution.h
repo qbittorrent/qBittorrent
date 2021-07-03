@@ -40,7 +40,7 @@ namespace Net
     class ReverseResolution : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(ReverseResolution)
+        Q_DISABLE_COPY_MOVE(ReverseResolution)
 
     public:
         explicit ReverseResolution(QObject *parent = nullptr);

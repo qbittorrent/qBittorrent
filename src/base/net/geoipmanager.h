@@ -43,7 +43,7 @@ namespace Net
     class GeoIPManager : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(GeoIPManager)
+        Q_DISABLE_COPY_MOVE(GeoIPManager)
 
     public:
         static void initInstance();

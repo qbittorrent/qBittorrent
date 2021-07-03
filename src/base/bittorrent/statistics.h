@@ -39,7 +39,7 @@ namespace BitTorrent
 class Statistics : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Statistics)
+    Q_DISABLE_COPY_MOVE(Statistics)
 
 public:
     explicit Statistics(BitTorrent::Session *session);

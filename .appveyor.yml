@@ -3,7 +3,7 @@ version: '{branch}-{build}'
 # Do not build on tags (GitHub only)
 skip_tags: true
 
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 branches:
   except:  # blacklist
@@ -13,8 +13,8 @@ environment:
   REPO_DIR: &REPO_DIR c:\qbittorrent
   CACHE_DIR: &CACHE_DIR c:\qbt_cache
 
-  QBT_VER_URL: https://builds.shiki.hu/appveyor/version
-  QBT_LIB_URL: https://builds.shiki.hu/appveyor/qbt_libraries.7z
+  QBT_VER_URL: https://builds.shiki.hu/appveyor/version_64
+  QBT_LIB_URL: https://builds.shiki.hu/appveyor/qbt_libraries_64.7z
 
 # project directory
 clone_folder: *REPO_DIR
@@ -38,12 +38,12 @@ install:
       appveyor DownloadFile "%QBT_LIB_URL%" -FileName "c:\qbt_lib.7z" && 7z x "c:\qbt_lib.7z" -o"%CACHE_DIR%" > nul &&
       COPY "c:\version_new" "%CACHE_DIR%\version")
   # Qt stay compressed in cache
-  - 7z x "%CACHE_DIR%\qt5_32.7z" -o"c:\qbt" > nul
+  - 7z x "%CACHE_DIR%\qt5_64.7z" -o"c:\qbt" > nul
 
 before_build:
   # setup env
-  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat"
-  - SET PATH=%PATH%;c:\qbt\qt5_32\bin;%CACHE_DIR%\jom;
+  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - SET PATH=%PATH%;c:\qbt\qt5_64\bin;%CACHE_DIR%\jom;
   # setup project
   - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
   # workarounds

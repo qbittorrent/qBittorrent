@@ -5,13 +5,13 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - Boost >= 1.65
 
-  - libtorrent-rasterbar >= 1.2.13 (by Arvid Norberg)
+  - libtorrent-rasterbar >= 1.2.14 (by Arvid Norberg)
       * https://www.libtorrent.org/
       * Be careful: another library (the one used by rTorrent) uses a similar name
 
   - OpenSSL >= 1.1.1
 
-  - Qt >= 5.12
+  - Qt >= 5.14
 
   - zlib >= 1.2.11
 

@@ -47,7 +47,6 @@ HEADERS += \
     $$PWD/rss/feedlistwidget.h \
     $$PWD/rss/htmlbrowser.h \
     $$PWD/rss/rsswidget.h \
-    $$PWD/scanfoldersdelegate.h \
     $$PWD/search/pluginselectdialog.h \
     $$PWD/search/pluginsourcedialog.h \
     $$PWD/search/searchjobwidget.h \
@@ -80,7 +79,9 @@ HEADERS += \
     $$PWD/tristateaction.h \
     $$PWD/tristatewidget.h \
     $$PWD/uithememanager.h \
-    $$PWD/utils.h
+    $$PWD/utils.h \
+    $$PWD/watchedfolderoptionsdialog.h \
+    $$PWD/watchedfoldersmodel.h
 
 SOURCES += \
     $$PWD/aboutdialog.cpp \
@@ -129,7 +130,6 @@ SOURCES += \
     $$PWD/rss/feedlistwidget.cpp \
     $$PWD/rss/htmlbrowser.cpp \
     $$PWD/rss/rsswidget.cpp \
-    $$PWD/scanfoldersdelegate.cpp \
     $$PWD/search/pluginselectdialog.cpp \
     $$PWD/search/pluginsourcedialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
@@ -162,7 +162,9 @@ SOURCES += \
     $$PWD/tristateaction.cpp \
     $$PWD/tristatewidget.cpp \
     $$PWD/uithememanager.cpp \
-    $$PWD/utils.cpp
+    $$PWD/utils.cpp \
+    $$PWD/watchedfolderoptionsdialog.cpp \
+    $$PWD/watchedfoldersmodel.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
@@ -213,6 +215,7 @@ FORMS += \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
     $$PWD/torrentoptionsdialog.ui \
-    $$PWD/trackerentriesdialog.ui
+    $$PWD/trackerentriesdialog.ui \
+    $$PWD/watchedfolderoptionsdialog.ui
 
 RESOURCES += $$PWD/about.qrc

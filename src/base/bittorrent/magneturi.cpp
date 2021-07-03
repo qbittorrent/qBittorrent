@@ -34,7 +34,6 @@
 #include <libtorrent/sha1_hash.hpp>
 
 #include <QRegularExpression>
-#include <QUrl>
 
 #include "infohash.h"
 
@@ -59,6 +58,8 @@ namespace
 
 using namespace BitTorrent;
 
+const int magnetUriId = qRegisterMetaType<MagnetUri>();
+
 MagnetUri::MagnetUri(const QString &source)
     : m_valid(false)
     , m_url(source)
@@ -82,13 +83,13 @@ MagnetUri::MagnetUri(const QString &source)
 
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
-    m_trackers.reserve(m_addTorrentParams.trackers.size());
+    m_trackers.reserve(static_cast<decltype(m_trackers)::size_type>(m_addTorrentParams.trackers.size()));
     for (const std::string &tracker : m_addTorrentParams.trackers)
         m_trackers.append({QString::fromStdString(tracker)});
 
-    m_urlSeeds.reserve(m_addTorrentParams.url_seeds.size());
+    m_urlSeeds.reserve(static_cast<decltype(m_urlSeeds)::size_type>(m_addTorrentParams.url_seeds.size()));
     for (const std::string &urlSeed : m_addTorrentParams.url_seeds)
-        m_urlSeeds.append(QUrl(QString::fromStdString(urlSeed)));
+        m_urlSeeds.append(QString::fromStdString(urlSeed));
 }
 
 bool MagnetUri::isValid() const

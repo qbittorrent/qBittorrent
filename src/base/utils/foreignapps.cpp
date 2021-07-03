@@ -63,7 +63,7 @@ namespace
             // Software 'Anaconda' installs its own python interpreter
             // and `python --version` returns a string like this:
             // "Python 3.4.3 :: Anaconda 2.3.0 (64-bit)"
-            const QVector<QByteArray> outputSplit = Utils::ByteArray::splitToViews(procOutput, " ", QString::SkipEmptyParts);
+            const QVector<QByteArray> outputSplit = Utils::ByteArray::splitToViews(procOutput, " ", Qt::SkipEmptyParts);
             if (outputSplit.size() <= 1)
                 return false;
 
@@ -76,7 +76,7 @@ namespace
             {
                 info = {exeName, versionStr.left(idx)};
             }
-            catch (const std::runtime_error &)
+            catch (const RuntimeError &)
             {
                 return false;
             }

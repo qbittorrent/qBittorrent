@@ -40,7 +40,7 @@ namespace Log
 class FileLogger : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(FileLogger)
+    Q_DISABLE_COPY_MOVE(FileLogger)
 
 public:
     enum FileLogAgeType

@@ -34,8 +34,8 @@
 
 #transferList img.stateIcon {
     height: 1.3em;
-    vertical-align: middle;
     margin-bottom: -1px;
+    vertical-align: middle;
 }
 
 tr.dynamicTableHeader {
@@ -43,22 +43,22 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable {
+    border-spacing: 0;
+    padding: 0;
     table-layout: fixed;
     width: 1%;
-    padding: 0;
-    border-spacing: 0;
 }
 
 .dynamicTable th {
     background-color: #eee;
-    padding: 4px;
-    white-space: nowrap;
     border-right-color: #ccc;
     border-right-style: solid;
     border-right-width: 1px;
-    box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 4px;
+    white-space: nowrap;
 }
 
 .dynamicTable td {
@@ -72,8 +72,8 @@ tr.dynamicTableHeader {
 
 .dynamicTable th,
 .dynamicTable td {
-    text-overflow: ellipsis;
     overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
@@ -102,8 +102,8 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTableDiv thead th {
-    line-height: 0px !important;
     height: 0px !important;
-    padding-top: 0px !important;
+    line-height: 0px !important;
     padding-bottom: 0px !important;
+    padding-top: 0px !important;
 }

@@ -498,17 +498,6 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
     return result;
 }
 
-CommandLineParameterError::CommandLineParameterError(const QString &messageForUser)
-    : std::runtime_error(messageForUser.toLocal8Bit().data())
-    , m_messageForUser(messageForUser)
-{
-}
-
-const QString &CommandLineParameterError::messageForUser() const
-{
-    return m_messageForUser;
-}
-
 QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN, int wrapAtColumn = WRAP_AT_COLUMN)
 {
     QStringList words = text.split(' ');

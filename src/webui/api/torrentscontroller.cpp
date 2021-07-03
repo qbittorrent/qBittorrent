@@ -259,7 +259,7 @@ void TorrentsController::infoAction()
     const bool reverse {parseBool(params()["reverse"]).value_or(false)};
     int limit {params()["limit"].toInt()};
     int offset {params()["offset"].toInt()};
-    const QStringList hashes {params()["hashes"].split('|', QString::SkipEmptyParts)};
+    const QStringList hashes {params()["hashes"].split('|', Qt::SkipEmptyParts)};
 
     TorrentIDSet idSet;
     for (const QString &hash : hashes)
@@ -382,6 +382,8 @@ void TorrentsController::propertiesAction()
 
     QJsonObject dataDict;
 
+    dataDict[KEY_TORRENT_INFOHASHV1] = torrent->infoHash().v1().toString();
+    dataDict[KEY_TORRENT_INFOHASHV2] = torrent->infoHash().v2().toString();
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->seedingTime();
     dataDict[KEY_PROP_ETA] = static_cast<double>(torrent->eta());
@@ -637,7 +639,7 @@ void TorrentsController::addAction()
     const std::optional<bool> addPaused = parseBool(params()["paused"]);
     const QString savepath = params()["savepath"].trimmed();
     const QString category = params()["category"];
-    const QStringList tags = params()["tags"].split(',', QString::SkipEmptyParts);
+    const QStringList tags = params()["tags"].split(',', Qt::SkipEmptyParts);
     const QString torrentName = params()["rename"].trimmed();
     const int upLimit = parseInt(params()["upLimit"]).value_or(-1);
     const int dlLimit = parseInt(params()["dlLimit"]).value_or(-1);
@@ -1215,7 +1217,7 @@ void TorrentsController::addTagsAction()
     requireParams({"hashes", "tags"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+    const QStringList tags {params()["tags"].split(',', Qt::SkipEmptyParts)};
 
     for (const QString &tag : tags)
     {
@@ -1232,7 +1234,7 @@ void TorrentsController::removeTagsAction()
     requireParams({"hashes"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+    const QStringList tags {params()["tags"].split(',', Qt::SkipEmptyParts)};
 
     for (const QString &tag : tags)
     {
@@ -1256,7 +1258,7 @@ void TorrentsController::createTagsAction()
 {
     requireParams({"tags"});
 
-    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+    const QStringList tags {params()["tags"].split(',', Qt::SkipEmptyParts)};
 
     for (const QString &tag : tags)
         BitTorrent::Session::instance()->addTag(tag.trimmed());
@@ -1266,7 +1268,7 @@ void TorrentsController::deleteTagsAction()
 {
     requireParams({"tags"});
 
-    const QStringList tags {params()["tags"].split(',', QString::SkipEmptyParts)};
+    const QStringList tags {params()["tags"].split(',', Qt::SkipEmptyParts)};
     for (const QString &tag : tags)
         BitTorrent::Session::instance()->removeTag(tag.trimmed());
 }

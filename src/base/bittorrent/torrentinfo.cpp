@@ -75,6 +75,8 @@ namespace
     }
 }
 
+const int torrentInfoId = qRegisterMetaType<TorrentInfo>();
+
 TorrentInfo::TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo)
 {
     m_nativeInfo = std::const_pointer_cast<lt::torrent_info>(nativeInfo);
@@ -165,18 +167,25 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
 void TorrentInfo::saveToFile(const QString &path) const
 {
     if (!isValid())
-        throw RuntimeError {tr("Invalid metadata.")};
+        throw RuntimeError {tr("Invalid metadata")};
 
-    const lt::create_torrent torrentCreator = lt::create_torrent(*(nativeInfo()));
-    const lt::entry torrentEntry = torrentCreator.generate();
+    try
+    {
+        const auto torrentCreator = lt::create_torrent(*nativeInfo());
+        const lt::entry torrentEntry = torrentCreator.generate();
 
-    QFile torrentFile {path};
-    if (!torrentFile.open(QIODevice::WriteOnly))
-        throw RuntimeError {torrentFile.errorString()};
+        QFile torrentFile {path};
+        if (!torrentFile.open(QIODevice::WriteOnly))
+            throw RuntimeError(torrentFile.errorString());
 
-    lt::bencode(Utils::IO::FileDeviceOutputIterator {torrentFile}, torrentEntry);
-    if (torrentFile.error() != QFileDevice::NoError)
-        throw RuntimeError {torrentFile.errorString()};
+        lt::bencode(Utils::IO::FileDeviceOutputIterator {torrentFile}, torrentEntry);
+        if (torrentFile.error() != QFileDevice::NoError)
+            throw RuntimeError(torrentFile.errorString());
+    }
+    catch (const lt::system_error &err)
+    {
+        throw RuntimeError(QString::fromLocal8Bit(err.what()));
+    }
 }
 
 bool TorrentInfo::isValid() const
@@ -304,10 +313,11 @@ QVector<TrackerEntry> TorrentInfo::trackers() const
     const std::vector<lt::announce_entry> trackers = m_nativeInfo->trackers();
 
     QVector<TrackerEntry> ret;
-    ret.reserve(trackers.size());
+    ret.reserve(static_cast<decltype(ret)::size_type>(trackers.size()));
 
     for (const lt::announce_entry &tracker : trackers)
         ret.append({QString::fromStdString(tracker.url)});
+
     return ret;
 }
 
@@ -318,7 +328,7 @@ QVector<QUrl> TorrentInfo::urlSeeds() const
     const std::vector<lt::web_seed_entry> &nativeWebSeeds = m_nativeInfo->web_seeds();
 
     QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(nativeWebSeeds.size());
+    urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(nativeWebSeeds.size()));
 
     for (const lt::web_seed_entry &webSeed : nativeWebSeeds)
     {
@@ -358,11 +368,10 @@ QVector<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
     if (!isValid() || (pieceIndex < 0) || (pieceIndex >= piecesCount()))
         return {};
 
-    const std::vector<lt::file_slice> files(
-                nativeInfo()->map_block(lt::piece_index_t {pieceIndex}, 0
-                                        , nativeInfo()->piece_size(lt::piece_index_t {pieceIndex})));
+    const std::vector<lt::file_slice> files = nativeInfo()->map_block(
+                lt::piece_index_t {pieceIndex}, 0, nativeInfo()->piece_size(lt::piece_index_t {pieceIndex}));
     QVector<int> res;
-    res.reserve(int(files.size()));
+    res.reserve(static_cast<decltype(res)::size_type>(files.size()));
     std::transform(files.begin(), files.end(), std::back_inserter(res),
         [](const lt::file_slice &s) { return static_cast<int>(s.file_index); });
 

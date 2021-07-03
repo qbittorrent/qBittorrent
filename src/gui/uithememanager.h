@@ -38,7 +38,7 @@
 class UIThemeManager : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(UIThemeManager)
+    Q_DISABLE_COPY_MOVE(UIThemeManager)
 
 public:
     static void initInstance();

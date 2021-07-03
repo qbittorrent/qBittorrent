@@ -8,6 +8,7 @@ HEADERS += \
     $$PWD/bittorrent/common.h \
     $$PWD/bittorrent/customstorage.h \
     $$PWD/bittorrent/downloadpriority.h \
+    $$PWD/bittorrent/dbresumedatastorage.h \
     $$PWD/bittorrent/filesearcher.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
@@ -37,7 +38,6 @@ HEADERS += \
     $$PWD/bittorrent/trackerentry.h \
     $$PWD/digest32.h \
     $$PWD/exceptions.h \
-    $$PWD/filesystemwatcher.h \
     $$PWD/global.h \
     $$PWD/http/connection.h \
     $$PWD/http/httperror.h \
@@ -71,7 +71,6 @@ HEADERS += \
     $$PWD/rss/rss_item.h \
     $$PWD/rss/rss_parser.h \
     $$PWD/rss/rss_session.h \
-    $$PWD/scanfoldersmodel.h \
     $$PWD/search/searchdownloadhandler.h \
     $$PWD/search/searchhandler.h \
     $$PWD/search/searchpluginmanager.h \
@@ -79,6 +78,7 @@ HEADERS += \
     $$PWD/settingvalue.h \
     $$PWD/tagset.h \
     $$PWD/torrentfileguard.h \
+    $$PWD/torrentfileswatcher.h \
     $$PWD/torrentfilter.h \
     $$PWD/types.h \
     $$PWD/unicodestrings.h \
@@ -101,6 +101,7 @@ SOURCES += \
     $$PWD/bittorrent/abstractfilestorage.cpp \
     $$PWD/bittorrent/bencoderesumedatastorage.cpp \
     $$PWD/bittorrent/customstorage.cpp \
+    $$PWD/bittorrent/dbresumedatastorage.cpp \
     $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/filesearcher.cpp \
     $$PWD/bittorrent/filterparserthread.cpp \
@@ -124,7 +125,6 @@ SOURCES += \
     $$PWD/bittorrent/tracker.cpp \
     $$PWD/bittorrent/trackerentry.cpp \
     $$PWD/exceptions.cpp \
-    $$PWD/filesystemwatcher.cpp \
     $$PWD/http/connection.cpp \
     $$PWD/http/httperror.cpp \
     $$PWD/http/requestparser.cpp \
@@ -153,13 +153,13 @@ SOURCES += \
     $$PWD/rss/rss_item.cpp \
     $$PWD/rss/rss_parser.cpp \
     $$PWD/rss/rss_session.cpp \
-    $$PWD/scanfoldersmodel.cpp \
     $$PWD/search/searchdownloadhandler.cpp \
     $$PWD/search/searchhandler.cpp \
     $$PWD/search/searchpluginmanager.cpp \
     $$PWD/settingsstorage.cpp \
     $$PWD/tagset.cpp \
     $$PWD/torrentfileguard.cpp \
+    $$PWD/torrentfileswatcher.cpp \
     $$PWD/torrentfilter.cpp \
     $$PWD/utils/bytearray.cpp \
     $$PWD/utils/compare.cpp \

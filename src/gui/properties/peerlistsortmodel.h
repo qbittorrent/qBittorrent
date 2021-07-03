@@ -35,7 +35,7 @@
 class PeerListSortModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PeerListSortModel)
+    Q_DISABLE_COPY_MOVE(PeerListSortModel)
 
 public:
     enum

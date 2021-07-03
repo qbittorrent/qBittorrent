@@ -31,13 +31,13 @@
 #include <QByteArray>
 #include <QVector>
 
-QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const QByteArray &sep, const QString::SplitBehavior behavior)
+QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const QByteArray &sep, const Qt::SplitBehavior behavior)
 {
     if (sep.isEmpty())
         return {in};
 
     QVector<QByteArray> ret;
-    ret.reserve((behavior == QString::KeepEmptyParts)
+    ret.reserve((behavior == Qt::KeepEmptyParts)
                 ? (1 + (in.size() / sep.size()))
                 : (1 + (in.size() / (sep.size() + 1))));
     int head = 0;
@@ -49,7 +49,7 @@ QVector<QByteArray> Utils::ByteArray::splitToViews(const QByteArray &in, const Q
 
         // omit empty parts
         const QByteArray part = QByteArray::fromRawData((in.constData() + head), (end - head));
-        if (!part.isEmpty() || (behavior == QString::KeepEmptyParts))
+        if (!part.isEmpty() || (behavior == Qt::KeepEmptyParts))
             ret += part;
 
         head = end + sep.size();

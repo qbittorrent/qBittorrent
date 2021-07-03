@@ -68,7 +68,7 @@ namespace
 class FileSystemPathEdit::FileSystemPathEditPrivate
 {
     Q_DECLARE_PUBLIC(FileSystemPathEdit)
-    Q_DISABLE_COPY(FileSystemPathEditPrivate)
+    Q_DISABLE_COPY_MOVE(FileSystemPathEditPrivate)
 
     FileSystemPathEditPrivate(FileSystemPathEdit *q, Private::FileEditorWithCompletion *editor);
 
@@ -241,7 +241,7 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
         }
         else
         {
-            QStringList filters = filterString.split(QLatin1Char(' '), QString::SkipEmptyParts);
+            QStringList filters = filterString.split(QLatin1Char(' '), Qt::SkipEmptyParts);
             d->m_editor->setFilenameFilters(filters);
         }
     }

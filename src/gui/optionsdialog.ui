@@ -1182,19 +1182,29 @@
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_37">
                    <item>
-                    <widget class="QPushButton" name="addScanFolderButton">
+                    <widget class="QPushButton" name="addWatchedFolderButton">
                      <property name="text">
-                      <string>Add entry</string>
+                      <string>Add...</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="removeScanFolderButton">
+                    <widget class="QPushButton" name="editWatchedFolderButton">
                      <property name="enabled">
                       <bool>false</bool>
                      </property>
                      <property name="text">
-                      <string>Remove entry</string>
+                      <string>Options..</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="removeWatchedFolderButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="text">
+                      <string>Remove</string>
                      </property>
                     </widget>
                    </item>
@@ -3169,6 +3179,36 @@ you should put in domain names used by WebUI server.
                  </layout>
                 </widget>
                </item>
+			   <item>
+                <widget class="QGroupBox" name="groupEnableReverseProxySupport">
+                 <property name="title">
+                  <string>Enable reverse proxy support</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_331">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_131">
+                    <item>
+                     <widget class="QLabel" name="lblReverseProxiesList">
+                      <property name="text">
+                       <string>Trusted proxies list:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="textTrustedReverseProxiesList">
+                      <property name="toolTip">
+                       <string>Specify reverse proxy IPs in order to use forwarded client address (X-Forwarded-For attribute), use ';' to split multiple entries.</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
@@ -3360,8 +3400,9 @@ you should put in domain names used by WebUI server.
   <tabstop>textTempPath</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>scanFoldersView</tabstop>
-  <tabstop>addScanFolderButton</tabstop>
-  <tabstop>removeScanFolderButton</tabstop>
+  <tabstop>addWatchedFolderButton</tabstop>
+  <tabstop>editWatchedFolderButton</tabstop>
+  <tabstop>removeWatchedFolderButton</tabstop>
   <tabstop>checkExportDir</tabstop>
   <tabstop>textExportDir</tabstop>
   <tabstop>checkExportDirFin</tabstop>

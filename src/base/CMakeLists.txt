@@ -8,6 +8,7 @@ add_library(qbt_base STATIC
     bittorrent/cachestatus.h
     bittorrent/common.h
     bittorrent/customstorage.h
+    bittorrent/dbresumedatastorage.h
     bittorrent/downloadpriority.h
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
@@ -38,7 +39,6 @@ add_library(qbt_base STATIC
     bittorrent/trackerentry.h
     digest32.h
     exceptions.h
-    filesystemwatcher.h
     global.h
     http/connection.h
     http/httperror.h
@@ -72,13 +72,13 @@ add_library(qbt_base STATIC
     rss/rss_item.h
     rss/rss_parser.h
     rss/rss_session.h
-    scanfoldersmodel.h
     search/searchdownloadhandler.h
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
     tagset.h
     torrentfileguard.h
+    torrentfileswatcher.h
     torrentfilter.h
     types.h
     unicodestrings.h
@@ -101,6 +101,7 @@ add_library(qbt_base STATIC
     bittorrent/abstractfilestorage.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/customstorage.cpp
+    bittorrent/dbresumedatastorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
@@ -124,7 +125,6 @@ add_library(qbt_base STATIC
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
     exceptions.cpp
-    filesystemwatcher.cpp
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
@@ -153,13 +153,13 @@ add_library(qbt_base STATIC
     rss/rss_item.cpp
     rss/rss_parser.cpp
     rss/rss_session.cpp
-    scanfoldersmodel.cpp
     search/searchdownloadhandler.cpp
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
     tagset.cpp
     torrentfileguard.cpp
+    torrentfileswatcher.cpp
     torrentfilter.cpp
     utils/bytearray.cpp
     utils/compare.cpp
@@ -180,7 +180,7 @@ target_link_libraries(qbt_base
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt5::Core Qt5::Network Qt5::Xml
+        Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml
         qbt_common_cfg
 )
 

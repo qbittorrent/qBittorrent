@@ -47,7 +47,7 @@ namespace BitTorrent
 class TorrentContentModel final : public QAbstractItemModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentContentModel)
+    Q_DISABLE_COPY_MOVE(TorrentContentModel)
 
 public:
     enum Roles

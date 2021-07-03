@@ -54,7 +54,7 @@ class SearchPluginManager;
 class SearchHandler : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchHandler)
+    Q_DISABLE_COPY_MOVE(SearchHandler)
 
     friend class SearchPluginManager;
 

@@ -49,7 +49,7 @@ namespace Ui
 class SearchWidget : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchWidget)
+    Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
     explicit SearchWidget(MainWindow *mainWindow);
@@ -65,6 +65,7 @@ private:
     bool eventFilter(QObject *object, QEvent *event) override;
     void tabChanged(int index);
     void closeTab(int index);
+    void closeAllTabs();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();

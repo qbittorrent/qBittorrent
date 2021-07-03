@@ -59,7 +59,7 @@ class TorrentFileGuard;
 class AddNewTorrentDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AddNewTorrentDialog)
+    Q_DISABLE_COPY_MOVE(AddNewTorrentDialog)
 
 public:
     static const int minPathHistoryLength = 0;

@@ -209,7 +209,9 @@
                 <li>QBT_TR(%C: Number of files)QBT_TR[CONTEXT=OptionsDialog]</li>
                 <li>QBT_TR(%Z: Torrent size (bytes))QBT_TR[CONTEXT=OptionsDialog]</li>
                 <li>QBT_TR(%T: Current tracker)QBT_TR[CONTEXT=OptionsDialog]</li>
-                <li>QBT_TR(%I: Info hash)QBT_TR[CONTEXT=OptionsDialog]</li>
+                <li>QBT_TR(%I: Info hash v1)QBT_TR[CONTEXT=OptionsDialog]</li>
+                <li>QBT_TR(%J: Info hash v2)QBT_TR[CONTEXT=OptionsDialog]</li>
+                <li>QBT_TR(%K: Torrent ID)QBT_TR[CONTEXT=OptionsDialog]</li>
             </ul>
             QBT_TR(Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N"))QBT_TR[CONTEXT=OptionsDialog]
         </div>
@@ -230,7 +232,7 @@
         <div class="formRow">
             <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="port_value" style="width: 4em;" />
-            <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">Random</button>
+            <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
             <input type="checkbox" id="upnp_checkbox" />
@@ -627,6 +629,7 @@
             <option value="en_GB">English (United Kingdom)</option>
             <option value="eo_EO">Esperanto</option>
             <option value="et">Eesti, eesti keel</option>
+            <option value="fa">فارسی</option>
             <option value="fr_FR">Français</option>
             <option value="de_DE">Deutsch</option>
             <option value="hu_HU">Magyar</option>
@@ -644,6 +647,7 @@
             <option value="lv_LV">Latviešu valoda</option>
             <option value="lt_LT">Lietuvių</option>
             <option value="ltg">Latgalīšu volūda</option>
+            <option value="mn_MN">Монгол хэл</option>
             <option value="ms_MY">بهاس ملايو</option>
             <option value="cs_CZ">Čeština</option>
             <option value="sk_SK">Slovenčina</option>
@@ -653,6 +657,7 @@
             <option value="hr_HR">Hrvatski</option>
             <option value="hy_AM">Հայերեն</option>
             <option value="ro_RO">Română</option>
+            <option value="th">ไทย</option>
             <option value="tr_TR">Türkçe</option>
             <option value="el_GR">Ελληνικά</option>
             <option value="sv_SE">Svenska</option>
@@ -820,6 +825,18 @@
             </legend>
             <textarea id="webUICustomHTTPHeadersTextarea" placeholder="QBT_TR(Header: value pairs, one per line)QBT_TR[CONTEXT=OptionsDialog]" style="width: 90%;"></textarea>
         </fieldset>
+
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="webUIReverseProxySupportCheckbox" onclick="qBittorrent.Preferences.updateWebUIReverseProxySettings();" />
+                <label for="webUIReverseProxySupportCheckbox">QBT_TR(Enable reverse proxy support)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <div class="formRow">
+                <input type="text" id="webUIReverseProxiesListTextarea" />
+                <label for="webUIReverseProxiesListTextarea" class="leftLabelLarge">QBT_TR(Trusted proxies list:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+        </fieldset>
+
     </fieldset>
 
     <fieldset class="settings">
@@ -905,6 +922,14 @@
                 </td>
                 <td>
                     <input type="checkbox" id="resolvePeerCountries">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="reannounceWhenAddressChanged">QBT_TR(Reannounce to all trackers when IP or port changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="reannounceWhenAddressChanged" />
                 </td>
             </tr>
             <tr>
@@ -1030,6 +1055,14 @@
                 </td>
                 <td>
                     <input type="text" id="sendBufferWatermarkFactor" style="width: 15em;" />&nbsp;&nbsp;%
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="connectionSpeed">QBT_TR(Outgoing connections per second:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#connection_speed" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="connectionSpeed" style="width: 15em;" />
                 </td>
             </tr>
             <tr>
@@ -1245,6 +1278,7 @@
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
                 updateHostHeaderValidationSettings: updateHostHeaderValidationSettings,
                 updateWebUICustomHTTPHeadersSettings: updateWebUICustomHTTPHeadersSettings,
+                updateWebUIReverseProxySettings: updateWebUIReverseProxySettings,
                 updateDynDnsSettings: updateDynDnsSettings,
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
@@ -1543,6 +1577,11 @@
         const updateWebUICustomHTTPHeadersSettings = function() {
             const isEnabled = $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked');
             $('webUICustomHTTPHeadersTextarea').setProperty('disabled', !isEnabled);
+        };
+
+        const updateWebUIReverseProxySettings = function() {
+            const isEnabled = $('webUIReverseProxySupportCheckbox').getProperty('checked');
+            $('webUIReverseProxiesListTextarea').setProperty('disabled', !isEnabled);
         };
 
         const updateDynDnsSettings = function() {
@@ -1916,6 +1955,11 @@
                         $('webUICustomHTTPHeadersTextarea').setProperty('value', pref.web_ui_custom_http_headers);
                         updateWebUICustomHTTPHeadersSettings();
 
+                        // Reverse Proxy
+                        $('webUIReverseProxySupportCheckbox').setProperty('checked', pref.web_ui_reverse_proxy_support_enabled);
+                        $('webUIReverseProxiesListTextarea').setProperty('value', pref.web_ui_trusted_reverse_proxies_list);
+                        updateWebUIReverseProxySettings();
+
                         // Update my dynamic domain name
                         $('use_dyndns_checkbox').setProperty('checked', pref.dyndns_enabled);
                         $('dyndns_select').setProperty('value', pref.dyndns_service);
@@ -1931,6 +1975,7 @@
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
+                        $('reannounceWhenAddressChanged').setProperty('checked', pref.reannounce_when_address_changed);
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
                         $('hashingThreads').setProperty('value', pref.hashing_threads);
@@ -1945,6 +1990,7 @@
                         $('sendBufferWatermark').setProperty('value', pref.send_buffer_watermark);
                         $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
                         $('sendBufferWatermarkFactor').setProperty('value', pref.send_buffer_watermark_factor);
+                        $('connectionSpeed').setProperty('value', pref.connection_speed);
                         $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
                         $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
@@ -2298,6 +2344,10 @@
             settings.set('web_ui_use_custom_http_headers_enabled', $('webUIUseCustomHTTPHeadersCheckbox').getProperty('checked'));
             settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
 
+            // Reverse Proxy
+            settings.set('web_ui_reverse_proxy_support_enabled', $('webUIReverseProxySupportCheckbox').getProperty('checked'));
+            settings.set('web_ui_trusted_reverse_proxies_list', $('webUIReverseProxiesListTextarea').getProperty('value'));
+
             // Update my dynamic domain name
             settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
             settings.set('dyndns_service', $('dyndns_select').getProperty('value'));
@@ -2312,6 +2362,7 @@
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
+            settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
 
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
@@ -2327,6 +2378,7 @@
             settings.set('send_buffer_watermark', $('sendBufferWatermark').getProperty('value'));
             settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));
             settings.set('send_buffer_watermark_factor', $('sendBufferWatermarkFactor').getProperty('value'));
+            settings.set('connection_speed', $('connectionSpeed').getProperty('value'));
             settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
             settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));

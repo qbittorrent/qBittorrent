@@ -51,7 +51,7 @@ window.qBittorrent.PropPeers = (function() {
             torrentPeersTable.clear();
             return;
         }
-        const current_hash = torrentsTable.getCurrentTorrentHash();
+        const current_hash = torrentsTable.getCurrentTorrentID();
         if (current_hash === "") {
             syncTorrentPeersLastResponseId = 0;
             torrentPeersTable.clear();
@@ -118,7 +118,7 @@ window.qBittorrent.PropPeers = (function() {
         menu: 'torrentPeersMenu',
         actions: {
             addPeer: function(element, ref) {
-                const hash = torrentsTable.getCurrentTorrentHash();
+                const hash = torrentsTable.getCurrentTorrentID();
                 if (!hash)
                     return;
 
@@ -147,7 +147,7 @@ window.qBittorrent.PropPeers = (function() {
                         noCache: true,
                         method: 'post',
                         data: {
-                            hash: torrentsTable.getCurrentTorrentHash(),
+                            hash: torrentsTable.getCurrentTorrentID(),
                             peers: selectedPeers.join('|')
                         }
                     }).send();

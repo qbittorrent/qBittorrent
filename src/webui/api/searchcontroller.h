@@ -42,7 +42,7 @@ struct SearchResult;
 class SearchController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchController)
+    Q_DISABLE_COPY_MOVE(SearchController)
 
 public:
     using APIController::APIController;

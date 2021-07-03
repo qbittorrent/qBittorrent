@@ -41,7 +41,7 @@ namespace BitTorrent
 class StatusBar : public QStatusBar
 {
     Q_OBJECT
-    Q_DISABLE_COPY(StatusBar)
+    Q_DISABLE_COPY_MOVE(StatusBar)
 
 public:
     StatusBar(QWidget *parent = nullptr);

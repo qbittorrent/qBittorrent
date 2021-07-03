@@ -41,7 +41,7 @@ namespace Net
 class ProgramUpdater final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(ProgramUpdater)
+    Q_DISABLE_COPY_MOVE(ProgramUpdater)
 
 public:
     using QObject::QObject;

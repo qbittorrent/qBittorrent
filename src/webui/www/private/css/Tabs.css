@@ -18,27 +18,26 @@ Required by:
 /* Toolbar Tabs */
 
 .toolbarTabs {
-    padding: 0 5px 2px 2px;
     background: url(../images/tabs.gif) repeat-x;
     background-position: left -70px;
     overflow: visible;
+    padding: 0 5px 2px 2px;
 }
 
 .tab-menu {
-    padding-top: 1px;
+    font-size: 11px;
+    line-height: 16px;
     list-style: none;
     margin: 0;
     padding: 0;
-    line-height: 16px;
-    font-size: 11px;
 }
 
 .tab-menu li {
-    float: left;
-    margin: 0 0 5px 0;
-    cursor: pointer;
     background: url(../images/tabs.gif) repeat-x;
     background-position: left -35px;
+    cursor: pointer;
+    float: left;
+    margin: 0 0 5px 0;
 }
 
 .tab-menu li.selected {
@@ -47,19 +46,19 @@ Required by:
 }
 
 .tab-menu li a {
+    background: url(../images/tabs.gif) repeat-x;
+    background-position: right -35px;
+    color: #181818;
     display: block;
+    font-weight: normal;
     margin-left: 8px;
     padding: 6px 15px 5px 9px;
     text-align: center;
-    font-weight: normal;
-    color: #181818;
-    background: url(../images/tabs.gif) repeat-x;
-    background-position: right -35px;
 }
 
 .tab-menu li.selected a {
-    color: #181818;
-    font-weight: bold;
     background: url(../images/tabs.gif) repeat-x;
     background-position: right 0;
+    color: #181818;
+    font-weight: bold;
 }

@@ -343,7 +343,7 @@ window.qBittorrent.PropFiles = (function() {
             // Tab changed, don't do anything
             return;
         }
-        const new_hash = torrentsTable.getCurrentTorrentHash();
+        const new_hash = torrentsTable.getCurrentTorrentID();
         if (new_hash === "") {
             torrentFilesTable.clear();
             clearTimeout(loadTorrentFilesDataTimer);
@@ -527,7 +527,7 @@ window.qBittorrent.PropFiles = (function() {
         menu: 'torrentFilesMenu',
         actions: {
             Rename: function(element, ref) {
-                const hash = torrentsTable.getCurrentTorrentHash();
+                const hash = torrentsTable.getCurrentTorrentID();
                 if (!hash) return;
                 const rowId = torrentFilesTable.selectedRowsIds()[0];
                 if (rowId === undefined) return;

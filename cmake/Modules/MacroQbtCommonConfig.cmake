@@ -17,7 +17,7 @@ macro(qbt_common_config)
     )
 
     target_compile_definitions(qbt_common_cfg INTERFACE
-        QT_DEPRECATED_WARNINGS
+        QT_DISABLE_DEPRECATED_BEFORE=0x050e00
         QT_NO_CAST_TO_ASCII
         QT_NO_CAST_FROM_BYTEARRAY
         QT_USE_QSTRINGBUILDER
@@ -37,7 +37,7 @@ macro(qbt_common_config)
         )
     endif()
 
-    if ((CXX_COMPILER_ID STREQUAL "GNU") OR (CXX_COMPILER_ID STREQUAL "Clang") OR (CXX_COMPILER_ID STREQUAL "AppleClang"))
+    if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
         target_compile_options(qbt_common_cfg INTERFACE
             -Wall
             -Wextra
@@ -59,7 +59,7 @@ macro(qbt_common_config)
         endif()
     endif()
 
-    if ((CXX_COMPILER_ID STREQUAL "Clang") OR (CXX_COMPILER_ID STREQUAL "AppleClang"))
+    if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
         target_compile_options(qbt_common_cfg INTERFACE
             -Wno-range-loop-analysis
         )
@@ -79,6 +79,8 @@ macro(qbt_common_config)
         target_compile_options(qbt_common_cfg INTERFACE
             /guard:cf
             /utf-8
+            # https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
+            /Zc:__cplusplus
         )
         target_link_options(qbt_common_cfg INTERFACE
             /guard:cf

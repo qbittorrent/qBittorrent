@@ -213,10 +213,6 @@
         <translation>עוגייה:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation>הקלד תיקייה כאן</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>עוד מידע</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>שנה שם טורנט</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>אחר…</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -558,7 +549,7 @@
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation>צלמית מהירות הורדה</translation>
+        <translation>איקון מהירות הורדה</translation>
     </message>
     <message>
         <source>Connection status</source>
@@ -570,7 +561,7 @@
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation>צלמית מהירות העלאה</translation>
+        <translation>איקון מהירות העלאה</translation>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
@@ -649,7 +640,7 @@
     </message>
     <message>
         <source>IP address:</source>
-        <translation>:כתובת IP</translation>
+        <translation>כתובת IP:</translation>
     </message>
     <message>
         <source>Server domains:</source>
@@ -693,7 +684,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>הוסף טורנטים באופן אוטומטי מ:</translation>
+        <translation>הוסף טורנטים באופן אוטומטי מן:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -971,7 +962,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: גיבוב מידע</translation>
+        <translation type="vanished">%I: גיבוב מידע</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1155,7 +1146,7 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation>אפשר חיבורים רבים מאותה כתובת IP:</translation>
+        <translation>התר חיבורים רבים מאותה כתובת IP:</translation>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1455,6 +1446,38 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
+        <translation>סוג של שירות (ToS) עבור חיבורים אל עמיתים</translation>
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1687,7 +1710,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>גיבוב טורנט:</translation>
+        <translation type="vanished">גיבוב טורנט:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1743,6 +1766,18 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation>%1 (נזרע למשך %2)</translation>
+    </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1763,6 +1798,14 @@
     <message>
         <source>Default save location</source>
         <translation>מיקום שמירה ברירת מחדל</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation>אחר…</translation>
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation>הקלד תיקייה כאן</translation>
     </message>
 </context>
 <context>
@@ -2285,7 +2328,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (נזרע למשך %2)</translation>
     </message>
 </context>
 <context>
@@ -2465,7 +2508,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>גיבוב</translation>
+        <translation type="vanished">גיבוב</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2486,6 +2529,18 @@
     <message>
         <source>Add...</source>
         <translation>הוסף…</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2617,7 +2672,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2716,6 +2771,10 @@
         <source>Increase window width to display additional filters</source>
         <translation>הרחב רוחב חלון כדי להציג מסננים נוספים</translation>
     </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2745,7 +2804,7 @@
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>אזהרה: הייה בטוח להיענות לחוקי זכויות היוצרים של מדינתך בעת הורדת טורנטים מכל אחד ממנועי חיפוש אלו.</translation>
+        <translation>אזהרה: הייה בטוח להיענות לחוקי זכויות היוצרים של מדינתך בזמן הורדת טורנטים מכל אחד ממנועי החיפוש האלו.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -3379,6 +3438,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>RSS feeds</source>
         <translation>הזנות RSS</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

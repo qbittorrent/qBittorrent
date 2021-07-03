@@ -296,7 +296,8 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         return false;
     }
 
-    m_ui->labelHashData->setText(torrentID.toString());
+    m_ui->labelInfohash1Data->setText(m_torrentInfo.infoHash().v1().isValid() ? m_torrentInfo.infoHash().v1().toString() : tr("N/A"));
+    m_ui->labelInfohash2Data->setText(m_torrentInfo.infoHash().v2().isValid() ? m_torrentInfo.infoHash().v2().toString() : tr("N/A"));
     setupTreeview();
     TMMChanged(m_ui->comboTTM->currentIndex());
     return true;
@@ -348,7 +349,8 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     BitTorrent::Session::instance()->downloadMetadata(magnetUri);
     setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
-    m_ui->labelHashData->setText(torrentID.toString());
+    m_ui->labelInfohash1Data->setText(magnetUri.infoHash().v1().isValid() ? magnetUri.infoHash().v1().toString() : tr("N/A"));
+    m_ui->labelInfohash2Data->setText(magnetUri.infoHash().v2().isValid() ? magnetUri.infoHash().v2().toString() : tr("N/A"));
 
     m_magnetURI = magnetUri;
     return true;
@@ -475,7 +477,8 @@ void AddNewTorrentDialog::saveTorrentFile()
     }
     catch (const RuntimeError &err)
     {
-        QMessageBox::critical(this, tr("I/O Error"), err.message());
+        QMessageBox::critical(this, tr("I/O Error")
+            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, err.message()));
     }
 }
 
@@ -511,37 +514,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
                 , static_cast<int>(prio));
         }
     };
-
-    QMenu *menu = new QMenu(this);
-    menu->setAttribute(Qt::WA_DeleteOnClose);
-
-    if (selectedRows.size() == 1)
-    {
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
-            , this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
-        menu->addSeparator();
-    }
-
-    QMenu *subMenu = menu->addMenu(tr("Priority"));
-
-    subMenu->addAction(tr("Do not download"), subMenu, [applyPriorities]()
-    {
-        applyPriorities(BitTorrent::DownloadPriority::Ignored);
-    });
-    subMenu->addAction(tr("Normal"), subMenu, [applyPriorities]()
-    {
-        applyPriorities(BitTorrent::DownloadPriority::Normal);
-    });
-    subMenu->addAction(tr("High"), subMenu, [applyPriorities]()
-    {
-        applyPriorities(BitTorrent::DownloadPriority::High);
-    });
-    subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
-    {
-        applyPriorities(BitTorrent::DownloadPriority::Maximum);
-    });
-    subMenu->addSeparator();
-    subMenu->addAction(tr("By shown file order"), subMenu, [this]()
+    const auto applyPrioritiesByOrder = [this]()
     {
         // Equally distribute the selected items into groups and for each group assign
         // a download priority that will apply to each item. The number of groups depends on how
@@ -573,7 +546,57 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
             m_contentModel->setData(index.sibling(index.row(), PRIORITY)
                 , static_cast<int>(priority));
         }
-    });
+    };
+
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    if (selectedRows.size() == 1)
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
+            , this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
+        menu->addSeparator();
+
+        QMenu *priorityMenu = menu->addMenu(tr("Priority"));
+        priorityMenu->addAction(tr("Do not download"), priorityMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Ignored);
+        });
+        priorityMenu->addAction(tr("Normal"), priorityMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal);
+        });
+        priorityMenu->addAction(tr("High"), priorityMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::High);
+        });
+        priorityMenu->addAction(tr("Maximum"), priorityMenu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Maximum);
+        });
+        priorityMenu->addSeparator();
+        priorityMenu->addAction(tr("By shown file order"), priorityMenu, applyPrioritiesByOrder);
+    }
+    else
+    {
+        menu->addAction(tr("Do not download"), menu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Ignored);
+        });
+        menu->addAction(tr("Normal priority"), menu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal);
+        });
+        menu->addAction(tr("High priority"), menu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::High);
+        });
+        menu->addAction(tr("Maximum priority"), menu, [applyPriorities]()
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Maximum);
+        });
+        menu->addSeparator();
+        menu->addAction(tr("Priority by shown file order"), menu, applyPrioritiesByOrder);
+    }
 
     menu->popup(QCursor::pos());
 }

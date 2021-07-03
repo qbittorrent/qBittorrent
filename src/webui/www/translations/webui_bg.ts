@@ -213,10 +213,6 @@
         <translation>Бисквитка:</translation>
     </message>
     <message>
-        <source>Type folder here</source>
-        <translation>Напишете директория тук</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Повече информация</translation>
     </message>
@@ -239,11 +235,6 @@
     <message>
         <source>Rename torrent</source>
         <translation>Преименуване на торент</translation>
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation>Други...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -972,7 +963,7 @@
     </message>
     <message>
         <source>%I: Info hash</source>
-        <translation>%I: Информационен отпечатък</translation>
+        <translation type="vanished">%I: Информационен отпечатък</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1376,7 +1367,7 @@
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation>Изтегли REPACK/PROPER епизоди</translation>
+        <translation>Свали REPACK/PROPER епизоди</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1456,6 +1447,38 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
+        <translation>Тип на услуга (ТнУ) за връзки към участници</translation>
+    </message>
+    <message>
+        <source>Outgoing connections per second:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Random</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%K: Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reannounce to all trackers when IP or port changed:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Trusted proxies list:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable reverse proxy support</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%J: Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%I: Info hash v1</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1688,7 +1711,7 @@
     </message>
     <message>
         <source>Torrent Hash:</source>
-        <translation>Сигнатура на Торента:</translation>
+        <translation type="vanished">Сигнатура на Торента:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1744,6 +1767,18 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation>%1 (споделян за %2)</translation>
+    </message>
+    <message>
+        <source>Info Hash v2:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v1:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>N/A</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1764,6 +1799,14 @@
     <message>
         <source>Default save location</source>
         <translation>Местоположение за запис по подразбиране</translation>
+    </message>
+    <message>
+        <source>Other...</source>
+        <translation>Други...</translation>
+    </message>
+    <message>
+        <source>Type folder here</source>
+        <translation>Въведете папка тук</translation>
     </message>
 </context>
 <context>
@@ -1924,27 +1967,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation>Застояли качващи се (%1)</translation>
+        <translation>Застоели качващи се (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>Застояли свалящи се (%1)</translation>
+        <translation>Застоели свалящи се (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>Застояли свалящи се (0)</translation>
+        <translation>Застоели свалящи се (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>Застояли (0)</translation>
+        <translation>Застоели (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>Застояли качващи се (0)</translation>
+        <translation>Застоели качващи се (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>Застояли (%1)</translation>
+        <translation>Застоели (%1)</translation>
     </message>
 </context>
 <context>
@@ -2187,7 +2230,7 @@
     </message>
     <message>
         <source>Tier</source>
-        <translation>Група</translation>
+        <translation>Ред</translation>
     </message>
     <message>
         <source>Download Priority</source>
@@ -2286,7 +2329,7 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (споделян за %2)</translation>
     </message>
 </context>
 <context>
@@ -2466,7 +2509,7 @@
     </message>
     <message>
         <source>Hash</source>
-        <translation>Отпечатък</translation>
+        <translation type="vanished">Отпечатък</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2487,6 +2530,18 @@
     <message>
         <source>Add...</source>
         <translation>Добавяне...</translation>
+    </message>
+    <message>
+        <source>Info hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent ID</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2618,7 +2673,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2716,6 +2771,10 @@
     <message>
         <source>Increase window width to display additional filters</source>
         <translation>Увеличаване широчина на прозореца за показване на допълнителни филтри</translation>
+    </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3380,6 +3439,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>RSS feeds</source>
         <translation>RSS канали</translation>
+    </message>
+    <message>
+        <source>Unread</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

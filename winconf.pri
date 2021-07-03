@@ -23,7 +23,7 @@ else {
     DEFINES += NDEBUG
 }
 
-win32-g++* {
+win32-g++*|win32-clang-g++* {
     CONFIG(debug, debug|release) {
         # Make sure binary is not relocatable, otherwise debugging will fail
         QMAKE_LFLAGS -= -Wl,--dynamicbase
@@ -58,7 +58,7 @@ else {
 
 # Stack trace support can be enabled in 'conf.pri'
 stacktrace {
-    win32-g++* {
+    win32-g++*|win32-clang-g++* {
         contains(QMAKE_HOST.arch, x86) {
             # i686 arch requires frame pointer preservation
             QMAKE_CXXFLAGS += -fno-omit-frame-pointer

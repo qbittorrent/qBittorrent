@@ -52,7 +52,7 @@ enum PropColumn
 class PropListDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PropListDelegate)
+    Q_DISABLE_COPY_MOVE(PropListDelegate)
 
 public:
     explicit PropListDelegate(PropertiesWidget *properties);

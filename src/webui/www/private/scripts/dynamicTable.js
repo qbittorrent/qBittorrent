@@ -1383,7 +1383,7 @@ window.qBittorrent.DynamicTable = (function() {
             tr.addClass("torrentsTableContextMenuTarget");
         },
 
-        getCurrentTorrentHash: function() {
+        getCurrentTorrentID: function() {
             return this.getSelectedRowId();
         },
 

@@ -79,7 +79,7 @@ BaseLogModel::BaseLogModel(QObject *parent)
 
 int BaseLogModel::rowCount(const QModelIndex &) const
 {
-    return m_messages.size();
+    return static_cast<int>(m_messages.size());
 }
 
 int BaseLogModel::columnCount(const QModelIndex &) const
@@ -120,7 +120,7 @@ void BaseLogModel::addNewMessage(const BaseLogModel::Message &message)
     // but because of calling of beginInsertRows function we'll have ghost rows.
     if (m_messages.size() == MAX_VISIBLE_MESSAGES)
     {
-        const int lastMessage = m_messages.size() - 1;
+        const int lastMessage = static_cast<int>(m_messages.size()) - 1;
         beginRemoveRows(QModelIndex(), lastMessage, lastMessage);
         m_messages.pop_back();
         endRemoveRows();

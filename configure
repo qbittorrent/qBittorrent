@@ -1450,7 +1450,7 @@ Some influential environment variables:
               directories to add to pkg-config's search path
   PKG_CONFIG_LIBDIR
               path overriding pkg-config's built-in search path
-  QT_QMAKE    value of host_bins for Qt5Core >= 5.12, overriding pkg-config
+  QT_QMAKE    value of host_bins for Qt5Core >= 5.14, overriding pkg-config
   Qt5Svg_CFLAGS
               C compiler flags for Qt5Svg, overriding pkg-config
   Qt5Svg_LIBS linker flags for Qt5Svg, overriding pkg-config
@@ -5456,8 +5456,8 @@ printf "%s\n" "$enable_webui" >&6; }
 esac
 
 if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.12\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.12") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
@@ -5466,12 +5466,12 @@ if test -n "$QT_QMAKE"; then
     pkg_cv_QT_QMAKE="$QT_QMAKE"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.12\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.12") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Core >= 5.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Core >= 5.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.12" 2>/dev/null`
+  pkg_cv_QT_QMAKE=`$PKG_CONFIG --variable="host_bins" "Qt5Core >= 5.14" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -5501,8 +5501,8 @@ fi
 
 fi
 
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.12" >&5
-printf %s "checking for Qt5 qmake >= 5.12... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Qt5 qmake >= 5.14" >&5
+printf %s "checking for Qt5 qmake >= 5.14... " >&6; }
 if test "x$QT_QMAKE" != "x"
 then :
   { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $QT_QMAKE" >&5
@@ -5529,12 +5529,12 @@ if test -n "$Qt5Svg_CFLAGS"; then
     pkg_cv_Qt5Svg_CFLAGS="$Qt5Svg_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Svg >= 5.12\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Svg >= 5.12") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Svg >= 5.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Svg >= 5.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_Qt5Svg_CFLAGS=`$PKG_CONFIG --cflags "Qt5Svg >= 5.12" 2>/dev/null`
+  pkg_cv_Qt5Svg_CFLAGS=`$PKG_CONFIG --cflags "Qt5Svg >= 5.14" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -5546,12 +5546,12 @@ if test -n "$Qt5Svg_LIBS"; then
     pkg_cv_Qt5Svg_LIBS="$Qt5Svg_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Svg >= 5.12\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5Svg >= 5.12") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5Svg >= 5.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5Svg >= 5.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_Qt5Svg_LIBS=`$PKG_CONFIG --libs "Qt5Svg >= 5.12" 2>/dev/null`
+  pkg_cv_Qt5Svg_LIBS=`$PKG_CONFIG --libs "Qt5Svg >= 5.14" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -5572,14 +5572,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        Qt5Svg_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "Qt5Svg >= 5.12" 2>&1`
+	        Qt5Svg_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "Qt5Svg >= 5.14" 2>&1`
         else
-	        Qt5Svg_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "Qt5Svg >= 5.12" 2>&1`
+	        Qt5Svg_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "Qt5Svg >= 5.14" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$Qt5Svg_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (Qt5Svg >= 5.12) were not met:
+	as_fn_error $? "Package requirements (Qt5Svg >= 5.14) were not met:
 
 $Qt5Svg_PKG_ERRORS
 
@@ -5619,11 +5619,11 @@ case "x$enable_qt_dbus" in #(
   "xyes") :
     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-               { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.12" >&5
-printf %s "checking for Qt5DBus >= 5.12... " >&6; }
+               { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Qt5DBus >= 5.14" >&5
+printf %s "checking for Qt5DBus >= 5.14... " >&6; }
        if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5DBus >= 5.12\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "Qt5DBus >= 5.12") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"Qt5DBus >= 5.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "Qt5DBus >= 5.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
@@ -6039,12 +6039,12 @@ if test -n "$libtorrent_CFLAGS"; then
     pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.13\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.13") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.13" 2>/dev/null`
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.14" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6056,12 +6056,12 @@ if test -n "$libtorrent_LIBS"; then
     pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.13\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.13") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.13" 2>/dev/null`
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.14" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6082,14 +6082,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.13" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14" 2>&1`
         else
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.13" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$libtorrent_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.13) were not met:
+	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.14) were not met:
 
 $libtorrent_PKG_ERRORS
 
@@ -7845,4 +7845,3 @@ fi
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Good, the configure finished." >&5
 printf "%s\n" "$as_me: Good, the configure finished." >&6;}
 printf "%s\n"
-

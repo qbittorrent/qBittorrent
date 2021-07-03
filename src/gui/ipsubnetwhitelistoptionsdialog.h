@@ -43,7 +43,7 @@ namespace Ui
 class IPSubnetWhitelistOptionsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(IPSubnetWhitelistOptionsDialog)
+    Q_DISABLE_COPY_MOVE(IPSubnetWhitelistOptionsDialog)
 
 public:
     explicit IPSubnetWhitelistOptionsDialog(QWidget *parent = nullptr);
