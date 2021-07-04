@@ -101,7 +101,6 @@ class TrackerFiltersList final : public BaseFilterWidget
 
 public:
     TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    ~TrackerFiltersList() override;
 
     // Redefine addItem() to make sure the list stays sorted
     void addItem(const QString &tracker, const BitTorrent::TorrentID &id);
@@ -132,7 +131,6 @@ private:
     QHash<QString, QSet<BitTorrent::TorrentID>> m_trackers;  // <tracker host, torrent IDs>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
-    QStringList m_iconPaths;
     int m_totalTorrents;
     bool m_downloadTrackerFavicon;
 };
