@@ -355,7 +355,7 @@
           <item row="3" column="0">
            <widget class="QLabel" name="labelInfohash2">
             <property name="text">
-             <string>Info hash v2</string>
+             <string>Info hash v2:</string>
             </property>
            </widget>
           </item>
