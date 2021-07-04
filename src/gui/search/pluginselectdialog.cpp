@@ -38,6 +38,7 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QTableView>
+#include <QTemporaryFile>
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -319,7 +320,7 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
         // Icon is missing, we must download it
         using namespace Net;
         DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true)
+                    DownloadRequest(plugin->url + "/favicon.ico")
                     , this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version);
@@ -406,7 +407,14 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         return;
     }
 
-    const QString filePath = Utils::Fs::toUniformPath(result.filePath);
+    auto iconFile = Utils::Fs::tempFile(result.data);
+    if (!iconFile || !iconFile->exists())
+    {
+        qDebug("Failed to save favicon");
+        return;
+    }
+
+    const QString filePath = Utils::Fs::toUniformPath(iconFile->fileName());
 
     // Icon downloaded
     QIcon icon(filePath);
@@ -444,8 +452,6 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
             }
         }
     }
-    // Delete tmp file
-    Utils::Fs::forceRemove(filePath);
 }
 
 void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
